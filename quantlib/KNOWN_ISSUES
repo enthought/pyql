@@ -1,0 +1,10 @@
+Issues in the dellocation process:
+----------------------------------
+
+    In the test_vanilla_option, there was a segfault if we do let the object get
+    deleted while out of scope. One of them deallocates something that is still
+    pointed by one of the QuantLib observers. Using the del statement to
+    cleanup the object in the correct order solves the issue. This should be
+    solved. Using the del statement to cleanup the object in the correct order
+    solves the issue.
+

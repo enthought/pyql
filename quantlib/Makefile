@@ -1,0 +1,23 @@
+
+clean:
+	find quantlib -name \*.so -exec rm {} \;
+	find quantlib -name \*.pyc -exec rm {} \;
+	find quantlib/time -name \*.cpp -exec rm {} \;
+	find quantlib/termstructures -name \*.cpp -exec rm {} \;
+	find quantlib/instruments -name \*.cpp -exec rm {} \;
+	find quantlib/processes -name \*.cpp -exec rm {} \;
+	find quantlib/pricingengines -name \*.cpp -exec rm {} \;
+	rm -rf quantlib/*.cpp
+
+
+build:
+	python setup.py build_ext --inplace
+
+tests:
+	nosetests -v quantlib/test
+
+build_ex:
+	g++ -m32 -I/opt/local/include/ -I/opt/local/include/boost quantlib_test2.cpp \
+    -o test2 -L/opt/local/lib/ -lQuantLib
+
+.PHONY: build

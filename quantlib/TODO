@@ -1,0 +1,24 @@
+TODO
+====
+
+Check licensing of the quantlib cython interface.
+    - BSD ? shared with Patrick ?
+
+To be implemented based on HestonTools.cpp:
+- DONE: vanilla option 
+- heston model
+
+vector<vector<double>> to numpy array and the other way around
+
+Testing prange for //isation on a looping evaluation of something (MonteCarlo
+?)
+
+TARGET
+======
+
+- publications:
+    - publish a white paper
+    - SFA ?
+    - LFPUG / The Thalesians ? 
+- build a community around quantlib wrappers
+

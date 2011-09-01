@@ -1,0 +1,10 @@
+QuantLib Cython wrappers
+========================
+
+This library is a thin wrapper using Cython on top of QuantLib. 
+It currently focuses on useful simple objects like Date, Calendar but
+might be extended to more complex wrappers if needed.
+
+This work is based on QuantLib version 1.0.1.
+
+
