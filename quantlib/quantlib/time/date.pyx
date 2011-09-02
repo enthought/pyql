@@ -16,7 +16,7 @@ from _period cimport (
     g_op, geq_op, l_op, leq_op
     )
 
-cdef extern from "string" namespace "std":
+cdef extern from "cstring" namespace "std":
     void* memcpy ( void* destination, void* source, size_t num )
 
 cdef public enum Month:
