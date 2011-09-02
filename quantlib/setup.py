@@ -1,6 +1,7 @@
 
 #from setuptools import setup, find_packages
-from setuptools import setup
+#from setuptools import setup
+from distutils.core import setup
 #from setuptools import find_packages
 # Warning : do not import the distutils extension before setuptools
 # It does break the cythonize call
@@ -17,8 +18,10 @@ elif sys.platform == 'win32':
     # using msys
     INCLUDE_DIRS = [r'C:\msys\1.0\local\include', '.']
     LIBRARY_DIRS = [r"C:\msys\1.0\local\lib"]
-else:
-    raise ValueError('Unsupported platform')
+elif sys.platform == 'linux2':
+    # good for Debian
+    INCLUDE_DIRS = ['/usr/include', '.']
+    LIBRARY_DIRS = ['/usr/lib']
 
 settings_extension = Extension('quantlib.settings',
     ['quantlib/settings/settings.pyx', 'quantlib/settings/ql_settings.cpp'],
