@@ -75,6 +75,12 @@ class VanillaOptionTestCase(unittest.TestCase):
         self.payoff = PlainVanillaPayoff(self.option_type, self.strike)
 
 
+    def test_str(self):
+        print(self.underlyingH)
+        print(self.payoff)
+        print(EuropeanExercise(self.maturity))
+        self.assertTrue(True)
+        
     def test_european_vanilla_option_usage(self):
         
         
@@ -104,7 +110,8 @@ class VanillaOptionTestCase(unittest.TestCase):
 
         american_option.set_pricing_engine(engine)
 
-        self.assertAlmostEquals(4.459628, american_option.net_present_value, 6)
+        # self.assertAlmostEquals(4.459628, american_option.net_present_value, 6)
+        self.assertAlmostEquals(4.459628, american_option.NPV(), 6)
 
 
 if __name__ == '__main__':
