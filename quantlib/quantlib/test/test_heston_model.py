@@ -1,7 +1,9 @@
 import unittest
 
+import numpy as np
+
 from quantlib.settings import Settings
-from quantlib.time.api import today, Actual360, NullCalendar, Period, Months
+from quantlib.time.api import today, Actual360, NullCalendar, Period, Months, Years
 from quantlib.termstructures.yields.flat_forward import FlatForward, SimpleQuote
 
 class HestonModelTestCase(unittest.TestCase):
@@ -22,8 +24,8 @@ class HestonModelTestCase(unittest.TestCase):
         daycounter = Actual360()
         calendar = NullCalendar()
 
-        risk_free_ts = FlatForward(forward=0.04, daycounter=daycounter)
-        dividend_ts = FlatForward(forward=0.50, daycounter=daycounter)
+        risk_free_ts = FlatForward(reference_date=todays_date, forward=0.04, daycounter=daycounter)
+        dividend_ts = FlatForward(reference_date=todays_date, forward=0.50, daycounter=daycounter)
 
 
         option_maturities = [
@@ -44,7 +46,7 @@ class HestonModelTestCase(unittest.TestCase):
         volatility = vol.value
 
         for maturity in option_maturities:
-            for moneyness in arange(-1.0, 2.0, 1.):
+            for moneyness in np.arange(-1.0, 2.0, 1.):
                 tau = daycounter.yearFraction(
                     risk_free_ts.reference_date,
                     calendar.avance(

@@ -20,15 +20,21 @@ cdef public enum ExerciseType:
     Bermudan  = _exercise.Bermudan
     European = _exercise.European
 
+ExTypeInWord = {American: 'American', Bermudan: 'Bermudan', European:'European'}
+
 cdef class Exercise:
 
     def __cinit__(self):
         self._thisptr = NULL
-
+        
+        
     def __dealloc__(self):
         if self._thisptr is not NULL:
             print 'Exercise deallocated'
             del self._thisptr
+            
+    def __str__(self):
+        return 'Exercise type: %s' % ExTypeInWord[self._thisptr.type()]
 
 cdef class EuropeanExercise(Exercise):
 
@@ -47,10 +53,10 @@ cdef class AmericanExercise(Exercise):
 cdef class VanillaOption:
 
     cdef _option.VanillaOption* _thisptr
-    cdef bool has_pricing_engine
+    cdef public bool has_pricing_engine
 
-    cdef Exercise _exercise_ref
-    cdef Payoff _payoff_ref
+    cdef public Exercise _exercise_ref
+    cdef public Payoff _payoff_ref
 
     def __cinit__(self):
         self._thisptr = NULL
@@ -63,6 +69,9 @@ cdef class VanillaOption:
             print 'Vanilla option deallocated'
             del self._thisptr
 
+    def __str__(self):
+        return 'Vanilla option %s %s' % (str(self._exercise_ref), str(self._payoff_ref))
+ 
     def __init__(self, Payoff payoff, Exercise exercise):
 
         # keep reference to other objects. This prevents them to be deallocated
@@ -93,6 +102,12 @@ cdef class VanillaOption:
         self._thisptr.setPricingEngine(deref(engine_ptr))
 
         self.has_pricing_engine = True
+
+    def NPV(self):
+        if self.has_pricing_engine:
+            return self._thisptr.NPV()
+        else:
+            return None
 
     property net_present_value:
         def __get__(self):
