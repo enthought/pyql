@@ -22,6 +22,7 @@ cdef extern from 'ql/exercise.hpp' namespace 'QuantLib':
         # Exercise::Exercise()
         Exercise()
         Exercise(Type type)
+        Type type()
 
     cdef cppclass EarlyExercise(Exercise):
         # fixme: same issue as with the Exercise class
