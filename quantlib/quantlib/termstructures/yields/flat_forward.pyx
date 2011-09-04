@@ -26,6 +26,9 @@ cdef class SimpleQuote(Quote):
 
     def __init__(self, float value=0.0):
         self._thisptr = new ffwd.SimpleQuote(value)
+        
+    def __str__(self):
+        return 'Simple Quote: %f' % self._thisptr.value()
 
     property value:
         def __get__(self):
