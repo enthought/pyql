@@ -6,6 +6,15 @@ from quantlib.settings import Settings
 from quantlib.time.api import today, Actual360, NullCalendar, Period, Months, Years
 from quantlib.termstructures.yields.flat_forward import FlatForward, SimpleQuote
 
+
+def flat_rate(forward, daycounter):
+    return FlatForward(
+        settlement_days = 0, 
+        calendar        = NullCalendar(), 
+        forward         = forward, 
+        daycounter      = daycounter
+    )
+
 class HestonModelTestCase(unittest.TestCase):
     """Test cases are based on the test-suite/hestonmodel.cpp in QuantLib.
 
@@ -24,8 +33,8 @@ class HestonModelTestCase(unittest.TestCase):
         daycounter = Actual360()
         calendar = NullCalendar()
 
-        risk_free_ts = FlatForward(reference_date=todays_date, forward=0.04, daycounter=daycounter)
-        dividend_ts = FlatForward(reference_date=todays_date, forward=0.50, daycounter=daycounter)
+        risk_free_ts = flat_rate(0.04, daycounter)
+        dividend_ts = flat_rate(0.50, daycounter)
 
 
         option_maturities = [
@@ -49,9 +58,13 @@ class HestonModelTestCase(unittest.TestCase):
             for moneyness in np.arange(-1.0, 2.0, 1.):
                 tau = daycounter.yearFraction(
                     risk_free_ts.reference_date,
-                    calendar.avance(
+                    calendar.advance(
                         risk_free_ts.reference_date,
-                        maturity)
+                        period=maturity)
+                )
+                forward_price = s0.value * dividend_ts.discount(tau)
+                strike_price = forward_price * np.exp(
+                    -moneyness * volatility * np.sqrt(tau)
                 )
 
 

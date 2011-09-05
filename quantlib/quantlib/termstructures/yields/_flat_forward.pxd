@@ -39,6 +39,9 @@ cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib'
                            )
         DiscountFactor discount(Date& d)
         DiscountFactor discount(Date& d, bool extrapolate)
+        DiscountFactor discount(Time t)
+        DiscountFactor discount(Time t, bool extrapolate)
+        Date& referenceDate()
 
 cdef extern from 'ql/termstructures/yield/flatforward.hpp' namespace 'QuantLib':
 

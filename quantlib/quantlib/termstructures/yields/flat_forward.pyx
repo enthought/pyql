@@ -1,3 +1,4 @@
+include '../../types.pxi'
 from cython.operator cimport dereference as deref
 
 from libcpp cimport bool as cbool
@@ -5,7 +6,7 @@ from libcpp cimport bool as cbool
 from quantlib.time._period cimport Frequency
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.time.date cimport Date
+from quantlib.time.date cimport Date, date_from_qldate
 
 from quantlib.compounding import Continuous
 from quantlib.time.date import Annual 
@@ -77,7 +78,7 @@ cdef class YieldTermStructure:
 
         return
 
-    def discount(self, Date date):
+    def discount(self, value):
         cdef ffwd.YieldTermStructure* term_structure
         if self.relinkable:
             # retrieves the shared_ptr (currentLink()) then gets the
@@ -86,7 +87,24 @@ cdef class YieldTermStructure:
         else:
             term_structure = self._thisptr
 
-        return term_structure.discount(deref(date._thisptr))
+        if isinstance(value, Date):
+            discount_value =  term_structure.discount(
+                deref((<Date>value)._thisptr)
+            )
+        elif isinstance(value, float):
+            discount_value = term_structure.discount(
+                <Time>value
+            )
+        else:
+            raise ValueError('Unsupported value type')
+
+        return discount_value
+                
+
+    property reference_date:
+        def __get__(self):
+            cdef ffwd.Date ref_date =  self._thisptr.referenceDate()
+            return date_from_qldate(ref_date)
 
 
 cdef class FlatForward(YieldTermStructure):
@@ -108,6 +126,7 @@ cdef class FlatForward(YieldTermStructure):
         #local cdef's
         cdef ffwd.Quote* quote_ptr
         cdef ffwd.Handle[ffwd.Quote]* quote_handle
+        cdef ffwd.Date _reference_date
 
         if reference_date is not None and forward is not None:
             self._thisptr = new ffwd.FlatForward(
@@ -145,4 +164,6 @@ cdef class FlatForward(YieldTermStructure):
             ) 
         else:
             raise ValueError('Invalid constructor')
+
+
 
