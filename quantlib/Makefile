@@ -8,6 +8,8 @@ clean:
 	find quantlib/processes -name \*.cpp -exec rm {} \;
 	find quantlib/pricingengines -name \*.cpp -exec rm {} \;
 	rm -rf quantlib/*.cpp
+	rm -rf build
+	rm -rf dist
 
 
 build:
