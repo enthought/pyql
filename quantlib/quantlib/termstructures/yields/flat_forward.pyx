@@ -49,10 +49,13 @@ cdef class YieldTermStructure:
     def __cinit__(self):
         self.relinkable = False
         self._thisptr = NULL
+        self._relinkable_ptr = NULL
 
     def __dealloc__(self):
         if self._thisptr is not NULL:
             del self._thisptr
+        if self._relinkable_ptr is not NULL:
+            del self._relinkable_ptr
 
 
     def __init__(self, relinkable=True):
@@ -61,7 +64,7 @@ cdef class YieldTermStructure:
             self._relinkable_ptr = new \
                 ffwd.RelinkableHandle[ffwd.YieldTermStructure]()
         else:
-            raise ValueError('Not supporting non relinkable YieldTermStructure')
+            raise ValueError('Invalid constructor (not implemented ?)')
 
     def link_to(self, YieldTermStructure structure):
         cdef ffwd.shared_ptr[ffwd.YieldTermStructure]* ptr 
@@ -70,7 +73,6 @@ cdef class YieldTermStructure:
         else:
             ptr = new ffwd.shared_ptr[ffwd.YieldTermStructure] \
                 (structure._thisptr)
-            #(<ffwd.YieldTermStructure*>(structure._thisptr))
             self._relinkable_ptr.linkTo(deref(ptr))
 
         return
@@ -81,9 +83,10 @@ cdef class YieldTermStructure:
             # retrieves the shared_ptr (currentLink()) then gets the
             # term_structure (get())
             term_structure = self._relinkable_ptr.currentLink().get()
-            return term_structure.discount(deref(date._thisptr))
         else:
-            return self._thisptr.discount(deref(date._thisptr))
+            term_structure = self._thisptr
+
+        return term_structure.discount(deref(date._thisptr))
 
 
 cdef class FlatForward(YieldTermStructure):
@@ -141,5 +144,5 @@ cdef class FlatForward(YieldTermStructure):
                 <Frequency>frequency
             ) 
         else:
-            raise ValueError('Not supported constructor')
+            raise ValueError('Invalid constructor')
 

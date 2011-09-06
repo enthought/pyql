@@ -1,3 +1,4 @@
+from quantlib.time import date
 from quantlib.instruments.option import (
     Put, American, European, EuropeanExercise, AmericanExercise
 )
@@ -14,7 +15,6 @@ from quantlib.termstructures.yields.flat_forward import (
 )
 from quantlib.termstructures.volatility.equityfx.black_vol_term_structure import BlackConstantVol
 
-from datetime import date
 
 settings = Settings()
 calendar = TARGET()
@@ -22,7 +22,7 @@ calendar = TARGET()
 today = date.today()
 offset = 366
 
-todays_date = Date(today.day, today.month, today.year) - offset
+todays_date = today - offset
 settlement_date = todays_date + 2
 
 settings.evaluation_date = todays_date
@@ -82,4 +82,5 @@ european_option.set_pricing_engine(analytic_european_engine)
 print('today: %s settlement: %s maturity: %s' % (todays_date, settlement_date, maturity))
 print('NPV: %f\n' % european_option.net_present_value)
 
+del european_option
 

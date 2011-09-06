@@ -1,3 +1,4 @@
+# Cython imports
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 
@@ -11,6 +12,11 @@ from quantlib.instruments.payoffs cimport Payoff
 from quantlib.time.date cimport Date
 from quantlib.pricingengines.vanilla cimport VanillaOptionEngine
 
+# Python imports
+import logging
+
+logger = logging.getLogger('quantlib')
+
 cdef public enum OptionType:
     Put = _option.Put
     Call = _option.Call
@@ -20,7 +26,11 @@ cdef public enum ExerciseType:
     Bermudan  = _exercise.Bermudan
     European = _exercise.European
 
-ExTypeInWord = {American: 'American', Bermudan: 'Bermudan', European:'European'}
+EXERCISE_TO_STR = {
+    American: 'American', 
+    Bermudan: 'Bermudan', 
+    European:'European'
+}
 
 cdef class Exercise:
 
@@ -30,11 +40,11 @@ cdef class Exercise:
         
     def __dealloc__(self):
         if self._thisptr is not NULL:
-            print 'Exercise deallocated'
             del self._thisptr
+            logger.debug('Exercise deallocated')
             
     def __str__(self):
-        return 'Exercise type: %s' % ExTypeInWord[self._thisptr.type()]
+        return 'Exercise type: %s' % EXERCISE_TO_STR[self._thisptr.type()]
 
 cdef class EuropeanExercise(Exercise):
 
@@ -66,8 +76,8 @@ cdef class VanillaOption:
 
     def __dealloc__(self):
         if self._thisptr is not NULL:
-            print 'Vanilla option deallocated'
             del self._thisptr
+            logger.debug('Vanilla option deallocated')
 
     def __str__(self):
         return 'Vanilla option %s %s' % (str(self._exercise_ref), str(self._payoff_ref))
