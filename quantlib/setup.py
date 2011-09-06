@@ -85,7 +85,12 @@ collected_extensions = cythonize([
         include_dirs=INCLUDE_DIRS,
         library_dirs=LIBRARY_DIRS,
     ),
- 
+    Extension('*', 
+        ['quantlib/models/equity/*.pyx'],
+        include_dirs=INCLUDE_DIRS,
+        library_dirs=LIBRARY_DIRS,
+    ),
+  
 ])
 
 setup(
