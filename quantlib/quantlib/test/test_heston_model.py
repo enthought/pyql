@@ -2,6 +2,7 @@ import unittest
 
 import numpy as np
 
+from quantlib.models.equity.heston_model import HestonModelHelper
 from quantlib.settings import Settings
 from quantlib.time.api import today, Actual360, NullCalendar, Period, Months, Years
 from quantlib.termstructures.yields.flat_forward import FlatForward, SimpleQuote
@@ -65,6 +66,12 @@ class HestonModelTestCase(unittest.TestCase):
                 forward_price = s0.value * dividend_ts.discount(tau)
                 strike_price = forward_price * np.exp(
                     -moneyness * volatility * np.sqrt(tau)
+                )
+                options.append(
+                    HestonModelHelper(
+                        maturity, calendar, s0.value, strike_price, vol, 
+                        risk_free_ts, dividend_ts
+                    )
                 )
 
 
