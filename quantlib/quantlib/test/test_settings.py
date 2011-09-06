@@ -20,3 +20,5 @@ class SettingsTestCase(unittest.TestCase):
         self.assertTrue(
             evaluation_date == settings.evaluation_date
         )
+
+        self.assertTrue(settings.version.startswith('1'))
