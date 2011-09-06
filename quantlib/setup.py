@@ -19,9 +19,9 @@ elif sys.platform == 'win32':
     INCLUDE_DIRS = [r'C:\msys\1.0\local\include', '.']
     LIBRARY_DIRS = [r"C:\msys\1.0\local\lib"]
 elif sys.platform == 'linux2':
-    # good for Debian
-    INCLUDE_DIRS = ['/usr/include', '.']
-    LIBRARY_DIRS = ['/usr/lib']
+    # good for Debian / ubuntu 10.04 (with QL .99 installed by default)
+    INCLUDE_DIRS = ['/usr/include', '/usr/local/QuantLib-1.0.1', '.']
+    LIBRARY_DIRS = ['/usr/lib', '/usr/local/lib']
 
 settings_extension = Extension('quantlib.settings',
     ['quantlib/settings/settings.pyx', 'quantlib/settings/ql_settings.cpp'],
