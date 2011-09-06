@@ -34,7 +34,7 @@ strike = 40
 dividend_yield = 0.00
 risk_free_rate = 0.06
 volatility = 0.20
-maturity = settlement_date + 365
+maturity = settlement_date + 363
 daycounter = Actual365Fixed()
 
 underlyingH = SimpleQuote(underlying)
