@@ -8,3 +8,6 @@ Issues in the dellocation process:
     solved. Using the del statement to cleanup the object in the correct order
     solves the issue.
 
+    --> one way to solve the problem could be to use only boost shared_ptr as
+    internal pointers in the Cython extensions
+

@@ -3,6 +3,7 @@ import unittest
 import numpy as np
 
 from quantlib.models.equity.heston_model import HestonModelHelper
+from quantlib.processes.heston_process import HestonProcess
 from quantlib.settings import Settings
 from quantlib.time.api import today, Actual360, NullCalendar, Period, Months, Years
 from quantlib.termstructures.yields.flat_forward import FlatForward, SimpleQuote
@@ -75,6 +76,15 @@ class HestonModelTestCase(unittest.TestCase):
                 )
 
 
+        for sigma in np.arange(0.1, 0.7, 0.2):
+            v0    = 0.01
+            kappa = 0.2
+            theta = 0.02
+            rho   = 0.75
+
+            process = HestonProcess(
+                risk_free_ts, dividend_ts, s0, v0, kappa, theta, sigma, rho
+            )
 
 
         self.fail('Finish implementation')
