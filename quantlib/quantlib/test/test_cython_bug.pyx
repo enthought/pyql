@@ -69,7 +69,6 @@ def test_bond_schedule_today_cython():
     cdef Date s1 = date_from_qldate_ref(s_date)
     cdef Date s2 = date_from_qldate_ref(b_date)
 
-    print s1, s2
     return s1, s2
 
 def test_bond_schedule_anotherday_cython():
@@ -123,5 +122,4 @@ def test_bond_schedule_anotherday_cython():
     cdef Date s1 = date_from_qldate_ref(s_date)
     cdef Date s2 = date_from_qldate_ref(b_date)
 
-    print s1, s2
     return s1, s2

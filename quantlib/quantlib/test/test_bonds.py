@@ -120,7 +120,7 @@ class BondTestCase(unittest.TestCase):
 
         date1, date2  = tcb.test_bond_schedule_today_cython()
         self.assertEquals(date1, date2)
-
+        
         date1, date2  = tcb.test_bond_schedule_anotherday_cython()
         self.assertEquals(date1, date2)
 

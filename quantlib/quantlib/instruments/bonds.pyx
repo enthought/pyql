@@ -78,7 +78,7 @@ cdef class Bond:
             date = from_date._thisptr
             settlement_date = self._thisptr.settlementDate(deref(date))
         else:
-            settlement_date = (<_bonds.Bond*>self._thisptr).settlementDate()
+            settlement_date = self._thisptr.settlementDate()
 
         return date_from_qldate_ref(settlement_date)
 
