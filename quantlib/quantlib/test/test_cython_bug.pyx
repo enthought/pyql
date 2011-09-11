@@ -106,11 +106,11 @@ def test_bond_schedule_anotherday_cython():
 
     cdef FixedRateBond* bond = new FixedRateBond(
             settlement_days,
-		    face_amount,
-		    fixed_bond_schedule,
-		    deref(coupons),
+	    face_amount,
+	    fixed_bond_schedule,
+	    deref(coupons),
             ActualActual(ISMA), 
-		    Following,
+	    Following,
             redemption,
             issue_date
     )
@@ -118,6 +118,9 @@ def test_bond_schedule_anotherday_cython():
     cdef QlDate s_date = calendar.advance(today, <Integer>3, Days, Following,
             False)
     cdef QlDate b_date = bond.settlementDate()
+	
+    print s_date.serialNumber()
+    print b_date.serialNumber()
 
     cdef Date s1 = date_from_qldate_ref(s_date)
     cdef Date s2 = date_from_qldate_ref(b_date)
