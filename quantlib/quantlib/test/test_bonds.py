@@ -23,6 +23,7 @@ from quantlib.termstructures.yields.flat_forward import (
     FlatForward, YieldTermStructure
 )
 
+import quantlib.test.test_cython_bug as tcb
 
 
 class BondTestCase(unittest.TestCase):
@@ -114,7 +115,16 @@ class BondTestCase(unittest.TestCase):
 
         self.assertEquals(
             calendar.advance(todays_date, 3, Days), bond.settlement_date())
-        
+       
+    def test_another_day_bug_cython_implementation(self):
+
+        date1, date2  = tcb.test_bond_schedule_today_cython()
+        self.assertEquals(date1, date2)
+
+        date1, date2  = tcb.test_bond_schedule_anotherday_cython()
+        self.assertEquals(date1, date2)
+
+ 
     
     def test_pricing_bond(self):
         '''Inspired by the C++ code from http://quantcorner.wordpress.com/.'''

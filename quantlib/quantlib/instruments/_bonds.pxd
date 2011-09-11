@@ -81,6 +81,7 @@ cdef extern from 'ql/instruments/bonds/fixedratebond.hpp' namespace 'QuantLib':
                       BusinessDayConvention paymentConvention,
                       Real redemption,
                       Date& issueDate)
+        Date settlementDate()
 
 cdef extern from 'ql/instruments/bonds/zerocouponbond.hpp' namespace 'QuantLib':
     cdef cppclass ZeroCouponBond(Bond):
