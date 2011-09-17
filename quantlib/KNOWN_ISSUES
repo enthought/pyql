@@ -1,5 +1,5 @@
-Issues in the dellocation process:
-----------------------------------
+Issues in the dellocation process
+---------------------------------
 
     In the test_vanilla_option, there was a segfault if we do let the object get
     deleted while out of scope. One of them deallocates something that is still
@@ -8,3 +8,13 @@ Issues in the dellocation process:
     solved. Using the del statement to cleanup the object in the correct order
     solves the issue.
 
+    --> one way to solve the problem could be to use only boost shared_ptr as
+    internal pointers in the Cython extensions
+
+
+QuantLib Setings evaluation_date not working
+--------------------------------------------
+
+    Using boost version before 1.46 seem to cause issues while setting
+    evaluation dates. The quantlib/test/test_cython_bug,pyx and the tests
+    defined in the quantlib/test/test_bonds.py should fail.
