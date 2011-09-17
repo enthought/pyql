@@ -1,14 +1,17 @@
 # distutils: language = c++
 # distutils: libraries = QuantLib
-
 include '../../types.pxi'
+
 from cython.operator cimport dereference as deref
+
+from libcpp.vector cimport vector
 
 cimport _heston_model as _hm
 cimport quantlib.termstructures.yields._flat_forward as _ffwd
 cimport quantlib.pricingengines._vanilla as _vanilla
 
 from quantlib.handle cimport Handle, shared_ptr
+from quantlib.math.optimization cimport OptimizationMethod, EndCriteria
 from quantlib.processes.heston_process cimport HestonProcess
 from quantlib.pricingengines.vanilla cimport AnalyticHestonEngine
 from quantlib.time.calendar cimport Calendar
@@ -77,6 +80,46 @@ cdef class HestonModel:
 
         self._thisptr = new shared_ptr[_hm.HestonModel](
             new _hm.HestonModel(deref(process._thisptr))
+        )
+
+    property theta:
+        def __get__(self):
+            return self._thisptr.get().theta()
+
+    property kappa:
+        def __get__(self):
+            return self._thisptr.get().kappa()
+
+    property sigma:
+        def __get__(self):
+            return self._thisptr.get().sigma()
+
+    property rho:
+        def __get__(self):
+            return self._thisptr.get().rho()
+
+    property v0:
+        def __get__(self):
+            return self._thisptr.get().v0()
+
+    def calibrate(self, helpers, OptimizationMethod method, EndCriteria
+            end_criteria):
+
+        #convert list to vector
+        cdef vector[shared_ptr[_hm.CalibrationHelper]]* helpers_vector = \
+            new vector[shared_ptr[_hm.CalibrationHelper]]()
+
+        cdef shared_ptr[_hm.CalibrationHelper]* chelper
+        for helper in helpers:
+            chelper = new shared_ptr[_hm.CalibrationHelper](
+                (<HestonModelHelper>helper)._thisptr.get()
+            )
+            helpers_vector.push_back(deref(chelper))
+
+        self._thisptr.get().calibrate(
+            deref(helpers_vector),
+            deref(method._thisptr.get()),
+            deref(end_criteria._thisptr.get())
         )
 
 

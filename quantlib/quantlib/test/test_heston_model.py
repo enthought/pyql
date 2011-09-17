@@ -5,6 +5,7 @@ import numpy as np
 from quantlib.models.equity.heston_model import HestonModelHelper, HestonModel
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.pricingengines.vanilla import AnalyticHestonEngine
+from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
 from quantlib.time.api import today, Actual360, NullCalendar, Period, Months, Years
 from quantlib.termstructures.yields.flat_forward import FlatForward, SimpleQuote
@@ -93,8 +94,17 @@ class HestonModelTestCase(unittest.TestCase):
             for option in options:
                 option.set_pricing_engine(engine)
 
+            optimisation_method = LevenbergMarquardt(1e-8, 1e-8, 1e-8)
 
-        self.fail('Finish implementation')
+            end_criteria = EndCriteria(400, 40, 1e-8, 1e-8, 1e-8)
+            model.calibrate(options, optimisation_method, end_criteria)
+
+            tolerance = 3.0e-3
+
+            print v0, kappa, theta, rho
+            self.assertAlmostEquals(0.0, model.sigma, 4) 
+
+
 
 if __name__ == '__main__':
     unittest.main()
