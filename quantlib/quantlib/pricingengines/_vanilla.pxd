@@ -1,5 +1,8 @@
+include '../types.pxi'
+
 from quantlib.handle cimport shared_ptr
 from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess
+from quantlib.models.equity._heston_model cimport HestonModel
 
 cdef extern from 'ql/pricingengine.hpp' namespace 'QuantLib':
 
@@ -18,5 +21,13 @@ cdef extern from 'ql/pricingengines/vanilla/baroneadesiwhaleyengine.hpp' namespa
     cdef cppclass BaroneAdesiWhaleyApproximationEngine(PricingEngine):
         BaroneAdesiWhaleyApproximationEngine(
             shared_ptr[GeneralizedBlackScholesProcess]& process
+        )
+
+cdef extern from 'ql/pricingengines/vanilla/analytichestonengine.hpp' namespace 'QuantLib':
+
+    cdef cppclass AnalyticHestonEngine(PricingEngine):
+        AnalyticHestonEngine(
+            shared_ptr[HestonModel]& model, 
+            Size integrationOrder
         )
 

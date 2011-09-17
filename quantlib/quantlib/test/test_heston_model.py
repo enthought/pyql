@@ -2,8 +2,9 @@ import unittest
 
 import numpy as np
 
-from quantlib.models.equity.heston_model import HestonModelHelper
+from quantlib.models.equity.heston_model import HestonModelHelper, HestonModel
 from quantlib.processes.heston_process import HestonProcess
+from quantlib.pricingengines.vanilla import AnalyticHestonEngine
 from quantlib.settings import Settings
 from quantlib.time.api import today, Actual360, NullCalendar, Period, Months, Years
 from quantlib.termstructures.yields.flat_forward import FlatForward, SimpleQuote
@@ -85,6 +86,12 @@ class HestonModelTestCase(unittest.TestCase):
             process = HestonProcess(
                 risk_free_ts, dividend_ts, s0, v0, kappa, theta, sigma, rho
             )
+
+            model = HestonModel(process)
+            engine = AnalyticHestonEngine(model, 96)
+
+            for option in options:
+                option.set_pricing_engine(engine)
 
 
         self.fail('Finish implementation')

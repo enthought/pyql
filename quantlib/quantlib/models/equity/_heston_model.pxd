@@ -4,12 +4,15 @@
 
 include '../../types.pxi'
 
-from quantlib.handle cimport Handle
+from quantlib.handle cimport Handle, shared_ptr
+from quantlib.processes._heston_process cimport HestonProcess
+from quantlib.pricingengines._vanilla cimport PricingEngine
 from quantlib.termstructures.yields._flat_forward cimport (
     YieldTermStructure, Quote
 )
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._period cimport Period
+
 
 cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
 
@@ -24,5 +27,22 @@ cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
             Handle[YieldTermStructure]& dividendYield,
         )
 
+        void setPricingEngine(shared_ptr[PricingEngine]& engine) 
+
+cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib':
+
+    cdef cppclass HestonModel:
+        HestonModel(shared_ptr[HestonProcess]& process)
+
+        #variance mean version level
+        Real theta()
+        #variance mean reversion speed
+        Real kappa()
+        # volatility of the volatility
+        Real sigma()
+        # correlation
+        Real rho() 
+        # spot variance
+        Real v0() 
 
 

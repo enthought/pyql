@@ -1,7 +1,10 @@
+include '../types.pxi'
+
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
 cimport quantlib.processes._black_scholes_process as _bsp
 
+from quantlib.models.equity.heston_model cimport HestonModel
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 
 cdef class VanillaOptionEngine:
@@ -40,6 +43,23 @@ cdef class BaroneAdesiWhaleyApproximationEngine(VanillaOptionEngine):
         self.process = process
         self._thisptr = new _vanilla.BaroneAdesiWhaleyApproximationEngine(
             deref(process_ptr)
+        )
+
+cdef class AnalyticHestonEngine:
+
+    def __cinit__(self):
+        self._thisptr = NULL
+
+    def __dealloc__(self):
+        pass # no need for deallocation because we use a boost::shared_ptr
+
+    def __init__(self, HestonModel model, int integration_order=144):
+
+        self._thisptr = new shared_ptr[AnalyticHestonEngine](
+            new _vanilla.AnalyticHestonEngine(
+                deref(model._thisptr),
+                <Size>integration_order
+            )
         )
 
 

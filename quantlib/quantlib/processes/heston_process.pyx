@@ -9,7 +9,6 @@ from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure, Quo
 
 cdef class HestonProcess:
 
-    cdef shared_ptr[_hp.HestonProcess]* _thisptr
 
     def __cinit__(self):
         pass
@@ -35,8 +34,8 @@ cdef class HestonProcess:
         cdef Handle[_ff.YieldTermStructure]* risk_free_rate_ts_handle = new \
                 Handle[_ff.YieldTermStructure](risk_free_rate_ts._thisptr)
 
-        self._thisptr = new shared_ptr[_hp.HestonProcess](new 
-            _hp.HestonProcess(
+        self._thisptr = new shared_ptr[_hp.HestonProcess](
+            new _hp.HestonProcess(
                 deref(risk_free_rate_ts_handle),
                 deref(dividend_ts_handle),
                 deref(s0_handle),

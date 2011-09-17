@@ -5,9 +5,12 @@ include '../../types.pxi'
 from cython.operator cimport dereference as deref
 
 cimport _heston_model as _hm
-
 cimport quantlib.termstructures.yields._flat_forward as _ffwd
-from quantlib.handle cimport Handle
+cimport quantlib.pricingengines._vanilla as _vanilla
+
+from quantlib.handle cimport Handle, shared_ptr
+from quantlib.processes.heston_process cimport HestonProcess
+from quantlib.pricingengines.vanilla cimport AnalyticHestonEngine
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Period
 from quantlib.termstructures.yields.flat_forward cimport (
@@ -16,14 +19,11 @@ from quantlib.termstructures.yields.flat_forward cimport (
 
 cdef class HestonModelHelper:
 
-    cdef _hm.HestonModelHelper* _thisptr
-
     def __cinit__(self):
         self._thisptr = NULL
 
     def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
+        pass # using a boost::shared_ptr / no need for deallocation
 
     def __init__(self,
         Period maturity,
@@ -42,13 +42,42 @@ cdef class HestonModelHelper:
         cdef Handle[_ffwd.YieldTermStructure]* risk_free_rate_handle = new \
             Handle[_ffwd.YieldTermStructure](risk_free_rate._thisptr)        
 
-        self._thisptr = new _hm.HestonModelHelper(
-            deref(maturity._thisptr),
-            deref(calendar._thisptr),
-            s0,
-            strike_price,
-            deref(volatility_handle),
-            deref(risk_free_rate_handle),
-            deref(dividend_yield_handle)
+        self._thisptr = new shared_ptr[_hm.HestonModelHelper](
+            new _hm.HestonModelHelper(
+                deref(maturity._thisptr),
+                deref(calendar._thisptr),
+                s0,
+                strike_price,
+                deref(volatility_handle),
+                deref(risk_free_rate_handle),
+                deref(dividend_yield_handle)
+            )
         )
+
+    def set_pricing_engine(self, AnalyticHestonEngine engine):
+
+        cdef shared_ptr[_vanilla.PricingEngine]* pengine = \
+            new shared_ptr[_vanilla.PricingEngine](engine._thisptr.get())
+
+        self._thisptr.get().setPricingEngine(
+            deref(pengine)
+        )
+
+
+
+cdef class HestonModel:
+
+    def __cinit__(self):
+        self._thisptr = NULL
+
+    def __dealloc__(self):
+        pass # using a boost::shared_ptr / no need for deallocation
+
+    def __init__(self, HestonProcess process):
+
+        self._thisptr = new shared_ptr[_hm.HestonModel](
+            new _hm.HestonModel(deref(process._thisptr))
+        )
+
+
 
