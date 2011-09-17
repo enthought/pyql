@@ -66,7 +66,8 @@ class HestonModelTestCase(unittest.TestCase):
                         risk_free_ts.reference_date,
                         period=maturity)
                 )
-                forward_price = s0.value * dividend_ts.discount(tau)
+                forward_price = s0.value * dividend_ts.discount(tau) / \
+                                risk_free_ts.discount(tau)
                 strike_price = forward_price * np.exp(
                     -moneyness * volatility * np.sqrt(tau)
                 )
@@ -102,7 +103,8 @@ class HestonModelTestCase(unittest.TestCase):
             tolerance = 3.0e-3
 
             print v0, kappa, theta, rho
-            self.assertAlmostEquals(0.0, model.sigma, 4) 
+            print model.sigma
+            self.assertTrue(model.sigma < tolerance) 
 
 
 
