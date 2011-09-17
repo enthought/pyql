@@ -1,11 +1,13 @@
 
 #from setuptools import setup, find_packages
-#from setuptools import setup
-from distutils.core import setup
+from setuptools import setup
+#from distutils.core import setup
 #from setuptools import find_packages
 # Warning : do not import the distutils extension before setuptools
 # It does break the cythonize call
 from distutils.extension import Extension 
+import glob
+import os
 import sys
 
 from Cython.Distutils import build_ext
@@ -19,83 +21,59 @@ elif sys.platform == 'win32':
     INCLUDE_DIRS = [r'C:\msys\1.0\local\include', '.']
     LIBRARY_DIRS = [r"C:\msys\1.0\local\lib"]
 elif sys.platform == 'linux2':
-    # good for Debian
-    INCLUDE_DIRS = ['/usr/include', '.']
-    LIBRARY_DIRS = ['/usr/lib']
+    # good for Debian / ubuntu 10.04 (with QL .99 installed by default)
+    INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.']
+    LIBRARY_DIRS = ['/usr/local/lib', '/usr/lib', ]
 
-settings_extension = Extension('quantlib.settings',
-    ['quantlib/settings/settings.pyx', 'quantlib/settings/ql_settings.cpp'],
-    language='c++',
-    include_dirs=INCLUDE_DIRS,
-    library_dirs=LIBRARY_DIRS,
-    libraries=['QuantLib']
-)
 
-collected_extensions = cythonize([
-    # Cythonising Extension does not support more than one pattern in the
-    # source list. It is not possible to combine all the files in one
-    # Extension
-    Extension('*', 
-        ['quantlib/time/*.pyx'],
-        include_dirs=INCLUDE_DIRS,
-        library_dirs=LIBRARY_DIRS,   
-    ), 
-    Extension('*', 
-        ['quantlib/time/daycounters/*.pyx'],
+def collect_extensions():
+
+    settings_extension = Extension('quantlib.settings',
+        ['quantlib/settings/settings.pyx', 'quantlib/settings/ql_settings.cpp'],
+        language='c++',
         include_dirs=INCLUDE_DIRS,
         library_dirs=LIBRARY_DIRS,
-    ),  
-    Extension('*', 
-        ['quantlib/time/calendars/*.pyx'],
+        define_macros = [('HAVE_CONFIG_H', 1)],
+        libraries=['QuantLib']
+    )
+    
+    test_extension = Extension('quantlib.test.test_cython_bug',
+        ['quantlib/test/test_cython_bug.pyx', 'quantlib/settings/ql_settings.cpp'],
+        language='c++',
         include_dirs=INCLUDE_DIRS,
         library_dirs=LIBRARY_DIRS,
-    ),
-    Extension('*', 
-        ['quantlib/*.pyx'],
-        include_dirs=INCLUDE_DIRS,
-        library_dirs=LIBRARY_DIRS,
-    ),
-    Extension('*', 
-        ['quantlib/indexes/*.pyx'],
-        include_dirs=INCLUDE_DIRS,
-        library_dirs=LIBRARY_DIRS,
-    ),
-    Extension('*', 
-        ['quantlib/termstructures/yields/*.pyx'],
-        include_dirs=INCLUDE_DIRS,
-        library_dirs=LIBRARY_DIRS,
-    ),
-    Extension('*', 
-        ['quantlib/termstructures/volatility/equityfx/*.pyx'],
-        include_dirs=INCLUDE_DIRS,
-        library_dirs=LIBRARY_DIRS,
-    ),
-    Extension('*', 
-        ['quantlib/instruments/*.pyx'],
-        include_dirs=INCLUDE_DIRS,
-        library_dirs=LIBRARY_DIRS,
-    ),
-    Extension('*', 
-        ['quantlib/processes/*.pyx'],
-        include_dirs=INCLUDE_DIRS,
-        library_dirs=LIBRARY_DIRS,
-    ),
-    Extension('*', 
-        ['quantlib/pricingengines/*.pyx'],
-        include_dirs=INCLUDE_DIRS,
-        library_dirs=LIBRARY_DIRS,
-    ),
-    Extension('*', 
-        ['quantlib/models/equity/*.pyx'],
-        include_dirs=INCLUDE_DIRS,
-        library_dirs=LIBRARY_DIRS,
-    ),
-  
-])
+        define_macros = [('HAVE_CONFIG_H', None)],
+        libraries=['QuantLib']
+    )
+    
+    cython_extension_directories = []
+    for dirpath, directories, files in os.walk('quantlib'):
+        print 'Path', dirpath
+
+        # skip the settings package
+        if dirpath.find('settings') > -1 or dirpath.find('test') > -1:
+            continue
+
+        # if the directory contains pyx files, cythonise it
+        if len(glob.glob('{}/*.pyx'.format(dirpath))) > 0:
+            cython_extension_directories.append(dirpath)
+
+    print cython_extension_directories
+    collected_extension = cythonize(
+        [
+            Extension('*', ['{}/*.pyx'.format(dirpath)],
+                include_dirs=INCLUDE_DIRS,
+                library_dirs=LIBRARY_DIRS,
+                define_macros = [('HAVE_CONFIG_H', 1)]
+            ) for dirpath in cython_extension_directories
+        ]
+    )
+
+    return collected_extension + [settings_extension, test_extension]
 
 setup(
     name='quantlib',
     packages = ['quantlib.settings'],
-    ext_modules =  collected_extensions + [settings_extension],
+    ext_modules = collect_extensions(),
     cmdclass = {'build_ext': build_ext}
 )
