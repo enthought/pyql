@@ -30,7 +30,9 @@ cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):
 
         #create handles
 
-        cdef Handle[_ff.Quote]* x0_handle = new Handle[_ff.Quote](x0._thisptr)
+        cdef Handle[_ff.Quote]* x0_handle = new Handle[_ff.Quote](
+            x0._thisptr.get()
+        )
         cdef Handle[_ff.YieldTermStructure]* dividend_ts_handle = new \
                 Handle[_ff.YieldTermStructure](dividend_ts._thisptr)
         cdef Handle[_ff.YieldTermStructure]* risk_free_ts_handle = new \

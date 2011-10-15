@@ -28,7 +28,8 @@ cdef class HestonProcess:
     ):
 
         #create handles
-        cdef Handle[_ff.Quote]* s0_handle = new Handle[_ff.Quote](s0._thisptr)
+        cdef Handle[_ff.Quote]* s0_handle = \
+            new Handle[_ff.Quote](s0._thisptr.get())
         cdef Handle[_ff.YieldTermStructure]* dividend_ts_handle = new \
                 Handle[_ff.YieldTermStructure](dividend_ts._thisptr)
         cdef Handle[_ff.YieldTermStructure]* risk_free_rate_ts_handle = new \
@@ -42,4 +43,31 @@ cdef class HestonProcess:
                 v0, kappa, theta, sigma, rho
             )
         )
+
+
+    def size(self):
+        return self._thisptr.get().size()
+
+    def v0(self):
+        return self._thisptr.get().v0()
+
+    def rho(self):
+        return self._thisptr.get().rho()
+
+    def kappa(self):
+        return self._thisptr.get().kappa()
+
+    def theta(self):
+        return self._thisptr.get().theta()
+
+    def sigma(self):
+        return self._thisptr.get().sigma()
+
+    def s0(self):
+        quote = Quote()
+        quote._thisptr = new shared_ptr[_ff.Quote](
+            self._thisptr.get().s0().currentLink().get()
+        )
+
+        return quote
 

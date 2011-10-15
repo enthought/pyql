@@ -14,5 +14,16 @@ cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib':
             Handle[Quote]& s0,
             Real v0, Real kappa,
             Real theta, Real sigma, Real rho)
+            
+        Size size()
+        Real v0()
+        Real rho()
+        Real kappa()
+        Real theta()
+        Real sigma()
+
+        Handle[Quote] s0()
+        Handle[YieldTermStructure] dividendYield()
+        Handle[YieldTermStructure] riskeFreeRate()
 
 
