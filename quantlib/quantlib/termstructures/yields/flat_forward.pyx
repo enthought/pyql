@@ -19,31 +19,30 @@ cdef class Quote:
         self._thisptr = NULL
 
     def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
+        pass
 
 
 cdef class SimpleQuote(Quote):
 
     def __init__(self, float value=0.0):
-        self._thisptr = new ffwd.SimpleQuote(value)
+        self._thisptr = new shared_ptr[ffwd.Quote](new ffwd.SimpleQuote(value))
         
     def __str__(self):
-        return 'Simple Quote: %f' % self._thisptr.value()
+        return 'Simple Quote: %f' % self._thisptr.get().value()
 
     property value:
         def __get__(self):
-            if self._thisptr.isValid():
-                return self._thisptr.value()
+            if self._thisptr.get().isValid():
+                return self._thisptr.get().value()
             else:
                 return None
 
         def __set__(self, float value):
-            (<ffwd.SimpleQuote*>self._thisptr).setValue(value)
+            (<ffwd.SimpleQuote*>self._thisptr.get()).setValue(value)
 
     property is_valid:
         def __get__(self):
-            return self._thisptr.isValid()
+            return self._thisptr.get().isValid()
 
 cdef class YieldTermStructure:
 
@@ -124,7 +123,7 @@ cdef class FlatForward(YieldTermStructure):
         self.relinkable = False
 
         #local cdef's
-        cdef ffwd.Quote* quote_ptr
+        cdef shared_ptr[ffwd.Quote]* quote_ptr
         cdef ffwd.Handle[ffwd.Quote]* quote_handle
         cdef ffwd.Date _reference_date
 
@@ -141,7 +140,7 @@ cdef class FlatForward(YieldTermStructure):
              calendar is not None:
 
             quote_ptr = quote._thisptr
-            quote_handle = new ffwd.Handle[ffwd.Quote](quote_ptr)
+            quote_handle = new ffwd.Handle[ffwd.Quote](quote_ptr.get())
 
             self._thisptr = new ffwd.FlatForward(
                 <ffwd.Natural>settlement_days,

@@ -1,8 +1,9 @@
 cimport _flat_forward as ffwd
 from libcpp cimport bool as cbool
+from quantlib.handle cimport shared_ptr
 
 cdef class Quote:
-    cdef ffwd.Quote* _thisptr
+    cdef shared_ptr[ffwd.Quote]* _thisptr
 
 
 
