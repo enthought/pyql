@@ -21,6 +21,13 @@ cdef extern from 'ql/models/calibrationhelper.hpp' namespace 'QuantLib':
     cdef cppclass CalibrationHelper:
         pass
 
+cdef extern from 'ql/models/calibrationhelper.hpp' namespace 'QuantLib::CalibrationHelper':
+
+    cdef enum CalibrationErrorType:
+        RelativePriceError
+        PriceError
+        ImpliedVolError
+
 cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
 
     cdef cppclass HestonModelHelper(CalibrationHelper):
@@ -32,11 +39,15 @@ cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
             Handle[Quote]& volatility,
             Handle[YieldTermStructure]& riskFreeRate,
             Handle[YieldTermStructure]& dividendYield,
+            CalibrationErrorType errorType
         )
-
         void setPricingEngine(shared_ptr[PricingEngine]& engine) 
-        Real modelValue()
         Real blackPrice(Real volatility)
+
+        ### 'CalibrationHelper' protocol  ###################################
+        Real marketValue()
+        Real modelValue()
+        Real calibrationError()
 
 cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib':
 

@@ -20,6 +20,11 @@ from quantlib.termstructures.yields.flat_forward cimport (
     YieldTermStructure, Quote
 )
 
+cdef public enum CALIBRATION_ERROR_TYPE:
+    RelativePriceError = _hm.RelativePriceError
+    PriceError = _hm.PriceError
+    ImpliedVolError = _hm.ImpliedVolError
+
 cdef class HestonModelHelper:
 
     def __cinit__(self):
@@ -35,15 +40,20 @@ cdef class HestonModelHelper:
         Real strike_price,
         Quote volatility,
         YieldTermStructure risk_free_rate,
-        YieldTermStructure dividend_yield
+        YieldTermStructure dividend_yield,
+        error_type=RelativePriceError
     ):
         # create handles
         cdef Handle[_ffwd.Quote]* volatility_handle = new \
                 Handle[_ffwd.Quote](volatility._thisptr.get())
         cdef Handle[_ffwd.YieldTermStructure]* dividend_yield_handle = new \
-            Handle[_ffwd.YieldTermStructure](dividend_yield._thisptr)
+            Handle[_ffwd.YieldTermStructure](
+                <_ffwd.YieldTermStructure*>(dividend_yield._thisptr.get())
+            )
         cdef Handle[_ffwd.YieldTermStructure]* risk_free_rate_handle = new \
-            Handle[_ffwd.YieldTermStructure](risk_free_rate._thisptr)        
+            Handle[_ffwd.YieldTermStructure](
+               <_ffwd.YieldTermStructure*>(risk_free_rate._thisptr.get())
+            )
 
         self._thisptr = new shared_ptr[_hm.HestonModelHelper](
             new _hm.HestonModelHelper(
@@ -53,7 +63,8 @@ cdef class HestonModelHelper:
                 strike_price,
                 deref(volatility_handle),
                 deref(risk_free_rate_handle),
-                deref(dividend_yield_handle)
+                deref(dividend_yield_handle),
+                <_hm.CalibrationErrorType>error_type
             )
         )
 
@@ -71,6 +82,12 @@ cdef class HestonModelHelper:
 
     def black_price(self, double volatility):
         return self._thisptr.get().blackPrice(volatility)
+
+    def market_value(self):
+        return self._thisptr.get().marketValue()
+
+    def calibration_error(self):
+        return self._thisptr.get().calibrationError()
 
 
 
