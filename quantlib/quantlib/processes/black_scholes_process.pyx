@@ -34,9 +34,13 @@ cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):
             x0._thisptr.get()
         )
         cdef Handle[_ff.YieldTermStructure]* dividend_ts_handle = new \
-                Handle[_ff.YieldTermStructure](dividend_ts._thisptr)
+                Handle[_ff.YieldTermStructure](
+                    <_ff.YieldTermStructure*>dividend_ts._thisptr.get()
+                )
         cdef Handle[_ff.YieldTermStructure]* risk_free_ts_handle = new \
-                Handle[_ff.YieldTermStructure](risk_free_ts._thisptr)
+                Handle[_ff.YieldTermStructure](
+                    <_ff.YieldTermStructure*>risk_free_ts._thisptr.get()
+                )
         cdef Handle[_bvts.BlackVolTermStructure]* black_vol_ts_handle = new \
                 Handle[_bvts.BlackVolTermStructure](black_vol_ts._thisptr)
 

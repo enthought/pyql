@@ -31,9 +31,13 @@ cdef class HestonProcess:
         cdef Handle[_ff.Quote]* s0_handle = \
             new Handle[_ff.Quote](s0._thisptr.get())
         cdef Handle[_ff.YieldTermStructure]* dividend_ts_handle = new \
-                Handle[_ff.YieldTermStructure](dividend_ts._thisptr)
+                Handle[_ff.YieldTermStructure](
+                    <_ff.YieldTermStructure*>dividend_ts._thisptr.get()
+                )
         cdef Handle[_ff.YieldTermStructure]* risk_free_rate_ts_handle = new \
-                Handle[_ff.YieldTermStructure](risk_free_rate_ts._thisptr)
+                Handle[_ff.YieldTermStructure](
+                   <_ff.YieldTermStructure*> risk_free_rate_ts._thisptr.get()
+                )
 
         self._thisptr = new shared_ptr[_hp.HestonProcess](
             new _hp.HestonProcess(
