@@ -13,9 +13,10 @@ from quantlib.termstructures.yields.flat_forward import FlatForward, SimpleQuote
 
 def flat_rate(forward, daycounter):
     return FlatForward(
+        quote           = SimpleQuote(forward),
+        #forward         = forward,
         settlement_days = 0, 
         calendar        = NullCalendar(), 
-        forward         = forward, 
         daycounter      = daycounter
     )
 
@@ -30,6 +31,10 @@ class HestonModelTestCase(unittest.TestCase):
 
     def test_black_calibration(self):
 
+        # calibrate a Heston model to a constant volatility surface without
+        # smile. expected result is a vanishing volatility of the volatility.
+        # In addition theta and v0 should be equal to the constant variance
+        
         todays_date = today()
 
         self.settings.evaluation_date = todays_date
@@ -78,16 +83,22 @@ class HestonModelTestCase(unittest.TestCase):
                     )
                 )
 
-
         for sigma in np.arange(0.1, 0.7, 0.2):
             v0    = 0.01
             kappa = 0.2
             theta = 0.02
-            rho   = 0.75
+            rho   = -0.75
 
             process = HestonProcess(
                 risk_free_ts, dividend_ts, s0, v0, kappa, theta, sigma, rho
             )
+
+            self.assertEquals(v0, process.v0())
+            self.assertEquals(kappa, process.kappa())
+            self.assertEquals(theta, process.theta())
+            self.assertEquals(sigma, process.sigma())
+            self.assertEquals(rho, process.rho())
+            self.assertEquals(1.0, process.s0().value)
 
             model = HestonModel(process)
             engine = AnalyticHestonEngine(model, 96)
@@ -97,14 +108,12 @@ class HestonModelTestCase(unittest.TestCase):
 
             optimisation_method = LevenbergMarquardt(1e-8, 1e-8, 1e-8)
 
-            end_criteria = EndCriteria(400, 40, 1e-8, 1e-8, 1e-8)
+            end_criteria = EndCriteria(400, 40, 1.0e-8, 1.0e-8, 1.0e-8)
             model.calibrate(options, optimisation_method, end_criteria)
 
             tolerance = 3.0e-3
 
-            print v0, kappa, theta, rho
-            print model.sigma
-            self.assertTrue(model.sigma < tolerance) 
+            self.assertFalse(model.sigma > tolerance) 
 
 
 
