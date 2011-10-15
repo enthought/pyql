@@ -35,6 +35,8 @@ cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
         )
 
         void setPricingEngine(shared_ptr[PricingEngine]& engine) 
+        Real modelValue()
+        Real blackPrice(Real volatility)
 
 cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib':
 

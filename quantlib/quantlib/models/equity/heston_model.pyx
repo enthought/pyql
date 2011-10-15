@@ -66,6 +66,12 @@ cdef class HestonModelHelper:
             deref(pengine)
         )
 
+    def model_value(self):
+        return self._thisptr.get().modelValue()
+
+    def black_price(self, double volatility):
+        return self._thisptr.get().blackPrice(volatility)
+
 
 
 cdef class HestonModel:
