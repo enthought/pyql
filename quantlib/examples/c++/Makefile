@@ -5,6 +5,9 @@ QL_LIBRARY=/opt/local/lib
 
 FLAGS= -m32
 
+clean:
+	rm *.o
+
 build:
 	g++ -Wall -fexceptions  -O2 -g -I. -I/usr/local/lib/QuantLib-1.0.1/ql -I/usr/local/QuantLib-1.0.1 -DHAVE_CONFIG_H -c EquityOption.cpp -o ./EquityOption.o
 	g++  -o ./EquityOption ./EquityOption.o /usr/local/lib/libQuantLib.so
@@ -19,4 +22,12 @@ build_issue:
 
 test_issue:
 	./bond_issue
+
+
+build_heston:
+	g++ -Wall -fexceptions  ${FLAGS} -O2 -g -I. -I$(QL_INCLUDES) -DHAVE_CONFIG_H -c hestonmodel.cpp utilities.cpp
+	g++ ${FLAGS} -o ./hestonmodel ./hestonmodel.o ./utilities.o -L${QL_LIBRARY} -lQuantLib
+
+test_heston: build_heston
+	./hestonmodel
 	
