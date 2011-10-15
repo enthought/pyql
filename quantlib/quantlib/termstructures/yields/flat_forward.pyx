@@ -21,6 +21,16 @@ cdef class Quote:
     def __dealloc__(self):
         pass
 
+    property is_valid:
+        def __get__(self):
+            return self._thisptr.get().isValid()
+
+    property value:
+        def __get__(self):
+            if self._thisptr.get().isValid():
+                return self._thisptr.get().value()
+            else:
+                return None
 
 cdef class SimpleQuote(Quote):
 
@@ -40,9 +50,6 @@ cdef class SimpleQuote(Quote):
         def __set__(self, float value):
             (<ffwd.SimpleQuote*>self._thisptr.get()).setValue(value)
 
-    property is_valid:
-        def __get__(self):
-            return self._thisptr.get().isValid()
 
 cdef class YieldTermStructure:
 
