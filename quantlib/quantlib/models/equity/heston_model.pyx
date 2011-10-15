@@ -39,7 +39,7 @@ cdef class HestonModelHelper:
     ):
         # create handles
         cdef Handle[_ffwd.Quote]* volatility_handle = new \
-                Handle[_ffwd.Quote](volatility._thisptr)
+                Handle[_ffwd.Quote](volatility._thisptr.get())
         cdef Handle[_ffwd.YieldTermStructure]* dividend_yield_handle = new \
             Handle[_ffwd.YieldTermStructure](dividend_yield._thisptr)
         cdef Handle[_ffwd.YieldTermStructure]* risk_free_rate_handle = new \
