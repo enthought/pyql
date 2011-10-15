@@ -6,7 +6,7 @@ cdef class Quote:
     cdef shared_ptr[ffwd.Quote]* _thisptr
 
 cdef class YieldTermStructure:
-    cdef ffwd.YieldTermStructure* _thisptr
+    cdef shared_ptr[YieldTermStructure]* _thisptr
     cdef ffwd.RelinkableHandle[ffwd.YieldTermStructure]* _relinkable_ptr
     cdef cbool relinkable
 

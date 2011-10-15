@@ -74,13 +74,10 @@ cdef class YieldTermStructure:
             raise ValueError('Invalid constructor (not implemented ?)')
 
     def link_to(self, YieldTermStructure structure):
-        cdef ffwd.shared_ptr[ffwd.YieldTermStructure]* ptr 
         if not self.relinkable:
             print 'Term structure is not relinkable'
         else:
-            ptr = new ffwd.shared_ptr[ffwd.YieldTermStructure] \
-                (structure._thisptr)
-            self._relinkable_ptr.linkTo(deref(ptr))
+            self._relinkable_ptr.linkTo(deref(structure._thisptr))
 
         return
 
@@ -91,7 +88,7 @@ cdef class YieldTermStructure:
             # term_structure (get())
             term_structure = self._relinkable_ptr.currentLink().get()
         else:
-            term_structure = self._thisptr
+            term_structure = self._thisptr.get()
 
         if isinstance(value, Date):
             discount_value =  term_structure.discount(
@@ -109,7 +106,8 @@ cdef class YieldTermStructure:
 
     property reference_date:
         def __get__(self):
-            cdef ffwd.Date ref_date =  self._thisptr.referenceDate()
+            cdef ffwd.Date ref_date = \
+                (<ffwd.YieldTermStructure*>self._thisptr.get()).referenceDate()
             return date_from_qldate(ref_date)
 
 
@@ -135,13 +133,15 @@ cdef class FlatForward(YieldTermStructure):
         cdef ffwd.Date _reference_date
 
         if reference_date is not None and forward is not None:
-            self._thisptr = new ffwd.FlatForward(
-                deref(reference_date._thisptr), 
-                <ffwd.Rate>forward, 
-                deref(daycounter._thisptr), 
-                <ffwd.Compounding>compounding,
-                <Frequency>frequency
-            ) 
+            self._thisptr = new shared_ptr[ffwd.YieldTermStructure](
+                new ffwd.FlatForward(
+                    deref(reference_date._thisptr), 
+                    <ffwd.Rate>forward, 
+                    deref(daycounter._thisptr), 
+                    <ffwd.Compounding>compounding,
+                    <Frequency>frequency
+                ) 
+            )
         elif quote is not None and \
              settlement_days is not None and \
              calendar is not None:
@@ -149,25 +149,29 @@ cdef class FlatForward(YieldTermStructure):
             quote_ptr = quote._thisptr
             quote_handle = new ffwd.Handle[ffwd.Quote](quote_ptr.get())
 
-            self._thisptr = new ffwd.FlatForward(
-                <ffwd.Natural>settlement_days,
-                deref(calendar._thisptr),
-                deref(quote_handle),
-                deref(daycounter._thisptr),
-                <ffwd.Compounding>compounding,
-                <Frequency>frequency
+            self._thisptr = new shared_ptr[ffwd.YieldTermStructure](
+                new ffwd.FlatForward(
+                    <ffwd.Natural>settlement_days,
+                    deref(calendar._thisptr),
+                    deref(quote_handle),
+                    deref(daycounter._thisptr),
+                    <ffwd.Compounding>compounding,
+                    <Frequency>frequency
+                )
             )
         elif settlement_days is not None and \
              forward is not None and \
              calendar is not None:
-            self._thisptr = new ffwd.FlatForward(
-                <ffwd.Natural>settlement_days,
-                deref(calendar._thisptr), 
-                <ffwd.Rate>forward, 
-                deref(daycounter._thisptr), 
-                <ffwd.Compounding>compounding,
-                <Frequency>frequency
-            ) 
+            self._thisptr = new shared_ptr[ffwd.YieldTermStructure](
+                new ffwd.FlatForward(
+                    <ffwd.Natural>settlement_days,
+                    deref(calendar._thisptr), 
+                    <ffwd.Rate>forward, 
+                    deref(daycounter._thisptr), 
+                    <ffwd.Compounding>compounding,
+                    <Frequency>frequency
+                ) 
+            )
         else:
             raise ValueError('Invalid constructor')
 
