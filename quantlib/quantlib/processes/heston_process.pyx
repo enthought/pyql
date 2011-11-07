@@ -5,10 +5,11 @@ cimport _heston_process as _hp
 
 from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib.termstructures.yields._flat_forward as _ff
-from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure, Quote
+cimport quantlib._quote as _qt
+from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
+from quantlib.quote cimport Quote
 
 cdef class HestonProcess:
-
 
     def __cinit__(self):
         pass
@@ -28,8 +29,8 @@ cdef class HestonProcess:
     ):
 
         #create handles
-        cdef Handle[_ff.Quote]* s0_handle = \
-            new Handle[_ff.Quote](s0._thisptr.get())
+        cdef Handle[_qt.Quote]* s0_handle = \
+            new Handle[_qt.Quote](s0._thisptr.get())
         cdef Handle[_ff.YieldTermStructure]* dividend_ts_handle = new \
                 Handle[_ff.YieldTermStructure](
                     <_ff.YieldTermStructure*>dividend_ts._thisptr.get()
@@ -69,7 +70,7 @@ cdef class HestonProcess:
 
     def s0(self):
         quote = Quote()
-        quote._thisptr = new shared_ptr[_ff.Quote](
+        quote._thisptr = new shared_ptr[_qt.Quote](
             self._thisptr.get().s0().currentLink().get()
         )
 

@@ -13,7 +13,8 @@ from quantlib.time.api import (
     today, Actual360, NullCalendar, Period, Months, Years, Date, July,
     Actual365Fixed, TARGET, Weeks
 )
-from quantlib.termstructures.yields.flat_forward import FlatForward, SimpleQuote
+from quantlib.termstructures.yields.flat_forward import FlatForward
+from quantlib.quotes.simplequote import SimpleQuote
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
 
 

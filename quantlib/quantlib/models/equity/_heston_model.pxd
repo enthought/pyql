@@ -1,7 +1,6 @@
 # distutils: language = c++
 # distutils: libraries = QuantLib
 
-
 include '../../types.pxi'
 
 from libcpp.vector cimport vector
@@ -11,8 +10,9 @@ from quantlib.math._optimization cimport OptimizationMethod, EndCriteria
 from quantlib.processes._heston_process cimport HestonProcess
 from quantlib.pricingengines._vanilla cimport PricingEngine
 from quantlib.termstructures.yields._flat_forward cimport (
-    YieldTermStructure, Quote
+    YieldTermStructure
 )
+cimport quantlib._quote as _qt
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._period cimport Period
 
@@ -36,7 +36,7 @@ cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
             Calendar& calendar,
             Real s0,
             Real strikePrice,
-            Handle[Quote]& volatility,
+            Handle[_qt.Quote]& volatility,
             Handle[YieldTermStructure]& riskFreeRate,
             Handle[YieldTermStructure]& dividendYield,
             CalibrationErrorType errorType

@@ -1,8 +1,9 @@
 import unittest
 
 from quantlib.termstructures.yields.flat_forward import (
-    SimpleQuote, FlatForward, YieldTermStructure
+    FlatForward, YieldTermStructure
 )
+from quantlib.quotes.simplequote import SimpleQuote
 
 from quantlib.settings import Settings
 from quantlib.time.calendar import TARGET

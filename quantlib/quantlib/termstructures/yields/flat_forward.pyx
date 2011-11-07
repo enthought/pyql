@@ -12,44 +12,8 @@ from quantlib.compounding import Continuous
 from quantlib.time.date import Annual 
 
 cimport _flat_forward as ffwd
-
-cdef class Quote:
-
-    def __cinit__(self):
-        self._thisptr = NULL
-
-    def __dealloc__(self):
-        pass
-
-    property is_valid:
-        def __get__(self):
-            return self._thisptr.get().isValid()
-
-    property value:
-        def __get__(self):
-            if self._thisptr.get().isValid():
-                return self._thisptr.get().value()
-            else:
-                return None
-
-cdef class SimpleQuote(Quote):
-
-    def __init__(self, float value=0.0):
-        self._thisptr = new shared_ptr[ffwd.Quote](new ffwd.SimpleQuote(value))
-        
-    def __str__(self):
-        return 'Simple Quote: %f' % self._thisptr.get().value()
-
-    property value:
-        def __get__(self):
-            if self._thisptr.get().isValid():
-                return self._thisptr.get().value()
-            else:
-                return None
-
-        def __set__(self, float value):
-            (<ffwd.SimpleQuote*>self._thisptr.get()).setValue(value)
-
+cimport quantlib._quote as _qt
+from quantlib.quote cimport Quote
 
 cdef class YieldTermStructure:
 
@@ -128,8 +92,8 @@ cdef class FlatForward(YieldTermStructure):
         self.relinkable = False
 
         #local cdef's
-        cdef shared_ptr[ffwd.Quote]* quote_ptr
-        cdef ffwd.Handle[ffwd.Quote]* quote_handle
+        cdef shared_ptr[_qt.Quote]* quote_ptr
+        cdef ffwd.Handle[_qt.Quote]* quote_handle
         cdef ffwd.Date _reference_date
 
         if reference_date is not None and forward is not None:
@@ -147,7 +111,7 @@ cdef class FlatForward(YieldTermStructure):
              calendar is not None:
 
             quote_ptr = quote._thisptr
-            quote_handle = new ffwd.Handle[ffwd.Quote](quote_ptr.get())
+            quote_handle = new ffwd.Handle[_qt.Quote](quote_ptr.get())
 
             self._thisptr = new shared_ptr[ffwd.YieldTermStructure](
                 new ffwd.FlatForward(

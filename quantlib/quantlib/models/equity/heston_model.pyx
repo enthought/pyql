@@ -8,6 +8,7 @@ from libcpp.vector cimport vector
 
 cimport _heston_model as _hm
 cimport quantlib.termstructures.yields._flat_forward as _ffwd
+cimport quantlib._quote as _qt
 cimport quantlib.pricingengines._vanilla as _vanilla
 
 from quantlib.handle cimport Handle, shared_ptr
@@ -17,8 +18,10 @@ from quantlib.pricingengines.vanilla cimport AnalyticHestonEngine
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Period
 from quantlib.termstructures.yields.flat_forward cimport (
-    YieldTermStructure, Quote
+    YieldTermStructure
 )
+
+from quantlib.quote cimport Quote
 
 cdef public enum CALIBRATION_ERROR_TYPE:
     RelativePriceError = _hm.RelativePriceError
@@ -44,8 +47,8 @@ cdef class HestonModelHelper:
         error_type=RelativePriceError
     ):
         # create handles
-        cdef Handle[_ffwd.Quote]* volatility_handle = new \
-                Handle[_ffwd.Quote](volatility._thisptr.get())
+        cdef Handle[_qt.Quote]* volatility_handle = new \
+                Handle[_qt.Quote](volatility._thisptr.get())
         cdef Handle[_ffwd.YieldTermStructure]* dividend_yield_handle = new \
             Handle[_ffwd.YieldTermStructure](
                 <_ffwd.YieldTermStructure*>(dividend_yield._thisptr.get())

@@ -3,7 +3,9 @@ cimport _black_scholes_process as _bsp
 
 from quantlib.handle cimport Handle
 cimport quantlib.termstructures.yields._flat_forward as _ff
-from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure, Quote
+cimport quantlib._quote as _qt
+from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
+from quantlib.quote cimport Quote
 cimport quantlib.termstructures.volatility.equityfx._black_vol_term_structure as _bvts
 from quantlib.termstructures.volatility.equityfx.black_vol_term_structure cimport BlackVolTermStructure
 
@@ -30,7 +32,7 @@ cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):
 
         #create handles
 
-        cdef Handle[_ff.Quote]* x0_handle = new Handle[_ff.Quote](
+        cdef Handle[_qt.Quote]* x0_handle = new Handle[_qt.Quote](
             x0._thisptr.get()
         )
         cdef Handle[_ff.YieldTermStructure]* dividend_ts_handle = new \

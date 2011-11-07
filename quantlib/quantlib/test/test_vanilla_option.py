@@ -12,8 +12,10 @@ from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.settings import Settings
 from quantlib.time.api import Date, TARGET, May, Actual365Fixed, Months, Period
 from quantlib.termstructures.yields.flat_forward import (
-    SimpleQuote, YieldTermStructure, FlatForward
+    YieldTermStructure, FlatForward
 )
+from quantlib.quotes.simplequote import SimpleQuote
+
 from quantlib.termstructures.volatility.equityfx.black_vol_term_structure import BlackConstantVol
 
 
