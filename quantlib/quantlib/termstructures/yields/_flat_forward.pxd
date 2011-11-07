@@ -22,15 +22,15 @@ cdef extern from 'ql/compounding.hpp' namespace 'QuantLib':
 
 cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib':
     cdef cppclass YieldTermStructure:
-        YieldTermStructure()
+        YieldTermStructure() except +
         YieldTermStructure(DayCounter& dc,
                            vector[Handle[_qt.Quote]]& jumps,
                            vector[Date]& jumpDates,
-                           )
-        DiscountFactor discount(Date& d)
-        DiscountFactor discount(Date& d, bool extrapolate)
-        DiscountFactor discount(Time t)
-        DiscountFactor discount(Time t, bool extrapolate)
+                           ) except +
+        DiscountFactor discount(Date& d) except +
+        DiscountFactor discount(Date& d, bool extrapolate) except +
+        DiscountFactor discount(Time t) except +
+        DiscountFactor discount(Time t, bool extrapolate) except +
         Date& referenceDate()
 
 cdef extern from 'ql/termstructures/yield/flatforward.hpp' namespace 'QuantLib':
