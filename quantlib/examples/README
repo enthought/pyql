@@ -1,0 +1,13 @@
+QuantLib / Cython example: Construction of zero-coupon curves from FRB data
+
+1) Download swap and deposit rate data from teh Federal Reserve database:
+www.federalreserve.gov/datadownload
+
+2) Read the csv file and build a time series of deposit and swap rates
+
+3) Use QuantLib to compute a zero-coupon curve for a given date
+
+
+
+
+
