@@ -12,5 +12,5 @@ cdef class Index:
 
     property name:
        def __get__(self):
-           return self._thisptr.name().c_str()
+           return self._thisptr.get().name().c_str()
 

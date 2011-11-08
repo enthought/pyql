@@ -1,7 +1,6 @@
 include '../types.pxi'
 from cython.operator cimport dereference as deref
 
-from quantlib.index cimport Index
 from quantlib.handle cimport shared_ptr
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
@@ -15,10 +14,12 @@ cdef extern from "string" namespace "std":
     cdef cppclass string:
         char* c_str()
 
-cdef class InterestRateIndex(Index):
+from quantlib.indexes.interest_rate_index cimport InterestRateIndex
+
+cdef class IborIndex(InterestRateIndex):
     def __cinit__(self):
         pass
-        
+
 #    def __init__(self,
 #        familyName,
 #        Period tenor,
@@ -37,19 +38,8 @@ cdef class InterestRateIndex(Index):
 #            deref(dayCounter._thisptr)
 #        )
 #    )
-    
-    def __str__(self):
-        return 'Interest rate index %s' % self._thisptr.get().name().c_str()
-    
-#    property name:
-#        def __get__(self):
-#            return self._thisptr.get().name().c_str()
-    
-#    property tenor:
-#        def __get__(self):
-#            return self._thisptr.get().tenor()
-            
-#    property fixingDays:
-#        def __get__(self):
-#            return self._thisptr.fixingDays()
-            
+
+cdef class OvernightIndex(IborIndex):
+    def __cinit__(self):
+        pass
+
