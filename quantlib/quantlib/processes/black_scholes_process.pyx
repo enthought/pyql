@@ -4,8 +4,8 @@ cimport _black_scholes_process as _bsp
 from quantlib.handle cimport Handle
 cimport quantlib.termstructures.yields._flat_forward as _ff
 cimport quantlib._quote as _qt
+from quantlib.quotes cimport Quote
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
-from quantlib.quote cimport Quote
 cimport quantlib.termstructures.volatility.equityfx._black_vol_term_structure as _bvts
 from quantlib.termstructures.volatility.equityfx.black_vol_term_structure cimport BlackVolTermStructure
 

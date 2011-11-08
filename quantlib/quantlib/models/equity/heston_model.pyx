@@ -15,13 +15,12 @@ from quantlib.handle cimport Handle, shared_ptr
 from quantlib.math.optimization cimport OptimizationMethod, EndCriteria
 from quantlib.processes.heston_process cimport HestonProcess
 from quantlib.pricingengines.vanilla cimport AnalyticHestonEngine
+from quantlib.quotes cimport Quote
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Period
 from quantlib.termstructures.yields.flat_forward cimport (
     YieldTermStructure
 )
-
-from quantlib.quote cimport Quote
 
 cdef public enum CALIBRATION_ERROR_TYPE:
     RelativePriceError = _hm.RelativePriceError

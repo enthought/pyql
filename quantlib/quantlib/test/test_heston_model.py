@@ -11,10 +11,10 @@ from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
 from quantlib.time.api import (
     today, Actual360, NullCalendar, Period, Months, Years, Date, July,
-    Actual365Fixed, TARGET, Weeks
+    Actual365Fixed, TARGET, Weeks, ActualActual
 )
 from quantlib.termstructures.yields.flat_forward import FlatForward
-from quantlib.quotes.simplequote import SimpleQuote
+from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
 
 
@@ -22,8 +22,8 @@ def flat_rate(forward, daycounter):
     return FlatForward(
         quote           = SimpleQuote(forward),
         #forward         = forward,
-        settlement_days = 0, 
-        calendar        = NullCalendar(), 
+        settlement_days = 0,
+        calendar        = NullCalendar(),
         daycounter      = daycounter
     )
 
@@ -41,7 +41,7 @@ class HestonModelTestCase(unittest.TestCase):
         # calibrate a Heston model to a constant volatility surface without
         # smile. expected result is a vanishing volatility of the volatility.
         # In addition theta and v0 should be equal to the constant variance
-        
+
         todays_date = today()
 
         self.settings.evaluation_date = todays_date
@@ -85,7 +85,7 @@ class HestonModelTestCase(unittest.TestCase):
                 )
                 options.append(
                     HestonModelHelper(
-                        maturity, calendar, s0.value, strike_price, vol, 
+                        maturity, calendar, s0.value, strike_price, vol,
                         risk_free_ts, dividend_ts
                     )
                 )
@@ -120,9 +120,9 @@ class HestonModelTestCase(unittest.TestCase):
 
             tolerance = 3.0e-3
 
-            self.assertFalse(model.sigma > tolerance) 
+            self.assertFalse(model.sigma > tolerance)
 
-            self.assertAlmostEqual( 
+            self.assertAlmostEqual(
                 model.kappa * model.theta,
                 model.kappa * volatility**2,
                 delta = tolerance
@@ -135,11 +135,11 @@ class HestonModelTestCase(unittest.TestCase):
         # Pricing European-Style Options under Jump Diffusion Processes
         # with Stochstic Volatility: Applications of Fourier Transform
         # http://math.ut.ee/~spartak/papers/stochjumpvols.pdf
-        
+
         settlement_date = Date(5, July, 2002)
 
         self.settings.evaluation_date = settlement_date
-        
+
         daycounter = Actual365Fixed()
         calendar = TARGET()
 
@@ -220,6 +220,79 @@ class HestonModelTestCase(unittest.TestCase):
 
         expected = 177.2  # see article by A. Sepp.
         self.assertAlmostEquals(expected, sse, delta=1.0)
+
+    def test_analytic_versus_black(self):
+        from quantlib.instruments.payoffs import PlainVanillaPayoff
+        from quantlib.instruments.option import (
+            Put, EuropeanExercise, VanillaOption
+        )
+
+        settlement_date = today()
+        self.settings.evaluation_date = settlement_date
+
+        daycounter = ActualActual()
+
+        exercise_date = settlement_date + 6 * Months;
+
+        payoff = PlainVanillaPayoff(Put, 30)
+
+        exercise = EuropeanExercise(exercise_date)
+
+        risk_free_ts = flat_rate(0.1, daycounter)
+        dividend_ts = flat_rate(0.04, daycounter)
+
+        s0 = SimpleQuote(32.0)
+
+        v0    = 0.05
+        kappa = 5.0
+        theta = 0.05
+        sigma = 1.0e-4
+        rho   = 0.0
+
+        process = HestonProcess(
+            risk_free_ts, dividend_ts, s0, v0, kappa, theta, sigma, rho
+        )
+
+        option = VanillaOption(payoff, exercise)
+
+        engine = AnalyticHestonEngine(HestonModel(process), 144)
+
+        option.setPricingEngine(engine);
+
+        calculated = option.npv()
+
+        year_fraction = daycounter.year_fraction(
+            settlement_date, exercise_date
+        )
+
+        forward_price = 32 * np.exp((0.1-0.04)*year_fraction)
+        expected = black_formula(
+            payoff.option_type(), payoff.strike(), forward_price,
+            np.sqrt(0.05 * year_fraction)
+        ) * np.exp(-0.1 * year_fraction)
+        error = np.fabs(calculated - expected)
+        tolerance = 2.0e-7
+        if error > tolerance:
+            self.fail("failed to reproduce Black price with ",
+                "AnalyticHestonEngine", "\n    calculated: ",calculated,
+                "\n    expected:   ", expected,
+                "\n    error:      ",  error
+            )
+
+        engine = FdHestonVanillaEngine(
+            HestonModel(process), 200,200,100
+        )
+        option.setPricingEngine(engine);
+
+        calculated = option.npv();
+        error = np.fabs(calculated - expected);
+        tolerance = 1.0e-3;
+        if error > tolerance :
+            self.fail("failed to reproduce Black price with ",
+                "FdHestonVanillaEngine \n    calculated: ",
+                calculated, "\n    expected:   ", expected,
+                "\n    error:      ", error
+            )
 
 
 if __name__ == '__main__':

@@ -1,7 +1,7 @@
 import unittest
 
 from quantlib.instruments.option import (
-    Put, American, European, EuropeanExercise, AmericanExercise
+    Put, EuropeanExercise, AmericanExercise
 )
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.instruments.option import VanillaOption
@@ -10,17 +10,15 @@ from quantlib.pricingengines.vanilla import (
 )
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.settings import Settings
-from quantlib.time.api import Date, TARGET, May, Actual365Fixed, Months, Period
-from quantlib.termstructures.yields.flat_forward import (
-    YieldTermStructure, FlatForward
-)
-from quantlib.quotes.simplequote import SimpleQuote
+from quantlib.time.api import Date, TARGET, May, Actual365Fixed
+from quantlib.termstructures.yields.flat_forward import FlatForward
+from quantlib.quotes import SimpleQuote
 
 from quantlib.termstructures.volatility.equityfx.black_vol_term_structure import BlackConstantVol
 
 
 class VanillaOptionTestCase(unittest.TestCase):
-    """Base test for all the cases related to VanillaOption. 
+    """Base test for all the cases related to VanillaOption.
 
     This test case is based on the QuantLib example EquityOption.cpp
     """
@@ -50,20 +48,20 @@ class VanillaOptionTestCase(unittest.TestCase):
 
         # bootstrap the yield/dividend/vol curves
         self.flat_term_structure = FlatForward(
-            reference_date = self.settlement_date, 
-            forward        = self.risk_free_rate, 
+            reference_date = self.settlement_date,
+            forward        = self.risk_free_rate,
             daycounter     = self.daycounter
         )
         self.flat_dividend_ts = FlatForward(
-            reference_date = self.settlement_date, 
-            forward        = self.dividend_yield, 
+            reference_date = self.settlement_date,
+            forward        = self.dividend_yield,
             daycounter     = self.daycounter
         )
 
         self.flat_vol_ts = BlackConstantVol(
-            self.settlement_date, 
-            self.calendar, 
-            self.volatility, 
+            self.settlement_date,
+            self.calendar,
+            self.volatility,
             self.daycounter
         )
 
@@ -82,10 +80,10 @@ class VanillaOptionTestCase(unittest.TestCase):
         print(self.payoff)
         print(EuropeanExercise(self.maturity))
         self.assertTrue(True)
-        
+
     def test_european_vanilla_option_usage(self):
-        
-        
+
+
         european_exercise = EuropeanExercise(self.maturity)
 
         european_option = VanillaOption(self.payoff, european_exercise)
@@ -104,7 +102,7 @@ class VanillaOptionTestCase(unittest.TestCase):
 
         american_exercise = AmericanExercise(self.maturity)
         american_option = VanillaOption(self.payoff, american_exercise)
-    
+
         method = 'Barone-Adesy/Whaley'
         engine = BaroneAdesiWhaleyApproximationEngine(
             self.black_scholes_merton_process

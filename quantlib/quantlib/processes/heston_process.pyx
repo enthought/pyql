@@ -6,8 +6,8 @@ cimport _heston_process as _hp
 from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib.termstructures.yields._flat_forward as _ff
 cimport quantlib._quote as _qt
+from quantlib.quotes cimport Quote
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
-from quantlib.quote cimport Quote
 
 cdef class HestonProcess:
 

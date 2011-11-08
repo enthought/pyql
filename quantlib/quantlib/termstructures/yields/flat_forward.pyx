@@ -9,11 +9,11 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.date cimport Date, date_from_qldate
 
 from quantlib.compounding import Continuous
-from quantlib.time.date import Annual 
+from quantlib.time.date import Annual
 
 cimport _flat_forward as ffwd
 cimport quantlib._quote as _qt
-from quantlib.quote cimport Quote
+from quantlib.quotes cimport Quote
 
 cdef class YieldTermStructure:
 
@@ -66,7 +66,7 @@ cdef class YieldTermStructure:
             raise ValueError('Unsupported value type')
 
         return discount_value
-                
+
 
     property reference_date:
         def __get__(self):
@@ -78,15 +78,15 @@ cdef class YieldTermStructure:
 cdef class FlatForward(YieldTermStructure):
 
     def __init__(self,
-       Date reference_date=None, 
+       Date reference_date=None,
        Quote quote=None,
        int settlement_days=0,
-       float forward=0.0, 
+       float forward=0.0,
        Calendar calendar=None,
-       DayCounter daycounter=None, 
-       compounding=Continuous, 
+       DayCounter daycounter=None,
+       compounding=Continuous,
        frequency=Annual
- 
+
     ):
 
         self.relinkable = False
@@ -99,12 +99,12 @@ cdef class FlatForward(YieldTermStructure):
         if reference_date is not None and forward is not None:
             self._thisptr = new shared_ptr[ffwd.YieldTermStructure](
                 new ffwd.FlatForward(
-                    deref(reference_date._thisptr), 
-                    <ffwd.Rate>forward, 
-                    deref(daycounter._thisptr), 
+                    deref(reference_date._thisptr),
+                    <ffwd.Rate>forward,
+                    deref(daycounter._thisptr),
                     <ffwd.Compounding>compounding,
                     <Frequency>frequency
-                ) 
+                )
             )
         elif quote is not None and \
              settlement_days is not None and \
@@ -129,12 +129,12 @@ cdef class FlatForward(YieldTermStructure):
             self._thisptr = new shared_ptr[ffwd.YieldTermStructure](
                 new ffwd.FlatForward(
                     <ffwd.Natural>settlement_days,
-                    deref(calendar._thisptr), 
-                    <ffwd.Rate>forward, 
-                    deref(daycounter._thisptr), 
+                    deref(calendar._thisptr),
+                    <ffwd.Rate>forward,
+                    deref(daycounter._thisptr),
                     <ffwd.Compounding>compounding,
                     <Frequency>frequency
-                ) 
+                )
             )
         else:
             raise ValueError('Invalid constructor')

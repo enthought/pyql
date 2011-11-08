@@ -10,3 +10,9 @@ cdef extern from 'ql/quote.hpp' namespace 'QuantLib':
         Quote()
         Real value()
         bool isValid()
+
+cdef extern from 'ql/quotes/simplequote.hpp' namespace 'QuantLib':
+
+    cdef cppclass SimpleQuote(Quote):
+        SimpleQuote(Real value) except +
+        Real setValue(Real value) except +
