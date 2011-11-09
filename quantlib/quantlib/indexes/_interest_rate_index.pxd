@@ -2,7 +2,6 @@
 # distutils: libraries = QuantLib
 
 include '../types.pxi'
-
 from libcpp cimport bool
 
 from quantlib._index cimport Index
@@ -19,6 +18,7 @@ cdef extern from "string" namespace "std":
 cdef extern from 'ql/indexes/interestrateindex.hpp' namespace 'QuantLib':
 
     cdef cppclass InterestRateIndex(Index):
+        InterestRateIndex()
         InterestRateIndex(string& familyName,
                           Period& tenor,
                           Natural settlementDays,

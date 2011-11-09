@@ -257,7 +257,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         engine = AnalyticHestonEngine(HestonModel(process), 144)
 
-        option.setPricingEngine(engine);
+        option.set_pricing_engine(engine);
 
         calculated = option.npv()
 

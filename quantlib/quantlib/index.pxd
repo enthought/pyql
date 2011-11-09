@@ -1,6 +1,6 @@
-cimport _index
+cimport quantlib._index as _in
+from quantlib.handle cimport shared_ptr
 
 cdef class Index:
-    cdef _index.Index* _thisptr
-
-
+    cdef shared_ptr[_in.Index]* _thisptr
+    

@@ -1,10 +1,9 @@
-cimport _currency
+cimport _currency as _cu
+cimport currency
 
 cdef class Currency:
-    cdef _currency.Currency *_thisptr
-
     def __cinit__(self):
-        self._thisptr = new _currency.Currency()
+        self._thisptr = new _cu.Currency()
 
     property name:
         def __get__(self):

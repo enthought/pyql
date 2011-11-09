@@ -7,9 +7,9 @@ from libcpp cimport bool
 
 cdef extern from 'ql/quote.hpp' namespace 'QuantLib':
     cdef cppclass Quote:
-        Quote()
-        Real value()
-        bool isValid()
+        Quote() except +
+        Real value() except +
+        bool isValid() except +
 
 cdef extern from 'ql/quotes/simplequote.hpp' namespace 'QuantLib':
 
