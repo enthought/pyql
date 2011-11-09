@@ -282,7 +282,7 @@ class HestonModelTestCase(unittest.TestCase):
         engine = FdHestonVanillaEngine(
             HestonModel(process), 200,200,100
         )
-        option.setPricingEngine(engine);
+        option.set_pricing_engine(engine);
 
         calculated = option.npv();
         error = np.fabs(calculated - expected);
