@@ -10,7 +10,7 @@ cimport _heston_model as _hm
 cimport quantlib.termstructures.yields._flat_forward as _ffwd
 cimport quantlib._quote as _qt
 cimport quantlib.pricingengines._vanilla as _vanilla
-
+cimport _heston_model as _hm
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.math.optimization cimport OptimizationMethod, EndCriteria
 from quantlib.processes.heston_process cimport HestonProcess
@@ -91,8 +91,16 @@ cdef class HestonModelHelper:
     def calibration_error(self):
         return self._thisptr.get().calibrationError()
 
+    def impliedVolatility(self, Real targetValue,
+        Real accuracy, Size maxEvaluations, 
+        Volatility minVol, Volatility maxVol):
 
+        vol = \
+        (<_hm.CalibrationHelper *> self._thisptr.get()).impliedVolatility(targetValue, 
+        accuracy, maxEvaluations, minVol, maxVol)
 
+        return vol
+    
 cdef class HestonModel:
 
     def __cinit__(self):

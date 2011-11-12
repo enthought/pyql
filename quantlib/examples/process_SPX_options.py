@@ -233,13 +233,17 @@ for spec, group in grouped:
     # final assembly...
 
     df_cp = df_call.append(df_put,  ignore_index=True)
-    df_cp['IR'] = iRate 
-    df_cp['IDIV'] = dRate 
+    df_cp['R'] = iRate 
+    df_cp['D'] = dRate 
     df_cp['ATMVol'] = atmVol 
-    df_cp['Fwd'] = Fwd
+    df_cp['F'] = Fwd
     df_cp['T'] = timeToMaturity
-
-    
+    df_cp = df_cp.rename(columns=
+                         {'IVBid': 'VB',
+                          'IVAsk': 'VA',
+                          'Strike': 'K'})
+    df_cp['CP'] = [1 if t == 'C' else -1 for t in df_cp['Type']]
+                         
     if isFirst:
         df_final = df_cp
         isFirst = False 
@@ -248,10 +252,13 @@ for spec, group in grouped:
         
 df_final.to_csv(calibration_data_file, index=False)
 
+df_final.save('data/df_final.pkl')
+
 # save term structure of dividends and rate: first item in each expiry group  
  
-df_tmp = DataFrame.filter(df_final, items=['dtExpiry', 'IR', 'IDIV'])
+df_tmp = DataFrame.filter(df_final, items=['dtExpiry', 'R', 'D'])
 grouped = df_tmp.groupby('dtExpiry')
 df_rates = grouped.agg(lambda x: x[0])
    
 df_rates.to_csv(rate_div_file)
+df_rates.save('data/df_rates.pkl')

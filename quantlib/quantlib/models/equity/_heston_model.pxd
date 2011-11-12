@@ -19,7 +19,12 @@ from quantlib.time._period cimport Period
 cdef extern from 'ql/models/calibrationhelper.hpp' namespace 'QuantLib':
 
     cdef cppclass CalibrationHelper:
-        pass
+        Volatility impliedVolatility(
+            Real targetValue,
+            Real accuracy,
+            Size maxEvaluation,
+            Volatility minVol,
+            Volatility maxVol) except +
 
 cdef extern from 'ql/models/calibrationhelper.hpp' namespace 'QuantLib::CalibrationHelper':
 
@@ -40,36 +45,36 @@ cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
             Handle[YieldTermStructure]& riskFreeRate,
             Handle[YieldTermStructure]& dividendYield,
             CalibrationErrorType errorType
-        )
-        void setPricingEngine(shared_ptr[PricingEngine]& engine) 
-        Real blackPrice(Real volatility)
+        ) except +
+        void setPricingEngine(shared_ptr[PricingEngine]& engine) except + 
+        Real blackPrice(Real volatility) except +
 
         ### 'CalibrationHelper' protocol  ###################################
-        Real marketValue()
-        Real modelValue()
-        Real calibrationError()
+        Real marketValue() except +
+        Real modelValue() except +
+        Real calibrationError() except +
 
 cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib':
 
     cdef cppclass HestonModel:
         HestonModel(shared_ptr[HestonProcess]& process)
 
-        #variance mean version level
-        Real theta()
+        #variance mean reversion level
+        Real theta() except +
         #variance mean reversion speed
-        Real kappa()
+        Real kappa() except +
         # volatility of the volatility
-        Real sigma()
+        Real sigma() except +
         # correlation
-        Real rho() 
+        Real rho() except +
         # spot variance
-        Real v0() 
+        Real v0() except +
 
         void calibrate(
                vector[shared_ptr[CalibrationHelper]]&,
                OptimizationMethod& method,
                EndCriteria& endCriteria,
-        )
+        ) except +
 
 
 
