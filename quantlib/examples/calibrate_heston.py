@@ -10,11 +10,7 @@ from quantlib.processes.heston_process import HestonProcess
 from quantlib.pricingengines.vanilla import AnalyticHestonEngine
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
-from quantlib.time.api import (
-    today, Actual360, NullCalendar, Period, Days, Months, Years, Date,
-    Actual365Fixed, TARGET, Weeks, ActualActual
-)
-from quantlib.termstructures.yields.flat_forward import FlatForward
+from quantlib.time.api import Period, Date, Actual365Fixed, TARGET, Weeks
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
 
@@ -32,12 +28,12 @@ def dfToZeroCurve(df, dtSettlement, daycounter=Actual365Fixed()):
     vx.insert(0, vx[0])
     vx.append(vx[-1])
     return ZeroCurve(dates, vx, daycounter)
-    
+
 def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
     """
-    calibrate heston model 
+    calibrate heston model
     """
-    
+
     if dtTrade is None:
         dtTrade = df_option['dtTrade'][0]
     DtSettlement = Date(dtTrade.day, dtTrade.month, dtTrade.year)
@@ -45,7 +41,6 @@ def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
     settings = Settings()
     settings.evaluation_date = DtSettlement
 
-    daycounter = Actual365Fixed()
     calendar = TARGET()
 
     if df_rates is None:
@@ -55,7 +50,7 @@ def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
 
     # convert data frame (date/value) into zero curve
     # expect the index to be a date, and 1 column of values
-    
+
     risk_free_ts = dfToZeroCurve(df_rates['R'], dtTrade)
     dividend_ts = dfToZeroCurve(df_rates['D'], dtTrade)
 
@@ -66,8 +61,8 @@ def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
     Fwd = df_option['F'][0]
     spot = SimpleQuote(Fwd*np.exp(-(iRate-iDiv)*TTM))
     print('Spot: %f' % spot.value)
-    
-    # loop through rows in option data frame, construct 
+
+    # loop through rows in option data frame, construct
     # helpers for bid/ask
 
     oneDay = datetime.timedelta(days=1)
@@ -76,37 +71,36 @@ def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
 
     options = []
     for index, row in df_option.T.iteritems():
-        
+
         strike = row['K']
         if (strike/spot.value > 1.25) | (strike/spot.value < .75):
             continue
 
         days = int(365*row['T'])
-        DtExpiry = DtSettlement + days
         maturity = Period((days+3)/7.0, Weeks)
 
         options.append(
                 HestonModelHelper(
-                    maturity, calendar, spot.value, 
+                    maturity, calendar, spot.value,
                     strike, SimpleQuote(row['VB']),
                     risk_free_ts, dividend_ts,
                     ImpliedVolError))
 
         options.append(
                 HestonModelHelper(
-                    maturity, calendar, spot.value, 
+                    maturity, calendar, spot.value,
                     strike, SimpleQuote(row['VA']),
                     risk_free_ts, dividend_ts,
                     ImpliedVolError))
-    
+
     if ival is None:
         ival = {'v0': 0.1, 'kappa': 1.0, 'theta': 0.1,
         'sigma': 0.5, 'rho': -.5}
-        
+
     process = HestonProcess(
         risk_free_ts, dividend_ts, spot, ival['v0'], ival['kappa'],
          ival['theta'], ival['sigma'], ival['rho'])
-         
+
     model = HestonModel(process)
 
     engine = AnalyticHestonEngine(model, 64)
@@ -128,9 +122,9 @@ def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
         [pow(o.calibration_error()*100.0,2) for o in options])
 
     print('SSE: %f' % calib_error)
-    
+
     df_output = DataFrame.filter(df_option,
-                items=['dtTrade', 'dtExpiry', 
+                items=['dtTrade', 'dtExpiry',
                        'Type', 'K', 'Mid',
                        'QuickDelta', 'VB', 'VA',
                        'R', 'D', 'ATMVol', 'F', 'T'])
@@ -142,7 +136,7 @@ def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
         model_iv[i] = options[j].impliedVolatility(model_value[i],
             accuracy=1.e-5, maxEvaluations=5000,
             minVol=.01, maxVol=10.0)
-        
+
     df_output['ModelValue'] = model_value
     df_output['IVModel'] = model_iv
 
