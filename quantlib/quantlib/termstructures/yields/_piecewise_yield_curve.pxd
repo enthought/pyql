@@ -34,6 +34,7 @@ cdef extern from 'ql/termstructures/yield/piecewiseyieldcurve.hpp' namespace 'Qu
 
     cdef cppclass PiecewiseYieldcurve[Traits, Interpolator]:
         PiecewiseYieldCurve()
+        # Constructurors are not supported through the Cython syntax !
         #PiecewiseYieldCurve(
         #    Date& referenceDate,
         #    #vector[shared_ptr[Traits::helper]]& instruments,
