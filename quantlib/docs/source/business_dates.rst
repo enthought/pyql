@@ -187,7 +187,9 @@ For example:
 
  * Today is Date(3,Sep,2009). We need a monthly schedule which ends at Date(15,Dec,2009). Going forwards would produce Date(3,Sep,2009),Date(3,Oct,2009),Date(3,Nov,2009),Date(3,Dec,2009) and the final date Date(15,Dec,2009).
  * Going backwards, on a monthly basis, would produce Date(3,Sep,2009),Date(15,Sep,2009),Date(15,Oct,2009), Date(15,Nov,2009),Date(15,Dec,2009).
-The different procedures are given by the DateGeneration object and will now be summarized.
+
+The different procedures are given by the DateGeneration object and will now be
+summarized:
 
  * Backward: Backward from termination date to effective date.
  * Forward: Forward from effective date to termination date.
