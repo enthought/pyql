@@ -1,11 +1,9 @@
 
-#from setuptools import setup, find_packages
 from setuptools import setup
-#from distutils.core import setup
-#from setuptools import find_packages
 # Warning : do not import the distutils extension before setuptools
-# It does break the cythonize call
-from distutils.extension import Extension 
+# It does break the cythonize function calls
+from distutils.extension import Extension
+
 import glob
 import os
 import sys
@@ -27,6 +25,12 @@ elif sys.platform == 'linux2':
 
 
 def collect_extensions():
+    """ Collect all the directories with Cython extensions and return the list
+    of Extension.
+
+    Th function combines static Extension declaration and calls to cythonize
+    to build the list of extenions.
+    """
 
     settings_extension = Extension('quantlib.settings',
         ['quantlib/settings/settings.pyx', 'quantlib/settings/ql_settings.cpp'],
@@ -36,7 +40,7 @@ def collect_extensions():
         define_macros = [('HAVE_CONFIG_H', 1)],
         libraries=['QuantLib']
     )
-    
+
     test_extension = Extension('quantlib.test.test_cython_bug',
         ['quantlib/test/test_cython_bug.pyx', 'quantlib/settings/ql_settings.cpp'],
         language='c++',
@@ -45,7 +49,7 @@ def collect_extensions():
         define_macros = [('HAVE_CONFIG_H', None)],
         libraries=['QuantLib']
     )
-    
+
     cython_extension_directories = []
     for dirpath, directories, files in os.walk('quantlib'):
         print 'Path', dirpath
@@ -73,6 +77,8 @@ def collect_extensions():
 
 setup(
     name='quantlib',
+    version='0.1',
+    author='Didrik Pinte,Patrick Henaff',
     packages = ['quantlib.settings'],
     ext_modules = collect_extensions(),
     cmdclass = {'build_ext': build_ext}
