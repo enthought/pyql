@@ -27,8 +27,8 @@ cdef public enum ExerciseType:
     European = _exercise.European
 
 EXERCISE_TO_STR = {
-    American: 'American', 
-    Bermudan: 'Bermudan', 
+    American: 'American',
+    Bermudan: 'Bermudan',
     European:'European'
 }
 
@@ -36,13 +36,13 @@ cdef class Exercise:
 
     def __cinit__(self):
         self._thisptr = NULL
-        
-        
+
+
     def __dealloc__(self):
         if self._thisptr is not NULL:
             del self._thisptr
             logger.debug('Exercise deallocated')
-            
+
     def __str__(self):
         return 'Exercise type: %s' % EXERCISE_TO_STR[self._thisptr.type()]
 
@@ -50,14 +50,14 @@ cdef class EuropeanExercise(Exercise):
 
     def __init__(self, Date exercise_date):
         self._thisptr = new _exercise.EuropeanExercise(
-                deref(exercise_date._thisptr)
+                deref(exercise_date._thisptr.get())
         )
 
 cdef class AmericanExercise(Exercise):
 
     def __init__(self, Date exercise_date):
         self._thisptr = new _exercise.AmericanExercise(
-                deref(exercise_date._thisptr)
+                deref(exercise_date._thisptr.get())
         )
 
 cdef class VanillaOption:
@@ -81,7 +81,7 @@ cdef class VanillaOption:
 
     def __str__(self):
         return 'Vanilla option %s %s' % (str(self._exercise_ref), str(self._payoff_ref))
- 
+
     def __init__(self, Payoff payoff, Exercise exercise):
 
         # keep reference to other objects. This prevents them to be deallocated
@@ -105,7 +105,7 @@ cdef class VanillaOption:
         '''Sets the pricing engine based on the given pricing engine....
 
         '''
-        
+
         cdef shared_ptr[_bonds.PricingEngine]* engine_ptr = \
                 new shared_ptr[_bonds.PricingEngine](<_bonds.PricingEngine*>engine._thisptr)
 

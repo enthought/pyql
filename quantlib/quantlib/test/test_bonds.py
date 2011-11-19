@@ -12,14 +12,14 @@ from quantlib.time.calendars.united_states import (
 from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.compounding import Compounded, Continuous
 from quantlib.time.date import (
-    Date, Days, Semiannual, January, August, Period, June, March, February, 
+    Date, Days, Semiannual, January, August, Period, June, March, February,
     Jul, Annual, today, Years, August, today
 )
 from quantlib.time.daycounter import Actual365Fixed
 from quantlib.time.daycounters.actual_actual import ActualActual, Bond, ISMA
 from quantlib.time.schedule import Schedule, Backward
 from quantlib.settings import Settings
-from quantlib.termstructures.yields.flat_forward import (
+from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure
 )
 
@@ -53,16 +53,16 @@ class BondTestCase(unittest.TestCase):
         issue_date = Date(27, January, 2011)
         maturity_date = Date(31, August, 2020)
         coupon_rate = 0.03625
-        bond_yield = 0.034921 
+        bond_yield = 0.034921
 
         discounting_term_structure = YieldTermStructure(relinkable=True)
         flat_term_structure = FlatForward(
             reference_date = settlement_date,
-            forward        = bond_yield, 
-            daycounter     = Actual365Fixed(), #actual_actual.ActualActual(actual_actual.Bond), 
+            forward        = bond_yield,
+            daycounter     = Actual365Fixed(), #actual_actual.ActualActual(actual_actual.Bond),
             compounding    = Compounded,
             frequency      = Semiannual)
-        # have a look at the FixedRateBondHelper to simplify this 
+        # have a look at the FixedRateBondHelper to simplify this
         # construction
         discounting_term_structure.link_to(flat_term_structure)
 
@@ -84,7 +84,7 @@ class BondTestCase(unittest.TestCase):
 		    face_amount,
 		    fixed_bond_schedule,
 		    [coupon_rate],
-            ActualActual(Bond), 
+            ActualActual(Bond),
 		    Unadjusted,
             redemption,
             issue_date
@@ -103,7 +103,7 @@ class BondTestCase(unittest.TestCase):
         self.assertAlmostEqual(101.1, bond.dirty_price)
         self.assertAlmostEqual(0.009851, bond.accrued_amount())
 
-        
+
         print settings.evaluation_date
         print 'Principal: {}'.format(face_amount)
         print 'Issuing date: {} '.format(bond.issue_date)
@@ -121,7 +121,7 @@ class BondTestCase(unittest.TestCase):
     def test_excel_example_with_fixed_rate_bond(self):
         '''Port the QuantLib Excel adding bond example to Python. '''
 
-        
+
         todays_date = Date(25, August, 2011)
 
 
@@ -139,7 +139,7 @@ class BondTestCase(unittest.TestCase):
         face_amount = 100.0
         coupon_rate = 0.05
         redemption = 100.0
-        
+
         fixed_bond_schedule = Schedule(
             effective_date,
             termination_date,
@@ -156,7 +156,7 @@ class BondTestCase(unittest.TestCase):
 		    face_amount,
 		    fixed_bond_schedule,
 		    [coupon_rate],
-            ActualActual(ISMA), 
+            ActualActual(ISMA),
 		    Following,
             redemption,
             issue_date
@@ -165,8 +165,8 @@ class BondTestCase(unittest.TestCase):
         discounting_term_structure = YieldTermStructure(relinkable=True)
         flat_term_structure = FlatForward(
             settlement_days = 1,
-            forward         = 0.044, 
-            calendar        = NullCalendar(), 
+            forward         = 0.044,
+            calendar        = NullCalendar(),
             daycounter      = Actual365Fixed(),
             compounding     = Continuous,
             frequency       = Annual)
@@ -177,7 +177,7 @@ class BondTestCase(unittest.TestCase):
 
         self.assertEquals(Date(10, Jul, 2016), termination_date)
         self.assertEquals(
-            calendar.advance(todays_date, 3, Days), bond.settlement_date() 
+            calendar.advance(todays_date, 3, Days), bond.settlement_date()
         )
         self.assertEquals(Date(11, Jul, 2016), bond.maturity_date)
         self.assertAlmostEqual(
@@ -188,6 +188,7 @@ class BondTestCase(unittest.TestCase):
 
     def test_excel_example_with_zero_coupon_bond(self):
 
+
         todays_date = Date(25, August, 2011)
 
         settlement_days = 3
@@ -196,15 +197,15 @@ class BondTestCase(unittest.TestCase):
         maturity_date = Date(26, February, 2024)
 
         bond = ZeroCouponBond(
-            settlement_days, calendar, face_amount, maturity_date, Following, 
+            settlement_days, calendar, face_amount, maturity_date, Following,
             100., todays_date
         )
 
         discounting_term_structure = YieldTermStructure(relinkable=True)
         flat_term_structure = FlatForward(
             settlement_days = 1,
-            forward         = 0.044, 
-            calendar        = NullCalendar(), 
+            forward         = 0.044,
+            calendar        = NullCalendar(),
             daycounter      = Actual365Fixed(),
             compounding     = Continuous,
             frequency       = Annual)
@@ -213,9 +214,9 @@ class BondTestCase(unittest.TestCase):
         bond.set_pricing_engine(discounting_term_structure)
 
         self.assertEquals(
-            calendar.advance(todays_date, 3, Days), bond.settlement_date() 
+            calendar.advance(todays_date, 3, Days), bond.settlement_date()
         )
-        self.assertEquals(0., bond.accrued_amount(bond.settlement_date())) 
+        self.assertEquals(0., bond.accrued_amount(bond.settlement_date()))
         self.assertAlmostEquals(57.6915, bond.clean_price, 4)
 
 if __name__ == '__main__':

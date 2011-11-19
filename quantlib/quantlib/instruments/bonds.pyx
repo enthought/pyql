@@ -8,11 +8,11 @@ from libcpp cimport bool as cbool
 
 from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle
 from quantlib.time._calendar cimport BusinessDayConvention
-cimport quantlib.time._date as _date 
+cimport quantlib.time._date as _date
 from quantlib.time._daycounter cimport DayCounter as QlDayCounter
 from quantlib.time._schedule cimport Schedule as QlSchedule
 from quantlib.time.calendar cimport Calendar
-from quantlib.time.date cimport Date, date_from_qldate_ref
+from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar import Following
@@ -46,7 +46,7 @@ cdef class Bond:
         cdef YieldTermStructure ds = yield_term_structure
         if ds.relinkable:
             term_structure = ds._relinkable_ptr
-        
+
         cdef _bonds.DiscountingBondEngine* engine = \
                 new _bonds.DiscountingBondEngine(deref(term_structure))
         cdef shared_ptr[_bonds.PricingEngine]* engine_ptr = \
@@ -59,28 +59,30 @@ cdef class Bond:
     property issue_date:
         def __get__(self):
             cdef _date.Date issue_date = self._thisptr.issueDate()
-            return date_from_qldate_ref(issue_date)
+            return date_from_qldate(issue_date)
 
     property maturity_date:
         def __get__(self):
             cdef _date.Date maturity_date = self._thisptr.maturityDate()
-            return date_from_qldate_ref(maturity_date)
+            return date_from_qldate(maturity_date)
 
     property valuation_date:
         def __get__(self):
             cdef _date.Date valuation_date = self._thisptr.valuationDate()
-            return date_from_qldate_ref(valuation_date)
+            return date_from_qldate(valuation_date)
 
     def settlement_date(self, Date from_date=None):
-        cdef _date.Date* date 
+        cdef _date.Date* date
         cdef _date.Date settlement_date
         if from_date is not None:
-            date = from_date._thisptr
+            date = from_date._thisptr.get()
             settlement_date = self._thisptr.settlementDate(deref(date))
         else:
             settlement_date = self._thisptr.settlementDate()
 
-        return date_from_qldate_ref(settlement_date)
+        print settlement_date.year(), settlement_date.month(), settlement_date.dayOfMonth()
+
+        return date_from_qldate(settlement_date)
 
     property clean_price:
         def __get__(self):
@@ -90,7 +92,7 @@ cdef class Bond:
     property dirty_price:
         def __get__(self):
             if self.has_pricing_engine:
-                return self._thisptr.dirtyPrice()    
+                return self._thisptr.dirtyPrice()
 
     property net_present_value:
         def __get__(self):
@@ -101,16 +103,16 @@ cdef class Bond:
 
     def accrued_amount(self, Date date=None):
         if date is not None:
-            amount = self._thisptr.accruedAmount(deref(date._thisptr))
+            amount = self._thisptr.accruedAmount(deref(date._thisptr.get()))
         else:
             amount = (<_bonds.Bond*>self._thisptr).accruedAmount()
         return amount
 
 cdef class FixedRateBond(Bond):
 
-    def __init__(self, int settlement_days, float face_amount, 
+    def __init__(self, int settlement_days, float face_amount,
             Schedule fixed_bonds_schedule,
-            coupons, DayCounter accrual_day_counter, 
+            coupons, DayCounter accrual_day_counter,
             payment_convention=Following,
             float redemption=100.0, Date issue_date = None):
 
@@ -130,33 +132,33 @@ cdef class FixedRateBond(Bond):
                 # shall we default on the first date of the schedule ?
                 self._thisptr = new _bonds.FixedRateBond(settlement_days,
                     face_amount, deref(_fixed_bonds_schedule), deref(_coupons),
-                    deref(_accrual_day_counter), 
+                    deref(_accrual_day_counter),
                     <BusinessDayConvention>payment_convention,
                     redemption
                 )
             else:
-                _issue_date = <_date.Date*>((<Date>issue_date)._thisptr)
+                _issue_date = <_date.Date*>((<Date>issue_date)._thisptr.get())
 
                 self._thisptr = new _bonds.FixedRateBond(settlement_days,
-                        face_amount, deref(_fixed_bonds_schedule), 
+                        face_amount, deref(_fixed_bonds_schedule),
                         deref(_coupons),
-                        deref(_accrual_day_counter), 
+                        deref(_accrual_day_counter),
                         <BusinessDayConvention>payment_convention,
                         redemption, deref(_issue_date)
                 )
 
 cdef class ZeroCouponBond(Bond):
 
-    def __init__(self, settlement_days, Calendar calendar, face_amount, 
+    def __init__(self, settlement_days, Calendar calendar, face_amount,
         Date maturity_date, payment_convention=Following, redemption=100.,
         Date issue_date=None
     ):
         if issue_date is not None:
             self._thisptr = new _bonds.ZeroCouponBond(
-                <Natural> settlement_days, deref(calendar._thisptr), 
-                <Real>face_amount, deref(maturity_date._thisptr),
+                <Natural> settlement_days, deref(calendar._thisptr),
+                <Real>face_amount, deref(maturity_date._thisptr.get()),
                 <BusinessDayConvention>payment_convention,
-                <Real>redemption, deref(issue_date._thisptr)
+                <Real>redemption, deref(issue_date._thisptr.get())
             )
         else:
             raise NotImplementedError()

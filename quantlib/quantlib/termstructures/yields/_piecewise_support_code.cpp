@@ -20,6 +20,7 @@ namespace QuantLib {
         DayCounter& 
         day_counter, Real tolerance
     ) {
+        
         if(traits.compare("discount") == 0 &&
            interpolator.compare("linear") == 0) {
             boost::shared_ptr<YieldTermStructure> ts(new

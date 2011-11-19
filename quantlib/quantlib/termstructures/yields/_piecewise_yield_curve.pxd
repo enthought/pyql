@@ -28,7 +28,7 @@ cdef extern from '_piecewise_support_code.hpp' namespace 'QuantLib':
         vector[shared_ptr[RateHelper]]& curve_input,
         DayCounter& day_counter,
         Real tolerance
-    )
+    ) except+
 
 cdef extern from 'ql/termstructures/yield/piecewiseyieldcurve.hpp' namespace 'QuantLib':
 

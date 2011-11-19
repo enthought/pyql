@@ -13,13 +13,13 @@ from quantlib.time.calendar import ModifiedFollowing
 
 cdef class RateHelper:
 
-    cdef shared_ptr[_rh.RateHelper]* _thisptr
 
     def __cinit__(self):
         self._thisptr = NULL
 
     def __dealloc__(self):
         if self._thisptr is not NULL:
+            print 'Deallocting RateHelper'
             del self._thisptr
 
 cdef class DepositRateHelper(RateHelper):
@@ -32,7 +32,7 @@ cdef class DepositRateHelper(RateHelper):
         self._thisptr = new shared_ptr[_rh.RateHelper](
             new _rh.DepositRateHelper(
                 quote,
-                deref(tenor._thisptr),
+                deref(tenor._thisptr.get()),
                 <int>fixing_days,
                 deref(calendar._thisptr),
                 <_rh.BusinessDayConvention>convention,
