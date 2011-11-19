@@ -46,7 +46,7 @@ cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
             Handle[YieldTermStructure]& dividendYield,
             CalibrationErrorType errorType
         ) except +
-        void setPricingEngine(shared_ptr[PricingEngine]& engine) except + 
+        void setPricingEngine(shared_ptr[PricingEngine]& engine) except +
         Real blackPrice(Real volatility) except +
 
         ### 'CalibrationHelper' protocol  ###################################
@@ -57,6 +57,8 @@ cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
 cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib':
 
     cdef cppclass HestonModel:
+
+        HestonModel() # fake empty constructor solving Cython dep. issue
         HestonModel(shared_ptr[HestonProcess]& process)
 
         #variance mean reversion level
