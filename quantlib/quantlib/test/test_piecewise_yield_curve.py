@@ -24,13 +24,14 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         rate_helpers = []
 
+        calendar =  TARGET()
+        deposit_day_counter = Actual365Fixed()
+        convention = ModifiedFollowing
+        end_of_month = True
+
         for quote, tenor in zip(quotes, tenors):
             tenor = Period(3, Months)
             fixing_days = 3
-            calendar =  TARGET()
-            convention = ModifiedFollowing
-            end_of_month = True
-            deposit_day_counter = Actual365Fixed()
 
 
             helper = DepositRateHelper(
@@ -50,11 +51,9 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
             ts_day_counter, tolerance
         )
 
-        self.assertIsNotNote(ts)
+        self.assertIsNotNone(ts)
 
-        print 'XXXXXX'
-
-
+        #self.assertEquals(10.0, ts.discount(145))
 
 if __name__ == '__main__':
     unittest.main()
