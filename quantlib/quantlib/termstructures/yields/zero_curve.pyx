@@ -25,7 +25,7 @@ cdef class ZeroCurve(YieldTermStructure):
 
         # highly inefficient and could be improved
         for date in dates:
-            _date_vector.push_back(deref((<Date>date)._thisptr))
+            _date_vector.push_back(deref((<Date>date)._thisptr.get()))
 
         for rate in yields:
             _yield_vector.push_back(rate)

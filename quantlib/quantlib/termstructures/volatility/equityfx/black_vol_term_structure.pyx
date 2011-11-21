@@ -20,13 +20,13 @@ cdef class BlackConstantVol(BlackVolTermStructure):
 
     def __init__(self,
         Date reference_date,
-        Calendar calendar, 
+        Calendar calendar,
         float volatility,
         DayCounter daycounter
     ):
 
         self._thisptr = new _bv.BlackConstantVol(
-            deref(reference_date._thisptr),
+            deref(reference_date._thisptr.get()),
             deref(calendar._thisptr),
             volatility,
             deref(daycounter._thisptr)

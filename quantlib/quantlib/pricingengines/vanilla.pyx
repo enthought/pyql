@@ -27,7 +27,7 @@ cdef class AnalyticEuropeanEngine(VanillaOptionEngine):
             new shared_ptr[_bsp.GeneralizedBlackScholesProcess](
                 process._thisptr
             )
-        
+
         self.process = process
         self._thisptr = new _vanilla.AnalyticEuropeanEngine(deref(process_ptr))
 
@@ -39,7 +39,7 @@ cdef class BaroneAdesiWhaleyApproximationEngine(VanillaOptionEngine):
             new shared_ptr[_bsp.GeneralizedBlackScholesProcess](
                 process._thisptr
             )
-        
+
         self.process = process
         self._thisptr = new _vanilla.BaroneAdesiWhaleyApproximationEngine(
             deref(process_ptr)
@@ -55,7 +55,7 @@ cdef class AnalyticHestonEngine:
 
     def __init__(self, HestonModel model, int integration_order=144):
 
-        self._thisptr = new shared_ptr[AnalyticHestonEngine](
+        self._thisptr = new shared_ptr[_vanilla.AnalyticHestonEngine](
             new _vanilla.AnalyticHestonEngine(
                 deref(model._thisptr),
                 <Size>integration_order

@@ -1,6 +1,6 @@
 import unittest
 
-from quantlib.termstructures.yields.flat_forward import (
+from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure
 )
 from quantlib.quotes import SimpleQuote

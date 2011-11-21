@@ -59,7 +59,7 @@ cdef class HestonModelHelper:
 
         self._thisptr = new shared_ptr[_hm.HestonModelHelper](
             new _hm.HestonModelHelper(
-                deref(maturity._thisptr),
+                deref(maturity._thisptr.get()),
                 deref(calendar._thisptr),
                 s0,
                 strike_price,
