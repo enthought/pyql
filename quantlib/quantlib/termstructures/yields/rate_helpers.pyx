@@ -3,7 +3,7 @@ include '../../types.pxi'
 from cython.operator cimport dereference as deref
 
 cimport _rate_helpers as _rh
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport shared_ptr, Handle
 from quantlib._quote cimport Quote
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
@@ -43,4 +43,8 @@ cdef class DepositRateHelper(RateHelper):
 
     property quote:
         def __get__(self):
-            return self._thisptr.get().quote().currentLink().get().value()
+            cdef Handle[Quote] quote_handle = self._thisptr.get().quote()
+            cdef shared_ptr[Quote]* quote_ptr = new shared_ptr[Quote](quote_handle.currentLink())
+            value = quote_ptr.get().value()
+            del quote_ptr
+            return value

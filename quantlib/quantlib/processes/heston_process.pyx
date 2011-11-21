@@ -71,7 +71,7 @@ cdef class HestonProcess:
     def s0(self):
         quote = Quote()
         quote._thisptr = new shared_ptr[_qt.Quote](
-            self._thisptr.get().s0().currentLink().get()
+            self._thisptr.get().s0().currentLink()
         )
 
         return quote
