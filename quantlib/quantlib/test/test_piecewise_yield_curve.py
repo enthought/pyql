@@ -28,8 +28,8 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         convention = ModifiedFollowing
         end_of_month = True
 
-        for quote, tenor in zip(quotes, tenors):
-            tenor = Period(3, Months)
+        for quote, month in zip(quotes, tenors):
+            tenor = Period(month, Months)
             fixing_days = 3
 
 
@@ -54,7 +54,10 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         self.assertEquals( Date(18, September, 2008), ts.reference_date)
 
-        self.assertEquals(10.0, ts.discount(Date(21, 12, 2008)))
+        # this is not a real test ...
+        self.assertAlmostEquals(0.9975, ts.discount(Date(21, 12, 2008)), 4)
+        self.assertAlmostEquals(0.9944, ts.discount(Date(21, 4, 2009)), 4)
+        self.assertAlmostEquals(0.9904, ts.discount(Date(21, 9, 2009)), 4)
 
 if __name__ == '__main__':
     unittest.main()
