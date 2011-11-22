@@ -34,8 +34,7 @@ cdef class FlatForward(YieldTermStructure):
         self.relinkable = False
 
         #local cdef's
-        cdef shared_ptr[_qt.Quote]* quote_ptr
-        cdef ffwd.Handle[_qt.Quote]* quote_handle
+        cdef ffwd.Handle[_qt.Quote] quote_handle
         cdef ffwd.Date _reference_date
 
         if reference_date is not None and forward is not None:
@@ -49,17 +48,16 @@ cdef class FlatForward(YieldTermStructure):
                 )
             )
         elif quote is not None and \
-             settlement_days is not None and \
-             calendar is not None:
+            settlement_days is not None and \
+            calendar is not None:
 
-            quote_ptr = quote._thisptr
-            quote_handle = new ffwd.Handle[_qt.Quote](quote_ptr.get())
+            quote_handle = ffwd.Handle[_qt.Quote](deref(quote._thisptr))
 
             self._thisptr = new shared_ptr[ffwd.YieldTermStructure](
                 new ffwd.FlatForward(
                     <ffwd.Natural>settlement_days,
                     deref(calendar._thisptr),
-                    deref(quote_handle),
+                    quote_handle,
                     deref(daycounter._thisptr),
                     <ffwd.Compounding>compounding,
                     <Frequency>frequency

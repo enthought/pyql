@@ -15,8 +15,6 @@ cdef class VanillaOptionEngine:
 
     def __dealloc__(self):
         if self._thisptr is not NULL:
-            print 'VanillaOptionEngine dealllocated'
-            self.process = None
             del self._thisptr
 
 cdef class AnalyticEuropeanEngine(VanillaOptionEngine):
@@ -29,7 +27,9 @@ cdef class AnalyticEuropeanEngine(VanillaOptionEngine):
             )
 
         self.process = process
-        self._thisptr = new _vanilla.AnalyticEuropeanEngine(deref(process_ptr))
+        self._thisptr = new shared_ptr[_vanilla.PricingEngine](\
+            new _vanilla.AnalyticEuropeanEngine(deref(process_ptr))
+        )
 
 cdef class BaroneAdesiWhaleyApproximationEngine(VanillaOptionEngine):
 
@@ -41,8 +41,8 @@ cdef class BaroneAdesiWhaleyApproximationEngine(VanillaOptionEngine):
             )
 
         self.process = process
-        self._thisptr = new _vanilla.BaroneAdesiWhaleyApproximationEngine(
-            deref(process_ptr)
+        self._thisptr = new shared_ptr[_vanilla.PricingEngine](
+            new _vanilla.BaroneAdesiWhaleyApproximationEngine(deref(process_ptr))
         )
 
 cdef class AnalyticHestonEngine:
@@ -51,11 +51,12 @@ cdef class AnalyticHestonEngine:
         self._thisptr = NULL
 
     def __dealloc__(self):
-        pass # no need for deallocation because we use a boost::shared_ptr
+        if self._thisptr is not NULL:
+            del self._thisptr
 
     def __init__(self, HestonModel model, int integration_order=144):
 
-        self._thisptr = new shared_ptr[_vanilla.AnalyticHestonEngine](
+        self._thisptr = new shared_ptr[_vanilla.PricingEngine](
             new _vanilla.AnalyticHestonEngine(
                 deref(model._thisptr),
                 <Size>integration_order

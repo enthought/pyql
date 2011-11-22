@@ -6,7 +6,7 @@ cimport _heston_process as _hp
 from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib.termstructures.yields._flat_forward as _ff
 cimport quantlib._quote as _qt
-from quantlib.quotes cimport Quote
+from quantlib.quotes cimport Quote, SimpleQuote
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
 
 cdef class HestonProcess:
@@ -29,22 +29,21 @@ cdef class HestonProcess:
     ):
 
         #create handles
-        cdef Handle[_qt.Quote]* s0_handle = \
-            new Handle[_qt.Quote](s0._thisptr.get())
-        cdef Handle[_ff.YieldTermStructure]* dividend_ts_handle = new \
+        cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](deref(s0._thisptr))
+        cdef Handle[_ff.YieldTermStructure] dividend_ts_handle = \
                 Handle[_ff.YieldTermStructure](
-                    <_ff.YieldTermStructure*>dividend_ts._thisptr.get()
+                    deref(dividend_ts._thisptr)
                 )
-        cdef Handle[_ff.YieldTermStructure]* risk_free_rate_ts_handle = new \
+        cdef Handle[_ff.YieldTermStructure] risk_free_rate_ts_handle = \
                 Handle[_ff.YieldTermStructure](
-                   <_ff.YieldTermStructure*> risk_free_rate_ts._thisptr.get()
+                    deref(risk_free_rate_ts._thisptr)
                 )
 
         self._thisptr = new shared_ptr[_hp.HestonProcess](
             new _hp.HestonProcess(
-                deref(risk_free_rate_ts_handle),
-                deref(dividend_ts_handle),
-                deref(s0_handle),
+                risk_free_rate_ts_handle,
+                dividend_ts_handle,
+                s0_handle,
                 v0, kappa, theta, sigma, rho
             )
         )
@@ -69,17 +68,12 @@ cdef class HestonProcess:
         return self._thisptr.get().sigma()
 
     def s0(self):
-        cdef shared_ptr[_qt.Quote]* quote_ptr = new shared_ptr[_qt.Quote](
-            self._thisptr.get().s0().currentLink()
-        )
+        cdef _hp.HestonProcess* hp_ptr = self._thisptr.get()
+        cdef Handle[_qt.Quote] handle = hp_ptr.s0()
+        cdef shared_ptr[_qt.Quote] quote_sptr = shared_ptr[_qt.Quote](handle.currentLink())
+        cdef _qt.Quote* quote_ptr = quote_sptr.get()
 
-        quote = Quote()
-        #cdef _hp.HestonProcess* self_ptr = self._thisptr.get()
-        #cdef shared_ptr[_qt.Quote]* quote_ptr = new shared_ptr[_qt.Quote](
-        #    self_ptr.s0().currentLink()
-        #)
-        quote._thisptr = quote_ptr
-
-
-        return quote
+        # maybe not optmal but easiest to do
+        quote_value = quote_ptr.value()
+        return  SimpleQuote(quote_value)
 

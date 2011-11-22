@@ -6,8 +6,14 @@ cdef class Quote:
     def __cinit__(self):
         self._thisptr = NULL
 
+    def __init__(self):
+        raise ValueError(
+            'This is an abstract class. Use SimpleQuote instaed.'
+        )
+
     def __dealloc__(self):
-        pass
+        if self._thisptr is not NULL:
+            del self._thisptr
 
     property is_valid:
         def __get__(self):
