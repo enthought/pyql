@@ -25,10 +25,12 @@ cdef class BlackConstantVol(BlackVolTermStructure):
         DayCounter daycounter
     ):
 
-        self._thisptr = new _bv.BlackConstantVol(
-            deref(reference_date._thisptr.get()),
-            deref(calendar._thisptr),
-            volatility,
-            deref(daycounter._thisptr)
+        self._thisptr = new shared_ptr[_bv.BlackVolTermStructure](
+            new _bv.BlackConstantVol(
+                deref(reference_date._thisptr.get()),
+                deref(calendar._thisptr),
+                volatility,
+                deref(daycounter._thisptr)
+            )
         )
 

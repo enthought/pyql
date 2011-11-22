@@ -1,8 +1,9 @@
+from quantlib.handle cimport shared_ptr
 cimport _payoffs
 
 cdef class Payoff:
-    cdef _payoffs.Payoff* _thisptr
+    cdef shared_ptr[_payoffs.Payoff]* _thisptr
 
-cdef class PlainVanillaPayoff(Payoff):
-    pass
+cdef class PlainVanillaPayoff:
+    cdef shared_ptr[_payoffs.StrikedTypePayoff]* _thisptr
 

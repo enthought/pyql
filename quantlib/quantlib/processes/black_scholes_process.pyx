@@ -30,25 +30,25 @@ cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):
         BlackVolTermStructure black_vol_ts,
     ):
 
-        #create handles
-
-        cdef Handle[_qt.Quote]* x0_handle = new Handle[_qt.Quote](
-            x0._thisptr.get()
+        cdef Handle[_qt.Quote] x0_handle = Handle[_qt.Quote](
+            deref(x0._thisptr)
         )
-        cdef Handle[_ff.YieldTermStructure]* dividend_ts_handle = new \
+        cdef Handle[_ff.YieldTermStructure] dividend_ts_handle = \
                 Handle[_ff.YieldTermStructure](
-                    <_ff.YieldTermStructure*>dividend_ts._thisptr.get()
+                    deref(dividend_ts._thisptr)
                 )
-        cdef Handle[_ff.YieldTermStructure]* risk_free_ts_handle = new \
+        cdef Handle[_ff.YieldTermStructure] risk_free_ts_handle = \
                 Handle[_ff.YieldTermStructure](
-                    <_ff.YieldTermStructure*>risk_free_ts._thisptr.get()
+                    deref(risk_free_ts._thisptr)
                 )
-        cdef Handle[_bvts.BlackVolTermStructure]* black_vol_ts_handle = new \
-                Handle[_bvts.BlackVolTermStructure](black_vol_ts._thisptr)
+        cdef Handle[_bvts.BlackVolTermStructure] black_vol_ts_handle = \
+            Handle[_bvts.BlackVolTermStructure](
+                deref(black_vol_ts._thisptr)
+            )
 
         self._thisptr = new _bsp.BlackScholesMertonProcess(
-            deref(x0_handle),
-            deref(dividend_ts_handle),
-            deref(risk_free_ts_handle),
-            deref(black_vol_ts_handle)
+            x0_handle,
+            dividend_ts_handle,
+            risk_free_ts_handle,
+            black_vol_ts_handle
         )
