@@ -44,20 +44,24 @@ cdef class Exercise:
             logger.debug('Exercise deallocated')
 
     def __str__(self):
-        return 'Exercise type: %s' % EXERCISE_TO_STR[self._thisptr.type()]
+        return 'Exercise type: %s' % EXERCISE_TO_STR[self._thisptr.get().type()]
 
 cdef class EuropeanExercise(Exercise):
 
     def __init__(self, Date exercise_date):
-        self._thisptr = new _exercise.EuropeanExercise(
+        self._thisptr = new shared_ptr[_exercise.Exercise]( \
+            new _exercise.EuropeanExercise(
                 deref(exercise_date._thisptr.get())
+            )
         )
 
 cdef class AmericanExercise(Exercise):
 
     def __init__(self, Date exercise_date):
-        self._thisptr = new _exercise.AmericanExercise(
+        self._thisptr = new shared_ptr[_exercise.Exercise]( \
+            new _exercise.AmericanExercise(
                 deref(exercise_date._thisptr.get())
+            )
         )
 
 cdef class VanillaOption:
@@ -98,7 +102,9 @@ cdef class VanillaOption:
         )
 
         cdef shared_ptr[_exercise.Exercise] exercise_ptr = \
-                shared_ptr[_exercise.Exercise](exercise._thisptr)
+            shared_ptr[_exercise.Exercise](
+                deref(exercise._thisptr)
+            )
 
         self._thisptr = new _option.EuropeanOption(payoff_ptr, exercise_ptr)
 
