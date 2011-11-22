@@ -8,13 +8,14 @@ cdef extern from 'boost/shared_ptr.hpp' namespace 'boost':
         shared_ptr(shared_ptr[T]&)
         T* get()
         long use_count()
+        void reset(shared_ptr[T]&)
 
 cdef extern from 'ql/handle.hpp' namespace 'QuantLib':
     cdef cppclass Handle[T]:
         Handle()
         Handle(shared_ptr[T]*)
         Handle(T*)
-        shared_ptr[T]& currentLink()
+        shared_ptr[T]& currentLink() except +
 
     cdef cppclass RelinkableHandle[T](Handle):
         RelinkableHandle()

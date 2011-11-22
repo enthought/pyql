@@ -15,7 +15,7 @@ cdef class Quote:
 
     property value:
         def __get__(self):
-            # TODO: check if we can get rid of this test, 
+            # TODO: check if we can get rid of this test,
             # now that we catch c++ exceptions
             if self._thisptr.get().isValid():
                 return self._thisptr.get().value()

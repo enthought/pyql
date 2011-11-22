@@ -69,10 +69,17 @@ cdef class HestonProcess:
         return self._thisptr.get().sigma()
 
     def s0(self):
-        quote = Quote()
-        quote._thisptr = new shared_ptr[_qt.Quote](
+        cdef shared_ptr[_qt.Quote]* quote_ptr = new shared_ptr[_qt.Quote](
             self._thisptr.get().s0().currentLink()
         )
+
+        quote = Quote()
+        #cdef _hp.HestonProcess* self_ptr = self._thisptr.get()
+        #cdef shared_ptr[_qt.Quote]* quote_ptr = new shared_ptr[_qt.Quote](
+        #    self_ptr.s0().currentLink()
+        #)
+        quote._thisptr = quote_ptr
+
 
         return quote
 

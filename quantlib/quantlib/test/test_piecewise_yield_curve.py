@@ -53,7 +53,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         self.assertIsNotNone(ts)
 
-        #self.assertEquals(10.0, ts.discount(145))
+        self.assertEquals(10.0, ts.discount(Date(21, 12, 2008)))
 
 if __name__ == '__main__':
     unittest.main()
