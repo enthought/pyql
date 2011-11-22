@@ -56,4 +56,11 @@ cdef class PlainVanillaPayoff:
             ],
             (<_payoffs.StrikedTypePayoff*> self._thisptr.get()).strike())
 
+    property type:
+        def __get__(self):
+            return self._thisptr.get().optionType()
+
+    property strike:
+        def __get__(self):
+            return self._thisptr.get().strike()
 

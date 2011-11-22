@@ -6,11 +6,12 @@ cimport _bonds #fixme :should move the PricingEngine declaration somewhere else
 cimport _exercise
 cimport _option
 cimport _payoffs
+from quantlib.pricingengines cimport _pricing_engine as _pe
 
 from quantlib.handle cimport shared_ptr
 from quantlib.instruments.payoffs cimport Payoff, PlainVanillaPayoff
 from quantlib.time.date cimport Date
-from quantlib.pricingengines.vanilla cimport VanillaOptionEngine
+from quantlib.pricingengines.vanilla cimport PricingEngine
 
 # Python imports
 import logging
@@ -108,13 +109,13 @@ cdef class VanillaOption:
 
         self._thisptr = new _option.EuropeanOption(payoff_ptr, exercise_ptr)
 
-    def set_pricing_engine(self, VanillaOptionEngine engine):
+    def set_pricing_engine(self, PricingEngine engine):
         '''Sets the pricing engine based on the given pricing engine....
 
         '''
 
-        cdef shared_ptr[_bonds.PricingEngine] engine_ptr = \
-                shared_ptr[_bonds.PricingEngine](
+        cdef shared_ptr[_pe.PricingEngine] engine_ptr = \
+                shared_ptr[_pe.PricingEngine](
                     deref(engine._thisptr)
                 )
 
