@@ -17,7 +17,7 @@ cdef class DayCounter:
     def name(self):
         return self._thisptr.name().c_str()
 
-    def yearFraction(self, Date date1, Date date2, Date ref_start=None,
+    def year_fraction(self, Date date1, Date date2, Date ref_start=None,
             Date ref_end=None):
         ''' Returns the period between two dates as a fraction of year.'''
         cdef _date.Date* d1 = date1._thisptr.get()
