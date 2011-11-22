@@ -48,13 +48,15 @@ cdef class YieldTermStructure:
 
     def discount(self, value):
         cdef ffwd.YieldTermStructure* term_structure
-        cdef shared_ptr[ffwd.YieldTermStructure]* ts_ptr
-        if self.relinkable:
+        cdef shared_ptr[ffwd.YieldTermStructure] ts_ptr
+        if self.relinkable is True:
+            print 'relinkable'
             # retrieves the shared_ptr (currentLink()) then gets the
             # term_structure (get())
-            ts_ptr = new shared_ptr[ffwd.YieldTermStructure](self._relinkable_ptr.currentLink())
+            ts_ptr = shared_ptr[ffwd.YieldTermStructure](self._relinkable_ptr.currentLink())
             term_structure = ts_ptr.get()
         else:
+            print 'not relinkable'
             term_structure = self._thisptr.get()
 
         if isinstance(value, Date):

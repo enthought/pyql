@@ -44,7 +44,6 @@ cdef class DepositRateHelper(RateHelper):
     property quote:
         def __get__(self):
             cdef Handle[Quote] quote_handle = self._thisptr.get().quote()
-            cdef shared_ptr[Quote]* quote_ptr = new shared_ptr[Quote](quote_handle.currentLink())
+            cdef shared_ptr[Quote] quote_ptr = shared_ptr[Quote](quote_handle.currentLink())
             value = quote_ptr.get().value()
-            del quote_ptr
             return value

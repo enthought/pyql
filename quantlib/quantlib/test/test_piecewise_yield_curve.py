@@ -18,7 +18,6 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         # must be a business day
         settlement_date = calendar.adjust(settlement_date);
 
-
         quotes = [0.0096, 0.0145, 0.0194]
         tenors =  [3, 6, 12]
 
@@ -52,6 +51,8 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         )
 
         self.assertIsNotNone(ts)
+
+        self.assertEquals( Date(18, September, 2008), ts.reference_date)
 
         self.assertEquals(10.0, ts.discount(Date(21, 12, 2008)))
 

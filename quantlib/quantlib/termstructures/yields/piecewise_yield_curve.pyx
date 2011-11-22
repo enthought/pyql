@@ -53,9 +53,8 @@ def term_structure_factory(str traits, str interpolator, Date settlement_date,
         tolerance
     )
 
-    term_structure = YieldTermStructure()
+    term_structure = YieldTermStructure(relinkable=False)
     cdef shared_ptr[_ff.YieldTermStructure]* s_pt = new shared_ptr[_ff.YieldTermStructure](ts_ptr)
-    print 'Should be three', s_pt.use_count()
     term_structure._thisptr = s_pt
     return term_structure
 
