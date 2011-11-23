@@ -1,7 +1,7 @@
-cimport _option
+from quantlib.handle cimport shared_ptr
 cimport _exercise
 
 cdef class Exercise:
-    cdef _exercise.Exercise* _thisptr
+    cdef shared_ptr[_exercise.Exercise]* _thisptr
 
 

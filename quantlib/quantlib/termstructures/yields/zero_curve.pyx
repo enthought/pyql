@@ -11,12 +11,6 @@ from quantlib.time.date cimport Date
 
 cdef class ZeroCurve(YieldTermStructure):
 
-    def __cinit__(self):
-        pass
-
-    def __dealloc__(self):
-        pass
-
     def __init__(self, dates, yields, DayCounter daycounter):
 
         # convert dates and yields to vector
@@ -25,7 +19,7 @@ cdef class ZeroCurve(YieldTermStructure):
 
         # highly inefficient and could be improved
         for date in dates:
-            _date_vector.push_back(deref((<Date>date)._thisptr))
+            _date_vector.push_back(deref((<Date>date)._thisptr.get()))
 
         for rate in yields:
             _yield_vector.push_back(rate)

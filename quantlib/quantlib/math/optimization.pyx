@@ -11,7 +11,8 @@ cdef class OptimizationMethod:
         self._thisptr = NULL
 
     def __dealloc__(self):
-        pass
+        if  self._thisptr is not NULL:
+            del self._thisptr
 
 cdef class LevenbergMarquardt(OptimizationMethod):
 
@@ -33,9 +34,9 @@ cdef class EndCriteria:
         pass
 
     def __init__(self, int max_iterations, int max_stationary_state_iterations,
-            double root_epsilon, double function_epsilon, 
+            double root_epsilon, double function_epsilon,
             double gradient_epsilon
-    ): 
+    ):
         self._thisptr = new shared_ptr[_opt.EndCriteria](
             new _opt.EndCriteria(
                 max_iterations,

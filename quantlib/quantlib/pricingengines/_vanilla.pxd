@@ -4,10 +4,7 @@ from quantlib.handle cimport shared_ptr
 from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess
 from quantlib.models.equity._heston_model cimport HestonModel
 
-cdef extern from 'ql/pricingengine.hpp' namespace 'QuantLib':
-
-    cdef cppclass PricingEngine:
-        PricingEngine()
+from _pricing_engine cimport PricingEngine
 
 cdef extern from 'ql/pricingengines/vanilla/analyticeuropeanengine.hpp' namespace 'QuantLib':
 
@@ -27,7 +24,7 @@ cdef extern from 'ql/pricingengines/vanilla/analytichestonengine.hpp' namespace 
 
     cdef cppclass AnalyticHestonEngine(PricingEngine):
         AnalyticHestonEngine(
-            shared_ptr[HestonModel]& model, 
+            shared_ptr[HestonModel]& model,
             Size integrationOrder
         )
 

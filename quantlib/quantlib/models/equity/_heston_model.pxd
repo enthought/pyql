@@ -8,7 +8,7 @@ from libcpp.vector cimport vector
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.math._optimization cimport OptimizationMethod, EndCriteria
 from quantlib.processes._heston_process cimport HestonProcess
-from quantlib.pricingengines._vanilla cimport PricingEngine
+from quantlib.pricingengines._pricing_engine cimport PricingEngine
 from quantlib.termstructures.yields._flat_forward cimport (
     YieldTermStructure
 )

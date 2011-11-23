@@ -50,6 +50,19 @@ def collect_extensions():
         libraries=['QuantLib']
     )
 
+    piecewise_yield_curve_extension = Extension(
+        'quantlib.termstructures.yields.piecewise_yield_curve',
+        [
+            'quantlib/termstructures/yields/piecewise_yield_curve.pyx',
+            'quantlib/termstructures/yields/_piecewise_support_code.cpp'
+        ],
+        language='c++',
+        include_dirs=INCLUDE_DIRS,
+        library_dirs=LIBRARY_DIRS,
+        define_macros = [('HAVE_CONFIG_H', None)],
+        libraries=['QuantLib']
+    )
+
     cython_extension_directories = []
     for dirpath, directories, files in os.walk('quantlib'):
         print 'Path', dirpath
@@ -63,7 +76,7 @@ def collect_extensions():
             cython_extension_directories.append(dirpath)
 
     print cython_extension_directories
-    collected_extension = cythonize(
+    collected_extensions = cythonize(
         [
             Extension('*', ['{}/*.pyx'.format(dirpath)],
                 include_dirs=INCLUDE_DIRS,
@@ -73,7 +86,18 @@ def collect_extensions():
         ]
     )
 
-    return collected_extension + [settings_extension, test_extension]
+    # remove the generated piecewise_yield_curve extension
+    for ext in collected_extensions:
+        if ext.name == piecewise_yield_curve_extension.name:
+            collected_extensions.remove(ext)
+            break
+    else:
+        raise RuntimeError('Piecewise yield curve extension not found')
+
+
+    return collected_extensions + [
+        settings_extension, test_extension, piecewise_yield_curve_extension
+    ]
 
 setup(
     name='quantlib',

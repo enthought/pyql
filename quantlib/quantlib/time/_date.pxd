@@ -60,13 +60,13 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
         Date(long serialnumber) except +
         Date(int d, int m, int y) except +
         Day dayOfMonth()
-        Month month() 
+        Month month()
         int year()
         long serialNumber()
         bool operator==(Date*)
-        Weekday weekDay()
-        Day dayOfYear() 
-        
+        Weekday weekday()
+        Day dayOfYear()
+
         Date& operator++()
         Date& operator++(int value)
         Date& operator--()
@@ -81,17 +81,17 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
         Date& i_add 'operator+='(Period& period)
         Date& i_sub 'operator-='(Period& period)
         Date& i_sub 'operator-='(BigInteger days)
-       
+
     # QuantLib::Date - static methods
-    cdef Date Date_todaysDate 'QuantLib::Date::todaysDate'() 
-    cdef Date Date_minDate 'QuantLib::Date::minDate'() 
-    cdef Date Date_maxDate 'QuantLib::Date::maxDate'() 
+    cdef Date Date_todaysDate 'QuantLib::Date::todaysDate'()
+    cdef Date Date_minDate 'QuantLib::Date::minDate'()
+    cdef Date Date_maxDate 'QuantLib::Date::maxDate'()
     cdef bool Date_isLeap 'QuantLib::Date::isLeap'(Year y)
-    cdef Date Date_endOfMonth 'QuantLib::Date::endOfMonth'(Date& d) 
-    cdef bool Date_isEndOfMonth 'QuantLib::Date::isEndOfMonth'(Date& d) 
-    cdef Date Date_nextWeekday 'QuantLib::Date::nextWeekday'(Date& d, Weekday w) 
+    cdef Date Date_endOfMonth 'QuantLib::Date::endOfMonth'(Date& d)
+    cdef bool Date_isEndOfMonth 'QuantLib::Date::isEndOfMonth'(Date& d)
+    cdef Date Date_nextWeekday 'QuantLib::Date::nextWeekday'(Date& d, Weekday w)
     cdef Date Date_nthWeekday 'QuantLib::Date::nthWeekday'(Size n, Weekday w,
-            Month m, Year y) 
+            Month m, Year y)
 
 
 

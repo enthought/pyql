@@ -7,12 +7,46 @@ from math import sqrt, log
 
 from quantlib.instruments._payoffs cimport OptionType
 
+import types
+
 cpToOpt = {'C': Call, 'P':Put}
 
-def blackFormula(cp, Real strike,
-                      Real forward, Real stdDev, Real discount, Real displacement=0.0):
+def blackFormula(option_type, Real strike,
+                      Real forward, Real stdDev, Real discount=1.0, Real displacement=0.0):
+    """ Black 1976 formula
 
-    return _bf.blackFormula(<_opt.Type> cpToOpt[cp.upper()],
+    Parameters
+    ==========
+
+    option_type: str or option.Call/Put
+
+    strike: float
+
+    forward: float
+
+    std_dev: float
+
+    discount: float
+
+    displacement: float
+
+    .. warning::
+        Instead of volatility it uses standard deviation,
+        i.e. volatility*sqrt(timeToMaturity)
+
+    """
+
+    if isinstance(option_type, types.StringTypes):
+        if option_type.upper() not in cpToOpt:
+            raise ValueError(
+                'Option type must be one of {}'.format(
+                    ','.join(cpToOpt.keys())
+                )
+            )
+        else:
+            option_type = cpToOpt[option_type.upper()]
+
+    return _bf.blackFormula(<_opt.Type>option_type,
                       <Real> strike,
                       <Real> forward,
                       <Real> stdDev,
@@ -26,15 +60,15 @@ def blackFormulaImpliedStdDev(cp, Real strike,
                     Natural maxIterations=100):
     """
     Implied volatility calculation
-    
+
     Implied volatility of an European vanilla option, with estimate of initial guess
     """
-    
+
     if isinstance(cp, basestring):
         cpType = cpToOpt[cp.upper()]
     else:
         cpType = cp
-    
+
     if guess is None:
         if abs(float(forward - strike))/strike < .01:
         # first order approximation to N(x) = 1/2 + x/\sqrt{2 pi}
@@ -43,9 +77,9 @@ def blackFormulaImpliedStdDev(cp, Real strike,
         else:
         # the inflexion point
             guess = sqrt(2.0*abs(log(forward/strike))/TTM)
-            
+
         guess = guess * sqrt(TTM)
-            
+
     return _bf.blackFormulaImpliedStdDev(<_opt.Type> cpType,
                                    <Real> strike,
                                    <Real> forward,

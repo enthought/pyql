@@ -6,6 +6,7 @@ from quantlib.models.equity.heston_model import (
     HestonModelHelper, HestonModel, ImpliedVolError
 )
 from quantlib.processes.heston_process import HestonProcess
+from quantlib.pricingengines.blackformula import blackFormula
 from quantlib.pricingengines.vanilla import AnalyticHestonEngine
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
@@ -72,7 +73,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         for maturity in option_maturities:
             for moneyness in np.arange(-1.0, 2.0, 1.):
-                tau = daycounter.yearFraction(
+                tau = daycounter.year_fraction(
                     risk_free_ts.reference_date,
                     calendar.advance(
                         risk_free_ts.reference_date,
@@ -181,7 +182,7 @@ class HestonModelTestCase(unittest.TestCase):
         for s, strike in enumerate(strikes):
             for m in range(len(t)):
                 vol = SimpleQuote(v[s*8+m])
-                maturity= Period((int)((t[m]+3)/7.), Weeks) # round to weeks
+                maturity = Period((int)((t[m]+3)/7.), Weeks) # round to weeks
 
                 options.append(
                     HestonModelHelper(
@@ -209,6 +210,7 @@ class HestonModelTestCase(unittest.TestCase):
             option.set_pricing_engine(engine)
 
         om = LevenbergMarquardt(1e-8, 1e-8, 1e-8)
+
         model.calibrate(
             options, om, EndCriteria(400, 40, 1.0e-8, 1.0e-8, 1.0e-8)
         )
@@ -259,41 +261,25 @@ class HestonModelTestCase(unittest.TestCase):
 
         option.set_pricing_engine(engine);
 
-        calculated = option.npv()
+        calculated = option.net_present_value
 
         year_fraction = daycounter.year_fraction(
             settlement_date, exercise_date
         )
 
         forward_price = 32 * np.exp((0.1-0.04)*year_fraction)
-        expected = black_formula(
-            payoff.option_type(), payoff.strike(), forward_price,
+        expected = blackFormula(
+            payoff.type, payoff.strike, forward_price,
             np.sqrt(0.05 * year_fraction)
         ) * np.exp(-0.1 * year_fraction)
-        error = np.fabs(calculated - expected)
+
         tolerance = 2.0e-7
-        if error > tolerance:
-            self.fail("failed to reproduce Black price with ",
-                "AnalyticHestonEngine", "\n    calculated: ",calculated,
-                "\n    expected:   ", expected,
-                "\n    error:      ",  error
-            )
 
-        engine = FdHestonVanillaEngine(
-            HestonModel(process), 200,200,100
+        self.assertAlmostEqual(
+            calculated,
+            expected,
+            delta = tolerance
         )
-        option.set_pricing_engine(engine);
-
-        calculated = option.npv();
-        error = np.fabs(calculated - expected);
-        tolerance = 1.0e-3;
-        if error > tolerance :
-            self.fail("failed to reproduce Black price with ",
-                "FdHestonVanillaEngine \n    calculated: ",
-                calculated, "\n    expected:   ", expected,
-                "\n    error:      ", error
-            )
-
 
 if __name__ == '__main__':
     unittest.main()

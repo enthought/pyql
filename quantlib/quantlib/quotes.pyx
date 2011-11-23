@@ -6,8 +6,14 @@ cdef class Quote:
     def __cinit__(self):
         self._thisptr = NULL
 
+    def __init__(self):
+        raise ValueError(
+            'This is an abstract class. Use SimpleQuote instaed.'
+        )
+
     def __dealloc__(self):
-        pass
+        if self._thisptr is not NULL:
+            del self._thisptr
 
     property is_valid:
         def __get__(self):
@@ -15,7 +21,7 @@ cdef class Quote:
 
     property value:
         def __get__(self):
-            # TODO: check if we can get rid of this test, 
+            # TODO: check if we can get rid of this test,
             # now that we catch c++ exceptions
             if self._thisptr.get().isValid():
                 return self._thisptr.get().value()

@@ -33,7 +33,8 @@ cdef class HestonModelHelper:
         self._thisptr = NULL
 
     def __dealloc__(self):
-        pass # using a boost::shared_ptr / no need for deallocation
+        if self._thisptr is not NULL:
+            del self._thisptr
 
     def __init__(self,
         Period maturity,
@@ -46,38 +47,35 @@ cdef class HestonModelHelper:
         error_type=RelativePriceError
     ):
         # create handles
-        cdef Handle[_qt.Quote]* volatility_handle = new \
-                Handle[_qt.Quote](volatility._thisptr.get())
-        cdef Handle[_ffwd.YieldTermStructure]* dividend_yield_handle = new \
+        cdef Handle[_qt.Quote] volatility_handle = \
+                Handle[_qt.Quote](deref(volatility._thisptr))
+
+        cdef Handle[_ffwd.YieldTermStructure] dividend_yield_handle = \
+            Handle[_ffwd.YieldTermStructure](deref(dividend_yield._thisptr))
+
+        cdef Handle[_ffwd.YieldTermStructure]risk_free_rate_handle = \
             Handle[_ffwd.YieldTermStructure](
-                <_ffwd.YieldTermStructure*>(dividend_yield._thisptr.get())
-            )
-        cdef Handle[_ffwd.YieldTermStructure]* risk_free_rate_handle = new \
-            Handle[_ffwd.YieldTermStructure](
-               <_ffwd.YieldTermStructure*>(risk_free_rate._thisptr.get())
-            )
+               deref(risk_free_rate._thisptr))
 
         self._thisptr = new shared_ptr[_hm.HestonModelHelper](
             new _hm.HestonModelHelper(
-                deref(maturity._thisptr),
+                deref(maturity._thisptr.get()),
                 deref(calendar._thisptr),
                 s0,
                 strike_price,
-                deref(volatility_handle),
-                deref(risk_free_rate_handle),
-                deref(dividend_yield_handle),
+                volatility_handle,
+                risk_free_rate_handle,
+                dividend_yield_handle,
                 <_hm.CalibrationErrorType>error_type
             )
         )
 
     def set_pricing_engine(self, AnalyticHestonEngine engine):
 
-        cdef shared_ptr[_vanilla.PricingEngine]* pengine = \
-            new shared_ptr[_vanilla.PricingEngine](engine._thisptr.get())
+        cdef shared_ptr[_vanilla.PricingEngine] pengine = \
+            shared_ptr[_vanilla.PricingEngine](<shared_ptr[_vanilla.PricingEngine] &>deref(engine._thisptr))
 
-        self._thisptr.get().setPricingEngine(
-            deref(pengine)
-        )
+        self._thisptr.get().setPricingEngine(pengine)
 
     def model_value(self):
         return self._thisptr.get().modelValue()
@@ -92,22 +90,23 @@ cdef class HestonModelHelper:
         return self._thisptr.get().calibrationError()
 
     def impliedVolatility(self, Real targetValue,
-        Real accuracy, Size maxEvaluations, 
+        Real accuracy, Size maxEvaluations,
         Volatility minVol, Volatility maxVol):
 
         vol = \
-        (<_hm.CalibrationHelper *> self._thisptr.get()).impliedVolatility(targetValue, 
+        (<_hm.CalibrationHelper *> self._thisptr.get()).impliedVolatility(targetValue,
         accuracy, maxEvaluations, minVol, maxVol)
 
         return vol
-    
+
 cdef class HestonModel:
 
     def __cinit__(self):
         self._thisptr = NULL
 
     def __dealloc__(self):
-        pass # using a boost::shared_ptr / no need for deallocation
+        if self._thisptr is not NULL:
+            del self._thisptr
 
     def __init__(self, HestonProcess process):
 

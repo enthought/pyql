@@ -76,10 +76,14 @@ class VanillaOptionTestCase(unittest.TestCase):
 
 
     def test_str(self):
-        print(self.underlyingH)
-        print(self.payoff)
-        print(EuropeanExercise(self.maturity))
-        self.assertTrue(True)
+        quote_str = str(self.underlyingH)
+        self.assertEquals('Simple Quote: 36.000000', quote_str)
+
+        payoff_str = str(self.payoff)
+        self.assertEquals('Payoff: Vanilla Put @ 40.000000', payoff_str)
+
+        exercise_str = str(EuropeanExercise(self.maturity))
+        self.assertEquals('Exercise type: European', exercise_str)
 
     def test_european_vanilla_option_usage(self):
 
@@ -115,5 +119,4 @@ class VanillaOptionTestCase(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    print 'starting'
     unittest.main()

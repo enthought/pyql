@@ -21,7 +21,9 @@ cdef extern from 'ql/compounding.hpp' namespace 'QuantLib':
         SimpleThenCompounded = 3
 
 cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib':
+
     cdef cppclass YieldTermStructure:
+
         YieldTermStructure() except +
         YieldTermStructure(DayCounter& dc,
                            vector[Handle[_qt.Quote]]& jumps,
@@ -63,20 +65,20 @@ cdef extern from 'ql/termstructures/yield/flatforward.hpp' namespace 'QuantLib':
                     Calendar& calendar,
                     Handle[_qt.Quote]& forward,
                     DayCounter& dayCounter,
-        ) 
+        )
         FlatForward(Natural settlementDays,
                     Calendar& calendar,
                     Handle[_qt.Quote]& forward,
                     DayCounter& dayCounter,
                     Compounding compounding,
-        ) 
+        )
         FlatForward(Natural settlementDays,
                     Calendar& calendar,
                     Handle[_qt.Quote]& forward,
                     DayCounter& dayCounter,
                     Compounding compounding,
                     Frequency frequency
-        ) 
+        )
         # from date and forward
         FlatForward(Date& referenceDate,
                     Handle[_qt.Quote]& forward,
