@@ -19,7 +19,6 @@ cdef class Payoff:
 
     def __dealloc__(self):
         if self._thisptr is not NULL:
-            print 'Payoff deallocated'
             del self._thisptr
 
     def __str__(self):
@@ -38,7 +37,6 @@ cdef class PlainVanillaPayoff:
 
     def __dealloc__(self):
         if self._thisptr is not NULL:
-            print 'Payoff deallocated'
             del self._thisptr
 
     def __init__(self, option_type, float strike):

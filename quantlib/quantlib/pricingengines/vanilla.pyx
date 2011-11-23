@@ -33,7 +33,7 @@ cdef class AnalyticEuropeanEngine(VanillaOptionEngine):
 
         cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
             shared_ptr[_bsp.GeneralizedBlackScholesProcess](
-                process._thisptr
+                deref(process._thisptr)
             )
 
         self.process = process
@@ -47,7 +47,7 @@ cdef class BaroneAdesiWhaleyApproximationEngine(VanillaOptionEngine):
 
         cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
             shared_ptr[_bsp.GeneralizedBlackScholesProcess](
-                process._thisptr
+                deref(process._thisptr)
             )
 
         self.process = process

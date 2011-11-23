@@ -46,9 +46,11 @@ cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):
                 deref(black_vol_ts._thisptr)
             )
 
-        self._thisptr = new _bsp.BlackScholesMertonProcess(
-            x0_handle,
-            dividend_ts_handle,
-            risk_free_ts_handle,
-            black_vol_ts_handle
+        self._thisptr = new shared_ptr[_bsp.GeneralizedBlackScholesProcess]( new \
+            _bsp.BlackScholesMertonProcess(
+                x0_handle,
+                dividend_ts_handle,
+                risk_free_ts_handle,
+                black_vol_ts_handle
+            )
         )
