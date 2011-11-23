@@ -136,6 +136,18 @@ method is defined in the ''SimpleQuote'' concrete class,
 and the shared pointer must therefore be cast 
 into a ''SimpleQuote'' shared pointer in order to invoke ''setValue()''.
     
+Managing C++ references using shared_ptr
+----------------------------------------
+
+All the Cython extension references should be declared using shared_ptr. The
+__dealloc__ method should always delete the shared_ptr but never the target
+pointer!
+
+Every time a shared_ptr reference is received, never assigns the target pointer
+to a local pointer variables as it might deallocated. Always use the copy
+constructor of the shared_ptr to get a local copy of it, stack allocated (there
+is no need to use new)
+
 
 Issues
 ======
