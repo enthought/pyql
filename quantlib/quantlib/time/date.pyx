@@ -99,7 +99,6 @@ cdef class Period:
         if self._thisptr is not NULL:
             del self._thisptr
 
-
     property length:
         def __get__(self):
             return self._thisptr.get().length()

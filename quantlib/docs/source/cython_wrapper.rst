@@ -81,7 +81,7 @@ the QL classes. The file ''quotes.pxd'' is reproduced below::
     from quantlib.handle cimport shared_ptr
 
     cdef class Quote:
-	cdef shared_ptr[_qt.Quote]* _thisptr
+        cdef shared_ptr[_qt.Quote]* _thisptr
 
 Notice that in our header files we use 'Quote' to refer the the C++ class (in file _quote.pxd) and to the python class (in file quote.pxd). To avoid 
 confusion we use the following convention:
@@ -89,9 +89,10 @@ confusion we use the following convention:
  * the C++ class is always refered to as ''_qt.Quote''. 
  * the python class is always referd to as ''Quote''
 
-The cython wrapper class holds a reference to the QL c++ class.
-Most of the QL constructors return a boost shared pointer to the 
-instanciated object. 
+The cython wrapper class holds a reference to the QL c++ class. As we do not
+want to do any memory handling on the Python side, we always wrap the C++
+object into a boost shared pointer that is deallocated properly when
+deallocation the Cython extension.
 
 Implementation of the python class
 ----------------------------------
@@ -104,18 +105,23 @@ is reproduced below::
 	def __init__(self, float value=0.0):
 	    self._thisptr = new shared_ptr[_qt.Quote](new _qt.SimpleQuote(value))
 
+    def __dealloc__(self):
+        if self._thisptr is not NULL:
+            del self._thisptr # properly deallocates the shared_ptr and
+                              # probably the target object if not referenced 
+
 	def __str__(self):
 	    return 'Simple Quote: %f' % self._thisptr.get().value()
 
 	property value:
 	    def __get__(self):
-		if self._thisptr.get().isValid():
-		    return self._thisptr.get().value()
-		else:
-		    return None
+            if self._thisptr.get().isValid():
+                return self._thisptr.get().value()
+            else:
+                return None
 
 	    def __set__(self, float value):
-		(<_qt.SimpleQuote*>self._thisptr.get()).setValue(value)
+            (<_qt.SimpleQuote*>self._thisptr.get()).setValue(value)
 
 The ''__init__'' method invokes the c++ constructor, which returns a boost shared pointer.
 

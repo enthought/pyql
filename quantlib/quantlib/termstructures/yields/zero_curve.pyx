@@ -11,12 +11,6 @@ from quantlib.time.date cimport Date
 
 cdef class ZeroCurve(YieldTermStructure):
 
-    def __cinit__(self):
-        pass
-
-    def __dealloc__(self):
-        pass
-
     def __init__(self, dates, yields, DayCounter daycounter):
 
         # convert dates and yields to vector

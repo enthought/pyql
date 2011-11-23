@@ -40,6 +40,7 @@ cdef class PlainVanillaPayoff:
         if self._thisptr is not NULL:
             print 'Payoff deallocated'
             del self._thisptr
+
     def __init__(self, option_type, float strike):
 
         self._thisptr = new shared_ptr[_payoffs.StrikedTypePayoff]( \

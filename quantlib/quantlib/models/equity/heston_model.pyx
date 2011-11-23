@@ -33,7 +33,8 @@ cdef class HestonModelHelper:
         self._thisptr = NULL
 
     def __dealloc__(self):
-        pass # using a boost::shared_ptr / no need for deallocation
+        if self._thisptr is not NULL:
+            del self._thisptr
 
     def __init__(self,
         Period maturity,
@@ -104,7 +105,8 @@ cdef class HestonModel:
         self._thisptr = NULL
 
     def __dealloc__(self):
-        pass # using a boost::shared_ptr / no need for deallocation
+        if self._thisptr is not NULL:
+            del self._thisptr
 
     def __init__(self, HestonProcess process):
 

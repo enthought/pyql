@@ -68,12 +68,10 @@ cdef class HestonProcess:
         return self._thisptr.get().sigma()
 
     def s0(self):
-        cdef _hp.HestonProcess* hp_ptr = self._thisptr.get()
-        cdef Handle[_qt.Quote] handle = hp_ptr.s0()
+        #cdef _hp.HestonProcess* hp_ptr = self._thisptr.get()
+        cdef Handle[_qt.Quote] handle = self._thisptr.get().s0()
         cdef shared_ptr[_qt.Quote] quote_sptr = shared_ptr[_qt.Quote](handle.currentLink())
-        cdef _qt.Quote* quote_ptr = quote_sptr.get()
 
         # maybe not optmal but easiest to do
-        quote_value = quote_ptr.value()
-        return  SimpleQuote(quote_value)
+        return  SimpleQuote(quote_sptr.get().value())
 

@@ -182,7 +182,7 @@ class HestonModelTestCase(unittest.TestCase):
         for s, strike in enumerate(strikes):
             for m in range(len(t)):
                 vol = SimpleQuote(v[s*8+m])
-                maturity= Period((int)((t[m]+3)/7.), Weeks) # round to weeks
+                maturity = Period((int)((t[m]+3)/7.), Weeks) # round to weeks
 
                 options.append(
                     HestonModelHelper(
@@ -210,6 +210,7 @@ class HestonModelTestCase(unittest.TestCase):
             option.set_pricing_engine(engine)
 
         om = LevenbergMarquardt(1e-8, 1e-8, 1e-8)
+
         model.calibrate(
             options, om, EndCriteria(400, 40, 1.0e-8, 1.0e-8, 1.0e-8)
         )
