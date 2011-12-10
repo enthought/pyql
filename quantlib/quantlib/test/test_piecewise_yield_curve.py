@@ -1,18 +1,24 @@
 import unittest
 
+from quantlib.settings import Settings
 from quantlib.termstructures.yields.rate_helpers import DepositRateHelper
 from quantlib.termstructures.yields.piecewise_yield_curve import \
     term_structure_factory
 from quantlib.time.api import Date, TARGET, Period, Months
 from quantlib.time.api import ModifiedFollowing, Actual365Fixed, ActualActual
-from quantlib.time.api import September, ISDA
+from quantlib.time.api import September, ISDA, today
 
 class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
     def test_creation(self):
 
+        settings = Settings()
+
         # Market information
         calendar = TARGET()
+
+        # must be a business day
+        settings.evaluation_date = calendar.adjust(today())
 
         settlement_date = Date(18, September, 2008)
         # must be a business day
@@ -31,7 +37,6 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         for quote, month in zip(quotes, tenors):
             tenor = Period(month, Months)
             fixing_days = 3
-
 
             helper = DepositRateHelper(
                 quote, tenor, fixing_days, calendar, convention, end_of_month,
