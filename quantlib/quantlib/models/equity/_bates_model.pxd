@@ -12,23 +12,18 @@ cdef extern from 'ql/models/equity/batesmodel.hpp' namespace 'QuantLib':
     cdef cppclass BatesModel(HestonModel):
 
         BatesModel() # fake empty constructor due to Cython issue
-        BatesModel(shared_ptr[_hp.HestonProcess]& process,
-                   Real Lambda,
-                   Real nu,
-                   Real delta) except +
+        BatesModel(shared_ptr[_hp.BatesProcess]& process) except +
 
-        Real Lambda() except +
+        Real Lambda 'lambda'() except + # lambda is a python keyword
         Real nu() except +
         Real delta() except +
 
-    cdef cppclass BatesDetJumpModel(HestonModel):
+    cdef cppclass BatesDetJumpModel(BatesModel):
         BatesDetJumpModel()
-        BatesDetJumpModel(shared_ptr[_hp.HestonProcess]& process,
-                   Real Lambda,
-                   Real nu,
-                   Real delta,
+        BatesDetJumpModel(shared_ptr[_hp.BatesProcess]& process,
                    Real kappaLambda,
-                   Real thetaLambda)
+                   Real thetaLambda,
+        )
 
         Real kappaLambda() except +
         Real thetaLambda() except +
@@ -44,7 +39,7 @@ cdef extern from 'ql/models/equity/batesmodel.hpp' namespace 'QuantLib':
         Real p() except +
         Real nuDown() except +
         Real nuUp() except +
-        Real Lambda() except +
+        Real Lambda 'lambda'() except +
 
     cdef cppclass BatesDoubleExpDetJumpModel(BatesDoubleExpModel):
         BatesDoubleExpDetJumpModel()
