@@ -3,8 +3,10 @@ include '../types.pxi'
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
 cimport quantlib.processes._black_scholes_process as _bsp
+cimport quantlib.models.equity._bates_model as _bm
 
 from quantlib.models.equity.heston_model cimport HestonModel
+from quantlib.models.equity.bates_model cimport BatesModel
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 
 cdef class PricingEngine:
@@ -66,4 +68,14 @@ cdef class AnalyticHestonEngine(PricingEngine):
             )
         )
 
+cdef class BatesEngine(AnalyticHestonEngine):
+
+    def __init__(self, BatesModel model, int integration_order=144):
+
+        self._thisptr = new shared_ptr[_vanilla.PricingEngine](
+            new _vanilla.BatesEngine(
+                deref(<shared_ptr[_bm.BatesModel]*> model._thisptr),
+                <Size>integration_order
+            )
+        )
 

@@ -6,8 +6,12 @@ import datetime
 from quantlib.models.equity.heston_model import (
     HestonModelHelper, HestonModel, ImpliedVolError
 )
+
+from quantlib.models.equity.bates_model import BatesModel
 from quantlib.processes.heston_process import HestonProcess
-from quantlib.pricingengines.vanilla import AnalyticHestonEngine
+from quantlib.processes.bates_process import BatesProcess
+
+from quantlib.pricingengines.vanilla import (AnalyticHestonEngine, BatesEngine)
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
 from quantlib.time.api import Period, Date, Actual365Fixed, TARGET, Weeks
@@ -21,6 +25,7 @@ def dfToZeroCurve(df, dtSettlement, daycounter=Actual365Fixed()):
     """
     Convert a series into a QL zero curve
     """
+    
     dates = [dateToDate(dt) for dt in df.index]
     dates.insert(0, dateToDate(dtSettlement))
     dates.append(dates[-1]+365)
@@ -29,9 +34,9 @@ def dfToZeroCurve(df, dtSettlement, daycounter=Actual365Fixed()):
     vx.append(vx[-1])
     return ZeroCurve(dates, vx, daycounter)
 
-def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
+def heston_helpers(df_option, dtTrade=None, df_rates=None, ival=None):
     """
-    calibrate heston model
+    Create array of heston options helpers
     """
 
     if dtTrade is None:
@@ -85,13 +90,89 @@ def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
                     strike, SimpleQuote(row['VB']),
                     risk_free_ts, dividend_ts,
                     ImpliedVolError))
-
+        
         options.append(
                 HestonModelHelper(
                     maturity, calendar, spot.value,
                     strike, SimpleQuote(row['VA']),
                     risk_free_ts, dividend_ts,
                     ImpliedVolError))
+
+    return {'options':options, 'spot': spot}
+
+def bates_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
+
+    # array of option helpers
+    hh = heston_helpers(df_option, dtTrade, df_rates, ival)
+    options = hh['options']
+    spot = hh['spot']
+
+    risk_free_ts = dfToZeroCurve(df_rates['R'], dtTrade)
+    dividend_ts = dfToZeroCurve(df_rates['D'], dtTrade)
+
+    if ival is None:
+        ival = {'v0': .04, 'kappa': 1.0, 'theta': 0.1,
+        'sigma': 0.5, 'rho': -.5, 'lambda': 1.1, 'nu':-.12,
+        'delta': 0.17}
+
+    process = BatesProcess(
+        risk_free_ts, dividend_ts, spot, ival['v0'], ival['kappa'],
+         ival['theta'], ival['sigma'], ival['rho'],
+         ival['lambda'], ival['nu'], ival['delta'])
+    
+    model = BatesModel(process)
+    engine = BatesEngine(model, 64)
+
+    for option in options:
+        option.set_pricing_engine(engine)
+
+    om = LevenbergMarquardt(1e-8, 1e-8, 1e-8)
+    model.calibrate(
+        options, om, EndCriteria(400, 40, 1.0e-8, 1.0e-8, 1.0e-8)
+    )
+
+    print('model calibration results:')
+    print('v0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f nu: %f delta: %f' %
+          (model.v0, model.kappa, model.theta, model.sigma,
+           model.rho, model.Lambda, model.nu, model.delta))
+
+    calib_error = (1.0/len(options)) * sum(
+        [pow(o.calibration_error(),2) for o in options])
+
+    print('SSE: %f' % calib_error)
+
+    df_output = DataFrame.filter(df_option,
+                items=['dtTrade', 'dtExpiry',
+                       'Type', 'K', 'Mid',
+                       'QuickDelta', 'VB', 'VA',
+                       'R', 'D', 'ATMVol', 'F', 'T'])
+
+    model_value = np.zeros(len(df_option))
+    model_iv = np.zeros(len(df_option))
+    for i, j in zip(range(len(df_option)), range(0, len(options),2)):
+        model_value[i] = options[j].model_value()
+        model_iv[i] = options[j].impliedVolatility(model_value[i],
+            accuracy=1.e-5, maxEvaluations=5000,
+            minVol=.01, maxVol=10.0)
+
+    df_output['ModelValue'] = model_value
+    df_output['IVModel'] = model_iv
+
+    return df_output
+
+def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
+    
+    """
+    calibrate heston model
+    """
+
+    # array of option helpers
+    hh = heston_helpers(df_option, dtTrade, df_rates, ival)
+    options = hh['options']
+    spot = hh['spot']
+
+    risk_free_ts = dfToZeroCurve(df_rates['R'], dtTrade)
+    dividend_ts = dfToZeroCurve(df_rates['D'], dtTrade)
 
     if ival is None:
         ival = {'v0': 0.1, 'kappa': 1.0, 'theta': 0.1,
@@ -102,7 +183,6 @@ def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
          ival['theta'], ival['sigma'], ival['rho'])
 
     model = HestonModel(process)
-
     engine = AnalyticHestonEngine(model, 64)
 
     for option in options:
@@ -113,7 +193,7 @@ def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
         options, om, EndCriteria(400, 40, 1.0e-8, 1.0e-8, 1.0e-8)
     )
 
-    print('model calibration')
+    print('model calibration results:')
     print('v0: %f kappa: %f theta: %f sigma: %f rho: %f' %
           (model.v0, model.kappa, model.theta, model.sigma,
            model.rho))
@@ -146,11 +226,20 @@ df_rates = pandas.load('data/df_rates.pkl')
 
 # data set with no smoothing
 df_option = pandas.load('data/df_final.pkl')
-dtTrade = None
+dtTrade = df_option['dtTrade'][0]
+
+
+# heston calibration
+print('heston calibration...')
 df_output = heston_calibration(df_option, dtTrade,
                                df_rates)
-df_output.save('data/df_calibration_output_no_smoothing.pkl')
+df_output.save('data/df_calibration_output_heston.pkl')
 
+# bates calibration
+print('bates calibration...')
+df_output = bates_calibration(df_option, dtTrade,
+                               df_rates)
+df_output.save('data/df_calibration_output_bates.pkl')
 
 
 

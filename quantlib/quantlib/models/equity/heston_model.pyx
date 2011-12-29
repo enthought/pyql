@@ -34,8 +34,12 @@ cdef class HestonModelHelper:
 
     def __dealloc__(self):
         if self._thisptr is not NULL:
+            # print('heston dealloc')
             del self._thisptr
 
+    def __str__(self):
+        return 'Heston model helper'
+        
     def __init__(self,
         Period maturity,
         Calendar calendar,

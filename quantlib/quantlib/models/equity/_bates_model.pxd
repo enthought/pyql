@@ -23,7 +23,7 @@ cdef extern from 'ql/models/equity/batesmodel.hpp' namespace 'QuantLib':
         BatesDetJumpModel(shared_ptr[_hp.BatesProcess]& process,
                    Real kappaLambda,
                    Real thetaLambda,
-        )
+        ) except +
 
         Real kappaLambda() except +
         Real thetaLambda() except +

@@ -16,19 +16,18 @@ cdef class BatesModel:
     def __cinit__(self):
         self._thisptr = NULL
 
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
+    ## def __dealloc__(self):
+    ##     if self._thisptr is not NULL:
+    ##         print('bates dealloc')
+    ##         del self._thisptr
 
     def __init__(self, BatesProcess process):
-
-        self._thisptr = new shared_ptr[_bm.BatesModel](
-            new _bm.BatesModel(deref(process._thisptr))
-        )
+        self._thisptr = new shared_ptr[_hm.HestonModel](
+            new _bm.BatesModel(deref(process._thisptr)))
 
     property Lambda:
         def __get__(self):
-            return self._thisptr.get().Lambda()
+            return (<_bm.BatesModel*> self._thisptr.get()).Lambda()
 
     property nu:
         def __get__(self):

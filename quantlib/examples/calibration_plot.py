@@ -44,9 +44,16 @@ def calibration_plot(title, df_calibration):
         fig.suptitle(title, fontsize=12, fontweight='bold')
         fig.show()
 
-
-df_calibration = pandas.load('data/df_calibration_output_no_smoothing.pkl')
-
+# heston model
+df_calibration = \
+  pandas.load('data/df_calibration_output_heston.pkl')
 dtTrade = df_calibration['dtTrade'][0]
 title = 'Heston Model (%s)' % dtTrade
+calibration_plot(title, df_calibration)
+
+# bates model
+df_calibration = \
+  pandas.load('data/df_calibration_output_bates.pkl')
+dtTrade = df_calibration['dtTrade'][0]
+title = 'Bates Model (%s)' % dtTrade
 calibration_plot(title, df_calibration)
