@@ -16,11 +16,6 @@ cdef class BatesModel:
     def __cinit__(self):
         self._thisptr = NULL
 
-    ## def __dealloc__(self):
-    ##     if self._thisptr is not NULL:
-    ##         print('bates dealloc')
-    ##         del self._thisptr
-
     def __init__(self, BatesProcess process):
         self._thisptr = new shared_ptr[_hm.HestonModel](
             new _bm.BatesModel(deref(process._thisptr)))
@@ -37,4 +32,51 @@ cdef class BatesModel:
         def __get__(self):
             return (<_bm.BatesModel *> self._thisptr.get()).delta()
 
+cdef class BatesDetJumpModel:
 
+    def __cinit__(self):
+        self._thisptr = NULL
+
+    def __init__(self, BatesProcess process,
+                 kappaLambda=1.0, thetaLambda=0.1):
+        self._thisptr = new shared_ptr[_hm.HestonModel](
+        new _bm.BatesDetJumpModel(deref(process._thisptr),
+                                  kappaLambda,
+                                  thetaLambda))
+
+    property kappaLambda:
+        def __get__(self):
+            return (<_bm.BatesDetJumpModel*> self._thisptr.get()).kappaLambda()
+
+    property thetaLambda:
+        def __get__(self):
+            return (<_bm.BatesDetJumpModel*> self._thisptr.get()).thetaLambda()
+
+cdef class BatesDoubleExpModel:
+
+    def __cinit__(self):
+        self._thisptr = NULL
+
+    def __init__(self, HestonProcess process,
+                 Lambda=0.1,
+                 nuUp=0.1, nuDown=0.1,
+                 p=0.5):
+        self._thisptr = new shared_ptr[_hm.HestonModel](
+            new _bm.BatesDoubleExpModel(deref(process._thisptr),
+                                        Lambda, nuUp, nuDown, p))
+
+    property Lambda:
+        def __get__(self):
+            return (<_bm.BatesDoubleExpModel*> self._thisptr.get()).Lambda()
+
+    property nuUp:
+        def __get__(self):
+            return (<_bm.BatesDoubleExpModel *> self._thisptr.get()).nuUp()
+
+    property nuDown:
+        def __get__(self):
+            return (<_bm.BatesDoubleExpModel *> self._thisptr.get()).nuDown()
+
+    property p:
+        def __get__(self):
+            return (<_bm.BatesDoubleExpModel *> self._thisptr.get()).p()

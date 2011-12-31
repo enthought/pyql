@@ -7,11 +7,11 @@ from quantlib.models.equity.heston_model import (
     HestonModelHelper, HestonModel, ImpliedVolError
 )
 
-from quantlib.models.equity.bates_model import BatesModel
+from quantlib.models.equity.bates_model import (BatesModel, BatesDetJumpModel, BatesDoubleExpModel, BatesDoubleExpDetJumpModel)
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.processes.bates_process import BatesProcess
 
-from quantlib.pricingengines.vanilla import (AnalyticHestonEngine, BatesEngine)
+from quantlib.pricingengines.vanilla import (AnalyticHestonEngine, BatesEngine, BatesDetJumpEngine, BatesDoubleExpEngine, BatesDoubleExpDetJumpEngine)
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
 from quantlib.time.api import Period, Date, Actual365Fixed, TARGET, Weeks
@@ -100,47 +100,7 @@ def heston_helpers(df_option, dtTrade=None, df_rates=None, ival=None):
 
     return {'options':options, 'spot': spot}
 
-def bates_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
-
-    # array of option helpers
-    hh = heston_helpers(df_option, dtTrade, df_rates, ival)
-    options = hh['options']
-    spot = hh['spot']
-
-    risk_free_ts = dfToZeroCurve(df_rates['R'], dtTrade)
-    dividend_ts = dfToZeroCurve(df_rates['D'], dtTrade)
-
-    if ival is None:
-        ival = {'v0': .04, 'kappa': 1.0, 'theta': 0.1,
-        'sigma': 0.5, 'rho': -.5, 'lambda': 1.1, 'nu':-.12,
-        'delta': 0.17}
-
-    process = BatesProcess(
-        risk_free_ts, dividend_ts, spot, ival['v0'], ival['kappa'],
-         ival['theta'], ival['sigma'], ival['rho'],
-         ival['lambda'], ival['nu'], ival['delta'])
-    
-    model = BatesModel(process)
-    engine = BatesEngine(model, 64)
-
-    for option in options:
-        option.set_pricing_engine(engine)
-
-    om = LevenbergMarquardt(1e-8, 1e-8, 1e-8)
-    model.calibrate(
-        options, om, EndCriteria(400, 40, 1.0e-8, 1.0e-8, 1.0e-8)
-    )
-
-    print('model calibration results:')
-    print('v0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f nu: %f delta: %f' %
-          (model.v0, model.kappa, model.theta, model.sigma,
-           model.rho, model.Lambda, model.nu, model.delta))
-
-    calib_error = (1.0/len(options)) * sum(
-        [pow(o.calibration_error(),2) for o in options])
-
-    print('SSE: %f' % calib_error)
-
+def merge_df(df_option, options, model_name):
     df_output = DataFrame.filter(df_option,
                 items=['dtTrade', 'dtExpiry',
                        'Type', 'K', 'Mid',
@@ -155,10 +115,55 @@ def bates_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
             accuracy=1.e-5, maxEvaluations=5000,
             minVol=.01, maxVol=10.0)
 
-    df_output['ModelValue'] = model_value
-    df_output['IVModel'] = model_iv
+    df_output[model_name + '-Value'] = model_value
+    df_output[model_name + '-IV'] = model_iv
 
     return df_output
+
+def bates_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
+
+    # array of option helpers
+    hh = heston_helpers(df_option, dtTrade, df_rates, ival)
+    options = hh['options']
+    spot = hh['spot']
+
+    risk_free_ts = dfToZeroCurve(df_rates['R'], dtTrade)
+    dividend_ts = dfToZeroCurve(df_rates['D'], dtTrade)
+
+    v0 = .02
+    
+    if ival is None:
+        ival = {'v0': v0, 'kappa': 3.7, 'theta': v0,
+        'sigma': 1.0, 'rho': -.6, 'lambda': .1,
+        'nu':-.5, 'delta': 0.3}
+
+    process = BatesProcess(
+        risk_free_ts, dividend_ts, spot, ival['v0'], ival['kappa'],
+         ival['theta'], ival['sigma'], ival['rho'],
+         ival['lambda'], ival['nu'], ival['delta'])
+    
+    model = BatesModel(process)
+    engine = BatesEngine(model, 64)
+
+    for option in options:
+        option.set_pricing_engine(engine)
+
+    om = LevenbergMarquardt()
+    model.calibrate(
+        options, om, EndCriteria(400, 40, 1.0e-8, 1.0e-8, 1.0e-8)
+    )
+
+    print('model calibration results:')
+    print('v0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f nu: %f delta: %f' %
+          (model.v0, model.kappa, model.theta, model.sigma,
+           model.rho, model.Lambda, model.nu, model.delta))
+
+    calib_error = (1.0/len(options)) * sum(
+        [pow(o.calibration_error(),2) for o in options])
+
+    print('SSE: %f' % calib_error)
+
+    return merge_df(df_option, options, 'Bates')
 
 def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
     
@@ -203,24 +208,145 @@ def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
 
     print('SSE: %f' % calib_error)
 
-    df_output = DataFrame.filter(df_option,
-                items=['dtTrade', 'dtExpiry',
-                       'Type', 'K', 'Mid',
-                       'QuickDelta', 'VB', 'VA',
-                       'R', 'D', 'ATMVol', 'F', 'T'])
+    return merge_df(df_option, options, 'Heston')
 
-    model_value = np.zeros(len(df_option))
-    model_iv = np.zeros(len(df_option))
-    for i, j in zip(range(len(df_option)), range(0, len(options),2)):
-        model_value[i] = options[j].model_value()
-        model_iv[i] = options[j].impliedVolatility(model_value[i],
-            accuracy=1.e-5, maxEvaluations=5000,
-            minVol=.01, maxVol=10.0)
+def batesdetjump_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
 
-    df_output['ModelValue'] = model_value
-    df_output['IVModel'] = model_iv
+    # array of option helpers
+    hh = heston_helpers(df_option, dtTrade, df_rates, ival)
+    options = hh['options']
+    spot = hh['spot']
 
-    return df_output
+    risk_free_ts = dfToZeroCurve(df_rates['R'], dtTrade)
+    dividend_ts = dfToZeroCurve(df_rates['D'], dtTrade)
+
+    v0 = .02
+    
+    if ival is None:
+        ival = {'v0': v0, 'kappa': 3.7, 'theta': v0,
+        'sigma': 1.0, 'rho': -.6, 'lambda': .1,
+        'nu':-.5, 'delta': 0.3}
+
+    process = BatesProcess(
+        risk_free_ts, dividend_ts, spot, ival['v0'], ival['kappa'],
+         ival['theta'], ival['sigma'], ival['rho'],
+         ival['lambda'], ival['nu'], ival['delta'])
+    
+    model = BatesDetJumpModel(process)
+    engine = BatesDetJumpEngine(model, 64)
+
+    for option in options:
+        option.set_pricing_engine(engine)
+
+    om = LevenbergMarquardt()
+    model.calibrate(
+        options, om, EndCriteria(400, 40, 1.0e-8, 1.0e-8, 1.0e-8)
+    )
+
+    print('BatesDetJumpModel calibration:')
+    print('v0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f nu: %f delta: %f\nkappaLambda: %f thetaLambda: %f' %
+          (model.v0, model.kappa, model.theta, model.sigma,
+           model.rho, model.Lambda, model.nu, model.delta,
+           model.kappaLambda, model.thetaLambda))
+
+    calib_error = (1.0/len(options)) * sum(
+        [pow(o.calibration_error(),2) for o in options])
+
+    print('SSE: %f' % calib_error)
+
+    return merge_df(df_option, options, 'BatesDetJump')
+
+def batesdoubleexp_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
+
+    # array of option helpers
+    hh = heston_helpers(df_option, dtTrade, df_rates, ival)
+    options = hh['options']
+    spot = hh['spot']
+
+    risk_free_ts = dfToZeroCurve(df_rates['R'], dtTrade)
+    dividend_ts = dfToZeroCurve(df_rates['D'], dtTrade)
+
+    v0 = .02
+    
+    if ival is None:
+        ival = {'v0': v0, 'kappa': 3.7, 'theta': v0,
+        'sigma': 1.0, 'rho': -.6, 'lambda': .1,
+        'nu':-.5, 'delta': 0.3}
+
+    process = HestonProcess(
+        risk_free_ts, dividend_ts, spot, ival['v0'], ival['kappa'],
+         ival['theta'], ival['sigma'], ival['rho'])
+    
+    model = BatesDoubleExpModel(process)
+    engine = BatesDoubleExpEngine(model, 64)
+
+    for option in options:
+        option.set_pricing_engine(engine)
+
+    om = LevenbergMarquardt()
+    model.calibrate(
+        options, om, EndCriteria(400, 40, 1.0e-8, 1.0e-8, 1.0e-8)
+    )
+
+    print('BatesDoubleExpModel calibration:')
+    print('v0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f nuUp: %f nuDown: %f\np: %f' %
+          (model.v0, model.kappa, model.theta, model.sigma,
+           model.rho, model.Lambda, model.nuUp, model.nuDown,
+           model.p))
+
+    calib_error = (1.0/len(options)) * sum(
+        [pow(o.calibration_error(),2) for o in options])
+
+    print('SSE: %f' % calib_error)
+
+    return merge_df(df_option, options, 'BatesDoubleExp')
+
+def batesdoubleexpdetjump_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
+
+    # array of option helpers
+    hh = heston_helpers(df_option, dtTrade, df_rates, ival)
+    options = hh['options']
+    spot = hh['spot']
+
+    risk_free_ts = dfToZeroCurve(df_rates['R'], dtTrade)
+    dividend_ts = dfToZeroCurve(df_rates['D'], dtTrade)
+
+    v0 = .02
+    
+    if ival is None:
+        ival = {'v0': v0, 'kappa': 3.7, 'theta': v0,
+        'sigma': 1.0, 'rho': -.6, 'lambda': .1,
+        'nu':-.5, 'delta': 0.3}
+
+    process = HestonProcess(
+        risk_free_ts, dividend_ts, spot, ival['v0'], ival['kappa'],
+         ival['theta'], ival['sigma'], ival['rho'])
+    
+    model = BatesDoubleExpDetJumpModel(process,
+            Lambda=.21, nuUp=.004, nuDown=.55,
+            p=.32)
+    engine = BatesDoubleExpDetJumpEngine(model, 64)
+
+    for option in options:
+        option.set_pricing_engine(engine)
+
+    om = LevenbergMarquardt()
+    model.calibrate(
+        options, om, EndCriteria(400, 40, 1.0e-8, 1.0e-8, 1.0e-8)
+    )
+
+    print('BatesDoubleExpDetJumpModel calibration:')
+    print('v0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f nuUp: %f nuDown: %f\np: %f\nkappaLambda: %f thetaLambda: %f' %
+          (model.v0, model.kappa, model.theta, model.sigma,
+           model.rho, model.Lambda, model.nuUp, model.nuDown,
+           model.p, model.kappaLambda, model.thetaLambda))
+
+    calib_error = (1.0/len(options)) * sum(
+        [pow(o.calibration_error(),2) for o in options])
+
+    print('SSE: %f' % calib_error)
+
+    return merge_df(df_option, options, 'Bates')
 
 df_rates = pandas.load('data/df_rates.pkl')
 
@@ -228,18 +354,33 @@ df_rates = pandas.load('data/df_rates.pkl')
 df_option = pandas.load('data/df_final.pkl')
 dtTrade = df_option['dtTrade'][0]
 
-
-# heston calibration
-print('heston calibration...')
-df_output = heston_calibration(df_option, dtTrade,
+if True:
+    print('heston calibration...')
+    df_output = heston_calibration(df_option, dtTrade,
                                df_rates)
-df_output.save('data/df_calibration_output_heston.pkl')
+    df_output.save('data/df_calibration_output_heston.pkl')
 
-# bates calibration
-print('bates calibration...')
-df_output = bates_calibration(df_option, dtTrade,
+if True:
+    print('bates calibration...')
+    df_output = bates_calibration(df_option, dtTrade,
                                df_rates)
-df_output.save('data/df_calibration_output_bates.pkl')
+    df_output.save('data/df_calibration_output_bates.pkl')
 
+if True:
+   print('batesdetjump calibration...')
+   df_output = batesdetjump_calibration(df_option, dtTrade,
+                               df_rates)
+   df_output.save('data/df_calibration_output_batesdetjump.pkl')
 
+if True:
+   print('bates double exp calibration...')
+   df_output = batesdoubleexp_calibration(df_option, dtTrade,
+                               df_rates)
+   df_output.save('data/df_calibration_output_batesdoubleexp.pkl')
+
+if False:
+   print('bates double exp det jump calibration...')
+   df_output = batesdoubleexpdetjump_calibration(df_option, dtTrade,
+                               df_rates)
+   df_output.save('data/df_calibration_output_batesdoubleexpdetjump.pkl')
 

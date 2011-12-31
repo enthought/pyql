@@ -20,3 +20,12 @@ cdef class AnalyticHestonEngine(PricingEngine):
 
 cdef class BatesEngine(AnalyticHestonEngine):
     pass
+
+cdef class BatesDetJumpEngine(BatesEngine):
+    pass
+
+cdef class BatesDoubleExpEngine(AnalyticHestonEngine):
+    pass
+
+cdef class BatesDoubleExpDetJumpEngine(BatesDoubleExpEngine):
+    pass

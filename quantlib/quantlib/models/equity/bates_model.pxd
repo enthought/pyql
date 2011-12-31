@@ -6,13 +6,11 @@ from quantlib.models.equity.heston_model cimport HestonModel
 cdef class BatesModel(HestonModel):
     pass
 
-# cdef shared_ptr[_bm.BatesModel]* _thisptr
-
 cdef class BatesDetJumpModel(BatesModel):
     pass
 
-cdef class BatesDoubleExpModel(BatesModel):
+cdef class BatesDoubleExpModel(HestonModel):
     pass
 
-cdef class BatesDoubleExpDetJumpModel(BatesModel):
+cdef class BatesDoubleExpDetJumpModel(BatesDoubleExpModel):
     pass
