@@ -1,7 +1,4 @@
-cimport _heston_process as _hp
-from quantlib.handle cimport Handle, shared_ptr
+from heston_process cimport HestonProcess
 
-cdef class BatesProcess:
-
-    cdef shared_ptr[_hp.BatesProcess]* _thisptr
-
+cdef class BatesProcess(HestonProcess):
+    pass

@@ -15,14 +15,14 @@ cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib':
             Handle[YieldTermStructure]& dividendYield,
             Handle[_qt.Quote]& s0,
             Real v0, Real kappa,
-            Real theta, Real sigma, Real rho)
+            Real theta, Real sigma, Real rho) except +
             
-        Size size()
-        Real v0()
-        Real rho()
-        Real kappa()
-        Real theta()
-        Real sigma()
+        Size size() except +
+        Real v0() except +
+        Real rho() except +
+        Real kappa() except +
+        Real theta() except +
+        Real sigma() except +
 
         Handle[_qt.Quote] s0()
         Handle[YieldTermStructure] dividendYield()
@@ -37,9 +37,9 @@ cdef extern from 'ql/processes/batesprocess.hpp' namespace 'QuantLib':
             Handle[_qt.Quote]& s0,
             Real v0, Real kappa,
             Real theta, Real sigma, Real rho,
-            Real lambda_, Real nu, Real delta)
+            Real lambda_, Real nu, Real delta) except +
 
-        Real lambda_()
-        Real nu()
-        Real delta()
+        Real Lambda 'lambda'() except +
+        Real nu() except +
+        Real delta() except +
 

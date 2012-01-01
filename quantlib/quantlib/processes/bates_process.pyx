@@ -8,8 +8,9 @@ cimport quantlib.termstructures.yields._flat_forward as _ff
 cimport quantlib._quote as _qt
 from quantlib.quotes cimport Quote, SimpleQuote
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
+from heston_process cimport HestonProcess
 
-cdef class BatesProcess:
+cdef class BatesProcess(HestonProcess):
 
     def __cinit__(self):
         pass
@@ -28,7 +29,7 @@ cdef class BatesProcess:
        Real rho,
        Real lambda_,
        Real nu,
-       Real delta,
+       Real delta
     ):
 
         #create handles
@@ -42,40 +43,27 @@ cdef class BatesProcess:
                     deref(risk_free_rate_ts._thisptr)
                 )
 
-        self._thisptr = new shared_ptr[_hp.BatesProcess](
+        self._thisptr = new shared_ptr[_hp.HestonProcess](
             new _hp.BatesProcess(
                 risk_free_rate_ts_handle,
                 dividend_ts_handle,
                 s0_handle,
                 v0, kappa, theta, sigma, rho,
-                lambda_, nu, delta
-            )
-        )
+                lambda_, nu, delta))
 
+    def __str__(self):
+        return 'Bates process\nv0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f nu: %f delta: %f' % \
+          (self.v0, self.kappa, self.theta, self.sigma,
+           self.rho, self.Lambda, self.nu, self.delta)
+    
+    property Lambda:
+        def __get__(self):
+            return (<_hp.BatesProcess*> self._thisptr.get()).Lambda()
+            
+    property nu:
+        def __get__(self):
+            return (<_hp.BatesProcess*> self._thisptr.get()).nu()
 
-    def size(self):
-        return self._thisptr.get().size()
-
-    def v0(self):
-        return self._thisptr.get().v0()
-
-    def rho(self):
-        return self._thisptr.get().rho()
-
-    def kappa(self):
-        return self._thisptr.get().kappa()
-
-    def theta(self):
-        return self._thisptr.get().theta()
-
-    def sigma(self):
-        return self._thisptr.get().sigma()
-
-    def s0(self):
-        #cdef _hp.HestonProcess* hp_ptr = self._thisptr.get()
-        cdef Handle[_qt.Quote] handle = self._thisptr.get().s0()
-        cdef shared_ptr[_qt.Quote] quote_sptr = shared_ptr[_qt.Quote](handle.currentLink())
-
-        # maybe not optmal but easiest to do
-        return  SimpleQuote(quote_sptr.get().value())
-
+    property delta:
+        def __get__(self):
+            return (<_hp.BatesProcess*> self._thisptr.get()).delta()

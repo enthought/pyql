@@ -101,11 +101,11 @@ class HestonModelTestCase(unittest.TestCase):
                 risk_free_ts, dividend_ts, s0, v0, kappa, theta, sigma, rho
             )
 
-            self.assertEquals(v0, process.v0())
-            self.assertEquals(kappa, process.kappa())
-            self.assertEquals(theta, process.theta())
-            self.assertEquals(sigma, process.sigma())
-            self.assertEquals(rho, process.rho())
+            self.assertEquals(v0, process.v0)
+            self.assertEquals(kappa, process.kappa)
+            self.assertEquals(theta, process.theta)
+            self.assertEquals(sigma, process.sigma)
+            self.assertEquals(rho, process.rho)
             self.assertEquals(1.0, process.s0().value)
 
             model = HestonModel(process)

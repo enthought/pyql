@@ -52,20 +52,25 @@ cdef class HestonProcess:
     def size(self):
         return self._thisptr.get().size()
 
-    def v0(self):
-        return self._thisptr.get().v0()
+    property v0:
+        def __get__(self):
+            return self._thisptr.get().v0()
 
-    def rho(self):
-        return self._thisptr.get().rho()
+    property rho:
+        def __get__(self):
+            return self._thisptr.get().rho()
 
-    def kappa(self):
-        return self._thisptr.get().kappa()
+    property kappa:
+        def __get__(self):
+            return self._thisptr.get().kappa()
 
-    def theta(self):
-        return self._thisptr.get().theta()
+    property theta:
+        def __get__(self):
+            return self._thisptr.get().theta()
 
-    def sigma(self):
-        return self._thisptr.get().sigma()
+    property sigma:
+        def __get__(self):
+            return self._thisptr.get().sigma()
 
     def s0(self):
         #cdef _hp.HestonProcess* hp_ptr = self._thisptr.get()

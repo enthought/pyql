@@ -314,22 +314,22 @@ def batesdoubleexpdetjump_calibration(df_option, dtTrade=None, df_rates=None, iv
     v0 = .02
     
     if ival is None:
+
         ival = {'v0': v0, 'kappa': 3.7, 'theta': v0,
-        'sigma': 1.0, 'rho': -.6, 'lambda': .1,
+        'sigma':.1, 'rho': -.6, 'lambda': .1,
         'nu':-.5, 'delta': 0.3}
 
     process = HestonProcess(
         risk_free_ts, dividend_ts, spot, ival['v0'], ival['kappa'],
          ival['theta'], ival['sigma'], ival['rho'])
     
-    model = BatesDoubleExpDetJumpModel(process,
-            Lambda=.21, nuUp=.004, nuDown=.55,
-            p=.32)
+    model = BatesDoubleExpDetJumpModel(process, 1.0)
     engine = BatesDoubleExpDetJumpEngine(model, 64)
 
     for option in options:
         option.set_pricing_engine(engine)
-
+        print('error: %f' % option.calibration_error())
+    
     om = LevenbergMarquardt()
     model.calibrate(
         options, om, EndCriteria(400, 40, 1.0e-8, 1.0e-8, 1.0e-8)
