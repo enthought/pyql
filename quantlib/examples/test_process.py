@@ -5,7 +5,7 @@ from quantlib.models.equity.heston_model import (
     HestonModelHelper, HestonModel, ImpliedVolError
 )
 
-from quantlib.models.equity.bates_model import BatesModel
+from quantlib.models.equity.bates_model import (BatesModel, BatesDoubleExpModel)
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.processes.bates_process import BatesProcess
 
@@ -49,16 +49,32 @@ kappa = 5.0;
 theta = 0.05;
 sigma = 1.0e-4;
 rho = 0.0;
-Lambda = 1.23
-nu = 12.34
-delta = .123
+Lambda = .1
+nu = .01
+delta = .001
 
-process = BatesProcess(risk_free_ts, dividend_ts, s0, v0,
+pb = BatesProcess(risk_free_ts, dividend_ts, s0, v0,
                        kappa, theta, sigma, rho,
                        Lambda, nu, delta)
 
-print(process)
+print(pb)
 
-model = BatesModel(process)
+# error: the arguments Lambda, nu, delta have changed
+mb = BatesModel(pb)
+print(mb)
 
-print(model)
+# double exponential model
+
+ph = HestonProcess(risk_free_ts, dividend_ts, s0, v0,
+                       kappa, theta, sigma, rho)
+
+print(ph)
+
+# constructor with default arguments: it works
+me = BatesDoubleExpModel(ph)
+print(me)
+
+# speficy the arguments: it works
+me = BatesDoubleExpModel(ph, Lambda=0.234, nuUp=0.43, nuDown=0.54, p=.6)
+print(me)
+
