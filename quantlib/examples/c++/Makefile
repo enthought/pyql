@@ -4,9 +4,9 @@
 # QL_INCLUDES=/opt/local/include
 # QL_LIBRARY=/opt/local/lib
 
-# linux2
-QL_INCLUDES=/usr/local/include
-QL_LIBRARY=/usr/local/lib
+# linux2 (1.1)
+QL_INCLUDES=/opt/QuantLib-1.1
+QL_LIBRARY=/opt/QuantLib-1.1/ql/.libs
 
 FLAGS= -m32
 
@@ -36,7 +36,7 @@ test_heston:
 	./hestonmodel
 
 batesprocess: batesprocess.o utilities.o
-	g++  ${FLAGS} -o $@ $^ -L${QL_LIBRARY} -lQuantLib
+	g++  -o $@ $^ -L${QL_LIBRARY} -lQuantLib
 
 test_bates: build_bates
 	./batesprocess

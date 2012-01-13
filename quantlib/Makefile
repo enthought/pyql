@@ -14,9 +14,11 @@ clean:
 build:
 	python setup.py build_ext --inplace
 
-tests-preload:
-	LD_PRELOAD=/usr/local/lib/libQuantLib.so nosetests -v quantlib/test
+build_sim:
+	python setup_sim.py build_ext --inplace
 
+tests-preload:
+	LD_PRELOAD=/opt/QuantLib-1.1/lib/libQuantLib.so nosetests -v quantlib/test
 tests:
 	nosetests -v quantlib/test
 

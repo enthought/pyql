@@ -20,9 +20,12 @@ elif sys.platform == 'win32':
     LIBRARY_DIRS = [r"C:\msys\1.0\local\lib"]
 elif sys.platform == 'linux2':
     # good for Debian / ubuntu 10.04 (with QL .99 installed by default)
-    INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.']
-    LIBRARY_DIRS = ['/usr/local/lib', '/usr/lib', ]
-
+    # INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.']
+    # LIBRARY_DIRS = ['/usr/local/lib', '/usr/lib', ]
+    # custom install of QuantLib 1.1
+    INCLUDE_DIRS = ['/opt/QuantLib-1.1', '.']
+    LIBRARY_DIRS = ['/opt/QuantLib-1.1/lib',]
+    
 
 def collect_extensions():
     """ Collect all the directories with Cython extensions and return the list

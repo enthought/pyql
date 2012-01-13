@@ -328,7 +328,6 @@ def batesdoubleexpdetjump_calibration(df_option, dtTrade=None, df_rates=None, iv
 
     for option in options:
         option.set_pricing_engine(engine)
-        print('error: %f' % option.calibration_error())
     
     om = LevenbergMarquardt()
     model.calibrate(
@@ -346,7 +345,7 @@ def batesdoubleexpdetjump_calibration(df_option, dtTrade=None, df_rates=None, iv
 
     print('SSE: %f' % calib_error)
 
-    return merge_df(df_option, options, 'Bates')
+    return merge_df(df_option, options, 'BatesDoubleExpDetJump')
 
 df_rates = pandas.load('data/df_rates.pkl')
 
@@ -378,7 +377,7 @@ if True:
                                df_rates)
    df_output.save('data/df_calibration_output_batesdoubleexp.pkl')
 
-if False:
+if True:
    print('bates double exp det jump calibration...')
    df_output = batesdoubleexpdetjump_calibration(df_option, dtTrade,
                                df_rates)

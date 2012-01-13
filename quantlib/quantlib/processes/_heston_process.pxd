@@ -4,7 +4,6 @@ from quantlib.handle cimport Handle, shared_ptr
 from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
 cimport quantlib._quote as _qt
 
-
 cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib':
 
     cdef cppclass HestonProcess:

@@ -48,6 +48,10 @@ cdef class HestonProcess:
             )
         )
 
+    def __str__(self):
+        return 'Heston process\nv0: %f kappa: %f theta: %f sigma: %f rho: %f' % \
+          (self.v0, self.kappa, self.theta, self.sigma, self.rho)
+
 
     def size(self):
         return self._thisptr.get().size()
