@@ -11,6 +11,8 @@ import sys
 from Cython.Distutils import build_ext
 from Cython.Build import cythonize
 
+import numpy
+
 if sys.platform == 'darwin':
     INCLUDE_DIRS = ['/opt/local/include', '.']
     LIBRARY_DIRS = ["/opt/local/lib"]
@@ -66,6 +68,26 @@ def collect_extensions():
         libraries=['QuantLib']
     )
 
+    multipath_extension = Extension(
+        name='quantlib.sim.simulate',
+        sources=[
+            'quantlib/sim/simulate.pyx',
+            'quantlib/sim/_simulate_support_code.cpp'
+        ],
+        language='c++',
+        include_dirs=INCLUDE_DIRS + [numpy.get_include()],
+        library_dirs=LIBRARY_DIRS,
+        define_macros = [('HAVE_CONFIG_H', 1)],
+        libraries=['QuantLib']
+    )
+
+    manual_extensions = [
+        multipath_extension,
+        piecewise_yield_curve_extension,
+        settings_extension,
+        test_extension,
+    ]
+
     cython_extension_directories = []
     for dirpath, directories, files in os.walk('quantlib'):
         print 'Path', dirpath
@@ -78,7 +100,6 @@ def collect_extensions():
         if len(glob.glob('{}/*.pyx'.format(dirpath))) > 0:
             cython_extension_directories.append(dirpath)
 
-    print cython_extension_directories
     collected_extensions = cythonize(
         [
             Extension('*', ['{}/*.pyx'.format(dirpath)],
@@ -90,17 +111,13 @@ def collect_extensions():
     )
 
     # remove the generated piecewise_yield_curve extension
+    names = [extension.name for extension in manual_extensions]
     for ext in collected_extensions:
-        if ext.name == piecewise_yield_curve_extension.name:
+        if ext.name in names:
             collected_extensions.remove(ext)
-            break
-    else:
-        raise RuntimeError('Piecewise yield curve extension not found')
+            continue
 
-
-    return collected_extensions + [
-        settings_extension, test_extension, piecewise_yield_curve_extension
-    ]
+    return collected_extensions + manual_extensions
 
 setup(
     name='quantlib',
