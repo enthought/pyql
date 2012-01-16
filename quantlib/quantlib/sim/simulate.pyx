@@ -10,7 +10,7 @@ cimport quantlib.processes._heston_process as _hp
 from quantlib.processes.heston_process cimport HestonProcess
 
 import numpy as np
-cimport numpy as np
+cimport numpy as cnp
 
 cdef extern from "_simulate_support_code.hpp":
 
@@ -21,7 +21,7 @@ cdef extern from "_simulate_support_code.hpp":
 def simulate(HestonProcess process, int nbPaths, int nbSteps,
 	     Time horizon, BigNatural seed):
 
-    cdef np.ndarray[np.double_t, ndim=2] res = np.zeros((nbPaths+1, nbSteps+1), dtype=np.double)
+    cdef cnp.ndarray[cnp.double_t, ndim=2] res = np.zeros((nbPaths+1, nbSteps+1), dtype=np.double)
 
     simulateMP(deref(<shared_ptr[_hp.HestonProcess]*> process._thisptr),
 	       nbPaths, nbSteps, horizon, seed, <double*> res.data)
