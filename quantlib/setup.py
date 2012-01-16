@@ -29,6 +29,8 @@ elif sys.platform == 'linux2':
     LIBRARY_DIRS = ['/opt/QuantLib-1.1/lib',]
     
 
+CYTHON_DIRECTIVES = {"embedsignature": True}
+
 def collect_extensions():
     """ Collect all the directories with Cython extensions and return the list
     of Extension.
@@ -117,7 +119,13 @@ def collect_extensions():
             collected_extensions.remove(ext)
             continue
 
-    return collected_extensions + manual_extensions
+    extensions = collected_extensions + manual_extensions
+
+    for extension in extensions:
+        extension.pyrex_directives = CYTHON_DIRECTIVES
+
+    return extensions
+
 
 setup(
     name='quantlib',
