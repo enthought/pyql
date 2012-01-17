@@ -117,6 +117,33 @@ class VanillaOptionTestCase(unittest.TestCase):
         # self.assertAlmostEquals(4.459628, american_option.net_present_value, 6)
         self.assertAlmostEquals(4.459628, american_option.NPV(), 6)
 
+    def test_american_vanilla_option_with_earliest_date(self):
+
+        american_exercise = AmericanExercise(
+            latest_exercise_date   = self.maturity,
+            earliest_exercise_date = self.settlement_date
+        )
+        american_option = VanillaOption(self.payoff, american_exercise)
+
+        method = 'Barone-Adesy/Whaley'
+        engine = BaroneAdesiWhaleyApproximationEngine(
+            self.black_scholes_merton_process
+        )
+
+        american_option.set_pricing_engine(engine)
+
+        # self.assertAlmostEquals(4.459628, american_option.net_present_value, 6)
+        self.assertAlmostEquals(4.459628, american_option.NPV(), 6)
+
+
+    def test_american_vanilla_option_with_earliest_date_wrong_order(self):
+
+        with self.assertRaises(RuntimeError):
+            american_exercise = AmericanExercise(
+                self.settlement_date,
+                self.maturity
+            )
+
 
 if __name__ == '__main__':
     unittest.main()

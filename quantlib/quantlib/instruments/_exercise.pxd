@@ -31,7 +31,7 @@ cdef extern from 'ql/exercise.hpp' namespace 'QuantLib':
         EarlyExercise(Type type, payoffAtExpiry)
 
     cdef cppclass AmericanExercise(EarlyExercise):
-        AmericanExercise(Date& earliestDate, Date& latestDate)
+        AmericanExercise(Date& earliestDate, Date& latestDate) except +
         AmericanExercise(Date& earliestDate, Date& latestDate, bool payoffAtExpiry)
         AmericanExercise(Date& latestDate, bool payoffAtExpiry)
         AmericanExercise(Date& latestDate)

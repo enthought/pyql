@@ -58,12 +58,26 @@ cdef class EuropeanExercise(Exercise):
 
 cdef class AmericanExercise(Exercise):
 
-    def __init__(self, Date exercise_date):
-        self._thisptr = new shared_ptr[_exercise.Exercise]( \
-            new _exercise.AmericanExercise(
-                deref(exercise_date._thisptr.get())
+    def __init__(self, Date latest_exercise_date, Date earliest_exercise_date=None):
+        """ Creates an AmericanExercise.
+
+        :param latest_exercise_date: Latest exercise date for the option
+        :param earliest_exercise_date: Earliest exercise date for the option (default to None)
+
+        """
+        if earliest_exercise_date is not None:
+            self._thisptr = new shared_ptr[_exercise.Exercise]( \
+                new _exercise.AmericanExercise(
+                    deref(earliest_exercise_date._thisptr.get()),
+                    deref(latest_exercise_date._thisptr.get())
+                )
             )
-        )
+        else:
+            self._thisptr = new shared_ptr[_exercise.Exercise]( \
+                new _exercise.AmericanExercise(
+                    deref(latest_exercise_date._thisptr.get())
+                )
+            )
 
 cdef class VanillaOption:
 

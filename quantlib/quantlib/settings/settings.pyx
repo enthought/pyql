@@ -38,3 +38,13 @@ cdef class Settings:
         def __get__(self):
             return QL_VERSION
 
+    @classmethod
+    def instance(cls):
+        """ Returns an instance of the global Settings object.
+
+        Utility method to mimic the behaviour of the C++ singleton.
+
+        """
+
+        return cls()
+

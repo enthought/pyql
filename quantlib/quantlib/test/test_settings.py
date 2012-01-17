@@ -28,6 +28,15 @@ class SettingsTestCase(unittest.TestCase):
 
         self.assertTrue(settings.version.startswith('1'))
 
+    def test_settings_instance_method(self):
+
+        Settings.instance().evaluation_date = today()
+
+        self.assertEquals(
+                today(),
+                Settings.instance().evaluation_date
+        )
+
 
     def test_bond_schedule_today(self):
         '''Test date calculations and role of settings when evaluation date 
