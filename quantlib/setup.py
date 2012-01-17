@@ -17,9 +17,16 @@ if sys.platform == 'darwin':
     INCLUDE_DIRS = ['/opt/local/include', '.']
     LIBRARY_DIRS = ["/opt/local/lib"]
 elif sys.platform == 'win32':
-    # using msys
-    INCLUDE_DIRS = [r'C:\msys\1.0\local\include', '.']
-    LIBRARY_DIRS = [r"C:\msys\1.0\local\lib"]
+    INCLUDE_DIRS = [
+        r'E:\tmp\QuantLib-1.1',  # QuantLib headers
+        r'E:\tmp\boost_1_46_1',  # Boost headers
+        '.'
+    ]
+    LIBRARY_DIRS = [
+        r"E:\tmp\QuantLib-1.1\build\vc80\Release",
+        r'E:\tmp\boost_1_46_1\lib'
+    ]
+    QL_LIBRARY = 'QuantLib'
 elif sys.platform == 'linux2':
     # good for Debian / ubuntu 10.04 (with QL .99 installed by default)
     # INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.']
@@ -28,7 +35,35 @@ elif sys.platform == 'linux2':
     INCLUDE_DIRS = ['/opt/QuantLib-1.1', '.']
     LIBRARY_DIRS = ['/opt/QuantLib-1.1/lib',]
     
+def get_define_macros():
+    defines = [ ('HAVE_CONFIG_H', None)]
+    if sys.platform == 'win32':
+        # based on the SWIG wrappers
+        defines += [
+            (name, None) for name in [
+                '__WIN32__', 'WIN32', 'NDEBUG', '_WINDOWS', 'NOMINMAX', 'WINNT',
+                '_WINDLL', '_SCL_SECURE_NO_DEPRECATE', '_CRT_SECURE_NO_DEPRECATE',
+                '_SCL_SECURE_NO_WARNINGS',
+            ]
+        ]
+    return defines
 
+def get_extra_compile_args():
+    if sys.platform == 'win32':
+        args = ['/GR', '/FD', '/Zm250', '/EHsc' ]
+    else:
+        args = []
+    
+    return args
+         
+def get_extra_link_args():
+    if sys.platform == 'win32':
+        args = ['/subsystem:windows', '/machine:I386']
+    else:
+        args = []
+    
+    return args
+    
 def collect_extensions():
     """ Collect all the directories with Cython extensions and return the list
     of Extension.
@@ -42,7 +77,9 @@ def collect_extensions():
         language='c++',
         include_dirs=INCLUDE_DIRS,
         library_dirs=LIBRARY_DIRS,
-        define_macros = [('HAVE_CONFIG_H', 1)],
+        define_macros = get_define_macros(),
+        extra_compile_args = get_extra_compile_args(),
+        extra_link_args = get_extra_link_args(),
         libraries=['QuantLib']
     )
 
@@ -51,7 +88,9 @@ def collect_extensions():
         language='c++',
         include_dirs=INCLUDE_DIRS,
         library_dirs=LIBRARY_DIRS,
-        define_macros = [('HAVE_CONFIG_H', None)],
+        define_macros = get_define_macros(),
+        extra_compile_args = get_extra_compile_args(),
+        extra_link_args = get_extra_link_args(),
         libraries=['QuantLib']
     )
 
@@ -64,7 +103,9 @@ def collect_extensions():
         language='c++',
         include_dirs=INCLUDE_DIRS,
         library_dirs=LIBRARY_DIRS,
-        define_macros = [('HAVE_CONFIG_H', None)],
+        define_macros = get_define_macros(),
+        extra_compile_args = get_extra_compile_args(),
+        extra_link_args = get_extra_link_args(),
         libraries=['QuantLib']
     )
 
@@ -77,7 +118,9 @@ def collect_extensions():
         language='c++',
         include_dirs=INCLUDE_DIRS + [numpy.get_include()],
         library_dirs=LIBRARY_DIRS,
-        define_macros = [('HAVE_CONFIG_H', 1)],
+        define_macros = get_define_macros(),
+        extra_compile_args = get_extra_compile_args(),
+        extra_link_args = get_extra_link_args(),
         libraries=['QuantLib']
     )
 
@@ -105,7 +148,9 @@ def collect_extensions():
             Extension('*', ['{}/*.pyx'.format(dirpath)],
                 include_dirs=INCLUDE_DIRS,
                 library_dirs=LIBRARY_DIRS,
-                define_macros = [('HAVE_CONFIG_H', 1)]
+                define_macros = get_define_macros(),
+                extra_compile_args = get_extra_compile_args(),
+                extra_link_args = get_extra_link_args(),
             ) for dirpath in cython_extension_directories
         ]
     )
