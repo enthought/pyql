@@ -41,7 +41,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Quantlib cython wrapper'
-copyright = u'2011, Didrik Pinte, Patrick Hennaff'
+copyright = u'2011, Didrik Pinte, Patrick Henaff'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
