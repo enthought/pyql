@@ -83,8 +83,9 @@ cdef extern from "string" namespace "std":
         char* c_str()
 
 cdef class Period:
-    '''This class provides a Period (length + TimeUnit) class
-    and implements a limited algebra.
+    ''' Class providing a Period (length + time unit) class and implements a
+    limited algebra.
+
     '''
 
     def __cinit__(self, *args):
@@ -207,6 +208,11 @@ cdef class Period:
         return 'Period %d length  %d units' % (self.length, self.units)
 
 cdef class Date:
+    """ This class provides methods to inspect dates as well as methods and
+    operators which implement a limited date algebra (increasing and decreasing
+    dates, and calculating their difference).
+
+    """
 
     def __cinit__(self, *args):
 
@@ -245,6 +251,7 @@ cdef class Date:
         def __get__(self):
             return self._thisptr.get().weekday()
 
+    #: Day of the year (one based - Jan 1st = 1)
     property day_of_year:
         def __get__(self):
             return self._thisptr.get().dayOfYear()
@@ -349,12 +356,12 @@ cdef class Date:
 
     @classmethod
     def from_datetime(cls, date):
-        """Returns the Quantlib Date object from the date/datetime object
-        """
+        """Returns the Quantlib Date object from the date/datetime object. """
+
         return Date(date.day, date.month, date.year)
 
 def today():
-    '''Today's date.'''
+    '''Today's date. '''
     cdef QlDate today = Date_todaysDate()
     return date_from_qldate(today)
 
