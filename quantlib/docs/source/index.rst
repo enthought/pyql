@@ -14,6 +14,8 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   cython_wrapper
+   api
    business_dates
    todo
 
