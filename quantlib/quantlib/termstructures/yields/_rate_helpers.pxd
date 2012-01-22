@@ -1,19 +1,33 @@
+"""
+ Copyright (C) 2011, Enthought Inc
+ Copyright (C) 2011, Patrick Henaff
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
 include '../../types.pxi'
 
 from libcpp cimport bool
 
-from quantlib.handle cimport Handle
+from quantlib.handle cimport shared_ptr, Handle, RelinkableHandle
 from quantlib._quote cimport Quote
 from quantlib.time._calendar cimport BusinessDayConvention, Calendar
 from quantlib.time._daycounter cimport DayCounter
-from quantlib.time._period cimport Period
+from quantlib.time._period cimport Period, Frequency
 from _flat_forward cimport YieldTermStructure
+
+cimport quantlib.indexes._ibor_index as _ib
 
 cdef extern from 'ql/termstructures/bootstraphelper.hpp' namespace 'QuantLib':
 
     cdef cppclass BootstrapHelper[T]:
         BootstrapHelper(Handle[Quote]& quote)
         BoostrapHelper(Real quote)
+
+    cdef cppclass RelativeDateBootstrapHelper[T](BootstrapHelper):
+        pass
 
 cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
 
@@ -22,6 +36,8 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
     cdef cppclass RateHelper:
         Handle[Quote] quote()
 
+    cdef cppclass RelativeDateRateHelper:
+        Handle[Quote] quote()
 
     cdef cppclass DepositRateHelper(RateHelper):
         DepositRateHelper(Handle[Quote]& rate,
@@ -45,4 +61,13 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
         #DepositRateHelper(Rate rate,
         #                  const boost::shared_ptr<IborIndex>& iborIndex);
 
-
+    cdef cppclass SwapRateHelper(RelativeDateRateHelper):
+        SwapRateHelper(Handle[Quote]& rate,
+                          Period& tenor,
+                          Calendar& calendar,
+                          Frequency& fixedFrequency,
+                          BusinessDayConvention fixedConvention,
+                          DayCounter& fixedDayCount,
+                          shared_ptr[_ib.IborIndex]& iborIndex,
+                          Handle[Quote]& spread,
+                          Period& fwdStart)

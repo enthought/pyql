@@ -18,6 +18,10 @@ cdef extern from 'ql/time/daycounter.hpp' namespace 'QuantLib':
         BigInteger dayCount(Date&, Date&)
         Time yearFraction(Date&, Date&, Date&, Date&)
 
+cdef extern from 'ql/time/daycounters/thirty360.hpp' namespace 'QuantLib':
+
+    cdef cppclass Thirty360(DayCounter):
+        pass
 
 cdef extern from 'ql/time/daycounters/actual360.hpp' namespace 'QuantLib':
 

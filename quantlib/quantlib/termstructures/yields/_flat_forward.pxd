@@ -1,6 +1,15 @@
 # distutils: language = c++
 # distutils: libraries = QuantLib
 
+"""
+ Copyright (C) 2011, Enthought Inc
+ Copyright (C) 2011, Patrick Henaff
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
 include '../../types.pxi'
 
 from libcpp cimport bool
@@ -42,7 +51,7 @@ cdef extern from 'ql/termstructures/yield/flatforward.hpp' namespace 'QuantLib':
         FlatForward(DayCounter& dc,
                    vector[Handle[_qt.Quote]]& jumps,
                    vector[Date]& jumpDates,
-        )
+        ) except +
 
 
         FlatForward(Date& referenceDate,
@@ -50,7 +59,7 @@ cdef extern from 'ql/termstructures/yield/flatforward.hpp' namespace 'QuantLib':
                    DayCounter& dayCounter,
                    Compounding compounding,
                    Frequency frequency
-        )
+        ) except +
 
         FlatForward(Natural settlementDays,
                     Calendar& calendar,
@@ -58,31 +67,34 @@ cdef extern from 'ql/termstructures/yield/flatforward.hpp' namespace 'QuantLib':
                     DayCounter& dayCounter,
                     Compounding compounding,
                     Frequency frequency
-        )
+        ) except +
 
         # from days and quote :
         FlatForward(Natural settlementDays,
                     Calendar& calendar,
                     Handle[_qt.Quote]& forward,
                     DayCounter& dayCounter,
-        )
+        ) except +
+        
         FlatForward(Natural settlementDays,
                     Calendar& calendar,
                     Handle[_qt.Quote]& forward,
                     DayCounter& dayCounter,
                     Compounding compounding,
-        )
+        ) except +
+        
         FlatForward(Natural settlementDays,
                     Calendar& calendar,
                     Handle[_qt.Quote]& forward,
                     DayCounter& dayCounter,
                     Compounding compounding,
                     Frequency frequency
-        )
+        ) except +
+        
         # from date and forward
         FlatForward(Date& referenceDate,
                     Handle[_qt.Quote]& forward,
                     DayCounter& dayCounter,
                     Compounding compounding,
                     Frequency frequency
-        )
+        ) except +

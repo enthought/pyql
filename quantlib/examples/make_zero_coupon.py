@@ -1,3 +1,12 @@
+"""
+ Copyright (C) 2011, Enthought Inc
+ Copyright (C) 2011, Patrick Henaff
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
 # This script demonstrates the calculation of a US Libor zero-coupon
 # curve, using Euro-deposits and swap rates provided by the FRB
 

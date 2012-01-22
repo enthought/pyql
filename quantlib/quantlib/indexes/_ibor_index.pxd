@@ -1,6 +1,15 @@
 # distutils: language = c++
 # distutils: libraries = QuantLib
 
+"""
+ Copyright (C) 2011, Enthought Inc
+ Copyright (C) 2011, Patrick Henaff
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
 include '../types.pxi'
 from libcpp cimport bool
 from quantlib.handle cimport Handle
@@ -30,8 +39,8 @@ cdef extern from 'ql/indexes/iborindex.hpp' namespace 'QuantLib':
                   Calendar& fixingCalendar,
                   BusinessDayConvention convention,
                   bool endOfMonth,
-                  DayCounter& dayCounter,
-                  Handle[_ff.YieldTermStructure]& h)
+                  DayCounter& dayCounter) except +
+                  # Handle[_ff.YieldTermStructure]& h) except +
 
         # \name Inspectors
         BusinessDayConvention businessDayConvention()

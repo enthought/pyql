@@ -1,3 +1,12 @@
+"""
+ Copyright (C) 2011, Enthought Inc
+ Copyright (C) 2011, Patrick Henaff
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
 include '../types.pxi'
 from cython.operator cimport dereference as deref
 
@@ -19,25 +28,6 @@ cdef class InterestRateIndex(Index):
     def __cinit__(self):
         pass
         
-#    def __init__(self,
-#        familyName,
-#        Period tenor,
-#        Natural settlementDays,
-#        Currency currency,
-#        Calendar fixingCalendar,
-#        DayCounter dayCounter):
-    
-#        self._thisptr = new shared_ptr[_in.Index](
-#        new _iri.InterestRateIndex(
-#            <string>familyName,
-#            deref(tenor._thisptr),
-#            <Natural>settlementDays,
-#            deref(currency._thisptr),
-#            deref(fixingCalendar._thisptr),
-#            deref(dayCounter._thisptr)
-#        )
-#    )
-    
     def __str__(self):
         return 'Interest rate index %s' % self._thisptr.get().name().c_str()
     

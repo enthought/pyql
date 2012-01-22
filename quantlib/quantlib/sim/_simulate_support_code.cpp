@@ -6,8 +6,8 @@ namespace QuantLib {
                     int nbPaths, int nbSteps, Time horizon, BigNatural seed,
                     double *res) {
 
-        typedef PseudoRandom::rsg_type rsg_type; typedef 
-        MultiPathGenerator<rsg_type>::sample_type sample_type;
+        typedef PseudoRandom::rsg_type rsg_type; 
+        typedef MultiPathGenerator<rsg_type>::sample_type sample_type;
 
         Time length = horizon;
 
@@ -18,8 +18,7 @@ namespace QuantLib {
         Size assets = sp->size();
         rsg_type rsg = PseudoRandom::make_sequence_generator(timeSteps*assets,
                        seed);
-	    MultiPathGenerator<rsg_type> 
-          generator(sp, TimeGrid(length, timeSteps),
+	    MultiPathGenerator<rsg_type> generator(sp, TimeGrid(length, timeSteps),
           rsg, false);
 
         // res(nbPaths+1, nbSteps+1)

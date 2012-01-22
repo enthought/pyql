@@ -43,7 +43,10 @@ cdef class DayCounter:
         cdef _date.Date* d2 = date2._thisptr.get()
         return self._thisptr.dayCount(deref(d1), deref(d2))
 
-
+cdef class Thirty360(DayCounter):
+    
+    def __cinit__(self, *args):
+        self._thisptr = <_daycounter.DayCounter*> new _daycounter.Thirty360()
 
 cdef class Actual360(DayCounter):
 
