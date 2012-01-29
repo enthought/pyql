@@ -230,7 +230,7 @@ The Schedule object has various useful functions, we will discuss some of them.
 
 
 Performance considerations
-==========================
+--------------------------
 
 In [3]: %timeit QuantLib.Date.todaysDate() + QuantLib.Period(10, QuantLib.Days)
 100000 loops, best of 3: 9.71 us per loop
@@ -242,11 +242,4 @@ In [5]: %timeit quantlib.date.today() + quantlib.date.Period(10, quantlib.date.D
 100000 loops, best of 3: 2.17 us per loop
 
 
-Reference documentation for the :mod:`quantlib` package
-=======================================================
 
-.. automodule:: quantlib.time.date
-
-.. autoclass:: quantlib.time.date.Date
-
-.. autoclass:: quantlib.time.date.Period

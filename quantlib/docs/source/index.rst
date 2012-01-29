@@ -3,20 +3,22 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Quantlib cython wrapper's documentation!
-===================================================
+Quantlib cython wrapper's documentation!
+========================================
 
 The goal of this project is to create a lightweight, pythonic wrapper on top of
 the QuantLib library.
+
+
 
 Contents:
 
 .. toctree::
    :maxdepth: 2
 
-   cython_wrapper
-   api
    business_dates
+   api
+   cython_wrapper
    todo
 
 Indices and tables

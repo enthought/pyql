@@ -15,11 +15,6 @@ from quantlib.time.daycounter cimport DayCounter
 
 from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
 
-# Plan
-# - implemente the RateHelper
-# - do not expose the piecewise yield curve but only the termstructure
-#   allowing to get down to the curve if needed.
-
 VALID_TRAITS = ['discount', 'forward', 'zero']
 VALID_INTERPOLATORS = ['loglinear', 'linear', 'spline']
 
