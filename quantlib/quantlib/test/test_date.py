@@ -1,7 +1,12 @@
 import datetime
 import unittest
 
-from quantlib.time.date import * 
+from quantlib.time.date import (
+    Date, Jan, Feb, Mar, Apr, May, Jun, Jul, Nov, Thursday, Friday, Period,
+    Annual, Semiannual, Bimonthly, EveryFourthMonth, Months, Years, Weeks,
+    Days, OtherFrequency, end_of_month, is_end_of_month, is_leap,
+    next_weekday, nth_weekday, today,
+)
 
 class TestQuantLibDate(unittest.TestCase):
 
@@ -107,13 +112,13 @@ class TestQuantLibDate(unittest.TestCase):
         self.assertTrue(expected_date == date2)
 
     def test_nth_weekday(self):
-        ''' The 4th Thursday of March, 1998 was March 26th, 1998.
+        ''' The 4th Thursday of Mar, 1998 was Mar 26th, 1998.
         see http://www.cpearson.com/excel/DateTimeWS.htm
         '''
 
-        date1 = nth_weekday(4, Thursday, March, 1998)
+        date1 = nth_weekday(4, Thursday, Mar, 1998)
 
-        expected_date = Date(26, March, 1998)
+        expected_date = Date(26, Mar, 1998)
         self.assertTrue(expected_date == date1)
 
     def test_end_of_month(self):
@@ -209,12 +214,12 @@ class TestQuantLibPeriod(unittest.TestCase):
 
         period = Period(1, Months)
         date2 = date1 + period
-        expected_date = Date(1, June, 2011)
+        expected_date = Date(1, Jun, 2011)
         self.assertTrue(expected_date == date2)
 
         period = Period(Bimonthly)
         date2 = date1 + period
-        expected_date = Date(1, July, 2011)
+        expected_date = Date(1, Jul, 2011)
         self.assertTrue(expected_date == date2)
 
 
@@ -291,18 +296,18 @@ class TestQuantLibPeriod(unittest.TestCase):
 
         period = Period(1, Months)
         date2 = date1 - period
-        expected_date = Date(1, April, 2011)
+        expected_date = Date(1, Apr, 2011)
         self.assertTrue(expected_date == date2)
 
         period = Period(Bimonthly)
         date2 = date1 - period
-        expected_date = Date(1, March, 2011)
+        expected_date = Date(1, Mar, 2011)
         self.assertTrue(expected_date == date2)
 
 
         period = Period(10, Days)
         date2 = date1 - period
-        expected_date = Date(21, April, 2011)
+        expected_date = Date(21, Apr, 2011)
         self.assertTrue(expected_date == date2)
  
 
