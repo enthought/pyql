@@ -33,12 +33,12 @@ import datetime
 
 cdef class Bond:
 
-    cdef _bonds.Bond* _thisptr
-    cdef cbool has_pricing_engine
+    cdef _bonds.Bond* _thisptr      #FIXME: replace with a shared_ptr
+    cdef cbool _has_pricing_engine
 
     def __cinit__(self):
         self._thisptr = NULL
-        self.has_pricing_engine = False
+        self._has_pricing_engine = False
 
     def __dealloc__(self):
         if self._thisptr is not NULL:
@@ -47,7 +47,7 @@ cdef class Bond:
     def set_pricing_engine(self, YieldTermStructure yield_term_structure):
         '''Sets the pricing engine based on the given term structure.
 
-        FIXME : the pricing engine is not exposed and cannot be selected at tis
+        FIXME : the pricing engine is not exposed and cannot be selected at this
         stage. There is only one engine for bonds, the DiscountingBondEngine,
         which is allocated when calling this function.
         '''
@@ -63,24 +63,28 @@ cdef class Bond:
 
         self._thisptr.setPricingEngine(deref(engine_ptr))
 
-        self.has_pricing_engine = True
+        self._has_pricing_engine = True
 
     property issue_date:
+        """ Bond issue date. """
         def __get__(self):
             cdef _date.Date issue_date = self._thisptr.issueDate()
             return date_from_qldate(issue_date)
 
     property maturity_date:
+        """ Bond maturity date. """
         def __get__(self):
             cdef _date.Date maturity_date = self._thisptr.maturityDate()
             return date_from_qldate(maturity_date)
 
     property valuation_date:
+        """ Bond valuation date. """
         def __get__(self):
             cdef _date.Date valuation_date = self._thisptr.valuationDate()
             return date_from_qldate(valuation_date)
 
     def settlement_date(self, Date from_date=None):
+        """ Returns the bond settlement date after the given date."""
         cdef _date.Date* date
         cdef _date.Date settlement_date
         if from_date is not None:
@@ -89,28 +93,28 @@ cdef class Bond:
         else:
             settlement_date = self._thisptr.settlementDate()
 
-        print settlement_date.year(), settlement_date.month(), settlement_date.dayOfMonth()
-
         return date_from_qldate(settlement_date)
 
     property clean_price:
+        """ Bond clena price. """
         def __get__(self):
-            if self.has_pricing_engine:
+            if self._has_pricing_engine:
                 return self._thisptr.cleanPrice()
 
     property dirty_price:
+        """ Bond dirty price. """
         def __get__(self):
-            if self.has_pricing_engine:
+            if self._has_pricing_engine:
                 return self._thisptr.dirtyPrice()
 
     property net_present_value:
+        """ Bond net present value. """
         def __get__(self):
-            if self.has_pricing_engine:
+            if self._has_pricing_engine:
                 return self._thisptr.NPV()
-            else:
-                return None
 
     def accrued_amount(self, Date date=None):
+        """ Returns the bond accrued amount at the given date. """
         if date is not None:
             amount = self._thisptr.accruedAmount(deref(date._thisptr.get()))
         else:
@@ -162,6 +166,7 @@ cdef class ZeroCouponBond(Bond):
         Date maturity_date, payment_convention=Following, redemption=100.,
         Date issue_date=None
     ):
+        """ Instantiate a zero coupon bond. """
         if issue_date is not None:
             self._thisptr = new _bonds.ZeroCouponBond(
                 <Natural> settlement_days, deref(calendar._thisptr),
@@ -170,5 +175,7 @@ cdef class ZeroCouponBond(Bond):
                 <Real>redemption, deref(issue_date._thisptr.get())
             )
         else:
-            raise NotImplementedError()
+            raise NotImplementedError(
+                'Wrapper for such constructor not yet implemented.'
+            )
 

@@ -26,6 +26,7 @@ cdef class Settings:
         pass
 
     property evaluation_date:
+        """Property to set/get the evaluation date. """
         def __get__(self):
             cdef qldate.Date evaluation_date = get_evaluation_date()
             return date.date_from_qldate(evaluation_date)
@@ -35,6 +36,7 @@ cdef class Settings:
             set_evaluation_date(deref(date_ref))
 
     property version:
+        """Returns the QuantLib C++ version (QL_VERSION) used by this wrapper."""
         def __get__(self):
             return QL_VERSION
 
