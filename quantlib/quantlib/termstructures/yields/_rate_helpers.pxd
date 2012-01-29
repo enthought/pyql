@@ -61,6 +61,17 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
         #DepositRateHelper(Rate rate,
         #                  const boost::shared_ptr<IborIndex>& iborIndex);
 
+    cdef cppclass FraRateHelper(RelativeDateRateHelper):
+        FraRateHelper(Handle[Quote]& rate,
+                      Natural monthsToStart,
+                      Natural monthsToEnd,
+                      Natural fixingDays,
+                      Calendar& calendar,
+                      BusinessDayConvention convention,
+                      bool endOfMonth,
+                      DayCounter& dayCounter)
+
+
     cdef cppclass SwapRateHelper(RelativeDateRateHelper):
         SwapRateHelper(Handle[Quote]& rate,
                           Period& tenor,

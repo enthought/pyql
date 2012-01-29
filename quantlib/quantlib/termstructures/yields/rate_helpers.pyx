@@ -100,3 +100,33 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
             cdef shared_ptr[_qt.Quote] quote_ptr = shared_ptr[_qt.Quote](quote_handle.currentLink())
             value = quote_ptr.get().value()
             return value
+
+cdef class FraRateHelper(RelativeDateRateHelper):
+    """ Rate helper for bootstrapping over %FRA rates. """
+
+    def __init__(self, Quote rate, Natural months_to_start,
+            Natural months_to_end, Natural fixing_days, Calendar calendar,
+            BusinessDayConvention convention, end_of_month,
+            DayCounter day_counter):
+
+        cdef Handle[_qt.Quote] rate_handle = Handle[_qt.Quote](deref(rate._thisptr))
+
+        self._thisptr = new shared_ptr[_rh.RelativeDateRateHelper](
+            new _rh.FraRateHelper(
+                rate_handle,
+                months_to_start,
+                months_to_end,
+                fixing_days,
+                deref(calendar._thisptr),
+                <_rh.BusinessDayConvention> convention,
+                end_of_month,
+                deref(day_counter._thisptr),
+            )
+        )
+
+    property quote:
+        def __get__(self):
+            cdef Handle[_qt.Quote] quote_handle = self._thisptr.get().quote()
+            cdef shared_ptr[_qt.Quote] quote_ptr = shared_ptr[_qt.Quote](quote_handle.currentLink())
+            value = quote_ptr.get().value()
+            return value
