@@ -18,7 +18,7 @@ cimport quantlib.indexes._ibor_index as _ib
 from quantlib.quotes cimport Quote
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.time.date cimport Period
+from quantlib.time.date cimport Period, Date
 from quantlib.time._period cimport Frequency
 from quantlib.time._calendar cimport BusinessDayConvention
 from quantlib.indexes.ibor_index cimport IborIndex
@@ -35,6 +35,14 @@ cdef class RateHelper:
             print 'Deallocting RateHelper'
             del self._thisptr
 
+    property quote:
+        def __get__(self):
+            cdef Handle[_qt.Quote] quote_handle = self._thisptr.get().quote()
+            cdef shared_ptr[_qt.Quote] quote_ptr = shared_ptr[_qt.Quote](quote_handle.currentLink())
+            value = quote_ptr.get().value()
+            return value
+
+
 cdef class RelativeDateRateHelper:
 
     def __cinit__(self):
@@ -44,6 +52,13 @@ cdef class RelativeDateRateHelper:
         if self._thisptr is not NULL:
             print 'Deallocting RelativeDateRateHelper'
             del self._thisptr
+
+    property quote:
+        def __get__(self):
+            cdef Handle[_qt.Quote] quote_handle = self._thisptr.get().quote()
+            cdef shared_ptr[_qt.Quote] quote_ptr = shared_ptr[_qt.Quote](quote_handle.currentLink())
+            value = quote_ptr.get().value()
+            return value
 
 cdef class DepositRateHelper(RateHelper):
 
@@ -63,13 +78,6 @@ cdef class DepositRateHelper(RateHelper):
                 deref(deposit_day_counter._thisptr)
             )
         )
-
-    property quote:
-        def __get__(self):
-            cdef Handle[_qt.Quote] quote_handle = self._thisptr.get().quote()
-            cdef shared_ptr[_qt.Quote] quote_ptr = shared_ptr[_qt.Quote](quote_handle.currentLink())
-            value = quote_ptr.get().value()
-            return value
 
 cdef class SwapRateHelper(RelativeDateRateHelper):
 
@@ -94,13 +102,6 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                 deref(fwdStart._thisptr.get()))
             )
 
-    property quote:
-        def __get__(self):
-            cdef Handle[_qt.Quote] quote_handle = self._thisptr.get().quote()
-            cdef shared_ptr[_qt.Quote] quote_ptr = shared_ptr[_qt.Quote](quote_handle.currentLink())
-            value = quote_ptr.get().value()
-            return value
-
 cdef class FraRateHelper(RelativeDateRateHelper):
     """ Rate helper for bootstrapping over %FRA rates. """
 
@@ -124,9 +125,25 @@ cdef class FraRateHelper(RelativeDateRateHelper):
             )
         )
 
-    property quote:
-        def __get__(self):
-            cdef Handle[_qt.Quote] quote_handle = self._thisptr.get().quote()
-            cdef shared_ptr[_qt.Quote] quote_ptr = shared_ptr[_qt.Quote](quote_handle.currentLink())
-            value = quote_ptr.get().value()
-            return value
+cdef class FuturesRateHelper(RateHelper):
+    """ Rate helper for bootstrapping over IborIndex futures prices. """
+
+    def __init__(self, Quote rate, Date imm_date,
+            Natural length_in_months, Calendar calendar,
+            BusinessDayConvention convention, end_of_month,
+            DayCounter day_counter):
+
+        cdef Handle[_qt.Quote] rate_handle = Handle[_qt.Quote](deref(rate._thisptr))
+
+        self._thisptr = new shared_ptr[_rh.RateHelper](
+            new _rh.FuturesRateHelper(
+                rate_handle,
+                deref(imm_date._thisptr.get()),
+                length_in_months,
+                deref(calendar._thisptr),
+                <_rh.BusinessDayConvention> convention,
+                end_of_month,
+                deref(day_counter._thisptr),
+            )
+        )
+
