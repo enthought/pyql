@@ -170,7 +170,7 @@ cdef class DateList:
 
 def holiday_list(Calendar calendar, date.Date from_date, date.Date to_date,
         bool include_weekends=False):
-    '''Returns the holidays between two dates.'''
+    '''Returns the holidays between two dates. '''
 
     cdef vector[_date.Date] dates = _calendar.Calendar_holidayList(
         deref((<Calendar>calendar)._thisptr),
