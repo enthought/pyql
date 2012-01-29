@@ -146,16 +146,20 @@ cdef class DateList:
 
     cdef _set_dates(self, vector[_date.Date]& dates):
         # fixme : would be great to be able to do that at construction time ...
+        # but Cython does not allow to pass C object in the __cinit__ method
         self._dates = new vector[_date.Date](dates)
 
     def __dealloc__(self):
-        if self._dates:
+        if self._dates is not NULL:
             del self._dates
+            self._dates = NULL
 
     def __iter__(self):
         return self
 
     def __next__(self):
+        # when Cython will allow to create objects on the stack in loops, this
+        # method will be refactored as a generator.
         if self._pos == self._dates.size():
             raise StopIteration()
 
@@ -192,7 +196,6 @@ cdef class TARGET(Calendar):
      * Christmas, December 25th
      * Day of Goodwill, December 26th (since 2000)
      * December 31st (1998, 1999, and 2001)
-
     '''
 
     def __cinit__(self):
