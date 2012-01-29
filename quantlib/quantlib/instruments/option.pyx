@@ -105,7 +105,9 @@ cdef class VanillaOption:
 
         # keep reference to other objects. This prevents them to be deallocated
         # before this object (causing a segfault in the C++ deallocation
-        # mechanism)
+        # mechanism). 
+        # FIXME: by using shared_ptr in the Exercise and Payoff classes, this
+        # should not happend and we could avoid storing those references.
         self._exercise_ref = exercise
         self._payoff_ref = payoff
 
@@ -124,9 +126,7 @@ cdef class VanillaOption:
         self._thisptr = new _option.EuropeanOption(payoff_ptr, exercise_ptr)
 
     def set_pricing_engine(self, PricingEngine engine):
-        '''Sets the pricing engine based on the given pricing engine....
-
-        '''
+        '''Sets the pricing engine for the option. '''
 
         cdef shared_ptr[_pe.PricingEngine] engine_ptr = \
                 shared_ptr[_pe.PricingEngine](
@@ -136,17 +136,10 @@ cdef class VanillaOption:
         self._thisptr.setPricingEngine(engine_ptr)
         self.has_pricing_engine = True
 
-    def NPV(self):
-        if self.has_pricing_engine:
-            return self._thisptr.NPV()
-        else:
-            return None
-
     property net_present_value:
+        """ Option net present value. """
         def __get__(self):
             if self.has_pricing_engine:
                 return self._thisptr.NPV()
-            else:
-                return None
 
 
