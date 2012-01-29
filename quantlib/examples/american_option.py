@@ -81,6 +81,9 @@ def main():
     option.set_pricing_engine(BaroneAdesiWhaleyApproximationEngine(process))
     report('Barone-Adesi-Whaley',option.NPV())
 
+
+    print 'This is work in progress.'
+    print 'Some pricing engines are not interfaced yet'
     return
 
     option.setPricingEngine(BjerksundStenslandEngine(process))
