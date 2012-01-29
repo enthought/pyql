@@ -89,11 +89,8 @@ class VanillaOptionTestCase(unittest.TestCase):
 
 
         european_exercise = EuropeanExercise(self.maturity)
-
         european_option = VanillaOption(self.payoff, european_exercise)
 
-
-        method = 'Black-Scholes'
         analytic_european_engine = AnalyticEuropeanEngine(
             self.black_scholes_merton_process
         )
@@ -107,15 +104,13 @@ class VanillaOptionTestCase(unittest.TestCase):
         american_exercise = AmericanExercise(self.maturity)
         american_option = VanillaOption(self.payoff, american_exercise)
 
-        method = 'Barone-Adesy/Whaley'
         engine = BaroneAdesiWhaleyApproximationEngine(
             self.black_scholes_merton_process
         )
 
         american_option.set_pricing_engine(engine)
 
-        # self.assertAlmostEquals(4.459628, american_option.net_present_value, 6)
-        self.assertAlmostEquals(4.459628, american_option.NPV(), 6)
+        self.assertAlmostEquals(4.459628, american_option.net_present_value, 6)
 
     def test_american_vanilla_option_with_earliest_date(self):
 
@@ -132,14 +127,13 @@ class VanillaOptionTestCase(unittest.TestCase):
 
         american_option.set_pricing_engine(engine)
 
-        # self.assertAlmostEquals(4.459628, american_option.net_present_value, 6)
-        self.assertAlmostEquals(4.459628, american_option.NPV(), 6)
+        self.assertAlmostEquals(4.459628, american_option.net_present_value, 6)
 
 
     def test_american_vanilla_option_with_earliest_date_wrong_order(self):
 
         with self.assertRaises(RuntimeError):
-            american_exercise = AmericanExercise(
+            AmericanExercise(
                 self.settlement_date,
                 self.maturity
             )

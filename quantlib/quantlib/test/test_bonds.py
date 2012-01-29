@@ -12,8 +12,8 @@ from quantlib.time.calendars.united_states import (
 from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.compounding import Compounded, Continuous
 from quantlib.time.date import (
-    Date, Days, Semiannual, January, August, Period, June, March, February,
-    Jul, Annual, today, Years, August, today
+    Date, Days, Semiannual, January, August, Period, March, February,
+    Jul, Annual, Years
 )
 from quantlib.time.daycounter import Actual365Fixed
 from quantlib.time.daycounters.actual_actual import ActualActual, Bond, ISMA
