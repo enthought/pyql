@@ -120,7 +120,6 @@ class VanillaOptionTestCase(unittest.TestCase):
         )
         american_option = VanillaOption(self.payoff, american_exercise)
 
-        method = 'Barone-Adesy/Whaley'
         engine = BaroneAdesiWhaleyApproximationEngine(
             self.black_scholes_merton_process
         )

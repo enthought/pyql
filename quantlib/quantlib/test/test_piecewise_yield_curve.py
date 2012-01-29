@@ -9,21 +9,19 @@
 
 import unittest
 
+from quantlib.currency import USDCurrency
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.rate_helpers import DepositRateHelper, SwapRateHelper
 from quantlib.termstructures.yields.piecewise_yield_curve import \
     term_structure_factory
 from quantlib.time.api import Date, TARGET, Period, Months, Years, Days
 from quantlib.time.api import September, ISDA, today
-from quantlib.time.api import (ModifiedFollowing, Unadjusted, Actual360,
-                               Thirty360, ActualActual, Actual365Fixed)
-
-from quantlib.time.api import September, ISDA, today
-from quantlib.currency import USDCurrency
+from quantlib.time.api import ModifiedFollowing, Unadjusted, Actual360
+from quantlib.time.api import Thirty360, ActualActual, Actual365Fixed
+from quantlib.time.api import Annual
 from quantlib.quotes import SimpleQuote
 
 from quantlib.indexes.libor import Libor
-from quantlib.time.date import Semiannual, Annual
 
 class PiecewiseYieldCurveTestCase(unittest.TestCase):
 

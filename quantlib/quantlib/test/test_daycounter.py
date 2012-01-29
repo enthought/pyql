@@ -12,7 +12,7 @@ from quantlib.time.daycounters.thirty360 import (
         Thirty360, EUROBONDBASIS
 )
 from quantlib.time.date import (
-    Date, November, May, February, July, January, December, Period,
+    Date, November, May, February, July, January, Period,
     Months
 )
 
@@ -149,7 +149,6 @@ class TestActualActual(unittest.TestCase):
         periods = [3, 6, 12]
         expected_times = [0.25, 0.5, 1.0]
         first = Date(1,January,2002)
-        last = Date(31,December,2005);
 
         day_counter = SimpleDayCounter();
 
