@@ -53,18 +53,18 @@ def get_extra_compile_args():
         args = ['/GR', '/FD', '/Zm250', '/EHsc' ]
     else:
         args = []
-    
+
     return args
-         
+
 def get_extra_link_args():
     if sys.platform == 'win32':
         args = ['/subsystem:windows', '/machine:I386']
     else:
         args = []
-    
+
     return args
-    
-CYTHON_DIRECTIVES = {"embedsignature": True}
+ 
+CYTHON_DIRECTIVES = {"embedsignatur": True}
 
 def collect_extensions():
     """ Collect all the directories with Cython extensions and return the list
@@ -82,7 +82,8 @@ def collect_extensions():
         define_macros = get_define_macros(),
         extra_compile_args = get_extra_compile_args(),
         extra_link_args = get_extra_link_args(),
-        libraries=['QuantLib']
+        libraries=['QuantLib'],
+        pyrex_directives = CYTHON_DIRECTIVES
     )
 
     test_extension = Extension('quantlib.test.test_cython_bug',
@@ -93,7 +94,8 @@ def collect_extensions():
         define_macros = get_define_macros(),
         extra_compile_args = get_extra_compile_args(),
         extra_link_args = get_extra_link_args(),
-        libraries=['QuantLib']
+        libraries=['QuantLib'],
+        pyrex_directives = CYTHON_DIRECTIVES
     )
 
     piecewise_yield_curve_extension = Extension(
@@ -108,7 +110,9 @@ def collect_extensions():
         define_macros = get_define_macros(),
         extra_compile_args = get_extra_compile_args(),
         extra_link_args = get_extra_link_args(),
-        libraries=['QuantLib']
+        libraries=['QuantLib'],
+        pyrex_directives = CYTHON_DIRECTIVES
+
     )
 
     multipath_extension = Extension(
@@ -123,7 +127,9 @@ def collect_extensions():
         define_macros = get_define_macros(),
         extra_compile_args = get_extra_compile_args(),
         extra_link_args = get_extra_link_args(),
-        libraries=['QuantLib']
+        libraries=['QuantLib'],
+        pyrex_directives = CYTHON_DIRECTIVES
+
     )
 
     manual_extensions = [
@@ -153,11 +159,13 @@ def collect_extensions():
                 define_macros = get_define_macros(),
                 extra_compile_args = get_extra_compile_args(),
                 extra_link_args = get_extra_link_args(),
+                pyrex_directives = CYTHON_DIRECTIVES,
+                libraries = ['QuantLib']
             ) for dirpath in cython_extension_directories
         ]
     )
 
-    # remove the generated piecewise_yield_curve extension
+    # remove  all the manual extensions from the collected ones
     names = [extension.name for extension in manual_extensions]
     for ext in collected_extensions:
         if ext.name in names:
@@ -166,16 +174,14 @@ def collect_extensions():
 
     extensions = collected_extensions + manual_extensions
 
-    for extension in extensions:
-        extension.pyrex_directives = CYTHON_DIRECTIVES
-
     return extensions
 
 
 setup(
-    name='quantlib',
-    version='0.1',
-    author='Didrik Pinte,Patrick Henaff',
+    name = 'quantlib',
+    version = '0.1',
+    author = 'Didrik Pinte,Patrick Henaff',
+    license = 'BSD',
     packages = ['quantlib.settings'],
     ext_modules = collect_extensions(),
     cmdclass = {'build_ext': build_ext}
