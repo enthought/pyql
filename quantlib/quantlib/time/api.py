@@ -8,7 +8,8 @@
 """
 
 from .calendar import (
-    Calendar, TARGET, ModifiedFollowing, Following, Unadjusted
+    Calendar, TARGET, ModifiedFollowing, Following, ModifiedPreceding,
+    Preceding, Unadjusted, holiday_list
 )
 from .calendars.null_calendar import NullCalendar
 from .daycounter import Thirty360, Actual360, Actual365Fixed

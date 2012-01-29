@@ -36,7 +36,9 @@ cdef class Calendar:
     '''
 
     def __dealloc__(self):
-        del self._thisptr
+        if self._thisptr is not NULL:
+            del self._thisptr
+            self._thisptr = NULL
 
     def name(self):
         return self._thisptr.name().c_str()
@@ -71,6 +73,8 @@ cdef class Calendar:
 
     def business_days_between(self, date.Date date1, date.Date date2,
             include_first=True, include_last=False):
+        """ Returns the number of business days between date1 and date2. """
+
         return self._thisptr.businessDaysBetween(
             deref((<date.Date>date1)._thisptr.get()),
             deref((<date.Date>date2)._thisptr.get()),
@@ -79,6 +83,11 @@ cdef class Calendar:
         )
 
     def end_of_month(self, date.Date current_date):
+        """ Returns the ending date for the month that contains the given
+        date.
+        
+        """
+
         cdef _date.Date* c_date = (<date.Date>current_date)._thisptr.get()
         cdef _date.Date eom_date = self._thisptr.endOfMonth(deref(c_date))
 
@@ -183,6 +192,7 @@ cdef class TARGET(Calendar):
      * Christmas, December 25th
      * Day of Goodwill, December 26th (since 2000)
      * December 31st (1998, 1999, and 2001)
+
     '''
 
     def __cinit__(self):
