@@ -7,7 +7,7 @@ cdef class Index:
         raise ValueError('Cannot instantiate Index')
 
     def __dealloc__(self):
-        if self._thisptr:
+        if self._thisptr is not NULL:
             del self._thisptr
 
     property name:

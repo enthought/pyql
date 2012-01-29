@@ -31,14 +31,15 @@ from quantlib.time._calendar cimport BusinessDayConvention
 
 
 cdef class Libor(IborIndex):
-    def __cinit__(self):
-       self._thisptr = NULL
 
-    ## This dealloc makes python crash
-    ## def __dealloc__(self):
-    ##     if self._thisptr is not NULL:
-    ##         del self._thisptr
-            
+    def __cinit__(self):
+        self._thisptr = NULL
+
+    def __dealloc__(self):
+        if self._thisptr is not NULL:
+            del self._thisptr
+            self._thisptr = NULL
+
     def __init__(self,
         str familyName,
         Period tenor,
