@@ -22,73 +22,111 @@ from quantlib.quotes import SimpleQuote
 from quantlib.indexes.libor import Libor
 from quantlib.time.date import Semiannual, Annual
 
+from datetime import datetime
 
-settings = Settings()
+import numpy as np
+import matplotlib.pyplot as plt
 
-# Market information
-calendar = TARGET()
+def get_term_structure(df_libor, dtObs):
+    
+    settings = Settings()
 
-# must be a business day
-eval_date = calendar.adjust(today())
-settings.evaluation_date = eval_date
+    # Market information
+    calendar = TARGET()
 
-settlement_days = 2
-settlement_date = calendar.advance(eval_date, settlement_days, Days)
-# must be a business day
-settlement_date = calendar.adjust(settlement_date);
+    # must be a business day
+    eval_date = calendar.adjust(today())
+    settings.evaluation_date = eval_date
 
-depositData = [[ 1, Months, 4.581 ],
-               [ 2, Months, 4.573 ],
-               [ 3, Months, 4.557 ],
-               [ 6, Months, 4.496 ],
-               [ 9, Months, 4.490 ]]
-            
-swapData = [[ 1, Years, 4.54 ],
-            [ 5, Years, 4.99 ],
-            [ 10, Years, 5.47 ],
-            [ 20, Years, 5.89 ],
-            [ 30, Years, 5.96 ]]
+    settlement_days = 2
+    settlement_date = calendar.advance(eval_date, settlement_days, Days)
+    # must be a business day
+    settlement_date = calendar.adjust(settlement_date);
 
-rate_helpers = []
+    depositData =[[1, Months, 'Libor1M'],
+                  [3, Months, 'Libor3M'],
+                  [6, Months, 'Libor6M']]
 
-end_of_month = True
+    swapData = [[ 1, Years, 'Swap1Y'],
+                [ 2, Years, 'Swap2Y'],
+                [ 3, Years, 'Swap3Y'],
+                [ 4, Years, 'Swap4Y'],
+                [ 5, Years, 'Swap5Y'],
+                [ 7, Years, 'Swap7Y'],
+                [ 10, Years,'Swap10Y'],
+                [ 30, Years,'Swap30Y']]
 
-for m, period, rate in depositData:
-    tenor = Period(m, Months)
+    rate_helpers = []
 
-    helper = DepositRateHelper(rate/100, tenor, settlement_days,
-             calendar, ModifiedFollowing, end_of_month,
-             Actual360())
+    end_of_month = True
 
-    rate_helpers.append(helper)
+    for m, period, label in depositData:
+        tenor = Period(m, Months)
+        rate = df_libor.get_value(dtObs, label)
+        helper = DepositRateHelper(float(rate/100), tenor,
+                 settlement_days,
+                 calendar, ModifiedFollowing, end_of_month,
+                 Actual360())
 
-endOfMonth = True
+        rate_helpers.append(helper)
 
-liborIndex = Libor('USD Libor', Period(6, Months), settlement_days,
-                   USDCurrency(), calendar, ModifiedFollowing,
-                   endOfMonth, Actual360())
+    endOfMonth = True
 
-spread = SimpleQuote(0)
-fwdStart = Period(0, Days)
+    liborIndex = Libor('USD Libor', Period(6, Months),
+                       settlement_days,
+                       USDCurrency(), calendar,
+                       ModifiedFollowing,
+                       endOfMonth, Actual360())
 
-for m, period, rate in swapData:
-    rate = SimpleQuote(rate/100)
+    spread = SimpleQuote(0)
+    fwdStart = Period(0, Days)
 
-    helper = SwapRateHelper(rate, Period(m, Years), 
-        calendar, Annual,
-        Unadjusted, Thirty360(),
-        liborIndex, spread, fwdStart)
+    for m, period, label in swapData:
+        rate = df_libor.get_value(dtObs, label)
+        helper = SwapRateHelper(SimpleQuote(rate/100),
+                 Period(m, Years), 
+            calendar, Annual,
+            Unadjusted, Thirty360(),
+            liborIndex, spread, fwdStart)
 
-    rate_helpers.append(helper)
- 
-ts_day_counter = ActualActual(ISDA)
-tolerance = 1.0e-15
+        rate_helpers.append(helper)
 
-ts = term_structure_factory(
-    'discount', 'loglinear', settlement_date, rate_helpers,
-    ts_day_counter, tolerance)
+    ts_day_counter = ActualActual(ISDA)
+    tolerance = 1.0e-15
 
-print('df: %f' % ts.discount(calendar.advance(today(), 2, Years)))
-print('df: %f' % ts.discount(calendar.advance(today(), 5, Years)))
-print('df: %f' % ts.discount(calendar.advance(today(), 10, Years)))
-print('df: %f' % ts.discount(calendar.advance(today(), 15, Years)))
+    ts = term_structure_factory(
+        'discount', 'loglinear', settlement_date, rate_helpers,
+        ts_day_counter, tolerance)
+
+    return ts
+
+def QLDateTodate(dt):
+    """
+    Converts a QL Date to a datetime
+    """
+    
+    return datetime(dt.year, dt.month, dt.day)
+
+def zero_curve(ts):
+    days = range(10, 365*20, 30)
+    dtMat = [calendar.advance(today(), d, Days) for d in days]
+    df = np.array([ts.discount(dt) for dt in dtMat])
+    dtMat = [QLDateTodate(dt) for dt in dtMat]
+    dtToday = QLDateTodate(today())
+    dt = np.array([(d-dtToday).days/365.0 for d in dtMat])
+    zc = -np.log(df) / dt
+    return (dtMat, zc)
+
+if __name__ == '__main__':
+    
+    df_libor = load('data/df_libor.pkl')
+
+    dtObs = datetime(2011,12,29)
+
+    ts = get_term_structure(df_libor, dtObs)
+
+    (dtMat, zc) = zero_curve(ts)
+
+    plt.plot(dtMat, zc)
+    
+    
