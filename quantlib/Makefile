@@ -28,4 +28,4 @@ build_ex:
 	g++ -m32 -I/opt/local/include/ -I/opt/local/include/boost quantlib_test2.cpp \
     -o test2 -L/opt/local/lib/ -lQuantLib
 
-.PHONY: build docs
+.PHONY: build  docs
