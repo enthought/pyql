@@ -1,8 +1,22 @@
-import urllib
-import pandas
-from pandas.io.parsers import read_csv
+"""
+ Copyright (C) 2011, Enthought Inc
+ Copyright (C) 2011, Patrick Henaff
 
-fname = 'data/frb_h15.csv'
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
+# This script shows how to download libor data
+# (deposits and swap rates) from the FRB data repository
+# and build a pandas time series of rates
+
+import os, urllib, datetime, pandas
+import numpy as np
+import math
+
+from pandas.io.parsers import read_csv
+from datetime import date
 
 def get_frb_url(dtStart, dtEnd):
     """
@@ -12,16 +26,6 @@ def get_frb_url(dtStart, dtEnd):
     
     url = 'http://www.federalreserve.gov/datadownload/Output.aspx?rel=H15&series=8f47c9df920bbb475f402efa44f35c29&lastObs=&from=%s&to=%s&filetype=csv&label=include&layout=seriescolumn' % (dtStart.strftime('%m/%d/%Y'), dtEnd.strftime('%m/%d/%Y'))
     return url
-
-if False:
-    url = get_frb_url(dtStart=date(2000,1,1), dtEnd=date(2011,12,31))
-    frb_site = urllib.urlopen(url)
-    text = frb_site.read().strip()
-
-    f = open(fname, 'w')
-    f.write(text)
-    f.close()
-
 
 def dataconverter(s):
     """
@@ -36,9 +40,35 @@ def dataconverter(s):
         res = np.nan
     return res
 
-# simpler labels
+def good_row(z):
+    """
+    Retain days with no gaps (0 or NaN) in data
+    """
+    
+    try:
+        res = not any([(math.isnan(x) or (x == 0))
+                       for x in z])
+    except:
+        res = False
+    return res
 
-columns_dic = {"RIFLDIY01_N.B":'Swap1Y',
+if __name__ == '__main__':
+
+    fname = 'data/frb_h15.csv'
+
+    if not os.path.isfile(fname):
+        url = get_frb_url(dtStart=date(2000,1,1),
+                          dtEnd=date(2011,12,31))
+        frb_site = urllib.urlopen(url)
+        text = frb_site.read().strip()
+
+        f = open(fname, 'w')
+        f.write(text)
+        f.close()
+
+    # simpler labels
+
+    columns_dic = {"RIFLDIY01_N.B":'Swap1Y',
                "RIFLDIY02_N.B":'Swap2Y',
                "RIFLDIY03_N.B":'Swap3Y',
                "RIFLDIY04_N.B":'Swap4Y',
@@ -50,35 +80,24 @@ columns_dic = {"RIFLDIY01_N.B":'Swap1Y',
                "RILSPDEPM03_N.B":'Libor3M',
                "RILSPDEPM06_N.B":'Libor6M'}
 
-# the first column to be converted is the first data column,
-# excluding the index column (0)
+    # the data converter is applied to all columns
+    # excluding the index column (0)
 
-dc_dict = {i: dataconverter for i in range(0,len(columns_dic.keys()))}
+    dc_dict = {i: dataconverter for i
+               in range(0,len(columns_dic.keys()))}
 
-df_libor = read_csv('data/frb_h15.csv', sep=',', header=True,
+    df_libor = read_csv(fname, sep=',', header=True,
                     index_col=0, parse_dates=True,
                     converters=dc_dict,
                     skiprows=[0,1,2,3,4])
 
-df_libor = df_libor.rename(columns=columns_dic)
+    df_libor = df_libor.rename(columns=columns_dic)
 
-def good_row(z):
-    """
-    Retain days with no gaps in data
-    """
+    print(df_libor)
     
-    try:
-        res = not any([(math.isnan(x) or (x == 0)) for x in z])
-    except:
-        res = False
-    return res
+    good_rows = df_libor.apply(good_row, axis=1)
+    print(good_rows)
+    
+    df_libor = df_libor[good_rows]
 
-good_rows = df_libor.apply(good_row, axis=1)
-df_libor = df_libor[good_rows]
-
-df_libor.save('data/df_libor.pkl')
-
-
-
-
-
+    df_libor.save('data/df_libor.pkl')

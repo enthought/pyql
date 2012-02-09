@@ -14,21 +14,25 @@ from quantlib.processes.bates_process import BatesProcess
 from quantlib.pricingengines.vanilla import (AnalyticHestonEngine, BatesEngine, BatesDetJumpEngine, BatesDoubleExpEngine, BatesDoubleExpDetJumpEngine)
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
-from quantlib.time.api import Period, Date, Actual365Fixed, TARGET, Weeks
+from quantlib.time.api import Period, Date, Actual365Fixed, TARGET, Weeks, Days
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
 
-def dateToDate(dt):
+def dateToQLDate(dt):
+    """
+    Converts a datetime object into a QL Date
+    """
+    
     return Date(dt.day, dt.month, dt.year)
 
 def dfToZeroCurve(df, dtSettlement, daycounter=Actual365Fixed()):
     """
-    Convert a series into a QL zero curve
+    Convert a panda data frame into a QL zero curve
     """
     
     dates = [dateToDate(dt) for dt in df.index]
     dates.insert(0, dateToDate(dtSettlement))
-    dates.append(dates[-1]+365)
+    dates.append(dates[-1]+365*2)
     vx = list(df.values)
     vx.insert(0, vx[0])
     vx.append(vx[-1])
@@ -41,8 +45,8 @@ def heston_helpers(df_option, dtTrade=None, df_rates=None, ival=None):
 
     if dtTrade is None:
         dtTrade = df_option['dtTrade'][0]
-    DtSettlement = Date(dtTrade.day, dtTrade.month, dtTrade.year)
-
+    DtSettlement = datetoQLDate(dtTrade)
+    
     settings = Settings()
     settings.evaluation_date = DtSettlement
 
@@ -65,7 +69,7 @@ def heston_helpers(df_option, dtTrade=None, df_rates=None, ival=None):
     TTM = df_option['T'][0]
     Fwd = df_option['F'][0]
     spot = SimpleQuote(Fwd*np.exp(-(iRate-iDiv)*TTM))
-    print('Spot: %f' % spot.value)
+    print('Spot: %f risk-free rate: %f div. yield: %f' % (spot.value, iRate, iDiv))
 
     # loop through rows in option data frame, construct
     # helpers for bid/ask
@@ -78,11 +82,11 @@ def heston_helpers(df_option, dtTrade=None, df_rates=None, ival=None):
     for index, row in df_option.T.iteritems():
 
         strike = row['K']
-        if (strike/spot.value > 1.25) | (strike/spot.value < .75):
+        if (strike/spot.value > 1.3) | (strike/spot.value < .7):
             continue
 
         days = int(365*row['T'])
-        maturity = Period((days+3)/7.0, Weeks)
+        maturity = Period(days, Days)
 
         options.append(
                 HestonModelHelper(
@@ -350,7 +354,7 @@ def batesdoubleexpdetjump_calibration(df_option, dtTrade=None, df_rates=None, iv
 df_rates = pandas.load('data/df_rates.pkl')
 
 # data set with no smoothing
-df_option = pandas.load('data/df_final.pkl')
+df_option = pandas.load('data/df_SPX_24jan2011.pkl')
 dtTrade = df_option['dtTrade'][0]
 
 if True:
@@ -359,25 +363,25 @@ if True:
                                df_rates)
     df_output.save('data/df_calibration_output_heston.pkl')
 
-if True:
+if False:
     print('bates calibration...')
     df_output = bates_calibration(df_option, dtTrade,
                                df_rates)
     df_output.save('data/df_calibration_output_bates.pkl')
 
-if True:
+if False:
    print('batesdetjump calibration...')
    df_output = batesdetjump_calibration(df_option, dtTrade,
                                df_rates)
    df_output.save('data/df_calibration_output_batesdetjump.pkl')
 
-if True:
+if False:
    print('bates double exp calibration...')
    df_output = batesdoubleexp_calibration(df_option, dtTrade,
                                df_rates)
    df_output.save('data/df_calibration_output_batesdoubleexp.pkl')
 
-if True:
+if False:
    print('bates double exp det jump calibration...')
    df_output = batesdoubleexpdetjump_calibration(df_option, dtTrade,
                                df_rates)

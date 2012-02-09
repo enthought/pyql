@@ -6,7 +6,7 @@ from pandas import DataFrame
 
 def calibration_subplot(ax, group, i, model_name):
     group = group.sort_index(by='K')
-    dtExpiry = group['dtExpiry'][0]
+    dtExpiry = group.get_value(group.index[0], 'dtExpiry')
     K = group['K']
     VB = group['VB']
     VA = group['VA']
@@ -51,30 +51,31 @@ dtTrade = df_calibration['dtTrade'][0]
 title = 'Heston Model (%s)' % dtTrade
 calibration_plot(title, df_calibration, 'Heston')
 
-# bates model
-df_calibration = \
-  pandas.load('data/df_calibration_output_bates.pkl')
-dtTrade = df_calibration['dtTrade'][0]
-title = 'Bates Model (%s)' % dtTrade
-calibration_plot(title, df_calibration, 'Bates')
+if False:
+    # bates model
+    df_calibration = \
+                   pandas.load('data/df_calibration_output_bates.pkl')
+    dtTrade = df_calibration['dtTrade'][0]
+    title = 'Bates Model (%s)' % dtTrade
+    calibration_plot(title, df_calibration, 'Bates')
 
-# det jump
-df_calibration = \
-  pandas.load('data/df_calibration_output_batesdetjump.pkl')
-dtTrade = df_calibration['dtTrade'][0]
-title = 'Bates Det Jump Model (%s)' % dtTrade
-calibration_plot(title, df_calibration, 'BatesDetJump')
+    # det jump
+    df_calibration = \
+      pandas.load('data/df_calibration_output_batesdetjump.pkl')
+    dtTrade = df_calibration['dtTrade'][0]
+    title = 'Bates Det Jump Model (%s)' % dtTrade
+    calibration_plot(title, df_calibration, 'BatesDetJump')
 
-# double exp
-df_calibration = \
-  pandas.load('data/df_calibration_output_batesdoubleexp.pkl')
-dtTrade = df_calibration['dtTrade'][0]
-title = 'Bates Double Exp Model (%s)' % dtTrade
-calibration_plot(title, df_calibration, 'BatesDoubleExp')
+    # double exp
+    df_calibration = \
+      pandas.load('data/df_calibration_output_batesdoubleexp.pkl')
+    dtTrade = df_calibration['dtTrade'][0]
+    title = 'Bates Double Exp Model (%s)' % dtTrade
+    calibration_plot(title, df_calibration, 'BatesDoubleExp')
 
-# double exp det jump
-df_calibration = \
-  pandas.load('data/df_calibration_output_batesdoubleexpdetjump.pkl')
-dtTrade = df_calibration['dtTrade'][0]
-title = 'Bates Double Exp Det Jump Model (%s)' % dtTrade
-calibration_plot(title, df_calibration, 'BatesDoubleExpDetJump')
+    # double exp det jump
+    df_calibration = \
+      pandas.load('data/df_calibration_output_batesdoubleexpdetjump.pkl')
+    dtTrade = df_calibration['dtTrade'][0]
+    title = 'Bates Double Exp Det Jump Model (%s)' % dtTrade
+    calibration_plot(title, df_calibration, 'BatesDoubleExpDetJump')

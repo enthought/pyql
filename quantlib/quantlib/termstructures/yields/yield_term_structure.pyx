@@ -46,7 +46,27 @@ cdef class YieldTermStructure:
             self._relinkable_ptr.linkTo(deref(structure._thisptr))
 
         return
-
+    
+#    def zeroRate(self, dt, dayCounter, comp, freq, extrapolate):
+#        """
+#        InterestRate YieldTermStructure::zeroRate(const Date& d,
+#                                              const DayCounter& dayCounter,
+#                                              Compounding comp,
+#                                              Frequency freq, bool extrapolate)
+#        """
+#        cdef shared_ptr[ffwd.YieldTermStructure] ts_ptr
+#        if self.relinkable is True:
+            # retrieves the shared_ptr (currentLink()) then gets the
+            # term_structure (get())
+#            ts_ptr = shared_ptr[ffwd.YieldTermStructure](self._relinkable_ptr.currentLink())
+#            term_structure = ts_ptr.get()
+#        else:
+#            term_structure = self._thisptr.get()
+    
+#        zero_rate = term_structure.zeroRate(dt, dayCounter, comp, freq, extrapolate)
+        
+#        return zero_rate
+        
     def discount(self, value):
         cdef ffwd.YieldTermStructure* term_structure
         cdef shared_ptr[ffwd.YieldTermStructure] ts_ptr

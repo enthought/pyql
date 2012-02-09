@@ -106,6 +106,7 @@ def read_SPX_file(option_data_file):
     
     # parse Calls and Puts columns for strike and contract month
     # insert into data frame
+    
     cp = [parseSPX(s) for s in df_all['Spec']]
     df_all['Strike'] = [x['strike'] for x in cp]
     df_all['dtExpiry'] = [x['dtExpiry'] for x in cp]
@@ -123,96 +124,97 @@ def ATM_Vol(premium, discountFactor, forward, strike):
     
     return vol
 
-
-# get spot and option data frame
+    # get spot and option data frame
     
-(spot, optionDataFrame) = read_SPX_file(option_data_file)
+    (spot, optionDataFrame) = read_SPX_file(option_data_file)
 
-grouped = optionDataFrame.groupby('dtExpiry') 
+    grouped = optionDataFrame.groupby('dtExpiry') 
 
-isFirst = True
-for spec, group in grouped:
-    print('processing group %s' % spec)
+    isFirst = True
+    for spec, group in grouped:
+        print('processing group %s' % spec)
 
-    # implied vol for this type/expiry group
-    
-    dtTrade = group['dtTrade'][0]
-    dtExpiry = group['dtExpiry'][0]
-    daysToExpiry = (dtExpiry-dtTrade).days
-    timeToMaturity = daysToExpiry/365.0
+        # implied vol for this type/expiry group
 
-    # exclude groups with too few data points 
-    # or too short maturity
+        indx = group.index
+        
+        dtTrade = group['dtTrade'][indx[0]]
+        dtExpiry = group['dtExpiry'][indx[0]]
+        daysToExpiry = (dtExpiry-dtTrade).days
+        timeToMaturity = daysToExpiry/365.0
 
-    if timeToMaturity < tMin:
-        continue
+        # exclude groups with too few data points 
+        # or too short maturity
+
+        if timeToMaturity < tMin:
+            continue
             
-    # valid call and put quotes
-    df_call = group[(group['Type'] == 'C') & (group['Bid']>0) \
+        # valid call and put quotes
+        df_call = group[(group['Type'] == 'C') & (group['Bid']>0) \
                     & (group['Ask']>0)]
-    df_put = group[(group['Type'] == 'P') &  (group['Bid']>0) \
+        df_put = group[(group['Type'] == 'P') &  (group['Bid']>0) \
                     & (group['Ask']>0)]
-    if (len(df_call) == 0) | (len(df_put) == 0):
-        continue
+        if (len(df_call) == 0) | (len(df_put) == 0):
+            continue
 
-    # calculate forward, implied interest rate and implied div. yield
-    # Shimko's method
+        # calculate forward, implied interest rate and implied div. yield
             
-    df_call['Mid'] = (df_call['Bid']+df_call['Ask'])/2
-    df_put['Mid'] = (df_put['Bid']+df_put['Ask'])/2
+        df_call['Mid'] = (df_call['Bid']+df_call['Ask'])/2
+        df_put['Mid'] = (df_put['Bid']+df_put['Ask'])/2
     
-    df_C = DataFrame.filter(df_call, items=['Strike', 'Mid'])
-    df_C.columns = ['Strike', 'PremiumC']
-    to_join = DataFrame(df_put['Mid'], index=df_put['Strike'],
+        df_C = DataFrame.filter(df_call, items=['Strike', 'Mid'])
+        df_C.columns = ['Strike', 'PremiumC']
+        to_join = DataFrame(df_put['Mid'], index=df_put['Strike'],
             columns=['PremiumP']) 
 
-    # use 'inner' join because some strikes are not quoted for C and P
-    df_all = df_C.join(to_join, on='Strike', how='inner')
+        # use 'inner' join because some strikes are not quoted for C and P
+        df_all = df_C.join(to_join, on='Strike', how='inner')
     
-    df_all['C-P'] = df_all['PremiumC'] - df_all['PremiumP']
+        df_all['C-P'] = df_all['PremiumC'] - df_all['PremiumP']
     
-    model = ols(y=df_all['C-P'], x=df_all.ix[:,'Strike'])
-    b = model.beta 
+        model = ols(y=df_all['C-P'], x=df_all.ix[:,'Strike'])
+        b = model.beta 
     
-    # intercept is last coef!
-    iRate = -np.log(-b[0])/timeToMaturity
-    dRate = np.log(spot/b[1])/timeToMaturity
-    discountFactor = np.exp(-iRate*timeToMaturity)
-    Fwd = spot * np.exp((iRate-dRate)*timeToMaturity)
+        # intercept is last coef
+        iRate = -np.log(-b[0])/timeToMaturity
+        dRate = np.log(spot/b[1])/timeToMaturity
+        discountFactor = np.exp(-iRate*timeToMaturity)
+        Fwd = spot * np.exp((iRate-dRate)*timeToMaturity)
 
-    print('Fwd: %f int rate: %f div yield: %f' % (Fwd, iRate, dRate))
+        print('Fwd: %f int rate: %f div yield: %f' % (Fwd, iRate, dRate))
 
-    # interpolate ATM premium and vol: used to compute Quick Delta
-    f_call = interp1d(df_all['Strike'].values, df_all['PremiumC'].values)
-    f_put = interp1d(df_all['Strike'].values, df_all['PremiumP'].values)
+        # interpolate ATM premium and vol: used to compute Quick Delta
+        f_call = interp1d(df_all['Strike'].values, df_all['PremiumC'].values)
+        f_put = interp1d(df_all['Strike'].values, df_all['PremiumP'].values)
 
-    atmPremium = (f_call(Fwd)+f_put(Fwd))/2
-    atmVol = blackFormulaImpliedStdDev('C', strike=Fwd,
-                    forward=Fwd, blackPrice=atmPremium, discount=discountFactor,
-                    TTM=timeToMaturity)/np.sqrt(timeToMaturity)
+        atmPremium = (f_call(Fwd)+f_put(Fwd))/2
+        atmVol = blackFormulaImpliedStdDev('C', strike=Fwd,
+                 forward=Fwd, blackPrice=atmPremium,
+                 discount=discountFactor,
+                 TTM=timeToMaturity)/np.sqrt(timeToMaturity)
                     
-    print('ATM vol: %f' % atmVol)
+        print('ATM vol: %f' % atmVol)
 
-    # Quick Delta, computed with ATM vol
-    rv = norm()
-    df_call['QuickDelta'] = [rv.cdf(np.log(Fwd/strike)/(atmVol*np.sqrt(timeToMaturity))) \
+        # Quick Delta, computed with ATM vol
+        rv = norm()
+        df_call['QuickDelta'] = [rv.cdf(np.log(Fwd/strike)/(atmVol*np.sqrt(timeToMaturity))) \
         for strike in df_call['Strike']]
-    df_put['QuickDelta'] = [rv.cdf(np.log(Fwd/strike)/(atmVol*np.sqrt(timeToMaturity))) \
+        df_put['QuickDelta'] = [rv.cdf(np.log(Fwd/strike)/(atmVol*np.sqrt(timeToMaturity))) \
         for strike in df_put['Strike']]
 
-    # implied bid/ask vol for all options
+        # implied bid/ask vol for all options
     
-    def impvol(strike, premium):
-        try:
-            vol = blackFormulaImpliedStdDev(cp, strike,
+        def impvol(strike, premium):
+            try:
+                vol = blackFormulaImpliedStdDev(cp, strike,
                     forward=Fwd, blackPrice=premium, discount=discountFactor,
                     TTM=timeToMaturity)
-        except:
-            vol = np.nan
-        return vol/np.sqrt(timeToMaturity)
+            except:
+                vol = np.nan
+                return vol/np.sqrt(timeToMaturity)
         
-    cp = 'C'
-    df_call['IVBid'] = [impvol(strike, price) for strike, price in zip(df_call['Strike'], df_call['Bid'])]
+        cp = 'C'
+        df_call['IVBid'] = [impvol(strike, price) for strike, price in zip(df_call['Strike'], df_call['Bid'])]
     df_call['IVAsk'] = [impvol(strike, price) for strike, price in zip(df_call['Strike'], df_call['Ask'])]
     # QD computed with ATM vol 
         
@@ -254,8 +256,7 @@ df_final.to_csv(calibration_data_file, index=False)
 
 df_final.save('data/df_final.pkl')
 
-# save term structure of dividends and rate: first item in each expiry group  
- 
+# save term structure of dividends and rate: first item in each expiry group   
 df_tmp = DataFrame.filter(df_final, items=['dtExpiry', 'R', 'D'])
 grouped = df_tmp.groupby('dtExpiry')
 df_rates = grouped.agg(lambda x: x[0])
