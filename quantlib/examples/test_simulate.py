@@ -13,7 +13,6 @@ from quantlib.time.api import (
 )
 from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.zero_curve import ZeroCurve
 
 def flat_rate(forward, daycounter):
     return FlatForward(

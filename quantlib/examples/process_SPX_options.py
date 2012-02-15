@@ -8,24 +8,18 @@ from pandas.stats.interface import ols
 from scipy.interpolate import interp1d
 from scipy.stats import norm
 
-import quantlib.pricingengines.blackformula
 from quantlib.pricingengines.blackformula import blackFormulaImpliedStdDev
 
-option_data_file = \
-    'data/SPX-Options-24jan2011.csv'
-    
-calibration_data_file = \
-    'data/IV-SPX-Options-24jan2011.csv'
-
-rate_div_file = \
-    'data/rate_div.csv'
+option_data_file      = 'data/SPX-Options-24jan2011.csv'
+calibration_data_file = 'data/IV-SPX-Options-24jan2011.csv'
+rate_div_file         = 'data/rate_div.csv'
 
 # min number of quotes per expiry
-nMinQuotes=6 
+nMinQuotes = 6
 # minimum time to expiry
-tMin=1.0/12 
+tMin = 1.0 / 12
 # min and max Quick Delta
-QDMin=.2; QDMax=.8
+QDMin = .2; QDMax=.8
 
 ##################################################
 # script to parse the SPX option file and compute:
@@ -37,83 +31,88 @@ def ExpiryMonth(s):
     """
     SPX contract months
     """
-    CallMonths = {"A":1, "B":2, "C":3, "D":4, "E":5, "F":6, 
-    "G":7, "H":8, "I":9, "J":10, "K":11, "L":12}
-    PutMonths = {"M":1, "N":2, "O":3, "P":4, "Q":5, "R":6, 
-    "S":7, "T":8, "U":9, "V":10, "W":11, "X":12}
-  
+    call_monhts = "ABCDEFGHIJKL"
+    put_months = "MNOPQRSTUVWX"
+
     try:
-        m = CallMonths[s]
-    except KeyError:
-        m = PutMonths[s]
-    
+        m = call_monhts.index(s)
+    except ValueError:
+        m = put_months.index(s)
+
     return m
 
 spx_symbol = re.compile("\\(SPX(1[0-9])([0-9]{2})([A-Z])([0-9]{3,4})-E\\)")
 
-def parseSPX(s): 
+def parseSPX(s):
     """
     Parse an SPX quote string, return expiry date and strike
     """
     tokens = spx_symbol.split(s)
-    
+
     if len(tokens) == 1:
         return {'dtExpiry': None, 'strike': -1}
 
-    y = 2000 + int(tokens[1])
-    d = int(tokens[2])
-    m = ExpiryMonth(tokens[3])
+    year = 2000 + int(tokens[1])
+    day = int(tokens[2])
+    month = ExpiryMonth(tokens[3])
     strike = float(tokens[4])
 
-    dtExpiry = datetime.date(y, m, d)
-    
+    dtExpiry = datetime.date(year, month, day)
+
     return ({'dtExpiry': dtExpiry, 'strike': strike})
 
 def read_SPX_file(option_data_file):
     """
     Read SPX csv file, return spot and data frame of option quotes
     """
-    
+
     # read two lines for spot price and trade date
-    fid = open(option_data_file)
-    lineOne = fid.readline()
-    spot = eval(lineOne.split(',')[1])
-    
-    lineTwo = fid.readline()
-    dt = lineTwo.split('@')[0]
-    dtTrade = dateutil.parser.parse(dt).date()
-    
+    with open(option_data_file) as fid:
+        lineOne = fid.readline()
+        spot = eval(lineOne.split(',')[1])
+
+        lineTwo = fid.readline()
+        dt = lineTwo.split('@')[0]
+        dtTrade = dateutil.parser.parse(dt).date()
+
     print('Dt Calc: %s Spot: %f' % (dtTrade, spot))
-    fid.close()
-    
+
     # read all option price records as a data frame
-    
-    df = pandas.io.parsers.read_csv(option_data_file, header=2, \
-         skiprows=(0,1), sep=',')
-    
+    df = pandas.io.parsers.read_csv(
+        option_data_file, header=2, skiprows=(0,1), sep=','
+    )
+
     # split and stack calls and puts
     call_df = df[df.columns[0:7]]
-    call_df = call_df.rename(columns={'Calls':'Spec'}) 
+    call_df = call_df.rename(columns={'Calls':'Spec'})
     call_df['Type'] = 'C'
-    
+
     put_df = df[df.columns[7:14]]
-    put_df = put_df.rename(columns = {'Puts':'Spec',  'Last Sale.1':'Last Sale', 
-    'Net.1':'Net', 'Bid.1':'Bid',
-    'Ask.1':'Ask', 'Vol.1':'Vol', 'Open Int.1':'Open Int'}) 
+    put_df = put_df.rename(
+        columns = {
+            'Puts':'Spec',
+            'Last Sale.1':'Last Sale',
+            'Net.1':'Net',
+            'Bid.1':'Bid',
+            'Ask.1':'Ask',
+            'Vol.1':'Vol',
+            'Open Int.1':'Open Int'
+        }
+    )
     put_df['Type'] = 'P'
-        
+
     df_all = call_df.append(put_df,  ignore_index=True)
-    
+
     # parse Calls and Puts columns for strike and contract month
     # insert into data frame
     
     cp = [parseSPX(s) for s in df_all['Spec']]
     df_all['Strike'] = [x['strike'] for x in cp]
     df_all['dtExpiry'] = [x['dtExpiry'] for x in cp]
-    
+
     df_all = df_all[df_all['Strike'] > 0]
     df_all['dtTrade'] = dtTrade
-    
+
     return (spot, df_all)
 
 def ATM_Vol(premium, discountFactor, forward, strike):
@@ -121,7 +120,7 @@ def ATM_Vol(premium, discountFactor, forward, strike):
     Aproximate std dev, for calls close to the money
     """
     vol = (premium/discountFactor - .5*(forward-strike))*5.0/(forward+strike) 
-    
+
     return vol
 
     # get spot and option data frame

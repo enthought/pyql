@@ -18,5 +18,5 @@ from .date import (
     Date, January, February, March, April, May, Months, Period, today, Years,
     Days, August, Jul, Annual, July, Weeks, September
 )
-from .schedule import Schedule, Backward
+from .schedule import Schedule, Backward, Forward
 
