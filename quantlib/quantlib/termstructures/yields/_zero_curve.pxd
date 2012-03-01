@@ -17,4 +17,4 @@ cdef extern from 'ql/termstructures/yield/zerocurve.hpp' namespace 'QuantLib':
             vector[Date]& dates,
             vector[Rate]& yields,
             DayCounter& dayCounter
-        )
+        ) except +
