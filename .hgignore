@@ -1,9 +1,0 @@
-syntax: glob
-*.cpp
-*.h
-*~
-
-syntax: regexp
-\.pyc$
-\.orig$
-\.so$
