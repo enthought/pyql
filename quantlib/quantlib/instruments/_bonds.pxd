@@ -9,17 +9,11 @@ from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._schedule cimport Schedule
 from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
+from quantlib.pricingengines._pricing_engine cimport PricingEngine
 
 cdef extern from 'boost/optional.hpp' namespace 'boost':
     cdef cppclass optional[T]:
         optional(T*)
-
-cdef extern from 'ql/pricingengine.hpp' namespace 'QuantLib':
-
-    cdef cppclass PricingEngine:
-        PricingEngine()
-        PricingEngine(int a)
-
 
 cdef extern from 'ql/instrument.hpp' namespace 'QuantLib':
     cdef cppclass Instrument:
@@ -44,7 +38,7 @@ cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib':
         Date settlementDate(Date d)
         bool isTradable(Date d)
         Real accruedAmount() except +
-        Real accruedAmount(Date d) except + 
+        Real accruedAmount(Date d) except +
 
 
         Real cleanPrice()
@@ -62,7 +56,7 @@ cdef extern from 'ql/pricingengines/bond/discountingbondengine.hpp' namespace \
         DiscountingBondEngine()
         DiscountingBondEngine(Handle[YieldTermStructure]& discountCurve)
         DiscountingBondEngine(Handle[YieldTermStructure]& discountCurve,
-                optional[bool] includeSttlementDateFlows) 
+                optional[bool] includeSttlementDateFlows)
 
 cdef extern from 'ql/instruments/bonds/fixedratebond.hpp' namespace 'QuantLib':
     cdef cppclass FixedRateBond(Bond):
@@ -91,4 +85,4 @@ cdef extern from 'ql/instruments/bonds/zerocouponbond.hpp' namespace 'QuantLib':
                       Date maturityDate,
                       BusinessDayConvention paymentConvention,
                       Real redemption,
-                      Date& issueDate) 
+                      Date& issueDate)

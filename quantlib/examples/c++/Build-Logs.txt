@@ -1,0 +1,35 @@
+Build of HestonCalibration (taken from code::block)
+
+-------------- Clean: Release in HestonCalibration ---------------
+
+Cleaned "HestonCalibration - Release"
+
+-------------- Build: Release in HestonCalibration ---------------
+
+g++ -Wall -I. -I/usr/local/lib/QuantLib-1.0.1/ql -DHAVE_CONFIG_H  -O2     -c /home/phn/dev/ModelRisk/HestonCalibration/CsvHelper.cpp -o obj/Release/CsvHelper.o
+g++ -Wall -I. -I/usr/local/lib/QuantLib-1.0.1/ql -DHAVE_CONFIG_H  -O2     -c /home/phn/dev/ModelRisk/HestonCalibration/HestonCalibrationDriver.cpp -o obj/Release/HestonCalibrationDriver.o
+g++ -Wall -I. -I/usr/local/lib/QuantLib-1.0.1/ql -DHAVE_CONFIG_H  -O2     -c /home/phn/dev/ModelRisk/HestonCalibration/HestonTools.cpp -o obj/Release/HestonTools.o
+g++  -o bin/Release/HestonCalibration obj/Release/CsvHelper.o obj/Release/HestonCalibrationDriver.o obj/Release/HestonTools.o   -s  /usr/local/lib/libQuantLib.so 
+Output size is 494.53 KB
+Process terminated with status 0 (0 minutes, 41 seconds)
+0 errors, 0 warnings (0 minutes, 41 seconds)
+
+Build of HestonSimulation
+
+-------------- Clean: Release in PathSimulator ---------------
+
+Cleaned "PathSimulator - Release"
+
+-------------- Build: Release in PathSimulator ---------------
+
+g++ -Wall -fexceptions  -O3 -I. -I/usr/local/lib/QuantLib-1.0.1/ql -DHAVE_CONFIG_H     -c /home/phn/dev/ModelRisk/HestonCalibration/CsvHelper.cpp -o obj/Release/CsvHelper.o
+g++ -Wall -fexceptions  -O3 -I. -I/usr/local/lib/QuantLib-1.0.1/ql -DHAVE_CONFIG_H     -c /home/phn/dev/ModelRisk/HestonCalibration/HestonTools.cpp -o obj/Release/HestonTools.o
+g++ -Wall -fexceptions  -O3 -I. -I/usr/local/lib/QuantLib-1.0.1/ql -DHAVE_CONFIG_H     -c /home/phn/dev/ModelRisk/HestonCalibration/pathSimulator.cpp -o obj/Release/pathSimulator.o
+g++  -o bin/Release/PathSimulator obj/Release/CsvHelper.o obj/Release/HestonTools.o obj/Release/pathSimulator.o   -s  /usr/local/lib/libQuantLib.so 
+Output size is 494.54 KB
+Process terminated with status 0 (0 minutes, 42 seconds)
+0 errors, 0 warnings (0 minutes, 42 seconds)
+ 
+
+
+

@@ -1,0 +1,27 @@
+QuantLib / Cython example: Construction of zero-coupon curves from FRB data
+
+1) Download swap and deposit rate data from the Federal Reserve database:
+www.federalreserve.gov/datadownload
+
+2) Read the csv file and build a time series of deposit and swap rates
+
+3) Use QuantLib to compute a zero-coupon curve for a given date
+
+Calibration of Heston model on SPX option data
+==============================================
+
+1) process_SPX_options.py computes:
+    - market implied forward, interest rate and dividend yield
+    - implied market volatility (bid/ask)
+    - quick delta
+    - filters quotes to retain only the quotes with a QD between .2 and .8
+    
+2) calibrate_heston estimate the parameters by non-linear least-square 
+    error computed on difference between market vol and model vol
+    
+3) calibration_plot displays fitted and market vols at selected expiries.
+
+
+
+
+

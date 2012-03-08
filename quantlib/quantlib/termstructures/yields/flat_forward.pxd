@@ -1,14 +1,19 @@
+"""
+ Copyright (C) 2011, Enthought Inc
+ Copyright (C) 2011, Patrick Henaff
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
 cimport _flat_forward as ffwd
 from libcpp cimport bool as cbool
+from quantlib.handle cimport shared_ptr
 
-cdef class Quote:
-    cdef ffwd.Quote* _thisptr
+from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
 
-
-
-cdef class YieldTermStructure:
-    cdef ffwd.YieldTermStructure* _thisptr
-    cdef ffwd.RelinkableHandle[ffwd.YieldTermStructure]* _relinkable_ptr
-    cdef cbool relinkable
+cdef class FlatForward(YieldTermStructure):
+    pass
 
 

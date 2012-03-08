@@ -1,8 +1,18 @@
+"""
+ Copyright (C) 2011, Enthought Inc
+ Copyright (C) 2011, Patrick Henaff
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
 import unittest
 
-from quantlib.termstructures.yields.flat_forward import (
-    SimpleQuote, FlatForward, YieldTermStructure
+from quantlib.termstructures.yields.api import (
+    FlatForward, YieldTermStructure
 )
+from quantlib.quotes import SimpleQuote
 
 from quantlib.settings import Settings
 from quantlib.time.calendar import TARGET
@@ -16,7 +26,7 @@ class SimpleQuoteTestCase(unittest.TestCase):
     def test_using_simple_quote(self):
 
         quote = SimpleQuote(10)
-        
+
         self.assertEquals(10, quote.value)
 
         quote.value = 15
@@ -41,8 +51,8 @@ class YieldTermStructureTestCase(unittest.TestCase):
         settlement_days = 3
         flat_term_structure = FlatForward(
             settlement_days = settlement_days,
-            forward         = 0.044, 
-            calendar        = NullCalendar(), 
+            forward         = 0.044,
+            calendar        = NullCalendar(),
             daycounter      = Actual360()
         )
 
@@ -57,8 +67,8 @@ class YieldTermStructureTestCase(unittest.TestCase):
 
         another_flat_term_structure = FlatForward(
                     settlement_days = 10,
-                    forward         = 0.067, 
-                    calendar        = NullCalendar(), 
+                    forward         = 0.067,
+                    calendar        = NullCalendar(),
                     daycounter      = Actual365Fixed()
                 )
 
@@ -91,9 +101,9 @@ class FlatForwardTestCase(unittest.TestCase):
 
         quote = SimpleQuote()
         term_structure = FlatForward(
-            settlement_days = self.settlement_days, 
-            quote           = quote, 
-            calendar        = NullCalendar(), 
+            settlement_days = self.settlement_days,
+            quote           = quote,
+            calendar        = NullCalendar(),
             daycounter      = Actual360()
         )
 
@@ -112,7 +122,7 @@ class FlatForwardTestCase(unittest.TestCase):
             calculated.append(
                 term_structure.discount(self.adjusted_today+ 30 + days)
             )
-        
+
         for i, val in enumerate(expected):
             self.assertAlmostEquals(val, calculated[i])
 

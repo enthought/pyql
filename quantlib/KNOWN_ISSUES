@@ -11,10 +11,3 @@ Issues in the dellocation process
     --> one way to solve the problem could be to use only boost shared_ptr as
     internal pointers in the Cython extensions
 
-
-QuantLib Setings evaluation_date not working
---------------------------------------------
-
-    Using boost version before 1.46 seem to cause issues while setting
-    evaluation dates. The quantlib/test/test_cython_bug,pyx and the tests
-    defined in the quantlib/test/test_bonds.py should fail.

@@ -8,10 +8,11 @@ from quantlib.pricingengines.vanilla import (
     AnalyticEuropeanEngine, BaroneAdesiWhaleyApproximationEngine
 )
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
+from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.time.api import Date, TARGET, May, Actual365Fixed, Months, Period
-from quantlib.termstructures.yields.flat_forward import (
-    SimpleQuote, YieldTermStructure, FlatForward
+from quantlib.termstructures.yields.api import (
+    YieldTermStructure, FlatForward
 )
 from quantlib.termstructures.volatility.equityfx.black_vol_term_structure import BlackConstantVol
 
@@ -41,20 +42,20 @@ underlyingH = SimpleQuote(underlying)
 
 # bootstrap the yield/dividend/vol curves
 flat_term_structure = FlatForward(
-            reference_date = settlement_date, 
-            forward        = risk_free_rate, 
+            reference_date = settlement_date,
+            forward        = risk_free_rate,
             daycounter     = daycounter
         )
 flat_dividend_ts = FlatForward(
-            reference_date = settlement_date, 
-            forward        = dividend_yield, 
+            reference_date = settlement_date,
+            forward        = dividend_yield,
             daycounter     = daycounter
         )
 
 flat_vol_ts = BlackConstantVol(
-            settlement_date, 
-            calendar, 
-            volatility, 
+            settlement_date,
+            calendar,
+            volatility,
             daycounter
         )
 
@@ -82,5 +83,4 @@ european_option.set_pricing_engine(analytic_european_engine)
 print('today: %s settlement: %s maturity: %s' % (todays_date, settlement_date, maturity))
 print('NPV: %f\n' % european_option.net_present_value)
 
-del european_option
 

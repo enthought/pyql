@@ -12,7 +12,7 @@ from quantlib.time._calendar cimport (
     Calendar, TARGET, Unadjusted, ModifiedFollowing, Following
 )
 from quantlib.time._schedule cimport Schedule, Backward
-from quantlib.time.date cimport date_from_qldate_ref, Date
+from quantlib.time.date cimport date_from_qldate, Date
 from quantlib.time.daycounters._actual_actual cimport ISMA, ActualActual
 
 cdef extern from "quantlib/settings/ql_settings.hpp" namespace "QL":
@@ -23,28 +23,28 @@ cdef extern from "quantlib/settings/ql_settings.hpp" namespace "QL":
 def test_bond_schedule_today_cython():
     cdef QlDate today = Date_todaysDate()
     cdef Calendar calendar = TARGET()
-	
+
     cdef FixedRateBond* bond = get_bond_for_evaluation_date(today)
 
     cdef QlDate s_date = calendar.advance(today, <Integer>3, Days, Following,
             False)
     cdef QlDate b_date = bond.settlementDate()
 
-    cdef Date s1 = date_from_qldate_ref(s_date)
-    cdef Date s2 = date_from_qldate_ref(b_date)
+    cdef Date s1 = date_from_qldate(s_date)
+    cdef Date s2 = date_from_qldate(b_date)
 
     return s1, s2
 
 
 cdef FixedRateBond* get_bond_for_evaluation_date(QlDate& in_date):
-    
+
     set_evaluation_date(in_date)
 
     # debugged evaluation date
     cdef QlDate evaluation_date = get_evaluation_date()
-    cdef Date cython_evaluation_date = date_from_qldate_ref(evaluation_date)
+    cdef Date cython_evaluation_date = date_from_qldate(evaluation_date)
     print 'Current evaluation date', cython_evaluation_date
- 
+
 
 
     cdef Calendar calendar = TARGET()
@@ -80,7 +80,7 @@ cdef FixedRateBond* get_bond_for_evaluation_date(QlDate& in_date):
 		    face_amount,
 		    fixed_bond_schedule,
 		    deref(coupons),
-            ActualActual(ISMA), 
+            ActualActual(ISMA),
 		    Following,
             redemption,
             issue_date
@@ -89,7 +89,7 @@ cdef FixedRateBond* get_bond_for_evaluation_date(QlDate& in_date):
     return bond
 
 def test_bond_schedule_anotherday_cython():
-    
+
     cdef QlDate last_month = QlDate(30, August, 2011)
     cdef QlDate today = Date_endOfMonth(last_month)
 
@@ -101,13 +101,13 @@ def test_bond_schedule_anotherday_cython():
     cdef QlDate b_date = bond.settlementDate()
 
     cdef QlDate e_date = get_evaluation_date()
-	
+
     print s_date.serialNumber()
     print b_date.serialNumber()
 
-    cdef Date s1 = date_from_qldate_ref(s_date)
-    cdef Date s2 = date_from_qldate_ref(b_date)
-    cdef Date s3 = date_from_qldate_ref(e_date)
+    cdef Date s1 = date_from_qldate(s_date)
+    cdef Date s2 = date_from_qldate(b_date)
+    cdef Date s3 = date_from_qldate(e_date)
     print s3
 
     return s1, s2

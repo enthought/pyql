@@ -1,8 +1,16 @@
 # distutils: language = c++
 # distutils: libraries = QuantLib
 
-include '../types.pxi'
+"""
+ Copyright (C) 2011, Enthought Inc
+ Copyright (C) 2011, Patrick Henaff
 
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
+include '../types.pxi'
 from libcpp cimport bool
 
 from quantlib._index cimport Index
@@ -19,12 +27,13 @@ cdef extern from "string" namespace "std":
 cdef extern from 'ql/indexes/interestrateindex.hpp' namespace 'QuantLib':
 
     cdef cppclass InterestRateIndex(Index):
-        InterestRateIndex(string& familyName,
-                          Period& tenor,
-                          Natural settlementDays,
-                          Currency& currency,
-                          Calendar& fixingCalendar,
-                          DayCounter& dayCounter)
+        InterestRateIndex()
+#        InterestRateIndex(string& familyName,
+#                          Period& tenor,
+#                          Natural settlementDays,
+#                          Currency& currency,
+#                          Calendar& fixingCalendar,
+#                          DayCounter& dayCounter)
         string name()
         Calendar fixingCalendar( )
         bool isValidFixingDate(Date& fixingDate)
