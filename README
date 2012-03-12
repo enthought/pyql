@@ -13,3 +13,20 @@ As PyQL is already used by other projects, we are still looking for a good
 name. Suggestions are welcome!
 
 
+Building the library
+--------------------
+
+Builds are running fine under Cython 0.15 with the cython_0.15.patch applied
+(combines one pull request about templates with a unicode issue fix).
+Needs to test it under 0.16 and see if things are fixed or report upstream.
+
+The build and test suite can be run::
+
+    make clean
+    make build
+    make tests
+
+
+
+    
+

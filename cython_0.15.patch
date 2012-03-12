@@ -1,0 +1,54 @@
+diff --git a/Cython/Build/Dependencies.py b/Cython/Build/Dependencies.py
+index 7abfcd4..509f887 100644
+--- a/Cython/Build/Dependencies.py
++++ b/Cython/Build/Dependencies.py
+@@ -470,7 +470,7 @@ def create_extension_list(patterns, exclude=[], ctx=None, aliases=None):
+                 if template is not None:
+                     sources += template.sources[1:]
+                 module_list.append(exn_type(
+-                        name=module_name,
++                        name=str(module_name),
+                         sources=sources,
+                         **kwds))
+                 m = module_list[-1]
+diff --git a/Cython/Compiler/Nodes.py b/Cython/Compiler/Nodes.py
+index c740ba6..87f6ba3 100644
+--- a/Cython/Compiler/Nodes.py
++++ b/Cython/Compiler/Nodes.py
+@@ -4913,6 +4913,7 @@ class DelStatNode(StatNode):
+             elif arg.type.is_ptr and arg.type.base_type.is_cpp_class:
+                 arg.generate_result_code(code)
+                 code.putln("delete %s;" % arg.result())
++                code.putln("%s = NULL;" % arg.result())
+             # else error reported earlier
+ 
+     def annotate(self, code):
+diff --git a/Cython/Compiler/Parsing.py b/Cython/Compiler/Parsing.py
+index adf53d5..c6f8bdb 100644
+--- a/Cython/Compiler/Parsing.py
++++ b/Cython/Compiler/Parsing.py
+@@ -296,7 +296,9 @@ def p_typecast(s):
+     s.next()
+     base_type = p_c_base_type(s)
+     is_memslice = isinstance(base_type, Nodes.MemoryViewSliceTypeNode)
+-    if not is_memslice and base_type.name is None:
++    is_template = isinstance(base_type, Nodes.TemplatedTypeNode)
++    if not is_memslice and not is_template and base_type.name is None:
++    #if not is_memslice and base_type.name is None:
+         s.error("Unknown type")
+     declarator = p_c_declarator(s, empty = 1)
+     if s.sy == '?':
+diff --git a/Cython/Compiler/PyrexTypes.py b/Cython/Compiler/PyrexTypes.py
+index e35a34c..9c584b6 100755
+--- a/Cython/Compiler/PyrexTypes.py
++++ b/Cython/Compiler/PyrexTypes.py
+@@ -2940,7 +2940,8 @@ class CppClassType(CType):
+         if other_type.is_cpp_class:
+             if self == other_type:
+                 return 1
+-            elif self.template_type and self.template_type == other_type.template_type:
++            #elif self.template_type and self.template_type == other_type.template_type:
++            elif self.template_type and other_type.template_type:
+                 if self.templates == other_type.templates:
+                     return 1
+                 for t1, t2 in zip(self.templates, other_type.templates):
