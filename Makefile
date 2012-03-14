@@ -16,8 +16,8 @@ docs:
 build:
 	python setup.py build_ext --inplace
 
-build_sim:
-	python setup_sim.py build_ext --inplace
+install:
+	python setup.py install
 
 tests-preload:
 	LD_PRELOAD=/opt/QuantLib-1.1/lib/libQuantLib.so nosetests -v quantlib/test
