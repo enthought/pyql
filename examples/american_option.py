@@ -79,14 +79,15 @@ def main():
     # method: analytic
 
     option.set_pricing_engine(BaroneAdesiWhaleyApproximationEngine(process))
-    report('Barone-Adesi-Whaley',option.NPV())
+    report('Barone-Adesi-Whaley',option.net_present_value)
 
 
     print 'This is work in progress.'
     print 'Some pricing engines are not interfaced yet'
+
     return
 
-    option.setPricingEngine(BjerksundStenslandEngine(process))
+    option.set_pricing_engine(BjerksundStenslandEngine(process))
     report('Bjerksund-Stensland',option.NPV())
 
     # method: finite differences

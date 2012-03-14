@@ -16,7 +16,7 @@ from .daycounter import Thirty360, Actual360, Actual365Fixed
 from .daycounters.actual_actual import ActualActual, ISMA, ISDA
 from .date import (
     Date, January, February, March, April, May, Months, Period, today, Years,
-    Days, August, Jul, Annual, July, Weeks, September
+    Days, August, Jul, Annual, July, Weeks, September, November, Semiannual
 )
 from .schedule import Schedule, Backward, Forward
 

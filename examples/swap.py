@@ -1,3 +1,7 @@
+""" Port of the swap example of QuantLib SWIG to PyQL.
+
+Warning: this is work in progress and currently not working.
+"""
 from quantlib.indexes.euribor import Euribor6M
 from quantlib.pricingengines.swap import DiscountingSwapEngine
 from quantlib.settings import Settings
@@ -14,7 +18,7 @@ from quantlib.time.api import Forward
 # global data
 calendar = TARGET()
 todaysDate = Date(6,November,2001);
-Settings.instance().evaluationDate = todaysDate
+Settings.instance().evaluation_date = todaysDate
 settlementDate = Date(8,November,2001);
 
 # market quotes

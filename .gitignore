@@ -1,0 +1,7 @@
+build/*
+quantlib.egg-info/*
+*.cpp
+*.so
+*.h
+*.pyc
+*.swp
