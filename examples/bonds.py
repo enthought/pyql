@@ -22,7 +22,7 @@ from quantlib.termstructures.yields.api import (
 todays_date = Date(25, August, 2011)
 
 
-settings = Settings()
+settings = Settings.instance()
 settings.evaluation_date =  todays_date
 
 calendar = TARGET()

@@ -32,8 +32,17 @@ from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
 import datetime
 
 cdef class Bond:
+    """ Base bond class
 
-    cdef _bonds.Bond* _thisptr      #FIXME: replace with a shared_ptr
+        ..warning:
+            Most methods assume that the cash flows are stored
+            sorted by date, the redemption(s) being after any
+            cash flow at the same date. In particular, if there's
+            one single redemption, it must be the last cash flow,
+
+    """
+
+    cdef shared_ptr[_bonds.Bond]* _thisptr
     cdef cbool _has_pricing_engine
 
     def __cinit__(self):
@@ -47,6 +56,8 @@ cdef class Bond:
     def set_pricing_engine(self, YieldTermStructure yield_term_structure):
         '''Sets the pricing engine based on the given term structure.
 
+        FIXME: this is inconsistant - we do not set the pricing engine but we
+        set the term structure for a discounting  bond engine ...
         FIXME : the pricing engine is not exposed and cannot be selected at this
         stage. There is only one engine for bonds, the DiscountingBondEngine,
         which is allocated when calling this function.
@@ -61,26 +72,26 @@ cdef class Bond:
         cdef shared_ptr[_bonds.PricingEngine]* engine_ptr = \
                 new _bonds.shared_ptr[_bonds.PricingEngine](engine)
 
-        self._thisptr.setPricingEngine(deref(engine_ptr))
+        self._thisptr.get().setPricingEngine(deref(engine_ptr))
 
         self._has_pricing_engine = True
 
     property issue_date:
         """ Bond issue date. """
         def __get__(self):
-            cdef _date.Date issue_date = self._thisptr.issueDate()
+            cdef _date.Date issue_date = self._thisptr.get().issueDate()
             return date_from_qldate(issue_date)
 
     property maturity_date:
         """ Bond maturity date. """
         def __get__(self):
-            cdef _date.Date maturity_date = self._thisptr.maturityDate()
+            cdef _date.Date maturity_date = self._thisptr.get().maturityDate()
             return date_from_qldate(maturity_date)
 
     property valuation_date:
         """ Bond valuation date. """
         def __get__(self):
-            cdef _date.Date valuation_date = self._thisptr.valuationDate()
+            cdef _date.Date valuation_date = self._thisptr.get().valuationDate()
             return date_from_qldate(valuation_date)
 
     def settlement_date(self, Date from_date=None):
@@ -89,9 +100,9 @@ cdef class Bond:
         cdef _date.Date settlement_date
         if from_date is not None:
             date = from_date._thisptr.get()
-            settlement_date = self._thisptr.settlementDate(deref(date))
+            settlement_date = self._thisptr.get().settlementDate(deref(date))
         else:
-            settlement_date = self._thisptr.settlementDate()
+            settlement_date = self._thisptr.get().settlementDate()
 
         return date_from_qldate(settlement_date)
 
@@ -99,26 +110,26 @@ cdef class Bond:
         """ Bond clena price. """
         def __get__(self):
             if self._has_pricing_engine:
-                return self._thisptr.cleanPrice()
+                return self._thisptr.get().cleanPrice()
 
     property dirty_price:
         """ Bond dirty price. """
         def __get__(self):
             if self._has_pricing_engine:
-                return self._thisptr.dirtyPrice()
+                return self._thisptr.get().dirtyPrice()
 
     property net_present_value:
         """ Bond net present value. """
         def __get__(self):
             if self._has_pricing_engine:
-                return self._thisptr.NPV()
+                return self._thisptr.get().NPV()
 
     def accrued_amount(self, Date date=None):
         """ Returns the bond accrued amount at the given date. """
         if date is not None:
-            amount = self._thisptr.accruedAmount(deref(date._thisptr.get()))
+            amount = self._thisptr.get().accruedAmount(deref(date._thisptr.get()))
         else:
-            amount = (<_bonds.Bond*>self._thisptr).accruedAmount()
+            amount = self._thisptr.get().accruedAmount()
         return amount
 
 cdef class FixedRateBond(Bond):
@@ -143,21 +154,24 @@ cdef class FixedRateBond(Bond):
                 # empty issue rate seem to break some of the computation with
                 # segfaults. Do we really want to let the user do that ? Or
                 # shall we default on the first date of the schedule ?
-                self._thisptr = new _bonds.FixedRateBond(settlement_days,
-                    face_amount, deref(_fixed_bonds_schedule), deref(_coupons),
-                    deref(_accrual_day_counter),
-                    <BusinessDayConvention>payment_convention,
-                    redemption
+                self._thisptr = new shared_ptr[_bonds.Bond](
+                    new _bonds.FixedRateBond(settlement_days,
+                        face_amount, deref(_fixed_bonds_schedule), deref(_coupons),
+                        deref(_accrual_day_counter),
+                        <BusinessDayConvention>payment_convention,
+                        redemption)
                 )
             else:
                 _issue_date = <_date.Date*>((<Date>issue_date)._thisptr.get())
 
-                self._thisptr = new _bonds.FixedRateBond(settlement_days,
+                self._thisptr = new shared_ptr[_bonds.Bond](\
+                    new _bonds.FixedRateBond(settlement_days,
                         face_amount, deref(_fixed_bonds_schedule),
                         deref(_coupons),
                         deref(_accrual_day_counter),
                         <BusinessDayConvention>payment_convention,
                         redemption, deref(_issue_date)
+                    )
                 )
 
 cdef class ZeroCouponBond(Bond):
@@ -168,11 +182,13 @@ cdef class ZeroCouponBond(Bond):
     ):
         """ Instantiate a zero coupon bond. """
         if issue_date is not None:
-            self._thisptr = new _bonds.ZeroCouponBond(
-                <Natural> settlement_days, deref(calendar._thisptr),
-                <Real>face_amount, deref(maturity_date._thisptr.get()),
-                <BusinessDayConvention>payment_convention,
-                <Real>redemption, deref(issue_date._thisptr.get())
+            self._thisptr = new shared_ptr[_bonds.Bond](
+                new _bonds.ZeroCouponBond(
+                    <Natural> settlement_days, deref(calendar._thisptr),
+                    <Real>face_amount, deref(maturity_date._thisptr.get()),
+                    <BusinessDayConvention>payment_convention,
+                    <Real>redemption, deref(issue_date._thisptr.get())
+                )
             )
         else:
             raise NotImplementedError(
