@@ -20,6 +20,10 @@ VALID_INTERPOLATORS = ['loglinear', 'linear', 'spline']
 
 def term_structure_factory(str traits, str interpolator, Date settlement_date,
     rate_helpers, DayCounter day_counter, Real tolerance=1.0e-12):
+    """ Returns a YieldTermStructure based on the piecewise yield curve information provided
+    as input.
+
+    """
 
     # validate inputs
     if traits not in VALID_TRAITS:

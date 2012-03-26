@@ -133,6 +133,15 @@ cdef class Bond:
         return amount
 
 cdef class FixedRateBond(Bond):
+    """ Fixed rate bond.
+
+    Support:
+        - simple annual compounding coupon rates
+
+    Unsupported: (needs interfacing)
+        - simple annual compounding coupon rates with internal schedule calculation
+        - generic compounding and frequency InterestRate coupons
+    """
 
     def __init__(self, int settlement_days, float face_amount,
             Schedule fixed_bonds_schedule,
@@ -175,6 +184,7 @@ cdef class FixedRateBond(Bond):
                 )
 
 cdef class ZeroCouponBond(Bond):
+    """ Zero coupon bond. """
 
     def __init__(self, settlement_days, Calendar calendar, face_amount,
         Date maturity_date, payment_convention=Following, redemption=100.,

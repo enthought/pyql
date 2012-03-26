@@ -24,7 +24,6 @@ cdef public enum BusinessDayConvention:
     ModifiedPreceding = _calendar.ModifiedPreceding
     Unadjusted        = _calendar.Unadjusted
 
-
 cdef class Calendar:
     '''This class provides methods for determining whether a date is a
     business day or a holiday for a given market, and for
@@ -118,6 +117,9 @@ cdef class Calendar:
                end_of_month=False):
         '''Advances the given date of the given number of business days,
         or period and returns the result.
+
+        You must provide either a step and unit or a Period.
+
         '''
         cdef _date.Date* c_date = (<date.Date>given_date)._thisptr.get()
         cdef _date.Date advanced_date
@@ -131,6 +133,10 @@ cdef class Calendar:
             advanced_date = self._thisptr.advance(deref(c_date),
                     deref((<date.Period>period)._thisptr.get()),
                     <_calendar.BusinessDayConvention>convention, end_of_month)
+        else:
+            raise ValueError(
+                'You must at least provide a step and unit or a Period!'
+            )
 
         return date.date_from_qldate(advanced_date)
 

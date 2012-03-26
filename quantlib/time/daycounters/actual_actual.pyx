@@ -26,6 +26,21 @@ cdef public enum Convention:
     Euro       = _aa.Euro
 
 cdef class ActualActual(DayCounter):
+    """ Actual/Actual day count
+
+    The day count can be calculated according to:
+
+        - the ISDA convention, also known as "Actual/Actual (Historical)",
+          "Actual/Actual", "Act/Act", and according to ISDA also "Actual/365",
+          "Act/365", and "A/365";
+        - the ISMA and US Treasury convention, also known as
+          "Actual/Actual (Bond)";
+        - the AFB convention, also known as "Actual/Actual (Euro)".
+
+        For more details, refer to
+        http://www.isda.org/publications/pdf/Day-Count-Fracation1999.pdf
+
+    """
 
     def __cinit__(self, convention=ISMA):
         self._thisptr = <_daycounter.DayCounter*> new \
