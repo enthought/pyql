@@ -37,12 +37,14 @@ cdef public enum Rule:
     CDS            = _schedule.CDS
 
 cdef class Schedule:
+    """ Payment schedule. """
 
 
-    def __cinit__(self, Date effective_date, Date termination_date,
+    def __init__(self, Date effective_date, Date termination_date,
             Period tenor, Calendar calendar,
-            int business_day_convention, int termination_date_convention,
-           int date_generation_rule, end_of_month=False):
+            int business_day_convention=_calendar.Following,
+            int termination_date_convention=_calendar.Following,
+           int date_generation_rule=Forward, end_of_month=False):
 
         self._thisptr = new _schedule.Schedule(
             deref(effective_date._thisptr.get()),
@@ -56,7 +58,9 @@ cdef class Schedule:
 
 
     def __dealloc__(self):
-        del self._thisptr
+        if self._thisptr is NULL:
+            del self._thisptr
+            self._thisptr = NULL
 
 
     def dates(self):

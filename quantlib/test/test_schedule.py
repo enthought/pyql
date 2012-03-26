@@ -19,13 +19,20 @@ class ScheduleTestCase(unittest.TestCase):
         termination_convention = Following
         rule = Forward
 
-        schedule = Schedule(from_date, to_date, tenor, calendar, convention,
-                termination_convention, rule)
+        schedule = Schedule(
+            from_date, to_date, tenor, calendar, convention, termination_convention, rule
+        )
 
         for date in schedule.dates():
             print date
 
         self.assert_(schedule is not None)
+
+        # Constructor using the defaults for the different conventions
+        schedule = Schedule(from_date, to_date, tenor, calendar)
+
+        self.assert_(schedule is not None)
+
 
 class ScheduleMethodTestCase(unittest.TestCase):
 
