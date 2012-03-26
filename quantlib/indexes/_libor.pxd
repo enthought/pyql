@@ -10,9 +10,18 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+include '../types.pxi'
 from quantlib.handle cimport Handle
 cimport quantlib.termstructures.yields._flat_forward as _ff
+from quantlib._currency cimport Currency
 from quantlib.indexes._ibor_index cimport IborIndex
+from quantlib.time._calendar cimport Calendar
+from quantlib.time._daycounter cimport DayCounter
+from quantlib.time._period cimport Period
+
+cdef extern from "string" namespace "std":
+    cdef cppclass string:
+        char* c_str()
 
 cdef extern from 'ql/indexes/ibor/libor.hpp' namespace 'QuantLib':
 
@@ -22,8 +31,5 @@ cdef extern from 'ql/indexes/ibor/libor.hpp' namespace 'QuantLib':
                   Period& tenor,
                   Natural settlementDays,
                   Currency& currency,
-                  Calendar& fixingCalendar,
-                  BusinessDayConvention convention,
-                  bool endOfMonth,
+                  Calendar& finencialCenterCalendar,
                   DayCounter& dayCounter) except +
-                  # Handle[_ff.YieldTermStructure]& h) except +

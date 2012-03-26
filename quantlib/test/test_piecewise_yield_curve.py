@@ -120,11 +120,8 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
             rate_helpers.append(helper)
 
-        endOfMonth = True
-
         liborIndex = Libor('USD Libor', Period(6, Months), settlement_days,
-                           USDCurrency(), calendar, ModifiedFollowing,
-                           endOfMonth, Actual360())
+                           USDCurrency(), calendar, Actual360())
 
         spread = SimpleQuote(0)
         fwdStart = Period(0, Days)
@@ -132,7 +129,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         for m, period, rate in swapData:
             rate = SimpleQuote(rate/100)
 
-            helper = SwapRateHelper(rate, Period(m, Years), 
+            helper = SwapRateHelper(rate, Period(m, Years),
                 calendar, Annual,
                 Unadjusted, Thirty360(),
                 liborIndex, spread, fwdStart)

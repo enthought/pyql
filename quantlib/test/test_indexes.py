@@ -14,7 +14,7 @@ from quantlib.index import Index
 from quantlib.indexes.interest_rate_index import InterestRateIndex
 from quantlib.indexes.libor import Libor
 from quantlib.settings import Settings
-from quantlib.time.api import Days, ModifiedFollowing, Months, Period, TARGET
+from quantlib.time.api import Days, Months, Period, TARGET
 from quantlib.time.api import Actual360, today
 
 class TestIndex(unittest.TestCase):
@@ -50,11 +50,8 @@ class TestLibor(unittest.TestCase):
         # must be a business day
         settlement_date = calendar.adjust(settlement_date);
 
-        end_of_month = True
-
         index = Libor('USD Libor', Period(6, Months), settlement_days,
-                        USDCurrency(), calendar, ModifiedFollowing,
-                        end_of_month, Actual360())
+                        USDCurrency(), calendar, Actual360())
 
         self.assertEquals('USD Libor6M Actual/360', index.name)
 

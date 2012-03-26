@@ -18,9 +18,8 @@ from libcpp.string cimport string
 from cpython.string cimport PyString_AsString
 
 cimport quantlib.termstructures.yields._flat_forward as _ffwd
-cimport _euribor as _eu
+cimport _libor
 cimport quantlib._index as _in
-cimport quantlib.indexes._ibor_index as _ii
 
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
 from quantlib.time.date cimport Period
@@ -31,6 +30,11 @@ from quantlib.time._calendar cimport BusinessDayConvention
 
 
 cdef class Libor(IborIndex):
+    """ Base class for all BBA LIBOR indexes but the EUR, O/N, and S/N ones
+    LIBOR fixed by BBA.
+
+        See <http://www.bba.org.uk/bba/jsp/polopoly.jsp?d=225&a=1414>.
+    """
 
     def __cinit__(self):
         self._thisptr = NULL
@@ -45,9 +49,7 @@ cdef class Libor(IborIndex):
         Period tenor,
         Natural settlementDays,
         Currency currency,
-        Calendar fixingCalendar,
-        BusinessDayConvention busDayConvention,
-        bool endOfMonth,
+        Calendar financial_center_calendar,
         DayCounter dayCounter):
     
         # convert the Python str to C++ string
@@ -55,13 +57,11 @@ cdef class Libor(IborIndex):
 
         
         self._thisptr = new shared_ptr[_in.Index](
-        new _ii.IborIndex(
+        new _libor.Libor(
             familyName_string,
             deref(tenor._thisptr.get()),
             <Natural> settlementDays,
             deref(currency._thisptr),
-            deref(fixingCalendar._thisptr),
-            <BusinessDayConvention> busDayConvention,
-            <cbool> endOfMonth,
+            deref(financial_center_calendar._thisptr),
             deref(dayCounter._thisptr)))
 
