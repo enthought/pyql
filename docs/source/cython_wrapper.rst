@@ -1,4 +1,3 @@
-========================================
 How to wrap QuantLib classes with cython
 ========================================
 
@@ -26,7 +25,7 @@ After wrapping the C++ class, this class is now available in python:
 
 
 The Interface Code
-==================
+------------------
 
 To expose QL class ''foo'', you need to create three files. For the sake of
 standardization, they should be named as follows:
@@ -148,14 +147,4 @@ to a local pointer variables as it might deallocated. Always use the copy
 constructor of the shared_ptr to get a local copy of it, stack allocated (there
 is no need to use new)
 
-
-Issues
-======
-
-
-Common cython compiler error messages
--------------------------------------
-
-We have gathered in this section information about common errors in the 
-interfacing code, how to identify them and what to do to fix them.
 

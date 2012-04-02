@@ -34,7 +34,7 @@ quantlib
     :members:
 
 quantlib.indexes
---------------------
+----------------
 
 .. currentmodule:: quantlib.index
 
