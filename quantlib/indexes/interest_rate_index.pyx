@@ -29,11 +29,7 @@ cdef class InterestRateIndex(Index):
         pass
         
     def __str__(self):
-        return 'Interest rate index %s' % self._thisptr.get().name().c_str()
-    
-#    property name:
-#        def __get__(self):
-#            return self._thisptr.get().name().c_str()
+        return 'Interest rate index %s' % self.name
     
 #    property tenor:
 #        def __get__(self):
