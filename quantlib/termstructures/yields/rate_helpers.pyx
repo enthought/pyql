@@ -32,8 +32,8 @@ cdef class RateHelper:
 
     def __dealloc__(self):
         if self._thisptr is not NULL:
-            print 'Deallocting RateHelper'
             del self._thisptr
+            self._thisptr = NULL
 
     property quote:
         def __get__(self):
@@ -50,8 +50,8 @@ cdef class RelativeDateRateHelper:
 
     def __dealloc__(self):
         if self._thisptr is not NULL:
-            print 'Deallocting RelativeDateRateHelper'
             del self._thisptr
+            self._thisptr = NULL
 
     property quote:
         def __get__(self):
@@ -61,27 +61,37 @@ cdef class RelativeDateRateHelper:
             return value
 
 cdef class DepositRateHelper(RateHelper):
+    """Rate helper for bootstrapping over deposit rates. """
 
-    def __init__(self, Rate quote, Period tenor, Natural fixing_days,
-        Calendar calendar, int convention=ModifiedFollowing,
-        end_of_month=True, DayCounter deposit_day_counter=None
+    def __init__(self, Rate quote, Period tenor=None, Natural fixing_days=0,
+        Calendar calendar=None, int convention=ModifiedFollowing,
+        end_of_month=True, DayCounter deposit_day_counter=None,
+        IborIndex index=None
     ):
 
-        self._thisptr = new shared_ptr[_rh.RateHelper](
-            new _rh.DepositRateHelper(
-                quote,
-                deref(tenor._thisptr.get()),
-                <int>fixing_days,
-                deref(calendar._thisptr),
-                <_rh.BusinessDayConvention>convention,
-                True,
-                deref(deposit_day_counter._thisptr)
+        if index is not None:
+            self._thisptr = new shared_ptr[_rh.RateHelper](
+                new _rh.DepositRateHelper(
+                    quote,
+                    deref(<shared_ptr[_ib.IborIndex]*> index._thisptr)
+                )
             )
-        )
+        else:
+            self._thisptr = new shared_ptr[_rh.RateHelper](
+                new _rh.DepositRateHelper(
+                    quote,
+                    deref(tenor._thisptr.get()),
+                    <int>fixing_days,
+                    deref(calendar._thisptr),
+                    <_rh.BusinessDayConvention>convention,
+                    True,
+                    deref(deposit_day_counter._thisptr)
+                )
+            )
 
 cdef class SwapRateHelper(RelativeDateRateHelper):
 
-    def __init__(self, Quote rate, Period tenor, 
+    def __init__(self, Quote rate, Period tenor,
         Calendar calendar, Frequency fixedFrequency,
         BusinessDayConvention fixedConvention, DayCounter fixedDayCount,
         IborIndex iborIndex, Quote spread, Period fwdStart):

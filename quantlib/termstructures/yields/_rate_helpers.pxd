@@ -18,6 +18,7 @@ from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._period cimport Period, Frequency
 from _flat_forward cimport YieldTermStructure
+from quantlib.indexes._ibor_index cimport IborIndex
 
 cimport quantlib.indexes._ibor_index as _ib
 
@@ -57,10 +58,10 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
                           DayCounter& dayCounter)
 
         # Not supporting IborIndex at this stage
-        #DepositRateHelper(const Handle<Quote>& rate,
-        #                  const boost::shared_ptr<IborIndex>& iborIndex);
-        #DepositRateHelper(Rate rate,
-        #                  const boost::shared_ptr<IborIndex>& iborIndex);
+        DepositRateHelper(Handle[Quote]& rate,
+                          shared_ptr[IborIndex]& iborIndex)
+        DepositRateHelper(Rate rate,
+                          shared_ptr[IborIndex]& iborIndex)
 
     cdef cppclass FraRateHelper(RelativeDateRateHelper):
         FraRateHelper(Handle[Quote]& rate,
