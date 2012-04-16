@@ -1,5 +1,5 @@
 
-from setuptools import setup
+from setuptools import setup, find_packages
 # Warning : do not import the distutils extension before setuptools
 # It does break the cythonize function calls
 from distutils.extension import Extension
@@ -141,7 +141,6 @@ def collect_extensions():
 
     cython_extension_directories = []
     for dirpath, directories, files in os.walk('quantlib'):
-        print 'Path', dirpath
 
         # skip the settings package
         if dirpath.find('settings') > -1 or dirpath.find('test') > -1:
@@ -177,12 +176,13 @@ def collect_extensions():
     return extensions
 
 
+print find_packages('quantlib')
 setup(
     name = 'quantlib',
     version = '0.1',
     author = 'Didrik Pinte,Patrick Henaff',
     license = 'BSD',
-    packages = ['quantlib.settings'],
+    packages = find_packages('.'),
     ext_modules = collect_extensions(),
     cmdclass = {'build_ext': build_ext}
 )
