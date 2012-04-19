@@ -175,14 +175,13 @@ def collect_extensions():
 
     return extensions
 
-
-print find_packages('quantlib')
 setup(
     name = 'quantlib',
     version = '0.1',
     author = 'Didrik Pinte,Patrick Henaff',
     license = 'BSD',
-    packages = find_packages('.'),
+    packages = find_packages(),
     ext_modules = collect_extensions(),
-    cmdclass = {'build_ext': build_ext}
+    cmdclass = {'build_ext': build_ext},
+    install_requires = ['distribute', 'cython'],
 )
