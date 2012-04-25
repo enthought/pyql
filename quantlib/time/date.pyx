@@ -386,12 +386,12 @@ def end_of_month(Date date):
     cdef QlDate eom = Date_endOfMonth(deref(date._thisptr.get()))
     return date_from_qldate(eom)
 
-def maxdate(Date date):
+def maxdate():
     '''Latest allowed date.'''
     cdef QlDate mdate = Date_maxDate()
     return date_from_qldate(mdate)
 
-def mindate(Date date):
+def mindate():
     '''Earliest date allowed.'''
     cdef QlDate mdate = Date_minDate()
     return date_from_qldate(mdate)
