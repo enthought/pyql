@@ -90,11 +90,16 @@ class TestQuantLibDate(unittest.TestCase):
         expected_date = Date(14, Nov, 1998)
         self.assertTrue(expected_date == date3)
 
+        with self.assertRaises(ValueError):
+            # invalid operation
+            date3 - date1
+
         # isub
         date1 = Date(19, Nov, 1998)
         date1 -= 3
         expected_date = Date(16, Nov, 1998)
         self.assertTrue(expected_date == date1)
+
 
     def test_next_weekday(self):
         ''' Test next weekday
@@ -120,6 +125,12 @@ class TestQuantLibDate(unittest.TestCase):
 
         expected_date = Date(26, Mar, 1998)
         self.assertTrue(expected_date == date1)
+
+    def test_nth_weekday_invalid_month(self):
+
+        with self.assertRaises(RuntimeError):
+            date1 = nth_weekday(4, Thursday, 0, 2000)
+
 
     def test_end_of_month(self):
 

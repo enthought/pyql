@@ -89,9 +89,9 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
     cdef bool Date_isLeap 'QuantLib::Date::isLeap'(Year y)
     cdef Date Date_endOfMonth 'QuantLib::Date::endOfMonth'(Date& d)
     cdef bool Date_isEndOfMonth 'QuantLib::Date::isEndOfMonth'(Date& d)
-    cdef Date Date_nextWeekday 'QuantLib::Date::nextWeekday'(Date& d, Weekday w)
+    cdef Date Date_nextWeekday 'QuantLib::Date::nextWeekday'(Date& d, Weekday w) except +
     cdef Date Date_nthWeekday 'QuantLib::Date::nthWeekday'(Size n, Weekday w,
-            Month m, Year y)
+            Month m, Year y) except +
 
 
 
