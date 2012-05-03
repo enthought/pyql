@@ -337,8 +337,10 @@ cdef class Date:
         if isinstance(self, Date):
             if isinstance(value, Period):
                 sub = deref((<Date>self)._thisptr.get()) - deref((<Period>value)._thisptr.get())
-            else:
+            elif isinstance(value, int):
                 sub = deref((<Date>self)._thisptr.get()) - <BigInteger>value
+            else:
+                raise ValueError('Unsupported operand')
             return date_from_qldate(sub)
         else:
             return NotImplemented
