@@ -22,14 +22,13 @@ from quantlib.indexes._ibor_index cimport IborIndex
 
 cimport quantlib.indexes._ibor_index as _ib
 
-from quantlib.termstructures._helpers cimport BootstrapHelper, RelativeDateBootstrapHelper
+from quantlib.termstructures._helpers cimport BootstrapHelper, \
+                                              RelativeDateBootstrapHelper
 
 cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
 
     ctypedef BootstrapHelper[YieldTermStructure] RateHelper
-
-    cdef cppclass RelativeDateRateHelper:
-        Handle[Quote] quote()
+    ctypedef RelativeDateBootstrapHelper[YieldTermStructure] RelativeDateRateHelper
 
     cdef cppclass DepositRateHelper(RateHelper):
         DepositRateHelper(Handle[Quote]& rate,
@@ -47,7 +46,6 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
                           bool endOfMonth,
                           DayCounter& dayCounter)
 
-        # Not supporting IborIndex at this stage
         DepositRateHelper(Handle[Quote]& rate,
                           shared_ptr[IborIndex]& iborIndex)
         DepositRateHelper(Rate rate,
