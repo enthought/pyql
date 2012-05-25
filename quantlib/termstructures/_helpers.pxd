@@ -21,6 +21,5 @@ cdef extern from 'ql/termstructures/bootstraphelper.hpp' namespace 'QuantLib':
         BootstrapHelper(Real quote)
         Handle[Quote] quote()
 
-    # Faking the typedef because not supported by Cython 0.15
     cdef cppclass RelativeDateBootstrapHelper[T](BootstrapHelper):
         pass
