@@ -31,6 +31,7 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                                          RelativeDateDefaultProbabilityHelper
 
     cdef cppclass CdsHelper(RelativeDateDefaultProbabilityHelper):
+        CdsHelper() # empty constructor added for Cython
         CdsHelper(Handle[Quote]& quote, Period& tenor,
                   Integer settlementDays,
                   Calendar& calendar,
@@ -40,5 +41,22 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                   DayCounter& dayCounter,
                   Real recoveryRate,
                   Handle[YieldTermStructure]& discountCurve,
-                  bool settlesAccrual, # removed default value
-                  bool paysAtDefaultTime) # removed default value
+                  bool settlesAccrual, # removed default value (true)
+                  bool paysADefaultTime) # removed default value (true)
+
+        void setTermStructure(DefaultProbabilityTermStructure*)
+
+    cdef cppclass SpreadCdsHelper(CdsHelper):
+         SpreadCdsHelper(Handle[Quote]& runningSpread,
+                        Period& tenor,
+                        Integer settlementDays,
+                        Calendar& calendar,
+                        Frequency frequency,
+                        BusinessDayConvention paymentConvention,
+                        Rule rule,
+                        DayCounter& dayCounter,
+                        Real recoveryRate,
+                        Handle[YieldTermStructure]& discountCurve,
+                        bool settlesAccrual,  # removed default value (true)
+                        bool paysAtDefaultTime) # removed default value (true)
+

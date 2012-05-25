@@ -7,9 +7,14 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+from quantlib.handle cimport shared_ptr
 cimport quantlib.termstructures.credit._credit_helpers as _ci
 
 
 cdef class CdsHelper:
 
-    cdef _ci.CdsHelper* _thisptr # FIXME: this must be a shared_ptr
+    cdef shared_ptr[_ci.CdsHelper]* _thisptr # FIXME: this must be a shared_ptr
+
+
+cdef class SpreadCdsHelper(CdsHelper):
+    pass
