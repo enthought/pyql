@@ -34,7 +34,6 @@ cdef class CdsHelper:
                                  and protection period calculations.
     """
 
-    cdef shared_ptr[_ci.CdsHelper]* _thisptr
 
 
 cdef class SpreadCdsHelper(CdsHelper):

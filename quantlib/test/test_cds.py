@@ -5,7 +5,7 @@ import unittest
 from quantlib.settings import Settings
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.api import FlatForward
-from quantlib.termstructures.credit.api import SpreadCdsHelper
+from quantlib.termstructures.credit.api import SpreadCdsHelper, PiecewiseDefaultCurve
 from quantlib.time.api import TARGET, Date, Actual365Fixed, Months, \
         Following, Quarterly, TwentiethIMM, May, Period
 
@@ -33,7 +33,7 @@ def create_helper():
             Following, TwentiethIMM, Actual365Fixed(), recovery_rate, ts_curve
     )
 
-    return helper
+    return todays_date, helper
 
 
 
@@ -41,7 +41,7 @@ class SpreadCdsHelperTestCase(unittest.TestCase):
 
     def test_create_helper(self):
 
-        helper = create_helper()
+        todays_date, helper = create_helper()
 
         self.assertIsNotNone(helper)
 
@@ -49,13 +49,15 @@ class PiecewiseDefaultCurveTestCase(unittest.TestCase):
 
     def test_create_piecewise(self):
 
-        helper = create_helper()
+        todays_date, helper = create_helper()
 
         curve = PiecewiseDefaultCurve(
-            term_structure=HazardRate,
-            interpolation=BackwardFlat,
+            trait='HazardRate',
+            interpolator='BackwardFlat',
             reference_date=todays_date,
-            instruments=instruments,
+            helpers=[helper],
             daycounter=Actual365Fixed()
         )
+
+        self.assertIsNotNone(curve)
 

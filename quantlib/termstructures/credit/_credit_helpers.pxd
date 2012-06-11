@@ -20,7 +20,7 @@ from quantlib.time._period cimport Period, Frequency
 from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
 from quantlib.time._schedule cimport Rule
 
-from quantlib.termstructures._defaulttermstructures cimport DefaultProbabilityTermStructure
+from quantlib.termstructures._default_term_structure cimport DefaultProbabilityTermStructure
 from quantlib.termstructures._helpers cimport BootstrapHelper, \
                                               RelativeDateBootstrapHelper
 

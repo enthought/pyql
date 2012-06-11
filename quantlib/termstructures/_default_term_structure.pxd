@@ -14,4 +14,4 @@ from libcpp cimport bool
 cdef extern from 'ql/termstructures/defaulttermstructure.hpp' namespace 'QuantLib':
 
     cdef cppclass DefaultProbabilityTermStructure:
-        pass
+        DefaultProbabilityTermStructure()
