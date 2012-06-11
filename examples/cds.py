@@ -17,11 +17,13 @@ if __name__ == '__main__':
     # must be a business day
     todays_date = calendar.adjust(todays_date)
 
-    Settings.instance().evaluation_date() = todays_date
+    Settings.instance().evaluation_date = todays_date
 
     # dummy curve
-    flat_rate = SimpleQuote(0.01)
-    ts_surve = FlatForward(todaysDate, flatRate, Actual365Fixed())
+    flat_rate = 0.01
+    ts_curve = FlatForward(
+        reference_date=todays_date, quote=flat_rate, daycounter=Actual365Fixed()
+    )
 
     # In Lehmans Brothers "guide to exotic credit derivatives"
     # p. 32 there's a simple case, zero flat curve with a flat CDS
@@ -32,15 +34,15 @@ if __name__ == '__main__':
     # market
     recovery_rate = 0.5
     quoted_spreads = [0.0150, 0.0150, 0.0150, 0.0150 ]
-    tenors = [3 * Months, 6 * Months, 1 * Years, 2 * Years]
+    tenors = [Period(i, Months) for i in [3, 6, 12, 24]]
     maturities = [
         calendar.adjust(todays_date + tenors[i], Following) for i in range(4)
     ]
     instruments = []
     for i in range(4):
         helper = SpreadCdsHelper(
-            SimpleQuote(quoted_spreads[i]), tenors[i], 0, calendar, Quarterly,
-            Following, TwentiethIMM, Actual365Fixed(), recovery_rate, tsCurve
+            quoted_spreads[i], tenors[i], 0, calendar, Quarterly,
+            Following, TwentiethIMM, Actual365Fixed(), recovery_rate, ts_curve
         )
 
         // Bootstrap hazard rates
