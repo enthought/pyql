@@ -1,6 +1,6 @@
 /*
  * Cython does not support the full CPP syntax preventing to expose the
- * Piecewise constructors. 
+ * Piecewise constructors (e.g. typemap).
  *
  * This code is inspired by the RQuantLib code and provides a factory function
  * for PiecewiseYieldCurve.
