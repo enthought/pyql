@@ -14,13 +14,14 @@ from Cython.Build import cythonize
 import numpy
 
 if sys.platform == 'darwin':
-    INCLUDE_DIRS = ['/opt/local/include', '.']
+    INCLUDE_DIRS = ['/opt/local/include', '.', './cpp_layer']
     LIBRARY_DIRS = ["/opt/local/lib"]
 elif sys.platform == 'win32':
     INCLUDE_DIRS = [
         r'E:\tmp\QuantLib-1.1',  # QuantLib headers
         r'E:\tmp\boost_1_46_1',  # Boost headers
-        '.'
+        '.',
+        './cpp_layer'
     ]
     LIBRARY_DIRS = [
         r"E:\tmp\QuantLib-1.1\build\vc80\Release",
@@ -115,6 +116,23 @@ def collect_extensions():
 
     )
 
+    piecewise_default_curve_extension = Extension(
+        'quantlib.termstructures.credit.piecewise_default_curve',
+        [
+            'quantlib/termstructures/credit/piecewise_default_curve.pyx',
+            'cpp_layer/credit_piecewise_support_code.cpp'
+        ],
+        language='c++',
+        include_dirs=INCLUDE_DIRS,
+        library_dirs=LIBRARY_DIRS,
+        define_macros = get_define_macros(),
+        extra_compile_args = get_extra_compile_args(),
+        extra_link_args = get_extra_link_args(),
+        libraries=['QuantLib'],
+        pyrex_directives = CYTHON_DIRECTIVES
+
+    )
+
     multipath_extension = Extension(
         name='quantlib.sim.simulate',
         sources=[
@@ -135,6 +153,7 @@ def collect_extensions():
     manual_extensions = [
         multipath_extension,
         piecewise_yield_curve_extension,
+        piecewise_default_curve_extension,
         settings_extension,
         test_extension,
     ]
