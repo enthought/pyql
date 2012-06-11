@@ -47,7 +47,7 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
         void setTermStructure(DefaultProbabilityTermStructure*)
 
     cdef cppclass SpreadCdsHelper(CdsHelper):
-         SpreadCdsHelper(Handle[Quote]& runningSpread,
+         SpreadCdsHelper(Rate runningSpread,
                         Period& tenor,
                         Integer settlementDays,
                         Calendar& calendar,
