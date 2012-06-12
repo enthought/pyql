@@ -37,6 +37,9 @@ cdef class FlatForward(YieldTermStructure):
        frequency=Annual
 
     ):
+        """
+            FIXME should combine quote and forward as a single attribute
+        """
 
         self.relinkable = False
 
