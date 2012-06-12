@@ -1,6 +1,7 @@
 
 from cython.operator cimport dereference as deref
 
+from libcpp cimport bool
 from libcpp.vector cimport vector
 from libcpp.string cimport string
 from cpython.string cimport PyString_AsString
@@ -38,6 +39,9 @@ cdef class PiecewiseDefaultCurve:
                 'Interpolator must be one of {}'.format(','.join(VALID_INTERPOLATORS))
             )
 
+        if len(helpers) == 0:
+            raise ValueError('Cannot initialize curve with no helpers')
+
         # convert Python string to C++ string
         cdef string trait_string = string(PyString_AsString(trait))
         cdef string interpolator_string = string(PyString_AsString(interpolator)),
@@ -48,9 +52,7 @@ cdef class PiecewiseDefaultCurve:
 
         for helper in helpers:
             instruments.push_back(
-                <shared_ptr[DefaultProbabilityHelper]>deref(
-                    (<CdsHelper> helper)._thisptr
-                )
+                <shared_ptr[DefaultProbabilityHelper]>deref((<CdsHelper> helper)._thisptr)
             )
 
         self._thisptr = new shared_ptr[DefaultProbabilityTermStructure](
@@ -61,5 +63,11 @@ cdef class PiecewiseDefaultCurve:
                 deref(daycounter._thisptr),
                 accuracy
             )
+        )
+
+    def survival_probability(self, Date d, bool extrapolate=False):
+
+        return self._thisptr.get().survivalProbability(
+            deref(d._thisptr.get()), extrapolate
         )
 
