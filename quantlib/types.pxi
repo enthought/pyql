@@ -22,3 +22,4 @@ ctypedef double Volatility
 ctypedef int Year
 ctypedef int Day
 ctypedef double DiscountFactor
+ctypedef Real Probability
