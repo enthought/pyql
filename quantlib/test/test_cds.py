@@ -51,13 +51,18 @@ class PiecewiseDefaultCurveTestCase(unittest.TestCase):
 
         todays_date, helper = create_helper()
 
-        curve = PiecewiseDefaultCurve(
-            trait='HazardRate',
-            interpolator='BackwardFlat',
-            reference_date=todays_date,
-            helpers=[helper],
-            daycounter=Actual365Fixed()
-        )
+        for trait in ['HazardRate', 'DefaultDensity', 'SurvivalProbability']:
+            for interpolator in ['Linear', 'LogLinear', 'BackwardFlat']:
+                curve = PiecewiseDefaultCurve(
+                    trait,
+                    interpolator,
+                    reference_date=todays_date,
+                    helpers=[helper],
+                    daycounter=Actual365Fixed()
+                )
 
-        self.assertIsNotNone(curve)
+                self.assertIsNotNone(curve)
 
+
+if __name__ == '__main__':
+    unittest.main()

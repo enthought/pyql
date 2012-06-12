@@ -16,7 +16,7 @@ from default_probability_helpers cimport CdsHelper
 from quantlib.termstructures._default_term_structure cimport DefaultProbabilityTermStructure
 
 
-VALID_TRAITS = ['HazardRate']
+VALID_TRAITS = ['HazardRate', 'DefaultDensity', 'SurvivalProbability']
 VALID_INTERPOLATORS = ['Linear', 'LogLinear', 'BackwardFlat']
 
 
@@ -29,11 +29,13 @@ cdef class PiecewiseDefaultCurve:
 
         # validate inputs
         if trait not in VALID_TRAITS:
-            raise ValueError('Traits must be in {}',format(VALID_TRAITS))
+            raise ValueError(
+                'Traits must b in {}'.format(','.join(VALID_TRAITS))
+            )
 
         if interpolator not in VALID_INTERPOLATORS:
             raise ValueError(
-                'Interpolator must be one of {}'.format(VALID_INTERPOLATORS)
+                'Interpolator must be one of {}'.format(','.join(VALID_INTERPOLATORS))
             )
 
         # convert Python string to C++ string
@@ -45,7 +47,11 @@ cdef class PiecewiseDefaultCurve:
                 new vector[shared_ptr[DefaultProbabilityHelper]]()
 
         for helper in helpers:
-            instruments.push_back( <shared_ptr[DefaultProbabilityHelper]>deref( (<CdsHelper> helper)._thisptr))
+            instruments.push_back(
+                <shared_ptr[DefaultProbabilityHelper]>deref(
+                    (<CdsHelper> helper)._thisptr
+                )
+            )
 
         self._thisptr = new shared_ptr[DefaultProbabilityTermStructure](
             _pdc.credit_term_structure_factory(
