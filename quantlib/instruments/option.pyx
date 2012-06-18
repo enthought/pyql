@@ -11,7 +11,7 @@ from quantlib.pricingengines cimport _pricing_engine as _pe
 from quantlib.handle cimport shared_ptr
 from quantlib.instruments.payoffs cimport Payoff, PlainVanillaPayoff
 from quantlib.time.date cimport Date
-from quantlib.pricingengines.vanilla cimport PricingEngine
+from quantlib.pricingengines.engine cimport PricingEngine
 
 # Python imports
 import logging
