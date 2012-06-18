@@ -23,7 +23,6 @@ VALID_INTERPOLATORS = ['Linear', 'LogLinear', 'BackwardFlat']
 
 cdef class PiecewiseDefaultCurve:
 
-    cdef shared_ptr[DefaultProbabilityTermStructure]* _thisptr
 
     def __init__(self, str trait, str interpolator, Date reference_date,
                  helpers, DayCounter daycounter, float accuracy=1e-12):
