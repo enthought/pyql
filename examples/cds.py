@@ -2,11 +2,12 @@
  Copyright (C) 2012 Enthought Inc.
 """
 
+from quantlib.pricingengines.credit import MidPointCdsEngine
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.time.api import (
     Calendar, Date, May, Actual365Fixed, Following, TARGET, Period, Months,
-    Quarterly, TwentiethIMM, Years
+    Quarterly, TwentiethIMM, Years, Schedule, Unadjusted
 )
 from quantlib.termstructures.credit.api import SpreadCdsHelper, PiecewiseDefaultCurve
 from quantlib.termstructures.yields.api import FlatForward
@@ -84,12 +85,12 @@ if __name__ == '__main__':
     #Handle<DefaultProbabilityTermStructure> probability(hazardRateStructure);
     engine = MidPointCdsEngine(hazard_rate_structure, recovery_rate, ts_curve)
 
-    #Schedule cdsSchedule =
-    #    MakeSchedule().from(todaysDate).to(maturities[0])
-    #                  .withFrequency(Quarterly)
-    #                  .withCalendar(calendar)
-    #                  .withTerminationDateConvention(Unadjusted)
-    #                  .withRule(DateGeneration::TwentiethIMM);
+    cds_schedule = Schedule(
+        todays_date, maturities[0], Period(Quarterly), calendar,
+        termination_date_convention=Unadjusted,
+        date_generation_rule=TwentiethIMM
+    )
+
     #CreditDefaultSwap cds_3m(Protection::Seller,
     #                         nominal,
     #                         quoted_spreads[0],
