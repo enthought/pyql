@@ -2,7 +2,7 @@ include '../types.pxi'
 
 from libcpp cimport bool
 
-from _bonds cimport Instrument
+from _instrument cimport Instrument
 from _payoffs cimport Payoff, StrikedTypePayoff
 from _exercise cimport Exercise
 from quantlib.handle cimport shared_ptr
