@@ -2,6 +2,7 @@
  Copyright (C) 2012 Enthought Inc.
 """
 
+from quantlib.instruments.credit_default_swap import CreditDefaultSwap, SELLER
 from quantlib.pricingengines.credit import MidPointCdsEngine
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
@@ -91,96 +92,67 @@ if __name__ == '__main__':
         date_generation_rule=TwentiethIMM
     )
 
-    #CreditDefaultSwap cds_3m(Protection::Seller,
-    #                         nominal,
-    #                         quoted_spreads[0],
-    #                         cdsSchedule,
-    #                         Following,
-    #                         Actual365Fixed());
+    cds_3m = CreditDefaultSwap(
+        SELLER, nominal, quoted_spreads[0], cds_schedule, Following,
+        Actual365Fixed()
+    )
 
-    #cdsSchedule =
-    #    MakeSchedule().from(todaysDate).to(maturities[1])
-    #                  .withFrequency(Quarterly)
-    #                  .withCalendar(calendar)
-    #                  .withTerminationDateConvention(Unadjusted)
-    #                  .withRule(DateGeneration::TwentiethIMM);
-    #CreditDefaultSwap cds_6m(Protection::Seller,
-    #                         nominal,
-    #                         quoted_spreads[1],
-    #                         cdsSchedule,
-    #                         Following,
-    #                         Actual365Fixed());
+    cds_schedule = Schedule(
+        todays_date, maturities[1], Period(Quarterly), calendar,
+        termination_date_convention=Unadjusted,
+        date_generation_rule=TwentiethIMM
+    )
 
-    #cdsSchedule =
-    #    MakeSchedule().from(todaysDate).to(maturities[2])
-    #                  .withFrequency(Quarterly)
-    #                  .withCalendar(calendar)
-    #                  .withTerminationDateConvention(Unadjusted)
-    #                  .withRule(DateGeneration::TwentiethIMM);
-    #CreditDefaultSwap cds_1y(Protection::Seller,
-    #                         nominal,
-    #                         quoted_spreads[2],
-    #                         cdsSchedule,
-    #                         Following,
-    #                         Actual365Fixed());
+    cds_6m = CreditDefaultSwap(
+        SELLER, nominal, quoted_spreads[1], cds_schedule, Following,
+        Actual365Fixed()
+    )
 
-    #cdsSchedule =
-    #    MakeSchedule().from(todaysDate).to(maturities[3])
-    #                  .withFrequency(Quarterly)
-    #                  .withCalendar(calendar)
-    #                  .withTerminationDateConvention(Unadjusted)
-    #                  .withRule(DateGeneration::TwentiethIMM);
-    #CreditDefaultSwap cds_2y(Protection::Seller,
-    #                         nominal,
-    #                         quoted_spreads[3],
-    #                         cdsSchedule,
-    #                         Following,
-    #                         Actual365Fixed());
+    cds_schedule = Schedule(
+        todays_date, maturities[2], Period(Quarterly), calendar,
+        termination_date_convention=Unadjusted,
+        date_generation_rule=TwentiethIMM
+    )
 
-    #cds_3m.setPricingEngine(engine);
-    #cds_6m.setPricingEngine(engine);
-    #cds_1y.setPricingEngine(engine);
-    #cds_2y.setPricingEngine(engine);
+    cds_1y = CreditDefaultSwap(
+        SELLER, nominal, quoted_spreads[2], cds_schedule, Following,
+        Actual365Fixed()
+    )
 
-    #cout << "Repricing of quoted CDSs employed for calibration: " << endl;
-    #cout << "3M fair spread: " << io::rate(cds_3m.fairSpread()) << endl
-    #     << "   NPV:         " << cds_3m.NPV() << endl
-    #     << "   default leg: " << cds_3m.defaultLegNPV() << endl
-    #     << "   coupon leg:  " << cds_3m.couponLegNPV() << endl
-    #     << endl;
+    cds_schedule = Schedule(
+        todays_date, maturities[3], Period(Quarterly), calendar,
+        termination_date_convention=Unadjusted,
+        date_generation_rule=TwentiethIMM
+    )
 
-    #cout << "6M fair spread: " << io::rate(cds_6m.fairSpread()) << endl
-    #     << "   NPV:         " << cds_6m.NPV() << endl
-    #     << "   default leg: " << cds_6m.defaultLegNPV() << endl
-    #     << "   coupon leg:  " << cds_6m.couponLegNPV() << endl
-    #     << endl;
+    cds_2y = CreditDefaultSwap(
+        SELLER, nominal, quoted_spreads[3], cds_schedule, Following,
+        Actual365Fixed()
+    )
 
-    #cout << "1Y fair spread: " << io::rate(cds_1y.fairSpread()) << endl
-    #     << "   NPV:         " << cds_1y.NPV() << endl
-    #     << "   default leg: " << cds_1y.defaultLegNPV() << endl
-    #     << "   coupon leg:  " << cds_1y.couponLegNPV() << endl
-    #     << endl;
+    cds_3m.set_pricing_engine(engine);
+    cds_6m.set_pricing_engine(engine);
+    cds_1y.set_pricing_engine(engine);
+    cds_2y.set_pricing_engine(engine);
 
-    #cout << "2Y fair spread: " << io::rate(cds_2y.fairSpread()) << endl
-    #     << "   NPV:         " << cds_2y.NPV() << endl
-    #     << "   default leg: " << cds_2y.defaultLegNPV() << endl
-    #     << "   coupon leg:  " << cds_2y.couponLegNPV() << endl
-    #     << endl;
+    print "Repricing of quoted CDSs employed for calibration: "
+    print "3M fair spread: {}".format(cds_3m.fair_spread)
+    print "   NPV:         ", cds_3m.net_present_value
+    print "   default leg: ", cds_3m.default_leg_npv
+    print "   coupon leg:  ", cds_3m.coupon_leg_npv
 
-    #cout << endl << endl;
+    print "6M fair spread: {}".format(cds_6m.fair_spread)
+    print "   NPV:         ", cds_6m.net_present_value
+    print "   default leg: ", cds_6m.default_leg_npv
+    print "   coupon leg:  ", cds_6m.coupon_leg_npv
 
-    #Real seconds  = timer.elapsed();
-    #Integer hours = Integer(seconds/3600);
-    #seconds -= hours * 3600;
-    #Integer minutes = Integer(seconds/60);
-    #seconds -= minutes * 60;
-    #cout << "Run completed in ";
-    #if (hours > 0)
-    #    cout << hours << " h ";
-    #if (hours > 0 || minutes > 0)
-    #    cout << minutes << " m ";
-    #cout << fixed << setprecision(0)
-    #     << seconds << " s" << endl;
+    print "1Y fair spread: {}".format(cds_1y.fair_spread)
+    print "   NPV:         ", cds_1y.net_present_value
+    print "   default leg: ", cds_1y.default_leg_npv
+    print "   coupon leg:  ", cds_1y.coupon_leg_npv
 
-    #return 0;
+    print "2Y fair spread: {}".format(cds_2y.fair_spread)
+    print "   NPV:         ", cds_2y.net_present_value
+    print "   default leg: ", cds_2y.default_leg_npv
+    print "   coupon leg:  ", cds_2y.coupon_leg_npv
 
