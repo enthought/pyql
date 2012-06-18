@@ -42,7 +42,7 @@ cdef extern from 'ql/time/schedule.hpp' namespace 'QuantLib':
                  BusinessDayConvention terminationDateConvention,
                  Rule rule,
                  bool endOfMonth,
-        )
+        ) except +
         Schedule(Date& effectiveDate,
                  Date& terminationDate,
                  Period& tenor,
@@ -51,10 +51,10 @@ cdef extern from 'ql/time/schedule.hpp' namespace 'QuantLib':
                  BusinessDayConvention terminationDateConvention,
                  Rule rule,
                  bool endOfMonth,
-                 Date& firstDate, 
-                 Date& nextToLastDate 
-        )
-        
+                 Date& firstDate,
+                 Date& nextToLastDate
+        ) except +
+
         Size size()
         Date& at(Size i)
         Date previousDate(Date& refDate)
