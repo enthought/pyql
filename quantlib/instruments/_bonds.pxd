@@ -5,16 +5,10 @@ from libcpp cimport bool
 
 from quantlib.handle cimport shared_ptr, Handle
 from _instrument cimport Instrument
-from quantlib.pricingengines._pricing_engine cimport PricingEngine
 from quantlib.time._calendar cimport BusinessDayConvention, Calendar
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._schedule cimport Schedule
-from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
-
-cdef extern from 'boost/optional.hpp' namespace 'boost':
-    cdef cppclass optional[T]:
-        optional(T*)
 
 cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib':
     cdef cppclass Bond(Instrument):
@@ -39,16 +33,6 @@ cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib':
 
         Date nextCachFlowDate(Date d)
         Date previousCachFlowDate(Date d)
-
-cdef extern from 'ql/pricingengines/bond/discountingbondengine.hpp' namespace \
-    'QuantLib':
-
-    cdef cppclass DiscountingBondEngine(PricingEngine):
-
-        DiscountingBondEngine()
-        DiscountingBondEngine(Handle[YieldTermStructure]& discountCurve)
-        DiscountingBondEngine(Handle[YieldTermStructure]& discountCurve,
-                optional[bool] includeSttlementDateFlows)
 
 cdef extern from 'ql/instruments/bonds/fixedratebond.hpp' namespace 'QuantLib':
     cdef cppclass FixedRateBond(Bond):
