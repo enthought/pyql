@@ -1,0 +1,15 @@
+# After changing this file, check it on:
+#   http://lint.travis-ci.org/
+language: python
+python:
+  - 2.7
+before_install:
+ - sudo apt-get update
+ - sudo apt-get install libquantlib0-dev
+ - pip install -r requirements.txt --use-mirrors
+notifications:
+  email:
+    - dpinte@enthought.com
+
+script: make tests
+
