@@ -7,9 +7,10 @@ before_install:
  - sudo apt-get update
  - sudo apt-get install libquantlib0-dev
  - pip install cython --use-mirrors
+install:
+    make install
 notifications:
   email:
     - dpinte@enthought.com
-
 script: make tests
 
