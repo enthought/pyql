@@ -10,9 +10,9 @@ before_install:
  - pip install cython --use-mirrors
  - patch -s /home/vagrant/virtualenv/python2.7/local/lib/python2.7/site-packages/Cython/Build/Dependencies.py cython_0.16.patch
 install:
-    make install
+    make build
+script: make tests
 notifications:
   email:
     - dpinte@enthought.com
-script: make tests
 
