@@ -1,13 +1,16 @@
-"""
- Copyright (C) 2012 Enthought Inc.
+""" Example of CDS pricing with PyQL.
+
+This example is based on the QuantLib CDS official example.
+
+Copyright (C) 2012 Enthought Inc.
+ 
 """
 
 from quantlib.instruments.credit_default_swap import CreditDefaultSwap, SELLER
 from quantlib.pricingengines.credit import MidPointCdsEngine
-from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.time.api import (
-    Calendar, Date, May, Actual365Fixed, Following, TARGET, Period, Months,
+    Date, May, Actual365Fixed, Following, TARGET, Period, Months,
     Quarterly, TwentiethIMM, Years, Schedule, Unadjusted
 )
 from quantlib.termstructures.credit.api import SpreadCdsHelper, PiecewiseDefaultCurve
