@@ -6,7 +6,7 @@ python:
 before_install:
  - sudo apt-get update
  - sudo apt-get install libquantlib0-dev
- - pip install -r requirements.txt --use-mirrors
+ - pip install cython --use-mirrors
 notifications:
   email:
     - dpinte@enthought.com
