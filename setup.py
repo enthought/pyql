@@ -13,15 +13,19 @@ from Cython.Build import cythonize
 
 import numpy
 
+SUPPORT_CODE_INCLUDE = './cpp_layer'
+
+# FIXME: would be good to be able to customize the path with envrironment
+# variables in place of hardcoded paths ...
 if sys.platform == 'darwin':
-    INCLUDE_DIRS = ['/opt/local/include', '.', './cpp_layer']
+    INCLUDE_DIRS = ['/opt/local/include', '.', SUPPORT_CODE_INCLUDE]
     LIBRARY_DIRS = ["/opt/local/lib"]
 elif sys.platform == 'win32':
     INCLUDE_DIRS = [
         r'E:\tmp\QuantLib-1.1',  # QuantLib headers
         r'E:\tmp\boost_1_46_1',  # Boost headers
         '.',
-        './cpp_layer'
+        SUPPORT_CODE_INCLUDE
     ]
     LIBRARY_DIRS = [
         r"E:\tmp\QuantLib-1.1\build\vc80\Release",
@@ -33,9 +37,9 @@ elif sys.platform == 'linux2':
     # INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.']
     # LIBRARY_DIRS = ['/usr/local/lib', '/usr/lib', ]
     # custom install of QuantLib 1.1
-    INCLUDE_DIRS = ['/opt/QuantLib-1.1', '.']
+    INCLUDE_DIRS = ['/opt/QuantLib-1.1', '.', SUPPORT_CODE_INCLUDE]
     LIBRARY_DIRS = ['/opt/QuantLib-1.1/lib',]
-    
+
 def get_define_macros():
     defines = [ ('HAVE_CONFIG_H', None)]
     if sys.platform == 'win32':
