@@ -10,8 +10,8 @@ from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.time.calendars.germany import Germany, FrankfurtStockExchange
 from quantlib.time.date import (
     Date, May, March, June, Jan, August, Months,November, Period, Days,
-    Apr, Jul, Sep, Oct, Dec
-)
+    Apr, Jul, Sep, Oct, Dec, Nov)
+from quantlib.time.calendars.jointcalendar import JointCalendar, JOINHOLIDAYS, JOINBUSINESSDAYS
 
 class TestQuantLibCalendar(unittest.TestCase):
 
@@ -46,6 +46,24 @@ class TestQuantLibCalendar(unittest.TestCase):
 
         self.assertFalse(ukcal.is_business_day(bank_holiday_date))
         self.assertTrue(ukcal.is_business_day(business_day))
+
+    def test_joint(self):
+
+        ukcal = UnitedKingdom()
+        uscal = UnitedStates()
+
+        bank_holiday_date = Date(3, May, 2010) #Early May Bank Holiday
+        thanksgiving_holiday_date = Date(22, Nov, 2012)
+        
+        jtcal = JointCalendar(ukcal, uscal, JOINHOLIDAYS)
+
+        self.assertFalse(jtcal.is_business_day(bank_holiday_date))
+        self.assertFalse(jtcal.is_business_day(thanksgiving_holiday_date))
+
+        jtcal = JointCalendar(ukcal, uscal, JOINBUSINESSDAYS)
+
+        self.assertTrue(jtcal.is_business_day(bank_holiday_date))
+        self.assertTrue(jtcal.is_business_day(thanksgiving_holiday_date))
 
     def test_business_days_between_dates(self):
 
