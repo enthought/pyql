@@ -13,6 +13,5 @@ install:
     make build
 script: make tests
 notifications:
-  email:
+  email: 
     - dpinte@enthought.com
-
