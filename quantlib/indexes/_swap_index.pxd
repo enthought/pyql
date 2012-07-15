@@ -27,7 +27,7 @@ cdef extern from "string" namespace "std":
     cdef cppclass string:
         char* c_str()
 
-cdef extern from 'ql/indexes/interestrateindex.hpp' namespace 'QuantLib':
+cdef extern from 'ql/indexes/swapindex.hpp' namespace 'QuantLib':
 
     cdef cppclass SwapIndex(InterestRateIndex):
         SwapIndex(string& familyName,

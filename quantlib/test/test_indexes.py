@@ -85,8 +85,6 @@ class SwapIndexTestCase(unittest.TestCase):
 
         self.assertIsNotNone(index)
 
-        self.fail('Finish implementation')
-
 
 if __name__ == '__main__':
     unittest.main()
