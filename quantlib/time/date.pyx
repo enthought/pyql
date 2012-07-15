@@ -413,3 +413,42 @@ cdef inline Date date_from_qldate(QlDate& date):
     '''
     return Date(date.serialNumber())
 
+
+# Date Interfaces
+
+cdef object _pydate_from_qldate(QlDate qdate):
+    """ Converts a QuantLib Date (C++) to a datetime.date object. """
+
+    cdef int m = qdate.month()
+    cdef int d = qdate.dayOfMonth()
+    cdef int y = qdate.year()
+
+    return datetime.date(y, m, d)
+
+cpdef object pydate_from_qldate(Date qdate):
+    """ Converts a PyQL Date to a datetime.date object. """
+
+    cdef int m = qdate.month
+    cdef int d = qdate.day
+    cdef int y = qdate.year
+
+    return datetime.date(y, m, d)
+
+cdef QlDate _qldate_from_pydate(object pydate):
+    """ Converts a datetime.date to a QuantLib (C++) object. """
+
+    cdef Date qdate_ref = Date.from_datetime(pydate)
+    cdef QlDate* date_ref = <QlDate*>qdate_ref._thisptr.get()
+
+    return deref(date_ref)
+
+
+cpdef Date qldate_from_pydate(object pydate):
+    """ Converts a datetime.date to a PyQL date. """
+
+    cdef Date qdate_ref = Date.from_datetime(pydate)
+
+    return qdate_ref
+
+
+
