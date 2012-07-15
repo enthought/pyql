@@ -7,165 +7,172 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from scipy.interpolate import interp1d
-from scipy.stats import norm
 
 import numpy as np
-import pandas
 from pandas import DataFrame
 
-import datetime
-from datetime import date
-
-from quantlib.models.equity.heston_model import (
-    HestonModelHelper, HestonModel)
-
+from quantlib.instruments.option import Put, Call, EuropeanExercise, VanillaOption
+from quantlib.instruments.payoffs import PlainVanillaPayoff
+from quantlib.models.equity.heston_model import HestonModel
 from quantlib.pricingengines.vanilla import AnalyticHestonEngine
 from quantlib.processes.heston_process import HestonProcess
-from quantlib.settings import Settings
-from quantlib.time.api import Period, Date, Actual365Fixed, ActualActual, TARGET, Days
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.zero_curve import ZeroCurve
+from quantlib.settings import Settings
+from quantlib.util.converter import pydate_to_qldate, df_to_zero_curve
 
-from quantlib.instruments.payoffs import PlainVanillaPayoff
-from quantlib.instruments.option import (
-            Put, Call, EuropeanExercise, VanillaOption)
 
-from quantlib.util.QL_converter import dateToQLDate, dfToZeroCurve
+# Dataframe column names - Global constants
+EXPIRY = 'dtExpiry'
+TRADE_DATE = 'dtTrade'
+SPOT = 'Spot'
+OPTION_TYPE = 'Type'
+BID = 'PBid'
+ASK = 'PAsk'
+STRIKE = 'Strike'
+INTEREST_RATE = 'iRate'
+DIVIDEND_YIELD = 'dRate'
+PRICE = 'Price'
 
-def options_to_rates(optionDataFrame, tMin=1./12., nMin=6):
-    
+
+# Dataframe colum names - local constants
+CALL_PREMIUM = 'PremiumC'
+PUT_PREMIUM = 'PremiumP'
+
+# Other constants
+CALL_OPTION = 'C'
+PUT_OPTION = 'P'
+
+def options_to_rates(options, t_min=1./12., n_min=6):
     """
     Extract implied risk-free rates and dividend yield from
     standard European option quote file.
-  
+
     ignore data:
     - with time to maturity < tMin (in fraction of years)
     - with fewer than nMin quotes per maturity date
 
+    Parameters
+    ----------
+
+    t_min: float (default: 1 month)
+        Minimum time to maturity in fraction of years
+    n_min: int (default: 6)
+        minimum number of quotes per maturity date
+
     """
-    
-    grouped = optionDataFrame.groupby('dtExpiry') 
 
-    isFirst = True
-    dt_exp = []
-    vx_rate = []
-    vx_div = []
-    
+    grouped = options.groupby(EXPIRY)
+
+    expiry_dates = []
+    implied_interest_rates = []
+    implied_dividend_yields = []
+
+
     for spec, group in grouped:
-        # print('processing group %s' % spec)
-
         # implied vol for this type/expiry group
 
-        indx = group.index
-        
-        dtTrade = group['dtTrade'][indx[0]]
-        dtExpiry = group['dtExpiry'][indx[0]]
-        spot = group['Spot'][indx[0]]
-        daysToExpiry = (dtExpiry-dtTrade).days
-        timeToMaturity = daysToExpiry/365.0
+        index = group.index
+
+        trade_date = group[TRADE_DATE][index[0]]
+        expiry_date = group[EXPIRY][index[0]]
+        spot = group[SPOT][index[0]]
+        days_to_expiry = (expiry_date-trade_date).days
+        time_to_maturity = days_to_expiry/365.0
 
         # exclude groups with too short time to maturity
-        
-        if timeToMaturity < tMin:
+        if time_to_maturity < t_min:
             continue
-            
+
+        # extract the put and call quotes
+        calls = group[group[OPTION_TYPE] == CALL_OPTION]
+        puts = group[group[OPTION_TYPE] == PUT_OPTION]
+
         # exclude groups with too few data points
-        
-        df_call = group[group['Type'] == 'C']
-        df_put = group[group['Type'] == 'P']
-        
-        if (len(df_call) < nMin) | (len(df_put) < nMin):
+        if (len(calls) < n_min) | (len(puts) < n_min):
             continue
 
         # calculate forward, implied interest rate and implied div. yield
-            
-        df_C = DataFrame((df_call['PBid']+df_call['PAsk'])/2,
-                         columns=['PremiumC'])
-        df_C.index = df_call['Strike']
-        df_P = DataFrame((df_put['PBid']+df_put['PAsk'])/2,
-                         columns=['PremiumP'])
-        df_P.index = df_put['Strike']
-        
+        call_premium = DataFrame(
+            (calls[BID] + calls[ASK]) / 2.,
+            columns=[CALL_PREMIUM]
+        )
+        call_premium.index = calls[STRIKE]
+
+        put_premium = DataFrame(
+            (puts[BID] + puts[ASK]) / 2.,
+            columns=[PUT_PREMIUM]
+        )
+        put_premium.index = puts[STRIKE]
+
         # use 'inner' join because some strikes are not quoted for C and P
-        df_all = df_C.join(df_P, how='inner')
-        df_all['Strike'] = df_all.index
-        df_all['C-P'] = df_all['PremiumC'] - df_all['PremiumP']
-    
-	y = np.array(df_all['C-P'])
-	x = np.array(df_all['Strike'])
-	A = np.vstack([x, np.ones(len(x))]).T
-	m, c = np.linalg.lstsq(A, y)[0]
-	print m, c
-        
+        all_quotes = call_premium.join(put_premium, how='inner')
+        all_quotes[STRIKE] = all_quotes.index
+        all_quotes['C-P'] = all_quotes[CALL_PREMIUM] - all_quotes[PUT_PREMIUM]
+
+        y = np.array(all_quotes['C-P'])
+        x = np.array(all_quotes[STRIKE])
+        A = np.vstack([x, np.ones(len(x))]).T
+        m, c = np.linalg.lstsq(A, y)[0]
+
         # intercept is last coef
-        iRate = -np.log(-m)/timeToMaturity
-        dRate = np.log(spot/c)/timeToMaturity
+        interest_rate = -np.log(-m)/time_to_maturity
+        dividend_yield = np.log(spot/c)/time_to_maturity
 
-        vx_rate.append(iRate)
-        vx_div.append(dRate)
-        dt_exp.append(dtExpiry)
-        
-    df = DataFrame({'iRate': vx_rate, 'dRate': vx_div}, index=dt_exp)
+        implied_interest_rates.append(interest_rate)
+        implied_dividend_yields.append(dividend_yield)
+        expiry_dates.append(expiry_date)
 
-    return df
+    rates = DataFrame(
+        {
+            INTEREST_RATE: implied_interest_rates,
+            DIVIDEND_YIELD: implied_dividend_yields
+        },
+        index=expiry_dates
+    )
 
-def heston_pricer(dt_trade, df_option, params,
-                  df_rates, spot):
+    return rates
 
-    """
-    price a list of European options with heston model
+def heston_pricer(trade_date, options, params, rates, spot):
+    """ Price a list of European options with heston model.
+
     """
 
     spot = SimpleQuote(spot)
-        
-    risk_free_ts = dfToZeroCurve(df_rates['iRate'], dt_trade)
-    dividend_ts = dfToZeroCurve(df_rates['dRate'], dt_trade)
 
-    process = HestonProcess(risk_free_ts, dividend_ts,
-                            spot, params['v0'],
-                            params['kappa'],
-                            params['theta'],
-                            params['sigma'],
-                            params['rho'])
+    risk_free_ts = df_to_zero_curve(rates[INTEREST_RATE], trade_date)
+    dividend_ts = df_to_zero_curve(rates[DIVIDEND_YIELD], trade_date)
+
+    process = HestonProcess(risk_free_ts, dividend_ts, spot, **params)
 
     model = HestonModel(process)
     engine = AnalyticHestonEngine(model, 64)
 
-    Dt_settlement = dateToQLDate(dt_trade)
-    
+    settlement_date = pydate_to_qldate(trade_date)
+
     settings = Settings()
-    settings.evaluation_date = Dt_settlement
+    settings.evaluation_date = settlement_date
 
-    calendar = TARGET()
+    modeled_values = np.zeros(len(options))
 
-    model_value = np.zeros(len(df_option))
-    daycounter = ActualActual()
-    
-    for index, row in df_option.T.iteritems():
+    for index, row in options.T.iteritems():
 
-        dt_expiry = row['dtExpiry']
+        expiry_date = row[EXPIRY]
+        strike = row[STRIKE]
 
-        strike = row['Strike']
-
-        cp = Call if row['Type'] == 'C' else Put
+        cp = Call if row[OPTION_TYPE] == CALL_OPTION else Put
 
         payoff = PlainVanillaPayoff(cp, strike)
 
-        Dt_expiry = dateToQLDate(dt_expiry)
-        exercise = EuropeanExercise(Dt_expiry)
+        expiry_qldate = pydate_to_qldate(expiry_date)
+        exercise = EuropeanExercise(expiry_qldate)
 
         option = VanillaOption(payoff, exercise)
-
         option.set_pricing_engine(engine)
-        
-        model_value[index] = option.net_present_value
-        
-    df_final = DataFrame.filter(df_option,
-                                items=['dtExpiry',
-                                       'Strike',
-                                       'Type', 'Spot'])
-    df_final['HestonPrice'] = model_value
-    df_final['dtTrade'] = dt_trade
 
-    return df_final
+        modeled_values[index] = option.net_present_value
+
+    prices = options.filter(items=[EXPIRY, STRIKE, OPTION_TYPE, SPOT])
+    prices[PRICE] = modeled_values
+    prices[TRADE_DATE] = trade_date
+
+    return prices

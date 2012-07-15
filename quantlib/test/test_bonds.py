@@ -3,6 +3,7 @@ import unittest
 from quantlib.instruments.bonds import (
     FixedRateBond, ZeroCouponBond
 )
+from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.time.calendar import (
     TARGET, Unadjusted, ModifiedFollowing, Following
 )
@@ -170,9 +171,12 @@ class BondTestCase(unittest.TestCase):
             daycounter      = Actual365Fixed(),
             compounding     = Continuous,
             frequency       = Annual)
+
         discounting_term_structure.link_to(flat_term_structure)
 
-        bond.set_pricing_engine(discounting_term_structure)
+        engine = DiscountingBondEngine(discounting_term_structure)
+
+        bond.set_pricing_engine(engine)
 
 
         self.assertEquals(Date(10, Jul, 2016), termination_date)
@@ -211,7 +215,10 @@ class BondTestCase(unittest.TestCase):
             frequency       = Annual)
         discounting_term_structure.link_to(flat_term_structure)
 
-        bond.set_pricing_engine(discounting_term_structure)
+        engine = DiscountingBondEngine(discounting_term_structure)
+
+        bond.set_pricing_engine(engine)
+
 
         self.assertEquals(
             calendar.advance(todays_date, 3, Days), bond.settlement_date()

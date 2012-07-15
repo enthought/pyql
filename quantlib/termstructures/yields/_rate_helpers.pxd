@@ -22,24 +22,13 @@ from quantlib.indexes._ibor_index cimport IborIndex
 
 cimport quantlib.indexes._ibor_index as _ib
 
-cdef extern from 'ql/termstructures/bootstraphelper.hpp' namespace 'QuantLib':
-
-    cdef cppclass BootstrapHelper[T]:
-        BootstrapHelper(Handle[Quote]& quote)
-        BoostrapHelper(Real quote)
-
-    cdef cppclass RelativeDateBootstrapHelper[T](BootstrapHelper):
-        pass
+from quantlib.termstructures._helpers cimport BootstrapHelper, \
+                                              RelativeDateBootstrapHelper
 
 cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
 
-    # Cython does not support this ctypedef - thus trying to expose a class
-    #ctypedef BootstrapHelper[YieldTermStructure] RateHelper
-    cdef cppclass RateHelper:
-        Handle[Quote] quote()
-
-    cdef cppclass RelativeDateRateHelper:
-        Handle[Quote] quote()
+    ctypedef BootstrapHelper[YieldTermStructure] RateHelper
+    ctypedef RelativeDateBootstrapHelper[YieldTermStructure] RelativeDateRateHelper
 
     cdef cppclass DepositRateHelper(RateHelper):
         DepositRateHelper(Handle[Quote]& rate,
@@ -57,7 +46,6 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
                           bool endOfMonth,
                           DayCounter& dayCounter)
 
-        # Not supporting IborIndex at this stage
         DepositRateHelper(Handle[Quote]& rate,
                           shared_ptr[IborIndex]& iborIndex)
         DepositRateHelper(Rate rate,

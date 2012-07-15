@@ -11,93 +11,109 @@
 # (deposits and swap rates) from the FRB data repository
 # and build a pandas time series of rates
 
-import os, urllib, datetime, pandas
+import logging
 import numpy as np
-import math
+import os
+import urllib
 
 from pandas.io.parsers import read_csv
 from datetime import date
 
-def get_frb_url(dtStart, dtEnd):
+logger = logging.getLogger(__name__)
+
+
+FRB_DATE_FORMAT = '%m/%d/%Y'
+FRB_URL = 'http://www.federalreserve.gov/datadownload/Output.aspx?' \
+           'rel=H15&series=8f47c9df920bbb475f402efa44f35c29&lastObs=&' \
+           'from=%s&to=%s&filetype=csv&label=include&layout=seriescolumn'
+
+
+def get_frb_url(start, end):
     """
     Federal Reserve Board URL
     Construct this URL at 'http://www.federalreserve.gov/datadownload
     """
-    
-    url = 'http://www.federalreserve.gov/datadownload/Output.aspx?rel=H15&series=8f47c9df920bbb475f402efa44f35c29&lastObs=&from=%s&to=%s&filetype=csv&label=include&layout=seriescolumn' % (dtStart.strftime('%m/%d/%Y'), dtEnd.strftime('%m/%d/%Y'))
+
+    url = FRB_URL % (
+        start.strftime(FRB_DATE_FORMAT), end.strftime(FRB_DATE_FORMAT)
+    )
     return url
 
-def dataconverter(s):
-    """
-    FRB data file has 
-    - numeric cells
-    - empty cells
-    - cells with 'NC' or 'ND'
-    """
-    try:
-        res = float(s)
-    except:
-        res = np.nan
-    return res
 
 def good_row(z):
     """
     Retain days with no gaps (0 or NaN) in data
     """
-    
+
     try:
-        res = not any([(math.isnan(x) or (x == 0))
-                       for x in z])
-    except:
+        nans = np.isnan(z)
+        zeros = z == 0
+        mask = nans | zeros
+        isnan_or_has_zero = mask.values.any()
+
+        res = not isnan_or_has_zero
+    except Exception as exc:
+        logger.exception(exc)
         res = False
     return res
 
-if __name__ == '__main__':
 
-    fname = 'data/frb_h15.csv'
+def load_frb_data(target_file='data/frb_h15.csv'):
+    """ Load the FRB dataset from the target file if it exists or download
+    the dataset from the web.
 
-    if not os.path.isfile(fname):
-        url = get_frb_url(dtStart=date(2000,1,1),
-                          dtEnd=date(2011,12,31))
+    """
+
+    if not os.path.isfile(target_file):
+        logger.info('Downloading FRB data')
+        url = get_frb_url(start=date(2000, 1, 1),
+                          end=date(2011, 12, 31))
         frb_site = urllib.urlopen(url)
         text = frb_site.read().strip()
 
-        f = open(fname, 'w')
-        f.write(text)
-        f.close()
+        with open(target_file, 'w') as f:
+            f.write(text)
+
+        logger.info('Dataset saved in %s', target_file)
+    else:
+        logger.info('Using cached dataset in %s', target_file)
+
+    return target_file
+
+if __name__ == '__main__':
+
+    logging.basicConfig(level=logging.INFO)
+
+    fname = load_frb_data()
 
     # simpler labels
+    columns_dic = {
+        "RIFLDIY01_N.B": 'Swap1Y',
+        "RIFLDIY02_N.B": 'Swap2Y',
+        "RIFLDIY03_N.B": 'Swap3Y',
+        "RIFLDIY04_N.B": 'Swap4Y',
+        "RIFLDIY05_N.B": 'Swap5Y',
+        "RIFLDIY07_N.B": 'Swap7Y',
+        "RIFLDIY10_N.B": 'Swap10Y',
+        "RIFLDIY30_N.B": 'Swap30Y',
+        "RILSPDEPM01_N.B": 'Libor1M',
+        "RILSPDEPM03_N.B": 'Libor3M',
+        "RILSPDEPM06_N.B": 'Libor6M'
+    }
 
-    columns_dic = {"RIFLDIY01_N.B":'Swap1Y',
-               "RIFLDIY02_N.B":'Swap2Y',
-               "RIFLDIY03_N.B":'Swap3Y',
-               "RIFLDIY04_N.B":'Swap4Y',
-               "RIFLDIY05_N.B":'Swap5Y',
-               "RIFLDIY07_N.B":'Swap7Y',
-               "RIFLDIY10_N.B":'Swap10Y',
-               "RIFLDIY30_N.B":'Swap30Y',
-               "RILSPDEPM01_N.B":'Libor1M',
-               "RILSPDEPM03_N.B":'Libor3M',
-               "RILSPDEPM06_N.B":'Libor6M'}
+    # Parse the file: skip the first 5 rows, headers are on row 6,
+    # ND and NC indicate missing values, first column is the index and contains
+    # dates
+    df_libor = read_csv(
+        fname,  header=5,  skiprows=range(5), na_values=['ND', 'NC'],
+        index_col=0, parse_dates=True
+    )
 
-    # the data converter is applied to all columns
-    # excluding the index column (0)
-
-    dc_dict = {i: dataconverter for i
-               in range(0,len(columns_dic.keys()))}
-
-    df_libor = read_csv(fname, sep=',', header=True,
-                    index_col=0, parse_dates=True,
-                    converters=dc_dict,
-                    skiprows=[0,1,2,3,4])
-
+    # Convert column names to simple labels
     df_libor = df_libor.rename(columns=columns_dic)
 
-    print(df_libor)
-    
     good_rows = df_libor.apply(good_row, axis=1)
-    print(good_rows)
     
-    df_libor = df_libor[good_rows]
+    df_libor_clean = df_libor[good_rows]
 
-    df_libor.save('data/df_libor.pkl')
+    df_libor_clean.save('data/df_libor.pkl')

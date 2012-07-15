@@ -5,7 +5,7 @@ from quantlib.time.date import (
     Date, Jan, Feb, Mar, Apr, May, Jun, Jul, Nov, Thursday, Friday, Period,
     Annual, Semiannual, Bimonthly, EveryFourthMonth, Months, Years, Weeks,
     Days, OtherFrequency, end_of_month, is_end_of_month, is_leap,
-    next_weekday, nth_weekday, today,
+    next_weekday, nth_weekday, today, pydate_from_qldate, qldate_from_pydate
 )
 
 class TestQuantLibDate(unittest.TestCase):
@@ -90,11 +90,16 @@ class TestQuantLibDate(unittest.TestCase):
         expected_date = Date(14, Nov, 1998)
         self.assertTrue(expected_date == date3)
 
+        with self.assertRaises(ValueError):
+            # invalid operation
+            date3 - date1
+
         # isub
         date1 = Date(19, Nov, 1998)
         date1 -= 3
         expected_date = Date(16, Nov, 1998)
         self.assertTrue(expected_date == date1)
+
 
     def test_next_weekday(self):
         ''' Test next weekday
@@ -107,8 +112,6 @@ class TestQuantLibDate(unittest.TestCase):
         date2 = next_weekday(date1, Friday)
 
         expected_date = Date(18, Jan, 2002)
-        print expected_date
-        print date2
         self.assertTrue(expected_date == date2)
 
     def test_nth_weekday(self):
@@ -121,15 +124,17 @@ class TestQuantLibDate(unittest.TestCase):
         expected_date = Date(26, Mar, 1998)
         self.assertTrue(expected_date == date1)
 
+    def test_nth_weekday_invalid_month(self):
+
+        with self.assertRaises(RuntimeError):
+            nth_weekday(4, Thursday, 0, 2000)
+
+
     def test_end_of_month(self):
 
         date1 = Date(16, Feb, 2011)
-        
         date2 = end_of_month(date1)
-        print date2
-
         expected_date = Date(28, Feb, 2011)
-        
         self.assertTrue(expected_date == date2)
 
 
@@ -149,6 +154,28 @@ class TestQuantLibDate(unittest.TestCase):
         date1 = Date(28, Feb, 2011)
 
         self.assertEquals(date1.serial, int(date1))
+
+class ConversionMethodsTestCase(unittest.TestCase):
+
+    def test_conversion_from_datetime_to_pyql(self):
+
+        date1 = datetime.date(2010, 1, 1)
+
+        qldate1 = qldate_from_pydate(date1)
+
+        expected_result = Date(1, Jan, 2010)
+
+        self.assertEquals(expected_result, qldate1)
+
+    def test_conversion_from_pyql_to_datetime(self):
+
+        date1 = Date(1, Jan, 2010)
+
+        pydate1 = pydate_from_qldate(date1)
+
+        expected_result = datetime.date(2010, 1, 1)
+
+        self.assertEquals(expected_result, pydate1)
 
 class TestQuantLibPeriod(unittest.TestCase):
 

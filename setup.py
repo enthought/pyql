@@ -13,14 +13,19 @@ from Cython.Build import cythonize
 
 import numpy
 
+SUPPORT_CODE_INCLUDE = './cpp_layer'
+
+# FIXME: would be good to be able to customize the path with envrironment
+# variables in place of hardcoded paths ...
 if sys.platform == 'darwin':
-    INCLUDE_DIRS = ['/opt/local/include', '.']
+    INCLUDE_DIRS = ['/opt/local/include', '.', SUPPORT_CODE_INCLUDE]
     LIBRARY_DIRS = ["/opt/local/lib"]
 elif sys.platform == 'win32':
     INCLUDE_DIRS = [
         r'E:\tmp\QuantLib-1.1',  # QuantLib headers
         r'E:\tmp\boost_1_46_1',  # Boost headers
-        '.'
+        '.',
+        SUPPORT_CODE_INCLUDE
     ]
     LIBRARY_DIRS = [
         r"E:\tmp\QuantLib-1.1\build\vc80\Release",
@@ -32,9 +37,9 @@ elif sys.platform == 'linux2':
     # INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.']
     # LIBRARY_DIRS = ['/usr/local/lib', '/usr/lib', ]
     # custom install of QuantLib 1.1
-    INCLUDE_DIRS = ['/opt/QuantLib-1.1', '.']
+    INCLUDE_DIRS = ['/opt/QuantLib-1.1', '.', SUPPORT_CODE_INCLUDE]
     LIBRARY_DIRS = ['/opt/QuantLib-1.1/lib',]
-    
+
 def get_define_macros():
     defines = [ ('HAVE_CONFIG_H', None)]
     if sys.platform == 'win32':
@@ -115,6 +120,23 @@ def collect_extensions():
 
     )
 
+    piecewise_default_curve_extension = Extension(
+        'quantlib.termstructures.credit.piecewise_default_curve',
+        [
+            'quantlib/termstructures/credit/piecewise_default_curve.pyx',
+            'cpp_layer/credit_piecewise_support_code.cpp'
+        ],
+        language='c++',
+        include_dirs=INCLUDE_DIRS,
+        library_dirs=LIBRARY_DIRS,
+        define_macros = get_define_macros(),
+        extra_compile_args = get_extra_compile_args(),
+        extra_link_args = get_extra_link_args(),
+        libraries=['QuantLib'],
+        pyrex_directives = CYTHON_DIRECTIVES
+
+    )
+
     multipath_extension = Extension(
         name='quantlib.sim.simulate',
         sources=[
@@ -135,6 +157,7 @@ def collect_extensions():
     manual_extensions = [
         multipath_extension,
         piecewise_yield_curve_extension,
+        piecewise_default_curve_extension,
         settings_extension,
         test_extension,
     ]
@@ -184,4 +207,5 @@ setup(
     ext_modules = collect_extensions(),
     cmdclass = {'build_ext': build_ext},
     install_requires = ['distribute', 'cython'],
+    zip_safe = False
 )

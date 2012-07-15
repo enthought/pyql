@@ -15,7 +15,7 @@ from quantlib.termstructures.yields.rate_helpers import DepositRateHelper, SwapR
 from quantlib.termstructures.yields.piecewise_yield_curve import \
     term_structure_factory
 from quantlib.time.api import Date, TARGET, Period, Months, Years, Days
-from quantlib.time.api import September, ISDA, today
+from quantlib.time.api import September, ISDA, today, Mar
 from quantlib.time.api import ModifiedFollowing, Unadjusted, Actual360
 from quantlib.time.api import Thirty360, ActualActual, Actual365Fixed
 from quantlib.time.api import Annual
@@ -86,8 +86,10 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         # Market information
         calendar = TARGET()
 
+        todays_date = Date(1, Mar, 2012)
+
         # must be a business day
-        eval_date = calendar.adjust(today())
+        eval_date = calendar.adjust(todays_date)
         settings.evaluation_date = eval_date
 
         settlement_days = 2
@@ -145,13 +147,13 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         # this is not a real test ...
         self.assertAlmostEquals(0.9103,
-             ts.discount(calendar.advance(today(), 2, Years)),3)
+             ts.discount(calendar.advance(todays_date, 2, Years)),3)
         self.assertAlmostEquals(0.7836,
-             ts.discount(calendar.advance(today(), 5, Years)),3)
+             ts.discount(calendar.advance(todays_date, 5, Years)),3)
         self.assertAlmostEquals(0.5827,
-             ts.discount(calendar.advance(today(), 10, Years)),3)
+             ts.discount(calendar.advance(todays_date, 10, Years)),3)
         self.assertAlmostEquals(0.4223,
-             ts.discount(calendar.advance(today(), 15, Years)),3)
+             ts.discount(calendar.advance(todays_date, 15, Years)),3)
 
 
 if __name__ == '__main__':

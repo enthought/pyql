@@ -1,0 +1,17 @@
+# After changing this file, check it on:
+#   http://lint.travis-ci.org/
+language: python
+python:
+  - 2.7
+before_install:
+ - sudo apt-get update
+ - sudo apt-get install libquantlib0-dev
+ - pip install numpy --use-mirrors
+ - pip install cython --use-mirrors
+ - patch -s /home/vagrant/virtualenv/python2.7/local/lib/python2.7/site-packages/Cython/Build/Dependencies.py cython_0.16.patch
+install:
+    make build
+script: make tests
+notifications:
+  email: 
+    - dpinte@enthought.com

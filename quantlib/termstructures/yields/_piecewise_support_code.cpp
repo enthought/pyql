@@ -1,6 +1,6 @@
 /*
  * Cython does not support the full CPP syntax preventing to expose the
- * Piecewise constructors. 
+ * Piecewise constructors (e.g. typemap).
  *
  * This code is inspired by the RQuantLib code and provides a factory function
  * for PiecewiseYieldCurve.
@@ -8,7 +8,10 @@
  */
 #include <vector>
 #include <string>
-#include <ql/quantlib.hpp>
+#include <iostream>
+#include <ql/termstructures/all.hpp>
+#include <ql/time/date.hpp>
+#include <ql/time/daycounter.hpp>
 
 namespace QuantLib {
 
@@ -105,7 +108,7 @@ namespace QuantLib {
         } else {
             std::cout << "traits = " << traits << std::endl;
             std::cout << "interpolator  = " << interpolator << std::endl;
-            throw std::range_error("What/How term structure options not recognized");
+            QL_FAIL("What/How term structure options not recognized");
         }
     }
 

@@ -16,6 +16,8 @@ from libcpp.vector cimport vector
 from libcpp cimport bool as cbool
 
 from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle
+cimport quantlib.pricingengines._pricing_engine as _pe
+from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time._calendar cimport BusinessDayConvention
 cimport quantlib.time._date as _date
 from quantlib.time._daycounter cimport DayCounter as QlDayCounter
@@ -25,16 +27,14 @@ from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar import Following
-from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure \
-        as ts
-from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
 
 import datetime
 
 cdef class Bond:
     """ Base bond class
 
-        ..warning:
+        .. warning:
+
             Most methods assume that the cash flows are stored
             sorted by date, the redemption(s) being after any
             cash flow at the same date. In particular, if there's
@@ -53,26 +53,14 @@ cdef class Bond:
         if self._thisptr is not NULL:
             del self._thisptr
 
-    def set_pricing_engine(self, YieldTermStructure yield_term_structure):
-        '''Sets the pricing engine based on the given term structure.
+    def set_pricing_engine(self, PricingEngine engine):
+        '''Sets the pricing engine.
 
-        FIXME: this is inconsistant - we do not set the pricing engine but we
-        set the term structure for a discounting  bond engine ...
-        FIXME : the pricing engine is not exposed and cannot be selected at this
-        stage. There is only one engine for bonds, the DiscountingBondEngine,
-        which is allocated when calling this function.
         '''
-        cdef Handle[ts]* term_structure
-        cdef YieldTermStructure ds = yield_term_structure
-        if ds.relinkable:
-            term_structure = ds._relinkable_ptr
+        cdef shared_ptr[_pe.PricingEngine] engine_ptr = \
+                shared_ptr[_pe.PricingEngine](deref(engine._thisptr))
 
-        cdef _bonds.DiscountingBondEngine* engine = \
-                new _bonds.DiscountingBondEngine(deref(term_structure))
-        cdef shared_ptr[_bonds.PricingEngine]* engine_ptr = \
-                new _bonds.shared_ptr[_bonds.PricingEngine](engine)
-
-        self._thisptr.get().setPricingEngine(deref(engine_ptr))
+        self._thisptr.get().setPricingEngine(engine_ptr)
 
         self._has_pricing_engine = True
 

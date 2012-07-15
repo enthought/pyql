@@ -19,12 +19,12 @@ from libcpp.vector cimport vector
 cimport _heston_model as _hm
 cimport quantlib.termstructures.yields._flat_forward as _ffwd
 cimport quantlib._quote as _qt
-cimport quantlib.pricingengines._vanilla as _vanilla
+cimport quantlib.pricingengines._pricing_engine as _pe
 cimport _heston_model as _hm
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.math.optimization cimport OptimizationMethod, EndCriteria
 from quantlib.processes.heston_process cimport HestonProcess
-from quantlib.pricingengines.vanilla cimport AnalyticHestonEngine
+from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.quotes cimport Quote
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Period
@@ -84,10 +84,9 @@ cdef class HestonModelHelper:
             )
         )
 
-    def set_pricing_engine(self, AnalyticHestonEngine engine):
-
-        cdef shared_ptr[_vanilla.PricingEngine] pengine = \
-            shared_ptr[_vanilla.PricingEngine](<shared_ptr[_vanilla.PricingEngine] &>deref(engine._thisptr))
+    def set_pricing_engine(self, PricingEngine engine):
+        cdef shared_ptr[_pe.PricingEngine] pengine = \
+            shared_ptr[_pe.PricingEngine](<shared_ptr[_pe.PricingEngine] &>deref(engine._thisptr))
 
         self._thisptr.get().setPricingEngine(pengine)
 

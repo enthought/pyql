@@ -7,7 +7,9 @@
  *
  */
 
-#include <ql/quantlib.hpp>
+#include <ql/termstructures/all.hpp>
+#include <ql/time/date.hpp>
+#include <ql/time/daycounter.hpp>
 #include <vector>
 #include <string>
 
