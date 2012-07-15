@@ -11,8 +11,7 @@
 import numpy as np
 from pandas import DataFrame
 
-from quantlib.instruments.option import (
-            Put, Call, EuropeanExercise, VanillaOption)
+from quantlib.instruments.option import Put, Call, EuropeanExercise, VanillaOption
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.models.equity.heston_model import HestonModel
 from quantlib.pricingengines.vanilla import AnalyticHestonEngine

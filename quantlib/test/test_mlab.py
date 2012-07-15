@@ -5,7 +5,6 @@ import unittest
 
 import pandas
 from pandas import DataFrame
-
 from quantlib.mlab.option_pricing import heston_pricer, options_to_rates
 
 class OptionPricerTestCase(unittest.TestCase):
