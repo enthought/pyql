@@ -1,11 +1,4 @@
-""" CBS_implementation_MAIN.cpp : main file of the project
-						Tests of all the implementation
-
-The calculs need the use of iterators on QuantLib object (in the quantLib code himself)
-This implies many vcc warning without real importance.
-To disable this warning, use -D_SCL_SECURE_NO_WARNINGS in   
-	Project Properties > Configuration Proporties > C/C++ > command lines
-"""
+""" Option valuation example based on a C++ example from the QuantLib mailing list. """
 
 from quantlib.settings import Settings
 from quantlib.currency import USDCurrency
@@ -19,6 +12,7 @@ from quantlib.termstructures.yields.api import (
     term_structure_factory, DepositRateHelper
 )
 from quantlib.termstructures.volatility.equityfx.black_vol_term_structure import BlackVolTermStructure, BlackConstantVol
+from quantlib.termstructures.yields.api import SwapRateHelper
 
 def dividendOption():
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

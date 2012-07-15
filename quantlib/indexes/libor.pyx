@@ -17,11 +17,9 @@ from libcpp cimport bool as cbool
 from libcpp.string cimport string
 from cpython.string cimport PyString_AsString
 
-cimport quantlib.termstructures.yields._flat_forward as _ffwd
 cimport _libor
 cimport quantlib._index as _in
 
-from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.currency cimport Currency
