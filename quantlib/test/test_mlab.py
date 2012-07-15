@@ -2,28 +2,10 @@ import unittest
 
 import os
 
-import numpy as np
 import pandas
 from pandas import DataFrame
 
-import datetime
 from datetime import date
-
-from quantlib.models.equity.heston_model import (
-    HestonModelHelper, HestonModel)
-
-from quantlib.pricingengines.vanilla import AnalyticHestonEngine
-from quantlib.processes.heston_process import HestonProcess
-from quantlib.settings import Settings
-from quantlib.time.api import Period, Date, Actual365Fixed, ActualActual, TARGET, Days
-from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.zero_curve import ZeroCurve
-
-from quantlib.instruments.payoffs import PlainVanillaPayoff
-from quantlib.instruments.option import (
-            Put, Call, EuropeanExercise, VanillaOption)
-
-from quantlib.util.QL_converter import dateToQLDate, dfToZeroCurve
 
 from quantlib.mlab.option_pricing import heston_pricer, options_to_rates
 
