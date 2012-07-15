@@ -23,15 +23,15 @@ class ScheduleTestCase(unittest.TestCase):
             from_date, to_date, tenor, calendar, convention, termination_convention, rule
         )
 
-        for date in schedule.dates():
-            print date
+        self.assertIsNotNone(schedule)
 
-        self.assert_(schedule is not None)
+        for date in schedule.dates():
+            pass
 
         # Constructor using the defaults for the different conventions
         schedule = Schedule(from_date, to_date, tenor, calendar)
 
-        self.assert_(schedule is not None)
+        self.assertIsNotNone(schedule)
 
 
 class ScheduleMethodTestCase(unittest.TestCase):
@@ -46,31 +46,24 @@ class ScheduleMethodTestCase(unittest.TestCase):
         self.rule = Twentieth
 
         self.schedule = Schedule(
-            self.from_date, self.to_date, self.tenor, self.calendar, 
+            self.from_date, self.to_date, self.tenor, self.calendar,
             self.convention, self.termination_convention, self.rule
         )
 
-
-        for date in self.schedule.dates():
-            print date
-
     def test_size(self):
-        
+
         self.assertEquals(15, self.schedule.size())
 
     def test_dates(self):
-        
+
         expected_dates_length = self.schedule.size()
         dates = list(self.schedule.dates())
 
         self.assertEquals(expected_dates_length, len(dates))
 
-        for date in dates:
-            print date
-
 
     def test_at(self):
-        
+
         expected_date = self.calendar.adjust(self.from_date, Following)
         self.assertTrue(expected_date == self.schedule.at(0))
 
@@ -78,10 +71,9 @@ class ScheduleMethodTestCase(unittest.TestCase):
             self.from_date + Period(4, Weeks), Following
         )
         expected_date = Date(20, next_date.month, next_date.year)
-        print expected_date, self.schedule.at(1)
-        
+
         self.assertTrue(expected_date == self.schedule.at(1))
-        
+
     def test_previous_next_reference_date(self):
         from_date = Date(3, Sep, 2011)
         to_date = Date(15, Dec, 2011)
@@ -94,8 +86,7 @@ class ScheduleMethodTestCase(unittest.TestCase):
         fwd_schedule = Schedule(from_date, to_date, tenor, calendar, convention,
                 termination_convention, rule)
 
-        expected_date = Date(5, Sep, 2011) 
-        print expected_date, fwd_schedule.next_date(from_date)
+        expected_date = Date(5, Sep, 2011)
         self.assert_(expected_date == fwd_schedule.next_date(from_date))
 
         rule = Backward
@@ -103,10 +94,8 @@ class ScheduleMethodTestCase(unittest.TestCase):
         bwd_schedule = Schedule(from_date, to_date, tenor, calendar, convention,
                 termination_convention, rule)
 
-        expected_date = Date(15, Nov, 2011) 
+        expected_date = Date(15, Nov, 2011)
         self.assert_(expected_date == bwd_schedule.previous_date(to_date))
-
-
 
 
 if __name__ == '__main__':
