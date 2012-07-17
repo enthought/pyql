@@ -1,5 +1,5 @@
-""" Definition of the canonical data structures used in the
-"mlab" high-level functions. The data structures are all pandas DataFrames,
+""" Definition of canonical data structures used in the
+high-level functions. The data structures are all pandas DataFrames,
 with defined column names and types. The data frames are empty, and should be
 used as follows:
 
@@ -10,17 +10,23 @@ used as follows:
 import numpy as np
 from pandas import DataFrame
 
-from quantlib.reference.names import (TYPE, STRIKE, DTEXPIRY, SPOT,
-                                    DIVRATE, RISKFREERATE,DTMATURITY)
-
-option_quotes = DataFrame(np.empty((0,), dtype=[(TYPE, 'f4'), (STRIKE, 'f4'),
-                                  (DTEXPIRY, 'f4'), (SPOT, 'f4')]))
+import quantlib.reference.names as nm
 
 
-riskfree_dividend = DataFrame.from_records(np.empty((0,),
-                                                    dtype=[(DIVRATE,'f4'),
-                                                    (RISKFREERATE,'f4'),
-                                                    (DTMATURITY,'object')]),
-                              index=DTMATURITY)
+def option_quotes_template():
+    
+    return DataFrame(np.empty((0,), dtype=[(nm.OPTION_TYPE, 'f4'),
+                                           (nm.STRIKE, 'f4'),
+                                           (nm.EXPIRY_DATE, 'f4'),
+                                           (nm.SPOT, 'f4')]))
+
+
+
+def riskfree_dividend_template():
+    return DataFrame.from_records(np.empty((0,),
+                                  dtype=[(nm.DIVIDEND_YIELD,'f4'),
+                                         (nm.INTEREST_RATE,'f4'),
+                                         (nm.MATURITY_DATE,'object')]),
+                                  index=nm.MATURITY_DATE)
 
 
