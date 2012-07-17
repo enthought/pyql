@@ -19,7 +19,7 @@ date handling is also known from Excel. The alternative is the construction via:
     
 Here, day, month and year are of integer. A set of month constant are available in the date module (January,  ..., December or Jan, ..., Dec)
 
-After constructing a Date, we can do simple date arithmetics, such as adding/subtracting days and months to the current date. Furthermore, the known convenient operators such as +=,−= can be used. 
+After constructing a Date, we can do simple date arithmetics, such as adding/subtracting days and months to the current date. Furthermore, the known convenient operators such as +=,-= can be used. 
 
 It is possible to add a Period to a date. Period can be created using time units or frequency::
     

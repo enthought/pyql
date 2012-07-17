@@ -17,7 +17,7 @@ build:
 	python setup.py build_ext --inplace
 
 install:
-	python setup.py install
+	python setup.py install --record pyql_install.txt
 
 tests-preload:
 	LD_PRELOAD=/opt/QuantLib-1.1/lib/libQuantLib.so nosetests -v quantlib/test
