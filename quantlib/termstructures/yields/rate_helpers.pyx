@@ -15,12 +15,14 @@ cimport _rate_helpers as _rh
 from quantlib.handle cimport shared_ptr, Handle
 cimport quantlib._quote as _qt
 cimport quantlib.indexes._ibor_index as _ib
+cimport quantlib.indexes._swap_index as _si
+from quantlib.time._period cimport Frequency, Days
+from quantlib.time._calendar cimport BusinessDayConvention
+
 from quantlib.quotes cimport Quote
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.date cimport Period, Date
-from quantlib.time._period cimport Frequency
-from quantlib.time._calendar cimport BusinessDayConvention
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.indexes.swap_index cimport SwapIndex
 
@@ -123,8 +125,23 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
 
     @classmethod
     def from_index(cls, float rate, SwapIndex index):
-        pass
 
+        cdef Handle[_qt.Quote] spread_handle = Handle[_qt.Quote](new _qt.SimpleQuote(0))
+        cdef Period p = Period(0, Days)
+
+
+        cdef SwapRateHelper instance = cls()
+
+        instance.set_ptr(new shared_ptr[_rh.RelativeDateRateHelper](
+            new _rh.SwapRateHelper(
+                rate,
+                deref(<shared_ptr[_si.SwapIndex]*>index._thisptr),
+                spread_handle,
+                deref(p._thisptr.get()))
+            )
+        )
+
+        return instance
 
 cdef class FraRateHelper(RelativeDateRateHelper):
     """ Rate helper for bootstrapping over %FRA rates. """
