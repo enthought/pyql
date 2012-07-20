@@ -94,6 +94,19 @@ cdef class DepositRateHelper(RateHelper):
 
 cdef class SwapRateHelper(RelativeDateRateHelper):
 
+    def __init__(self, from_classmethod=False):
+        """ Creating a SwaprRateHelper without using a class method means the
+        shared_ptr won't be initialized properly and break any subsequent calls
+        to the QuantLib internals... To avoid this, we raise a ValueError if
+        the user tries to instantiate this class if not setting the
+        from_classmethod. This is an ugly workaround but is ok so far."""
+
+        if from_classmethod is False:
+            raise ValueError(
+                'SwapRateHelpers must be instantiated through the class methods'
+                ' from_index or from_tenor'
+            )
+
     cdef set_ptr(self, shared_ptr[_rh.RelativeDateRateHelper]* ptr):
         self._thisptr = ptr
 
@@ -105,7 +118,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
 
         cdef Handle[_qt.Quote] spread_handle = Handle[_qt.Quote](deref(spread._thisptr))
 
-        cdef SwapRateHelper instance = cls()
+        cdef SwapRateHelper instance = cls(from_classmethod=True)
 
         instance.set_ptr(new shared_ptr[_rh.RelativeDateRateHelper](
             new _rh.SwapRateHelper(
@@ -130,7 +143,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
         cdef Period p = Period(0, Days)
 
 
-        cdef SwapRateHelper instance = cls()
+        cdef SwapRateHelper instance = cls(from_classmethod=True)
 
         instance.set_ptr(new shared_ptr[_rh.RelativeDateRateHelper](
             new _rh.SwapRateHelper(
