@@ -15,6 +15,11 @@ cdef class BlackVolTermStructure:
         if self._thisptr is not NULL:
             del self._thisptr
 
+    def __init__(self):
+        raise ValueError(
+            'BlackVolTermStructure cannot be directly instantiated!'
+        )
+
 
 cdef class BlackConstantVol(BlackVolTermStructure):
 
