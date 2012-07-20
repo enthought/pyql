@@ -15,7 +15,7 @@ from quantlib.time._schedule cimport Schedule, Backward
 from quantlib.time.date cimport date_from_qldate, Date
 from quantlib.time.daycounters._actual_actual cimport ISMA, ActualActual
 
-cdef extern from "quantlib/settings/ql_settings.hpp" namespace "QL":
+cdef extern from "ql_settings.hpp" namespace "QL":
     QlDate get_evaluation_date()
     void set_evaluation_date(QlDate& date)
 
