@@ -80,7 +80,7 @@ def collect_extensions():
     """
 
     settings_extension = Extension('quantlib.settings',
-        ['quantlib/settings/settings.pyx', 'quantlib/settings/ql_settings.cpp'],
+        ['quantlib/settings/settings.pyx', 'cpp_layer/ql_settings.cpp'],
         language='c++',
         include_dirs=INCLUDE_DIRS,
         library_dirs=LIBRARY_DIRS,
@@ -92,7 +92,7 @@ def collect_extensions():
     )
 
     test_extension = Extension('quantlib.test.test_cython_bug',
-        ['quantlib/test/test_cython_bug.pyx', 'quantlib/settings/ql_settings.cpp'],
+        ['quantlib/test/test_cython_bug.pyx', 'cpp_layer/ql_settings.cpp'],
         language='c++',
         include_dirs=INCLUDE_DIRS,
         library_dirs=LIBRARY_DIRS,
@@ -107,7 +107,7 @@ def collect_extensions():
         'quantlib.termstructures.yields.piecewise_yield_curve',
         [
             'quantlib/termstructures/yields/piecewise_yield_curve.pyx',
-            'quantlib/termstructures/yields/_piecewise_support_code.cpp'
+            'cpp_layer/yield_piecewise_support_code.cpp'
         ],
         language='c++',
         include_dirs=INCLUDE_DIRS,
@@ -141,7 +141,7 @@ def collect_extensions():
         name='quantlib.sim.simulate',
         sources=[
             'quantlib/sim/simulate.pyx',
-            'quantlib/sim/_simulate_support_code.cpp'
+            'cpp_layer/simulate_support_code.cpp'
         ],
         language='c++',
         include_dirs=INCLUDE_DIRS + [numpy.get_include()],
