@@ -10,15 +10,19 @@
 from .calendar import (
     Calendar, TARGET, ModifiedFollowing, Following, ModifiedPreceding,
     Preceding, Unadjusted, holiday_list
-)
+    )
+from .calendars.jointcalendar import JointCalendar
+
+from .calendars.united_states import UnitedStates
+from .calendars.united_kingdom import UnitedKingdom
 from .calendars.null_calendar import NullCalendar
+
 from .daycounter import Thirty360, Actual360, Actual365Fixed
 from .daycounters.actual_actual import ActualActual, ISMA, ISDA, Bond
 from .date import (
-    Date, Months, Period, today, Years, Days, Annual, Semiannual, Weeks,
-    Quarterly,
-    January, February, March, April, May, June, July, August, September, November, December,
+    Date, Months, Period, today, Years, Days, Annual, Semiannual,
+    Weeks, Quarterly, January, February, March, April, May,
+    June, July, August, September, November, December,
     Jan, Feb, Mar, Apr, Jun, Jul, Aug, Sep, Oct, Nov, Dec
 )
 from .schedule import Schedule, Backward, Forward, TwentiethIMM
-

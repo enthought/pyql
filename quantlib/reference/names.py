@@ -1,4 +1,5 @@
-""" This module defines string constants that are used as data frames
+"""
+This module defines string constants that are used as panda
     column names.
 """
 # General
@@ -18,8 +19,17 @@ MATURITY_DATE = 'dtMaturity'
 # Options
 
 OPTION_TYPE = 'Type'
+EXERCISE_STYLE = 'Style'
 STRIKE = 'Strike'
+ATMVOL = 'ATMVol'
+FORWARD = 'Fwd'
+QUICKDELTA = 'QuickDelta'
+
+IVOL_ASK = 'IVAsk'
+IVOL_BID = 'IVBid'
+IVOL_MID = 'IVMid'
 
 CALL_OPTION = 'C'
 PUT_OPTION = 'P'
-
+EURO_EXERCISE = 'Euro'
+AMER_EXERCISE = 'Amer'
