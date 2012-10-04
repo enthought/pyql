@@ -5,10 +5,11 @@ from quantlib.currency import USDCurrency
 from quantlib.indexes.libor import Libor
 from quantlib.indexes.swap_index import SwapIndex
 from quantlib.instruments.option import Call, EuropeanExercise, AmericanExercise
+from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.processes.black_scholes_process import BlackScholesProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.time.api import (
-    Date, Days, Period, Actual360, Months, Jan, ModifiedFollowing, Years
+    Date, Days, Period, Actual360, Months, Jan, ModifiedFollowing, Years, Feb
 )
 from quantlib.time.calendars.united_states import UnitedStates
 from quantlib.termstructures.yields.api import (
@@ -156,7 +157,8 @@ def dividendOption():
     # Here, as an implementation exemple, we make the test with borth american and european exercise
     europeanExercise = EuropeanExercise(maturity)
     # The emericanExercise need also the settlement date, as his right to exerce the buy or call start at the settlement date!
-    americanExercise = AmericanExercise(settlementDate, maturity)
+    #americanExercise = AmericanExercise(settlementDate, maturity)
+    americanExercise = AmericanExercise(maturity, settlementDate)
     
     print "**********************************"
     print "Description of the option:		", Option_name
@@ -170,7 +172,7 @@ def dividendOption():
     # INPUT You have to determine the frequece and rates of the discrete dividend. Here is a sollution, but she's not the only one.
     # Last know dividend:
     dividend			= 0.0 #//0.75
-    nextDividendDate	= Date(10,Feb,2012)
+    next_dividend_date	= Date(10,Feb,2012)
     # HERE we have make the assumption that the dividend will grow with the quarterly croissance:
     dividendCroissance	= 1.03
     dividendfrequence	= 3 * Months
@@ -178,16 +180,16 @@ def dividendOption():
     dividends = []
 
 
-    d = nextDividentDate
+    d = next_dividend_date
     while d < maturity:
         dividendDates.append(d)
-        dividend.append(dividend)
+        dividends.append(dividend)
         d += dividendfrequence
         dividend *= dividendCroissance
 
     print "Discrete dividends				"
     print "Dates				Dividends		"
-    for date, div in zip(dividendDates, dividend):
+    for date, div in zip(dividendDates, dividends):
         print date, "		", div
 
     # ++++++++++++++++++ Description of the final payoff 

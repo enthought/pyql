@@ -110,8 +110,66 @@ cdef class VanillaOption:
                 deref(exercise._thisptr)
             )
 
+        # FIXME: this looks like abusing the user ... it is a EuropeanOption and
+        # not a Vanilla one ... should be fixed!
         self._thisptr = new shared_ptr[_option.VanillaOption]( \
             new _option.EuropeanOption(payoff_ptr, exercise_ptr)
+        )
+
+    def set_pricing_engine(self, PricingEngine engine):
+        '''Sets the pricing engine for the option. '''
+
+        cdef shared_ptr[_pe.PricingEngine] engine_ptr = \
+                shared_ptr[_pe.PricingEngine](
+                    deref(engine._thisptr)
+                )
+
+        self._thisptr.get().setPricingEngine(engine_ptr)
+        self.has_pricing_engine = True
+
+    property exercise:
+        def __get__(self):
+            exercise = Exercise()
+            exercise.set_exercise(self._thisptr.get().exercise())
+            return exercise
+
+    property net_present_value:
+        """ Option net present value. """
+        def __get__(self):
+            if self.has_pricing_engine:
+                return self._thisptr.get().NPV()
+
+cdef class DividendVanillaOption:
+
+    cdef shared_ptr[_option.DividendVanillaOption]* _thisptr
+    cdef public bool has_pricing_engine
+
+    def __cinit__(self):
+        self._thisptr = NULL
+        self.has_pricing_engine = False
+
+    def __dealloc__(self):
+        if self._thisptr is not NULL:
+            del self._thisptr
+            self._thisptr = NULL
+
+    def __str__(self):
+        return 'Dividend vanilla option %s %s' % (str(self.exercise), str(self._payoff_ref))
+
+    def __init__(self, PlainVanillaPayoff payoff, Exercise exercise, dividend_dates, dividends):
+
+        cdef shared_ptr[_payoffs.StrikedTypePayoff] payoff_ptr = \
+            shared_ptr[_payoffs.StrikedTypePayoff](
+                deref(payoff._thisptr)
+        )
+
+        cdef shared_ptr[_exercise.Exercise] exercise_ptr = \
+            shared_ptr[_exercise.Exercise](
+                deref(exercise._thisptr)
+            )
+
+        self._thisptr = new shared_ptr[_option.VanillaOption]( \
+            new _option.DividendVanillaOption(payoff_ptr, exercise_ptr)
         )
 
     def set_pricing_engine(self, PricingEngine engine):
