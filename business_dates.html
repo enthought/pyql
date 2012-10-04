@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Business dates &mdash; Quantlib cython wrapper 0.1.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Quantlib cython wrapper 0.1.1 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">Quantlib cython wrapper 0.1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="business-dates">
+<h1>Business dates<a class="headerlink" href="#business-dates" title="Permalink to this headline">¶</a></h1>
+<p>Business dates handling capabilities is provided by the quantlib.time
+subpackage. The three core components are Date, Period and Calendar.</p>
+<div class="section" id="date">
+<h2>Date<a class="headerlink" href="#date" title="Permalink to this headline">¶</a></h2>
+<p>A date in QuantLib can be constructed with the following syntax:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Date</span><span class="p">(</span><span class="n">serial_number</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where serial_number is the number of days such as 24214, and 0 corresponds to 31.12.1899. This
+date handling is also known from Excel. The alternative is the construction via:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Date</span><span class="p">(</span><span class="n">day</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here, day, month and year are of integer. A set of month constant are available in the date module (January,  ..., December or Jan, ..., Dec)</p>
+<p>After constructing a Date, we can do simple date arithmetics, such as adding/subtracting days and months to the current date. Furthermore, the known convenient operators such as +=,-= can be used.</p>
+<p>It is possible to add a Period to a date. Period can be created using time units or frequency:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Period</span><span class="p">(</span><span class="n">frequency</span><span class="p">)</span>
+<span class="n">Period</span><span class="p">(</span><span class="n">lenght</span><span class="p">,</span> <span class="n">time_units</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Frequencies are define with the following constants : NoFrequency, Once,
+Annual, Semiannual, EveryFourthMonth, Quartely, Bimonthly, Monthly,
+EveryFourthWeek, Biweekly, Weekly, Daily and OtherFrequency.</p>
+<p>Time units are constants defined in the date module :  Days, Weeks, Months, Years.</p>
+<p>Each Date object has the following properties :</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>weekday</strong> returns the weekday using the weekday constants defined in the
+date module (Sunday to Saturday and Sun to Sat).</li>
+<li><strong>day</strong> returns the day of the month</li>
+<li><strong>day_of_year</strong> returns the day of the year</li>
+<li><strong>month</strong> returns the month</li>
+<li><strong>year</strong> returns the year</li>
+<li><strong>serial</strong> returns a the serial number of this date</li>
+</ul>
+</div></blockquote>
+<p>The QuantLib Date class has some useful static functions, which give general results, such as whether a given year is a leap year or a given date is the end of the month. The currently available functions are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>today()</strong></li>
+<li><strong>min_date()</strong>: earliest possible Date in QuantLib</li>
+<li><strong>max_date()</strong>: latest possible Date in QuantLib</li>
+<li><strong>is_leap(year)</strong>: is year a leap year?</li>
+<li><strong>end_of_month(date)</strong>: what is the end of the month in which date is a
+day?</li>
+<li><strong>is_end_of_month(date)</strong>: is date the end of the month?</li>
+<li><strong>next_weekday(date, weekday)</strong>: on which date is the weekday following
+the date? (e.g. date of the next Friday)</li>
+<li><strong>nth_weekday(n, weekday, month, year)</strong>: what is the n-th weekday in the
+given year and month? (e.g. date of the 3rd Wednesday in July 2010)</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="calendars">
+<h2>Calendars<a class="headerlink" href="#calendars" title="Permalink to this headline">¶</a></h2>
+<p>One of the crucial objects in the daily business is a calendar for different countries which shows the holidays, business days and weekends for the respective country. In QuantLib, a calendar can be set up easily via:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">uk_calendar</span> <span class="o">=</span> <span class="n">UnitedKingdom</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>for the UK. Calendars implementation are available in the
+quantlib.time.calendars subpackage.</p>
+<p>Various other calendars are available, for example for Germany, United States, Switzerland, Ukraine, Turkey, Japan, India, Canada and Australia. In addition, special exchange calendars can be initialized for several countries.
+For example, the New-York Stock Exchange calendar can be initialized via:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">us_calendar</span> <span class="o">=</span> <span class="n">UnitedStates</span><span class="p">(</span><span class="n">NYSE</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The following functions are available:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>is_business_day(date)</strong></li>
+<li><strong>is_holiday(date)</strong></li>
+<li><strong>is_weekend(week_day)</strong>: is the given weekday part of the weekend?</li>
+<li><strong>is_end_of_month(date)</strong>: indicates, whether the given date is the last
+business day in the month.</li>
+<li><strong>end_of_month(date)</strong>: returns the last business day in the month.</li>
+</ul>
+</div></blockquote>
+<p>The calendars are customizable, so you can add and remove holidays in your calendar:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>addHoliday(date)</strong>: adds a user specified holiday</li>
+<li><strong>removeHoliday(date)</strong>: removes a user specified holiday</li>
+</ul>
+</div></blockquote>
+<p>Furthermore, a function is provided to return a list of holidays</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>holidayList(calendar, from_date, to_date, include_weekends=False)</strong>:
+returns a holiday list, including or excluding weekends. This function
+returns a DateList object that provides an list/iterator-like interface on
+top of the C++ QuantLib date vector.</li>
+</ul>
+</div></blockquote>
+<p>Adjusting a date can be necessary, whenever a transaction date falls on a date that is not a business day.</p>
+<p>The following Business Day Conventions are available in the calendar module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Following</strong>: the transaction date will be the first following day that is a business day.</li>
+<li><strong>ModifiedFollowing</strong>: the transaction date will be the first following
+day that is a business day unless it is in the next month. In this case it
+will be the first preceding day that is a business day.</li>
+<li><strong>Preceding</strong>: the transaction date will be the first preceding day that
+is a business day.</li>
+<li><strong>ModifiedPreceding</strong>: the transaction date will be the first preceding
+day that is a business day, unless it is in the previous month. In this
+case it will be the first following day that is a business day.</li>
+<li><strong>Unadjusted</strong></li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt>The Calendar functions which perform the business day adjustments are :</dt>
+<dd><ul class="first last simple">
+<li><strong>adjust(date, business_day_convention)</strong></li>
+<li><strong>advance(date,period, business_day_convention, end_of_month)</strong>: the
+end_of_month variable enforces the advanced date to be the end of the
+month if the current date is the end of the month.</li>
+</ul>
+</dd>
+</dl>
+<p>Finally, it is possible to count the business days between two dates with the following function:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>business_days_between(from_date, to_date, include_first, include_last)</strong>
+calculates the business days between from and to including or excluding
+the initial/final dates.</li>
+</ul>
+</div></blockquote>
+<p>We will demonstrate an example by using the Frankfurt Stock Exchange calendar and the dates Date(31,Oct,2009) and Date(1,Jan,2010). From the first date, we advance 2 months in the future, which is December, 31st. Since this is a holiday and the next business day is in the next month, we can check the Modified Following conversion. The Modified Preceding conversion can be checked for January, 1st 2010:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">frankfcal</span>   <span class="o">=</span> <span class="n">Germany</span><span class="p">(</span><span class="n">FrankfurtStockExchange</span><span class="p">);</span>
+<span class="n">first_date</span>  <span class="o">=</span> <span class="n">Date</span><span class="p">(</span><span class="mi">31</span><span class="p">,</span><span class="n">Oct</span><span class="p">,</span><span class="mi">2009</span><span class="p">)</span>
+<span class="n">second_date</span> <span class="o">=</span> <span class="n">Date</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Jan</span> <span class="p">,</span><span class="mi">2010</span><span class="p">);</span>
+
+<span class="k">print</span> <span class="s">&quot;Date 2       Adv:&quot;</span><span class="p">,</span> <span class="n">frankfcal</span><span class="o">.</span><span class="n">adjust</span><span class="p">(</span><span class="n">second_date</span> <span class="p">,</span> <span class="n">Preceding</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;Date 2       Adv:&quot;</span><span class="p">,</span> <span class="n">frankfcal</span><span class="o">.</span><span class="n">adjust</span><span class="p">(</span><span class="n">second_date</span> <span class="p">,</span> <span class="n">ModifiedPreceding</span><span class="p">)</span>
+
+<span class="n">mat</span> <span class="o">=</span> <span class="n">Period</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">Months</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">&quot;Date 1 Month Adv:&quot;</span><span class="p">,</span> \
+  <span class="n">frankfcal</span><span class="o">.</span><span class="n">avance</span><span class="p">(</span>
+        <span class="n">first_date</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="n">mat</span><span class="p">,</span> <span class="n">convention</span><span class="o">=</span><span class="n">Following</span><span class="p">,</span>
+        <span class="n">end_of_month</span><span class="o">=</span><span class="bp">False</span>
+   <span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;Date 1 Month Adv:&quot;</span><span class="p">,</span> \
+  <span class="n">frankfcal</span><span class="o">.</span><span class="n">avance</span><span class="p">(</span>
+        <span class="n">first_date</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="n">mat</span><span class="p">,</span> <span class="n">convention</span><span class="o">=</span><span class="n">ModifiedFollowing</span><span class="p">,</span>
+        <span class="n">end_of_month</span><span class="o">=</span><span class="bp">False</span>
+  <span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;Business Days Between:&quot;</span><span class="p">,</span> \
+  <span class="n">frankfcal</span><span class="o">.</span><span class="n">business_days_between</span><span class="p">(</span>
+        <span class="n">first_date</span><span class="p">,</span> <span class="n">second_date</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span>
+  <span class="p">)</span>
+</pre></div>
+</div>
+<p>and the output will give</p>
+<div class="highlight-python"><pre>Date 2       Adv: 30/12/2009
+Date 2       Adv:  4/01/2010
+Date 1 Month Adv:  4/01/2010
+Date 1 Month Adv: 30/12/2009
+Business Days Between: 41</pre>
+</div>
+</div>
+<div class="section" id="day-counters">
+<h2>Day counters<a class="headerlink" href="#day-counters" title="Permalink to this headline">¶</a></h2>
+<p>Daycount conventions are crucial in financial markets. QuantLib offers :</p>
+<blockquote>
+<div><ul class="simple">
+<li>Actual360: Actual/360 day count convention</li>
+<li>Actual365Fixed: Actual/365 (Fixed)</li>
+<li>ActualActual: Actual/Actual day count</li>
+<li>Business252: Business/252 day count convention</li>
+<li>Thirty360: 30/360 day count convention</li>
+</ul>
+</div></blockquote>
+<p>The construction is easily performed via:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">myCounter</span> <span class="o">=</span> <span class="n">ActualActual</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The other conventions can be constructed equivalently. The available functions are :</p>
+<blockquote>
+<div><ul class="simple">
+<li>dayCount(from_date, to_date)</li>
+<li>yearFraction(from_date, to_date)</li>
+</ul>
+</div></blockquote>
+<p>TODO : add example</p>
+</div>
+<div class="section" id="date-generation">
+<h2>Date generation<a class="headerlink" href="#date-generation" title="Permalink to this headline">¶</a></h2>
+<p>An often needed functionality is a schedule of payments, for example for coupon payments of a bond. The task is to produce a series of dates from a start to an end date following a given frequency(e.g. annual, quarterly...). We might want the dates to follow a certain business day convention. And we might want the schedule to go backwards (e.g. start the frequency going backwards from the last date).</p>
+<p>For example:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Today is Date(3,Sep,2009). We need a monthly schedule which ends at Date(15,Dec,2009). Going forwards would produce Date(3,Sep,2009),Date(3,Oct,2009),Date(3,Nov,2009),Date(3,Dec,2009) and the final date Date(15,Dec,2009).</li>
+<li>Going backwards, on a monthly basis, would produce Date(3,Sep,2009),Date(15,Sep,2009),Date(15,Oct,2009), Date(15,Nov,2009),Date(15,Dec,2009).</li>
+</ul>
+</div></blockquote>
+<p>The different procedures are given by the DateGeneration object and will now be
+summarized:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Backward: Backward from termination date to effective date.</li>
+<li>Forward: Forward from effective date to termination date.</li>
+<li>Zero: No intermediate dates between effective date and termination date.</li>
+<li>ThirdWednesday: All dates but effective date and termination date are taken to be on the third Wednesday of their month (with forward calculation).</li>
+<li>Twentieth: All dates but the effective date are taken to be the twentieth of their month (used for CDS schedules in emerging markets). The termination date is also modified.</li>
+<li>TwentiethIMM: All dates but the effective date are taken to be the twentieth of an IMM month (used for CDS schedules). The termination date is also modified.</li>
+</ul>
+</div></blockquote>
+<p>The schedule is initialized by the Schedule class:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Schedule</span><span class="p">(</span><span class="n">effective_date</span> <span class="p">,</span> <span class="n">termination_date</span><span class="p">,</span> <span class="n">tenor</span><span class="p">,</span> <span class="n">calendar</span><span class="p">,</span> <span class="n">convention</span> <span class="p">,</span>
+         <span class="n">termination_date_convention</span> <span class="p">,</span> <span class="n">date_gen_rule</span><span class="p">,</span>
+         <span class="n">end_of_month</span><span class="p">,</span> <span class="n">first_date</span><span class="p">,</span> <span class="n">next_to_last_date</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The arguments represent the following</p>
+<blockquote>
+<div><ul class="simple">
+<li>effective_date, termination_date: start/end of the schedule</li>
+<li>tenor: a Period object reprensenting the frequency of the schedule
+(e.g. every 3 months)</li>
+<li>termination_date_convention: allows to specify a special business day
+convention for the final date.</li>
+<li>rule: the generation rule, as previously discussed</li>
+<li>end_of_month: if the effective date is the end of month, enforce the schedule   dates to be end of the month too (termination date excluded).</li>
+<li>first_date, next_to_last_date: are optional parameters. If we generate the
+schedule forwards, the schedule procedure will start from first_date and
+then increase in the given periods from there. If next_to_last_date is set
+and we go backwards, the dates will be calculated relative to this date.</li>
+</ul>
+</div></blockquote>
+<p>The Schedule object has various useful functions, we will discuss some of them.</p>
+<blockquote>
+<div><ul class="simple">
+<li>size(): returns the number of dates</li>
+<li>at(i) : returns the date at index i.</li>
+<li>previous_date(ref_date): returns the previous date in the schedule compared
+to a reference date.</li>
+<li>next_date(ref_date): returns the next date in the schedule compared to a
+reference date.</li>
+<li>dates(): returns the whole schedule in a DateList object.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="performance-considerations">
+<h2>Performance considerations<a class="headerlink" href="#performance-considerations" title="Permalink to this headline">¶</a></h2>
+<p>In [3]: %timeit QuantLib.Date.todaysDate() + QuantLib.Period(10, QuantLib.Days)
+100000 loops, best of 3: 9.71 us per loop</p>
+<p>In [4]: %timeit datetime.date.today() + datetime.timedelta(days=10)
+100000 loops, best of 3: 3.55 us per loop</p>
+<p>In [5]: %timeit quantlib.date.today() + quantlib.date.Period(10, quantlib.date.Days)
+100000 loops, best of 3: 2.17 us per loop</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Business dates</a><ul>
+<li><a class="reference internal" href="#date">Date</a></li>
+<li><a class="reference internal" href="#calendars">Calendars</a></li>
+<li><a class="reference internal" href="#day-counters">Day counters</a></li>
+<li><a class="reference internal" href="#date-generation">Date generation</a></li>
+<li><a class="reference internal" href="#performance-considerations">Performance considerations</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/business_dates.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">Quantlib cython wrapper 0.1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Didrik Pinte, Patrick Henaff.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

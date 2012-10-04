@@ -1,0 +1,808 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Reference guide &mdash; Quantlib cython wrapper 0.1.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Quantlib cython wrapper 0.1.1 documentation" href="index.html" />
+    <link rel="next" title="Roadmap" href="roadmap.html" />
+    <link rel="prev" title="User’s guide" href="users_guide.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="roadmap.html" title="Roadmap"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="users_guide.html" title="User’s guide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Quantlib cython wrapper 0.1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="reference-guide">
+<h1>Reference guide<a class="headerlink" href="#reference-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="reference-documentation-for-the-quantlib-package">
+<h2>Reference documentation for the <tt class="xref py py-mod docutils literal"><span class="pre">quantlib</span></tt> package<a class="headerlink" href="#reference-documentation-for-the-quantlib-package" title="Permalink to this headline">¶</a></h2>
+<p>The API of the Python wrappers try to be as close as possible to the C++
+original source but keeping a Pythonic simple access to classes, methods and
+functions. Most of the complex structures related to proper memory management
+are completely hidden being the Python layers (for example boost::shared_ptr and Handle).</p>
+<div class="section" id="quantlib">
+<h3>quantlib<a class="headerlink" href="#quantlib" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="quantlib.currency.Currency">
+<em class="property">class </em><tt class="descclassname">quantlib.currency.</tt><tt class="descname">Currency</tt><a class="headerlink" href="#quantlib.currency.Currency" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.currency.USDCurrency">
+<em class="property">class </em><tt class="descclassname">quantlib.currency.</tt><tt class="descname">USDCurrency</tt><a class="headerlink" href="#quantlib.currency.USDCurrency" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.currency.EURCurrency">
+<em class="property">class </em><tt class="descclassname">quantlib.currency.</tt><tt class="descname">EURCurrency</tt><a class="headerlink" href="#quantlib.currency.EURCurrency" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.settings.Settings">
+<em class="property">class </em><tt class="descclassname">quantlib.settings.</tt><tt class="descname">Settings</tt><a class="headerlink" href="#quantlib.settings.Settings" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="quantlib.settings.Settings.evaluation_date">
+<tt class="descname">evaluation_date</tt><a class="headerlink" href="#quantlib.settings.Settings.evaluation_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Property to set/get the evaluation date.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="quantlib.settings.Settings.instance">
+<em class="property">static </em><tt class="descname">instance</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.settings.Settings.instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an instance of the global Settings object.</p>
+<p>Utility method to mimic the behaviour of the C++ singleton.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="quantlib.settings.Settings.version">
+<tt class="descname">version</tt><a class="headerlink" href="#quantlib.settings.Settings.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the QuantLib C++ version (QL_VERSION) used by this wrapper.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quantlib.quotes.Quote">
+<em class="property">class </em><tt class="descclassname">quantlib.quotes.</tt><tt class="descname">Quote</tt><a class="headerlink" href="#quantlib.quotes.Quote" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.quotes.SimpleQuote">
+<em class="property">class </em><tt class="descclassname">quantlib.quotes.</tt><tt class="descname">SimpleQuote</tt><a class="headerlink" href="#quantlib.quotes.SimpleQuote" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="quantlib-indexes">
+<h3>quantlib.indexes<a class="headerlink" href="#quantlib-indexes" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="quantlib.index.Index">
+<em class="property">class </em><tt class="descclassname">quantlib.index.</tt><tt class="descname">Index</tt><a class="headerlink" href="#quantlib.index.Index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.indexes.interest_rate_index.InterestRateIndex">
+<em class="property">class </em><tt class="descclassname">quantlib.indexes.interest_rate_index.</tt><tt class="descname">InterestRateIndex</tt><a class="headerlink" href="#quantlib.indexes.interest_rate_index.InterestRateIndex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.indexes.ibor_index.IborIndex">
+<em class="property">class </em><tt class="descclassname">quantlib.indexes.ibor_index.</tt><tt class="descname">IborIndex</tt><a class="headerlink" href="#quantlib.indexes.ibor_index.IborIndex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.indexes.euribor.Euribor">
+<em class="property">class </em><tt class="descclassname">quantlib.indexes.euribor.</tt><tt class="descname">Euribor</tt><a class="headerlink" href="#quantlib.indexes.euribor.Euribor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.indexes.libor.Libor">
+<em class="property">class </em><tt class="descclassname">quantlib.indexes.libor.</tt><tt class="descname">Libor</tt><a class="headerlink" href="#quantlib.indexes.libor.Libor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for all BBA LIBOR indexes but the EUR, O/N, and S/N ones
+LIBOR fixed by BBA.</p>
+<blockquote>
+<div>See &lt;<a class="reference external" href="http://www.bba.org.uk/bba/jsp/polopoly.jsp?d=225&amp;a=1414">http://www.bba.org.uk/bba/jsp/polopoly.jsp?d=225&amp;a=1414</a>&gt;.</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="quantlib-instruments">
+<h3>quantlib.instruments<a class="headerlink" href="#quantlib-instruments" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="quantlib.instruments.bonds.Bond">
+<em class="property">class </em><tt class="descclassname">quantlib.instruments.bonds.</tt><tt class="descname">Bond</tt><a class="headerlink" href="#quantlib.instruments.bonds.Bond" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base bond class</p>
+<dl class="method">
+<dt id="quantlib.instruments.bonds.Bond.accrued_amount">
+<tt class="descname">accrued_amount</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.instruments.bonds.Bond.accrued_amount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the bond accrued amount at the given date.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="quantlib.instruments.bonds.Bond.clean_price">
+<tt class="descname">clean_price</tt><a class="headerlink" href="#quantlib.instruments.bonds.Bond.clean_price" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bond clena price.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="quantlib.instruments.bonds.Bond.dirty_price">
+<tt class="descname">dirty_price</tt><a class="headerlink" href="#quantlib.instruments.bonds.Bond.dirty_price" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bond dirty price.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="quantlib.instruments.bonds.Bond.issue_date">
+<tt class="descname">issue_date</tt><a class="headerlink" href="#quantlib.instruments.bonds.Bond.issue_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bond issue date.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="quantlib.instruments.bonds.Bond.maturity_date">
+<tt class="descname">maturity_date</tt><a class="headerlink" href="#quantlib.instruments.bonds.Bond.maturity_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bond maturity date.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="quantlib.instruments.bonds.Bond.net_present_value">
+<tt class="descname">net_present_value</tt><a class="headerlink" href="#quantlib.instruments.bonds.Bond.net_present_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bond net present value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quantlib.instruments.bonds.Bond.set_pricing_engine">
+<tt class="descname">set_pricing_engine</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.instruments.bonds.Bond.set_pricing_engine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the pricing engine.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quantlib.instruments.bonds.Bond.settlement_date">
+<tt class="descname">settlement_date</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.instruments.bonds.Bond.settlement_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the bond settlement date after the given date.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="quantlib.instruments.bonds.Bond.valuation_date">
+<tt class="descname">valuation_date</tt><a class="headerlink" href="#quantlib.instruments.bonds.Bond.valuation_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bond valuation date.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quantlib.instruments.bonds.FixedRateBond">
+<em class="property">class </em><tt class="descclassname">quantlib.instruments.bonds.</tt><tt class="descname">FixedRateBond</tt><a class="headerlink" href="#quantlib.instruments.bonds.FixedRateBond" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fixed rate bond.</p>
+<dl class="docutils">
+<dt>Support:</dt>
+<dd><ul class="first last simple">
+<li>simple annual compounding coupon rates</li>
+</ul>
+</dd>
+<dt>Unsupported: (needs interfacing)</dt>
+<dd><ul class="first last simple">
+<li>simple annual compounding coupon rates with internal schedule calculation</li>
+<li>generic compounding and frequency InterestRate coupons</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="quantlib.instruments.bonds.ZeroCouponBond">
+<em class="property">class </em><tt class="descclassname">quantlib.instruments.bonds.</tt><tt class="descname">ZeroCouponBond</tt><a class="headerlink" href="#quantlib.instruments.bonds.ZeroCouponBond" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zero coupon bond.</p>
+</dd></dl>
+
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<dl class="class">
+<dt id="quantlib.instruments.option.VanillaOption">
+<em class="property">class </em><tt class="descclassname">quantlib.instruments.option.</tt><tt class="descname">VanillaOption</tt><a class="headerlink" href="#quantlib.instruments.option.VanillaOption" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="quantlib.instruments.option.VanillaOption.net_present_value">
+<tt class="descname">net_present_value</tt><a class="headerlink" href="#quantlib.instruments.option.VanillaOption.net_present_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Option net present value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quantlib.instruments.option.VanillaOption.set_pricing_engine">
+<tt class="descname">set_pricing_engine</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.instruments.option.VanillaOption.set_pricing_engine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the pricing engine for the option.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="quantlib-math">
+<h3>quantlib.math<a class="headerlink" href="#quantlib-math" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="quantlib.math.optimization.OptimizationMethod">
+<em class="property">class </em><tt class="descclassname">quantlib.math.optimization.</tt><tt class="descname">OptimizationMethod</tt><a class="headerlink" href="#quantlib.math.optimization.OptimizationMethod" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.math.optimization.LevenbergMarquardt">
+<em class="property">class </em><tt class="descclassname">quantlib.math.optimization.</tt><tt class="descname">LevenbergMarquardt</tt><a class="headerlink" href="#quantlib.math.optimization.LevenbergMarquardt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.math.optimization.EndCriteria">
+<em class="property">class </em><tt class="descclassname">quantlib.math.optimization.</tt><tt class="descname">EndCriteria</tt><a class="headerlink" href="#quantlib.math.optimization.EndCriteria" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="quantlib-model-equity">
+<h3>quantlib.model.equity<a class="headerlink" href="#quantlib-model-equity" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="quantlib.models.equity.heston_model.HestonModel">
+<em class="property">class </em><tt class="descclassname">quantlib.models.equity.heston_model.</tt><tt class="descname">HestonModel</tt><a class="headerlink" href="#quantlib.models.equity.heston_model.HestonModel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.models.equity.heston_model.HestonModelHelper">
+<em class="property">class </em><tt class="descclassname">quantlib.models.equity.heston_model.</tt><tt class="descname">HestonModelHelper</tt><a class="headerlink" href="#quantlib.models.equity.heston_model.HestonModelHelper" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.models.equity.bates_model.BatesModel">
+<em class="property">class </em><tt class="descclassname">quantlib.models.equity.bates_model.</tt><tt class="descname">BatesModel</tt><a class="headerlink" href="#quantlib.models.equity.bates_model.BatesModel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.models.equity.bates_model.BatesDetJumpModel">
+<em class="property">class </em><tt class="descclassname">quantlib.models.equity.bates_model.</tt><tt class="descname">BatesDetJumpModel</tt><a class="headerlink" href="#quantlib.models.equity.bates_model.BatesDetJumpModel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.models.equity.bates_model.BatesDoubleExpModel">
+<em class="property">class </em><tt class="descclassname">quantlib.models.equity.bates_model.</tt><tt class="descname">BatesDoubleExpModel</tt><a class="headerlink" href="#quantlib.models.equity.bates_model.BatesDoubleExpModel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.models.equity.bates_model.BatesDoubleExpDetJumpModel">
+<em class="property">class </em><tt class="descclassname">quantlib.models.equity.bates_model.</tt><tt class="descname">BatesDoubleExpDetJumpModel</tt><a class="headerlink" href="#quantlib.models.equity.bates_model.BatesDoubleExpDetJumpModel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-quantlib.pricingengines.blackformula">
+<span id="quantlib-pricingengines"></span><h3>quantlib.pricingengines<a class="headerlink" href="#module-quantlib.pricingengines.blackformula" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="quantlib.pricingengines.vanilla.VanillaOptionEngine">
+<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">VanillaOptionEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.VanillaOptionEngine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.pricingengines.vanilla.AnalyticEuropeanEngine">
+<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">AnalyticEuropeanEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.AnalyticEuropeanEngine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.pricingengines.vanilla.AnalyticHestonEngine">
+<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">AnalyticHestonEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.AnalyticHestonEngine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.pricingengines.vanilla.BaroneAdesiWhaleyApproximationEngine">
+<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">BaroneAdesiWhaleyApproximationEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.BaroneAdesiWhaleyApproximationEngine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.pricingengines.vanilla.BatesEngine">
+<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">BatesEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.BatesEngine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.pricingengines.vanilla.BatesDetJumpEngine">
+<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">BatesDetJumpEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.BatesDetJumpEngine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.pricingengines.vanilla.BatesDoubleExpEngine">
+<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">BatesDoubleExpEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.BatesDoubleExpEngine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.pricingengines.vanilla.BatesDoubleExpDetJumpEngine">
+<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">BatesDoubleExpDetJumpEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.BatesDoubleExpDetJumpEngine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="quantlib-processes">
+<h3>quantlib.processes<a class="headerlink" href="#quantlib-processes" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="quantlib.processes.black_scholes_process.GeneralizedBlackScholesProcess">
+<em class="property">class </em><tt class="descclassname">quantlib.processes.black_scholes_process.</tt><tt class="descname">GeneralizedBlackScholesProcess</tt><a class="headerlink" href="#quantlib.processes.black_scholes_process.GeneralizedBlackScholesProcess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.processes.black_scholes_process.BlackScholesMertonProcess">
+<em class="property">class </em><tt class="descclassname">quantlib.processes.black_scholes_process.</tt><tt class="descname">BlackScholesMertonProcess</tt><a class="headerlink" href="#quantlib.processes.black_scholes_process.BlackScholesMertonProcess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.processes.bates_process.BatesProcess">
+<em class="property">class </em><tt class="descclassname">quantlib.processes.bates_process.</tt><tt class="descname">BatesProcess</tt><a class="headerlink" href="#quantlib.processes.bates_process.BatesProcess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.processes.heston_process.HestonProcess">
+<em class="property">class </em><tt class="descclassname">quantlib.processes.heston_process.</tt><tt class="descname">HestonProcess</tt><a class="headerlink" href="#quantlib.processes.heston_process.HestonProcess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="quantlib-termstructures">
+<h3>quantlib.termstructures<a class="headerlink" href="#quantlib-termstructures" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="quantlib.termstructures.volatility.equityfx.black_vol_term_structure.BlackVolTermStructure">
+<em class="property">class </em><tt class="descclassname">quantlib.termstructures.volatility.equityfx.black_vol_term_structure.</tt><tt class="descname">BlackVolTermStructure</tt><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_vol_term_structure.BlackVolTermStructure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.termstructures.volatility.equityfx.black_vol_term_structure.BlackConstantVol">
+<em class="property">class </em><tt class="descclassname">quantlib.termstructures.volatility.equityfx.black_vol_term_structure.</tt><tt class="descname">BlackConstantVol</tt><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_vol_term_structure.BlackConstantVol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.termstructures.yields.api.YieldTermStructure">
+<em class="property">class </em><tt class="descclassname">quantlib.termstructures.yields.api.</tt><tt class="descname">YieldTermStructure</tt><a class="headerlink" href="#quantlib.termstructures.yields.api.YieldTermStructure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.termstructures.yields.api.FlatForward">
+<em class="property">class </em><tt class="descclassname">quantlib.termstructures.yields.api.</tt><tt class="descname">FlatForward</tt><a class="headerlink" href="#quantlib.termstructures.yields.api.FlatForward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.termstructures.yields.api.ZeroCurve">
+<em class="property">class </em><tt class="descclassname">quantlib.termstructures.yields.api.</tt><tt class="descname">ZeroCurve</tt><a class="headerlink" href="#quantlib.termstructures.yields.api.ZeroCurve" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.termstructures.yields.api.RateHelper">
+<em class="property">class </em><tt class="descclassname">quantlib.termstructures.yields.api.</tt><tt class="descname">RateHelper</tt><a class="headerlink" href="#quantlib.termstructures.yields.api.RateHelper" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="quantlib.termstructures.yields.api.DepositRateHelper">
+<em class="property">class </em><tt class="descclassname">quantlib.termstructures.yields.api.</tt><tt class="descname">DepositRateHelper</tt><a class="headerlink" href="#quantlib.termstructures.yields.api.DepositRateHelper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rate helper for bootstrapping over deposit rates.</p>
+</dd></dl>
+
+<span class="target" id="module-quantlib.termstructures.yields.piecewise_yield_curve"></span></div>
+<div class="section" id="quantlib-time">
+<h3>quantlib.time<a class="headerlink" href="#quantlib-time" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt>
+<em class="property">class </em><tt class="descclassname">quantlib.time.date.</tt><tt class="descname">Date</tt></dt>
+<dd><p>This class provides methods to inspect dates as well as methods and
+operators which implement a limited date algebra (increasing and decreasing
+dates, and calculating their difference).</p>
+<dl class="staticmethod">
+<dt>
+<em class="property">static </em><tt class="descclassname">Date.</tt><tt class="descname">from_datetime</tt><big>(</big><big>)</big></dt>
+<dd><p>Returns the Quantlib Date object from the date/datetime object.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quantlib.time.date.Period">
+<em class="property">class </em><tt class="descclassname">quantlib.time.date.</tt><tt class="descname">Period</tt><a class="headerlink" href="#quantlib.time.date.Period" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class providing a Period (length + time unit) class and implements a
+limited algebra.</p>
+<dl class="method">
+<dt id="quantlib.time.date.Period.normalize">
+<tt class="descname">normalize</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.time.date.Period.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalises the units.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quantlib.time.calendar.Calendar">
+<em class="property">class </em><tt class="descclassname">quantlib.time.calendar.</tt><tt class="descname">Calendar</tt><a class="headerlink" href="#quantlib.time.calendar.Calendar" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class provides methods for determining whether a date is a
+business day or a holiday for a given market, and for
+incrementing/decrementing a date of a given number of business days.</p>
+<p>A calendar should be defined for specific exchange holiday schedule
+or for general country holiday schedule. Legacy city holiday schedule
+calendars will be moved to the exchange/country convention.</p>
+<dl class="method">
+<dt id="quantlib.time.calendar.Calendar.add_holiday">
+<tt class="descname">add_holiday</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.time.calendar.Calendar.add_holiday" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a date to the set of holidays for the given calendar.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quantlib.time.calendar.Calendar.adjust">
+<tt class="descname">adjust</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.time.calendar.Calendar.adjust" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjusts a non-business day to the appropriate near business day
+with respect to the given convention.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quantlib.time.calendar.Calendar.advance">
+<tt class="descname">advance</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.time.calendar.Calendar.advance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Advances the given date of the given number of business days,
+or period and returns the result.</p>
+<p>You must provide either a step and unit or a Period.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quantlib.time.calendar.Calendar.business_days_between">
+<tt class="descname">business_days_between</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.time.calendar.Calendar.business_days_between" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of business days between date1 and date2.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quantlib.time.calendar.Calendar.end_of_month">
+<tt class="descname">end_of_month</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.time.calendar.Calendar.end_of_month" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the ending date for the month that contains the given
+date.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quantlib.time.calendar.Calendar.is_business_day">
+<tt class="descname">is_business_day</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.time.calendar.Calendar.is_business_day" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true iff the date is a business day for the
+given market.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quantlib.time.calendar.Calendar.is_end_of_month">
+<tt class="descname">is_end_of_month</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.time.calendar.Calendar.is_end_of_month" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is this date the last business day of the month to which the given
+date belongs</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quantlib.time.calendar.Calendar.is_holiday">
+<tt class="descname">is_holiday</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.time.calendar.Calendar.is_holiday" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true iff the weekday is part of the
+weekend for the given market.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quantlib.time.calendar.Calendar.is_weekend">
+<tt class="descname">is_weekend</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.time.calendar.Calendar.is_weekend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true iff the date is last business day for the
+month in given market.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quantlib.time.calendar.Calendar.remove_holiday">
+<tt class="descname">remove_holiday</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.time.calendar.Calendar.remove_holiday" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a date from the set of holidays for the given calendar.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quantlib.time.calendar.TARGET">
+<em class="property">class </em><tt class="descclassname">quantlib.time.calendar.</tt><tt class="descname">TARGET</tt><a class="headerlink" href="#quantlib.time.calendar.TARGET" title="Permalink to this definition">¶</a></dt>
+<dd><p>TARGET calendar</p>
+<p>Holidays (see <a class="reference external" href="http://www.ecb.int">http://www.ecb.int</a>):</p>
+<blockquote>
+<div><ul class="simple">
+<li>Saturdays</li>
+<li>Sundays</li>
+<li>New Year&#8217;s Day, January 1st</li>
+<li>Good Friday (since 2000)</li>
+<li>Easter Monday (since 2000)</li>
+<li>Labour Day, May 1st (since 2000)</li>
+<li>Christmas, December 25th</li>
+<li>Day of Goodwill, December 26th (since 2000)</li>
+<li>December 31st (1998, 1999, and 2001)</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="quantlib.time.calendar.holiday_list">
+<tt class="descclassname">quantlib.time.calendar.</tt><tt class="descname">holiday_list</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.time.calendar.holiday_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the holidays between two dates.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="quantlib.time.daycounter.DayCounter">
+<em class="property">class </em><tt class="descclassname">quantlib.time.daycounter.</tt><tt class="descname">DayCounter</tt><a class="headerlink" href="#quantlib.time.daycounter.DayCounter" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class provides methods for determining the length of a time
+period according to given market convention, both as a number
+of days and as a year fraction.</p>
+<dl class="method">
+<dt id="quantlib.time.daycounter.DayCounter.day_count">
+<tt class="descname">day_count</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.time.daycounter.DayCounter.day_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of days between two dates.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quantlib.time.daycounter.DayCounter.year_fraction">
+<tt class="descname">year_fraction</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.time.daycounter.DayCounter.year_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the period between two dates as a fraction of year.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="quantlib.time.schedule.Schedule">
+<em class="property">class </em><tt class="descclassname">quantlib.time.schedule.</tt><tt class="descname">Schedule</tt><a class="headerlink" href="#quantlib.time.schedule.Schedule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Payment schedule.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="how-to-wrap-quantlib-classes-with-cython">
+<h2>How to wrap QuantLib classes with cython<a class="headerlink" href="#how-to-wrap-quantlib-classes-with-cython" title="Permalink to this headline">¶</a></h2>
+<p>These notes provide a step by step guide to wrapping a QuantLib (QL) class
+with cython, so that it can be invoked from python.</p>
+<p>The objective is to make available in python a set of modules that exactly mirror
+the QL class hierarchy. For example, QL provides a class
+named &#8216;&#8217;SimpleQuote&#8217;&#8216;, that represents a simple price measurement.
+The C++ class is defined as follows:</p>
+<div class="highlight-python"><pre>class SimpleQuote : public Quote {
+  public:
+    SimpleQuote(Real value = Null&lt;Real&gt;());
+    Real value() const;
+    bool isValid() const;
+    Real setValue(Real value = Null&lt;Real&gt;());
+};</pre>
+</div>
+<p>After wrapping the C++ class, this class is now available in python:</p>
+<blockquote>
+<div>from quantlib.quotes import SimpleQuote
+spot = SimpleQuote(3.14)
+print(&#8216;Spot %f&#8217; % spot.value)</div></blockquote>
+<div class="section" id="the-interface-code">
+<h3>The Interface Code<a class="headerlink" href="#the-interface-code" title="Permalink to this headline">¶</a></h3>
+<p>To expose QL class &#8216;&#8217;foo&#8217;&#8216;, you need to create three files. For the sake of
+standardization, they should be named as follows:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">_foo.pxd:</th><td class="field-body">A header file to declare the C++ class being exposed,</td>
+</tr>
+<tr class="field-even field"><th class="field-name">foo.pxd:</th><td class="field-body">A header file where the corresponding python class is declared</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">foo.pyx:</th><td class="field-body">The implementation of the corresponding python class</td>
+</tr>
+</tbody>
+</table>
+<p>The content of each file is now described in details.</p>
+</div>
+<div class="section" id="declaration-of-the-ql-classes-to-be-exposed">
+<h3>Declaration of the QL classes to be exposed<a class="headerlink" href="#declaration-of-the-ql-classes-to-be-exposed" title="Permalink to this headline">¶</a></h3>
+<p>This file contains the declaration of the
+QL class being exposed. For example, the header file &#8216;&#8217;_quotes.pxd&#8217;&#8217;
+is as follows:</p>
+<div class="highlight-python"><pre># distutils: language = c++
+# distutils: libraries = QuantLib
+
+include 'types.pxi'
+
+from libcpp cimport bool
+
+cdef extern from 'ql/quote.hpp' namespace 'QuantLib':
+    cdef cppclass Quote:
+        Quote() except +
+        Real value() except +
+        bool isValid() except +
+
+cdef extern from 'ql/quotes/simplequote.hpp' namespace 'QuantLib':
+
+    cdef cppclass SimpleQuote(Quote):
+        SimpleQuote(Real value) except +
+        Real setValue(Real value) except +</pre>
+</div>
+<p>In this file, we declare the class &#8216;&#8217;SimpleQuote&#8217;&#8217; and its parent &#8216;&#8217;Quote&#8217;&#8216;.
+The syntax is almost identical to the corresponding c++ header file. The
+types used in declaring arguments are defined in &#8216;&#8217;types.pxi&#8217;&#8216;.</p>
+<p>The clause &#8216;except +&#8217; signals that the method may throw an exception. It
+is indispensible to append this clause to every declarion. Without it, an
+exception thrown in QL will terminate the python process.</p>
+</div>
+<div class="section" id="declaration-of-the-python-class">
+<h3>Declaration of the python class<a class="headerlink" href="#declaration-of-the-python-class" title="Permalink to this headline">¶</a></h3>
+<p>The second header file declares the python classes that will be wrapping
+the QL classes. The file &#8216;&#8217;quotes.pxd&#8217;&#8217; is reproduced below:</p>
+<div class="highlight-python"><pre>cimport _quote as _qt
+from quantlib.handle cimport shared_ptr
+
+cdef class Quote:
+    cdef shared_ptr[_qt.Quote]* _thisptr</pre>
+</div>
+<p>Notice that in our header files we use &#8216;Quote&#8217; to refer the the C++ class (in file _quote.pxd) and to the python class (in file quote.pxd). To avoid
+confusion we use the following convention:</p>
+<blockquote>
+<div><ul class="simple">
+<li>the C++ class is always refered to as &#8216;&#8217;_qt.Quote&#8217;&#8216;.</li>
+<li>the python class is always referd to as &#8216;&#8217;Quote&#8217;&#8216;</li>
+</ul>
+</div></blockquote>
+<p>The cython wrapper class holds a reference to the QL c++ class. As we do not
+want to do any memory handling on the Python side, we always wrap the C++
+object into a boost shared pointer that is deallocated properly when
+deallocation the Cython extension.</p>
+</div>
+<div class="section" id="implementation-of-the-python-class">
+<h3>Implementation of the python class<a class="headerlink" href="#implementation-of-the-python-class" title="Permalink to this headline">¶</a></h3>
+<p>The third file contains the implementation of the cython wrapper class. As an illustration, the implementation of the &#8216;&#8217;SingleQuote&#8217;&#8217; python class
+is reproduced below:</p>
+<div class="highlight-python"><pre>cdef class SimpleQuote(Quote):
+
+    def __init__(self, float value=0.0):
+        self._thisptr = new shared_ptr[_qt.Quote](new _qt.SimpleQuote(value))
+
+def __dealloc__(self):
+    if self._thisptr is not NULL:
+        del self._thisptr # properly deallocates the shared_ptr and
+                          # probably the target object if not referenced
+
+    def __str__(self):
+        return 'Simple Quote: %f' % self._thisptr.get().value()
+
+    property value:
+        def __get__(self):
+        if self._thisptr.get().isValid():
+            return self._thisptr.get().value()
+        else:
+            return None
+
+        def __set__(self, float value):
+        (&lt;_qt.SimpleQuote*&gt;self._thisptr.get()).setValue(value)</pre>
+</div>
+<p>The &#8216;&#8217;__init__&#8217;&#8217; method invokes the c++ constructor, which returns a boost shared pointer.</p>
+<p>Properties are used to give a more pythonic flavor to the wrapping.
+In python, we get the value of the &#8216;&#8217;SimpleQuote&#8217;&#8217; with the syntax
+&#8216;&#8217;spot.value&#8217;&#8217; rather than &#8216;&#8217;spot.value()&#8217;&#8216;, had we exposed
+directly the C++ accessor.</p>
+<p>Remember from the previous section that &#8216;&#8217;_thisptr&#8217;&#8217; is a shared pointer
+on a &#8216;&#8217;Quote&#8217;&#8216;, which is a virtual class. The &#8216;&#8217;setValue&#8217;&#8217;
+method is defined in the &#8216;&#8217;SimpleQuote&#8217;&#8217; concrete class,
+and the shared pointer must therefore be cast
+into a &#8216;&#8217;SimpleQuote&#8217;&#8217; shared pointer in order to invoke &#8216;&#8217;setValue()&#8217;&#8216;.</p>
+</div>
+<div class="section" id="managing-c-references-using-shared-ptr">
+<h3>Managing C++ references using shared_ptr<a class="headerlink" href="#managing-c-references-using-shared-ptr" title="Permalink to this headline">¶</a></h3>
+<p>All the Cython extension references should be declared using shared_ptr. The
+__dealloc__ method should always delete the shared_ptr but never the target
+pointer!</p>
+<p>Every time a shared_ptr reference is received, never assigns the target pointer
+to a local pointer variables as it might deallocated. Always use the copy
+constructor of the shared_ptr to get a local copy of it, stack allocated (there
+is no need to use new)</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Reference guide</a><ul>
+<li><a class="reference internal" href="#reference-documentation-for-the-quantlib-package">Reference documentation for the <tt class="docutils literal"><span class="pre">quantlib</span></tt> package</a><ul>
+<li><a class="reference internal" href="#quantlib">quantlib</a></li>
+<li><a class="reference internal" href="#quantlib-indexes">quantlib.indexes</a></li>
+<li><a class="reference internal" href="#quantlib-instruments">quantlib.instruments</a></li>
+<li><a class="reference internal" href="#quantlib-math">quantlib.math</a></li>
+<li><a class="reference internal" href="#quantlib-model-equity">quantlib.model.equity</a></li>
+<li><a class="reference internal" href="#module-quantlib.pricingengines.blackformula">quantlib.pricingengines</a></li>
+<li><a class="reference internal" href="#quantlib-processes">quantlib.processes</a></li>
+<li><a class="reference internal" href="#quantlib-termstructures">quantlib.termstructures</a></li>
+<li><a class="reference internal" href="#quantlib-time">quantlib.time</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#how-to-wrap-quantlib-classes-with-cython">How to wrap QuantLib classes with cython</a><ul>
+<li><a class="reference internal" href="#the-interface-code">The Interface Code</a></li>
+<li><a class="reference internal" href="#declaration-of-the-ql-classes-to-be-exposed">Declaration of the QL classes to be exposed</a></li>
+<li><a class="reference internal" href="#declaration-of-the-python-class">Declaration of the python class</a></li>
+<li><a class="reference internal" href="#implementation-of-the-python-class">Implementation of the python class</a></li>
+<li><a class="reference internal" href="#managing-c-references-using-shared-ptr">Managing C++ references using shared_ptr</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="users_guide.html"
+                        title="previous chapter">User&#8217;s guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="roadmap.html"
+                        title="next chapter">Roadmap</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/reference_guide.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="roadmap.html" title="Roadmap"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="users_guide.html" title="User’s guide"
+             >previous</a> |</li>
+        <li><a href="index.html">Quantlib cython wrapper 0.1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Didrik Pinte, Patrick Henaff.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

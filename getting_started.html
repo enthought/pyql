@@ -1,0 +1,174 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting started &mdash; Quantlib cython wrapper 0.1.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Quantlib cython wrapper 0.1.1 documentation" href="index.html" />
+    <link rel="next" title="Tutorial" href="tutorial.html" />
+    <link rel="prev" title="Welcome to PyQL’s documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="Tutorial"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to PyQL’s documentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Quantlib cython wrapper 0.1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pyql-an-overview">
+<h2>PyQL - an overview<a class="headerlink" href="#pyql-an-overview" title="Permalink to this headline">¶</a></h2>
+<p>Why building a new set of QuantLib wrappers for Python ?</p>
+<p>The SWIG wrappers provide a very good coverage of the library but have
+a number of pain points:</p>
+<blockquote>
+<div><ul class="simple">
+<li>few Pythonic optimisation in the syntax: the code a user must writeon the Python side looks like the C++ version</li>
+<li>no docstring or function signature available on the Python side</li>
+<li>complex debugging and complex customization of the wrappers</li>
+<li>monolithic build process</li>
+<li>complete loss of the C++ code organisation with a flat namespace in Python</li>
+<li>SWIG typemaps development is not that fun</li>
+</ul>
+</div></blockquote>
+<p>For those reasons and to have the ability to expose some of the
+QuantLib internals that could be very useful on the Python side, we
+chosed another road. PyQL is build on top of Cython and creates a thin
+Pythonic layer on top of QuantLib. It allows a tight control on the
+wrapping and provides higher level Python integration.</p>
+<div class="section" id="features">
+<h3>Features:<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>Integration with standard datatypes (like datetime objects) and numpy arrays</li>
+<li>Simplifed API on the Python side (e.g. usage of Handles completely hidden from the user)</li>
+<li>Support full docstring and expose detailed function signatures to Python</li>
+<li>Code organised in subpackages to provide a decent namespace, very close to the C++ code organisation</li>
+<li>Easy extendibility thanks to Cython and shorter build time when adding new functionnalities</li>
+<li>Sphinx documentation</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="building-and-installing-pyql">
+<h2>Building and installing PyQL<a class="headerlink" href="#building-and-installing-pyql" title="Permalink to this headline">¶</a></h2>
+<p>PyQL must be installed on a system that has access to a build of QuantLib. It
+requires patched version of Cython 0.15 (major patch) or 0.16 (minor patch).
+You can find them both in the PyQL root directory.</p>
+<p>Once Cython is patched, enter the pyql root directory. Open the setup.py file
+and configure the Boost and QuantLib include and library directories, then run</p>
+<div class="highlight-python"><pre>python setup.py build</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Getting started</a><ul>
+<li><a class="reference internal" href="#pyql-an-overview">PyQL - an overview</a><ul>
+<li><a class="reference internal" href="#features">Features:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#building-and-installing-pyql">Building and installing PyQL</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to PyQL&#8217;s documentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tutorial.html"
+                        title="next chapter">Tutorial</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/getting_started.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tutorial.html" title="Tutorial"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to PyQL’s documentation"
+             >previous</a> |</li>
+        <li><a href="index.html">Quantlib cython wrapper 0.1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Didrik Pinte, Patrick Henaff.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
