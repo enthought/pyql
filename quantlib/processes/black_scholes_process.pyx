@@ -54,3 +54,8 @@ cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):
                 black_vol_ts_handle
             )
         )
+
+        property x0:
+            def __get__(self):
+                return self._thisptr.get().x0()
+            
