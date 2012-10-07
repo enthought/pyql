@@ -17,11 +17,12 @@ from quantlib.termstructures.volatility.equityfx.black_vol_term_structure \
         import BlackConstantVol
 from quantlib.termstructures.yields.api import FlatForward
 
+
 def main():
     # global data
     todays_date = Date(15, May, 1998)
     Settings.instance().evaluation_date = todays_date
-    settlement_date = Date(17, May ,1998)
+    settlement_date = Date(17, May, 1998)
 
     risk_free_rate = FlatForward(
         reference_date = settlement_date,
