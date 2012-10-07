@@ -23,6 +23,13 @@ After wrapping the C++ class, this class is now available in python:
    spot = SimpleQuote(3.14)
    print('Spot %f' % spot.value)
 
+A couple of observations are worth mentioning:
+
+* pyql preserves the module hierarchy of QuantLib: 
+the SimpleQuote class is defined in the quote module in C++.
+
+* pyql exposes QuantLib in a pythonic fashion: instead of exposing the accessor value(),
+ pyql implements the property value. 
 
 The Interface Code
 ------------------
@@ -67,7 +74,7 @@ The syntax is almost identical to the corresponding c++ header file. The
 types used in declaring arguments are defined in ''types.pxi''.
 
 The clause 'except +' signals that the method may throw an exception. It
-is indispensible to append this clause to every declarion. Without it, an
+is indispensible to append this clause to every declaration. Without it, an
 exception thrown in QL will terminate the python process.
 
 Declaration of the python class
@@ -82,7 +89,8 @@ the QL classes. The file ''quotes.pxd'' is reproduced below::
     cdef class Quote:
         cdef shared_ptr[_qt.Quote]* _thisptr
 
-Notice that in our header files we use 'Quote' to refer the the C++ class (in file _quote.pxd) and to the python class (in file quote.pxd). To avoid 
+Notice that in our header files we use 'Quote' to refer the the C++ class (in file _quote.pxd)
+ and to the python class (in file quote.pxd). To avoid 
 confusion we use the following convention:
 
  * the C++ class is always refered to as ''_qt.Quote''. 
@@ -143,7 +151,7 @@ __dealloc__ method should always delete the shared_ptr but never the target
 pointer!
 
 Every time a shared_ptr reference is received, never assigns the target pointer
-to a local pointer variables as it might deallocated. Always use the copy
+to a local pointer variables as it might be deallocated. Always use the copy
 constructor of the shared_ptr to get a local copy of it, stack allocated (there
 is no need to use new)
 
