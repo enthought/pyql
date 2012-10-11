@@ -18,7 +18,7 @@ namespace QuantLib {
 
     // Creates a DefaultProbabilityTermStructure based on a 
     // PiecewiseDefaultCurve
-    boost::shared_ptr<DefaultProbabilityTermStructure> credit_term_structure_factory(
+    TS credit_term_structure_factory(
         std::string& traits, std::string& interpolator, 
         const Date& reference_date,
         const std::vector<boost::shared_ptr<DefaultProbabilityHelper> >& instruments, 

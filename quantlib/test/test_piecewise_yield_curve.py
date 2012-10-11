@@ -129,12 +129,11 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         fwdStart = Period(0, Days)
 
         for m, period, rate in swapData:
-            rate = SimpleQuote(rate/100)
 
-            helper = SwapRateHelper(rate, Period(m, Years),
-                calendar, Annual,
-                Unadjusted, Thirty360(),
-                liborIndex, spread, fwdStart)
+            helper = SwapRateHelper.from_tenor(
+                rate/100, Period(m, Years), calendar, Annual, Unadjusted, Thirty360(), liborIndex,
+                spread, fwdStart
+            )
 
             rate_helpers.append(helper)
 

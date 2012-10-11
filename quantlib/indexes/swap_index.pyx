@@ -27,8 +27,6 @@ cimport _ibor_index as _ii
 
 cdef class SwapIndex(Index):
 
-    cdef shared_ptr[_si.SwapIndex]* test
-
     def __str__(self):
         return 'Swap index %s' % self.name
 
