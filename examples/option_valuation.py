@@ -3,6 +3,9 @@
 from quantlib.settings import Settings
 from quantlib.currency import USDCurrency
 from quantlib.indexes.libor import Libor
+from quantlib.indexes.swap_index import SwapIndex
+from quantlib.instruments.option import Call, EuropeanExercise, AmericanExercise
+from quantlib.processes.black_scholes_process import BlackScholesProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.time.api import (
     Date, Days, Period, Actual360, Months, Jan, ModifiedFollowing, Years
@@ -11,7 +14,7 @@ from quantlib.time.calendars.united_states import UnitedStates
 from quantlib.termstructures.yields.api import (
     term_structure_factory, DepositRateHelper
 )
-from quantlib.termstructures.volatility.equityfx.black_vol_term_structure import BlackVolTermStructure, BlackConstantVol
+from quantlib.termstructures.volatility.equityfx.black_vol_term_structure import BlackConstantVol
 from quantlib.termstructures.yields.api import SwapRateHelper
 
 def dividendOption():
@@ -55,11 +58,7 @@ def dividendOption():
     underlying_priceH  = SimpleQuote(underlying_price)
 
     # We suppose the vol constant : his term structure is flat --> BlackConstantVol object
-    flatVolTS = BlackVolTermStructure(
-            BlackConstantVol(
-                settlementDate, calendar, underlying_vol, dayCounter
-            )
-    )
+    flatVolTS = BlackConstantVol(settlementDate, calendar, underlying_vol, dayCounter)
     
     # ++++++++++++++++++++ Description of Yield Term Structure
     
@@ -124,14 +123,12 @@ def dividendOption():
     # +++++++++++++++++++++ Swap
     SwapFamilyName = currency.name + "swapIndex";
     for tenor, rate in zip(swapRatesTenor, swapRates):
-        # Rate description ___ record of the rate		
-        swapHandle = SimpleQuote(rate)
         # swap description ___ creation of a swap index. The floating leg is described in the index 'Swap_iborIndex'
         swapIndex = SwapIndex (SwapFamilyName, tenor, settlement_days, currency, calendar,
                 Swap_fixedLegTenor, Swap_fixedLegConvention, Swap_fixedLegDayCounter,
                 Swap_iborIndex)
         # Initialize rate helper __ the SwapRateHelper links the swap index width his rate
-        instruments.append(SwapRateHelper(swapHandle,swapIndex))
+        instruments.append(SwapRateHelper.from_index(rate,swapIndex))
     
     # ++++++++++++++++++  Now the creation of the yield curve
 
@@ -140,7 +137,12 @@ def dividendOption():
 
     # ++++++++++++++++++  build of the underlying process : with a Black-Scholes model 
 
+    print 'Creating process'
+
     bsProcess = BlackScholesProcess(underlying_priceH, riskFreeTS, flatVolTS)
+
+
+    print 'done'
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # ++++++++++++++++++++ Description of the option +++++++++++++++++++++++++++++++++++++++

@@ -6,6 +6,7 @@ from quantlib.time.api import Actual365Fixed, Date
 from quantlib.termstructures.yields.rate_helpers import DepositRateHelper
 from quantlib.termstructures.yields.rate_helpers import FraRateHelper
 from quantlib.termstructures.yields.rate_helpers import FuturesRateHelper
+from quantlib.termstructures.yields.rate_helpers import SwapRateHelper
 
 class RateHelpersTestCase(unittest.TestCase):
 
@@ -68,4 +69,9 @@ class RateHelpersTestCase(unittest.TestCase):
         self.assertIsNotNone(helper)
         self.assertEquals(quote.value, helper.quote)
 
+
+    def test_create_swap_rate_helper_no_classmethod(self):
+
+        with self.assertRaises(ValueError):
+            SwapRateHelper()
 
