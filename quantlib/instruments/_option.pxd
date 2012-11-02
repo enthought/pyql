@@ -49,7 +49,7 @@ cdef extern from 'ql/instruments/dividendvanillaoption.hpp' namespace 'QuantLib'
             shared_ptr[StrikedTypePayoff]& payoff,
             shared_ptr[Exercise]& exercise,
             vector[Date]& dividendDates,
-            vector[Real]& dividends)
+            vector[Real]& dividends
         )
 
 cdef extern from 'ql/instruments/europeanoption.hpp' namespace 'QuantLib':
