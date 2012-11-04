@@ -5,7 +5,12 @@ from quantlib.currency import USDCurrency
 from quantlib.indexes.libor import Libor
 from quantlib.indexes.swap_index import SwapIndex
 from quantlib.instruments.option import Call, EuropeanExercise, AmericanExercise
+from quantlib.instruments.option import VanillaOption, DividendVanillaOption
 from quantlib.instruments.payoffs import PlainVanillaPayoff
+from quantlib.pricingengines.vanilla import AnalyticDividendEuropeanEngine
+from quantlib.pricingengines.vanilla import FDDividendAmericanEngine
+from quantlib.pricingengines.vanilla import AnalyticEuropeanEngine
+from quantlib.pricingengines.vanilla import FDAmericanEngine
 from quantlib.processes.black_scholes_process import BlackScholesProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.time.api import (
@@ -152,7 +157,7 @@ def dividendOption():
     Option_name = "IBM Option"
     maturity = Date(26, Jan,2013)
     strike = 190
-    type = Call
+    option_type = Call
 
     # Here, as an implementation exemple, we make the test with borth american and european exercise
     europeanExercise = EuropeanExercise(maturity)
@@ -193,7 +198,7 @@ def dividendOption():
         print date, "		", div
 
     # ++++++++++++++++++ Description of the final payoff 
-    payoff = PlainVanillaPayoff(type, strike)
+    payoff = PlainVanillaPayoff(option_type, strike)
 
     # ++++++++++++++++++ The OPTIONS : (American and European) with their dividends description:
     dividendEuropeanOption = DividendVanillaOption(
@@ -220,11 +225,11 @@ def dividendOption():
     #		More they are greater, more the calul will be precise.
     americanGirdPoints = 600
     americanTimeSteps	= 600
-    dividendAmericanEngine = FDDividendAmericanEngine(CrankNicolson, bsProcess,americanTimeSteps, americanGirdPoints)
+    dividendAmericanEngine = FDDividendAmericanEngine('CrankNicolson', bsProcess,americanTimeSteps, americanGirdPoints)
 
     # just to test
     europeanEngine = AnalyticEuropeanEngine(bsProcess)
-    americanEngine = FDAmericanEngine(CrankNicolson, bsProcess,americanTimeSteps, americanGirdPoints)
+    americanEngine = FDAmericanEngine('CrankNicolson', bsProcess,americanTimeSteps, americanGirdPoints)
 
 
     # ++++++++++++++++++++ Valorisation ++++++++++++++++++++++++++++++++++++++++
