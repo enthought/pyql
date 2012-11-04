@@ -55,7 +55,7 @@ cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):
             )
         )
 
-        property x0:
-            def __get__(self):
-                return self._thisptr.get().x0()
+        ## property x0:
+        ##     def __get__(self):
+        ##         return self._thisptr.get().x0()
             
