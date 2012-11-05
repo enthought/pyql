@@ -74,3 +74,41 @@ cdef extern from 'ql/pricingengines/vanilla/batesengine.hpp' namespace 'QuantLib
             Real relTolerance,
             Size integrationOrder
         )
+
+cdef extern from 'ql/pricingengines/vanilla/analyticdividendeuropeanengine.hpp' namespace 'QuantLib':
+
+    cdef cppclass AnalyticDividendEuropeanEngine(PricingEngine):
+        AnalyticDividendEuropeanEngine(
+            shared_ptr[GeneralizedBlackScholesProcess]& process
+        )
+        void calculate()
+
+cdef extern from 'ql/pricingengines/vanilla/fddividendamericanengine.hpp' namespace 'QuantLib':
+    cdef cppclass FDDividendAmericanEngine[T]:
+        FDDividendAmericanEngine(
+            shared_ptr[GeneralizedBlackScholesProcess]& process,
+            Size timesteps,
+            Size gridpoints,
+
+        )
+        FDDividendAmericanEngine(
+            shared_ptr[GeneralizedBlackScholesProcess]& process,
+            Size timesteps,
+            Size gridpoints,
+            timedependent
+        )
+cdef extern from 'ql/pricingengines/vanilla/fdamericanengine.hpp' namespace 'QuantLib':
+    cdef cppclass FDAmericanEngine[T]:
+        FDAmericanEngine(
+             shared_ptr[GeneralizedBlackScholesProcess]& process,
+             Size timeSteps,
+             Size gridPoints,
+             #bool timeDependent = false
+        )
+
+
+cdef extern from 'ql/methods/finitedifferences/cranknicolson.hpp' namespace 'QuantLib':
+
+    cdef cppclass CrankNicolson:
+        pass
+
