@@ -33,7 +33,6 @@ namespace QuantLib {
                 ts = TS(
                     new PiecewiseYieldCurve<Discount,Linear>(
                         settlement_date, curve_input, day_counter, 
-                        std::vector<Handle<Quote> >(), std::vector<Date>(),
                         tolerance
                     )
                 );
@@ -41,8 +40,6 @@ namespace QuantLib {
                 ts = TS(
                     new PiecewiseYieldCurve<Discount,LogLinear>(
                         settlement_date, curve_input, day_counter, 
-                        std::vector<Handle<Quote> >(),
-                        std::vector<Date>(),
                         tolerance
                     )
                 );
@@ -50,8 +47,6 @@ namespace QuantLib {
                 ts = TS(
                     new PiecewiseYieldCurve<Discount, Cubic>(
                         settlement_date, curve_input, day_counter, 
-                        std::vector<Handle<Quote> >(),
-                        std::vector<Date>(),
                         tolerance
                     )
                 );
@@ -60,8 +55,6 @@ namespace QuantLib {
             ts = TS(
                 new PiecewiseYieldCurve<ForwardRate,Linear>(
                     settlement_date, curve_input, day_counter, 
-                    std::vector<Handle<Quote> >(),
-                    std::vector<Date>(),
                     tolerance
                 )
             );
@@ -70,8 +63,6 @@ namespace QuantLib {
             ts =  TS(
                 new PiecewiseYieldCurve<ForwardRate,LogLinear>(
                     settlement_date, curve_input, day_counter, 
-                    std::vector<Handle<Quote> >(),
-                    std::vector<Date>(),
                     tolerance
                 )
             );
@@ -80,8 +71,6 @@ namespace QuantLib {
             ts = TS(
                 new PiecewiseYieldCurve<ForwardRate,Cubic>(
                     settlement_date, curve_input, day_counter, 
-                    std::vector<Handle<Quote> >(),
-                    std::vector<Date>(),
                     tolerance
                 )
             );
@@ -90,8 +79,6 @@ namespace QuantLib {
             ts = TS(
                 new PiecewiseYieldCurve<ZeroYield,Linear>(
                     settlement_date, curve_input, day_counter, 
-                    std::vector<Handle<Quote> >(),
-                    std::vector<Date>(),
                     tolerance
                 )
             );
@@ -101,8 +88,6 @@ namespace QuantLib {
                 new PiecewiseYieldCurve<ZeroYield,LogLinear>(
                     settlement_date, 
                     curve_input, day_counter, 
-                    std::vector<Handle<Quote> >(),
-                    std::vector<Date>(),
                     tolerance
                 )
             );
@@ -111,8 +96,6 @@ namespace QuantLib {
             ts = TS(
                 new PiecewiseYieldCurve<ZeroYield,Cubic>(
                     settlement_date, curve_input, day_counter, 
-                    std::vector<Handle<Quote> >(),
-                    std::vector<Date>(),
                     tolerance
                 )
             );
