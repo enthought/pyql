@@ -1,4 +1,25 @@
-""" Option valuation example based on a C++ example from the QuantLib mailing list. """
+""" Option valuation example based on a C++ example from the QuantLib mailing list. 
+
+Expected  buggy results (see quantlib mailing list:
+
+///////////////////////////  RESULTS
+////////////////////////////////////////////////
+Description of the option:        IBM Option
+Date of maturity:                       January 26th, 2013
+Type of the option:                   Call
+Strike of the option:                  190
+Discrete dividends
+Dates                           Dividends
+February 10th, 2012             0
+May 10th, 2012                  0
+August 10th, 2012               0
+November 10th, 2012             0
+NPV of the European Option with discrete dividends=0:           17.9647
+NPV of the European Option without dividend:                     17.9647
+NPV of the American Option with discrete dividends=0:   18.5707
+NPV of the American Option without dividend:                    17.9647
+
+"""
 
 from quantlib.settings import Settings
 from quantlib.currency import USDCurrency
@@ -81,7 +102,7 @@ def dividendOption():
     #		--> However you have tho choice the instruments with different maturities
     liborRates = [ 0.002763, 0.004082, 0.005601, 0.006390, 0.007125, 0.007928, 0.009446, 
             0.01110]
-    liborRatesTenor = [Period(tenor, Months) for tenor in [1,2,3,4,5,6,7,12]]
+    liborRatesTenor = [Period(tenor, Months) for tenor in [1,2,3,4,5,6,9,12]]
     
     for tenor, rate in zip(liborRatesTenor, liborRates):
         print tenor, "\t\t\t", rate
@@ -148,8 +169,6 @@ def dividendOption():
     bsProcess = BlackScholesProcess(underlying_priceH, riskFreeTS, flatVolTS)
 
 
-    print 'done'
-
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # ++++++++++++++++++++ Description of the option +++++++++++++++++++++++++++++++++++++++
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -168,28 +187,28 @@ def dividendOption():
     print "**********************************"
     print "Description of the option:		", Option_name
     print "Date of maturity:     			", maturity
-    print "Type of the option:   			", type
-    print "Strike of the option:				", strike
+    print "Type of the option:   			", option_type
+    print "Strike of the option:		    ", strike
 
 
 
     # ++++++++++++++++++ Description of the discrete dividends
     # INPUT You have to determine the frequece and rates of the discrete dividend. Here is a sollution, but she's not the only one.
     # Last know dividend:
-    dividend			= 0.0 #//0.75
+    dividend			= 0.75 #//0.75
     next_dividend_date	= Date(10,Feb,2012)
     # HERE we have make the assumption that the dividend will grow with the quarterly croissance:
     dividendCroissance	= 1.03
-    dividendfrequence	= 3 * Months
+    dividendfrequence	= Period(3, Months)
     dividendDates = []
     dividends = []
 
 
     d = next_dividend_date
-    while d < maturity:
+    while d <= maturity:
         dividendDates.append(d)
         dividends.append(dividend)
-        d += dividendfrequence
+        d = d + dividendfrequence
         dividend *= dividendCroissance
 
     print "Discrete dividends				"
@@ -235,19 +254,19 @@ def dividendOption():
     # ++++++++++++++++++++ Valorisation ++++++++++++++++++++++++++++++++++++++++
         
     # Link the pricing Engine to the option
-    dividendEuropeanOption.setPricingEngine(dividendEuropeanEngine)
-    dividendAmericanOption.setPricingEngine(dividendAmericanEngine)
+    dividendEuropeanOption.set_pricing_engine(dividendEuropeanEngine)
+    dividendAmericanOption.set_pricing_engine(dividendAmericanEngine)
     
     # just	to test
-    europeanOption.setPricingEngine(europeanEngine)
-    americanOption.setPricingEngine(americanEngine)
+    europeanOption.set_pricing_engine(europeanEngine)
+    americanOption.set_pricing_engine(americanEngine)
 
     # Now we make all the needing calcul	
     # ... and final results
-    print "NPV of the European Option with discrete dividends=0:	", dividendEuropeanOption.NPV()
-    print "NPV of the European Option without dividend:		", europeanOption.NPV()
-    print "NPV of the American Option with discrete dividends=0:	", dividendAmericanOption.NPV()
-    print "NPV of the American Option without dividend:		", americanOption.NPV() 
+    #print "NPV of the European Option with discrete dividends=0:	", dividendEuropeanOption.npv
+    print "NPV of the European Option without dividend:		", europeanOption.npv
+    #print "NPV of the American Option with discrete dividends=0:	", dividendAmericanOption.npv
+    print "NPV of the American Option without dividend:		", americanOption.npv 
     # just a single test
     print "ZeroRate with a maturity at ", maturity, ": ", \
             riskFreeTS.currentLink().zeroRate(maturity, dayCounter, Simple)
