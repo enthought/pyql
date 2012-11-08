@@ -170,7 +170,7 @@ def collect_extensions():
             continue
 
         # if the directory contains pyx files, cythonise it
-        if len(glob.glob('{}/*.pyx'.format(dirpath))) > 0:
+        if len(glob.glob('{0}/*.pyx'.format(dirpath))) > 0:
             cython_extension_directories.append(dirpath)
 
     collected_extensions = cythonize(
