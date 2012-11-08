@@ -28,7 +28,7 @@ namespace QuantLib {
         
         TS ts;
 
-        if (traits.compare("discount") == 0)
+        if (traits.compare("discount") == 0) {
             if (interpolator.compare("linear") == 0) {
                 ts = TS(
                     new PiecewiseYieldCurve<Discount,Linear>(
@@ -50,55 +50,55 @@ namespace QuantLib {
                         tolerance
                     )
                 );
-        } else if (traits.compare("forward") == 0 &&
-                interpolator.compare("linear") == 0) {
-            ts = TS(
-                new PiecewiseYieldCurve<ForwardRate,Linear>(
-                    settlement_date, curve_input, day_counter, 
-                    tolerance
-                )
-            );
-        } else if (traits.compare("forward") == 0 &&
-                interpolator.compare("loglinear") == 0) {
-            ts =  TS(
-                new PiecewiseYieldCurve<ForwardRate,LogLinear>(
-                    settlement_date, curve_input, day_counter, 
-                    tolerance
-                )
-            );
-        } else if(traits.compare("forward") == 0 &&
-                interpolator.compare("spline") == 0) {
-            ts = TS(
-                new PiecewiseYieldCurve<ForwardRate,Cubic>(
-                    settlement_date, curve_input, day_counter, 
-                    tolerance
-                )
-            );
-        } else if(traits.compare("zero") == 0 &&
-                interpolator.compare("linear") == 0) {
-            ts = TS(
-                new PiecewiseYieldCurve<ZeroYield,Linear>(
-                    settlement_date, curve_input, day_counter, 
-                    tolerance
-                )
-            );
-        } else if(traits.compare("zero") == 0 &&
-                interpolator.compare("loglinear") == 0) {
-            ts = TS(
-                new PiecewiseYieldCurve<ZeroYield,LogLinear>(
-                    settlement_date, 
-                    curve_input, day_counter, 
-                    tolerance
-                )
-            );
-        } else if(traits.compare("zero") == 0 &&
-                interpolator.compare("spline") == 0) {
-            ts = TS(
-                new PiecewiseYieldCurve<ZeroYield,Cubic>(
-                    settlement_date, curve_input, day_counter, 
-                    tolerance
-                )
-            );
+            }
+        } else if (traits.compare("forward") == 0) {
+            if (interpolator.compare("linear") == 0) {
+                ts = TS(
+                    new PiecewiseYieldCurve<ForwardRate,Linear>(
+                        settlement_date, curve_input, day_counter, 
+                        tolerance
+                    )
+                );
+            } else if (interpolator.compare("loglinear") == 0) {
+                ts =  TS(
+                    new PiecewiseYieldCurve<ForwardRate,LogLinear>(
+                        settlement_date, curve_input, day_counter, 
+                        tolerance
+                    )
+                );
+            } else if (interpolator.compare("spline") == 0) {
+                ts = TS(
+                    new PiecewiseYieldCurve<ForwardRate,Cubic>(
+                        settlement_date, curve_input, day_counter, 
+                        tolerance
+                    )
+                );
+
+            }
+        } else if(traits.compare("zero") == 0) {
+            if (interpolator.compare("linear") == 0) {
+                ts = TS(
+                    new PiecewiseYieldCurve<ZeroYield,Linear>(
+                        settlement_date, curve_input, day_counter, 
+                        tolerance
+                    )
+                );
+            } else if (interpolator.compare("loglinear") == 0) {
+                ts = TS(
+                    new PiecewiseYieldCurve<ZeroYield,LogLinear>(
+                        settlement_date, 
+                        curve_input, day_counter, 
+                        tolerance
+                    )
+                );
+            } else if (interpolator.compare("spline") == 0) {
+                ts = TS(
+                    new PiecewiseYieldCurve<ZeroYield,Cubic>(
+                        settlement_date, curve_input, day_counter, 
+                        tolerance
+                    )
+                );
+            }
         } else {
             std::cout << "traits = " << traits << std::endl;
             std::cout << "interpolator  = " << interpolator << std::endl;
