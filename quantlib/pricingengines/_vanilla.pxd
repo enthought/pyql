@@ -84,7 +84,7 @@ cdef extern from 'ql/pricingengines/vanilla/analyticdividendeuropeanengine.hpp' 
         void calculate()
 
 cdef extern from 'ql/pricingengines/vanilla/fddividendamericanengine.hpp' namespace 'QuantLib':
-    cdef cppclass FDDividendAmericanEngine[T]:
+    cdef cppclass FDDividendAmericanEngine[T](PricingEngine):
         FDDividendAmericanEngine(
             shared_ptr[GeneralizedBlackScholesProcess]& process,
             Size timesteps,
@@ -98,7 +98,7 @@ cdef extern from 'ql/pricingengines/vanilla/fddividendamericanengine.hpp' namesp
             timedependent
         )
 cdef extern from 'ql/pricingengines/vanilla/fdamericanengine.hpp' namespace 'QuantLib':
-    cdef cppclass FDAmericanEngine[T]:
+    cdef cppclass FDAmericanEngine[T](PricingEngine):
         FDAmericanEngine(
              shared_ptr[GeneralizedBlackScholesProcess]& process,
              Size timeSteps,

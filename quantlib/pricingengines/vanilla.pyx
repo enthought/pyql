@@ -112,9 +112,7 @@ cdef class AnalyticDividendEuropeanEngine(PricingEngine):
         )
 
 
-cdef class FDDividendAmericanEngine:
-
-    cdef shared_ptr[_vanilla.FDDividendAmericanEngine[_vanilla.CrankNicolson]]* _thisptr
+cdef class FDDividendAmericanEngine(PricingEngine):
 
     def __init__(self, scheme, GeneralizedBlackScholesProcess process, timesteps, gridpoints):
 
@@ -124,15 +122,13 @@ cdef class FDDividendAmericanEngine:
                 deref(process._thisptr)
             )
 
-        self._thisptr = new shared_ptr[_vanilla.FDDividendAmericanEngine[_vanilla.CrankNicolson]](\
+        self._thisptr = new shared_ptr[_vanilla.PricingEngine](\
             new _vanilla.FDDividendAmericanEngine[_vanilla.CrankNicolson](
                 process_ptr, timesteps, gridpoints
             )
         )
 
-cdef class FDAmericanEngine:
-
-    cdef shared_ptr[_vanilla.FDAmericanEngine[_vanilla.CrankNicolson]]* _thisptr
+cdef class FDAmericanEngine(PricingEngine):
 
     def __init__(self, scheme, GeneralizedBlackScholesProcess process, timesteps, gridpoints):
 
@@ -142,7 +138,7 @@ cdef class FDAmericanEngine:
                 deref(process._thisptr)
             )
 
-        self._thisptr = new shared_ptr[_vanilla.FDAmericanEngine[_vanilla.CrankNicolson]](\
+        self._thisptr = new shared_ptr[_vanilla.PricingEngine](\
             new _vanilla.FDAmericanEngine[_vanilla.CrankNicolson](
                 process_ptr, timesteps, gridpoints
             )
