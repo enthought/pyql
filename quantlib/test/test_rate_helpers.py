@@ -75,3 +75,46 @@ class RateHelpersTestCase(unittest.TestCase):
         with self.assertRaises(ValueError):
             SwapRateHelper()
 
+
+    def test_create_swap_rate_helper_from_index(self):
+
+        from quantlib.currency import USDCurrency
+        from quantlib.indexes.swap_index import SwapIndex
+        from quantlib.indexes.libor import Libor
+        from quantlib.time.api import Years, UnitedStates, Actual360
+
+        calendar = UnitedStates()
+        settlement_days = 2
+        currency = USDCurrency()
+        fixed_leg_tenor	= Period(12, Months)
+        fixed_leg_convention = ModifiedFollowing
+        fixed_leg_daycounter = Actual360()
+        family_name = currency.name + 'index'
+        ibor_index =  Libor(
+            "USDLibor", Period(3,Months), settlement_days, USDCurrency(),
+            UnitedStates(), Actual360()
+        )
+
+        rate = 0.005681
+        tenor = Period(1, Years)
+
+        index = SwapIndex (
+            family_name, tenor, settlement_days, currency, calendar,
+            fixed_leg_tenor, fixed_leg_convention,
+            fixed_leg_daycounter, ibor_index)
+
+        helper = SwapRateHelper.from_index(rate, index)
+
+        #self.fail(
+        #    'Make this pass: create and ask for the .quote property'
+        #    ' Test the from_index and from_tenor methods'
+        #)
+
+        self.assertIsNotNone(helper)
+        self.assertAlmostEquals(rate, helper.quote)
+
+        with self.assertRaises(RuntimeError):
+            self.assertAlmostEquals(rate, helper.implied_quote)
+
+if __name__ == '__main__':
+    unittest.main()

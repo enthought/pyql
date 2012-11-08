@@ -82,8 +82,17 @@ class VanillaOptionTestCase(unittest.TestCase):
         payoff_str = str(self.payoff)
         self.assertEquals('Payoff: Vanilla Put @ 40.000000', payoff_str)
 
-        exercise_str = str(EuropeanExercise(self.maturity))
+        exercise = EuropeanExercise(self.maturity)
+        exercise_str = str(exercise)
         self.assertEquals('Exercise type: European', exercise_str)
+
+
+        # FIXME: this crashes
+        # option = VanillaOption(self.payoff, exercise)
+        # print option.exercise
+        # self.assertEquals('Exercise type: European', option.exercise)
+        #vanilla_str = str(option)
+        #self.assertEquals('Vanilla option', vanilla_str)
 
     def test_european_vanilla_option_usage(self):
 

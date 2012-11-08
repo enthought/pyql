@@ -1,8 +1,5 @@
 cdef class PricingEngine:
-    """ Base class for all the pricing engines
-
-    TODO: move this class in its own module
-    """
+    """ Base class for all the pricing engines. """
 
     def __cinit__(self):
         self._thisptr = NULL

@@ -10,16 +10,17 @@
 include '../types.pxi'
 
 cimport _bonds
+cimport _instrument
+cimport quantlib.pricingengines._pricing_engine as _pe
+cimport quantlib.time._date as _date
 
 from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
-from libcpp cimport bool as cbool
 
 from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle
-cimport quantlib.pricingengines._pricing_engine as _pe
+from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time._calendar cimport BusinessDayConvention
-cimport quantlib.time._date as _date
 from quantlib.time._daycounter cimport DayCounter as QlDayCounter
 from quantlib.time._schedule cimport Schedule as QlSchedule
 from quantlib.time.calendar cimport Calendar
@@ -30,7 +31,17 @@ from quantlib.time.calendar import Following
 
 import datetime
 
-cdef class Bond:
+
+cdef _bonds.Bond* get_bond(Bond bond):
+    """ Utility function to extract a properly casted Bond pointer out of the
+    internal _thisptr attribute of the Instrument base class. """
+
+    cdef _bonds.Bond* ref = <_bonds.Bond*>bond._thisptr.get()
+
+    return ref
+
+
+cdef class Bond(Instrument):
     """ Base bond class
 
         .. warning:
@@ -42,44 +53,26 @@ cdef class Bond:
 
     """
 
-    cdef shared_ptr[_bonds.Bond]* _thisptr
-    cdef cbool _has_pricing_engine
+    def __init__(self):
+        raise NotImplementedError('Cannot instantiate a Bond. Please use child classes.')
 
-    def __cinit__(self):
-        self._thisptr = NULL
-        self._has_pricing_engine = False
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-
-    def set_pricing_engine(self, PricingEngine engine):
-        '''Sets the pricing engine.
-
-        '''
-        cdef shared_ptr[_pe.PricingEngine] engine_ptr = \
-                shared_ptr[_pe.PricingEngine](deref(engine._thisptr))
-
-        self._thisptr.get().setPricingEngine(engine_ptr)
-
-        self._has_pricing_engine = True
 
     property issue_date:
         """ Bond issue date. """
         def __get__(self):
-            cdef _date.Date issue_date = self._thisptr.get().issueDate()
+            cdef _date.Date issue_date = get_bond(self).issueDate()
             return date_from_qldate(issue_date)
 
     property maturity_date:
         """ Bond maturity date. """
         def __get__(self):
-            cdef _date.Date maturity_date = self._thisptr.get().maturityDate()
+            cdef _date.Date maturity_date = get_bond(self).maturityDate()
             return date_from_qldate(maturity_date)
 
     property valuation_date:
         """ Bond valuation date. """
         def __get__(self):
-            cdef _date.Date valuation_date = self._thisptr.get().valuationDate()
+            cdef _date.Date valuation_date = get_bond(self).valuationDate()
             return date_from_qldate(valuation_date)
 
     def settlement_date(self, Date from_date=None):
@@ -88,9 +81,9 @@ cdef class Bond:
         cdef _date.Date settlement_date
         if from_date is not None:
             date = from_date._thisptr.get()
-            settlement_date = self._thisptr.get().settlementDate(deref(date))
+            settlement_date = get_bond(self).settlementDate(deref(date))
         else:
-            settlement_date = self._thisptr.get().settlementDate()
+            settlement_date = get_bond(self).settlementDate()
 
         return date_from_qldate(settlement_date)
 
@@ -98,26 +91,20 @@ cdef class Bond:
         """ Bond clena price. """
         def __get__(self):
             if self._has_pricing_engine:
-                return self._thisptr.get().cleanPrice()
+                return get_bond(self).cleanPrice()
 
     property dirty_price:
         """ Bond dirty price. """
         def __get__(self):
             if self._has_pricing_engine:
-                return self._thisptr.get().dirtyPrice()
-
-    property net_present_value:
-        """ Bond net present value. """
-        def __get__(self):
-            if self._has_pricing_engine:
-                return self._thisptr.get().NPV()
+                return get_bond(self).dirtyPrice()
 
     def accrued_amount(self, Date date=None):
         """ Returns the bond accrued amount at the given date. """
         if date is not None:
-            amount = self._thisptr.get().accruedAmount(deref(date._thisptr.get()))
+            amount = get_bond(self).accruedAmount(deref(date._thisptr.get()))
         else:
-            amount = self._thisptr.get().accruedAmount()
+            amount = get_bond(self).accruedAmount()
         return amount
 
 cdef class FixedRateBond(Bond):
@@ -151,7 +138,7 @@ cdef class FixedRateBond(Bond):
                 # empty issue rate seem to break some of the computation with
                 # segfaults. Do we really want to let the user do that ? Or
                 # shall we default on the first date of the schedule ?
-                self._thisptr = new shared_ptr[_bonds.Bond](
+                self._thisptr = new shared_ptr[_instrument.Instrument](
                     new _bonds.FixedRateBond(settlement_days,
                         face_amount, deref(_fixed_bonds_schedule), deref(_coupons),
                         deref(_accrual_day_counter),
@@ -161,7 +148,7 @@ cdef class FixedRateBond(Bond):
             else:
                 _issue_date = <_date.Date*>((<Date>issue_date)._thisptr.get())
 
-                self._thisptr = new shared_ptr[_bonds.Bond](\
+                self._thisptr = new shared_ptr[_instrument.Instrument](\
                     new _bonds.FixedRateBond(settlement_days,
                         face_amount, deref(_fixed_bonds_schedule),
                         deref(_coupons),
@@ -180,7 +167,7 @@ cdef class ZeroCouponBond(Bond):
     ):
         """ Instantiate a zero coupon bond. """
         if issue_date is not None:
-            self._thisptr = new shared_ptr[_bonds.Bond](
+            self._thisptr = new shared_ptr[_instrument.Instrument](
                 new _bonds.ZeroCouponBond(
                     <Natural> settlement_days, deref(calendar._thisptr),
                     <Real>face_amount, deref(maturity_date._thisptr.get()),

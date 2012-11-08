@@ -17,6 +17,9 @@ from quantlib.quotes cimport Quote
 
 cdef class YieldTermStructure:
 
+    # FIXME: the relinkable stuff is really ugly. Do we need this on the python
+    # side?
+
     def __cinit__(self):
         self.relinkable = False
         self._thisptr = NULL
@@ -94,8 +97,7 @@ cdef class YieldTermStructure:
 
     property reference_date:
         def __get__(self):
-            cdef ffwd.Date ref_date = \
-                (<ffwd.YieldTermStructure*>self._thisptr.get()).referenceDate()
+            cdef ffwd.Date ref_date = self._thisptr.get().referenceDate()
             return date_from_qldate(ref_date)
 
 

@@ -12,6 +12,7 @@ from .calendar import (
     Preceding, Unadjusted, holiday_list
 )
 from .calendars.null_calendar import NullCalendar
+from .calendars.united_states import UnitedStates
 from .daycounter import Thirty360, Actual360, Actual365Fixed
 from .daycounters.actual_actual import ActualActual, ISMA, ISDA, Bond
 from .date import (
