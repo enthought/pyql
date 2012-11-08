@@ -35,4 +35,8 @@ cdef class Instrument:
             if self._has_pricing_engine:
                 return self._thisptr.get().NPV()
 
+    property npv:
+        """ Shortcut to the net_present_value property. """
+        def __get__(self):
+            return self.net_present_value
 
