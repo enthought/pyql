@@ -175,7 +175,7 @@ def collect_extensions():
 
     collected_extensions = cythonize(
         [
-            Extension('*', ['{}/*.pyx'.format(dirpath)],
+            Extension('*', ['{0}/*.pyx'.format(dirpath)],
                 include_dirs=INCLUDE_DIRS,
                 library_dirs=LIBRARY_DIRS,
                 define_macros = get_define_macros(),
