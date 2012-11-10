@@ -35,16 +35,19 @@ cdef class YieldTermStructure:
     def __init__(self, relinkable=True):
         if relinkable:
             self.relinkable = True
+            # Create a new RelinkableHandle to a YieldTermStructure within a
+            # new shared_ptr
             self._relinkable_ptr = new \
-                shared_ptr[ffwd.RelinkableHandle[ffwd.YieldTermStructure]]()
-            print 'Relinkable termstructure initialized'
+                shared_ptr[ffwd.RelinkableHandle[ffwd.YieldTermStructure]](
+                    new ffwd.RelinkableHandle[ffwd.YieldTermStructure]()
+                )
         else:
             # initialize an empty shared_ptr. ! Might be dangerous
             self._thisptr = new shared_ptr[ffwd.YieldTermStructure]()
 
     def link_to(self, YieldTermStructure structure):
         if not self.relinkable:
-            print 'Term structure is not relinkable'
+            raise ValueError('Non relinkable term structure !')
         else:
             self._relinkable_ptr.get().linkTo(deref(structure._thisptr))
 
