@@ -20,5 +20,5 @@ cdef class Period:
 cdef class Date:
     cdef shared_ptr[_date.Date]* _thisptr
 
-cdef inline date.Date date_from_qldate(_date.Date& date)
+cdef date.Date date_from_qldate(_date.Date& date)
 
