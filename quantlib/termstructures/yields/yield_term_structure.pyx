@@ -36,7 +36,7 @@ cdef class YieldTermStructure:
         if relinkable:
             self.relinkable = True
             self._relinkable_ptr = new \
-                ffwd.RelinkableHandle[ffwd.YieldTermStructure]()
+                shared_ptr[ffwd.RelinkableHandle[ffwd.YieldTermStructure]]()
             print 'Relinkable termstructure initialized'
         else:
             # initialize an empty shared_ptr. ! Might be dangerous
@@ -46,7 +46,7 @@ cdef class YieldTermStructure:
         if not self.relinkable:
             print 'Term structure is not relinkable'
         else:
-            self._relinkable_ptr.linkTo(deref(structure._thisptr))
+            self._relinkable_ptr.get().linkTo(deref(structure._thisptr))
 
         return
     
@@ -61,7 +61,7 @@ cdef class YieldTermStructure:
 #        if self.relinkable is True:
             # retrieves the shared_ptr (currentLink()) then gets the
             # term_structure (get())
-#            ts_ptr = shared_ptr[ffwd.YieldTermStructure](self._relinkable_ptr.currentLink())
+#            ts_ptr = shared_ptr[ffwd.YieldTermStructure](self._relinkable_ptr.get().currentLink())
 #            term_structure = ts_ptr.get()
 #        else:
 #            term_structure = self._thisptr.get()
@@ -76,7 +76,7 @@ cdef class YieldTermStructure:
         if self.relinkable is True:
             # retrieves the shared_ptr (currentLink()) then gets the
             # term_structure (get())
-            ts_ptr = shared_ptr[ffwd.YieldTermStructure](self._relinkable_ptr.currentLink())
+            ts_ptr = shared_ptr[ffwd.YieldTermStructure](self._relinkable_ptr.get().currentLink())
             term_structure = ts_ptr.get()
         else:
             term_structure = self._thisptr.get()
