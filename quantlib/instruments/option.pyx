@@ -19,11 +19,6 @@ from quantlib.instruments.payoffs cimport Payoff, PlainVanillaPayoff
 from quantlib.time.date cimport Date
 from quantlib.pricingengines.engine cimport PricingEngine
 
-# Python imports
-import logging
-
-logger = logging.getLogger('quantlib')
-
 cdef public enum OptionType:
     Put = _option.Put
     Call = _option.Call
@@ -53,6 +48,8 @@ cdef class Exercise:
         return 'Exercise type: %s' % EXERCISE_TO_STR[self._thisptr.get().type()]
 
     cdef set_exercise(self, shared_ptr[_exercise.Exercise] exc):
+        if exc.get() == NULL:
+            raise ValueError('Setting the exercise with a null pointer.')
         self._thisptr = new shared_ptr[_exercise.Exercise](exc)
 
 cdef class EuropeanExercise(Exercise):
@@ -92,6 +89,7 @@ cdef _option.Option* get_option(OneAssetOption option):
     internal _thisptr attribute of the Instrument base class. """
 
     cdef _option.Option* ref = <_option.Option*>option._thisptr.get()
+    return ref
 
 cdef class OneAssetOption(Instrument):
 
@@ -107,13 +105,18 @@ cdef class OneAssetOption(Instrument):
             exercise.set_exercise(get_option(self).exercise())
             return exercise
 
+    property payoff:
+        def __get__(self):
+            payoff = Payoff(0, 0., from_qlpayoff=True)
+            payoff.set_payoff(get_option(self).payoff())
+            return payoff
+
     def __str__(self):
 
         # FIXME: this code segfaults. It seems that accessing
         # the exercise property causes the issue. To be investigated
-        return '%s %s' % (
-            self.__class__.__name__, str(self.exercise),
-            get_option(self).payoff().get().name().c_str()
+        return '%s %s %s' % (
+            type(self).__name__, str(self.exercise), str(self.payoff)
         )
 
 
