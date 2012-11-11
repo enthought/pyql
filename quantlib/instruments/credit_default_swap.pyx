@@ -16,9 +16,11 @@ from libcpp cimport bool
 from quantlib.handle cimport shared_ptr
 
 cimport _credit_default_swap as _cds
+cimport _instrument
 from quantlib.pricingengines cimport _pricing_engine as _pe
 from quantlib.time cimport _calendar
 
+from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
@@ -27,7 +29,15 @@ from quantlib.time.schedule cimport Schedule
 BUYER = _cds.Buyer
 SELLER = _cds.Seller
 
-cdef class CreditDefaultSwap:
+cdef _cds.CreditDefaultSwap* _get_cds(CreditDefaultSwap cds):
+    """ Utility function to extract a properly casted Bond pointer out of the
+    internal _thisptr attribute of the Instrument base class. """
+
+    cdef _cds.CreditDefaultSwap* ref = <_cds.CreditDefaultSwap*>cds._thisptr.get()
+
+    return ref
+
+cdef class CreditDefaultSwap(Instrument):
     """Credit default swap
 
         .. note::
@@ -44,15 +54,6 @@ cdef class CreditDefaultSwap:
             calculation. This might not be what you want.
 
     """
-
-
-    cdef shared_ptr[_cds.CreditDefaultSwap]* _thisptr
-    cdef public bool has_pricing_engine
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-            self._thisptr = NULL
 
 
     def __init__(self, int side, float notional, float spread, Schedule schedule,
@@ -80,7 +81,7 @@ cdef class CreditDefaultSwap:
                                     event will trigger the contract.
         """
 
-        self._thisptr = new shared_ptr[_cds.CreditDefaultSwap](
+        self._thisptr = new shared_ptr[_instrument.Instrument](
             new _cds.CreditDefaultSwap(
                 <_cds.Side>side, notional, spread, deref(schedule._thisptr),
                 <_calendar.BusinessDayConvention>payment_convention,
@@ -89,31 +90,13 @@ cdef class CreditDefaultSwap:
             )
         )
 
-    def set_pricing_engine(self, PricingEngine engine):
-        '''Sets the pricing engine for the CDS. '''
-
-        cdef shared_ptr[_pe.PricingEngine] engine_ptr = \
-                shared_ptr[_pe.PricingEngine](
-                    deref(engine._thisptr)
-                )
-
-        self._thisptr.get().setPricingEngine(engine_ptr)
-        self.has_pricing_engine = True
-
-    property net_present_value:
-        """ Option net present value. """
-        def __get__(self):
-            if self.has_pricing_engine:
-                return self._thisptr.get().NPV()
-
-
     property fair_upfront:
         """ Returns the upfront spread that, given the running spread
             and the quoted recovery rate, will make the instrument
             have an NPV of 0.
         """
         def __get__(self):
-            return self._thisptr.get().fairUpfront()
+            return _get_cds(self).fairUpfront()
 
     property fair_spread:
         """ Returns the running spread that, given the quoted recovery
@@ -125,15 +108,15 @@ cdef class CreditDefaultSwap:
                 one was given.
         """
         def __get__(self):
-            return self._thisptr.get().fairSpread()
+            return _get_cds(self).fairSpread()
 
 
     property default_leg_npv:
         def __get__(self):
-            return self._thisptr.get().defaultLegNPV()
+            return _get_cds(self).defaultLegNPV()
 
     property coupon_leg_npv:
         def __get__(self):
-            return self._thisptr.get().couponLegNPV()
+            return _get_cds(self).couponLegNPV()
 
 
