@@ -24,7 +24,11 @@ cdef class Payoff:
     def __str__(self):
         return 'Payoff: %s' % self._thisptr.get().name().c_str()
 
-cdef class PlainVanillaPayoff:
+cdef _payoffs.PlainVanillaPayoff* _get_payoff(PlainVanillaPayoff payoff):
+
+    return <_payoffs.PlainVanillaPayoff*>payoff._thisptr.get()
+
+cdef class PlainVanillaPayoff(Payoff):
     """
 
     PlainVanillaPayoff does not extend Payoff because of some issues
@@ -32,16 +36,9 @@ cdef class PlainVanillaPayoff:
     quantlib.instruments.option
     """
 
-    def __cinit__(self):
-        self._thisptr = NULL
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-
     def __init__(self, option_type, float strike):
 
-        self._thisptr = new shared_ptr[_payoffs.StrikedTypePayoff]( \
+        self._thisptr = new shared_ptr[_payoffs.Payoff]( \
             new _payoffs.PlainVanillaPayoff(
                 <_option.Type>option_type, <Real>strike
             )
@@ -50,16 +47,15 @@ cdef class PlainVanillaPayoff:
     def __str__(self):
         return 'Payoff: %s %s @ %f' % (
             self._thisptr.get().name().c_str(),
-            PayOffTypeInWord[
-                (<_payoffs.TypePayoff*> self._thisptr.get()).optionType()
-            ],
-            (<_payoffs.StrikedTypePayoff*> self._thisptr.get()).strike())
+            PayOffTypeInWord[_get_payoff(self).optionType()],
+            _get_payoff(self).strike()
+        )
 
     property type:
         def __get__(self):
-            return self._thisptr.get().optionType()
+            return _get_payoff(self).optionType()
 
     property strike:
         def __get__(self):
-            return self._thisptr.get().strike()
+            return _get_payoff(self).strike()
 

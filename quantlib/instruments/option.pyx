@@ -123,7 +123,7 @@ cdef class VanillaOption(OneAssetOption):
 
         cdef shared_ptr[_payoffs.StrikedTypePayoff] payoff_ptr = \
             shared_ptr[_payoffs.StrikedTypePayoff](
-                deref(payoff._thisptr)
+                deref(<shared_ptr[_payoffs.StrikedTypePayoff]*>payoff._thisptr)
         )
 
         cdef shared_ptr[_exercise.Exercise] exercise_ptr = \
@@ -145,7 +145,7 @@ cdef class DividendVanillaOption(OneAssetOption):
 
         cdef shared_ptr[_payoffs.StrikedTypePayoff] payoff_ptr = \
             shared_ptr[_payoffs.StrikedTypePayoff](
-                deref(payoff._thisptr)
+                deref(<shared_ptr[_payoffs.StrikedTypePayoff]*>payoff._thisptr)
         )
 
         cdef shared_ptr[_exercise.Exercise] exercise_ptr = \
