@@ -12,8 +12,8 @@ from quantlib.time._date cimport Date
 cdef extern from 'ql/option.hpp' namespace 'QuantLib::Option':
 
     enum Type:
-        Put 
-        Call 
+        Put
+        Call
 
 cdef extern from 'ql/option.hpp' namespace 'QuantLib':
 
@@ -44,8 +44,7 @@ cdef extern from 'ql/instruments/vanillaoption.hpp' namespace 'QuantLib':
 cdef extern from 'ql/instruments/dividendvanillaoption.hpp' namespace 'QuantLib':
 
     cdef cppclass DividendVanillaOption(OneAssetOption):
-        VanillaOption()
-        VanillaOption(
+        DividendVanillaOption(
             shared_ptr[StrikedTypePayoff]& payoff,
             shared_ptr[Exercise]& exercise,
             vector[Date]& dividendDates,

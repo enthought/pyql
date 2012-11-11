@@ -20,6 +20,7 @@ cdef extern from 'ql/termstructures/bootstraphelper.hpp' namespace 'QuantLib':
         BootstrapHelper(Handle[Quote]& quote)
         BootstrapHelper(Real quote)
         Handle[Quote] quote()
+        Real impliedQuote() except +
 
     cdef cppclass RelativeDateBootstrapHelper[T](BootstrapHelper):
         pass

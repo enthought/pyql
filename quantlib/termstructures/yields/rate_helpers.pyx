@@ -45,6 +45,10 @@ cdef class RateHelper:
             value = quote_ptr.get().value()
             return value
 
+    property implied_quote:
+        def __get__(self):
+            return self._thisptr.get().impliedQuote()
+
 
 cdef class RelativeDateRateHelper:
 
@@ -62,6 +66,11 @@ cdef class RelativeDateRateHelper:
             cdef shared_ptr[_qt.Quote] quote_ptr = shared_ptr[_qt.Quote](quote_handle.currentLink())
             value = quote_ptr.get().value()
             return value
+
+    property implied_quote:
+        def __get__(self):
+            return self._thisptr.get().impliedQuote()
+
 
 cdef class DepositRateHelper(RateHelper):
     """Rate helper for bootstrapping over deposit rates. """
@@ -140,7 +149,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
     def from_index(cls, float rate, SwapIndex index):
 
         cdef Handle[_qt.Quote] spread_handle = Handle[_qt.Quote](new _qt.SimpleQuote(0))
-        cdef Period p = Period(0, Days)
+        cdef Period p = Period(2, Days)
 
 
         cdef SwapRateHelper instance = cls(from_classmethod=True)
@@ -149,8 +158,9 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
             new _rh.SwapRateHelper(
                 rate,
                 deref(<shared_ptr[_si.SwapIndex]*>index._thisptr),
-                spread_handle,
-                deref(p._thisptr.get()))
+                #spread_handle,
+                #deref(p._thisptr.get()))
+                )
             )
         )
 

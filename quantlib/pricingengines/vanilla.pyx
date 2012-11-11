@@ -15,6 +15,8 @@ cdef class VanillaOptionEngine(PricingEngine):
 
     def __cinit__(self):
         self._thisptr = NULL
+
+        #FIXME: why do we keep a reference to the process?
         self.process = None
 
 
@@ -94,3 +96,52 @@ cdef class BatesDoubleExpDetJumpEngine(BatesDoubleExpEngine):
             new _vanilla.BatesDoubleExpDetJumpEngine(
                 deref(<shared_ptr[_bm.BatesDoubleExpDetJumpModel]*> model._thisptr),
                 <Size>integration_order))
+
+
+cdef class AnalyticDividendEuropeanEngine(PricingEngine):
+
+    def __init__(self, GeneralizedBlackScholesProcess process):
+
+        cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
+            shared_ptr[_bsp.GeneralizedBlackScholesProcess](
+                deref(process._thisptr)
+            )
+
+        self._thisptr = new shared_ptr[_vanilla.PricingEngine](\
+            new _vanilla.AnalyticDividendEuropeanEngine(process_ptr)
+        )
+
+
+cdef class FDDividendAmericanEngine(PricingEngine):
+
+    def __init__(self, scheme, GeneralizedBlackScholesProcess process, timesteps, gridpoints):
+
+        # FIXME: first implementation using a fixed scheme!
+        cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
+            shared_ptr[_bsp.GeneralizedBlackScholesProcess](
+                deref(process._thisptr)
+            )
+
+        self._thisptr = new shared_ptr[_vanilla.PricingEngine](\
+            new _vanilla.FDDividendAmericanEngine[_vanilla.CrankNicolson](
+                process_ptr, timesteps, gridpoints
+            )
+        )
+
+cdef class FDAmericanEngine(PricingEngine):
+
+    def __init__(self, scheme, GeneralizedBlackScholesProcess process, timesteps, gridpoints):
+
+        # FIXME: first implementation using a fixed scheme!
+        cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
+            shared_ptr[_bsp.GeneralizedBlackScholesProcess](
+                deref(process._thisptr)
+            )
+
+        self._thisptr = new shared_ptr[_vanilla.PricingEngine](\
+            new _vanilla.FDAmericanEngine[_vanilla.CrankNicolson](
+                process_ptr, timesteps, gridpoints
+            )
+        )
+
+

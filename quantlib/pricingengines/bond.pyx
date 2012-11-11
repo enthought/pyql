@@ -26,11 +26,11 @@ cdef class DiscountingBondEngine(PricingEngine):
 
         if discount_curve.relinkable:
             yts_handle = Handle[_yts.YieldTermStructure](
-                deref(discount_curve._relinkable_ptr)
+                discount_curve._relinkable_ptr.get().currentLink()
             )
         else:
             yts_handle = Handle[_yts.YieldTermStructure](
-                deref(discount_curve._relinkable_ptr)
+                discount_curve._thisptr.get()
             )
 
         self._thisptr = new shared_ptr[_pe.PricingEngine](
