@@ -230,6 +230,7 @@ cdef class Date:
     def __dealloc__(self):
         if self._thisptr is not NULL:
             del self._thisptr
+            self._thisptr = NULL
 
     property month:
         def __get__(self):
@@ -263,6 +264,10 @@ cdef class Date:
 
     def __repr__(self):
         return self.__str__()
+
+    def __hash__(self):
+        # Returns a hash based on the serial
+        return self.serial
 
     def __cmp__(self, date2):
         if isinstance(date2, (datetime.date, datetime.datetime)):
