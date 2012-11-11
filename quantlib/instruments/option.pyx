@@ -134,10 +134,8 @@ cdef class VanillaOption(OneAssetOption):
                 deref(exercise._thisptr)
             )
 
-        # FIXME: this looks like abusing the user ... it is a EuropeanOption and
-        # not a Vanilla one ... should be fixed!
         self._thisptr = new shared_ptr[_instrument.Instrument]( \
-            new _option.EuropeanOption(payoff_ptr, exercise_ptr)
+            new _option.VanillaOption(payoff_ptr, exercise_ptr)
         )
 
 
