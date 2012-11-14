@@ -23,6 +23,8 @@ def term_structure_factory(str traits, str interpolator, Date settlement_date,
     """ Returns a YieldTermStructure based on the piecewise yield curve information provided
     as input.
 
+    FIXME: must be removed and replace by PiecewiseYieldCurve
+
     """
 
     # validate inputs
@@ -53,13 +55,10 @@ def term_structure_factory(str traits, str interpolator, Date settlement_date,
     )
 
     term_structure = YieldTermStructure(relinkable=False)
-    cdef shared_ptr[_ff.YieldTermStructure]* s_pt = new shared_ptr[_ff.YieldTermStructure](ts_ptr)
-    term_structure._thisptr = s_pt
+    term_structure._thisptr = new shared_ptr[_ff.YieldTermStructure](ts_ptr)
     return term_structure
 
-cdef class PiecewiseYieldCurve:
-
-    cdef shared_ptr[_ff.YieldTermStructure]* _thisptr
+cdef class PiecewiseYieldCurve(YieldTermStructure):
 
     def __init__(self, str trait, str interpolator, Date settlement_date,
                  helpers, DayCounter day_counter, float tolerance=1e-12):
@@ -101,10 +100,4 @@ cdef class PiecewiseYieldCurve:
                     tolerance
             )
         )
-
-
-
-
-
-
 

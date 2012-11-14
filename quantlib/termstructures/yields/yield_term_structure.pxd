@@ -4,5 +4,5 @@ from quantlib.handle cimport shared_ptr, RelinkableHandle
 
 cdef class YieldTermStructure:
     cdef shared_ptr[_ff.YieldTermStructure]* _thisptr
-    cdef RelinkableHandle[_ff.YieldTermStructure]* _relinkable_ptr
+    cdef shared_ptr[RelinkableHandle[_ff.YieldTermStructure]]* _relinkable_ptr
     cdef cbool relinkable
