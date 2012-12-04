@@ -19,7 +19,30 @@ cdef class GeneralizedBlackScholesProcess:
         if self._thisptr is not NULL:
             del self._thisptr
 
+cdef class BlackScholesProcess(GeneralizedBlackScholesProcess):
 
+    def __init__(self, Quote x0, YieldTermStructure risk_free_ts,
+                 BlackVolTermStructure black_vol_ts):
+
+        cdef Handle[_qt.Quote] x0_handle = Handle[_qt.Quote](
+            deref(x0._thisptr)
+        )
+        cdef Handle[_ff.YieldTermStructure] risk_free_ts_handle = \
+                Handle[_ff.YieldTermStructure](
+                    deref(risk_free_ts._thisptr)
+                )
+        cdef Handle[_bvts.BlackVolTermStructure] black_vol_ts_handle = \
+            Handle[_bvts.BlackVolTermStructure](
+                deref(black_vol_ts._thisptr)
+            )
+
+        self._thisptr = new shared_ptr[_bsp.GeneralizedBlackScholesProcess]( new \
+            _bsp.BlackScholesProcess(
+                x0_handle,
+                risk_free_ts_handle,
+                black_vol_ts_handle
+            )
+        )
 
 cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):
 

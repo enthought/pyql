@@ -15,13 +15,16 @@ cimport _rate_helpers as _rh
 from quantlib.handle cimport shared_ptr, Handle
 cimport quantlib._quote as _qt
 cimport quantlib.indexes._ibor_index as _ib
+cimport quantlib.indexes._swap_index as _si
+from quantlib.time._period cimport Frequency, Days
+from quantlib.time._calendar cimport BusinessDayConvention
+
 from quantlib.quotes cimport Quote
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.date cimport Period, Date
-from quantlib.time._period cimport Frequency
-from quantlib.time._calendar cimport BusinessDayConvention
 from quantlib.indexes.ibor_index cimport IborIndex
+from quantlib.indexes.swap_index cimport SwapIndex
 
 from quantlib.time.calendar import ModifiedFollowing
 
@@ -42,6 +45,10 @@ cdef class RateHelper:
             value = quote_ptr.get().value()
             return value
 
+    property implied_quote:
+        def __get__(self):
+            return self._thisptr.get().impliedQuote()
+
 
 cdef class RelativeDateRateHelper:
 
@@ -59,6 +66,11 @@ cdef class RelativeDateRateHelper:
             cdef shared_ptr[_qt.Quote] quote_ptr = shared_ptr[_qt.Quote](quote_handle.currentLink())
             value = quote_ptr.get().value()
             return value
+
+    property implied_quote:
+        def __get__(self):
+            return self._thisptr.get().impliedQuote()
+
 
 cdef class DepositRateHelper(RateHelper):
     """Rate helper for bootstrapping over deposit rates. """
@@ -91,17 +103,35 @@ cdef class DepositRateHelper(RateHelper):
 
 cdef class SwapRateHelper(RelativeDateRateHelper):
 
-    def __init__(self, Quote rate, Period tenor,
+    def __init__(self, from_classmethod=False):
+        """ Creating a SwaprRateHelper without using a class method means the
+        shared_ptr won't be initialized properly and break any subsequent calls
+        to the QuantLib internals... To avoid this, we raise a ValueError if
+        the user tries to instantiate this class if not setting the
+        from_classmethod. This is an ugly workaround but is ok so far."""
+
+        if from_classmethod is False:
+            raise ValueError(
+                'SwapRateHelpers must be instantiated through the class methods'
+                ' from_index or from_tenor'
+            )
+
+    cdef set_ptr(self, shared_ptr[_rh.RelativeDateRateHelper]* ptr):
+        self._thisptr = ptr
+
+    @classmethod
+    def from_tenor(cls, float rate, Period tenor,
         Calendar calendar, Frequency fixedFrequency,
         BusinessDayConvention fixedConvention, DayCounter fixedDayCount,
         IborIndex iborIndex, Quote spread, Period fwdStart):
 
-        cdef Handle[_qt.Quote] rate_handle = Handle[_qt.Quote](deref(rate._thisptr))
         cdef Handle[_qt.Quote] spread_handle = Handle[_qt.Quote](deref(spread._thisptr))
 
-        self._thisptr = new shared_ptr[_rh.RelativeDateRateHelper](
+        cdef SwapRateHelper instance = cls(from_classmethod=True)
+
+        instance.set_ptr(new shared_ptr[_rh.RelativeDateRateHelper](
             new _rh.SwapRateHelper(
-                rate_handle,
+                rate,
                 deref(tenor._thisptr.get()),
                 deref(calendar._thisptr),
                 <Frequency> fixedFrequency,
@@ -111,6 +141,30 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                 spread_handle,
                 deref(fwdStart._thisptr.get()))
             )
+        )
+
+        return instance
+
+    @classmethod
+    def from_index(cls, float rate, SwapIndex index):
+
+        cdef Handle[_qt.Quote] spread_handle = Handle[_qt.Quote](new _qt.SimpleQuote(0))
+        cdef Period p = Period(2, Days)
+
+
+        cdef SwapRateHelper instance = cls(from_classmethod=True)
+
+        instance.set_ptr(new shared_ptr[_rh.RelativeDateRateHelper](
+            new _rh.SwapRateHelper(
+                rate,
+                deref(<shared_ptr[_si.SwapIndex]*>index._thisptr),
+                #spread_handle,
+                #deref(p._thisptr.get()))
+                )
+            )
+        )
+
+        return instance
 
 cdef class FraRateHelper(RelativeDateRateHelper):
     """ Rate helper for bootstrapping over %FRA rates. """

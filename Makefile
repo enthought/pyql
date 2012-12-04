@@ -2,11 +2,8 @@
 clean:
 	find quantlib -name \*.so -exec rm {} \;
 	find quantlib -name \*.pyc -exec rm {} \;
-	find quantlib/time -name \*.cpp -exec rm {} \;
-	find quantlib/instruments -name \*.cpp -exec rm {} \;
-	find quantlib/processes -name \*.cpp -exec rm {} \;
-	find quantlib/pricingengines -name \*.cpp -exec rm {} \;
-	rm -rf quantlib/*.cpp
+	find quantlib -name \*.cpp -exec rm {} \;
+	find quantlib -name \*.c -exec rm {} \;
 	rm -rf build
 	rm -rf dist
 docs:
@@ -24,7 +21,7 @@ tests-preload:
 tests:
 	#nosetests -v quantlib/test
 	cd quantlib/test
-	python -m unittest discover
+	python -m unittest discover -v
 
 build_ex:
 	g++ -m32 -I/opt/local/include/ -I/opt/local/include/boost quantlib_test2.cpp \

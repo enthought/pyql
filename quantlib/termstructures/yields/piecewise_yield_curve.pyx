@@ -23,6 +23,8 @@ def term_structure_factory(str traits, str interpolator, Date settlement_date,
     """ Returns a YieldTermStructure based on the piecewise yield curve information provided
     as input.
 
+    FIXME: must be removed and replace by PiecewiseYieldCurve
+
     """
 
     # validate inputs
@@ -35,7 +37,7 @@ def term_structure_factory(str traits, str interpolator, Date settlement_date,
         )
 
     # convert rate_helpers list to std::vetor
-    cdef vector[shared_ptr[RateHelper]]* curve_inputs = new vector[shared_ptr[RateHelper]]()
+    cdef vector[shared_ptr[_rh.RateHelper]]* curve_inputs = new vector[shared_ptr[_rh.RateHelper]]()
     for helper in rate_helpers:
         curve_inputs.push_back( deref((<RateHelper>helper)._thisptr))
 
@@ -53,13 +55,49 @@ def term_structure_factory(str traits, str interpolator, Date settlement_date,
     )
 
     term_structure = YieldTermStructure(relinkable=False)
-    cdef shared_ptr[_ff.YieldTermStructure]* s_pt = new shared_ptr[_ff.YieldTermStructure](ts_ptr)
-    term_structure._thisptr = s_pt
+    term_structure._thisptr = new shared_ptr[_ff.YieldTermStructure](ts_ptr)
     return term_structure
 
+cdef class PiecewiseYieldCurve(YieldTermStructure):
 
+    def __init__(self, str trait, str interpolator, Date settlement_date,
+                 helpers, DayCounter day_counter, float tolerance=1e-12):
 
+        # validate inputs
+        if trait not in VALID_TRAITS:
+            raise ValueError(
+                'Traits must b in {}'.format(','.join(VALID_TRAITS))
+            )
 
+        if interpolator not in VALID_INTERPOLATORS:
+            raise ValueError(
+                'Interpolator must be one of {}'.format(','.join(VALID_INTERPOLATORS))
+            )
 
+        if len(helpers) == 0:
+            raise ValueError('Cannot initialize curve with no helpers')
 
+        # convert Python string to C++ string
+        cdef string trait_string = string(PyString_AsString(trait))
+        cdef string interpolator_string = string(PyString_AsString(interpolator)),
+
+        # convert Python list to std::vector
+        cdef vector[shared_ptr[_rh.RateHelper]]* instruments = \
+                new vector[shared_ptr[_rh.RateHelper]]()
+
+        for helper in helpers:
+            instruments.push_back(
+                deref((<RateHelper> helper)._thisptr)
+            )
+
+        self._thisptr = new shared_ptr[_ff.YieldTermStructure](
+            _pyc.term_structure_factory(
+                    trait_string,
+                    interpolator_string,
+                    deref(settlement_date._thisptr.get()),
+                    deref(instruments),
+                    deref(day_counter._thisptr),
+                    tolerance
+            )
+        )
 
