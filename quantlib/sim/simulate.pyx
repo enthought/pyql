@@ -16,7 +16,7 @@ from quantlib.models.equity.bates_model cimport BatesModel, BatesDetJumpModel, B
 import numpy as np
 cimport numpy as cnp
 
-cdef extern from "_simulate_support_code.hpp":
+cdef extern from "simulate_support_code.hpp":
 
     void simulateMP(shared_ptr[_sp.StochasticProcess]& process,
                     int nbPaths, int nbSteps, Time horizon, BigNatural seed,
@@ -101,7 +101,14 @@ def simulateBatesDoubleExpModel(BatesDoubleExpModel model, int nbPaths, int nbSt
     simulateMP(deref(<shared_ptr[_sp.StochasticProcess]*> hp_pt),
                nbPaths, nbSteps, horizon, seed, <double*> res.data)
 
-    ## TODO
+
+     # parameters of double exponential jump model
+     # Lambda   jump occurence: rate of Poisson process
+     # nuUp     up jump intensity (exp dist)
+     # nuDown   down jump intensity
+     # p        prob of up jump
+
+## TODO
     ## add double exp jump process to simulation
     
     return res
