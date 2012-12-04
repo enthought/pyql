@@ -34,7 +34,7 @@ elif sys.platform == 'win32':
     QL_LIBRARY = 'QuantLib'
 elif sys.platform == 'linux2':
     # good for Debian / ubuntu 10.04 (with QL .99 installed by default)
-    INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.']
+    INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.', SUPPORT_CODE_INCLUDE]
     LIBRARY_DIRS = ['/usr/local/lib', '/usr/lib', ]
     # custom install of QuantLib 1.1
     # INCLUDE_DIRS = ['/opt/QuantLib-1.1', '.', SUPPORT_CODE_INCLUDE]
