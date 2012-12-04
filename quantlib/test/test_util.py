@@ -25,7 +25,7 @@ class TestUtil(unittest.TestCase):
     def test_converter_2(self):
 
         ql_1 = Date(20, Nov, 2005)
-        ql_2 = pydate_to_qldate('20Nov2005')
+        ql_2 = pydate_to_qldate('20-Nov-2005')
 
         self.assertEquals(ql_1.day, ql_2.day)
         self.assertEquals(ql_1.month, ql_2.month)
@@ -34,7 +34,7 @@ class TestUtil(unittest.TestCase):
     def test_converter_2(self):
 
         ql_1 = Date(20, Nov, 2005)
-        ql_2 = pydate_to_qldate('20Nov2005')
+        ql_2 = pydate_to_qldate('20-Nov-2005')
 
         self.assertEquals(ql_1.day, ql_2.day)
         self.assertEquals(ql_1.month, ql_2.month)

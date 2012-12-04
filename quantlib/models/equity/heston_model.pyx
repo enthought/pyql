@@ -17,6 +17,7 @@ from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 
 cimport _heston_model as _hm
+cimport quantlib.processes._heston_process as _hp
 cimport quantlib.termstructures.yields._flat_forward as _ffwd
 cimport quantlib._quote as _qt
 cimport quantlib.pricingengines._pricing_engine as _pe
@@ -126,6 +127,14 @@ cdef class HestonModel:
         self._thisptr = new shared_ptr[_hm.HestonModel](
             new _hm.HestonModel(deref(process._thisptr))
         )
+
+    def process(self):
+        process = HestonProcess()
+        cdef shared_ptr[_hp.HestonProcess] hp_ptr = self._thisptr.get().process()
+        cdef shared_ptr[_hp.HestonProcess]* hp_pt = new shared_ptr[_hp.HestonProcess](hp_ptr)
+        process._thisptr = hp_pt
+        
+        return process
 
     property theta:
         def __get__(self):

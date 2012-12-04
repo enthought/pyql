@@ -18,16 +18,21 @@ cdef class HestonProcess:
         pass
 
     def __init__(self,
-       YieldTermStructure risk_free_rate_ts,
-       YieldTermStructure dividend_ts,
-       Quote s0,
-       Real v0,
-       Real kappa,
-       Real theta,
-       Real sigma,
-       Real rho
+       YieldTermStructure risk_free_rate_ts=None,
+       YieldTermStructure dividend_ts=None,
+       Quote s0=None,
+       Real v0=0,
+       Real kappa=0,
+       Real theta=0,
+       Real sigma=0,
+       Real rho=0
     ):
 
+        self._thisptr = NULL
+
+        if s0 is None:
+            return
+        
         #create handles
         cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](deref(s0._thisptr))
         cdef Handle[_ff.YieldTermStructure] dividend_ts_handle = \

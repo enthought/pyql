@@ -2,7 +2,12 @@
 
 namespace QuantLib {
 
-    void simulateMP(const boost::shared_ptr<HestonProcess>& process,
+  /*
+   * Multipath simulator
+   */
+
+    void simulateMP(const boost::shared_ptr<StochasticProcess>& process,
                     int nbPaths, int nbSteps, Time horizon, BigNatural seed,
                     double *res);
+
 }
