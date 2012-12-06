@@ -5,9 +5,11 @@ include '../types.pxi'
 
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
+from libcpp cimport bool
 
 cimport quantlib.processes._heston_process as _hp
 cimport quantlib.processes._stochastic_process as _sp
+
 from quantlib.processes.heston_process cimport HestonProcess
 from quantlib.processes.bates_process cimport BatesProcess
 from quantlib.models.equity.heston_model cimport HestonModel
@@ -20,12 +22,22 @@ cdef extern from "simulate_support_code.hpp":
 
     void simulateMP(shared_ptr[_sp.StochasticProcess]& process,
                     int nbPaths, int nbSteps, Time horizon, BigNatural seed,
-                    double *res) except +
+                    bool antithetic_variates, double *res) except +
 
-def simulateHeston(HestonModel model, int nbPaths, int nbSteps,
-	     Time horizon, BigNatural seed):
+cdef simulate_sub(void *tmp, int nbPaths, int nbSteps,
+	     Time horizon, BigNatural seed, bool antithetic=True):
 
     cdef cnp.ndarray[cnp.double_t, ndim=2] res = np.zeros((nbPaths+1, nbSteps+1), dtype=np.double)
+
+    cdef shared_ptr[_sp.StochasticProcess]* hp_pt = <shared_ptr[_sp.StochasticProcess] *> tmp
+  
+    simulateMP(deref(<shared_ptr[_sp.StochasticProcess]*> hp_pt),
+               nbPaths, nbSteps, horizon, seed, antithetic, <double*> res.data)
+
+    return res
+
+def simulateHeston(HestonModel model, int nbPaths, int nbSteps,
+	     Time horizon, BigNatural seed, bool antithetic=True):
 
     proc = <HestonProcess> model.process()
 
@@ -34,17 +46,13 @@ def simulateHeston(HestonModel model, int nbPaths, int nbSteps,
 
     cdef void *tmp
     tmp = <void *> proc._thisptr
-    cdef shared_ptr[_sp.StochasticProcess]* hp_pt = <shared_ptr[_sp.StochasticProcess] *> tmp
-  
-    simulateMP(deref(<shared_ptr[_sp.StochasticProcess]*> hp_pt),
-               nbPaths, nbSteps, horizon, seed, <double*> res.data)
 
-    return res
+    return simulate_sub(tmp, nbPaths, nbSteps,
+	     horizon, seed, antithetic)
+
 
 def simulateBates(BatesModel model, int nbPaths, int nbSteps,
-	     Time horizon, BigNatural seed):
-
-    cdef cnp.ndarray[cnp.double_t, ndim=2] res = np.zeros((nbPaths+1, nbSteps+1), dtype=np.double)
+	     Time horizon, BigNatural seed, bool antithetic=True):
 
     proc = <BatesProcess> model.process()
     
@@ -53,18 +61,13 @@ def simulateBates(BatesModel model, int nbPaths, int nbSteps,
 
     cdef void *tmp
     tmp = <void *> proc._thisptr
-    cdef shared_ptr[_sp.StochasticProcess]* hp_pt = <shared_ptr[_sp.StochasticProcess] *> tmp
-  
-    simulateMP(deref(<shared_ptr[_sp.StochasticProcess]*> hp_pt),
-               nbPaths, nbSteps, horizon, seed, <double*> res.data)
 
-    return res
+    return simulate_sub(tmp, nbPaths, nbSteps,
+	     horizon, seed, antithetic)
 
 
 def simulateBatesDetJumpModel(BatesDetJumpModel model, int nbPaths, int nbSteps,
-	     Time horizon, BigNatural seed):
-
-    cdef cnp.ndarray[cnp.double_t, ndim=2] res = np.zeros((nbPaths+1, nbSteps+1), dtype=np.double)
+	     Time horizon, BigNatural seed, bool antithetic=True):
 
     proc = <BatesProcess> model.process()
     
@@ -73,10 +76,9 @@ def simulateBatesDetJumpModel(BatesDetJumpModel model, int nbPaths, int nbSteps,
 
     cdef void *tmp
     tmp = <void *> proc._thisptr
-    cdef shared_ptr[_sp.StochasticProcess]* hp_pt = <shared_ptr[_sp.StochasticProcess] *> tmp
-  
-    simulateMP(deref(<shared_ptr[_sp.StochasticProcess]*> hp_pt),
-               nbPaths, nbSteps, horizon, seed, <double*> res.data)
+
+    res = simulate_sub(tmp, nbPaths, nbSteps,
+	     horizon, seed, antithetic)
 
     ## TODO
     ## add jump process to simulation
@@ -84,8 +86,9 @@ def simulateBatesDetJumpModel(BatesDetJumpModel model, int nbPaths, int nbSteps,
     return res
 
 
-def simulateBatesDoubleExpModel(BatesDoubleExpModel model, int nbPaths, int nbSteps,
-	     Time horizon, BigNatural seed):
+def simulateBatesDoubleExpModel(BatesDoubleExpModel model, int nbPaths,
+                                int nbSteps,
+	     Time horizon, BigNatural seed, bool antithetic=True):
 
     cdef cnp.ndarray[cnp.double_t, ndim=2] res = np.zeros((nbPaths+1, nbSteps+1), dtype=np.double)
 
@@ -96,11 +99,9 @@ def simulateBatesDoubleExpModel(BatesDoubleExpModel model, int nbPaths, int nbSt
 
     cdef void *tmp
     tmp = <void *> proc._thisptr
-    cdef shared_ptr[_sp.StochasticProcess]* hp_pt = <shared_ptr[_sp.StochasticProcess] *> tmp
-  
-    simulateMP(deref(<shared_ptr[_sp.StochasticProcess]*> hp_pt),
-               nbPaths, nbSteps, horizon, seed, <double*> res.data)
 
+    res = simulate_sub(tmp, nbPaths, nbSteps,
+	     horizon, seed, antithetic)
 
      # parameters of double exponential jump model
      # Lambda   jump occurence: rate of Poisson process

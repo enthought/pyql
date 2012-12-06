@@ -5,9 +5,15 @@ import numpy as np
 from quantlib.models.equity.heston_model import (
     HestonModelHelper, HestonModel, ImpliedVolError
 )
+
 from quantlib.processes.heston_process import HestonProcess
+from quantlib.processes.bates_process import BatesProcess
+from quantlib.models.equity.bates_model import (BatesDetJumpModel)
+
 from quantlib.pricingengines.blackformula import blackFormula
-from quantlib.pricingengines.vanilla import AnalyticHestonEngine
+from quantlib.pricingengines.vanilla.vanilla import (
+    AnalyticHestonEngine,
+    BatesDetJumpEngine)
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
 from quantlib.time.api import (
@@ -18,16 +24,30 @@ from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
 
-from quantlib.sim.simulate import simulateHeston
+from quantlib.processes.heston_process import (
+        PARTIALTRUNCATION,
+        FULLTRUNCATION,
+        REFLECTION,
+        NONCENTRALCHISQUAREVARIANCE,
+        QUADRATICEXPONENTIAL,
+        QUADRATICEXPONENTIALMARTINGALE)
+
+from quantlib.pricingengines.vanilla.mcvanillaengine import MCVanillaEngine
+
+from quantlib.instruments.option import (
+    Call, Put, EuropeanExercise, VanillaOption
+        )
+from quantlib.instruments.payoffs import PlainVanillaPayoff
+
 
 def flat_rate(forward, daycounter):
     return FlatForward(
-        quote           = SimpleQuote(forward),
-        #forward         = forward,
-        settlement_days = 0,
-        calendar        = NullCalendar(),
-        daycounter      = daycounter
+        quote=SimpleQuote(forward),
+        settlement_days=0,
+        calendar=NullCalendar(),
+        daycounter=daycounter
     )
+
 
 class HestonModelTestCase(unittest.TestCase):
     """Test cases are based on the test-suite/hestonmodel.cpp in QuantLib.
@@ -53,7 +73,6 @@ class HestonModelTestCase(unittest.TestCase):
 
         risk_free_ts = flat_rate(0.04, daycounter)
         dividend_ts = flat_rate(0.50, daycounter)
-
 
         option_maturities = [
             Period(1, Months),
@@ -126,10 +145,10 @@ class HestonModelTestCase(unittest.TestCase):
 
             self.assertAlmostEqual(
                 model.kappa * model.theta,
-                model.kappa * volatility**2,
-                delta = tolerance
+                model.kappa * volatility ** 2,
+                delta=tolerance
             )
-            self.assertAlmostEqual(model.v0, volatility**2, delta=tolerance)
+            self.assertAlmostEqual(model.v0, volatility ** 2, delta=tolerance)
 
     def test_DAX_calibration(self):
 
@@ -182,9 +201,9 @@ class HestonModelTestCase(unittest.TestCase):
 
         for s, strike in enumerate(strikes):
             for m in range(len(t)):
-                vol = SimpleQuote(v[s*8+m])
-                maturity = Period((int)((t[m]+3)/7.), Weeks) # round to weeks
-
+                vol = SimpleQuote(v[s * 8 + m])
+                # round to weeks
+                maturity = Period((int)((t[m] + 3) / 7.), Weeks)
                 options.append(
                     HestonModelHelper(
                         maturity, calendar, s0.value, strike, vol,
@@ -217,25 +236,21 @@ class HestonModelTestCase(unittest.TestCase):
         )
 
         sse = 0
-        for i in range(len(strikes)*len(t)):
+        for i in range(len(strikes) * len(t)):
             diff = options[i].calibration_error() * 100.0
-            sse += diff*diff;
+            sse += diff * diff
 
         expected = 177.2  # see article by A. Sepp.
         self.assertAlmostEquals(expected, sse, delta=1.0)
 
     def test_analytic_versus_black(self):
-        from quantlib.instruments.payoffs import PlainVanillaPayoff
-        from quantlib.instruments.option import (
-            Put, EuropeanExercise, VanillaOption
-        )
 
         settlement_date = today()
         self.settings.evaluation_date = settlement_date
 
         daycounter = ActualActual()
 
-        exercise_date = settlement_date + 6 * Months;
+        exercise_date = settlement_date + 6 * Months
 
         payoff = PlainVanillaPayoff(Put, 30)
 
@@ -260,7 +275,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         engine = AnalyticHestonEngine(HestonModel(process), 144)
 
-        option.set_pricing_engine(engine);
+        option.set_pricing_engine(engine)
 
         calculated = option.net_present_value
 
@@ -268,7 +283,7 @@ class HestonModelTestCase(unittest.TestCase):
             settlement_date, exercise_date
         )
 
-        forward_price = 32 * np.exp((0.1-0.04)*year_fraction)
+        forward_price = 32 * np.exp((0.1 - 0.04) * year_fraction)
         expected = blackFormula(
             payoff.type, payoff.strike, forward_price,
             np.sqrt(0.05 * year_fraction)
@@ -279,9 +294,156 @@ class HestonModelTestCase(unittest.TestCase):
         self.assertAlmostEqual(
             calculated,
             expected,
-            delta = tolerance
+            delta=tolerance
         )
 
+    def test_bates_det_jump(self):
+        # this looks like a bug in QL:
+        # Bates Det Jump model does not have sigma as parameter, yet
+        # changing sigma changes the result!
+
+        from quantlib.instruments.option import (
+            Put, EuropeanExercise, VanillaOption
+        )
+
+        settlement_date = today()
+        self.settings.evaluation_date = settlement_date
+
+        daycounter = ActualActual()
+
+        exercise_date = settlement_date + 6 * Months
+
+        payoff = PlainVanillaPayoff(Put, 1290)
+        exercise = EuropeanExercise(exercise_date)
+        option = VanillaOption(payoff, exercise)
+
+        risk_free_ts = flat_rate(0.02, daycounter)
+        dividend_ts = flat_rate(0.04, daycounter)
+
+        spot = 1290
+
+        ival = {'delta': 3.6828677022272715e-06,
+        'kappa': 19.02581428347027,
+        'kappaLambda': 1.1209758060939223,
+        'lambda': 0.06524550732595163,
+        'nu': -1.8968106563601956,
+        'rho': -0.7480898462264719,
+        'sigma': 1.0206363887835108,
+        'theta': 0.01965384459461113,
+        'thetaLambda': 0.028915397380738218,
+        'v0': 0.06566800935242285}
+
+        process = BatesProcess(
+        risk_free_ts, dividend_ts, SimpleQuote(spot),
+        ival['v0'], ival['kappa'],
+        ival['theta'], ival['sigma'], ival['rho'],
+        ival['lambda'], ival['nu'], ival['delta'])
+
+        model = BatesDetJumpModel(process,
+                ival['kappaLambda'], ival['thetaLambda'])
+
+        engine = BatesDetJumpEngine(model, 64)
+
+        option.set_pricing_engine(engine)
+
+        calc_1 = option.net_present_value
+
+        ival['sigma'] = 1.e-6
+
+        process = BatesProcess(
+        risk_free_ts, dividend_ts, SimpleQuote(spot),
+        ival['v0'], ival['kappa'],
+        ival['theta'], ival['sigma'], ival['rho'],
+        ival['lambda'], ival['nu'], ival['delta'])
+
+        model = BatesDetJumpModel(process,
+                ival['kappaLambda'], ival['thetaLambda'])
+        engine = BatesDetJumpEngine(model, 64)
+
+        option.set_pricing_engine(engine)
+
+        calc_2 = option.net_present_value
+
+        # print 'calc 1 %f calc 2 %f' % (calc_1, calc_2)
+        self.assertNotEqual(calc_1, calc_2)
+
+    def test_smith(self):
+        # test against result published in
+        # Journal of Computational Finance Vol. 11/1 Fall 2007
+        # An almost exact simulation method for the heston model
+
+        def payoff(o, scenario):
+            Strike = o['S']
+            if o['CP'] == 'C':
+                exercise = [max(ST - Strike, 0) for ST in scenario]
+            else:
+                exercise = [max(-ST + Strike, 0) for ST in scenario]
+            return np.mean(exercise)
+
+        settlement_date = today()
+        self.settings.evaluation_date = settlement_date
+
+        daycounter = ActualActual()
+        timeToMaturity = 4
+
+        exercise_date = settlement_date + timeToMaturity * 365
+
+        c_payoff = PlainVanillaPayoff(Call, 100)
+
+        exercise = EuropeanExercise(exercise_date)
+
+        risk_free_ts = flat_rate(0., daycounter)
+        dividend_ts = flat_rate(0., daycounter)
+
+        s0 = SimpleQuote(100.0)
+
+        v0    = 0.0194
+        kappa = 1.0407
+        theta = 0.0586
+        sigma = 0.5196
+        rho   = -.6747
+
+        nb_steps_a = 100
+        nb_paths = 20000
+        seed = 12347
+
+        process = HestonProcess(
+            risk_free_ts, dividend_ts, s0, v0, kappa, theta,
+            sigma, rho, QUADRATICEXPONENTIAL)
+
+        model = HestonModel(process)
+
+        option = VanillaOption(c_payoff, exercise)
+
+        engine = AnalyticHestonEngine(model, 144)
+
+        option.set_pricing_engine(engine)
+
+        price_fft  = option.net_present_value
+
+        engine = MCVanillaEngine(
+              trait='MCEuropeanHestonEngine',
+              RNG='PseudoRandom',
+              process=process,
+              doAntitheticVariate=True,
+              stepsPerYear=nb_steps_a,
+              requiredSamples=nb_paths,
+              seed=seed)
+
+        option.set_pricing_engine(engine)
+        price_mc = option.net_present_value
+
+        expected = 15.1796
+        tolerance = .05
+
+        self.assertAlmostEqual(
+            price_fft,
+            expected,
+            delta=tolerance)
+        self.assertAlmostEqual(
+            price_mc,
+            expected,
+            delta=tolerance)
 
 if __name__ == '__main__':
     unittest.main()

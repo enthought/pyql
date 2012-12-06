@@ -23,7 +23,7 @@ cdef extern from 'ql/termstructures/credit/probabilitytraits.hpp' namespace 'Qua
     cdef struct HazardRate:
         pass
 
-cdef extern from '../../../cpp_layer/credit_piecewise_support_code.hpp' namespace 'QuantLib':
+cdef extern from 'credit_piecewise_support_code.hpp' namespace 'QuantLib':
 
     cdef shared_ptr[DefaultProbabilityTermStructure] credit_term_structure_factory(
         string& traits,

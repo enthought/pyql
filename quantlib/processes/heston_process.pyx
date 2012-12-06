@@ -9,7 +9,24 @@ cimport quantlib._quote as _qt
 from quantlib.quotes cimport Quote, SimpleQuote
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
 
+cdef public enum Discretization:
+        PARTIALTRUNCATION = _hp.PartialTruncation
+        FULLTRUNCATION = _hp.FullTruncation
+        REFLECTION = _hp.Reflection
+        NONCENTRALCHISQUAREVARIANCE = _hp.NonCentralChiSquareVariance
+        QUADRATICEXPONENTIAL = _hp.QuadraticExponential
+        QUADRATICEXPONENTIALMARTINGALE = _hp.QuadraticExponentialMartingale
+
 cdef class HestonProcess:
+    """Heston process: a diffusion process with mean-reverting stochastic variance.
+
+    .. math::
+    dS_t &=& (r-d) S_t dt + \sqrt{V_t} S_t dW^s_t \\
+    dV_t &=& \kappa (\theta - V_t) dt + \varepsilon \sqrt{V_t} dW^\\upsilon_t \nonumber \\
+    dW^s_t dW^\\upsilon_t &=& \rho dt \nonumber
+
+    """
+
 
     def __cinit__(self):
         pass
@@ -25,12 +42,12 @@ cdef class HestonProcess:
        Real kappa=0,
        Real theta=0,
        Real sigma=0,
-       Real rho=0
-    ):
+       Real rho=0,
+       Discretization d=QUADRATICEXPONENTIALMARTINGALE,
+       **kwargs):
 
-        self._thisptr = NULL
-
-        if s0 is None:
+        if 'noalloc' in kwargs:
+            self._thisptr = NULL
             return
         
         #create handles
@@ -49,7 +66,7 @@ cdef class HestonProcess:
                 risk_free_rate_ts_handle,
                 dividend_ts_handle,
                 s0_handle,
-                v0, kappa, theta, sigma, rho
+                v0, kappa, theta, sigma, rho, d
             )
         )
 

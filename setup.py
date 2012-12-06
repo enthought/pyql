@@ -154,8 +154,25 @@ def collect_extensions():
 
     )
 
+    mc_vanilla_engine_extension = Extension(
+        name='quantlib.pricingengines.vanilla.mcvanillaengine',
+        sources=[
+            'quantlib/pricingengines/vanilla/mcvanillaengine.pyx',
+            'cpp_layer/mc_vanilla_engine_support_code.cpp'
+        ],
+        language='c++',
+        include_dirs=INCLUDE_DIRS + [numpy.get_include()],
+        library_dirs=LIBRARY_DIRS,
+        define_macros = get_define_macros(),
+        extra_compile_args = get_extra_compile_args(),
+        extra_link_args = get_extra_link_args(),
+        libraries=['QuantLib'],
+        pyrex_directives = CYTHON_DIRECTIVES
+    )
+
     manual_extensions = [
         multipath_extension,
+        mc_vanilla_engine_extension,
         piecewise_yield_curve_extension,
         piecewise_default_curve_extension,
         settings_extension,

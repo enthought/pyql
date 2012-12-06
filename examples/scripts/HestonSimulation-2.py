@@ -26,10 +26,19 @@
 # <codecell>
 
 from quantlib.processes.heston_process import HestonProcess
+from quantlib.models.equity.heston_model import HestonModel
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.time.api import today, NullCalendar, ActualActual
+
+from quantlib.processes.heston_process import (
+        PARTIALTRUNCATION,
+        FULLTRUNCATION,
+        REFLECTION,
+        NONCENTRALCHISQUAREVARIANCE,
+        QUADRATICEXPONENTIAL,
+        QUADRATICEXPONENTIALMARTINGALE)
 
 # <markdowncell>
 
@@ -69,9 +78,11 @@ kappa = 5.0;
 theta = 0.05;
 sigma = 1.0e-4;
 rho = -0.5;
+discretization = QUADRATICEXPONENTIALMARTINGALE
+
 
 process = HestonProcess(risk_free_ts, dividend_ts, s0, v0,
-                       kappa, theta, sigma, rho)
+                       kappa, theta, sigma, rho, discretization)
 
 # <markdowncell>
 
@@ -83,15 +94,18 @@ process = HestonProcess(risk_free_ts, dividend_ts, s0, v0,
 # <codecell>
 
 import pylab as pl
-from quantlib.sim.simulate import simulate
+from quantlib.sim.simulate import simulateHeston
 
 # simulate and plot Heston paths
-paths = 20
+paths = 2
 steps = 100
 horizon = 2
 seed = 12345
 
-res = simulate(process, paths, steps, horizon, seed)
+model = HestonModel(process)
+
+res = simulateHeston(model, paths, steps, horizon,
+                     seed, antithetic=True)
 
 time = res[0,:]
 simulations = res[1:, :].T

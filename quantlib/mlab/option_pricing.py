@@ -16,7 +16,7 @@ from quantlib.instruments.option import (Put, Call,
                                          EuropeanExercise, VanillaOption)
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.models.equity.heston_model import HestonModel
-from quantlib.pricingengines.vanilla import AnalyticHestonEngine
+from quantlib.pricingengines.vanilla.vanilla import AnalyticHestonEngine
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings

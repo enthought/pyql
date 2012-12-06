@@ -19,6 +19,14 @@ from quantlib.quotes cimport Quote, SimpleQuote
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
 from heston_process cimport HestonProcess
 
+cdef public enum Discretization:
+        PARTIALTRUNCATION = _hp.PartialTruncation
+        FULLTRUNCATION = _hp.FullTruncation
+        REFLECTION = _hp.Reflection
+        NONCENTRALCHISQUAREVARIANCE = _hp.NonCentralChiSquareVariance
+        QUADRATICEXPONENTIAL = _hp.QuadraticExponential
+        QUADRATICEXPONENTIALMARTINGALE = _hp.QuadraticExponentialMartingale
+
 cdef class BatesProcess(HestonProcess):
 
     def __cinit__(self):
@@ -38,12 +46,12 @@ cdef class BatesProcess(HestonProcess):
        Real rho=0,
        Real lambda_=0,
        Real nu=0,
-       Real delta=0
-    ):
+       Real delta=0,
+       Discretization d=FULLTRUNCATION,
+       **kwargs):
 
-        self._thisptr = NULL
-
-        if s0 is None:
+        if 'noalloc' in kwargs:
+            self._thisptr = NULL
             return
         
         #create handles
@@ -63,7 +71,7 @@ cdef class BatesProcess(HestonProcess):
                 dividend_ts_handle,
                 s0_handle,
                 v0, kappa, theta, sigma, rho,
-                lambda_, nu, delta))
+                lambda_, nu, delta, d))
 
     def __str__(self):
         return 'Bates process\nv0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f nu: %f delta: %f' % \

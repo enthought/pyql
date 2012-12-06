@@ -13,6 +13,16 @@ from quantlib.handle cimport Handle, shared_ptr
 from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
 cimport quantlib._quote as _qt
 
+cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib::HestonProcess':
+
+    cdef enum Discretization:
+        PartialTruncation
+        FullTruncation
+        Reflection
+        NonCentralChiSquareVariance
+        QuadraticExponential
+        QuadraticExponentialMartingale
+
 cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib':
 
     cdef cppclass HestonProcess:
@@ -23,7 +33,7 @@ cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib':
             Handle[YieldTermStructure]& dividendYield,
             Handle[_qt.Quote]& s0,
             Real v0, Real kappa,
-            Real theta, Real sigma, Real rho) except +
+            Real theta, Real sigma, Real rho, Discretization d) except +
             
         Size size() except +
         Real v0() except +
@@ -45,7 +55,7 @@ cdef extern from 'ql/processes/batesprocess.hpp' namespace 'QuantLib':
             Handle[_qt.Quote]& s0,
             Real v0, Real kappa,
             Real theta, Real sigma, Real rho,
-            Real lambda_, Real nu, Real delta) except +
+            Real lambda_, Real nu, Real delta, Discretization d) except +
 
         Real Lambda 'lambda'() except +
         Real nu() except +
