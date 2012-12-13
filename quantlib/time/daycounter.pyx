@@ -43,10 +43,24 @@ cdef class DayCounter:
         cdef _date.Date* d2 = date2._thisptr.get()
         return self._thisptr.dayCount(deref(d1), deref(d2))
 
-cdef class Thirty360(DayCounter):
-    
-    def __cinit__(self, *args):
-        self._thisptr = <_daycounter.DayCounter*> new _daycounter.Thirty360()
+    def __richcmp__(self, other_counter, val):
+
+        if not isinstance(other_counter, DayCounter):
+            return NotImplemented
+
+        # if we compare two day counter for equality, the underlying
+        # QuantLib counter must be of the same type. Testing if names are
+        # the same gives us a valid answer
+        a = self.name()
+        b = other_counter.name()
+
+        # we only support testing for equality and inequality
+        if val == 2:
+            return a == b
+        elif val == 3:
+            return a != b
+        else:
+            return False
 
 cdef class Actual360(DayCounter):
 
@@ -62,7 +76,7 @@ cdef class Actual365Fixed(DayCounter):
 
 cdef class Business252(DayCounter):
 
-    def __cinit__(self, calendar=None):
+    def __cinit__(self, *args, calendar=None):
         cdef _calendar.Calendar* cl
         if calendar is None:
            cl = <_calendar.Calendar*> new _calendar.TARGET()

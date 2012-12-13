@@ -173,3 +173,14 @@ class TestActualActual(unittest.TestCase):
             day_counter.year_fraction(from_date, to_date)
         )
 
+
+    def test_equality_method(self):
+
+        day_counter = Thirty360(EUROBONDBASIS)
+
+        self.assertNotEquals(day_counter.name(), Thirty360().name())
+        self.assertNotEqual(day_counter, Thirty360())
+        self.assertEquals(day_counter, Thirty360(EUROBONDBASIS))
+
+if __name__ == '__main__':
+    unittest.main()
