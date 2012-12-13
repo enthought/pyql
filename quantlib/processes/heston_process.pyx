@@ -15,7 +15,9 @@ cdef class HestonProcess:
         pass
 
     def __dealloc(self):
-        pass
+        if self._thisptr is not NULL:
+            del self._thisptr
+            self._thisptr = NULL
 
     def __init__(self,
        YieldTermStructure risk_free_rate_ts,
