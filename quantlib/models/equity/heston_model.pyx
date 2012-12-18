@@ -129,7 +129,7 @@ cdef class HestonModel:
         )
 
     def process(self):
-        process = HestonProcess()
+        process = HestonProcess(noalloc=True)
         cdef shared_ptr[_hp.HestonProcess] hp_ptr = self._thisptr.get().process()
         cdef shared_ptr[_hp.HestonProcess]* hp_pt = new shared_ptr[_hp.HestonProcess](hp_ptr)
         process._thisptr = hp_pt
