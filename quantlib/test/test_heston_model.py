@@ -380,7 +380,8 @@ class HestonModelTestCase(unittest.TestCase):
 
         calc_2 = option.net_present_value
 
-        # print 'calc 1 %f calc 2 %f' % (calc_1, calc_2)
+        if(abs(calc_1-calc_2) > 1.e-5):
+            print 'calc 1 %f calc 2 %f' % (calc_1, calc_2)
         self.assertNotEqual(calc_1, calc_2)
 
     def test_smith(self):
