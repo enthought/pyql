@@ -61,6 +61,8 @@ cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib':
         HestonModel() # fake empty constructor solving Cython dep. issue
         HestonModel(shared_ptr[HestonProcess]& process)
 
+        shared_ptr[HestonProcess] process() except +
+        
         #variance mean reversion level
         Real theta() except +
         #variance mean reversion speed

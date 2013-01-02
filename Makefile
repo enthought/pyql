@@ -16,6 +16,9 @@ build:
 install:
 	python setup.py install --record pyql_install.txt
 
+uninstall:
+	cat pyql_install.txt | grep quantlib | xargs rm -rf
+
 tests-preload:
 	LD_PRELOAD=/opt/QuantLib-1.1/lib/libQuantLib.so nosetests -v quantlib/test
 tests:
