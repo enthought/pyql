@@ -26,7 +26,7 @@ def option_quotes_template():
 
 
 def riskfree_dividend_template():
-    return DataFrame.from_records(np.empty((0,),
+    return DataFrame.from_records(np.empty((1,),
                                   dtype=[(nm.DIVIDEND_YIELD, 'f4'),
                                          (nm.INTEREST_RATE, 'f4'),
                                          (nm.MATURITY_DATE, 'object')]),
