@@ -1,7 +1,9 @@
 """ Simple example pricing a European option 
 using a Black&Scholes Merton process."""
 
-from quantlib.instruments.option import Put, EuropeanExercise
+import numpy as np
+
+from quantlib.instruments.option import Call, EuropeanExercise
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.instruments.option import VanillaOption
 from quantlib.pricingengines.vanilla import AnalyticEuropeanEngine
@@ -17,24 +19,18 @@ from quantlib.termstructures.volatility.equityfx.black_vol_term_structure \
 settings = Settings.instance()
 calendar = TARGET()
 
-offset = 366
-
-todays_date = today() - offset
+todays_date = today()
 settlement_date = todays_date + 2
 
 settings.evaluation_date = todays_date
 
 # options parameters
-option_type = Put
-underlying = 36
-strike = 40
+option_type = Call
+strike = 100
 dividend_yield = 0.00
 risk_free_rate = 0.06
-volatility = 0.20
-maturity = settlement_date + 363
 daycounter = Actual365Fixed()
-
-underlyingH = SimpleQuote(underlying)
+u_array = np.linspace(30, 200, num=50)
 
 # bootstrap the yield/dividend/vol curves
 flat_term_structure = FlatForward(
@@ -49,32 +45,38 @@ flat_dividend_ts = FlatForward(
     daycounter=daycounter
 )
 
-flat_vol_ts = BlackConstantVol(
-    settlement_date, calendar, volatility, daycounter
-)
-
-black_scholes_merton_process = BlackScholesMertonProcess(
-    underlyingH, flat_dividend_ts, flat_term_structure, flat_vol_ts
-)
-
 payoff = PlainVanillaPayoff(option_type, strike)
-
-european_exercise = EuropeanExercise(maturity)
-
-european_option = VanillaOption(payoff, european_exercise)
-
-
 method = 'Black-Scholes'
-analytic_european_engine = AnalyticEuropeanEngine(black_scholes_merton_process)
-
-european_option.set_pricing_engine(analytic_european_engine)
-
-print(
-    'today: %s settlement: %s maturity: %s' % (
-        todays_date, settlement_date, maturity
-    )
-)
-print('NPV: %f\n' % european_option.net_present_value)
 
 
-### EOF #######################################################################
+def bs_price(maturity, vol):
+
+    european_exercise = EuropeanExercise(maturity)
+    european_option = VanillaOption(payoff, european_exercise)
+
+    flat_vol_ts = BlackConstantVol(
+    settlement_date, calendar, vol, daycounter)
+
+    def bs_price_sub(u):
+        uH = SimpleQuote(u)
+
+        black_scholes_merton_process = BlackScholesMertonProcess(
+        uH, flat_dividend_ts, flat_term_structure, flat_vol_ts)
+
+        analytic_european_engine = \
+        AnalyticEuropeanEngine(black_scholes_merton_process)
+
+        european_option.set_pricing_engine(analytic_european_engine)
+
+        return european_option.net_present_value
+
+    return [bs_price_sub(u) for u in u_array]
+
+import matplotlib.pyplot as plt
+
+@interact
+def plot_bs(maturity=(1,(1,5)), vol=(10,(10,100))):
+    mat = settlement_date + 365*maturity
+    p = bs_price(mat, vol)
+    plt.plot(u_array,p)
+    plt.grid(True)

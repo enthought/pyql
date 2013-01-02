@@ -18,7 +18,7 @@ from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
 
-from quantlib.sim.simulate import simulate
+from quantlib.sim.simulate import simulateHeston
 
 def flat_rate(forward, daycounter):
     return FlatForward(
@@ -282,32 +282,6 @@ class HestonModelTestCase(unittest.TestCase):
             delta = tolerance
         )
 
-    def test_simulate(self):
-
-        daycounter = ActualActual()
-
-        risk_free_ts = flat_rate(0.1, daycounter)
-        dividend_ts = flat_rate(0.04, daycounter)
-
-	s0 = s0 = SimpleQuote(100.0)
-        v0    = 0.05
-        kappa = 5.0
-        theta = 0.05
-        sigma = 1.0e-4
-        rho   = 0.0
-
-        process = HestonProcess(
-            risk_free_ts, dividend_ts, s0, v0, kappa, theta, sigma, rho
-        )
-
-	# simulate and plot Heston paths
-	nbPaths = 4
-	nbSteps = 100
-	horizon = 1
-	seed = 12345
-	res = simulate(process, nbPaths, nbSteps, horizon, seed)
-
-	self.assertAlmostEqual(res[1,-1], 152.50, delta=.1)
 
 if __name__ == '__main__':
     unittest.main()

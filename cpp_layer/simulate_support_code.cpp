@@ -1,8 +1,14 @@
 #include<ql/quantlib.hpp>
 
+/*
+ * Multipath simulator. A multipath simulator is needed when the stochastic
+ * process involves more than 1 brownian. For example, Heston's model involves
+ * the simulation of the variance process and the simulation of the price process
+ */
+
 namespace QuantLib {
 
-    void simulateMP(const boost::shared_ptr<HestonProcess>& process,
+    void simulateMP(const boost::shared_ptr<StochasticProcess>& process,
                     int nbPaths, int nbSteps, Time horizon, BigNatural seed,
                     double *res) {
 
@@ -12,10 +18,10 @@ namespace QuantLib {
         Time length = horizon;
 
         Size timeSteps = nbSteps;
-        boost::shared_ptr<StochasticProcess> sp = 
-        boost::dynamic_pointer_cast<StochasticProcess>(process);
+        boost::shared_ptr<StochasticProcess> sp = process;
+        //  boost::dynamic_pointer_cast<StochasticProcess>(process);
     
-        Size assets = sp->size();
+        Size assets = sp->factors();
         rsg_type rsg = PseudoRandom::make_sequence_generator(timeSteps*assets,
                        seed);
 	    MultiPathGenerator<rsg_type> generator(sp, TimeGrid(length, timeSteps),
@@ -41,5 +47,6 @@ namespace QuantLib {
             };
         };
     };
+
 }
 
