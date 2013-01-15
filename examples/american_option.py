@@ -9,6 +9,7 @@
 from quantlib.instruments.option import AmericanExercise, VanillaOption, Put
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.pricingengines.vanilla import BaroneAdesiWhaleyApproximationEngine
+from quantlib.pricingengines.vanilla import FDAmericanEngine
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
@@ -17,11 +18,12 @@ from quantlib.termstructures.volatility.equityfx.black_vol_term_structure \
         import BlackConstantVol
 from quantlib.termstructures.yields.api import FlatForward
 
+
 def main():
     # global data
     todays_date = Date(15, May, 1998)
     Settings.instance().evaluation_date = todays_date
-    settlement_date = Date(17, May ,1998)
+    settlement_date = Date(17, May, 1998)
 
     risk_free_rate = FlatForward(
         reference_date = settlement_date,
@@ -81,21 +83,21 @@ def main():
     option.set_pricing_engine(BaroneAdesiWhaleyApproximationEngine(process))
     report('Barone-Adesi-Whaley',option.net_present_value)
 
+    # method: finite differences
+    time_steps = 801
+    grid_points = 800
+
+    option.set_pricing_engine(FDAmericanEngine('CrankNicolson', process,time_steps,grid_points))
+    report('finite differences',option.net_present_value)
+
 
     print 'This is work in progress.'
-    print 'Some pricing engines are not interfaced yet'
+    print 'Some pricing engines are not yet interfaced.'
 
     return
 
     option.set_pricing_engine(BjerksundStenslandEngine(process))
     report('Bjerksund-Stensland',option.NPV())
-
-    # method: finite differences
-    timeSteps = 801
-    gridPoints = 800
-
-    option.setPricingEngine(FDAmericanEngine(process,timeSteps,gridPoints))
-    report('finite differences',option.NPV())
 
     # method: binomial
     timeSteps = 801

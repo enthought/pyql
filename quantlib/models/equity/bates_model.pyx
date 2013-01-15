@@ -21,6 +21,7 @@ from quantlib.handle cimport Handle, shared_ptr
 from quantlib.processes.heston_process cimport HestonProcess
 from quantlib.processes.bates_process cimport BatesProcess
 from quantlib.models.equity.heston_model cimport HestonModel
+from quantlib.models.equity.bates_model cimport BatesModel
 
 cdef class BatesModel(HestonModel):
 
@@ -36,6 +37,14 @@ cdef class BatesModel(HestonModel):
         return 'Bates model\nv0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f nu: %f delta: %f' % \
           (self.v0, self.kappa, self.theta, self.sigma,
            self.rho, self.Lambda, self.nu, self.delta)
+
+    def process(self):
+        process = BatesProcess(noalloc=True)
+        cdef shared_ptr[_hp.HestonProcess] bp_ptr = self._thisptr.get().process()
+        cdef shared_ptr[_hp.HestonProcess]* bp_pt = new shared_ptr[_hp.HestonProcess](bp_ptr)
+        process._thisptr = bp_pt
+        
+        return process
 
     property Lambda:
         def __get__(self):

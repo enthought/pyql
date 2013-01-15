@@ -1,11 +1,11 @@
-include '../types.pxi'
+include '../../types.pxi'
 
 from quantlib.handle cimport shared_ptr
 from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess
 from quantlib.models.equity._heston_model cimport HestonModel
 from quantlib.models.equity._bates_model cimport (BatesModel, BatesDetJumpModel, BatesDoubleExpModel, BatesDoubleExpDetJumpModel)
 
-from _pricing_engine cimport PricingEngine
+from quantlib.pricingengines._pricing_engine cimport PricingEngine
 
 cdef extern from 'ql/pricingengines/vanilla/analyticeuropeanengine.hpp' namespace 'QuantLib':
 

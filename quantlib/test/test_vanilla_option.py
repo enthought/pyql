@@ -5,7 +5,7 @@ from quantlib.instruments.option import (
 )
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.instruments.option import VanillaOption
-from quantlib.pricingengines.vanilla import (
+from quantlib.pricingengines.vanilla.vanilla import (
     AnalyticEuropeanEngine, BaroneAdesiWhaleyApproximationEngine
 )
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
@@ -88,11 +88,10 @@ class VanillaOptionTestCase(unittest.TestCase):
 
 
         # FIXME: this crashes
-        # option = VanillaOption(self.payoff, exercise)
-        # print option.exercise
-        # self.assertEquals('Exercise type: European', option.exercise)
-        #vanilla_str = str(option)
-        #self.assertEquals('Vanilla option', vanilla_str)
+        option = VanillaOption(self.payoff, exercise)
+        self.assertEquals('Exercise type: European', str(option.exercise))
+        vanilla_str = str(option)
+        self.assertEquals('VanillaOption Exercise type: European Payoff: Vanilla', vanilla_str)
 
     def test_european_vanilla_option_usage(self):
 

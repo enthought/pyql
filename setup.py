@@ -34,11 +34,11 @@ elif sys.platform == 'win32':
     QL_LIBRARY = 'QuantLib'
 elif sys.platform == 'linux2':
     # good for Debian / ubuntu 10.04 (with QL .99 installed by default)
-    # INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.']
-    # LIBRARY_DIRS = ['/usr/local/lib', '/usr/lib', ]
+    INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.', SUPPORT_CODE_INCLUDE]
+    LIBRARY_DIRS = ['/usr/local/lib', '/usr/lib', ]
     # custom install of QuantLib 1.1
-    INCLUDE_DIRS = ['/opt/QuantLib-1.1', '.', SUPPORT_CODE_INCLUDE]
-    LIBRARY_DIRS = ['/opt/QuantLib-1.1/lib',]
+    # INCLUDE_DIRS = ['/opt/QuantLib-1.1', '.', SUPPORT_CODE_INCLUDE]
+    # LIBRARY_DIRS = ['/opt/QuantLib-1.1/lib',]
 
 def get_define_macros():
     defines = [ ('HAVE_CONFIG_H', None)]
@@ -154,8 +154,25 @@ def collect_extensions():
 
     )
 
+    mc_vanilla_engine_extension = Extension(
+        name='quantlib.pricingengines.vanilla.mcvanillaengine',
+        sources=[
+            'quantlib/pricingengines/vanilla/mcvanillaengine.pyx',
+            'cpp_layer/mc_vanilla_engine_support_code.cpp'
+        ],
+        language='c++',
+        include_dirs=INCLUDE_DIRS + [numpy.get_include()],
+        library_dirs=LIBRARY_DIRS,
+        define_macros = get_define_macros(),
+        extra_compile_args = get_extra_compile_args(),
+        extra_link_args = get_extra_link_args(),
+        libraries=['QuantLib'],
+        pyrex_directives = CYTHON_DIRECTIVES
+    )
+
     manual_extensions = [
         multipath_extension,
+        mc_vanilla_engine_extension,
         piecewise_yield_curve_extension,
         piecewise_default_curve_extension,
         settings_extension,
