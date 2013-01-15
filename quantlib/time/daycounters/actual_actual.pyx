@@ -25,6 +25,17 @@ cdef public enum Convention:
     AFB        = _aa.AFB
     Euro       = _aa.Euro
 
+CONVENTIONS = {
+    'ISMA' : _aa.ISMA,
+    'Bond' : _aa.Bond,
+    'ISDA' : _aa.ISDA,
+    'Historical' : _aa.Historical,
+    'Actual365' : _aa.Actual365,
+    'AFB' : _aa.AFB,
+    'Euro' : _aa.Euro
+}
+
+
 cdef class ActualActual(DayCounter):
     """ Actual/Actual day count
 
@@ -45,5 +56,15 @@ cdef class ActualActual(DayCounter):
     def __cinit__(self, convention=ISMA):
         self._thisptr = <_daycounter.DayCounter*> new \
             _aa.ActualActual(<_aa.Convention>convention)
+
+
+cdef _daycounter.DayCounter* from_name(str name, str convention):
+
+    print convention
+    cdef _aa.Convention ql_convention = <_aa.Convention>CONVENTIONS[convention]
+
+    print <int>ql_convention, _aa.Bond
+    return new _aa.ActualActual(ql_convention)
+
 
 

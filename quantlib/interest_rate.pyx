@@ -35,6 +35,7 @@ cdef class InterestRate:
 
         if 'noalloc' in kwargs:
             return
+            
         self._thisptr = new shared_ptr[_ir.InterestRate](
             new _ir.InterestRate(
                 <Rate>rate, deref(dc._thisptr), <_ir.Compounding>compounding,
@@ -67,8 +68,5 @@ cdef class InterestRate:
         def __get__(self):
             cdef _ir.DayCounter dc = self._thisptr.get().dayCounter()
 
-            counter = DayCounter()
-            counter._thisptr = &dc_ptr
-
-            return counter
+            return DayCounter.from_name(dc.name().c_str())
 
