@@ -1,4 +1,5 @@
-""" Simple example pricing a European option using a Black&Scholes Merton process."""
+""" Simple example pricing a European option 
+using a Black&Scholes Merton process."""
 
 from quantlib.instruments.option import Put, EuropeanExercise
 from quantlib.instruments.payoffs import PlainVanillaPayoff
@@ -37,23 +38,23 @@ underlyingH = SimpleQuote(underlying)
 
 # bootstrap the yield/dividend/vol curves
 flat_term_structure = FlatForward(
-    reference_date = settlement_date,
-    forward = risk_free_rate,
-    daycounter = daycounter
+    reference_date=settlement_date,
+    forward=risk_free_rate,
+    daycounter=daycounter
 )
 
 flat_dividend_ts = FlatForward(
-    reference_date = settlement_date,
-    forward = dividend_yield,
-    daycounter = daycounter
+    reference_date=settlement_date,
+    forward=dividend_yield,
+    daycounter=daycounter
 )
 
 flat_vol_ts = BlackConstantVol(
-    settlement_date, calendar, volatility,daycounter
+    settlement_date, calendar, volatility, daycounter
 )
 
 black_scholes_merton_process = BlackScholesMertonProcess(
-    underlyingH, flat_dividend_ts, flat_term_structure,flat_vol_ts
+    underlyingH, flat_dividend_ts, flat_term_structure, flat_vol_ts
 )
 
 payoff = PlainVanillaPayoff(option_type, strike)
