@@ -187,12 +187,12 @@ def collect_extensions():
             continue
 
         # if the directory contains pyx files, cythonise it
-        if len(glob.glob('{}/*.pyx'.format(dirpath))) > 0:
+        if len(glob.glob('{0}/*.pyx'.format(dirpath))) > 0:
             cython_extension_directories.append(dirpath)
 
     collected_extensions = cythonize(
         [
-            Extension('*', ['{}/*.pyx'.format(dirpath)],
+            Extension('*', ['{0}/*.pyx'.format(dirpath)],
                 include_dirs=INCLUDE_DIRS,
                 library_dirs=LIBRARY_DIRS,
                 define_macros = get_define_macros(),
