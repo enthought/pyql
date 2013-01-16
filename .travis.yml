@@ -16,7 +16,7 @@ before_install:
 install:
     make build
 script:
- - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then python -m unittest2 discover; fi
+ - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then python -m unittest2.__main__ discover; fi
  - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then python -m unittest discover; fi
 notifications:
   email: 
