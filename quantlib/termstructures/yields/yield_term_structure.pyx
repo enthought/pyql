@@ -56,7 +56,7 @@ cdef class YieldTermStructure:
 
         return
 
-    def zero_rate(self, Date date, DayCounter day_counter, int compounding, int frequency, extrapolate=False):
+    def zero_rate(self, Date date, DayCounter day_counter, int compounding, int frequency=Annual, extrapolate=False):
         """ Returns the implied zero-yield rate for the given date.
 
         The time is calculated as a fraction of year from the reference date.
@@ -70,7 +70,7 @@ cdef class YieldTermStructure:
         compounding: int
             The compounding as defined in quantlib.compounding
         frequency: int
-            A frequency as define in quantlib.time.date
+            A frequency as defined in quantlib.time.date
         extraplolate: bool, optional
             Default to False
         """
@@ -88,7 +88,7 @@ cdef class YieldTermStructure:
             deref(date._thisptr.get()), deref(day_counter._thisptr), <_ir.Compounding>compounding,
             <_ir.Frequency>frequency, extrapolate)
 
-        zero_rate = InterestRate(None, None, None, noalloc=True)
+        zero_rate = InterestRate(0, None, 0, 0, noalloc=True)
         zero_rate._thisptr = new shared_ptr[_ir.InterestRate](
             new _ir.InterestRate(
                 ql_zero_rate.rate(),

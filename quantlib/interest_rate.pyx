@@ -14,6 +14,9 @@ from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
 cimport _interest_rate as _ir
 
+from quantlib import compounding
+from quantlib.time.api import NoFrequency, Once
+from quantlib.time.date import frequency_to_str
 from quantlib.time.daycounter cimport DayCounter
 
 cdef class InterestRate:
@@ -70,3 +73,33 @@ cdef class InterestRate:
 
             return DayCounter.from_name(dc.name().c_str())
 
+    def __repr__(self):
+        if self.rate == None:
+            return "null interest rate"
+
+        freq_str = frequency_to_str(self.frequency)
+
+        if self.compounding == compounding.Simple:
+            cpd_str =  "simple compounding";
+        elif self.compounding == compounding.Compounded:
+            if self.frequency in [NoFrequency, Once]:
+                raise ValueError(
+                    "{} frequency not allowed for this interest rate".format(freq_str)
+                )
+            else:
+                cpd_str =  '{} compounding'.format(freq_str)
+        elif self.compounding == compounding.Continuous:
+            cpd_str = "continuous compounding";
+        elif self.compounding == compounding.SimpleThenCompounded:
+            if self.frequency in [NoFrequency, Once]:
+                raise ValueError(
+                    "{} frequency not allowed for this interest rate".format(freq_str)
+                )
+            else:
+                cpd_str = "simple compounding up to {} months," \
+                              "then  {} compounding".format(12/self.frequency, freq_str)
+        else:
+            ValueError('unknown compounding convention ({})'.format(self.compounding))
+        return "{:.2f} {} {}".format(
+            self.rate, self._thisptr.get().dayCounter().name(), cpd_str
+        )

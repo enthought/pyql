@@ -54,5 +54,21 @@ class InterestRateTestCase(unittest.TestCase):
             with self.assertRaises(RuntimeError):
                 InterestRate(rate, counter, compounding, frequency)
 
+    def test_repr(self):
+
+        rate = 0.05
+        counter = self.day_counter
+        compounding = Compounded
+        frequency = Monthly
+
+        interest_rate = InterestRate(rate, counter, compounding, frequency)
+
+        self.assertEquals(
+            repr(interest_rate),
+            "0.05 Actual/360 Monthly compounding"
+        )
+
+
+
 if __name__ == '__main__':
     unittest.main()

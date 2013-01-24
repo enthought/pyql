@@ -22,6 +22,7 @@ NPV of the American Option without dividend:                    17.9647
 """
 
 from quantlib.settings import Settings
+from quantlib.compounding import Simple
 from quantlib.currency import USDCurrency
 from quantlib.indexes.libor import Libor
 from quantlib.indexes.swap_index import SwapIndex
@@ -39,7 +40,7 @@ from quantlib.time.api import (
 )
 from quantlib.time.calendars.united_states import UnitedStates
 from quantlib.termstructures.yields.api import (
-    term_structure_factory, DepositRateHelper
+    PiecewiseYieldCurve, DepositRateHelper
 )
 from quantlib.termstructures.volatility.equityfx.black_vol_term_structure import BlackConstantVol
 from quantlib.termstructures.yields.api import SwapRateHelper
@@ -159,7 +160,7 @@ def dividendOption():
     
     # ++++++++++++++++++  Now the creation of the yield curve
 
-    riskFreeTS = term_structure_factory('zero', 'linear', settlementDate, instruments, dayCounter)
+    riskFreeTS = PiecewiseYieldCurve('zero', 'linear', settlementDate, instruments, dayCounter)
 
 
     # ++++++++++++++++++  build of the underlying process : with a Black-Scholes model 
@@ -266,10 +267,10 @@ def dividendOption():
     #print "NPV of the European Option with discrete dividends=0:	", dividendEuropeanOption.npv
     print "NPV of the European Option without dividend:		", europeanOption.npv
     #print "NPV of the American Option with discrete dividends=0:	", dividendAmericanOption.npv
-    print "NPV of the American Option without dividend:		", americanOption.npv 
+    print "NPV of the American Option without dividend:		", americanOption.npv
     # just a single test
     print "ZeroRate with a maturity at ", maturity, ": ", \
-            riskFreeTS.currentLink().zeroRate(maturity, dayCounter, Simple)
+            riskFreeTS.zero_rate(maturity, dayCounter, Simple)
 
 
 
