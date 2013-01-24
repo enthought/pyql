@@ -7,7 +7,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-
 import numpy as np
 import quantlib.reference.names as nm
 import quantlib.reference.data_structures as ds
@@ -16,12 +15,11 @@ from pandas import DataFrame
 from quantlib.instruments.option import EuropeanExercise, VanillaOption
 from quantlib.instruments.payoffs import PlainVanillaPayoff, Put, Call
 from quantlib.models.equity.heston_model import HestonModel
-from quantlib.pricingengines.vanilla import AnalyticHestonEngine
+from quantlib.pricingengines.vanilla.vanilla import AnalyticHestonEngine
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.util.converter import pydate_to_qldate, df_to_zero_curve
-
 
 # Dataframe colum names - local constants
 CALL_PREMIUM = 'PremiumC'
@@ -81,7 +79,7 @@ def options_to_rates(options, t_min=1./12., n_min=6):
             (calls[nm.PRICE_BID] + calls[nm.PRICE_ASK]) / 2.,
             columns=[CALL_PREMIUM])
         call_premium.index = np.array(calls[nm.STRIKE])
-        
+
         put_premium = DataFrame(
             (puts[nm.PRICE_BID] + puts[nm.PRICE_ASK]) / 2.,
             columns=[PUT_PREMIUM])
@@ -95,11 +93,11 @@ def options_to_rates(options, t_min=1./12., n_min=6):
         y = np.array(all_quotes['C-P'])
         x = np.array(all_quotes[nm.STRIKE])
         A = np.vstack([x, np.ones(len(x))]).T
-        m, c = np.linalg.lstsq(A, y)[0]
+        a_1, a_0 = np.linalg.lstsq(A, y)[0]
 
         # intercept is last coef
-        interest_rate = -np.log(-m)/time_to_maturity
-        dividend_yield = np.log(spot/c)/time_to_maturity
+        interest_rate = -np.log(-a_1)/time_to_maturity
+        dividend_yield = np.log(spot/a_0)/time_to_maturity
 
         implied_interest_rates.append(interest_rate)
         implied_dividend_yields.append(dividend_yield)
@@ -138,9 +136,9 @@ def heston_pricer(trade_date, options, params, rates, spot):
         expiry_date = row[nm.EXPIRY_DATE]
         strike = row[nm.STRIKE]
 
-        cp = Call if row[nm.OPTION_TYPE] == nm.CALL_OPTION else Put
+        option_type = Call if row[nm.OPTION_TYPE] == nm.CALL_OPTION else Put
 
-        payoff = PlainVanillaPayoff(cp, strike)
+        payoff = PlainVanillaPayoff(option_type, strike)
 
         expiry_qldate = pydate_to_qldate(expiry_date)
         exercise = EuropeanExercise(expiry_qldate)
@@ -150,7 +148,8 @@ def heston_pricer(trade_date, options, params, rates, spot):
 
         modeled_values[index] = option.net_present_value
 
-    prices = options.filter(items=[nm.EXPIRY_DATE, nm.STRIKE, nm.OPTION_TYPE, nm.SPOT])
+    prices = options.filter(items=[nm.EXPIRY_DATE, nm.STRIKE,
+                                   nm.OPTION_TYPE, nm.SPOT])
     prices[nm.PRICE] = modeled_values
     prices[nm.TRADE_DATE] = trade_date
 

@@ -9,11 +9,15 @@ before_install:
  - sudo apt-get install libquantlib0-dev
  - pip install numpy --use-mirrors
  - pip install cython --use-mirrors
- - patch -s /home/vagrant/virtualenv/python2.7/local/lib/python2.7/site-packages/Cython/Build/Dependencies.py cython_0.16.patch
+ - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then pip install unittest2; fi
+#- if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then patch -s /home/vagrant/virtualenv/python2.6/local/lib/python2.6/site-packages/Cython/Build/Dependencies.py cython_0.16.patch; fi
+ - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then patch -s /home/vagrant/virtualenv/python2.7/local/lib/python2.7/site-packages/Cython/Build/Dependencies.py cython_0.16.patch; fi
  - pip install pandas --use-mirrors
 install:
     make build
-script: make tests
+script:
+ - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then python -m unittest2.__main__ discover; fi
+ - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then python -m unittest discover; fi
 notifications:
   email: 
     - dpinte@enthought.com

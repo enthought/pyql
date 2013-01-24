@@ -9,7 +9,24 @@ cimport quantlib._quote as _qt
 from quantlib.quotes cimport Quote, SimpleQuote
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
 
+cdef public enum Discretization:
+        PARTIALTRUNCATION = _hp.PartialTruncation
+        FULLTRUNCATION = _hp.FullTruncation
+        REFLECTION = _hp.Reflection
+        NONCENTRALCHISQUAREVARIANCE = _hp.NonCentralChiSquareVariance
+        QUADRATICEXPONENTIAL = _hp.QuadraticExponential
+        QUADRATICEXPONENTIALMARTINGALE = _hp.QuadraticExponentialMartingale
+
 cdef class HestonProcess:
+    """Heston process: a diffusion process with mean-reverting stochastic variance.
+
+    .. math::
+    dS_t &=& (r-d) S_t dt + \sqrt{V_t} S_t dW^s_t \\
+    dV_t &=& \kappa (\theta - V_t) dt + \varepsilon \sqrt{V_t} dW^\\upsilon_t \nonumber \\
+    dW^s_t dW^\\upsilon_t &=& \rho dt \nonumber
+
+    """
+
 
     def __cinit__(self):
         pass
@@ -20,16 +37,21 @@ cdef class HestonProcess:
             self._thisptr = NULL
 
     def __init__(self,
-       YieldTermStructure risk_free_rate_ts,
-       YieldTermStructure dividend_ts,
-       Quote s0,
-       Real v0,
-       Real kappa,
-       Real theta,
-       Real sigma,
-       Real rho
-    ):
+       YieldTermStructure risk_free_rate_ts=None,
+       YieldTermStructure dividend_ts=None,
+       Quote s0=None,
+       Real v0=0,
+       Real kappa=0,
+       Real theta=0,
+       Real sigma=0,
+       Real rho=0,
+       Discretization d=QUADRATICEXPONENTIALMARTINGALE,
+       **kwargs):
 
+        if 'noalloc' in kwargs:
+            self._thisptr = NULL
+            return
+        
         #create handles
         cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](deref(s0._thisptr))
         cdef Handle[_ff.YieldTermStructure] dividend_ts_handle = \
@@ -46,7 +68,7 @@ cdef class HestonProcess:
                 risk_free_rate_ts_handle,
                 dividend_ts_handle,
                 s0_handle,
-                v0, kappa, theta, sigma, rho
+                v0, kappa, theta, sigma, rho, d
             )
         )
 

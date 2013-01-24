@@ -1,4 +1,4 @@
-include '../types.pxi'
+include '../../types.pxi'
 
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
@@ -9,7 +9,7 @@ from quantlib.models.equity.heston_model cimport HestonModel
 from quantlib.models.equity.bates_model cimport (BatesModel, BatesDetJumpModel, BatesDoubleExpModel, BatesDoubleExpDetJumpModel)
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 
-from engine cimport PricingEngine
+from quantlib.pricingengines.engine cimport PricingEngine
 
 cdef class VanillaOptionEngine(PricingEngine):
 

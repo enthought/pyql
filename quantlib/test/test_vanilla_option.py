@@ -5,7 +5,7 @@ from quantlib.instruments.option import (
 )
 from quantlib.instruments.payoffs import PlainVanillaPayoff, Put
 from quantlib.instruments.option import VanillaOption
-from quantlib.pricingengines.vanilla import (
+from quantlib.pricingengines.vanilla.vanilla import (
     AnalyticEuropeanEngine, BaroneAdesiWhaleyApproximationEngine
 )
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
