@@ -1,4 +1,4 @@
-""" Option valuation example based on a C++ example from the QuantLib mailing list. 
+""" Option valuation example based on a C++ example from the QuantLib mailing list.
 
 Expected  buggy results (see quantlib mailing list:
 
@@ -26,7 +26,7 @@ from quantlib.compounding import Simple
 from quantlib.currency import USDCurrency
 from quantlib.indexes.libor import Libor
 from quantlib.indexes.swap_index import SwapIndex
-from quantlib.instruments.option import Call, EuropeanExercise, AmericanExercise
+from quantlib.instruments.option import EuropeanExercise, AmericanExercise
 from quantlib.instruments.option import VanillaOption, DividendVanillaOption
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.pricingengines.vanilla import AnalyticDividendEuropeanEngine
@@ -177,7 +177,7 @@ def dividendOption():
     Option_name = "IBM Option"
     maturity = Date(26, Jan,2013)
     strike = 190
-    option_type = Call
+    option_type = 'call'
 
     # Here, as an implementation exemple, we make the test with borth american and european exercise
     europeanExercise = EuropeanExercise(maturity)
@@ -264,10 +264,10 @@ def dividendOption():
 
     # Now we make all the needing calcul	
     # ... and final results
-    #print "NPV of the European Option with discrete dividends=0:	", dividendEuropeanOption.npv
-    print "NPV of the European Option without dividend:		", europeanOption.npv
-    #print "NPV of the American Option with discrete dividends=0:	", dividendAmericanOption.npv
-    print "NPV of the American Option without dividend:		", americanOption.npv
+    print "NPV of the European Option with discrete dividends=0:	{:.4f}".format(dividendEuropeanOption.npv)
+    print "NPV of the European Option without dividend:		{:.4f}".format(europeanOption.npv)
+    print "NPV of the American Option with discrete dividends=0:	{:.4f}".format(dividendAmericanOption.npv)
+    print "NPV of the American Option without dividend:		{:.4f}".format(americanOption.npv)
     # just a single test
     print "ZeroRate with a maturity at ", maturity, ": ", \
             riskFreeTS.zero_rate(maturity, dayCounter, Simple)
