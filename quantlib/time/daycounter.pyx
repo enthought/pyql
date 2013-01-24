@@ -68,7 +68,6 @@ cdef class DayCounter:
         cdef DayCounter cnt = cls()
         cdef _daycounter.DayCounter* new_counter
         name, convention = _get_daycounter_type_from_name(name)
-        print 'Got {} {}'.format(name, convention)
         new_counter = daycounter_from_name(name, convention)
 
         if new_counter == NULL:

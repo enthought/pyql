@@ -60,11 +60,11 @@ cdef class ActualActual(DayCounter):
 
 cdef _daycounter.DayCounter* from_name(str name, str convention):
 
-    print convention
     cdef _aa.Convention ql_convention = <_aa.Convention>CONVENTIONS[convention]
 
-    print <int>ql_convention, _aa.Bond
-    return new _aa.ActualActual(ql_convention)
+    cdef _daycounter.DayCounter* return_val =  new _aa.ActualActual(ql_convention)
+
+    return return_val
 
 
 

@@ -51,7 +51,13 @@ class TestDayCounterFromName(unittest.TestCase):
     def test_create_daycounter_with_convention_from_name(self):
 
         type_vs_name = {
-            'Actual/Actual (Bond)' : 'Actual/Actual (Bond)'
+            'Actual/Actual (Bond)' : 'Actual/Actual (ISMA)',
+            'Actual/Actual (ISMA)' : 'Actual/Actual (ISMA)',
+            'Actual/Actual (ISDA)' : 'Actual/Actual (ISDA)',
+            'Actual/Actual (Historical)' : 'Actual/Actual (ISDA)',
+            'Actual/Actual (Actual365)' : 'Actual/Actual (ISDA)',
+            'Actual/Actual (AFB)' : 'Actual/Actual (AFB)',
+            'Actual/Actual (Euro)' : 'Actual/Actual (AFB)',
         }
 
         for counter_type, expected_name in type_vs_name.items():
