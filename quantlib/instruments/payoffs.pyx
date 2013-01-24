@@ -4,13 +4,19 @@ include '../types.pxi'
 cimport _option
 cimport _payoffs
 
-cdef extern from 'ql/option.hpp' namespace 'QuantLib::Option':
+cdef public enum OptionType:
+    Put = _option.Put
+    Call = _option.Call
 
-    enum Type:
-        Put
-        Call
 
-PayOffTypeInWord = {Call:'Call', Put:'Put'}
+PAYOFF_TO_STR = {Call:'Call', Put:'Put'}
+
+def str_to_option_type(name):
+    if name.lower() == 'call':
+        option_type = Call
+    elif name.lower() == 'put':
+        option_type = Put
+    return option_type
 
 cdef class Payoff:
 
@@ -22,7 +28,8 @@ cdef class Payoff:
             del self._thisptr
 
     def __str__(self):
-        return 'Payoff: %s' % self._thisptr.get().name().c_str()
+        if self._thisptr is not NULL:
+            return 'Payoff: %s' % self._thisptr.get().name().c_str()
 
     cdef set_payoff(self, shared_ptr[_payoffs.Payoff] payoff):
         if self._thisptr != NULL:
@@ -42,7 +49,7 @@ cdef class PlainVanillaPayoff(Payoff):
     Parameters
     ----------
 
-    option_type: int
+    option_type: int or str
         The type of option, can be either Call or Put
     strike: float
         The strike value
@@ -59,6 +66,8 @@ cdef class PlainVanillaPayoff(Payoff):
 
     def __init__(self, option_type, float strike, from_qlpayoff=False):
 
+        if isinstance(option_type, basestring):
+            option_type = str_to_option_type(option_type)
         if not from_qlpayoff:
             self._thisptr = new shared_ptr[_payoffs.Payoff]( \
                 new _payoffs.PlainVanillaPayoff(
@@ -74,11 +83,16 @@ cdef class PlainVanillaPayoff(Payoff):
     def __str__(self):
         return 'Payoff: %s %s @ %f' % (
             _get_payoff(self).name().c_str(),
-            PayOffTypeInWord[_get_payoff(self).optionType()],
+            PAYOFF_TO_STR[_get_payoff(self).optionType()],
             _get_payoff(self).strike()
         )
 
     property type:
+        """ Exposes the internal option type.
+
+        The type can be converted to str using the PAYOFF_TO_STR dictionnary.
+
+        """
         def __get__(self):
             return _get_payoff(self).optionType()
 

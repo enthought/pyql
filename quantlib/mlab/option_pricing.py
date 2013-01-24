@@ -13,9 +13,8 @@ import quantlib.reference.names as nm
 import quantlib.reference.data_structures as ds
 from pandas import DataFrame
 
-from quantlib.instruments.option import (Put, Call,
-                                         EuropeanExercise, VanillaOption)
-from quantlib.instruments.payoffs import PlainVanillaPayoff
+from quantlib.instruments.option import EuropeanExercise, VanillaOption
+from quantlib.instruments.payoffs import PlainVanillaPayoff, Put, Call
 from quantlib.models.equity.heston_model import HestonModel
 from quantlib.pricingengines.vanilla import AnalyticHestonEngine
 from quantlib.processes.heston_process import HestonProcess

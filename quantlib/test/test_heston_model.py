@@ -2,6 +2,8 @@ import unittest
 
 import numpy as np
 
+from quantlib.instruments.option import EuropeanExercise, VanillaOption
+from quantlib.instruments.payoffs import PlainVanillaPayoff, Put
 from quantlib.models.equity.heston_model import (
     HestonModelHelper, HestonModel, ImpliedVolError
 )
@@ -17,6 +19,7 @@ from quantlib.time.api import (
 from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
+
 
 from quantlib.sim.simulate import simulate
 
@@ -225,11 +228,6 @@ class HestonModelTestCase(unittest.TestCase):
         self.assertAlmostEquals(expected, sse, delta=1.0)
 
     def test_analytic_versus_black(self):
-        from quantlib.instruments.payoffs import PlainVanillaPayoff
-        from quantlib.instruments.option import (
-            Put, EuropeanExercise, VanillaOption
-        )
-
         settlement_date = today()
         self.settings.evaluation_date = settlement_date
 
