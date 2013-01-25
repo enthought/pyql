@@ -29,10 +29,10 @@ from quantlib.indexes.swap_index import SwapIndex
 from quantlib.instruments.option import EuropeanExercise, AmericanExercise
 from quantlib.instruments.option import VanillaOption, DividendVanillaOption
 from quantlib.instruments.payoffs import PlainVanillaPayoff
-from quantlib.pricingengines.vanilla import AnalyticDividendEuropeanEngine
-from quantlib.pricingengines.vanilla import FDDividendAmericanEngine
-from quantlib.pricingengines.vanilla import AnalyticEuropeanEngine
-from quantlib.pricingengines.vanilla import FDAmericanEngine
+from quantlib.pricingengines.api import AnalyticDividendEuropeanEngine
+from quantlib.pricingengines.api import FDDividendAmericanEngine
+from quantlib.pricingengines.api import AnalyticEuropeanEngine
+from quantlib.pricingengines.api import FDAmericanEngine
 from quantlib.processes.black_scholes_process import BlackScholesProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.time.api import (
