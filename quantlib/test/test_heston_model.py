@@ -32,7 +32,7 @@ from quantlib.pricingengines.vanilla.mcvanillaengine import MCVanillaEngine
 
 def flat_rate(forward, daycounter):
     return FlatForward(
-        quote=SimpleQuote(forward),
+        forward=SimpleQuote(forward),
         settlement_days=0,
         calendar=NullCalendar(),
         daycounter=daycounter
