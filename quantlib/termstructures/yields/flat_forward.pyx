@@ -25,7 +25,28 @@ from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStruct
 
 
 cdef class FlatForward(YieldTermStructure):
-    """ Flat intereste-rate curve """
+    """ Flat intereste-rate curve
+
+    Parameters
+    ----------
+
+    refererence_date: quantlib.time.date.Date or None
+        Reference date used by the curve. If None, the user must provide the
+        settlement days.
+    forward: quantlib.quote.Quote or float
+        The forward value used by the curve.
+    daycounter: quantlib.time.daycounter.DayCounter
+        The day counter used by the curve.
+    settlement_days: int
+        The settlement days used by this curve. If a reference date is given,
+        this parameter is not used.
+    calendar: quantlib.time.calendar.Calendar
+        The calendar used by the curve if created with the settlement days.
+    compounding: int (default: Continuous)
+        The type of compounding used by this curve.
+    frequency: int (default: Annual)
+        The frequency used by this curve.
+    """
 
 
     def __init__(self, Date reference_date=None, forward=None, DayCounter daycounter=None,
@@ -88,19 +109,6 @@ cdef class FlatForward(YieldTermStructure):
                         <Frequency>frequency
                     )
                 )
-        elif settlement_days is not None and \
-             calendar is not None:
-
-            self._thisptr = new shared_ptr[ffwd.YieldTermStructure](
-                new ffwd.FlatForward(
-                    <ffwd.Natural>settlement_days,
-                    deref(calendar._thisptr),
-                    <ffwd.Rate>forward,
-                    deref(daycounter._thisptr),
-                    <ffwd.Compounding>compounding,
-                    <Frequency>frequency
-                )
-            )
         else:
             raise ValueError('Invalid constructor')
 
