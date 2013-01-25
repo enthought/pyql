@@ -2,7 +2,7 @@ from datetime import date
 import unittest
 
 
-from quantlib.mlab.option_pricing import heston_pricer
+from quantlib.mlab.option_pricing import heston_pricer, blsprice
 import quantlib.reference.names as nm
 import quantlib.reference.data_structures as ds
 
@@ -41,6 +41,14 @@ class OptionPricerTestCase(unittest.TestCase):
 
         self.assertAlmostEqual(price_call, 194.6, 1)
         self.assertAlmostEqual(price_put, 218.9, 1)
+
+    def test_blsprice(self):
+
+        from quantlib.settings import Settings
+        from quantlib.time.api import today
+        Settings.instance().evaluation_date = today()
+        call_value = blsprice(100.0, 97.0, 0.1, 0.25, 0.5)
+        self.assertAlmostEquals(call_value, 12.61, 2)
 
 if __name__ == '__main__':
     unittest.main()
