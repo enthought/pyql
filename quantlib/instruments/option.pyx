@@ -132,6 +132,24 @@ cdef class VanillaOption(OneAssetOption):
         )
 
 
+cdef class EuropeanOption(OneAssetOption):
+
+    def __init__(self, PlainVanillaPayoff payoff, Exercise exercise):
+
+        cdef shared_ptr[_payoffs.StrikedTypePayoff] payoff_ptr = \
+            shared_ptr[_payoffs.StrikedTypePayoff](
+                deref(<shared_ptr[_payoffs.StrikedTypePayoff]*>payoff._thisptr)
+        )
+
+        cdef shared_ptr[_exercise.Exercise] exercise_ptr = \
+            shared_ptr[_exercise.Exercise](
+                deref(exercise._thisptr)
+            )
+
+        self._thisptr = new shared_ptr[_instrument.Instrument]( \
+            new _option.EuropeanOption(payoff_ptr, exercise_ptr)
+        )
+
 cdef class DividendVanillaOption(OneAssetOption):
     """ Single-asset vanilla option (no barriers) with discrete dividends. """
 
