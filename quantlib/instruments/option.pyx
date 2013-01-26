@@ -19,10 +19,6 @@ from quantlib.instruments.payoffs cimport Payoff, PlainVanillaPayoff
 from quantlib.time.date cimport Date
 from quantlib.pricingengines.engine cimport PricingEngine
 
-cdef public enum OptionType:
-    Put = _option.Put
-    Call = _option.Call
-
 cdef public enum ExerciseType:
     American = _exercise.American
     Bermudan  = _exercise.Bermudan
@@ -112,9 +108,6 @@ cdef class OneAssetOption(Instrument):
             return payoff
 
     def __str__(self):
-
-        # FIXME: this code segfaults. It seems that accessing
-        # the exercise property causes the issue. To be investigated
         return '%s %s %s' % (
             type(self).__name__, str(self.exercise), str(self.payoff)
         )
@@ -138,6 +131,24 @@ cdef class VanillaOption(OneAssetOption):
             new _option.VanillaOption(payoff_ptr, exercise_ptr)
         )
 
+
+cdef class EuropeanOption(OneAssetOption):
+
+    def __init__(self, PlainVanillaPayoff payoff, Exercise exercise):
+
+        cdef shared_ptr[_payoffs.StrikedTypePayoff] payoff_ptr = \
+            shared_ptr[_payoffs.StrikedTypePayoff](
+                deref(<shared_ptr[_payoffs.StrikedTypePayoff]*>payoff._thisptr)
+        )
+
+        cdef shared_ptr[_exercise.Exercise] exercise_ptr = \
+            shared_ptr[_exercise.Exercise](
+                deref(exercise._thisptr)
+            )
+
+        self._thisptr = new shared_ptr[_instrument.Instrument]( \
+            new _option.EuropeanOption(payoff_ptr, exercise_ptr)
+        )
 
 cdef class DividendVanillaOption(OneAssetOption):
     """ Single-asset vanilla option (no barriers) with discrete dividends. """
@@ -171,7 +182,7 @@ cdef class DividendVanillaOption(OneAssetOption):
             )
         )
 
-        # cleanup memory
+        # cleanup temporary allocated pointers
         del _dividend_dates
         del _dividends
 

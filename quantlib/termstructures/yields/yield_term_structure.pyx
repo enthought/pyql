@@ -13,7 +13,10 @@ from quantlib.time.date import Annual
 
 cimport _flat_forward as ffwd
 cimport quantlib._quote as _qt
+cimport quantlib._interest_rate as _ir
+
 from quantlib.quotes cimport Quote
+from quantlib.interest_rate cimport InterestRate
 
 cdef class YieldTermStructure:
 
@@ -52,27 +55,51 @@ cdef class YieldTermStructure:
             self._relinkable_ptr.get().linkTo(deref(structure._thisptr))
 
         return
-    
-#    def zeroRate(self, dt, dayCounter, comp, freq, extrapolate):
-#        """
-#        InterestRate YieldTermStructure::zeroRate(const Date& d,
-#                                              const DayCounter& dayCounter,
-#                                              Compounding comp,
-#                                              Frequency freq, bool extrapolate)
-#        """
-#        cdef shared_ptr[ffwd.YieldTermStructure] ts_ptr
-#        if self.relinkable is True:
+
+    def zero_rate(self, Date date, DayCounter day_counter, int compounding, int frequency=Annual, extrapolate=False):
+        """ Returns the implied zero-yield rate for the given date.
+
+        The time is calculated as a fraction of year from the reference date.
+
+        Parameters
+        ----------
+        date: :py:class`~quantlib.time.date.Date'
+            The date used to calcule the zero-yield rate.
+        day_counter: :py:class`~quantlib.time.daycounter.DayCounter'
+            The day counter used to compute the time.
+        compounding: int
+            The compounding as defined in quantlib.compounding
+        frequency: int
+            A frequency as defined in quantlib.time.date
+        extraplolate: bool, optional
+            Default to False
+        """
+        cdef ffwd.YieldTermStructure* term_structure
+        if self.relinkable is True:
             # retrieves the shared_ptr (currentLink()) then gets the
             # term_structure (get())
-#            ts_ptr = shared_ptr[ffwd.YieldTermStructure](self._relinkable_ptr.get().currentLink())
-#            term_structure = ts_ptr.get()
-#        else:
-#            term_structure = self._thisptr.get()
-    
-#        zero_rate = term_structure.zeroRate(dt, dayCounter, comp, freq, extrapolate)
-        
-#        return zero_rate
-        
+            # FIXME: this does not compile :
+            # term_structure = self._relinkable_ptr.get().currentLink().get()
+            pass
+        else:
+            term_structure = self._thisptr.get()
+
+        cdef _ir.InterestRate ql_zero_rate = term_structure.zeroRate(
+            deref(date._thisptr.get()), deref(day_counter._thisptr), <_ir.Compounding>compounding,
+            <_ir.Frequency>frequency, extrapolate)
+
+        zero_rate = InterestRate(0, None, 0, 0, noalloc=True)
+        zero_rate._thisptr = new shared_ptr[_ir.InterestRate](
+            new _ir.InterestRate(
+                ql_zero_rate.rate(),
+                ql_zero_rate.dayCounter(),
+                ql_zero_rate.compounding(),
+                ql_zero_rate.frequency()
+            )
+        )
+
+        return zero_rate
+
     def discount(self, value):
         cdef ffwd.YieldTermStructure* term_structure
         cdef shared_ptr[ffwd.YieldTermStructure] ts_ptr

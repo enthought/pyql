@@ -72,6 +72,15 @@ cdef public enum Frequency:
     Daily            = _period.Daily # once a day
     OtherFrequency   = _period.OtherFrequency # some other unknown frequency
 
+FREQUENCIES = ['NoFrequency', 'Once', 'Annual', 'Semiannual', 'EveryFourthMonth',
+               'Quarterly', 'Bimonthly', 'Monthly', 'EveryFourthWeek',
+               'Biweekly', 'Weekly', 'Daily', 'OtherFrequency']
+_FREQ_DICT = {globals()[name]:name for name in FREQUENCIES}
+def frequency_to_str(Frequency f):
+    """ Converts a PyQL Frequency to a human readable string. """
+    return _FREQ_DICT[f]
+
+
 cdef public enum TimeUnit:
     Days   = _period.Days
     Weeks  = _period.Weeks

@@ -20,9 +20,7 @@ def create_helper():
     Settings.instance().evaluation_date = todays_date
 
     flat_rate = SimpleQuote(0.01)
-    ts_curve = FlatForward(
-        reference_date=todays_date, quote=flat_rate, daycounter=Actual365Fixed()
-    )
+    ts_curve = FlatForward(todays_date, flat_rate, Actual365Fixed())
 
     recovery_rate = 0.5
     quoted_spreads = 0.0150
