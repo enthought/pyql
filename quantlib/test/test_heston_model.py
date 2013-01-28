@@ -2,6 +2,8 @@ import unittest
 
 import numpy as np
 
+from quantlib.instruments.option import EuropeanExercise, VanillaOption
+from quantlib.instruments.payoffs import Call, PlainVanillaPayoff, Put
 from quantlib.models.equity.heston_model import (
     HestonModelHelper, HestonModel, ImpliedVolError
 )
@@ -14,6 +16,7 @@ from quantlib.pricingengines.blackformula import blackFormula
 from quantlib.pricingengines.vanilla.vanilla import (
     AnalyticHestonEngine,
     BatesDetJumpEngine)
+from quantlib.processes.heston_process import QUADRATICEXPONENTIAL
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
 from quantlib.time.api import (
@@ -24,41 +27,12 @@ from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
 
-from quantlib.processes.heston_process import (
-        PARTIALTRUNCATION,
-        FULLTRUNCATION,
-        REFLECTION,
-        NONCENTRALCHISQUAREVARIANCE,
-        QUADRATICEXPONENTIAL,
-        QUADRATICEXPONENTIALMARTINGALE)
-
 from quantlib.pricingengines.vanilla.mcvanillaengine import MCVanillaEngine
-
-from quantlib.instruments.option import (
-    Call, Put, EuropeanExercise, VanillaOption
-        )
-from quantlib.instruments.payoffs import PlainVanillaPayoff
-
-
-from quantlib.processes.heston_process import (
-        PARTIALTRUNCATION,
-        FULLTRUNCATION,
-        REFLECTION,
-        NONCENTRALCHISQUAREVARIANCE,
-        QUADRATICEXPONENTIAL,
-        QUADRATICEXPONENTIALMARTINGALE)
-
-from quantlib.pricingengines.vanilla.mcvanillaengine import MCVanillaEngine
-
-from quantlib.instruments.option import (
-    Call, Put, EuropeanExercise, VanillaOption
-        )
-from quantlib.instruments.payoffs import PlainVanillaPayoff
 
 
 def flat_rate(forward, daycounter):
     return FlatForward(
-        quote=SimpleQuote(forward),
+        forward=SimpleQuote(forward),
         settlement_days=0,
         calendar=NullCalendar(),
         daycounter=daycounter
@@ -260,7 +234,6 @@ class HestonModelTestCase(unittest.TestCase):
         self.assertAlmostEquals(expected, sse, delta=1.0)
 
     def test_analytic_versus_black(self):
-
         settlement_date = today()
         self.settings.evaluation_date = settlement_date
 
@@ -317,10 +290,6 @@ class HestonModelTestCase(unittest.TestCase):
         # this looks like a bug in QL:
         # Bates Det Jump model does not have sigma as parameter, yet
         # changing sigma changes the result!
-
-        from quantlib.instruments.option import (
-            Put, EuropeanExercise, VanillaOption
-        )
 
         settlement_date = today()
         self.settings.evaluation_date = settlement_date

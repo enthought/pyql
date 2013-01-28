@@ -25,11 +25,10 @@ from quantlib.processes.heston_process import PARTIALTRUNCATION
 
 def flat_rate(forward, daycounter):
     return FlatForward(
-        quote           = SimpleQuote(forward),
-        #forward         = forward,
+        forward = SimpleQuote(forward),
         settlement_days = 0,
-        calendar        = NullCalendar(),
-        daycounter      = daycounter
+        calendar = NullCalendar(),
+        daycounter = daycounter
     )
 
 

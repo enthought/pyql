@@ -20,6 +20,14 @@ from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._period cimport Frequency
 cimport quantlib._quote as _qt
+from quantlib._interest_rate cimport InterestRate
+
+cdef extern from 'ql/compounding.hpp' namespace 'QuantLib':
+    cdef enum Compounding:
+        Simple = 0
+        Compounded = 1
+        Continuous = 2
+        SimpleThenCompounded = 3
 
 cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib':
 
@@ -35,5 +43,10 @@ cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib'
         DiscountFactor discount(Time t) except +
         DiscountFactor discount(Time t, bool extrapolate) except +
         Date& referenceDate()
+        InterestRate zeroRate(Date& d,
+                              DayCounter& resultDayCounter,
+                              Compounding comp,
+                              Frequency freq, # = Annual
+                              bool extrapolate) # = False
 
 
