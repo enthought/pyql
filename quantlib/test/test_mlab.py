@@ -1,7 +1,6 @@
 from datetime import date
-import unittest
 
-
+from .unittest_tools import unittest
 from quantlib.mlab.option_pricing import heston_pricer, blsprice
 import quantlib.reference.names as nm
 import quantlib.reference.data_structures as ds

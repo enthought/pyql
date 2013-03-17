@@ -1,5 +1,6 @@
 import datetime
-import unittest
+
+from .unittest_tools import unittest
 
 from quantlib.time.date import (
     Date, Jan, Feb, Mar, Apr, May, Jun, Jul, Nov, Thursday, Friday, Period,

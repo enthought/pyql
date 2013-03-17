@@ -1,4 +1,5 @@
-import unittest
+
+from .unittest_tools import unittest
 
 from quantlib.interest_rate import InterestRate
 
