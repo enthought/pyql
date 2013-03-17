@@ -1,4 +1,4 @@
-import unittest
+from .unittest_tools import unittest
 
 from quantlib.time.calendar import (
     Following, ModifiedFollowing, ModifiedPreceding, Preceding, TARGET,

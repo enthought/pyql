@@ -1,7 +1,6 @@
-import unittest
-
 import numpy as np
 
+from .unittest_tools import unittest
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.processes.bates_process import BatesProcess
 from quantlib.models.equity.heston_model import HestonModel

@@ -7,7 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-import unittest
+from .unittest_tools import unittest
 
 from quantlib.currency import USDCurrency
 from quantlib.index import Index

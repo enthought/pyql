@@ -1,5 +1,4 @@
-import unittest
-
+from .unittest_tools import unittest
 from quantlib.instruments.option import (
     EuropeanExercise, AmericanExercise
 )

@@ -1,14 +1,13 @@
-import unittest
-
 import numpy as np
 
 from datetime import date, timedelta
 
+from .unittest_tools import unittest
 import quantlib.reference.data_structures as df
 import  quantlib.reference.names as nm
 
 class ReferenceTestCase(unittest.TestCase):
-    
+
     def setUp(self):
         pass
 
@@ -27,6 +26,6 @@ class ReferenceTestCase(unittest.TestCase):
         x[nm.DIVIDEND_YIELD] = np.linspace(.01, .03, 10)
         x[nm.INTEREST_RATE] = np.linspace(.02, .04, 10)
         self.assertTrue(True)
-        
+
 if __name__ == '__main__':
     unittest.main()

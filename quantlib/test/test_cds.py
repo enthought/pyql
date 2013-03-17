@@ -1,6 +1,6 @@
 """ Unittests for the CDS related classes. """
 
-import unittest
+from .unittest_tools import  unittest
 
 from quantlib.settings import Settings
 from quantlib.quotes import SimpleQuote

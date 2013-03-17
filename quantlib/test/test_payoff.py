@@ -1,7 +1,6 @@
-import unittest
+from .unittest_tools import unittest
 
-
-from quantlib.instruments.payoffs import PlainVanillaPayoff, PAYOFF_TO_STR, Put, Call
+from quantlib.instruments.payoffs import PlainVanillaPayoff, PAYOFF_TO_STR, Call
 
 
 class PayoffTestCase(unittest.TestCase):
