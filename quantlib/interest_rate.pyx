@@ -84,22 +84,22 @@ cdef class InterestRate:
         elif self.compounding == compounding.Compounded:
             if self.frequency in [NoFrequency, Once]:
                 raise ValueError(
-                    "{} frequency not allowed for this interest rate".format(freq_str)
+                    "{0} frequency not allowed for this interest rate".format(freq_str)
                 )
             else:
-                cpd_str =  '{} compounding'.format(freq_str)
+                cpd_str =  '{0} compounding'.format(freq_str)
         elif self.compounding == compounding.Continuous:
             cpd_str = "continuous compounding";
         elif self.compounding == compounding.SimpleThenCompounded:
             if self.frequency in [NoFrequency, Once]:
                 raise ValueError(
-                    "{} frequency not allowed for this interest rate".format(freq_str)
+                    "{0} frequency not allowed for this interest rate".format(freq_str)
                 )
             else:
-                cpd_str = "simple compounding up to {} months," \
-                              "then  {} compounding".format(12/self.frequency, freq_str)
+                cpd_str = "simple compounding up to {0} months," \
+                              "then  {1} compounding".format(12/self.frequency, freq_str)
         else:
-            ValueError('unknown compounding convention ({})'.format(self.compounding))
-        return "{:.2f} {} {}".format(
+            ValueError('unknown compounding convention ({0})'.format(self.compounding))
+        return "{0:.2f} {1} {2}".format(
             self.rate, self._thisptr.get().dayCounter().name(), cpd_str
         )
