@@ -1,5 +1,4 @@
-import unittest
-
+from .unittest_tools import unittest
 from quantlib.models.equity.bates_model import (BatesModel, BatesDoubleExpModel)
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.processes.bates_process import BatesProcess

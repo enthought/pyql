@@ -7,8 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-import unittest
-
+from .unittest_tools import unittest
 from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure
 )

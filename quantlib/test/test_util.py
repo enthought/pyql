@@ -1,12 +1,7 @@
 import datetime
-import unittest
 
-from quantlib.time.date import (
-    Date, Jan, Feb, Mar, Apr, May, Jun, Jul, Nov, Thursday, Friday, Period,
-    Annual, Semiannual, Bimonthly, EveryFourthMonth, Months, Years, Weeks,
-    Days, OtherFrequency, end_of_month, is_end_of_month, is_leap,
-    next_weekday, nth_weekday, today, pydate_from_qldate, qldate_from_pydate
-)
+from .unittest_tools import unittest
+from quantlib.time.date import Date, Nov, today
 
 from quantlib.util.converter import pydate_to_qldate
 
