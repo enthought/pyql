@@ -1,17 +1,15 @@
 """ Simple example pricing a European option 
 using a Black&Scholes Merton process."""
 
-from quantlib.instruments.option import Put, EuropeanExercise
-from quantlib.instruments.payoffs import PlainVanillaPayoff
-from quantlib.instruments.option import VanillaOption
-from quantlib.pricingengines.vanilla import AnalyticEuropeanEngine
+from quantlib.instruments.api import (EuropeanExercise, PlainVanillaPayoff, Put,
+                                      VanillaOption)
+from quantlib.pricingengines.api import AnalyticEuropeanEngine
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.time.api import TARGET, Actual365Fixed, today
 from quantlib.termstructures.yields.api import FlatForward
-from quantlib.termstructures.volatility.equityfx.black_vol_term_structure \
-    import BlackConstantVol
+from quantlib.termstructures.volatility.api import BlackConstantVol
 
 
 settings = Settings.instance()

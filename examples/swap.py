@@ -9,7 +9,7 @@ from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.api import DepositRateHelper, FraRateHelper
 from quantlib.termstructures.yields.api import FuturesRateHelper, SwapRateHelper
 from quantlib.termstructures.yields.api import YieldTermStructure
-from quantlib.termstructures.yields.api import term_structure_factory
+from quantlib.termstructures.yields.api import PiecewiseYieldCurve
 from quantlib.time.api import Actual360, Date, November, TARGET, Weeks, Annual
 from quantlib.time.api import Months, Years, Period, ModifiedFollowing
 from quantlib.time.api import Unadjusted, Thirty360, Semiannual, Schedule
@@ -49,8 +49,8 @@ swaps = { (2,Years): 0.037125,
           (15,Years): 0.055175 }
 
 # convert them to Quote objects
-for n,unit in deposits.keys():
-    deposits[(n,unit)] = SimpleQuote(deposits[(n,unit)])
+#for n,unit in deposits.keys():
+#    deposits[(n,unit)] = SimpleQuote(deposits[(n,unit)])
 for n,m in FRAs.keys():
     FRAs[(n,m)] = SimpleQuote(FRAs[(n,m)])
 for d in futures.keys():
@@ -107,12 +107,12 @@ forecastTermStructure = YieldTermStructure(relinkable=True)
 # term-structure construction
 
 helpers = depositHelpers[:2] + futuresHelpers + swapHelpers[1:]
-depoFuturesSwapCurve = term_structure_factory(
+depoFuturesSwapCurve = PiecewiseYieldCurve(
     'forward', 'loglinear',settlementDate, helpers, Actual360()
 )
 
 helpers = depositHelpers[:3] + fraHelpers + swapHelpers
-depoFraSwapCurve = term_structure_factory(
+depoFraSwapCurve = PiecewiseYieldCurve(
     'forward', 'loglinear', settlementDate, helpers, Actual360()
 )
 
