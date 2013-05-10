@@ -123,25 +123,40 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
     def from_tenor(cls, float rate, Period tenor,
         Calendar calendar, Frequency fixedFrequency,
         BusinessDayConvention fixedConvention, DayCounter fixedDayCount,
-        IborIndex iborIndex, Quote spread, Period fwdStart):
+        IborIndex iborIndex, Quote spread=None, Period fwdStart=None):
 
-        cdef Handle[_qt.Quote] spread_handle = Handle[_qt.Quote](deref(spread._thisptr))
+        cdef Handle[_qt.Quote] spread_handle
 
         cdef SwapRateHelper instance = cls(from_classmethod=True)
 
-        instance.set_ptr(new shared_ptr[_rh.RelativeDateRateHelper](
-            new _rh.SwapRateHelper(
-                rate,
-                deref(tenor._thisptr.get()),
-                deref(calendar._thisptr),
-                <Frequency> fixedFrequency,
-                <_rh.BusinessDayConvention> fixedConvention,
-                deref(fixedDayCount._thisptr),
-                deref(<shared_ptr[_ib.IborIndex]*> iborIndex._thisptr),
-                spread_handle,
-                deref(fwdStart._thisptr.get()))
+        if spread is None:
+            instance.set_ptr(new shared_ptr[_rh.RelativeDateRateHelper](
+                new _rh.SwapRateHelper(
+                    rate,
+                    deref(tenor._thisptr.get()),
+                    deref(calendar._thisptr),
+                    <Frequency> fixedFrequency,
+                    <_rh.BusinessDayConvention> fixedConvention,
+                    deref(fixedDayCount._thisptr),
+                    deref(<shared_ptr[_ib.IborIndex]*> iborIndex._thisptr))
+                )
             )
-        )
+        else:
+            spread_handle = Handle[_qt.Quote](deref(spread._thisptr))
+
+            instance.set_ptr(new shared_ptr[_rh.RelativeDateRateHelper](
+                new _rh.SwapRateHelper(
+                    rate,
+                    deref(tenor._thisptr.get()),
+                    deref(calendar._thisptr),
+                    <Frequency> fixedFrequency,
+                    <_rh.BusinessDayConvention> fixedConvention,
+                    deref(fixedDayCount._thisptr),
+                    deref(<shared_ptr[_ib.IborIndex]*> iborIndex._thisptr),
+                    spread_handle,
+                    deref(fwdStart._thisptr.get()))
+                )
+            )
 
         return instance
 
