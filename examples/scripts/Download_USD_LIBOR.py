@@ -32,7 +32,7 @@ def get_frb_url(dtStart, dtEnd):
 
 def dataconverter(s):
     """
-    The FRB data file has 
+    The FRB data file has
     - numeric cells
     - empty cells
     - cells with 'NC' or 'ND'
@@ -47,10 +47,9 @@ def good_row(z):
     """
     Retain days with no gaps (0 or NaN) in data
     """
-    
+
     try:
-        res = not any([(math.isnan(x) or (x == 0))
-                       for x in z])
+        res = not ((z.isnull()) | (z == 0)).any()
     except:
         res = False
     return res
@@ -89,17 +88,16 @@ if __name__ == '__main__':
     dc_dict = {i: dataconverter for i
                in range(0,len(columns_dic.keys()))}
 
-    df_libor = read_csv(fname, sep=',', header=True,
+    df_libor = read_csv(fname, sep=',', header=0,
                     index_col=0, parse_dates=True,
                     converters=dc_dict,
                     skiprows=[0,1,2,3,4])
-
     df_libor = df_libor.rename(columns=columns_dic)
 
     good_rows = df_libor.apply(good_row, axis=1)
-    
+
     df_libor_good = df_libor[good_rows]
-    
+
     print df_libor_good
 
     df_libor_good.save(os.path.join('..', 'data', 'df_libor.pkl'))
