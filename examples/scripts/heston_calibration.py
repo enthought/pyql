@@ -165,14 +165,21 @@ def heston_calibration(df_option, ival=None):
     # extract rates and div yields from the data set    
     df_tmp = DataFrame.filter(df_option, items=['dtExpiry', 'iRate', 'iDiv'])
     grouped = df_tmp.groupby('dtExpiry')
-    df_rates = grouped.agg(lambda x: x[0])
+
+    def aggregate(serie):
+        return serie[serie.index[0]]
+
+    df_rates = grouped.agg(aggregate)
     
-    dtTrade = df_option['dtTrade'][0]
+    # Get first index:
+    first_index = 0
+
+    dtTrade = df_option['dtTrade'][first_index]
     # back out the spot from any forward
-    iRate = df_option['iRate'][0]
-    iDiv = df_option['iDiv'][0]
-    TTM = df_option['TTM'][0]
-    Fwd = df_option['Fwd'][0]
+    iRate = df_option['iRate'][first_index]
+    iDiv = df_option['iDiv'][first_index]
+    TTM = df_option['TTM'][first_index]
+    Fwd = df_option['Fwd'][first_index]
     spot = SimpleQuote(Fwd*np.exp(-(iRate-iDiv)*TTM))
     print('Spot: %f risk-free rate: %f div. yield: %f' % (spot.value, iRate, iDiv))
     
