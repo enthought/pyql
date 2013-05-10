@@ -86,7 +86,9 @@ if __name__ == '__main__':
     # excluding the index column (0)
 
     dc_dict = {i: dataconverter for i
-               in range(0,len(columns_dic.keys()))}
+               in range(1,len(columns_dic) +1)}
+
+    print 'LEN ', len(dc_dict)
 
     df_libor = read_csv(fname, sep=',', header=0,
                     index_col=0, parse_dates=True,

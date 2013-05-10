@@ -25,7 +25,7 @@ from quantlib.models.equity.heston_model import (
     HestonModelHelper, HestonModel, ImpliedVolError)
 
 from quantlib.processes.heston_process import HestonProcess
-from quantlib.pricingengines.vanilla import AnalyticHestonEngine
+from quantlib.pricingengines.api import AnalyticHestonEngine
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
 from quantlib.time.api import Period, Date, Actual365Fixed, TARGET, Days
@@ -226,7 +226,7 @@ def heston_calibration(df_option, ival=None):
 
 # <codecell>
 
-df_options = pandas.load('df_options_SPX_24jan2011.pkl')
+df_options = pandas.load('../data/df_options_SPX_24jan2011.pkl')
 df_heston_cal = heston_calibration(df_options)
 
 # <markdowncell>

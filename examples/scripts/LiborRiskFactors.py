@@ -127,7 +127,7 @@ def get_term_structure(df_libor, dtObs):
 
     for m, period, label in swapData:
         rate = df_libor.get_value(dtObs, label)
-        helper = SwapRateHelper(SimpleQuote(rate/100),
+        helper = SwapRateHelper.from_tenor(rate/100.,
                  Period(m, Years), 
             calendar, Annual,
             Unadjusted, Thirty360(),
@@ -170,8 +170,9 @@ def zero_curve(ts, days, dtObs):
 
 # <codecell>
 
-    
+
 df_libor = pandas.load(os.path.join('..','data','df_libor.pkl'))
+print df_libor
 dtObs = df_libor.index
 
 dtI = dtObs[range(0, len(dtObs)-1, 60)]
