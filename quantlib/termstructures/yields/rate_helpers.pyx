@@ -104,11 +104,11 @@ cdef class DepositRateHelper(RateHelper):
 cdef class SwapRateHelper(RelativeDateRateHelper):
 
     def __init__(self, from_classmethod=False):
-        """ Creating a SwaprRateHelper without using a class method means the
-        shared_ptr won't be initialized properly and break any subsequent calls
-        to the QuantLib internals... To avoid this, we raise a ValueError if
-        the user tries to instantiate this class if not setting the
-        from_classmethod. This is an ugly workaround but is ok so far."""
+        # Creating a SwaprRateHelper without using a class method means the
+        # shared_ptr won't be initialized properly and break any subsequent calls
+        # to the QuantLib internals... To avoid this, we raise a ValueError if
+        # the user tries to instantiate this class if not setting the
+        # from_classmethod. This is an ugly workaround but is ok so far.
 
         if from_classmethod is False:
             raise ValueError(

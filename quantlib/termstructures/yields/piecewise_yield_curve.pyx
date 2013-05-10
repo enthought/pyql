@@ -59,6 +59,24 @@ def term_structure_factory(str traits, str interpolator, Date settlement_date,
     return term_structure
 
 cdef class PiecewiseYieldCurve(YieldTermStructure):
+    """A piecewise yield curve.
+
+    Parameters:
+    -----------
+    trait: str
+        the kind of curve. Must be either 'discount', 'forward' or 'zero'
+    interpolator: str
+        the kind of interpolator. Must be either 'loglinear', 'linear' or
+        'spline'
+    settlement_date: quantlib.time.date.Date
+        The settlement date
+    helpers: [RateHelper's]
+        a list of rate helper to used to create the curve
+    day_counter: quantlib.time.day_counter.DayCounter
+        the day counter used by this curve
+    tolerance: float (default 1e-12)
+        the tolerance
+    """
 
     def __init__(self, str trait, str interpolator, Date settlement_date,
                  helpers, DayCounter day_counter, float tolerance=1e-12):
