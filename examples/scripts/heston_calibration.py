@@ -170,7 +170,7 @@ def heston_calibration(df_option, ival=None):
         return serie[serie.index[0]]
 
     df_rates = grouped.agg(aggregate)
-    
+
     # Get first index:
     first_index = 0
 
@@ -182,7 +182,7 @@ def heston_calibration(df_option, ival=None):
     Fwd = df_option['Fwd'][first_index]
     spot = SimpleQuote(Fwd*np.exp(-(iRate-iDiv)*TTM))
     print('Spot: %f risk-free rate: %f div. yield: %f' % (spot.value, iRate, iDiv))
-    
+
     # build array of option helpers
     hh = heston_helpers(spot, df_option, dtTrade, df_rates)
     options = hh['options']

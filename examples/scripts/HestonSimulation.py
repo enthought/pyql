@@ -27,6 +27,7 @@
 # <codecell>
 
 from quantlib.processes.heston_process import HestonProcess
+from quantlib.models.equity.heston_model import HestonModel
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.flat_forward import FlatForward
@@ -94,7 +95,9 @@ steps = 100
 horizon = 2
 seed = 12345
 
-res = simulateHeston(process, paths, steps, horizon, seed)
+model = HestonModel(process)
+
+res = simulateHeston(model, paths, steps, horizon, seed)
 
 time = res[0, :]
 simulations = res[1:, :].T

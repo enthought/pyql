@@ -100,7 +100,6 @@ def read_SPX_file(option_data_file):
     df = pandas.io.parsers.read_csv(option_data_file, header=0, sep=',', skiprows=[0,1])
 
     # split and stack calls and puts
-
     call_df = df[['Calls', 'Bid', 'Ask']]
     call_df = call_df.rename(columns={'Calls':'Spec', 'Bid':'PBid', 'Ask': 'PAsk'})
     call_df['Type'] = 'C'
