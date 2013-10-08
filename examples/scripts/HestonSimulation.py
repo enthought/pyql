@@ -27,6 +27,7 @@
 # <codecell>
 
 from quantlib.processes.heston_process import HestonProcess
+from quantlib.models.equity.heston_model import HestonModel
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.flat_forward import FlatForward
@@ -42,7 +43,7 @@ from quantlib.time.api import today, NullCalendar, ActualActual
 
 def flat_rate(forward, daycounter):
     return FlatForward(
-        quote=SimpleQuote(forward),
+        forward=SimpleQuote(forward),
         settlement_days=0,
         calendar=NullCalendar(),
         daycounter=daycounter
@@ -86,7 +87,7 @@ process = HestonProcess(risk_free_ts, dividend_ts, s0, v0,
 # <codecell>
 
 import pylab as pl
-from quantlib.sim.simulate import simulate
+from quantlib.sim.simulate import simulateHeston
 
 # simulate and plot Heston paths
 paths = 20
@@ -94,7 +95,9 @@ steps = 100
 horizon = 2
 seed = 12345
 
-res = simulate(process, paths, steps, horizon, seed)
+model = HestonModel(process)
+
+res = simulateHeston(model, paths, steps, horizon, seed)
 
 time = res[0, :]
 simulations = res[1:, :].T

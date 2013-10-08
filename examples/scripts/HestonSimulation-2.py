@@ -50,7 +50,7 @@ from quantlib.processes.heston_process import (
 
 def flat_rate(forward, daycounter):
     return FlatForward(
-        quote           = SimpleQuote(forward),
+        forward           = SimpleQuote(forward),
         settlement_days = 0,
         calendar        = NullCalendar(),
         daycounter      = daycounter
@@ -113,6 +113,6 @@ pl.plot(time, simulations)
 pl.xlabel('Time')
 pl.ylabel('Stock Price')
 pl.title('Heston Process Simulation')
-show()
+pl.show()
 
 

@@ -6,6 +6,11 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
+from datetime import datetime
+
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas
 
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.rate_helpers import DepositRateHelper, SwapRateHelper
@@ -22,10 +27,6 @@ from quantlib.quotes import SimpleQuote
 from quantlib.indexes.libor import Libor
 from quantlib.time.date import Semiannual, Annual
 
-from datetime import datetime
-
-import numpy as np
-import matplotlib.pyplot as plt
 
 def get_term_structure(df_libor, dtObs):
     
@@ -119,7 +120,7 @@ def zero_curve(ts):
 
 if __name__ == '__main__':
     
-    df_libor = load('data/df_libor.pkl')
+    df_libor = pandas.load('data/df_libor.pkl')
 
     dtObs = datetime(2011,12,29)
 

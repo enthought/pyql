@@ -25,7 +25,7 @@ from quantlib.models.equity.heston_model import (
     HestonModelHelper, HestonModel, ImpliedVolError)
 
 from quantlib.processes.heston_process import HestonProcess
-from quantlib.pricingengines.vanilla import AnalyticHestonEngine
+from quantlib.pricingengines.api import AnalyticHestonEngine
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
 from quantlib.time.api import Period, Date, Actual365Fixed, TARGET, Days
@@ -165,17 +165,24 @@ def heston_calibration(df_option, ival=None):
     # extract rates and div yields from the data set    
     df_tmp = DataFrame.filter(df_option, items=['dtExpiry', 'iRate', 'iDiv'])
     grouped = df_tmp.groupby('dtExpiry')
-    df_rates = grouped.agg(lambda x: x[0])
-    
-    dtTrade = df_option['dtTrade'][0]
+
+    def aggregate(serie):
+        return serie[serie.index[0]]
+
+    df_rates = grouped.agg(aggregate)
+
+    # Get first index:
+    first_index = 0
+
+    dtTrade = df_option['dtTrade'][first_index]
     # back out the spot from any forward
-    iRate = df_option['iRate'][0]
-    iDiv = df_option['iDiv'][0]
-    TTM = df_option['TTM'][0]
-    Fwd = df_option['Fwd'][0]
+    iRate = df_option['iRate'][first_index]
+    iDiv = df_option['iDiv'][first_index]
+    TTM = df_option['TTM'][first_index]
+    Fwd = df_option['Fwd'][first_index]
     spot = SimpleQuote(Fwd*np.exp(-(iRate-iDiv)*TTM))
     print('Spot: %f risk-free rate: %f div. yield: %f' % (spot.value, iRate, iDiv))
-    
+
     # build array of option helpers
     hh = heston_helpers(spot, df_option, dtTrade, df_rates)
     options = hh['options']
@@ -226,7 +233,7 @@ def heston_calibration(df_option, ival=None):
 
 # <codecell>
 
-df_options = pandas.load('df_options_SPX_24jan2011.pkl')
+df_options = pandas.load('../data/df_options_SPX_24jan2011.pkl')
 df_heston_cal = heston_calibration(df_options)
 
 # <markdowncell>

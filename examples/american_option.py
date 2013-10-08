@@ -6,10 +6,10 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
-from quantlib.instruments.option import AmericanExercise, VanillaOption, Put
+from quantlib.instruments.api import AmericanExercise, VanillaOption, Put
 from quantlib.instruments.payoffs import PlainVanillaPayoff
-from quantlib.pricingengines.vanilla import BaroneAdesiWhaleyApproximationEngine
-from quantlib.pricingengines.vanilla import FDAmericanEngine
+from quantlib.pricingengines.api import BaroneAdesiWhaleyApproximationEngine
+from quantlib.pricingengines.api import FDAmericanEngine
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
