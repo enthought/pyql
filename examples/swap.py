@@ -9,11 +9,11 @@ from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.api import DepositRateHelper, FraRateHelper
 from quantlib.termstructures.yields.api import FuturesRateHelper, SwapRateHelper
 from quantlib.termstructures.yields.api import YieldTermStructure
-from quantlib.termstructures.yields.api import term_structure_factory
+from quantlib.termstructures.yields.api import PiecewiseYieldCurve
 from quantlib.time.api import Actual360, Date, November, TARGET, Weeks, Annual
 from quantlib.time.api import Months, Years, Period, ModifiedFollowing
 from quantlib.time.api import Unadjusted, Thirty360, Semiannual, Schedule
-from quantlib.time.api import Forward
+from quantlib.time.api import Forward, ActualActual, ISDA
 
 # global data
 calendar = TARGET()
@@ -49,14 +49,14 @@ swaps = { (2,Years): 0.037125,
           (15,Years): 0.055175 }
 
 # convert them to Quote objects
-for n,unit in deposits.keys():
-    deposits[(n,unit)] = SimpleQuote(deposits[(n,unit)])
+#for n,unit in deposits.keys():
+#    deposits[(n,unit)] = SimpleQuote(deposits[(n,unit)])
 for n,m in FRAs.keys():
     FRAs[(n,m)] = SimpleQuote(FRAs[(n,m)])
 for d in futures.keys():
     futures[d] = SimpleQuote(futures[d])
-for n,unit in swaps.keys():
-    swaps[(n,unit)] = SimpleQuote(swaps[(n,unit)])
+#for n,unit in swaps.keys():
+#    swaps[(n,unit)] = SimpleQuote(swaps[(n,unit)])
 
 # build rate helpers
 
@@ -93,32 +93,39 @@ fixedLegDayCounter = Thirty360()
 floatingLegFrequency = Semiannual
 floatingLegTenor = Period(6,Months)
 floatingLegAdjustment = ModifiedFollowing
-swapHelpers = [ SwapRateHelper(swaps[(n,unit)],
+swapHelpers = [ SwapRateHelper.from_tenor(swaps[(n,unit)],
                                Period(n,unit), calendar,
                                fixedLegFrequency, fixedLegAdjustment,
                                fixedLegDayCounter, Euribor6M())
                 for n, unit in swaps.keys() ]
 
-# term structure handles
+### Curve building 
 
-discountTermStructure = YieldTermStructure(relinkable=True)
-forecastTermStructure = YieldTermStructure(relinkable=True)
+ts_daycounter = ActualActual(ISDA)
 
 # term-structure construction
+helpers = depositHelpers + swapHelpers
+depoSwapCurve = PiecewiseYieldCurve(
+    'discount', 'loglinear', settlementDate, helpers, ts_daycounter
+)
 
 helpers = depositHelpers[:2] + futuresHelpers + swapHelpers[1:]
-depoFuturesSwapCurve = term_structure_factory(
-    'forward', 'loglinear',settlementDate, helpers, Actual360()
+depoFuturesSwapCurve = PiecewiseYieldCurve(
+    'discount', 'loglinear',settlementDate, helpers, ts_daycounter
 )
 
 helpers = depositHelpers[:3] + fraHelpers + swapHelpers
-depoFraSwapCurve = term_structure_factory(
-    'forward', 'loglinear', settlementDate, helpers, Actual360()
+depoFraSwapCurve = PiecewiseYieldCurve(
+    'discount', 'loglinear', settlementDate, helpers, ts_daycounter
 )
 
-# swaps to be priced
 
-swapEngine = DiscountingSwapEngine(discountTermStructure)
+# Term structures that will be used for pricing:
+discountTermStructure = YieldTermStructure(relinkable=True)
+forecastTermStructure = YieldTermStructure(relinkable=True)
+
+### SWAPS TO BE PRICED
+
 
 nominal = 1000000
 length = 5
@@ -167,6 +174,9 @@ forward = VanillaSwap(VanillaSwap.Payer, nominal,
                       fixedSchedule, fixedRate, fixedLegDayCounter,
                       floatingSchedule, index, spread,
                       floatingLegDayCounter)
+
+swapEngine = DiscountingSwapEngine(discountTermStructure)
+
 forward.setPricingEngine(swapEngine)
 
 # price on the bootstrapped curves
