@@ -188,16 +188,16 @@ cdef class DividendVanillaOption(OneAssetOption):
         del _dividend_dates
         del _dividends
 
-    def impliedVolatility(self, Real targetValue,
-        GeneralizedBlackScholesProcess process, Real accuracy, Size maxEvaluations,
-        Volatility minVol, Volatility maxVol):
+    def implied_volatility(self, Real target_value,
+        GeneralizedBlackScholesProcess process, Real accuracy, Size max_evaluations,
+        Volatility min_vol, Volatility max_vol):
 
         cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
             shared_ptr[_bsp.GeneralizedBlackScholesProcess](
                 deref(<shared_ptr[_bsp.GeneralizedBlackScholesProcess]*>process._thisptr)
         )
 
-        vol = (<_option.DividendVanillaOption *> self._thisptr.get()).impliedVolatility(targetValue,
-        process_ptr, accuracy, maxEvaluations, minVol, maxVol)
+        vol = (<_option.DividendVanillaOption *> self._thisptr.get()).impliedVolatility(
+            target_value, process_ptr, accuracy, max_evaluations, min_vol, max_vol)
 
         return vol

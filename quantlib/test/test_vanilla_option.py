@@ -1,12 +1,13 @@
 from .unittest_tools import unittest
 from quantlib.instruments.option import (
-    EuropeanExercise, AmericanExercise
-)
+    EuropeanExercise, AmericanExercise, DividendVanillaOption
+    )
 from quantlib.instruments.payoffs import PlainVanillaPayoff, Put
 from quantlib.instruments.option import VanillaOption
 from quantlib.pricingengines.vanilla.vanilla import (
-    AnalyticEuropeanEngine, BaroneAdesiWhaleyApproximationEngine
-)
+    AnalyticEuropeanEngine, BaroneAdesiWhaleyApproximationEngine,
+    FDDividendAmericanEngine
+    )
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.settings import Settings
 from quantlib.time.api import Date, TARGET, May, Actual365Fixed
@@ -73,6 +74,18 @@ class VanillaOptionTestCase(unittest.TestCase):
 
         self.payoff = PlainVanillaPayoff(self.option_type, self.strike)
 
+        #Additional parameters for testing DividendVanillaOption
+        self.dividend_dates = []
+        self.dividends = []
+        self.american_time_steps = 600
+        self.american_grid_points = 600
+
+        #Parameters for implied volatility:
+        self.accuracy = 0.001
+        self.max_evaluations = 1000
+        self.min_vol = 0.001
+        self.max_vol = 4
+        self.target_price = 4.485992
 
     def test_str(self):
         quote_str = str(self.underlyingH)
@@ -143,6 +156,47 @@ class VanillaOptionTestCase(unittest.TestCase):
                 self.maturity
             )
 
+    def test_dividend_american_option(self):
+
+        american_exercise = AmericanExercise(self.maturity)
+        american_option = DividendVanillaOption(
+            self.payoff, american_exercise, self.dividend_dates, self.dividends
+        )
+
+        engine = FDDividendAmericanEngine(
+            'CrankNicolson', self.black_scholes_merton_process,
+            self.american_time_steps, self.american_grid_points
+        )
+
+        american_option.set_pricing_engine(engine)
+
+        #Note slightly different value using CrankNicolson
+        self.assertAlmostEquals(4.485992, american_option.net_present_value, 6)
+
+    def test_dividend_american_option_implied_volatility(self):
+
+        american_exercise = AmericanExercise(self.maturity)
+        american_option = DividendVanillaOption(
+            self.payoff, american_exercise, self.dividend_dates, self.dividends
+        )
+
+        engine = FDDividendAmericanEngine(
+            'CrankNicolson', self.black_scholes_merton_process,
+            self.american_time_steps, self.american_grid_points
+        )
+
+        american_option.set_pricing_engine(engine)
+
+        implied_volatility = american_option.implied_volatility(
+            self.target_price,
+            self.black_scholes_merton_process,
+            self.accuracy,
+            self.max_evaluations,
+            self.min_vol,
+            self.max_vol
+        )
+
+        self.assertAlmostEquals(0.200, implied_volatility, 3)
 
 if __name__ == '__main__':
     unittest.main()
