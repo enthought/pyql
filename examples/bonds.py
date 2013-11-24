@@ -5,11 +5,11 @@ This example is based on the QuantLib Excel bond demo.
 """
 
 from quantlib.instruments.bonds import FixedRateBond
-from quantlib.time.calendar import (
-    TARGET, Unadjusted, ModifiedFollowing, Following
+from quantlib.time.api import (
+    TARGET, Unadjusted, ModifiedFollowing, Following, NullCalendar
 )
-from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.compounding import Continuous
+from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.time.date import Date, August, Period, Jul, Annual, Years
 from quantlib.time.daycounter import Actual365Fixed
 from quantlib.time.daycounters.actual_actual import ActualActual, ISMA
@@ -23,7 +23,7 @@ todays_date = Date(25, August, 2011)
 
 
 settings = Settings.instance()
-settings.evaluation_date =  todays_date
+settings.evaluation_date = todays_date
 
 calendar = TARGET()
 effective_date = Date(10, Jul, 2006)
@@ -68,8 +68,8 @@ flat_term_structure = FlatForward(
     compounding     = Continuous,
     frequency       = Annual)
 discounting_term_structure.link_to(flat_term_structure)
-
-bond.set_pricing_engine(discounting_term_structure)
+pricing_engine = DiscountingBondEngine(discounting_term_structure)
+bond.set_pricing_engine(pricing_engine)
 
 
 print 'Settlement date: ', bond.settlement_date()

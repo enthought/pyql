@@ -1,11 +1,10 @@
-import unittest
-
+from .unittest_tools import unittest
 from quantlib.instruments.option import (
-    Put, EuropeanExercise, AmericanExercise
+    EuropeanExercise, AmericanExercise
 )
-from quantlib.instruments.payoffs import PlainVanillaPayoff
+from quantlib.instruments.payoffs import PlainVanillaPayoff, Put
 from quantlib.instruments.option import VanillaOption
-from quantlib.pricingengines.vanilla import (
+from quantlib.pricingengines.vanilla.vanilla import (
     AnalyticEuropeanEngine, BaroneAdesiWhaleyApproximationEngine
 )
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
@@ -87,7 +86,6 @@ class VanillaOptionTestCase(unittest.TestCase):
         self.assertEquals('Exercise type: European', exercise_str)
 
 
-        # FIXME: this crashes
         option = VanillaOption(self.payoff, exercise)
         self.assertEquals('Exercise type: European', str(option.exercise))
         vanilla_str = str(option)

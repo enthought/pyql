@@ -23,14 +23,14 @@ cimport quantlib.time._daycounter as _daycounter
 cimport quantlib.time.daycounters._thirty360 as _th
 from quantlib.time.daycounter cimport DayCounter
 
-USA           = 1
-BONDBASIS     = 2
-EUROPEAN      = 3
-EUROBONDBASIS = 4
-ITALIAN       = 5 
+USA           = _th.USA
+BONDBASIS     = _th.BondBasis
+EUROPEAN      = _th.European
+EUROBONDBASIS = _th.EurobondBasis
+ITALIAN       = _th.Italian
 
 cdef class Thirty360(DayCounter):
-    
+
     def __cinit__(self, convention=BONDBASIS):
         self._thisptr = <_daycounter.DayCounter*> new \
             _th.Thirty360(<_th.Convention> convention)

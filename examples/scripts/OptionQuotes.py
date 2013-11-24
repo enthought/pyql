@@ -282,6 +282,6 @@ if __name__ == '__main__':
     df_final = Compute_IV(option_data_frame, tMin=1/12, nMin=6, QDMin=.2, QDMax=.8)
 
     # save a csv file and pickled data frame
-    df_final.to_csv('df_options_SPX_24jan2011.csv', index=False)
-    df_final.save('df_options_SPX_24jan2011.pkl')   
+    df_final.to_csv('../data/df_options_SPX_24jan2011.csv', index=False)
+    df_final.save('../data/df_options_SPX_24jan2011.pkl')
 

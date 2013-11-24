@@ -1,5 +1,4 @@
-import unittest
-
+from .unittest_tools import unittest
 from quantlib.models.equity.bates_model import (BatesModel, BatesDoubleExpModel)
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.processes.bates_process import BatesProcess
@@ -14,10 +13,10 @@ from quantlib.quotes import SimpleQuote
 
 def flat_rate(forward, daycounter):
     return FlatForward(
-        quote           = SimpleQuote(forward),
+        forward = SimpleQuote(forward),
         settlement_days = 0,
-        calendar        = NullCalendar(),
-        daycounter      = daycounter
+        calendar = NullCalendar(),
+        daycounter = daycounter
     )
 
 

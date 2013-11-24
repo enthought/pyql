@@ -10,6 +10,7 @@ namespace QuantLib {
 
     void simulateMP(const boost::shared_ptr<StochasticProcess>& process,
                     int nbPaths, int nbSteps, Time horizon, BigNatural seed,
+		    bool antithetic_variates,
                     double *res) {
 
         typedef PseudoRandom::rsg_type rsg_type; 
@@ -19,12 +20,12 @@ namespace QuantLib {
 
         Size timeSteps = nbSteps;
         boost::shared_ptr<StochasticProcess> sp = process;
-        //  boost::dynamic_pointer_cast<StochasticProcess>(process);
     
         Size assets = sp->factors();
         rsg_type rsg = PseudoRandom::make_sequence_generator(timeSteps*assets,
                        seed);
-	    MultiPathGenerator<rsg_type> generator(sp, TimeGrid(length, timeSteps),
+
+	MultiPathGenerator<rsg_type> generator(sp, TimeGrid(length, timeSteps),
           rsg, false);
 
         // res(nbPaths+1, nbSteps+1)
@@ -35,9 +36,14 @@ namespace QuantLib {
             res[(0*nbSteps)+j] = dt*j;
 
         // fill simulated paths
+
         for (int i=0; i<nbPaths; ++i) {
-            sample_type sample = (i%2) ? generator.antithetic()
-                                 : generator.next();
+            const bool antithetic = (i%2)==0 ? false : true;
+
+              sample_type sample = antithetic_variates ? 
+                (antithetic ? generator.antithetic()
+		 : generator.next())
+                : generator.next();
 
             Path p1 = sample.value[0];
             int j=0;
@@ -47,6 +53,5 @@ namespace QuantLib {
             };
         };
     };
-
 }
 

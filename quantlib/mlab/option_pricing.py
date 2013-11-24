@@ -12,11 +12,10 @@ import quantlib.reference.names as nm
 import quantlib.reference.data_structures as ds
 from pandas import DataFrame
 
-from quantlib.instruments.option import (Put, Call,
-                                         EuropeanExercise, VanillaOption)
-from quantlib.instruments.payoffs import PlainVanillaPayoff
+from quantlib.instruments.option import EuropeanExercise, VanillaOption
+from quantlib.instruments.payoffs import PlainVanillaPayoff, Put, Call
 from quantlib.models.equity.heston_model import HestonModel
-from quantlib.pricingengines.vanilla import AnalyticHestonEngine
+from quantlib.pricingengines.vanilla.vanilla import AnalyticHestonEngine
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
@@ -155,3 +154,33 @@ def heston_pricer(trade_date, options, params, rates, spot):
     prices[nm.TRADE_DATE] = trade_date
 
     return prices
+
+
+from quantlib.instruments.api import EuropeanOption
+from quantlib.pricingengines.api import AnalyticEuropeanEngine
+from quantlib.processes.api import BlackScholesMertonProcess
+from quantlib.termstructures.yields.api import FlatForward
+from quantlib.termstructures.volatility.api import BlackConstantVol
+from quantlib.time.api import Actual360, today, NullCalendar
+
+def blsprice(spot, strike, risk_free_rate, time, volatility, option_type='Call', dividend=0.0):
+    """ """
+    spot = SimpleQuote(spot)
+
+    daycounter = Actual360()
+    risk_free_ts = FlatForward(today(), risk_free_rate, daycounter)
+    dividend_ts = FlatForward(today(), dividend, daycounter)
+    volatility_ts = BlackConstantVol(today(), NullCalendar(), volatility, daycounter)
+
+    process = BlackScholesMertonProcess(spot, dividend_ts, risk_free_ts, volatility_ts)
+
+    exercise_date = today() + 90
+    exercise = EuropeanExercise(exercise_date)
+
+    payoff = PlainVanillaPayoff(option_type, strike)
+
+    option = EuropeanOption(payoff, exercise)
+    engine = AnalyticEuropeanEngine(process)
+    option.set_pricing_engine(engine)
+    return option.npv
+

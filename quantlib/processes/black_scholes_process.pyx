@@ -50,8 +50,7 @@ cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):
         Quote x0,
         YieldTermStructure dividend_ts,
         YieldTermStructure risk_free_ts,
-        BlackVolTermStructure black_vol_ts,
-    ):
+        BlackVolTermStructure black_vol_ts):
 
         cdef Handle[_qt.Quote] x0_handle = Handle[_qt.Quote](
             deref(x0._thisptr)
@@ -75,10 +74,4 @@ cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):
                 dividend_ts_handle,
                 risk_free_ts_handle,
                 black_vol_ts_handle
-            )
-        )
-
-        ## property x0:
-        ##     def __get__(self):
-        ##         return self._thisptr.get().x0()
-            
+            ))

@@ -1,4 +1,4 @@
-include '../types.pxi'
+include '../../types.pxi'
 
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
@@ -9,16 +9,11 @@ from quantlib.models.equity.heston_model cimport HestonModel
 from quantlib.models.equity.bates_model cimport (BatesModel, BatesDetJumpModel, BatesDoubleExpModel, BatesDoubleExpDetJumpModel)
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 
-from engine cimport PricingEngine
+from quantlib.pricingengines.engine cimport PricingEngine
 
 cdef class VanillaOptionEngine(PricingEngine):
 
-    def __cinit__(self):
-        self._thisptr = NULL
-
-        #FIXME: why do we keep a reference to the process?
-        self.process = None
-
+    pass
 
 cdef class AnalyticEuropeanEngine(VanillaOptionEngine):
 
@@ -29,7 +24,6 @@ cdef class AnalyticEuropeanEngine(VanillaOptionEngine):
                 deref(process._thisptr)
             )
 
-        self.process = process
         self._thisptr = new shared_ptr[_vanilla.PricingEngine](\
             new _vanilla.AnalyticEuropeanEngine(process_ptr)
         )
@@ -43,7 +37,6 @@ cdef class BaroneAdesiWhaleyApproximationEngine(VanillaOptionEngine):
                 deref(process._thisptr)
             )
 
-        self.process = process
         self._thisptr = new shared_ptr[_vanilla.PricingEngine](
             new _vanilla.BaroneAdesiWhaleyApproximationEngine(process_ptr)
         )
@@ -117,6 +110,7 @@ cdef class FDDividendAmericanEngine(PricingEngine):
     def __init__(self, scheme, GeneralizedBlackScholesProcess process, timesteps, gridpoints):
 
         # FIXME: first implementation using a fixed scheme!
+        print 'Warning : rough implementation using CrankNicolson schema'
         cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
             shared_ptr[_bsp.GeneralizedBlackScholesProcess](
                 deref(process._thisptr)

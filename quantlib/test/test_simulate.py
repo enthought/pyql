@@ -1,7 +1,6 @@
-import unittest
-
 import numpy as np
 
+from .unittest_tools import unittest
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.processes.bates_process import BatesProcess
 from quantlib.models.equity.heston_model import HestonModel
@@ -21,17 +20,14 @@ from quantlib.sim.simulate import (simulateHeston, simulateBates,
                                    simulateBatesDoubleExpModel)
 
 
-def almost_equal(x, y, delta=1.e-5):
-    return abs(x - y) < delta
-
+from quantlib.processes.heston_process import PARTIALTRUNCATION
 
 def flat_rate(forward, daycounter):
     return FlatForward(
-        quote           = SimpleQuote(forward),
-        #forward         = forward,
+        forward = SimpleQuote(forward),
         settlement_days = 0,
-        calendar        = NullCalendar(),
-        daycounter      = daycounter
+        calendar = NullCalendar(),
+        daycounter = daycounter
     )
 
 
@@ -62,7 +58,8 @@ class SimTestCase(unittest.TestCase):
 
         self.heston_process = HestonProcess(self.risk_free_ts,
                                             self.dividend_ts, s0, v0,
-                                            kappa, theta, sigma, rho)
+                                            kappa, theta, sigma, rho,
+                                            PARTIALTRUNCATION)
 
         v0 = 0.05
         ival = {'v0': v0, 'kappa': 3.7, 'theta': v0,
@@ -97,8 +94,7 @@ class SimTestCase(unittest.TestCase):
         time_expected = np.arange(0, 1.1, .1)
         simulations = res[1:, :].T
 
-        assert all([almost_equal(*values, delta=tolerance)
-                   for values in zip(time, time_expected)])
+        np.testing.assert_array_almost_equal(time, time_expected, decimal=4)
 
     def test_simulate_heston_2(self):
 
@@ -139,8 +135,7 @@ class SimTestCase(unittest.TestCase):
         time_expected = np.arange(0, 1.1, .1)
         simulations = res[1:, :].T
 
-        assert all([almost_equal(*values)
-                   for values in zip(time, time_expected)])
+        np.testing.assert_array_almost_equal(time, time_expected, decimal=4)
 
     def test_simulate_batesDetJumpModel(self):
 
@@ -158,8 +153,7 @@ class SimTestCase(unittest.TestCase):
         time_expected = np.arange(0, 1.1, .1)
         simulations = res[1:, :].T
 
-        assert all([almost_equal(*values, delta=tolerance)
-                    for values in zip(time, time_expected)])
+        np.testing.assert_array_almost_equal(time, time_expected, decimal=4)
 
     def test_simulate_batesDoubleExpModel(self):
 
@@ -177,12 +171,7 @@ class SimTestCase(unittest.TestCase):
         time_expected = np.arange(0, 1.1, .1)
         simulations = res[1:, :].T
 
-        print time
-        print time_expected
-        print simulations
-
-        assert all([almost_equal(*values, delta=tolerance)
-                   for values in zip(time, time_expected)])
+        np.testing.assert_array_almost_equal(time, time_expected, decimal=4)
 
 
 if __name__ == '__main__':

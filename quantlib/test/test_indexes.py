@@ -7,13 +7,14 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-import unittest
+from .unittest_tools import unittest
 
 from quantlib.currency import USDCurrency
 from quantlib.index import Index
 from quantlib.indexes.interest_rate_index import InterestRateIndex
 from quantlib.indexes.libor import Libor
 from quantlib.indexes.swap_index import SwapIndex
+from quantlib.indexes.euribor import Euribor6M
 from quantlib.settings import Settings
 from quantlib.time.api import Days, Months, Period, TARGET, Actual360, today
 from quantlib.time.api import Following
@@ -55,6 +56,16 @@ class TestLibor(unittest.TestCase):
                         USDCurrency(), calendar, Actual360())
 
         self.assertEquals('USD Libor6M Actual/360', index.name)
+
+class TestEuribor(unittest.TestCase):
+
+    def test_creation(self):
+
+        # Makes sure the constructor does not segfault anymore ;-)
+        index = Euribor6M()
+
+        self.assertEquals(index.name, 'Euribor6M Actual/360')
+
 
 class SwapIndexTestCase(unittest.TestCase):
 

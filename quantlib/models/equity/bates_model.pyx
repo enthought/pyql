@@ -39,7 +39,7 @@ cdef class BatesModel(HestonModel):
            self.rho, self.Lambda, self.nu, self.delta)
 
     def process(self):
-        process = BatesProcess()
+        process = BatesProcess(noalloc=True)
         cdef shared_ptr[_hp.HestonProcess] bp_ptr = self._thisptr.get().process()
         cdef shared_ptr[_hp.HestonProcess]* bp_pt = new shared_ptr[_hp.HestonProcess](bp_ptr)
         process._thisptr = bp_pt

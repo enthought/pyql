@@ -7,8 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-import unittest
-
+from .unittest_tools import unittest
 from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure
 )
@@ -49,12 +48,8 @@ class YieldTermStructureTestCase(unittest.TestCase):
         discounting_term_structure = YieldTermStructure(relinkable=True)
 
         settlement_days = 3
-        flat_term_structure = FlatForward(
-            settlement_days = settlement_days,
-            forward         = 0.044,
-            calendar        = NullCalendar(),
-            daycounter      = Actual360()
-        )
+        flat_term_structure = FlatForward(settlement_days=settlement_days,
+            forward=0.044, calendar=NullCalendar(), daycounter=Actual360())
 
         discounting_term_structure.link_to(flat_term_structure)
 
@@ -65,12 +60,8 @@ class YieldTermStructureTestCase(unittest.TestCase):
         )
 
 
-        another_flat_term_structure = FlatForward(
-                    settlement_days = 10,
-                    forward         = 0.067,
-                    calendar        = NullCalendar(),
-                    daycounter      = Actual365Fixed()
-                )
+        another_flat_term_structure = FlatForward(settlement_days=10,
+            forward=0.067, calendar=NullCalendar(), daycounter=Actual365Fixed())
 
         discounting_term_structure.link_to(another_flat_term_structure)
 
@@ -100,12 +91,8 @@ class FlatForwardTestCase(unittest.TestCase):
         """Testing term structure against evaluation date change... """
 
         quote = SimpleQuote()
-        term_structure = FlatForward(
-            settlement_days = self.settlement_days,
-            quote           = quote,
-            calendar        = NullCalendar(),
-            daycounter      = Actual360()
-        )
+        term_structure = FlatForward(settlement_days=self.settlement_days,
+            forward=quote, calendar=NullCalendar(), daycounter=Actual360())
 
         quote.value = 0.03
 

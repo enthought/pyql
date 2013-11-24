@@ -11,7 +11,7 @@ from quantlib.models.equity.bates_model import (BatesModel, BatesDetJumpModel, B
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.processes.bates_process import BatesProcess
 
-from quantlib.pricingengines.vanilla import (AnalyticHestonEngine, BatesEngine, BatesDetJumpEngine, BatesDoubleExpEngine, BatesDoubleExpDetJumpEngine)
+from quantlib.pricingengines.api import (AnalyticHestonEngine, BatesEngine, BatesDetJumpEngine, BatesDoubleExpEngine, BatesDoubleExpDetJumpEngine)
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
 from quantlib.time.api import Period, Date, Actual365Fixed, TARGET, Weeks, Days
@@ -30,8 +30,8 @@ def dfToZeroCurve(df, dtSettlement, daycounter=Actual365Fixed()):
     Convert a panda data frame into a QL zero curve
     """
     
-    dates = [dateToDate(dt) for dt in df.index]
-    dates.insert(0, dateToDate(dtSettlement))
+    dates = [dateToQLDate(dt) for dt in df.index]
+    dates.insert(0, dateToQLDate(dtSettlement))
     dates.append(dates[-1]+365*2)
     vx = list(df.values)
     vx.insert(0, vx[0])
@@ -45,7 +45,7 @@ def heston_helpers(df_option, dtTrade=None, df_rates=None, ival=None):
 
     if dtTrade is None:
         dtTrade = df_option['dtTrade'][0]
-    DtSettlement = datetoQLDate(dtTrade)
+    DtSettlement = dateToQLDate(dtTrade)
     
     settings = Settings()
     settings.evaluation_date = DtSettlement

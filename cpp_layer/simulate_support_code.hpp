@@ -8,6 +8,7 @@ namespace QuantLib {
 
     void simulateMP(const boost::shared_ptr<StochasticProcess>& process,
                     int nbPaths, int nbSteps, Time horizon, BigNatural seed,
-                    double *res);
+                    bool antithetic_variates, double *res);
+
 
 }
