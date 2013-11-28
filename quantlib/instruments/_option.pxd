@@ -8,6 +8,7 @@ from _payoffs cimport Payoff, StrikedTypePayoff
 from _exercise cimport Exercise
 from quantlib.handle cimport shared_ptr
 from quantlib.time._date cimport Date
+from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess
 
 cdef extern from 'ql/option.hpp' namespace 'QuantLib::Option':
 
@@ -50,6 +51,14 @@ cdef extern from 'ql/instruments/dividendvanillaoption.hpp' namespace 'QuantLib'
             vector[Date]& dividendDates,
             vector[Real]& dividends
         )
+        Volatility impliedVolatility(
+                Real price,
+                shared_ptr[GeneralizedBlackScholesProcess]& process,
+                Real accuracy,
+                Size maxEvaluations,
+                Volatility minVol,
+                Volatility maxVol
+        ) except +
 
 cdef extern from 'ql/instruments/europeanoption.hpp' namespace 'QuantLib':
 
