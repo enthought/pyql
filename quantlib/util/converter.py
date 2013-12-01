@@ -1,5 +1,6 @@
 import string
 import re
+import datetime
 
 from quantlib.time.api import Date, Actual365Fixed
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
@@ -98,6 +99,14 @@ def pydate_to_qldate(date):
         return Date(dd, mm, yy)
     else:
         return Date(date.day, date.month, date.year)
+
+
+def qldate_to_pydate(date):
+    """
+    Converts a QL Date to a datetime
+    """
+
+    return datetime.datetime(date.year, date.month, date.day)
 
 
 def df_to_zero_curve(rates, settlement_date, daycounter=Actual365Fixed()):

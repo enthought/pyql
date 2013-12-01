@@ -6,6 +6,7 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
+
 from quantlib.instruments.api import AmericanExercise, VanillaOption, Put
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.pricingengines.api import BaroneAdesiWhaleyApproximationEngine
@@ -26,9 +27,9 @@ def main():
     settlement_date = Date(17, May, 1998)
 
     risk_free_rate = FlatForward(
-        reference_date = settlement_date,
-        forward        = 0.06,
-        daycounter     = Actual365Fixed()
+        reference_date=settlement_date,
+        forward=0.06,
+        daycounter=Actual365Fixed()
     )
 
     # option parameters
@@ -40,7 +41,8 @@ def main():
 
     # market data
     underlying = SimpleQuote(36.0)
-    volatility = BlackConstantVol(todays_date, TARGET(), 0.20, Actual365Fixed())
+    volatility = BlackConstantVol(todays_date, TARGET(), 0.20,
+                                  Actual365Fixed())
     dividend_yield = FlatForward(
         reference_date = settlement_date,
         forward        = 0.00,
@@ -57,8 +59,9 @@ def main():
     print '-'*len(header)
 
     refValue = None
-    def report(method, x, dx = None):
-        e = '%.4f' % abs(x-refValue)
+
+    def report(method, x, dx=None):
+        e = '%.4f' % abs(x - refValue)
         x = '%.5f' % x
         if dx:
             dx = '%.4f' % dx
@@ -76,19 +79,20 @@ def main():
     option = VanillaOption(payoff, exercise)
 
     refValue = 4.48667344
-    report('reference value',refValue)
+    report('reference value', refValue)
 
     # method: analytic
 
     option.set_pricing_engine(BaroneAdesiWhaleyApproximationEngine(process))
-    report('Barone-Adesi-Whaley',option.net_present_value)
+    report('Barone-Adesi-Whaley', option.net_present_value)
 
     # method: finite differences
     time_steps = 801
     grid_points = 800
 
-    option.set_pricing_engine(FDAmericanEngine('CrankNicolson', process,time_steps,grid_points))
-    report('finite differences',option.net_present_value)
+    option.set_pricing_engine(FDAmericanEngine('CrankNicolson',
+                              process, time_steps, grid_points))
+    report('finite differences', option.net_present_value)
 
 
     print 'This is work in progress.'
