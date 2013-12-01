@@ -3,8 +3,6 @@ from .unittest_tools import unittest
 import pandas
 import numpy as np
 from pandas import DataFrame
-from scipy.interpolate import interp1d
-from scipy.stats import norm
 
 import quantlib.reference.names as nm
 from quantlib.pricingengines.blackformula import blackFormulaImpliedStdDev
@@ -111,20 +109,16 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
 
         df_put['IVMid'] = (df_put['IVBid'] + df_put['IVAsk']) / 2
 
-        f_call = interp1d(df_call['Strike'].values, df_call['IVMid'].values)
-        f_put = interp1d(df_put['Strike'].values, df_put['IVMid'].values)
+        # f_call = interp1d(df_call['Strike'].values, df_call['IVMid'].values)
+        # f_put = interp1d(df_put['Strike'].values, df_put['IVMid'].values)
 
-        atmVol = (f_call(Fwd) + f_put(Fwd)) / 2
+        # atmVol = (f_call(Fwd) + f_put(Fwd)) / 2
+        atmVol = .20
         print('ATM vol: %f' % atmVol)
 
         # Quick Delta, computed with ATM vol
-        rv = norm()
-        df_call['QuickDelta'] = [rv.cdf(np.log(Fwd / strike) /
-                                (atmVol * np.sqrt(timeToMaturity)))
-        for strike in df_call['Strike']]
-        df_put['QuickDelta'] = [rv.cdf(np.log(Fwd / strike) /
-                               (atmVol * np.sqrt(timeToMaturity)))
-        for strike in df_put['Strike']]
+        df_call['QuickDelta'] = 0.5
+        df_put['QuickDelta'] = 0.5
 
         # keep data within QD range
 
