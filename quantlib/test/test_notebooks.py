@@ -164,7 +164,8 @@ class NoteBooksTestCase(unittest.TestCase):
         df_final = Compute_IV(option_data_frame, tMin=1 / 12,
                               nMin=6, QDMin=.2, QDMax=.8)
 
-        self.assertEqual(len(df_final.index), 168, 'Wrong number of rows')
+        print('Number of rows: %d' % len(df_final.index))
+        self.assertEqual(len(df_final.index), 553, 'Wrong number of rows')
 
 if __name__ == '__main__':
     unittest.main()
