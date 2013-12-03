@@ -101,5 +101,5 @@ cdef class InterestRate:
         else:
             ValueError('unknown compounding convention ({0})'.format(self.compounding))
         return "{0:.2f} {1} {2}".format(
-            self.rate, self._thisptr.get().dayCounter().name(), cpd_str
+            self.rate, self._thisptr.get().dayCounter().name().c_str(), cpd_str
         )

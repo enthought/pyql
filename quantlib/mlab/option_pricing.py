@@ -21,11 +21,15 @@ from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.util.converter import pydate_to_qldate, df_to_zero_curve
 
-# Dataframe colum names - local constants
-CALL_PREMIUM = 'PremiumC'
-PUT_PREMIUM = 'PremiumP'
+from quantlib.instruments.api import EuropeanOption
+from quantlib.pricingengines.api import AnalyticEuropeanEngine
+from quantlib.processes.api import BlackScholesMertonProcess
+from quantlib.termstructures.yields.api import FlatForward
+from quantlib.termstructures.volatility.api import BlackConstantVol
+from quantlib.time.api import Actual360, today, NullCalendar
 
-def options_to_rates(options, t_min=1./12., n_min=6):
+
+def options_to_rates(options, t_min=1. / 12., n_min=6):
     """
     Extract implied risk-free rates and dividend yield from
     standard European option quote file.
@@ -50,7 +54,6 @@ def options_to_rates(options, t_min=1./12., n_min=6):
     implied_interest_rates = []
     implied_dividend_yields = []
 
-
     for spec, group in grouped:
         # implied vol for this type/expiry group
 
@@ -59,8 +62,8 @@ def options_to_rates(options, t_min=1./12., n_min=6):
         trade_date = group[nm.TRADE_DATE][index[0]]
         expiry_date = group[nm.EXPIRY_DATE][index[0]]
         spot = group[nm.SPOT][index[0]]
-        days_to_expiry = (expiry_date-trade_date).days
-        time_to_maturity = days_to_expiry/365.0
+        days_to_expiry = (expiry_date - trade_date).days
+        time_to_maturity = days_to_expiry / 365.0
 
         # exclude groups with too short time to maturity
         if time_to_maturity < t_min:
@@ -96,8 +99,8 @@ def options_to_rates(options, t_min=1./12., n_min=6):
         a_1, a_0 = np.linalg.lstsq(A, y)[0]
 
         # intercept is last coef
-        interest_rate = -np.log(-a_1)/time_to_maturity
-        dividend_yield = np.log(spot/a_0)/time_to_maturity
+        interest_rate = -np.log(-a_1) / time_to_maturity
+        dividend_yield = np.log(spot / a_0) / time_to_maturity
 
         implied_interest_rates.append(interest_rate)
         implied_dividend_yields.append(dividend_yield)
@@ -109,8 +112,10 @@ def options_to_rates(options, t_min=1./12., n_min=6):
 
     return rates
 
+
 def heston_pricer(trade_date, options, params, rates, spot):
-    """ Price a list of European options with heston model.
+    """
+    Price a list of European options with heston model.
 
     """
 
@@ -156,23 +161,21 @@ def heston_pricer(trade_date, options, params, rates, spot):
     return prices
 
 
-from quantlib.instruments.api import EuropeanOption
-from quantlib.pricingengines.api import AnalyticEuropeanEngine
-from quantlib.processes.api import BlackScholesMertonProcess
-from quantlib.termstructures.yields.api import FlatForward
-from quantlib.termstructures.volatility.api import BlackConstantVol
-from quantlib.time.api import Actual360, today, NullCalendar
-
-def blsprice(spot, strike, risk_free_rate, time, volatility, option_type='Call', dividend=0.0):
-    """ """
+def blsprice(spot, strike, risk_free_rate, time, volatility,
+             option_type='Call', dividend=0.0):
+    """
+    Black-Scholes option pricing model
+    """
     spot = SimpleQuote(spot)
 
     daycounter = Actual360()
     risk_free_ts = FlatForward(today(), risk_free_rate, daycounter)
     dividend_ts = FlatForward(today(), dividend, daycounter)
-    volatility_ts = BlackConstantVol(today(), NullCalendar(), volatility, daycounter)
+    volatility_ts = BlackConstantVol(today(), NullCalendar(),
+                                     volatility, daycounter)
 
-    process = BlackScholesMertonProcess(spot, dividend_ts, risk_free_ts, volatility_ts)
+    process = BlackScholesMertonProcess(spot, dividend_ts,
+                                        risk_free_ts, volatility_ts)
 
     exercise_date = today() + 90
     exercise = EuropeanExercise(exercise_date)
@@ -183,4 +186,3 @@ def blsprice(spot, strike, risk_free_rate, time, volatility, option_type='Call',
     engine = AnalyticEuropeanEngine(process)
     option.set_pricing_engine(engine)
     return option.npv
-
