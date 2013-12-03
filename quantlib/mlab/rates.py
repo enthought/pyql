@@ -18,7 +18,8 @@ from quantlib.termstructures.yields.rate_helpers import \
 from quantlib.time.api import (TARGET, Period, Months, Years, Days,
                                ModifiedFollowing, Unadjusted, Actual360,
                                Thirty360, Annual, ActualActual, ISDA,
-                               JointCalendar, UnitedStates, UnitedKingdom)
+                               JointCalendar, UnitedStates, UnitedKingdom,
+                               NullCalendar)
 
 from quantlib.currency import USDCurrency
 from quantlib.quotes import SimpleQuote
@@ -26,6 +27,8 @@ from quantlib.util.converter import pydate_to_qldate, qldate_to_pydate
 from quantlib.indexes.libor import Libor
 from quantlib.termstructures.yields.piecewise_yield_curve import \
     term_structure_factory
+
+from quantlib.termstructures.yields.flat_forward import FlatForward
 
 _label_re_list = [ \
     # Swap
@@ -141,3 +144,18 @@ def zero_rate(term_structure, days, dt_settlement, calendar=TARGET()):
     zc = -np.log(df) / dt
 
     return (dtMat, zc)
+
+
+def flat_rate(forward, daycounter):
+    """
+    Create a flat yield curve, with rate defined according
+    to the specified day-count convention.
+    Used mostly for unit tests and simple illustrations.
+    """
+
+    return FlatForward(
+        forward=SimpleQuote(forward),
+        settlement_days=0,
+        calendar=NullCalendar(),
+        daycounter=daycounter
+    )

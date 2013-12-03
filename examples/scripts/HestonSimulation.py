@@ -1,12 +1,20 @@
-# -*- coding: utf-8 -*-
-# <nbformat>3</nbformat>
+"""
+ Copyright (C) 2011, Enthought Inc
+ Copyright (C) 2011, Patrick Henaff
 
-# <markdowncell>
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
 
-# Heston Process Simulation
-# =========================
+# Heston & Bates Process Simulation
+# =================================
 # 
-# This notebook demonstrates the simulation of a Heston model.
+# This script demonstrates the simulation of Heston and Bates model.
+
+# Heston process
+# ==============
+
 # The asset price $S_t$ is governed by the process:
 # 
 # $$
@@ -20,34 +28,20 @@
 # $$
 #
 # $dW_t^s$ and $dW_t^{\nu}$ are Wiener processes with correlation $\rho$.
-#
-#
-#
 
-# <codecell>
-
+from quantlib.processes.bates_process import BatesProcess
+from quantlib.models.equity.bates_model import BatesModel
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.models.equity.heston_model import HestonModel
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
-from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.time.api import today, NullCalendar, ActualActual
-
-# <markdowncell>
+from quantlib.mlab.rates import flat_rate
+import pylab as pl
+from quantlib.sim.simulate import simulateHeston, simulateBates
 
 # The Heston Process
 # ------------------
-
-# <codecell>
-
-
-def flat_rate(forward, daycounter):
-    return FlatForward(
-        forward=SimpleQuote(forward),
-        settlement_days=0,
-        calendar=NullCalendar(),
-        daycounter=daycounter
-    )
 
 settings = Settings.instance()
 settlement_date = today()
@@ -75,19 +69,13 @@ rho = -0.5
 process = HestonProcess(risk_free_ts, dividend_ts, s0, v0,
                        kappa, theta, sigma, rho)
 
-# <markdowncell>
-
 # The simulation
 # --------------
-# 
-# The *simulate* function is not part of Quantlib. It has been added
+#
+# The *simulateHeston* function is not part of Quantlib. It has been added
 # to the pyQL interface (see folder quantlib/sim). This illustrates
 # how to create extensions to Quantlib and expose them to python.
 
-# <codecell>
-
-import pylab as pl
-from quantlib.sim.simulate import simulateHeston
 
 # simulate and plot Heston paths
 paths = 20
@@ -101,8 +89,36 @@ res = simulateHeston(model, paths, steps, horizon, seed)
 
 time = res[0, :]
 simulations = res[1:, :].T
+pl.figure()
 pl.plot(time, simulations)
 pl.xlabel('Time')
 pl.ylabel('Stock Price')
 pl.title('Heston Process Simulation')
+pl.show()
+
+# The Bates process
+# -----------------
+
+ival = {'v0': v0, 'kappa': 3.7, 'theta': v0,
+    'sigma': 1.0, 'rho': -.6, 'lambda': .1,
+    'nu': -.5, 'delta': 0.3}
+
+spot = SimpleQuote(1200)
+
+proc_bates = BatesProcess(
+    risk_free_ts, dividend_ts, spot, ival['v0'], ival['kappa'],
+     ival['theta'], ival['sigma'], ival['rho'],
+     ival['lambda'], ival['nu'], ival['delta'])
+
+model_bates = BatesModel(proc_bates)
+
+res_bates = simulateBates(model_bates, paths, steps, horizon, seed)
+
+time = res_bates[0, :]
+simulations = res_bates[1:, :].T
+pl.figure()
+pl.plot(time, simulations)
+pl.xlabel('Time')
+pl.ylabel('Stock Price')
+pl.title('Bates Process Simulation')
 pl.show()

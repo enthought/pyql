@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-# <nbformat>3</nbformat>
-
-# <markdowncell>
-
 # Preprocessing of Option Quotes
 # ==============================
 # 
