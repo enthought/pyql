@@ -2,7 +2,7 @@ from datetime import date
 
 from .unittest_tools import unittest
 from quantlib.mlab.option_pricing import heston_pricer, blsprice
-from quantlib.mlab.rates import make_rate_helper, zero_rate
+from quantlib.util.rates import make_rate_helper, zero_rate
 import quantlib.reference.names as nm
 import quantlib.reference.data_structures as ds
 

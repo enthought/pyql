@@ -12,6 +12,7 @@ import re
 import datetime
 
 from quantlib.time.api import Date, Actual365Fixed
+import quantlib.time.date as dt
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
 
 _dayOfWeekName = ['Monday', 'Tuesday', 'Wednesday', 'Thursday',
@@ -107,7 +108,7 @@ def pydate_to_qldate(date):
         yy, mm, dd = _parsedate(date)
         return Date(dd, mm, yy)
     else:
-        return Date(date.day, date.month, date.year)
+        return dt.qldate_from_pydate(date)
 
 
 def qldate_to_pydate(date):
