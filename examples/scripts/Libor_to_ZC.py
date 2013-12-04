@@ -27,7 +27,7 @@ import matplotlib.pyplot as plt
 import matplotlib.mlab as ml
 
 import pandas as pd
-from quantlib.mlab.rates import zero_rate, make_term_structure
+from quantlib.util.rates import zero_rate, make_term_structure
 
 
 if __name__ == '__main__':

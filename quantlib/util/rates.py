@@ -7,6 +7,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+# Utility functions for handling interest rates
+# ---------------------------------------------
+
 import string
 import re
 import numpy as np
