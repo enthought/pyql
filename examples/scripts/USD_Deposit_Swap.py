@@ -1,27 +1,24 @@
-# -*- coding: utf-8 -*-
-# <nbformat>3</nbformat>
+"""
+ Copyright (C) 2013, Enthought Inc
+ Copyright (C) 2013, Patrick Henaff
 
-# <markdowncell>
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
 
 # USD Deposit and Swap Rates
 # ==========================
-# 
-# This notebook shows how to process a curve of US deposit and swap rates. The data comes from the US Federal Reserve Board, and is published daily as a data set named 'Table H15'. 
+#
+# This script shows how to process a curve of US deposit and swap rates.
+# The data comes from the US Federal Reserve Board, and is published daily
+# as a data set named 'Table H15'.
+# Here, we extract a curve from the data set and construct a simple plot .
 
-
-# <codecell>
-
-import os, datetime
+import os
+import datetime
 import pandas as pd
-import numpy as np
 import pylab as pl
-
-# <markdowncell>
-
-# Extract and plot the data
-# -------------------------
-
-# <codecell>
 
 if __name__ == '__main__':
 
@@ -47,11 +44,17 @@ if __name__ == '__main__':
     # add maturity column
     df_libor['Maturity'] = [maturities_dic[k] for k in df_libor.index]
 
+    # add maturity column
+    df_libor['Maturity'] = [col_mat_dic[k] for k in df_libor.index]
+    
     # ... and sort by increasing maturity
     df_libor = df_libor.sort_index(by='Maturity')
 
+    print df_libor
+    
     pl.plot(df_libor['Maturity'], df_libor['Rate'])
     pl.xlabel('Maturity (Yr)')
     pl.ylabel('Deposit/Libor Rate')
-    pl.title('Libor Deposit and Swap Rates (%s) \n from Table H15 at www.federalreserve.gov' % dt_obs.strftime('%d-%b-%Y'))
-    show()
+    pl.title('Libor Deposit and Swap Rates (%s) \n from Table H15 \
+    at www.federalreserve.gov' % dt_obs.strftime('%d-%b-%Y'))
+    pl.show()

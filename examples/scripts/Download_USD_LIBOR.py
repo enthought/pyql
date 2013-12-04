@@ -1,22 +1,29 @@
-# -*- coding: utf-8 -*-
-# <nbformat>3</nbformat>
+"""
+ Copyright (C) 2011, Enthought Inc
+ Copyright (C) 2011, Patrick Henaff
 
-# <markdowncell>
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
 
 # Time Series of US Deposit and Swap Rates
 # ========================================
-# 
-# This notebook demonstrates how to download time series of USD deposit and swap rates from the US Federal Reserve Board web site. 
-# 
-# The data is obtained from the site www.federalreserve.gov. The time series can be downloaded from a web browser, but they can also be downloaded programmatically. The site provides directions on how to construct the URL corresponding to each particular data set. In the example below, the URL is specific to the H15 table, with all available deposit and swap rates included.
-# 
-# In this notebook, we download 11 years of daily data, from January 2000 to December 2011. The data is stored in a pandas DataFrame for further processing.
 
-# <codecell>
+# This notebook demonstrates how to download time series of USD deposit
+# and swap rates from the US Federal Reserve Board web site.
+#
+# The data is obtained from the site www.federalreserve.gov. The time series
+# can be downloaded from a web browser, but they can also be downloaded
+# programmatically. The site provides directions on how to construct the URL
+# corresponding to each particular data set. In the example below, the URL is
+# specific to the H15 table, with all deposit and swap rates included.
+# In this script, we download 11 years of daily data, from January 2000 to
+# December 2011. The data is stored in a pandas DataFrame.
 
-import os, urllib, datetime, pandas
+import os
+import urllib
 import numpy as np
-import math
 
 from pandas.io.parsers import read_csv
 from datetime import date

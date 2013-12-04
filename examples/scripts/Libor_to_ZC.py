@@ -1,5 +1,24 @@
+"""
+ Copyright (C) 2013, Enthought Inc
+ Copyright (C) 2013, Patrick Henaff
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
 # Libor Zero-Coupon Curve and Principal Components Analysis
 # =========================================================
+
+# This script demonstrates how to build a Libor zero-coupon curve
+# from deposit and swap rates. It also performs a statistical
+# a statistical analysis on curve shifts, and shows that
+# the 3 principal components accounts for most of the
+# curve variability and can be interpreted as follows:
+#
+# * The first factor represents an approximate parallel shift
+# * The second factor represents a twist
+# * The third factor represents a change in convexity
 
 import os
 
@@ -8,7 +27,7 @@ import matplotlib.pyplot as plt
 import matplotlib.mlab as ml
 
 import pandas as pd
-from quantlib.mlab.rates import zero_rate, make_term_structure
+from quantlib.util.rates import zero_rate, make_term_structure
 
 
 if __name__ == '__main__':
@@ -25,6 +44,9 @@ if __name__ == '__main__':
     zc_rate = np.empty((len(dtI), len(days)), dtype='float64')
     dt_maturity = np.empty_like(zc_rate, dtype='object')
 
+    # one observation date at a time, construct a term structure from
+    # deposit and swap rates, then compute zero-coupon rates at
+    # selected maturities
     for i, obs_date in enumerate(dtI):
         print(obs_date)
         rates = df_libor.xs(obs_date) / 100
