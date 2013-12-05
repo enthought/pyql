@@ -2,8 +2,15 @@ from datetime import date
 
 from .unittest_tools import unittest
 from quantlib.mlab.option_pricing import heston_pricer, blsprice
+from quantlib.util.rates import make_rate_helper, zero_rate
 import quantlib.reference.names as nm
 import quantlib.reference.data_structures as ds
+
+from quantlib.settings import Settings
+from quantlib.termstructures.yields.piecewise_yield_curve import \
+    term_structure_factory
+from quantlib.time.api import today, ActualActual, ISDA
+from quantlib.util.converter import pydate_to_qldate
 
 
 class OptionPricerTestCase(unittest.TestCase):
@@ -43,11 +50,39 @@ class OptionPricerTestCase(unittest.TestCase):
 
     def test_blsprice(self):
 
-        from quantlib.settings import Settings
-        from quantlib.time.api import today
         Settings.instance().evaluation_date = today()
         call_value = blsprice(100.0, 97.0, 0.1, 0.25, 0.5)
         self.assertAlmostEquals(call_value, 12.61, 2)
+
+    def test_yield(self):
+
+        rates_data = [('Libor1M', .01),
+                  ('Libor3M', .015),
+                  ('Libor6M', .017),
+                  ('Swap1Y', .02),
+                  ('Swap2Y', .03),
+                  ('Swap3Y', .04),
+                  ('Swap5Y', .05),
+                  ('Swap7Y', .06),
+                  ('Swap10Y', .07),
+                  ('Swap20Y', .08)]
+
+        settlement_date = pydate_to_qldate('01-Dec-2013')
+        rate_helpers = []
+        for label, rate in rates_data:
+            h = make_rate_helper(label, rate, settlement_date)
+            rate_helpers.append(h)
+
+            ts_day_counter = ActualActual(ISDA)
+            tolerance = 1.0e-15
+
+        ts = term_structure_factory('discount', 'loglinear',
+         settlement_date, rate_helpers,
+         ts_day_counter, tolerance)
+
+        zc = zero_rate(ts, (200, 300), settlement_date)
+        # not a real test - just verify execution
+        self.assertAlmostEqual(zc[1][0], 0.0189, 2)
 
 if __name__ == '__main__':
     unittest.main()
