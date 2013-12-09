@@ -4,7 +4,7 @@ from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from libcpp.vector cimport vector
 from libcpp.string cimport string
-from cpython.string cimport PyString_AsString
+from cpython cimport PyBytes_AsString
 
 cimport _piecewise_default_curve as _pdc
 
@@ -42,8 +42,8 @@ cdef class PiecewiseDefaultCurve:
             raise ValueError('Cannot initialize curve with no helpers')
 
         # convert Python string to C++ string
-        cdef string trait_string = string(PyString_AsString(trait))
-        cdef string interpolator_string = string(PyString_AsString(interpolator)),
+        cdef string trait_string = string(PyBytes_AsString(trait))
+        cdef string interpolator_string = string(PyBytes_AsString(interpolator)),
 
         # convert Python list to std::vector
         cdef vector[shared_ptr[DefaultProbabilityHelper]]* instruments = \

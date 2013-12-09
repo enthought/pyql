@@ -1,3 +1,4 @@
+# cython: language_level=3
 """
  Copyright (C) 2011, Enthought Inc
  Copyright (C) 2011, Patrick Henaff
@@ -15,7 +16,7 @@ from cpython cimport bool
 from libcpp cimport bool as cbool
 
 from libcpp.string cimport string
-from cpython.string cimport PyString_AsString
+from cpython cimport PyBytes_AsString
 
 cimport _libor
 cimport quantlib._index as _in
@@ -51,7 +52,7 @@ cdef class Libor(IborIndex):
         DayCounter dayCounter):
     
         # convert the Python str to C++ string
-        cdef string familyName_string = string(PyString_AsString(familyName))
+        cdef string familyName_string = string(PyBytes_AsString(familyName))
 
         
         self._thisptr = new shared_ptr[_in.Index](

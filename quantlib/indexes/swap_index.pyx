@@ -9,7 +9,7 @@
 
 include '../types.pxi'
 from cython.operator cimport dereference as deref
-from cpython.string cimport PyString_AsString
+from cpython cimport PyBytes_AsString
 from libcpp.string cimport string
 
 from quantlib.index cimport Index
@@ -36,7 +36,7 @@ cdef class SwapIndex(Index):
                  IborIndex ibor_index):
 
         # convert the Python str to C++ string
-        cdef string family_name_string = string(PyString_AsString(family_name))
+        cdef string family_name_string = string(PyBytes_AsString(family_name))
 
         self._thisptr = new shared_ptr[_in.Index](
             new _si.SwapIndex(

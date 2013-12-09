@@ -5,7 +5,7 @@ include '../../types.pxi'
 
 from libcpp cimport bool
 from libcpp.string cimport string
-from cpython.string cimport PyString_AsString
+from cpython cimport PyBytes_AsString
 
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
@@ -39,8 +39,8 @@ cdef class MCVanillaEngine(PricingEngine):
             )
 
         # convert the Python str to C++ string
-        cdef string traits_string = string(PyString_AsString(trait))
-        cdef string RNG_string = string(PyString_AsString(RNG))
+        cdef string traits_string = string(PyBytes_AsString(trait))
+        cdef string RNG_string = string(PyBytes_AsString(RNG))
 
         # the input may be a Heston process or a Bates process
         # this may not be needed ...
