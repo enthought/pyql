@@ -140,7 +140,7 @@ def dividendOption():
     
     # ++++++++++++++++++++ Creation of the vector of RateHelper (need for the Yield Curve construction)
     # ++++++++++++++++++++ Libor 
-    LiborFamilyName = currency.name.decode('utf-8') + "Libor"
+    LiborFamilyName = currency.name + "Libor"
     instruments = []
     for rate, tenor in zip(liborRates, liborRatesTenor):
         # Index description ___ creation of a Libor index
@@ -150,7 +150,7 @@ def dividendOption():
         instruments.append(DepositRateHelper(rate, index=liborIndex))
 
     # +++++++++++++++++++++ Swap
-    SwapFamilyName = currency.name + b"swapIndex";
+    SwapFamilyName = currency.name + "swapIndex";
     for tenor, rate in zip(swapRatesTenor, swapRates):
         # swap description ___ creation of a swap index. The floating leg is described in the index 'Swap_iborIndex'
         swapIndex = SwapIndex (SwapFamilyName, tenor, settlement_days, currency, calendar,
