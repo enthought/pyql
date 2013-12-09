@@ -6,6 +6,8 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
+from __future__ import division
+from __future__ import print_function
 
 import numpy as np
 import pandas
@@ -61,8 +63,8 @@ def heston_helpers(df_option, dtTrade=None, df_rates=None, ival=None):
     TTM = df_option['T'][0]
     Fwd = df_option['F'][0]
     spot = SimpleQuote(Fwd * np.exp(-(iRate - iDiv) * TTM))
-    print('Spot: %f risk-free rate: %f div. yield: %f' % \
-          (spot.value, iRate, iDiv))
+    print(('Spot: %f risk-free rate: %f div. yield: %f' % \
+          (spot.value, iRate, iDiv)))
 
     # loop through rows in option data frame, construct
     # helpers for bid/ask
@@ -153,15 +155,15 @@ def bates_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
     )
 
     print('model calibration results:')
-    print('v0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: \
+    print(('v0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: \
     %f nu: %f delta: %f' %
           (model.v0, model.kappa, model.theta, model.sigma,
-           model.rho, model.Lambda, model.nu, model.delta))
+           model.rho, model.Lambda, model.nu, model.delta)))
 
     calib_error = (1.0 / len(options)) * sum(
         [pow(o.calibration_error(), 2) for o in options])
 
-    print('SSE: %f' % calib_error)
+    print(('SSE: %f' % calib_error))
 
     return merge_df(df_option, options, 'Bates')
 
@@ -172,7 +174,7 @@ def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
     """
 
     # array of option helpers
-    print df_option, df_rates, ival
+    print(df_option, df_rates, ival)
     hh = heston_helpers(df_option, dtTrade, df_rates, ival)
     options = hh['options']
     spot = hh['spot']
@@ -200,14 +202,14 @@ def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
     )
 
     print('model calibration results:')
-    print('v0: %f kappa: %f theta: %f sigma: %f rho: %f' %
+    print(('v0: %f kappa: %f theta: %f sigma: %f rho: %f' %
           (model.v0, model.kappa, model.theta, model.sigma,
-           model.rho))
+           model.rho)))
 
     calib_error = (1.0 / len(options)) * sum(
         [pow(o.calibration_error() * 100.0, 2) for o in options])
 
-    print('SSE: %f' % calib_error)
+    print(('SSE: %f' % calib_error))
 
     return merge_df(df_option, options, 'Heston')
 
@@ -247,16 +249,16 @@ def batesdetjump_calibration(df_option, dtTrade=None,
     )
 
     print('BatesDetJumpModel calibration:')
-    print('v0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f nu: %f \
+    print(('v0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f nu: %f \
     delta: %f\nkappaLambda: %f thetaLambda: %f' %
           (model.v0, model.kappa, model.theta, model.sigma,
            model.rho, model.Lambda, model.nu, model.delta,
-           model.kappaLambda, model.thetaLambda))
+           model.kappaLambda, model.thetaLambda)))
 
     calib_error = (1.0 / len(options)) * sum(
         [pow(o.calibration_error(), 2) for o in options])
 
-    print('SSE: %f' % calib_error)
+    print(('SSE: %f' % calib_error))
 
     return merge_df(df_option, options, 'BatesDetJump')
 
@@ -295,16 +297,16 @@ def batesdoubleexp_calibration(df_option, dtTrade=None,
     )
 
     print('BatesDoubleExpModel calibration:')
-    print('v0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f \
+    print(('v0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f \
     nuUp: %f nuDown: %f\np: %f' %
           (model.v0, model.kappa, model.theta, model.sigma,
            model.rho, model.Lambda, model.nuUp, model.nuDown,
-           model.p))
+           model.p)))
 
     calib_error = (1.0 / len(options)) * sum(
         [pow(o.calibration_error(), 2) for o in options])
 
-    print('SSE: %f' % calib_error)
+    print(('SSE: %f' % calib_error))
 
     return merge_df(df_option, options, 'BatesDoubleExp')
 
@@ -344,16 +346,16 @@ def batesdoubleexpdetjump_calibration(df_option, dtTrade=None,
     )
 
     print('BatesDoubleExpDetJumpModel calibration:')
-    print('v0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f \
+    print(('v0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f \
     nuUp: %f nuDown: %f\np: %f\nkappaLambda: %f thetaLambda: %f' %
           (model.v0, model.kappa, model.theta, model.sigma,
            model.rho, model.Lambda, model.nuUp, model.nuDown,
-           model.p, model.kappaLambda, model.thetaLambda))
+           model.p, model.kappaLambda, model.thetaLambda)))
 
     calib_error = (1.0 / len(options)) * sum(
         [pow(o.calibration_error(), 2) for o in options])
 
-    print('SSE: %f' % calib_error)
+    print(('SSE: %f' % calib_error))
 
     return merge_df(df_option, options, 'BatesDoubleExpDetJump')
 

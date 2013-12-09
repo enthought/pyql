@@ -5,6 +5,7 @@ This example is based on the QuantLib CDS official example.
 Copyright (C) 2012 Enthought Inc.
  
 """
+from __future__ import print_function
 
 from quantlib.instruments.credit_default_swap import CreditDefaultSwap, SELLER
 from quantlib.pricingengines.credit import MidPointCdsEngine
@@ -72,17 +73,17 @@ if __name__ == '__main__':
 
 
     target = todays_date + Period(1, Years)
-    print target
-    print "Some survival probability values: "
-    print "1Y survival probability: {:%}".format(
+    print(target)
+    print("Some survival probability values: ")
+    print("1Y survival probability: {:%}".format(
             hazard_rate_structure.survival_probability(target)
-    )
-    print "               expected: {:%}".format(0.9704)
+    ))
+    print("               expected: {:%}".format(0.9704))
 
-    print "2Y survival probability: {:%}".format(
+    print("2Y survival probability: {:%}".format(
         hazard_rate_structure.survival_probability(todays_date + 2*Years)
-    )
-    print "               expected: {:%}".format(0.9418)
+    ))
+    print("               expected: {:%}".format(0.9418))
 
     # reprice instruments
     nominal = 1000000.0;
@@ -138,24 +139,24 @@ if __name__ == '__main__':
     cds_1y.set_pricing_engine(engine);
     cds_2y.set_pricing_engine(engine);
 
-    print "Repricing of quoted CDSs employed for calibration: "
-    print "3M fair spread: {}".format(cds_3m.fair_spread)
-    print "   NPV:         ", cds_3m.net_present_value
-    print "   default leg: ", cds_3m.default_leg_npv
-    print "   coupon leg:  ", cds_3m.coupon_leg_npv
+    print("Repricing of quoted CDSs employed for calibration: ")
+    print("3M fair spread: {}".format(cds_3m.fair_spread))
+    print("   NPV:         ", cds_3m.net_present_value)
+    print("   default leg: ", cds_3m.default_leg_npv)
+    print("   coupon leg:  ", cds_3m.coupon_leg_npv)
 
-    print "6M fair spread: {}".format(cds_6m.fair_spread)
-    print "   NPV:         ", cds_6m.net_present_value
-    print "   default leg: ", cds_6m.default_leg_npv
-    print "   coupon leg:  ", cds_6m.coupon_leg_npv
+    print("6M fair spread: {}".format(cds_6m.fair_spread))
+    print("   NPV:         ", cds_6m.net_present_value)
+    print("   default leg: ", cds_6m.default_leg_npv)
+    print("   coupon leg:  ", cds_6m.coupon_leg_npv)
 
-    print "1Y fair spread: {}".format(cds_1y.fair_spread)
-    print "   NPV:         ", cds_1y.net_present_value
-    print "   default leg: ", cds_1y.default_leg_npv
-    print "   coupon leg:  ", cds_1y.coupon_leg_npv
+    print("1Y fair spread: {}".format(cds_1y.fair_spread))
+    print("   NPV:         ", cds_1y.net_present_value)
+    print("   default leg: ", cds_1y.default_leg_npv)
+    print("   coupon leg:  ", cds_1y.coupon_leg_npv)
 
-    print "2Y fair spread: {}".format(cds_2y.fair_spread)
-    print "   NPV:         ", cds_2y.net_present_value
-    print "   default leg: ", cds_2y.default_leg_npv
-    print "   coupon leg:  ", cds_2y.coupon_leg_npv
+    print("2Y fair spread: {}".format(cds_2y.fair_spread))
+    print("   NPV:         ", cds_2y.net_present_value)
+    print("   default leg: ", cds_2y.default_leg_npv)
+    print("   coupon leg:  ", cds_2y.coupon_leg_npv)
 

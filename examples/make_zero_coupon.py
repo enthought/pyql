@@ -6,6 +6,8 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
+from __future__ import division
+from __future__ import print_function
 
 # This script shows how to build libor zero-coupon
 # curves from deposits and swap rates, and plot
@@ -143,7 +145,7 @@ if __name__ == '__main__':
     (dtMat, zc) = zero_curve(ts, dtObs[-1])
     dtMax = dtMat[-1]
     
-    print('dtMin %s dtMax %s' % (dtMin, dtMax))
+    print(('dtMin %s dtMax %s' % (dtMin, dtMax)))
     
     ax.set_xlim(dtMin, dtMax)
     ax.set_ylim(0.0, 0.1)

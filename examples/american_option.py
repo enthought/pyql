@@ -6,6 +6,7 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
+from __future__ import print_function
 
 from quantlib.instruments.api import AmericanExercise, VanillaOption, Put
 from quantlib.instruments.payoffs import PlainVanillaPayoff
@@ -54,9 +55,9 @@ def main():
             ' |'.join(['%17s' % tag for tag in ['value',
                                                 'estimated error',
                                                 'actual error' ] ])
-    print
-    print header
-    print '-'*len(header)
+    print()
+    print(header)
+    print('-'*len(header))
 
     refValue = None
 
@@ -67,8 +68,8 @@ def main():
             dx = '%.4f' % dx
         else:
             dx = 'n/a'
-        print '%19s' % method + ' |' + \
-            ' |'.join(['%17s' % y for y in [x, dx, e] ])
+        print('%19s' % method + ' |' + \
+            ' |'.join(['%17s' % y for y in [x, dx, e] ]))
 
     # good to go
 
@@ -95,8 +96,8 @@ def main():
     report('finite differences', option.net_present_value)
 
 
-    print 'This is work in progress.'
-    print 'Some pricing engines are not yet interfaced.'
+    print('This is work in progress.')
+    print('Some pricing engines are not yet interfaced.')
 
     return
 

@@ -2,6 +2,7 @@
 
 Warning: this is work in progress and currently not working.
 """
+from __future__ import print_function
 from quantlib.indexes.euribor import Euribor6M
 from quantlib.pricingengines.swap import DiscountingSwapEngine
 from quantlib.settings import Settings
@@ -207,19 +208,19 @@ dblrule = "=" * width
 tab = " " * 8
 
 def report(swap, name):
-    print format % (name, formatPrice(swap.NPV(),2),
+    print(format % (name, formatPrice(swap.NPV(),2),
                     formatRate(swap.fairSpread(),4),
-                    formatRate(swap.fairRate(),4))
+                    formatRate(swap.fairRate(),4)))
 
-print dblrule
-print "5-year market swap-rate = %s" % formatRate(swaps[(5,Years)].value())
-print dblrule
+print(dblrule)
+print("5-year market swap-rate = %s" % formatRate(swaps[(5,Years)].value()))
+print(dblrule)
 
 # price on two different term structures
 
-print tab + "5-years swap paying %s" % formatRate(fixedRate)
-print separator.join(headers)
-print rule
+print(tab + "5-years swap paying %s" % formatRate(fixedRate))
+print(separator.join(headers))
+print(rule)
 
 discountTermStructure.linkTo(depoFuturesSwapCurve)
 forecastTermStructure.linkTo(depoFuturesSwapCurve)
@@ -229,12 +230,12 @@ discountTermStructure.linkTo(depoFraSwapCurve)
 forecastTermStructure.linkTo(depoFraSwapCurve)
 report(spot,'depo-FRA-swap')
 
-print rule
+print(rule)
 
 # price the 1-year forward swap
 
-print tab + "5-years, 1-year forward swap paying %s" % formatRate(fixedRate)
-print rule
+print(tab + "5-years, 1-year forward swap paying %s" % formatRate(fixedRate))
+print(rule)
 
 discountTermStructure.linkTo(depoFuturesSwapCurve)
 forecastTermStructure.linkTo(depoFuturesSwapCurve)
@@ -248,13 +249,13 @@ report(forward,'depo-FRA-swap')
 
 swaps[(5,Years)].setValue(0.046)
 
-print dblrule
-print "5-year market swap-rate = %s" % formatRate(swaps[(5,Years)].value())
-print dblrule
+print(dblrule)
+print("5-year market swap-rate = %s" % formatRate(swaps[(5,Years)].value()))
+print(dblrule)
 
-print tab + "5-years swap paying %s" % formatRate(fixedRate)
-print separator.join(headers)
-print rule
+print(tab + "5-years swap paying %s" % formatRate(fixedRate))
+print(separator.join(headers))
+print(rule)
 
 discountTermStructure.linkTo(depoFuturesSwapCurve)
 forecastTermStructure.linkTo(depoFuturesSwapCurve)
@@ -264,10 +265,10 @@ discountTermStructure.linkTo(depoFraSwapCurve)
 forecastTermStructure.linkTo(depoFraSwapCurve)
 report(spot,'depo-FRA-swap')
 
-print rule
+print(rule)
 
-print tab + "5-years, 1-year forward swap paying %s" % formatRate(fixedRate)
-print rule
+print(tab + "5-years, 1-year forward swap paying %s" % formatRate(fixedRate))
+print(rule)
 
 discountTermStructure.linkTo(depoFuturesSwapCurve)
 forecastTermStructure.linkTo(depoFuturesSwapCurve)

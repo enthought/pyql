@@ -1,3 +1,4 @@
+from __future__ import print_function
 # simple example to demonstrate the use of Settings()
 
 
@@ -32,11 +33,11 @@ date_payment = Date(19,10,2011)
 df_2 = term_structure.discount(date_payment)
 
 # df_1 and df_2 should be identical:
-print('rate: %f df_1: %f df_2 %f difference: %f' % (quote.value, df_1, df_2, df_2-df_1))
+print(('rate: %f df_1: %f df_2 %f difference: %f' % (quote.value, df_1, df_2, df_2-df_1)))
 
 # the term structure registers a listener on the quote: a change in quote
 # triggers a lazy recalculation of the discount factor
 
 quote.value = .05
 df_2 = term_structure.discount(date_payment)
-print('rate: %f df_2: %f' % (quote.value, df_2))
+print(('rate: %f df_2: %f' % (quote.value, df_2)))

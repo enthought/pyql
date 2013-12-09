@@ -1,3 +1,4 @@
+from __future__ import print_function
 # This code throws a QuantLib::Error that terminates python
 # Settings is set by default to today's date.
 # If dt_payment is in the past, a QuantLib::Error is thrown from c++
@@ -29,7 +30,7 @@ term_structure = FlatForward(
 
 try:
     df_1 = term_structure.discount(date_payment)
-    print('rate: %f df_1: %f' % (quote.value, df_1))
+    print(('rate: %f df_1: %f' % (quote.value, df_1)))
 except RuntimeError as exc:
     logger.error('Evaluation date and discount date issue.')
     logger.exception(exc)

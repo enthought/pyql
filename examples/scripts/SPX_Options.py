@@ -1,3 +1,4 @@
+from __future__ import print_function
 # -*- coding: utf-8 -*-
 # <nbformat>3</nbformat>
 
@@ -94,7 +95,7 @@ def read_SPX_file(option_data_file):
         dt = lineTwo.split('@')[0]
         dtTrade = dateutil.parser.parse(dt).date()
 
-        print('Dt Calc: %s Spot: %f' % (dtTrade, spot))
+        print(('Dt Calc: %s Spot: %f' % (dtTrade, spot)))
 
     # read all option price records as a data frame
     df = pandas.io.parsers.read_csv(option_data_file, header=0, sep=',', skiprows=[0,1])
@@ -133,10 +134,10 @@ option_data_file = \
 
 if __name__ == '__main__':
     df_SPX = read_SPX_file(option_data_file)
-    print '%d records processed' % len(df_SPX)
+    print('%d records processed' % len(df_SPX))
 
     # save a csv file and pickled data frame
     df_SPX.to_csv('../data/df_SPX_24jan2011.csv', index=False)
     df_SPX.save('../data/df_SPX_24jan2011.pkl')
-    print 'File saved'
+    print('File saved')
 
