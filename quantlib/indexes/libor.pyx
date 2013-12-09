@@ -1,4 +1,3 @@
-# cython: language_level=3
 """
  Copyright (C) 2011, Enthought Inc
  Copyright (C) 2011, Patrick Henaff
