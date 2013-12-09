@@ -39,8 +39,8 @@ cdef class MCVanillaEngine(PricingEngine):
             )
 
         # convert the Python str to C++ string
-        cdef string traits_string = string(PyBytes_AsString(trait))
-        cdef string RNG_string = string(PyBytes_AsString(RNG))
+        cdef string traits_string = string(PyBytes_AsString(trait.encode('UTF-8')))
+        cdef string RNG_string = string(PyBytes_AsString(RNG.encode('UTF-8')))
 
         # the input may be a Heston process or a Bates process
         # this may not be needed ...

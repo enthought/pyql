@@ -42,8 +42,8 @@ def term_structure_factory(str traits, str interpolator, Date settlement_date,
         curve_inputs.push_back( deref((<RateHelper>helper)._thisptr))
 
     # convert the Python str to C++ string
-    cdef string traits_string = string(PyBytes_AsString(traits))
-    cdef string interpolator_string = string(PyBytes_AsString(interpolator)),
+    cdef string traits_string = string(PyBytes_AsString(traits.encode('UTF-8')))
+    cdef string interpolator_string = string(PyBytes_AsString(interpolator.encode('UTF-8'))),
 
     cdef shared_ptr[_ff.YieldTermStructure] ts_ptr = _pyc.term_structure_factory(
         traits_string,
@@ -96,8 +96,8 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
             raise ValueError('Cannot initialize curve with no helpers')
 
         # convert Python string to C++ string
-        cdef string trait_string = string(PyBytes_AsString(trait))
-        cdef string interpolator_string = string(PyBytes_AsString(interpolator)),
+        cdef string trait_string = string(PyBytes_AsString(trait.encode('UTF-8')))
+        cdef string interpolator_string = string(PyBytes_AsString(interpolator.encode('UTF-8'))),
 
         # convert Python list to std::vector
         cdef vector[shared_ptr[_rh.RateHelper]]* instruments = \

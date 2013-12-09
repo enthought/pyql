@@ -52,7 +52,7 @@ cdef class Libor(IborIndex):
         DayCounter dayCounter):
     
         # convert the Python str to C++ string
-        cdef string familyName_string = string(PyBytes_AsString(familyName))
+        cdef string familyName_string = string(PyBytes_AsString(familyName.encode('UTF-8')))
 
         
         self._thisptr = new shared_ptr[_in.Index](

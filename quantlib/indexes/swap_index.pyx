@@ -1,3 +1,4 @@
+# cython: language_level=3
 """
  Copyright (C) 2011, Enthought Inc
  Copyright (C) 2011, Patrick Henaff
@@ -36,7 +37,7 @@ cdef class SwapIndex(Index):
                  IborIndex ibor_index):
 
         # convert the Python str to C++ string
-        cdef string family_name_string = string(PyBytes_AsString(family_name))
+        cdef string family_name_string = string(PyBytes_AsString(family_name.encode('UTF-8')))
 
         self._thisptr = new shared_ptr[_in.Index](
             new _si.SwapIndex(

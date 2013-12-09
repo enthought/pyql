@@ -42,8 +42,8 @@ cdef class PiecewiseDefaultCurve:
             raise ValueError('Cannot initialize curve with no helpers')
 
         # convert Python string to C++ string
-        cdef string trait_string = string(PyBytes_AsString(trait))
-        cdef string interpolator_string = string(PyBytes_AsString(interpolator)),
+        cdef string trait_string = string(PyBytes_AsString(trait.encode('UTF-8')))
+        cdef string interpolator_string = string(PyBytes_AsString(interpolator.encode('UTF-8'))),
 
         # convert Python list to std::vector
         cdef vector[shared_ptr[DefaultProbabilityHelper]]* instruments = \
