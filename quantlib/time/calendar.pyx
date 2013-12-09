@@ -11,6 +11,7 @@ from cython.operator cimport dereference as deref, preincrement as inc
 from libcpp cimport bool
 from libcpp.vector cimport vector
 
+from quantlib.settings import utf8_char_array_to_py_compat_str
 cimport quantlib.time._calendar as _calendar
 cimport quantlib.time._date as _date
 cimport quantlib.time.date as date
@@ -40,7 +41,7 @@ cdef class Calendar:
             self._thisptr = NULL
 
     def name(self):
-        return self._thisptr.name().c_str()
+        return utf8_char_array_to_py_compat_str(self._thisptr.name().c_str())
 
     def __str__(self):
         return self.name()

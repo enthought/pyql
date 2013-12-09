@@ -72,3 +72,12 @@ def py_compat_str_as_utf8_string(text):
         raise ValueError("requires text input, got %s" % type(text))
     return string(PyBytes_AsString(utf8_data))
 
+def utf8_char_array_to_py_compat_str(char* char_array):
+    """
+    Converts the given char* to a native Python string (bytes on Py2, unicode on Py3)
+    """
+    if PY_MAJOR_VERSION < 3:
+        return char_array
+    else:
+        return char_array.decode('UTF-8')
+
