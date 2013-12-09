@@ -66,7 +66,7 @@ cdef class PlainVanillaPayoff(Payoff):
 
     def __init__(self, option_type, float strike, from_qlpayoff=False):
 
-        if isinstance(option_type, basestring):
+        if isinstance(option_type, str):     # Changed from basestring for Py2/3 compatibility
             option_type = str_to_option_type(option_type)
         if not from_qlpayoff:
             self._thisptr = new shared_ptr[_payoffs.Payoff]( \

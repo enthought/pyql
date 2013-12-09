@@ -68,6 +68,7 @@ def py_compat_str_as_utf8_string(text):
     elif (PY_MAJOR_VERSION < 3) and isinstance(text, str):
         text.decode('UTF-8')    # ensure it's UTF-8 encoded if there are high-bit chars
         utf8_data = text
+    else:
         raise ValueError("requires text input, got %s" % type(text))
     return string(PyBytes_AsString(utf8_data))
 
