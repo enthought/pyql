@@ -145,7 +145,7 @@ if __name__ == '__main__':
     (dtMat, zc) = zero_curve(ts, dtObs[-1])
     dtMax = dtMat[-1]
     
-    print(('dtMin %s dtMax %s' % (dtMin, dtMax)))
+    print('dtMin %s dtMax %s' % (dtMin, dtMax))
     
     ax.set_xlim(dtMin, dtMax)
     ax.set_ylim(0.0, 0.1)

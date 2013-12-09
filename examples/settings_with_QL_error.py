@@ -30,7 +30,7 @@ term_structure = FlatForward(
 
 try:
     df_1 = term_structure.discount(date_payment)
-    print(('rate: %f df_1: %f' % (quote.value, df_1)))
+    print('rate: %f df_1: %f' % (quote.value, df_1))
 except RuntimeError as exc:
     logger.error('Evaluation date and discount date issue.')
     logger.exception(exc)

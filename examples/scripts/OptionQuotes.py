@@ -141,7 +141,7 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1, keepOTMData=Tr
 
     isFirst = True
     for spec, group in grouped:
-        print(('processing group %s' % spec))
+        print('processing group %s' % spec)
 
         # implied vol for this type/expiry group
 
@@ -192,7 +192,7 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1, keepOTMData=Tr
         discountFactor = np.exp(-iRate*timeToMaturity)
         Fwd = spot * np.exp((iRate-dRate)*timeToMaturity)
 
-        print(('Fwd: %f int rate: %f div yield: %f' % (Fwd, iRate, dRate)))
+        print('Fwd: %f int rate: %f div yield: %f' % (Fwd, iRate, dRate))
 
         # mid-market ATM volatility
         
@@ -225,7 +225,7 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1, keepOTMData=Tr
         f_put = interp1d(df_put['Strike'].values, df_put['IVMid'].values)
 
         atmVol = (f_call(Fwd)+f_put(Fwd))/2
-        print(('ATM vol: %f' % atmVol))
+        print('ATM vol: %f' % atmVol)
 
         # Quick Delta, computed with ATM vol
         rv = norm()

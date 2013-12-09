@@ -183,7 +183,7 @@ def heston_calibration(df_option, ival=None):
     TTM = df_option['TTM'][first_index]
     Fwd = df_option['Fwd'][first_index]
     spot = SimpleQuote(Fwd*np.exp(-(iRate-iDiv)*TTM))
-    print(('Spot: %f risk-free rate: %f div. yield: %f' % (spot.value, iRate, iDiv)))
+    print('Spot: %f risk-free rate: %f div. yield: %f' % (spot.value, iRate, iDiv))
 
     # build array of option helpers
     hh = heston_helpers(spot, df_option, dtTrade, df_rates)
@@ -214,14 +214,14 @@ def heston_calibration(df_option, ival=None):
     )
 
     print('model calibration results:')
-    print(('v0: %f kappa: %f theta: %f sigma: %f rho: %f' %
+    print('v0: %f kappa: %f theta: %f sigma: %f rho: %f' %
           (model.v0, model.kappa, model.theta, model.sigma,
-           model.rho)))
+           model.rho))
 
     calib_error = (1.0/len(options)) * sum(
         [pow(o.calibration_error()*100.0,2) for o in options])
 
-    print(('SSE: %f' % calib_error))
+    print('SSE: %f' % calib_error)
 
     # merge the fitted volatility and the input data set
     return merge_df(df_option, options, 'Heston')

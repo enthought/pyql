@@ -29,7 +29,7 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
 
     isFirst = True
     for spec, group in grouped:
-        print(('processing group %s' % spec))
+        print('processing group %s' % spec)
 
         # implied vol for this type/expiry group
 
@@ -82,7 +82,7 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
         discountFactor = np.exp(-iRate * timeToMaturity)
         Fwd = spot * np.exp((iRate - dRate) * timeToMaturity)
 
-        print(('Fwd: %f int rate: %f div yield: %f' % (Fwd, iRate, dRate)))
+        print('Fwd: %f int rate: %f div yield: %f' % (Fwd, iRate, dRate))
 
         # mid-market ATM volatility
 
@@ -116,7 +116,7 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
 
         # atmVol = (f_call(Fwd) + f_put(Fwd)) / 2
         atmVol = .20
-        print(('ATM vol: %f' % atmVol))
+        print('ATM vol: %f' % atmVol)
 
         # Quick Delta, computed with ATM vol
         df_call['QuickDelta'] = 0.5
@@ -166,7 +166,7 @@ class NoteBooksTestCase(unittest.TestCase):
         df_final = Compute_IV(option_data_frame, tMin=1 / 12,
                               nMin=6, QDMin=.2, QDMax=.8)
 
-        print(('Number of rows: %d' % len(df_final.index)))
+        print('Number of rows: %d' % len(df_final.index))
         self.assertEqual(len(df_final.index), 553, 'Wrong number of rows')
 
 if __name__ == '__main__':

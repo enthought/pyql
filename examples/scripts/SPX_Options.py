@@ -95,7 +95,7 @@ def read_SPX_file(option_data_file):
         dt = lineTwo.split('@')[0]
         dtTrade = dateutil.parser.parse(dt).date()
 
-        print(('Dt Calc: %s Spot: %f' % (dtTrade, spot)))
+        print('Dt Calc: %s Spot: %f' % (dtTrade, spot))
 
     # read all option price records as a data frame
     df = pandas.io.parsers.read_csv(option_data_file, header=0, sep=',', skiprows=[0,1])
