@@ -5,10 +5,10 @@ include '../../types.pxi'
 
 from libcpp cimport bool
 from libcpp.string cimport string
-from cpython cimport PyBytes_AsString
 
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
+from quantlib.settings import py_compat_str_as_utf8_string
 
 cimport quantlib.processes._heston_process as _hp
 from quantlib.processes.heston_process cimport HestonProcess
@@ -39,8 +39,8 @@ cdef class MCVanillaEngine(PricingEngine):
             )
 
         # convert the Python str to C++ string
-        cdef string traits_string = string(PyBytes_AsString(trait.encode('UTF-8')))
-        cdef string RNG_string = string(PyBytes_AsString(RNG.encode('UTF-8')))
+        cdef string traits_string = py_compat_str_as_utf8_string(trait)
+        cdef string RNG_string = py_compat_str_as_utf8_string(RNG)
 
         # the input may be a Heston process or a Bates process
         # this may not be needed ...

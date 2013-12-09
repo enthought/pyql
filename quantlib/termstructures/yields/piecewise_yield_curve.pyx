@@ -2,12 +2,12 @@ include '../../types.pxi'
 from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 from libcpp.string cimport string
-from cpython cimport PyBytes_AsString
 
 cimport _piecewise_yield_curve as _pyc
 cimport _rate_helpers as _rh
 cimport _flat_forward as _ff
 from quantlib.handle cimport shared_ptr
+from quantlib.settings import py_compat_str_as_utf8_string
 
 from rate_helpers cimport RateHelper
 from quantlib.time.date cimport Date
@@ -42,8 +42,8 @@ def term_structure_factory(str traits, str interpolator, Date settlement_date,
         curve_inputs.push_back( deref((<RateHelper>helper)._thisptr))
 
     # convert the Python str to C++ string
-    cdef string traits_string = string(PyBytes_AsString(traits.encode('UTF-8')))
-    cdef string interpolator_string = string(PyBytes_AsString(interpolator.encode('UTF-8'))),
+    cdef string traits_string = py_compat_str_as_utf8_string(traits)
+    cdef string interpolator_string = py_compat_str_as_utf8_string(interpolator)
 
     cdef shared_ptr[_ff.YieldTermStructure] ts_ptr = _pyc.term_structure_factory(
         traits_string,
@@ -96,8 +96,8 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
             raise ValueError('Cannot initialize curve with no helpers')
 
         # convert Python string to C++ string
-        cdef string trait_string = string(PyBytes_AsString(trait.encode('UTF-8')))
-        cdef string interpolator_string = string(PyBytes_AsString(interpolator.encode('UTF-8'))),
+        cdef string trait_string = py_compat_str_as_utf8_string(trait)
+        cdef string interpolator_string = py_compat_str_as_utf8_string(interpolator)
 
         # convert Python list to std::vector
         cdef vector[shared_ptr[_rh.RateHelper]]* instruments = \
