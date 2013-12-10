@@ -4,6 +4,7 @@ language: python
 python:
   - 2.6
   - 2.7
+  - 3.3
 before_install:
  - sudo apt-get update
  - sudo apt-get install libquantlib0-dev
@@ -18,6 +19,7 @@ install:
 script:
  - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then python -m unittest2.__main__ discover; fi
  - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then python -m unittest discover; fi
+ - if [[ $TRAVIS_PYTHON_VERSION == '3.3' ]]; then python -m unittest discover; fi
 notifications:
   email: 
     - dpinte@enthought.com
