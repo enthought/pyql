@@ -26,6 +26,8 @@ from quantlib.termstructures.yields.api import FlatForward
 from quantlib.termstructures.volatility.api import BlackConstantVol
 from quantlib.time.api import Actual360, today, NullCalendar
 
+from quantlib.time.date import (Period, Days)
+
 
 def heston_pricer(trade_date, options, params, rates, spot):
     """
@@ -91,7 +93,7 @@ def blsprice(spot, strike, risk_free_rate, time, volatility,
     process = BlackScholesMertonProcess(spot, dividend_ts,
                                         risk_free_ts, volatility_ts)
 
-    exercise_date = today() + 90
+    exercise_date = today() + Period(time * 365, Days)
     exercise = EuropeanExercise(exercise_date)
 
     payoff = PlainVanillaPayoff(option_type, strike)
