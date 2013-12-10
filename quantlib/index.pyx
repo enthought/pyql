@@ -1,3 +1,5 @@
+from quantlib.settings import utf8_char_array_to_py_compat_str
+
 cdef class Index:
 
     def __cinit__(self):
@@ -12,5 +14,5 @@ cdef class Index:
 
     property name:
        def __get__(self):
-           return self._thisptr.get().name().c_str()
+           return utf8_char_array_to_py_compat_str(self._thisptr.get().name().c_str())
 

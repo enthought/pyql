@@ -1,3 +1,4 @@
+from __future__ import print_function
 # simple example to demonstrate the use of Settings()
 
 

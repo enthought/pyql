@@ -1,3 +1,5 @@
+from __future__ import division
+from __future__ import print_function
 import numpy as np
 
 from .unittest_tools import unittest
@@ -350,7 +352,7 @@ class HestonModelTestCase(unittest.TestCase):
         calc_2 = option.net_present_value
 
         if(abs(calc_1-calc_2) > 1.e-5):
-            print 'calc 1 %f calc 2 %f' % (calc_1, calc_2)
+            print('calc 1 %f calc 2 %f' % (calc_1, calc_2))
         self.assertNotEqual(calc_1, calc_2)
 
     def test_smith(self):

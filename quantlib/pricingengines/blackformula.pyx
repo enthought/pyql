@@ -64,7 +64,7 @@ def blackFormulaImpliedStdDev(cp, Real strike,
     Implied volatility of an European vanilla option, with estimate of initial guess
     """
 
-    if isinstance(cp, basestring):
+    if isinstance(cp, str):   # Changed from basestring for Py2/3 compatibility
         cpType = STR_TO_OPTION_TYPE[cp.upper()]
     else:
         cpType = cp

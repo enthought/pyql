@@ -6,6 +6,7 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
+from __future__ import print_function
 
 import string
 import re
@@ -65,7 +66,7 @@ def _partition_date(date):
     date = string.lstrip(string.rstrip(date))
     for reg, idx in date_re_list:
         mo = reg.match(date)
-        print mo
+        print(mo)
         if mo != None:
             return (mo.group(idx[0]), mo.group(idx[1]),
                     mo.group(idx[2]))
@@ -104,7 +105,7 @@ def pydate_to_qldate(date):
     into a QL Date.
     """
 
-    if isinstance(date, basestring):
+    if isinstance(date, str):     # Changed from basestring for Py2/3 compatibility
         yy, mm, dd = _parsedate(date)
         return Date(dd, mm, yy)
     else:

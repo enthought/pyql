@@ -1,3 +1,4 @@
+from __future__ import print_function
 # -*- coding: utf-8 -*-
 # <nbformat>3</nbformat>
 
@@ -133,10 +134,10 @@ option_data_file = \
 
 if __name__ == '__main__':
     df_SPX = read_SPX_file(option_data_file)
-    print '%d records processed' % len(df_SPX)
+    print('%d records processed' % len(df_SPX))
 
     # save a csv file and pickled data frame
     df_SPX.to_csv('../data/df_SPX_24jan2011.csv', index=False)
     df_SPX.save('../data/df_SPX_24jan2011.pkl')
-    print 'File saved'
+    print('File saved')
 

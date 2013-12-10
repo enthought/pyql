@@ -3,6 +3,7 @@
 This example is based on the QuantLib Excel bond demo.
 
 """
+from __future__ import print_function
 
 from quantlib.instruments.bonds import FixedRateBond
 from quantlib.time.api import (
@@ -72,9 +73,9 @@ pricing_engine = DiscountingBondEngine(discounting_term_structure)
 bond.set_pricing_engine(pricing_engine)
 
 
-print 'Settlement date: ', bond.settlement_date()
-print 'Maturity date:', bond.maturity_date
-print 'Accrued amount: ', bond.accrued_amount(bond.settlement_date())
-print 'Clean price:', bond.clean_price
+print('Settlement date: ', bond.settlement_date())
+print('Maturity date:', bond.maturity_date)
+print('Accrued amount: ', bond.accrued_amount(bond.settlement_date()))
+print('Clean price:', bond.clean_price)
 
 

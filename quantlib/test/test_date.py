@@ -47,7 +47,7 @@ class TestQuantLibDate(unittest.TestCase):
         from_datetime_date = Date.from_datetime(datetime_date)
         self.assertEquals(from_datetime_date.serial, date1.serial)
 
-        datetime_datetime = datetime.datetime(1998, 11, 19, 01, 00)
+        datetime_datetime = datetime.datetime(1998, 11, 19, 0o1, 00)
         from_datetime_datetime = Date.from_datetime(datetime_datetime)
         self.assertEquals(from_datetime_datetime.serial, date1.serial)
 

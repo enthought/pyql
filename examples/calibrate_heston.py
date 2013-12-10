@@ -6,6 +6,8 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
+from __future__ import division
+from __future__ import print_function
 
 import numpy as np
 import pandas
@@ -172,7 +174,7 @@ def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):
     """
 
     # array of option helpers
-    print df_option, df_rates, ival
+    print(df_option, df_rates, ival)
     hh = heston_helpers(df_option, dtTrade, df_rates, ival)
     options = hh['options']
     spot = hh['spot']

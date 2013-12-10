@@ -32,7 +32,7 @@ elif sys.platform == 'win32':
         r'E:\tmp\boost_1_46_1\lib'
     ]
     QL_LIBRARY = 'QuantLib'
-elif sys.platform == 'linux2':
+elif sys.platform.startswith('linux'):   # 'linux' on Py3, 'linux2' on Py2
     # good for Debian / ubuntu 10.04 (with QL .99 installed by default)
     INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.', SUPPORT_CODE_INCLUDE]
     LIBRARY_DIRS = ['/usr/local/lib', '/usr/lib', ]
