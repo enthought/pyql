@@ -27,6 +27,8 @@ from quantlib.termstructures.volatility.api import BlackConstantVol
 from quantlib.time.api import Actual360, today, NullCalendar
 
 from quantlib.time.date import (Period, Days)
+from numbers import Number
+import inspect
 
 
 def heston_pricer(trade_date, options, params, rates, spot):
@@ -77,10 +79,70 @@ def heston_pricer(trade_date, options, params, rates, spot):
     return prices
 
 
+def common_shape(**args):
+
+    the_shape = None
+    res = {}
+    for a in args:
+        value = args[a]
+
+        if isinstance(value, Number) or isinstance(value, basestring):
+            res[a] = ('scalar', None)
+        else:
+            if(the_shape is None):
+                the_shape = np.shape(value)
+                res[a] = ('array', the_shape)
+            elif(the_shape == np.shape(value)):
+                res[a] = ('array', the_shape)
+            else:
+                raise ValueError('Wrong shape for argument %s. \
+                Excepting a scalar or array of shape %s' % \
+                                 (a, str(the_shape)))
+    return res
+
+
 def blsprice(spot, strike, risk_free_rate, time, volatility,
              option_type='Call', dividend=0.0):
+
+    frame = inspect.currentframe()
+    args, _, _, values = inspect.getargvalues(frame)
+
+    # all non-scalar arguments must have the same shape, do not care if
+    # it is a numpy type or not
+
+    shape = common_shape(**values)
+
+    all_scalars = np.all([shape[key][0] == 'scalar' for key in shape])
+
+    if all_scalars:
+        npv = _blsprice(**values)
+    else:
+        # the array and scalar variables
+        array_vars = [k for k, v in shape.items() if v[0] == 'array']
+        scalar_vars = [k for k, v in shape.items() if v[0] == 'scalar']
+        the_shape = shape[array_vars[0]]
+        npv = np.ravel(np.zeros(the_shape))
+        for key in array_vars:
+            values[key] = np.ravel(values[key])
+
+        input_args = dict((key, 0) for key in args)
+        for key in scalar_vars:
+            input_args[key] = values[key]
+
+        for i in range(len(npv)):
+            for key in array_vars:
+                input_args[key] = values[key][i]
+            npv[i] = _blsprice(**input_args)
+
+        npv = npv.reshape(the_shape)
+
+    return npv
+
+
+def _blsprice(spot, strike, risk_free_rate, time, volatility,
+             option_type='Call', dividend=0.0):
     """
-    Black-Scholes option pricing model
+    Black-Scholes option pricing model.
     """
     spot = SimpleQuote(spot)
 
