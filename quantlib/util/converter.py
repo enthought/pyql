@@ -104,6 +104,8 @@ def pydate_to_qldate(date):
     into a QL Date.
     """
 
+    if type(date) == Date:
+        return date
     if isinstance(date, basestring):
         yy, mm, dd = _parsedate(date)
         return Date(dd, mm, yy)

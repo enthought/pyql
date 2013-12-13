@@ -24,10 +24,11 @@ from quantlib.pricingengines.api import AnalyticEuropeanEngine
 from quantlib.processes.api import BlackScholesMertonProcess
 from quantlib.termstructures.yields.api import FlatForward
 from quantlib.termstructures.volatility.api import BlackConstantVol
-from quantlib.time.api import Actual360, today, NullCalendar
+from quantlib.time.api import today, NullCalendar, ActualActual
 
 from quantlib.time.date import (Period, Days)
-from numbers import Number
+from quantlib.mlab.util import common_shape, array_call
+
 import inspect
 
 
@@ -79,63 +80,22 @@ def heston_pricer(trade_date, options, params, rates, spot):
     return prices
 
 
-def common_shape(**args):
-
-    the_shape = None
-    res = {}
-    for a in args:
-        value = args[a]
-
-        if isinstance(value, Number) or isinstance(value, basestring):
-            res[a] = ('scalar', None)
-        else:
-            if(the_shape is None):
-                the_shape = np.shape(value)
-                res[a] = ('array', the_shape)
-            elif(the_shape == np.shape(value)):
-                res[a] = ('array', the_shape)
-            else:
-                raise ValueError('Wrong shape for argument %s. \
-                Excepting a scalar or array of shape %s' % \
-                                 (a, str(the_shape)))
-    return res
-
-
 def blsprice(spot, strike, risk_free_rate, time, volatility,
              option_type='Call', dividend=0.0):
 
     frame = inspect.currentframe()
-    args, _, _, values = inspect.getargvalues(frame)
+    the_shape, shape, values = common_shape(frame)
 
-    # all non-scalar arguments must have the same shape, do not care if
-    # it is a numpy type or not
-
-    shape = common_shape(**values)
+    print(shape)
+    print(values)
 
     all_scalars = np.all([shape[key][0] == 'scalar' for key in shape])
 
     if all_scalars:
         npv = _blsprice(**values)
     else:
-        # the array and scalar variables
-        array_vars = [k for k, v in shape.items() if v[0] == 'array']
-        scalar_vars = [k for k, v in shape.items() if v[0] == 'scalar']
-        the_shape = shape[array_vars[0]]
-        npv = np.ravel(np.zeros(the_shape))
-        for key in array_vars:
-            values[key] = np.ravel(values[key])
-
-        input_args = dict((key, 0) for key in args)
-        for key in scalar_vars:
-            input_args[key] = values[key]
-
-        for i in range(len(npv)):
-            for key in array_vars:
-                input_args[key] = values[key][i]
-            npv[i] = _blsprice(**input_args)
-
-        npv = npv.reshape(the_shape)
-
+        npv = array_call(_blsprice, shape, values)
+        npv = np.reshape(npv, the_shape)
     return npv
 
 
@@ -146,7 +106,7 @@ def _blsprice(spot, strike, risk_free_rate, time, volatility,
     """
     spot = SimpleQuote(spot)
 
-    daycounter = Actual360()
+    daycounter = ActualActual()
     risk_free_ts = FlatForward(today(), risk_free_rate, daycounter)
     dividend_ts = FlatForward(today(), dividend, daycounter)
     volatility_ts = BlackConstantVol(today(), NullCalendar(),
@@ -164,3 +124,31 @@ def _blsprice(spot, strike, risk_free_rate, time, volatility,
     engine = AnalyticEuropeanEngine(process)
     option.set_pricing_engine(engine)
     return option.npv
+
+
+def blsimpv(price, spot, strike, risk_free_rate, time,
+             option_type='Call', dividend=0.0):
+
+    frame = inspect.currentframe()
+    the_shape, shape, values = common_shape(frame)
+
+    all_scalars = np.all([shape[key][0] == 'scalar' for key in shape])
+
+    if all_scalars:
+        res = _blsimpv(**values)
+    else:
+        res = array_call(_blsimpv, shape, values)
+
+    return res
+
+
+def _blsimpv(price, spot, strike, risk_free_rate, time,
+             option_type='Call', dividend=0.0):
+    return vol
+
+if __name__ == '__main__':
+    
+    p = blsprice(spot=100, strike=100, risk_free_rate=.05,
+                 time=1., volatility=.25,
+                 option_type=('Call', 'Put'))
+    print(p)

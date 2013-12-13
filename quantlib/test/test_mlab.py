@@ -50,9 +50,16 @@ class OptionPricerTestCase(unittest.TestCase):
 
     def test_blsprice(self):
 
-        Settings.instance().evaluation_date = today()
-        call_value = blsprice(100.0, 97.0, 0.1, 0.25, 0.5)
-        self.assertAlmostEquals(call_value, 12.61, 2)
+        # Settings.instance().evaluation_date = today()
+        # from maltab documentation of blsprice
+        p = blsprice(spot=585, strike=600, risk_free_rate=.05,
+                     time=1 / 4., volatility=.25,
+                     option_type=('Call', 'Put'),
+                     dividend=0.045)
+
+        self.assertAlmostEquals(p[0], 22.6716, 3)
+        self.assertAlmostEquals(p[1], 36.7626, 3)
+
 
     def test_yield(self):
 
