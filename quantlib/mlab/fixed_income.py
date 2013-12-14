@@ -7,10 +7,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from datetime import date
-
+import numpy as np
 from quantlib.instruments.bonds import (
-    FixedRateBond, ZeroCouponBond
+    FixedRateBond
 )
 from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.time.calendar import (
@@ -32,14 +31,18 @@ from quantlib.settings import Settings
 from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure
 )
+
+from quantlib.time.daycounter import (
+    DayCounter)
+
 from quantlib.util.converter import pydate_to_qldate
 
 from quantlib.mlab.util import common_shape, array_call
 import inspect
 
-DEBUG = True
+DEBUG = False
 
-def bndprice(bond_yield, coupon_rate, evaluation_date, maturity_date,
+def bndprice(bond_yield, coupon_rate, pricing_date, maturity_date,
              period, daycounter):
 
     frame = inspect.currentframe()
@@ -61,19 +64,20 @@ def bndprice(bond_yield, coupon_rate, evaluation_date, maturity_date,
     return (price, ac) 
 
 
-def _bndprice(bond_yield, coupon_rate, evaluation_date, maturity_date,
-              period=Semiannual, daycounter=Actual365Fixed()):
+def _bndprice(bond_yield, coupon_rate, pricing_date, maturity_date,
+              period='Annual', daycounter='Actual365Fixed'):
     """
     Clean price and accrued interest of a bond
     """
 
-    evaluation_date = pydate_to_qldate(evaluation_date)
+    cnt = DayCounter.from_name(daycounter)
+
+    evaluation_date = pydate_to_qldate(pricing_date)
     
     settings = Settings()
     settings.evaluation_date =  evaluation_date
 
     calendar = TARGET()
-    effective_date = Date(10, Jul, 2006)
     termination_date = pydate_to_qldate(maturity_date)
 
     # effective date must be before settlement date, but do not
@@ -84,9 +88,9 @@ def _bndprice(bond_yield, coupon_rate, evaluation_date, maturity_date,
     effective_date = calendar.advance(
         effective_date, -1, Years, convention=Unadjusted)
 
-    settlement_days = 1
     settlement_date = calendar.advance(
-        evaluation_date, -1, Days, convention=ModifiedFollowing)
+            evaluation_date, 2, Days, convention=ModifiedFollowing)
+        
 
     face_amount = 100.0
     redemption = 100.0
@@ -101,27 +105,37 @@ def _bndprice(bond_yield, coupon_rate, evaluation_date, maturity_date,
         Backward
     )
 
+    date_list = fixed_bond_schedule.dates()
+    k = 0
+    for dt in date_list:
+        print('k: %d date: %s' % (k,dt))
+        k +=1
+    
     issue_date = effective_date
-
+    
+    settlement_days = 2
     bond = FixedRateBond(
-        settlement_days,
+                settlement_days,
                 face_amount,
                 fixed_bond_schedule,
                 [coupon_rate],
-        ActualActual(ISMA),
+                ActualActual(ISMA),
                 Following,
-        redemption,
-        issue_date
+                redemption,
+                issue_date
     )
 
     discounting_term_structure = YieldTermStructure(relinkable=True)
+
+    cnt_yield = DayCounter.from_name('Actual/Actual (ISMA)')
+
     flat_term_structure = FlatForward(
-        settlement_days = 1,
+        settlement_days = 2,
         forward         = bond_yield,
         calendar        = NullCalendar(),
-        daycounter      = daycounter,
-        compounding     = Annual,
-        frequency       = Annual)
+        daycounter      = cnt_yield,
+        compounding     = Semiannual,
+        frequency       = Semiannual)
 
     discounting_term_structure.link_to(flat_term_structure)
 
@@ -129,9 +143,11 @@ def _bndprice(bond_yield, coupon_rate, evaluation_date, maturity_date,
 
     bond.set_pricing_engine(engine)
 
+    for cf in bond.cashflows:
+        print('%s %7.2f' % cf)
 
     price = bond.clean_price
-    ac = bond.accrued_amount(settlement_date)
+    ac = bond.accrued_amount(pydate_to_qldate(settlement_date))
 
     return (price, ac)
 
@@ -140,16 +156,15 @@ if __name__ == '__main__':
 
     Yield = [0.04, 0.05, 0.06] 
     CouponRate = 0.05
-    Settle = '20-Jan-1997' 
     Maturity = '15-Jun-2002' 
-    Period = 2 
-    Basis = 0 
 
     (price, ac) = bndprice(bond_yield=Yield, coupon_rate=CouponRate,
-                           evaluation_date = Settle,
+                           pricing_date = '18-Jan-1997',
                            maturity_date = Maturity,
-                           Period = 'SemiAnnual',
-                           Basis = 'ActualActual')
+                           period = Semiannual,
+                           daycounter = 'Actual/Actual (Bond)')
 
-    print('price: %5.2f' % price)
-    print('ac: %5.2f' % ac)
+    print('price:')
+    print(price)
+    print('ac:')
+    print(ac)
