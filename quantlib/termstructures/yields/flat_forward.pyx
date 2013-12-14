@@ -49,8 +49,10 @@ cdef class FlatForward(YieldTermStructure):
     """
 
 
-    def __init__(self, Date reference_date=None, forward=None, DayCounter daycounter=None,
-                 int settlement_days=0, Calendar calendar=None, compounding=Continuous,
+    def __init__(self, Date reference_date=None, forward=None,
+                 DayCounter daycounter=None,
+                 int settlement_days=0, Calendar calendar=None,
+                 compounding=Continuous,
                  frequency=Annual):
 
         self.relinkable = False

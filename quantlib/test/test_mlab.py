@@ -2,18 +2,19 @@ from datetime import date
 
 from .unittest_tools import unittest
 from quantlib.mlab.option_pricing import heston_pricer, blsprice
+from quantlib.mlab.fixed_income import bndprice, cfamounts
+
 from quantlib.util.rates import make_rate_helper, zero_rate
 import quantlib.reference.names as nm
 import quantlib.reference.data_structures as ds
 
-from quantlib.settings import Settings
 from quantlib.termstructures.yields.piecewise_yield_curve import \
     term_structure_factory
-from quantlib.time.api import today, ActualActual, ISDA
+from quantlib.time.api import ActualActual, ISDA
 from quantlib.util.converter import pydate_to_qldate
 
 
-class OptionPricerTestCase(unittest.TestCase):
+class MLabTestCase(unittest.TestCase):
 
     def test_heston_pricer(self):
 
@@ -60,7 +61,6 @@ class OptionPricerTestCase(unittest.TestCase):
         self.assertAlmostEquals(p[0], 22.6716, 3)
         self.assertAlmostEquals(p[1], 36.7626, 3)
 
-
     def test_yield(self):
 
         rates_data = [('Libor1M', .01),
@@ -91,5 +91,53 @@ class OptionPricerTestCase(unittest.TestCase):
         # not a real test - just verify execution
         self.assertAlmostEqual(zc[1][0], 0.0189, 2)
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_bndprice(self):
+        """
+        Test from Matlab bndprice help
+        ac is matched exactly
+        price accurate to 10^-3
+        """
+
+        Yield = [0.04, 0.05, 0.06]
+        CouponRate = 0.05
+        Maturity = '15-Jun-2002'
+
+        (price, ac) = bndprice(bond_yield=Yield, coupon_rate=CouponRate,
+                           pricing_date='18-Jan-1997',
+                           maturity_date=Maturity,
+                           period='Semiannual',
+                           basis='Actual/Actual (Bond)',
+                           compounding_frequency='Semiannual')
+
+        # Matlab values
+        ml_price = [104.8106, 99.9951, 95.4384]
+        ml_ac = [0.4945, ] * 3
+        for i, p in enumerate(price):
+            self.assertAlmostEqual(p, ml_price[i], 2)
+
+        for i, a in enumerate(ac):
+            self.assertAlmostEqual(a, ml_ac[i], 3)
+
+    def test_cfamounts(self):
+        """
+        Test from Matlab cfamounts help
+        """
+
+        CouponRate = 0.05
+        Maturity = '15-Jun-1995'
+
+        res = cfamounts(coupon_rate=CouponRate,
+                           pricing_date='29-oct-1993',
+                           maturity_date=Maturity,
+                           period='Semiannual',
+                           basis='Actual/Actual (Bond)')
+
+        for dt, cf in zip(*res):
+            print('%s %7.2f' % (dt, cf))
+
+        dt = res[0]
+        cf = res[1]
+        pydate = date(1993, 6, 15)
+
+        self.assertEquals(cf[6], 100.0)
+        self.assertEquals(dt[1], pydate)
