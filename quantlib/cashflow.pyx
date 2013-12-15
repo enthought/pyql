@@ -1,7 +1,8 @@
 """
  Copyright (C) 2013, Enthought Inc
  Copyright (C) 2013, Patrick Henaff
-
+ Copyright (c) 2012 BG Research LLC
+ 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
