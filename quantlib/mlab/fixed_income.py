@@ -218,7 +218,6 @@ def _cfamounts(coupon_rate, pricing_date, maturity_date,
     effective_date = calendar.advance(
         effective_date, -1, Years, convention=Unadjusted)
 
-
     face_amount = 100.0
     redemption = 100.0
 
