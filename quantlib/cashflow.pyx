@@ -56,6 +56,7 @@ cdef class CashFlow:
 cdef class SimpleCashFlow(CashFlow):
 
     def __init__(self, Real amount, date.Date cfdate):
+        cdef _date.Date* _cfdate
         _cfdate = <_date.Date*>((<date.Date>cfdate)._thisptr.get())
         
         self._thisptr = new shared_ptr[_cf.CashFlow]( \
