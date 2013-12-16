@@ -81,30 +81,30 @@ def heston_pricer(trade_date, options, params, rates, spot):
 
 
 def blsprice(spot, strike, risk_free_rate, time, volatility,
-             option_type='Call', dividend=0.0):
+             option_type='Call', dividend=0.0, calc='price'):
 
+    """
+    Matlab's blsprice + greeks (delta, gamma, theta, rho, vega, lambda)
+    """
     frame = inspect.currentframe()
     the_shape, shape, values = common_shape(frame)
-
-    print(shape)
-    print(values)
 
     all_scalars = np.all([shape[key][0] == 'scalar' for key in shape])
 
     if all_scalars:
-        npv = _blsprice(**values)
+        res = _blsprice(**values)
     else:
-        npv = array_call(_blsprice, shape, values)
-        npv = np.reshape(npv, the_shape)
-    return npv
+        res = array_call(_blsprice, shape, values)
+        res = np.reshape(res, the_shape)
+    return res
 
 
 def _blsprice(spot, strike, risk_free_rate, time, volatility,
-             option_type='Call', dividend=0.0):
+             option_type='Call', dividend=0.0, calc='price'):
     """
-    Black-Scholes option pricing model.
+    Black-Scholes option pricing model + greeks.
     """
-    spot = SimpleQuote(spot)
+    _spot = SimpleQuote(spot)
 
     daycounter = ActualActual()
     risk_free_ts = FlatForward(today(), risk_free_rate, daycounter)
@@ -112,7 +112,7 @@ def _blsprice(spot, strike, risk_free_rate, time, volatility,
     volatility_ts = BlackConstantVol(today(), NullCalendar(),
                                      volatility, daycounter)
 
-    process = BlackScholesMertonProcess(spot, dividend_ts,
+    process = BlackScholesMertonProcess(_spot, dividend_ts,
                                         risk_free_ts, volatility_ts)
 
     exercise_date = today() + Period(time * 365, Days)
@@ -123,7 +123,25 @@ def _blsprice(spot, strike, risk_free_rate, time, volatility,
     option = EuropeanOption(payoff, exercise)
     engine = AnalyticEuropeanEngine(process)
     option.set_pricing_engine(engine)
-    return option.npv
+
+    if calc == 'price':
+        res = option.npv
+    elif calc == 'delta':
+        res = option.delta
+    elif calc == 'gamma':
+        res = option.gamma
+    elif calc == 'theta':
+        res = option.theta
+    elif calc == 'rho':
+        res = option.rho
+    elif calc == 'vega':
+        res = option.vega
+    elif calc == 'lambda':
+        res = option.delta * spot / option.npv
+    else:
+        raise ValueError('calc type %s is unknown' % calc)
+
+    return res
 
 
 def blsimpv(price, spot, strike, risk_free_rate, time,
@@ -144,11 +162,52 @@ def blsimpv(price, spot, strike, risk_free_rate, time,
 
 def _blsimpv(price, spot, strike, risk_free_rate, time,
              option_type='Call', dividend=0.0):
+
+    spot = SimpleQuote(spot)
+    daycounter = ActualActual()
+    risk_free_ts = FlatForward(today(), risk_free_rate, daycounter)
+    dividend_ts = FlatForward(today(), dividend, daycounter)
+    volatility_ts = BlackConstantVol(today(), NullCalendar(),
+                                     .3, daycounter)
+
+    process = BlackScholesMertonProcess(spot, dividend_ts,
+                                        risk_free_ts, volatility_ts)
+
+    exercise_date = today() + Period(time * 365, Days)
+    exercise = EuropeanExercise(exercise_date)
+
+    payoff = PlainVanillaPayoff(option_type, strike)
+
+    option = EuropeanOption(payoff, exercise)
+    engine = AnalyticEuropeanEngine(process)
+    option.set_pricing_engine(engine)
+
+    accuracy = 0.001
+    max_evaluations = 1000
+    min_vol = 0.01
+    max_vol = 2
+
+    vol = option.implied_volatility(price, process,
+            accuracy,
+            max_evaluations,
+            min_vol,
+            max_vol)
+
     return vol
 
 if __name__ == '__main__':
-    
+
     p = blsprice(spot=100, strike=100, risk_free_rate=.05,
                  time=1., volatility=.25,
                  option_type=('Call', 'Put'))
     print(p)
+
+    d = blsprice(spot=100, strike=100, risk_free_rate=.05,
+                 time=1., volatility=.25,
+                 option_type=('Call', 'Put'), calc='delta')
+
+    vol = blsimpv(p, spot=100, strike=100, risk_free_rate=.05, time=1.,
+             option_type=('Call', 'Put'))
+
+    print(vol)
+

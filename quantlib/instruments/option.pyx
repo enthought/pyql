@@ -97,6 +97,11 @@ cdef class OneAssetOption(Instrument):
             'VanillaOption'
         )
 
+    def __str__(self):
+        return '%s %s %s' % (
+            type(self).__name__, str(self.exercise), str(self.payoff)
+        )
+
     property exercise:
         def __get__(self):
             exercise = Exercise()
@@ -109,10 +114,65 @@ cdef class OneAssetOption(Instrument):
             payoff.set_payoff(get_option(self).payoff())
             return payoff
 
-    def __str__(self):
-        return '%s %s %s' % (
-            type(self).__name__, str(self.exercise), str(self.payoff)
-        )
+    property is_expired:
+        def __get__(self):
+            if self._has_pricing_engine:
+                return (<_option.OneAssetOption *> self._thisptr.get()).isExpired()
+
+    property delta:
+        def __get__(self):
+            if self._has_pricing_engine:
+                return (<_option.OneAssetOption *> self._thisptr.get()).delta()
+
+    property delta_forward:
+        def __get__(self):
+            if self._has_pricing_engine:
+                return (<_option.OneAssetOption *> self._thisptr.get()).deltaForward()
+
+    property elasticity:
+        def __get__(self):
+            if self._has_pricing_engine:
+                return (<_option.OneAssetOption *> self._thisptr.get()).elasticity()
+
+    property gamma:
+        def __get__(self):
+            if self._has_pricing_engine:
+                return (<_option.OneAssetOption *> self._thisptr.get()).gamma()
+
+    property theta:
+        def __get__(self):
+            if self._has_pricing_engine:
+                return (<_option.OneAssetOption *> self._thisptr.get()).theta()
+
+    property theta_per_day:
+        def __get__(self):
+            if self._has_pricing_engine:
+                return (<_option.OneAssetOption *> self._thisptr.get()).thetaPerDay()
+
+    property vega:
+        def __get__(self):
+            if self._has_pricing_engine:
+                return (<_option.OneAssetOption *> self._thisptr.get()).vega()
+
+    property rho:
+        def __get__(self):
+            if self._has_pricing_engine:
+                return (<_option.OneAssetOption *> self._thisptr.get()).rho()
+
+    property dividend_rho:
+        def __get__(self):
+            if self._has_pricing_engine:
+                return (<_option.OneAssetOption *> self._thisptr.get()).dividendRho()
+
+    property strike_sensitivity:
+        def __get__(self):
+            if self._has_pricing_engine:
+                return (<_option.OneAssetOption *> self._thisptr.get()).strikeSensitivity()
+
+    property itm_cash_probability:
+        def __get__(self):
+            if self._has_pricing_engine:
+                return (<_option.OneAssetOption *> self._thisptr.get()).itmCashProbability()
 
 
 cdef class VanillaOption(OneAssetOption):
@@ -134,7 +194,21 @@ cdef class VanillaOption(OneAssetOption):
         )
 
 
-cdef class EuropeanOption(OneAssetOption):
+    def implied_volatility(self, Real target_value,
+        GeneralizedBlackScholesProcess process, Real accuracy, Size max_evaluations,
+        Volatility min_vol, Volatility max_vol):
+
+        cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
+            shared_ptr[_bsp.GeneralizedBlackScholesProcess](
+                deref(<shared_ptr[_bsp.GeneralizedBlackScholesProcess]*>process._thisptr)
+        )
+
+        vol = (<_option.VanillaOption *> self._thisptr.get()).impliedVolatility(
+            target_value, process_ptr, accuracy, max_evaluations, min_vol, max_vol)
+
+        return vol
+
+cdef class EuropeanOption(VanillaOption):
 
     def __init__(self, PlainVanillaPayoff payoff, Exercise exercise):
 
