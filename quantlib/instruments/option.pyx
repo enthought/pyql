@@ -208,6 +208,11 @@ cdef class VanillaOption(OneAssetOption):
 
         return vol
 
+    property delta:
+        def __get__(self):
+            if self._has_pricing_engine:
+                return (<_option.OneAssetOption *> self._thisptr.get()).delta()
+
 cdef class EuropeanOption(VanillaOption):
 
     def __init__(self, PlainVanillaPayoff payoff, Exercise exercise):

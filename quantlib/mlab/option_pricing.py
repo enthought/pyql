@@ -202,9 +202,37 @@ if __name__ == '__main__':
                  option_type=('Call', 'Put'))
     print(p)
 
-    d = blsprice(spot=100, strike=100, risk_free_rate=.05,
-                 time=1., volatility=.25,
-                 option_type=('Call', 'Put'), calc='delta')
+    spot=100
+    strike=100
+    risk_free_rate=.05
+    time=1.
+    volatility=.25
+    option_type='Call'
+    dividend=0.
+
+    _spot = SimpleQuote(spot)
+
+    daycounter = ActualActual()
+    risk_free_ts = FlatForward(today(), risk_free_rate, daycounter)
+    dividend_ts = FlatForward(today(), dividend, daycounter)
+    volatility_ts = BlackConstantVol(today(), NullCalendar(),
+                                     volatility, daycounter)
+
+    process = BlackScholesMertonProcess(_spot, dividend_ts,
+                                        risk_free_ts, volatility_ts)
+
+    exercise_date = today() + Period(time * 365, Days)
+    exercise = EuropeanExercise(exercise_date)
+
+    payoff = PlainVanillaPayoff(option_type, strike)
+
+    option = EuropeanOption(payoff, exercise)
+    engine = AnalyticEuropeanEngine(process)
+    option.set_pricing_engine(engine)
+
+    ## d = blsprice(spot=100, strike=100, risk_free_rate=.05,
+    ##              time=1., volatility=.25,
+    ##              option_type=('Call', 'Put'), calc='delta')
 
     vol = blsimpv(p, spot=100, strike=100, risk_free_rate=.05, time=1.,
              option_type=('Call', 'Put'))
