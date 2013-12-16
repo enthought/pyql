@@ -1,7 +1,7 @@
 from datetime import date
 
 from .unittest_tools import unittest
-from quantlib.mlab.option_pricing import heston_pricer, blsprice
+from quantlib.mlab.option_pricing import heston_pricer, blsprice, blsimpv
 from quantlib.mlab.fixed_income import bndprice, cfamounts
 
 from quantlib.util.rates import make_rate_helper, zero_rate
@@ -50,9 +50,9 @@ class MLabTestCase(unittest.TestCase):
         self.assertAlmostEqual(price_put, 218.9, 1)
 
     def test_blsprice(self):
-
-        # Settings.instance().evaluation_date = today()
-        # from maltab documentation of blsprice
+        """
+        from maltab documentation of blsprice
+        """
         p = blsprice(spot=585, strike=600, risk_free_rate=.05,
                      time=1 / 4., volatility=.25,
                      option_type=('Call', 'Put'),
@@ -61,6 +61,14 @@ class MLabTestCase(unittest.TestCase):
         self.assertAlmostEquals(p[0], 22.6716, 3)
         self.assertAlmostEquals(p[1], 36.7626, 3)
 
+        v = blsimpv(p, spot=585, strike=600, risk_free_rate=.05,
+                     time=1 / 4.,
+                     option_type=('Call', 'Put'),
+                     dividend=0.045)
+
+        self.assertAlmostEquals(v[0], .25, 3)
+        self.assertAlmostEquals(v[1], .25, 3)
+        
     def test_yield(self):
 
         rates_data = [('Libor1M', .01),
@@ -141,3 +149,24 @@ class MLabTestCase(unittest.TestCase):
 
         self.assertEquals(cf[6], 100.0)
         self.assertEquals(dt[1], pydate)
+
+    def test_greeks(self):
+        """
+        From Matlab help for blsdelta, blsgamma
+        """
+        c, p = blsprice(spot=50, strike=50, risk_free_rate=.1,
+                  time=0.25, volatility=.3,
+                  option_type=('Call', 'Put'), calc='delta')
+
+        matlab_c = 0.5955
+        matlab_p = -0.4045
+
+        self.assertAlmostEqual(c, matlab_c, 3)
+        self.assertAlmostEqual(p, matlab_p, 3)
+
+        g = blsprice(spot=50, strike=50, risk_free_rate=.12,
+                  time=0.25, volatility=.3,
+                  option_type='Call', calc='gamma')
+
+        matlab_g = 0.0512
+        self.assertAlmostEqual(g, matlab_g, 3)

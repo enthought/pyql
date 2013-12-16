@@ -202,6 +202,11 @@ if __name__ == '__main__':
                  option_type=('Call', 'Put'))
     print(p)
 
+    vol = blsimpv(p, spot=100, strike=100, risk_free_rate=.05, time=1.,
+             option_type=('Call', 'Put'))
+
+    print(vol)
+
     spot=100
     strike=100
     risk_free_rate=.05
@@ -230,12 +235,8 @@ if __name__ == '__main__':
     engine = AnalyticEuropeanEngine(process)
     option.set_pricing_engine(engine)
 
-    ## d = blsprice(spot=100, strike=100, risk_free_rate=.05,
-    ##              time=1., volatility=.25,
-    ##              option_type=('Call', 'Put'), calc='delta')
+    c,p = blsprice(spot=50, strike=50, risk_free_rate=.1,
+          time=0.25, volatility=.3,
+          option_type=('Call', 'Put'), calc='delta')
 
-    vol = blsimpv(p, spot=100, strike=100, risk_free_rate=.05, time=1.,
-             option_type=('Call', 'Put'))
-
-    print(vol)
 
