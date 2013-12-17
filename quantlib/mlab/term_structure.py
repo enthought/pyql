@@ -11,8 +11,7 @@ from quantlib.time.calendar import TARGET
 from quantlib.settings import Settings
 from quantlib.time.schedule import Schedule
 
-from quantlib.time.date import (Date, Days, Period, Months,
-                                Years)
+from quantlib.time.date import (Period, Months)
 from quantlib.time.daycounter import DayCounter
 from quantlib.compounding import compounding_from_name
 

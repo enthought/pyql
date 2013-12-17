@@ -69,7 +69,7 @@ class MLabTestCase(unittest.TestCase):
 
         self.assertAlmostEquals(v[0], .25, 3)
         self.assertAlmostEquals(v[1], .25, 3)
-        
+
     def test_yield(self):
 
         rates_data = [('Libor1M', .01),
@@ -173,6 +173,9 @@ class MLabTestCase(unittest.TestCase):
         self.assertAlmostEqual(g, matlab_g, 3)
 
     def test_zero_rate(self):
+        """
+        Not a real test - just verifies that it runs
+        """
 
         instruments = ['Libor1M',
                    'Libor3M',
@@ -195,4 +198,3 @@ class MLabTestCase(unittest.TestCase):
                     maturity_dates=None)
 
         self.assertAlmostEqual(rates[0], .01, 3)
-
