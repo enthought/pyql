@@ -3,6 +3,7 @@ from datetime import date
 from .unittest_tools import unittest
 from quantlib.mlab.option_pricing import heston_pricer, blsprice, blsimpv
 from quantlib.mlab.fixed_income import bndprice, cfamounts
+from quantlib.mlab.term_structure import zbt_libor_yield
 
 from quantlib.util.rates import make_rate_helper, zero_rate
 import quantlib.reference.names as nm
@@ -170,3 +171,28 @@ class MLabTestCase(unittest.TestCase):
 
         matlab_g = 0.0512
         self.assertAlmostEqual(g, matlab_g, 3)
+
+    def test_zero_rate(self):
+
+        instruments = ['Libor1M',
+                   'Libor3M',
+                   'Libor6M',
+                   'Swap1Y',
+                   'Swap2Y',
+                   'Swap3Y',
+                   'Swap5Y',
+                   'Swap7Y',
+                   'Swap10Y',
+                   'Swap20Y',
+                   'Swap30Y']
+        yields = [.01, .015, .02, .03, .04,
+              .05, .06, .07, .08, .09,
+              .1]
+
+        pricing_date = '01-dec-2013'
+        dt, rates = zbt_libor_yield(instruments, yields, pricing_date,
+                    compounding_freq='Continuous',
+                    maturity_dates=None)
+
+        self.assertAlmostEqual(rates[0], .01, 3)
+

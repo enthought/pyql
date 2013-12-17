@@ -33,7 +33,6 @@ from quantlib.time.daycounter import DayCounter
 from quantlib.util.converter import pydate_to_qldate
 
 from quantlib.mlab.util import common_shape, array_call
-import inspect
 
 DEBUG = False
 
@@ -62,8 +61,8 @@ def bndprice(bond_yield, coupon_rate, pricing_date, maturity_date,
 
     """
 
-    frame = inspect.currentframe()
-    the_shape, shape, values = common_shape(frame)
+    args = locals()
+    the_shape, shape  = common_shape(args)
 
     if DEBUG:
         print(the_shape)
@@ -73,9 +72,9 @@ def bndprice(bond_yield, coupon_rate, pricing_date, maturity_date,
     all_scalars = np.all([shape[key][0] == 'scalar' for key in shape])
 
     if all_scalars:
-        price, ac = _bndprice(**values)
+        price, ac = _bndprice(**args)
     else:
-        res = array_call(_bndprice, shape, values)
+        res = array_call(_bndprice, shape, args)
         price = np.reshape([x[0] for x in res], the_shape)
         ac = np.reshape([x[1] for x in res], the_shape)
     return (price, ac)
@@ -181,13 +180,13 @@ def cfamounts(coupon_rate, pricing_date, maturity_date,
 
     """
 
-    frame = inspect.currentframe()
-    the_shape, shape, values = common_shape(frame)
+    args = locals()
+    the_shape, shape  = common_shape(args)
 
     all_scalars = np.all([shape[key][0] == 'scalar' for key in shape])
 
     if all_scalars:
-        cf_a, cf_d = _cfamounts(**values)
+        cf_a, cf_d = _cfamounts(**args)
     else:
         raise Exception('Only scalar inputs are handled')
 

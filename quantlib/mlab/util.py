@@ -12,23 +12,19 @@ import numpy as np
 from numbers import Number
 from datetime import date 
 
-def common_shape(frame):
+def common_shape(args):
     """
     Inspect the input arguments to a function and
     verify that the shapes are compatible, in a matlab sense:
     either scalar or arrays of identical shapes
     """
 
-    args, _, _, values = inspect.getargvalues(frame)
-
     # all non-scalar arguments must have the same shape, do not care if
     # it is a numpy type or not
 
-    values = dict([(k, values[k]) for k in args])
     the_shape = None
     res = {}
-    for a in args:
-        value = values[a]
+    for a, value in args.items():
 
         if isinstance(value, Number) or \
            isinstance(value, basestring) or \
@@ -45,7 +41,7 @@ def common_shape(frame):
                 Excepting a scalar or array of shape %s' % \
                                  (a, str(the_shape)))
 
-    return (the_shape, res, values)
+    return (the_shape, res)
 
 
 def array_call(foo, shape, values):
@@ -64,9 +60,12 @@ def array_call(foo, shape, values):
     nb_items = len(values[array_vars[0]])
 
     input_args = dict((key, 0) for key in shape)
+
+    # fill scalar arguments once
     for key in scalar_vars:
         input_args[key] = values[key]
 
+    # iterate through elements of array arguments
     for i in range(nb_items):
         for key in array_vars:
             input_args[key] = values[key][i]

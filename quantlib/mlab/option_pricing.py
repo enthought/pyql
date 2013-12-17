@@ -29,8 +29,6 @@ from quantlib.time.api import today, NullCalendar, ActualActual
 from quantlib.time.date import (Period, Days)
 from quantlib.mlab.util import common_shape, array_call
 
-import inspect
-
 
 def heston_pricer(trade_date, options, params, rates, spot):
     """
@@ -86,15 +84,15 @@ def blsprice(spot, strike, risk_free_rate, time, volatility,
     """
     Matlab's blsprice + greeks (delta, gamma, theta, rho, vega, lambda)
     """
-    frame = inspect.currentframe()
-    the_shape, shape, values = common_shape(frame)
+    args = locals()
+    the_shape, shape = common_shape(args)
 
     all_scalars = np.all([shape[key][0] == 'scalar' for key in shape])
 
     if all_scalars:
-        res = _blsprice(**values)
+        res = _blsprice(**args)
     else:
-        res = array_call(_blsprice, shape, values)
+        res = array_call(_blsprice, shape, args)
         res = np.reshape(res, the_shape)
     return res
 
@@ -147,15 +145,15 @@ def _blsprice(spot, strike, risk_free_rate, time, volatility,
 def blsimpv(price, spot, strike, risk_free_rate, time,
              option_type='Call', dividend=0.0):
 
-    frame = inspect.currentframe()
-    the_shape, shape, values = common_shape(frame)
+    args = locals()
+    the_shape, shape = common_shape(args)
 
     all_scalars = np.all([shape[key][0] == 'scalar' for key in shape])
 
     if all_scalars:
-        res = _blsimpv(**values)
+        res = _blsimpv(**args)
     else:
-        res = array_call(_blsimpv, shape, values)
+        res = array_call(_blsimpv, shape, args)
 
     return res
 

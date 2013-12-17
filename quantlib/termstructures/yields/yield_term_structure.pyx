@@ -130,4 +130,8 @@ cdef class YieldTermStructure:
             cdef ffwd.Date ref_date = self._thisptr.get().referenceDate()
             return date_from_qldate(ref_date)
 
+    property max_date:
+        def __get__(self):
+            cdef ffwd.Date max_date = self._thisptr.get().maxDate()
+            return date_from_qldate(max_date)
 
