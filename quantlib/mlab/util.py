@@ -7,10 +7,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-import inspect
 import numpy as np
 from numbers import Number
-from datetime import date 
+from datetime import date
+
 
 def common_shape(args):
     """
@@ -52,8 +52,7 @@ def array_call(foo, shape, values):
 
     array_vars = [k for k, v in shape.items() if v[0] == 'array']
     scalar_vars = [k for k, v in shape.items() if v[0] == 'scalar']
-    the_shape = shape[array_vars[0]][1]
-    res = list()
+
     for key in array_vars:
         values[key] = np.ravel(values[key])
 
@@ -66,6 +65,8 @@ def array_call(foo, shape, values):
         input_args[key] = values[key]
 
     # iterate through elements of array arguments
+    # output is a list because foo may return a list.
+    res = list()
     for i in range(nb_items):
         for key in array_vars:
             input_args[key] = values[key][i]

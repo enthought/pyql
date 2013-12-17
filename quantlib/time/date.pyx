@@ -221,19 +221,6 @@ cdef class Period:
     def __str__(self):
         return 'Period %d length  %d units' % (self.length, self.units)
 
-    ## @classmethod
-    ## def from_name(cls, name):
-    ##     cdef DayCounter cnt = cls()
-    ##     cdef _daycounter.DayCounter* new_counter
-    ##     name, convention = _get_daycounter_type_from_name(name)
-    ##     new_counter = daycounter_from_name(name, convention)
-
-    ##     if new_counter == NULL:
-    ##         raise ValueError('Unknown day counter type: {}'.format(name))
-    ##     else:
-    ##         cnt._thisptr = new_counter
-    ##         return cnt
-
 cdef class Date:
     """ This class provides methods to inspect dates as well as methods and
     operators which implement a limited date algebra (increasing and decreasing
