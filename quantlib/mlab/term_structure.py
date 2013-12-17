@@ -11,7 +11,7 @@ from quantlib.time.calendar import TARGET
 from quantlib.settings import Settings
 from quantlib.time.schedule import Schedule
 
-from quantlib.time.date import (Period, Months)
+from quantlib.time.date import (Period, Days, Months)
 from quantlib.time.daycounter import DayCounter
 from quantlib.compounding import compounding_from_name
 
@@ -52,9 +52,6 @@ def zbt_libor_yield(instruments, yields, pricing_date,
     # must be a business day
     eval_date = calendar.adjust(pydate_to_qldate(pricing_date))
     settings.evaluation_date = eval_date
-
-    settlement_days = 2
-    settlement_date = calendar.advance(eval_date, settlement_days, Days)
 
     rates = dict(zip(instruments, yields))
     ts = make_term_structure(rates, pricing_date)
