@@ -9,6 +9,7 @@ from quantlib.time._calendar cimport BusinessDayConvention, Calendar
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._schedule cimport Schedule
+from quantlib._cashflow cimport Leg
 
 cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib':
     cdef cppclass Bond(Instrument):
@@ -18,6 +19,7 @@ cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib':
         Calendar& calendar()
         vector[Real]& notionals()
         Real notional(Date d)
+        Leg cashflows()
         Date maturityDate()
         Date issueDate()
         Date settlementDate()

@@ -9,6 +9,7 @@ from quantlib.time.date import (
     next_weekday, nth_weekday, today, pydate_from_qldate, qldate_from_pydate
 )
 
+
 class TestQuantLibDate(unittest.TestCase):
 
     def test_today(self):
@@ -25,7 +26,6 @@ class TestQuantLibDate(unittest.TestCase):
 
         date1 = Date()
         self.assertTrue(date1 is not None)
-
 
     def test_date_creation(self):
 
@@ -101,11 +101,11 @@ class TestQuantLibDate(unittest.TestCase):
         expected_date = Date(16, Nov, 1998)
         self.assertTrue(expected_date == date1)
 
-
     def test_next_weekday(self):
         ''' Test next weekday
 
-        The Friday following Tuesday, January 15th, 2002 was January 18th, 2002.
+        The Friday following Tuesday, January 15th, 2002 was
+        January 18th, 2002.
         see http://www.cpearson.com/excel/DateTimeWS.htm
         '''
 
@@ -130,14 +130,12 @@ class TestQuantLibDate(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             nth_weekday(4, Thursday, 0, 2000)
 
-
     def test_end_of_month(self):
 
         date1 = Date(16, Feb, 2011)
         date2 = end_of_month(date1)
         expected_date = Date(28, Feb, 2011)
         self.assertTrue(expected_date == date2)
-
 
     def test_is_end_of_month(self):
 
@@ -155,6 +153,7 @@ class TestQuantLibDate(unittest.TestCase):
         date1 = Date(28, Feb, 2011)
 
         self.assertEquals(date1.serial, int(date1))
+
 
 class ConversionMethodsTestCase(unittest.TestCase):
 
@@ -178,6 +177,7 @@ class ConversionMethodsTestCase(unittest.TestCase):
 
         self.assertEquals(expected_result, pydate1)
 
+
 class TestQuantLibPeriod(unittest.TestCase):
 
     def test_creation_with_frequency(self):
@@ -191,7 +191,6 @@ class TestQuantLibPeriod(unittest.TestCase):
 
         self.assertEquals(2, period.length)
         self.assertEquals(Months, period.units)
-
 
     def test_normalize_period(self):
 
@@ -225,9 +224,6 @@ class TestQuantLibPeriod(unittest.TestCase):
         self.assertTrue(period3 >= period1)
         self.assertTrue(period4 <= period2)
 
-
-
-
     def test_creation_with_time_and_units(self):
 
         period = Period(10, Months)
@@ -250,7 +246,6 @@ class TestQuantLibPeriod(unittest.TestCase):
         expected_date = Date(1, Jul, 2011)
         self.assertTrue(expected_date == date2)
 
-
         period = Period(10, Months)
         date2 = date1 + period
         expected_date = Date(1, Mar, 2012)
@@ -264,7 +259,6 @@ class TestQuantLibPeriod(unittest.TestCase):
         period3 = period1 - period2
         self.assertEquals(7, period3.length)
         self.assertEquals(Months, period3.units)
-
 
     def test_multiplication(self):
 
@@ -291,8 +285,8 @@ class TestQuantLibPeriod(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             period3 = Period(2, Weeks)
-            period += period3 # does not support different units
- 
+            period += period3  # does not support different units
+
     def test_inplace_substraction(self):
 
         period = Period(Semiannual)
@@ -306,9 +300,8 @@ class TestQuantLibPeriod(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             period3 = Period(2, Weeks)
-            period -= period3 # does not support different units
- 
- 
+            period -= period3  # does not support different units
+
     def test_inplace_division(self):
 
         period = Period(Semiannual)
@@ -317,7 +310,7 @@ class TestQuantLibPeriod(unittest.TestCase):
 
         self.assertEquals(2, period.length)
         self.assertEquals(Months, period.units)
-  
+
     def test_substracting_period_to_date(self):
 
         date1 = Date(1, May, 2011)
@@ -332,13 +325,7 @@ class TestQuantLibPeriod(unittest.TestCase):
         expected_date = Date(1, Mar, 2011)
         self.assertTrue(expected_date == date2)
 
-
         period = Period(10, Days)
         date2 = date1 - period
         expected_date = Date(21, Apr, 2011)
         self.assertTrue(expected_date == date2)
- 
-
-if __name__ == '__main__':
-    unittest.main()
-

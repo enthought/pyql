@@ -24,6 +24,7 @@ from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure
 )
 
+
 class BondTestCase(unittest.TestCase):
 
     @unittest.skip('This test is not numerically accurate and fails')
