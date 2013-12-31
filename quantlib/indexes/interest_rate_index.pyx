@@ -24,6 +24,13 @@ cdef extern from "string" namespace "std":
     cdef cppclass string:
         char* c_str()
 
+cdef _iri.InterestRateIndex* get_iri(InterestRateIndex index):
+    """ Utility function to extract a properly casted IRI pointer out of the
+    internal _thisptr attribute of the Index base class. """
+
+    cdef _iri.InterestRateIndex* ref = <_iri.InterestRateIndex*>index._thisptr.get()
+    return ref
+
 cdef class InterestRateIndex(Index):
     def __cinit__(self):
         pass
@@ -31,11 +38,11 @@ cdef class InterestRateIndex(Index):
     def __str__(self):
         return 'Interest rate index %s' % self.name
     
-#    property tenor:
-#        def __get__(self):
-#            return self._thisptr.get().tenor()
+    ## property tenor:
+    ##     def __get__(self):
+    ##         return get_iri(self).tenor()
             
-#    property fixingDays:
-#        def __get__(self):
-#            return self._thisptr.fixingDays()
+    ## property fixingDays:
+    ##     def __get__(self):
+    ##         return get_iri(self).fixingDays()
             

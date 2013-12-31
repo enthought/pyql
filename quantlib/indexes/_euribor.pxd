@@ -2,7 +2,7 @@
 # distutils: libraries = QuantLib
 
 from quantlib.handle cimport Handle
-cimport quantlib.termstructures.yields._flat_forward as _ff
+cimport quantlib.termstructures._yield_term_structure as _yts
 # cimport quantlib.indexes._ibor_index as _ib
 from quantlib.indexes._ibor_index cimport IborIndex
 
@@ -12,4 +12,4 @@ cdef extern from 'ql/indexes/ibor/euribor.hpp' namespace 'QuantLib':
         pass
     
     cdef cppclass Euribor6M(Euribor):
-        Euribor6M(Handle[_ff.YieldTermStructure]& yc)
+        Euribor6M(Handle[_yts.YieldTermStructure]& yc)

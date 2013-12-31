@@ -12,7 +12,7 @@
 
 include '../types.pxi'
 from quantlib.handle cimport Handle
-cimport quantlib.termstructures.yields._flat_forward as _ff
+cimport quantlib.termstructures._yield_term_structure as _yts
 from quantlib._currency cimport Currency
 from quantlib.indexes._ibor_index cimport IborIndex
 from quantlib.time._calendar cimport Calendar
@@ -32,4 +32,6 @@ cdef extern from 'ql/indexes/ibor/libor.hpp' namespace 'QuantLib':
                   Natural settlementDays,
                   Currency& currency,
                   Calendar& finencialCenterCalendar,
-                  DayCounter& dayCounter) except +
+                  DayCounter& dayCounter,
+                  Handle[_yts.YieldTermStructure]& h) except +
+        

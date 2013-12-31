@@ -16,8 +16,13 @@ from quantlib.indexes.libor import Libor
 from quantlib.indexes.swap_index import SwapIndex
 from quantlib.indexes.euribor import Euribor6M
 from quantlib.settings import Settings
-from quantlib.time.api import Days, Months, Period, TARGET, Actual360, today
+from quantlib.time.api import (Days, Months, Period, TARGET, Actual360,
+                               today, Actual365Fixed)
 from quantlib.time.api import Following
+from quantlib.termstructures.yields.api import (
+    FlatForward, YieldTermStructure)
+from quantlib.time.api import Date, January
+
 
 class TestIndex(unittest.TestCase):
 
@@ -26,12 +31,14 @@ class TestIndex(unittest.TestCase):
         with self.assertRaises(ValueError):
             Index()
 
+
 class TestIRIndex(unittest.TestCase):
 
     def test_create_index(self):
 
         with self.assertRaises(ValueError):
             InterestRateIndex()
+
 
 class TestLibor(unittest.TestCase):
 
@@ -46,23 +53,32 @@ class TestLibor(unittest.TestCase):
         eval_date = calendar.adjust(today())
         settings.evaluation_date = eval_date
 
-
         settlement_days = 2
         settlement_date = calendar.advance(eval_date, settlement_days, Days)
         # must be a business day
-        settlement_date = calendar.adjust(settlement_date);
+        settlement_date = calendar.adjust(settlement_date)
+
+        term_structure = YieldTermStructure(relinkable=True)
+        term_structure.link_to(FlatForward(settlement_date, 0.05,
+                                          Actual365Fixed()))
 
         index = Libor('USD Libor', Period(6, Months), settlement_days,
-                        USDCurrency(), calendar, Actual360())
+                       USDCurrency(), calendar, Actual360(),
+                       term_structure)
 
         self.assertEquals('USD Libor6M Actual/360', index.name)
+
 
 class TestEuribor(unittest.TestCase):
 
     def test_creation(self):
 
+        settlement_date = Date(1, January, 2014)
+        term_structure = YieldTermStructure(relinkable=True)
+        term_structure.link_to(FlatForward(settlement_date, 0.05,
+                                          Actual365Fixed()))
         # Makes sure the constructor does not segfault anymore ;-)
-        index = Euribor6M()
+        index = Euribor6M(term_structure)
 
         self.assertEquals(index.name, 'Euribor6M Actual/360')
 
@@ -80,15 +96,17 @@ class SwapIndexTestCase(unittest.TestCase):
         eval_date = calendar.adjust(today())
         settings.evaluation_date = eval_date
 
-
         settlement_days = 2
         settlement_date = calendar.advance(eval_date, settlement_days, Days)
         # must be a business day
-        settlement_date = calendar.adjust(settlement_date);
+        settlement_date = calendar.adjust(settlement_date)
+        term_structure = YieldTermStructure(relinkable=True)
+        term_structure.link_to(FlatForward(settlement_date, 0.05,
+                                          Actual365Fixed()))
 
         ibor_index = Libor('USD Libor', Period(6, Months), settlement_days,
-                        USDCurrency(), calendar, Actual360())
-
+                        USDCurrency(), calendar, Actual360(),
+                           term_structure)
 
         index = SwapIndex(
             'family name', Period(3, Months), 10, USDCurrency(), TARGET(),

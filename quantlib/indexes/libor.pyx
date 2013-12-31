@@ -14,6 +14,10 @@ from cython.operator cimport dereference as deref
 from cpython cimport bool
 from libcpp cimport bool as cbool
 
+from quantlib.handle cimport Handle
+cimport quantlib.termstructures._yield_term_structure as _yts
+from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
+
 from libcpp.string cimport string
 from cpython.string cimport PyString_AsString
 
@@ -48,12 +52,22 @@ cdef class Libor(IborIndex):
         Natural settlementDays,
         Currency currency,
         Calendar financial_center_calendar,
-        DayCounter dayCounter):
+        DayCounter dayCounter,
+        YieldTermStructure ts):
     
         # convert the Python str to C++ string
         cdef string familyName_string = string(PyString_AsString(familyName))
 
-        
+        cdef Handle[_yts.YieldTermStructure] ts_handle
+        if ts.relinkable:
+            ts_handle = Handle[_yts.YieldTermStructure](
+                ts._relinkable_ptr.get().currentLink()
+            )
+        else:
+            ts_handle = Handle[_yts.YieldTermStructure](
+                ts._thisptr.get()
+            )
+
         self._thisptr = new shared_ptr[_in.Index](
         new _libor.Libor(
             familyName_string,
@@ -61,5 +75,6 @@ cdef class Libor(IborIndex):
             <Natural> settlementDays,
             deref(currency._thisptr),
             deref(financial_center_calendar._thisptr),
-            deref(dayCounter._thisptr)))
+            deref(dayCounter._thisptr),
+            ts_handle))
 
