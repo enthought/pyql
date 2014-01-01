@@ -106,14 +106,14 @@ cdef class Swap(Instrument):
     def legNPV(self, Size j):
         return get_swap(self).legNPV(j)
 
-    def startDiscounts(self, Size j):
-        return get_swap(self).startDiscounts(j)
+    ## def startDiscounts(self, Size j):
+    ##     return get_swap(self).startDiscounts(j)
 
-    def endDiscounts(self, Size j):
-        return get_swap(self).endDiscounts(j)
+    ## def endDiscounts(self, Size j):
+    ##     return get_swap(self).endDiscounts(j)
 
-    def npvDateDiscount(self):
-        return get_swap(self).npvDateDiscount()
+    ## def npvDateDiscount(self):
+    ##     return get_swap(self).npvDateDiscount()
 
 cdef _vanillaswap.VanillaSwap* get_vanillaswap(VanillaSwap swap):
     """ Utility function to extract a properly casted Swap pointer out of the

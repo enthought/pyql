@@ -34,8 +34,8 @@ cdef extern from 'ql/instruments/swap.hpp' namespace 'QuantLib':
         Date maturityDate()
         Real legBPS(Size j)
         Real legNPV(Size j)
-        DiscountFactor startDiscounts(Size j)
-        DiscountFactor endDiscounts(Size j)
-        DiscountFactor npvDateDiscount()
+        ## DiscountFactor startDiscounts(Size j)
+        ## DiscountFactor endDiscounts(Size j)
+        ## DiscountFactor npvDateDiscount()
         Leg& leg(Size j)
 
