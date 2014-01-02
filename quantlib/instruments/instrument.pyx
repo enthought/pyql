@@ -40,3 +40,4 @@ cdef class Instrument:
         def __get__(self):
             return self.net_present_value
 
+

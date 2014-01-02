@@ -29,6 +29,9 @@ from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar import Following
 
+cimport quantlib._cashflow as _cashflow
+cimport quantlib.cashflow as cashflow
+
 import datetime
 
 
@@ -106,6 +109,15 @@ cdef class Bond(Instrument):
         else:
             amount = get_bond(self).accruedAmount()
         return amount
+
+    property cashflows:
+        """ cash flow stream as a Leg """
+        def __get__(self):
+            cdef _cashflow.Leg leg
+            cdef object result
+            leg = get_bond(self).cashflows()
+            result = cashflow.leg_items(leg)
+            return result
 
 cdef class FixedRateBond(Bond):
     """ Fixed rate bond.

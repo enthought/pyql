@@ -1,7 +1,18 @@
+"""
+ Copyright (C) 2011, Enthought Inc
+ Copyright (C) 2011, Patrick Henaff
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
 import string
 import re
+import datetime
 
 from quantlib.time.api import Date, Actual365Fixed
+import quantlib.time.date as dt
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
 
 _dayOfWeekName = ['Monday', 'Tuesday', 'Wednesday', 'Thursday',
@@ -93,11 +104,21 @@ def pydate_to_qldate(date):
     into a QL Date.
     """
 
+    if isinstance(date, Date):
+        return date
     if isinstance(date, basestring):
         yy, mm, dd = _parsedate(date)
         return Date(dd, mm, yy)
     else:
-        return Date(date.day, date.month, date.year)
+        return dt.qldate_from_pydate(date)
+
+
+def qldate_to_pydate(date):
+    """
+    Converts a QL Date to a datetime
+    """
+
+    return datetime.datetime(date.year, date.month, date.day)
 
 
 def df_to_zero_curve(rates, settlement_date, daycounter=Actual365Fixed()):

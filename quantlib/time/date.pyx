@@ -76,10 +76,15 @@ FREQUENCIES = ['NoFrequency', 'Once', 'Annual', 'Semiannual', 'EveryFourthMonth'
                'Quarterly', 'Bimonthly', 'Monthly', 'EveryFourthWeek',
                'Biweekly', 'Weekly', 'Daily', 'OtherFrequency']
 _FREQ_DICT = {globals()[name]:name for name in FREQUENCIES}
+_STR_FREQ_DICT = {name:globals()[name] for name in FREQUENCIES}
+
 def frequency_to_str(Frequency f):
     """ Converts a PyQL Frequency to a human readable string. """
     return _FREQ_DICT[f]
 
+def str_to_frequency(char* name):
+    """ Converts a string to a PyQL Frequency. """
+    return _STR_FREQ_DICT[name]
 
 cdef public enum TimeUnit:
     Days   = _period.Days

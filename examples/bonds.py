@@ -5,10 +5,9 @@ This example is based on the QuantLib Excel bond demo.
 """
 
 from quantlib.instruments.bonds import FixedRateBond
-from quantlib.time.calendar import (
-    TARGET, Unadjusted, ModifiedFollowing, Following
+from quantlib.time.api import (
+    TARGET, Unadjusted, ModifiedFollowing, Following, NullCalendar
 )
-from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.compounding import Continuous
 from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.time.date import Date, August, Period, Jul, Annual, Years

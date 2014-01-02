@@ -1,9 +1,10 @@
-import unittest
+from .unittest_tools import unittest
 
 from quantlib.interest_rate import InterestRate
 
 from quantlib.compounding import Continuous, Compounded
 from quantlib.time.api import Actual360, Monthly, NoFrequency, Once
+
 
 class InterestRateTestCase(unittest.TestCase):
 
@@ -12,7 +13,6 @@ class InterestRateTestCase(unittest.TestCase):
         self.day_counter = Actual360()
 
     def test_create_interest_rate_frequency_makes_no_sense(self):
-
 
         rate = 0.05
         counter = self.day_counter
@@ -29,7 +29,6 @@ class InterestRateTestCase(unittest.TestCase):
 
         # Broken check. DayCoonter != Actual360
         self.assertEquals(interest_rate.day_counter, Actual360())
-
 
     def test_create_interest_rate_compounded(self):
 
@@ -67,7 +66,6 @@ class InterestRateTestCase(unittest.TestCase):
             repr(interest_rate),
             "0.05 Actual/360 Monthly compounding"
         )
-
 
 
 if __name__ == '__main__':
