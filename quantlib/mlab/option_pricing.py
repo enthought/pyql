@@ -24,7 +24,10 @@ from quantlib.pricingengines.api import AnalyticEuropeanEngine
 from quantlib.processes.api import BlackScholesMertonProcess
 from quantlib.termstructures.yields.api import FlatForward
 from quantlib.termstructures.volatility.api import BlackConstantVol
-from quantlib.time.api import Actual360, today, NullCalendar
+from quantlib.time.api import today, NullCalendar, ActualActual
+
+from quantlib.time.date import (Period, Days)
+from quantlib.mlab.util import common_shape, array_call
 
 
 def heston_pricer(trade_date, options, params, rates, spot):
@@ -76,22 +79,41 @@ def heston_pricer(trade_date, options, params, rates, spot):
 
 
 def blsprice(spot, strike, risk_free_rate, time, volatility,
-             option_type='Call', dividend=0.0):
-    """
-    Black-Scholes option pricing model
-    """
-    spot = SimpleQuote(spot)
+             option_type='Call', dividend=0.0, calc='price'):
 
-    daycounter = Actual360()
+    """
+    Matlab's blsprice + greeks (delta, gamma, theta, rho, vega, lambda)
+    """
+    args = locals()
+    the_shape, shape = common_shape(args)
+
+    all_scalars = np.all([shape[key][0] == 'scalar' for key in shape])
+
+    if all_scalars:
+        res = _blsprice(**args)
+    else:
+        res = array_call(_blsprice, shape, args)
+        res = np.reshape(res, the_shape)
+    return res
+
+
+def _blsprice(spot, strike, risk_free_rate, time, volatility,
+             option_type='Call', dividend=0.0, calc='price'):
+    """
+    Black-Scholes option pricing model + greeks.
+    """
+    _spot = SimpleQuote(spot)
+
+    daycounter = ActualActual()
     risk_free_ts = FlatForward(today(), risk_free_rate, daycounter)
     dividend_ts = FlatForward(today(), dividend, daycounter)
     volatility_ts = BlackConstantVol(today(), NullCalendar(),
                                      volatility, daycounter)
 
-    process = BlackScholesMertonProcess(spot, dividend_ts,
+    process = BlackScholesMertonProcess(_spot, dividend_ts,
                                         risk_free_ts, volatility_ts)
 
-    exercise_date = today() + 90
+    exercise_date = today() + Period(time * 365, Days)
     exercise = EuropeanExercise(exercise_date)
 
     payoff = PlainVanillaPayoff(option_type, strike)
@@ -99,4 +121,74 @@ def blsprice(spot, strike, risk_free_rate, time, volatility,
     option = EuropeanOption(payoff, exercise)
     engine = AnalyticEuropeanEngine(process)
     option.set_pricing_engine(engine)
-    return option.npv
+
+    if calc == 'price':
+        res = option.npv
+    elif calc == 'delta':
+        res = option.delta
+    elif calc == 'gamma':
+        res = option.gamma
+    elif calc == 'theta':
+        res = option.theta
+    elif calc == 'rho':
+        res = option.rho
+    elif calc == 'vega':
+        res = option.vega
+    elif calc == 'lambda':
+        res = option.delta * spot / option.npv
+    else:
+        raise ValueError('calc type %s is unknown' % calc)
+
+    return res
+
+
+def blsimpv(price, spot, strike, risk_free_rate, time,
+             option_type='Call', dividend=0.0):
+
+    args = locals()
+    the_shape, shape = common_shape(args)
+
+    all_scalars = np.all([shape[key][0] == 'scalar' for key in shape])
+
+    if all_scalars:
+        res = _blsimpv(**args)
+    else:
+        res = array_call(_blsimpv, shape, args)
+
+    return res
+
+
+def _blsimpv(price, spot, strike, risk_free_rate, time,
+             option_type='Call', dividend=0.0):
+
+    spot = SimpleQuote(spot)
+    daycounter = ActualActual()
+    risk_free_ts = FlatForward(today(), risk_free_rate, daycounter)
+    dividend_ts = FlatForward(today(), dividend, daycounter)
+    volatility_ts = BlackConstantVol(today(), NullCalendar(),
+                                     .3, daycounter)
+
+    process = BlackScholesMertonProcess(spot, dividend_ts,
+                                        risk_free_ts, volatility_ts)
+
+    exercise_date = today() + Period(time * 365, Days)
+    exercise = EuropeanExercise(exercise_date)
+
+    payoff = PlainVanillaPayoff(option_type, strike)
+
+    option = EuropeanOption(payoff, exercise)
+    engine = AnalyticEuropeanEngine(process)
+    option.set_pricing_engine(engine)
+
+    accuracy = 0.001
+    max_evaluations = 1000
+    min_vol = 0.01
+    max_vol = 2
+
+    vol = option.implied_volatility(price, process,
+            accuracy,
+            max_evaluations,
+            min_vol,
+            max_vol)
+
+    return vol

@@ -43,6 +43,7 @@ cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib'
         DiscountFactor discount(Time t) except +
         DiscountFactor discount(Time t, bool extrapolate) except +
         Date& referenceDate()
+        Date& maxDate()
         InterestRate zeroRate(Date& d,
                               DayCounter& resultDayCounter,
                               Compounding comp,
