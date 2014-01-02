@@ -42,6 +42,8 @@ elif sys.platform == 'linux2':
     # INCLUDE_DIRS = ['/opt/QuantLib-1.1', '.', SUPPORT_CODE_INCLUDE]
     # LIBRARY_DIRS = ['/opt/QuantLib-1.1/lib',]
 
+INCLUDE_DIRS.append(numpy.get_include())
+
 def get_define_macros():
     #defines = [ ('HAVE_CONFIG_H', None)]
     defines = []
@@ -72,7 +74,7 @@ def get_extra_link_args():
 
     return args
 
-CYTHON_DIRECTIVES = {"embedsignatur": True}
+CYTHON_DIRECTIVES = {"embedsignature": True}
 
 def collect_extensions():
     """ Collect all the directories with Cython extensions and return the list
@@ -90,12 +92,11 @@ def collect_extensions():
         'extra_compile_args':get_extra_compile_args(),
         'extra_link_args':get_extra_link_args(),
         'libraries':['QuantLib'],
-        'pyrex_directives':CYTHON_DIRECTIVES
+        'cython_directives':CYTHON_DIRECTIVES
     }
 
     settings_extension = Extension('quantlib.settings',
         ['quantlib/settings/settings.pyx', 'cpp_layer/ql_settings.cpp'],
-        language='c++',
         **kwargs
     )
 
