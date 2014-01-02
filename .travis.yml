@@ -4,14 +4,15 @@ language: python
 python:
   - 2.6
   - 2.7
+virtualenv:
+    system_site_package: true
 before_install:
+ - sudo add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu/ saucy main universe"
  - sudo apt-get update
  - sudo apt-get install libquantlib0-dev
- - pip install numpy --use-mirrors
+ - sudo apt-get install -qq python-numpy
  - pip install cython --use-mirrors
  - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then pip install unittest2; fi
-#- if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then patch -s /home/vagrant/virtualenv/python2.6/local/lib/python2.6/site-packages/Cython/Build/Dependencies.py cython_0.16.patch; fi
- - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then patch -s /home/vagrant/virtualenv/python2.7/local/lib/python2.7/site-packages/Cython/Build/Dependencies.py cython_0.16.patch; fi
  - pip install pandas --use-mirrors
 install:
     make build

@@ -21,12 +21,11 @@ cdef class Euribor(IborIndex):
         pass
         
 cdef class Euribor6M(Euribor):
-    def __init__(self, YieldTermStructure yc=YieldTermStructure()):
+    def __init__(self):
     
-        cdef Handle[_ff.YieldTermStructure]* yc_handle = new \
-                Handle[_ff.YieldTermStructure](
-                   <_ff.YieldTermStructure*> yc._thisptr.get())
+        cdef Handle[_ff.YieldTermStructure] yc_handle = \
+                Handle[_ff.YieldTermStructure]()
 
         self._thisptr = new shared_ptr[_in.Index](
-            new _eu.Euribor6M(deref(yc_handle)))
+            new _eu.Euribor6M(yc_handle))
 

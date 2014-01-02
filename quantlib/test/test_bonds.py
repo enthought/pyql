@@ -1,4 +1,4 @@
-import unittest
+from .unittest_tools import unittest
 
 from quantlib.instruments.bonds import (
     FixedRateBond, ZeroCouponBond
@@ -23,6 +23,7 @@ from quantlib.settings import Settings
 from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure
 )
+
 
 class BondTestCase(unittest.TestCase):
 

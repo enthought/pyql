@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-# <nbformat>3</nbformat>
-
-# <markdowncell>
-
 # Preprocessing of Option Quotes
 # ==============================
 # 
@@ -118,9 +113,9 @@ import re
 import datetime
 import numpy as np
 from pandas import DataFrame
-from pandas.stats.interface import ols
 from scipy.interpolate import interp1d
 from scipy.stats import norm
+from scipy.linalg import lstsq
 
 import quantlib.pricingengines.blackformula
 from quantlib.pricingengines.blackformula import blackFormulaImpliedStdDev
@@ -182,10 +177,12 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1, keepOTMData=Tr
         df_all = df_C.join(df_P, how='inner')
         df_all['Strike'] = df_all.index
         df_all['C-P'] = df_all['PremiumC'] - df_all['PremiumP']
-    
-        model = ols(y=df_all['C-P'], x=df_all['Strike'])
-        b = model.beta 
-    
+
+        y = np.array(df_all['C-P'])
+        x = np.array(df_all['Strike'])
+        A = np.vstack((x, np.ones(x.shape))).T
+
+        b = np.linalg.lstsq(A, y)[0]
         # intercept is last coef
         iRate = -np.log(-b[0])/timeToMaturity
         dRate = np.log(spot/b[1])/timeToMaturity
@@ -282,6 +279,6 @@ if __name__ == '__main__':
     df_final = Compute_IV(option_data_frame, tMin=1/12, nMin=6, QDMin=.2, QDMax=.8)
 
     # save a csv file and pickled data frame
-    df_final.to_csv('df_options_SPX_24jan2011.csv', index=False)
-    df_final.save('df_options_SPX_24jan2011.pkl')   
+    df_final.to_csv('../data/df_options_SPX_24jan2011.csv', index=False)
+    df_final.save('../data/df_options_SPX_24jan2011.pkl')
 

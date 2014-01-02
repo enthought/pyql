@@ -1,4 +1,4 @@
-import unittest
+from .unittest_tools import unittest
 
 from quantlib.quotes import SimpleQuote
 from quantlib.time.api import Period, Months, TARGET, ModifiedFollowing

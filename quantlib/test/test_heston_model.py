@@ -1,6 +1,6 @@
-import unittest
-
 import numpy as np
+
+from .unittest_tools import unittest
 
 from quantlib.instruments.option import EuropeanExercise, VanillaOption
 from quantlib.instruments.payoffs import Call, PlainVanillaPayoff, Put
