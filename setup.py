@@ -18,9 +18,7 @@ SUPPORT_CODE_INCLUDE = './cpp_layer'
 # FIXME: would be good to be able to customize the path with envrironment
 # variables in place of hardcoded paths ...
 if sys.platform == 'darwin':
-    INCLUDE_DIRS = ['/usr/local/include', '.', SUPPORT_CODE_INCLUDE,
-                    '/Users/dpinte/projects/sources/boost_1_55_0'
-                    ]
+    INCLUDE_DIRS = ['/usr/local/include', '.', SUPPORT_CODE_INCLUDE]
     LIBRARY_DIRS = ["/usr/local/lib"]
 elif sys.platform == 'win32':
     INCLUDE_DIRS = [
