@@ -20,6 +20,8 @@ from quantlib.time.calendar cimport Calendar
 cimport quantlib._index as _in
 cimport quantlib.indexes._interest_rate_index as _iri
 
+cimport quantlib.time._period as _pe
+
 cdef extern from "string" namespace "std":
     cdef cppclass string:
         char* c_str()
@@ -38,11 +40,11 @@ cdef class InterestRateIndex(Index):
     def __str__(self):
         return 'Interest rate index %s' % self.name
     
-    ## property tenor:
-    ##     def __get__(self):
-    ##         return get_iri(self).tenor()
+    property tenor:
+        def __get__(self):
+            cdef _pe.Period pe
             
-    ## property fixingDays:
-    ##     def __get__(self):
-    ##         return get_iri(self).fixingDays()
+            pe = get_iri(self).tenor()
+            return Period(pe.length(), pe.units())
+            
             
