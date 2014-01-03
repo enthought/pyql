@@ -98,6 +98,18 @@ def _parsedate(date):
     return (yy, mm, dd)
 
 
+def pydate(date):
+    """
+    Accomodate date inputs as string or python date
+    """
+
+    if isinstance(date, datetime.datetime):
+        return date
+    else:
+        yy, mm, dd = _parsedate(date)
+        return datetime.datetime(yy, mm, dd)
+
+
 def pydate_to_qldate(date):
     """
     Converts a datetime object or a date string
