@@ -25,7 +25,7 @@ class SettingsTestCase(unittest.TestCase):
             evaluation_date == settings.evaluation_date
         )
 
-        self.assertTrue(settings.version.startswith('1'))
+        self.assertTrue(settings.version.startswith(b'1'))
 
     def test_settings_instance_method(self):
 

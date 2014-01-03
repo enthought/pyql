@@ -11,7 +11,6 @@ from __future__ import division
 # Utility functions for handling interest rates
 # ---------------------------------------------
 
-import string
 import re
 import numpy as np
 
@@ -48,7 +47,7 @@ def _parse_rate_label(label):
     Libor6M
     """
 
-    label = string.lstrip(string.rstrip(label.upper()))
+    label = str.lstrip(str.rstrip(label.upper()))
     for reg in _label_re_list:
         mo = reg.match(label)
         if mo != None:

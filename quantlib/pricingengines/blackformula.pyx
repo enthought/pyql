@@ -7,8 +7,6 @@ from math import sqrt, log
 
 from quantlib.instruments._payoffs cimport OptionType
 
-import types
-
 STR_TO_OPTION_TYPE = {'C': Call, 'P':Put}
 
 def blackFormula(option_type, Real strike,
@@ -36,7 +34,7 @@ def blackFormula(option_type, Real strike,
 
     """
 
-    if isinstance(option_type, types.StringTypes):
+    if isinstance(option_type, str):
         if option_type.upper() not in STR_TO_OPTION_TYPE:
             raise ValueError(
                 'Option type must be one of {}'.format(

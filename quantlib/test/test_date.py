@@ -57,7 +57,7 @@ class TestQuantLibDate(unittest.TestCase):
         datetime_date_nov_98 = datetime.date(1998, 11, 19)
 
         self.assertTrue(date_nov_98 == datetime_date_nov_98)
-        self.assertEquals(cmp(date_nov_98, datetime_date_nov_98), 0)
+        self.assertEquals(date_nov_98 > datetime_date_nov_98, 0)
 
         datetime_date_oct_98 = datetime.date(1998, 10, 19)
         self.assertTrue(date_nov_98 > datetime_date_oct_98)

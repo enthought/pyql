@@ -185,6 +185,18 @@ cdef class Period:
         else:
             return NotImplemented
 
+    def __itruediv__(self, value):
+        cdef QlPeriod p1
+
+        if isinstance(self, Period) and isinstance(value, int):
+
+            p1 = self._thisptr.get().i_div( <int> value)
+
+            return self
+        else:
+            return NotImplemented
+
+
     def __idiv__(self, value):
         cdef QlPeriod p1
 
