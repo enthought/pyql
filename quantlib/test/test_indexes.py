@@ -60,12 +60,15 @@ class TestLibor(unittest.TestCase):
 
         term_structure = YieldTermStructure(relinkable=True)
         term_structure.link_to(FlatForward(settlement_date, 0.05,
-                                          Actual365Fixed()))
+                                           Actual365Fixed()))
 
         index = Libor('USD Libor', Period(6, Months), settlement_days,
-                       USDCurrency(), calendar, Actual360(),
-                       term_structure)
+                      USDCurrency(), calendar, Actual360(),
+                      term_structure)
 
+        t = index.tenor
+        self.assertEquals(t.length, 6)
+        self.assertEquals(t.units, 2)
         self.assertEquals('USD Libor6M Actual/360', index.name)
 
 
