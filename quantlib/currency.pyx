@@ -54,8 +54,9 @@ def currency_factory(str traits):
     """ 
     """
 
-    # validate inputs
-    if traits not in VALID_TRAITS:
+    if(traits == 'USD'):
+        return USDCurrency()
+    elif(traits == 'EUR'):
+        return EURCurrency()
+    else:
         raise ValueError('Traits must be in {}',format(VALID_TRAITS))
-
-

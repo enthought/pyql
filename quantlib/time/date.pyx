@@ -1,4 +1,5 @@
 import datetime
+import re
 
 from cython.operator cimport dereference as deref
 
@@ -92,9 +93,18 @@ cdef public enum TimeUnit:
     Months = _period.Months
     Years  = _period.Years
 
+_TU_DICT = {'D': Days, 'W': Weeks, 'M': Months, 'Y': Years}
+_STR_TU_DICT = {v:k for k, v in _TU_DICT.items()}
+
 cdef extern from "string" namespace "std":
     cdef cppclass string:
         char* c_str()
+
+
+tenor_re = re.compile("([0-9]+)([DWMY]{1,1})")
+def parse(tenor):
+    mo = tenor_re.match(tenor)
+    return (mo.group(1), mo.group(2))
 
 cdef class Period:
     ''' Class providing a Period (length + time unit) class and implements a
@@ -104,8 +114,19 @@ cdef class Period:
 
     def __cinit__(self, *args):
         if len(args) == 1:
-            self._thisptr = new shared_ptr[QlPeriod](
-                new QlPeriod(<_period.Frequency>args[0]))
+            tenor = args[0]
+            if(isinstance(tenor, str)):
+                try:
+                    t, u = parse(tenor)
+                except:
+                    print('Parse Error: could not parse period %s' % tenor)
+                    raise
+                self._thisptr = \
+                new shared_ptr[QlPeriod](new QlPeriod(<Integer> int(t),
+                                         <_period.TimeUnit> _TU_DICT[u]))
+            else:    
+                self._thisptr = \
+                new shared_ptr[QlPeriod](new QlPeriod(<_period.Frequency>args[0]))
         elif len(args) == 2:
             self._thisptr = new shared_ptr[QlPeriod](
                 new QlPeriod(<Integer> args[0], <_period.TimeUnit> args[1]))
@@ -223,7 +244,7 @@ cdef class Period:
             return geq_op( deref(p1), deref(p2))
 
     def __str__(self):
-        return 'Period %d length  %d units' % (self.length, self.units)
+        return 'Period %d %s' % (self.length, _STR_TU_DICT[self.units])
 
 cdef class Date:
     """ This class provides methods to inspect dates as well as methods and
