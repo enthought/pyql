@@ -47,3 +47,15 @@ cdef class USDCurrency(Currency):
 cdef class EURCurrency(Currency):
     def __cinit__(self):
         self._thisptr = <_cu.Currency*> new _cu.EURCurrency()
+
+VALID_TRAITS = ['USD', 'EUR']
+
+def currency_factory(str traits):
+    """ 
+    """
+
+    # validate inputs
+    if traits not in VALID_TRAITS:
+        raise ValueError('Traits must be in {}',format(VALID_TRAITS))
+
+
