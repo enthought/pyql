@@ -31,7 +31,8 @@ from quantlib.indexes.libor import Libor
 from quantlib.termstructures.yields.piecewise_yield_curve import \
     term_structure_factory
 
-from quantlib.termstructures.yields.flat_forward import FlatForward
+from quantlib.termstructures.yields.api import FlatForward, YieldTermStructure
+
 
 _label_re_list = [ \
     # Swap
@@ -86,7 +87,7 @@ def make_rate_helper(label, rate, dt_obs, currency='USD'):
         liborIndex = Libor('USD Libor', Period(6, Months),
                        settlement_days,
                        USDCurrency(), calendar,
-                       Actual360())
+                       Actual360(), YieldTermStructure(relinkable=False))
         spread = SimpleQuote(0)
         fwdStart = Period(0, Days)
         helper = SwapRateHelper.from_tenor(rate,

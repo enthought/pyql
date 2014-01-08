@@ -104,9 +104,13 @@ cdef class Period:
 
     def __cinit__(self, *args):
         if len(args) == 1:
-            self._thisptr = new shared_ptr[QlPeriod](new QlPeriod(<_period.Frequency>args[0]))
+            self._thisptr = new shared_ptr[QlPeriod](
+                new QlPeriod(<_period.Frequency>args[0]))
         elif len(args) == 2:
-            self._thisptr = new shared_ptr[QlPeriod](new QlPeriod(<Integer> args[0], <_period.TimeUnit> args[1]))
+            self._thisptr = new shared_ptr[QlPeriod](
+                new QlPeriod(<Integer> args[0], <_period.TimeUnit> args[1]))
+        elif len(args) == 0:
+            self._thisptr = new shared_ptr[QlPeriod]()
         else:
             raise RuntimeError('Invalid arguments for Period.__cinit__')
 
