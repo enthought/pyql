@@ -1,39 +1,112 @@
-from quantlib.termstructures.yields.rate_helpers import RateHelper
-from quantlib.quotes import Quote
-from quantlib.time.api import (Daycounter, Calendar, Period,
-                               BusinessDayConvention,
-                               Frequency)
+from quantlib.termstructures.yields.rate_helpers import (SwapRateHelper,
+                                                         DepositRateHelper)
+from quantlib.quotes import SimpleQuote
+
+from quantlib.time.api import (Date, Calendar, Period,
+                               Thirty360, TARGET,
+                               Actual360, ActualActual, Euro,
+                               Days, Semiannual,
+                               JointCalendar, UnitedStates, UnitedKingdom,
+                               Annual, Years, Months,
+                               Unadjusted, ModifiedFollowing)
+
+from quantlib.time.schedule import Schedule, Backward, Forward
+from quantlib.settings import Settings
+from quantlib.termstructures.yields.api import (
+    FlatForward, YieldTermStructure)
+
+from quantlib.indexes.euribor import Euribor6M
+
+from quantlib.currency import USDCurrency, EURCurrency
+from quantlib.indexes.api import Libor, Euribor
+
+from quantlib.util.converter import pydate_to_qldate
+
+from quantlib.termstructures.yields.piecewise_yield_curve import \
+    term_structure_factory
 
 
-def ibor_index_factory(currency):
+def ibor_index_factory(currency, tenor=None):
+    """
+    TODO: make this a class method in Ibor?
+    """
     settlement_days = 2
+    _default_tenor = {'USD': '3M', 'EUR': '6M'}
+
+    # could use a dummy term structure here?
+    term_structure = YieldTermStructure(relinkable=False)
+    # may not be needed at this stage...
+    # term_structure.link_to(FlatForward(settlement_date, 0.05,
+    #                                       Actual365Fixed()))
+
+    if(tenor is None):
+        tenor = _default_tenor[currency]
     if(currency == 'USD'):
-        ibor_index = Libor('USD Libor', Period('3M'), settlement_days,
-                        USDCurrency(), calendar, Actual360())
+        ibor_index = Libor('USD Libor', Period(tenor), settlement_days,
+                           USDCurrency(), TARGET(),
+                           Actual360(), term_structure)
     elif(currency == 'EUR'):
-        ibor_index = Libor('Euribor', Period('6M'), settlement_days,
-                        EURCurrency(), calendar, Actual360())
+        ibor_index = Euribor(Period(tenor), term_structure)
     return ibor_index
 
-def usd_libor_market(index):
-    m = FixedIncomeMarket( 
-        quotes=None,
+
+def usd_libor_market(index=ibor_index_factory('USD')):
+    m = FixedIncomeMarket('USD Libor',
         floating_rate_index=index,
         settlement_days=2,
-        fixed_rate_frequency=SemiAnnual,
+        fixed_rate_frequency=Semiannual,
         fixed_instrument_convention=ModifiedFollowing,
-        fixed_instrument_daycounter=Thirty360(EUROPEAN))
+        fixed_instrument_daycounter=Thirty360())
     return m
 
-def euribor_market(index):
-    m = FixedIncomeMarket( 
-        quotes=None,
+
+def euribor_market(index=ibor_index_factory('EUR')):
+    m = FixedIncomeMarket('Euribor',
         floating_rate_index=index,
         settlement_days=2,
         fixed_rate_frequency=Annual,
         fixed_instrument_convention=Unadjusted,
-        fixed_instrument_daycounter=Thirty360(EUROPEAN))
+        fixed_instrument_daycounter=Thirty360())
     return m
+
+
+def make_rate_helper(market, quote):
+    """
+    Wrapper for deposit and swaps rate helpers makers
+    TODO: class method of RateHelper?
+    """
+
+    rate_type, tenor, quote_value = quote
+    print rate_type, tenor, quote_value
+    
+
+    end_of_month = True
+
+    if(rate_type == 'SWAP'):
+        libor_index = market._floating_rate_index
+        spread = SimpleQuote(0)
+        fwdStart = Period(0, Days)
+        helper = SwapRateHelper.from_tenor(
+            quote_value,
+            Period(tenor),
+            market._calendar, market._fixed_rate_frequency,
+            market._fixed_instrument_convention,
+            market._fixed_instrument_daycounter,
+            libor_index, spread, fwdStart)
+    elif(rate_type == 'DEP'):
+        helper = DepositRateHelper(
+            quote_value,
+            Period(tenor),
+            market._settlement_days,
+            market._floating_rate_index.fixingCalendar,
+            market._floating_rate_index.businessDayConvention,
+            end_of_month,
+            market._floating_rate_index.dayCounter)
+    else:
+        raise Exception("Rate type %s not supported" % rate_type)
+
+    return (helper)
+
 
 class Market:
     """
@@ -46,54 +119,10 @@ class Market:
     def __init__(self, name):
         self._name = name
 
-    property name:
-        def __get__(self):
-            return(self._name)
+    @property
+    def name(self):
+        return self._name
 
-def make_rate_helper(market, quote, dt_obs):
-    """
-    Wrapper for deposit and swaps rate helpers makers
-    """
-
-    rate_type, tenor, quote_value = quote
-    quote_value = SimpleQuote(quote_value)
-    
-    if(~isinstance(dt_obs, quantlib.time.date.Date)):
-        dt_obs = pydate_to_qldate(dt_obs)
-    settings = Settings()
-    calendar = JointCalendar(UnitedStates(), UnitedKingdom())
-    # must be a business day
-    eval_date = calendar.adjust(dt_obs)
-    settings.evaluation_date = eval_date
-    settlement_days = 2
-    settlement_date = calendar.advance(eval_date, market.settlement_days, Days)
-    # must be a business day
-    settlement_date = calendar.adjust(settlement_date)
-    end_of_month = True
-
-    if(rate_type == 'SWAP'):
-        liborIndex = market._floating_rate_index
-        spread = SimpleQuote(0)
-        fwdStart = Period(0, Days)
-        helper = SwapRateHelper.from_tenor(quote_value,
-                 Period(tenor),
-                 calendar, market._fixed_rate_frequency,
-                 market._fixed_instrument_convention,
-                 market._fixed_instrument_daycounter,
-                 liborIndex, spread, fwdStart)
-    elif(rate_type == 'DEP'):
-        helper = DepositRateHelper(quote_value,
-                 Period(tenor),
-                 settlement_days,
-                 market._floating_rate_index.fixingCalendar()
-                 market._floating_rate_index.businessDayConvention(),
-                 end_of_month,
-                 market._floating_rate_index.dayCounter())
-    else:
-        raise Exception("Rate type %s not supported" % label)
-
-
-    return (helper)
 
 class FixedIncomeMarket(Market):
     """
@@ -110,7 +139,8 @@ class FixedIncomeMarket(Market):
     instruments and the deposit instruments.
     """
 
-    def __init__(self, quotes,
+    def __init__(self,
+                 name,
                  floating_rate_index,
                  settlement_days=2,
                  fixed_rate_frequency=Annual,
@@ -118,6 +148,7 @@ class FixedIncomeMarket(Market):
                  fixed_instrument_daycounter=Thirty360(),
                  termStructureDayCounter=ActualActual()):
 
+        self._name = name
         self._settlement_days = settlement_days
         self._fixed_rate_frequency = fixed_rate_frequency
         self._fixed_instrument_convention = fixed_instrument_convention
@@ -126,93 +157,119 @@ class FixedIncomeMarket(Market):
 
         # floating rate index
         self._floating_rate_index = floating_rate_index
-        ## Libor('USD Libor', market.Period(6, Months),
-        ##                settlement_days,
-        ##                market._currency, calendar,
-        ##                Actual360())
 
-            self._floating_rate_index.businessDayConvention()
-        self._depositDayCounter = self.floatingRateIndex.dayCounter()
-        self._calendar = self.floatingRateIndex.fixingCalendar()
+        self._depositDayCounter = floating_rate_index.dayCounter
+        self._calendar = floating_rate_index.fixingCalendar
 
-        # convert quotes to std::vector of rate_helpers
-        self._quotes = quotes
-        self._rate_helpers = []
-        for quote in self._quotes:
-            # construct rate helper
-            helper = NULL
-            self._rate_helpers.append(helper)
+        self._quotes = None
+        self._term_structure = None
+        
 
     def __str__(self):
         return 'Fixed Income Market: %s' % self._name
 
-    def set_quotes(self, quotes):
+    def set_quotes(self, dt_obs, quotes):
         self._quotes = quotes
+        if(~isinstance(dt_obs, Date)):
+            dt_obs = pydate_to_qldate(dt_obs)
+        settings = Settings()
+        calendar = JointCalendar(UnitedStates(), UnitedKingdom())
+        # must be a business day
+        eval_date = calendar.adjust(dt_obs)
+        settings.evaluation_date = eval_date
+
+        self._eval_date = eval_date
+        
         self._rate_helpers = []
         for quote in quotes:
             # construct rate helper
-            helper = ?
+            helper = make_rate_helper(self, quote)
             self._rate_helpers.append(helper)
 
-    def update(FixedIncomeMarket a_market) {
-        self._calendar = a_market._calendar
-        self._fixingDays = a_market._fixingDays
-        self._depositDayCounter = a_market._depositDayCounter
-        self._businessDayConvention = a_market._businessDayConvention
+    @property
+    def calendar(self):
+        return self._calendar
 
-        self._fixedInstrumentFrequency = \
-        a_market._fixedInstrumentFrequency
-        self._fixedInstrumentConvention = \
-        a_market._fixedInstrumentConvention
-        self._fixedInstrumentDayCounter = \
-        a_market._fixedInstrumentDayCounter
-        self._fixedRateFrequency = a_market._fixedRateFrequency
+    @property
+    def fixing_days(self):
+        return self._fixing_days
 
-        self._floatingRateIndex = a_market._floatingRateIndex
-        self._termStructureDayCounter = \
-        a_market._termStructureDayCounter
+    @property
+    def deposit_day_counter(self):
+        return self._deposit_day_counter
 
-    property calendar:
-        def __get__(self):
-            return self._calendar
+    @property
+    def fixed_rate_frequency(self):
+        return self._fixed_rate_frequency
 
-    property fixing_days:
-        def __get__(self):
-            return self._fixingDays
+    @property
+    def fixed_rate_convention(self):
+        return self._fixedInstrumentConvention
 
-    property deposit_day_counter:
-        def __get__(self):
-            return self._depositDayCounter
+    @property
+    def fixed_rate_day_counter(self):
+        return self._fixed_rate_day_counter
 
-    property fixed_rate_frequency:
-        def __get__(self):
-            return _fixedInstrumentFrequency
+    @property
+    def ts_day_counter(self):
+        return self._termstructure_day_counter
 
-    property fixed_rate_convention:
-        def __get__(self):
-            return self._fixedInstrumentConvention
+    @property
+    def reference_date(self):
+        return 0
 
-    property fixed_rate_day_counter:
-        def __get__(self):
-            return self._fixedInstrumentDayCounter
-
-    property ts_day_counter:
-        def __get__(self):
-            return self._termStructureDayCounter
-
-    property reference_date:
-        def __get__(self):
-            return 0
-
-    property max_date:
-        def __get__(self):
-            return 0
+    @property
+    def max_date(self):
+        return 0
 
     def bootstrap_term_structure(self):
+        tolerance = 1.0e-15
+        settings = Settings()
+        calendar = JointCalendar(UnitedStates(), UnitedKingdom())
+        # must be a business day
+        eval_date = self._eval_date
+        settings.evaluation_date = eval_date
+        settlement_days = self._settlement_days
+        settlement_date = calendar.advance(eval_date, settlement_days, Days)
+        # must be a business day
+        settlement_date = calendar.adjust(settlement_date)
+        ts = term_structure_factory('discount', 'loglinear',
+            settlement_date, self._rate_helpers,
+            self._termStructureDayCounter, tolerance)
+        self._term_structure = ts
         return 0
 
-    def discount(self, double maturity, bool extrapolate=True):
-        return 0
+    def discount(self, date_maturity, extrapolate=True):
+        return self._term_structure.discount(date_maturity)
 
-    def discount(Date maturity_date, bool extrapolate=false):
-        return 0
+if __name__ == '__main__':
+
+    # libor index
+
+    index = ibor_index_factory('USD')
+    print index
+
+    m = usd_libor_market()
+    print m
+
+    # add quotes
+    eval_date = Date(20, 9, 2004)
+
+    quotes = [('DEP', '1W', 0.0382),
+              ('DEP', '1M', 0.0372),
+              ('DEP', '3M', 0.0363),
+              ('DEP', '6M', 0.0353),
+              ('DEP', '9M', 0.0348),
+              ('DEP', '1Y', 0.0345),
+              ('SWAP', '2Y', 0.037125),
+              ('SWAP', '3Y', 0.0398),
+              ('SWAP', '5Y', 0.0443),
+              ('SWAP', '10Y', 0.05165),
+              ('SWAP', '15Y', 0.055175)]
+
+    m.set_quotes(eval_date, quotes)
+
+    m.bootstrap_term_structure()
+
+    dt = Date(1,1,2010)
+    print('Discount factor for %s: %f' % (dt, m.discount(dt)))

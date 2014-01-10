@@ -18,12 +18,15 @@ from .calendars.united_states import UnitedStates
 
 from .daycounter import Actual360, Actual365Fixed
 from .daycounters.thirty360 import Thirty360
-from .daycounters.actual_actual import ActualActual, ISMA, ISDA, Bond
+from .daycounters.actual_actual import (ActualActual, ISMA, ISDA, Bond,
+    Historical, Actual365, AFB, Euro)
+
 
 from .date import (
     Date, Months, Period, today, Years, Days, Annual, Semiannual, Weeks,
     Quarterly,
-    January, February, March, April, May, June, July, August, September, November, December,
+    January, February, March, April, May, June, July, August,
+    September, November, December,
     Jan, Feb, Mar, Apr, Jun, Jul, Aug, Sep, Oct, Nov, Dec,
     Daily, Monthly, Annual, NoFrequency, Once
 )

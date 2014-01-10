@@ -32,15 +32,15 @@ cdef extern from 'ql/indexes/iborindex.hpp' namespace 'QuantLib':
     # base class for Inter-Bank-Offered-Rate indexes (e.g. %Libor, etc.)
     cdef cppclass IborIndex(InterestRateIndex):
         IborIndex()
-        IborIndex(string& familyName,
-                  Period& tenor,
-                  Natural settlementDays,
-                  Currency& currency,
-                  Calendar& fixingCalendar,
-                  BusinessDayConvention convention,
-                  bool endOfMonth,
-                  DayCounter& dayCounter) except +
-                  # Handle[_ff.YieldTermStructure]& h) except +
+        ## IborIndex(string& familyName,
+        ##           Period& tenor,
+        ##           Natural settlementDays,
+        ##           Currency& currency,
+        ##           Calendar& fixingCalendar,
+        ##           BusinessDayConvention convention,
+        ##           bool endOfMonth,
+        ##           DayCounter& dayCounter) except +
+        ##           # Handle[_ff.YieldTermStructure]& h) except +
 
         # \name Inspectors
         BusinessDayConvention businessDayConvention()

@@ -28,14 +28,13 @@ cdef extern from 'ql/indexes/interestrateindex.hpp' namespace 'QuantLib':
 
     cdef cppclass InterestRateIndex(Index):
         InterestRateIndex()
-#        InterestRateIndex(string& familyName,
-#                          Period& tenor,
-#                          Natural settlementDays,
-#                          Currency& currency,
-#                          Calendar& fixingCalendar,
-#                          DayCounter& dayCounter)
+        InterestRateIndex(string& familyName,
+                         Period& tenor,
+                         Natural settlementDays,
+                         Currency& currency,
+                         Calendar& fixingCalendar,
+                         DayCounter& dayCounter)
         string name()
-        Calendar fixingCalendar( )
         bool isValidFixingDate(Date& fixingDate)
         Rate fixing(Date& fixingDate,
                     bool forecastTodaysFixing)

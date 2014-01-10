@@ -10,6 +10,8 @@
 cimport _currency as _cu
 cimport currency
 
+VALID_CU = ['USD', 'EUR']
+
 cdef class Currency:
     def __cinit__(self):
         self._thisptr = new _cu.Currency()
@@ -40,6 +42,17 @@ cdef class Currency:
         else:
             return 'null currency'
 
+    @classmethod
+    def from_name(cls, name):
+        cdef Currency cu = cls()
+        if(name == 'USD'):
+            cu._thisptr = <_cu.Currency*> new _cu.USDCurrency()
+        elif(name == 'EUR'):
+            cu._thisptr = <_cu.Currency*> new _cu.EURCurrency()
+        else:
+            raise ValueError('name must be in {}',format(VALID_CU))
+        return cu
+
 cdef class USDCurrency(Currency):
     def __cinit__(self):
         self._thisptr = <_cu.Currency*> new _cu.USDCurrency()
@@ -48,15 +61,4 @@ cdef class EURCurrency(Currency):
     def __cinit__(self):
         self._thisptr = <_cu.Currency*> new _cu.EURCurrency()
 
-VALID_TRAITS = ['USD', 'EUR']
 
-def currency_factory(str traits):
-    """ 
-    """
-
-    if(traits == 'USD'):
-        return USDCurrency()
-    elif(traits == 'EUR'):
-        return EURCurrency()
-    else:
-        raise ValueError('Traits must be in {}',format(VALID_TRAITS))
