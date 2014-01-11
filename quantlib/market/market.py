@@ -10,14 +10,10 @@ from quantlib.time.api import (Date, Calendar, Period,
                                Annual, Years, Months,
                                Unadjusted, ModifiedFollowing)
 
-from quantlib.time.schedule import Schedule, Backward, Forward
 from quantlib.settings import Settings
-from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure)
+from quantlib.termstructures.yields.api import YieldTermStructure
 
-from quantlib.indexes.euribor import Euribor6M
-
-from quantlib.currency import USDCurrency, EURCurrency
+from quantlib.currency import USDCurrency
 from quantlib.indexes.api import Libor, Euribor
 
 from quantlib.util.converter import pydate_to_qldate
