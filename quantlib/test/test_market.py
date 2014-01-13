@@ -1,7 +1,7 @@
 from .unittest_tools import unittest
 
 from quantlib.time.api import Date
-from quantlib.market.market import ibor_index_factory, usd_libor_market
+from quantlib.market.market import (usd_libor_market, euribor_market)
 
 
 class MarketTestCase(unittest.TestCase):
@@ -12,13 +12,9 @@ class MarketTestCase(unittest.TestCase):
         Not checking numerical accuracy
         """
 
-        # libor index
-
-        index = ibor_index_factory('USD')
-        print index
-
+        # US libor market, with default conventions:
+        # semi-annual fixed vs. 3M Libor
         m = usd_libor_market()
-        print m
 
         # add quotes
         eval_date = Date(20, 9, 2004)
@@ -42,7 +38,19 @@ class MarketTestCase(unittest.TestCase):
         dt = Date(1, 1, 2010)
         df = m.discount(dt)
 
-        print('discount factor for %s: %f' % (dt, df))
+        print('discount factor for %s (USD Libor): %f' % (dt, df))
+
+        # Euribor market, with default conventions:
+        # annual fixed vs. 6M Libor
+        m = euribor_market()
+
+        m.set_quotes(eval_date, quotes)
+
+        m.bootstrap_term_structure()
+
+        df = m.discount(dt)
+
+        print('discount factor for %s (Euribor): %f' % (dt, df))
         self.assertTrue(df > 0)
 
 if __name__ == '__main__':
