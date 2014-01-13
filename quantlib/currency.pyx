@@ -10,7 +10,7 @@
 cimport _currency as _cu
 cimport currency
 
-VALID_CU = ['USD', 'EUR']
+_VALID_CURRENCY = ['USD', 'EUR']
 
 cdef class Currency:
     def __cinit__(self):
@@ -50,7 +50,7 @@ cdef class Currency:
         elif(name == 'EUR'):
             cu._thisptr = <_cu.Currency*> new _cu.EURCurrency()
         else:
-            raise ValueError('name must be in {}',format(VALID_CU))
+            raise ValueError('name must be in {}',format(_VALID_CURRENCY))
         return cu
 
 cdef class USDCurrency(Currency):

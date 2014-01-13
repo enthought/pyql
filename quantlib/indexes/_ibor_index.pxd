@@ -12,7 +12,7 @@
 
 include '../types.pxi'
 from libcpp cimport bool
-from quantlib.handle cimport Handle
+from quantlib.handle cimport shared_ptr, Handle
 
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
@@ -32,15 +32,24 @@ cdef extern from 'ql/indexes/iborindex.hpp' namespace 'QuantLib':
     # base class for Inter-Bank-Offered-Rate indexes (e.g. %Libor, etc.)
     cdef cppclass IborIndex(InterestRateIndex):
         IborIndex()
-        ## IborIndex(string& familyName,
-        ##           Period& tenor,
-        ##           Natural settlementDays,
-        ##           Currency& currency,
-        ##           Calendar& fixingCalendar,
-        ##           BusinessDayConvention convention,
-        ##           bool endOfMonth,
-        ##           DayCounter& dayCounter) except +
-        ##           # Handle[_ff.YieldTermStructure]& h) except +
+        # constructor with default YieldTermStructure
+        IborIndex(string& familyName,
+                  Period& tenor,
+                  Natural settlementDays,
+                  Currency& currency,
+                  Calendar& fixingCalendar,
+                  BusinessDayConvention convention,
+                  bool endOfMonth,
+                  DayCounter& dayCounter) except +
+        IborIndex(string& familyName,
+                  Period& tenor,
+                  Natural settlementDays,
+                  Currency& currency,
+                  Calendar& fixingCalendar,
+                  BusinessDayConvention convention,
+                  bool endOfMonth,
+                  DayCounter& dayCounter,
+                  Handle[_ff.YieldTermStructure]& h) except +
 
         # \name Inspectors
         BusinessDayConvention businessDayConvention()
@@ -52,10 +61,8 @@ cdef extern from 'ql/indexes/iborindex.hpp' namespace 'QuantLib':
         # \name Date calculations
         Date maturityDate(Date& valueDate)
         
-        # \name Other methods
         # returns a copy of itself linked to a different forwarding curve
-        #virtual boost::shared_ptr<IborIndex> clone(
-        #                const Handle<YieldTermStructure>& forwarding) const;
+        shared_ptr[IborIndex] clone(Handle[_ff.YieldTermStructure]& forwarding)
 
     cdef cppclass OvernightIndex(IborIndex):
         OvernightIndex()
@@ -64,8 +71,7 @@ cdef extern from 'ql/indexes/iborindex.hpp' namespace 'QuantLib':
                        Currency& currency,
                        Calendar& fixingCalendar,
                        DayCounter& dayCounter,
-                       Handle[_ff.YieldTermStructure]& h)
+                       Handle[_ff.YieldTermStructure]& h) except +
 
         # returns a copy of itself linked to a different forwarding curve
-        #boost::shared_ptr<IborIndex> clone(
-        #                           const Handle<YieldTermStructure>& h) const;
+        shared_ptr[IborIndex] clone(Handle[_ff.YieldTermStructure]& h)

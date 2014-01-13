@@ -2,12 +2,12 @@ from quantlib.termstructures.yields.rate_helpers import (SwapRateHelper,
                                                          DepositRateHelper)
 from quantlib.quotes import SimpleQuote
 
-from quantlib.time.api import (Date, Calendar, Period,
+from quantlib.time.api import (Date, Period,
                                Thirty360, TARGET,
-                               Actual360, ActualActual, Euro,
+                               Actual360, ActualActual,
                                Days, Semiannual,
                                JointCalendar, UnitedStates, UnitedKingdom,
-                               Annual, Years, Months,
+                               Annual,
                                Unadjusted, ModifiedFollowing)
 
 from quantlib.settings import Settings
@@ -35,7 +35,7 @@ def ibor_index_factory(currency, tenor=None):
     # term_structure.link_to(FlatForward(settlement_date, 0.05,
     #                                       Actual365Fixed()))
 
-    if(tenor is None):
+    if tenor is None:
         tenor = _default_tenor[currency]
     if(currency == 'USD'):
         ibor_index = Libor('USD Libor', Period(tenor), settlement_days,
@@ -46,23 +46,25 @@ def ibor_index_factory(currency, tenor=None):
     return ibor_index
 
 
-def usd_libor_market(index=ibor_index_factory('USD')):
+def usd_libor_market():
+    index = ibor_index_factory('USD')
     m = FixedIncomeMarket('USD Libor',
-        floating_rate_index=index,
-        settlement_days=2,
-        fixed_rate_frequency=Semiannual,
-        fixed_instrument_convention=ModifiedFollowing,
-        fixed_instrument_daycounter=Thirty360())
+                          floating_rate_index=index,
+                          settlement_days=2,
+                          fixed_rate_frequency=Semiannual,
+                          fixed_instrument_convention=ModifiedFollowing,
+                          fixed_instrument_daycounter=Thirty360())
     return m
 
 
-def euribor_market(index=ibor_index_factory('EUR')):
+def euribor_market():
+    index = ibor_index_factory('EUR')
     m = FixedIncomeMarket('Euribor',
-        floating_rate_index=index,
-        settlement_days=2,
-        fixed_rate_frequency=Annual,
-        fixed_instrument_convention=Unadjusted,
-        fixed_instrument_daycounter=Thirty360())
+                          floating_rate_index=index,
+                          settlement_days=2,
+                          fixed_rate_frequency=Annual,
+                          fixed_instrument_convention=Unadjusted,
+                          fixed_instrument_daycounter=Thirty360())
     return m
 
 
@@ -73,10 +75,6 @@ def make_rate_helper(market, quote):
     """
 
     rate_type, tenor, quote_value = quote
-    print rate_type, tenor, quote_value
-    
-
-    end_of_month = True
 
     if(rate_type == 'SWAP'):
         libor_index = market._floating_rate_index
@@ -90,6 +88,7 @@ def make_rate_helper(market, quote):
             market._fixed_instrument_daycounter,
             libor_index, spread, fwdStart)
     elif(rate_type == 'DEP'):
+        end_of_month = True
         helper = DepositRateHelper(
             quote_value,
             Period(tenor),
@@ -159,7 +158,6 @@ class FixedIncomeMarket(Market):
 
         self._quotes = None
         self._term_structure = None
-        
 
     def __str__(self):
         return 'Fixed Income Market: %s' % self._name
@@ -175,7 +173,7 @@ class FixedIncomeMarket(Market):
         settings.evaluation_date = eval_date
 
         self._eval_date = eval_date
-        
+
         self._rate_helpers = []
         for quote in quotes:
             # construct rate helper
@@ -230,42 +228,10 @@ class FixedIncomeMarket(Market):
         # must be a business day
         settlement_date = calendar.adjust(settlement_date)
         ts = term_structure_factory('discount', 'loglinear',
-            settlement_date, self._rate_helpers,
-            self._termStructureDayCounter, tolerance)
+                                    settlement_date, self._rate_helpers,
+                                    self._termStructureDayCounter, tolerance)
         self._term_structure = ts
         return 0
 
     def discount(self, date_maturity, extrapolate=True):
         return self._term_structure.discount(date_maturity)
-
-if __name__ == '__main__':
-
-    # libor index
-
-    index = ibor_index_factory('USD')
-    print index
-
-    m = usd_libor_market()
-    print m
-
-    # add quotes
-    eval_date = Date(20, 9, 2004)
-
-    quotes = [('DEP', '1W', 0.0382),
-              ('DEP', '1M', 0.0372),
-              ('DEP', '3M', 0.0363),
-              ('DEP', '6M', 0.0353),
-              ('DEP', '9M', 0.0348),
-              ('DEP', '1Y', 0.0345),
-              ('SWAP', '2Y', 0.037125),
-              ('SWAP', '3Y', 0.0398),
-              ('SWAP', '5Y', 0.0443),
-              ('SWAP', '10Y', 0.05165),
-              ('SWAP', '15Y', 0.055175)]
-
-    m.set_quotes(eval_date, quotes)
-
-    m.bootstrap_term_structure()
-
-    dt = Date(1,1,2010)
-    print('Discount factor for %s: %f' % (dt, m.discount(dt)))

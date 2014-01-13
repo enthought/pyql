@@ -119,8 +119,8 @@ cdef class Period:
                 try:
                     t, u = parse(tenor)
                 except:
-                    print('Parse Error: could not parse period %s' % tenor)
-                    raise
+                    raise ValueError("Parse Error: could not parse period %s" \
+                                     % tenor)
                 self._thisptr = \
                 new shared_ptr[QlPeriod](new QlPeriod(<Integer> int(t),
                                          <_period.TimeUnit> _TU_DICT[u]))
