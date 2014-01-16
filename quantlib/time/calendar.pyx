@@ -16,6 +16,19 @@ cimport quantlib.time._date as _date
 cimport quantlib.time.date as date
 cimport quantlib.time._period as _period
 
+from quantlib.time.calendars.null_calendar import NullCalendar
+
+import quantlib.time.calendars.germany as ger
+import quantlib.time.calendars.united_states as us
+import quantlib.time.calendars.united_kingdom as uk
+
+## from quantlib.time.calendars.united_kingdom import (
+##     EXCHANGE, METALS, SETTLEMENT as UK_SETTLEMENT,
+##     UnitedKingdom)
+
+## from quantlib.time.calendars.united_states import (
+##     UnitedStates, GOVERNMENTBOND, NYSE, NERC, SETTLEMENT as US_SETTLEMENT)
+
 # BusinessDayConvention:
 cdef public enum BusinessDayConvention:
     Following         = _calendar.Following
@@ -140,6 +153,30 @@ cdef class Calendar:
 
         return date.date_from_qldate(advanced_date)
 
+    _lookup = dict([(cal.name(), cal) for cal in
+                [TARGET(), NullCalendar(),
+                 ger.Germany(), ger.Germany(ger.EUREX),
+                 ger.Germany(ger.FrankfurtStockExchange),
+                 ger.Germany(ger.SETTLEMENT), ger.Germany(ger.EUWAX),
+                 ger.Germany(ger.XETRA),
+                 uk.UnitedKingdom(),
+                 uk.UnitedKingdom(uk.EXCHANGE), uk.UnitedKingdom(uk.METALS),
+                 uk.UnitedKingdom(uk.SETTLEMENT),
+                 us.UnitedStates(), us.UnitedStates(us.GOVERNMENTBOND),
+                 us.UnitedStates(us.NYSE), us.UnitedStates(us.NERC), 
+                 us.UnitedStates(us.SETTLEMENT)]])
+
+    @classmethod
+    def help(cls):
+        l = [k + '\n' for k in cls._lookup.keys()]
+        res = "Valid calendar names are:\n" + ''.join(l)
+        return str(res)
+    
+    @classmethod
+    def from_name(cls, name):
+        cdef Calendar ca = cls._lookup[name]
+        return ca
+
 cdef class DateList:
     '''Provides an interator interface on top of a vector of QuantLib dates.
 
@@ -206,6 +243,4 @@ cdef class TARGET(Calendar):
 
     def __cinit__(self):
         self._thisptr = <_calendar.Calendar*> new _calendar.TARGET()
-
-
 

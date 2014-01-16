@@ -48,23 +48,23 @@ def ibor_index_factory(currency, tenor=None):
 
 def usd_libor_market():
     index = ibor_index_factory('USD')
-    m = FixedIncomeMarket('USD Libor',
-                          floating_rate_index=index,
-                          settlement_days=2,
-                          fixed_rate_frequency=Semiannual,
-                          fixed_instrument_convention=ModifiedFollowing,
-                          fixed_instrument_daycounter=Thirty360())
+    m = IborMarket('USD Libor',
+                   floating_rate_index=index,
+                   settlement_days=2,
+                   fixed_rate_frequency=Semiannual,
+                   fixed_instrument_convention=ModifiedFollowing,
+                   fixed_instrument_daycounter=Thirty360())
     return m
 
 
 def euribor_market():
     index = ibor_index_factory('EUR')
-    m = FixedIncomeMarket('Euribor',
-                          floating_rate_index=index,
-                          settlement_days=2,
-                          fixed_rate_frequency=Annual,
-                          fixed_instrument_convention=Unadjusted,
-                          fixed_instrument_daycounter=Thirty360())
+    m = IborMarket('Euribor',
+                   floating_rate_index=index,
+                   settlement_days=2,
+                   fixed_rate_frequency=Annual,
+                   fixed_instrument_convention=Unadjusted,
+                   fixed_instrument_daycounter=Thirty360())
     return m
 
 
@@ -134,6 +134,11 @@ class FixedIncomeMarket(Market):
     instruments and the deposit instruments.
     """
 
+    pass
+
+
+class IborMarket(FixedIncomeMarket):
+
     def __init__(self,
                  name,
                  floating_rate_index,
@@ -141,23 +146,24 @@ class FixedIncomeMarket(Market):
                  fixed_rate_frequency=Annual,
                  fixed_instrument_convention=Unadjusted,
                  fixed_instrument_daycounter=Thirty360(),
-                 termStructureDayCounter=ActualActual()):
+                 termstructure_daycounter=ActualActual()):
 
         self._name = name
         self._settlement_days = settlement_days
         self._fixed_rate_frequency = fixed_rate_frequency
         self._fixed_instrument_convention = fixed_instrument_convention
         self._fixed_instrument_daycounter = fixed_instrument_daycounter
-        self._termStructureDayCounter = termStructureDayCounter
+        self._termstructure_daycounter = termstructure_daycounter
 
         # floating rate index
         self._floating_rate_index = floating_rate_index
 
-        self._depositDayCounter = floating_rate_index.dayCounter
-        self._calendar = floating_rate_index.fixingCalendar
+        self._deposit_daycounter = floating_rate_index.daycounter
+        self._calendar = floating_rate_index.fixing_calendar
 
+        self._eval_date = None
         self._quotes = None
-        self._term_structure = None
+        self._termstructure = None
 
     def __str__(self):
         return 'Fixed Income Market: %s' % self._name
@@ -189,8 +195,8 @@ class FixedIncomeMarket(Market):
         return self._fixing_days
 
     @property
-    def deposit_day_counter(self):
-        return self._deposit_day_counter
+    def deposit_daycounter(self):
+        return self._deposit_daycounter
 
     @property
     def fixed_rate_frequency(self):
@@ -198,15 +204,15 @@ class FixedIncomeMarket(Market):
 
     @property
     def fixed_rate_convention(self):
-        return self._fixedInstrumentConvention
+        return self._fixed_instrument_convention
 
     @property
-    def fixed_rate_day_counter(self):
-        return self._fixed_rate_day_counter
+    def fixed_rate_daycounter(self):
+        return self._fixed_rate_daycounter
 
     @property
-    def ts_day_counter(self):
-        return self._termstructure_day_counter
+    def termstructure_daycounter(self):
+        return self._termstructure_daycounter
 
     @property
     def reference_date(self):
@@ -215,6 +221,24 @@ class FixedIncomeMarket(Market):
     @property
     def max_date(self):
         return 0
+
+    def to_str(self):
+        str = "Ibor Market %s\n" + \
+              "Number of settlement days: %d\n" + \
+              "Fixed rate frequency: %s\n" + \
+              "Fixed rate convention: %s\n" + \
+              "Fixed rate daycount: %s\n" + \
+              "Term structure daycount: %s" + \
+              "Floating rate index: %s\n" + \
+              "Deposit daycount: %s\n" + \
+              "Calendar: %s\n" % \
+              (self._name, self._settlement_days, self._fixed_rate_frequency,
+               self._fixed_instrument_convention,
+               self._fixed_instrument_daycounter,
+               self._termstructure_daycounter, self._floating_rate_index,
+               self._deposit_daycounter, self._calendar)
+
+        return str
 
     def bootstrap_term_structure(self):
         tolerance = 1.0e-15
