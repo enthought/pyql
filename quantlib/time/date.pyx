@@ -76,12 +76,21 @@ cdef public enum Frequency:
 FREQUENCIES = ['NoFrequency', 'Once', 'Annual', 'Semiannual', 'EveryFourthMonth',
                'Quarterly', 'Bimonthly', 'Monthly', 'EveryFourthWeek',
                'Biweekly', 'Weekly', 'Daily', 'OtherFrequency']
+
+_FREQ = ['NoFrequency', 'Once', '1Y', '6M', '4M', '3M', '2M', '1M', '4W', '2W',
+        '1W', '1D', 'OtherFrequency']
+
+_FREQ_TO_FREQUENCIES = dict(zip(_FREQ, FREQUENCIES))
+
 _FREQ_DICT = {globals()[name]:name for name in FREQUENCIES}
 _STR_FREQ_DICT = {name:globals()[name] for name in FREQUENCIES}
 
 def frequency_to_str(Frequency f):
     """ Converts a PyQL Frequency to a human readable string. """
     return _FREQ_DICT[f]
+
+def code_to_frequency(char* name):
+    return _STR_FREQ_DICT[_FREQ_TO_FREQUENCIES[name]]
 
 def str_to_frequency(char* name):
     """ Converts a string to a PyQL Frequency. """

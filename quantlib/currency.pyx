@@ -9,6 +9,7 @@
 
 cimport _currency as _cu
 cimport currency
+from quantlib.util.prettyprint import prettyprint
 
 cdef class Currency:
     def __cinit__(self):
@@ -49,10 +50,10 @@ cdef class Currency:
     
     @classmethod
     def help(cls):
-        l = [k + ':' + cls._lookup[k][0] + '\n' for k in cls._lookup.keys()]
-        res = "Valid currency names are:\n" + ''.join(l)
-        return str(res)
-
+        tmp = [(k, v[0]) for k, v in cls._lookup.items()]
+        tmp = map(list, zip(*tmp))
+        return prettyprint(('Code', 'Currency'), 'ss', tmp)
+    
     @classmethod
     def from_name(cls, code):
         return cls._lookup[code][1]

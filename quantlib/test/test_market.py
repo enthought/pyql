@@ -1,7 +1,7 @@
 from .unittest_tools import unittest
 
 from quantlib.time.api import Date
-from quantlib.market.market import (usd_libor_market, euribor_market)
+from quantlib.market.market import libor_market
 
 
 class MarketTestCase(unittest.TestCase):
@@ -14,7 +14,7 @@ class MarketTestCase(unittest.TestCase):
 
         # US libor market, with default conventions:
         # semi-annual fixed vs. 3M Libor
-        m = usd_libor_market()
+        m = libor_market('USD(NY)')
 
         # add quotes
         eval_date = Date(20, 9, 2004)
@@ -42,7 +42,7 @@ class MarketTestCase(unittest.TestCase):
 
         # Euribor market, with default conventions:
         # annual fixed vs. 6M Libor
-        m = euribor_market()
+        m = libor_market('EUR:>1Y')
 
         m.set_quotes(eval_date, quotes)
 

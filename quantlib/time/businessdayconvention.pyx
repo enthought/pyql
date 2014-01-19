@@ -28,6 +28,13 @@ cdef class BusinessDayConvention(int):
     @classmethod
     def from_name(cls, name):
         return BusinessDayConvention(_BDC_DICT[name])
+
+    @classmethod
+    def help(cls):
+        res = 'Valid business day conventions:\n'
+        for s in _BDC_DICT:
+            res += s + '\n'
+        return res
     
     def __str__(self):
         cdef string res = repr(int(self))
