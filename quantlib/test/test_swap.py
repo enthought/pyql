@@ -4,37 +4,12 @@ from quantlib.instruments.swap import VanillaSwap, Payer
 from quantlib.util.converter import pydate_to_qldate
 from quantlib.pricingengines.swap import DiscountingSwapEngine
 from quantlib.time.calendar import (
-    Unadjusted, ModifiedFollowing, Following
-)
-
-from quantlib.compounding import Compounded, Continuous
-from quantlib.time.date import (
-    Date, Days, Semiannual, January, August, Period, March, February,
-    Jul, Annual, Years, Months)
-
-from quantlib.time.api import Actual365Fixed, Thirty360, TARGET, Actual360
-from quantlib.time.schedule import Schedule, Backward, Forward
-from quantlib.settings import Settings
-from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure)
-
-from quantlib.indexes.euribor import Euribor6M
-
-from quantlib.time.date import Date
-
-from quantlib.currency import USDCurrency
-from quantlib.indexes.libor import Libor
-
-from quantlib.instruments.swap import VanillaSwap, Payer
-
-from quantlib.pricingengines.swap import DiscountingSwapEngine
-from quantlib.time.calendar import (
     Unadjusted, ModifiedFollowing
 )
 
 from quantlib.time.date import (
     Date, Days, Semiannual, January, Period,
-    Annual, Months, Years)
+    Annual, Years, Months)
 
 from quantlib.time.api import Actual365Fixed, Thirty360, TARGET, Actual360
 from quantlib.time.schedule import Schedule, Forward
@@ -42,9 +17,9 @@ from quantlib.settings import Settings
 from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure)
 
-
 from quantlib.currency import USDCurrency
 from quantlib.indexes.libor import Libor
+
 from quantlib.market.market import libor_market
 
 
@@ -76,7 +51,8 @@ class TestQuantLibSwap(unittest.TestCase):
         settlement_date = calendar.adjust(settlement_date)
 
         termStructure = YieldTermStructure(relinkable=True)
-        termStructure.link_to(FlatForward(settlement_date, 0.05, Actual365Fixed()))
+        termStructure.link_to(FlatForward(settlement_date, 0.05,
+                                          Actual365Fixed()))
 
         index = Libor('USD Libor', Period(6, Months), settlement_days,
                       USDCurrency(), calendar, Actual360(),
@@ -89,7 +65,8 @@ class TestQuantLibSwap(unittest.TestCase):
         maturity = calendar.advance(settlement_date, length, Years,
                                     convention=floatingConvention)
 
-        fixedSchedule = Schedule(settlement_date, maturity, Period(fixedFrequency),
+        fixedSchedule = Schedule(settlement_date, maturity,
+                                 Period(fixedFrequency),
                                  calendar, fixedConvention, fixedConvention,
                                  Forward, False)
 
@@ -130,7 +107,6 @@ class TestQuantLibSwap(unittest.TestCase):
         print('NPV: %f' % p)
         self.assertAlmostEquals(p, 0)
 
-
     def test_swap_from_market(self):
         """
         Test that a swap with fixed coupon = fair rate has an NPV=0
@@ -145,7 +121,6 @@ class TestQuantLibSwap(unittest.TestCase):
         settlement_date = calendar.advance(eval_date, 2, Days)
         # must be a business day
         settlement_date = calendar.adjust(settlement_date)
-
 
         length = 5
         fixed_rate = .05
@@ -193,7 +168,7 @@ class TestQuantLibSwap(unittest.TestCase):
         # verify calculation by discounting both legs
 
         tot = 0.0
-        for a, dt  in fixed_l.items:
+        for a, dt in fixed_l.items:
             df = m.discount(pydate_to_qldate(dt))
             tot += a * df
         print('fixed npv: %f discounted cf: %f' % (fixed_npv, tot))

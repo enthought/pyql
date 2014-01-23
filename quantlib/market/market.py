@@ -232,7 +232,9 @@ class IborMarket(FixedIncomeMarket):
 
         _params = self._params._replace(**kwargs)
 
-        index = IborIndex.from_name(self._market, self._forecasting_term_structure, **kwargs)
+        index = IborIndex.from_name(self._market,
+                                    self._forecasting_term_structure,
+                                    **kwargs)
 
         swap_type = Payer
         nominal = 100.0
