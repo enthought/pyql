@@ -111,10 +111,10 @@ class TestQuantLibSwap(unittest.TestCase):
 
         l = swap.leg(0)
         print l.to_str()
-        
+
         l = swap.leg(1)
         print l.to_str()
-        
+
         f = swap.fair_rate
         print('fair rate: %f' % f)
         p = swap.net_present_value
@@ -131,7 +131,6 @@ class TestQuantLibSwap(unittest.TestCase):
         self.assertAlmostEquals(p, 0)
 
 
-    @unittest.skip("date problem in curve")
     def test_swap_from_market(self):
         """
         Test that a swap with fixed coupon = fair rate has an NPV=0
@@ -170,7 +169,7 @@ class TestQuantLibSwap(unittest.TestCase):
 
         m.bootstrap_term_structure()
 
-        dt = eval_date + 1*Years
+        dt = Date(2, January, 2015)
         df = m.discount(dt)
         print('discount factor for %s (USD Libor): %f' % (dt, df))
 
@@ -191,21 +190,21 @@ class TestQuantLibSwap(unittest.TestCase):
         fixed_npv = swap.fixed_leg_npv
         float_npv = swap.floating_leg_npv
 
+        # verify calculation by discounting both legs
+
         tot = 0.0
-        for cf in fixed_l.items:
-            a = cf[0]
-            dt = cf[1]
+        for a, dt  in fixed_l.items:
             df = m.discount(pydate_to_qldate(dt))
             tot += a * df
         print('fixed npv: %f discounted cf: %f' % (fixed_npv, tot))
+        self.assertAlmostEquals(fixed_npv, -tot)
 
         tot = 0.0
-        for cf in float_l.items:
-            a = cf[0]
-            dt = cf[1]
+        for a, dt in float_l.items:
             df = m.discount(pydate_to_qldate(dt))
             tot += a * df
         print('float npv: %f discounted cf: %f' % (float_npv, tot))
+        self.assertAlmostEquals(float_npv, tot)
 
 
 if __name__ == '__main__':
