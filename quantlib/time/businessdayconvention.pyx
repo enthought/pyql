@@ -19,7 +19,7 @@ cdef QL_BDC = [_ca.Following, _ca.ModifiedFollowing,
                _ca.Preceding, _ca.ModifiedPreceding,
                _ca.Unadjusted]
 
-_BDC_DICT = {str(BusinessDayConvention(v)):v for v in QL_BDC}
+_BDC_DICT = {str(BusinessDayConvention(v)).replace(" ",""):v for v in QL_BDC}
 
 cdef class BusinessDayConvention(int):
     def __cinit__(self):

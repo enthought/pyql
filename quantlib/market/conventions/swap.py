@@ -1,6 +1,7 @@
 import collections
 from quantlib.util.prettyprint import prettyprint
 
+
 class DataStore(object):
     _labels = None
     _data = None
@@ -16,37 +17,44 @@ class DataStore(object):
 class SwapData(object):
     _labels = ["market",
                "currency",
-                "fixing_days",
-                "fixed_leg_period",
-                "fixed_leg_daycount",
-                "floating_leg_reference",
-                "floating_leg_period",
-                "floating_leg_daycount",
-                "calendar"]
+               "settlement_days",
+               "fixed_leg_period",
+               "fixed_leg_daycount",
+               "fixed_leg_convention",
+               "floating_leg_reference",
+               "floating_leg_period",
+               "floating_leg_daycount",
+               "floating_leg_convention",
+               "calendar"]
 
     # column labels for pretty printing
-    _labels_short = ["market",
-                     "currency",
-                "fixing",
-                "fx per",
-                "fx d/c",
-                "fl ref",
-                "fl per",
-                "fl d/c",
-                "calendar"]
+    _labels_short = ["market", "currency", "settle", "fx per",
+                     "fx d/c", "fx conv",
+                     "fl ref", "fl per", "fl d/c", "fl conv",
+                     "calendar"]
 
-
-    _data = [("USD(NY)",  "USD",  2, "6M", "30/360",  "LIBOR",   "3M", "ACT/360", "TARGET"),
-          ("USD(LONDON)", "USD",  2, "1Y", "ACT/360", "LIBOR",   "3M", "ACT/360", "TARGET"),
-          ("EUR:1Y",      "EUR",  2, "1Y", "30/360",  "Euribor", "3M", "ACT/360", "TARGET"),
-          ("EUR:>1Y",     "EUR",  2, "1Y", "30/360",  "Euribor", "6M", "ACT/360", "TARGET"),
-          ("GBP:1Y",      "GBP",  0, "1Y", "ACT/365", "LIBOR",   "3M", "ACT/365", "GBR"),
-          ("GBP:>1Y",     "GBP",  0, "6M", "ACT/365", "LIBOR",   "6M", "ACT/365", "GBR"),
-          ("JPY(Tibor)",  "JPY",  2, "6M", "ACT/365", "Tibor",   "3M", "ACT/365", "JPN"),
-          ("JPY(Libor)",  "JPY",  2, "6M", "ACT/365", "LIBOR",   "6M", "ACT/360", "JPN"),
-          ("CHF:1Y",      "CHF",  2, "1Y", "30/360",  "LIBOR",   "3M", "ACT/360", "CHE"),
-          ("CHF:>1Y",     "CHF",  2, "1Y", "30/360",  "LIBOR",   "6M", "ACT/360", "CHE")
-          ]
+    _data = [
+        ("USD(NY)", "USD", 2, "6M", "30/360", "ModifiedFollowing",
+         "LIBOR", "3M", "ACT/360", "ModifiedFollowing", "TARGET"),
+        ("USD(LONDON)", "USD", 2, "1Y", "ACT/360", "ModifiedFollowing",
+         "LIBOR", "3M", "ACT/360", "ModifiedFollowing", "TARGET"),
+        ("EUR:1Y", "EUR", 2, "1Y", "30/360", "Unadjusted",
+         "Euribor", "3M", "ACT/360", "ModifiedFollowing", "TARGET"),
+        ("EUR:>1Y", "EUR", 2, "1Y", "30/360", "Unadjusted",
+         "Euribor", "6M", "ACT/360", "ModifiedFollowing", "TARGET"),
+        ("GBP:1Y", "GBP", 0, "1Y", "ACT/365", "ModifiedFollowing",
+         "LIBOR", "3M", "ACT/365", "ModifiedFollowing", "GBR"),
+        ("GBP:>1Y", "GBP", 0, "6M", "ACT/365", "ModifiedFollowing",
+         "LIBOR", "6M", "ACT/365", "ModifiedFollowing", "GBR"),
+        ("JPY(Tibor)", "JPY", 2, "6M", "ACT/365", "ModifiedFollowing",
+         "Tibor", "3M", "ACT/365", "ModifiedFollowing", "JPN"),
+        ("JPY(Libor)", "JPY", 2, "6M", "ACT/365", "ModifiedFollowing",
+         "LIBOR", "6M", "ACT/360", "ModifiedFollowing", "JPN"),
+        ("CHF:1Y", "CHF", 2, "1Y", "30/360", "ModifiedFollowing",
+         "LIBOR", "3M", "ACT/360", "ModifiedFollowing", "CHE"),
+        ("CHF:>1Y", "CHF", 2, "1Y", "30/360", "ModifiedFollowing",
+         "LIBOR", "6M", "ACT/360", "ModifiedFollowing", "CHE")
+    ]
 
     Row = collections.namedtuple("Row", _labels[1:])
     _dic = {}
@@ -57,7 +65,7 @@ class SwapData(object):
     @classmethod
     def help(self):
         _data_t = map(list, zip(*self._data))
-        return prettyprint(self._labels_short, 'ssissssss', _data_t)
+        return prettyprint(self._labels_short, 'ssissssssss', _data_t)
 
     @classmethod
     def params(self, market):
@@ -76,10 +84,3 @@ class SwapData(object):
             if is_match:
                 res.append(row)
         return res
-
-if __name__ == '__main__':
-    params = {"currency":"USD",
-              "floating_leg_reference":"LIBOR",
-              "floating_leg_period":"3M"}
-
-    row = SwapData.match(params)

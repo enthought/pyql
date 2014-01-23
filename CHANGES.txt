@@ -1,0 +1,10 @@
+PyQL CHANGELOG
+==============
+
+Release 0.1
+-----------
+
+The main new feature of this version is the Market class hierarchy.
+It provides a place for keeping all the market conventions specific
+to a market segment.
+

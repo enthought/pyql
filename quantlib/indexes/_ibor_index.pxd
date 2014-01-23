@@ -52,8 +52,8 @@ cdef extern from 'ql/indexes/iborindex.hpp' namespace 'QuantLib':
                   Handle[_ff.YieldTermStructure]& h) except +
 
         # \name Inspectors
-        BusinessDayConvention businessDayConvention()
-        bool endOfMonth()
+        BusinessDayConvention businessDayConvention() except +
+        bool endOfMonth() except +
         
         # the curve used to forecast fixings
         Handle[_ff.YieldTermStructure] forwardingTermStructure()

@@ -25,18 +25,18 @@ cdef class IborIndex(InterestRateIndex):
     def __cinit__(self):
         pass
 
-    property businessDayConvention:
+    property business_day_convention:
         def __get__(self):
             cdef _ib.IborIndex* ref = <_ib.IborIndex*>self._thisptr.get()
             return ref.businessDayConvention()
 
-    property endOfMonth:
+    property end_of_month:
         def __get__(self):
             cdef _ib.IborIndex* ref = <_ib.IborIndex*>self._thisptr.get()
             return ref.endOfMonth()
 
     @classmethod
-    def from_name(self, market, **kwargs):
+    def from_name(self, market, term_structure=None, **kwargs):
         """
         Create default IBOR for the market, modify attributes if provided
         """
@@ -45,7 +45,8 @@ cdef class IborIndex(InterestRateIndex):
         row = row._replace(**kwargs)
         
         # could use a dummy term structure here?
-        term_structure = YieldTermStructure(relinkable=False)
+        if term_structure is None:
+            term_structure = YieldTermStructure(relinkable=False)
         # may not be needed at this stage...
         # term_structure.link_to(FlatForward(settlement_date, 0.05,
         #                                       Actual365Fixed()))
@@ -56,7 +57,7 @@ cdef class IborIndex(InterestRateIndex):
             label = row.currency + ' ' + row.floating_leg_reference
             ibor_index = Libor(label,
                                Period(row.floating_leg_period),
-                               row.fixing_days,
+                               row.settlement_days,
                                Currency.from_name(row.currency),
                                Calendar.from_name(row.calendar),
                                DayCounter.from_name(row.floating_leg_daycount),

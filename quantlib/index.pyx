@@ -31,14 +31,14 @@ cdef class Index:
        def __get__(self):
            return self._thisptr.get().name().c_str()
 
-    property fixingCalendar:
+    property fixing_calendar:
         def __get__(self):
             cdef _calendar.Calendar fc
             fc = self._thisptr.get().fixingCalendar()
             code = Calendar._inv_code[fc.name().c_str()]
             return Calendar.from_name(code)
 
-    def isValidFixingDate(self, Date fixingDate):
+    def is_valid_fixing_date(self, Date fixingDate):
         return self._thisptr.get().isValidFixingDate(
             deref(fixingDate._thisptr.get()))
 
@@ -46,7 +46,7 @@ cdef class Index:
         return self._thisptr.get().fixing(
             deref(fixingDate._thisptr.get()), forecastTodaysFixing)
 
-    def addFixing(self, Date fixingDate, Real fixing, bool forceOverwrite):
+    def add_fixing(self, Date fixingDate, Real fixing, bool forceOverwrite):
         self._thisptr.get().addFixing(
             deref(fixingDate._thisptr.get()), fixing, forceOverwrite)
         

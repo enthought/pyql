@@ -2,10 +2,9 @@ from quantlib.termstructures.yields.rate_helpers import (SwapRateHelper,
                                                          DepositRateHelper)
 from quantlib.quotes import SimpleQuote
 
-from quantlib.time.api import (Date, Period,
+from quantlib.time.api import (Date, Period, Calendar, Years,
                                Days, JointCalendar, UnitedStates,
-                               UnitedKingdom,
-                               ModifiedFollowing)
+                               UnitedKingdom)
 from quantlib.time.date import code_to_frequency
 from quantlib.time.daycounter import DayCounter
 
@@ -18,6 +17,13 @@ from quantlib.termstructures.yields.piecewise_yield_curve import \
     term_structure_factory
 
 from quantlib.market.conventions.swap import SwapData
+from quantlib.time.businessdayconvention import BusinessDayConvention
+
+from quantlib.instruments.swap import VanillaSwap, Payer
+from quantlib.pricingengines.swap import DiscountingSwapEngine
+from quantlib.time.schedule import Schedule, Forward
+from quantlib.termstructures.yields.api import (
+    YieldTermStructure)
 
 
 def libor_market(market='USD(NY)', **kwargs):
@@ -40,21 +46,22 @@ def make_rate_helper(market, quote):
         helper = SwapRateHelper.from_tenor(
             quote_value,
             Period(tenor),
-            market._floating_rate_index.fixingCalendar,
-            code_to_frequency(market._fixed_rate_frequency),
-            market._fixed_instrument_convention,
-            DayCounter.from_name(market._fixed_instrument_daycounter),
+            market._floating_rate_index.fixing_calendar,
+            code_to_frequency(market._params.fixed_leg_period),
+            BusinessDayConvention.from_name(
+                market._params.fixed_leg_convention),
+            DayCounter.from_name(market._params.fixed_leg_daycount),
             libor_index, spread, fwdStart)
     elif(rate_type == 'DEP'):
         end_of_month = True
         helper = DepositRateHelper(
             quote_value,
             Period(tenor),
-            market._settlement_days,
-            market._floating_rate_index.fixingCalendar,
-            market._floating_rate_index.businessDayConvention,
+            market._params.settlement_days,
+            market._floating_rate_index.fixing_calendar,
+            market._floating_rate_index.business_day_convention,
             end_of_month,
-            market._floating_rate_index.dayCounter)
+            DayCounter.from_name(market._deposit_daycount))
     else:
         raise Exception("Rate type %s not supported" % rate_type)
 
@@ -99,28 +106,25 @@ class IborMarket(FixedIncomeMarket):
 
     def __init__(self, name, market, **kwargs):
 
-        index = IborIndex.from_name(market, **kwargs)
-
-        row = SwapData.params(market)
-        row = row._replace(**kwargs)
-
+        params = SwapData.params(market)
+        params = params._replace(**kwargs)
+        self._params = params
         self._name = name
-        self._settlement_days = row.fixing_days
-        self._fixed_rate_frequency = row.fixed_leg_period
-        ## FIXME: add this to swap data set
-        self._fixed_instrument_convention = ModifiedFollowing
-        self._fixed_instrument_daycounter = row.fixed_leg_daycount
-        self._termstructure_daycounter = row.fixed_leg_daycount
+        self._market = market
 
         # floating rate index
+        index = IborIndex.from_name(market, **kwargs)
         self._floating_rate_index = index
 
-        self._deposit_daycounter = row.floating_leg_daycount
-        self._calendar = row.calendar
+        self._deposit_daycount = params.floating_leg_daycount
+        self._termstructure_daycount = 'ACT/365'
 
         self._eval_date = None
         self._quotes = None
         self._termstructure = None
+
+        self._discount_term_structure = None
+        self._forecast_term_structure = None
 
     def __str__(self):
         return 'Fixed Income Market: %s' % self._name
@@ -145,27 +149,23 @@ class IborMarket(FixedIncomeMarket):
 
     @property
     def calendar(self):
-        return self._calendar
+        return self._params.calendar
 
     @property
     def settlement_days(self):
-        return self._settlement_days
-
-    @property
-    def deposit_daycounter(self):
-        return self._deposit_daycounter
+        return self._params.settlement_days
 
     @property
     def fixed_rate_frequency(self):
-        return self._fixed_rate_frequency
+        return self._params.fixed_rate_frequency
 
     @property
     def fixed_rate_convention(self):
-        return self._fixed_instrument_convention
+        return self._params.fixed_instrument_convention
 
     @property
     def fixed_rate_daycounter(self):
-        return self._fixed_rate_daycounter
+        return self._params.fixed_rate_daycounter
 
     @property
     def termstructure_daycounter(self):
@@ -180,15 +180,16 @@ class IborMarket(FixedIncomeMarket):
         return 0
 
     def to_str(self):
-        str = "Ibor Market %s\n" % self._name + \
-              "Number of settlement days: %d\n" % self._settlement_days + \
-              "Fixed rate frequency: %s\n" % self._fixed_rate_frequency + \
-              "Fixed rate convention: %s\n" % self._fixed_instrument_convention + \
-              "Fixed rate daycount: %s\n" % self._fixed_instrument_daycounter + \
-              "Term structure daycount: %s\n" % self._termstructure_daycounter + \
-              "Floating rate index: %s\n" % self._floating_rate_index + \
-              "Deposit daycount: %s\n" % self._deposit_daycounter + \
-              "Calendar: %s\n" % self._calendar
+        str = \
+            "Ibor Market %s\n" % self._name + \
+            "Number of settlement days: %d\n" % self._params.settlement_days +\
+            "Fixed rate frequency: %s\n" % self._params.fixed_rate_frequency +\
+            "Fixed rate convention: %s\n" % self._params.fixed_instrument_convention +\
+            "Fixed rate daycount: %s\n" % self._params.fixed_instrument_daycounter +\
+            "Term structure daycount: %s\n" % self._termstructure_daycount + \
+            "Floating rate index: %s\n" % self._floating_rate_index + \
+            "Deposit daycount: %s\n" % self._deposit_daycount + \
+            "Calendar: %s\n" % self._params.calendar
 
         return str
 
@@ -199,17 +200,76 @@ class IborMarket(FixedIncomeMarket):
         # must be a business day
         eval_date = self._eval_date
         settings.evaluation_date = eval_date
-        settlement_days = self._settlement_days
+        settlement_days = self._params.settlement_days
         settlement_date = calendar.advance(eval_date, settlement_days, Days)
         # must be a business day
         settlement_date = calendar.adjust(settlement_date)
-        ts = term_structure_factory('discount', 'loglinear',
-                                    settlement_date, self._rate_helpers,
-                                    DayCounter.from_name(self._termstructure_daycounter),
-                                    tolerance)
+        ts = term_structure_factory(
+            'discount', 'loglinear',
+            settlement_date, self._rate_helpers,
+            DayCounter.from_name(self._termstructure_daycount),
+            tolerance)
         self._term_structure = ts
+        self._discount_term_structure = YieldTermStructure(relinkable=True)
+        self._discount_term_structure.link_to(ts)
+
+        self._forecasting_term_structure = YieldTermStructure(relinkable=True)
+        self._forecasting_term_structure.link_to(ts)
+
         return 0
 
     def discount(self, date_maturity, extrapolate=True):
-        return self._term_structure.discount(date_maturity)
+        return self._discount_term_structure.discount(date_maturity)
 
+    def create_fixed_float_swap(self, settlement_date, length, fixed_rate,
+                                floating_spread, **kwargs):
+        """
+        Create a fixed-for-float swap given:
+        - settlement date
+        - length in years
+        - additional arguments to modify market default parameters
+        """
+
+        _params = self._params._replace(**kwargs)
+
+        index = IborIndex.from_name(self._market, self._forecasting_term_structure, **kwargs)
+
+        swap_type = Payer
+        nominal = 100.0
+        fixed_convention = \
+            BusinessDayConvention.from_name(_params.fixed_leg_convention)
+        floating_convention = \
+            BusinessDayConvention.from_name(_params.floating_leg_convention)
+        fixed_frequency = \
+            code_to_frequency(_params.fixed_leg_period)
+        floating_frequency = code_to_frequency(_params.floating_leg_period)
+        fixed_daycount = DayCounter.from_name(_params.fixed_leg_daycount)
+        float_daycount = DayCounter.from_name(_params.fixed_leg_daycount)
+        calendar = Calendar.from_name(_params.calendar)
+
+        maturity = calendar.advance(settlement_date, length, Years,
+                                    convention=floating_convention)
+
+        fixed_schedule = Schedule(settlement_date, maturity,
+                                  Period(fixed_frequency), calendar,
+                                  fixed_convention, fixed_convention,
+                                  Forward, False)
+
+        float_schedule = Schedule(settlement_date, maturity,
+                                  Period(floating_frequency),
+                                  calendar, floating_convention,
+                                  floating_convention,
+                                  Forward, False)
+
+        swap = VanillaSwap(swap_type, nominal, fixed_schedule, fixed_rate,
+                           fixed_daycount, float_schedule, index,
+                           floating_spread, float_daycount, fixed_convention)
+
+        engine = DiscountingSwapEngine(self._discount_term_structure,
+                                       False,
+                                       settlementDate=settlement_date,
+                                       npvDate=settlement_date)
+
+        swap.set_pricing_engine(engine)
+
+        return swap

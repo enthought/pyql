@@ -27,4 +27,4 @@ class TestQuantLibDate(unittest.TestCase):
 
         test_leg = cf.SimpleLeg(leg)
         self.assertEquals(test_leg.size, 1)
-        self.assertEquals(test_leg.items, [(pydate, 100.0)])
+        self.assertEquals(test_leg.items, [(100.0, pydate)])
