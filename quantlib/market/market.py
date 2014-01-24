@@ -1,11 +1,13 @@
 from quantlib.termstructures.yields.rate_helpers import (SwapRateHelper,
-                                                         DepositRateHelper)
+                                                         DepositRateHelper,
+                                                         FuturesRateHelper)
 from quantlib.quotes import SimpleQuote
 
 from quantlib.time.api import (Date, Period, Calendar, Years,
                                Days, JointCalendar, UnitedStates,
                                UnitedKingdom)
-from quantlib.time.date import code_to_frequency
+from quantlib.time.date import (code_to_frequency, pydate_from_qldate,
+                                qldate_from_pydate)
 from quantlib.time.daycounter import DayCounter
 
 from quantlib.settings import Settings
@@ -24,6 +26,7 @@ from quantlib.pricingengines.swap import DiscountingSwapEngine
 from quantlib.time.schedule import Schedule, Forward
 from quantlib.termstructures.yields.api import (
     YieldTermStructure)
+import quantlib.time.imm as imm
 
 
 def libor_market(market='USD(NY)', **kwargs):
@@ -31,7 +34,18 @@ def libor_market(market='USD(NY)', **kwargs):
     return m
 
 
-def make_rate_helper(market, quote):
+def next_imm_date(reference_date, tenor):
+    """
+    Third Wednesday of contract month
+    """
+    dt = qldate_from_pydate(reference_date)
+    for k in range(tenor):
+        tmp = imm.next_date(dt)
+        dt = pydate_to_qldate(tmp)
+    return pydate_from_qldate(dt)
+
+
+def make_rate_helper(market, quote, reference_date=None):
     """
     Wrapper for deposit and swaps rate helpers makers
     TODO: class method of RateHelper?
@@ -62,6 +76,20 @@ def make_rate_helper(market, quote):
             market._floating_rate_index.business_day_convention,
             end_of_month,
             DayCounter.from_name(market._deposit_daycount))
+    elif(rate_type == 'ED'):
+        if reference_date is None:
+            raise Exception("Reference date needed with ED Futures data")
+
+        forward_date = next_imm_date(reference_date, tenor) 
+
+        helper = FuturesRateHelper( 
+            rate = SimpleQuote(quote_value),
+            imm_date = qldate_from_pydate(forward_date),
+            length_in_months = 3,
+            calendar = market._floating_rate_index.fixing_calendar,
+            convention = market._floating_rate_index.business_day_convention,
+            end_of_month = True,
+            day_counter = DayCounter.from_name(market._params.floating_leg_daycount))
     else:
         raise Exception("Rate type %s not supported" % rate_type)
 
@@ -144,7 +172,7 @@ class IborMarket(FixedIncomeMarket):
         self._rate_helpers = []
         for quote in quotes:
             # construct rate helper
-            helper = make_rate_helper(self, quote)
+            helper = make_rate_helper(self, quote, eval_date)
             self._rate_helpers.append(helper)
 
     @property
@@ -246,7 +274,7 @@ class IborMarket(FixedIncomeMarket):
             code_to_frequency(_params.fixed_leg_period)
         floating_frequency = code_to_frequency(_params.floating_leg_period)
         fixed_daycount = DayCounter.from_name(_params.fixed_leg_daycount)
-        float_daycount = DayCounter.from_name(_params.fixed_leg_daycount)
+        float_daycount = DayCounter.from_name(_params.floating_leg_daycount)
         calendar = Calendar.from_name(_params.calendar)
 
         maturity = calendar.advance(settlement_date, length, Years,

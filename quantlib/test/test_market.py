@@ -53,5 +53,39 @@ class MarketTestCase(unittest.TestCase):
         print('discount factor for %s (Euribor): %f' % (dt, df))
         self.assertTrue(df > 0)
 
+    def test_ed(self):
+        """
+        Curve construction with EuroDollar futures
+        Not checking numerical accuracy
+        """
+
+        # US libor market, with default conventions:
+        # semi-annual fixed vs. 3M Libor
+        m = libor_market('USD(LONDON)')
+
+        # add quotes
+        eval_date = Date(20, 9, 2004)
+
+        quotes = [
+            ('ED', 1, 96.2875),
+            ('ED', 2, 96.7875),
+            ('ED', 3, 96.9875),
+            ('ED', 4, 96.6875),
+            ('ED', 5, 96.4875),
+            ('ED', 6, 96.3875),
+            ('ED', 7, 96.2875),
+            ('ED', 8, 96.0875)]
+
+        m.set_quotes(eval_date, quotes)
+
+        m.bootstrap_term_structure()
+
+        dt = Date(1, 1, 2005)
+        df = m.discount(dt)
+
+        print('discount factor for %s (USD Libor): %f' % (dt, df))
+
+        self.assertTrue(df > 0)
+
 if __name__ == '__main__':
     unittest.main()
