@@ -18,16 +18,16 @@ class TestQuantLibCalendar(unittest.TestCase):
     def test_calendar_creation(self):
 
         calendar = TARGET()
-        self.assertEquals('TARGET',  calendar.name())
+        self.assertEquals('TARGET',  calendar.name)
 
         ukcalendar = UnitedKingdom()
-        self.assertEquals('UK settlement',  ukcalendar.name())
+        self.assertEquals('UK settlement',  ukcalendar.name)
 
         lse_cal = UnitedKingdom(market=EXCHANGE)
-        self.assertEquals('London stock exchange',  lse_cal.name())
+        self.assertEquals('London stock exchange',  lse_cal.name)
 
         null_calendar = NullCalendar()
-        self.assertEquals('Null', null_calendar.name())
+        self.assertEquals('Null', null_calendar.name)
 
     def test_christmas_is_holiday(self):
 

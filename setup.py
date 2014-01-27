@@ -170,6 +170,22 @@ def collect_extensions():
         pyrex_directives = CYTHON_DIRECTIVES
     )
 
+    business_day_convention_extension = Extension(
+        name='quantlib.time.businessdayconvention',
+        sources=[
+            'quantlib/time/businessdayconvention.pyx',
+            'cpp_layer/businessdayconvention_support_code.cpp'
+        ],
+        language='c++',
+        include_dirs=INCLUDE_DIRS,
+        library_dirs=LIBRARY_DIRS,
+        define_macros = get_define_macros(),
+        extra_compile_args = get_extra_compile_args(),
+        extra_link_args = get_extra_link_args(),
+        libraries=['QuantLib'],
+        pyrex_directives = CYTHON_DIRECTIVES
+    )
+
     manual_extensions = [
         multipath_extension,
         mc_vanilla_engine_extension,
@@ -177,6 +193,7 @@ def collect_extensions():
         piecewise_default_curve_extension,
         settings_extension,
         test_extension,
+        business_day_convention_extension
     ]
 
     cython_extension_directories = []

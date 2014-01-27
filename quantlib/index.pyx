@@ -12,12 +12,8 @@ include 'types.pxi'
 from cython.operator cimport dereference as deref
 from quantlib.time.date cimport Date
 from libcpp cimport bool
-
+from quantlib.time.calendar cimport Calendar
 cimport quantlib.time._calendar as _calendar
-
-from quantlib.util.enums import (
-    DayCounters, Frequencies, BusinessDayConventions, Calendars
-    )
 
 cdef class Index:
 
@@ -35,13 +31,14 @@ cdef class Index:
        def __get__(self):
            return self._thisptr.get().name().c_str()
 
-    property fixingCalendar:
+    property fixing_calendar:
         def __get__(self):
             cdef _calendar.Calendar fc
             fc = self._thisptr.get().fixingCalendar()
-            return Calendars()[fc.name().c_str()]
+            code = Calendar._inv_code[fc.name().c_str()]
+            return Calendar.from_name(code)
 
-    def isValidFixingDate(self, Date fixingDate):
+    def is_valid_fixing_date(self, Date fixingDate):
         return self._thisptr.get().isValidFixingDate(
             deref(fixingDate._thisptr.get()))
 
@@ -49,7 +46,7 @@ cdef class Index:
         return self._thisptr.get().fixing(
             deref(fixingDate._thisptr.get()), forecastTodaysFixing)
 
-    def addFixing(self, Date fixingDate, Real fixing, bool forceOverwrite):
+    def add_fixing(self, Date fixingDate, Real fixing, bool forceOverwrite):
         self._thisptr.get().addFixing(
             deref(fixingDate._thisptr.get()), fixing, forceOverwrite)
         

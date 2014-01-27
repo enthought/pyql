@@ -1,4 +1,5 @@
 import datetime
+import re
 
 from cython.operator cimport dereference as deref
 
@@ -75,12 +76,21 @@ cdef public enum Frequency:
 FREQUENCIES = ['NoFrequency', 'Once', 'Annual', 'Semiannual', 'EveryFourthMonth',
                'Quarterly', 'Bimonthly', 'Monthly', 'EveryFourthWeek',
                'Biweekly', 'Weekly', 'Daily', 'OtherFrequency']
+
+_FREQ = ['NoFrequency', 'Once', '1Y', '6M', '4M', '3M', '2M', '1M', '4W', '2W',
+        '1W', '1D', 'OtherFrequency']
+
+_FREQ_TO_FREQUENCIES = dict(zip(_FREQ, FREQUENCIES))
+
 _FREQ_DICT = {globals()[name]:name for name in FREQUENCIES}
 _STR_FREQ_DICT = {name:globals()[name] for name in FREQUENCIES}
 
 def frequency_to_str(Frequency f):
     """ Converts a PyQL Frequency to a human readable string. """
     return _FREQ_DICT[f]
+
+def code_to_frequency(char* name):
+    return _STR_FREQ_DICT[_FREQ_TO_FREQUENCIES[name]]
 
 def str_to_frequency(char* name):
     """ Converts a string to a PyQL Frequency. """
@@ -92,9 +102,18 @@ cdef public enum TimeUnit:
     Months = _period.Months
     Years  = _period.Years
 
+_TU_DICT = {'D': Days, 'W': Weeks, 'M': Months, 'Y': Years}
+_STR_TU_DICT = {v:k for k, v in _TU_DICT.items()}
+
 cdef extern from "string" namespace "std":
     cdef cppclass string:
         char* c_str()
+
+
+tenor_re = re.compile("([0-9]+)([DWMY]{1,1})")
+def parse(tenor):
+    mo = tenor_re.match(tenor)
+    return (mo.group(1), mo.group(2))
 
 cdef class Period:
     ''' Class providing a Period (length + time unit) class and implements a
@@ -104,8 +123,19 @@ cdef class Period:
 
     def __cinit__(self, *args):
         if len(args) == 1:
-            self._thisptr = new shared_ptr[QlPeriod](
-                new QlPeriod(<_period.Frequency>args[0]))
+            tenor = args[0]
+            if(isinstance(tenor, str)):
+                try:
+                    t, u = parse(tenor)
+                except:
+                    raise ValueError("Parse Error: could not parse period %s" \
+                                     % tenor)
+                self._thisptr = \
+                new shared_ptr[QlPeriod](new QlPeriod(<Integer> int(t),
+                                         <_period.TimeUnit> _TU_DICT[u]))
+            else:    
+                self._thisptr = \
+                new shared_ptr[QlPeriod](new QlPeriod(<_period.Frequency>args[0]))
         elif len(args) == 2:
             self._thisptr = new shared_ptr[QlPeriod](
                 new QlPeriod(<Integer> args[0], <_period.TimeUnit> args[1]))
@@ -223,7 +253,7 @@ cdef class Period:
             return geq_op( deref(p1), deref(p2))
 
     def __str__(self):
-        return 'Period %d length  %d units' % (self.length, self.units)
+        return 'Period %d %s' % (self.length, _STR_TU_DICT[self.units])
 
 cdef class Date:
     """ This class provides methods to inspect dates as well as methods and

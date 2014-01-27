@@ -34,6 +34,9 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar import Following
 from quantlib.cashflow cimport Leg
 from quantlib.indexes.ibor_index cimport IborIndex
+from quantlib.pricingengines.swap import DiscountingSwapEngine
+from quantlib.market.conventions.swap import SwapData
+from quantlib.cashflow cimport SimpleLeg, leg_items
 
 import datetime
 
@@ -85,25 +88,25 @@ cdef class Swap(Instrument):
     ##         new _swap.Swap(_legs, payer)
     ##         )
             
-    property isExpired:
+    property is_expired:
         def __get__(self):
             cdef bool is_expired = get_swap(self).isExpired()
             return is_expired
 
-    property startDate:
+    property start_date:
         def __get__(self):
             cdef _date.Date dt = get_swap(self).startDate()
             return date_from_qldate(dt)
 
-    property maturityDate:
+    property maturity_date:
         def __get__(self):
             cdef _date.Date dt = get_swap(self).maturityDate()
             return date_from_qldate(dt)
 
-    def legBPS(self, Size j):
+    def leg_BPS(self, Size j):
         return get_swap(self).legBPS(j)
 
-    def legNPV(self, Size j):
+    def leg_NPV(self, Size j):
         return get_swap(self).legNPV(j)
 
     ## def startDiscounts(self, Size j):
@@ -153,33 +156,55 @@ cdef class VanillaSwap(Swap):
                      deref(floating_daycount._thisptr),
                      <BusinessDayConvention>payment_convention))
 
-    property fairRate:
+    property fair_rate:
         def __get__(self):
             cdef Rate res = get_vanillaswap(self).fairRate()
             return res
 
-    property fairSpread:
+    property fair_spread:
         def __get__(self):
             cdef Spread res = get_vanillaswap(self).fairSpread()
             return res
 
-    property fixedLegBPS:
+    property fixed_leg_bps:
         def __get__(self):
             cdef Real res = get_vanillaswap(self).fixedLegBPS()
             return res
 
-    property floatingLegBPS:
+    property floating_leg_bps:
         def __get__(self):
             cdef Real res = get_vanillaswap(self).floatingLegBPS()
             return res
 
-    property fixedLegNPV:
+    property fixed_leg_npv:
         def __get__(self):
             cdef Real res = get_vanillaswap(self).fixedLegNPV()
             return res
 
-    property floatingLegNPV:
+    property floating_leg_npv:
         def __get__(self):
             cdef Real res = get_vanillaswap(self).floatingLegNPV()
             return res
     
+    def leg(self, int i):
+        """
+        Return a swap leg
+        TODO: optimize this - avoid copy
+        """
+        
+        cdef vector[shared_ptr[_cf.CashFlow]] leg = get_vanillaswap(self).leg(i)
+
+        cdef int k
+        cdef shared_ptr[_cf.CashFlow] _thiscf
+        cdef Date _thisdate
+
+        itemlist = []
+        cdef int size = leg.size()
+
+        for k from 0 <= k < size:
+            _thiscf = leg.at(k)
+            _thisdate = Date(_thiscf.get().date().serialNumber())
+            itemlist.append((_thiscf.get().amount(), _thisdate))
+
+        return SimpleLeg(itemlist)
+
