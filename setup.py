@@ -3,6 +3,7 @@ from setuptools import setup, find_packages
 # Warning : do not import the distutils extension before setuptools
 # It does break the cythonize function calls
 from distutils.extension import Extension
+from distutils.sysconfig import get_config_vars
 
 import glob
 import os
@@ -13,9 +14,16 @@ from Cython.Build import cythonize
 
 import numpy
 
+## From SO: hack to remove warning about strict prototypes
+## http://stackoverflow.com/questions/8106258/cc1plus-warning-command-line-option-wstrict-prototypes-is-valid-for-ada-c-o
+
+(opt,) = get_config_vars('OPT')
+os.environ['OPT'] = " ".join(
+    flag for flag in opt.split() if flag != '-Wstrict-prototypes')
+
 SUPPORT_CODE_INCLUDE = './cpp_layer'
 
-# FIXME: would be good to be able to customize the path with envrironment
+# FIXME: would be good to be able to customize the path with environment
 # variables in place of hardcoded paths ...
 if sys.platform == 'darwin':
     INCLUDE_DIRS = ['/opt/local/include', '.', SUPPORT_CODE_INCLUDE]

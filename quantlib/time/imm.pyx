@@ -38,15 +38,17 @@ def is_IMM_date(Date dt, bool main_cycle=True):
     # returns whether or not the given date is an IMM date
     return _imm.isIMMdate(deref(dt._thisptr.get()), main_cycle)
 
-def is_IMM_code(string imm_code, bool main_cycle=True):
+def is_IMM_code(char* imm_code, bool main_cycle=True):
     # returns whether or not the given string is an IMM code
-    return _imm.isIMMcode(imm_code, main_cycle)
+    cdef object _code = imm_code
+    return _imm.isIMMcode(<str> _code, main_cycle)
 
 def code(Date imm_date):
     return  _imm.code(deref(imm_date._thisptr.get()))
 
-def date(string imm_code, Date reference_date=Date()):
-    cdef _date.Date tmp = _imm.date(imm_code, deref(reference_date._thisptr.get()))
+def date(char* imm_code, Date reference_date=Date()):
+    cdef object _code = imm_code
+    cdef _date.Date tmp = _imm.date(<str>_code, deref(reference_date._thisptr.get()))
     return date_from_qldate(tmp)
 
 def next_date(*args):
@@ -59,33 +61,54 @@ def next_date(*args):
 
     cdef _date.Date tmp
     
-    cdef Date dt = <Date> args[0]
+    cdef Date reference_date    
+    cdef Date dt
+    cdef object _code
+
     if len(args) < 2:
         main_cycle = True
     else:
         main_cycle = args[1]
 
-    tmp =  _imm.nextDate(deref(dt._thisptr.get()), <bool>main_cycle)
+    if(isinstance(args[0], str)):
+        _code = args[0]
+        if len(args) == 3:
+            reference_date = <Date> args[2]
+        else:
+            reference_date = Date()
+        tmp =  _imm.nextDate_str(<str> _code, <bool>main_cycle, deref(reference_date._thisptr.get()))
+    else:
+        dt = <Date> args[0]
+        tmp =  _imm.nextDate_dt(deref(dt._thisptr.get()), <bool>main_cycle)
 
     return date_from_qldate(tmp)
     
-def next_code(Date dt, bool main_cycle=True):
+def next_code(*args):
     """
     //! next IMM code following the given date
     /*! returns the IMM code for next contract listed in the
         International Money Market section of the Chicago Mercantile
         Exchange.
     """
-    return _imm.nextCode(deref(dt._thisptr.get()), main_cycle)
 
-## def next_code(string imm_code, bool main_cycle=True, Date reference_date=Date()):
-##     """
-##     //! next IMM code following the given code
-##     /*! returns the IMM code for next contract listed in the
-##         International Money Market section of the Chicago Mercantile
-##         Exchange.
-##     """
-##     return _imm.nextCode(imm_code, main_cycle,
-##                          deref(reference_date._thisptr.get()))
+    cdef Date reference_date    
+    cdef Date dt
+    cdef object _code
 
-    
+    if len(args) < 2:
+        main_cycle = True
+    else:
+        main_cycle = args[1]
+
+    if(isinstance(args[0], str)):
+        _code = args[0]
+        if len(args) == 3:
+            reference_date = <Date> args[2]
+        else:
+            reference_date = Date()
+        tmp =  _imm.nextCode_str(<str> _code, <bool>main_cycle, deref(reference_date._thisptr.get()))
+    else:
+        dt = <Date> args[0]
+        tmp =  _imm.nextCode_dt(deref(dt._thisptr.get()), <bool>main_cycle)
+
+    return tmp

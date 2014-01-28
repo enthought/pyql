@@ -61,32 +61,30 @@ cdef extern from 'ql/time/imm.hpp' namespace "QuantLib::IMM":
     #    International Money Market section of the Chicago Mercantile
     #    Exchange.
     
-    cdef Date nextDate (Date& d, bool mainCycle)
+    cdef Date nextDate_dt "QuantLib::IMM::nextDate" (Date& d, bool mainCycle)
 
-    ## TODO: implement overloaded function
     # next IMM date following the given IMM code
     # returns the 1st delivery date for next contract listed in the
     # International Money Market section of the Chicago Mercantile
     # Exchange.
 
-    ## cdef Date nextDate (string& immCode,
-    ##                    bool mainCycle,
-    ##                    Date& referenceDate)
+    cdef Date nextDate_str "QuantLib::IMM::nextDate" (string& immCode,
+                       bool mainCycle,
+                       Date& referenceDate)
 
     # next IMM code following the given date
     # returns the IMM code for next contract listed in the
     #    International Money Market section of the Chicago Mercantile
     #    Exchange.
 
-    cdef string nextCode(Date& d,
+    cdef string nextCode_dt "QuantLib::IMM::nextCode" (Date& d,
                          bool mainCycle)
 
-    ## TODO: implement overloaded function
-    ## # next IMM code following the given code
-    ## # returns the IMM code for next contract listed in the
-    ## #    International Money Market section of the Chicago Mercantile
-    ## #    Exchange.
+    # next IMM code following the given code
+    # returns the IMM code for next contract listed in the
+    #    International Money Market section of the Chicago Mercantile
+    #    Exchange.
 
-    ## cdef string nextCode(string& immCode,
-    ##                      bool mainCycle,
-    ##                      Date& referenceDate)
+    cdef string nextCode_str "QuantLib::IMM::nextCode" (string& immCode,
+                         bool mainCycle,
+                         Date& referenceDate)
