@@ -367,9 +367,9 @@ class TestQuantLibIMM(unittest.TestCase):
         # 17 sep 2014
         self.assertEquals(dt_2, date(2014, 9, 17))
 
-        dt_3 = imm.next_date('M9')
-        # 15 sep 1999
-        self.assertEquals(dt_3, date(1999, 9, 15))
+        dt_3 = imm.next_date('M9', True, today())
+        # 18 sep 2019
+        self.assertEquals(dt_3, date(2019, 9, 18))
 
     def test_next_code(self):
         dt = Date(10, Jun, 2014)
@@ -377,6 +377,6 @@ class TestQuantLibIMM(unittest.TestCase):
         # M4
         self.assertEquals(cd_2, "M4")
 
-        cd_3 = imm.next_code('M9')
+        cd_3 = imm.next_code('M9', True, today())
         # U9
         self.assertEquals(cd_3, "U9")
