@@ -3,13 +3,15 @@ import datetime
 from .unittest_tools import unittest
 
 from quantlib.time.date import (
-    Date, Jan, Feb, Mar, Apr, May, Jun, Jul, Sep, Nov, Thursday, Friday, Period,
+    Date, Jan, Feb, Mar, Apr, May, Jun, Jul, Sep, Nov, Thursday, Friday,
+    Period,
     Annual, Semiannual, Bimonthly, EveryFourthMonth, Months, Years, Weeks,
     Days, OtherFrequency, end_of_month, is_end_of_month, is_leap,
     next_weekday, nth_weekday, today, pydate_from_qldate, qldate_from_pydate
 )
 
 import quantlib.time.imm as imm
+from datetime import date
 
 
 class TestQuantLibDate(unittest.TestCase):
@@ -362,16 +364,19 @@ class TestQuantLibIMM(unittest.TestCase):
     def test_next_date(self):
         dt = Date(19, Jun, 2014)
         dt_2 = imm.next_date(dt)
-        print('next IMM date after %s: %s' % (dt, dt_2))
+        # 17 sep 2014
+        self.assertEquals(dt_2, date(2014, 9, 17))
 
-        #dt_3 = imm.next_date('M9')
-        #print('next IMM date after %s: %s' % ('M9', dt_3))
+        dt_3 = imm.next_date('M9', True, today())
+        # 18 sep 2019
+        self.assertEquals(dt_3, date(2019, 9, 18))
 
     def test_next_code(self):
         dt = Date(10, Jun, 2014)
         cd_2 = imm.next_code(dt)
-        print('next IMM code after %s: %s' % (dt, cd_2))
+        # M4
+        self.assertEquals(cd_2, "M4")
 
-        ## cd_3 = imm.next_code('M9')
-        ## print('next IMM code after %s: %s' % ('M9', cd_3))
-
+        cd_3 = imm.next_code('M9', True, today())
+        # U9
+        self.assertEquals(cd_3, "U9")
