@@ -7,6 +7,7 @@ from distutils.sysconfig import get_config_vars
 
 import glob
 import os
+import platform
 import sys
 
 from Cython.Distutils import build_ext
@@ -72,6 +73,12 @@ def get_extra_compile_args():
 def get_extra_link_args():
     if sys.platform == 'win32':
         args = ['/subsystem:windows', '/machine:I386']
+    elif sys.platform == 'darwin':
+        major, minor, patch = [
+            int(item) for item in platform.mac_ver()[0].split('.')]
+        if major == 10 and minor >= 9:
+            # On Mac OS 10.9 we link against the libstdc++ library.
+            args = ['-stlib=libstdc++ -mmacosx-version-min=10.6']
     else:
         args = []
 
