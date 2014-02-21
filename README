@@ -1,7 +1,7 @@
 PyQL - QuantLib Cython wrappers
 ===============================
 
-This library is a new set of wrappers using Cython on top of QuantLib. 
+This library is a new set of wrappers using Cython on top of QuantLib.
 It currently focuses on useful simple objects like Date, Calendar but
 might be extended to more complex wrappers if needed.
 
@@ -26,7 +26,6 @@ The build and test suite can be run::
     make build
     make tests
 
-
-
-    
-
+To build the library on Mac OS X 10.9, the QuantLib library must be linked
+against libstdc++. To do so, set the environment flags `CXXFLAGS` and `LDFLAGS`
+to `-stlib=libstdc++ -mmacosx-version-min=10.6` before compiling from source.
