@@ -10,3 +10,4 @@
 from .libor import Libor
 from .euribor import Euribor, Euribor6M
 from .ibor_index import IborIndex
+from .ibor_helpers import create_ibor_index_from_name
