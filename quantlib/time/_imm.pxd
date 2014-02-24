@@ -13,11 +13,9 @@
 include '../types.pxi'
 
 from libcpp cimport bool
+from libcpp.string cimport string
 from _date cimport Date
 
-cdef extern from "string" namespace "std":
-    cdef cppclass string:
-        char* c_str()    
 
 cdef extern from 'ql/time/imm.hpp' namespace "QuantLib::IMM":
 

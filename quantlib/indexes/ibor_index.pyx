@@ -1,5 +1,6 @@
 include '../types.pxi'
 from cython.operator cimport dereference as deref
+from libcpp.string cimport string
 
 from quantlib.handle cimport shared_ptr
 from quantlib.time.date cimport Period
@@ -15,9 +16,6 @@ from quantlib.indexes.euribor cimport Euribor
 
 from quantlib.market.conventions.swap import SwapData
 
-cdef extern from "string" namespace "std":
-    cdef cppclass string:
-        char* c_str()
 
 from quantlib.indexes.interest_rate_index cimport InterestRateIndex
 
