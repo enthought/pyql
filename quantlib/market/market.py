@@ -11,7 +11,7 @@ from quantlib.time.date import (code_to_frequency, pydate_from_qldate,
 from quantlib.time.daycounter import DayCounter
 
 from quantlib.settings import Settings
-from quantlib.indexes.api import create_ibor_index_from_name
+from quantlib.indexes.api import IborIndex
 
 from quantlib.util.converter import pydate_to_qldate
 
@@ -141,7 +141,7 @@ class IborMarket(FixedIncomeMarket):
         self._market = market
 
         # floating rate index
-        index = create_ibor_index_from_name(market, **kwargs)
+        index = IborIndex.from_name(market, **kwargs)
         self._floating_rate_index = index
 
         self._deposit_daycount = params.floating_leg_daycount
@@ -260,9 +260,9 @@ class IborMarket(FixedIncomeMarket):
 
         _params = self._params._replace(**kwargs)
 
-        index = create_ibor_index_from_name(self._market,
-                                            self._forecasting_term_structure,
-                                            **kwargs)
+        index = IborIndex.from_name(self._market,
+                                    self._forecasting_term_structure,
+                                    **kwargs)
 
         swap_type = Payer
         nominal = 100.0
