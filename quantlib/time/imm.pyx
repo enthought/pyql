@@ -9,15 +9,13 @@
 
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
+from libcpp.string cimport string
 cimport quantlib.time._date as _date
 cimport quantlib.time._imm as _imm
 
 from quantlib.time.date cimport Date
 from quantlib.time.date cimport date_from_qldate
 
-cdef extern from "string" namespace "std":
-    cdef cppclass string:
-        char* c_str()
 
 # IMM Months
 cdef public enum Month:

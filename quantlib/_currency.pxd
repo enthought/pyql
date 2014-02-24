@@ -12,10 +12,8 @@
 
 include 'types.pxi'
 from libcpp cimport bool
+from libcpp.string cimport string
 
-cdef extern from "string" namespace "std":
-    cdef cppclass string:
-        char* c_str()    
 
 cdef extern from 'ql/currency.hpp' namespace 'QuantLib':
 

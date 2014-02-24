@@ -12,6 +12,7 @@
 
 include '../types.pxi'
 from libcpp cimport bool
+from libcpp.string cimport string
 from quantlib.handle cimport shared_ptr, Handle
 
 from quantlib.time._date cimport Date
@@ -23,9 +24,6 @@ from quantlib._currency cimport Currency
 cimport quantlib.termstructures.yields._flat_forward as _ff
 from quantlib.indexes._interest_rate_index cimport InterestRateIndex
 
-cdef extern from "string" namespace "std":
-    cdef cppclass string:
-        char* c_str()    
 
 cdef extern from 'ql/indexes/iborindex.hpp' namespace 'QuantLib':
 

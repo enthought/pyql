@@ -1,10 +1,8 @@
 include '../types.pxi'
+from libcpp.string cimport string
 
 from quantlib.instruments._option cimport Type as OptionType
 
-cdef extern from "string" namespace "std":
-    cdef cppclass string:
-        char* c_str()
 
 cdef extern from 'ql/payoff.hpp' namespace 'QuantLib':
         

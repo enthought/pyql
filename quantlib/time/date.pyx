@@ -2,6 +2,7 @@ import datetime
 import re
 
 from cython.operator cimport dereference as deref
+from libcpp.string cimport string
 
 # cannot use date.pxd because of name clashing
 cimport _date
@@ -104,10 +105,6 @@ cdef public enum TimeUnit:
 
 _TU_DICT = {'D': Days, 'W': Weeks, 'M': Months, 'Y': Years}
 _STR_TU_DICT = {v:k for k, v in _TU_DICT.items()}
-
-cdef extern from "string" namespace "std":
-    cdef cppclass string:
-        char* c_str()
 
 
 tenor_re = re.compile("([0-9]+)([DWMY]{1,1})")

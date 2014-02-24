@@ -10,6 +10,7 @@
 include '../types.pxi'
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
+from libcpp.string cimport string
 
 from quantlib.index cimport Index
 from quantlib.handle cimport shared_ptr
@@ -27,9 +28,6 @@ cimport quantlib.time._period as _pe
 cimport quantlib.time._daycounter as _dc
 cimport quantlib.time._calendar as _ca
 
-cdef extern from "string" namespace "std":
-    cdef cppclass string:
-        char* c_str()
 
 cdef _iri.InterestRateIndex* get_iri(InterestRateIndex index):
     """ Utility function to extract a properly casted IRI pointer out of the

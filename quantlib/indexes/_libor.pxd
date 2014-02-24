@@ -11,6 +11,8 @@
 """
 
 include '../types.pxi'
+from libcpp.string cimport string
+
 from quantlib.handle cimport Handle
 cimport quantlib.termstructures._yield_term_structure as _yts
 from quantlib._currency cimport Currency
@@ -19,9 +21,6 @@ from quantlib.time._calendar cimport Calendar
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._period cimport Period
 
-cdef extern from "string" namespace "std":
-    cdef cppclass string:
-        char* c_str()
 
 cdef extern from 'ql/indexes/ibor/libor.hpp' namespace 'QuantLib':
 
