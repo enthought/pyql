@@ -11,8 +11,6 @@ from quantlib.time._calendar cimport ModifiedFollowing
 from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
 cimport quantlib._index as _in
 cimport quantlib.indexes._ibor_index as _ib
-from quantlib.indexes.libor cimport Libor
-from quantlib.indexes.euribor cimport Euribor
 
 from quantlib.market.conventions.swap import SwapData
 
@@ -50,9 +48,11 @@ cdef class IborIndex(InterestRateIndex):
         #                                       Actual365Fixed()))
 
         if row.currency == 'EUR':
+            from quantlib.indexes.euribor import Euribor
             ibor_index = Euribor(Period(row.floating_leg_period), term_structure)
         else:
             label = row.currency + ' ' + row.floating_leg_reference
+            from quantlib.indexes.libor import Libor
             ibor_index = Libor(label,
                                Period(row.floating_leg_period),
                                row.settlement_days,
