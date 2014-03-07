@@ -9,14 +9,12 @@ Why building a new set of QuantLib wrappers for Python ?
 The SWIG wrappers provide a very good coverage of the library but have
 a number of pain points:
 
- * few Pythonic optimisation in the syntax: the python code for
-invoking QuantLib functions looks like the C++ version
- * no docstring or function signature are available on the Python side
- * the debugging is complex, and any customization of the 
-wrapper involves complex programming
- * the build process is monolithic: any change to the wrapper requires the recompilation of the entire project.
- * complete loss of the C++ code organisation with a flat namespace in Python
- * SWIG typemaps development is not that fun
+* Few Pythonic optimisation in the syntax: the python code for invoking QuantLib functions looks like the C++ version;
+* No docstring or function signature are available on the Python side;
+* The debugging is complex, and any customization of the wrapper involves complex programming;
+* The build process is monolithic: any change to the wrapper requires the recompilation of the entire project;
+* Complete loss of the C++ code organisation with a flat namespace in Python;
+* SWIG typemaps development is not that fun.
 
 For those reasons, and to have the ability to expose some of the
 QuantLib internals that could be very useful on the Python side, we
@@ -27,20 +25,18 @@ wrapping and provides higher level Python integration.
 Features:
 +++++++++
 
- * Integration with standard datatypes (like datetime objects) and numpy arrays
- * Simplifed API on the Python side (e.g. usage of Handles completely hidden from the user)
- * Support full docstring and expose detailed function signatures to Python
- * Code organised in subpackages to provide a clean namespace, very close to the C++ code organisation
- * Easy extendibility thanks to Cython and shorter build time when adding new functionnalities
- * Sphinx documentation
+* Integration with standard datatypes (like datetime objects) and numpy arrays;
+* Simplifed API on the Python side (e.g. usage of Handles completely hidden from the user);
+* Support full docstring and expose detailed function signatures to Python;
+* Code organised in subpackages to provide a clean namespace, very close to the C++ code organisation;
+* Easy extendibility thanks to Cython and shorter build time when adding new functionalities;
+* Sphinx documentation.
 
 
 Building and installing PyQL
 ----------------------------
 
-PyQL must be installed on a system that has access to a build of QuantLib (the shared library and the C++ header files). It
-requires patched version of Cython 0.16 (minor patch).
-You can find the patch file in the PyQL root directory. 
+PyQL must be installed on a system that has access to a build of QuantLib (the shared library and the C++ header files).  PyQL works out-of-the-box with Cython 0.17 and later; Cython 0.16 is supported if you apply a minor patch (see below). You can find the patch file in the PyQL root directory. 
 
 Once Cython is patched, enter the pyql root directory. Open the setup.py file
 and configure the Boost and QuantLib include and library directories, then run ::
@@ -92,7 +88,7 @@ Prerequites:
 
 2. Install Cython
 
-   a. Download Cython-0.16.tat.gz from cython.org
+   a. Download Cython-0.16.tar.gz from cython.org
 
    b. Extract the Cython folder
 
