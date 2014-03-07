@@ -1,17 +1,8 @@
-
-clean:
-	find quantlib -name \*.so -exec rm {} \;
-	find quantlib -name \*.pyc -exec rm {} \;
-	find quantlib -name \*.cpp -exec rm {} \;
-	find quantlib -name \*.c -exec rm {} \;
-	rm -rf build
-	rm -rf dist
-docs:
-	make -C docs html
-
-
 build:
 	python setup.py build_ext --inplace
+
+docs:
+	make -C docs html
 
 install:
 	python setup.py install --record pyql_install.txt
@@ -30,4 +21,12 @@ build_ex:
 	g++ -m32 -I/opt/local/include/ -I/opt/local/include/boost quantlib_test2.cpp \
     -o test2 -L/opt/local/lib/ -lQuantLib
 
-.PHONY: build  docs
+clean:
+	find quantlib -name \*.so -exec rm {} \;
+	find quantlib -name \*.pyc -exec rm {} \;
+	find quantlib -name \*.cpp -exec rm {} \;
+	find quantlib -name \*.c -exec rm {} \;
+	rm -rf build
+	rm -rf dist
+
+.PHONY: build docs clean
