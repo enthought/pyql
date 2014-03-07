@@ -1,4 +1,4 @@
-import unittest
+from .unittest_tools import unittest
 
 from quantlib.util.version import parse_ql_version_string
 
