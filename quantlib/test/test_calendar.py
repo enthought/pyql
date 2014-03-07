@@ -12,6 +12,16 @@ from quantlib.time.date import (
     Date, May, March, June, Jan, August, Months,November, Period, Days,
     Apr, Jul, Sep, Oct, Dec, Nov)
 from quantlib.time.calendars.jointcalendar import JointCalendar, JOINHOLIDAYS, JOINBUSINESSDAYS
+from quantlib.util.version import QUANTLIB_VERSION
+
+# QuantLib 1.4 added one extra holiday to the 2011 UK calendar (29 April 2011,
+# the royal wedding), bringing the total to 9 holidays.
+major, minor = QUANTLIB_VERSION[:2]
+if major >= 1 and minor >= 4:
+    UK_HOLIDAYS_2011 = 9
+else:
+    UK_HOLIDAYS_2011 = 8
+
 
 class TestQuantLibCalendar(unittest.TestCase):
 
@@ -54,7 +64,7 @@ class TestQuantLibCalendar(unittest.TestCase):
 
         bank_holiday_date = Date(3, May, 2010) #Early May Bank Holiday
         thanksgiving_holiday_date = Date(22, Nov, 2012)
-        
+
         jtcal = JointCalendar(ukcal, uscal, JOINHOLIDAYS)
 
         self.assertFalse(jtcal.is_business_day(bank_holiday_date))
@@ -85,7 +95,7 @@ class TestQuantLibCalendar(unittest.TestCase):
         holidays = list(
             holiday_list(ukcal, Date(1, Jan, 2011), Date(31, 12,2011) )
         )
-        self.assertEquals(8, len(holidays))
+        self.assertEquals(UK_HOLIDAYS_2011, len(holidays))
 
         new_holiday_date = Date(23, August, 2011)
 
@@ -94,14 +104,14 @@ class TestQuantLibCalendar(unittest.TestCase):
         holidays = list(
             holiday_list(ukcal, Date(1, Jan, 2011), Date(31, 12,2011) )
         )
-        self.assertEquals(9, len(holidays))
+        self.assertEquals(UK_HOLIDAYS_2011 + 1, len(holidays))
 
         ukcal.remove_holiday(new_holiday_date)
 
         holidays = list(
             holiday_list(ukcal, Date(1, Jan, 2011), Date(31, 12,2011) )
         )
-        self.assertEquals(8, len(holidays))
+        self.assertEquals(UK_HOLIDAYS_2011, len(holidays))
 
     def test_adjust_business_day(self):
 
@@ -145,7 +155,7 @@ class TestQuantLibCalendar(unittest.TestCase):
         self.assertTrue(uscal.is_holiday(holiday_date))
 
         uscal = UnitedStates(market=NYSE)
-        holiday_date = Date(5, Sep, 2011) # Labor day 
+        holiday_date = Date(5, Sep, 2011) # Labor day
 
         self.assertTrue(uscal.is_holiday(holiday_date))
 
