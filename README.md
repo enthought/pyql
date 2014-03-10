@@ -14,13 +14,7 @@ Prerequisites
 -------------
 
 * [QuantLib](http://www.quantlib.org) (version 1.1 or higher)
-* [Cython](http://www.cython.org)
-
-To build the library, you'll need Cython 0.16 or higher. If you want to use
-Cython 0.16, you'll need to apply the cython_0.16.patch in this repository
-(unicode issue fix). See the [getting started guide](docs/source/getting_started.rst)
-for more information. More recent versions of Cython should work out-of-the-box.
-Cython 0.15 is not supported anymore as it does not support templated ctypedef.
+* [Cython](http://www.cython.org) (version 0.19 or higher)
 
 Building the library
 --------------------
