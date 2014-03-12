@@ -16,7 +16,7 @@ from .calendars.null_calendar import NullCalendar
 from .calendars.united_kingdom import UnitedKingdom
 from .calendars.united_states import UnitedStates
 
-from .daycounter import Actual360, Actual365Fixed
+from .daycounter import Actual360, Actual365Fixed, DayCounter
 from .daycounters.thirty360 import Thirty360
 from .daycounters.actual_actual import (ActualActual, ISMA, ISDA, Bond,
     Historical, Actual365, AFB, Euro)
