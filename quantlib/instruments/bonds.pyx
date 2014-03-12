@@ -103,7 +103,7 @@ cdef class Bond(Instrument):
                 return get_bond(self).dirtyPrice()
 
     def clean_yield(self, Real clean_price, DayCounter dc, int comp, int freq,
-            Date settlement_date=None, Real accuracy=10e-08,
+            Date settlement_date=None, Real accuracy=1e-08,
             Size max_evaluations=100):
         """ Return the yield given a (clean) price and settlement date
 
