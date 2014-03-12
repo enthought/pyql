@@ -158,7 +158,7 @@ cdef class FixedRateBond(Bond):
             float redemption=100.0, Date issue_date = None):
 
             # convert input type to internal structures
-            cdef vector[Rate]* _coupons = new vector[Rate](len(coupons))
+            cdef vector[Rate] _coupons = vector[Rate]()
             for rate in coupons:
                 _coupons.push_back(rate)
 
@@ -173,7 +173,7 @@ cdef class FixedRateBond(Bond):
                 # shall we default on the first date of the schedule ?
                 self._thisptr = new shared_ptr[_instrument.Instrument](
                     new _bonds.FixedRateBond(settlement_days,
-                        face_amount, deref(_fixed_bonds_schedule), deref(_coupons),
+                        face_amount, deref(_fixed_bonds_schedule), _coupons,
                         deref(_accrual_day_counter),
                         <BusinessDayConvention>payment_convention,
                         redemption)
@@ -184,7 +184,7 @@ cdef class FixedRateBond(Bond):
                 self._thisptr = new shared_ptr[_instrument.Instrument](\
                     new _bonds.FixedRateBond(settlement_days,
                         face_amount, deref(_fixed_bonds_schedule),
-                        deref(_coupons),
+                        _coupons,
                         deref(_accrual_day_counter),
                         <BusinessDayConvention>payment_convention,
                         redemption, deref(_issue_date)
