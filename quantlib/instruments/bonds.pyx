@@ -112,7 +112,6 @@ cdef class Bond(Instrument):
         This method is the original Bond.yield method in C++.
         Python does not allow us to use the yield statement as a method name.
 
-
         """
         if settlement_date is not None:
             return get_bond(self).clean_yield(
