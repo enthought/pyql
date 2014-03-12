@@ -43,9 +43,12 @@ cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib':
         Real dirtyPrice()
         Real settlementValue()
 
-        Rate clean_yield 'yield'(DayCounter& dc,
+        Rate clean_yield 'yield'(
+                   Real cleanPrice,
+                   DayCounter& dc,
                    Compounding comp,
                    Frequency freq,
+                   Date settlementDate,
                    Real accuracy,
                    Size maxEvaluations)
 

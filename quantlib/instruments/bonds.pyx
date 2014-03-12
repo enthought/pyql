@@ -102,17 +102,24 @@ cdef class Bond(Instrument):
             if self._has_pricing_engine:
                 return get_bond(self).dirtyPrice()
 
-    def clean_yield(self, DayCounter dc, int comp, int freq, \
-               Real accuracy=10e-08, Size max_evaluations=100):
+    def clean_yield(self, Real clean_price, DayCounter dc, int comp, int freq,
+            Date settlement_date=None, Real accuracy=10e-08,
+            Size max_evaluations=100):
         """ Return the yield given a (clean) price and settlement date
 
         The default bond settlement is used if no date is given.
 
+        This method is the original Bond.yield method in C++.
+        Python does not allow us to use the yield statement as a method name.
+
+
         """
-        return get_bond(self).clean_yield(
-            deref(dc._thisptr), <_bonds.Compounding>comp,
-            <_bonds.Frequency>freq, accuracy, max_evaluations
-        )
+        if settlement_date is not None:
+            return get_bond(self).clean_yield(
+                clean_price, deref(dc._thisptr), <_bonds.Compounding>comp,
+                <_bonds.Frequency>freq, deref(settlement_date._thisptr.get()),
+                accuracy, max_evaluations
+            )
 
 
 
