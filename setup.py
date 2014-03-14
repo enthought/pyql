@@ -78,7 +78,7 @@ def get_extra_link_args():
             int(item) for item in platform.mac_ver()[0].split('.')]
         if major == 10 and minor >= 9:
             # On Mac OS 10.9 we link against the libstdc++ library.
-            args = ['-stlib=libstdc++ -mmacosx-version-min=10.6']
+            args = ['-stdlib=libstdc++', '-mmacosx-version-min=10.6']
         else:
             args = []
     else:
