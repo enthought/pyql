@@ -3,9 +3,11 @@ from setuptools import setup, find_packages
 # Warning : do not import the distutils extension before setuptools
 # It does break the cythonize function calls
 from distutils.extension import Extension
+from distutils.sysconfig import get_config_vars
 
 import glob
 import os
+import platform
 import sys
 
 from Cython.Distutils import build_ext
@@ -13,9 +15,16 @@ from Cython.Build import cythonize
 
 import numpy
 
+## From SO: hack to remove warning about strict prototypes
+## http://stackoverflow.com/questions/8106258/cc1plus-warning-command-line-option-wstrict-prototypes-is-valid-for-ada-c-o
+
+(opt,) = get_config_vars('OPT')
+os.environ['OPT'] = " ".join(
+    flag for flag in opt.split() if flag != '-Wstrict-prototypes')
+
 SUPPORT_CODE_INCLUDE = './cpp_layer'
 
-# FIXME: would be good to be able to customize the path with envrironment
+# FIXME: would be good to be able to customize the path with environment
 # variables in place of hardcoded paths ...
 if sys.platform == 'darwin':
     INCLUDE_DIRS = ['/usr/local/include', '.', SUPPORT_CODE_INCLUDE]
@@ -67,6 +76,14 @@ def get_extra_compile_args():
 def get_extra_link_args():
     if sys.platform == 'win32':
         args = ['/subsystem:windows', '/machine:I386']
+    elif sys.platform == 'darwin':
+        major, minor, patch = [
+            int(item) for item in platform.mac_ver()[0].split('.')]
+        if major == 10 and minor >= 9:
+            # On Mac OS 10.9 we link against the libstdc++ library.
+            args = ['-stdlib=libstdc++', '-mmacosx-version-min=10.6']
+        else:
+            args = []
     else:
         args = []
 
@@ -140,6 +157,22 @@ def collect_extensions():
         **kwargs
     )
 
+    business_day_convention_extension = Extension(
+        name='quantlib.time.businessdayconvention',
+        sources=[
+            'quantlib/time/businessdayconvention.pyx',
+            'cpp_layer/businessdayconvention_support_code.cpp'
+        ],
+        language='c++',
+        include_dirs=INCLUDE_DIRS,
+        library_dirs=LIBRARY_DIRS,
+        define_macros = get_define_macros(),
+        extra_compile_args = get_extra_compile_args(),
+        extra_link_args = get_extra_link_args(),
+        libraries=['QuantLib'],
+        pyrex_directives = CYTHON_DIRECTIVES
+    )
+
     manual_extensions = [
         multipath_extension,
         mc_vanilla_engine_extension,
@@ -147,6 +180,7 @@ def collect_extensions():
         piecewise_default_curve_extension,
         settings_extension,
         test_extension,
+        business_day_convention_extension
     ]
 
     cython_extension_directories = []

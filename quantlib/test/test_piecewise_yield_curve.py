@@ -8,20 +8,24 @@
 """
 
 from .unittest_tools import unittest
+
 from quantlib.currency import USDCurrency
 from quantlib.indexes.swap_index import SwapIndex
 from quantlib.settings import Settings
-from quantlib.termstructures.yields.rate_helpers import DepositRateHelper, SwapRateHelper
-from quantlib.termstructures.yields.piecewise_yield_curve import \
-    term_structure_factory, VALID_TRAITS, VALID_INTERPOLATORS, PiecewiseYieldCurve
+from quantlib.termstructures.yields.rate_helpers import (
+    DepositRateHelper, SwapRateHelper)
+from quantlib.termstructures.yields.piecewise_yield_curve import (
+    term_structure_factory, VALID_TRAITS, VALID_INTERPOLATORS,
+    PiecewiseYieldCurve)
 from quantlib.time.api import Date, TARGET, Period, Months, Years, Days
 from quantlib.time.api import September, ISDA, today, Mar
 from quantlib.time.api import ModifiedFollowing, Unadjusted, Actual360
 from quantlib.time.api import Thirty360, ActualActual, Actual365Fixed
-from quantlib.time.api import Annual, UnitedStates, today
+from quantlib.time.api import Annual, UnitedStates
 from quantlib.quotes import SimpleQuote
-
+from quantlib.termstructures.yields.api import YieldTermStructure
 from quantlib.indexes.libor import Libor
+
 
 class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
@@ -172,7 +176,8 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
             rate_helpers.append(helper)
 
         liborIndex = Libor('USD Libor', Period(6, Months), settlement_days,
-                           USDCurrency(), calendar, Actual360())
+                           USDCurrency(), calendar, Actual360(),
+                           YieldTermStructure(relinkable=False))
 
         spread = SimpleQuote(0)
         fwdStart = Period(0, Days)
@@ -232,13 +237,13 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
                  0.020260, 0.021545]
         swapRatesTenor = [Period(i, Years) for i in range(2, 11)]
         # description of the fixed leg of the swap
-        Swap_fixedLegTenor	= Period(12, Months) # INPUT
-        Swap_fixedLegConvention = ModifiedFollowing # INPUT
-        Swap_fixedLegDayCounter = Actual360() # INPUT
+        Swap_fixedLegTenor = Period(12, Months)      # INPUT
+        Swap_fixedLegConvention = ModifiedFollowing  # INPUT
+        Swap_fixedLegDayCounter = Actual360()        # INPUT
         # description of the float leg of the swap
-        Swap_iborIndex =  Libor(
-            "USDLibor", Period(3,Months), settlement_days, USDCurrency(),
-            UnitedStates(), Actual360()
+        Swap_iborIndex = Libor(
+            "USDLibor", Period(3, Months), settlement_days, USDCurrency(),
+            UnitedStates(), Actual360(), YieldTermStructure(relinkable=False)
         )
 
         SwapFamilyName = currency.name + "swapIndex"
@@ -250,9 +255,13 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         instruments = []
         for rate, tenor in zip(liborRates, liborRatesTenor):
             # Index description ___ creation of a Libor index
-            liborIndex =  Libor(LiborFamilyName, tenor, settlement_days, currency, calendar,
-                    Libor_dayCounter)
-            # Initialize rate helper	___ the DepositRateHelper link the recording rate with the Libor index													
+            liborIndex =  Libor(LiborFamilyName, tenor, settlement_days,
+                                currency, calendar, Libor_dayCounter,
+                                YieldTermStructure(relinkable=False))
+            # Initialize rate helper
+            # the DepositRateHelper link the recording rate with the Libor
+            # index
+
             instruments.append(DepositRateHelper(rate, index=liborIndex))
 
 
