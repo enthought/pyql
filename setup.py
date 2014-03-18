@@ -27,7 +27,9 @@ SUPPORT_CODE_INCLUDE = './cpp_layer'
 # FIXME: would be good to be able to customize the path with environment
 # variables in place of hardcoded paths ...
 if sys.platform == 'darwin':
-    INCLUDE_DIRS = ['/usr/local/include', '.', SUPPORT_CODE_INCLUDE]
+    INCLUDE_DIRS = ['/usr/local/include', '.', SUPPORT_CODE_INCLUDE,
+                   '/Users/dpinte/projects/sources/boost_1_55_0/',
+                    ]
     LIBRARY_DIRS = ["/usr/local/lib"]
 elif sys.platform == 'win32':
     INCLUDE_DIRS = [
@@ -163,14 +165,7 @@ def collect_extensions():
             'quantlib/time/businessdayconvention.pyx',
             'cpp_layer/businessdayconvention_support_code.cpp'
         ],
-        language='c++',
-        include_dirs=INCLUDE_DIRS,
-        library_dirs=LIBRARY_DIRS,
-        define_macros = get_define_macros(),
-        extra_compile_args = get_extra_compile_args(),
-        extra_link_args = get_extra_link_args(),
-        libraries=['QuantLib'],
-        pyrex_directives = CYTHON_DIRECTIVES
+        **kwargs
     )
 
     manual_extensions = [
