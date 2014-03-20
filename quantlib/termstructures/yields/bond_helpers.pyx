@@ -53,7 +53,7 @@ cdef class FixedRateBondHelper(BondHelper):
         cdef Handle[_qt.Quote] price_handle = \
                 Handle[_qt.Quote](deref(clean_price._thisptr))
 
-        self._thisptr = new shared_ptr[_bh.BondHelper](
+        self._thisptr = new shared_ptr[_bh.RateHelper](
             new _bh.FixedRateBondHelper(
                 price_handle,
                 settlement_days,

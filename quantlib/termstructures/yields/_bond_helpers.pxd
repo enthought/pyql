@@ -21,6 +21,9 @@ cdef extern from 'ql/termstructures/yield/bondhelpers.hpp' namespace 'QuantLib':
     ctypedef BootstrapHelper[YieldTermStructure] RateHelper
 
     cdef cppclass BondHelper(RateHelper):
+        # this is added because of Cython. This empty constructor does not exist
+        # and should never be used
+        BondHelper()
         BondHelper(
             Handle[Quote]& cleanPrice,
             shared_ptr[Bond]& bond
