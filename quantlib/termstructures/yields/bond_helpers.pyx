@@ -6,6 +6,7 @@ from libcpp.vector cimport vector
 from quantlib.handle cimport shared_ptr, Handle
 
 cimport quantlib.instruments._bonds as _bonds
+cimport quantlib.time._calendar as _calendar
 cimport quantlib._quote as _qt
 
 from quantlib.instruments.bonds cimport Bond
@@ -61,7 +62,7 @@ cdef class FixedRateBondHelper(BondHelper):
                 deref(schedule._thisptr),
                 cpp_coupons,
                 deref(day_counter._thisptr),
-                payment_conv,
+                <_calendar.BusinessDayConvention> payment_conv,
                 redemption,
                 deref(issue_date._thisptr.get())
             ))
