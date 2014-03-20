@@ -100,6 +100,54 @@ cdef class YieldTermStructure:
 
         return zero_rate
 
+    def forward_rate(self, Date d1, Date d2, DayCounter day_counter, 
+                     int compounding, int frequency=Annual, extrapolate=False):
+        """ Returns the forward interest rate between two dates or times.
+            
+        In the former case, times are calculated as fractions of year from the
+        reference date. If both dates (times) are equal the instantaneous forward
+        rate is returned.
+
+        Parameters
+        ----------
+        d1, d2: :py:class`~quantlib.time.date.Date'
+            The start and end dates used to calcule the forward rate.
+        day_counter: :py:class`~quantlib.time.daycounter.DayCounter'
+            The day counter used to compute the time.
+        compounding: int
+            The compounding as defined in quantlib.compounding
+        frequency: int
+            A frequency as defined in quantlib.time.date
+        extraplolate: bool, optional
+            Default to False
+        """
+        cdef ffwd.YieldTermStructure* term_structure
+        if self.relinkable is True:
+            # retrieves the shared_ptr (currentLink()) then gets the
+            # term_structure (get())
+            # FIXME: this does not compile :
+            # term_structure = self._relinkable_ptr.get().currentLink().get()
+            pass
+        else:
+            term_structure = self._thisptr.get()
+
+        cdef _ir.InterestRate ql_forward_rate = term_structure.forwardRate(
+            deref(d1._thisptr.get()), deref(d2._thisptr.get()),
+            deref(day_counter._thisptr), <_ir.Compounding>compounding,
+            <_ir.Frequency>frequency, extrapolate)
+
+        forward_rate = InterestRate(0, None, 0, 0, noalloc=True)
+        forward_rate._thisptr = new shared_ptr[_ir.InterestRate](
+            new _ir.InterestRate(
+                ql_forward_rate.rate(),
+                ql_forward_rate.dayCounter(),
+                ql_forward_rate.compounding(),
+                ql_forward_rate.frequency()
+            )
+        )
+
+        return forward_rate
+
     def discount(self, value):
         cdef ffwd.YieldTermStructure* term_structure
         cdef shared_ptr[ffwd.YieldTermStructure] ts_ptr
