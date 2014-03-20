@@ -47,7 +47,13 @@ cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib'
         InterestRate zeroRate(Date& d,
                               DayCounter& resultDayCounter,
                               Compounding comp,
-                              Frequency freq, # = Annual
-                              bool extrapolate) # = False
-
-
+                              Frequency freq,  # = Annual
+                              bool extrapolate  # = False
+                              ) except +
+        InterestRate forwardRate(Date& d1,
+                                 Date& d2,
+                                 DayCounter& resultDayCounter,
+                                 Compounding comp,
+                                 Frequency freq,  # = Annual
+                                 bool extrapolate  # = False
+                             ) except +
