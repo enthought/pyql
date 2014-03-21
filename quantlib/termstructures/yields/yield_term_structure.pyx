@@ -80,7 +80,7 @@ cdef class YieldTermStructure:
             # term_structure (get())
             # FIXME: this does not compile :
             # term_structure = self._relinkable_ptr.get().currentLink().get()
-            pass
+            raise NotImplementedError()
         else:
             term_structure = self._thisptr.get()
 
