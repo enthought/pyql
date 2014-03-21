@@ -259,8 +259,6 @@ class IborMarket(FixedIncomeMarket):
         self._forecasting_term_structure = YieldTermStructure(relinkable=True)
         self._forecasting_term_structure.link_to(ts)
 
-        return 0
-
     def discount(self, date_maturity, extrapolate=True):
         return self._discount_term_structure.discount(date_maturity)
 
