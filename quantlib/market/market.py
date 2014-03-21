@@ -212,11 +212,13 @@ class IborMarket(FixedIncomeMarket):
         self._discount_term_structure = None
         self._forecast_term_structure = None
 
+        self._rate_helpers = []
+        self._quotes = []
+
     def __str__(self):
         return 'Fixed Income Market: %s' % self._name
 
-    def set_quotes(self, dt_obs, quotes):
-        self._quotes = quotes
+    def _set_evaluation_date(self, dt_obs):
         if(~isinstance(dt_obs, Date)):
             dt_obs = pydate_to_qldate(dt_obs)
         settings = Settings()
@@ -224,20 +226,26 @@ class IborMarket(FixedIncomeMarket):
         # must be a business day
         eval_date = calendar.adjust(dt_obs)
         settings.evaluation_date = eval_date
-
         self._eval_date = eval_date
+        return eval_date
 
-        self._rate_helpers = []
+    def set_quotes(self, dt_obs, quotes):
+
+        self._quotes.extend(quotes)
+        eval_date = self._set_evaluation_date(dt_obs)
+
         for quote in quotes:
             # construct rate helper
             helper = make_rate_helper(self, quote, eval_date)
             self._rate_helpers.append(helper)
 
-    def set_bonds(self, bonds_data):
-        # TODO datetime adjustment?
+    def set_bonds(self, dt_obs, quotes):
 
-        for bonddata in bonds_data:
-            helper = make_bond_helper(self, bonddata)
+        self._quotes.extend(quotes)
+        eval_date = self._set_evaluation_date(dt_obs)
+
+        for quote in quotes:
+            helper = make_eurobond_helper(self, quote)
             self._rate_helpers.append(helper)
 
     @property
