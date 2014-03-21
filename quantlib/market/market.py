@@ -80,9 +80,9 @@ def make_rate_helper(market, quote, reference_date=None):
         if reference_date is None:
             raise Exception("Reference date needed with ED Futures data")
 
-        forward_date = next_imm_date(reference_date, tenor) 
+        forward_date = next_imm_date(reference_date, tenor)
 
-        helper = FuturesRateHelper( 
+        helper = FuturesRateHelper(
             rate = SimpleQuote(quote_value),
             imm_date = qldate_from_pydate(forward_date),
             length_in_months = 3,
@@ -90,6 +90,21 @@ def make_rate_helper(market, quote, reference_date=None):
             convention = market._floating_rate_index.business_day_convention,
             end_of_month = True,
             day_counter = DayCounter.from_name(market._params.floating_leg_daycount))
+
+    elif rate_type.startswith('ER'):
+        # TODO For Euribor futures, we found it useful to supply the `imm_date`
+        # parameter directly, instead of as a number of periods from the
+        # evaluation date, as for ED futures. To achieve this, we pass the
+        # `imm_date` in the `tenor` field of the quote. 
+        helper = FuturesRateHelper(
+            rate=SimpleQuote(quote_value),
+            imm_date=tenor,
+            length_in_months=3,
+            calendar=market._floating_rate_index.fixing_calendar,
+            convention=market._floating_rate_index.business_day_convention,
+            end_of_month=True,
+            day_counter=DayCounter.from_name(
+                market._params.floating_leg_daycount))
     else:
         raise Exception("Rate type %s not supported" % rate_type)
 
