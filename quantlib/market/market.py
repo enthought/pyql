@@ -236,7 +236,7 @@ class IborMarket(FixedIncomeMarket):
 
         return str
 
-    def bootstrap_term_structure(self):
+    def bootstrap_term_structure(self, interpolator='loglinear'):
         tolerance = 1.0e-15
         settings = Settings()
         calendar = JointCalendar(UnitedStates(), UnitedKingdom())
@@ -248,7 +248,7 @@ class IborMarket(FixedIncomeMarket):
         # must be a business day
         settlement_date = calendar.adjust(settlement_date)
         ts = term_structure_factory(
-            'discount', 'loglinear',
+            'discount', interpolator,
             settlement_date, self._rate_helpers,
             DayCounter.from_name(self._termstructure_daycount),
             tolerance)
