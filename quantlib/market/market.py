@@ -29,6 +29,10 @@ from quantlib.termstructures.yields.api import (
 import quantlib.time.imm as imm
 
 
+# TODO local imports
+from quantlib.time.api import Annual, Backward, Unadjusted, Following
+
+
 def libor_market(market='USD(NY)', **kwargs):
     m = IborMarket('USD Libor', market, **kwargs)
     return m
@@ -108,7 +112,46 @@ def make_rate_helper(market, quote, reference_date=None):
     else:
         raise Exception("Rate type %s not supported" % rate_type)
 
-    return (helper)
+    return helper
+
+
+def make_eurobond_helper(market, bonddata):
+    """ Wrapper for bond helpers.
+
+    FIXME: This convenience method has some conventions specifically
+    hardcoded for Eurobonds.
+
+    """
+    # FIXME: Get a better API here.
+    clean_price, coupons, issue_date, maturity = bonddata
+
+    # Create schedule based on market and bond parameters.
+    # FIXME: The tenor of the bond is *hardcoded*.
+    index = market._floating_rate_index
+    schedule = Schedule(
+        issue_date,
+        maturity,
+        Period(Annual),  # Tenor.
+        index.fixing_calendar,
+        index.business_day_convention,
+        index.business_day_convention,
+        Backward,  # Date generation rule
+        index.end_of_month,
+        )
+
+    daycounter = DayCounter.from_name("Actual/Actual (Bond)")
+    helper = FixedRateBondHelper(
+        SimpleQuote(clean_price),
+        market._params.settlement_days,
+        100.0,
+        schedule,
+        coupons,
+        daycounter,
+        Following,  # Payment convention
+        100.0,
+        issue_date)
+
+    return helper
 
 
 class Market:
@@ -188,6 +231,13 @@ class IborMarket(FixedIncomeMarket):
         for quote in quotes:
             # construct rate helper
             helper = make_rate_helper(self, quote, eval_date)
+            self._rate_helpers.append(helper)
+
+    def set_bonds(self, bonds_data):
+        # TODO datetime adjustment?
+
+        for bonddata in bonds_data:
+            helper = make_bond_helper(self, bonddata)
             self._rate_helpers.append(helper)
 
     @property
