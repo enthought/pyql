@@ -1,6 +1,6 @@
-from quantlib.termstructures.yields.rate_helpers import (SwapRateHelper,
-                                                         DepositRateHelper,
-                                                         FuturesRateHelper)
+from quantlib.termstructures.yields.api import (
+    FixedRateBondHelper, DepositRateHelper, FuturesRateHelper, SwapRateHelper)
+
 from quantlib.quotes import SimpleQuote
 
 from quantlib.time.api import (Date, Period, Calendar, Years,
