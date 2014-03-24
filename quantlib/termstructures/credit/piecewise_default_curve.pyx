@@ -25,7 +25,7 @@ cdef class PiecewiseDefaultCurve:
 
 
     def __init__(self, str trait, str interpolator, Date reference_date,
-                 helpers, DayCounter daycounter, float accuracy=1e-12):
+                 helpers, DayCounter daycounter, double accuracy=1e-12):
 
         # validate inputs
         if trait not in VALID_TRAITS:

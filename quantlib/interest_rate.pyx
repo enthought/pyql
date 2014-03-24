@@ -34,7 +34,7 @@ cdef class InterestRate:
             del self._thisptr
             self._thisptr = NULL
 
-    def __cinit__(self, float rate, DayCounter dc, int compounding, int frequency, **kwargs):
+    def __cinit__(self, double rate, DayCounter dc, int compounding, int frequency, **kwargs):
 
         if 'noalloc' in kwargs:
             return
