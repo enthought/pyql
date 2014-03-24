@@ -1,6 +1,7 @@
 from .unittest_tools import unittest
 
-from quantlib.time.api import Date
+from quantlib.compounding import Simple
+from quantlib.time.api import Date, Actual360
 from quantlib.market.market import libor_market
 
 
@@ -53,6 +54,16 @@ class MarketTestCase(unittest.TestCase):
         print('discount factor for %s (Euribor): %f' % (dt, df))
         self.assertTrue(df > 0)
 
+        # TODO/FIXME: expose _term_structure as a public member of the market.
+        ts = m._term_structure
+        rate0 = ts.zero_rate(Date(1, 1, 2006), Actual360(), Simple)
+        rate1 = ts.forward_rate(Date(1, 1, 2008), Date(1, 1, 2010),
+                                Actual360(), Simple)
+
+        # We don't test for numerical accuracy.
+        self.assertGreater(rate0.rate, 0)
+        self.assertGreater(rate1.rate, 0)
+
     def test_ed(self):
         """
         Curve construction with EuroDollar futures
@@ -86,6 +97,7 @@ class MarketTestCase(unittest.TestCase):
         print('discount factor for %s (USD Libor): %f' % (dt, df))
 
         self.assertTrue(df > 0)
+
 
 if __name__ == '__main__':
     unittest.main()
