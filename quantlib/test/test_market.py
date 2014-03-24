@@ -47,15 +47,14 @@ class MarketTestCase(unittest.TestCase):
 
         m.set_quotes(eval_date, quotes)
 
-        m.bootstrap_term_structure()
+        ts = m.bootstrap_term_structure()
 
         df = m.discount(dt)
 
         print('discount factor for %s (Euribor): %f' % (dt, df))
         self.assertTrue(df > 0)
 
-        # TODO/FIXME: expose _term_structure as a public member of the market.
-        ts = m._term_structure
+        # Compute zero and forward rates.
         rate0 = ts.zero_rate(Date(1, 1, 2006), Actual360(), Simple)
         rate1 = ts.forward_rate(Date(1, 1, 2008), Date(1, 1, 2010),
                                 Actual360(), Simple)

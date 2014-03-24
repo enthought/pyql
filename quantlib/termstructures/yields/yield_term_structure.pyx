@@ -100,10 +100,10 @@ cdef class YieldTermStructure:
 
         return zero_rate
 
-    def forward_rate(self, Date d1, Date d2, DayCounter day_counter, 
+    def forward_rate(self, Date d1, Date d2, DayCounter day_counter,
                      int compounding, int frequency=Annual, extrapolate=False):
         """ Returns the forward interest rate between two dates or times.
-            
+
         In the former case, times are calculated as fractions of year from the
         reference date. If both dates (times) are equal the instantaneous forward
         rate is returned.
@@ -182,4 +182,3 @@ cdef class YieldTermStructure:
         def __get__(self):
             cdef ffwd.Date max_date = self._thisptr.get().maxDate()
             return date_from_qldate(max_date)
-
