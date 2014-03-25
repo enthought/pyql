@@ -92,6 +92,8 @@ class MarketTestCase(unittest.TestCase):
         """
         Market tests for Euribor futures.
 
+        Not checking numerical accuracy.
+
         """
         # Euribor market instance.
         m = IborMarket('Euribor Market', 'EUR:1Y')
@@ -109,6 +111,29 @@ class MarketTestCase(unittest.TestCase):
         ]
 
         m.set_quotes(evaluation_date, quotes)
+        m.bootstrap_term_structure()
+
+        dt = Date(20, 6, 2014)
+        df = m.discount(dt)
+        self.assertTrue(df > 0)
+
+    def test_fixed_rate_bonds(self):
+        """
+        Market tests for fixed rate bond quotes.
+
+        Not checking numerical accuracy.
+
+        """
+        m = IborMarket('Euribor Market', 'EUR:1Y')
+
+        evaluation_date = Date(20, 3, 2014)
+        quotes = [
+            (103.455, [0.02], '1Y', Date(14, 1, 2011), Date(26, 2, 2016)),
+            (100.075, [0.0025], '1Y', Date(14, 2, 2014), Date(11, 3, 2016)),
+            (105.15, [0.0275], '1Y', Date(26, 4, 2011), Date(8, 4, 2016))
+        ]
+
+        m.set_bonds(evaluation_date, quotes)
         m.bootstrap_term_structure()
 
         dt = Date(20, 6, 2014)
