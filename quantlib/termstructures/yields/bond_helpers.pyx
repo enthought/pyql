@@ -51,6 +51,10 @@ cdef class FixedRateBondHelper(BondHelper):
         cdef Handle[_qt.Quote] price_handle = \
                 Handle[_qt.Quote](deref(clean_price._thisptr))
 
+        # Deal with issue_date default parameter.
+        if issue_date is None:
+            issue_date = Date()
+
         self._thisptr = new shared_ptr[_bh.RateHelper](
             new _bh.FixedRateBondHelper(
                 price_handle,
