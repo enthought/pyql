@@ -22,7 +22,7 @@ from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStruct
 
 cdef class MidPointCdsEngine(PricingEngine):
 
-    def __init__(self, PiecewiseDefaultCurve ts, float recovery_rate,
+    def __init__(self, PiecewiseDefaultCurve ts, double recovery_rate,
                  YieldTermStructure discount_curve):
         """
         First argument should be a DefaultProbabilityTermStructure. Using
