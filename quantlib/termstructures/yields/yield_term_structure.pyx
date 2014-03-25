@@ -80,7 +80,9 @@ cdef class YieldTermStructure:
             # term_structure (get())
             # FIXME: this does not compile :
             # term_structure = self._relinkable_ptr.get().currentLink().get()
-            pass
+            raise NotImplementedError(
+                "Cannot compute zero_rate on relinkable term structure."
+            )
         else:
             term_structure = self._thisptr.get()
 
@@ -127,7 +129,9 @@ cdef class YieldTermStructure:
             # term_structure (get())
             # FIXME: this does not compile :
             # term_structure = self._relinkable_ptr.get().currentLink().get()
-            pass
+            raise NotImplementedError(
+                "Cannot compute forward_rate on relinkable term structure."
+            )
         else:
             term_structure = self._thisptr.get()
 
