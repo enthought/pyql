@@ -28,9 +28,7 @@ from quantlib.termstructures.yields.api import (
     YieldTermStructure)
 import quantlib.time.imm as imm
 
-
-# TODO local imports
-from quantlib.time.api import Annual, Backward, Unadjusted, Following
+from quantlib.time.api import Annual, Backward, Following
 
 
 def libor_market(market='USD(NY)', **kwargs):
@@ -87,19 +85,20 @@ def make_rate_helper(market, quote, reference_date=None):
         forward_date = next_imm_date(reference_date, tenor)
 
         helper = FuturesRateHelper(
-            rate = SimpleQuote(quote_value),
+            rate =SimpleQuote(quote_value),
             imm_date = qldate_from_pydate(forward_date),
             length_in_months = 3,
             calendar = market._floating_rate_index.fixing_calendar,
             convention = market._floating_rate_index.business_day_convention,
             end_of_month = True,
-            day_counter = DayCounter.from_name(market._params.floating_leg_daycount))
+            day_counter = DayCounter.from_name(
+                market._params.floating_leg_daycount))
 
     elif rate_type.startswith('ER'):
         # TODO For Euribor futures, we found it useful to supply the `imm_date`
         # parameter directly, instead of as a number of periods from the
         # evaluation date, as for ED futures. To achieve this, we pass the
-        # `imm_date` in the `tenor` field of the quote. 
+        # `imm_date` in the `tenor` field of the quote.
         helper = FuturesRateHelper(
             rate=SimpleQuote(quote_value),
             imm_date=tenor,
@@ -240,9 +239,19 @@ class IborMarket(FixedIncomeMarket):
             self._rate_helpers.append(helper)
 
     def set_bonds(self, dt_obs, quotes):
+        """
+        Supply the market with a set of Eurobond quotes.
+
+        The `quotes` parameter must be a list of quotes of the form
+        (clean_price, coupons, issue_date, maturity), where `clean_price`
+        is the clean price of the bond, `coupons` is a vector of rates,
+        and `issue_date` and `maturity` are Date instances specifying
+        the issue date and maturity of the bond, respectively.
+
+        """
 
         self._quotes.extend(quotes)
-        eval_date = self._set_evaluation_date(dt_obs)
+        self._set_evaluation_date(dt_obs)
 
         for quote in quotes:
             helper = make_eurobond_helper(self, quote)
