@@ -28,7 +28,7 @@ from quantlib.termstructures.yields.api import (
     YieldTermStructure)
 import quantlib.time.imm as imm
 
-from quantlib.time.api import Annual, Backward, Following
+from quantlib.time.api import Backward, Following
 
 
 def libor_market(market='USD(NY)', **kwargs):
@@ -114,23 +114,22 @@ def make_rate_helper(market, quote, reference_date=None):
     return helper
 
 
-def make_eurobond_helper(market, bonddata):
+def make_eurobond_helper(
+        market, clean_price, coupons, tenor, issue_date, maturity):
+
     """ Wrapper for bond helpers.
 
     FIXME: This convenience method has some conventions specifically
-    hardcoded for Eurobonds.
+    hardcoded for Eurobonds. These should be moved to the market.
 
     """
-    # FIXME: Get a better API here.
-    clean_price, coupons, issue_date, maturity = bonddata
 
     # Create schedule based on market and bond parameters.
-    # FIXME: The tenor of the bond is *hardcoded*.
     index = market._floating_rate_index
     schedule = Schedule(
         issue_date,
         maturity,
-        Period(Annual),  # Tenor.
+        Period(tenor),
         index.fixing_calendar,
         index.business_day_convention,
         index.business_day_convention,
@@ -239,14 +238,12 @@ class IborMarket(FixedIncomeMarket):
             self._rate_helpers.append(helper)
 
     def set_bonds(self, dt_obs, quotes):
-        """
-        Supply the market with a set of Eurobond quotes.
+        """ Supply the market with a set of bond quotes.
 
         The `quotes` parameter must be a list of quotes of the form
-        (clean_price, coupons, issue_date, maturity), where `clean_price`
-        is the clean price of the bond, `coupons` is a vector of rates,
-        and `issue_date` and `maturity` are Date instances specifying
-        the issue date and maturity of the bond, respectively.
+        (clean_price, coupons, tenor, issue_date, maturity). For more
+        information about the format of the individual fields, see
+        the documentation for :meth:`add_bond_quote`.
 
         """
 
@@ -254,8 +251,32 @@ class IborMarket(FixedIncomeMarket):
         self._set_evaluation_date(dt_obs)
 
         for quote in quotes:
-            helper = make_eurobond_helper(self, quote)
-            self._rate_helpers.append(helper)
+            self.add_bond_quote(*quote)
+
+    def add_bond_quote(
+            self, clean_price, coupons, tenor, issue_date, maturity):
+        """
+        Add a bond quote to the market.
+
+        Parameters
+        ----------
+        clean_price : real
+            Clean price of the bond.
+        coupons : real or list(real)
+            Interest rates paid by the bond.
+        tenor : str
+            Tenor of the bond.
+        issue_date, maturity : Date instance
+            Issue date and maturity of the bond.
+
+        """
+
+        if not isinstance(coupons, (list, tuple)):
+            coupons = [coupons]
+
+        helper = make_eurobond_helper(
+            self, clean_price, coupons, tenor, issue_date, maturity)
+        self._rate_helpers.append(helper)
 
     @property
     def calendar(self):
