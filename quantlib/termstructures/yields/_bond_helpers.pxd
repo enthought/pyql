@@ -1,17 +1,14 @@
 include '../../types.pxi'
 
 from libcpp.vector cimport vector
-
 from quantlib.handle cimport shared_ptr, Handle
+
 from quantlib._quote cimport Quote
+from quantlib.instruments._bonds cimport Bond
+from quantlib.termstructures._helpers cimport BootstrapHelper
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._schedule cimport Schedule
-
-# from quantlib.termstructures.yields._rate_helpers import RateHelper
-from quantlib.instruments._bonds cimport Bond
-
-from quantlib.termstructures._helpers cimport BootstrapHelper
 from _flat_forward cimport YieldTermStructure
 
 

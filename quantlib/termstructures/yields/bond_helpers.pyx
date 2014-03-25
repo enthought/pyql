@@ -8,6 +8,7 @@ from quantlib.handle cimport shared_ptr, Handle
 cimport quantlib.instruments._bonds as _bonds
 cimport quantlib.time._calendar as _calendar
 cimport quantlib._quote as _qt
+cimport _bond_helpers as _bh
 
 from quantlib.instruments.bonds cimport Bond
 from quantlib.quotes cimport Quote
@@ -15,11 +16,6 @@ from quantlib.time.date cimport Date
 from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time._calendar cimport Following
-
-cimport _bond_helpers as _bh
-
-
-
 from quantlib.termstructures.yields.rate_helpers cimport RateHelper
 
 
@@ -27,9 +23,10 @@ cdef class BondHelper(RateHelper):
 
     def __init__(self, Quote clean_price, Bond bond):
 
-        # Create handles.
-        cdef Handle[_qt.Quote] price_handle = \
-                Handle[_qt.Quote](deref(clean_price._thisptr))
+        # Create quote handle.
+        cdef Handle[_qt.Quote] price_handle = Handle[_qt.Quote](
+            deref(clean_price._thisptr)
+        )
 
         self._thisptr = new shared_ptr[_bh.RateHelper](
             new _bh.BondHelper(
@@ -53,6 +50,10 @@ cdef class FixedRateBondHelper(BondHelper):
         # Create handles.
         cdef Handle[_qt.Quote] price_handle = \
                 Handle[_qt.Quote](deref(clean_price._thisptr))
+
+        # Deal with issue_date default parameter.
+        if issue_date is None:
+            issue_date = Date()
 
         self._thisptr = new shared_ptr[_bh.RateHelper](
             new _bh.FixedRateBondHelper(

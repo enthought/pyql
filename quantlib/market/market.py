@@ -314,8 +314,10 @@ class IborMarket(FixedIncomeMarket):
         self._discount_term_structure = YieldTermStructure(relinkable=True)
         self._discount_term_structure.link_to(ts)
 
-        self._forecasting_term_structure = YieldTermStructure(relinkable=True)
-        self._forecasting_term_structure.link_to(ts)
+        self._forecast_term_structure = YieldTermStructure(relinkable=True)
+        self._forecast_term_structure.link_to(ts)
+
+        return ts
 
     def discount(self, date_maturity, extrapolate=True):
         return self._discount_term_structure.discount(date_maturity)
@@ -332,7 +334,7 @@ class IborMarket(FixedIncomeMarket):
         _params = self._params._replace(**kwargs)
 
         index = IborIndex.from_name(self._market,
-                                    self._forecasting_term_structure,
+                                    self._forecast_term_structure,
                                     **kwargs)
 
         swap_type = Payer
