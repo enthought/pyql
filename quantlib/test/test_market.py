@@ -47,21 +47,12 @@ class MarketTestCase(unittest.TestCase):
 
         m.set_quotes(eval_date, quotes)
 
-        ts = m.bootstrap_term_structure()
+        m.bootstrap_term_structure()
 
         df = m.discount(dt)
 
         print('discount factor for %s (Euribor): %f' % (dt, df))
         self.assertTrue(df > 0)
-
-        # Compute zero and forward rates.
-        rate0 = ts.zero_rate(Date(1, 1, 2006), Actual360(), Simple)
-        rate1 = ts.forward_rate(Date(1, 1, 2008), Date(1, 1, 2010),
-                                Actual360(), Simple)
-
-        # We don't test for numerical accuracy.
-        self.assertGreater(rate0.rate, 0)
-        self.assertGreater(rate1.rate, 0)
 
     def test_ed(self):
         """
@@ -96,6 +87,48 @@ class MarketTestCase(unittest.TestCase):
         print('discount factor for %s (USD Libor): %f' % (dt, df))
 
         self.assertTrue(df > 0)
+
+    def test_market_internals(self):
+        # FIXME: this should be a test case in its own right, closer to
+        # YieldTermStructure.
+
+        m = libor_market('USD(NY)')
+        eval_date = Date(20, 9, 2004)
+
+        quotes = [('DEP', '1W', 0.0382),
+                  ('DEP', '1M', 0.0372),
+                  ('DEP', '3M', 0.0363),
+                  ('DEP', '6M', 0.0353),
+                  ('DEP', '9M', 0.0348),
+                  ('DEP', '1Y', 0.0345)]
+
+        m.set_quotes(eval_date, quotes)
+        ts = m.bootstrap_term_structure()
+
+        # Compute zero and forward rates.
+        zero_rate = ts.zero_rate(Date(1, 1, 2005), Actual360(), Simple)
+        forward_rate = ts.forward_rate(Date(1, 1, 2005), Date(30, 1, 2005),
+                                       Actual360(), Simple)
+
+        # We don't test for numerical accuracy.
+        self.assertGreater(zero_rate.rate, 0)
+        self.assertGreater(forward_rate.rate, 0)
+
+        # Check that the linked term structures are consistent with the
+        # original term structure.
+        discount_ts = m._discount_term_structure
+        forecast_ts = m._forecast_term_structure
+        self.assertIsNotNone(discount_ts)
+        self.assertIsNotNone(forecast_ts)
+
+        for linked_ts in [discount_ts, forecast_ts]:
+            rate = linked_ts.zero_rate(
+                Date(1, 1, 2005), Actual360(), Simple)
+            self.assertEqual(rate.rate, zero_rate.rate)
+
+            rate = linked_ts.forward_rate(
+                Date(1, 1, 2005), Date(30, 1, 2005), Actual360(), Simple)
+            self.assertEqual(rate.rate, forward_rate.rate)
 
 
 if __name__ == '__main__':
