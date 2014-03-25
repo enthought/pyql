@@ -150,11 +150,11 @@ cdef class FixedRateBond(Bond):
         - generic compounding and frequency InterestRate coupons
     """
 
-    def __init__(self, int settlement_days, float face_amount,
+    def __init__(self, int settlement_days, double face_amount,
             Schedule fixed_bonds_schedule,
             coupons, DayCounter accrual_day_counter,
             payment_convention=Following,
-            float redemption=100.0, Date issue_date = None):
+            double redemption=100.0, Date issue_date = None):
 
             # convert input type to internal structures
             cdef vector[Rate] _coupons = vector[Rate]()
