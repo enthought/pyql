@@ -76,14 +76,11 @@ cdef class YieldTermStructure:
             Default to False
         """
         cdef ffwd.YieldTermStructure* term_structure
+        cdef shared_ptr[ffwd.YieldTermStructure] ts_ptr
         if self.relinkable is True:
-            # retrieves the shared_ptr (currentLink()) then gets the
-            # term_structure (get())
-            # FIXME: this does not compile :
-            # term_structure = self._relinkable_ptr.get().currentLink().get()
-            raise NotImplementedError(
-                "Cannot compute zero_rate on relinkable term structure."
-            )
+            ts_ptr = shared_ptr[ffwd.YieldTermStructure](
+                self._relinkable_ptr.get().currentLink())
+            term_structure = ts_ptr.get()
         else:
             term_structure = self._thisptr.get()
 
@@ -127,14 +124,11 @@ cdef class YieldTermStructure:
             Default to False
         """
         cdef ffwd.YieldTermStructure* term_structure
+        cdef shared_ptr[ffwd.YieldTermStructure] ts_ptr
         if self.relinkable is True:
-            # retrieves the shared_ptr (currentLink()) then gets the
-            # term_structure (get())
-            # FIXME: this does not compile :
-            # term_structure = self._relinkable_ptr.get().currentLink().get()
-            raise NotImplementedError(
-                "Cannot compute forward_rate on relinkable term structure."
-            )
+            ts_ptr = shared_ptr[ffwd.YieldTermStructure](
+                self._relinkable_ptr.get().currentLink())
+            term_structure = ts_ptr.get()
         else:
             term_structure = self._thisptr.get()
 
