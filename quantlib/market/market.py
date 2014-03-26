@@ -1,6 +1,6 @@
-from quantlib.termstructures.yields.rate_helpers import (SwapRateHelper,
-                                                         DepositRateHelper,
-                                                         FuturesRateHelper)
+from quantlib.termstructures.yields.api import (
+    FixedRateBondHelper, DepositRateHelper, FuturesRateHelper, SwapRateHelper)
+
 from quantlib.quotes import SimpleQuote
 
 from quantlib.time.api import (Date, Period, Calendar, Years,
@@ -27,6 +27,8 @@ from quantlib.time.schedule import Schedule, Forward
 from quantlib.termstructures.yields.api import (
     YieldTermStructure)
 import quantlib.time.imm as imm
+
+from quantlib.time.api import Backward, Following
 
 
 def libor_market(market='USD(NY)', **kwargs):
@@ -80,20 +82,74 @@ def make_rate_helper(market, quote, reference_date=None):
         if reference_date is None:
             raise Exception("Reference date needed with ED Futures data")
 
-        forward_date = next_imm_date(reference_date, tenor) 
+        forward_date = next_imm_date(reference_date, tenor)
 
-        helper = FuturesRateHelper( 
-            rate = SimpleQuote(quote_value),
+        helper = FuturesRateHelper(
+            rate =SimpleQuote(quote_value),
             imm_date = qldate_from_pydate(forward_date),
             length_in_months = 3,
             calendar = market._floating_rate_index.fixing_calendar,
             convention = market._floating_rate_index.business_day_convention,
             end_of_month = True,
-            day_counter = DayCounter.from_name(market._params.floating_leg_daycount))
+            day_counter = DayCounter.from_name(
+                market._params.floating_leg_daycount))
+
+    elif rate_type.startswith('ER'):
+        # TODO For Euribor futures, we found it useful to supply the `imm_date`
+        # parameter directly, instead of as a number of periods from the
+        # evaluation date, as for ED futures. To achieve this, we pass the
+        # `imm_date` in the `tenor` field of the quote.
+        helper = FuturesRateHelper(
+            rate=SimpleQuote(quote_value),
+            imm_date=tenor,
+            length_in_months=3,
+            calendar=market._floating_rate_index.fixing_calendar,
+            convention=market._floating_rate_index.business_day_convention,
+            end_of_month=True,
+            day_counter=DayCounter.from_name(
+                market._params.floating_leg_daycount))
     else:
         raise Exception("Rate type %s not supported" % rate_type)
 
-    return (helper)
+    return helper
+
+
+def make_eurobond_helper(
+        market, clean_price, coupons, tenor, issue_date, maturity):
+
+    """ Wrapper for bond helpers.
+
+    FIXME: This convenience method has some conventions specifically
+    hardcoded for Eurobonds. These should be moved to the market.
+
+    """
+
+    # Create schedule based on market and bond parameters.
+    index = market._floating_rate_index
+    schedule = Schedule(
+        issue_date,
+        maturity,
+        Period(tenor),
+        index.fixing_calendar,
+        index.business_day_convention,
+        index.business_day_convention,
+        Backward,  # Date generation rule
+        index.end_of_month,
+        )
+
+    daycounter = DayCounter.from_name("Actual/Actual (Bond)")
+    helper = FixedRateBondHelper(
+        SimpleQuote(clean_price),
+        market._params.settlement_days,
+        100.0,
+        schedule,
+        coupons,
+        daycounter,
+        Following,  # Payment convention
+        100.0,
+        issue_date)
+
+    return helper
 
 
 class Market:
@@ -154,11 +210,13 @@ class IborMarket(FixedIncomeMarket):
         self._discount_term_structure = None
         self._forecast_term_structure = None
 
+        self._rate_helpers = []
+        self._quotes = []
+
     def __str__(self):
         return 'Fixed Income Market: %s' % self._name
 
-    def set_quotes(self, dt_obs, quotes):
-        self._quotes = quotes
+    def _set_evaluation_date(self, dt_obs):
         if(~isinstance(dt_obs, Date)):
             dt_obs = pydate_to_qldate(dt_obs)
         settings = Settings()
@@ -166,14 +224,59 @@ class IborMarket(FixedIncomeMarket):
         # must be a business day
         eval_date = calendar.adjust(dt_obs)
         settings.evaluation_date = eval_date
-
         self._eval_date = eval_date
+        return eval_date
 
-        self._rate_helpers = []
+    def set_quotes(self, dt_obs, quotes):
+
+        self._quotes.extend(quotes)
+        eval_date = self._set_evaluation_date(dt_obs)
+
         for quote in quotes:
             # construct rate helper
             helper = make_rate_helper(self, quote, eval_date)
             self._rate_helpers.append(helper)
+
+    def set_bonds(self, dt_obs, quotes):
+        """ Supply the market with a set of bond quotes.
+
+        The `quotes` parameter must be a list of quotes of the form
+        (clean_price, coupons, tenor, issue_date, maturity). For more
+        information about the format of the individual fields, see
+        the documentation for :meth:`add_bond_quote`.
+
+        """
+
+        self._quotes.extend(quotes)
+        self._set_evaluation_date(dt_obs)
+
+        for quote in quotes:
+            self.add_bond_quote(*quote)
+
+    def add_bond_quote(
+            self, clean_price, coupons, tenor, issue_date, maturity):
+        """
+        Add a bond quote to the market.
+
+        Parameters
+        ----------
+        clean_price : real
+            Clean price of the bond.
+        coupons : real or list(real)
+            Interest rates paid by the bond.
+        tenor : str
+            Tenor of the bond.
+        issue_date, maturity : Date instance
+            Issue date and maturity of the bond.
+
+        """
+
+        if not isinstance(coupons, (list, tuple)):
+            coupons = [coupons]
+
+        helper = make_eurobond_helper(
+            self, clean_price, coupons, tenor, issue_date, maturity)
+        self._rate_helpers.append(helper)
 
     @property
     def calendar(self):
@@ -221,7 +324,7 @@ class IborMarket(FixedIncomeMarket):
 
         return str
 
-    def bootstrap_term_structure(self):
+    def bootstrap_term_structure(self, interpolator='loglinear'):
         tolerance = 1.0e-15
         settings = Settings()
         calendar = JointCalendar(UnitedStates(), UnitedKingdom())
@@ -233,7 +336,7 @@ class IborMarket(FixedIncomeMarket):
         # must be a business day
         settlement_date = calendar.adjust(settlement_date)
         ts = term_structure_factory(
-            'discount', 'loglinear',
+            'discount', interpolator,
             settlement_date, self._rate_helpers,
             DayCounter.from_name(self._termstructure_daycount),
             tolerance)

@@ -2,7 +2,7 @@ from .unittest_tools import unittest
 
 from quantlib.compounding import Simple
 from quantlib.time.api import Date, Actual360
-from quantlib.market.market import libor_market
+from quantlib.market.market import libor_market, IborMarket
 
 
 class MarketTestCase(unittest.TestCase):
@@ -86,6 +86,58 @@ class MarketTestCase(unittest.TestCase):
 
         print('discount factor for %s (USD Libor): %f' % (dt, df))
 
+        self.assertTrue(df > 0)
+
+    def test_euribor(self):
+        """
+        Market tests for Euribor futures.
+
+        Not checking numerical accuracy.
+
+        """
+        # Euribor market instance.
+        m = IborMarket('Euribor Market', 'EUR:1Y')
+
+        evaluation_date = Date(20, 3, 2014)
+        quotes = [
+            (u'ERM4', Date(18,  6, 2014), 99.67),
+            (u'ERU4', Date(17,  9, 2014), 99.67),
+            (u'ERZ4', Date(17, 12, 2014), 99.66),
+            (u'ERH5', Date(18,  3, 2015), 99.63),
+            (u'ERM5', Date(17,  6, 2015), 99.59),
+            (u'ERU5', Date(16,  9, 2015), 99.53),
+            (u'ERZ5', Date(16, 12, 2015), 99.46),
+            (u'ERH6', Date(16,  3, 2016), 99.38),
+        ]
+
+        m.set_quotes(evaluation_date, quotes)
+        m.bootstrap_term_structure()
+
+        dt = Date(20, 6, 2014)
+        df = m.discount(dt)
+        self.assertTrue(df > 0)
+
+    def test_fixed_rate_bonds(self):
+        """
+        Market tests for fixed rate bond quotes.
+
+        Not checking numerical accuracy.
+
+        """
+        m = IborMarket('Euribor Market', 'EUR:1Y')
+
+        evaluation_date = Date(20, 3, 2014)
+        quotes = [
+            (103.455, [0.02], '1Y', Date(14, 1, 2011), Date(26, 2, 2016)),
+            (100.075, [0.0025], '1Y', Date(14, 2, 2014), Date(11, 3, 2016)),
+            (105.15, [0.0275], '1Y', Date(26, 4, 2011), Date(8, 4, 2016))
+        ]
+
+        m.set_bonds(evaluation_date, quotes)
+        m.bootstrap_term_structure()
+
+        dt = Date(20, 6, 2014)
+        df = m.discount(dt)
         self.assertTrue(df > 0)
 
     def test_market_internals(self):
