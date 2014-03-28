@@ -1,4 +1,4 @@
-from .default_probability_helpers import SpreadCdsHelper, CdsHelper
+from .default_probability_helpers import UpfrontCdsHelper, SpreadCdsHelper, CdsHelper
 from .piecewise_default_curve import PiecewiseDefaultCurve, ProbabilityTrait, Interpolator
 from .flat_hazard_rate import FlatHazardRate
 from .interpolated_hazardrate_curve import InterpolatedHazardRateCurve

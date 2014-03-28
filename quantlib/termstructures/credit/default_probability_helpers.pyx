@@ -105,3 +105,24 @@ cdef class SpreadCdsHelper(CdsHelper):
                 recovery_rate, discount_curve._thisptr, settles_accrual,
                 pays_at_default_time)
         )
+
+cdef class UpfrontCdsHelper(CdsHelper):
+    """Upfront+running-quoted CDS hazard rate bootstrap helper. """
+
+    def __init__(self, double upfront, double running_spread, Period tenor,
+                 int settlement_days, Calendar calendar, int frequency,
+                 int paymentConvention, int date_generation_rule,
+                 DayCounter daycounter, double recovery_rate,
+                 YieldTermStructure discount_curve, int upfront_settlement_days=3,
+                 settles_accrual=True,
+                 pays_at_default_time=True):
+        """
+        """
+
+        self._thisptr = new shared_ptr[_ci.CdsHelper](\
+            new _ci.UpfrontCdsHelper(upfront, running_spread, deref(tenor._thisptr.get()),
+                settlement_days, deref(calendar._thisptr), <Frequency>frequency,
+                <BusinessDayConvention>paymentConvention, <Rule>date_generation_rule,
+                deref(daycounter._thisptr), recovery_rate, discount_curve._thisptr,
+                upfront_settlement_days, settles_accrual, pays_at_default_time)
+        )

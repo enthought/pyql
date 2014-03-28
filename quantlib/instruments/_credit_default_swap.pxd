@@ -30,11 +30,11 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                           #const boost::shared_ptr<Claim>& =
                           #                        boost::shared_ptr<Claim>());
         )
-        Rate fairUpfront()
-        Rate fairSpread()
-        Real couponLegBPS()
-        Real upfrontBPS()
-        Real couponLegNPV()
-        Real defaultLegNPV()
-        Real upfrontNPV()
+        Rate fairUpfront() except +
+        Rate fairSpread() except +
+        Real couponLegBPS() except +
+        Real upfrontBPS() except +
+        Real couponLegNPV() except +
+        Real defaultLegNPV() except +
+        Real upfrontNPV() except +
 

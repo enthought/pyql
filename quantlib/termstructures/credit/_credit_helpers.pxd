@@ -60,3 +60,18 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                         bool settlesAccrual,  # removed default value (true)
                         bool paysAtDefaultTime) # removed default value (true)
 
+    cdef cppclass UpfrontCdsHelper(CdsHelper):
+         UpfrontCdsHelper(Rate upfrontSpread,
+                          Rate runningSpread,
+                          Period& tenor,
+                          Integer settlementDays,
+                          Calendar& calendar,
+                          Frequency frequency,
+                          BusinessDayConvention paymentConvention,
+                          Rule rule,
+                          DayCounter& dayCounter,
+                          Real recoveryRate,
+                          Handle[YieldTermStructure]& discountCurve,
+                          Natural upfrontSettlementDays,
+                          bool settlesAccrual,  # removed default value (true)
+                          bool paysAtDefaultTime) # removed default value (true)

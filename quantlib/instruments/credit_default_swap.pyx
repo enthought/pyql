@@ -130,4 +130,14 @@ cdef class CreditDefaultSwap(Instrument):
         def __get__(self):
             return _get_cds(self).couponLegNPV()
 
+    @property
+    def upfront_bps(self):
+        return _get_cds(self).upfrontBPS()
 
+    @property
+    def coupon_leg_bps(self):
+        return _get_cds(self).couponLegBPS()
+
+    @property
+    def upfront_npv(self):
+        return _get_cds(self).upfrontNPV()
