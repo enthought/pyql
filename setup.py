@@ -18,10 +18,6 @@ import numpy
 ## From SO: hack to remove warning about strict prototypes
 ## http://stackoverflow.com/questions/8106258/cc1plus-warning-command-line-option-wstrict-prototypes-is-valid-for-ada-c-o
 
-(opt,) = get_config_vars('OPT')
-os.environ['OPT'] = " ".join(
-    flag for flag in opt.split() if flag != '-Wstrict-prototypes')
-
 SUPPORT_CODE_INCLUDE = './cpp_layer'
 
 # FIXME: would be good to be able to customize the path with environment
@@ -29,18 +25,23 @@ SUPPORT_CODE_INCLUDE = './cpp_layer'
 if sys.platform == 'darwin':
     INCLUDE_DIRS = ['/usr/local/include', '.', SUPPORT_CODE_INCLUDE]
     LIBRARY_DIRS = ["/usr/local/lib"]
+    
+    (opt,) = get_config_vars('OPT')
+    os.environ['OPT'] = " ".join(
+        flag for flag in opt.split() if flag != '-Wstrict-prototypes')
+
 elif sys.platform == 'win32':
     INCLUDE_DIRS = [
-        r'E:\tmp\QuantLib-1.1',  # QuantLib headers
-        r'E:\tmp\boost_1_46_1',  # Boost headers
+        r'c:\dev\QuantLib-1.4',  # QuantLib headers
+        r'c:\dev\boost_1_56_0',  # Boost headers
         '.',
         SUPPORT_CODE_INCLUDE
     ]
     LIBRARY_DIRS = [
-        r"E:\tmp\QuantLib-1.1\build\vc80\Release",
-        r'E:\tmp\boost_1_46_1\lib'
+        r"c:\dev\QuantLib-1.4\lib",
+        r'c:\dev\boost_1_56_0\lib'
     ]
-    QL_LIBRARY = 'QuantLib'
+    QL_LIBRARY = 'QuantLib-vc90-mt'
 elif sys.platform == 'linux2':
     # good for Debian / ubuntu 10.04 (with QL .99 installed by default)
     INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.', SUPPORT_CODE_INCLUDE]
@@ -106,7 +107,7 @@ def collect_extensions():
         'define_macros':get_define_macros(),
         'extra_compile_args':get_extra_compile_args(),
         'extra_link_args':get_extra_link_args(),
-        'libraries':['QuantLib'],
+        'libraries':[QL_LIBRARY],
         'cython_directives':CYTHON_DIRECTIVES
     }
 
@@ -163,14 +164,7 @@ def collect_extensions():
             'quantlib/time/businessdayconvention.pyx',
             'cpp_layer/businessdayconvention_support_code.cpp'
         ],
-        language='c++',
-        include_dirs=INCLUDE_DIRS,
-        library_dirs=LIBRARY_DIRS,
-        define_macros = get_define_macros(),
-        extra_compile_args = get_extra_compile_args(),
-        extra_link_args = get_extra_link_args(),
-        libraries=['QuantLib'],
-        pyrex_directives = CYTHON_DIRECTIVES
+        **kwargs
     )
 
     manual_extensions = [
