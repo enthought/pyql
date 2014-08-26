@@ -6,9 +6,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-# distutils: language = c++
-
-
 from libcpp cimport bool
 
 from quantlib.pricingengines._pricing_engine cimport PricingEngine

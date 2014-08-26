@@ -6,9 +6,6 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
-
-# distutils: language = c++
-
 include '../types.pxi'
 
 from libcpp cimport bool

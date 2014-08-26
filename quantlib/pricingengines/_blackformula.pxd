@@ -1,6 +1,3 @@
-# distutils: language = c++
-# distutils: libraries = QuantLib
-
 include '../types.pxi'
 from quantlib.instruments._option cimport Type as OptionType
 

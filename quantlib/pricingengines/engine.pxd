@@ -1,5 +1,3 @@
-# distutils: language = c++
-
 from quantlib.handle cimport shared_ptr
 cimport _pricing_engine as _pe
 
