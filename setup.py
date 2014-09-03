@@ -68,7 +68,7 @@ def get_define_macros():
 
 def get_extra_compile_args():
     if sys.platform == 'win32':
-        args = ['/GR', '/FD', '/Zm250', '/EHsc' ]
+        args = ['/GR', '/FD', '/Zm250', '/EHsc', '/Z7']
     else:
         args = []
 
@@ -76,7 +76,7 @@ def get_extra_compile_args():
 
 def get_extra_link_args():
     if sys.platform == 'win32':
-        args = ['/subsystem:windows', '/machine:I386']
+        args = ['/subsystem:windows', '/machine:I386', '/DEBUG']
     elif sys.platform == 'darwin':
         major, minor, patch = [
             int(item) for item in platform.mac_ver()[0].split('.')]

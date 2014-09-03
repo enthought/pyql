@@ -88,7 +88,7 @@ class TestQuantLibSwap(unittest.TestCase):
 
         l = swap.leg(0)
         print l.to_str()
-
+        print 'Start date of swap ', swap.start_date
         l = swap.leg(1)
         print l.to_str()
 
