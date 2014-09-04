@@ -5,7 +5,6 @@
  */
 
 #include <ql/time/date.hpp>
-#include <settings.hpp>
 
 namespace QuantLib {
     QuantLib::Date get_evaluation_date();

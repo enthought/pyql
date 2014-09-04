@@ -1,5 +1,9 @@
 #include <ql/time/date.hpp>
+
+// FIXME: add a conditional include for Windows arch, otherwise use 
+// ql/settings.hpp
 #include <settings.hpp>
+
 using namespace QuantLib;
 
 namespace QuantLib {
