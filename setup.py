@@ -119,7 +119,7 @@ def collect_extensions():
     }
 
     settings_extension = Extension('quantlib.settings',
-        ['quantlib/settings/settings.pyx', 'cpp_layer/ql_settings.cpp'],
+        ['quantlib/settings.pyx', 'cpp_layer/ql_settings.cpp'],
         **kwargs
     )
 
