@@ -4,7 +4,7 @@ from libcpp cimport bool as cbool
 cimport quantlib.time._date as qldate
 cimport quantlib.time.date as date
 
-cdef extern from "ql_settings.hpp" namespace "QL":
+cdef extern from "ql_settings.hpp" namespace "QuantLib":
     qldate.Date get_evaluation_date()
     void set_evaluation_date(qldate.Date& date)
 

@@ -15,7 +15,7 @@ from quantlib.models.equity.bates_model cimport BatesModel, BatesDetJumpModel, B
 import numpy as np
 cimport numpy as cnp
 
-cdef extern from "simulate_support_code.hpp":
+cdef extern from "simulate_support_code.hpp" namespace 'PyQL':
 
     void simulateMP(shared_ptr[_sp.StochasticProcess]& process,
                     int nbPaths, int nbSteps, Time horizon, BigNatural seed,
