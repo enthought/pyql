@@ -15,8 +15,7 @@ from Cython.Build import cythonize
 
 import numpy
 
-## From SO: hack to remove warning about strict prototypes
-## http://stackoverflow.com/questions/8106258/cc1plus-warning-command-line-option-wstrict-prototypes-is-valid-for-ada-c-o
+DEBUG = False
 
 SUPPORT_CODE_INCLUDE = './cpp_layer'
 
@@ -25,7 +24,9 @@ SUPPORT_CODE_INCLUDE = './cpp_layer'
 if sys.platform == 'darwin':
     INCLUDE_DIRS = ['/usr/local/include', '.', SUPPORT_CODE_INCLUDE]
     LIBRARY_DIRS = ["/usr/local/lib"]
-    
+
+    ## From SO: hack to remove warning about strict prototypes
+    ## http://stackoverflow.com/questions/8106258/cc1plus-warning-command-line-option-wstrict-prototypes-is-valid-for-ada-c-o    
     (opt,) = get_config_vars('OPT')
     os.environ['OPT'] = " ".join(
         flag for flag in opt.split() if flag != '-Wstrict-prototypes')
@@ -38,10 +39,12 @@ elif sys.platform == 'win32':
         SUPPORT_CODE_INCLUDE
     ]
     LIBRARY_DIRS = [
-        r"c:\dev\QuantLib-1.4\lib",
-        r'c:\dev\boost_1_56_0\lib'
+        r"C:\dev\QuantLib-1.4\build\vc90\Win32\Release", # for the dll lib
+        r"C:\dev\QuantLib-1.4\lib", # for the static lib needed for two extensions
+        '.',
+        r'.\dll',
     ]
-    QL_LIBRARY = 'QuantLib-vc90-mt'
+    QL_LIBRARY = 'QuantLib'
 elif sys.platform == 'linux2':
     # good for Debian / ubuntu 10.04 (with QL .99 installed by default)
     INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.', SUPPORT_CODE_INCLUDE]
@@ -61,14 +64,16 @@ def get_define_macros():
             (name, None) for name in [
                 '__WIN32__', 'WIN32', 'NDEBUG', '_WINDOWS', 'NOMINMAX', 'WINNT',
                 '_WINDLL', '_SCL_SECURE_NO_DEPRECATE', '_CRT_SECURE_NO_DEPRECATE',
-                '_SCL_SECURE_NO_WARNINGS',
+                '_SCL_SECURE_NO_WARNINGS'
             ]
         ]
     return defines
 
 def get_extra_compile_args():
     if sys.platform == 'win32':
-        args = ['/GR', '/FD', '/Zm250', '/EHsc', '/Z7']
+        args = ['/GR', '/FD', '/Zm250', '/EHsc']
+        if DEBUG:
+            args.append('/Z7')
     else:
         args = []
 
@@ -76,7 +81,9 @@ def get_extra_compile_args():
 
 def get_extra_link_args():
     if sys.platform == 'win32':
-        args = ['/subsystem:windows', '/machine:I386', '/DEBUG']
+        args = ['/subsystem:windows', '/machine:I386']
+        if DEBUG:
+            args.append('/DEBUG')
     elif sys.platform == 'darwin':
         major, minor, patch = [
             int(item) for item in platform.mac_ver()[0].split('.')]
