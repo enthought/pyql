@@ -158,6 +158,9 @@ Prerequisites:
       symbol.def in your clone of the PyQL repo
    
      Apply the changes and build the project
+     
+   g. Copy the QuantLib.dll to a directory which is on the PATH (or just the
+      PyQL directory if you're in development mode)
    
 2. Install Cython. While you can install Cython from source, we strongly
    recommend to install Cython via the Canopy Package Manager, another Python
