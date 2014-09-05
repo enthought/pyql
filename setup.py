@@ -24,7 +24,7 @@ QL_LIBRARY = 'QuantLib'
 # FIXME: would be good to be able to customize the path with environment
 # variables in place of hardcoded paths ...
 if sys.platform == 'darwin':
-    INCLUDE_DIRS = ['/usr/local/include', '.', SUPPORT_CODE_INCLUDE]
+    INCLUDE_DIRS = ['/usr/local/include', '.', '../sources/boost_1_55_0', SUPPORT_CODE_INCLUDE]
     LIBRARY_DIRS = ["/usr/local/lib"]
 
     ## From SO: hack to remove warning about strict prototypes

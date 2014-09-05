@@ -1,6 +1,6 @@
 #include <ql/time/date.hpp>
 
-#idef WIN32
+#ifdef WIN32
 // using a custom settings.hpp that exposes the Setting class with dllimport
 // This is required to make sure the Singleton is properly shared between the 
 // Cython pyd's.
