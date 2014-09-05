@@ -19,6 +19,8 @@ DEBUG = False
 
 SUPPORT_CODE_INCLUDE = './cpp_layer'
 
+QL_LIBRARY = 'QuantLib'
+
 # FIXME: would be good to be able to customize the path with environment
 # variables in place of hardcoded paths ...
 if sys.platform == 'darwin':
@@ -44,7 +46,6 @@ elif sys.platform == 'win32':
         '.',
         r'.\dll',
     ]
-    QL_LIBRARY = 'QuantLib'
 elif sys.platform == 'linux2':
     # good for Debian / ubuntu 10.04 (with QL .99 installed by default)
     INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.', SUPPORT_CODE_INCLUDE]
