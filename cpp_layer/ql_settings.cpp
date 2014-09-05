@@ -1,8 +1,14 @@
 #include <ql/time/date.hpp>
 
-// FIXME: add a conditional include for Windows arch, otherwise use 
-// ql/settings.hpp
+#idef WIN32
+// using a custom settings.hpp that exposes the Setting class with dllimport
+// This is required to make sure the Singleton is properly shared between the 
+// Cython pyd's.
 #include <settings.hpp>
+#else
+#include <ql/settings.hpp>
+#endif
+
 
 using namespace QuantLib;
 
