@@ -154,12 +154,30 @@ Prerequisites:
     
     - Change "General" -> "Configuration type" to "Dynamic Library (DLL)"
     - Apply
+    - Add the Boost include directory to "C/C++" -> "Additional Include Directories"
+    - Apply
+    
+    Do a first build to get all the object files generated
+    
+   g. Generate the def file:
+   
+    In your PyQL clone, got the scripts directory, and edit the main function.
+    Set `input_directory` to the Release directory where your object files are 
+    and change the `output_file` if appropriate (symbol_win32.def is the
+    default) ! The def file is platform specific (you can't reuse a 32bit def
+    file for a 64bit linker).
+    
+    This will generate a def file of about 44 Mb with all the needed symbols for
+    PyQL compilation.
+    
+   h. Build the dll with the new def file
+   
     - Change "Linker" -> "Input" -> "Module definition file" to point to 
-      symbol.def in your clone of the PyQL repo
+      def file you just generated.
    
      Apply the changes and build the project
      
-   g. Copy the QuantLib.dll to a directory which is on the PATH (or just the
+   i. Copy the QuantLib.dll to a directory which is on the PATH (or just the
       PyQL directory if you're in development mode)
    
 2. Install Cython. While you can install Cython from source, we strongly
