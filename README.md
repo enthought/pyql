@@ -19,13 +19,5 @@ Prerequisites
 Building the library
 --------------------
 
-The build and test suite can be run as follows::
-
-    make clean
-    make build
-    make tests
-
-To build the library on Mac OS X 10.9, the QuantLib library must be linked
-against libstdc++. To do so, set the environment variables `CXXFLAGS` and
-`LDFLAGS` to `-stlib=libstdc++ -mmacosx-version-min=10.6` before building
-from source.
+See the getting_started.rst documentation in docs/source for the 
+full details!
