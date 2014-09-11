@@ -1,6 +1,12 @@
 PyQL CHANGELOG
 ==============
 
+Pre 0.2
+-------
+
+Builds are finally usable on Windows 32 and 64 bit (two tests are failing due
+to numerical issues but the Singleton problem is fixed)
+
 Release 0.1
 -----------
 
