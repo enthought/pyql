@@ -1,4 +1,6 @@
 // !! Patched version of ql/settings.hpp doing a dllimport on Settings
+ #pragma warning(disable:4251)
+ #pragma warning(disable:4275)
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
