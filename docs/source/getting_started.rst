@@ -113,3 +113,101 @@ Prerequisites:
    .. note:: If you have installed QuantLib in a directory different from :code:`/opt`, edit the `setup.py` file before running make and update the :code:`INCLUDE_DIRS` and :code:`LIBRARY_DIRS` to point to your installation of QuantLib.
 
 .. _pip: https://pypi.python.org/pypi/pip
+
+
+Installation from source on Windows
+-----------------------------------
+
+The following instructions explain how to build the project from source, on a
+Windows system.
+The instructions have been tested on Windows 7 32bit with Visual Studio 2008.
+
+.. warning: Visual Studio version
+
+    Visual Studio needs to be the 2008 version. It is the only version compatible
+    with a Python 2.7 installation that is built against the CRT90.
+
+Prerequisites:
+
+* python 2.7 (e.g. Canopy with Cython 0.20 or above)
+* pandas 0.9
+
+1. Install Quantlib
+
+   a. Install the latest version of Boost from sourceforge. You can get the
+   binaries of 1.55 for windows 32 or 64bit depending on your target.
+   
+   b. Download Quantlib 1.4 from Quantlib.org and unzip locally
+
+   c. Extract the Quantlib folder
+
+   d. Open the QuantLib_vc9 solution with Visual Studio
+   
+   e. Patch ql/settings.py
+
+    In the ql/settings.py file, update the Settings class defintion as
+    following (line 37)::
+    
+        class __declspec(dllexport) Settings : public Singleton<Settings> {
+
+   f. In the QuantLib project properties
+    
+    - Change "General" -> "Configuration type" to "Dynamic Library (DLL)"
+    - Apply
+    - Add the Boost include directory to "C/C++" -> "Additional Include Directories"
+    - Apply
+    
+    Do a first build to get all the object files generated
+    
+   g. Generate the def file:
+   
+    In your PyQL clone, got the scripts directory, and edit the main function.
+    Set `input_directory` to the Release directory where your object files are 
+    and change the `output_file` if appropriate (symbol_win32.def is the
+    default) ! The def file is platform specific (you can't reuse a 32bit def
+    file for a 64bit linker).
+    
+    This will generate a def file of about 44 Mb with all the needed symbols for
+    PyQL compilation.
+    
+   h. Build the dll with the new def file
+   
+    - Change "Linker" -> "Input" -> "Module definition file" to point to 
+      def file you just generated.
+   
+     Apply the changes and build the project
+     
+   i. Copy the QuantLib.dll to a directory which is on the PATH (or just the
+      PyQL directory if you're in development mode)
+   
+2. Install Cython. While you can install Cython from source, we strongly
+   recommend to install Cython via the Canopy Package Manager, another Python
+   distribution or via pip_::
+
+    pip install cython
+
+   If you do not have the required permissions to install Python packages in the system path, you can install Cython in your local user account via::
+
+    pip install --user cython
+
+3. Build and test pyql
+
+    Edit the setup.py to make sure the INCLUDE_DIRS and LIBRARY_DIRS point to
+    the correct directories.
+
+   .. code-block:: bash
+
+        PS C:\dev\pyql> python setup.py build
+        PS C:\dev\pyql> python setup.py install
+
+   .. note:: Development mode
+   
+        If you want to build the library in place and test things, you can do:
+        
+
+        .. code-block:: bash
+        
+                PS C:\dev\pyql> python setup.py build_ext --inplace
+                PS C:\dev\pyql> python -m unittest discover -v
+
+.. _pip: https://pypi.python.org/pypi/pip

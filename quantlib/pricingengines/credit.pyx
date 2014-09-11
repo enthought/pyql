@@ -5,8 +5,6 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
-# distutils: language = c++
-
 from cython.operator cimport dereference as deref
 
 from quantlib.handle cimport Handle, shared_ptr

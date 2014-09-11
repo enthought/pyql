@@ -15,32 +15,37 @@ from Cython.Build import cythonize
 
 import numpy
 
-## From SO: hack to remove warning about strict prototypes
-## http://stackoverflow.com/questions/8106258/cc1plus-warning-command-line-option-wstrict-prototypes-is-valid-for-ada-c-o
-
-(opt,) = get_config_vars('OPT')
-os.environ['OPT'] = " ".join(
-    flag for flag in opt.split() if flag != '-Wstrict-prototypes')
+DEBUG = False
 
 SUPPORT_CODE_INCLUDE = './cpp_layer'
+
+QL_LIBRARY = 'QuantLib'
 
 # FIXME: would be good to be able to customize the path with environment
 # variables in place of hardcoded paths ...
 if sys.platform == 'darwin':
-    INCLUDE_DIRS = ['/usr/local/include', '.', SUPPORT_CODE_INCLUDE]
+    INCLUDE_DIRS = ['/usr/local/include', '.', '../sources/boost_1_55_0', SUPPORT_CODE_INCLUDE]
     LIBRARY_DIRS = ["/usr/local/lib"]
+
+    ## From SO: hack to remove warning about strict prototypes
+    ## http://stackoverflow.com/questions/8106258/cc1plus-warning-command-line-option-wstrict-prototypes-is-valid-for-ada-c-o    
+    (opt,) = get_config_vars('OPT')
+    os.environ['OPT'] = " ".join(
+        flag for flag in opt.split() if flag != '-Wstrict-prototypes')
+
 elif sys.platform == 'win32':
     INCLUDE_DIRS = [
-        r'E:\tmp\QuantLib-1.1',  # QuantLib headers
-        r'E:\tmp\boost_1_46_1',  # Boost headers
+        r'c:\dev\QuantLib-1.4',  # QuantLib headers
+        r'c:\dev\boost_1_56_0',  # Boost headers
         '.',
         SUPPORT_CODE_INCLUDE
     ]
     LIBRARY_DIRS = [
-        r"E:\tmp\QuantLib-1.1\build\vc80\Release",
-        r'E:\tmp\boost_1_46_1\lib'
+        r"C:\dev\QuantLib-1.4\build\vc90\Win32\Release", # for the dll lib
+        r"C:\dev\QuantLib-1.4\lib", # for the static lib needed for two extensions
+        '.',
+        r'.\dll',
     ]
-    QL_LIBRARY = 'QuantLib'
 elif sys.platform == 'linux2':
     # good for Debian / ubuntu 10.04 (with QL .99 installed by default)
     INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.', SUPPORT_CODE_INCLUDE]
@@ -60,14 +65,16 @@ def get_define_macros():
             (name, None) for name in [
                 '__WIN32__', 'WIN32', 'NDEBUG', '_WINDOWS', 'NOMINMAX', 'WINNT',
                 '_WINDLL', '_SCL_SECURE_NO_DEPRECATE', '_CRT_SECURE_NO_DEPRECATE',
-                '_SCL_SECURE_NO_WARNINGS',
+                '_SCL_SECURE_NO_WARNINGS'
             ]
         ]
     return defines
 
 def get_extra_compile_args():
     if sys.platform == 'win32':
-        args = ['/GR', '/FD', '/Zm250', '/EHsc' ]
+        args = ['/GR', '/FD', '/Zm250', '/EHsc']
+        if DEBUG:
+            args.append('/Z7')
     else:
         args = []
 
@@ -76,6 +83,8 @@ def get_extra_compile_args():
 def get_extra_link_args():
     if sys.platform == 'win32':
         args = ['/subsystem:windows', '/machine:I386']
+        if DEBUG:
+            args.append('/DEBUG')
     elif sys.platform == 'darwin':
         major, minor, patch = [
             int(item) for item in platform.mac_ver()[0].split('.')]
@@ -106,12 +115,12 @@ def collect_extensions():
         'define_macros':get_define_macros(),
         'extra_compile_args':get_extra_compile_args(),
         'extra_link_args':get_extra_link_args(),
-        'libraries':['QuantLib'],
+        'libraries':[QL_LIBRARY],
         'cython_directives':CYTHON_DIRECTIVES
     }
 
     settings_extension = Extension('quantlib.settings',
-        ['quantlib/settings/settings.pyx', 'cpp_layer/ql_settings.cpp'],
+        ['quantlib/settings.pyx', 'cpp_layer/ql_settings.cpp'],
         **kwargs
     )
 
@@ -163,14 +172,7 @@ def collect_extensions():
             'quantlib/time/businessdayconvention.pyx',
             'cpp_layer/businessdayconvention_support_code.cpp'
         ],
-        language='c++',
-        include_dirs=INCLUDE_DIRS,
-        library_dirs=LIBRARY_DIRS,
-        define_macros = get_define_macros(),
-        extra_compile_args = get_extra_compile_args(),
-        extra_link_args = get_extra_link_args(),
-        libraries=['QuantLib'],
-        pyrex_directives = CYTHON_DIRECTIVES
+        **kwargs
     )
 
     manual_extensions = [

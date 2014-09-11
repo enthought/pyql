@@ -32,7 +32,7 @@ cdef extern from 'ql/instruments/swap.hpp' namespace 'QuantLib':
         bool isExpired()
         Date startDate()
         Date maturityDate()
-        Real legBPS(Size j)
-        Real legNPV(Size j)
-        Leg& leg(Size j)
+        Real legBPS(Size j) except +
+        Real legNPV(Size j) except +
+        Leg& leg(Size j) # FIXME: we should have 'except +' to catch issues with leg id...
 

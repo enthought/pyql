@@ -105,9 +105,7 @@ cdef class SimpleLeg:
         if noalloc:
             return
         
-        self._thisptr = new shared_ptr[vector[shared_ptr[_cf.CashFlow]]](\
-                    new vector[shared_ptr[_cf.CashFlow]]() 
-                    )
+        self._thisptr = new vector[shared_ptr[_cf.CashFlow]]()
                     
         for i in range(len(leg)):
             _thisamount = leg[i][0]
@@ -118,7 +116,7 @@ cdef class SimpleLeg:
                                                        deref(_thisdate))
                                                   )   
 
-            self._thisptr.get().push_back(deref(_thiscf))
+            self._thisptr.push_back(deref(_thiscf))
         
     def __dealloc__(self):
         if self._thisptr is not NULL:
@@ -126,7 +124,7 @@ cdef class SimpleLeg:
     
     property size:
         def __get__(self):
-            cdef int size = self._thisptr.get().size()
+            cdef int size = self._thisptr.size()
             return size
             
     property items:
@@ -134,16 +132,16 @@ cdef class SimpleLeg:
             '''Return Leg as (amount, date) list
             
             '''
-            cdef vector[shared_ptr[_cf.CashFlow]] leg = \
-                                        deref(self._thisptr.get())
-            return leg_items(leg)
+            cdef vector[shared_ptr[_cf.CashFlow]]* leg = \
+                                        self._thisptr
+            return leg_items(deref(leg))
             
 
     def to_str(self):
             """
             pretty print cash flow schedule
             """
-            _items = self.items
+            _items = self.items[:]
             str = "Cash Flow Schedule:\n"
             for _it in _items:
                 str += ("%s %f\n" % (_it[1], _it[0]))

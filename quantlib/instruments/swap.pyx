@@ -191,20 +191,18 @@ cdef class VanillaSwap(Swap):
         Return a swap leg
         TODO: optimize this - avoid copy
         """
-        
         cdef vector[shared_ptr[_cf.CashFlow]] leg = get_vanillaswap(self).leg(i)
-
+        
         cdef int k
         cdef shared_ptr[_cf.CashFlow] _thiscf
         cdef Date _thisdate
 
         itemlist = []
         cdef int size = leg.size()
-
-        for k from 0 <= k < size:
+        for k in xrange(size):
             _thiscf = leg.at(k)
             _thisdate = Date(_thiscf.get().date().serialNumber())
             itemlist.append((_thiscf.get().amount(), _thisdate))
-
+        
         return SimpleLeg(itemlist)
 

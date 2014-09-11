@@ -7,9 +7,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-# distutils: language = c++
-# distutils: libraries = QuantLib
-
 include '../types.pxi'
 
 from libcpp cimport bool

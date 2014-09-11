@@ -1,4 +1,7 @@
-#include<ql/quantlib.hpp>
+#include <ql/math/randomnumbers/rngtraits.hpp>
+#include <ql/methods/montecarlo/multipathgenerator.hpp>
+#include <ql/stochasticprocess.hpp>
+#include <ql/methods/montecarlo/path.hpp>
 
 /*
  * Multipath simulator. A multipath simulator is needed when the stochastic
@@ -6,7 +9,9 @@
  * the simulation of the variance process and the simulation of the price process
  */
 
-namespace QuantLib {
+using namespace QuantLib;
+
+namespace PyQL {
 
     void simulateMP(const boost::shared_ptr<StochasticProcess>& process,
                     int nbPaths, int nbSteps, Time horizon, BigNatural seed,
