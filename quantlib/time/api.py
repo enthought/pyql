@@ -11,6 +11,7 @@ from .calendar import (
     Calendar, TARGET, ModifiedFollowing, Following, ModifiedPreceding,
     Preceding, Unadjusted, holiday_list
     )
+from .calendar_registry import calendar_from_name
 from .calendars.jointcalendar import JointCalendar
 from .calendars.null_calendar import NullCalendar
 from .calendars.united_kingdom import UnitedKingdom

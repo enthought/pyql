@@ -12,6 +12,7 @@ from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStruct
 cimport quantlib._index as _in
 cimport quantlib.indexes._ibor_index as _ib
 
+from quantlib.time.api import calendar_from_name
 from quantlib.market.conventions.swap import SwapData
 
 
@@ -57,7 +58,7 @@ cdef class IborIndex(InterestRateIndex):
                                Period(row.floating_leg_period),
                                row.settlement_days,
                                Currency.from_name(row.currency),
-                               Calendar.from_name(row.calendar),
+                               calendar_from_name(row.calendar),
                                DayCounter.from_name(row.floating_leg_daycount),
                                term_structure)
             
