@@ -139,7 +139,7 @@ cdef class SimpleLeg:
             _items = self.items[:]
             
             header = "Cash Flow Schedule:\n"
-            values = ("{0[0]!s} {0[1]:f}\n".format(_it) for _it in _items)
+            values = ("{0[1]!s} {0[0]:f}\n".format(_it) for _it in _items)
             return header + '\n'.join(values)
             
 

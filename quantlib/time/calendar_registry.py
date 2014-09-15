@@ -1,4 +1,4 @@
-from quantlib.util.prettyprint import prettyprint
+import tabulate
 
 class CalendarRegistry(object):
 
@@ -10,9 +10,9 @@ class CalendarRegistry(object):
         self._initialized = False
 
     def help(self):
-        data = [self._code.keys(), self._code.values()]
-        res = "Valid calendar names are:\n\n" + prettyprint(('Code', 'Calendar'), 'ss', data)
-        return res
+        table = tabulate.tabulate(self._code.iteritems(), headers=['Code', 'Calendar'])
+        help_str = "Valid calendar names are:\n\n{}".format(table) 
+        return help_str
 
     def from_name(self, code):
         """ Returns an instance of the calendar for the given ISO-3166 code. """

@@ -28,7 +28,7 @@ from quantlib.termstructures.yields.api import (
     YieldTermStructure)
 import quantlib.time.imm as imm
 
-from quantlib.time.api import Backward, Following
+from quantlib.time.api import Backward, Following, calendar_from_name
 
 
 def libor_market(market='USD(NY)', **kwargs):
@@ -378,7 +378,7 @@ class IborMarket(FixedIncomeMarket):
         floating_frequency = code_to_frequency(_params.floating_leg_period)
         fixed_daycount = DayCounter.from_name(_params.fixed_leg_daycount)
         float_daycount = DayCounter.from_name(_params.floating_leg_daycount)
-        calendar = Calendar.from_name(_params.calendar)
+        calendar = calendar_from_name(_params.calendar)
 
         maturity = calendar.advance(settlement_date, length, Years,
                                     convention=floating_convention)
