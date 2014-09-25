@@ -102,6 +102,26 @@ cdef class Bond(Instrument):
             if self._has_pricing_engine:
                 return get_bond(self).dirtyPrice()
 
+    def clean_yield(self, Real clean_price, DayCounter dc, int comp, int freq,
+            Date settlement_date=None, Real accuracy=1e-08,
+            Size max_evaluations=100):
+        """ Return the yield given a (clean) price and settlement date
+
+        The default bond settlement is used if no date is given.
+
+        This method is the original Bond.yield method in C++.
+        Python does not allow us to use the yield statement as a method name.
+
+        """
+        if settlement_date is not None:
+            return get_bond(self).clean_yield(
+                clean_price, deref(dc._thisptr), <_bonds.Compounding>comp,
+                <_bonds.Frequency>freq, deref(settlement_date._thisptr.get()),
+                accuracy, max_evaluations
+            )
+
+
+
     def accrued_amount(self, Date date=None):
         """ Returns the bond accrued amount at the given date. """
         if date is not None:
@@ -130,14 +150,14 @@ cdef class FixedRateBond(Bond):
         - generic compounding and frequency InterestRate coupons
     """
 
-    def __init__(self, int settlement_days, float face_amount,
+    def __init__(self, int settlement_days, double face_amount,
             Schedule fixed_bonds_schedule,
             coupons, DayCounter accrual_day_counter,
             payment_convention=Following,
-            float redemption=100.0, Date issue_date = None):
+            double redemption=100.0, Date issue_date = None):
 
             # convert input type to internal structures
-            cdef vector[Rate]* _coupons = new vector[Rate](len(coupons))
+            cdef vector[Rate] _coupons = vector[Rate]()
             for rate in coupons:
                 _coupons.push_back(rate)
 
@@ -152,7 +172,7 @@ cdef class FixedRateBond(Bond):
                 # shall we default on the first date of the schedule ?
                 self._thisptr = new shared_ptr[_instrument.Instrument](
                     new _bonds.FixedRateBond(settlement_days,
-                        face_amount, deref(_fixed_bonds_schedule), deref(_coupons),
+                        face_amount, deref(_fixed_bonds_schedule), _coupons,
                         deref(_accrual_day_counter),
                         <BusinessDayConvention>payment_convention,
                         redemption)
@@ -163,7 +183,7 @@ cdef class FixedRateBond(Bond):
                 self._thisptr = new shared_ptr[_instrument.Instrument](\
                     new _bonds.FixedRateBond(settlement_days,
                         face_amount, deref(_fixed_bonds_schedule),
-                        deref(_coupons),
+                        _coupons,
                         deref(_accrual_day_counter),
                         <BusinessDayConvention>payment_convention,
                         redemption, deref(_issue_date)

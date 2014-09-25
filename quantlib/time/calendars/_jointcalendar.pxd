@@ -1,10 +1,8 @@
 include '../../types.pxi'
+from libcpp.string cimport string
 
 from quantlib.time._calendar cimport Calendar
 
-cdef extern from "string" namespace "std":
-    cdef cppclass string:
-        char* c_str()
 
 cdef extern from 'ql/time/calendars/jointcalendar.hpp' namespace 'QuantLib':
 

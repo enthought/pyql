@@ -1,6 +1,8 @@
 build/*
 docs/build
 quantlib.egg-info/*
+QuantLib.dll
+symbol_win*.def
 *.cpp
 *.so
 *.h

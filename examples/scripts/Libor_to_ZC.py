@@ -51,7 +51,7 @@ if __name__ == '__main__':
     # selected maturities
     for i, obs_date in enumerate(dtI):
         print(obs_date)
-        rates = df_libor.xs(obs_date) / 100
+        rates = df_libor.xs(obs_date) / 100.0
         ts = make_term_structure(rates, obs_date)
         (dt_maturity[i, ], zc_rate[i, ]) = zero_rate(ts, days, obs_date)
 

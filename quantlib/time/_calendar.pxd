@@ -1,14 +1,12 @@
 include '../types.pxi'
 
 from libcpp cimport bool
+from libcpp.string cimport string
 from libcpp.vector cimport vector
 
 from _date cimport Date, Weekday
 from _period cimport Period, TimeUnit
 
-cdef extern from "string" namespace "std":
-    cdef cppclass string:
-        char* c_str()
 
 cdef extern from 'ql/time/businessdayconvention.hpp' namespace 'QuantLib':
     cdef enum BusinessDayConvention: 

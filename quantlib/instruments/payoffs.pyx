@@ -52,7 +52,7 @@ cdef class PlainVanillaPayoff(Payoff):
 
     option_type: int or str
         The type of option, can be either Call or Put
-    strike: float
+    strike: double
         The strike value
     from_qlpayoff: bool, optional
         For internal use only
@@ -65,7 +65,7 @@ cdef class PlainVanillaPayoff(Payoff):
         Read-only property that returns a PlainVanillaPayoff instance
     """
 
-    def __init__(self, option_type, float strike, from_qlpayoff=False):
+    def __init__(self, option_type, double strike, from_qlpayoff=False):
 
         if isinstance(option_type, str):     # Changed from basestring for Py2/3 compatibility
             option_type = str_to_option_type(option_type)

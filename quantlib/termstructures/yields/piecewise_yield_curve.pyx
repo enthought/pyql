@@ -74,12 +74,12 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
         a list of rate helper to used to create the curve
     day_counter: quantlib.time.day_counter.DayCounter
         the day counter used by this curve
-    tolerance: float (default 1e-12)
+    tolerance: double (default 1e-12)
         the tolerance
     """
 
     def __init__(self, str trait, str interpolator, Date settlement_date,
-                 helpers, DayCounter day_counter, float tolerance=1e-12):
+                 helpers, DayCounter day_counter, double tolerance=1e-12):
 
         # validate inputs
         if trait not in VALID_TRAITS:

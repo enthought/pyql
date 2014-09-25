@@ -1,7 +1,3 @@
-# distutils: language = c++
-# distutils: libraries = QuantLib
-
-
 cimport _optimization as _opt
 
 from quantlib.handle cimport shared_ptr

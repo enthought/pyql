@@ -80,7 +80,7 @@ def get_term_structure(df_libor, dtObs):
     for m, period, label in depositData:
         tenor = Period(m, Months)
         rate = df_libor.get_value(dtObs, label)
-        helper = DepositRateHelper(float(rate/100), tenor,
+        helper = DepositRateHelper(float(rate/100.0), tenor,
                  settlement_days,
                  calendar, ModifiedFollowing,
                  end_of_month,
@@ -101,7 +101,7 @@ def get_term_structure(df_libor, dtObs):
 
     for m, period, label in swapData:
         rate = df_libor.get_value(dtObs, label)
-        helper = SwapRateHelper(SimpleQuote(rate/100),
+        helper = SwapRateHelper(SimpleQuote(rate/100.0),
                  Period(m, Years), 
             calendar, Annual,
             Unadjusted, Thirty360(),

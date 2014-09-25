@@ -11,21 +11,45 @@ from quantlib.handle cimport Handle, shared_ptr
 
 from cython.operator cimport dereference as deref
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
-cimport quantlib.termstructures.yields._flat_forward as _ff
+cimport quantlib.termstructures._yield_term_structure as _yts
 cimport _euribor as _eu
 cimport quantlib._index as _in
+from quantlib.time.date cimport Period
 
 
 cdef class Euribor(IborIndex):
-    def __init__(self):
-        pass
-        
-cdef class Euribor6M(Euribor):
-    def __init__(self):
+    def __init__(self,
+        Period tenor,
+        YieldTermStructure ts):
     
-        cdef Handle[_ff.YieldTermStructure] yc_handle = \
-                Handle[_ff.YieldTermStructure]()
+        cdef Handle[_yts.YieldTermStructure] ts_handle
+        if ts.relinkable:
+            ts_handle = Handle[_yts.YieldTermStructure](
+                ts._relinkable_ptr.get().currentLink()
+            )
+        else:
+            ts_handle = Handle[_yts.YieldTermStructure](
+                ts._thisptr.get()
+            )
 
         self._thisptr = new shared_ptr[_in.Index](
-            new _eu.Euribor6M(yc_handle))
+        new _eu.Euribor(
+            deref(tenor._thisptr.get()),
+            ts_handle))
+
+cdef class Euribor6M(Euribor):
+    def __init__(self, YieldTermStructure ts):
+
+        cdef Handle[_yts.YieldTermStructure] ts_handle
+        if ts.relinkable:
+            ts_handle = Handle[_yts.YieldTermStructure](
+                ts._relinkable_ptr.get().currentLink()
+            )
+        else:
+            ts_handle = Handle[_yts.YieldTermStructure](
+                ts._thisptr.get()
+            )
+
+        self._thisptr = new shared_ptr[_in.Index](
+            new _eu.Euribor6M(ts_handle))
 

@@ -7,6 +7,8 @@ from quantlib.termstructures.yields.rate_helpers import DepositRateHelper
 from quantlib.termstructures.yields.rate_helpers import FraRateHelper
 from quantlib.termstructures.yields.rate_helpers import FuturesRateHelper
 from quantlib.termstructures.yields.rate_helpers import SwapRateHelper
+from quantlib.termstructures.yields.api import YieldTermStructure
+
 
 class RateHelpersTestCase(unittest.TestCase):
 
@@ -92,7 +94,7 @@ class RateHelpersTestCase(unittest.TestCase):
         family_name = currency.name + 'index'
         ibor_index =  Libor(
             "USDLibor", Period(3,Months), settlement_days, USDCurrency(),
-            UnitedStates(), Actual360()
+            UnitedStates(), Actual360(), YieldTermStructure(relinkable=False)
         )
 
         rate = 0.005681

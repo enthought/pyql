@@ -23,11 +23,20 @@ cimport quantlib.time._daycounter as _daycounter
 cimport quantlib.time.daycounters._thirty360 as _th
 from quantlib.time.daycounter cimport DayCounter
 
-USA           = _th.USA
-BONDBASIS     = _th.BondBasis
-EUROPEAN      = _th.European
-EUROBONDBASIS = _th.EurobondBasis
-ITALIAN       = _th.Italian
+cdef public enum Convention:
+    USA           = _th.USA
+    BONDBASIS     = _th.BondBasis
+    EUROPEAN      = _th.European
+    EUROBONDBASIS = _th.EurobondBasis
+    ITALIAN       = _th.Italian
+
+CONVENTIONS = {
+    "USA":       _th.USA,
+    "BONDBASIS": _th.BondBasis,
+    "EUROPEAN":  _th.European,
+    "EUROBONDBASIS": _th.EurobondBasis,
+    "ITALIAN":   _th.Italian
+    }
 
 cdef class Thirty360(DayCounter):
 
@@ -36,4 +45,18 @@ cdef class Thirty360(DayCounter):
             _th.Thirty360(<_th.Convention> convention)
 
 
+    @classmethod
+    def help(cls):
+        res = 'Valid 30/360 daycounts are:\n'
+        for k in CONVENTIONS:
+            res += '30/360(' + k + ')\n'
+        return res
+    
+cdef _daycounter.DayCounter* from_name(str name, str convention):
+
+    cdef _th.Convention ql_convention = <_th.Convention>CONVENTIONS[convention]
+
+    cdef _daycounter.DayCounter* return_val =  new _th.Thirty360(ql_convention)
+
+    return return_val
 

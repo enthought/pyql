@@ -6,8 +6,10 @@
 
 #include <string>
 #include <iostream>
-#include <ql/quantlib.hpp>
+#include <ql/pricingengines/vanilla/mceuropeanhestonengine.hpp>
 #include <ql/processes/hestonprocess.hpp>
+#include <ql/math/randomnumbers/rngtraits.hpp>
+#include <ql/exercise.hpp>
 
 namespace QuantLib {
 

@@ -6,9 +6,6 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
-
-# distutils: language = c++
-
 include '../types.pxi'
 
 from libcpp cimport bool
@@ -47,7 +44,13 @@ cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib'
         InterestRate zeroRate(Date& d,
                               DayCounter& resultDayCounter,
                               Compounding comp,
-                              Frequency freq, # = Annual
-                              bool extrapolate) # = False
-
-
+                              Frequency freq,  # = Annual
+                              bool extrapolate  # = False
+                              ) except +
+        InterestRate forwardRate(Date& d1,
+                                 Date& d2,
+                                 DayCounter& resultDayCounter,
+                                 Compounding comp,
+                                 Frequency freq,  # = Annual
+                                 bool extrapolate  # = False
+                             ) except +

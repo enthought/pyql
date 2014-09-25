@@ -1,4 +1,22 @@
-from quantlib.settings import utf8_char_array_to_py_compat_str
+"""
+ Copyright (C) 2013, Enthought Inc
+ Copyright (C) 2013, Patrick Henaff
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
+include 'types.pxi'
+
+from cython.operator cimport dereference as deref
+from libcpp cimport bool
+
+cimport quantlib.time._calendar as _calendar
+
+from quantlib.time.date cimport Date
+from quantlib.time.calendar cimport Calendar
+from quantlib.util.compat cimport utf8_char_array_to_py_compat_str
 
 cdef class Index:
 
@@ -15,4 +33,23 @@ cdef class Index:
     property name:
        def __get__(self):
            return utf8_char_array_to_py_compat_str(self._thisptr.get().name().c_str())
+
+    property fixing_calendar:
+        def __get__(self):
+            cdef _calendar.Calendar fc
+            fc = self._thisptr.get().fixingCalendar()
+            code = Calendar._inv_code[fc.name().c_str()]
+            return Calendar.from_name(code)
+
+    def is_valid_fixing_date(self, Date fixingDate):
+        return self._thisptr.get().isValidFixingDate(
+            deref(fixingDate._thisptr.get()))
+
+    def fixing(self, Date fixingDate, bool forecastTodaysFixing):
+        return self._thisptr.get().fixing(
+            deref(fixingDate._thisptr.get()), forecastTodaysFixing)
+
+    def add_fixing(self, Date fixingDate, Real fixing, bool forceOverwrite):
+        self._thisptr.get().addFixing(
+            deref(fixingDate._thisptr.get()), fixing, forceOverwrite)
 

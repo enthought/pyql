@@ -1,6 +1,3 @@
-# distutils: language = c++
-# distutils: libraries = QuantLib
-
 include '../types.pxi'
 
 cdef extern from 'ql/math/optimization/method.hpp' namespace 'QuantLib':

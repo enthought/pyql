@@ -3,11 +3,15 @@ import datetime
 from .unittest_tools import unittest
 
 from quantlib.time.date import (
-    Date, Jan, Feb, Mar, Apr, May, Jun, Jul, Nov, Thursday, Friday, Period,
+    Date, Jan, Feb, Mar, Apr, May, Jun, Jul, Sep, Nov, Thursday, Friday,
+    Period,
     Annual, Semiannual, Bimonthly, EveryFourthMonth, Months, Years, Weeks,
     Days, OtherFrequency, end_of_month, is_end_of_month, is_leap,
     next_weekday, nth_weekday, today, pydate_from_qldate, qldate_from_pydate
 )
+
+import quantlib.time.imm as imm
+from datetime import date
 
 
 class TestQuantLibDate(unittest.TestCase):
@@ -329,3 +333,50 @@ class TestQuantLibPeriod(unittest.TestCase):
         date2 = date1 - period
         expected_date = Date(21, Apr, 2011)
         self.assertTrue(expected_date == date2)
+
+class TestQuantLibIMM(unittest.TestCase):
+
+    def test_is_imm_date(self):
+
+        dt = Date(17, Sep, 2014)
+        is_imm = imm.is_IMM_date(dt)
+        self.assertTrue(is_imm)
+
+        dt = Date(18, Sep, 2014)
+        is_imm = imm.is_IMM_date(dt)
+        self.assertFalse(is_imm)
+
+    def test_is_imm_code(self):
+
+        is_good = imm.is_IMM_code('H9')
+        self.assertTrue(is_good)
+
+        is_bad = imm.is_IMM_code('WX')
+        self.assertFalse(is_bad)
+
+    def test_imm_date(self):
+        dt = imm.date('M9')
+        print('IMM date M9: %s' % dt)
+        cd = imm.code(qldate_from_pydate(dt))
+        print('IMM code for %s: %s' % (dt, cd))
+        self.assertTrue(cd == 'M9')
+
+    def test_next_date(self):
+        dt = Date(19, Jun, 2014)
+        dt_2 = imm.next_date(dt)
+        # 17 sep 2014
+        self.assertEquals(dt_2, date(2014, 9, 17))
+
+        dt_3 = imm.next_date('M9', True, today())
+        # 18 sep 2019
+        self.assertEquals(dt_3, date(2019, 9, 18))
+
+    def test_next_code(self):
+        dt = Date(10, Jun, 2014)
+        cd_2 = imm.next_code(dt)
+        # M4
+        self.assertEquals(cd_2, "M4")
+
+        cd_3 = imm.next_code('M9', True, today())
+        # U9
+        self.assertEquals(cd_3, "U9")

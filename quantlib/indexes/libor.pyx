@@ -9,21 +9,26 @@
 
 include '../types.pxi'
 
-from quantlib.handle cimport Handle, shared_ptr
-from quantlib.settings import py_compat_str_as_utf8_string
+# Cython standard cimports
 from cython.operator cimport dereference as deref
 from cpython cimport bool
 from libcpp cimport bool as cbool
 from libcpp.string cimport string
 
+# QuantLib header cimports
+cimport quantlib.termstructures._yield_term_structure as _yts
 cimport _libor
 cimport quantlib._index as _in
+from quantlib.time._calendar cimport BusinessDayConvention
 
+# PyQL cimport
+from quantlib.currency cimport Currency
+from quantlib.handle cimport Handle, shared_ptr
+from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
+from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.currency cimport Currency
-from quantlib.time.calendar cimport Calendar
-from quantlib.time._calendar cimport BusinessDayConvention
+from quantlib.util.compat cimport py_compat_str_as_utf8_string
 
 
 cdef class Libor(IborIndex):
@@ -47,12 +52,22 @@ cdef class Libor(IborIndex):
         Natural settlementDays,
         Currency currency,
         Calendar financial_center_calendar,
-        DayCounter dayCounter):
-    
+        DayCounter dayCounter,
+        YieldTermStructure ts):
+
         # convert the Python str to C++ string
         cdef string familyName_string = py_compat_str_as_utf8_string(familyName)
 
-        
+        cdef Handle[_yts.YieldTermStructure] ts_handle
+        if ts.relinkable:
+            ts_handle = Handle[_yts.YieldTermStructure](
+                ts._relinkable_ptr.get().currentLink()
+            )
+        else:
+            ts_handle = Handle[_yts.YieldTermStructure](
+                ts._thisptr.get()
+            )
+
         self._thisptr = new shared_ptr[_in.Index](
         new _libor.Libor(
             familyName_string,
@@ -60,5 +75,6 @@ cdef class Libor(IborIndex):
             <Natural> settlementDays,
             deref(currency._thisptr),
             deref(financial_center_calendar._thisptr),
-            deref(dayCounter._thisptr)))
+            deref(dayCounter._thisptr),
+            ts_handle))
 

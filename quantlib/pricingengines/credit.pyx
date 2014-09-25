@@ -5,8 +5,6 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
-# distutils: language = c++
-
 from cython.operator cimport dereference as deref
 
 from quantlib.handle cimport Handle, shared_ptr
@@ -22,7 +20,7 @@ from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStruct
 
 cdef class MidPointCdsEngine(PricingEngine):
 
-    def __init__(self, PiecewiseDefaultCurve ts, float recovery_rate,
+    def __init__(self, PiecewiseDefaultCurve ts, double recovery_rate,
                  YieldTermStructure discount_curve):
         """
         First argument should be a DefaultProbabilityTermStructure. Using

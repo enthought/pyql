@@ -278,7 +278,7 @@ if __name__ == '__main__':
 
     option_data_frame = pandas.core.common.load('../data/df_SPX_24jan2011.pkl')
 
-    df_final = Compute_IV(option_data_frame, tMin=1/12, nMin=6, QDMin=.2, QDMax=.8)
+    df_final = Compute_IV(option_data_frame, tMin=1.0/12, nMin=6, QDMin=.2, QDMax=.8)
 
     # save a csv file and pickled data frame
     df_final.to_csv('../data/df_options_SPX_24jan2011.csv', index=False)

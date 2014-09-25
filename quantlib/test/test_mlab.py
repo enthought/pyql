@@ -1,6 +1,6 @@
-from datetime import date
-
 from .unittest_tools import unittest
+
+from datetime import date
 from quantlib.mlab.option_pricing import heston_pricer, blsprice, blsimpv
 from quantlib.mlab.fixed_income import bndprice, cfamounts
 from quantlib.mlab.term_structure import zbt_libor_yield
@@ -141,11 +141,11 @@ class MLabTestCase(unittest.TestCase):
                            period='Semiannual',
                            basis='Actual/Actual (Bond)')
 
-        for dt, cf in zip(*res):
+        for cf, dt in zip(*res):
             print('%s %7.2f' % (dt, cf))
 
-        dt = res[0]
-        cf = res[1]
+        dt = res[1]
+        cf = res[0]
         pydate = date(1993, 6, 15)
 
         self.assertEquals(cf[6], 100.0)

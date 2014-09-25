@@ -1,0 +1,19 @@
+PyQL CHANGELOG
+==============
+
+Pre 0.2
+-------
+
+Builds are finally usable on Windows 32 and 64 bit (two tests are failing due
+to numerical issues but the Singleton problem is fixed)
+
+Release 0.1
+-----------
+
+The main new feature of this version is the Market class hierarchy.
+It provides a place for keeping all the market conventions specific
+to a market segment.
+
+- Added interface to IMM dates 
+- In Market, you can now bootstrap curves with ED Futures
+
