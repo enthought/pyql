@@ -7,7 +7,7 @@ cimport _piecewise_yield_curve as _pyc
 cimport _rate_helpers as _rh
 cimport _flat_forward as _ff
 from quantlib.handle cimport shared_ptr
-from quantlib.settings import py_compat_str_as_utf8_string
+from quantlib.util.compat cimport py_compat_str_as_utf8_string
 
 from rate_helpers cimport RateHelper
 from quantlib.time.date cimport Date

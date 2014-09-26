@@ -356,9 +356,7 @@ class TestQuantLibIMM(unittest.TestCase):
 
     def test_imm_date(self):
         dt = imm.date('M9')
-        print('IMM date M9: %s' % dt)
         cd = imm.code(qldate_from_pydate(dt))
-        print('IMM code for %s: %s' % (dt, cd))
         self.assertTrue(cd == 'M9')
 
     def test_next_date(self):

@@ -1,10 +1,9 @@
 """ Compatibility layer for Py2/Py3 support. """
 
-from cpython cimport PyBytes_AsString
-from python_version cimport PY_MAJOR_VERSION
+from cpython cimport PyBytes_AsString, PY_MAJOR_VERSION
 from libcpp.string cimport string
 
-cdef py_compat_str_as_utf8_string(text):
+cdef string py_compat_str_as_utf8_string(text):
     """
     Returns the result of calling string(PyBytes_AsString(text)) to return a
     C++ string after handling encoding of text to bytes (as UTF-8) if

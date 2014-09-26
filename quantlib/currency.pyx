@@ -7,9 +7,11 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from quantlib.settings import utf8_char_array_to_py_compat_str
 cimport _currency as _cu
 cimport currency
+
+from quantlib.util.compat cimport utf8_char_array_to_py_compat_str
+
 from quantlib.util.prettyprint import prettyprint
 
 cdef class Currency:

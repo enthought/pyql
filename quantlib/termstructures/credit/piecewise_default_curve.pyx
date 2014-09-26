@@ -8,7 +8,7 @@ from libcpp.string cimport string
 cimport _piecewise_default_curve as _pdc
 
 from quantlib.handle cimport shared_ptr
-from quantlib.settings import py_compat_str_as_utf8_string
+from quantlib.util.compat cimport py_compat_str_as_utf8_string
 from quantlib.math._interpolations cimport Linear
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter

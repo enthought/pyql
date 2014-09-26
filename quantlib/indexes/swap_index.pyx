@@ -9,7 +9,7 @@
 
 include '../types.pxi'
 from cython.operator cimport dereference as deref
-from quantlib.settings import py_compat_str_as_utf8_string
+from quantlib.util.compat cimport py_compat_str_as_utf8_string
 from libcpp.string cimport string
 
 from quantlib.index cimport Index

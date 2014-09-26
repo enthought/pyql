@@ -3,7 +3,7 @@ include '../types.pxi'
 # cython imports
 cimport _option
 cimport _payoffs
-from quantlib.settings import utf8_char_array_to_py_compat_str
+from quantlib.util.compat cimport utf8_char_array_to_py_compat_str
 
 cdef public enum OptionType:
     Put = _option.Put

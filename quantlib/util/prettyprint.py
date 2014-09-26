@@ -1,8 +1,11 @@
-from six.types import TupleType, ListType
+import six
 import re
 import numpy
 from math import floor, log10
 import operator
+
+TupleType = six.types.TupleType
+ListType = six.types.ListType
 
 def abswithnone(x):
     if x is None:

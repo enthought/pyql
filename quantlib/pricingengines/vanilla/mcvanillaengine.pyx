@@ -5,7 +5,7 @@ from libcpp.string cimport string
 
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
-from quantlib.settings import py_compat_str_as_utf8_string
+from quantlib.util.compat cimport py_compat_str_as_utf8_string
 
 cimport quantlib.processes._heston_process as _hp
 from quantlib.processes.heston_process cimport HestonProcess

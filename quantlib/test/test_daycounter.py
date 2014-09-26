@@ -214,7 +214,8 @@ class TestActualActual(unittest.TestCase):
 
         day_counter = Thirty360(EUROBONDBASIS)
 
-        self.assertNotEquals(day_counter.name(), Thirty360().name())
+        a = Thirty360()
+        self.assertNotEquals(day_counter.name(), a.name())
         self.assertNotEqual(day_counter, Thirty360())
         self.assertEquals(day_counter, Thirty360(EUROBONDBASIS))
 

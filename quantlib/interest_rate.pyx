@@ -18,7 +18,7 @@ from quantlib import compounding
 from quantlib.time.api import NoFrequency, Once
 from quantlib.time.date import frequency_to_str
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.settings import utf8_char_array_to_py_compat_str
+from quantlib.util.compat cimport utf8_char_array_to_py_compat_str
 
 cdef class InterestRate:
     """ This class encapsulate the interest rate compounding algebra.

@@ -1,6 +1,9 @@
 build:
 	python setup.py build_ext --inplace
 
+build3:
+	python3 setup.py build_ext --inplace
+
 docs:
 	make -C docs html
 
@@ -12,6 +15,7 @@ uninstall:
 
 tests-preload:
 	LD_PRELOAD=/opt/QuantLib-1.1/lib/libQuantLib.so nosetests -v quantlib/test
+
 tests:
 	#nosetests -v quantlib/test
 	cd quantlib/test
