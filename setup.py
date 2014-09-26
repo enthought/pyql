@@ -23,7 +23,7 @@ DEBUG = False
 
 SUPPORT_CODE_INCLUDE = './cpp_layer'
 
-QL_LIBRARY = 'QuantLib'
+QL_LIBRARY = 'QuantLib-vc100-mt'
 
 # FIXME: would be good to be able to customize the path with environment
 # variables in place of hardcoded paths ...
@@ -45,8 +45,8 @@ elif sys.platform == 'win32':
         SUPPORT_CODE_INCLUDE
     ]
     LIBRARY_DIRS = [
-        r"C:\dev\QuantLib-1.4\build\vc90\Win32\Release", # for the dll lib
-        r"C:\dev\QuantLib-1.4\lib", # for the static lib needed for two extensions
+        r"C:\dev\QuantLib-1.4\build\vc100\Win32\Release", # for the dll lib
+        r"C:\dev\QuantLib-1.4\lib", 
         '.',
         r'.\dll',
     ]
@@ -236,6 +236,6 @@ setup(
     packages = find_packages(),
     ext_modules = collect_extensions(),
     cmdclass = {'build_ext': build_ext},
-    install_requires = ['distribute', 'six'],
+    install_requires = ['distribute', 'tabulate', 'pandas'],
     zip_safe = False
 )

@@ -1,11 +1,7 @@
-import six
 import re
 import numpy
 from math import floor, log10
 import operator
-
-TupleType = six.types.TupleType
-ListType = six.types.ListType
 
 def abswithnone(x):
     if x is None:
@@ -37,7 +33,7 @@ def prettyprint(cLab, cTyp, cTmp):
     data: array of column vectors
     """
 
-    if type(cLab) in (TupleType, ListType):
+    if isinstance(cLab, (tuple, list)):
         cLabels = cLab
     else:
         p = re.compile(r'\W+')
@@ -50,7 +46,7 @@ def prettyprint(cLab, cTyp, cTmp):
             'dimension mismatch: %d labels, %d types.' % (nbColumns, len(cTyp))
         )
 
-    if type(cTyp) is (TupleType, ListType):
+    if isinstance(cTyp, (tuple, list)):
         cTypes = cTyp
     else:
         cTypes = []
@@ -135,7 +131,7 @@ def prettyprint(cLab, cTyp, cTmp):
         s2 += fmt % (dash*int(width))
         
         # dates in scalar form must be translated back into normal dates
-        if fcode == 'd' and type(values[0]) == int:
+        if fcode == 'd' and isinstance(values[0], int):
             for i in range(min(len(values), nbRows)):
                 rows[i+2] += sFormat % normalDateFromScalar(values[i])
         else:
@@ -173,7 +169,7 @@ def prettyprinttranspose(cLab, cTyp, cTmp):
     data: array of column vectors
     """
 
-    if type(cLab) in (TupleType, ListType):
+    if isinstance(cLab, (tuple, list)):
         cLabels = cLab
     else:
         p = re.compile(r'\W+')
@@ -184,7 +180,7 @@ def prettyprinttranspose(cLab, cTyp, cTmp):
     if len(cTyp) != nbColumns:
         raise ValueError('dimension mismatch: %d labels, %d types.' % (nbColumns, len(cTyp)))
 
-    if type(cTyp) is (TupleType, ListType):
+    if isinstance(cTyp, (tuple, list)):
         cTypes = cTyp
     else:
         cTypes = []
