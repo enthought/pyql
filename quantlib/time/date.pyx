@@ -90,10 +90,10 @@ def frequency_to_str(Frequency f):
     """ Converts a PyQL Frequency to a human readable string. """
     return _FREQ_DICT[f]
 
-def code_to_frequency(char* name):
+def code_to_frequency(str name):
     return _STR_FREQ_DICT[_FREQ_TO_FREQUENCIES[name]]
 
-def str_to_frequency(char* name):
+def str_to_frequency(str name):
     """ Converts a string to a PyQL Frequency. """
     return _STR_FREQ_DICT[name]
 
