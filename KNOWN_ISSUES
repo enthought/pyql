@@ -19,4 +19,7 @@ QuantLib Setings evaluation_date not working
     evaluation dates. The quantlib/test/test_cython_bug,pyx and the tests
     defined in the quantlib/test/test_bonds.py should fail.
 
+    Version 0.1 was also known to show that broken behaviour on Windows. It is
+    fixed now by using a QuantLib dll.
+
 
