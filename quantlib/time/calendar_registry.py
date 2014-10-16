@@ -1,72 +1,75 @@
 import tabulate
 
-class CalendarRegistry(object):
+class ObjectRegistry(object):
 
-    def __init__(self):
+    def __init__(self, name):
 
+        self._name = name
         self._lookup = dict()
-        self._code = dict()
-        self._inv_code = dict()
-        self._initialized = False
 
     def help(self):
-        table = tabulate.tabulate(self._code.iteritems(), headers=['Code', 'Calendar'])
-        help_str = "Valid calendar names are:\n\n{}".format(table) 
+        table = tabulate.tabulate(
+            self._lookup.iteritems(), headers=['Name', self._name.capitalize()]
+        )
+        help_str = "Valid names are:\n\n{0}".format(table)
         return help_str
 
-    def from_name(self, code):
-        """ Returns an instance of the calendar for the given ISO-3166 code. """
-        if not self._initialized:
-            self._initialize()
-        if code not in self._code:
-            raise ValueError('Unkown ISO-3166 code in registered calendars')
-        return self._lookup[self._code[code]]
-
-    def from_internal_name(self, name):
-        """ Returns an instance of the internal calendar name """
-        if not self._initialized:
-            self._initialize()
+    def from_name(self, name):
+        """ Returns an instance for the given code. """
+        if name not in self._lookup:
+            raise ValueError('Unkown name in registry')
         return self._lookup[name]
-        
-    def register_calendar(self, iso_code, calendar):
-        _name = calendar.name
-        if _name not in self._lookup:
-            self._lookup[_name] = calendar
-            self._code[iso_code] = _name
 
-    def _initialize(self):
-        
-        from quantlib.time.calendars.null_calendar import NullCalendar
-        import quantlib.time.calendars.germany as ger
-        import quantlib.time.calendars.united_states as us
-        import quantlib.time.calendars.united_kingdom as uk
-        import quantlib.time.calendars.japan as jp
-        import quantlib.time.calendars.switzerland as sw
-        from quantlib.time.calendar import TARGET
+    def register_calendar(self, name, calendar):
+        if name not in self._lookup:
+            self._lookup[name] = calendar
 
-        #ISO-3166 country codes (http://en.wikipedia.org/wiki/ISO_3166-1)
-        self.register_calendar('TARGET', TARGET())
-        self.register_calendar('NULL', NullCalendar())
-        self.register_calendar('DEU', ger.Germany())
-        self.register_calendar('EUREX', ger.Germany(ger.EUREX))
-        self.register_calendar('FSE', ger.Germany(ger.FRANKFURT_STOCK_EXCHANGE))
-        self.register_calendar('EUWAX', ger.Germany(ger.EUWAX))
-        self.register_calendar('XETRA', ger.Germany(ger.XETRA))
-        self.register_calendar('GBR', uk.UnitedKingdom())
-        self.register_calendar('LSE', uk.UnitedKingdom(uk.EXCHANGE))
-        self.register_calendar('LME', uk.UnitedKingdom(uk.METALS))
-        self.register_calendar('USA', us.UnitedStates())
-        self.register_calendar('USA-GVT-BONDS', us.UnitedStates(us.GOVERNMENTBOND))
-        self.register_calendar('NYSE', us.UnitedStates(us.NYSE))
-        self.register_calendar('NERC', us.UnitedStates(us.NERC))
-        self.register_calendar('JPN', jp.Japan())
-        self.register_calendar('CHE', sw.Switzerland())
+from quantlib.time.calendars.null_calendar import NullCalendar
+import quantlib.time.calendars.germany as ger
+import quantlib.time.calendars.united_states as us
+import quantlib.time.calendars.united_kingdom as uk
+import quantlib.time.calendars.japan as jp
+import quantlib.time.calendars.switzerland as sw
+from quantlib.time.calendar import TARGET
 
-        self._initialized = True
+#ISO-3166 country codes (http://en.wikipedia.org/wiki/ISO_3166-1)
+ISO_3166_CALENDARS = {
+    'TARGET': TARGET(),
+    'NULL': NullCalendar(),
+    'DEU': ger.Germany(),
+    'EUREX': ger.Germany(ger.EUREX),
+    'FSE': ger.Germany(ger.FRANKFURT_STOCK_EXCHANGE),
+    'EUWAX': ger.Germany(ger.EUWAX),
+    'XETRA': ger.Germany(ger.XETRA),
+    'GBR': uk.UnitedKingdom(),
+    'LSE': uk.UnitedKingdom(uk.EXCHANGE),
+    'LME': uk.UnitedKingdom(uk.METALS),
+    'USA': us.UnitedStates(),
+    'USA-GVT-BONDS': us.UnitedStates(us.GOVERNMENTBOND),
+    'NYSE': us.UnitedStates(us.NYSE),
+    'NERC': us.UnitedStates(us.NERC),
+    'JPN': jp.Japan(),
+    'CHE': sw.Switzerland()
+}
 
 
-_registry = CalendarRegistry()
+def initialize_code_registry():
+    registry = ObjectRegistry('Calendar')
 
-register_calendar = _registry.register_calendar
-calendar_from_name = _registry.from_name
-calendar_from_internal_name = _registry.from_internal_name
+    for code, calendar in ISO_3166_CALENDARS.items():
+        registry.register_calendar(code, calendar)
+
+    return registry
+
+def initialize_name_registry():
+    registry = ObjectRegistry('Calendar')
+
+    for calendar in ISO_3166_CALENDARS.values():
+        registry.register_calendar(calendar.name, calendar)
+
+    return registry
+
+code_registry = initialize_code_registry()
+name_registry = initialize_name_registry()
+calendar_from_name = code_registry.from_name
+calendar_from_internal_name = name_registry.from_name
