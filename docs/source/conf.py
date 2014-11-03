@@ -179,7 +179,7 @@ htmlhelp_basename = 'Quantlibcythonwrapperdoc'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'Quantlibcythonwrapper.tex', u'Quantlib cython wrapper Documentation',
-   u'Didrik Pinte', 'manual'),
+   u'Didrik Pinte \& Patrick Hénaff', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
