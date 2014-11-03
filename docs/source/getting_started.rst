@@ -38,7 +38,8 @@ Building and installing PyQL
 
 Prerequisites:
 
-* QuantLib_ (version 1.1 or higher)
+* Boost (version 1.55 or higher)
+* QuantLib_ (version 1.4 or higher)
 * Cython_ (version 0.19 or higher)
 
 Once the dependencies have been installed, enter the pyql root directory. Open the setup.py file
@@ -54,47 +55,84 @@ Installation from source
 ------------------------
 
 The following instructions explain how to build the project from source, on a Linux system.
-The instructions have been tested on Debian GNU/Linux 6.0.7 (squeeze).
+The instructions have been tested on Ubuntu 12.04 LTS.
 
 Prerequisites:
 
 * python 2.7
+* C++ development environment 
 * pandas 0.9
 
-1. Install Quantlib
+1. Install Boost (taken from a nice post_ by S. Zebardast)
 
-   a. Install the latest version of Boost from the repository. Here we use Boost 1.55.0. By default, Boost will be installed in /usr/lib and /usr/include.
-
-   b. Download Quantlib 1.4 from Quantlib.org and copy to /opt
+   a. Download the Boost source package
 
       .. code-block:: bash
 
-		      $ sudo cp QuantLib-1.4.tar.gz /opt
+        wget -O boost_1_55_0.tar.gz \
+        http://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.tar.gz/download
+        tar xzvf boost_1_55_0.tar.gz
 
-      .. note:: You can install QuantLib in a different directory if needed. If you do, edit the :code:`setup.py` file as described below.
-
-   c. Extract the Quantlib folder
-
-      .. code-block:: bash
-
-		      $ cd /opt
-		      $ sudo tar xzvf QuantLib-1.4.tar.gz
-
-   d. Configure QuantLib
+   b. Make sure you have the required libraries
 
       .. code-block:: bash
 
-		      $ cd QuantLib-1.4
-		      $ ./configure --disable-static CXXFLAGS=-O2 
+        sudo apt-get update
+        sudo apt-get install build-essential g++ python-dev autotools-dev libicu-dev libbz2-dev 
 
-   e. Make and install
+  c. Build and install
+
+     .. code-block:: bash
+
+       cd boost_1_55_0
+       sudo ./bootstrap.sh --prefix=/usr/local
+       sudo ./b2 install
+
+   If /usr/local/lib is not in your path:
+
+   .. code-block:: bash
+
+     sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/local.conf'
+  
+   and finally:
+
+   .. code-block:: bash
+
+     sudo ldconfig
+
+2. Install Quantlib
+
+   a. Download Quantlib 1.4 from Quantlib.org and copy to /opt
 
       .. code-block:: bash
 
-		      $ make
-		      $ sudo make install
+        wget -O QuantLib-1.4.tar.gz  \
+        http://sourceforge.net/projects/quantlib/files/QuantLib/1.4/QuantLib-1.4.tar.gz/download
+        sudo cp QuantLib-1.4.tar.gz /opt
 
-2. Install Cython. While you can install Cython from source, we strongly recommend to install Cython via pip_::
+
+   b. Extract the Quantlib folder
+
+      .. code-block:: bash
+
+		      cd /opt
+		      sudo tar xzvf QuantLib-1.4.tar.gz
+
+   c. Configure QuantLib
+
+      .. code-block:: bash
+
+		      cd QuantLib-1.4
+		      ./configure --disable-static CXXFLAGS=-O2 --with-boost-include=/usr/local/include --with-boost-lib=/usr/local/lib 
+
+   d. Make and install
+
+      .. code-block:: bash
+
+		      make
+		      sudo make install
+
+3. Install Cython. While you can install Cython from source, we strongly recommend to install Cython via pip_::
 
     pip install cython
 
@@ -102,7 +140,7 @@ Prerequisites:
 
     pip install --user cython
 
-3. Build and test pyql
+4. Download pyql (https://github.com/enthought/pyql), then extract, build and test:
 
    .. code-block:: bash
 
@@ -110,10 +148,10 @@ Prerequisites:
 		   $ make build
 		   $ make tests
 
-   .. note:: If you have installed QuantLib in a directory different from :code:`/opt`, edit the `setup.py` file before running make and update the :code:`INCLUDE_DIRS` and :code:`LIBRARY_DIRS` to point to your installation of QuantLib.
+If you have installed QuantLib in a directory different from :code:`/opt`, edit the `setup.py` file before running make and update the :code:`INCLUDE_DIRS` and :code:`LIBRARY_DIRS` to point to your installation of QuantLib.
 
 .. _pip: https://pypi.python.org/pypi/pip
-
+.. _post: https://coderwall.com/p/0atfug
 
 Installation from source on Windows
 -----------------------------------
