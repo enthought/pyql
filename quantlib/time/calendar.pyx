@@ -85,7 +85,7 @@ cdef class Calendar:
     def end_of_month(self, date.Date current_date):
         """ Returns the ending date for the month that contains the given
         date.
-        
+
         """
 
         cdef _date.Date* c_date = (<date.Date>current_date)._thisptr.get()

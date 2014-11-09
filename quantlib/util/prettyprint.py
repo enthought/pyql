@@ -1,6 +1,6 @@
 from types import TupleType, ListType
-import re, string
-import numpy 
+import re
+import numpy
 from math import floor, log10
 import operator
 
@@ -15,7 +15,7 @@ def abswithnone(x):
 def lenwithnone(x):
     try:
         return len(x)
-    except TypeError, err:
+    except TypeError:
         return 0
 
 def prettyprint(cLab, cTyp, cTmp):

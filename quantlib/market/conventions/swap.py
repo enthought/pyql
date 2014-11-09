@@ -1,5 +1,6 @@
 import collections
-from quantlib.util.prettyprint import prettyprint
+
+import tabulate
 
 
 class DataStore(object):
@@ -64,8 +65,8 @@ class SwapData(object):
 
     @classmethod
     def help(self):
-        _data_t = map(list, zip(*self._data))
-        return prettyprint(self._labels_short, 'ssissssssss', _data_t)
+        table = tabulate.tabulate(self._data, headers=self._labels_short)
+        return table
 
     @classmethod
     def params(self, market):
