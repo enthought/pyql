@@ -171,8 +171,8 @@ class FixedIncomeMarket(Market):
     instruments and the deposit instruments.
     """
 
-    pass
-
+    def __str__(self):
+        return 'Fixed Income Market: %s' % self._name
 
 class IborMarket(FixedIncomeMarket):
 
@@ -200,9 +200,6 @@ class IborMarket(FixedIncomeMarket):
 
         self._rate_helpers = []
         self._quotes = []
-
-    def __str__(self):
-        return 'Fixed Income Market: %s' % self._name
 
     def _set_evaluation_date(self, dt_obs):
         if(~isinstance(dt_obs, Date)):
@@ -298,8 +295,8 @@ class IborMarket(FixedIncomeMarket):
     def max_date(self):
         return 0
 
-    def to_str(self):
-        str = \
+    def __str__(self):
+        output = \
             "Ibor Market %s\n" % self._name + \
             "Number of settlement days: %d\n" % self._params.settlement_days +\
             "Fixed rate frequency: %s\n" % self._params.fixed_rate_frequency +\
@@ -310,7 +307,7 @@ class IborMarket(FixedIncomeMarket):
             "Deposit daycount: %s\n" % self._deposit_daycount + \
             "Calendar: %s\n" % self._params.calendar
 
-        return str
+        return output
 
     def bootstrap_term_structure(self, interpolator='loglinear'):
         tolerance = 1.0e-15
