@@ -86,8 +86,8 @@ def get_extra_link_args():
         if DEBUG:
             args.append('/DEBUG')
     elif sys.platform == 'darwin':
-        major, minor, patch = [
-            int(item) for item in platform.mac_ver()[0].split('.')]
+        major, minor = [
+            int(item) for item in platform.mac_ver()[0].split('.')[:2]]
         if major == 10 and minor >= 9:
             # On Mac OS 10.9 we link against the libstdc++ library.
             args = ['-stdlib=libstdc++', '-mmacosx-version-min=10.6']
