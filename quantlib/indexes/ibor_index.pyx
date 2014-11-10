@@ -5,7 +5,7 @@ from libcpp.string cimport string
 from quantlib.handle cimport shared_ptr
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.currency cimport Currency
+from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
 from quantlib.time._calendar cimport ModifiedFollowing
 from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure

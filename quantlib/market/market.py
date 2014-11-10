@@ -3,11 +3,12 @@ from quantlib.termstructures.yields.api import (
 
 from quantlib.quotes import SimpleQuote
 
-from quantlib.time.api import (Date, Period, Calendar, Years,
-                               Days, JointCalendar, UnitedStates,
-                               UnitedKingdom)
-from quantlib.time.date import (code_to_frequency, pydate_from_qldate,
-                                qldate_from_pydate)
+from quantlib.time.api import (
+    Date, Period, Years, Days, JointCalendar, UnitedStates, UnitedKingdom
+)
+from quantlib.time.date import (
+    code_to_frequency, pydate_from_qldate, qldate_from_pydate
+)
 from quantlib.time.daycounter import DayCounter
 
 from quantlib.settings import Settings
@@ -16,7 +17,7 @@ from quantlib.indexes.api import IborIndex
 from quantlib.util.converter import pydate_to_qldate
 
 from quantlib.termstructures.yields.piecewise_yield_curve import \
-    term_structure_factory
+    PiecewiseYieldCurve
 
 from quantlib.market.conventions.swap import SwapData
 from quantlib.time.businessdayconvention import BusinessDayConvention
@@ -335,11 +336,11 @@ class IborMarket(FixedIncomeMarket):
         settlement_date = calendar.advance(eval_date, settlement_days, Days)
         # must be a business day
         settlement_date = calendar.adjust(settlement_date)
-        ts = term_structure_factory(
-            'discount', interpolator,
-            settlement_date, self._rate_helpers,
+        ts = PiecewiseYieldCurve(
+            'discount', interpolator, settlement_date, self._rate_helpers,
             DayCounter.from_name(self._termstructure_daycount),
-            tolerance)
+            tolerance
+        )
         self._term_structure = ts
         self._discount_term_structure = YieldTermStructure(relinkable=True)
         self._discount_term_structure.link_to(ts)
