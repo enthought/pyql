@@ -23,7 +23,7 @@ _BDC_DICT = {str(BusinessDayConvention(v)).replace(" ",""):v for v in QL_BDC}
 
 cdef class BusinessDayConvention(int):
     __doc__ = 'Valid business day conventions:\n{}'.format(
-        '\n'.join(BDC_DICT.keys()
+        '\n'.join(_BDC_DICT.keys())
     )
 
     def __cinit__(self):
