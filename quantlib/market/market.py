@@ -1,35 +1,23 @@
-from quantlib.termstructures.yields.api import (
-    FixedRateBondHelper, DepositRateHelper, FuturesRateHelper, SwapRateHelper)
-
-from quantlib.quotes import SimpleQuote
-
-from quantlib.time.api import (
-    Date, Period, Years, Days, JointCalendar, UnitedStates, UnitedKingdom
-)
-from quantlib.time.date import (
-    code_to_frequency, pydate_from_qldate, qldate_from_pydate
-)
-from quantlib.time.daycounter import DayCounter
-
-from quantlib.settings import Settings
-from quantlib.indexes.api import IborIndex
-
-from quantlib.util.converter import pydate_to_qldate
-
-from quantlib.termstructures.yields.piecewise_yield_curve import \
-    PiecewiseYieldCurve
-
 from quantlib.market.conventions.swap import SwapData
-from quantlib.time.businessdayconvention import BusinessDayConvention
-
+from quantlib.indexes.api import IborIndex
 from quantlib.instruments.swap import VanillaSwap, Payer
 from quantlib.pricingengines.swap import DiscountingSwapEngine
-from quantlib.time.schedule import Schedule, Forward
+from quantlib.quotes import SimpleQuote
+from quantlib.settings import Settings
 from quantlib.termstructures.yields.api import (
-    YieldTermStructure)
-import quantlib.time.imm as imm
+    FixedRateBondHelper, DepositRateHelper, FuturesRateHelper, SwapRateHelper,
+    PiecewiseYieldCurve, YieldTermStructure
+)
+from quantlib.time.api import (
+    Date, Period, Years, Days, JointCalendar, UnitedStates, UnitedKingdom,
+    code_to_frequency, pydate_from_qldate, qldate_from_pydate, DayCounter,
+    BusinessDayConvention, Backward, Following, calendar_from_name,
+    Schedule, Forward
 
-from quantlib.time.api import Backward, Following, calendar_from_name
+)
+from quantlib.util.converter import pydate_to_qldate
+
+import quantlib.time.imm as imm
 
 
 def libor_market(market='USD(NY)', **kwargs):
@@ -56,7 +44,7 @@ def make_rate_helper(market, quote, reference_date=None):
 
     rate_type, tenor, quote_value = quote
 
-    if(rate_type == 'SWAP'):
+    if rate_type == 'SWAP':
         libor_index = market._floating_rate_index
         spread = SimpleQuote(0)
         fwdStart = Period(0, Days)
@@ -69,7 +57,7 @@ def make_rate_helper(market, quote, reference_date=None):
                 market._params.fixed_leg_convention),
             DayCounter.from_name(market._params.fixed_leg_daycount),
             libor_index, spread, fwdStart)
-    elif(rate_type == 'DEP'):
+    elif rate_type == 'DEP':
         end_of_month = True
         helper = DepositRateHelper(
             quote_value,
@@ -79,7 +67,7 @@ def make_rate_helper(market, quote, reference_date=None):
             market._floating_rate_index.business_day_convention,
             end_of_month,
             DayCounter.from_name(market._deposit_daycount))
-    elif(rate_type == 'ED'):
+    elif rate_type == 'ED':
         if reference_date is None:
             raise Exception("Reference date needed with ED Futures data")
 
@@ -94,7 +82,6 @@ def make_rate_helper(market, quote, reference_date=None):
             end_of_month = True,
             day_counter = DayCounter.from_name(
                 market._params.floating_leg_daycount))
-
     elif rate_type.startswith('ER'):
         # TODO For Euribor futures, we found it useful to supply the `imm_date`
         # parameter directly, instead of as a number of periods from the
