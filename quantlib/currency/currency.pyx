@@ -9,7 +9,6 @@
 
 cimport _currency as _cu
 
-from .currency_registry import REGISTRY
 
 cdef class Currency:
     def __cinit__(self):
@@ -43,5 +42,6 @@ cdef class Currency:
 
     @classmethod
     def from_name(cls, code):
+        from .currency_registry import REGISTRY
         return REGISTRY.from_name(code)
 
