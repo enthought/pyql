@@ -2,19 +2,6 @@ import collections
 
 import tabulate
 
-
-class DataStore(object):
-    _labels = None
-    _data = None
-    _labels_short = None
-
-    @classmethod
-    def match(**kwargs):
-        """
-        Match all records on keys
-        """
-
-
 class SwapData(object):
     _labels = ["market",
                "currency",
