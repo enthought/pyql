@@ -7,6 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+from .businessdayconvention import BusinessDayConvention
 from .calendar import (
     Calendar, TARGET, ModifiedFollowing, Following, ModifiedPreceding,
     Preceding, Unadjusted, holiday_list
@@ -29,7 +30,9 @@ from .date import (
     January, February, March, April, May, June, July, August,
     September, November, December,
     Jan, Feb, Mar, Apr, Jun, Jul, Aug, Sep, Oct, Nov, Dec,
-    Daily, Monthly, Annual, NoFrequency, Once
+    Daily, Monthly, Annual, NoFrequency, Once,
+    code_to_frequency, pydate_from_qldate, qldate_from_pydate
+
 )
 
 from .schedule import Schedule, Backward, Forward, TwentiethIMM
