@@ -1,7 +1,9 @@
 from cython.operator cimport dereference as deref
+
 cimport _daycounter
 cimport _date
 cimport _calendar
+
 from date cimport Date
 from calendar cimport Calendar
 from quantlib.time.daycounters.actual_actual cimport from_name as aa_from_name
@@ -11,6 +13,7 @@ cdef class DayCounter:
     '''This class provides methods for determining the length of a time
         period according to given market convention, both as a number
         of days and as a year fraction.
+
     '''
 
     def __cinit__(self, *args):
