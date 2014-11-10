@@ -42,10 +42,6 @@ cdef class Currency:
             return 'null currency'
 
     @classmethod
-    def help(cls):
-        return REGISTRY.help()
-
-    @classmethod
     def from_name(cls, code):
         return REGISTRY.from_name(code)
 
