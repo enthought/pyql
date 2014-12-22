@@ -28,7 +28,7 @@ cdef class MCVanillaEngine(PricingEngine):
 
         # validate inputs
         if trait not in VALID_TRAITS:
-            raise ValueError('Traits must be in {}',format(VALID_TRAITS))
+            raise ValueError('Traits must be in {0}',format(VALID_TRAITS))
 
         if RNG not in VALID_RNG:
             raise ValueError(
@@ -41,11 +41,11 @@ cdef class MCVanillaEngine(PricingEngine):
 
         # the input may be a Heston process or a Bates process
         # this may not be needed ...
-        
+
         cdef shared_ptr[_hp.HestonProcess]* hp_pt = <shared_ptr[_hp.HestonProcess] *> process._thisptr
 
         cdef shared_ptr[_pe.PricingEngine] engine = _mc_ve.mc_vanilla_engine_factory(
-          traits_string, 
+          traits_string,
           RNG_string,
           deref(<shared_ptr[_hp.HestonProcess]*> hp_pt),
           doAntitheticVariate,
