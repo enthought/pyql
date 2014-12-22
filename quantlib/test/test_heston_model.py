@@ -409,7 +409,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         engine = MCVanillaEngine(
               trait='MCEuropeanHestonEngine',
-              RNG='PseudoRandom',
+              generator='PseudoRandom',
               process=process,
               doAntitheticVariate=True,
               stepsPerYear=nb_steps_a,
