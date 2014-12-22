@@ -55,15 +55,3 @@ def help():
 def params(market):
     return conventions[market]
 
-def match(params):
-    """
-    Returns the row(s) that match the parameters
-    """
-
-    res = []
-    for k, v in conventions.items():
-        row = vars(v)
-        is_match = all([params[kp] == row[kp] for kp in params])
-        if is_match:
-            res.append(row)
-    return res
