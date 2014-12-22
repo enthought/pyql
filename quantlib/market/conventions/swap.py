@@ -38,12 +38,12 @@ data = [
      "ACT/360", "ModifiedFollowing", "CHE")
 ]
 
-row = collections.namedtuple("Row", labels[1:])
+row = collections.namedtuple("row", labels[1:])
 
 def load():
     _conventions = {}
     for line in data:
-        _conventions[line[0]] = row(line[1:])
+        _conventions[line[0]] = row(*line[1:])
     return _conventions
 
 conventions = load()

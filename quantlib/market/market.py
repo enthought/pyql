@@ -1,4 +1,4 @@
-from quantlib.market.conventions.swap import SwapData
+from quantlib.market.conventions.swap import params as swap_params
 from quantlib.indexes.api import IborIndex
 from quantlib.instruments.swap import VanillaSwap, Payer
 from quantlib.pricingengines.swap import DiscountingSwapEngine
@@ -178,7 +178,7 @@ class IborMarket(FixedIncomeMarket):
 
     def __init__(self, name, market, **kwargs):
 
-        params = SwapData.params(market)
+        params = swap_params(market)
         params = params._replace(**kwargs)
         self._params = params
         self._name = name
@@ -202,8 +202,10 @@ class IborMarket(FixedIncomeMarket):
         self._quotes = []
 
     def _set_evaluation_date(self, dt_obs):
-        if(~isinstance(dt_obs, Date)):
+
+        if not isinstance(dt_obs, Date):
             dt_obs = pydate_to_qldate(dt_obs)
+
         settings = Settings()
         calendar = JointCalendar(UnitedStates(), UnitedKingdom())
         # must be a business day
@@ -238,8 +240,8 @@ class IborMarket(FixedIncomeMarket):
         for quote in quotes:
             self.add_bond_quote(*quote)
 
-    def add_bond_quote(
-            self, clean_price, coupons, tenor, issue_date, maturity):
+    def add_bond_quote(self, clean_price, coupons, tenor, issue_date,
+                       maturity):
         """
         Add a bond quote to the market.
 

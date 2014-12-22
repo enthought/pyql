@@ -34,8 +34,6 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar import Following
 from quantlib.cashflow cimport Leg
 from quantlib.indexes.ibor_index cimport IborIndex
-from quantlib.pricingengines.swap import DiscountingSwapEngine
-from quantlib.market.conventions.swap import SwapData
 from quantlib.cashflow cimport SimpleLeg, leg_items
 
 import datetime
@@ -185,14 +183,14 @@ cdef class VanillaSwap(Swap):
         def __get__(self):
             cdef Real res = get_vanillaswap(self).floatingLegNPV()
             return res
-    
+
     def leg(self, int i):
         """
         Return a swap leg
         TODO: optimize this - avoid copy
         """
         cdef vector[shared_ptr[_cf.CashFlow]] leg = get_vanillaswap(self).leg(i)
-        
+
         cdef int k
         cdef shared_ptr[_cf.CashFlow] _thiscf
         cdef Date _thisdate
@@ -203,6 +201,6 @@ cdef class VanillaSwap(Swap):
             _thiscf = leg.at(k)
             _thisdate = Date(_thiscf.get().date().serialNumber())
             itemlist.append((_thiscf.get().amount(), _thisdate))
-        
+
         return SimpleLeg(itemlist)
 

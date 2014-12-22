@@ -13,7 +13,7 @@ cimport quantlib._index as _in
 cimport quantlib.indexes._ibor_index as _ib
 
 from quantlib.time.api import calendar_from_name
-from quantlib.market.conventions.swap import SwapData
+from quantlib.market.conventions.swap import params as swap_params
 
 
 from quantlib.indexes.interest_rate_index cimport InterestRateIndex
@@ -38,9 +38,9 @@ cdef class IborIndex(InterestRateIndex):
         Create default IBOR for the market, modify attributes if provided
         """
 
-        row = SwapData.params(market)
+        row = swap_params(market)
         row = row._replace(**kwargs)
-        
+
         # could use a dummy term structure here?
         if term_structure is None:
             term_structure = YieldTermStructure(relinkable=False)
@@ -61,7 +61,7 @@ cdef class IborIndex(InterestRateIndex):
                                calendar_from_name(row.calendar),
                                DayCounter.from_name(row.floating_leg_daycount),
                                term_structure)
-            
+
         return ibor_index
 
 
