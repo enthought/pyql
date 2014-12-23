@@ -5,14 +5,15 @@ from libcpp.string cimport string
 from quantlib.handle cimport shared_ptr
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.currency cimport Currency
+from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
 from quantlib.time._calendar cimport ModifiedFollowing
 from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
 cimport quantlib._index as _in
 cimport quantlib.indexes._ibor_index as _ib
 
-from quantlib.market.conventions.swap import SwapData
+from quantlib.time.api import calendar_from_name
+from quantlib.market.conventions.swap import params as swap_params
 
 
 from quantlib.indexes.interest_rate_index cimport InterestRateIndex
@@ -37,9 +38,9 @@ cdef class IborIndex(InterestRateIndex):
         Create default IBOR for the market, modify attributes if provided
         """
 
-        row = SwapData.params(market)
+        row = swap_params(market)
         row = row._replace(**kwargs)
-        
+
         # could use a dummy term structure here?
         if term_structure is None:
             term_structure = YieldTermStructure(relinkable=False)
@@ -57,10 +58,10 @@ cdef class IborIndex(InterestRateIndex):
                                Period(row.floating_leg_period),
                                row.settlement_days,
                                Currency.from_name(row.currency),
-                               Calendar.from_name(row.calendar),
+                               calendar_from_name(row.calendar),
                                DayCounter.from_name(row.floating_leg_daycount),
                                term_structure)
-            
+
         return ibor_index
 
 

@@ -7,7 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include 'types.pxi'
+include '../types.pxi'
 from libcpp cimport bool
 from libcpp.string cimport string
 

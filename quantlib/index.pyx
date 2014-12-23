@@ -15,6 +15,10 @@ from libcpp cimport bool
 from quantlib.time.calendar cimport Calendar
 cimport quantlib.time._calendar as _calendar
 
+from quantlib.time.calendar_registry import calendar_from_internal_name
+
+from quantlib.time.api import calendar_from_name
+
 cdef class Index:
 
     def __cinit__(self):
@@ -35,8 +39,7 @@ cdef class Index:
         def __get__(self):
             cdef _calendar.Calendar fc
             fc = self._thisptr.get().fixingCalendar()
-            code = Calendar._inv_code[fc.name().c_str()]
-            return Calendar.from_name(code)
+            return calendar_from_internal_name(fc.name().c_str())
 
     def is_valid_fixing_date(self, Date fixingDate):
         return self._thisptr.get().isValidFixingDate(

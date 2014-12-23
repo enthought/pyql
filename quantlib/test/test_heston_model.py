@@ -358,14 +358,6 @@ class HestonModelTestCase(unittest.TestCase):
         # Journal of Computational Finance Vol. 11/1 Fall 2007
         # An almost exact simulation method for the heston model
 
-        def payoff(o, scenario):
-            Strike = o['S']
-            if o['CP'] == 'C':
-                exercise = [max(ST - Strike, 0) for ST in scenario]
-            else:
-                exercise = [max(-ST + Strike, 0) for ST in scenario]
-            return np.mean(exercise)
-
         settlement_date = today()
         self.settings.evaluation_date = settlement_date
 
@@ -409,7 +401,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         engine = MCVanillaEngine(
               trait='MCEuropeanHestonEngine',
-              RNG='PseudoRandom',
+              generator='PseudoRandom',
               process=process,
               doAntitheticVariate=True,
               stepsPerYear=nb_steps_a,
@@ -422,14 +414,8 @@ class HestonModelTestCase(unittest.TestCase):
         expected = 15.1796
         tolerance = .05
 
-        self.assertAlmostEqual(
-            price_fft,
-            expected,
-            delta=tolerance)
-        self.assertAlmostEqual(
-            price_mc,
-            expected,
-            delta=tolerance)
+        self.assertAlmostEqual(price_fft, expected, delta=tolerance)
+        self.assertAlmostEqual(price_mc, expected, delta=tolerance)
 
 if __name__ == '__main__':
     unittest.main()

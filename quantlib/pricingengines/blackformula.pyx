@@ -39,7 +39,7 @@ def blackFormula(option_type, Real strike,
     if isinstance(option_type, types.StringTypes):
         if option_type.upper() not in STR_TO_OPTION_TYPE:
             raise ValueError(
-                'Option type must be one of {}'.format(
+                'Option type must be one of {0}'.format(
                     ','.join(STR_TO_OPTION_TYPE.keys())
                 )
             )

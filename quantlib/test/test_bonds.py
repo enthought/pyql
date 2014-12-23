@@ -82,14 +82,8 @@ class BondTestCase(unittest.TestCase):
 
 
         bond = FixedRateBond(
-            settlement_days,
-		    face_amount,
-		    fixed_bond_schedule,
-		    [coupon_rate],
-            ActualActual(Bond),
-		    Unadjusted,
-            redemption,
-            issue_date
+            settlement_days, face_amount, fixed_bond_schedule, [coupon_rate],
+            ActualActual(Bond), Unadjusted, redemption, issue_date
         )
 
         bond.set_pricing_engine(discounting_term_structure)

@@ -18,46 +18,6 @@ from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStruct
 VALID_TRAITS = ['discount', 'forward', 'zero']
 VALID_INTERPOLATORS = ['loglinear', 'linear', 'spline']
 
-def term_structure_factory(str traits, str interpolator, Date settlement_date,
-    rate_helpers, DayCounter day_counter, Real tolerance=1.0e-12):
-    """ Returns a YieldTermStructure based on the piecewise yield curve information provided
-    as input.
-
-    FIXME: must be removed and replace by PiecewiseYieldCurve
-
-    """
-
-    # validate inputs
-    if traits not in VALID_TRAITS:
-        raise ValueError('Traits must be in {}',format(VALID_TRAITS))
-
-    if interpolator not in VALID_INTERPOLATORS:
-        raise ValueError(
-            'Interpolator must be one of {}'.format(VALID_INTERPOLATORS)
-        )
-
-    # convert rate_helpers list to std::vetor
-    cdef vector[shared_ptr[_rh.RateHelper]]* curve_inputs = new vector[shared_ptr[_rh.RateHelper]]()
-    for helper in rate_helpers:
-        curve_inputs.push_back( deref((<RateHelper>helper)._thisptr))
-
-    # convert the Python str to C++ string
-    cdef string traits_string = string(PyString_AsString(traits))
-    cdef string interpolator_string = string(PyString_AsString(interpolator)),
-
-    cdef shared_ptr[_ff.YieldTermStructure] ts_ptr = _pyc.term_structure_factory(
-        traits_string,
-        interpolator_string,
-        deref(settlement_date._thisptr.get()),
-        deref(curve_inputs),
-        deref(day_counter._thisptr),
-        tolerance
-    )
-
-    term_structure = YieldTermStructure(relinkable=False)
-    term_structure._thisptr = new shared_ptr[_ff.YieldTermStructure](ts_ptr)
-    return term_structure
-
 cdef class PiecewiseYieldCurve(YieldTermStructure):
     """A piecewise yield curve.
 
@@ -84,12 +44,12 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
         # validate inputs
         if trait not in VALID_TRAITS:
             raise ValueError(
-                'Traits must b in {}'.format(','.join(VALID_TRAITS))
+                'Traits must b in {0}'.format(','.join(VALID_TRAITS))
             )
 
         if interpolator not in VALID_INTERPOLATORS:
             raise ValueError(
-                'Interpolator must be one of {}'.format(','.join(VALID_INTERPOLATORS))
+                'Interpolator must be one of {0}'.format(','.join(VALID_INTERPOLATORS))
             )
 
         if len(helpers) == 0:

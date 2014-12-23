@@ -37,7 +37,10 @@ CONVENTIONS = {
 
 
 cdef class ActualActual(DayCounter):
-    """ Actual/Actual day count
+    _valid_names = [
+        'ACT/ACT({})'.format(convention) for convention in CONVENTIONS.keys()
+    ]
+    __doc__ = """ Actual/Actual day count
 
     The day count can be calculated according to:
 
@@ -51,19 +54,13 @@ cdef class ActualActual(DayCounter):
         For more details, refer to
         http://www.isda.org/publications/pdf/Day-Count-Fracation1999.pdf
 
-    """
+        Valid names for ACT/ACT daycounters are: \n {}
+    """.format('\n'.join(_valid_names))
 
     def __cinit__(self, convention=ISMA):
         self._thisptr = <_daycounter.DayCounter*> new \
             _aa.ActualActual(<_aa.Convention>convention)
 
-    @classmethod
-    def help(cls):
-        res = 'Valid ACT/ACT daycounts are:\n'
-        for k in CONVENTIONS:
-            res += 'ACT/ACT(' + k + ')\n'
-        return res
-        
 cdef _daycounter.DayCounter* from_name(str name, str convention):
 
     cdef _aa.Convention ql_convention = <_aa.Convention>CONVENTIONS[convention]
