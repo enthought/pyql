@@ -1,86 +1,57 @@
 import collections
-from quantlib.util.prettyprint import prettyprint
 
+import tabulate
 
-class DataStore(object):
-    _labels = None
-    _data = None
-    _labels_short = None
+labels = [
+    "market", "currency", "settlement_days", "fixed_leg_period",
+    "fixed_leg_daycount", "fixed_leg_convention", "floating_leg_reference",
+    "floating_leg_period", "floating_leg_daycount", "floating_leg_convention",
+    "calendar"
+]
 
-    @classmethod
-    def match(**kwargs):
-        """
-        Match all records on keys
-        """
+# column labels for pretty printing
+labels_short = [
+    "market", "currency", "settle", "fx per", "fx d/c", "fx conv",
+    "fl ref", "fl per", "fl d/c", "fl conv", "calendar"
+]
 
+data = [
+    ("USD(NY)", "USD", 2, "6M", "30/360", "ModifiedFollowing", "LIBOR", "3M",
+     "ACT/360", "ModifiedFollowing", "TARGET"),
+    ("USD(LONDON)", "USD", 2, "1Y", "ACT/360", "ModifiedFollowing","LIBOR",
+     "3M", "ACT/360", "ModifiedFollowing", "TARGET"),
+    ("EUR:1Y", "EUR", 2, "1Y", "30/360", "Unadjusted", "Euribor", "3M",
+     "ACT/360", "ModifiedFollowing", "TARGET"),
+    ("EUR:>1Y", "EUR", 2, "1Y", "30/360", "Unadjusted", "Euribor", "6M",
+     "ACT/360", "ModifiedFollowing", "TARGET"),
+    ("GBP:1Y", "GBP", 0, "1Y", "ACT/365", "ModifiedFollowing", "LIBOR", "3M",
+     "ACT/365", "ModifiedFollowing", "GBR"),
+    ("GBP:>1Y", "GBP", 0, "6M", "ACT/365", "ModifiedFollowing", "LIBOR", "6M",
+     "ACT/365", "ModifiedFollowing", "GBR"),
+    ("JPY(Tibor)", "JPY", 2, "6M", "ACT/365", "ModifiedFollowing", "Tibor",
+     "3M", "ACT/365", "ModifiedFollowing", "JPN"),
+    ("JPY(Libor)", "JPY", 2, "6M", "ACT/365", "ModifiedFollowing", "LIBOR",
+     "6M", "ACT/360", "ModifiedFollowing", "JPN"),
+    ("CHF:1Y", "CHF", 2, "1Y", "30/360", "ModifiedFollowing", "LIBOR", "3M",
+     "ACT/360", "ModifiedFollowing", "CHE"),
+    ("CHF:>1Y", "CHF", 2, "1Y", "30/360", "ModifiedFollowing", "LIBOR", "6M",
+     "ACT/360", "ModifiedFollowing", "CHE")
+]
 
-class SwapData(object):
-    _labels = ["market",
-               "currency",
-               "settlement_days",
-               "fixed_leg_period",
-               "fixed_leg_daycount",
-               "fixed_leg_convention",
-               "floating_leg_reference",
-               "floating_leg_period",
-               "floating_leg_daycount",
-               "floating_leg_convention",
-               "calendar"]
+row = collections.namedtuple("row", labels[1:])
 
-    # column labels for pretty printing
-    _labels_short = ["market", "currency", "settle", "fx per",
-                     "fx d/c", "fx conv",
-                     "fl ref", "fl per", "fl d/c", "fl conv",
-                     "calendar"]
+def load():
+    _conventions = {}
+    for line in data:
+        _conventions[line[0]] = row(*line[1:])
+    return _conventions
 
-    _data = [
-        ("USD(NY)", "USD", 2, "6M", "30/360", "ModifiedFollowing",
-         "LIBOR", "3M", "ACT/360", "ModifiedFollowing", "TARGET"),
-        ("USD(LONDON)", "USD", 2, "1Y", "ACT/360", "ModifiedFollowing",
-         "LIBOR", "3M", "ACT/360", "ModifiedFollowing", "TARGET"),
-        ("EUR:1Y", "EUR", 2, "1Y", "30/360", "Unadjusted",
-         "Euribor", "3M", "ACT/360", "ModifiedFollowing", "TARGET"),
-        ("EUR:>1Y", "EUR", 2, "1Y", "30/360", "Unadjusted",
-         "Euribor", "6M", "ACT/360", "ModifiedFollowing", "TARGET"),
-        ("GBP:1Y", "GBP", 0, "1Y", "ACT/365", "ModifiedFollowing",
-         "LIBOR", "3M", "ACT/365", "ModifiedFollowing", "GBR"),
-        ("GBP:>1Y", "GBP", 0, "6M", "ACT/365", "ModifiedFollowing",
-         "LIBOR", "6M", "ACT/365", "ModifiedFollowing", "GBR"),
-        ("JPY(Tibor)", "JPY", 2, "6M", "ACT/365", "ModifiedFollowing",
-         "Tibor", "3M", "ACT/365", "ModifiedFollowing", "JPN"),
-        ("JPY(Libor)", "JPY", 2, "6M", "ACT/365", "ModifiedFollowing",
-         "LIBOR", "6M", "ACT/360", "ModifiedFollowing", "JPN"),
-        ("CHF:1Y", "CHF", 2, "1Y", "30/360", "ModifiedFollowing",
-         "LIBOR", "3M", "ACT/360", "ModifiedFollowing", "CHE"),
-        ("CHF:>1Y", "CHF", 2, "1Y", "30/360", "ModifiedFollowing",
-         "LIBOR", "6M", "ACT/360", "ModifiedFollowing", "CHE")
-    ]
+conventions = load()
 
-    Row = collections.namedtuple("Row", _labels[1:])
-    _dic = {}
-    for line in _data:
-        row = Row._make(line[1:])
-        _dic[line[0]] = row
+def help():
+    table = tabulate.tabulate(data, headers=labels_short)
+    return table
 
-    @classmethod
-    def help(self):
-        _data_t = map(list, zip(*self._data))
-        return prettyprint(self._labels_short, 'ssissssssss', _data_t)
+def params(market):
+    return conventions[market]
 
-    @classmethod
-    def params(self, market):
-        return self._dic[market]
-
-    @classmethod
-    def match(self, params):
-        """
-        Returns the row(s) that match the parameters
-        """
-
-        res = []
-        for k, v in self._dic.items():
-            row = vars(v)
-            is_match = all([params[kp] == row[kp] for kp in params])
-            if is_match:
-                res.append(row)
-        return res

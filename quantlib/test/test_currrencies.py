@@ -1,6 +1,6 @@
 from .unittest_tools import unittest
 
-from quantlib.currency import Currency, USDCurrency
+from quantlib.currency.api import Currency, USDCurrency
 
 class TestCurrency(unittest.TestCase):
 
@@ -12,6 +12,7 @@ class TestCurrency(unittest.TestCase):
         cu_1 = Currency.from_name('USD')
         cu_2 = USDCurrency()
         self.assertEquals(cu_1.name, cu_2.name)
+        self.assertIsInstance(cu_1, USDCurrency)
 
 if __name__ == '__main__':
     unittest.main()

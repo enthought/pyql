@@ -49,64 +49,47 @@ def date(char* imm_code, Date reference_date=Date()):
     cdef _date.Date tmp = _imm.date(<str>_code, deref(reference_date._thisptr.get()))
     return date_from_qldate(tmp)
 
-def next_date(*args):
-    """
-    next IMM date following the given date
+def next_date(code_or_date, main_cycle=True, Date reference_date=Date()):
+    """ Next IMM date following the given date
+
     returns the 1st delivery date for next contract listed in the
     International Money Market section of the Chicago Mercantile
     Exchange.
     """
 
-    cdef _date.Date tmp
-    
-    cdef Date reference_date    
+    cdef _date.Date result
+
     cdef Date dt
     cdef object _code
 
-    if len(args) < 2:
-        main_cycle = True
-    else:
-        main_cycle = args[1]
 
-    if(isinstance(args[0], str)):
-        _code = args[0]
-        if len(args) == 3:
-            reference_date = <Date> args[2]
-        else:
-            reference_date = Date()
-        tmp =  _imm.nextDate_str(<str> _code, <bool>main_cycle, deref(reference_date._thisptr.get()))
+    if isinstance(code_or_date, str):
+        result =  _imm.nextDate_str(
+            <str> code_or_date, <bool>main_cycle,
+            deref(reference_date._thisptr.get())
+        )
     else:
-        dt = <Date> args[0]
-        tmp =  _imm.nextDate_dt(deref(dt._thisptr.get()), <bool>main_cycle)
+        dt = <Date> code_or_date
+        result =  _imm.nextDate_dt(deref(dt._thisptr.get()), <bool>main_cycle)
 
-    return date_from_qldate(tmp)
-    
-def next_code(*args):
-    """
-    //! next IMM code following the given date
-    /*! returns the IMM code for next contract listed in the
-        International Money Market section of the Chicago Mercantile
-        Exchange.
+    return date_from_qldate(result)
+
+def next_code(code_or_date, main_cycle=True, Date reference_date=Date()):
+    """ Next IMM code following the given date or code
+
+    Returns the IMM code for next contract listed in the
+    International Money Market section of the Chicago Mercantile Exchange.
     """
 
-    cdef Date reference_date    
     cdef Date dt
-    cdef object _code
 
-    if len(args) < 2:
-        main_cycle = True
+    if(isinstance(code_or_date, str)):
+        result =  _imm.nextCode_str(
+            <str> code_or_date, <bool>main_cycle,
+            deref(reference_date._thisptr.get())
+        )
     else:
-        main_cycle = args[1]
+        dt = <Date> code_or_date
+        result =  _imm.nextCode_dt(deref(dt._thisptr.get()), <bool>main_cycle)
 
-    if(isinstance(args[0], str)):
-        _code = args[0]
-        if len(args) == 3:
-            reference_date = <Date> args[2]
-        else:
-            reference_date = Date()
-        tmp =  _imm.nextCode_str(<str> _code, <bool>main_cycle, deref(reference_date._thisptr.get()))
-    else:
-        dt = <Date> args[0]
-        tmp =  _imm.nextCode_dt(deref(dt._thisptr.get()), <bool>main_cycle)
-
-    return tmp
+    return result

@@ -21,17 +21,6 @@ cimport quantlib.time._period as _period
 # PyQL cimports
 from quantlib.util.compat cimport utf8_char_array_to_py_compat_str
 
-# Python imports
-from quantlib.time.calendars.null_calendar import NullCalendar
-
-import quantlib.time.calendars.germany as ger
-import quantlib.time.calendars.united_states as us
-import quantlib.time.calendars.united_kingdom as uk
-import quantlib.time.calendars.japan as jp
-import quantlib.time.calendars.switzerland as sw
-
-from quantlib.util.prettyprint import prettyprint
-
 # BusinessDayConvention:
 cdef public enum BusinessDayConvention:
     Following         = _calendar.Following
@@ -59,10 +48,6 @@ cdef class Calendar:
     property name:
         def __get__(self):
             return utf8_char_array_to_py_compat_str(self._thisptr.name().c_str())
-
-    property code:
-        def __get__(self):
-            return self._inv_code[self.name]
 
     def __str__(self):
         return self.name
@@ -106,7 +91,7 @@ cdef class Calendar:
     def end_of_month(self, date.Date current_date):
         """ Returns the ending date for the month that contains the given
         date.
-        
+
         """
 
         cdef _date.Date* c_date = (<date.Date>current_date)._thisptr.get()
@@ -161,51 +146,6 @@ cdef class Calendar:
             )
 
         return date.date_from_qldate(advanced_date)
-
-    _lookup = dict([(cal.name, cal) for cal in
-                [TARGET(), NullCalendar(),
-                 ger.Germany(), ger.Germany(ger.EUREX),
-                 ger.Germany(ger.FrankfurtStockExchange),
-                 ger.Germany(ger.SETTLEMENT), ger.Germany(ger.EUWAX),
-                 ger.Germany(ger.XETRA),
-                 uk.UnitedKingdom(),
-                 uk.UnitedKingdom(uk.EXCHANGE), uk.UnitedKingdom(uk.METALS),
-                 uk.UnitedKingdom(uk.SETTLEMENT),
-                 us.UnitedStates(), us.UnitedStates(us.GOVERNMENTBOND),
-                 us.UnitedStates(us.NYSE), us.UnitedStates(us.NERC), 
-                 us.UnitedStates(us.SETTLEMENT),
-                 jp.Japan(), sw.Switzerland()]])
-
-    #ISO-3166 country codes (http://en.wikipedia.org/wiki/ISO_3166-1)
-    _code = dict([('TARGET', TARGET().name),
-                  ('NULL', NullCalendar().name),
-                  ('DEU', ger.Germany().name),
-                  ('EUREX', ger.Germany(ger.EUREX).name),
-                  ('FSE', ger.Germany(ger.FrankfurtStockExchange).name),
-                  ('EUWAX', ger.Germany(ger.EUWAX).name),
-                  ('XETRA', ger.Germany(ger.XETRA).name),
-                  ('GBR', uk.UnitedKingdom().name),
-                  ('LSE', uk.UnitedKingdom(uk.EXCHANGE).name),
-                  ('LME', uk.UnitedKingdom(uk.METALS).name),
-                  ('USA', us.UnitedStates().name),
-                  ('USA-GOVT-BONDS', us.UnitedStates(us.GOVERNMENTBOND).name),
-                  ('NYSE', us.UnitedStates(us.NYSE).name),
-                  ('NERC', us.UnitedStates(us.NERC).name),
-                  ('JPN', jp.Japan().name),
-                  ('CHE', sw.Switzerland().name)])
-
-    _inv_code = {v:k for k, v in _code.items()}
-    
-    @classmethod
-    def help(cls):
-        tmp = map(list, zip(*cls._code))
-        res = "Valid calendar names are:\n\n" + prettyprint(('Code', 'Calendar'), 'ss', tmp)
-        return res
-    
-    @classmethod
-    def from_name(cls, code):
-        cdef Calendar ca = cls._lookup[cls._code[code]]
-        return ca
 
 cdef class DateList:
     '''Provides an interator interface on top of a vector of QuantLib dates.

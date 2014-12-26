@@ -3,7 +3,7 @@ cimport quantlib.time.calendars._germany as _gm
 from quantlib.time.calendar cimport Calendar
 
 SETTLEMENT = 0
-FrankfurtStockExchange = 1 # Frankfurt stock-exchange
+FRANKFURT_STOCK_EXCHANGE = 1 # Frankfurt stock-exchange
 XETRA = 2                  # Xetra
 EUREX = 3                  # Eurex
 EUWAX = 4                  # Euwax

@@ -15,8 +15,10 @@ from libcpp cimport bool
 cimport quantlib.time._calendar as _calendar
 
 from quantlib.time.date cimport Date
-from quantlib.time.calendar cimport Calendar
 from quantlib.util.compat cimport utf8_char_array_to_py_compat_str
+
+from quantlib.time.calendar_registry import calendar_from_internal_name
+from quantlib.time.api import calendar_from_name
 
 cdef class Index:
 
@@ -32,14 +34,15 @@ cdef class Index:
 
     property name:
        def __get__(self):
-           return utf8_char_array_to_py_compat_str(self._thisptr.get().name().c_str())
+           return utf8_char_array_to_py_compat_str(
+               self._thisptr.get().name().c_str()
+           )
 
     property fixing_calendar:
         def __get__(self):
             cdef _calendar.Calendar fc
             fc = self._thisptr.get().fixingCalendar()
-            code = Calendar._inv_code[fc.name().c_str()]
-            return Calendar.from_name(code)
+            return calendar_from_internal_name(fc.name().c_str())
 
     def is_valid_fixing_date(self, Date fixingDate):
         return self._thisptr.get().isValidFixingDate(
@@ -51,5 +54,6 @@ cdef class Index:
 
     def add_fixing(self, Date fixingDate, Real fixing, bool forceOverwrite):
         self._thisptr.get().addFixing(
-            deref(fixingDate._thisptr.get()), fixing, forceOverwrite)
+            deref(fixingDate._thisptr.get()), fixing, forceOverwrite
+        )
 

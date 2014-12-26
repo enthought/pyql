@@ -19,7 +19,7 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
     - Estimate ATM volatility for each expiry
     - Compute implied volatility and Quick Delta for each quote
 
-    Options for filtering the input data set: 
+    Options for filtering the input data set:
     - maturities with less than nMin strikes are ignored
     - maturities shorter than tMin (ACT/365 daycount) are ignored
     - strikes with Quick Delta < qdMin or > qdMax are ignored
@@ -44,6 +44,7 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
         # exclude groups with too short time to maturity
 
         if timeToMaturity < tMin:
+            print('Skipped due to too short time to maturity')
             continue
 
         # exclude groups with too few data points
@@ -52,6 +53,7 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
         df_put = group[group[nm.OPTION_TYPE] == nm.PUT_OPTION]
 
         if (len(df_call) < nMin) | (len(df_put) < nMin):
+            print('Skip too few data points')
             continue
 
         # calculate forward, implied interest rate and implied div. yield
@@ -66,8 +68,8 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
 
         # use 'inner' join because some strikes are not quoted for C and P
         df_all = df_C.join(df_P, how='inner')
-        df_all['Strike'] = df_all.index
-        df_all['C-P'] = df_all['PremiumC'] - df_all['PremiumP']
+        df_all.loc[:, 'Strike'] = df_all.index
+        df_all.loc[:, 'C-P'] = df_all['PremiumC'] - df_all['PremiumP']
 
         y = np.array(df_all['C-P'])
         x = np.array(df_all['Strike'])
@@ -97,30 +99,27 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
 
         # implied bid/ask vol for all options
 
-        df_call['IVBid'] = [impvol('C', strike, price) for strike, price
+        df_call.loc[:, 'IVBid'] = [impvol('C', strike, price) for strike, price
                             in zip(df_call['Strike'], df_call['PBid'])]
-        df_call['IVAsk'] = [impvol('C', strike, price) for strike, price
+        df_call.loc[:, 'IVAsk'] = [impvol('C', strike, price) for strike, price
                             in zip(df_call['Strike'], df_call['PAsk'])]
 
-        df_call['IVMid'] = (df_call['IVBid'] + df_call['IVAsk']) / 2
+        df_call.loc[:, 'IVMid'] = (df_call['IVBid'] + df_call['IVAsk']) / 2
 
-        df_put['IVBid'] = [impvol('P', strike, price) for strike, price
+        df_put.loc[:, 'IVBid'] = [impvol('P', strike, price) for strike, price
                            in zip(df_put['Strike'], df_put['PBid'])]
-        df_put['IVAsk'] = [impvol('P', strike, price) for strike, price
+        df_put.loc[:, 'IVAsk'] = [impvol('P', strike, price) for strike, price
                            in zip(df_put['Strike'], df_put['PAsk'])]
 
-        df_put['IVMid'] = (df_put['IVBid'] + df_put['IVAsk']) / 2
-
-        # f_call = interp1d(df_call['Strike'].values, df_call['IVMid'].values)
-        # f_put = interp1d(df_put['Strike'].values, df_put['IVMid'].values)
+        df_put.loc[:, 'IVMid'] = (df_put['IVBid'] + df_put['IVAsk']) / 2
 
         # atmVol = (f_call(Fwd) + f_put(Fwd)) / 2
         atmVol = .20
         print('ATM vol: %f' % atmVol)
 
         # Quick Delta, computed with ATM vol
-        df_call['QuickDelta'] = 0.5
-        df_put['QuickDelta'] = 0.5
+        df_call.loc[:, 'QuickDelta'] = 0.5
+        df_put.loc[:, 'QuickDelta'] = 0.5
 
         # keep data within QD range
 
@@ -133,10 +132,10 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
         # final assembly...
 
         df_cp = df_call.append(df_put, ignore_index=True)
-        df_cp[nm.INTEREST_RATE] = iRate 
-        df_cp[nm.DIVIDEND_YIELD] = dRate 
-        df_cp[nm.ATMVOL] = atmVol 
-        df_cp[nm.FORWARD] = Fwd
+        df_cp.loc[:, nm.INTEREST_RATE] = iRate
+        df_cp.loc[:, nm.DIVIDEND_YIELD] = dRate
+        df_cp.loc[:, nm.ATMVOL] = atmVol
+        df_cp.loc[:, nm.FORWARD] = Fwd
 
         # keep only OTM data ?
         if keepOTMData:
@@ -160,11 +159,13 @@ class NoteBooksTestCase(unittest.TestCase):
 
     def test_option_quotes(self):
 
-        option_data_frame = \
-                          pandas.core.common.load('./quantlib/test/data/df_SPX_24jan2011.pkl')
+        option_data_frame = pandas.core.common.load(
+            './quantlib/test/data/df_SPX_24jan2011.pkl'
+        )
 
-        df_final = Compute_IV(option_data_frame, tMin=1 / 12,
-                              nMin=6, QDMin=.2, QDMax=.8)
+        df_final = Compute_IV(
+            option_data_frame, tMin=0.5/12, nMin=6, QDMin=.2, QDMax=.8
+        )
 
         print('Number of rows: %d' % len(df_final.index))
         self.assertEqual(len(df_final.index), 553, 'Wrong number of rows')

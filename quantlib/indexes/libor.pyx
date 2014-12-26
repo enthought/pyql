@@ -22,9 +22,9 @@ cimport quantlib._index as _in
 from quantlib.time._calendar cimport BusinessDayConvention
 
 # PyQL cimport
-from quantlib.currency cimport Currency
 from quantlib.handle cimport Handle, shared_ptr
-from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
+from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter

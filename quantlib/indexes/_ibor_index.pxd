@@ -16,7 +16,7 @@ from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
 from quantlib.time._calendar cimport Calendar, BusinessDayConvention
 from quantlib.time._daycounter cimport DayCounter
-from quantlib._currency cimport Currency
+from quantlib.currency._currency cimport Currency
 
 cimport quantlib.termstructures.yields._flat_forward as _ff
 from quantlib.indexes._interest_rate_index cimport InterestRateIndex

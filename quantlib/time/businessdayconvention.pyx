@@ -22,6 +22,10 @@ cdef QL_BDC = [_ca.Following, _ca.ModifiedFollowing,
 _BDC_DICT = {str(BusinessDayConvention(v)).replace(" ",""):v for v in QL_BDC}
 
 cdef class BusinessDayConvention(int):
+    __doc__ = 'Valid business day conventions:\n{}'.format(
+        '\n'.join(_BDC_DICT.keys())
+    )
+
     def __cinit__(self):
         pass
 
@@ -29,13 +33,6 @@ cdef class BusinessDayConvention(int):
     def from_name(cls, name):
         return BusinessDayConvention(_BDC_DICT[name])
 
-    @classmethod
-    def help(cls):
-        res = 'Valid business day conventions:\n'
-        for s in _BDC_DICT:
-            res += s + '\n'
-        return res
-    
     def __str__(self):
         cdef string res = repr(int(self))
         return res.c_str()
@@ -43,5 +40,4 @@ cdef class BusinessDayConvention(int):
     def __repr__(self):
         cdef string res = repr(int(self))
         return('Business Day Convention: %s' % res.c_str())
-        
-        
+

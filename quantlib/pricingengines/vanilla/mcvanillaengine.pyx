@@ -19,7 +19,7 @@ VALID_RNG = ['PseudoRandom',]
 
 cdef class MCVanillaEngine(PricingEngine):
 
-    def __init__(self, str trait, str RNG,
+    def __init__(self, str trait, str generator,
       HestonProcess process,
       doAntitheticVariate,
       Size stepsPerYear,
@@ -30,24 +30,19 @@ cdef class MCVanillaEngine(PricingEngine):
         if trait not in VALID_TRAITS:
             raise ValueError('Traits must be in {}',format(VALID_TRAITS))
 
-        if RNG not in VALID_RNG:
+        if generator not in VALID_RNG:
             raise ValueError(
                 'RNG must be one of {}'.format(VALID_RNG)
             )
 
         # convert the Python str to C++ string
         cdef string traits_string = py_compat_str_as_utf8_string(trait)
-        cdef string RNG_string = py_compat_str_as_utf8_string(RNG)
-
-        # the input may be a Heston process or a Bates process
-        # this may not be needed ...
-        
-        cdef shared_ptr[_hp.HestonProcess]* hp_pt = <shared_ptr[_hp.HestonProcess] *> process._thisptr
+        cdef string generator_string = py_compat_str_as_utf8_string(generator)
 
         cdef shared_ptr[_pe.PricingEngine] engine = _mc_ve.mc_vanilla_engine_factory(
-          traits_string, 
-          RNG_string,
-          deref(<shared_ptr[_hp.HestonProcess]*> hp_pt),
+          traits_string,
+          generator_string,
+          deref(process._thisptr),
           doAntitheticVariate,
           stepsPerYear,
           requiredSamples,

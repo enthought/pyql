@@ -14,25 +14,21 @@ from __future__ import division
 import re
 import numpy as np
 
-import quantlib
+from quantlib.currency.api import USDCurrency
+from quantlib.indexes.libor import Libor
+from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.rate_helpers import \
      DepositRateHelper, SwapRateHelper
-from quantlib.time.api import (TARGET, Period, Months, Years, Days,
-                               ModifiedFollowing, Unadjusted, Actual360,
-                               Thirty360, Annual, ActualActual, ISDA,
-                               JointCalendar, UnitedStates, UnitedKingdom,
-                               NullCalendar)
-
-from quantlib.currency import USDCurrency
-from quantlib.quotes import SimpleQuote
+from quantlib.termstructures.yields.api import (
+    FlatForward, YieldTermStructure, PiecewiseYieldCurve
+)
+from quantlib.time.api import (
+    TARGET, Period, Months, Years, Days, ModifiedFollowing, Unadjusted,
+    Actual360, Thirty360, Annual, ActualActual, ISDA, JointCalendar,
+    UnitedStates, UnitedKingdom, NullCalendar, Date
+)
 from quantlib.util.converter import pydate_to_qldate, qldate_to_pydate
-from quantlib.indexes.libor import Libor
-from quantlib.termstructures.yields.piecewise_yield_curve import \
-    term_structure_factory
-
-from quantlib.termstructures.yields.api import FlatForward, YieldTermStructure
-
 
 _label_re_list = [ \
     # Swap
@@ -70,7 +66,7 @@ def make_rate_helper(label, rate, dt_obs, currency='USD'):
 
     rate_type, tenor, period = _parse_rate_label(label)
 
-    if(~isinstance(dt_obs, quantlib.time.date.Date)):
+    if not isinstance(dt_obs, Date):
         dt_obs = pydate_to_qldate(dt_obs)
     settings = Settings()
     calendar = JointCalendar(UnitedStates(), UnitedKingdom())
@@ -123,9 +119,10 @@ def make_term_structure(rates, dt_obs):
 
     ts_day_counter = ActualActual(ISDA)
     tolerance = 1.0e-15
-    ts = term_structure_factory('discount', 'loglinear',
-         settlement_date, rate_helpers,
-         ts_day_counter, tolerance)
+    ts = PiecewiseYieldCurve(
+        'discount', 'loglinear',settlement_date, rate_helpers, ts_day_counter,
+        tolerance
+    )
 
     return ts
 
