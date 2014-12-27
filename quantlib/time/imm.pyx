@@ -64,16 +64,15 @@ def next_date(code_or_date, main_cycle=True, Date reference_date=Date()):
     cdef _date.Date result
 
     cdef Date dt
-    cdef string _code
 
-    if isinstance(code_or_date, str):
-        result =  _imm.nextDate_str(
-            <str> code_or_date, <bool>main_cycle,
-            deref(reference_date._thisptr.get())
-        )
-    else:
+    if isinstance(code_or_date, Date):
         dt = <Date> code_or_date
         result =  _imm.nextDate_dt(deref(dt._thisptr.get()), <bool>main_cycle)
+    else:
+        result =  _imm.nextDate_str(
+            py_compat_str_as_utf8_string(code_or_date),
+            <bool>main_cycle, deref(reference_date._thisptr.get())
+        )
 
     return date_from_qldate(result)
 
@@ -87,14 +86,14 @@ def next_code(code_or_date, main_cycle=True, Date reference_date=Date()):
     cdef Date dt
     cdef string result
 
-    if(isinstance(code_or_date, str)):
-        result =  _imm.nextCode_str(
-            <str> code_or_date, <bool>main_cycle,
-            deref(reference_date._thisptr.get())
-        )
-    else:
+    if isinstance(code_or_date, Date):
         dt = <Date> code_or_date
         result =  _imm.nextCode_dt(deref(dt._thisptr.get()), <bool>main_cycle)
+    else:
+        result =  _imm.nextCode_str(
+            py_compat_str_as_utf8_string(code_or_date),
+            <bool>main_cycle, deref(reference_date._thisptr.get())
+        )
 
     return utf8_char_array_to_py_compat_str(result.c_str())
 
