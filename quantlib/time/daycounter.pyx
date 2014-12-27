@@ -1,4 +1,5 @@
 from cython.operator cimport dereference as deref
+from libcpp.string cimport string
 
 cimport _daycounter
 cimport _date
@@ -26,8 +27,8 @@ cdef class DayCounter:
             self._thisptr = NULL
 
     def name(self):
-        cdef const char* name = self._thisptr.name().c_str()
-        return utf8_char_array_to_py_compat_str(name)
+        cdef string _name = self._thisptr.name()
+        return utf8_char_array_to_py_compat_str(_name.c_str())
 
     def year_fraction(self, Date date1, Date date2, Date ref_start=None,
             Date ref_end=None):

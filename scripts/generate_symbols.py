@@ -1,6 +1,7 @@
 """ Symbol management to generate .def file. """
 import glob
 import os
+import six
 import subprocess
 
 def symbol_generator_from_obj_file(object_file):
@@ -34,8 +35,8 @@ def symbol_generator_from_obj_file(object_file):
         
     def _is_boost_assertion(symb):
         return '?assertion_failed@boost' in mangled_symbol
-        
-    for line in nm_result.split('\n'):
+
+    for line in six.text_type(nm_result, 'ascii').split('\n'):
         # Example line: 
         # 0000000000000000 R ?value@?$integral_constant@_N$00@tr1@std@@2_NB
         # Find the symbol location in the line
@@ -76,11 +77,11 @@ def generate_deffile_from_dir(input_directory, output_file):
             fh.write('	 {}\n'.format(symbol))
     
 def main():
-    input_directory = r"C:\dev\QuantLib-1.4\build\vc90\Win32\Release"        
-    output_file = r'C:\dev\pyql\symbols_win32.def'
+    input_directory = r"C:\dev\QuantLib-1.4\build\vc100\Win32\Release"        
+    output_file = r'C:\dev\pyql\symbols_win32_vc100.def'
         
     generate_deffile_from_dir(input_directory, output_file)
-    print '{} generated'.format(output_file)
+    print ('{} generated'.format(output_file))
     
 if __name__ == '__main__':
    main() 
