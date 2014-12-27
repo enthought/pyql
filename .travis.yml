@@ -13,11 +13,7 @@ before_install:
  - sudo apt-get install -qq python-numpy python-six
  - pip install cython --use-mirrors
  - pip install pandas --use-mirrors
-<<<<<<< HEAD
- - pip install tabulate
-=======
  - pip install tabulate --use-mirrors
->>>>>>> master
 install:
     make build
 script:
