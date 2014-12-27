@@ -15,6 +15,7 @@ from libcpp.string cimport string
 
 cimport quantlib.time._calendar as _calendar
 
+from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date
 from quantlib.util.compat cimport utf8_char_array_to_py_compat_str
 
