@@ -85,6 +85,7 @@ def next_code(code_or_date, main_cycle=True, Date reference_date=Date()):
     """
 
     cdef Date dt
+    cdef string result
 
     if(isinstance(code_or_date, str)):
         result =  _imm.nextCode_str(
@@ -95,5 +96,5 @@ def next_code(code_or_date, main_cycle=True, Date reference_date=Date()):
         dt = <Date> code_or_date
         result =  _imm.nextCode_dt(deref(dt._thisptr.get()), <bool>main_cycle)
 
-    return result
+    return utf8_char_array_to_py_compat_str(result.c_str())
 

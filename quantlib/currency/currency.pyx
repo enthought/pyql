@@ -9,6 +9,8 @@
 
 cimport _currency as _cu
 
+from quantlib.util.compat cimport utf8_char_array_to_py_compat_str as to_pystr
+
 
 cdef class Currency:
     def __cinit__(self):
@@ -16,19 +18,19 @@ cdef class Currency:
 
     property name:
         def __get__(self):
-            return self._thisptr.name().c_str()
+            return to_pystr(self._thisptr.name().c_str())
 
     property code:
         def __get__(self):
-            return self._thisptr.code().c_str()
+            return to_pystr(self._thisptr.code().c_str())
 
     property symbol:
         def __get__(self):
-            return self._thisptr.symbol().c_str()
+            return to_pystr(self._thisptr.symbol().c_str())
 
     property fractionSymbol:
         def __get__(self):
-            return self._thisptr.fractionSymbol().c_str()
+            return to_pystr(self._thisptr.fractionSymbol().c_str())
 
     property fractionsPerUnit:
         def __get__(self):
@@ -36,7 +38,7 @@ cdef class Currency:
 
     def __str__(self):
         if not self._thisptr.empty():
-            return self._thisptr.name().c_str()
+            return to_pystr(self._thisptr.name().c_str())
         else:
             return 'null currency'
 
