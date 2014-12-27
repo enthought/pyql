@@ -23,7 +23,7 @@ DEBUG = False
 
 SUPPORT_CODE_INCLUDE = './cpp_layer'
 
-QL_LIBRARY = 'QuantLib-vc100-mt'
+QL_LIBRARY = 'QuantLib'
 
 # FIXME: would be good to be able to customize the path with environment
 # variables in place of hardcoded paths ...
@@ -38,6 +38,10 @@ if sys.platform == 'darwin':
         flag for flag in opt.split() if flag != '-Wstrict-prototypes')
 
 elif sys.platform == 'win32':
+    # With MSVC2008, the library is called QuantLib.lib but with MSVC2010, the
+    # naming is QuantLib-vc100-mt
+    if sys.version_info >= (3, 0):
+        QL_LIBRARY = 'QuantLib-vc100-mt'
     INCLUDE_DIRS = [
         r'c:\dev\QuantLib-1.4',  # QuantLib headers
         r'c:\dev\boost_1_56_0',  # Boost headers
