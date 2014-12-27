@@ -15,7 +15,6 @@ from libcpp.string cimport string
 
 cimport quantlib.time._calendar as _calendar
 
-from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date
 from quantlib.util.compat cimport utf8_char_array_to_py_compat_str
 
@@ -45,10 +44,9 @@ cdef class Index:
             cdef _calendar.Calendar fc
             fc = self._thisptr.get().fixingCalendar()
             cdef string _calendar_name = fc.name()
-            code = Calendar._inv_code[
+            return calendar_from_internal_name(
                 utf8_char_array_to_py_compat_str(_calendar_name.c_str())
-            ]
-            return Calendar.from_name(code)
+            )
 
     def is_valid_fixing_date(self, Date fixingDate):
         return self._thisptr.get().isValidFixingDate(
