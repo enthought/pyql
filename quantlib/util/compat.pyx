@@ -15,8 +15,7 @@ cdef string utf8_array_from_py_string(text):
     if isinstance(text, unicode):
         utf8_data = text.encode('UTF-8')
     elif (PY_MAJOR_VERSION < 3) and isinstance(text, str):
-        text.decode('UTF-8')    # ensure it's UTF-8 encoded if there are high-bit chars
-        utf8_data = text
+        utf8_data = text.decode('UTF-8')    # ensure it's UTF-8 encoded if there are high-bit chars
     else:
         raise ValueError("requires text input, got %s" % type(text))
     return string(PyBytes_AsString(utf8_data))
