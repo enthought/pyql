@@ -1,6 +1,3 @@
-# distutils: language = c++
-# distutils: libraries = QuantLib
-
 """
  Copyright (C) 2011, Enthought Inc
  Copyright (C) 2011, Patrick Henaff
@@ -10,7 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include 'types.pxi'
+include '../types.pxi'
 from libcpp cimport bool
 from libcpp.string cimport string
 

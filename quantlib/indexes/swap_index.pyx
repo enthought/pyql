@@ -9,7 +9,7 @@
 
 include '../types.pxi'
 from cython.operator cimport dereference as deref
-from cpython.string cimport PyString_AsString
+from quantlib.util.compat cimport utf8_array_from_py_string
 from libcpp.string cimport string
 
 from quantlib.index cimport Index
@@ -17,7 +17,7 @@ from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.handle cimport shared_ptr
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.currency cimport Currency
+from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
 from quantlib.time._calendar cimport BusinessDayConvention
 
@@ -36,7 +36,7 @@ cdef class SwapIndex(Index):
                  IborIndex ibor_index):
 
         # convert the Python str to C++ string
-        cdef string family_name_string = string(PyString_AsString(family_name))
+        cdef string family_name_string = utf8_array_from_py_string(family_name)
 
         self._thisptr = new shared_ptr[_in.Index](
             new _si.SwapIndex(

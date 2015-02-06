@@ -13,37 +13,51 @@ import sys
 from Cython.Distutils import build_ext
 from Cython.Build import cythonize
 
-import numpy
+try:
+    import numpy
+    HAS_NUMPY = True
+except ImportError:
+    HAS_NUMPY = False
 
-## From SO: hack to remove warning about strict prototypes
-## http://stackoverflow.com/questions/8106258/cc1plus-warning-command-line-option-wstrict-prototypes-is-valid-for-ada-c-o
-
-(opt,) = get_config_vars('OPT')
-os.environ['OPT'] = " ".join(
-    flag for flag in opt.split() if flag != '-Wstrict-prototypes')
+DEBUG = False
 
 SUPPORT_CODE_INCLUDE = './cpp_layer'
+
+QL_LIBRARY = 'QuantLib'
 
 # FIXME: would be good to be able to customize the path with environment
 # variables in place of hardcoded paths ...
 if sys.platform == 'darwin':
-    INCLUDE_DIRS = ['/usr/local/include', '.', SUPPORT_CODE_INCLUDE,
-                   '/Users/dpinte/projects/sources/boost_1_55_0/',
-                    ]
-    LIBRARY_DIRS = ["/usr/local/lib"]
-elif sys.platform == 'win32':
     INCLUDE_DIRS = [
-        r'E:\tmp\QuantLib-1.1',  # QuantLib headers
-        r'E:\tmp\boost_1_46_1',  # Boost headers
+        '/usr/local/include', '.', '../sources/boost_1_55_0',
+        SUPPORT_CODE_INCLUDE
+    ]
+    LIBRARY_DIRS = ["/usr/local/lib"]
+
+    ## From SO: hack to remove warning about strict prototypes
+    ## http://stackoverflow.com/questions/8106258/cc1plus-warning-command-line-option-wstrict-prototypes-is-valid-for-ada-c-o 
+    (opt,) = get_config_vars('OPT')
+    os.environ['OPT'] = " ".join(
+        flag for flag in opt.split() if flag != '-Wstrict-prototypes')
+
+elif sys.platform == 'win32':
+    # With MSVC2008, the library is called QuantLib.lib but with MSVC2010, the
+    # naming is QuantLib-vc100-mt
+    if sys.version_info >= (3, 0):
+        QL_LIBRARY = 'QuantLib-vc100-mt'
+    INCLUDE_DIRS = [
+        r'c:\dev\QuantLib-1.4',  # QuantLib headers
+        r'c:\dev\boost_1_56_0',  # Boost headers
         '.',
         SUPPORT_CODE_INCLUDE
     ]
     LIBRARY_DIRS = [
-        r"E:\tmp\QuantLib-1.1\build\vc80\Release",
-        r'E:\tmp\boost_1_46_1\lib'
+        r"C:\dev\QuantLib-1.4\build\vc100\Win32\Release", # for the dll lib
+        r"C:\dev\QuantLib-1.4\lib",
+        '.',
+        r'.\dll',
     ]
-    QL_LIBRARY = 'QuantLib'
-elif sys.platform == 'linux2':
+elif sys.platform.startswith('linux'):   # 'linux' on Py3, 'linux2' on Py2
     # good for Debian / ubuntu 10.04 (with QL .99 installed by default)
     INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.', SUPPORT_CODE_INCLUDE]
     LIBRARY_DIRS = ['/usr/local/lib', '/usr/lib', ]
@@ -51,7 +65,8 @@ elif sys.platform == 'linux2':
     # INCLUDE_DIRS = ['/opt/QuantLib-1.1', '.', SUPPORT_CODE_INCLUDE]
     # LIBRARY_DIRS = ['/opt/QuantLib-1.1/lib',]
 
-INCLUDE_DIRS.append(numpy.get_include())
+if HAS_NUMPY:
+    INCLUDE_DIRS.append(numpy.get_include())
 
 def get_define_macros():
     #defines = [ ('HAVE_CONFIG_H', None)]
@@ -62,14 +77,16 @@ def get_define_macros():
             (name, None) for name in [
                 '__WIN32__', 'WIN32', 'NDEBUG', '_WINDOWS', 'NOMINMAX', 'WINNT',
                 '_WINDLL', '_SCL_SECURE_NO_DEPRECATE', '_CRT_SECURE_NO_DEPRECATE',
-                '_SCL_SECURE_NO_WARNINGS',
+                '_SCL_SECURE_NO_WARNINGS'
             ]
         ]
     return defines
 
 def get_extra_compile_args():
     if sys.platform == 'win32':
-        args = ['/GR', '/FD', '/Zm250', '/EHsc' ]
+        args = ['/GR', '/FD', '/Zm250', '/EHsc']
+        if DEBUG:
+            args.append('/Z7')
     else:
         args = []
 
@@ -78,9 +95,11 @@ def get_extra_compile_args():
 def get_extra_link_args():
     if sys.platform == 'win32':
         args = ['/subsystem:windows', '/machine:I386']
+        if DEBUG:
+            args.append('/DEBUG')
     elif sys.platform == 'darwin':
-        major, minor, patch = [
-            int(item) for item in platform.mac_ver()[0].split('.')]
+        major, minor = [
+            int(item) for item in platform.mac_ver()[0].split('.')[:2]]
         if major == 10 and minor >= 9:
             # On Mac OS 10.9 we link against the libstdc++ library.
             args = ['-stdlib=libstdc++', '-mmacosx-version-min=10.6']
@@ -108,12 +127,12 @@ def collect_extensions():
         'define_macros':get_define_macros(),
         'extra_compile_args':get_extra_compile_args(),
         'extra_link_args':get_extra_link_args(),
-        'libraries':['QuantLib'],
+        'libraries':[QL_LIBRARY],
         'cython_directives':CYTHON_DIRECTIVES
     }
 
     settings_extension = Extension('quantlib.settings',
-        ['quantlib/settings/settings.pyx', 'cpp_layer/ql_settings.cpp'],
+        ['quantlib/settings.pyx', 'cpp_layer/ql_settings.cpp'],
         **kwargs
     )
 
@@ -141,14 +160,7 @@ def collect_extensions():
         **kwargs
     )
 
-    multipath_extension = Extension(
-        name='quantlib.sim.simulate',
-        sources=[
-            'quantlib/sim/simulate.pyx',
-            'cpp_layer/simulate_support_code.cpp'
-        ],
-        **kwargs
-    )
+
 
     mc_vanilla_engine_extension = Extension(
         name='quantlib.pricingengines.vanilla.mcvanillaengine',
@@ -168,6 +180,15 @@ def collect_extensions():
         **kwargs
     )
 
+    multipath_extension = Extension(
+            name='quantlib.sim.simulate',
+            sources=[
+                'quantlib/sim/simulate.pyx',
+                'cpp_layer/simulate_support_code.cpp'
+            ],
+            **kwargs
+        )
+
     manual_extensions = [
         multipath_extension,
         mc_vanilla_engine_extension,
@@ -177,6 +198,8 @@ def collect_extensions():
         test_extension,
         business_day_convention_extension
     ]
+
+
 
     cython_extension_directories = []
     for dirpath, directories, files in os.walk('quantlib'):
@@ -202,6 +225,11 @@ def collect_extensions():
         if ext.name in names:
             collected_extensions.remove(ext)
             continue
+    if not HAS_NUMPY:
+        # remove the multipath extension from the list
+        manual_extensions = manual_extensions[1:]
+        print('Numpy is not available, multipath extension not compiled')
+
 
     extensions = collected_extensions + manual_extensions
 
@@ -215,6 +243,6 @@ setup(
     packages = find_packages(),
     ext_modules = collect_extensions(),
     cmdclass = {'build_ext': build_ext},
-    install_requires = ['distribute', 'cython'],
+    install_requires = ['distribute', 'tabulate', 'pandas', 'six'],
     zip_safe = False
 )

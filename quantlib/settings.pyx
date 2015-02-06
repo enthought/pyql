@@ -1,12 +1,11 @@
-# distutils: language = c++
-# distutils: libraries = QuantLib
 from cython.operator cimport dereference as deref
 from libcpp cimport bool as cbool
 
+from quantlib.util.compat cimport py_string_from_utf8_array
 cimport quantlib.time._date as qldate
 cimport quantlib.time.date as date
 
-cdef extern from "ql_settings.hpp" namespace "QL":
+cdef extern from "ql_settings.hpp" namespace "QuantLib":
     qldate.Date get_evaluation_date()
     void set_evaluation_date(qldate.Date& date)
 
@@ -38,7 +37,7 @@ cdef class Settings:
     property version:
         """Returns the QuantLib C++ version (QL_VERSION) used by this wrapper."""
         def __get__(self):
-            return QL_VERSION
+            return py_string_from_utf8_array(QL_VERSION)
 
     @classmethod
     def instance(cls):
@@ -49,4 +48,6 @@ cdef class Settings:
         """
 
         return cls()
+
+
 

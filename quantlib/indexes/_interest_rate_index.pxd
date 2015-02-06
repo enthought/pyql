@@ -1,6 +1,3 @@
-# distutils: language = c++
-# distutils: libraries = QuantLib
-
 """
  Copyright (C) 2011, Enthought Inc
  Copyright (C) 2011, Patrick Henaff
@@ -19,7 +16,7 @@ from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._daycounter cimport DayCounter
-from quantlib._currency cimport Currency
+from quantlib.currency._currency cimport Currency
 
 
 cdef extern from 'ql/indexes/interestrateindex.hpp' namespace 'QuantLib':

@@ -1,6 +1,3 @@
-# distutils: language = c++
-# distutils: libraries = QuantLib
-
 from quantlib.handle cimport Handle
 cimport quantlib.termstructures._yield_term_structure as _yts
 from quantlib.indexes._ibor_index cimport IborIndex

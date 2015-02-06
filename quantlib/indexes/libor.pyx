@@ -9,26 +9,26 @@
 
 include '../types.pxi'
 
-from quantlib.handle cimport Handle, shared_ptr
+# Cython standard cimports
 from cython.operator cimport dereference as deref
 from cpython cimport bool
 from libcpp cimport bool as cbool
-
-from quantlib.handle cimport Handle
-cimport quantlib.termstructures._yield_term_structure as _yts
-from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
-
 from libcpp.string cimport string
-from cpython.string cimport PyString_AsString
 
+# QuantLib header cimports
+cimport quantlib.termstructures._yield_term_structure as _yts
 cimport _libor
 cimport quantlib._index as _in
+from quantlib.time._calendar cimport BusinessDayConvention
 
+# PyQL cimport
+from quantlib.handle cimport Handle, shared_ptr
+from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.currency.currency cimport Currency
+from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.currency cimport Currency
-from quantlib.time.calendar cimport Calendar
-from quantlib.time._calendar cimport BusinessDayConvention
+from quantlib.util.compat cimport utf8_array_from_py_string
 
 
 cdef class Libor(IborIndex):
@@ -54,9 +54,9 @@ cdef class Libor(IborIndex):
         Calendar financial_center_calendar,
         DayCounter dayCounter,
         YieldTermStructure ts):
-    
+
         # convert the Python str to C++ string
-        cdef string familyName_string = string(PyString_AsString(familyName))
+        cdef string familyName_string = utf8_array_from_py_string(familyName)
 
         cdef Handle[_yts.YieldTermStructure] ts_handle
         if ts.relinkable:

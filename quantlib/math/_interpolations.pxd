@@ -1,9 +1,7 @@
-
 cdef extern from 'ql/math/interpolations/backwardflatinterpolation.hpp' namespace 'QuantLib':
 
     cdef cppclass BackwardFlat:
         pass
-
 
 cdef extern from 'ql/math/interpolations/loginterpolation.hpp' namespace 'QuantLib':
 

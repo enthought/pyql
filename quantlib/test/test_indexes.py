@@ -9,7 +9,7 @@
 
 from .unittest_tools import unittest
 
-from quantlib.currency import USDCurrency
+from quantlib.currency.api import USDCurrency
 from quantlib.index import Index
 from quantlib.indexes.interest_rate_index import InterestRateIndex
 from quantlib.indexes.libor import Libor

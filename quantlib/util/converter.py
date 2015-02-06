@@ -6,11 +6,13 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
+from __future__ import print_function
 
-import string
+import locale
 import re
 import datetime
 
+import six
 from quantlib.time.api import Date, Actual365Fixed
 import quantlib.time.date as dt
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
@@ -62,10 +64,9 @@ def _partition_date(date):
     (5) yyyy-mm-dd
     """
 
-    date = string.lstrip(string.rstrip(date))
+    date = str.lstrip(str.rstrip(date))
     for reg, idx in date_re_list:
         mo = reg.match(date)
-        print mo
         if mo != None:
             return (mo.group(idx[0]), mo.group(idx[1]),
                     mo.group(idx[2]))
@@ -80,21 +81,21 @@ def _parsedate(date):
     """
     (yy, mo, dd) = _partition_date(date)
     if len(yy) == 2:
-        yy = string.atoi(yy)
+        yy = locale.atoi(yy)
         yy += 2000 if yy < 50 else 1900
     else:
-        yy = string.atoi(yy)
+        yy = locale.atoi(yy)
 
     try:
-        mm = string.atoi(mo)
+        mm = locale.atoi(mo)
     except:
-        mo = string.lower(mo)
+        mo = str.lower(mo)
         if not mo in _shortMonthName:
             raise Exception("Bad month name: " + mo)
         else:
             mm = _shortMonthName.index(mo) + 1
 
-    dd = string.atoi(dd)
+    dd = locale.atoi(dd)
     return (yy, mm, dd)
 
 
@@ -118,7 +119,7 @@ def pydate_to_qldate(date):
 
     if isinstance(date, Date):
         return date
-    if isinstance(date, basestring):
+    if isinstance(date, six.string_types):
         yy, mm, dd = _parsedate(date)
         return Date(dd, mm, yy)
     else:

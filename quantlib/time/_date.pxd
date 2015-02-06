@@ -1,6 +1,3 @@
-# distutils: language = c++
-# distutils: libraries = QuantLib
-
 include '../types.pxi'
 
 from libcpp cimport bool
@@ -59,7 +56,7 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
         Date() except +
         Date(long serialnumber) except +
         Date(int d, int m, int y) except +
-        Day dayOfMonth()
+        Day dayOfMonth() except +
         Month month()
         int year()
         long serialNumber()
@@ -87,7 +84,7 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
     cdef Date Date_minDate 'QuantLib::Date::minDate'()
     cdef Date Date_maxDate 'QuantLib::Date::maxDate'()
     cdef bool Date_isLeap 'QuantLib::Date::isLeap'(Year y)
-    cdef Date Date_endOfMonth 'QuantLib::Date::endOfMonth'(Date& d)
+    cdef Date Date_endOfMonth 'QuantLib::Date::endOfMonth'(Date& d) except +
     cdef bool Date_isEndOfMonth 'QuantLib::Date::isEndOfMonth'(Date& d)
     cdef Date Date_nextWeekday 'QuantLib::Date::nextWeekday'(Date& d, Weekday w) except +
     cdef Date Date_nthWeekday 'QuantLib::Date::nthWeekday'(Size n, Weekday w,

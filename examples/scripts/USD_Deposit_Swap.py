@@ -6,6 +6,8 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
+from __future__ import division
+from __future__ import print_function
 
 # USD Deposit and Swap Rates
 # ==========================
@@ -50,7 +52,7 @@ if __name__ == '__main__':
     # ... and sort by increasing maturity
     df_libor = df_libor.sort_index(by='Maturity')
 
-    print df_libor
+    print(df_libor)
     
     pl.plot(df_libor['Maturity'], df_libor['Rate'])
     pl.xlabel('Maturity (Yr)')

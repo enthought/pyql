@@ -1,3 +1,4 @@
+from __future__ import print_function
 from .unittest_tools import unittest
 
 from quantlib.instruments.bonds import (
@@ -82,14 +83,8 @@ class BondTestCase(unittest.TestCase):
 
 
         bond = FixedRateBond(
-            settlement_days,
-		    face_amount,
-		    fixed_bond_schedule,
-		    [coupon_rate],
-            ActualActual(Bond),
-		    Unadjusted,
-            redemption,
-            issue_date
+            settlement_days, face_amount, fixed_bond_schedule, [coupon_rate],
+            ActualActual(Bond), Unadjusted, redemption, issue_date
         )
 
         bond.set_pricing_engine(discounting_term_structure)
@@ -106,19 +101,19 @@ class BondTestCase(unittest.TestCase):
         self.assertAlmostEqual(0.009851, bond.accrued_amount())
 
 
-        print settings.evaluation_date
-        print 'Principal: {}'.format(face_amount)
-        print 'Issuing date: {} '.format(bond.issue_date)
-        print 'Maturity: {}'.format(bond.maturity_date)
-        print 'Coupon rate: {:.4%}'.format(coupon_rate)
-        print 'Yield: {:.4%}'.format(bond_yield)
-        print 'Net present value: {:.4f}'.format(bond.net_present_value)
-        print 'Clean price: {:.4f}'.format(bond.clean_price)
-        print 'Dirty price: {:.4f}'.format(bond.dirty_price)
-        print 'Accrued coupon: {:.6f}'.format(bond.accrued_amount())
-        print 'Accrued coupon: {:.6f}'.format(
+        print(settings.evaluation_date)
+        print('Principal: {}'.format(face_amount))
+        print('Issuing date: {} '.format(bond.issue_date))
+        print('Maturity: {}'.format(bond.maturity_date))
+        print('Coupon rate: {:.4%}'.format(coupon_rate))
+        print('Yield: {:.4%}'.format(bond_yield))
+        print('Net present value: {:.4f}'.format(bond.net_present_value))
+        print('Clean price: {:.4f}'.format(bond.clean_price))
+        print('Dirty price: {:.4f}'.format(bond.dirty_price))
+        print('Accrued coupon: {:.6f}'.format(bond.accrued_amount()))
+        print('Accrued coupon: {:.6f}'.format(
             bond.accrued_amount(Date(1, March, 2011))
-        )
+        ))
 
     def test_excel_example_with_fixed_rate_bond(self):
         '''Port the QuantLib Excel adding bond example to Python. '''

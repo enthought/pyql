@@ -1,3 +1,5 @@
+from __future__ import division
+from __future__ import print_function
 import numpy as np
 
 from .unittest_tools import unittest
@@ -350,21 +352,13 @@ class HestonModelTestCase(unittest.TestCase):
         calc_2 = option.net_present_value
 
         if(abs(calc_1-calc_2) > 1.e-5):
-            print 'calc 1 %f calc 2 %f' % (calc_1, calc_2)
+            print('calc 1 %f calc 2 %f' % (calc_1, calc_2))
         self.assertNotEqual(calc_1, calc_2)
 
     def test_smith(self):
         # test against result published in
         # Journal of Computational Finance Vol. 11/1 Fall 2007
         # An almost exact simulation method for the heston model
-
-        def payoff(o, scenario):
-            Strike = o['S']
-            if o['CP'] == 'C':
-                exercise = [max(ST - Strike, 0) for ST in scenario]
-            else:
-                exercise = [max(-ST + Strike, 0) for ST in scenario]
-            return np.mean(exercise)
 
         settlement_date = today()
         self.settings.evaluation_date = settlement_date
@@ -409,7 +403,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         engine = MCVanillaEngine(
               trait='MCEuropeanHestonEngine',
-              RNG='PseudoRandom',
+              generator='PseudoRandom',
               process=process,
               doAntitheticVariate=True,
               stepsPerYear=nb_steps_a,
@@ -422,14 +416,8 @@ class HestonModelTestCase(unittest.TestCase):
         expected = 15.1796
         tolerance = .05
 
-        self.assertAlmostEqual(
-            price_fft,
-            expected,
-            delta=tolerance)
-        self.assertAlmostEqual(
-            price_mc,
-            expected,
-            delta=tolerance)
+        self.assertAlmostEqual(price_fft, expected, delta=tolerance)
+        self.assertAlmostEqual(price_mc, expected, delta=tolerance)
 
 if __name__ == '__main__':
     unittest.main()

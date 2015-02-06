@@ -6,17 +6,18 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
+from __future__ import division
 
 from .unittest_tools import unittest
 
-from quantlib.currency import USDCurrency
+from quantlib.currency.api import USDCurrency
 from quantlib.indexes.swap_index import SwapIndex
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.rate_helpers import (
     DepositRateHelper, SwapRateHelper)
 from quantlib.termstructures.yields.piecewise_yield_curve import (
-    term_structure_factory, VALID_TRAITS, VALID_INTERPOLATORS,
-    PiecewiseYieldCurve)
+    VALID_TRAITS, VALID_INTERPOLATORS, PiecewiseYieldCurve
+)
 from quantlib.time.api import Date, TARGET, Period, Months, Years, Days
 from quantlib.time.api import September, ISDA, today, Mar
 from quantlib.time.api import ModifiedFollowing, Unadjusted, Actual360
@@ -69,7 +70,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         tolerance = 1.0e-15
 
-        ts = term_structure_factory(
+        ts = PiecewiseYieldCurve(
             'discount', 'loglinear', settlement_date, rate_helpers,
             ts_day_counter, tolerance
         )
@@ -194,9 +195,10 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         ts_day_counter = ActualActual(ISDA)
         tolerance = 1.0e-15
 
-        ts = term_structure_factory(
+        ts = PiecewiseYieldCurve(
             'discount', 'loglinear', settlement_date, rate_helpers,
-            ts_day_counter, tolerance)
+            ts_day_counter, tolerance
+        )
 
         self.assertEquals(settlement_date, ts.reference_date)
 
@@ -277,8 +279,9 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         tolerance = 1.0e-15
 
-        ts = term_structure_factory(
-            'zero', 'linear', settlement_date, instruments, dayCounter, tolerance
+        ts = PiecewiseYieldCurve(
+            'zero', 'linear', settlement_date, instruments, dayCounter,
+            tolerance
         )
 
         self.assertEquals(settlement_date, ts.reference_date)

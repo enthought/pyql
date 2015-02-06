@@ -1,6 +1,3 @@
-# distutils: language = c++
-# distutils: libraries = QuantLib
-
 """
  Copyright (C) 2011, Enthought Inc
  Copyright (C) 2011, Patrick Henaff
@@ -15,7 +12,7 @@ from libcpp.string cimport string
 
 from quantlib.handle cimport Handle
 cimport quantlib.termstructures._yield_term_structure as _yts
-from quantlib._currency cimport Currency
+from quantlib.currency._currency cimport Currency
 from quantlib.indexes._ibor_index cimport IborIndex
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._daycounter cimport DayCounter

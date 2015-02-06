@@ -22,9 +22,9 @@ class TestQuantLibDate(unittest.TestCase):
 
         ql_today = today()
 
-        self.assertEquals(py_today.day, ql_today.day)
-        self.assertEquals(py_today.month, ql_today.month)
-        self.assertEquals(py_today.year, ql_today.year)
+        self.assertEqual(py_today.day, ql_today.day)
+        self.assertEqual(py_today.month, ql_today.month)
+        self.assertEqual(py_today.year, ql_today.year)
 
     def test_date_empyt_initialisation(self):
 
@@ -34,10 +34,10 @@ class TestQuantLibDate(unittest.TestCase):
     def test_date_creation(self):
 
         date1 = Date(19, Nov, 1998)
-        self.assertEquals(11, date1.month)
+        self.assertEqual(11, date1.month)
 
         date2 = Date(29, Feb, 2008)
-        self.assertEquals(2, date2.month)
+        self.assertEqual(2, date2.month)
 
         with self.assertRaises(RuntimeError):
             # getting an invalid day
@@ -49,11 +49,11 @@ class TestQuantLibDate(unittest.TestCase):
 
         datetime_date = datetime.date(1998, 11, 19)
         from_datetime_date = Date.from_datetime(datetime_date)
-        self.assertEquals(from_datetime_date.serial, date1.serial)
+        self.assertEqual(from_datetime_date.serial, date1.serial)
 
-        datetime_datetime = datetime.datetime(1998, 11, 19, 01, 00)
+        datetime_datetime = datetime.datetime(1998, 11, 19, 0o1, 00)
         from_datetime_datetime = Date.from_datetime(datetime_datetime)
-        self.assertEquals(from_datetime_datetime.serial, date1.serial)
+        self.assertEqual(from_datetime_datetime.serial, date1.serial)
 
     def test_comparison_with_datetime(self):
 
@@ -61,19 +61,19 @@ class TestQuantLibDate(unittest.TestCase):
         datetime_date_nov_98 = datetime.date(1998, 11, 19)
 
         self.assertTrue(date_nov_98 == datetime_date_nov_98)
-        self.assertEquals(cmp(date_nov_98, datetime_date_nov_98), 0)
+        self.assertFalse(date_nov_98 > datetime_date_nov_98)
 
         datetime_date_oct_98 = datetime.date(1998, 10, 19)
-        self.assertTrue(date_nov_98 > datetime_date_oct_98)
+        self.assertGreater(date_nov_98, datetime_date_oct_98)
 
     def test_equality(self):
         date1 = Date(1, 1, 2011)
         date2 = Date(1, 1, 2011)
         date3 = datetime.date(2011, 1, 1)
 
-        self.assertEquals(date1, date2)
+        self.assertEqual(date1, date2)
 
-        self.assertEquals(date1, date3)
+        self.assertEqual(date1, date3)
 
     def test_arithmetic_operators(self):
 
@@ -156,7 +156,7 @@ class TestQuantLibDate(unittest.TestCase):
 
         date1 = Date(28, Feb, 2011)
 
-        self.assertEquals(date1.serial, int(date1))
+        self.assertEqual(date1.serial, int(date1))
 
 
 class ConversionMethodsTestCase(unittest.TestCase):
@@ -169,7 +169,7 @@ class ConversionMethodsTestCase(unittest.TestCase):
 
         expected_result = Date(1, Jan, 2010)
 
-        self.assertEquals(expected_result, qldate1)
+        self.assertEqual(expected_result, qldate1)
 
     def test_conversion_from_pyql_to_datetime(self):
 
@@ -179,7 +179,7 @@ class ConversionMethodsTestCase(unittest.TestCase):
 
         expected_result = datetime.date(2010, 1, 1)
 
-        self.assertEquals(expected_result, pydate1)
+        self.assertEqual(expected_result, pydate1)
 
 
 class TestQuantLibPeriod(unittest.TestCase):
@@ -188,13 +188,13 @@ class TestQuantLibPeriod(unittest.TestCase):
 
         period = Period(Annual)
 
-        self.assertEquals(1, period.length)
-        self.assertEquals(Years, period.units)
+        self.assertEqual(1, period.length)
+        self.assertEqual(Years, period.units)
 
         period = Period(Bimonthly)
 
-        self.assertEquals(2, period.length)
-        self.assertEquals(Months, period.units)
+        self.assertEqual(2, period.length)
+        self.assertEqual(Months, period.units)
 
     def test_normalize_period(self):
 
@@ -202,8 +202,8 @@ class TestQuantLibPeriod(unittest.TestCase):
 
         period.normalize()
 
-        self.assertEquals(1, period.length)
-        self.assertEquals(Years, period.units)
+        self.assertEqual(1, period.length)
+        self.assertEqual(Years, period.units)
 
     def test_rich_cmp(self):
 
@@ -232,9 +232,9 @@ class TestQuantLibPeriod(unittest.TestCase):
 
         period = Period(10, Months)
 
-        self.assertEquals(10, period.length)
-        self.assertEquals(Months, period.units)
-        self.assertEquals(OtherFrequency, period.frequency)
+        self.assertEqual(10, period.length)
+        self.assertEqual(Months, period.units)
+        self.assertEqual(OtherFrequency, period.frequency)
 
     def test_adding_period_to_date(self):
 
@@ -261,20 +261,20 @@ class TestQuantLibPeriod(unittest.TestCase):
         period2 = Period(EveryFourthMonth)
 
         period3 = period1 - period2
-        self.assertEquals(7, period3.length)
-        self.assertEquals(Months, period3.units)
+        self.assertEqual(7, period3.length)
+        self.assertEqual(Months, period3.units)
 
     def test_multiplication(self):
 
         period = Period(Bimonthly)
 
         period2 = period * 10
-        self.assertEquals(20, period2.length)
+        self.assertEqual(20, period2.length)
 
         # invert operation
         period2 = 10 * period
         self.assertIsInstance(period2, Period)
-        self.assertEquals(20, period2.length)
+        self.assertEqual(20, period2.length)
 
     def test_inplace_addition(self):
 
@@ -284,8 +284,8 @@ class TestQuantLibPeriod(unittest.TestCase):
 
         period += period2
 
-        self.assertEquals(4, period.length)
-        self.assertEquals(Months, period.units)
+        self.assertEqual(4, period.length)
+        self.assertEqual(Months, period.units)
 
         with self.assertRaises(ValueError):
             period3 = Period(2, Weeks)
@@ -299,8 +299,8 @@ class TestQuantLibPeriod(unittest.TestCase):
 
         period -= period2
 
-        self.assertEquals(3, period.length)
-        self.assertEquals(Months, period.units)
+        self.assertEqual(3, period.length)
+        self.assertEqual(Months, period.units)
 
         with self.assertRaises(ValueError):
             period3 = Period(2, Weeks)
@@ -312,8 +312,8 @@ class TestQuantLibPeriod(unittest.TestCase):
 
         period /= 3
 
-        self.assertEquals(2, period.length)
-        self.assertEquals(Months, period.units)
+        self.assertEqual(2, period.length)
+        self.assertEqual(Months, period.units)
 
     def test_substracting_period_to_date(self):
 
@@ -356,27 +356,25 @@ class TestQuantLibIMM(unittest.TestCase):
 
     def test_imm_date(self):
         dt = imm.date('M9')
-        print('IMM date M9: %s' % dt)
         cd = imm.code(qldate_from_pydate(dt))
-        print('IMM code for %s: %s' % (dt, cd))
-        self.assertTrue(cd == 'M9')
+        self.assertEqual(cd, 'M9')
 
     def test_next_date(self):
         dt = Date(19, Jun, 2014)
         dt_2 = imm.next_date(dt)
         # 17 sep 2014
-        self.assertEquals(dt_2, date(2014, 9, 17))
+        self.assertEqual(dt_2, date(2014, 9, 17))
 
         dt_3 = imm.next_date('M9', True, today())
         # 18 sep 2019
-        self.assertEquals(dt_3, date(2019, 9, 18))
+        self.assertEqual(dt_3, date(2019, 9, 18))
 
     def test_next_code(self):
         dt = Date(10, Jun, 2014)
         cd_2 = imm.next_code(dt)
         # M4
-        self.assertEquals(cd_2, "M4")
+        self.assertEqual(cd_2, "M4")
 
         cd_3 = imm.next_code('M9', True, today())
         # U9
-        self.assertEquals(cd_3, "U9")
+        self.assertEqual(cd_3, "U9")

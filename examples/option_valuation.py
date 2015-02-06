@@ -20,6 +20,7 @@ NPV of the American Option with discrete dividends=0:   18.5707
 NPV of the American Option without dividend:                    17.9647
 
 """
+from __future__ import print_function
 
 from quantlib.settings import Settings
 from quantlib.compounding import Simple
@@ -62,12 +63,12 @@ def dividendOption():
     dayCounter = Actual360() # INPUT
     currency = USDCurrency() # INPUT	
 
-    print "Date of the evaluation:			", todaysDate
-    print "Calendar used:         			", calendar.name()
-    print "Number of settlement Days:		", settlement_days
-    print "Date of settlement:       		", settlementDate
-    print "Convention of day counter:		", dayCounter.name()
-    print "Currency of the actual context:\t\t", currency.name
+    print("Date of the evaluation:			", todaysDate)
+    print("Calendar used:         			", calendar.name())
+    print("Number of settlement Days:		", settlement_days)
+    print("Date of settlement:       		", settlementDate)
+    print("Convention of day counter:		", dayCounter.name())
+    print("Currency of the actual context:\t\t", currency.name)
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # ++++++++++++++++++++ Description of the underlying +++++++++++++++++++++++++++++++++++
@@ -77,10 +78,10 @@ def dividendOption():
     underlying_price	= 191.75	# INPUT
     underlying_vol		= 0.2094	# INPUT
 
-    print "**********************************"
-    print "Name of the underlying:			", underlying_name
-    print "Price of the underlying at t0:	", underlying_price
-    print "Volatility of the underlying:		", underlying_vol
+    print("**********************************")
+    print("Name of the underlying:			", underlying_name)
+    print("Price of the underlying at t0:	", underlying_price)
+    print("Volatility of the underlying:		", underlying_vol)
 
     # For a great managing of price and vol objects --> Handle
     underlying_priceH  = SimpleQuote(underlying_price)
@@ -91,8 +92,8 @@ def dividendOption():
     # ++++++++++++++++++++ Description of Yield Term Structure
     
     #  Libor data record 
-    print "**********************************"
-    print "Description of the Libor used for the Yield Curve construction" 
+    print("**********************************")
+    print("Description of the Libor used for the Yield Curve construction") 
     
     Libor_dayCounter = Actual360();
 
@@ -106,7 +107,7 @@ def dividendOption():
     liborRatesTenor = [Period(tenor, Months) for tenor in [1,2,3,4,5,6,9,12]]
     
     for tenor, rate in zip(liborRatesTenor, liborRates):
-        print tenor, "\t\t\t", rate
+        print(tenor, "\t\t\t", rate)
 
     # Swap data record 
 
@@ -120,10 +121,10 @@ def dividendOption():
         UnitedStates(), Actual360()
     )
 
-    print "Description of the Swap used for the Yield Curve construction"
-    print "Tenor of the fixed leg:			", Swap_fixedLegTenor
-    print "Index of the floated leg: 		", Swap_iborIndex.name
-    print "Maturity		Rate				"
+    print("Description of the Swap used for the Yield Curve construction")
+    print("Tenor of the fixed leg:			", Swap_fixedLegTenor)
+    print("Index of the floated leg: 		", Swap_iborIndex.name)
+    print("Maturity		Rate				")
 
     swapRates = []
     swapRatesTenor = []
@@ -135,7 +136,7 @@ def dividendOption():
     swapRatesTenor = [Period(i, Years) for i in range(2, 11)]
     
     for tenor, rate in zip(swapRatesTenor, swapRates):
-        print tenor, "\t\t\t", rate
+        print(tenor, "\t\t\t", rate)
     
     # ++++++++++++++++++++ Creation of the vector of RateHelper (need for the Yield Curve construction)
     # ++++++++++++++++++++ Libor 
@@ -165,7 +166,7 @@ def dividendOption():
 
     # ++++++++++++++++++  build of the underlying process : with a Black-Scholes model 
 
-    print 'Creating process'
+    print('Creating process')
 
     bsProcess = BlackScholesProcess(underlying_priceH, riskFreeTS, flatVolTS)
 
@@ -185,11 +186,11 @@ def dividendOption():
     #americanExercise = AmericanExercise(settlementDate, maturity)
     americanExercise = AmericanExercise(maturity, settlementDate)
     
-    print "**********************************"
-    print "Description of the option:		", Option_name
-    print "Date of maturity:     			", maturity
-    print "Type of the option:   			", option_type
-    print "Strike of the option:		    ", strike
+    print("**********************************")
+    print("Description of the option:		", Option_name)
+    print("Date of maturity:     			", maturity)
+    print("Type of the option:   			", option_type)
+    print("Strike of the option:		    ", strike)
 
 
 
@@ -212,10 +213,10 @@ def dividendOption():
         d = d + dividendfrequence
         dividend *= dividendCroissance
 
-    print "Discrete dividends				"
-    print "Dates				Dividends		"
+    print("Discrete dividends				")
+    print("Dates				Dividends		")
     for date, div in zip(dividendDates, dividends):
-        print date, "		", div
+        print(date, "		", div)
 
     # ++++++++++++++++++ Description of the final payoff 
     payoff = PlainVanillaPayoff(option_type, strike)
@@ -264,13 +265,13 @@ def dividendOption():
 
     # Now we make all the needing calcul	
     # ... and final results
-    print "NPV of the European Option with discrete dividends=0:	{:.4f}".format(dividendEuropeanOption.npv)
-    print "NPV of the European Option without dividend:		{:.4f}".format(europeanOption.npv)
-    print "NPV of the American Option with discrete dividends=0:	{:.4f}".format(dividendAmericanOption.npv)
-    print "NPV of the American Option without dividend:		{:.4f}".format(americanOption.npv)
+    print("NPV of the European Option with discrete dividends=0:	{:.4f}".format(dividendEuropeanOption.npv))
+    print("NPV of the European Option without dividend:		{:.4f}".format(europeanOption.npv))
+    print("NPV of the American Option with discrete dividends=0:	{:.4f}".format(dividendAmericanOption.npv))
+    print("NPV of the American Option without dividend:		{:.4f}".format(americanOption.npv))
     # just a single test
-    print "ZeroRate with a maturity at ", maturity, ": ", \
-            riskFreeTS.zero_rate(maturity, dayCounter, Simple)
+    print("ZeroRate with a maturity at ", maturity, ": ", \
+            riskFreeTS.zero_rate(maturity, dayCounter, Simple))
 
 
 

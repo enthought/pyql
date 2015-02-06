@@ -15,6 +15,9 @@ cimport quantlib.time._imm as _imm
 
 from quantlib.time.date cimport Date
 from quantlib.time.date cimport date_from_qldate
+from quantlib.util.compat cimport (
+    py_string_from_utf8_array, utf8_array_from_py_string
+)
 
 
 # IMM Months
@@ -36,77 +39,61 @@ def is_IMM_date(Date dt, bool main_cycle=True):
     # returns whether or not the given date is an IMM date
     return _imm.isIMMdate(deref(dt._thisptr.get()), main_cycle)
 
-def is_IMM_code(char* imm_code, bool main_cycle=True):
+def is_IMM_code(str imm_code, bool main_cycle=True):
     # returns whether or not the given string is an IMM code
-    cdef object _code = imm_code
-    return _imm.isIMMcode(<str> _code, main_cycle)
+    cdef string _code = utf8_array_from_py_string(imm_code)
+    return _imm.isIMMcode(_code, main_cycle)
 
 def code(Date imm_date):
-    return  _imm.code(deref(imm_date._thisptr.get()))
+    cdef string _code = _imm.code(deref(imm_date._thisptr.get()))
+    return py_string_from_utf8_array(_code.c_str())
 
-def date(char* imm_code, Date reference_date=Date()):
-    cdef object _code = imm_code
-    cdef _date.Date tmp = _imm.date(<str>_code, deref(reference_date._thisptr.get()))
+def date(str imm_code, Date reference_date=Date()):
+    cdef string _code = utf8_array_from_py_string(imm_code)
+    cdef _date.Date tmp = _imm.date(_code, deref(reference_date._thisptr.get()))
     return date_from_qldate(tmp)
 
-def next_date(*args):
-    """
-    next IMM date following the given date
+def next_date(code_or_date, main_cycle=True, Date reference_date=Date()):
+    """ Next IMM date following the given date
+
     returns the 1st delivery date for next contract listed in the
     International Money Market section of the Chicago Mercantile
     Exchange.
     """
 
-    cdef _date.Date tmp
-    
-    cdef Date reference_date    
+    cdef _date.Date result
+
     cdef Date dt
-    cdef object _code
 
-    if len(args) < 2:
-        main_cycle = True
+    if isinstance(code_or_date, Date):
+        dt = <Date> code_or_date
+        result =  _imm.nextDate_dt(deref(dt._thisptr.get()), <bool>main_cycle)
     else:
-        main_cycle = args[1]
+        result =  _imm.nextDate_str(
+            utf8_array_from_py_string(code_or_date),
+            <bool>main_cycle, deref(reference_date._thisptr.get())
+        )
 
-    if(isinstance(args[0], str)):
-        _code = args[0]
-        if len(args) == 3:
-            reference_date = <Date> args[2]
-        else:
-            reference_date = Date()
-        tmp =  _imm.nextDate_str(<str> _code, <bool>main_cycle, deref(reference_date._thisptr.get()))
-    else:
-        dt = <Date> args[0]
-        tmp =  _imm.nextDate_dt(deref(dt._thisptr.get()), <bool>main_cycle)
+    return date_from_qldate(result)
 
-    return date_from_qldate(tmp)
-    
-def next_code(*args):
-    """
-    //! next IMM code following the given date
-    /*! returns the IMM code for next contract listed in the
-        International Money Market section of the Chicago Mercantile
-        Exchange.
+def next_code(code_or_date, main_cycle=True, Date reference_date=Date()):
+    """ Next IMM code following the given date or code
+
+    Returns the IMM code for next contract listed in the
+    International Money Market section of the Chicago Mercantile Exchange.
     """
 
-    cdef Date reference_date    
     cdef Date dt
-    cdef object _code
+    cdef string result
 
-    if len(args) < 2:
-        main_cycle = True
+    if isinstance(code_or_date, Date):
+        dt = <Date> code_or_date
+        result =  _imm.nextCode_dt(deref(dt._thisptr.get()), <bool>main_cycle)
     else:
-        main_cycle = args[1]
+        result =  _imm.nextCode_str(
+            utf8_array_from_py_string(code_or_date),
+            <bool>main_cycle, deref(reference_date._thisptr.get())
+        )
 
-    if(isinstance(args[0], str)):
-        _code = args[0]
-        if len(args) == 3:
-            reference_date = <Date> args[2]
-        else:
-            reference_date = Date()
-        tmp =  _imm.nextCode_str(<str> _code, <bool>main_cycle, deref(reference_date._thisptr.get()))
-    else:
-        dt = <Date> args[0]
-        tmp =  _imm.nextCode_dt(deref(dt._thisptr.get()), <bool>main_cycle)
+    return py_string_from_utf8_array(result.c_str())
 
-    return tmp

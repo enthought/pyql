@@ -4,11 +4,11 @@ from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from libcpp.vector cimport vector
 from libcpp.string cimport string
-from cpython.string cimport PyString_AsString
 
 cimport _piecewise_default_curve as _pdc
 
 from quantlib.handle cimport shared_ptr
+from quantlib.util.compat cimport utf8_array_from_py_string
 from quantlib.math._interpolations cimport Linear
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
@@ -25,25 +25,25 @@ cdef class PiecewiseDefaultCurve:
 
 
     def __init__(self, str trait, str interpolator, Date reference_date,
-                 helpers, DayCounter daycounter, float accuracy=1e-12):
+                 helpers, DayCounter daycounter, double accuracy=1e-12):
 
         # validate inputs
         if trait not in VALID_TRAITS:
             raise ValueError(
-                'Traits must b in {}'.format(','.join(VALID_TRAITS))
+                'Traits must b in {0}'.format(','.join(VALID_TRAITS))
             )
 
         if interpolator not in VALID_INTERPOLATORS:
             raise ValueError(
-                'Interpolator must be one of {}'.format(','.join(VALID_INTERPOLATORS))
+                'Interpolator must be one of {0}'.format(','.join(VALID_INTERPOLATORS))
             )
 
         if len(helpers) == 0:
             raise ValueError('Cannot initialize curve with no helpers')
 
         # convert Python string to C++ string
-        cdef string trait_string = string(PyString_AsString(trait))
-        cdef string interpolator_string = string(PyString_AsString(interpolator)),
+        cdef string trait_string = utf8_array_from_py_string(trait)
+        cdef string interpolator_string = utf8_array_from_py_string(interpolator)
 
         # convert Python list to std::vector
         cdef vector[shared_ptr[DefaultProbabilityHelper]]* instruments = \

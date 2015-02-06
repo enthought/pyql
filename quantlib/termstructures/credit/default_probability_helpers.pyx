@@ -39,10 +39,10 @@ cdef class CdsHelper:
 cdef class SpreadCdsHelper(CdsHelper):
     """Spread-quoted CDS hazard rate bootstrap helper. """
 
-    def __init__(self, float running_spread, Period tenor, int settlement_days,
+    def __init__(self, double running_spread, Period tenor, int settlement_days,
                  Calendar calendar, int frequency,
                  int paymentConvention, int date_generation_rule,
-                 DayCounter daycounter, float recovery_rate,
+                 DayCounter daycounter, double recovery_rate,
                  YieldTermStructure discount_curve, settles_accrual=True,
                  pays_at_default_time=True):
         """

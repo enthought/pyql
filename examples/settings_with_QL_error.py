@@ -1,3 +1,4 @@
+from __future__ import print_function
 # This code throws a QuantLib::Error that terminates python
 # Settings is set by default to today's date.
 # If dt_payment is in the past, a QuantLib::Error is thrown from c++

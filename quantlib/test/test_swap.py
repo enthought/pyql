@@ -1,26 +1,21 @@
 from .unittest_tools import unittest
 
+from quantlib.currency.api import USDCurrency
 from quantlib.instruments.swap import VanillaSwap, Payer
-from quantlib.util.converter import pydate_to_qldate
+from quantlib.indexes.libor import Libor
+from quantlib.market.market import libor_market
 from quantlib.pricingengines.swap import DiscountingSwapEngine
-from quantlib.time.calendar import (
-    Unadjusted, ModifiedFollowing
-)
-
-from quantlib.time.date import (
-    Date, Days, Semiannual, January, Period,
-    Annual, Years, Months)
-
-from quantlib.time.api import Actual365Fixed, Thirty360, TARGET, Actual360
-from quantlib.time.schedule import Schedule, Forward
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure)
+    FlatForward, YieldTermStructure
+)
+from quantlib.time.api import (
+    Unadjusted, ModifiedFollowing, Date, Days, Semiannual, January, Period,
+    Annual, Years, Months, Actual365Fixed, Thirty360, TARGET, Actual360,
+    Schedule, Forward
+)
+from quantlib.util.converter import pydate_to_qldate
 
-from quantlib.currency import USDCurrency
-from quantlib.indexes.libor import Libor
-
-from quantlib.market.market import libor_market
 
 
 class TestQuantLibSwap(unittest.TestCase):
@@ -42,7 +37,7 @@ class TestQuantLibSwap(unittest.TestCase):
         calendar = TARGET()
         settlement_days = 2
 
-        eval_date = Date(02, January, 2014)
+        eval_date = Date(2, January, 2014)
         settings = Settings()
         settings.evaluation_date = eval_date
 
@@ -87,11 +82,8 @@ class TestQuantLibSwap(unittest.TestCase):
         swap.set_pricing_engine(engine)
 
         l = swap.leg(0)
-        print l.to_str()
-
         l = swap.leg(1)
-        print l.to_str()
-
+        
         f = swap.fair_rate
         print('fair rate: %f' % f)
         p = swap.net_present_value
@@ -113,7 +105,7 @@ class TestQuantLibSwap(unittest.TestCase):
         Create from market
         """
 
-        eval_date = Date(02, January, 2014)
+        eval_date = Date(2, January, 2014)
         settings = Settings()
         settings.evaluation_date = eval_date
 
@@ -152,10 +144,8 @@ class TestQuantLibSwap(unittest.TestCase):
                                          floating_spread)
 
         fixed_l = swap.leg(0)
-        print fixed_l.to_str()
 
         float_l = swap.leg(1)
-        print float_l.to_str()
 
         f = swap.fair_rate
         print('fair rate: %f' % f)

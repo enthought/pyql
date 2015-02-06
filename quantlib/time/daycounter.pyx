@@ -1,9 +1,13 @@
 from cython.operator cimport dereference as deref
+from libcpp.string cimport string
+
 cimport _daycounter
 cimport _date
 cimport _calendar
+
 from date cimport Date
 from calendar cimport Calendar
+from quantlib.util.compat cimport py_string_from_utf8_array
 from quantlib.time.daycounters.actual_actual cimport from_name as aa_from_name
 from quantlib.time.daycounters.thirty360 cimport from_name as th_from_name
 
@@ -11,13 +15,20 @@ cdef class DayCounter:
     '''This class provides methods for determining the length of a time
         period according to given market convention, both as a number
         of days and as a year fraction.
+
     '''
 
     def __cinit__(self, *args):
         pass
 
+    def __dealloc__(self):
+        if self._thisptr is not NULL:
+            del self._thisptr
+            self._thisptr = NULL
+
     def name(self):
-        return self._thisptr.name().c_str()
+        cdef string _name = self._thisptr.name()
+        return py_string_from_utf8_array(_name.c_str())
 
     def year_fraction(self, Date date1, Date date2, Date ref_start=None,
             Date ref_end=None):

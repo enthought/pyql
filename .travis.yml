@@ -2,23 +2,21 @@
 #   http://lint.travis-ci.org/
 language: python
 python:
-  - 2.6
   - 2.7
+  - 3.4
 virtualenv:
     system_site_package: true
 before_install:
  - sudo add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu/ saucy main universe"
  - sudo apt-get update
  - sudo apt-get install libquantlib0-dev
- - sudo apt-get install -qq python-numpy
- - pip install cython --use-mirrors
- - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then pip install unittest2; fi
- - pip install pandas --use-mirrors
+ - sudo apt-get install -qq python-numpy python-six
+ - pip install -r requirements.txt --use-mirrors
 install:
     make build
 script:
- - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then python -m unittest2.__main__ discover; fi
  - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then python -m unittest discover; fi
+ - if [[ $TRAVIS_PYTHON_VERSION == '3.4' ]]; then python -m unittest discover; fi
 notifications:
   email: 
     - dpinte@enthought.com

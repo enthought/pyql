@@ -6,6 +6,8 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
+from __future__ import division
+from __future__ import print_function
 
 # This script shows how to build libor zero-coupon
 # curves from deposits and swap rates, and plot
@@ -78,7 +80,7 @@ def get_term_structure(df_libor, dtObs):
     for m, period, label in depositData:
         tenor = Period(m, Months)
         rate = df_libor.get_value(dtObs, label)
-        helper = DepositRateHelper(float(rate/100), tenor,
+        helper = DepositRateHelper(float(rate/100.0), tenor,
                  settlement_days,
                  calendar, ModifiedFollowing,
                  end_of_month,
@@ -99,7 +101,7 @@ def get_term_structure(df_libor, dtObs):
 
     for m, period, label in swapData:
         rate = df_libor.get_value(dtObs, label)
-        helper = SwapRateHelper(SimpleQuote(rate/100),
+        helper = SwapRateHelper(SimpleQuote(rate/100.0),
                  Period(m, Years), 
             calendar, Annual,
             Unadjusted, Thirty360(),
