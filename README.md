@@ -7,28 +7,8 @@ might be extended to more complex wrappers if needed.
 
 This work is based on QuantLib version 1.1 and 1.2
 
-This is still considered as alpha version even if it works quiet well. It
-offers preliminary support for Python 3.
+It offers support for Python 2 and 3.
 
-As PyQL is already used by other projects, we are still looking for a good
-name. Suggestions are welcome!
-
-<<<<<<< HEAD:README
-Building the library
---------------------
-
-Builds are must be done with Cython >= 0.16 with the cython_0.16.patch applied
-(unicode issue fix). Cython 0.15 is not supported anymore as it does not
-support templated ctypedef. Tested successfully with Cython 0.19.
-
-The build and test suite can be run::
-
-    make clean
-    make build
-    make tests
-
-
-=======
 Prerequisites
 -------------
 
