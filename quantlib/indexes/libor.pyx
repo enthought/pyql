@@ -28,7 +28,7 @@ from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.util.compat cimport py_compat_str_as_utf8_string
+from quantlib.util.compat cimport utf8_array_from_py_string
 
 
 cdef class Libor(IborIndex):
@@ -56,7 +56,7 @@ cdef class Libor(IborIndex):
         YieldTermStructure ts):
 
         # convert the Python str to C++ string
-        cdef string familyName_string = py_compat_str_as_utf8_string(familyName)
+        cdef string familyName_string = utf8_array_from_py_string(familyName)
 
         cdef Handle[_yts.YieldTermStructure] ts_handle
         if ts.relinkable:

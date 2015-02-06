@@ -16,7 +16,7 @@ cimport quantlib.time._imm as _imm
 from quantlib.time.date cimport Date
 from quantlib.time.date cimport date_from_qldate
 from quantlib.util.compat cimport (
-    utf8_char_array_to_py_compat_str, py_compat_str_as_utf8_string
+    py_string_from_utf8_array, utf8_array_from_py_string
 )
 
 
@@ -41,15 +41,15 @@ def is_IMM_date(Date dt, bool main_cycle=True):
 
 def is_IMM_code(str imm_code, bool main_cycle=True):
     # returns whether or not the given string is an IMM code
-    cdef string _code = py_compat_str_as_utf8_string(imm_code)
+    cdef string _code = utf8_array_from_py_string(imm_code)
     return _imm.isIMMcode(_code, main_cycle)
 
 def code(Date imm_date):
     cdef string _code = _imm.code(deref(imm_date._thisptr.get()))
-    return utf8_char_array_to_py_compat_str(_code.c_str())
+    return py_string_from_utf8_array(_code.c_str())
 
 def date(str imm_code, Date reference_date=Date()):
-    cdef string _code = py_compat_str_as_utf8_string(imm_code)
+    cdef string _code = utf8_array_from_py_string(imm_code)
     cdef _date.Date tmp = _imm.date(_code, deref(reference_date._thisptr.get()))
     return date_from_qldate(tmp)
 
@@ -70,7 +70,7 @@ def next_date(code_or_date, main_cycle=True, Date reference_date=Date()):
         result =  _imm.nextDate_dt(deref(dt._thisptr.get()), <bool>main_cycle)
     else:
         result =  _imm.nextDate_str(
-            py_compat_str_as_utf8_string(code_or_date),
+            utf8_array_from_py_string(code_or_date),
             <bool>main_cycle, deref(reference_date._thisptr.get())
         )
 
@@ -91,9 +91,9 @@ def next_code(code_or_date, main_cycle=True, Date reference_date=Date()):
         result =  _imm.nextCode_dt(deref(dt._thisptr.get()), <bool>main_cycle)
     else:
         result =  _imm.nextCode_str(
-            py_compat_str_as_utf8_string(code_or_date),
+            utf8_array_from_py_string(code_or_date),
             <bool>main_cycle, deref(reference_date._thisptr.get())
         )
 
-    return utf8_char_array_to_py_compat_str(result.c_str())
+    return py_string_from_utf8_array(result.c_str())
 

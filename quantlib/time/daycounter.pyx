@@ -7,7 +7,7 @@ cimport _calendar
 
 from date cimport Date
 from calendar cimport Calendar
-from quantlib.util.compat cimport utf8_char_array_to_py_compat_str
+from quantlib.util.compat cimport py_string_from_utf8_array
 from quantlib.time.daycounters.actual_actual cimport from_name as aa_from_name
 from quantlib.time.daycounters.thirty360 cimport from_name as th_from_name
 
@@ -28,7 +28,7 @@ cdef class DayCounter:
 
     def name(self):
         cdef string _name = self._thisptr.name()
-        return utf8_char_array_to_py_compat_str(_name.c_str())
+        return py_string_from_utf8_array(_name.c_str())
 
     def year_fraction(self, Date date1, Date date2, Date ref_start=None,
             Date ref_end=None):

@@ -6,6 +6,7 @@ cimport quantlib.instruments._option as _opt
 from quantlib.instruments._payoffs cimport OptionType
 
 from math import sqrt, log
+
 import six
 
 from quantlib.instruments.payoffs import Call, Put
@@ -65,7 +66,7 @@ def blackFormulaImpliedStdDev(cp, Real strike,
     Implied volatility of an European vanilla option, with estimate of initial guess
     """
 
-    if isinstance(cp, str):   # Changed from basestring for Py2/3 compatibility
+    if isinstance(cp, six.string_types):
         cpType = STR_TO_OPTION_TYPE[cp.upper()]
     else:
         cpType = cp

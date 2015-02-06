@@ -8,7 +8,7 @@
 """
 
 from libcpp.string cimport string
-from quantlib.util.compat cimport utf8_char_array_to_py_compat_str
+from quantlib.util.compat cimport py_string_from_utf8_array
 cimport quantlib.time._calendar as _ca
 
 cdef extern from "businessdayconvention_support_code.hpp" namespace "QL":
@@ -36,10 +36,10 @@ cdef class BusinessDayConvention(int):
 
     def __str__(self):
         cdef string res = repr(int(self))
-        return utf8_char_array_to_py_compat_str(res.c_str())
+        return py_string_from_utf8_array(res.c_str())
 
     def __repr__(self):
         cdef string res = repr(int(self))
         return 'Business Day Convention: {}'.format(
-            utf8_char_array_to_py_compat_str(res.c_str())
+            py_string_from_utf8_array(res.c_str())
         )

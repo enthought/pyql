@@ -1,5 +1,5 @@
 from libcpp.string cimport string
 
-cdef string py_compat_str_as_utf8_string(text)
-cdef utf8_char_array_to_py_compat_str(const char* char_array)
+cdef string utf8_array_from_py_string(text)
+cdef py_string_from_utf8_array(const char* char_array)
 

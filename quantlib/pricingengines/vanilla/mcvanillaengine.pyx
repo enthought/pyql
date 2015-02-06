@@ -5,7 +5,7 @@ from libcpp.string cimport string
 
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
-from quantlib.util.compat cimport py_compat_str_as_utf8_string
+from quantlib.util.compat cimport utf8_array_from_py_string
 
 cimport quantlib.processes._heston_process as _hp
 from quantlib.processes.heston_process cimport HestonProcess
@@ -36,8 +36,8 @@ cdef class MCVanillaEngine(PricingEngine):
             )
 
         # convert the Python str to C++ string
-        cdef string traits_string = py_compat_str_as_utf8_string(trait)
-        cdef string generator_string = py_compat_str_as_utf8_string(generator)
+        cdef string traits_string = utf8_array_from_py_string(trait)
+        cdef string generator_string = utf8_array_from_py_string(generator)
 
         cdef shared_ptr[_pe.PricingEngine] engine = _mc_ve.mc_vanilla_engine_factory(
           traits_string,

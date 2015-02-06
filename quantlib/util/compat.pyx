@@ -3,7 +3,7 @@
 from cpython cimport PyBytes_AsString, PY_MAJOR_VERSION
 from libcpp.string cimport string
 
-cdef string py_compat_str_as_utf8_string(text):
+cdef string utf8_array_from_py_string(text):
     """
     Returns the result of calling string(PyBytes_AsString(text)) to return a
     C++ string after handling encoding of text to bytes (as UTF-8) if
@@ -21,7 +21,7 @@ cdef string py_compat_str_as_utf8_string(text):
         raise ValueError("requires text input, got %s" % type(text))
     return string(PyBytes_AsString(utf8_data))
 
-cdef utf8_char_array_to_py_compat_str(const char* char_array):
+cdef py_string_from_utf8_array(const char* char_array):
     """
     Converts the given char* to a native Python string (bytes on Py2, unicode on Py3)
     """

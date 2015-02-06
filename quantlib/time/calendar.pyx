@@ -19,7 +19,7 @@ cimport quantlib.time.date as date
 cimport quantlib.time._period as _period
 
 # PyQL cimports
-from quantlib.util.compat cimport utf8_char_array_to_py_compat_str
+from quantlib.util.compat cimport py_string_from_utf8_array
 
 # BusinessDayConvention:
 cdef public enum BusinessDayConvention:
@@ -47,7 +47,7 @@ cdef class Calendar:
 
     property name:
         def __get__(self):
-            return utf8_char_array_to_py_compat_str(self._thisptr.name().c_str())
+            return py_string_from_utf8_array(self._thisptr.name().c_str())
 
     def __str__(self):
         return self.name

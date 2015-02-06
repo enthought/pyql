@@ -9,7 +9,7 @@
 
 cimport _currency as _cu
 
-from quantlib.util.compat cimport utf8_char_array_to_py_compat_str as to_pystr
+from quantlib.util.compat cimport py_string_from_utf8_array as to_pystr
 
 
 cdef class Currency:

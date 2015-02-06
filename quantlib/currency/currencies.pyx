@@ -4,8 +4,6 @@
 
 cimport _currency as _cu
 
-from quantlib.util.compat cimport utf8_char_array_to_py_compat_str
-
 from currency cimport Currency
 
 cdef class USDCurrency(Currency):
