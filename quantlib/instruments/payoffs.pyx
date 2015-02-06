@@ -3,6 +3,9 @@ include '../types.pxi'
 # cython imports
 cimport _option
 cimport _payoffs
+from quantlib.util.compat cimport py_string_from_utf8_array as to_pystr
+
+import six
 
 cdef public enum OptionType:
     Put = _option.Put
@@ -29,7 +32,7 @@ cdef class Payoff:
 
     def __str__(self):
         if self._thisptr is not NULL:
-            return 'Payoff: %s' % self._thisptr.get().name().c_str()
+            return 'Payoff: %s' % to_pystr(self._thisptr.get().name().c_str())
 
     cdef set_payoff(self, shared_ptr[_payoffs.Payoff] payoff):
         if self._thisptr != NULL:
@@ -66,8 +69,9 @@ cdef class PlainVanillaPayoff(Payoff):
 
     def __init__(self, option_type, double strike, from_qlpayoff=False):
 
-        if isinstance(option_type, basestring):
+        if isinstance(option_type, six.string_types):
             option_type = str_to_option_type(option_type)
+
         if not from_qlpayoff:
             self._thisptr = new shared_ptr[_payoffs.Payoff]( \
                 new _payoffs.PlainVanillaPayoff(
@@ -81,8 +85,9 @@ cdef class PlainVanillaPayoff(Payoff):
             pass
 
     def __str__(self):
+
         return 'Payoff: %s %s @ %f' % (
-            _get_payoff(self).name().c_str(),
+            to_pystr(_get_payoff(self).name().c_str()),
             PAYOFF_TO_STR[_get_payoff(self).optionType()],
             _get_payoff(self).strike()
         )

@@ -2,10 +2,10 @@ include '../../types.pxi'
 
 from libcpp cimport bool
 from libcpp.string cimport string
-from cpython.string cimport PyString_AsString
 
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
+from quantlib.util.compat cimport utf8_array_from_py_string
 
 cimport quantlib.processes._heston_process as _hp
 from quantlib.processes.heston_process cimport HestonProcess
@@ -36,8 +36,8 @@ cdef class MCVanillaEngine(PricingEngine):
             )
 
         # convert the Python str to C++ string
-        cdef string traits_string = string(PyString_AsString(trait))
-        cdef string generator_string = string(PyString_AsString(generator))
+        cdef string traits_string = utf8_array_from_py_string(trait)
+        cdef string generator_string = utf8_array_from_py_string(generator)
 
         cdef shared_ptr[_pe.PricingEngine] engine = _mc_ve.mc_vanilla_engine_factory(
           traits_string,

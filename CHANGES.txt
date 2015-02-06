@@ -4,9 +4,10 @@ PyQL CHANGELOG
 Pre 0.2
 -------
 
- * Drop support of Python 2.6
  * Builds are finally usable on Windows 32 and 64 bit (two tests are failing due
    to numerical issues but the Singleton problem is fixed)
+ * Python 3 support added (credits to Ed Schofield)
+ * Drop support of Python 2.6
 
 Release 0.1
 -----------

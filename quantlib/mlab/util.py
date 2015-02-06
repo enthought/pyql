@@ -27,7 +27,7 @@ def common_shape(args):
     for a, value in args.items():
 
         if isinstance(value, Number) or \
-           isinstance(value, basestring) or \
+           isinstance(value, str) or \
            isinstance(value, date):
             res[a] = ('scalar', None)
         else:

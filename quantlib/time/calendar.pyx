@@ -7,14 +7,19 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+# Cython standard cimports
 from cython.operator cimport dereference as deref, preincrement as inc
 from libcpp cimport bool
 from libcpp.vector cimport vector
 
+# Cython QuantLib header cimports
 cimport quantlib.time._calendar as _calendar
 cimport quantlib.time._date as _date
 cimport quantlib.time.date as date
 cimport quantlib.time._period as _period
+
+# PyQL cimports
+from quantlib.util.compat cimport py_string_from_utf8_array
 
 # BusinessDayConvention:
 cdef public enum BusinessDayConvention:
@@ -39,9 +44,10 @@ cdef class Calendar:
             del self._thisptr
             self._thisptr = NULL
 
+
     property name:
         def __get__(self):
-            return self._thisptr.name().c_str()
+            return py_string_from_utf8_array(self._thisptr.name().c_str())
 
     def __str__(self):
         return self.name

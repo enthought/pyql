@@ -10,7 +10,7 @@ class ObjectRegistry(object):
 
     def help(self):
         table = tabulate.tabulate(
-            self._lookup.iteritems(), headers=['Name', self._name.capitalize()]
+            self._lookup.items(), headers=['Name', self._name.capitalize()]
         )
         help_str = "Valid names are:\n\n{0}".format(table)
         return help_str

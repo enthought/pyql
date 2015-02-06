@@ -1,6 +1,4 @@
-import datetime
-import re
-
+# Cython imports
 from cython.operator cimport dereference as deref
 from libcpp.string cimport string
 
@@ -17,6 +15,12 @@ from _period cimport (
     Period as QlPeriod, mult_op, sub_op, eq_op, neq_op,
     g_op, geq_op, l_op, leq_op
     )
+
+# Python imports
+import datetime
+import re
+
+import six
 
 cdef public enum Month:
     January   = _date.January
@@ -90,10 +94,10 @@ def frequency_to_str(Frequency f):
     """ Converts a PyQL Frequency to a human readable string. """
     return _FREQ_DICT[f]
 
-def code_to_frequency(char* name):
+def code_to_frequency(str name):
     return _STR_FREQ_DICT[_FREQ_TO_FREQUENCIES[name]]
 
-def str_to_frequency(char* name):
+def str_to_frequency(str name):
     """ Converts a string to a PyQL Frequency. """
     return _STR_FREQ_DICT[name]
 
@@ -121,7 +125,7 @@ cdef class Period:
     def __cinit__(self, *args):
         if len(args) == 1:
             tenor = args[0]
-            if(isinstance(tenor, str)):
+            if(isinstance(tenor, six.string_types)):
                 try:
                     t, u = parse(tenor)
                 except:
@@ -130,7 +134,7 @@ cdef class Period:
                 self._thisptr = \
                 new shared_ptr[QlPeriod](new QlPeriod(<Integer> int(t),
                                          <_period.TimeUnit> _TU_DICT[u]))
-            else:    
+            else:
                 self._thisptr = \
                 new shared_ptr[QlPeriod](new QlPeriod(<_period.Frequency>args[0]))
         elif len(args) == 2:
@@ -216,13 +220,16 @@ cdef class Period:
         else:
             return NotImplemented
 
+    def __itruediv__(self, value):
+        return self._division(value)
+
     def __idiv__(self, value):
-        cdef QlPeriod p1
+        return self._division(value)
+
+    cdef _division(self, object value):
 
         if isinstance(self, Period) and isinstance(value, int):
-
-            p1 = self._thisptr.get().i_div( <int> value)
-
+            self._thisptr.get().i_div( <int> value)
             return self
         else:
             return NotImplemented

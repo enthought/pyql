@@ -1,5 +1,6 @@
 """ Simple example pricing a European option 
 using a Black&Scholes Merton process."""
+from __future__ import print_function
 
 from quantlib.instruments.api import (EuropeanExercise, PlainVanillaPayoff, Put,
                                       VanillaOption)

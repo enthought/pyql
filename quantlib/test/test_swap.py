@@ -37,7 +37,7 @@ class TestQuantLibSwap(unittest.TestCase):
         calendar = TARGET()
         settlement_days = 2
 
-        eval_date = Date(02, January, 2014)
+        eval_date = Date(2, January, 2014)
         settings = Settings()
         settings.evaluation_date = eval_date
 
@@ -82,11 +82,8 @@ class TestQuantLibSwap(unittest.TestCase):
         swap.set_pricing_engine(engine)
 
         l = swap.leg(0)
-        print l.to_str()
-        print 'Start date of swap ', swap.start_date
         l = swap.leg(1)
-        print l.to_str()
-
+        
         f = swap.fair_rate
         print('fair rate: %f' % f)
         p = swap.net_present_value
@@ -108,7 +105,7 @@ class TestQuantLibSwap(unittest.TestCase):
         Create from market
         """
 
-        eval_date = Date(02, January, 2014)
+        eval_date = Date(2, January, 2014)
         settings = Settings()
         settings.evaluation_date = eval_date
 
@@ -147,10 +144,8 @@ class TestQuantLibSwap(unittest.TestCase):
                                          floating_spread)
 
         fixed_l = swap.leg(0)
-        print fixed_l.to_str()
 
         float_l = swap.leg(1)
-        print float_l.to_str()
 
         f = swap.fair_rate
         print('fair rate: %f' % f)

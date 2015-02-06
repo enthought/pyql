@@ -5,10 +5,9 @@ This library is a new set of wrappers using Cython on top of QuantLib.
 It currently focuses on useful simple objects like Date, Calendar but
 might be extended to more complex wrappers if needed.
 
-This is still considered as alpha version even if it works quite well.
+This work is based on QuantLib version 1.1 and 1.2
 
-As PyQL is already used by other projects, we are still looking for a good
-name. Suggestions are welcome!
+It offers support for Python 2 and 3.
 
 Prerequisites
 -------------
