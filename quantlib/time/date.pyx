@@ -1,6 +1,4 @@
-import datetime
-import re
-
+# Cython imports
 from cython.operator cimport dereference as deref
 from libcpp.string cimport string
 
@@ -17,6 +15,12 @@ from _period cimport (
     Period as QlPeriod, mult_op, sub_op, eq_op, neq_op,
     g_op, geq_op, l_op, leq_op
     )
+
+# Python imports
+import datetime
+import re
+
+import six
 
 cdef public enum Month:
     January   = _date.January
@@ -121,7 +125,7 @@ cdef class Period:
     def __cinit__(self, *args):
         if len(args) == 1:
             tenor = args[0]
-            if(isinstance(tenor, str)):
+            if(isinstance(tenor, six.string_types)):
                 try:
                     t, u = parse(tenor)
                 except:
@@ -130,7 +134,7 @@ cdef class Period:
                 self._thisptr = \
                 new shared_ptr[QlPeriod](new QlPeriod(<Integer> int(t),
                                          <_period.TimeUnit> _TU_DICT[u]))
-            else:    
+            else:
                 self._thisptr = \
                 new shared_ptr[QlPeriod](new QlPeriod(<_period.Frequency>args[0]))
         elif len(args) == 2:
@@ -222,7 +226,7 @@ cdef class Period:
     def __idiv__(self, value):
         return self._division(value)
 
-    cdef _division(self, value):
+    cdef _division(self, object value):
 
         if isinstance(self, Period) and isinstance(value, int):
             self._thisptr.get().i_div( <int> value)

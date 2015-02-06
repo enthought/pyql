@@ -16,6 +16,7 @@ from quantlib.handle cimport shared_ptr
 
 cdef class Period:
     cdef shared_ptr[_period.Period]* _thisptr
+    cdef _division(self, object value)
 
 cdef class Date:
     cdef shared_ptr[_date.Date]* _thisptr
