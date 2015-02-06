@@ -5,6 +5,8 @@ cimport _option
 cimport _payoffs
 from quantlib.util.compat cimport utf8_char_array_to_py_compat_str
 
+import six
+
 cdef public enum OptionType:
     Put = _option.Put
     Call = _option.Call
@@ -67,8 +69,9 @@ cdef class PlainVanillaPayoff(Payoff):
 
     def __init__(self, option_type, double strike, from_qlpayoff=False):
 
-        if isinstance(option_type, str):     # Changed from basestring for Py2/3 compatibility
+        if isinstance(option_type, six.string_types):
             option_type = str_to_option_type(option_type)
+
         if not from_qlpayoff:
             self._thisptr = new shared_ptr[_payoffs.Payoff]( \
                 new _payoffs.PlainVanillaPayoff(
@@ -82,6 +85,7 @@ cdef class PlainVanillaPayoff(Payoff):
             pass
 
     def __str__(self):
+
         return 'Payoff: %s %s @ %f' % (
             utf8_char_array_to_py_compat_str(_get_payoff(self).name().c_str()),
             PAYOFF_TO_STR[_get_payoff(self).optionType()],

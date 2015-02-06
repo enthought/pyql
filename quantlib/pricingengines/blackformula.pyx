@@ -2,15 +2,18 @@ include '../types.pxi'
 
 cimport _blackformula as _bf
 cimport quantlib.instruments._option as _opt
-from quantlib.instruments.payoffs import Call, Put
-from math import sqrt, log
 
 from quantlib.instruments._payoffs cimport OptionType
 
+from math import sqrt, log
+import six
+
+from quantlib.instruments.payoffs import Call, Put
+
 STR_TO_OPTION_TYPE = {'C': Call, 'P':Put}
 
-def blackFormula(option_type, Real strike,
-                      Real forward, Real stdDev, Real discount=1.0, Real displacement=0.0):
+def blackFormula(option_type, Real strike, Real forward, Real stdDev,
+                 Real discount=1.0, Real displacement=0.0):
     """ Black 1976 formula
 
     Parameters
@@ -34,7 +37,7 @@ def blackFormula(option_type, Real strike,
 
     """
 
-    if isinstance(option_type, str):
+    if isinstance(option_type, six.string_types):
         if option_type.upper() not in STR_TO_OPTION_TYPE:
             raise ValueError(
                 'Option type must be one of {0}'.format(

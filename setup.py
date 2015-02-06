@@ -240,6 +240,6 @@ setup(
     packages = find_packages(),
     ext_modules = collect_extensions(),
     cmdclass = {'build_ext': build_ext},
-    install_requires = ['distribute', 'tabulate', 'pandas'],
+    install_requires = ['distribute', 'tabulate', 'pandas', 'six'],
     zip_safe = False
 )
