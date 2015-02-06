@@ -225,7 +225,7 @@ def collect_extensions():
     if not HAS_NUMPY:
         # remove the multipath extension from the list
         manual_extensions = manual_extensions[1:]
-        print('Numpy is not available, mulitpath extension not compiled')
+        print('Numpy is not available, multipath extension not compiled')
 
 
     extensions = collected_extensions + manual_extensions
