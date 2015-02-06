@@ -3,7 +3,6 @@
 """
 
 cimport _currency as _cu
-cimport currency
 
 from quantlib.util.compat cimport utf8_char_array_to_py_compat_str
 
