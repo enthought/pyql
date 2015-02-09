@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Reference &mdash; Quantlib cython wrapper 0.1.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Quantlib cython wrapper 0.1.1 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">Quantlib cython wrapper 0.1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="reference">
+<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h1>
+<p>The mlab module provides high-level functions suitable for easily performing common quantitative finance calculations. These functions use as input standardized data structures that are provided to limit the amount of data transformation needed to string functions together.</p>
+<p>The mlab functions often use pandas data frames as inputs. In order to encourage inter-operability between functions, we have defined a number of standard data structures. The column names of these data frames are defined in the &#8216;&#8217;names&#8217;&#8217; module. The standardized data structures should be created with the functions provided in the &#8216;&#8217;data_structures&#8217;&#8217; module.</p>
+<div class="section" id="names">
+<h2>Names<a class="headerlink" href="#names" title="Permalink to this headline">¶</a></h2>
+<p>The column names of all datasets are defined in names.py. A column name should always be referenced by the corresponding variable name,
+and not by a character string. For example, refer to the &#8216;Strike&#8217; column of an option_quotes data
+set by:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">quantlib.reference.names</span> <span class="kn">as</span> <span class="nn">nm</span>
+<span class="n">strike</span> <span class="o">=</span> <span class="n">option_quotes</span><span class="p">[</span><span class="n">nm</span><span class="o">.</span><span class="n">STRIKE</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>rather than:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">strike</span> <span class="o">=</span> <span class="n">option_quotes</span><span class="p">[</span><span class="s">&#39;Strike&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-structures-templates">
+<h2>Data Structures Templates<a class="headerlink" href="#data-structures-templates" title="Permalink to this headline">¶</a></h2>
+<p>These data structures are defined to facilitate the inter-operability of the high level functions found in the &#8216;mlab&#8217; module.</p>
+<p><strong>Option Quotes</strong></p>
+<p>This data structure contains the necessary data for calibrating a stochastic model for the underlying asset, also known as volatility model.</p>
+<p>An option quotes data structure with 10 rows is created with the statements:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">quantlib.reference.data_structures</span> <span class="kn">as</span> <span class="nn">ds</span>
+<span class="n">option_quotes</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">option_quotes_template</span><span class="p">()</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Risk-free Rate and Dividends</strong></p>
+<p>When calibrating a volatility model, the default algorithm is to compute the implied term structure of risk-free rate and dividend yield from the option data, using the call-put parity relationship. The result of this calculation is the &#8216;riskfree_dividend&#8217; data structure.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Reference</a><ul>
+<li><a class="reference internal" href="#names">Names</a></li>
+<li><a class="reference internal" href="#data-structures-templates">Data Structures Templates</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/reference.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">Quantlib cython wrapper 0.1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Didrik Pinte, Patrick Henaff.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
