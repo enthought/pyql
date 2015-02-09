@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -15,7 +13,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '0.1.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -61,44 +59,243 @@
 <p>Why building a new set of QuantLib wrappers for Python ?</p>
 <p>The SWIG wrappers provide a very good coverage of the library but have
 a number of pain points:</p>
-<blockquote>
-<div><ul class="simple">
-<li>few Pythonic optimisation in the syntax: the code a user must writeon the Python side looks like the C++ version</li>
-<li>no docstring or function signature available on the Python side</li>
-<li>complex debugging and complex customization of the wrappers</li>
-<li>monolithic build process</li>
-<li>complete loss of the C++ code organisation with a flat namespace in Python</li>
-<li>SWIG typemaps development is not that fun</li>
+<ul class="simple">
+<li>Few Pythonic optimisations in the syntax: the python code for invoking QuantLib functions looks like the C++ version;</li>
+<li>No docstring or function signature are available on the Python side;</li>
+<li>The debugging is complex, and any customization of the wrapper involves complex programming;</li>
+<li>The build process is monolithic: any change to the wrapper requires the recompilation of the entire project;</li>
+<li>Complete loss of the C++ code organisation with a flat namespace in Python;</li>
+<li>SWIG typemaps development is not that fun.</li>
 </ul>
-</div></blockquote>
-<p>For those reasons and to have the ability to expose some of the
+<p>For those reasons, and to have the ability to expose some of the
 QuantLib internals that could be very useful on the Python side, we
-chosed another road. PyQL is build on top of Cython and creates a thin
+chose another road. PyQL is build on top of Cython and creates a thin
 Pythonic layer on top of QuantLib. It allows a tight control on the
 wrapping and provides higher level Python integration.</p>
 <div class="section" id="features">
 <h3>Features:<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li>Integration with standard datatypes (like datetime objects) and numpy arrays</li>
-<li>Simplifed API on the Python side (e.g. usage of Handles completely hidden from the user)</li>
-<li>Support full docstring and expose detailed function signatures to Python</li>
-<li>Code organised in subpackages to provide a decent namespace, very close to the C++ code organisation</li>
-<li>Easy extendibility thanks to Cython and shorter build time when adding new functionnalities</li>
-<li>Sphinx documentation</li>
+<ul class="simple">
+<li>Integration with standard datatypes (like datetime objects) and numpy arrays;</li>
+<li>Simplifed API on the Python side (e.g. usage of Handles completely hidden from the user);</li>
+<li>Support full docstring and expose detailed function signatures to Python;</li>
+<li>Code organised in subpackages to provide a clean namespace, very close to the C++ code organisation;</li>
+<li>Easy extendibility thanks to Cython and shorter build time when adding new functionalities;</li>
+<li>Sphinx documentation.</li>
 </ul>
-</div></blockquote>
 </div>
 </div>
 <div class="section" id="building-and-installing-pyql">
 <h2>Building and installing PyQL<a class="headerlink" href="#building-and-installing-pyql" title="Permalink to this headline">¶</a></h2>
-<p>PyQL must be installed on a system that has access to a build of QuantLib. It
-requires patched version of Cython 0.15 (major patch) or 0.16 (minor patch).
-You can find them both in the PyQL root directory.</p>
-<p>Once Cython is patched, enter the pyql root directory. Open the setup.py file
+<p>Prerequisites:</p>
+<ul class="simple">
+<li>Boost (version 1.55 or higher)</li>
+<li><a class="reference external" href="http://www.quantlib.org">QuantLib</a> (version 1.4 or higher)</li>
+<li><a class="reference external" href="http://www.cython.org">Cython</a> (version 0.19 or higher)</li>
+</ul>
+<p>Once the dependencies have been installed, enter the pyql root directory. Open the setup.py file
 and configure the Boost and QuantLib include and library directories, then run</p>
-<div class="highlight-python"><pre>python setup.py build</pre>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py build
+</pre></div>
 </div>
+</div>
+<div class="section" id="installation-from-source">
+<h2>Installation from source<a class="headerlink" href="#installation-from-source" title="Permalink to this headline">¶</a></h2>
+<p>The following instructions explain how to build the project from source, on a Linux system.
+The instructions have been tested on Ubuntu 12.04 LTS.</p>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li>python 2.7</li>
+<li>C++ development environment</li>
+<li>pandas 0.9</li>
+</ul>
+<ol class="arabic">
+<li><p class="first">Install Boost (taken from a nice <a class="reference external" href="https://coderwall.com/p/0atfug">post</a> by S. Zebardast)</p>
+<ol class="loweralpha">
+<li><p class="first">Download the Boost source package</p>
+<div class="highlight-bash"><div class="highlight"><pre>wget -O boost_1_55_0.tar.gz <span class="se">\</span>
+http://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.tar.gz/download
+tar xzvf boost_1_55_0.tar.gz
+</pre></div>
+</div>
+</li>
+<li><p class="first">Make sure you have the required libraries</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get update
+sudo apt-get install build-essential g++ python-dev autotools-dev libicu-dev libbz2-dev
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<div><ol class="loweralpha" start="3">
+<li><p class="first">Build and install</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd </span>boost_1_55_0
+sudo ./bootstrap.sh --prefix<span class="o">=</span>/usr/local
+sudo ./b2 install
+</pre></div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div><p>If /usr/local/lib is not in your path:</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo sh -c <span class="s1">&#39;echo &quot;/usr/local/lib&quot; &gt;&gt; /etc/ld.so.conf.d/local.conf&#39;</span>
+</pre></div>
+</div>
+<p>and finally:</p>
+<div class="highlight-bash"><div class="highlight"><pre>sudo ldconfig
+</pre></div>
+</div>
+</div></blockquote>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p class="first">Install Quantlib</p>
+<ol class="loweralpha">
+<li><p class="first">Download Quantlib 1.4 from Quantlib.org and copy to /opt</p>
+<div class="highlight-bash"><div class="highlight"><pre>wget -O QuantLib-1.4.tar.gz  <span class="se">\</span>
+http://sourceforge.net/projects/quantlib/files/QuantLib/1.4/QuantLib-1.4.tar.gz/download
+sudo cp QuantLib-1.4.tar.gz /opt
+</pre></div>
+</div>
+</li>
+<li><p class="first">Extract the Quantlib folder</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> /opt
+sudo tar xzvf QuantLib-1.4.tar.gz
+</pre></div>
+</div>
+</li>
+<li><p class="first">Configure QuantLib</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd </span>QuantLib-1.4
+./configure --disable-static <span class="nv">CXXFLAGS</span><span class="o">=</span>-O2 --with-boost-include<span class="o">=</span>/usr/local/include --with-boost-lib<span class="o">=</span>/usr/local/lib
+</pre></div>
+</div>
+</li>
+<li><p class="first">Make and install</p>
+<div class="highlight-bash"><div class="highlight"><pre>make
+sudo make install
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p class="first">Install Cython. While you can install Cython from source, we strongly recommend to install Cython via <a class="reference external" href="https://pypi.python.org/pypi/pip">pip</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install cython
+</pre></div>
+</div>
+<p>If you do not have the required permissions to install Python packages in the system path, you can install Cython in your local user account via:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install --user cython
+</pre></div>
+</div>
+</li>
+<li><p class="first">Download pyql (<a class="reference external" href="https://github.com/enthought/pyql">https://github.com/enthought/pyql</a>), then extract, build and test:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> ~/dev/pyql
+<span class="nv">$ </span>make build
+<span class="nv">$ </span>make tests
+</pre></div>
+</div>
+</li>
+</ol>
+<p>If you have installed QuantLib in a directory different from <tt class="code docutils literal"><span class="pre">/opt</span></tt>, edit the <cite>setup.py</cite> file before running make and update the <tt class="code docutils literal"><span class="pre">INCLUDE_DIRS</span></tt> and <tt class="code docutils literal"><span class="pre">LIBRARY_DIRS</span></tt> to point to your installation of QuantLib.</p>
+</div>
+<div class="section" id="installation-from-source-on-windows">
+<h2>Installation from source on Windows<a class="headerlink" href="#installation-from-source-on-windows" title="Permalink to this headline">¶</a></h2>
+<p>The following instructions explain how to build the project from source, on a
+Windows system.
+The instructions have been tested on Windows 7 32bit with Visual Studio 2008.</p>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li>python 2.7 (e.g. Canopy with Cython 0.20 or above)</li>
+<li>pandas 0.9</li>
+</ul>
+<ol class="arabic">
+<li><p class="first">Install Quantlib</p>
+<p>a. Install the latest version of Boost from sourceforge. You can get the
+binaries of 1.55 for windows 32 or 64bit depending on your target.</p>
+<ol class="loweralpha simple" start="2">
+<li>Download Quantlib 1.4 from Quantlib.org and unzip locally</li>
+<li>Extract the Quantlib folder</li>
+<li>Open the QuantLib_vc9 solution with Visual Studio</li>
+<li>Patch ql/settings.py</li>
+</ol>
+<blockquote>
+<div><p>In the ql/settings.py file, update the Settings class defintion as
+following (line 37):</p>
+<div class="highlight-python"><div class="highlight"><pre>class __declspec(dllexport) Settings : public Singleton&lt;Settings&gt; {
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="loweralpha simple" start="6">
+<li>In the QuantLib project properties</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Change &#8220;General&#8221; -&gt; &#8220;Configuration type&#8221; to &#8220;Dynamic Library (DLL)&#8221;</li>
+<li>Apply</li>
+<li>Add the Boost include directory to &#8220;C/C++&#8221; -&gt; &#8220;Additional Include Directories&#8221;</li>
+<li>Apply</li>
+</ul>
+<p>Do a first build to get all the object files generated</p>
+</div></blockquote>
+<ol class="loweralpha simple" start="7">
+<li>Generate the def file:</li>
+</ol>
+<blockquote>
+<div><p>In your PyQL clone, got the scripts directory, and edit the main function.
+Set <cite>input_directory</cite> to the Release directory where your object files are
+and change the <cite>output_file</cite> if appropriate (symbol_win32.def is the
+default) ! The def file is platform specific (you can&#8217;t reuse a 32bit def
+file for a 64bit linker).</p>
+<p>This will generate a def file of about 44 Mb with all the needed symbols for
+PyQL compilation.</p>
+</div></blockquote>
+<ol class="loweralpha simple" start="8">
+<li>Build the dll with the new def file</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Change &#8220;Linker&#8221; -&gt; &#8220;Input&#8221; -&gt; &#8220;Module definition file&#8221; to point to
+def file you just generated.</li>
+</ul>
+<blockquote>
+<div><p>Apply the changes and build the project</p>
+</div></blockquote>
+</div></blockquote>
+<ol class="lowerroman simple">
+<li>Copy the QuantLib.dll to a directory which is on the PATH (or just the
+PyQL directory if you&#8217;re in development mode)</li>
+</ol>
+</li>
+<li><p class="first">Install Cython. While you can install Cython from source, we strongly
+recommend to install Cython via the Canopy Package Manager, another Python
+distribution or via <a class="reference external" href="https://pypi.python.org/pypi/pip">pip</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install cython
+</pre></div>
+</div>
+<p>If you do not have the required permissions to install Python packages in the system path, you can install Cython in your local user account via:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install --user cython
+</pre></div>
+</div>
+</li>
+<li><p class="first">Build and test pyql</p>
+<blockquote>
+<div><p>Edit the setup.py to make sure the INCLUDE_DIRS and LIBRARY_DIRS point to
+the correct directories.</p>
+</div></blockquote>
+<div class="highlight-bash"><div class="highlight"><pre>PS C:<span class="se">\d</span>ev<span class="se">\p</span>yql&gt; python setup.py build
+PS C:<span class="se">\d</span>ev<span class="se">\p</span>yql&gt; python setup.py install
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Development mode</p>
+<p>If you want to build the library in place and test things, you can do:</p>
+<div class="last highlight-bash"><div class="highlight"><pre>PS C:<span class="se">\d</span>ev<span class="se">\p</span>yql&gt; python setup.py build_ext --inplace
+PS C:<span class="se">\d</span>ev<span class="se">\p</span>yql&gt; python -m unittest discover -v
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 
@@ -116,6 +313,8 @@ and configure the Boost and QuantLib include and library directories, then run</
 </ul>
 </li>
 <li><a class="reference internal" href="#building-and-installing-pyql">Building and installing PyQL</a></li>
+<li><a class="reference internal" href="#installation-from-source">Installation from source</a></li>
+<li><a class="reference internal" href="#installation-from-source-on-windows">Installation from source on Windows</a></li>
 </ul>
 </li>
 </ul>
@@ -168,7 +367,7 @@ and configure the Boost and QuantLib include and library directories, then run</
     </div>
     <div class="footer">
         &copy; Copyright 2011, Didrik Pinte, Patrick Henaff.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

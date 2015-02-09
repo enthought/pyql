@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -15,7 +13,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '0.1.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -212,11 +210,12 @@ the initial/final dates.</li>
 </pre></div>
 </div>
 <p>and the output will give</p>
-<div class="highlight-python"><pre>Date 2       Adv: 30/12/2009
+<div class="highlight-python"><div class="highlight"><pre>Date 2       Adv: 30/12/2009
 Date 2       Adv:  4/01/2010
 Date 1 Month Adv:  4/01/2010
 Date 1 Month Adv: 30/12/2009
-Business Days Between: 41</pre>
+Business Days Between: 41
+</pre></div>
 </div>
 </div>
 <div class="section" id="day-counters">
@@ -311,6 +310,83 @@ reference date.</li>
 100000 loops, best of 3: 2.17 us per loop</p>
 </div>
 </div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<p>The mlab module provides high-level functions suitable for easily performing common quantitative finance calculations. These functions use as input standardized data structures that are provided to limit the amount of data transformation needed to string functions together.</p>
+<p>The mlab functions often use pandas data frames as inputs. In order to encourage inter-operability between functions, we have defined a number of standard data structures. The column names of these data frames are defined in the &#8216;&#8217;names&#8217;&#8217; module. The standardized data structures should be created with the functions provided in the &#8216;&#8217;data_structures&#8217;&#8217; module.</p>
+<div class="section" id="names">
+<h3>Names<a class="headerlink" href="#names" title="Permalink to this headline">¶</a></h3>
+<p>The column names of all datasets are defined in names.py. A column name should always be referenced by the corresponding variable name,
+and not by a character string. For example, refer to the &#8216;Strike&#8217; column of an option_quotes data
+set by:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">quantlib.reference.names</span> <span class="kn">as</span> <span class="nn">nm</span>
+<span class="n">strike</span> <span class="o">=</span> <span class="n">option_quotes</span><span class="p">[</span><span class="n">nm</span><span class="o">.</span><span class="n">STRIKE</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>rather than:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">strike</span> <span class="o">=</span> <span class="n">option_quotes</span><span class="p">[</span><span class="s">&#39;Strike&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-structures-templates">
+<h3>Data Structures Templates<a class="headerlink" href="#data-structures-templates" title="Permalink to this headline">¶</a></h3>
+<p>These data structures are defined to facilitate the inter-operability of the high level functions found in the &#8216;mlab&#8217; module.</p>
+<p><strong>Option Quotes</strong></p>
+<p>This data structure contains the necessary data for calibrating a stochastic model for the underlying asset, also known as volatility model.</p>
+<p>An option quotes data structure with 10 rows is created with the statements:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">quantlib.reference.data_structures</span> <span class="kn">as</span> <span class="nn">ds</span>
+<span class="n">option_quotes</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">option_quotes_template</span><span class="p">()</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Risk-free Rate and Dividends</strong></p>
+<p>When calibrating a volatility model, the default algorithm is to compute the implied term structure of risk-free rate and dividend yield from the option data, using the call-put parity relationship. The result of this calculation is the &#8216;riskfree_dividend&#8217; data structure.</p>
+</div>
+</div>
+<div class="section" id="mlab">
+<h2>Mlab<a class="headerlink" href="#mlab" title="Permalink to this headline">¶</a></h2>
+<p>The mlab module provides high-level functions suitable for easily performing common
+quantitative finance calculations. These functions use as input standardized data structures
+that are provided to limit the amount of data
+transformation needed to string functions together.</p>
+<div class="section" id="standardized-data-structures">
+<h3>Standardized data structures<a class="headerlink" href="#standardized-data-structures" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="curve-building">
+<h3>Curve building<a class="headerlink" href="#curve-building" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="asset-pricing">
+<h3>Asset pricing<a class="headerlink" href="#asset-pricing" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="notebooks">
+<h2>Notebooks<a class="headerlink" href="#notebooks" title="Permalink to this headline">¶</a></h2>
+<p>The notebooks and scripts folder provide sample calculations performed with
+QuantLib.</p>
+<div class="section" id="getting-started">
+<h3>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h3>
+<p>In order to use the notebokks, you need to install:</p>
+<ul class="simple">
+<li>Ipython 0.13</li>
+<li>pylab</li>
+<li>matplotlib</li>
+</ul>
+<p>Make sure that pyQL is in the PYTHONPATH.
+You can access the notebooks with the command:</p>
+<div class="highlight-bash"><div class="highlight"><pre>ipython notebook --pylab inline &lt;path to the notebooks folder&gt; --browser<span class="o">=</span>&lt;browser name&gt;
+</pre></div>
+</div>
+<p>For example, on a linux system where the pyql project is located in ~/dev, the command to view the notebooks with the Firefox browser would be:</p>
+<div class="highlight-bash"><div class="highlight"><pre>ipython notebook --pylab inline ~/dev/pyql/examples/notebooks  --browser<span class="o">=</span>firefox
+</pre></div>
+</div>
+<p>The browser will start and display a menu with several notebooks.
+As of October 2012, you should see 8 notebooks, as shown below:</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/notebook-browser.png"><img alt="_images/notebook-browser.png" src="_images/notebook-browser.png" style="width: 701.4px; height: 414.4px;" /></a>
+<p class="caption">Notebook menu in the Firefox browser.</p>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -328,6 +404,21 @@ reference date.</li>
 <li><a class="reference internal" href="#day-counters">Day counters</a></li>
 <li><a class="reference internal" href="#date-generation">Date generation</a></li>
 <li><a class="reference internal" href="#performance-considerations">Performance considerations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reference">Reference</a><ul>
+<li><a class="reference internal" href="#names">Names</a></li>
+<li><a class="reference internal" href="#data-structures-templates">Data Structures Templates</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mlab">Mlab</a><ul>
+<li><a class="reference internal" href="#standardized-data-structures">Standardized data structures</a></li>
+<li><a class="reference internal" href="#curve-building">Curve building</a></li>
+<li><a class="reference internal" href="#asset-pricing">Asset pricing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#notebooks">Notebooks</a><ul>
+<li><a class="reference internal" href="#getting-started">Getting started</a></li>
 </ul>
 </li>
 </ul>
@@ -382,7 +473,7 @@ reference date.</li>
     </div>
     <div class="footer">
         &copy; Copyright 2011, Didrik Pinte, Patrick Henaff.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

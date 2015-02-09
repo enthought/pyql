@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -15,7 +13,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '0.1.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -64,21 +62,6 @@ functions. Most of the complex structures related to proper memory management
 are completely hidden being the Python layers (for example boost::shared_ptr and Handle).</p>
 <div class="section" id="quantlib">
 <h3>quantlib<a class="headerlink" href="#quantlib" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="quantlib.currency.Currency">
-<em class="property">class </em><tt class="descclassname">quantlib.currency.</tt><tt class="descname">Currency</tt><a class="headerlink" href="#quantlib.currency.Currency" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="quantlib.currency.USDCurrency">
-<em class="property">class </em><tt class="descclassname">quantlib.currency.</tt><tt class="descname">USDCurrency</tt><a class="headerlink" href="#quantlib.currency.USDCurrency" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="quantlib.currency.EURCurrency">
-<em class="property">class </em><tt class="descclassname">quantlib.currency.</tt><tt class="descname">EURCurrency</tt><a class="headerlink" href="#quantlib.currency.EURCurrency" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="class">
 <dt id="quantlib.settings.Settings">
 <em class="property">class </em><tt class="descclassname">quantlib.settings.</tt><tt class="descname">Settings</tt><a class="headerlink" href="#quantlib.settings.Settings" title="Permalink to this definition">¶</a></dt>
@@ -129,7 +112,13 @@ are completely hidden being the Python layers (for example boost::shared_ptr and
 <dl class="class">
 <dt id="quantlib.indexes.ibor_index.IborIndex">
 <em class="property">class </em><tt class="descclassname">quantlib.indexes.ibor_index.</tt><tt class="descname">IborIndex</tt><a class="headerlink" href="#quantlib.indexes.ibor_index.IborIndex" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="staticmethod">
+<dt id="quantlib.indexes.ibor_index.IborIndex.from_name">
+<em class="property">static </em><tt class="descname">from_name</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.indexes.ibor_index.IborIndex.from_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create default IBOR for the market, modify attributes if provided</p>
+</dd></dl>
+
+</dd></dl>
 
 <dl class="class">
 <dt id="quantlib.indexes.euribor.Euribor">
@@ -159,9 +148,24 @@ LIBOR fixed by BBA.</p>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="quantlib.instruments.bonds.Bond.cashflows">
+<tt class="descname">cashflows</tt><a class="headerlink" href="#quantlib.instruments.bonds.Bond.cashflows" title="Permalink to this definition">¶</a></dt>
+<dd><p>cash flow stream as a Leg</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="quantlib.instruments.bonds.Bond.clean_price">
 <tt class="descname">clean_price</tt><a class="headerlink" href="#quantlib.instruments.bonds.Bond.clean_price" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bond clena price.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="quantlib.instruments.bonds.Bond.clean_yield">
+<tt class="descname">clean_yield</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.instruments.bonds.Bond.clean_yield" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the yield given a (clean) price and settlement date</p>
+<p>The default bond settlement is used if no date is given.</p>
+<p>This method is the original Bond.yield method in C++.
+Python does not allow us to use the yield statement as a method name.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -180,18 +184,6 @@ LIBOR fixed by BBA.</p>
 <dt id="quantlib.instruments.bonds.Bond.maturity_date">
 <tt class="descname">maturity_date</tt><a class="headerlink" href="#quantlib.instruments.bonds.Bond.maturity_date" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bond maturity date.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="quantlib.instruments.bonds.Bond.net_present_value">
-<tt class="descname">net_present_value</tt><a class="headerlink" href="#quantlib.instruments.bonds.Bond.net_present_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bond net present value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quantlib.instruments.bonds.Bond.set_pricing_engine">
-<tt class="descname">set_pricing_engine</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.instruments.bonds.Bond.set_pricing_engine" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the pricing engine.</p>
 </dd></dl>
 
 <dl class="method">
@@ -244,19 +236,7 @@ LIBOR fixed by BBA.</p>
 <dl class="class">
 <dt id="quantlib.instruments.option.VanillaOption">
 <em class="property">class </em><tt class="descclassname">quantlib.instruments.option.</tt><tt class="descname">VanillaOption</tt><a class="headerlink" href="#quantlib.instruments.option.VanillaOption" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="quantlib.instruments.option.VanillaOption.net_present_value">
-<tt class="descname">net_present_value</tt><a class="headerlink" href="#quantlib.instruments.option.VanillaOption.net_present_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Option net present value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="quantlib.instruments.option.VanillaOption.set_pricing_engine">
-<tt class="descname">set_pricing_engine</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.instruments.option.VanillaOption.set_pricing_engine" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the pricing engine for the option.</p>
-</dd></dl>
-
-</dd></dl>
+<dd></dd></dl>
 
 </div>
 <div class="section" id="quantlib-math">
@@ -312,46 +292,6 @@ LIBOR fixed by BBA.</p>
 </div>
 <div class="section" id="module-quantlib.pricingengines.blackformula">
 <span id="quantlib-pricingengines"></span><h3>quantlib.pricingengines<a class="headerlink" href="#module-quantlib.pricingengines.blackformula" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="quantlib.pricingengines.vanilla.VanillaOptionEngine">
-<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">VanillaOptionEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.VanillaOptionEngine" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="quantlib.pricingengines.vanilla.AnalyticEuropeanEngine">
-<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">AnalyticEuropeanEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.AnalyticEuropeanEngine" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="quantlib.pricingengines.vanilla.AnalyticHestonEngine">
-<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">AnalyticHestonEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.AnalyticHestonEngine" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="quantlib.pricingengines.vanilla.BaroneAdesiWhaleyApproximationEngine">
-<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">BaroneAdesiWhaleyApproximationEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.BaroneAdesiWhaleyApproximationEngine" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="quantlib.pricingengines.vanilla.BatesEngine">
-<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">BatesEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.BatesEngine" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="quantlib.pricingengines.vanilla.BatesDetJumpEngine">
-<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">BatesDetJumpEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.BatesDetJumpEngine" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="quantlib.pricingengines.vanilla.BatesDoubleExpEngine">
-<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">BatesDoubleExpEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.BatesDoubleExpEngine" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="quantlib.pricingengines.vanilla.BatesDoubleExpDetJumpEngine">
-<em class="property">class </em><tt class="descclassname">quantlib.pricingengines.vanilla.</tt><tt class="descname">BatesDoubleExpDetJumpEngine</tt><a class="headerlink" href="#quantlib.pricingengines.vanilla.BatesDoubleExpDetJumpEngine" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </div>
 <div class="section" id="quantlib-processes">
 <h3>quantlib.processes<a class="headerlink" href="#quantlib-processes" title="Permalink to this headline">¶</a></h3>
@@ -373,7 +313,16 @@ LIBOR fixed by BBA.</p>
 <dl class="class">
 <dt id="quantlib.processes.heston_process.HestonProcess">
 <em class="property">class </em><tt class="descclassname">quantlib.processes.heston_process.</tt><tt class="descname">HestonProcess</tt><a class="headerlink" href="#quantlib.processes.heston_process.HestonProcess" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Heston process: a diffusion process with mean-reverting stochastic variance.</p>
+<blockquote>
+<div>dS_t &amp;=&amp; (r-d) S_t dt + sqrt{V_t} S_t dW^s_t dV_t &amp;=&amp; kappa (   heta - V_t) dt +</div></blockquote>
+<p>arepsilon sqrt{V_t} dW^upsilon_t 
+onumber </p>
+<blockquote>
+<div>dW^s_t dW^upsilon_t &amp;=&amp;</div></blockquote>
+<p>ho dt 
+onumber</p>
+</dd></dl>
 
 </div>
 <div class="section" id="quantlib-termstructures">
@@ -391,12 +340,71 @@ LIBOR fixed by BBA.</p>
 <dl class="class">
 <dt id="quantlib.termstructures.yields.api.YieldTermStructure">
 <em class="property">class </em><tt class="descclassname">quantlib.termstructures.yields.api.</tt><tt class="descname">YieldTermStructure</tt><a class="headerlink" href="#quantlib.termstructures.yields.api.YieldTermStructure" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="method">
+<dt id="quantlib.termstructures.yields.api.YieldTermStructure.forward_rate">
+<tt class="descname">forward_rate</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.termstructures.yields.api.YieldTermStructure.forward_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the forward interest rate between two dates or times.</p>
+<p>In the former case, times are calculated as fractions of year from the
+reference date. If both dates (times) are equal the instantaneous
+forward rate is returned.</p>
+<dl class="docutils">
+<dt>d1, d2: :py:class`~quantlib.time.date.Date&#8217;</dt>
+<dd>The start and end dates used to calcule the forward rate.</dd>
+<dt>day_counter: :py:class`~quantlib.time.daycounter.DayCounter&#8217;</dt>
+<dd>The day counter used to compute the time.</dd>
+<dt>compounding: int</dt>
+<dd>The compounding as defined in quantlib.compounding</dd>
+<dt>frequency: int</dt>
+<dd>A frequency as defined in quantlib.time.date</dd>
+<dt>extraplolate: bool, optional</dt>
+<dd>Default to False</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="quantlib.termstructures.yields.api.YieldTermStructure.zero_rate">
+<tt class="descname">zero_rate</tt><big>(</big><big>)</big><a class="headerlink" href="#quantlib.termstructures.yields.api.YieldTermStructure.zero_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the implied zero-yield rate for the given date.</p>
+<p>The time is calculated as a fraction of year from the reference date.</p>
+<dl class="docutils">
+<dt>date: :py:class`~quantlib.time.date.Date&#8217;</dt>
+<dd>The date used to calcule the zero-yield rate.</dd>
+<dt>day_counter: :py:class`~quantlib.time.daycounter.DayCounter&#8217;</dt>
+<dd>The day counter used to compute the time.</dd>
+<dt>compounding: int</dt>
+<dd>The compounding as defined in quantlib.compounding</dd>
+<dt>frequency: int</dt>
+<dd>A frequency as defined in quantlib.time.date</dd>
+<dt>extraplolate: bool, optional</dt>
+<dd>Default to False</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
 
 <dl class="class">
 <dt id="quantlib.termstructures.yields.api.FlatForward">
 <em class="property">class </em><tt class="descclassname">quantlib.termstructures.yields.api.</tt><tt class="descname">FlatForward</tt><a class="headerlink" href="#quantlib.termstructures.yields.api.FlatForward" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Flat intereste-rate curve</p>
+<dl class="docutils">
+<dt>refererence_date: quantlib.time.date.Date or None</dt>
+<dd>Reference date used by the curve. If None, the user must provide the
+settlement days.</dd>
+<dt>forward: quantlib.quote.Quote or float</dt>
+<dd>The forward value used by the curve.</dd>
+<dt>daycounter: quantlib.time.daycounter.DayCounter</dt>
+<dd>The day counter used by the curve.</dd>
+<dt>settlement_days: int</dt>
+<dd>The settlement days used by this curve. If a reference date is given,
+this parameter is not used.</dd>
+<dt>calendar: quantlib.time.calendar.Calendar</dt>
+<dd>The calendar used by the curve if created with the settlement days.</dd>
+<dt>compounding: int (default: Continuous)</dt>
+<dd>The type of compounding used by this curve.</dd>
+<dt>frequency: int (default: Annual)</dt>
+<dd>The frequency used by this curve.</dd>
+</dl>
+</dd></dl>
 
 <dl class="class">
 <dt id="quantlib.termstructures.yields.api.ZeroCurve">
@@ -425,7 +433,7 @@ operators which implement a limited date algebra (increasing and decreasing
 dates, and calculating their difference).</p>
 <dl class="staticmethod">
 <dt>
-<em class="property">static </em><tt class="descclassname">Date.</tt><tt class="descname">from_datetime</tt><big>(</big><big>)</big></dt>
+<em class="property">static </em><tt class="descname">from_datetime</tt><big>(</big><big>)</big></dt>
 <dd><p>Returns the Quantlib Date object from the date/datetime object.</p>
 </dd></dl>
 
@@ -585,19 +593,30 @@ with cython, so that it can be invoked from python.</p>
 the QL class hierarchy. For example, QL provides a class
 named &#8216;&#8217;SimpleQuote&#8217;&#8216;, that represents a simple price measurement.
 The C++ class is defined as follows:</p>
-<div class="highlight-python"><pre>class SimpleQuote : public Quote {
+<div class="highlight-python"><div class="highlight"><pre>class SimpleQuote : public Quote {
   public:
     SimpleQuote(Real value = Null&lt;Real&gt;());
     Real value() const;
     bool isValid() const;
     Real setValue(Real value = Null&lt;Real&gt;());
-};</pre>
+};
+</pre></div>
 </div>
 <p>After wrapping the C++ class, this class is now available in python:</p>
 <blockquote>
 <div>from quantlib.quotes import SimpleQuote
 spot = SimpleQuote(3.14)
 print(&#8216;Spot %f&#8217; % spot.value)</div></blockquote>
+<p>A couple of observations are worth mentioning:</p>
+<ul class="simple">
+<li>pyql preserves the module hierarchy of QuantLib:</li>
+</ul>
+<p>the SimpleQuote class is defined in the quote module in C++.</p>
+<ul class="simple">
+<li>pyql exposes QuantLib in a pythonic fashion: instead of exposing the accessor value(),</li>
+</ul>
+<blockquote>
+<div>pyql implements the property value.</div></blockquote>
 <div class="section" id="the-interface-code">
 <h3>The Interface Code<a class="headerlink" href="#the-interface-code" title="Permalink to this headline">¶</a></h3>
 <p>To expose QL class &#8216;&#8217;foo&#8217;&#8216;, you need to create three files. For the sake of
@@ -621,44 +640,49 @@ standardization, they should be named as follows:</p>
 <p>This file contains the declaration of the
 QL class being exposed. For example, the header file &#8216;&#8217;_quotes.pxd&#8217;&#8217;
 is as follows:</p>
-<div class="highlight-python"><pre># distutils: language = c++
+<div class="highlight-python"><div class="highlight"><pre># distutils: language = c++
 # distutils: libraries = QuantLib
 
-include 'types.pxi'
+include &#39;types.pxi&#39;
 
 from libcpp cimport bool
 
-cdef extern from 'ql/quote.hpp' namespace 'QuantLib':
+cdef extern from &#39;ql/quote.hpp&#39; namespace &#39;QuantLib&#39;:
     cdef cppclass Quote:
         Quote() except +
         Real value() except +
         bool isValid() except +
 
-cdef extern from 'ql/quotes/simplequote.hpp' namespace 'QuantLib':
+cdef extern from &#39;ql/quotes/simplequote.hpp&#39; namespace &#39;QuantLib&#39;:
 
     cdef cppclass SimpleQuote(Quote):
         SimpleQuote(Real value) except +
-        Real setValue(Real value) except +</pre>
+        Real setValue(Real value) except +
+</pre></div>
 </div>
 <p>In this file, we declare the class &#8216;&#8217;SimpleQuote&#8217;&#8217; and its parent &#8216;&#8217;Quote&#8217;&#8216;.
 The syntax is almost identical to the corresponding c++ header file. The
 types used in declaring arguments are defined in &#8216;&#8217;types.pxi&#8217;&#8216;.</p>
 <p>The clause &#8216;except +&#8217; signals that the method may throw an exception. It
-is indispensible to append this clause to every declarion. Without it, an
+is indispensible to append this clause to every declaration. Without it, an
 exception thrown in QL will terminate the python process.</p>
 </div>
 <div class="section" id="declaration-of-the-python-class">
 <h3>Declaration of the python class<a class="headerlink" href="#declaration-of-the-python-class" title="Permalink to this headline">¶</a></h3>
 <p>The second header file declares the python classes that will be wrapping
 the QL classes. The file &#8216;&#8217;quotes.pxd&#8217;&#8217; is reproduced below:</p>
-<div class="highlight-python"><pre>cimport _quote as _qt
+<div class="highlight-python"><div class="highlight"><pre>cimport _quote as _qt
 from quantlib.handle cimport shared_ptr
 
 cdef class Quote:
-    cdef shared_ptr[_qt.Quote]* _thisptr</pre>
+    cdef shared_ptr[_qt.Quote]* _thisptr
+</pre></div>
 </div>
-<p>Notice that in our header files we use &#8216;Quote&#8217; to refer the the C++ class (in file _quote.pxd) and to the python class (in file quote.pxd). To avoid
-confusion we use the following convention:</p>
+<dl class="docutils">
+<dt>Notice that in our header files we use &#8216;Quote&#8217; to refer the the C++ class (in file _quote.pxd)</dt>
+<dd>and to the python class (in file quote.pxd). To avoid</dd>
+</dl>
+<p>confusion we use the following convention:</p>
 <blockquote>
 <div><ul class="simple">
 <li>the C++ class is always refered to as &#8216;&#8217;_qt.Quote&#8217;&#8216;.</li>
@@ -674,9 +698,9 @@ deallocation the Cython extension.</p>
 <h3>Implementation of the python class<a class="headerlink" href="#implementation-of-the-python-class" title="Permalink to this headline">¶</a></h3>
 <p>The third file contains the implementation of the cython wrapper class. As an illustration, the implementation of the &#8216;&#8217;SingleQuote&#8217;&#8217; python class
 is reproduced below:</p>
-<div class="highlight-python"><pre>cdef class SimpleQuote(Quote):
+<div class="highlight-python"><div class="highlight"><pre>cdef class SimpleQuote(Quote):
 
-    def __init__(self, float value=0.0):
+    def __init__(self, double value=0.0):
         self._thisptr = new shared_ptr[_qt.Quote](new _qt.SimpleQuote(value))
 
 def __dealloc__(self):
@@ -685,7 +709,7 @@ def __dealloc__(self):
                           # probably the target object if not referenced
 
     def __str__(self):
-        return 'Simple Quote: %f' % self._thisptr.get().value()
+        return &#39;Simple Quote: %f&#39; % self._thisptr.get().value()
 
     property value:
         def __get__(self):
@@ -694,8 +718,9 @@ def __dealloc__(self):
         else:
             return None
 
-        def __set__(self, float value):
-        (&lt;_qt.SimpleQuote*&gt;self._thisptr.get()).setValue(value)</pre>
+        def __set__(self, double value):
+        (&lt;_qt.SimpleQuote*&gt;self._thisptr.get()).setValue(value)
+</pre></div>
 </div>
 <p>The &#8216;&#8217;__init__&#8217;&#8217; method invokes the c++ constructor, which returns a boost shared pointer.</p>
 <p>Properties are used to give a more pythonic flavor to the wrapping.
@@ -714,7 +739,7 @@ into a &#8216;&#8217;SimpleQuote&#8217;&#8217; shared pointer in order to invoke
 __dealloc__ method should always delete the shared_ptr but never the target
 pointer!</p>
 <p>Every time a shared_ptr reference is received, never assigns the target pointer
-to a local pointer variables as it might deallocated. Always use the copy
+to a local pointer variables as it might be deallocated. Always use the copy
 constructor of the shared_ptr to get a local copy of it, stack allocated (there
 is no need to use new)</p>
 </div>
@@ -802,7 +827,7 @@ is no need to use new)</p>
     </div>
     <div class="footer">
         &copy; Copyright 2011, Didrik Pinte, Patrick Henaff.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>
