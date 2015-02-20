@@ -86,6 +86,12 @@ class TestEuribor(unittest.TestCase):
         self.assertEquals(index.name, 'Euribor6M Actual/360')
 
 
+    def test_empty_constructor(self):
+
+        euribor_6m_index = Euribor6M()
+        self.assertEquals(euribor_6m_index.name, 'Euribor6M Actual/360')
+
+
 class SwapIndexTestCase(unittest.TestCase):
 
     def test_create_swap_index(self):
