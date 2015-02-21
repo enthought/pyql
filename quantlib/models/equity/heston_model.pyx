@@ -63,11 +63,10 @@ cdef class HestonModelHelper:
                 Handle[_qt.Quote](deref(volatility._thisptr))
 
         cdef Handle[_ffwd.YieldTermStructure] dividend_yield_handle = \
-            Handle[_ffwd.YieldTermStructure](deref(dividend_yield._thisptr))
+            deref(dividend_yield._thisptr.get())
 
         cdef Handle[_ffwd.YieldTermStructure]risk_free_rate_handle = \
-            Handle[_ffwd.YieldTermStructure](
-               deref(risk_free_rate._thisptr))
+            deref(risk_free_rate._thisptr.get())
 
         self._thisptr = new shared_ptr[_hm.HestonModelHelper](
             new _hm.HestonModelHelper(

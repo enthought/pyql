@@ -20,7 +20,7 @@ cdef extern from 'ql/handle.hpp' namespace 'QuantLib':
     cdef cppclass RelinkableHandle[T](Handle):
         RelinkableHandle()
         RelinkableHandle(T*)
-        RelinkableHandle(shared_ptr[T]*)
+        RelinkableHandle(shared_ptr[T]&)
         void linkTo(shared_ptr[T]&)
         void linkTo(shared_ptr[T]&, bool registerAsObserver)
 

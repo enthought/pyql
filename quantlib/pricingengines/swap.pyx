@@ -17,17 +17,8 @@ cdef class DiscountingSwapEngine(PricingEngine):
                  Date settlementDate,
                  Date npvDate):
 
-        cdef Handle[_yts.YieldTermStructure] yts_handle
-
-        if discount_curve.relinkable:
-            yts_handle = Handle[_yts.YieldTermStructure](
-                discount_curve._relinkable_ptr.get().currentLink()
-            )
-        else:
-            yts_handle = Handle[_yts.YieldTermStructure](
-                discount_curve._thisptr.get()
-            )
-
+        cdef Handle[_yts.YieldTermStructure] yts_handle = \
+                deref(discount_curve._thisptr.get())
 
         self._thisptr = new shared_ptr[_pe.PricingEngine](
             new _swap.DiscountingSwapEngine(

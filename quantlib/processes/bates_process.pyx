@@ -57,13 +57,9 @@ cdef class BatesProcess(HestonProcess):
         #create handles
         cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](deref(s0._thisptr))
         cdef Handle[_ff.YieldTermStructure] dividend_ts_handle = \
-                Handle[_ff.YieldTermStructure](
-                    deref(dividend_ts._thisptr)
-                )
+                deref(dividend_ts._thisptr.get())
         cdef Handle[_ff.YieldTermStructure] risk_free_rate_ts_handle = \
-                Handle[_ff.YieldTermStructure](
-                    deref(risk_free_rate_ts._thisptr)
-                )
+                deref(risk_free_rate_ts._thisptr.get())
 
         self._thisptr = new shared_ptr[_hp.HestonProcess](
             new _hp.BatesProcess(

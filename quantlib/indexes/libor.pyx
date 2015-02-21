@@ -58,15 +58,8 @@ cdef class Libor(IborIndex):
         # convert the Python str to C++ string
         cdef string familyName_string = utf8_array_from_py_string(familyName)
 
-        cdef Handle[_yts.YieldTermStructure] ts_handle
-        if ts.relinkable:
-            ts_handle = Handle[_yts.YieldTermStructure](
-                ts._relinkable_ptr.get().currentLink()
-            )
-        else:
-            ts_handle = Handle[_yts.YieldTermStructure](
-                ts._thisptr.get()
-            )
+        cdef Handle[_yts.YieldTermStructure] ts_handle = \
+            deref(ts._thisptr.get())
 
         self._thisptr = new shared_ptr[_in.Index](
         new _libor.Libor(

@@ -23,14 +23,7 @@ cdef class Euribor(IborIndex):
         YieldTermStructure ts):
 
         cdef Handle[_yts.YieldTermStructure] ts_handle
-        if ts.relinkable:
-            ts_handle = Handle[_yts.YieldTermStructure](
-                ts._relinkable_ptr.get().currentLink()
-            )
-        else:
-            ts_handle = Handle[_yts.YieldTermStructure](
-                ts._thisptr.get()
-            )
+        ts_handle = deref(ts._thisptr.get())
 
         self._thisptr = new shared_ptr[_in.Index](
         new _eu.Euribor(
@@ -45,14 +38,7 @@ cdef class Euribor6M(Euribor):
         if ts is None:
             self._thisptr = new shared_ptr[_in.Index](new _eu.Euribor6M())
         else:
-            if ts.relinkable:
-                ts_handle = Handle[_yts.YieldTermStructure](
-                    ts._relinkable_ptr.get() #.currentLink()
-                )
-            else:
-                ts_handle = Handle[_yts.YieldTermStructure](
-                    ts._thisptr.get()
-                )
+            ts_handle = deref(ts._thisptr.get())
 
             self._thisptr = new shared_ptr[_in.Index](
                 new _eu.Euribor6M(ts_handle)
