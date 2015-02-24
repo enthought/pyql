@@ -10,6 +10,12 @@ from _pricing_engine cimport PricingEngine
 cdef extern from 'ql/pricingengines/swap/discountingswapengine.hpp' namespace 'QuantLib':
 
     cdef cppclass DiscountingSwapEngine(PricingEngine):
+        DiscountingSwapEngine(Handle[YieldTermStructure]& discount_curve)
+        DiscountingSwapEngine(Handle[YieldTermStructure]& discount_curve,
+                              bool includeSettlementDateFlows)
+        DiscountingSwapEngine(Handle[YieldTermStructure]& discount_curve,
+                              bool includeSettlementDateFlows,
+                              Date& settlementDate)
         DiscountingSwapEngine(Handle[YieldTermStructure]& discount_curve,
                               bool includeSettlementDateFlows,
                               Date& settlementDate,
