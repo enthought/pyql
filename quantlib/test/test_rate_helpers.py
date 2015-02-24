@@ -91,7 +91,7 @@ class RateHelpersTestCase(unittest.TestCase):
         family_name = currency.name + 'index'
         ibor_index =  Libor(
             "USDLibor", Period(3,Months), settlement_days, USDCurrency(),
-            UnitedStates(), Actual360(), YieldTermStructure(relinkable=False)
+            UnitedStates(), Actual360()
         )
 
         rate = 0.005681
