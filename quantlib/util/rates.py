@@ -80,10 +80,10 @@ def make_rate_helper(label, rate, dt_obs, currency='USD'):
     end_of_month = True
 
     if((rate_type == 'SWAP') & (period == 'Y')):
-        liborIndex = Libor('USD Libor', Period(6, Months),
-                       settlement_days,
-                       USDCurrency(), calendar,
-                       Actual360(), YieldTermStructure(relinkable=False))
+        liborIndex = Libor(
+            'USD Libor', Period(6, Months), settlement_days,
+            USDCurrency(), calendar, Actual360()
+        )
         spread = SimpleQuote(0)
         fwdStart = Period(0, Days)
         helper = SwapRateHelper.from_tenor(rate,
