@@ -18,17 +18,18 @@ from quantlib.time.date cimport Period
 
 
 cdef class Euribor(IborIndex):
-    def __init__(self,
-        Period tenor,
-        YieldTermStructure ts):
+    def __init__(self, Period tenor, YieldTermStructure ts=None):
 
         cdef Handle[_yts.YieldTermStructure] ts_handle
-        ts_handle = deref(ts._thisptr.get())
+        if ts is None:
+            ts_handle = Handle[_yts.YieldTermStructure]()
+        else:
+            ts_handle = deref(ts._thisptr.get())
 
         self._thisptr = new shared_ptr[_in.Index](
-        new _eu.Euribor(
-            deref(tenor._thisptr.get()),
-            ts_handle)
+            new _eu.Euribor(
+                deref(tenor._thisptr.get()), ts_handle
+            )
         )
 
 cdef class Euribor6M(Euribor):
@@ -36,11 +37,11 @@ cdef class Euribor6M(Euribor):
 
         cdef Handle[_yts.YieldTermStructure] ts_handle
         if ts is None:
-            self._thisptr = new shared_ptr[_in.Index](new _eu.Euribor6M())
+            ts_handle = Handle[_yts.YieldTermStructure]()
         else:
             ts_handle = deref(ts._thisptr.get())
 
-            self._thisptr = new shared_ptr[_in.Index](
-                new _eu.Euribor6M(ts_handle)
-            )
+        self._thisptr = new shared_ptr[_in.Index](
+            new _eu.Euribor6M(ts_handle)
+        )
 
