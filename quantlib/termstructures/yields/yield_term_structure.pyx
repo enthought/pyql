@@ -42,8 +42,9 @@ cdef class YieldTermStructure:
                     new RelinkableHandle[_yts.YieldTermStructure]()
                 )
         else:
-            # initialize an empty shared_ptr. ! Might be dangerous
-            self._thisptr = new shared_ptr[Handle[_yts.YieldTermStructure]]()
+            self._thisptr = new shared_ptr[Handle[_yts.YieldTermStructure]](
+                new Handle[_yts.YieldTermStructure]()
+            )
 
     def link_to(self, YieldTermStructure structure):
         cdef RelinkableHandle[_yts.YieldTermStructure]* rh
@@ -58,6 +59,7 @@ cdef class YieldTermStructure:
         return
 
     cdef _yts.YieldTermStructure* _get_term_structure(self):
+
         cdef _yts.YieldTermStructure* term_structure
         cdef shared_ptr[_yts.YieldTermStructure] ts_ptr
         ts_ptr = shared_ptr[_yts.YieldTermStructure](
@@ -69,6 +71,17 @@ cdef class YieldTermStructure:
             raise ValueError('Term structure not intialized')
 
         return term_structure
+
+    cdef _is_empty(self):
+
+        return self._thisptr.get().empty()
+
+    cdef _raise_if_empty(self):
+        # verify that the handle is not empty. We could add an except + on the
+        # definition of the currentLink() method but it creates more trouble on
+        # the code generation with Cython than what it solves
+        if self._is_empty():
+            raise ValueError('Empty handle to the term structure')
 
     def zero_rate(
             self, Date date, DayCounter day_counter,
@@ -90,6 +103,8 @@ cdef class YieldTermStructure:
         extraplolate: bool, optional
             Default to False
         """
+        self._raise_if_empty()
+
         cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
 
         cdef _ir.InterestRate ql_zero_rate = term_structure.zeroRate(
@@ -131,6 +146,8 @@ cdef class YieldTermStructure:
         extraplolate: bool, optional
             Default to False
         """
+        self._raise_if_empty()
+
         cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
 
         cdef _ir.InterestRate ql_forward_rate = term_structure.forwardRate(
@@ -151,6 +168,8 @@ cdef class YieldTermStructure:
         return forward_rate
 
     def discount(self, value):
+        self._raise_if_empty()
+
         cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
 
         if isinstance(value, Date):
@@ -168,12 +187,14 @@ cdef class YieldTermStructure:
 
     property reference_date:
         def __get__(self):
+            self._raise_if_empty()
             cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
             cdef _yts.Date ref_date = term_structure.referenceDate()
             return date_from_qldate(ref_date)
 
     property max_date:
         def __get__(self):
+            self._raise_if_empty()
             cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
             cdef _yts.Date max_date = term_structure.maxDate()
             return date_from_qldate(max_date)
