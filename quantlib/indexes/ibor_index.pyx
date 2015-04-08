@@ -41,13 +41,6 @@ cdef class IborIndex(InterestRateIndex):
         row = swap_params(market)
         row = row._replace(**kwargs)
 
-        # could use a dummy term structure here?
-        if term_structure is None:
-            term_structure = YieldTermStructure(relinkable=False)
-        # may not be needed at this stage...
-        # term_structure.link_to(FlatForward(settlement_date, 0.05,
-        #                                       Actual365Fixed()))
-
         if row.currency == 'EUR':
             from quantlib.indexes.euribor import Euribor
             ibor_index = Euribor(Period(row.floating_leg_period), term_structure)

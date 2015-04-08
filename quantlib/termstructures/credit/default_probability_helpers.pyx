@@ -49,9 +49,7 @@ cdef class SpreadCdsHelper(CdsHelper):
         """
 
         cdef Handle[_yts.YieldTermStructure] yts = \
-                Handle[_yts.YieldTermStructure](
-                    deref(discount_curve._thisptr)
-                )
+            deref(discount_curve._thisptr.get())
 
 
         self._thisptr = new shared_ptr[_ci.CdsHelper](\

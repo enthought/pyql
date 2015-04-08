@@ -39,6 +39,16 @@ cdef extern from 'ql/instruments/vanillaswap.hpp' namespace 'QuantLib':
                     Schedule& floatSchedule,
                     shared_ptr[IborIndex] iborIndex,
                     Spread spread,
+                    DayCounter& floatingDayCount)
+
+        VanillaSwap(Type type,
+                    Real nominal,
+                    Schedule& fixedSchedule,
+                    Rate fixedRate,
+                    DayCounter& fixedDayCount,
+                    Schedule& floatSchedule,
+                    shared_ptr[IborIndex] iborIndex,
+                    Spread spread,
                     DayCounter& floatingDayCount,
                     BusinessDayConvention paymentConvention)
         

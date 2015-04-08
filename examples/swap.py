@@ -4,6 +4,7 @@ Warning: this is work in progress and currently not working.
 """
 from __future__ import print_function
 from quantlib.indexes.euribor import Euribor6M
+from quantlib.instruments.swap import VanillaSwap, Payer
 from quantlib.pricingengines.swap import DiscountingSwapEngine
 from quantlib.settings import Settings
 from quantlib.quotes import SimpleQuote
@@ -56,34 +57,36 @@ for n,m in FRAs.keys():
     FRAs[(n,m)] = SimpleQuote(FRAs[(n,m)])
 for d in futures.keys():
     futures[d] = SimpleQuote(futures[d])
+for s in swaps.keys():
+    swaps[s] = SimpleQuote(swaps[s])
 #for n,unit in swaps.keys():
 #    swaps[(n,unit)] = SimpleQuote(swaps[(n,unit)])
 
 # build rate helpers
 
-dayCounter = Actual360()
+day_counter = Actual360()
 settlementDays = 2
 depositHelpers = [ DepositRateHelper(deposits[(n,unit)],
                                      Period(n,unit), settlementDays,
                                      calendar, ModifiedFollowing,
-                                     False, dayCounter)
+                                     False, day_counter)
                    for n, unit in [(1,Weeks),(1,Months),(3,Months),
                                    (6,Months),(9,Months),(1,Years)] ]
 
-dayCounter = Actual360()
+day_counter = Actual360()
 settlementDays = 2
 fraHelpers = [ FraRateHelper(FRAs[(n,m)],
                              n, m, settlementDays,
                              calendar, ModifiedFollowing,
-                             False, dayCounter)
+                             False, day_counter)
                for n, m in FRAs.keys() ]
 
-dayCounter = Actual360()
+day_counter = Actual360()
 months = 3
 futuresHelpers = [ FuturesRateHelper(futures[d],
                                      d, months,
                                      calendar, ModifiedFollowing,
-                                     True, dayCounter)
+                                     True, day_counter)
                    for d in futures.keys() ]
 
 settlementDays = 2
@@ -143,7 +146,7 @@ spread = 0.0
 fixingDays = 2
 index = Euribor6M(forecastTermStructure)
 floatingLegAdjustment = ModifiedFollowing
-floatingLegDayCounter = index.dayCounter()
+floatingLegDayCounter = index.day_counter
 
 fixedSchedule = Schedule(settlementDate, maturity,
                          fixedLegTenor, calendar,
@@ -153,12 +156,13 @@ floatingSchedule = Schedule(settlementDate, maturity,
                             floatingLegTenor, calendar,
                             floatingLegAdjustment, floatingLegAdjustment,
                             Forward, False)
+swapEngine = DiscountingSwapEngine(discountTermStructure)
 
-spot = VanillaSwap(VanillaSwap.Payer, nominal,
+spot = VanillaSwap(Payer, nominal,
                    fixedSchedule, fixedRate, fixedLegDayCounter,
                    floatingSchedule, index, spread,
                    floatingLegDayCounter)
-spot.setPricingEngine(swapEngine)
+spot.set_pricing_engine(swapEngine)
 
 forwardStart = calendar.advance(settlementDate,1,Years)
 forwardEnd = calendar.advance(forwardStart,length,Years)
@@ -171,24 +175,25 @@ floatingSchedule = Schedule(forwardStart, forwardEnd,
                             floatingLegAdjustment, floatingLegAdjustment,
                             Forward, False)
 
-forward = VanillaSwap(VanillaSwap.Payer, nominal,
+forward = VanillaSwap(Payer, nominal,
                       fixedSchedule, fixedRate, fixedLegDayCounter,
                       floatingSchedule, index, spread,
                       floatingLegDayCounter)
 
-swapEngine = DiscountingSwapEngine(discountTermStructure)
 
-forward.setPricingEngine(swapEngine)
+forward.set_pricing_engine(swapEngine)
 
 # price on the bootstrapped curves
 
-def formatPrice(p,digits=2):
+def formatPrice(p, digits=2):
     format = '%%.%df' % digits
     return format % p
 
-def formatRate(r,digits=2):
+def formatRate(r, digits=2):
     format = '%%.%df %%%%' % digits
-    return format % (r*100)
+    if isinstance(r, SimpleQuote):
+        r = r.value
+    return format % (r * 100)
 
 headers = ("term structure", "net present value",
            "fair spread", "fair fixed rate" )
@@ -208,12 +213,12 @@ dblrule = "=" * width
 tab = " " * 8
 
 def report(swap, name):
-    print(format % (name, formatPrice(swap.NPV(),2),
-                    formatRate(swap.fairSpread(),4),
-                    formatRate(swap.fairRate(),4)))
+    print(format % (name, formatPrice(swap.npv,2),
+                    formatRate(swap.fair_spread,4),
+                    formatRate(swap.fair_rate,4)))
 
 print(dblrule)
-print("5-year market swap-rate = %s" % formatRate(swaps[(5,Years)].value()))
+print("5-year market swap-rate = %s" % formatRate(swaps[(5,Years)]))
 print(dblrule)
 
 # price on two different term structures
@@ -222,12 +227,12 @@ print(tab + "5-years swap paying %s" % formatRate(fixedRate))
 print(separator.join(headers))
 print(rule)
 
-discountTermStructure.linkTo(depoFuturesSwapCurve)
-forecastTermStructure.linkTo(depoFuturesSwapCurve)
+discountTermStructure.link_to(depoFuturesSwapCurve)
+forecastTermStructure.link_to(depoFuturesSwapCurve)
 report(spot,'depo-fut-swap')
 
-discountTermStructure.linkTo(depoFraSwapCurve)
-forecastTermStructure.linkTo(depoFraSwapCurve)
+discountTermStructure.link_to(depoFraSwapCurve)
+forecastTermStructure.link_to(depoFraSwapCurve)
 report(spot,'depo-FRA-swap')
 
 print(rule)
@@ -237,32 +242,32 @@ print(rule)
 print(tab + "5-years, 1-year forward swap paying %s" % formatRate(fixedRate))
 print(rule)
 
-discountTermStructure.linkTo(depoFuturesSwapCurve)
-forecastTermStructure.linkTo(depoFuturesSwapCurve)
+discountTermStructure.link_to(depoFuturesSwapCurve)
+forecastTermStructure.link_to(depoFuturesSwapCurve)
 report(forward,'depo-fut-swap')
 
-discountTermStructure.linkTo(depoFraSwapCurve)
-forecastTermStructure.linkTo(depoFraSwapCurve)
+discountTermStructure.link_to(depoFraSwapCurve)
+forecastTermStructure.link_to(depoFraSwapCurve)
 report(forward,'depo-FRA-swap')
 
 # modify the 5-years swap rate and reprice
 
-swaps[(5,Years)].setValue(0.046)
+swaps[(5,Years)].value = 0.046
 
 print(dblrule)
-print("5-year market swap-rate = %s" % formatRate(swaps[(5,Years)].value()))
+print("5-year market swap-rate = %s" % formatRate(swaps[(5,Years)]))
 print(dblrule)
 
 print(tab + "5-years swap paying %s" % formatRate(fixedRate))
 print(separator.join(headers))
 print(rule)
 
-discountTermStructure.linkTo(depoFuturesSwapCurve)
-forecastTermStructure.linkTo(depoFuturesSwapCurve)
+discountTermStructure.link_to(depoFuturesSwapCurve)
+forecastTermStructure.link_to(depoFuturesSwapCurve)
 report(spot,'depo-fut-swap')
 
-discountTermStructure.linkTo(depoFraSwapCurve)
-forecastTermStructure.linkTo(depoFraSwapCurve)
+discountTermStructure.link_to(depoFraSwapCurve)
+forecastTermStructure.link_to(depoFraSwapCurve)
 report(spot,'depo-FRA-swap')
 
 print(rule)
@@ -270,10 +275,10 @@ print(rule)
 print(tab + "5-years, 1-year forward swap paying %s" % formatRate(fixedRate))
 print(rule)
 
-discountTermStructure.linkTo(depoFuturesSwapCurve)
-forecastTermStructure.linkTo(depoFuturesSwapCurve)
+discountTermStructure.link_to(depoFuturesSwapCurve)
+forecastTermStructure.link_to(depoFuturesSwapCurve)
 report(forward,'depo-fut-swap')
 
-discountTermStructure.linkTo(depoFraSwapCurve)
-forecastTermStructure.linkTo(depoFraSwapCurve)
+discountTermStructure.link_to(depoFraSwapCurve)
+forecastTermStructure.link_to(depoFraSwapCurve)
 report(forward,'depo-FRA-swap')

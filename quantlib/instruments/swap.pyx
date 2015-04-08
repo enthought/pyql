@@ -138,21 +138,35 @@ cdef class VanillaSwap(Swap):
                      IborIndex ibor_index,
                      Spread spread,
                      DayCounter floating_daycount,
-                     BusinessDayConvention payment_convention):
+                     payment_convention=None):
 
         cdef QlSchedule* _fixed_schedule = <QlSchedule*>fixed_schedule._thisptr
         cdef QlSchedule* _float_schedule = <QlSchedule*>float_schedule._thisptr
 
 
-        self._thisptr = new shared_ptr[_instrument.Instrument](\
-            new _vanillaswap.VanillaSwap(<_vanillaswap.Type>type, nominal,
-                     deref(_fixed_schedule), fixed_rate,
-                     deref(fixed_daycount._thisptr),
-                     deref(_float_schedule),
-                     deref(<shared_ptr[_ib.IborIndex]*> ibor_index._thisptr),
-                     spread,
-                     deref(floating_daycount._thisptr),
-                     <BusinessDayConvention>payment_convention))
+        if payment_convention is None:
+             self._thisptr = new shared_ptr[_instrument.Instrument](\
+                new _vanillaswap.VanillaSwap(<_vanillaswap.Type>type, nominal,
+                         deref(_fixed_schedule), fixed_rate,
+                         deref(fixed_daycount._thisptr),
+                         deref(_float_schedule),
+                         deref(<shared_ptr[_ib.IborIndex]*> ibor_index._thisptr),
+                         spread,
+                         deref(floating_daycount._thisptr)
+                )
+            )
+        else:
+            self._thisptr = new shared_ptr[_instrument.Instrument](\
+                new _vanillaswap.VanillaSwap(<_vanillaswap.Type>type, nominal,
+                         deref(_fixed_schedule), fixed_rate,
+                         deref(fixed_daycount._thisptr),
+                         deref(_float_schedule),
+                         deref(<shared_ptr[_ib.IborIndex]*> ibor_index._thisptr),
+                         spread,
+                         deref(floating_daycount._thisptr),
+                         <BusinessDayConvention>payment_convention
+                )
+            )
 
     property fair_rate:
         def __get__(self):

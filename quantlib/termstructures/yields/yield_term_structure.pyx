@@ -11,9 +11,10 @@ from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.compounding import Continuous
 from quantlib.time.date import Annual
 
-cimport _flat_forward as ffwd
+cimport quantlib.termstructures._yield_term_structure as _yts
 cimport quantlib._quote as _qt
 cimport quantlib._interest_rate as _ir
+from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle
 
 from quantlib.quotes cimport Quote
 from quantlib.interest_rate cimport InterestRate
@@ -26,34 +27,61 @@ cdef class YieldTermStructure:
     def __cinit__(self):
         self.relinkable = False
         self._thisptr = NULL
-        self._relinkable_ptr = NULL
 
     def __dealloc__(self):
         if self._thisptr is not NULL:
             del self._thisptr
-        if self._relinkable_ptr is not NULL:
-            del self._relinkable_ptr
 
     def __init__(self, relinkable=True):
         if relinkable:
             self.relinkable = True
             # Create a new RelinkableHandle to a YieldTermStructure within a
             # new shared_ptr
-            self._relinkable_ptr = new \
-                shared_ptr[ffwd.RelinkableHandle[ffwd.YieldTermStructure]](
-                    new ffwd.RelinkableHandle[ffwd.YieldTermStructure]()
+            self._thisptr = <shared_ptr[Handle[_yts.YieldTermStructure]]*> new \
+                shared_ptr[RelinkableHandle[_yts.YieldTermStructure]](
+                    new RelinkableHandle[_yts.YieldTermStructure]()
                 )
         else:
-            # initialize an empty shared_ptr. ! Might be dangerous
-            self._thisptr = new shared_ptr[ffwd.YieldTermStructure]()
+            self._thisptr = new shared_ptr[Handle[_yts.YieldTermStructure]](
+                new Handle[_yts.YieldTermStructure]()
+            )
 
     def link_to(self, YieldTermStructure structure):
+        cdef RelinkableHandle[_yts.YieldTermStructure]* rh
         if not self.relinkable:
             raise ValueError('Non relinkable term structure !')
         else:
-            self._relinkable_ptr.get().linkTo(deref(structure._thisptr))
+            rh = <RelinkableHandle[_yts.YieldTermStructure]*>self._thisptr.get()
+            rh.linkTo(
+                structure._thisptr.get().currentLink()
+            )
 
         return
+
+    cdef _yts.YieldTermStructure* _get_term_structure(self):
+
+        cdef _yts.YieldTermStructure* term_structure
+        cdef shared_ptr[_yts.YieldTermStructure] ts_ptr
+        ts_ptr = shared_ptr[_yts.YieldTermStructure](
+                self._thisptr.get().currentLink()
+        )
+        term_structure = ts_ptr.get()
+
+        if term_structure is NULL:
+            raise ValueError('Term structure not intialized')
+
+        return term_structure
+
+    cdef _is_empty(self):
+
+        return self._thisptr.get().empty()
+
+    cdef _raise_if_empty(self):
+        # verify that the handle is not empty. We could add an except + on the
+        # definition of the currentLink() method but it creates more trouble on
+        # the code generation with Cython than what it solves
+        if self._is_empty():
+            raise ValueError('Empty handle to the term structure')
 
     def zero_rate(
             self, Date date, DayCounter day_counter,
@@ -75,14 +103,9 @@ cdef class YieldTermStructure:
         extraplolate: bool, optional
             Default to False
         """
-        cdef ffwd.YieldTermStructure* term_structure
-        cdef shared_ptr[ffwd.YieldTermStructure] ts_ptr
-        if self.relinkable is True:
-            ts_ptr = shared_ptr[ffwd.YieldTermStructure](
-                self._relinkable_ptr.get().currentLink())
-            term_structure = ts_ptr.get()
-        else:
-            term_structure = self._thisptr.get()
+        self._raise_if_empty()
+
+        cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
 
         cdef _ir.InterestRate ql_zero_rate = term_structure.zeroRate(
             deref(date._thisptr.get()), deref(day_counter._thisptr),
@@ -123,14 +146,9 @@ cdef class YieldTermStructure:
         extraplolate: bool, optional
             Default to False
         """
-        cdef ffwd.YieldTermStructure* term_structure
-        cdef shared_ptr[ffwd.YieldTermStructure] ts_ptr
-        if self.relinkable is True:
-            ts_ptr = shared_ptr[ffwd.YieldTermStructure](
-                self._relinkable_ptr.get().currentLink())
-            term_structure = ts_ptr.get()
-        else:
-            term_structure = self._thisptr.get()
+        self._raise_if_empty()
+
+        cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
 
         cdef _ir.InterestRate ql_forward_rate = term_structure.forwardRate(
             deref(d1._thisptr.get()), deref(d2._thisptr.get()),
@@ -150,16 +168,9 @@ cdef class YieldTermStructure:
         return forward_rate
 
     def discount(self, value):
-        cdef ffwd.YieldTermStructure* term_structure
-        cdef shared_ptr[ffwd.YieldTermStructure] ts_ptr
-        if self.relinkable is True:
-            # retrieves the shared_ptr (currentLink()) then gets the
-            # term_structure (get())
-            ts_ptr = shared_ptr[ffwd.YieldTermStructure](
-                self._relinkable_ptr.get().currentLink())
-            term_structure = ts_ptr.get()
-        else:
-            term_structure = self._thisptr.get()
+        self._raise_if_empty()
+
+        cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
 
         if isinstance(value, Date):
             discount_value = term_structure.discount(
@@ -176,10 +187,14 @@ cdef class YieldTermStructure:
 
     property reference_date:
         def __get__(self):
-            cdef ffwd.Date ref_date = self._thisptr.get().referenceDate()
+            self._raise_if_empty()
+            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
+            cdef _yts.Date ref_date = term_structure.referenceDate()
             return date_from_qldate(ref_date)
 
     property max_date:
         def __get__(self):
-            cdef ffwd.Date max_date = self._thisptr.get().maxDate()
+            self._raise_if_empty()
+            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
+            cdef _yts.Date max_date = term_structure.maxDate()
             return date_from_qldate(max_date)

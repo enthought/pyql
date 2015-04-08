@@ -19,7 +19,7 @@ cimport quantlib.indexes._swap_index as _si
 from quantlib.time._period cimport Frequency, Days
 from quantlib.time._calendar cimport BusinessDayConvention
 
-from quantlib.quotes cimport Quote
+from quantlib.quotes cimport Quote, SimpleQuote
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.date cimport Period, Date
@@ -120,19 +120,31 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
         self._thisptr = ptr
 
     @classmethod
-    def from_tenor(cls, double rate, Period tenor,
+    def from_tenor(cls, rate, Period tenor,
         Calendar calendar, Frequency fixedFrequency,
         BusinessDayConvention fixedConvention, DayCounter fixedDayCount,
         IborIndex iborIndex, Quote spread=None, Period fwdStart=None):
 
         cdef Handle[_qt.Quote] spread_handle
+        cdef Handle[_qt.Quote] _rate
+
+        cdef _qt.SimpleQuote* qt 
+        cdef shared_ptr[_qt.Quote] ptr
+        if isinstance(rate, float):
+            qt = new _qt.SimpleQuote(<Rate>rate)
+            ptr = deref(new shared_ptr[_qt.Quote](qt))
+        elif isinstance(rate, SimpleQuote):
+            ptr = deref((<SimpleQuote>rate)._thisptr)
+
+        _rate = Handle[_qt.Quote](ptr)
+
 
         cdef SwapRateHelper instance = cls(from_classmethod=True)
 
         if spread is None:
             instance.set_ptr(new shared_ptr[_rh.RelativeDateRateHelper](
                 new _rh.SwapRateHelper(
-                    rate,
+                    _rate,
                     deref(tenor._thisptr.get()),
                     deref(calendar._thisptr),
                     <Frequency> fixedFrequency,

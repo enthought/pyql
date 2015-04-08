@@ -6,7 +6,7 @@ from libcpp.string cimport string
 cimport _piecewise_yield_curve as _pyc
 cimport _rate_helpers as _rh
 cimport _flat_forward as _ff
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport shared_ptr, Handle
 from quantlib.util.compat cimport utf8_array_from_py_string
 
 from rate_helpers cimport RateHelper
@@ -69,14 +69,16 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
                 deref((<RateHelper> helper)._thisptr)
             )
 
-        self._thisptr = new shared_ptr[_ff.YieldTermStructure](
-            _pyc.term_structure_factory(
-                    trait_string,
-                    interpolator_string,
-                    deref(settlement_date._thisptr.get()),
-                    deref(instruments),
-                    deref(day_counter._thisptr),
-                    tolerance
+        self._thisptr = new shared_ptr[Handle[_ff.YieldTermStructure]](
+            new Handle[_ff.YieldTermStructure](
+                _pyc.term_structure_factory(
+                        trait_string,
+                        interpolator_string,
+                        deref(settlement_date._thisptr.get()),
+                        deref(instruments),
+                        deref(day_counter._thisptr),
+                        tolerance
+                )
             )
         )
 

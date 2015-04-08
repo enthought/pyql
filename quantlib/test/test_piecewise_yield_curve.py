@@ -176,9 +176,10 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
             rate_helpers.append(helper)
 
-        liborIndex = Libor('USD Libor', Period(6, Months), settlement_days,
-                           USDCurrency(), calendar, Actual360(),
-                           YieldTermStructure(relinkable=False))
+        liborIndex = Libor(
+            'USD Libor', Period(6, Months), settlement_days, USDCurrency(),
+            calendar, Actual360()
+        )
 
         spread = SimpleQuote(0)
         fwdStart = Period(0, Days)
@@ -245,7 +246,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         # description of the float leg of the swap
         Swap_iborIndex = Libor(
             "USDLibor", Period(3, Months), settlement_days, USDCurrency(),
-            UnitedStates(), Actual360(), YieldTermStructure(relinkable=False)
+            UnitedStates(), Actual360()
         )
 
         SwapFamilyName = currency.name + "swapIndex"
@@ -257,9 +258,10 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         instruments = []
         for rate, tenor in zip(liborRates, liborRatesTenor):
             # Index description ___ creation of a Libor index
-            liborIndex =  Libor(LiborFamilyName, tenor, settlement_days,
-                                currency, calendar, Libor_dayCounter,
-                                YieldTermStructure(relinkable=False))
+            liborIndex =  Libor(
+                LiborFamilyName, tenor, settlement_days, currency, calendar,
+                Libor_dayCounter
+            )
             # Initialize rate helper
             # the DepositRateHelper link the recording rate with the Libor
             # index
@@ -269,9 +271,11 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         for tenor, rate in zip(swapRatesTenor, swapRates):
             # swap description ___ creation of a swap index. The floating leg is described in the index 'Swap_iborIndex'
-            swapIndex = SwapIndex (SwapFamilyName, tenor, settlement_days, currency, calendar,
-                    Swap_fixedLegTenor, Swap_fixedLegConvention, Swap_fixedLegDayCounter,
-                    Swap_iborIndex)
+            swapIndex = SwapIndex (
+                SwapFamilyName, tenor, settlement_days, currency, calendar,
+                Swap_fixedLegTenor, Swap_fixedLegConvention,
+                Swap_fixedLegDayCounter, Swap_iborIndex
+            )
             # Initialize rate helper __ the SwapRateHelper links the swap index width his rate
             instruments.append(SwapRateHelper.from_index(rate,swapIndex))
 
