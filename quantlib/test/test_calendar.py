@@ -10,6 +10,7 @@ from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.time.calendars.germany import (
     Germany, FRANKFURT_STOCK_EXCHANGE
 )
+from quantlib.time.calendars.weekends_only import WeekendsOnly
 from quantlib.time.date import (
     Date, May, March, June, Jan, August, Months,November, Period, Days,
     Apr, Jul, Sep, Oct, Dec, Nov)
@@ -203,7 +204,21 @@ class TestQuantLibCalendar(unittest.TestCase):
             )
         )
 
-
+    def test_weekendsonly_calendar(self):
+        wocal = WeekendsOnly()
+        first_date  = Date(31, Dec, 2014)
+        Jan_1_2015 = Date(1, Jan, 2015)
+        Jan_5_2015 = Date(5, Jan, 2015)
+        period_1_day = Period(1, Days)
+        period_3_day = Period(3, Days)
+        #do not skip holidays
+        self.assertEqual(Jan_1_2015, wocal.advance(first_date,
+                                                    period=period_1_day,
+                                                    convention=Following))
+        #but skip weekend dates
+        self.assertEqual(Jan_5_2015, wocal.advance(first_date,
+                                                    period=period_3_day,
+                                                    convention=Following))
 
 class TestDateList(unittest.TestCase):
 

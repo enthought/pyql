@@ -1,4 +1,5 @@
 from quantlib.time.calendars.null_calendar import NullCalendar
+from quantlib.time.calendars.weekends_only import WeekendsOnly
 import quantlib.time.calendars.germany as ger
 import quantlib.time.calendars.united_states as us
 import quantlib.time.calendars.united_kingdom as uk
@@ -11,6 +12,7 @@ from quantlib.util.object_registry import ObjectRegistry
 ISO_3166_CALENDARS = {
     'TARGET': TARGET(),
     'NULL': NullCalendar(),
+    'WO': WeekendsOnly(),
     'DEU': ger.Germany(),
     'EUREX': ger.Germany(ger.EUREX),
     'FSE': ger.Germany(ger.FRANKFURT_STOCK_EXCHANGE),

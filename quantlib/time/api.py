@@ -15,6 +15,7 @@ from .calendar import (
 from .calendar_registry import calendar_from_name
 from .calendars.jointcalendar import JointCalendar
 from .calendars.null_calendar import NullCalendar
+from .calendars.weekends_only import WeekendsOnly
 from .calendars.united_kingdom import UnitedKingdom
 from .calendars.united_states import UnitedStates
 
@@ -36,4 +37,3 @@ from .date import (
 )
 
 from .schedule import Schedule, Backward, Forward, TwentiethIMM
-

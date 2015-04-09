@@ -213,4 +213,3 @@ cdef class TARGET(Calendar):
 
     def __cinit__(self):
         self._thisptr = <_calendar.Calendar*> new _calendar.TARGET()
-
