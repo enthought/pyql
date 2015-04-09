@@ -60,6 +60,12 @@ class ScheduleMethodTestCase(unittest.TestCase):
 
         self.assertEquals(expected_dates_length, len(dates))
 
+    def test_iter_dates(self):
+
+        expected_dates_length = self.schedule.size()
+        dates= [date for date in self.schedule]
+
+        self.assertEqual(expected_dates_length, len(dates))
 
     def test_at(self):
 
