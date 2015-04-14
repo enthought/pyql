@@ -26,11 +26,10 @@ cdef class ZeroCurve(YieldTermStructure):
 
         # create the curve
         self._thisptr = new shared_ptr[Handle[_zc.YieldTermStructure]](
-            new Handle[_zc.YieldTermStructure](
+            new Handle[_zc.YieldTermStructure](shared_ptr[_zc.YieldTermStructure](
                 new _zc.ZeroCurve(
                     deref(_date_vector),
                     deref(_yield_vector),
-                    deref(daycounter._thisptr)
-                )
+                    deref(daycounter._thisptr)))
             )
         )
