@@ -40,10 +40,8 @@ cdef class RateHelper:
 
     property quote:
         def __get__(self):
-            cdef Handle[_qt.Quote] quote_handle = self._thisptr.get().quote()
-            cdef shared_ptr[_qt.Quote] quote_ptr = shared_ptr[_qt.Quote](quote_handle.currentLink())
-            value = quote_ptr.get().value()
-            return value
+            cdef shared_ptr[_qt.Quote] quote_ptr = shared_ptr[_qt.Quote](self._thisptr.get().quote().currentLink())
+            return quote_ptr.get().value()
 
     property implied_quote:
         def __get__(self):
@@ -62,10 +60,8 @@ cdef class RelativeDateRateHelper:
 
     property quote:
         def __get__(self):
-            cdef Handle[_qt.Quote] quote_handle = self._thisptr.get().quote()
-            cdef shared_ptr[_qt.Quote] quote_ptr = shared_ptr[_qt.Quote](quote_handle.currentLink())
-            value = quote_ptr.get().value()
-            return value
+            cdef shared_ptr[_qt.Quote] quote_ptr = shared_ptr[_qt.Quote](self._thisptr.get().quote().currentLink())
+            return quote_ptr.get().value()
 
     property implied_quote:
         def __get__(self):
@@ -175,7 +171,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
     @classmethod
     def from_index(cls, double rate, SwapIndex index):
 
-        cdef Handle[_qt.Quote] spread_handle = Handle[_qt.Quote](new _qt.SimpleQuote(0))
+        cdef Handle[_qt.Quote] spread_handle = Handle[_qt.Quote](shared_ptr[_qt.Quote](new _qt.SimpleQuote(0)))
         cdef Period p = Period(2, Days)
 
 

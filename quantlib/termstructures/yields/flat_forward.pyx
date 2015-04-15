@@ -109,6 +109,6 @@ cdef class FlatForward(YieldTermStructure):
             raise ValueError('Invalid constructor')
 
         self._thisptr = new shared_ptr[Handle[ffwd.YieldTermStructure]](
-                new Handle[ffwd.YieldTermStructure](_forward)
+             new Handle[ffwd.YieldTermStructure](shared_ptr[ffwd.YieldTermStructure](_forward))
         )
 
