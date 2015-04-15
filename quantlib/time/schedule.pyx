@@ -88,3 +88,5 @@ cdef class Schedule:
         cdef _date.Date date = self._thisptr.at(index)
         return date_from_qldate(date)
 
+    def __iter__(self):
+        return (d for d in self.dates())
