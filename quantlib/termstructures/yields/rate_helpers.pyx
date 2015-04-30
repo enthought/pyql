@@ -69,25 +69,25 @@ cdef class RelativeDateRateHelper:
 
 
 cdef class DepositRateHelper(RateHelper):
-    """Rate helper for bootstrapping over deposit rates. """
+    """Rate helper for bootstrapping over deposit rates. [uses SimpleQuotes]"""
 
-    def __init__(self, Rate quote, Period tenor=None, Natural fixing_days=0,
+    def __init__(self, Quote quote, Period tenor=None, Natural fixing_days=0,
         Calendar calendar=None, int convention=ModifiedFollowing,
         end_of_month=True, DayCounter deposit_day_counter=None,
-        IborIndex index=None
-    ):
-
+        IborIndex index=None):
+        cdef Handle[_qt.Quote] rate_handle = Handle[_qt.Quote](deref(quote._thisptr))
+        
         if index is not None:
             self._thisptr = new shared_ptr[_rh.RateHelper](
                 new _rh.DepositRateHelper(
-                    quote,
+                    rate_handle,
                     deref(<shared_ptr[_ib.IborIndex]*> index._thisptr)
                 )
             )
         else:
             self._thisptr = new shared_ptr[_rh.RateHelper](
                 new _rh.DepositRateHelper(
-                    quote,
+                    rate_handle,
                     deref(tenor._thisptr.get()),
                     <int>fixing_days,
                     deref(calendar._thisptr),
@@ -96,9 +96,9 @@ cdef class DepositRateHelper(RateHelper):
                     deref(deposit_day_counter._thisptr)
                 )
             )
-
 cdef class SwapRateHelper(RelativeDateRateHelper):
-
+    """Rate helper for bootstrapping over swap rates, use from_tenor or from_index function, 
+    from_tenor uses SimpleQuote() instead of double""" 
     def __init__(self, from_classmethod=False):
         # Creating a SwaprRateHelper without using a class method means the
         # shared_ptr won't be initialized properly and break any subsequent calls
@@ -116,13 +116,14 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
         self._thisptr = ptr
 
     @classmethod
-    def from_tenor(cls, rate, Period tenor,
+    def from_tenor(cls, Quote rate, Period tenor,
         Calendar calendar, Frequency fixedFrequency,
         BusinessDayConvention fixedConvention, DayCounter fixedDayCount,
         IborIndex iborIndex, Quote spread=None, Period fwdStart=None):
-
+        
+        cdef Handle[_qt.Quote] rate_handle = Handle[_qt.Quote](deref(rate._thisptr))
         cdef Handle[_qt.Quote] spread_handle
-        cdef Handle[_qt.Quote] _rate
+#        cdef Handle[_qt.Quote] _rate    #from merge w/ master, might not need this any longer?
 
         cdef _qt.SimpleQuote* qt 
         cdef shared_ptr[_qt.Quote] ptr
@@ -132,7 +133,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
         elif isinstance(rate, SimpleQuote):
             ptr = deref((<SimpleQuote>rate)._thisptr)
 
-        _rate = Handle[_qt.Quote](ptr)
+#        _rate = Handle[_qt.Quote](ptr) #from merge w/ master, might not need this any longer?
 
 
         cdef SwapRateHelper instance = cls(from_classmethod=True)
@@ -140,7 +141,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
         if spread is None:
             instance.set_ptr(new shared_ptr[_rh.RelativeDateRateHelper](
                 new _rh.SwapRateHelper(
-                    _rate,
+                    rate_handle,
                     deref(tenor._thisptr.get()),
                     deref(calendar._thisptr),
                     <Frequency> fixedFrequency,
@@ -154,7 +155,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
 
             instance.set_ptr(new shared_ptr[_rh.RelativeDateRateHelper](
                 new _rh.SwapRateHelper(
-                    rate,
+                    rate_handle,
                     deref(tenor._thisptr.get()),
                     deref(calendar._thisptr),
                     <Frequency> fixedFrequency,
