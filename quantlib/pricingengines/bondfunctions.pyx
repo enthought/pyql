@@ -10,7 +10,7 @@ cimport quantlib.termstructures._yield_term_structure as _yt
 cimport quantlib.pricingengines._bondfunctions as _bf
 
 #pyql imports
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport shared_ptr, Handle
 from cython.operator cimport dereference as deref
 from quantlib.interest_rate cimport InterestRate
 from quantlib.instruments.bonds cimport Bond
@@ -54,7 +54,7 @@ cdef extern from 'ql/pricingengines/bond/bondfunctions.hpp' namespace 'QuantLib'
 cdef class BondFunctions:
     
     def __cinit__(self):
-        print "BondFunctions contructor"
+        print "Latest build 04/21/2015"
         self._thisptr = new _bf.BondFunctions()
 
     def __dealloc__(self):
@@ -149,7 +149,8 @@ cdef class BondFunctions:
         Rate guess):
                         
         cpdef QLBond* _bp = <QLBond*>bond._thisptr.get()
-        cpdef shared_ptr[_yt.YieldTermStructure] _yts = deref(pyts._thisptr)
+        cdef Handle[_yt.YieldTermStructure] yts_handle = deref(pyts._thisptr.get())
+        cdef shared_ptr[_yt.YieldTermStructure] _yts = shared_ptr[_yt.YieldTermStructure](yts_handle.currentLink())
         cpdef _DayCounter* dc = <_DayCounter*>dayCounter._thisptr
 
         d =  self._thisptr.zSpread(
