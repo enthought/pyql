@@ -41,9 +41,9 @@ cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib':
         Real accruedAmount(Date d) except +
 
 
-        Real cleanPrice()
-        Real dirtyPrice()
-        Real settlementValue()
+        Real cleanPrice() except +
+        Real dirtyPrice() except +
+        Real settlementValue() except +
 
         Rate clean_yield 'yield'(
                    Real cleanPrice,
@@ -52,10 +52,10 @@ cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib':
                    Frequency freq,
                    Date settlementDate,
                    Real accuracy,
-                   Size maxEvaluations)
+                   Size maxEvaluations) except +
 
-        Date nextCachFlowDate(Date d)
-        Date previousCachFlowDate(Date d)
+        Date nextCachFlowDate(Date d) except +
+        Date previousCachFlowDate(Date d) except +
 
 cdef extern from 'ql/instruments/bonds/fixedratebond.hpp' namespace 'QuantLib':
     cdef cppclass FixedRateBond(Bond):
@@ -65,7 +65,7 @@ cdef extern from 'ql/instruments/bonds/fixedratebond.hpp' namespace 'QuantLib':
                       vector[Rate]& coupons,
                       DayCounter& accrualDayCounter,
                       BusinessDayConvention paymentConvention,
-                      Real redemption)
+                      Real redemption) except +
         FixedRateBond(Natural settlementDays,
                       Real faceAmount,
                       Schedule& schedule,
@@ -73,8 +73,8 @@ cdef extern from 'ql/instruments/bonds/fixedratebond.hpp' namespace 'QuantLib':
                       DayCounter& accrualDayCounter,
                       BusinessDayConvention paymentConvention,
                       Real redemption,
-                      Date& issueDate)
-        Date settlementDate()
+                      Date& issueDate) except +
+        Date settlementDate() except +
 
 cdef extern from 'ql/instruments/bonds/zerocouponbond.hpp' namespace 'QuantLib':
     cdef cppclass ZeroCouponBond(Bond):
@@ -84,7 +84,7 @@ cdef extern from 'ql/instruments/bonds/zerocouponbond.hpp' namespace 'QuantLib':
                       Date maturityDate,
                       BusinessDayConvention paymentConvention,
                       Real redemption,
-                      Date& issueDate)
+                      Date& issueDate) except +
                       
 cdef extern from 'ql/instruments/bonds/floatingratebond.hpp' namespace 'QuantLib': 
     cdef cppclass FloatingRateBond(Bond):

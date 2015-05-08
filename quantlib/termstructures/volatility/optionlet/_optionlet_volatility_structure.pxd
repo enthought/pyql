@@ -10,35 +10,35 @@ from quantlib.time._period cimport Frequency
 cdef extern from 'ql/termstructures/voltermstructure.hpp' namespace 'QuantLib':
 
     cdef cppclass VolatilityTermStructure:
-        VolatilityTermStructure()
+        VolatilityTermStructure() except +
         VolatilityTermStructure(
             Calendar& cal, 
             BusinessDayConvention bdc,
             DayCounter& dc
-        )
+        ) except +
 
 cdef extern from 'ql/termstructures/volatility/optionlet/optionletvolatilitystructure.hpp' namespace 'QuantLib':
 
     cdef cppclass OptionletVolatilityStructure(VolatilityTermStructure):
-        OptionletVolatilityStructure()
+        OptionletVolatilityStructure() except +
         OptionletVolatilityStructure(
             Calendar& cal, 
             BusinessDayConvention bdc,
             DayCounter& dc
-        )
+        ) except +
 
 cdef extern from 'ql/termstructures/volatility/optionlet/constantoptionletvol.hpp' namespace 'QuantLib':
 
     cdef cppclass ConstantOptionletVolatility(OptionletVolatilityStructure):
-        ConstantOptionletVolatility()
+        ConstantOptionletVolatility() except +
         ConstantOptionletVolatility(Date& referenceDate,
                          Calendar& cal,
                          BusinessDayConvention bdc,
                          Volatility volatility,
-                         DayCounter& dayCounter)
+                         DayCounter& dayCounter) except +
         ConstantOptionletVolatility(Natural settlementDays, 
                          Calendar& cal, 
                          BusinessDayConvention bdc, 
                          Volatility volatility, 
-                         DayCounter& dayCounter)
+                         DayCounter& dayCounter) except +
 

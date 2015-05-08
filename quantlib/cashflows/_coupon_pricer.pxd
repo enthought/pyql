@@ -6,24 +6,24 @@ from quantlib._cashflow cimport Leg
 cdef extern from 'ql/cashflows/couponpricer.hpp' namespace 'QuantLib':
 
     cdef cppclass FloatingRateCouponPricer:
-        FloatingRateCouponPricer()
-        Real swapletPrice()
-        Rate swapletRate()
-        Real capletPrice(Rate effectiveCap)
-        Rate capletRate(Rate effectiveCap)
-        Real floorletPrice(Rate effectiveFloor)
-        Rate floorletRate(Rate effectiveFloor)
+        FloatingRateCouponPricer() except +
+        Real swapletPrice() except +
+        Rate swapletRate() except +
+        Real capletPrice(Rate effectiveCap) except +
+        Rate capletRate(Rate effectiveCap) except +
+        Real floorletPrice(Rate effectiveFloor) except +
+        Rate floorletRate(Rate effectiveFloor) except +
         
     cdef cppclass IborCouponPricer(FloatingRateCouponPricer):
-        IborCouponPricer()
+        IborCouponPricer() except +
         IborCouponPricer(
-            Handle[OptionletVolatilityStructure]& v)
+            Handle[OptionletVolatilityStructure]& v) except +
         #void setCapletVolatility(
         #    Handle[OptionletVolatilityStructure]& ovs)
     
     cdef cppclass BlackIborCouponPricer(IborCouponPricer):
-        BlackIborCouponPricer()
+        BlackIborCouponPricer() except +
         BlackIborCouponPricer(
-            Handle[OptionletVolatilityStructure]& v)
+            Handle[OptionletVolatilityStructure]& v) except +
 
-    void setCouponPricer(Leg& leg, shared_ptr[FloatingRateCouponPricer]& pricer)
+    void setCouponPricer(Leg& leg, shared_ptr[FloatingRateCouponPricer]& pricer) except +

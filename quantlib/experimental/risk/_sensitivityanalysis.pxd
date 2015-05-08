@@ -17,5 +17,5 @@ cdef extern from 'ql/experimental/risk/sensitivityanalysis.hpp' namespace 'Quant
 		                                                           vector[shared_ptr[Instrument]]& instr, 
 					                                               vector[Real]& quant,
 					                                               Real shift,
-					                                               SensitivityAnalysis type)    
+					                                               SensitivityAnalysis type) except +
                     

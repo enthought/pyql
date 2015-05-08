@@ -33,7 +33,7 @@ cdef extern from 'ql/pricingengines/bond/bondfunctions.hpp' namespace 'QuantLib'
                         int compounding,
                         Frequency frequency,
                         Type dur_type,
-                        _dt.Date settlementDate )    
+                        _dt.Date settlementDate ) except +   
                       
         Rate bf_yield(QLBond bond,
                         Real cleanPrice,
@@ -43,14 +43,14 @@ cdef extern from 'ql/pricingengines/bond/bondfunctions.hpp' namespace 'QuantLib'
                         _dt.Date settlementDate,
                         Real accuracy,
                         Size maxIterations,
-                        Rate guess)
+                        Rate guess) except +
                         
         Real basisPointValue(QLBond bond,
                             Rate yld,
                             DayCounter dayCounter,
                             int compounding,
                             Frequency frequency,
-                            _dt.Date settlementDate)            
+                            _dt.Date settlementDate) except +      
                       
         Spread zSpread(QLBond bond,
                     Real cleanPrice,
@@ -61,4 +61,4 @@ cdef extern from 'ql/pricingengines/bond/bondfunctions.hpp' namespace 'QuantLib'
                     _dt.Date settlementDate,
                     Real accuracy,
                     Size maxIterations,
-                    Rate guess)
+                    Rate guess) except +
