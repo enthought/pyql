@@ -1,5 +1,5 @@
 
-from .unittest_tools import unittest
+from unittest_tools import unittest
 
 from quantlib.instruments.bonds import (FixedRateBond)
 from quantlib.pricingengines.bond import DiscountingBondEngine
@@ -34,18 +34,18 @@ from  quantlib.experimental.risk.sensitivityanalysis import bucketAnalysis
 
 class SensitivityTestCase(unittest.TestCase):
 
-
+    #@unittest.skip('This test is not numerically accurate and fails')
     def test_bucketanalysis_bond(self):
 
         settings = Settings()
 
-
+        # Date setup
         calendar = TARGET()
 
-
+        # Settlement date
         settlement_date = calendar.adjust(Date(28, January, 2011))
         simple_quotes = []
-
+        # Evaluation date
         fixing_days = 1
         settlement_days = 1
 
@@ -55,7 +55,7 @@ class SensitivityTestCase(unittest.TestCase):
 
         settings.evaluation_date = todays_date
 
-
+        # Bound attributes
         face_amount = 100.0
         redemption = 100.0
         issue_date = Date(27, January, 2011)
@@ -67,13 +67,15 @@ class SensitivityTestCase(unittest.TestCase):
         flat_term_structure = FlatForward(
             reference_date = settlement_date,
             forward        = bond_yield,
-            daycounter     = Actual365Fixed(), 
+            daycounter     = Actual365Fixed(), #actual_actual.ActualActual(actual_actual.Bond),
             compounding    = Compounded,
             frequency      = Semiannual)
-
+        # have a look at the FixedRateBondHelper to simplify this
+        # construction
         flat_discounting_term_structure.link_to(flat_term_structure)
 
 
+            #Rate
         fixed_bond_schedule = Schedule(
             issue_date,
             maturity_date,
@@ -159,12 +161,18 @@ class SensitivityTestCase(unittest.TestCase):
         pricing_engine = DiscountingBondEngine(discounting_term_structure)
         bond.set_pricing_engine(pricing_engine)
                                    
+                                                            
+        # tests
         self.assertAlmostEquals(bond.npv, 100.83702940160767)
     
+        #self.assertTrue(Date(31, August, 2020), bond.maturity_date)
+        #self.assertTrue(settings.evaluation_date, bond.valuation_date)
+        #print simple_quotes
+
         ba =  bucketAnalysis([simple_quotes],[bond],[1],0.0001, 1)
         
-        self.assertTrue(2,ba)
-        self.assertTrue(type(tuple),ba) 
+        self.assertTrue(2,ba) #results should be 
+        self.assertTrue(type(tuple),ba) #result should be a tuple
         self.assertEquals(len(simple_quotes),len(ba[0][0]))
         self.assertEquals(0, ba[0][0][8])
     
@@ -179,6 +187,7 @@ class SensitivityTestCase(unittest.TestCase):
         
         settings.evaluation_date = todays_date
         
+        # options parameters
         option_type = Put
         underlying = 40
         strike = 40
@@ -193,6 +202,7 @@ class SensitivityTestCase(unittest.TestCase):
         payoff = PlainVanillaPayoff(option_type, strike)
         
         
+        # bootstrap the yield/dividend/vol curves
         flat_term_structure = FlatForward(
             reference_date = settlement_date,
             forward        = risk_free_rate,
@@ -218,6 +228,8 @@ class SensitivityTestCase(unittest.TestCase):
             flat_vol_ts
         )
         
+        
+        
         european_exercise = EuropeanExercise(maturity)
         european_option = VanillaOption(payoff, european_exercise)
         analytic_european_engine = AnalyticEuropeanEngine(
@@ -225,7 +237,8 @@ class SensitivityTestCase(unittest.TestCase):
                 )
         
         european_option.set_pricing_engine(analytic_european_engine)
-         
+        
+        
         ba_eo= bucketAnalysis(
                 [[underlyingH]],[european_option], [1], 0.50, 1)
 

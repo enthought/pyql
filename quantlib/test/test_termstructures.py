@@ -43,13 +43,6 @@ class SimpleQuoteTestCase(unittest.TestCase):
 
 class YieldTermStructureTestCase(unittest.TestCase):
 
-    def test_default_constructor(self):
-
-        term_structure = YieldTermStructure()
-
-        with self.assertRaises(ValueError):
-            term_structure.discount(Settings().evaluation_date)
-
     def test_relinkable_structures(self):
 
         discounting_term_structure = YieldTermStructure(relinkable=True)
