@@ -82,7 +82,7 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
                        Handle[Quote]& spread,
                        Period& fwdStart
         )
-        SwapRateHelper(Handle[Quote]& rate,
+        SwapRateHelper(Rate rate,
                        shared_ptr[SwapIndex]& swapIndex,
                        #Handle[Quote]& spread, # = Handle<Quote>(),
                        #Period& fwdStart, # = 0*Days,

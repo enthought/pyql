@@ -16,7 +16,7 @@ from quantlib.currency.api import USDCurrency
 from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.compounding import Compounded, Continuous
 from quantlib.time.date import (
-    Date, Days, Semiannual, January, August, Period, March, February, April, May,
+    Date, Days, Semiannual, January, August, Period, March, February,
     Jul, Annual, Years
 )
 from quantlib.time.api import (TARGET, Period, Months, Years, Days,September, ISDA, today, Mar,
@@ -30,8 +30,8 @@ from quantlib.indexes.libor import Libor
 from quantlib.termstructures.yields.rate_helpers import (
     DepositRateHelper, SwapRateHelper)
 from quantlib.termstructures.yields.piecewise_yield_curve import (
-    VALID_TRAITS, VALID_INTERPOLATORS,
-    PiecewiseYieldCurve)
+    PiecewiseYieldCurve
+)
 from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure
 )
@@ -105,15 +105,15 @@ class BondFunctionTestCase(unittest.TestCase):
             redemption,
             issue_date
         )
-        
-        
+
         bfs=bf.BondFunctions()
         d=bfs.startDate(bond)
         bfs.display()
         zspd=bfs.zSpread(bond,100.0,flat_term_structure,Actual365Fixed(),
         Compounded,Semiannual,settlement_date,1e-6,100,0.5)
         
-
+        
+              
         #Also need a test case for a PiecewiseTermStructure...                
         depositData = [[ 1, Months, 4.581 ],
                        [ 2, Months, 4.573 ],
@@ -133,7 +133,7 @@ class BondFunctionTestCase(unittest.TestCase):
         for m, period, rate in depositData:
             tenor = Period(m, Months)
 
-            helper = DepositRateHelper(SimpleQuote(rate/100), tenor, settlement_days,
+            helper = DepositRateHelper(rate/100, tenor, settlement_days,
                      calendar, ModifiedFollowing, end_of_month,
                      Actual360())
 
@@ -149,7 +149,7 @@ class BondFunctionTestCase(unittest.TestCase):
         for m, period, rate in swapData:
 
             helper = SwapRateHelper.from_tenor(
-                SimpleQuote(rate/100), Period(m, Years), calendar, Annual, Unadjusted, Thirty360(), liborIndex,
+                rate/100, Period(m, Years), calendar, Annual, Unadjusted, Thirty360(), liborIndex,
                 spread, fwdStart
             )
 
@@ -163,28 +163,32 @@ class BondFunctionTestCase(unittest.TestCase):
             ts_day_counter, tolerance)   
 
         pyc_zspd=bfs.zSpread(bond,102.0,ts,ActualActual(ISDA),
-        Compounded,Semiannual,Date(01, April, 2015),1e-6,100,0.5)                                      
+        Compounded,Semiannual,settlement_date,1e-6,100,0.5)                     
 
         pyc_zspd_disco=bfs.zSpread(bond,95.0,ts,ActualActual(ISDA),
-        Compounded,Semiannual,settlement_date,1e-6,100,0.5)                                      
-        
+        Compounded,Semiannual,settlement_date,1e-6,100,0.5)
+                                                          
+        # tests
+        #self.assertTrue(Date(27, January, 2011), bond.issue_date)
+        #self.assertTrue(Date(31, August, 2020), bond.maturity_date)
+        #self.assertTrue(settings.evaluation_date, bond.valuation_date)
 
-        yld  = bfs.yld(bond,102.0,ActualActual(ISDA), Compounded, Semiannual, settlement_date,1e-6,100,0.5)
-        dur  = bfs.duration(bond,yld,ActualActual(ISDA), Compounded, Semiannual, 2, settlement_date) 
+        print d
+        self.assertTrue(Date(27, January, 2011), d)
 
-        yld_disco  = bfs.yld(bond,95.0,ActualActual(ISDA), Compounded, Semiannual, settlement_date,1e-6,100,0.5)
-        dur_disco  = bfs.duration(bond,yld_disco,ActualActual(ISDA), Compounded, Semiannual, 2, settlement_date)        
-        
-        self.assertEquals(round(zspd,6),0.001281)
-        self.assertEquals(round(pyc_zspd,4),-0.0264)
-        self.assertEquals(round(pyc_zspd_disco,4),-0.0114)
-        
-        self.assertEquals(round(yld,4),0.0338)
-        self.assertEquals(round(yld_disco,4),0.0426)
-        
-        self.assertEquals(round(dur,4),8.0655)
-        self.assertEquals(round(dur_disco,4),7.9702)
-
+        print 'Yield: {:.15%}'.format(bond_yield)
+        #self.assertTrue(bond_yield,
+        print 'Yield: {:.4%}'.format(bond_yield)
+        print 'z-spread: {:.4%}'.format(zspd)
+        print 'premium  z-spread using pwyc: {:.4%}'.format(pyc_zspd)
+        print 'discount z-spread using pwyc: {:.4%}'.format(pyc_zspd_disco)
+#        print 'Net present value: {:.4f}'.format(bond.net_present_value)
+#        print 'Clean price: {:.4f}'.format(bond.clean_price)
+#        print 'Dirty price: {:.4f}'.format(bond.dirty_price)
+#        print 'Accrued coupon: {:.6f}'.format(bond.accrued_amount())
+#        print 'Accrued coupon: {:.6f}'.format(
+#            bond.accrued_amount(Date(1, March, 2011))
+#        )
 
 
 if __name__ == '__main__':
