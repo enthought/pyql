@@ -69,7 +69,7 @@ cdef class RelativeDateRateHelper:
 
 
 cdef class DepositRateHelper(RateHelper):
-    """Rate helper for bootstrapping over deposit rates. [uses SimpleQuotes]"""
+    """Rate helper for bootstrapping over deposit rates. [uses SimpleQuotes] update 05/14/2015"""
 
     def __init__(self, Quote quote, Period tenor=None, Natural fixing_days=0,
         Calendar calendar=None, int convention=ModifiedFollowing,
@@ -170,8 +170,9 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
         return instance
 
     @classmethod
-    def from_index(cls, double rate, SwapIndex index):
+    def from_index(cls, Quote rate, SwapIndex index):
 
+        cdef Handle[_qt.Quote] rate_handle = Handle[_qt.Quote](deref(rate._thisptr))
         cdef Handle[_qt.Quote] spread_handle = Handle[_qt.Quote](shared_ptr[_qt.Quote](new _qt.SimpleQuote(0)))
         cdef Period p = Period(2, Days)
 
@@ -180,7 +181,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
 
         instance.set_ptr(new shared_ptr[_rh.RelativeDateRateHelper](
             new _rh.SwapRateHelper(
-                rate,
+                rate_handle,
                 deref(<shared_ptr[_si.SwapIndex]*>index._thisptr),
                 #spread_handle,
                 #deref(p._thisptr.get()))
