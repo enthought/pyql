@@ -1,17 +1,14 @@
 from .unittest_tools import unittest
 
-from quantlib.currency.api import USDCurrency
-from quantlib.indexes.swap_index import SwapIndex
-from quantlib.indexes.libor import Libor
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.rate_helpers import (
-    DepositRateHelper, FraRateHelper, FuturesRateHelper, SwapRateHelper
-)
+from quantlib.time.api import Period, Months, TARGET, ModifiedFollowing
+from quantlib.time.api import Actual365Fixed, Date
+from quantlib.termstructures.yields.rate_helpers import DepositRateHelper
+from quantlib.termstructures.yields.rate_helpers import FraRateHelper
+from quantlib.termstructures.yields.rate_helpers import FuturesRateHelper
+from quantlib.termstructures.yields.rate_helpers import SwapRateHelper
 from quantlib.termstructures.yields.api import YieldTermStructure
-from quantlib.time.api import (
-    Period, Months, TARGET, ModifiedFollowing, Actual365Fixed, Date, Years,
-    UnitedStates, Actual360
-)
+
 
 class RateHelpersTestCase(unittest.TestCase):
 
@@ -82,6 +79,12 @@ class RateHelpersTestCase(unittest.TestCase):
 
 
     def test_create_swap_rate_helper_from_index(self):
+
+        from quantlib.currency import USDCurrency
+        from quantlib.indexes.swap_index import SwapIndex
+        from quantlib.indexes.libor import Libor
+        from quantlib.time.api import Years, UnitedStates, Actual360
+
         calendar = UnitedStates()
         settlement_days = 2
         currency = USDCurrency()
@@ -91,7 +94,7 @@ class RateHelpersTestCase(unittest.TestCase):
         family_name = currency.name + 'index'
         ibor_index =  Libor(
             "USDLibor", Period(3,Months), settlement_days, USDCurrency(),
-            UnitedStates(), Actual360()
+            UnitedStates(), Actual360(), YieldTermStructure(relinkable=False)
         )
 
         rate = 0.005681
