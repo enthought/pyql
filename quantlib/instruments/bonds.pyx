@@ -16,21 +16,24 @@ cimport quantlib.time._date as _date
 
 from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
-
+from libcpp cimport bool
 from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle
 from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time._calendar cimport BusinessDayConvention
 from quantlib.time._daycounter cimport DayCounter as QlDayCounter
 from quantlib.time._schedule cimport Schedule as QlSchedule
+from quantlib.time._calendar cimport Following
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.time.calendar import Following
+from quantlib.time._period cimport Frequency 
+from quantlib.indexes.ibor_index cimport IborIndex
 
 cimport quantlib._cashflow as _cashflow
 cimport quantlib.cashflow as cashflow
+cimport quantlib.indexes._ibor_index as _ii
 
 import datetime
 
@@ -136,6 +139,7 @@ cdef class Bond(Instrument):
             cdef _cashflow.Leg leg
             cdef object result
             leg = get_bond(self).cashflows()
+            
             result = cashflow.leg_items(leg)
             return result
 
@@ -194,7 +198,7 @@ cdef class ZeroCouponBond(Bond):
     """ Zero coupon bond. """
 
     def __init__(self, settlement_days, Calendar calendar, face_amount,
-        Date maturity_date, payment_convention=Following, redemption=100.,
+        Date maturity_date, payment_convention=Following, redemption=100.0,
         Date issue_date=None
     ):
         """ Instantiate a zero coupon bond. """
@@ -212,3 +216,53 @@ cdef class ZeroCouponBond(Bond):
                 'Wrapper for such constructor not yet implemented.'
             )
 
+cdef class FloatingRateBond(Bond): 
+    """ Floating Rate Bond """
+    def __init__(self, int settlement_days, double face_amount, Schedule float_schedule, 
+        IborIndex ibor_index, DayCounter accrual_day_counter, int fixing_days, 
+        gearings, spreads, caps, floors, payment_convention=Following, redemption=100.0, Date issue_date=None
+        ):
+        """Floating rate bond (Instantiation): 
+            1. (int) settlement_days
+            2. (double) face_amount
+            3. (Quantlib::Schedule) 
+            4. (Quantlib::IborIndex)
+            5. (Quantlib::DayCounter)
+            6. (int) fixing_days
+            7. (List[double]) gearings
+            8. (List[Quantlib::Spread]) spreads
+            9. (List[double]) caps
+            10. (List[double]) floors
+            11. (Quantlib::BusinessDayConvention)
+            12. (double) redemption
+            13. (Quantlib::Date) issue_date
+          """
+        cdef QlSchedule* _float_bonds_schedule = <QlSchedule*>float_schedule._thisptr
+        cdef QlDayCounter* _accrual_day_counter = <QlDayCounter*>accrual_day_counter._thisptr
+        cdef _date.Date* _issue_date
+        
+        
+        cdef vector[Real] _gearings = vector[Real]()
+        cdef vector[Spread] _spreads = vector[Spread]()
+        cdef vector[Rate] _caps = vector[Rate]()
+        cdef vector[Rate] _floors = vector[Rate]()
+        
+        for item in gearings: 
+            _gearings.push_back(item)
+        for spd in spreads: 
+            _spreads.push_back(spd)
+        for rtc in caps:
+            _caps.push_back(rtc)
+        for rtf in floors: 
+            _floors.push_back(rtf)
+        
+        _issue_date = <_date.Date*>((<Date>issue_date)._thisptr.get())
+        
+        self._thisptr = new shared_ptr[_instrument.Instrument](
+            new _bonds.FloatingRateBond(
+                <Natural> settlement_days, <Real> face_amount, deref(_float_bonds_schedule),deref(<shared_ptr[_ii.IborIndex]*> ibor_index._thisptr),
+                deref(_accrual_day_counter), <BusinessDayConvention> payment_convention, 
+                <Natural> fixing_days, _gearings, _spreads, _caps, _floors, True, redemption, deref(_issue_date)
+                )
+            )       
+               
