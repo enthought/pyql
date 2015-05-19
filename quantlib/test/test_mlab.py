@@ -12,6 +12,7 @@ import quantlib.reference.data_structures as ds
 from quantlib.termstructures.yields.api import PiecewiseYieldCurve
 from quantlib.time.api import ActualActual, ISDA
 from quantlib.util.converter import pydate_to_qldate
+from quantlib.quotes import SimpleQuote
 
 
 class MLabTestCase(unittest.TestCase):
@@ -71,16 +72,16 @@ class MLabTestCase(unittest.TestCase):
 
     def test_yield(self):
 
-        rates_data = [('Libor1M', .01),
-                  ('Libor3M', .015),
-                  ('Libor6M', .017),
-                  ('Swap1Y', .02),
-                  ('Swap2Y', .03),
-                  ('Swap3Y', .04),
-                  ('Swap5Y', .05),
-                  ('Swap7Y', .06),
-                  ('Swap10Y', .07),
-                  ('Swap20Y', .08)]
+        rates_data = [('Libor1M',SimpleQuote(.01)),
+                  ('Libor3M', SimpleQuote(.015)),
+                  ('Libor6M', SimpleQuote(.017)),
+                  ('Swap1Y', SimpleQuote(.02)),
+                  ('Swap2Y', SimpleQuote(.03)),
+                  ('Swap3Y', SimpleQuote(.04)),
+                  ('Swap5Y', SimpleQuote(.05)),
+                  ('Swap7Y', SimpleQuote(.06)),
+                  ('Swap10Y', SimpleQuote(.07)),
+                  ('Swap20Y', SimpleQuote(.08))]
 
         settlement_date = pydate_to_qldate('01-Dec-2013')
         rate_helpers = []
@@ -188,9 +189,9 @@ class MLabTestCase(unittest.TestCase):
                    'Swap10Y',
                    'Swap20Y',
                    'Swap30Y']
-        yields = [.01, .015, .02, .03, .04,
-              .05, .06, .07, .08, .09,
-              .1]
+        yields = [SimpleQuote(.01), SimpleQuote(.015), SimpleQuote(.02), SimpleQuote(.03), SimpleQuote(.04),
+              SimpleQuote(.05), SimpleQuote(.06), SimpleQuote(.07), SimpleQuote(.08), SimpleQuote(.09),
+              SimpleQuote(.1)]
 
         pricing_date = '01-dec-2013'
         dt, rates = zbt_libor_yield(instruments, yields, pricing_date,
@@ -198,3 +199,6 @@ class MLabTestCase(unittest.TestCase):
                     maturity_dates=None)
 
         self.assertAlmostEqual(rates[0], .01, 3)
+        
+if __name__ == '__main__':
+    unittest.main()
