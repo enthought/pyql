@@ -6,18 +6,17 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
-from __future__ import division
 
 from .unittest_tools import unittest
 
-from quantlib.currency.api import USDCurrency
+from quantlib.currency import USDCurrency
 from quantlib.indexes.swap_index import SwapIndex
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.rate_helpers import (
     DepositRateHelper, SwapRateHelper)
 from quantlib.termstructures.yields.piecewise_yield_curve import (
-    VALID_TRAITS, VALID_INTERPOLATORS, PiecewiseYieldCurve
-)
+    term_structure_factory, VALID_TRAITS, VALID_INTERPOLATORS,
+    PiecewiseYieldCurve)
 from quantlib.time.api import Date, TARGET, Period, Months, Years, Days
 from quantlib.time.api import September, ISDA, today, Mar
 from quantlib.time.api import ModifiedFollowing, Unadjusted, Actual360
@@ -70,7 +69,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve(
+        ts = term_structure_factory(
             'discount', 'loglinear', settlement_date, rate_helpers,
             ts_day_counter, tolerance
         )
@@ -176,10 +175,9 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
             rate_helpers.append(helper)
 
-        liborIndex = Libor(
-            'USD Libor', Period(6, Months), settlement_days, USDCurrency(),
-            calendar, Actual360()
-        )
+        liborIndex = Libor('USD Libor', Period(6, Months), settlement_days,
+                           USDCurrency(), calendar, Actual360(),
+                           YieldTermStructure(relinkable=False))
 
         spread = SimpleQuote(0)
         fwdStart = Period(0, Days)
@@ -196,10 +194,9 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         ts_day_counter = ActualActual(ISDA)
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve(
+        ts = term_structure_factory(
             'discount', 'loglinear', settlement_date, rate_helpers,
-            ts_day_counter, tolerance
-        )
+            ts_day_counter, tolerance)
 
         self.assertEquals(settlement_date, ts.reference_date)
 
@@ -246,7 +243,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         # description of the float leg of the swap
         Swap_iborIndex = Libor(
             "USDLibor", Period(3, Months), settlement_days, USDCurrency(),
-            UnitedStates(), Actual360()
+            UnitedStates(), Actual360(), YieldTermStructure(relinkable=False)
         )
 
         SwapFamilyName = currency.name + "swapIndex"
@@ -258,10 +255,9 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         instruments = []
         for rate, tenor in zip(liborRates, liborRatesTenor):
             # Index description ___ creation of a Libor index
-            liborIndex =  Libor(
-                LiborFamilyName, tenor, settlement_days, currency, calendar,
-                Libor_dayCounter
-            )
+            liborIndex =  Libor(LiborFamilyName, tenor, settlement_days,
+                                currency, calendar, Libor_dayCounter,
+                                YieldTermStructure(relinkable=False))
             # Initialize rate helper
             # the DepositRateHelper link the recording rate with the Libor
             # index
@@ -271,11 +267,9 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         for tenor, rate in zip(swapRatesTenor, swapRates):
             # swap description ___ creation of a swap index. The floating leg is described in the index 'Swap_iborIndex'
-            swapIndex = SwapIndex (
-                SwapFamilyName, tenor, settlement_days, currency, calendar,
-                Swap_fixedLegTenor, Swap_fixedLegConvention,
-                Swap_fixedLegDayCounter, Swap_iborIndex
-            )
+            swapIndex = SwapIndex (SwapFamilyName, tenor, settlement_days, currency, calendar,
+                    Swap_fixedLegTenor, Swap_fixedLegConvention, Swap_fixedLegDayCounter,
+                    Swap_iborIndex)
             # Initialize rate helper __ the SwapRateHelper links the swap index width his rate
             instruments.append(SwapRateHelper.from_index(rate,swapIndex))
 
@@ -283,9 +277,8 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve(
-            'zero', 'linear', settlement_date, instruments, dayCounter,
-            tolerance
+        ts = term_structure_factory(
+            'zero', 'linear', settlement_date, instruments, dayCounter, tolerance
         )
 
         self.assertEquals(settlement_date, ts.reference_date)

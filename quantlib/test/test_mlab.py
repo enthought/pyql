@@ -9,7 +9,8 @@ from quantlib.util.rates import make_rate_helper, zero_rate
 import quantlib.reference.names as nm
 import quantlib.reference.data_structures as ds
 
-from quantlib.termstructures.yields.api import PiecewiseYieldCurve
+from quantlib.termstructures.yields.piecewise_yield_curve import \
+    term_structure_factory
 from quantlib.time.api import ActualActual, ISDA
 from quantlib.util.converter import pydate_to_qldate
 
@@ -91,10 +92,9 @@ class MLabTestCase(unittest.TestCase):
             ts_day_counter = ActualActual(ISDA)
             tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve(
-            'discount', 'loglinear', settlement_date, rate_helpers,
-            ts_day_counter, tolerance
-        )
+        ts = term_structure_factory('discount', 'loglinear',
+         settlement_date, rate_helpers,
+         ts_day_counter, tolerance)
 
         zc = zero_rate(ts, (200, 300), settlement_date)
         # not a real test - just verify execution
