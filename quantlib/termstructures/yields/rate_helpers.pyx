@@ -69,7 +69,7 @@ cdef class RelativeDateRateHelper:
 
 
 cdef class DepositRateHelper(RateHelper):
-    """Rate helper for bootstrapping over deposit rates. [uses SimpleQuotes] update 05/14/2015"""
+    """Rate helper for bootstrapping over deposit rates."""
 
     def __init__(self, Quote quote, Period tenor=None, Natural fixing_days=0,
         Calendar calendar=None, int convention=ModifiedFollowing,
@@ -97,8 +97,7 @@ cdef class DepositRateHelper(RateHelper):
                 )
             )
 cdef class SwapRateHelper(RelativeDateRateHelper):
-    """Rate helper for bootstrapping over swap rates, use from_tenor or from_index function, 
-    from_tenor uses SimpleQuote() instead of double""" 
+    """Rate helper for bootstrapping over swap rates, use from_tenor or from_index function""" 
     def __init__(self, from_classmethod=False):
         # Creating a SwaprRateHelper without using a class method means the
         # shared_ptr won't be initialized properly and break any subsequent calls
@@ -123,7 +122,6 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
         
         cdef Handle[_qt.Quote] rate_handle = Handle[_qt.Quote](deref(rate._thisptr))
         cdef Handle[_qt.Quote] spread_handle
-#        cdef Handle[_qt.Quote] _rate    #from merge w/ master, might not need this any longer?
 
         cdef _qt.SimpleQuote* qt 
         cdef shared_ptr[_qt.Quote] ptr
@@ -132,9 +130,6 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
             ptr = deref(new shared_ptr[_qt.Quote](qt))
         elif isinstance(rate, SimpleQuote):
             ptr = deref((<SimpleQuote>rate)._thisptr)
-
-#        _rate = Handle[_qt.Quote](ptr) #from merge w/ master, might not need this any longer?
-
 
         cdef SwapRateHelper instance = cls(from_classmethod=True)
 
