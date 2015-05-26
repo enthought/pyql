@@ -21,13 +21,9 @@ cdef class ForwardSpreadedTermStructure(YieldTermStructure):
         
     """
     def __init__(self,YieldTermStructure yldtermstruct, Quote spread):
-
-        # convert inputs to handles
         
         cdef Handle[_qt.Quote] q_handle = Handle[_qt.Quote](deref(spread._thisptr))
-
         cdef Handle[_ff.YieldTermStructure] yts_handle = deref(yldtermstruct._thisptr.get())
-        #cdef shared_ptr[_ff.YieldTermStructure] _yts = shared_ptr[_ff.YieldTermStructure](yts_handle.currentLink())
         cdef _fsts.ForwardSpreadedTermStructure* _fwdts
 
         _fwdts = new _fsts.ForwardSpreadedTermStructure(
