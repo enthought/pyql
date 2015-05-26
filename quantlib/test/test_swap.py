@@ -15,7 +15,7 @@ from quantlib.time.api import (
     Schedule, Forward
 )
 from quantlib.util.converter import pydate_to_qldate
-
+from quantlib.quotes import SimpleQuote
 
 
 class TestQuantLibSwap(unittest.TestCase):
@@ -120,17 +120,17 @@ class TestQuantLibSwap(unittest.TestCase):
 
         m = libor_market('USD(NY)')
 
-        quotes = [('DEP', '1W', 0.0382),
-                  ('DEP', '1M', 0.0372),
-                  ('DEP', '3M', 0.0363),
-                  ('DEP', '6M', 0.0353),
-                  ('DEP', '9M', 0.0348),
-                  ('DEP', '1Y', 0.0345),
-                  ('SWAP', '2Y', 0.037125),
-                  ('SWAP', '3Y', 0.0398),
-                  ('SWAP', '5Y', 0.0443),
-                  ('SWAP', '10Y', 0.05165),
-                  ('SWAP', '15Y', 0.055175)]
+        quotes = [('DEP', '1W', SimpleQuote(0.0382)),
+                  ('DEP', '1M', SimpleQuote(0.0372)),
+                  ('DEP', '3M', SimpleQuote(0.0363)),
+                  ('DEP', '6M', SimpleQuote(0.0353)),
+                  ('DEP', '9M', SimpleQuote(0.0348)),
+                  ('DEP', '1Y', SimpleQuote(0.0345)),
+                  ('SWAP', '2Y', SimpleQuote(0.037125)),
+                  ('SWAP', '3Y', SimpleQuote(0.0398)),
+                  ('SWAP', '5Y', SimpleQuote(0.0443)),
+                  ('SWAP', '10Y', SimpleQuote(0.05165)),
+                  ('SWAP', '15Y', SimpleQuote(0.055175))]
 
         m.set_quotes(eval_date, quotes)
 

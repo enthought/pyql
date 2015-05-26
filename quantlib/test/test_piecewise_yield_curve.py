@@ -44,7 +44,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         # must be a business day
         settlement_date = calendar.adjust(settlement_date);
 
-        quotes = [0.0096, 0.0145, 0.0194]
+        quotes = [SimpleQuote(0.0096), SimpleQuote(0.0145), SimpleQuote(0.0194)]
         tenors =  [3, 6, 12]
 
         rate_helpers = []
@@ -98,8 +98,9 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         settlement_date = Date(18, September, 2008)
         # must be a business day
         settlement_date = calendar.adjust(settlement_date);
+        
+        quotes = [SimpleQuote(0.0096), SimpleQuote(0.0145), SimpleQuote(0.0194)]
 
-        quotes = [0.0096, 0.0145, 0.0194]
         tenors =  [3, 6, 12]
 
         rate_helpers = []
@@ -170,7 +171,8 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         for m, period, rate in depositData:
             tenor = Period(m, Months)
 
-            helper = DepositRateHelper(rate/100, tenor, settlement_days,
+
+            helper = DepositRateHelper(SimpleQuote(rate/100), tenor, settlement_days,
                      calendar, ModifiedFollowing, end_of_month,
                      Actual360())
 
@@ -187,7 +189,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         for m, period, rate in swapData:
 
             helper = SwapRateHelper.from_tenor(
-                rate/100, Period(m, Years), calendar, Annual, Unadjusted, Thirty360(), liborIndex,
+                SimpleQuote(rate/100), Period(m, Years), calendar, Annual, Unadjusted, Thirty360(), liborIndex,
                 spread, fwdStart
             )
 
@@ -230,14 +232,14 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
             todays_date, period=Period(settlement_days, Days)
         )
 
-        liborRates = [ 0.002763, 0.004082, 0.005601, 0.006390, 0.007125, 0.007928, 0.009446,
-            0.01110]
+        liborRates = [ SimpleQuote(0.002763), SimpleQuote(0.004082), SimpleQuote(0.005601), SimpleQuote(0.006390), SimpleQuote(0.007125), 
+            SimpleQuote(0.007928), SimpleQuote(0.009446), SimpleQuote(0.01110)]
         liborRatesTenor = [Period(tenor, Months) for tenor in [1,2,3,4,5,6,9,12]]
         Libor_dayCounter = Actual360();
 
 
-        swapRates = [0.005681, 0.006970, 0.009310, 0.012010, 0.014628, 0.016881, 0.018745,
-                 0.020260, 0.021545]
+        swapRates = [SimpleQuote(0.005681), SimpleQuote(0.006970), SimpleQuote(0.009310), SimpleQuote(0.012010), SimpleQuote(0.014628),
+                 SimpleQuote(0.016881), SimpleQuote(0.018745), SimpleQuote(0.020260), SimpleQuote(0.021545)]
         swapRatesTenor = [Period(i, Years) for i in range(2, 11)]
         # description of the fixed leg of the swap
         Swap_fixedLegTenor = Period(12, Months)      # INPUT

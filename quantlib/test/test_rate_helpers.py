@@ -17,7 +17,7 @@ class RateHelpersTestCase(unittest.TestCase):
 
     def test_create_deposit_rate_helper(self):
 
-        quote = 0.0096
+        quote = SimpleQuote(0.0096)
         tenor = Period(3, Months)
         fixing_days = 3
         calendar =  TARGET()
@@ -32,7 +32,7 @@ class RateHelpersTestCase(unittest.TestCase):
         )
 
         self.assertIsNotNone(helper)
-        self.assertEquals(quote, helper.quote)
+        self.assertEquals(quote.value, helper.quote)
 
 
     def test_create_fra_rate_helper(self):
@@ -94,7 +94,7 @@ class RateHelpersTestCase(unittest.TestCase):
             UnitedStates(), Actual360()
         )
 
-        rate = 0.005681
+        rate = SimpleQuote(0.005681)
         tenor = Period(1, Years)
 
         index = SwapIndex (
@@ -110,10 +110,10 @@ class RateHelpersTestCase(unittest.TestCase):
         #)
 
         self.assertIsNotNone(helper)
-        self.assertAlmostEquals(rate, helper.quote)
+        self.assertAlmostEquals(rate.value, helper.quote)
 
         with self.assertRaises(RuntimeError):
-            self.assertAlmostEquals(rate, helper.implied_quote)
+            self.assertAlmostEquals(rate.value, helper.implied_quote)
 
 if __name__ == '__main__':
     unittest.main()
