@@ -19,6 +19,11 @@ from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.time.daycounter import Actual360, Actual365Fixed
 from quantlib.time.date import today, Days
 
+from quantlib.compounding import Simple
+from quantlib.time.api import Date, Actual360
+from quantlib.market.market import libor_market, IborMarket
+from quantlib.quotes import SimpleQuote
+from quantlib.termstructures.yields.forward_spreaded_term_structure import ForwardSpreadedTermStructure
 
 class SimpleQuoteTestCase(unittest.TestCase):
 
@@ -120,3 +125,51 @@ class FlatForwardTestCase(unittest.TestCase):
         for i, val in enumerate(expected):
             self.assertAlmostEquals(val, calculated[i])
 
+class ForwardSpreadedTestCase(unittest.TestCase): 
+    
+    def test_forward_spreaded_ts(self):
+        m = libor_market('USD(NY)')
+        eval_date = Date(20, 9, 2004)
+        
+        quotes = [('DEP', '1W', SimpleQuote(0.0382)),
+                    ('DEP', '1M', SimpleQuote(0.0372)),
+                    ('DEP', '3M', SimpleQuote(0.0363)),
+                    ('DEP', '6M', SimpleQuote(0.0353)),
+                    ('DEP', '9M', SimpleQuote(0.0348)),
+                    ('DEP', '1Y', SimpleQuote(0.0345))]
+        
+        m.set_quotes(eval_date, quotes)
+        ts = m.bootstrap_term_structure()
+
+        discount_ts = m._discount_term_structure
+        forecast_ts = m._forecast_term_structure
+        discount_spd = 0.05
+        forecast_spd = 0.08
+        
+        fwd_spd_dts = ForwardSpreadedTermStructure(discount_ts, SimpleQuote(discount_spd))
+        fwd_spd_fts = ForwardSpreadedTermStructure(forecast_ts, SimpleQuote(forecast_spd))
+        
+        df_rate = round(float(discount_ts.forward_rate(Date(1, 1, 2005), Date(30, 1, 2005), Actual360(), Simple).rate), 2)
+        dz_rate = round(float(discount_ts.zero_rate(Date(1, 1, 2005), Actual360(), Simple).rate), 2)
+         
+        fdf_rate = round(float(fwd_spd_dts.forward_rate(Date(1 ,1 , 2005), Date(30 ,1 ,2005), Actual360(), Simple).rate), 2)
+        fdz_rate = round(float(fwd_spd_dts.zero_rate(Date(1, 1, 2005), Actual360(), Simple).rate), 2)
+        
+        ff_rate = round(float(forecast_ts.forward_rate(Date(1, 1, 2005), Date(30, 1, 2005), Actual360(), Simple).rate), 2)
+        fz_rate = round(float(forecast_ts.zero_rate(Date(1, 1, 2005), Actual360(), Simple).rate), 2)
+        
+        ffc_rate= round(float(fwd_spd_fts.forward_rate(Date(1, 1, 2005), Date(30, 1, 2005), Actual360(), Simple).rate), 2)
+        ffz_rate= round(float(fwd_spd_fts.zero_rate(Date(1, 1, 2005), Actual360() ,Simple).rate), 2)
+        
+        df_diff= fdf_rate - df_rate
+        dz_diff= fdz_rate - dz_rate
+        ff_diff = ffc_rate - ff_rate
+        fz_diff = ffz_rate - fz_rate
+
+        self.assertAlmostEquals(df_diff, discount_spd)
+        self.assertAlmostEquals(dz_diff, discount_spd)
+        self.assertAlmostEquals(ff_diff, forecast_spd)
+        self.assertAlmostEquals(fz_diff, forecast_spd)
+
+if __name__ == '__main__':
+    unittest.main()
