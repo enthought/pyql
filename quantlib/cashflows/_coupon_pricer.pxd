@@ -18,8 +18,6 @@ cdef extern from 'ql/cashflows/couponpricer.hpp' namespace 'QuantLib':
         IborCouponPricer() except +
         IborCouponPricer(
             Handle[OptionletVolatilityStructure]& v) except +
-        #void setCapletVolatility(
-        #    Handle[OptionletVolatilityStructure]& ovs)
     
     cdef cppclass BlackIborCouponPricer(IborCouponPricer):
         BlackIborCouponPricer() except +

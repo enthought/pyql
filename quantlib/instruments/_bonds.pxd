@@ -117,9 +117,7 @@ cdef extern from 'ql/instruments/bonds/floatingratebond.hpp' namespace 'QuantLib
                         vector[Spread]& spreads,
                         vector[Rate]& caps,
                         vector[Rate]& floors, 
-                        #bool inArrears, 
                         Real redemption, 
                         Date& issueDate,
                         Date& stubDate,
-                        Rule rule)
-                        #bool endOfMonth) except +      
+                        Rule rule) except +  
