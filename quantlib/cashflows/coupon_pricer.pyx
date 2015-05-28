@@ -24,9 +24,6 @@ cdef class IborCouponPricer:
         raise ValueError(
             'IborCouponPricer cannot be directly instantiated!'
         )
-    #def setCapletVolatility(self, OptionletVolatilityStructure olvs): 
-    #    ovs_handle = new Handle[_ovs.OptionletVolatilityStructure](deref(olvs._thisptr))
-    #   self._thisptr.get().setCapletVolatility(ovs_handle)
 
 cdef class BlackIborCouponPricer(IborCouponPricer):
 
