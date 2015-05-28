@@ -112,7 +112,7 @@ class BondTestCase(unittest.TestCase):
         self.assertAlmostEqual(0.009851, bond.accrued_amount())
 
 
-        print settings.evaluation_date
+        print(settings.evaluation_date)
         print('Principal: {}'.format(face_amount))
         print('Issuing date: {} '.format(bond.issue_date))
         print('Maturity: {}'.format(bond.maturity_date))
