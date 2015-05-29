@@ -35,7 +35,7 @@ cdef extern from 'ql/pricingengines/bond/bondfunctions.hpp' namespace 'QuantLib'
                         Type dur_type,
                         _dt.Date settlementDate ) except +   
                       
-        Rate bf_yield(QLBond bond,
+        Rate _bf_yield(QLBond bond,
                         Real cleanPrice,
                         DayCounter dayCounter,
                         int compounding,

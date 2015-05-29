@@ -21,11 +21,6 @@ from quantlib.time.daycounter cimport DayCounter
 cimport quantlib.pricingengines.bondfunctions
 cimport quantlib.time._date as _dt
 
-#cdef _bonds.Bond* get_bond(Bond bond):
-#    """ Utility function to extract a properly casted Bond pointer out of the
-#    internal _thisptr attribute of the Instrument base class. """
-#
-#    cdef _bonds.Bond* ref = <_bonds.Bond*>bond._thisptr.get()
 cdef extern from 'ql/compounding.hpp' namespace 'QuantLib':
     cdef enum Compounding:
         Simple = 0
