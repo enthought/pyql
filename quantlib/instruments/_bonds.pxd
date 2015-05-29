@@ -11,6 +11,8 @@ from quantlib.time._period cimport Frequency
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._schedule cimport Schedule
 from quantlib._cashflow cimport Leg
+from quantlib.indexes._ibor_index cimport IborIndex
+from quantlib.time._schedule cimport Rule
 
 # FIXME: this is duplicated everywhere in the code base!!! needs cleanup
 cdef extern from 'ql/compounding.hpp' namespace 'QuantLib':
@@ -39,9 +41,9 @@ cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib':
         Real accruedAmount(Date d) except +
 
 
-        Real cleanPrice()
-        Real dirtyPrice()
-        Real settlementValue()
+        Real cleanPrice() except +
+        Real dirtyPrice() except +
+        Real settlementValue() except +
 
         Rate clean_yield 'yield'(
                    Real cleanPrice,
@@ -50,10 +52,10 @@ cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib':
                    Frequency freq,
                    Date settlementDate,
                    Real accuracy,
-                   Size maxEvaluations)
+                   Size maxEvaluations) except +
 
-        Date nextCachFlowDate(Date d)
-        Date previousCachFlowDate(Date d)
+        Date nextCachFlowDate(Date d) except +
+        Date previousCachFlowDate(Date d) except +
 
 cdef extern from 'ql/instruments/bonds/fixedratebond.hpp' namespace 'QuantLib':
     cdef cppclass FixedRateBond(Bond):
@@ -63,7 +65,7 @@ cdef extern from 'ql/instruments/bonds/fixedratebond.hpp' namespace 'QuantLib':
                       vector[Rate]& coupons,
                       DayCounter& accrualDayCounter,
                       BusinessDayConvention paymentConvention,
-                      Real redemption)
+                      Real redemption) except +
         FixedRateBond(Natural settlementDays,
                       Real faceAmount,
                       Schedule& schedule,
@@ -71,8 +73,8 @@ cdef extern from 'ql/instruments/bonds/fixedratebond.hpp' namespace 'QuantLib':
                       DayCounter& accrualDayCounter,
                       BusinessDayConvention paymentConvention,
                       Real redemption,
-                      Date& issueDate)
-        Date settlementDate()
+                      Date& issueDate) except +
+        Date settlementDate() except +
 
 cdef extern from 'ql/instruments/bonds/zerocouponbond.hpp' namespace 'QuantLib':
     cdef cppclass ZeroCouponBond(Bond):
@@ -82,4 +84,40 @@ cdef extern from 'ql/instruments/bonds/zerocouponbond.hpp' namespace 'QuantLib':
                       Date maturityDate,
                       BusinessDayConvention paymentConvention,
                       Real redemption,
-                      Date& issueDate)
+                      Date& issueDate) except +
+                      
+cdef extern from 'ql/instruments/bonds/floatingratebond.hpp' namespace 'QuantLib': 
+    cdef cppclass FloatingRateBond(Bond):
+        FloatingRateBond(Natural settlementDays,
+                        Real faceAmount,
+                        Schedule& schedule, 
+                        shared_ptr[IborIndex]& iborIndex,
+                        DayCounter& accrualDayCounter,
+                        BusinessDayConvention paymentConvention,
+                        Natural fixingDays, 
+                        vector[Real]& gearings,
+                        vector[Spread]& spreads,
+                        vector[Rate]& caps,
+                        vector[Rate]& floors,
+                        bool inArrears,
+                        Real redemption, 
+                        Date& issueDate) except +
+        FloatingRateBond(Natural settlementDays,
+                        Real faceAmount,
+                        Date& startDate,
+                        Date& maturityDate,
+                        Frequency couponFrequency,
+                        Calendar& calendar,
+                        shared_ptr[IborIndex]& iborIndex,
+                        DayCounter& accrualDayCounter,
+                        BusinessDayConvention accrualConvention,
+                        BusinessDayConvention paymentConvention,
+                        Natural fixingDays, 
+                        vector[Real]& gearings,
+                        vector[Spread]& spreads,
+                        vector[Rate]& caps,
+                        vector[Rate]& floors, 
+                        Real redemption, 
+                        Date& issueDate,
+                        Date& stubDate,
+                        Rule rule) except +  
