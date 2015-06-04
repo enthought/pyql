@@ -1,5 +1,5 @@
 
-from .unittest_tools import unittest
+from unittest_tools import unittest
 
 from quantlib.instruments.bonds import (FixedRateBond)
 from quantlib.pricingengines.bond import DiscountingBondEngine
@@ -93,10 +93,8 @@ class SensitivityTestCase(unittest.TestCase):
             issue_date
         )
 
-        bfs=bf.BondFunctions()
-        d=bfs.startDate(bond)
-        bfs.display()
-        zspd=bfs.zSpread(bond, 100.0, flat_term_structure, Actual365Fixed(),
+
+        zspd=bf.zSpread(bond, 100.0, flat_term_structure, Actual365Fixed(),
         Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)
 
              
