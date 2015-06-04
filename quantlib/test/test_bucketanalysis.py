@@ -1,5 +1,5 @@
 
-from unittest_tools import unittest
+from .unittest_tools import unittest
 
 from quantlib.instruments.bonds import (FixedRateBond)
 from quantlib.pricingengines.bond import DiscountingBondEngine
