@@ -5,7 +5,6 @@ from quantlib.handle cimport shared_ptr
 from quantlib.time._period cimport Frequency
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.time._daycounter cimport DayCounter
-from quantlib.interest_rate cimport InterestRate
 
 cimport quantlib.time._date as _dt
 
@@ -20,41 +19,22 @@ cdef extern from 'ql/cashflows/duration.hpp' namespace 'QuantLib':
         Type type
 
 cdef extern from 'ql/pricingengines/bond/bondfunctions.hpp' namespace 'QuantLib':
-    cdef Rate _bf_yield "BondFunctions::yield" (QLBond, Real, DayCounter, int, Frequency, _dt.Date, Real, Size, Rate)
+    cdef Rate bf_yield "BondFunctions::yield" (QLBond, Real, DayCounter, int, Frequency, _dt.Date, Real, Size, Rate)
 
-cdef extern from 'ql/pricingengines/bond/bondfunctions.hpp' namespace 'QuantLib':
+cdef extern from 'ql/pricingengines/bond/bondfunctions.hpp' namespace 'QuantLib::BondFunctions':
 
-    cdef cppclass BondFunctions:
-        _dt.Date startDate(QLBond bond)
-        
-        Time duration(QLBond bond, 
-                        Rate yld,
-                        DayCounter dayCounter,
-                        int compounding,
-                        Frequency frequency,
-                        Type dur_type,
-                        _dt.Date settlementDate ) except +   
-                      
-        Rate _bf_yield(QLBond bond,
-                        Real cleanPrice,
-                        DayCounter dayCounter,
-                        int compounding,
-                        Frequency frequency,
-                        _dt.Date settlementDate,
-                        Real accuracy,
-                        Size maxIterations,
-                        Rate guess) except +
-                        
-        Real basisPointValue(QLBond bond,
-                            Rate yld,
-                            DayCounter dayCounter,
-                            int compounding,
-                            Frequency frequency,
-                            _dt.Date settlementDate) except +      
-                      
-        Spread zSpread(QLBond bond,
+    cdef _dt.Date startDate(QLBond bond)
+    
+    cdef Time duration(QLBond bond, 
+                    Rate yld,
+                    DayCounter dayCounter,
+                    int compounding,
+                    Frequency frequency,
+                    Type dur_type,
+                    _dt.Date settlementDate ) except +   
+                  
+    cdef Rate bf_yield(QLBond bond,
                     Real cleanPrice,
-                    shared_ptr[YieldTermStructure],
                     DayCounter dayCounter,
                     int compounding,
                     Frequency frequency,
@@ -62,3 +42,21 @@ cdef extern from 'ql/pricingengines/bond/bondfunctions.hpp' namespace 'QuantLib'
                     Real accuracy,
                     Size maxIterations,
                     Rate guess) except +
+                    
+    cdef Real basisPointValue(QLBond bond,
+                        Rate yld,
+                        DayCounter dayCounter,
+                        int compounding,
+                        Frequency frequency,
+                        _dt.Date settlementDate) except +      
+                  
+    cdef Spread zSpread(QLBond bond,
+                Real cleanPrice,
+                shared_ptr[YieldTermStructure],
+                DayCounter dayCounter,
+                int compounding,
+                Frequency frequency,
+                _dt.Date settlementDate,
+                Real accuracy,
+                Size maxIterations,
+                Rate guess) except +
