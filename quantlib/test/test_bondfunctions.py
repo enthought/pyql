@@ -110,8 +110,8 @@ class BondFunctionTestCase(unittest.TestCase):
 
         d=bf.startDate(bond)
 
-        zspd=bf.zSpread(bond,100.0,flat_term_structure,Actual365Fixed(),
-        Compounded,Semiannual,settlement_date,1e-6,100,0.5)
+        zspd=bf.zSpread(bond, 100.0, flat_term_structure, Actual365Fixed(),
+        Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)
         
 
         #Also need a test case for a PiecewiseTermStructure...                
@@ -162,28 +162,28 @@ class BondFunctionTestCase(unittest.TestCase):
             'discount', 'loglinear', settlement_date, rate_helpers,
             ts_day_counter, tolerance)   
 
-        pyc_zspd=bf.zSpread(bond,102.0,ts,ActualActual(ISDA),
-        Compounded,Semiannual,Date(01, April, 2015),1e-6,100,0.5)                                      
+        pyc_zspd=bf.zSpread(bond, 102.0, ts, ActualActual(ISDA),
+        Compounded, Semiannual, Date(1, April, 2015), 1e-6, 100, 0.5)                                      
 
-        pyc_zspd_disco=bf.zSpread(bond,95.0,ts,ActualActual(ISDA),
-        Compounded,Semiannual,settlement_date,1e-6,100,0.5)                                      
+        pyc_zspd_disco=bf.zSpread(bond, 95.0, ts, ActualActual(ISDA),
+        Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)                                      
         
 
-        yld  = bf.yld(bond,102.0,ActualActual(ISDA), Compounded, Semiannual, settlement_date,1e-6,100,0.5)
-        dur  = bf.duration(bond,yld,ActualActual(ISDA), Compounded, Semiannual, 2, settlement_date) 
+        yld  = bf.yld(bond, 102.0, ActualActual(ISDA), Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)
+        dur  = bf.duration(bond, yld, ActualActual(ISDA), Compounded, Semiannual, 2, settlement_date) 
 
-        yld_disco  = bf.yld(bond,95.0,ActualActual(ISDA), Compounded, Semiannual, settlement_date,1e-6,100,0.5)
-        dur_disco  = bf.duration(bond,yld_disco,ActualActual(ISDA), Compounded, Semiannual, 2, settlement_date)        
+        yld_disco  = bf.yld(bond, 95.0, ActualActual(ISDA), Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)
+        dur_disco  = bf.duration(bond, yld_disco, ActualActual(ISDA), Compounded, Semiannual, 2, settlement_date)        
         
-        self.assertEquals(round(zspd,6),0.001281)
-        self.assertEquals(round(pyc_zspd,4),-0.0264)
-        self.assertEquals(round(pyc_zspd_disco,4),-0.0114)
+        self.assertEquals(round(zspd, 6), 0.001281)
+        self.assertEquals(round(pyc_zspd, 4), -0.0264)
+        self.assertEquals(round(pyc_zspd_disco, 4), -0.0114)
         
-        self.assertEquals(round(yld,4),0.0338)
-        self.assertEquals(round(yld_disco,4),0.0426)
+        self.assertEquals(round(yld, 4), 0.0338)
+        self.assertEquals(round(yld_disco, 4), 0.0426)
         
-        self.assertEquals(round(dur,4),8.0655)
-        self.assertEquals(round(dur_disco,4),7.9702)
+        self.assertEquals(round(dur, 4), 8.0655)
+        self.assertEquals(round(dur_disco, 4), 7.9702)
 
 
 
