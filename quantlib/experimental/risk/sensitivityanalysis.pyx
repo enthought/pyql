@@ -18,23 +18,21 @@ cdef public enum SensitivityAnalysis:
 def bucket_analysis(quotes_vvsq, instruments,
                     quantity, shift, sa_type):
 
+    """ Parameters :
+    ----------
+    1) quotes_vvsq : list[list[Quantlib::SimpleQuote]]
+        list of list of quotes to be tweaked by a certain shift, usually passed from ratehelpers
+    2) instruments : List of instruments
+        list of instruments to be analyzed.Bond and option in unit test. 
+    3) quantity : Quantity of instrument   
+        A multiplier for the resulting buckets, Usually 1 or lower.  
+    4) shift : Amount of shift for analysis. 
+        Tends to be 0.0001 (1 bp). Can be larger as well as positive or negative. 
+    5) sa_type : Sensitivity Analysis Type
+        Will be either OneSided or Centered 
+    """
 
-        """ Parameters :
-        ----------
-        1) quotes_vvsq : list[list[Quantlib::SimpleQuote]]
-            list of list of quotes to be tweaked by a certain shift, usually passed from ratehelpers
-        2) instruments : List of instruments
-            list of instruments to be analyzed.Bond and option in unit test. 
-        3) quantity : Quantity of instrument   
-            A multiplier for the resulting buckets, Usually 1 or lower.  
-        4) shift : Amount of shift for analysis. 
-            Tends to be 0.0001 (1 bp). Can be +/-
-        5) sa_type : Sensitivity Analysis Type
-            Will be either OneSided or Centered 
-        """
-    
     #C++ Inputs
-    #final inputs
     cdef vector[vector[Handle[_qt.SimpleQuote]]]* vvh_quotes = new vector[vector[Handle[_qt.SimpleQuote]]]()
     cdef vector[shared_ptr[_it.Instrument]]* vsp_instruments = new vector[shared_ptr[_it.Instrument]]()
     cdef vector[Real]* rates = new vector[Real]()
