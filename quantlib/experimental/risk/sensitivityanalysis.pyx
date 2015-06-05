@@ -1,37 +1,38 @@
 include '../../types.pxi'
 
 from cython.operator cimport dereference as deref
-
 from quantlib.handle cimport shared_ptr, Handle
 
 cimport quantlib._quote as _qt
-cimport quantlib.instruments._bonds as _bd
 cimport _sensitivityanalysis as _sa
 cimport quantlib.instruments._instrument as _it
 from libcpp.vector cimport vector
 from libcpp.pair cimport pair
 from quantlib.quotes cimport SimpleQuote, Quote
 from quantlib.instruments.instrument cimport Instrument
-cimport quantlib.instruments.bonds as _bo
-
 
 cdef public enum SensitivityAnalysis:
     OneSide
     Centered
  
+def bucket_analysis(quotes_vvsq, instruments,
+                    quantity, shift, sa_type):
 
-def bucketAnalysis(quotes_vvsq, instruments,
-                    quantity, shift, type):
 
-    """ 
-		Inputs: 
-		1. list(list[Quantlib::SimpleQuote))
-		2. List[Quantlib::Instrument]
-		3. List[decimal]
-		4. decimal
-		5. Quantlib::SensitivityAnalysis
-		
-    """
+        """ Parameters :
+        ----------
+        1) quotes_vvsq : list[list[Quantlib::SimpleQuote]]
+            list of list of quotes to be tweaked by a certain shift, usually passed from ratehelpers
+        2) instruments : List of instruments
+            list of instruments to be analyzed.Bond and option in unit test. 
+        3) quantity : Quantity of instrument   
+            A multiplier for the resulting buckets, Usually 1 or lower.  
+        4) shift : Amount of shift for analysis. 
+            Tends to be 0.0001 (1 bp). Can be +/-
+        5) sa_type : Sensitivity Analysis Type
+            Will be either OneSided or Centered 
+        """
+    
     #C++ Inputs
     #final inputs
     cdef vector[vector[Handle[_qt.SimpleQuote]]]* vvh_quotes = new vector[vector[Handle[_qt.SimpleQuote]]]()
@@ -64,13 +65,12 @@ def bucketAnalysis(quotes_vvsq, instruments,
             sqh_vector.push_back(deref(sq_handle))
 			
         vvh_quotes.push_back(sqh_vector)
-   	
-    #TODO: Will pair<vector<vector<Real>>,vector<vector<Real>>> be implicitly converted to python equivalent? 
+
     ps = _sa.bucketAnalysis(deref(vvh_quotes),
                             deref(vsp_instruments),
-			    deref(rates),
+                            deref(rates),
                             shift,
-                            type)
+                            sa_type)
     
     return ps
 

@@ -30,7 +30,7 @@ from quantlib.pricingengines.vanilla.vanilla import (
     )
 from quantlib.instruments.payoffs import PlainVanillaPayoff, Put
 import quantlib.pricingengines.bondfunctions as bf
-from  quantlib.experimental.risk.sensitivityanalysis import bucketAnalysis
+from  quantlib.experimental.risk.sensitivityanalysis import bucket_analysis
 
 class SensitivityTestCase(unittest.TestCase):
 
@@ -159,7 +159,7 @@ class SensitivityTestCase(unittest.TestCase):
         self.assertAlmostEquals(bond.npv, 100.83702940160767)
     
 
-        ba =  bucketAnalysis([simple_quotes], [bond], [1], 0.0001, 1)
+        ba =  bucket_analysis([simple_quotes], [bond], [1], 0.0001, 1)
         
         self.assertTrue(2, ba) 
         self.assertTrue(type(tuple), ba) 
@@ -225,7 +225,7 @@ class SensitivityTestCase(unittest.TestCase):
         european_option.set_pricing_engine(analytic_european_engine)
         
         
-        ba_eo= bucketAnalysis(
+        ba_eo= bucket_analysis(
                 [[underlyingH]], [european_option], [1], 0.50, 1)
 
         self.assertTrue(2, ba_eo)
