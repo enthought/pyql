@@ -6,6 +6,7 @@ from quantlib.time.calendar import (
 )
 from quantlib.time.calendars.united_kingdom import UnitedKingdom, EXCHANGE
 from quantlib.time.calendars.united_states import UnitedStates, NYSE
+from quantlib.time.calendars.canada import Canada, TSX
 from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.time.calendars.germany import (
     Germany, FRANKFURT_STOCK_EXCHANGE
@@ -163,6 +164,18 @@ class TestQuantLibCalendar(unittest.TestCase):
         holiday_date = Date(5, Sep, 2011) # Labor day
 
         self.assertTrue(uscal.is_holiday(holiday_date))
+
+    def test_canada_calendar(self):
+
+        cacal = Canada()
+        holiday_date = Date(1, Jul, 2015)
+
+        self.assertTrue(cacal.is_holiday(holiday_date))
+
+        cacal = Canada(market=TSX)
+        holiday_date = Date(3, August, 2015)
+
+        self.assertTrue(cacal.is_holiday(holiday_date))
 
     def test_german_calendar(self):
 
