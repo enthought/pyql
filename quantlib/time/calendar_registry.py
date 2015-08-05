@@ -5,6 +5,7 @@ import quantlib.time.calendars.united_states as us
 import quantlib.time.calendars.united_kingdom as uk
 import quantlib.time.calendars.japan as jp
 import quantlib.time.calendars.switzerland as sw
+import quantlib.time.calendars.canada as ca
 from quantlib.time.calendar import TARGET
 from quantlib.util.object_registry import ObjectRegistry
 
@@ -26,7 +27,8 @@ ISO_3166_CALENDARS = {
     'NYSE': us.UnitedStates(us.NYSE),
     'NERC': us.UnitedStates(us.NERC),
     'JPN': jp.Japan(),
-    'CHE': sw.Switzerland()
+    'CHE': sw.Switzerland(),
+    'CAN': ca.Canada(),
 }
 
 
