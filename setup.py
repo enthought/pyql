@@ -4,6 +4,7 @@ from setuptools import setup, find_packages
 # It does break the cythonize function calls
 from distutils.extension import Extension
 from distutils.sysconfig import get_config_vars
+from distutils import log
 
 import glob
 import os
@@ -60,7 +61,8 @@ elif sys.platform == 'win32':
         SUPPORT_CODE_INCLUDE
     ]
     LIBRARY_DIRS = [
-        r"C:\dev\QuantLib-1.4\build\vc100\Win32\Release", # for the dll lib
+        r"C:\dev\QuantLib-1.4\build\vc%d0\%s\Release" % (
+            VC_VERSION, ("x64" if ARCH == "x64" else "Win32")),  # for the dll lib
         r"C:\dev\QuantLib-1.4\lib",
         '.',
         r'.\dll',
@@ -102,7 +104,7 @@ def get_extra_compile_args():
 
 def get_extra_link_args():
     if sys.platform == 'win32':
-        args = ['/subsystem:windows', '/machine:%s' % ARCH]
+        args = ['/subsystem:windows', '/machine:%s' % ("X64" if ARCH == "x64" else "I386")]
         if DEBUG:
             args.append('/DEBUG')
     elif sys.platform == 'darwin':
@@ -255,15 +257,8 @@ class pyql_build_ext(build_ext):
 
         # Find the quantlib dll and copy it to the built package
         if sys.platform == "win32":
-            dlls = []
-            for libdir in LIBRARY_DIRS:
-                if os.path.exists(os.path.join(libdir, QL_LIBRARY + ".dll")):
-                    dlls.append(os.path.join(libdir, QL_LIBRARY + ".dll"))
-                    break
-            else:
-                raise AssertionError("%s.dll not found" % QL_LIBRARY)
-
             # Find the visual studio runtime redist dlls
+            dlls = []
             if VC_INCLUDE_REDIST:
                 plat_name = msvc9compiler.get_platform()
                 plat_spec = msvc9compiler.PLAT_TO_VCVARS[plat_name]
@@ -281,10 +276,24 @@ class pyql_build_ext(build_ext):
                     raise RuntimeError("Can't find cl.exe")
 
                 assert os.path.exists(redist_dir), "Can't find CRT redist dlls '%s'" % redist_dir
-                dlls.extend(glob.glob(os.path.join(redist_dir, "*.*")))
+                dlls.extend(glob.glob(os.path.join(redist_dir, "msvc*.dll")))
+
+            for libdir in LIBRARY_DIRS:
+                if os.path.exists(os.path.join(libdir, QL_LIBRARY + ".dll")):
+                    dlls.append(os.path.join(libdir, QL_LIBRARY + ".dll"))
+                    break
+            else:
+                raise AssertionError("%s.dll not found" % QL_LIBRARY)
 
             for dll in dlls:
                 self.copy_file(dll, os.path.join(self.build_lib, "quantlib", os.path.basename(dll)))
+
+            # Write the list of dlls to be pre-loaded
+            filename = os.path.join(self.build_lib, "quantlib", "preload_dlls.txt")
+            log.info("writing preload dlls list to %s", filename)
+            if not self.dry_run:
+                with open(filename, "wt") as fh:
+                    fh.write("\n".join(map(os.path.basename, dlls)))
 
 
 setup(
