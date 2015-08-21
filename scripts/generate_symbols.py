@@ -3,6 +3,11 @@ import glob
 import os
 import six
 import subprocess
+from distutils import msvc9compiler
+from platform import architecture
+
+VC_VERSION = msvc9compiler.VERSION
+ARCH = "x64" if architecture()[0] == "64bit" else "x86"
 
 def symbol_generator_from_obj_file(object_file):
     
@@ -57,13 +62,17 @@ def process_directory(directory_name):
     for object_file in glob.glob(os.path.join(directory_name, '*.obj')):
         for symbol in symbol_generator_from_obj_file(object_file):
             yield symbol
-    
-HEADER = """LIBRARY	"QuantLib"
+
+QL_LIBRARY = "QuantLib"
+if VC_VERSION >= 10.0:
+    QL_LIBRARY = 'QuantLib-vc%d0-%s-mt' % (VC_VERSION, ARCH)
+
+HEADER = """LIBRARY	"%s"
 EXPORTS
-"""
+""" % QL_LIBRARY
 
 def test():
-    test_directory = r"C:\dev\QuantLib-1.4\build\vc90\x64\Release"
+    test_directory = r"C:\dev\QuantLib-1.4\build\vc%d0\%s\Release" % (VC_VERSION, ARCH)
     test_file = os.path.join(test_directory, "zeroyieldstructure.obj")
 
     for obj in symbol_generator_from_obj_file(test_file):
@@ -77,11 +86,12 @@ def generate_deffile_from_dir(input_directory, output_file):
             fh.write('	 {}\n'.format(symbol))
     
 def main():
-    input_directory = r"C:\dev\QuantLib-1.4\build\vc100\Win32\Release"        
-    output_file = r'C:\dev\pyql\symbols_win32_vc100.def'
+    input_directory = r"C:\dev\QuantLib-1.4\build\vc%d0\%s\Release" % ((VC_VERSION, ARCH))
+    symbols_file = "symbols_%s_vc%d0.def" % (ARCH, VC_VERSION)
+    output_file = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", symbols_file))
         
     generate_deffile_from_dir(input_directory, output_file)
     print ('{} generated'.format(output_file))
     
 if __name__ == '__main__':
-   main() 
+   main()
