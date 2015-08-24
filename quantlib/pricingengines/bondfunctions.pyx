@@ -14,7 +14,6 @@ from quantlib.time.date cimport date_from_qldate, Date
 from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
 from quantlib.time.daycounter cimport DayCounter
 
-cimport quantlib.pricingengines.bondfunctions
 cimport quantlib.time._date as _dt
 
 cdef extern from 'ql/compounding.hpp' namespace 'QuantLib':
