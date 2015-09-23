@@ -9,30 +9,17 @@ from quantlib.pricingengines._pricing_engine cimport PricingEngine
 from quantlib.termstructures.yields._flat_forward cimport (
     YieldTermStructure
 )
+from quantlib.models._calibration_helper cimport CalibrationHelper, CalibrationErrorType
+
+cimport quantlib.models._calibration_helper as _ch
 cimport quantlib._quote as _qt
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._period cimport Period
 
-cdef extern from 'ql/models/calibrationhelper.hpp' namespace 'QuantLib':
-
-    cdef cppclass CalibrationHelper:
-        Volatility impliedVolatility(
-            Real targetValue,
-            Real accuracy,
-            Size maxEvaluation,
-            Volatility minVol,
-            Volatility maxVol) except +
-
-cdef extern from 'ql/models/calibrationhelper.hpp' namespace 'QuantLib::CalibrationHelper':
-
-    cdef enum CalibrationErrorType:
-        RelativePriceError
-        PriceError
-        ImpliedVolError
-
 cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
 
     cdef cppclass HestonModelHelper(CalibrationHelper):
+
         HestonModelHelper(
             Period& maturity,
             Calendar& calendar,
@@ -43,13 +30,7 @@ cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
             Handle[YieldTermStructure]& dividendYield,
             CalibrationErrorType errorType
         ) except +
-        void setPricingEngine(shared_ptr[PricingEngine]& engine) except +
-        Real blackPrice(Real volatility) except +
-
-        ### 'CalibrationHelper' protocol  ###################################
-        Real marketValue() except +
-        Real modelValue() except +
-        Real calibrationError() except +
+        
 
 cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib':
 
@@ -72,7 +53,7 @@ cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib':
         Real v0() except +
 
         void calibrate(
-               vector[shared_ptr[CalibrationHelper]]&,
+               vector[shared_ptr[_ch.CalibrationHelper]]&,
                OptimizationMethod& method,
                EndCriteria& endCriteria,
         ) except +

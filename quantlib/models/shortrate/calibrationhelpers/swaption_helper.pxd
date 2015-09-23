@@ -1,23 +1,17 @@
 """
- Copyright (C) 2011, Enthought Inc
- Copyright (C) 2011, Patrick Henaff
+ Copyright (C) 2015, Enthought Inc
+ Copyright (C) 2015, Patrick Henaff
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-cimport _heston_model as _hm
+cimport _swaption_helper as _sh
 
 from quantlib.handle cimport shared_ptr
 from quantlib.models.calibration_helper cimport CalibrationHelper
 
-
-cdef class HestonModelHelper(CalibrationHelper):
+cdef class SwaptionHelper(CalibrationHelper):
 
     pass
-
-cdef class HestonModel:
-
-    cdef shared_ptr[_hm.HestonModel]* _thisptr
-

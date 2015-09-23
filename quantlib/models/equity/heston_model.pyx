@@ -14,11 +14,12 @@ from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 
 cimport _heston_model as _hm
+cimport quantlib.models._calibration_helper as _ch
 cimport quantlib.processes._heston_process as _hp
 cimport quantlib.termstructures.yields._flat_forward as _ffwd
 cimport quantlib._quote as _qt
 cimport quantlib.pricingengines._pricing_engine as _pe
-cimport _heston_model as _hm
+
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.math.optimization cimport OptimizationMethod, EndCriteria
 from quantlib.processes.heston_process cimport HestonProcess
@@ -29,21 +30,23 @@ from quantlib.time.date cimport Period
 from quantlib.termstructures.yields.flat_forward cimport (
     YieldTermStructure
 )
+from quantlib.models.calibration_helper cimport CalibrationHelper
+
 
 cdef public enum CALIBRATION_ERROR_TYPE:
-    RelativePriceError = _hm.RelativePriceError
-    PriceError = _hm.PriceError
-    ImpliedVolError = _hm.ImpliedVolError
+    RelativePriceError = _ch.RelativePriceError
+    PriceError = _ch.PriceError
+    ImpliedVolError = _ch.ImpliedVolError
 
-cdef class HestonModelHelper:
+cdef class HestonModelHelper(CalibrationHelper):
 
     def __cinit__(self):
-        self._thisptr = NULL
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            # print('heston dealloc')
-            del self._thisptr
+        pass
+    
+    ## def __dealloc__(self):
+    ##     if self._thisptr is not NULL:
+    ##         # print('heston dealloc')
+    ##         del self._thisptr
 
     def __str__(self):
         return 'Heston model helper'
@@ -68,7 +71,7 @@ cdef class HestonModelHelper:
         cdef Handle[_ffwd.YieldTermStructure]risk_free_rate_handle = \
             deref(risk_free_rate._thisptr.get())
 
-        self._thisptr = new shared_ptr[_hm.HestonModelHelper](
+        self._thisptr = new shared_ptr[_ch.CalibrationHelper](
             new _hm.HestonModelHelper(
                 deref(maturity._thisptr.get()),
                 deref(calendar._thisptr),
@@ -81,33 +84,11 @@ cdef class HestonModelHelper:
             )
         )
 
-    def set_pricing_engine(self, PricingEngine engine):
-        cdef shared_ptr[_pe.PricingEngine] pengine = \
-            shared_ptr[_pe.PricingEngine](<shared_ptr[_pe.PricingEngine] &>deref(engine._thisptr))
+    ## def set_pricing_engine(self, PricingEngine engine):
+    ##     cdef shared_ptr[_pe.PricingEngine] pengine = \
+    ##         shared_ptr[_pe.PricingEngine](<shared_ptr[_pe.PricingEngine] &>deref(engine._thisptr))
 
-        self._thisptr.get().setPricingEngine(pengine)
-
-    def model_value(self):
-        return self._thisptr.get().modelValue()
-
-    def black_price(self, double volatility):
-        return self._thisptr.get().blackPrice(volatility)
-
-    def market_value(self):
-        return self._thisptr.get().marketValue()
-
-    def calibration_error(self):
-        return self._thisptr.get().calibrationError()
-
-    def impliedVolatility(self, Real targetValue,
-        Real accuracy, Size maxEvaluations,
-        Volatility minVol, Volatility maxVol):
-
-        vol = \
-        (<_hm.CalibrationHelper *> self._thisptr.get()).impliedVolatility(targetValue,
-        accuracy, maxEvaluations, minVol, maxVol)
-
-        return vol
+    ##     self._thisptr.get().setPricingEngine(pengine)
 
 cdef class HestonModel:
 
@@ -156,12 +137,12 @@ cdef class HestonModel:
             end_criteria):
 
         #convert list to vector
-        cdef vector[shared_ptr[_hm.CalibrationHelper]]* helpers_vector = \
-            new vector[shared_ptr[_hm.CalibrationHelper]]()
+        cdef vector[shared_ptr[_ch.CalibrationHelper]]* helpers_vector = \
+            new vector[shared_ptr[_ch.CalibrationHelper]]()
 
-        cdef shared_ptr[_hm.CalibrationHelper]* chelper
+        cdef shared_ptr[_ch.CalibrationHelper]* chelper
         for helper in helpers:
-            chelper = new shared_ptr[_hm.CalibrationHelper](
+            chelper = new shared_ptr[_ch.CalibrationHelper](
                 (<HestonModelHelper>helper)._thisptr.get()
             )
             helpers_vector.push_back(deref(chelper))
