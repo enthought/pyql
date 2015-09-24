@@ -14,6 +14,8 @@ Pre 0.2
  * Python 3 support added (credits to Ed Schofield)
  * Drop support of Python 2.6
  * Many small fixes (seel full commit logs)
+ * Added partial interface to Hull-White model
+ * CalibrationHelper refactor: HestonHelper, SwaptionHelper now inherit from CalibrationHelper
 
 Release 0.1
 -----------
