@@ -69,6 +69,9 @@ elif sys.platform == 'win32':
     ]
 elif sys.platform.startswith('linux'):   # 'linux' on Py3, 'linux2' on Py2
     # good for Debian / ubuntu 10.04 (with QL .99 installed by default)
+    (opt,) = get_config_vars('OPT')
+    os.environ['OPT'] = " ".join(
+        flag for flag in opt.split() if flag != '-Wstrict-prototypes')
     INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.', SUPPORT_CODE_INCLUDE]
     LIBRARY_DIRS = ['/usr/local/lib', '/usr/lib', ]
     # custom install of QuantLib 1.1

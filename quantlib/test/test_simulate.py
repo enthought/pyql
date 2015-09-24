@@ -4,8 +4,7 @@ from .unittest_tools import unittest
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.processes.bates_process import BatesProcess
 from quantlib.models.equity.heston_model import HestonModel
-from quantlib.models.equity.bates_model import (BatesModel,
-     BatesDetJumpModel, BatesDoubleExpModel)
+from quantlib.models.equity.bates_model import BatesModel
 
 from quantlib.settings import Settings
 from quantlib.time.api import (
@@ -15,19 +14,18 @@ from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 
 
-from quantlib.sim.simulate import (simulateHeston, simulateBates,
-                                   simulateBatesDetJumpModel,
-                                   simulateBatesDoubleExpModel)
+from quantlib.sim.simulate import (simulateHeston, simulateBates)
 
 
 from quantlib.processes.heston_process import PARTIALTRUNCATION
 
+
 def flat_rate(forward, daycounter):
     return FlatForward(
-        forward = SimpleQuote(forward),
-        settlement_days = 0,
-        calendar = NullCalendar(),
-        daycounter = daycounter
+        forward=SimpleQuote(forward),
+        settlement_days=0,
+        calendar=NullCalendar(),
+        daycounter=daycounter
     )
 
 
@@ -68,10 +66,11 @@ class SimTestCase(unittest.TestCase):
 
         spot = SimpleQuote(1200)
 
-        self.bates_process = BatesProcess(self.risk_free_ts, self.dividend_ts,
-                 spot, ival['v0'], ival['kappa'],
-                 ival['theta'], ival['sigma'], ival['rho'],
-                 ival['lambda'], ival['nu'], ival['delta'])
+        self.bates_process = BatesProcess(
+            self.risk_free_ts, self.dividend_ts,
+            spot, ival['v0'], ival['kappa'],
+            ival['theta'], ival['sigma'], ival['rho'],
+            ival['lambda'], ival['nu'], ival['delta'])
 
     def test_simulate_heston_1(self):
 
@@ -84,7 +83,6 @@ class SimTestCase(unittest.TestCase):
         steps = 10
         horizon = 1
         seed = 12345
-        tolerance = 1.e-3
 
         model = HestonModel(self.heston_process)
 
@@ -127,45 +125,8 @@ class SimTestCase(unittest.TestCase):
         steps = 10
         horizon = 1
         seed = 12345
-        tolerance = 1.e-3
 
         res = simulateBates(model, paths, steps, horizon, seed)
-
-        time = res[0, :]
-        time_expected = np.arange(0, 1.1, .1)
-        simulations = res[1:, :].T
-
-        np.testing.assert_array_almost_equal(time, time_expected, decimal=4)
-
-    def test_simulate_batesDetJumpModel(self):
-
-        model = BatesDetJumpModel(self.bates_process)
-
-        paths = 4
-        steps = 10
-        horizon = 1
-        seed = 12345
-        tolerance = 1.e-3
-
-        res = simulateBatesDetJumpModel(model, paths, steps, horizon, seed)
-
-        time = res[0, :]
-        time_expected = np.arange(0, 1.1, .1)
-        simulations = res[1:, :].T
-
-        np.testing.assert_array_almost_equal(time, time_expected, decimal=4)
-
-    def test_simulate_batesDoubleExpModel(self):
-
-        model = BatesDoubleExpModel(self.heston_process)
-
-        paths = 4
-        steps = 10
-        horizon = 1
-        seed = 12345
-        tolerance = 1.e-3
-
-        res = simulateBatesDoubleExpModel(model, paths, steps, horizon, seed)
 
         time = res[0, :]
         time_expected = np.arange(0, 1.1, .1)

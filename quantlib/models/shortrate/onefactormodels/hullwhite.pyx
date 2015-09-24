@@ -1,0 +1,95 @@
+"""
+ Copyright (C) 2015, Enthought Inc
+ Copyright (C) 2015, Patrick Henaff
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
+include '../../../types.pxi'
+
+from libcpp.vector cimport vector
+from cython.operator cimport dereference as deref
+cimport _hullwhite as _hw
+cimport _vasicek as _va
+
+from quantlib.handle cimport Handle, shared_ptr
+cimport quantlib.termstructures.yields._flat_forward as _ff
+cimport quantlib._quote as _qt
+cimport quantlib.models._calibration_helper as _ch
+from quantlib.models.shortrate.calibrationhelpers.swaption_helper cimport SwaptionHelper
+from quantlib.models.calibration_helper cimport CalibrationHelper
+
+from quantlib.quotes cimport Quote, SimpleQuote
+from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
+from quantlib.math.optimization cimport OptimizationMethod, EndCriteria
+
+from vasicek cimport Vasicek
+
+cdef class HullWhite(Vasicek):
+    """ Single-factor Hull-White (extended Vasicek) model.
+    The standard single-factor Hull-White model is defined by
+    .. math::
+    dr_t = (\theta(t) - \alpha r_t)dt + \sigma dW_t
+
+    where \alpha and \sigma are constants.
+    
+    """
+
+    def __cinit__(self):
+        pass
+
+    def __dealloc(self):
+        if self._thisptr is not NULL:
+            del self._thisptr
+            self._thisptr = NULL
+
+    def __init__(self,
+       YieldTermStructure term_structure=None,
+       Real a=0,
+       Real sigma=0):
+
+        #create handles
+        cdef Handle[_ff.YieldTermStructure] yts_handle = \
+                deref(term_structure._thisptr.get())
+
+        self._thisptr = new shared_ptr[_va.Vasicek](
+            new _hw.HullWhite(
+                yts_handle,
+                a, sigma
+	    )
+	)
+
+    def __str__(self):
+        return 'Hull-White model\na: %f sigma: %f' % \
+          (self.a, self.sigma)
+
+
+    property a:
+        def __get__(self):
+            return self._thisptr.get().a()
+
+    property sigma:
+        def __get__(self):
+            return self._thisptr.get().sigma()
+
+    def calibrate(self, helpers, OptimizationMethod method, EndCriteria
+            end_criteria):
+
+        #convert list to vector
+        cdef vector[shared_ptr[_ch.CalibrationHelper]]* helpers_vector = \
+            new vector[shared_ptr[_ch.CalibrationHelper]]()
+
+        cdef shared_ptr[_ch.CalibrationHelper]* chelper
+        for helper in helpers:
+            chelper = new shared_ptr[_ch.CalibrationHelper](
+                (<CalibrationHelper>helper)._thisptr.get()
+            )
+            helpers_vector.push_back(deref(chelper))
+
+        self._thisptr.get().calibrate(
+            deref(helpers_vector),
+            deref(method._thisptr.get()),
+            deref(end_criteria._thisptr.get())
+        )

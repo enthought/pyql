@@ -3,11 +3,13 @@ include '../types.pxi'
 from cython.operator cimport dereference as deref
 cimport _heston_process as _hp
 
+cimport quantlib.termstructures._yield_term_structure as _yts
+from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+
 from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib.termstructures.yields._flat_forward as _ff
 cimport quantlib._quote as _qt
 from quantlib.quotes cimport Quote, SimpleQuote
-from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
 
 cdef public enum Discretization:
         PARTIALTRUNCATION = _hp.PartialTruncation
@@ -54,11 +56,18 @@ cdef class HestonProcess:
         
         #create handles
         cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](deref(s0._thisptr))
-        cdef Handle[_ff.YieldTermStructure] dividend_ts_handle = \
-                deref(dividend_ts._thisptr.get())
 
-        cdef Handle[_ff.YieldTermStructure] risk_free_rate_ts_handle = \
-                deref(risk_free_rate_ts._thisptr.get())
+        cdef Handle[_yts.YieldTermStructure] dividend_ts_handle
+        if dividend_ts is None:
+            dividend_ts_handle = Handle[_yts.YieldTermStructure]()
+        else:
+            dividend_ts_handle = deref(dividend_ts._thisptr.get())
+
+        cdef Handle[_ff.YieldTermStructure] risk_free_rate_ts_handle
+        if risk_free_rate_ts is None:
+            risk_free_rate_ts_handle = Handle[_yts.YieldTermStructure]()
+        else:
+            risk_free_rate_ts_handle = deref(risk_free_rate_ts._thisptr.get())
 
         self._thisptr = new shared_ptr[_hp.HestonProcess](
             new _hp.HestonProcess(
