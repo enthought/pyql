@@ -43,11 +43,6 @@ cdef class HestonModelHelper(CalibrationHelper):
     def __cinit__(self):
         pass
     
-    ## def __dealloc__(self):
-    ##     if self._thisptr is not NULL:
-    ##         # print('heston dealloc')
-    ##         del self._thisptr
-
     def __str__(self):
         return 'Heston model helper'
         
@@ -83,12 +78,6 @@ cdef class HestonModelHelper(CalibrationHelper):
                 <_hm.CalibrationErrorType>error_type
             )
         )
-
-    ## def set_pricing_engine(self, PricingEngine engine):
-    ##     cdef shared_ptr[_pe.PricingEngine] pengine = \
-    ##         shared_ptr[_pe.PricingEngine](<shared_ptr[_pe.PricingEngine] &>deref(engine._thisptr))
-
-    ##     self._thisptr.get().setPricingEngine(pengine)
 
 cdef class HestonModel:
 

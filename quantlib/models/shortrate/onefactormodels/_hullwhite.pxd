@@ -22,13 +22,11 @@ cdef extern from 'ql/models/shortrate/onefactormodels/hullwhite.hpp' namespace '
     cdef cppclass HullWhite(Vasicek):
 
         HullWhite() # fake empty constructor due to Cython issue
+
         HullWhite(
             Handle[YieldTermStructure]& termStructure,
             Real a, Real sigma) except +
 
-        # shared_ptr[Lattice] tree(TimeGrid& grid)
-        # shared_ptr[ShortRateDynamics] dynamics()
-        
         Real discountBondOption(OptionType type,
                                 Real strike,
                                 Time maturity,
