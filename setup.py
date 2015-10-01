@@ -234,10 +234,7 @@ def collect_extensions():
 
     # remove  all the manual extensions from the collected ones
     names = [extension.name for extension in manual_extensions]
-    for ext in collected_extensions:
-        if ext.name in names:
-            collected_extensions.remove(ext)
-            continue
+    collected_extensions = [ ext for ext in collected_extensions if ext.name not in names ]
     if not HAS_NUMPY:
         # remove the multipath extension from the list
         manual_extensions = manual_extensions[1:]
