@@ -35,4 +35,9 @@ namespace QuantLib {
              new HestonHullWhiteCorrelationConstraint::Impl(
                  equityShortRateCorr))) {}
    };
+
+  // to test the build of .so
+  double MySimpleAdd(double x, double y) {
+    return(x+y);
+  };
 }

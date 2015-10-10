@@ -15,4 +15,6 @@ namespace QuantLib {
       public:
         HestonHullWhiteCorrelationConstraint(double equityShortRateCorr);
     };
+
+  double MySimpleAdd(double x, double y);
 }

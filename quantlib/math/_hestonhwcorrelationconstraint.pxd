@@ -11,4 +11,8 @@ cimport quantlib.math._optimization as _opt
 
 cdef extern from "constraint_support_code.hpp" namespace "QuantLib":
     cdef cppclass HestonHullWhiteCorrelationConstraint(_opt.Constraint):
+        HestonHullWhiteCorrelationConstraint()
         HestonHullWhiteCorrelationConstraint(double x) except +
+
+cdef extern from "constraint_support_code.hpp" namespace "QuantLib":
+    double MySimpleAdd(double x, double y) except +
