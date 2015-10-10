@@ -4,8 +4,11 @@ from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
 cimport quantlib.processes._black_scholes_process as _bsp
 cimport quantlib.models.equity._bates_model as _bm
+cimport quantlib.models.shortrate.onefactormodels._hullwhite as _hw
 
 from quantlib.models.equity.heston_model cimport HestonModel
+
+from quantlib.models.shortrate.onefactormodels.hullwhite cimport HullWhite
 from quantlib.models.equity.bates_model cimport (BatesModel, BatesDetJumpModel, BatesDoubleExpModel, BatesDoubleExpDetJumpModel)
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 
@@ -52,6 +55,40 @@ cdef class AnalyticHestonEngine(PricingEngine):
             )
         )
 
+cdef class AnalyticBSMHullWhiteEngine(PricingEngine):
+
+    def __init__(self, Real equity_short_rate_correlation,
+            GeneralizedBlackScholesProcess process,
+            HullWhite hw_model):
+
+        cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
+            shared_ptr[_bsp.GeneralizedBlackScholesProcess](
+                deref(process._thisptr)
+            )
+
+        self._thisptr = new shared_ptr[_vanilla.PricingEngine](
+            new _vanilla.AnalyticBSMHullWhiteEngine(
+                equity_short_rate_correlation,
+                process_ptr,
+                deref(<shared_ptr[_hw.HullWhite]*> hw_model._thisptr)
+            )
+        )
+    
+
+cdef class AnalyticHestonHullWhiteEngine(PricingEngine):
+
+    def __init__(self, HestonModel heston_model,
+                 HullWhite hw_model,
+                 int integration_order=144):
+
+        self._thisptr = new shared_ptr[_vanilla.PricingEngine](
+            new _vanilla.AnalyticHestonHullWhiteEngine(
+                deref(heston_model._thisptr),
+                deref(<shared_ptr[_hw.HullWhite]*> hw_model._thisptr),
+                <Size>integration_order
+            )
+        )
+    
 cdef class BatesEngine(AnalyticHestonEngine):
 
     def __init__(self, BatesModel model, int integration_order=144):

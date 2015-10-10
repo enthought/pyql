@@ -7,7 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../../../types.pxi'
+include '../types.pxi'
 
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
@@ -27,7 +27,7 @@ cdef extern from 'ql/instruments/impliedvolatility.hpp' namespace 'QuantLib::det
                              SimpleQuote& volQuote,
                              Real targetValue,
                              Real accuracy,
-                             Natural maxEvaluations,
+                            Natural maxEvaluations,
                              Volatility minVol,
                              Volatility maxVol) except +
 

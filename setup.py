@@ -173,8 +173,6 @@ def collect_extensions():
         **kwargs
     )
 
-
-
     mc_vanilla_engine_extension = Extension(
         name='quantlib.pricingengines.vanilla.mcvanillaengine',
         sources=[
@@ -194,15 +192,25 @@ def collect_extensions():
     )
 
     multipath_extension = Extension(
-            name='quantlib.sim.simulate',
-            sources=[
-                'quantlib/sim/simulate.pyx',
-                'cpp_layer/simulate_support_code.cpp'
-            ],
-            **kwargs
-        )
+        name='quantlib.sim.simulate',
+        sources=[
+            'quantlib/sim/simulate.pyx',
+            'cpp_layer/simulate_support_code.cpp'
+        ],
+        **kwargs
+    )
+
+    hestonhw_constraint_extension = Extension(
+        name='quantlib.math.hestonhwcorrelationconstraint',
+        sources=[
+            'quantlib/math/hestonhwcorrelationconstraint.pyx',
+            'cpp_layer/constraint_support_code.cpp'
+        ],
+        **kwargs
+    )
 
     manual_extensions = [
+        hestonhw_constraint_extension,
         multipath_extension,
         mc_vanilla_engine_extension,
         piecewise_yield_curve_extension,
@@ -211,8 +219,6 @@ def collect_extensions():
         test_extension,
         business_day_convention_extension
     ]
-
-
 
     cython_extension_directories = []
     for dirpath, directories, files in os.walk('quantlib'):
@@ -242,7 +248,6 @@ def collect_extensions():
         # remove the multipath extension from the list
         manual_extensions = manual_extensions[1:]
         print('Numpy is not available, multipath extension not compiled')
-
 
     extensions = collected_extensions + manual_extensions
 

@@ -7,16 +7,17 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../../../types.pxi'
+include '../types.pxi'
 
-from quantlib.instruments cimport Instrument
+from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.quotes cimport SimpleQuote
 
 
 cdef class ImpliedVolatilityHelper:
     @classmethod
-    def calculate(Instrument instrument,
+    def calculate(self,
+                  Instrument instrument,
                   PricingEngine engine,
                   SimpleQuote volatility,
                   Real target_value,

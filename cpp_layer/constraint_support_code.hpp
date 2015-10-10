@@ -9,13 +9,10 @@
 #include <ql/types.hpp>
 #include <ql/math/optimization/constraint.hpp>
 
-
-using namespace QuantLib;
-
-namespace PyQL {
+namespace QuantLib {
 
    class HestonHullWhiteCorrelationConstraint : public Constraint {
       public:
-        HestonHullWhiteCorrelationConstraint(Real equityShortRateCorr);
+        HestonHullWhiteCorrelationConstraint(double equityShortRateCorr);
     };
 }

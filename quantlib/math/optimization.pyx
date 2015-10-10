@@ -44,3 +44,10 @@ cdef class EndCriteria:
         )
 
 
+cdef class Constraint:
+    def __cinit__(self):
+        self._thisptr = NULL
+
+    def __dealloc__(self):
+        if  self._thisptr is not NULL:
+            del self._thisptr

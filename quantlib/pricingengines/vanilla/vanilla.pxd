@@ -15,6 +15,12 @@ cdef class BaroneAdesiWhaleyApproximationEngine(VanillaOptionEngine):
 cdef class AnalyticHestonEngine(PricingEngine):
     pass
 
+cdef class AnalyticBSMHullWhiteEngine(PricingEngine):
+    pass
+
+cdef class AnalyticHestonHullWhiteEngine(PricingEngine):
+    pass
+
 cdef class BatesEngine(AnalyticHestonEngine):
     pass
 

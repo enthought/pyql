@@ -25,3 +25,8 @@ cdef extern from 'ql/math/optimization/endcriteria.hpp' namespace 'QuantLib':
             Real functionEpsilon,
             Real gradientEpsilon
         )
+
+cdef extern from 'ql/math/optimization/constraint.hpp' namespace 'QuantLib':
+
+    cdef cppclass Constraint:
+        pass
