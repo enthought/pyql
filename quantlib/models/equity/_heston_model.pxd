@@ -10,6 +10,7 @@ from quantlib.termstructures.yields._flat_forward cimport (
     YieldTermStructure
 )
 from quantlib.models._calibration_helper cimport CalibrationHelper, CalibrationErrorType
+from quantlib.math._optimization cimport Constraint
 
 cimport quantlib.models._calibration_helper as _ch
 cimport quantlib._quote as _qt
@@ -23,7 +24,7 @@ cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
         HestonModelHelper(
             Period& maturity,
             Calendar& calendar,
-            Real s0,
+            Real s0, 
             Real strikePrice,
             Handle[_qt.Quote]& volatility,
             Handle[YieldTermStructure]& riskFreeRate,
@@ -55,8 +56,12 @@ cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib':
         void calibrate(
                vector[shared_ptr[_ch.CalibrationHelper]]&,
                OptimizationMethod& method,
-               EndCriteria& endCriteria,
-        ) except +
+               EndCriteria& endCriteria) except +
 
+        void calibrate(
+               vector[shared_ptr[_ch.CalibrationHelper]]&,
+               OptimizationMethod& method,
+               EndCriteria& endCriteria,
+               Constraint& constraint) except +
 
 
