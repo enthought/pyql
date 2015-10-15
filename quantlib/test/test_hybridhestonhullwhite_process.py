@@ -13,13 +13,11 @@ from quantlib.instruments.option import (
 from quantlib.instruments.payoffs import PAYOFF_TO_STR
 
 from quantlib.models.shortrate.onefactormodels.hullwhite import HullWhite
-from quantlib.processes.hullwhite_process import HullWhiteProcess
-
 
 from quantlib.instruments.option import VanillaOption
 
-from quantlib.time.api import (today, Years, Actual365Fixed, TARGET,
-                               Period, March, May, Date, Months,
+from quantlib.time.api import (today, Years, Actual365Fixed,
+                               Period, May, Date,
                                NullCalendar)
 
 from quantlib.processes.api import (BlackScholesMertonProcess,
@@ -27,15 +25,10 @@ from quantlib.processes.api import (BlackScholesMertonProcess,
                                     HullWhiteProcess)
 
 from quantlib.models.equity.heston_model import (
-    HestonModelHelper, HestonModel)
-
-from quantlib.models.calibration_helper import (
-    RelativePriceError, PriceError)
+    HestonModel)
 
 from quantlib.termstructures.yields.api import ZeroCurve, FlatForward
 from quantlib.termstructures.volatility.api import BlackConstantVol
-
-from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 
 from quantlib.pricingengines.api import (
     AnalyticEuropeanEngine,
@@ -56,10 +49,6 @@ def flat_rate(today, forward, daycounter):
         forward=SimpleQuote(forward),
         daycounter=daycounter
     )
-
-
-def flat_vol(volatility, daycounter):
-    return BlackVolTermStructure(volatility, daycounter)
 
 
 class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
@@ -160,7 +149,7 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
                                          v, dc)
 
             bs_process = BlackScholesMertonProcess(spot, q_ts,
-                                                    r_ts, compVolTS)
+                                                   r_ts, compVolTS)
             bsEngine = AnalyticEuropeanEngine(bs_process)
 
             comp = VanillaOption(payoff, exercise)
@@ -360,7 +349,6 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
                     self.assertAlmostEquals(expected, calculated,
                                             delta=tol)
 
-
     def test_zanette(self):
         """
         From paper by A. Zanette et al.
@@ -371,7 +359,6 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         todays_date = today()
         settings = Settings()
         settings.evaluation_date = todays_date
-        tol = 1.e-2
 
         # constant yield and div curves
 
@@ -408,10 +395,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         kappa_r = 1
         sigma_r = .2
 
-        hullWhiteModel = HullWhite(r_ts, a=kappa_r, sigma=sigma_r)
         hullWhiteProcess = HullWhiteProcess(r_ts, a=kappa_r, sigma=sigma_r)
 
-        
         strike = 100
         maturity = 1
         type = Call
@@ -424,14 +409,6 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
 
         option = VanillaOption(payoff, exercise)
 
-        hestonHwEngine = AnalyticHestonHullWhiteEngine(
-            hestonModel, hullWhiteModel, 128)
-        option.set_pricing_engine(hestonHwEngine)
-
-        # price assumes 0 correlation between Z_t and W_1, W_2
-        calculated = option.npv
-        print("calculated price: %f" % calculated)
-
         def price_cal(rho, tGrid):
             fd_hestonHwEngine = FdHestonHullWhiteVanillaEngine(
                 hestonModel,
@@ -441,8 +418,14 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
             option.set_pricing_engine(fd_hestonHwEngine)
             return option.npv
 
+        calc_price = []
         for rho in [-0.5, 0, .5]:
             for tGrid in [50, 100, 150, 200]:
-                print("rho (S,r): %f Ns: %d Price: %f" % (rho,
-                                                  tGrid,
-                                                  price_cal(rho, tGrid)))
+                tmp = price_cal(rho, tGrid)
+                print("rho (S,r): %f Ns: %d Price: %f" %
+                      (rho, tGrid, tmp))
+                calc_price.append(tmp)
+
+        expected_price = [11.38, ] * 4 + [12.81, ] * 4 + [14.08, ] * 4
+
+        np.testing.assert_almost_equal(calc_price, expected_price, 2)
