@@ -15,10 +15,11 @@ from quantlib.handle cimport Handle, shared_ptr
 from quantlib.instruments._option cimport Type as OptionType
 from quantlib.math._optimization cimport OptimizationMethod, EndCriteria
 from quantlib.models._calibration_helper cimport CalibrationHelper
+from quantlib.models.shortrate._onefactor_model cimport OneFactorAffineModel
 
 cdef extern from 'ql/models/shortrate/onefactormodels/vasicek.hpp' namespace 'QuantLib':
 
-    cdef cppclass Vasicek:
+    cdef cppclass Vasicek(OneFactorAffineModel):
 
         Vasicek() # fake empty constructor due to Cython issue
 

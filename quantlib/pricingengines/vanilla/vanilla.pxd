@@ -21,6 +21,9 @@ cdef class AnalyticBSMHullWhiteEngine(PricingEngine):
 cdef class AnalyticHestonHullWhiteEngine(PricingEngine):
     pass
 
+cdef class FdHestonHullWhiteVanillaEngine(PricingEngine):
+    pass
+
 cdef class BatesEngine(AnalyticHestonEngine):
     pass
 

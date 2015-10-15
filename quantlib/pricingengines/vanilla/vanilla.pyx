@@ -1,5 +1,6 @@
 include '../../types.pxi'
 
+from libcpp cimport bool
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
 cimport quantlib.processes._black_scholes_process as _bsp
@@ -9,6 +10,8 @@ cimport quantlib.models.shortrate.onefactormodels._hullwhite as _hw
 from quantlib.models.equity.heston_model cimport HestonModel
 
 from quantlib.models.shortrate.onefactormodels.hullwhite cimport HullWhite
+from quantlib.processes.hullwhite_process cimport HullWhiteProcess
+
 from quantlib.models.equity.bates_model cimport (BatesModel, BatesDetJumpModel, BatesDoubleExpModel, BatesDoubleExpDetJumpModel)
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 
@@ -88,7 +91,34 @@ cdef class AnalyticHestonHullWhiteEngine(PricingEngine):
                 <Size>integration_order
             )
         )
-    
+
+
+cdef class FdHestonHullWhiteVanillaEngine(PricingEngine):
+
+    def __init__(self, HestonModel heston_model,
+            HullWhiteProcess hw_process,
+            Real corrEquityShortRate,
+            Size tGrid,
+            Size xGrid, 
+            Size vGrid,
+            Size rGrid,
+            Size dampingSteps,
+            bool controlVariate):
+
+        self._thisptr = new shared_ptr[_vanilla.PricingEngine](
+            new _vanilla.FdHestonHullWhiteVanillaEngine(
+                deref(heston_model._thisptr),
+                deref(hw_process._thisptr),
+                corrEquityShortRate,
+                tGrid,
+                xGrid=100, 
+                vGrid=40,
+                rGrid=20,
+                dampingSteps=0,
+                controlVariate=True)
+            )
+
+
 cdef class BatesEngine(AnalyticHestonEngine):
 
     def __init__(self, BatesModel model, int integration_order=144):

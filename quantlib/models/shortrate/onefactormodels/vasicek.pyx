@@ -11,11 +11,14 @@ include '../../../types.pxi'
 
 from cython.operator cimport dereference as deref
 
+from quantlib.models.shortrate.onefactor_model cimport OneFactorAffineModel
+cimport quantlib.models._model as _mo
+cimport _vasicek as _va
 from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib._quote as _qt
 from quantlib.quotes cimport Quote, SimpleQuote
 
-cdef class Vasicek:
+cdef class Vasicek(OneFactorAffineModel):
     """
     Vasicek model defined by
     .. math::
@@ -40,7 +43,7 @@ cdef class Vasicek:
        Real sigma=0,
        Real Lambda=0):
 
-        self._thisptr = new shared_ptr[_va.Vasicek](
+        self._thisptr = new shared_ptr[_mo.CalibratedModel](
             new _va.Vasicek(
                 r0, a, b, sigma, Lambda
 		)
@@ -52,16 +55,16 @@ cdef class Vasicek:
 
     property a:
         def __get__(self):
-            return self._thisptr.get().a()
+            return (<_va.Vasicek*> self._thisptr.get()).a()
 
     property b:
         def __get__(self):
-            return self._thisptr.get().b()
+            return (<_va.Vasicek*> self._thisptr.get()).b()
 
     property sigma:
         def __get__(self):
-            return self._thisptr.get().sigma()
+            return (<_va.Vasicek*> self._thisptr.get()).sigma()
 
     property Lambda:
         def __get__(self):
-            return self._thisptr.get().Lambda()
+            return (<_va.Vasicek*> self._thisptr.get()).Lambda()

@@ -1,6 +1,6 @@
 """
- Copyright (C) 2014, Enthought Inc
- Copyright (C) 2014, Patrick Henaff
+ Copyright (C) 2015, Enthought Inc
+ Copyright (C) 2015, Patrick Henaff
 
  This program is distributed in the hope that it will be useful, but WITHOUT
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
@@ -14,5 +14,3 @@ cdef extern from "constraint_support_code.hpp" namespace "QuantLib":
         HestonHullWhiteCorrelationConstraint()
         HestonHullWhiteCorrelationConstraint(double x) except +
 
-cdef extern from "constraint_support_code.hpp" namespace "QuantLib":
-    double MySimpleAdd(double x, double y) except +

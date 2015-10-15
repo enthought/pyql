@@ -14,18 +14,16 @@ from quantlib.math.optimization cimport Constraint
 cimport _optimization as _opt
 cimport _hestonhwcorrelationconstraint as _hhw
 
-## cdef class HestonHullWhiteCorrelationConstraint(Constraint):
+cdef class HestonHullWhiteCorrelationConstraint(Constraint):
 
-##     def __cinit__(self):
-##         self._thisptr = NULL
+    def __cinit__(self):
+        self._thisptr = NULL
 
-##     def __init__(self, double equity_short_rate_corr):
-##         self._thisptr = new shared_ptr[_opt.Constraint](
-##             new _hhw.HestonHullWhiteCorrelationConstraint(
-##                 equity_short_rate_corr))
+    def __init__(self, double equity_short_rate_corr):
+        self._thisptr = new shared_ptr[_opt.Constraint](
+            new _hhw.HestonHullWhiteCorrelationConstraint(
+                equity_short_rate_corr))
 
-##     def __str__(self):
-##         return 'Heston/Hull-White correlation constraint'
+    def __str__(self):
+        return 'Heston/Hull-White correlation constraint'
 
-def MySimpleAdd(x, y):
-    return _hhw.MySimpleAdd(x, y)

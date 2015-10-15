@@ -1,7 +1,6 @@
 
 /*
  * The HestonHullWhiteCorrelationConstraint is defined in the test suite
- * but is needed to calibrate hybrid Heston-HW models
  *
  * code copied from test-suite/hybridhestonhullwhiteprocess.cpp
  */
@@ -9,7 +8,6 @@
 #include <ql/types.hpp>
 #include <ql/math/optimization/constraint.hpp>
 #include <ql/math/functional.hpp>
-
 
 namespace QuantLib {
 
@@ -30,14 +28,11 @@ namespace QuantLib {
             const Real equityShortRateCorr_;
         };
       public:
+        HestonHullWhiteCorrelationConstraint() {}
         HestonHullWhiteCorrelationConstraint(Real equityShortRateCorr)
         : Constraint(boost::shared_ptr<Constraint::Impl>(
              new HestonHullWhiteCorrelationConstraint::Impl(
                  equityShortRateCorr))) {}
    };
 
-  // to test the build of .so
-  double MySimpleAdd(double x, double y) {
-    return(x+y);
-  };
 }

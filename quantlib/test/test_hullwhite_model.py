@@ -44,8 +44,10 @@ class HullWhiteModelTestCase(unittest.TestCase):
 
         model = HullWhite(yield_ts, a=0.0001, sigma=.1)
 
-        self.assertEquals(0.0001, model.a)
-        self.assertAlmostEqual(.1, model.sigma)
+        p = model.params()
+
+        self.assertEquals(p[0], model.a)
+        self.assertAlmostEqual(p[1], model.sigma)
 
     def test_hull_white_calibration(self):
         """

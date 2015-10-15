@@ -1,8 +1,10 @@
 include '../../types.pxi'
 
+from libcpp cimport bool
 from quantlib.handle cimport shared_ptr
 from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess
 from quantlib.models.shortrate.onefactormodels._hullwhite cimport HullWhite
+from quantlib.processes._hullwhite_process cimport HullWhiteProcess
 from quantlib.models.equity._heston_model cimport HestonModel
 from quantlib.models.equity._bates_model cimport (BatesModel, BatesDetJumpModel, BatesDoubleExpModel, BatesDoubleExpDetJumpModel)
 
@@ -50,6 +52,21 @@ cdef extern from 'ql/pricingengines/vanilla/analytichestonhullwhiteengine.hpp' n
             shared_ptr[HullWhite]& hw_model,
             Size integrationOrder
         )
+
+cdef extern from 'ql/pricingengines/vanilla/fdhestonhullwhitevanillaengine.hpp' namespace 'QuantLib':
+
+    cdef cppclass FdHestonHullWhiteVanillaEngine(PricingEngine):
+        FdHestonHullWhiteVanillaEngine()
+        FdHestonHullWhiteVanillaEngine(
+            shared_ptr[HestonModel]& heston_model,
+            shared_ptr[HullWhiteProcess]& hw_process,
+            Real corrEquityShortRate,
+            Size tGrid, Size xGrid, 
+            Size vGrid, Size rGrid,
+            Size dampingSteps,
+            bool controlVariate)
+            # FdmSchemeDesc& schemeDesc)
+
 
 cdef extern from 'ql/pricingengines/vanilla/batesengine.hpp' namespace 'QuantLib':
 

@@ -13,6 +13,7 @@ from quantlib.instruments.option import (
 from quantlib.instruments.payoffs import PAYOFF_TO_STR
 
 from quantlib.models.shortrate.onefactormodels.hullwhite import HullWhite
+from quantlib.processes.hullwhite_process import HullWhiteProcess
 
 
 from quantlib.instruments.option import VanillaOption
@@ -20,17 +21,16 @@ from quantlib.instruments.option import VanillaOption
 from quantlib.time.api import (today, Years, Actual365Fixed, TARGET,
                                Period, March, May, Date, Months,
                                NullCalendar)
+
 from quantlib.processes.api import (BlackScholesMertonProcess,
-                                    HestonProcess)
+                                    HestonProcess,
+                                    HullWhiteProcess)
 
 from quantlib.models.equity.heston_model import (
     HestonModelHelper, HestonModel)
 
 from quantlib.models.calibration_helper import (
     RelativePriceError, PriceError)
-
-from quantlib.math.hestonhwcorrelationconstraint import (
-     HestonHullWhiteCorrelationConstraint)
 
 from quantlib.termstructures.yields.api import ZeroCurve, FlatForward
 from quantlib.termstructures.volatility.api import BlackConstantVol
@@ -41,7 +41,8 @@ from quantlib.pricingengines.api import (
     AnalyticEuropeanEngine,
     AnalyticBSMHullWhiteEngine,
     AnalyticHestonEngine,
-    AnalyticHestonHullWhiteEngine)
+    AnalyticHestonHullWhiteEngine,
+    FdHestonHullWhiteVanillaEngine)
 
 from quantlib.quotes import SimpleQuote
 
@@ -359,3 +360,89 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
                     self.assertAlmostEquals(expected, calculated,
                                             delta=tol)
 
+
+    def test_zanette(self):
+        """
+        From paper by A. Zanette et al.
+        """
+
+        dc = Actual365Fixed()
+
+        todays_date = today()
+        settings = Settings()
+        settings.evaluation_date = todays_date
+        tol = 1.e-2
+
+        # constant yield and div curves
+
+        dates = [todays_date + Period(i, Years) for i in range(3)]
+        rates = [0.04 for i in range(3)]
+        divRates = [0.03 for i in range(3)]
+        r_ts = ZeroCurve(dates, rates, dc)
+        q_ts = ZeroCurve(dates, divRates, dc)
+
+        s0 = SimpleQuote(100)
+
+        # Heston model
+
+        v0 = .1
+        kappa_v = 2
+        theta_v = 0.1
+        sigma_v = 0.3
+        rho_sv = -0.5
+
+        hestonProcess = HestonProcess(
+            risk_free_rate_ts=r_ts,
+            dividend_ts=q_ts,
+            s0=s0,
+            v0=v0,
+            kappa=kappa_v,
+            theta=theta_v,
+            sigma=sigma_v,
+            rho=rho_sv)
+
+        hestonModel = HestonModel(hestonProcess)
+
+        # Hull-White
+
+        kappa_r = 1
+        sigma_r = .2
+
+        hullWhiteModel = HullWhite(r_ts, a=kappa_r, sigma=sigma_r)
+        hullWhiteProcess = HullWhiteProcess(r_ts, a=kappa_r, sigma=sigma_r)
+
+        
+        strike = 100
+        maturity = 1
+        type = Call
+
+        maturity_date = todays_date + Period(maturity, Years)
+
+        exercise = EuropeanExercise(maturity_date)
+
+        payoff = PlainVanillaPayoff(type, strike)
+
+        option = VanillaOption(payoff, exercise)
+
+        hestonHwEngine = AnalyticHestonHullWhiteEngine(
+            hestonModel, hullWhiteModel, 128)
+        option.set_pricing_engine(hestonHwEngine)
+
+        # price assumes 0 correlation between Z_t and W_1, W_2
+        calculated = option.npv
+        print("calculated price: %f" % calculated)
+
+        def price_cal(rho, tGrid):
+            fd_hestonHwEngine = FdHestonHullWhiteVanillaEngine(
+                hestonModel,
+                hullWhiteProcess,
+                rho,
+                tGrid, 100, 40, 20, 0, True)
+            option.set_pricing_engine(fd_hestonHwEngine)
+            return option.npv
+
+        for rho in [-0.5, 0, .5]:
+            for tGrid in [50, 100, 150, 200]:
+                print("rho (S,r): %f Ns: %d Price: %f" % (rho,
+                                                  tGrid,
+                                                  price_cal(rho, tGrid)))

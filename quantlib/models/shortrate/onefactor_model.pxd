@@ -10,9 +10,9 @@
 cimport _onefactor_model as _ofm
 
 from quantlib.handle cimport shared_ptr
+from quantlib.models.model cimport CalibratedModel
 
+cdef class OneFactorAffineModel(CalibratedModel):
 
-cdef class OneFactorAffineModel:
-
-    cdef shared_ptr[_ofm.OneFactorAffineModel]* _thisptr
-
+    #cdef shared_ptr[_ofm.OneFactorAffineModel]* _thisptr
+    pass

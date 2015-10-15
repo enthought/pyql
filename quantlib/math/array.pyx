@@ -25,6 +25,9 @@ cdef class Array:
             del self._thisptr
             self._thisptr = NULL
 
+    def __init__(self):
+        self._thisptr = NULL
+        
     def __init__(self, size_t n, double value):
         self._thisptr = new shared_ptr[_arr.Array](new _arr.Array(n, value))
         
@@ -37,9 +40,9 @@ cdef class Array:
     def __setitem__(self, Size key, double value):
         if key >= self.size:
             raise ValueError('key larger than size of Array')
-        cdef _arr.Array* a_ref = <_arr.Array*>self._thisptr.get()
+        cdef _arr.Array* array_ref = <_arr.Array*>self._thisptr.get()
         set_item(
-            deref(a_ref), key, value)
+            deref(array_ref), key, value)
 
     property size:
         def __get__(self):
@@ -50,3 +53,6 @@ cpdef qlarray_from_pyarray(p):
     for i in range(len(p)):
         x[i] = p[i]
     return x
+
+cpdef pyarray_from_qlarray(a):
+    return [a[i] for i in range(a.size)]

@@ -1,6 +1,8 @@
-cimport _optimization as _opt
-
 from quantlib.handle cimport shared_ptr
+from cython.operator cimport dereference as deref
+
+cimport _optimization as _opt
+from quantlib.math.array cimport Array
 
 cdef class OptimizationMethod:
     def __cinit__(self):
@@ -48,6 +50,12 @@ cdef class Constraint:
     def __cinit__(self):
         self._thisptr = NULL
 
+    def __init__(self):
+        raise ValueError('Cannot instantiate a Constraint')
+
     def __dealloc__(self):
         if  self._thisptr is not NULL:
             del self._thisptr
+
+    def test(self, Array a):
+        return self._thisptr.get().test(deref(a._thisptr.get()))

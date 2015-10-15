@@ -13,6 +13,7 @@ cimport _model as _mo
 from quantlib.handle cimport shared_ptr
 from cython.operator cimport dereference as deref
 from quantlib.math.array cimport Array
+cimport quantlib.math._array as _arr
 
 cdef class CalibratedModel:
 
@@ -27,8 +28,13 @@ cdef class CalibratedModel:
         raise ValueError('Cannot instantiate a CalibratedModel')
 
     def params(self):
-        # return self._thisptr.get().params()
-        x = Array(3, 0)
+        ## TODO: more efficient code for Array creation
+        cdef _arr.Array tmp =  <_arr.Array> self._thisptr.get().params()
+        cdef size_t size = tmp.size()
+        # TODO: faster way to fill x?
+        x = Array(size,0)
+        for i in range(size):
+            x[i] = tmp.at(i)
         return x
     
     def set_params(self, Array params):

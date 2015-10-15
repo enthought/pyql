@@ -13,8 +13,8 @@ namespace QuantLib {
 
    class HestonHullWhiteCorrelationConstraint : public Constraint {
       public:
+        HestonHullWhiteCorrelationConstraint();
         HestonHullWhiteCorrelationConstraint(double equityShortRateCorr);
     };
 
-  double MySimpleAdd(double x, double y);
 }
