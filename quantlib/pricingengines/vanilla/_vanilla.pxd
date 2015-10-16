@@ -1,6 +1,8 @@
 include '../../types.pxi'
 
 from libcpp cimport bool
+from libcpp.vector cimport vector
+
 from quantlib.handle cimport shared_ptr
 from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess
 from quantlib.models.shortrate.onefactormodels._hullwhite cimport HullWhite
@@ -65,8 +67,11 @@ cdef extern from 'ql/pricingengines/vanilla/fdhestonhullwhitevanillaengine.hpp' 
             Size vGrid, Size rGrid,
             Size dampingSteps,
             bool controlVariate)
+            # TODO: implement FdmSchemeDesc 
             # FdmSchemeDesc& schemeDesc)
 
+        void enableMultipleStrikesCaching(vector[double]&)
+        
 
 cdef extern from 'ql/pricingengines/vanilla/batesengine.hpp' namespace 'QuantLib':
 

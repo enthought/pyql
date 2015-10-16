@@ -1,11 +1,14 @@
 include '../../types.pxi'
 
+from libcpp.vector cimport vector
 from libcpp cimport bool
+
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
 cimport quantlib.processes._black_scholes_process as _bsp
 cimport quantlib.models.equity._bates_model as _bm
 cimport quantlib.models.shortrate.onefactormodels._hullwhite as _hw
+cimport _vanilla as _va
 
 from quantlib.models.equity.heston_model cimport HestonModel
 
@@ -118,6 +121,9 @@ cdef class FdHestonHullWhiteVanillaEngine(PricingEngine):
                 controlVariate=True)
             )
 
+    def enableMultipleStrikesCaching(self, strikes):
+        cdef vector[double] v = strikes
+        (<_va.FdHestonHullWhiteVanillaEngine *> self._thisptr.get()).enableMultipleStrikesCaching(v)
 
 cdef class BatesEngine(AnalyticHestonEngine):
 
