@@ -17,15 +17,12 @@ from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.flat_forward import FlatForward
 
-from quantlib.instruments.option import EuropeanExercise
-from quantlib.instruments.payoffs import Call, PlainVanillaPayoff
 from quantlib.models.equity.heston_model import (
     HestonModelHelper, HestonModel, PriceError
 )
 
 from quantlib.processes.heston_process import HestonProcess
 
-from quantlib.models.shortrate.onefactormodels.hullwhite import HullWhite
 from quantlib.processes.api import HullWhiteProcess
 
 from quantlib.pricingengines.api import (
