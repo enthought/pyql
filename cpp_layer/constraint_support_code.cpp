@@ -35,4 +35,16 @@ namespace QuantLib {
                  equityShortRateCorr))) {}
    };
 
+
+    typedef boost::shared_ptr<Constraint> CT;
+
+    CT constraint_factory(Real equityShortRateCorr) {
+        
+        CT ct;
+        ct = CT(new 
+		HestonHullWhiteCorrelationConstraint(equityShortRateCorr));
+
+	return ct;
+  };
 }
+

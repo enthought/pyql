@@ -17,4 +17,7 @@ namespace QuantLib {
         HestonHullWhiteCorrelationConstraint(double equityShortRateCorr);
     };
 
+    // wrapper function 
+    boost::shared_ptr<Constraint> constraint_factory(double equityShortRateCorr);
 }
+
