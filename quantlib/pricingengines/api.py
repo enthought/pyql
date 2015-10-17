@@ -10,4 +10,4 @@ from .vanilla.vanilla import AnalyticDividendEuropeanEngine
 from .vanilla.vanilla import FDDividendAmericanEngine, FDAmericanEngine
 from .vanilla.vanilla import FdHestonHullWhiteVanillaEngine
 
-from swaption import JamshidianSwaptionEngine
+from .swaption import JamshidianSwaptionEngine
