@@ -25,23 +25,16 @@ cdef extern from 'ql/methods/finitedifferences/solvers/fdmbackwardsolver.hpp' na
     
         FdmSchemeDesc(FdmSchemeType type, Real theta, Real mu)
 
-        ## @staticmethod
-        ## FdmSchemeDesc Douglas()
+    FdmSchemeDesc Douglas "FdmSchemeDesc::Douglas"()
+
+    FdmSchemeDesc ImplicitEuler"FdmSchemeDesc::ImplicitEuler"()
         
-        ## @staticmethod
-        ## FdmSchemeDesc ImplicitEuler()
+    FdmSchemeDesc ExplicitEuler "FdmSchemeDesc::Douglas"()
         
-        ## @staticmethod
-        ## FdmSchemeDesc ExplicitEuler()
+    FdmSchemeDesc CraigSneyd "FdmSchemeDesc::Douglas"()
         
-        ## @staticmethod
-        ## FdmSchemeDesc CraigSneyd()
+    FdmSchemeDesc ModifiedCraigSneyd "FdmSchemeDesc::Douglas"()
         
-        ## @staticmethod
-        ## FdmSchemeDesc ModifiedCraigSneyd()
+    FdmSchemeDesc Hundsdorfer "FdmSchemeDesc::Douglas"()
         
-        ## @staticmethod
-        ## FdmSchemeDesc Hundsdorfer()
-        
-        ## @staticmethod
-        ## FdmSchemeDesc ModifiedHundsdorfer()
+    FdmSchemeDesc ModifiedHundsdorfer "FdmSchemeDesc::Douglas"()

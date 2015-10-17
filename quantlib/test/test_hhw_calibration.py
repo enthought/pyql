@@ -29,6 +29,9 @@ from quantlib.pricingengines.api import (
     AnalyticHestonEngine,
     FdHestonHullWhiteVanillaEngine)
 
+from quantlib.methods.finitedifferences.solvers.fdmbackwardsolver import (
+    FdmSchemeDesc)
+
 
 def flat_rate(today, forward, daycounter):
     return FlatForward(
@@ -153,7 +156,7 @@ class TestHHWCalibration(unittest.TestCase):
             hhw_engine = FdHestonHullWhiteVanillaEngine(
                 hhw_model, hw_process,
                 equityShortRateCorr,
-                tGrid, 61, 13, 9, 0, True)
+                tGrid, 61, 13, 9, 0, True, FdmSchemeDesc.Hundsdorfer())
 
             hhw_engine.enableMultipleStrikesCaching(strikes)
 

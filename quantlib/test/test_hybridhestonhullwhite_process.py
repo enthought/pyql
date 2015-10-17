@@ -42,6 +42,7 @@ from quantlib.quotes import SimpleQuote
 from quantlib.instruments.payoffs import (
     PlainVanillaPayoff, Put, Call)
 
+from quantlib.methods.finitedifferences.solvers.fdmbackwardsolver import FdmSchemeDesc
 
 def flat_rate(today, forward, daycounter):
     return FlatForward(
@@ -414,7 +415,7 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
                 hestonModel,
                 hullWhiteProcess,
                 rho,
-                tGrid, 100, 40, 20, 0, True)
+                tGrid, 100, 40, 20, 0, True, FdmSchemeDesc.Hundsdorfer())
             option.set_pricing_engine(fd_hestonHwEngine)
             return option.npv
 

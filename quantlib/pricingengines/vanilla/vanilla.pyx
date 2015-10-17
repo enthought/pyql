@@ -19,6 +19,7 @@ from quantlib.models.equity.bates_model cimport (BatesModel, BatesDetJumpModel, 
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 
 from quantlib.pricingengines.engine cimport PricingEngine
+from quantlib.methods.finitedifferences.solvers.fdmbackwardsolver cimport FdmSchemeDesc
 
 cdef class VanillaOptionEngine(PricingEngine):
 
@@ -106,7 +107,8 @@ cdef class FdHestonHullWhiteVanillaEngine(PricingEngine):
             Size vGrid,
             Size rGrid,
             Size dampingSteps,
-            bool controlVariate):
+            bool controlVariate,
+            FdmSchemeDesc desc):
 
         self._thisptr = new shared_ptr[_vanilla.PricingEngine](
             new _vanilla.FdHestonHullWhiteVanillaEngine(
@@ -114,11 +116,12 @@ cdef class FdHestonHullWhiteVanillaEngine(PricingEngine):
                 deref(hw_process._thisptr),
                 corrEquityShortRate,
                 tGrid,
-                xGrid=100, 
-                vGrid=40,
-                rGrid=20,
-                dampingSteps=0,
-                controlVariate=True)
+                xGrid, 
+                vGrid,
+                rGrid,
+                dampingSteps,
+                controlVariate,
+                deref(desc._thisptr.get()))
             )
 
     def enableMultipleStrikesCaching(self, strikes):

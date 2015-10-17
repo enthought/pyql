@@ -2,6 +2,7 @@ include '../../../types.pxi'
 
 from quantlib.handle cimport shared_ptr
 from quantlib.methods.finitedifferences.solvers cimport _fdmbackwardsolver as _fdm
+import numpy as np
 
 cdef public enum FdmSchemeType:
     HundsdorferType = _fdm.HundsdorferType
@@ -31,35 +32,31 @@ cdef class FdmSchemeDesc:
         self._thisptr = new shared_ptr[_fdm.FdmSchemeDesc](
             new _fdm.FdmSchemeDesc(type, theta, mu))
 
+    @classmethod
+    def Douglas(cls):
+        return FdmSchemeDesc(DouglasType, 0.5, 0.0)
+    
+    @classmethod
+    def CraigSneyd(cls):
+        return FdmSchemeDesc(CraigSneydType,0.5, 0.5)
 
-    ## FdmSchemeDesc FdmSchemeDesc::Douglas() { 
-    ##     return FdmSchemeDesc(FdmSchemeDesc::DouglasType, 0.5, 0.0);
-    ## }
-    
-    ## FdmSchemeDesc FdmSchemeDesc::CraigSneyd() {
-    ##     return FdmSchemeDesc(FdmSchemeDesc::CraigSneydType,0.5, 0.5);
-    ## }
-    
-    ## FdmSchemeDesc FdmSchemeDesc::ModifiedCraigSneyd() { 
-    ##     return FdmSchemeDesc(FdmSchemeDesc::ModifiedCraigSneydType, 
-    ##                          1.0/3.0, 1.0/3.0);
-    ## }
-    
-    ## FdmSchemeDesc FdmSchemeDesc::Hundsdorfer() {
-    ##     return FdmSchemeDesc(FdmSchemeDesc::HundsdorferType, 
-    ##                          0.5+std::sqrt(3.0)/6, 0.5);
-    ## }
-    
-    ## FdmSchemeDesc FdmSchemeDesc::ModifiedHundsdorfer() {
-    ##     return FdmSchemeDesc(FdmSchemeDesc::HundsdorferType, 
-    ##                          1.0-std::sqrt(2.0)/2, 0.5);
-    ## }
-    
-    ## FdmSchemeDesc FdmSchemeDesc::ExplicitEuler() {
-    ##     return FdmSchemeDesc(FdmSchemeDesc::ExplicitEulerType, 0.0, 0.0);
-    ## }
+    @classmethod
+    def ModifiedCraigSneyd(cls): 
+        return FdmSchemeDesc(ModifiedCraigSneydType, 1.0/3.0, 1.0/3.0)
 
-    ## FdmSchemeDesc FdmSchemeDesc::ImplicitEuler() {
-    ##     return FdmSchemeDesc(FdmSchemeDesc::ImplicitEulerType, 0.0, 0.0);
-    ## }
+    @classmethod
+    def Hundsdorfer(cls):
+        return FdmSchemeDesc(HundsdorferType, 0.5+np.sqrt(3.0)/6, 0.5)
+
+    @classmethod
+    def ModifiedHundsdorfer(cls):
+        return FdmSchemeDesc(HundsdorferType, 1.0-np.sqrt(2.0)/2, 0.5)
+    
+    @classmethod
+    def ExplicitEuler(cls):
+        return FdmSchemeDesc(ExplicitEulerType, 0.0, 0.0)
+
+    @classmethod
+    def ImplicitEuler(cls):
+        return FdmSchemeDesc(ImplicitEulerType, 0.0, 0.0)
 

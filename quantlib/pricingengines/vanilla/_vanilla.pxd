@@ -11,6 +11,7 @@ from quantlib.models.equity._heston_model cimport HestonModel
 from quantlib.models.equity._bates_model cimport (BatesModel, BatesDetJumpModel, BatesDoubleExpModel, BatesDoubleExpDetJumpModel)
 
 from quantlib.pricingengines._pricing_engine cimport PricingEngine
+from quantlib.methods.finitedifferences.solvers cimport _fdmbackwardsolver as _fdm
 
 cdef extern from 'ql/pricingengines/vanilla/analyticeuropeanengine.hpp' namespace 'QuantLib':
 
@@ -66,9 +67,8 @@ cdef extern from 'ql/pricingengines/vanilla/fdhestonhullwhitevanillaengine.hpp' 
             Size tGrid, Size xGrid, 
             Size vGrid, Size rGrid,
             Size dampingSteps,
-            bool controlVariate)
-            # TODO: implement FdmSchemeDesc 
-            # FdmSchemeDesc& schemeDesc)
+            bool controlVariate,
+            _fdm.FdmSchemeDesc& schemeDesc)
 
         void enableMultipleStrikesCaching(vector[double]&)
         
