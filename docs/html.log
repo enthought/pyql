@@ -1,0 +1,167 @@
+sphinx-build -b html -d build/doctrees   source build/html
+Running Sphinx v1.1.3
+loading pickled environment... done
+building [html]: targets for 0 source files that are out of date
+updating environment: 0 added, 2 changed, 0 removed
+reading sources... [ 50%] api
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: PricingEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: VanillaOptionEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: AnalyticEuropeanEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: AnalyticHestonEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: BaroneAdesiWhaleyApproximationEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: BatesEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: BatesDetJumpEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: BatesDoubleExpEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: BatesDoubleExpDetJumpEngine
+reading sources... [100%] reference_guide
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: PricingEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: VanillaOptionEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: AnalyticEuropeanEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: AnalyticHestonEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: BaroneAdesiWhaleyApproximationEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: BatesEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: BatesDetJumpEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: BatesDoubleExpEngine
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 326, in import_object
+    obj = self.get_attr(obj, part)
+  File "/usr/lib/python2.7/dist-packages/sphinx/ext/autodoc.py", line 232, in get_attr
+    return safe_getattr(obj, name, *defargs)
+  File "/usr/lib/python2.7/dist-packages/sphinx/util/inspect.py", line 70, in safe_getattr
+    raise AttributeError(name)
+AttributeError: BatesDoubleExpDetJumpEngine
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+writing output... [ 33%] api
+writing output... [ 66%] index
+writing output... [100%] reference_guide
+
+writing additional files... genindex py-modindex search
+copying static files... done
+dumping search index... done
+dumping object inventory... done
+build succeeded, 166 warnings.
+
+Build finished. The HTML pages are in build/html.
