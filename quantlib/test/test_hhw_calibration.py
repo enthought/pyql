@@ -158,7 +158,7 @@ class TestHHWCalibration(unittest.TestCase):
                 equityShortRateCorr,
                 tGrid, 61, 13, 9, 0, True, FdmSchemeDesc.Hundsdorfer())
 
-            hhw_engine.enableMultipleStrikesCaching(strikes)
+            hhw_engine.enable_multiple_strikes_caching(strikes)
 
             maturity = Period(int(maturities[i] * 12.0 + 0.5), Months)
 
