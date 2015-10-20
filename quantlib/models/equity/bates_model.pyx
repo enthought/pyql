@@ -17,8 +17,8 @@ cimport quantlib.processes._heston_process as _hp
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.processes.heston_process cimport HestonProcess
 from quantlib.processes.bates_process cimport BatesProcess
-from heston_model cimport HestonModel
-from bates_model cimport BatesModel
+from .heston_model cimport HestonModel
+from .bates_model cimport BatesModel
 
 cdef class BatesModel(HestonModel):
 

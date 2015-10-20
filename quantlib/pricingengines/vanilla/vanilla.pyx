@@ -101,30 +101,30 @@ cdef class FdHestonHullWhiteVanillaEngine(PricingEngine):
 
     def __init__(self, HestonModel heston_model,
             HullWhiteProcess hw_process,
-            Real corrEquityShortRate,
-            Size tGrid,
-            Size xGrid, 
-            Size vGrid,
-            Size rGrid,
-            Size dampingSteps,
-            bool controlVariate,
+            Real corr_equity_short_rate,
+            Size t_grid,
+            Size x_grid, 
+            Size v_grid,
+            Size r_grid,
+            Size damping_steps,
+            bool control_variate,
             FdmSchemeDesc desc):
 
         self._thisptr = new shared_ptr[_vanilla.PricingEngine](
             new _vanilla.FdHestonHullWhiteVanillaEngine(
                 deref(heston_model._thisptr),
                 deref(hw_process._thisptr),
-                corrEquityShortRate,
-                tGrid,
-                xGrid, 
-                vGrid,
-                rGrid,
-                dampingSteps,
-                controlVariate,
+                corr_equity_short_rate,
+                t_grid,
+                x_grid, 
+                v_grid,
+                r_grid,
+                damping_steps,
+                control_variate,
                 deref(desc._thisptr.get()))
             )
 
-    def enableMultipleStrikesCaching(self, strikes):
+    def enable_multiple_strikes_caching(self, strikes):
         cdef vector[double] v = strikes
         (<_va.FdHestonHullWhiteVanillaEngine *> self._thisptr.get()).enableMultipleStrikesCaching(v)
 

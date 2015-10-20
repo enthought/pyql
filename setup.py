@@ -81,6 +81,7 @@ elif sys.platform.startswith('linux'):   # 'linux' on Py3, 'linux2' on Py2
 if HAS_NUMPY:
     INCLUDE_DIRS.append(numpy.get_include())
 
+
 def get_define_macros():
     #defines = [ ('HAVE_CONFIG_H', None)]
     defines = []
@@ -95,6 +96,7 @@ def get_define_macros():
         ]
     return defines
 
+
 def get_extra_compile_args():
     if sys.platform == 'win32':
         args = ['/GR', '/FD', '/Zm250', '/EHsc']
@@ -104,6 +106,7 @@ def get_extra_compile_args():
         args = []
 
     return args
+
 
 def get_extra_link_args():
     if sys.platform == 'win32':
@@ -124,6 +127,7 @@ def get_extra_link_args():
     return args
 
 CYTHON_DIRECTIVES = {"embedsignature": True}
+
 
 def collect_extensions():
     """ Collect all the directories with Cython extensions and return the list
@@ -208,7 +212,7 @@ def collect_extensions():
         ],
         **kwargs
     )
-    
+
     hestonhw_constraint_extension = Extension(
         name='quantlib.math.hestonhwcorrelationconstraint',
         sources=[
@@ -250,7 +254,8 @@ def collect_extensions():
 
     # remove  all the manual extensions from the collected ones
     names = [extension.name for extension in manual_extensions]
-    collected_extensions = [ ext for ext in collected_extensions if ext.name not in names ]
+    collected_extensions = [ext for ext in collected_extensions
+                            if ext.name not in names]
     if not HAS_NUMPY:
         # remove the multipath extension from the list
         manual_extensions = manual_extensions[1:]

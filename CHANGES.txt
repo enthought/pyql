@@ -16,6 +16,7 @@ Pre 0.2
  * Many small fixes (seel full commit logs)
  * Added partial interface to Hull-White model
  * CalibrationHelper refactor: HestonHelper, SwaptionHelper now inherit from CalibrationHelper
+ * Added support for the hybrid Heston/Hull-White model and several support classes used by this model.
 
 Release 0.1
 -----------

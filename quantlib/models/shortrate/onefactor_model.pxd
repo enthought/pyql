@@ -14,5 +14,4 @@ from quantlib.models.model cimport CalibratedModel
 
 cdef class OneFactorAffineModel(CalibratedModel):
 
-    #cdef shared_ptr[_ofm.OneFactorAffineModel]* _thisptr
     pass

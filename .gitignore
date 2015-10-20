@@ -14,3 +14,4 @@ symbol_win*.def
 
 *.*~
 *.*#
+*.ipynb_checkpoints
