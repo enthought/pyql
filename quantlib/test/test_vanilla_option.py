@@ -1,20 +1,23 @@
 from .unittest_tools import unittest
 from quantlib.instruments.option import (
-    EuropeanExercise, AmericanExercise, DividendVanillaOption
-    )
+    EuropeanExercise, AmericanExercise, DividendVanillaOption)
+
 from quantlib.instruments.payoffs import PlainVanillaPayoff, Put
 from quantlib.instruments.option import VanillaOption
 from quantlib.pricingengines.vanilla.vanilla import (
     AnalyticEuropeanEngine, BaroneAdesiWhaleyApproximationEngine,
-    FDDividendAmericanEngine
-    )
+    FDDividendAmericanEngine)
+
+from quantlib.instruments.implied_volatility import ImpliedVolatilityHelper
+
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.settings import Settings
 from quantlib.time.api import Date, TARGET, May, Actual365Fixed
 from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 
-from quantlib.termstructures.volatility.equityfx.black_vol_term_structure import BlackConstantVol
+from quantlib.termstructures.volatility.equityfx.black_vol_term_structure \
+    import BlackConstantVol
 
 
 class VanillaOptionTestCase(unittest.TestCase):
@@ -48,14 +51,14 @@ class VanillaOptionTestCase(unittest.TestCase):
 
         # bootstrap the yield/dividend/vol curves
         self.flat_term_structure = FlatForward(
-            reference_date = self.settlement_date,
-            forward        = self.risk_free_rate,
-            daycounter     = self.daycounter
+            reference_date=self.settlement_date,
+            forward=self.risk_free_rate,
+            daycounter=self.daycounter
         )
         self.flat_dividend_ts = FlatForward(
-            reference_date = self.settlement_date,
-            forward        = self.dividend_yield,
-            daycounter     = self.daycounter
+            reference_date=self.settlement_date,
+            forward=self.dividend_yield,
+            daycounter=self.daycounter
         )
 
         self.flat_vol_ts = BlackConstantVol(
@@ -98,14 +101,13 @@ class VanillaOptionTestCase(unittest.TestCase):
         exercise_str = str(exercise)
         self.assertEquals('Exercise type: European', exercise_str)
 
-
         option = VanillaOption(self.payoff, exercise)
         self.assertEquals('Exercise type: European', str(option.exercise))
         vanilla_str = str(option)
-        self.assertEquals('VanillaOption Exercise type: European Payoff: Vanilla', vanilla_str)
+        self.assertEquals('VanillaOption Exercise type: ' +
+                          'European Payoff: Vanilla', vanilla_str)
 
     def test_european_vanilla_option_usage(self):
-
 
         european_exercise = EuropeanExercise(self.maturity)
         european_option = VanillaOption(self.payoff, european_exercise)
@@ -117,6 +119,28 @@ class VanillaOptionTestCase(unittest.TestCase):
         european_option.set_pricing_engine(analytic_european_engine)
 
         self.assertAlmostEquals(3.844308, european_option.net_present_value, 6)
+
+    def test_implied_volatility(self):
+
+        european_exercise = EuropeanExercise(self.maturity)
+        european_option = VanillaOption(self.payoff, european_exercise)
+
+        vol = SimpleQuote(.18)
+        proc = ImpliedVolatilityHelper.clone(
+            self.black_scholes_merton_process, vol)
+        analytic_european_engine = AnalyticEuropeanEngine(proc)
+
+        implied_volatility = ImpliedVolatilityHelper.calculate(
+            european_option,
+            analytic_european_engine,
+            vol,
+            3.844308,
+            .001,
+            500,
+            .1,
+            .5)
+
+        self.assertAlmostEquals(.20, implied_volatility, 4)
 
     def test_american_vanilla_option(self):
 
@@ -134,8 +158,8 @@ class VanillaOptionTestCase(unittest.TestCase):
     def test_american_vanilla_option_with_earliest_date(self):
 
         american_exercise = AmericanExercise(
-            latest_exercise_date   = self.maturity,
-            earliest_exercise_date = self.settlement_date
+            latest_exercise_date=self.maturity,
+            earliest_exercise_date=self.settlement_date
         )
         american_option = VanillaOption(self.payoff, american_exercise)
 
@@ -146,7 +170,6 @@ class VanillaOptionTestCase(unittest.TestCase):
         american_option.set_pricing_engine(engine)
 
         self.assertAlmostEquals(4.459628, american_option.net_present_value, 6)
-
 
     def test_american_vanilla_option_with_earliest_date_wrong_order(self):
 

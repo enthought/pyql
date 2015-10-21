@@ -7,7 +7,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-cdef class OneFactorAffineModel:
+from quantlib.models.model cimport CalibratedModel
+
+cdef class OneFactorAffineModel(CalibratedModel):
 
     def __cinit__(self):
         pass

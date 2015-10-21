@@ -1,5 +1,9 @@
 include '../types.pxi'
 
+from libcpp cimport bool
+
+
+cimport quantlib.math._array as _arr
 cdef extern from 'ql/math/optimization/method.hpp' namespace 'QuantLib':
 
     cdef cppclass OptimizationMethod:
@@ -25,3 +29,9 @@ cdef extern from 'ql/math/optimization/endcriteria.hpp' namespace 'QuantLib':
             Real functionEpsilon,
             Real gradientEpsilon
         )
+
+cdef extern from 'ql/math/optimization/constraint.hpp' namespace 'QuantLib':
+
+    cdef cppclass Constraint:
+        Constraint()
+        bool test(_arr.Array& a)

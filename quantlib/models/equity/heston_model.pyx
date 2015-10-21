@@ -21,7 +21,9 @@ cimport quantlib._quote as _qt
 cimport quantlib.pricingengines._pricing_engine as _pe
 
 from quantlib.handle cimport Handle, shared_ptr
-from quantlib.math.optimization cimport OptimizationMethod, EndCriteria
+from quantlib.math.optimization cimport (Constraint,OptimizationMethod,
+                                         EndCriteria)
+
 from quantlib.processes.heston_process cimport HestonProcess
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.quotes cimport Quote
@@ -123,7 +125,7 @@ cdef class HestonModel:
             return self._thisptr.get().v0()
 
     def calibrate(self, helpers, OptimizationMethod method, EndCriteria
-            end_criteria):
+            end_criteria, Constraint constraint=None):
 
         #convert list to vector
         cdef vector[shared_ptr[_ch.CalibrationHelper]]* helpers_vector = \
@@ -136,11 +138,18 @@ cdef class HestonModel:
             )
             helpers_vector.push_back(deref(chelper))
 
-        self._thisptr.get().calibrate(
-            deref(helpers_vector),
-            deref(method._thisptr.get()),
-            deref(end_criteria._thisptr.get())
-        )
+        if constraint is None:
+            self._thisptr.get().calibrate(
+                deref(helpers_vector),
+                deref(method._thisptr.get()),
+                deref(end_criteria._thisptr.get()))
+        else:
+            self._thisptr.get().calibrate(
+                deref(helpers_vector),
+                deref(method._thisptr.get()),
+                deref(end_criteria._thisptr.get()),
+                deref(constraint._thisptr.get()))
+
 
 
 

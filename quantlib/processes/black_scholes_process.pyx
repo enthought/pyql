@@ -1,3 +1,5 @@
+include '../types.pxi'
+
 from cython.operator cimport dereference as deref
 cimport _black_scholes_process as _bsp
 
@@ -18,6 +20,14 @@ cdef class GeneralizedBlackScholesProcess:
     def __dealloc__(self):
         if self._thisptr is not NULL:
             del self._thisptr
+
+    property x0:
+        def __get__(self):
+            return self._thisptr.get().x0()
+        
+    def drift(self, Time t, Real x):
+        return self._thisptr.get().drift(t, x)
+        
 
 cdef class BlackScholesProcess(GeneralizedBlackScholesProcess):
 

@@ -1,6 +1,8 @@
 cimport _vasicek as _va
 from quantlib.handle cimport Handle, shared_ptr
 
-cdef class Vasicek:
+from quantlib.models.shortrate.onefactor_model cimport OneFactorAffineModel
 
-    cdef shared_ptr[_va.Vasicek]* _thisptr
+cdef class Vasicek(OneFactorAffineModel):
+
+    pass

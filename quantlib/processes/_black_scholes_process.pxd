@@ -1,3 +1,13 @@
+"""
+ Copyright (C) 2011, Enthought Inc
+ Copyright (C) 2011, Patrick Henaff
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""
+
+include '../types.pxi'
 
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
@@ -14,6 +24,10 @@ cdef extern from 'ql/processes/blackscholesprocess.hpp' namespace 'QuantLib':
             Handle[YieldTermStructure]& riskFreeTS,
             Handle[BlackVolTermStructure]& blackVolTS,
         )
+
+        Real x0() except +
+        Real drift(Time t, Real x) except +
+        
 
     cdef cppclass BlackScholesProcess(GeneralizedBlackScholesProcess):
         BlackScholesProcess(

@@ -81,6 +81,7 @@ elif sys.platform.startswith('linux'):   # 'linux' on Py3, 'linux2' on Py2
 if HAS_NUMPY:
     INCLUDE_DIRS.append(numpy.get_include())
 
+
 def get_define_macros():
     #defines = [ ('HAVE_CONFIG_H', None)]
     defines = []
@@ -95,6 +96,7 @@ def get_define_macros():
         ]
     return defines
 
+
 def get_extra_compile_args():
     if sys.platform == 'win32':
         args = ['/GR', '/FD', '/Zm250', '/EHsc']
@@ -104,6 +106,7 @@ def get_extra_compile_args():
         args = []
 
     return args
+
 
 def get_extra_link_args():
     if sys.platform == 'win32':
@@ -124,6 +127,7 @@ def get_extra_link_args():
     return args
 
 CYTHON_DIRECTIVES = {"embedsignature": True}
+
 
 def collect_extensions():
     """ Collect all the directories with Cython extensions and return the list
@@ -173,8 +177,6 @@ def collect_extensions():
         **kwargs
     )
 
-
-
     mc_vanilla_engine_extension = Extension(
         name='quantlib.pricingengines.vanilla.mcvanillaengine',
         sources=[
@@ -194,15 +196,35 @@ def collect_extensions():
     )
 
     multipath_extension = Extension(
-            name='quantlib.sim.simulate',
-            sources=[
-                'quantlib/sim/simulate.pyx',
-                'cpp_layer/simulate_support_code.cpp'
-            ],
-            **kwargs
-        )
+        name='quantlib.sim.simulate',
+        sources=[
+            'quantlib/sim/simulate.pyx',
+            'cpp_layer/simulate_support_code.cpp'
+        ],
+        **kwargs
+    )
+
+    array_extension = Extension(
+        name='quantlib.math.array',
+        sources=[
+            'quantlib/math/array.pyx',
+            'cpp_layer/array_support_code.cpp'
+        ],
+        **kwargs
+    )
+
+    hestonhw_constraint_extension = Extension(
+        name='quantlib.math.hestonhwcorrelationconstraint',
+        sources=[
+            'quantlib/math/hestonhwcorrelationconstraint.pyx',
+            'cpp_layer/constraint_support_code.cpp'
+        ],
+        **kwargs
+    )
 
     manual_extensions = [
+        array_extension,
+        hestonhw_constraint_extension,
         multipath_extension,
         mc_vanilla_engine_extension,
         piecewise_yield_curve_extension,
@@ -211,8 +233,6 @@ def collect_extensions():
         test_extension,
         business_day_convention_extension
     ]
-
-
 
     cython_extension_directories = []
     for dirpath, directories, files in os.walk('quantlib'):
@@ -234,12 +254,11 @@ def collect_extensions():
 
     # remove  all the manual extensions from the collected ones
     names = [extension.name for extension in manual_extensions]
-    collected_extensions = [ ext for ext in collected_extensions if ext.name not in names ]
+    collected_extensions = [ext for ext in collected_extensions if ext.name not in names]
     if not HAS_NUMPY:
         # remove the multipath extension from the list
         manual_extensions = manual_extensions[1:]
         print('Numpy is not available, multipath extension not compiled')
-
 
     extensions = collected_extensions + manual_extensions
 

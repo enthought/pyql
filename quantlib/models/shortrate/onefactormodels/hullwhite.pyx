@@ -18,6 +18,8 @@ from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib.termstructures.yields._flat_forward as _ff
 cimport quantlib._quote as _qt
 cimport quantlib.models._calibration_helper as _ch
+cimport quantlib.models._model as _mo
+
 from quantlib.models.shortrate.calibrationhelpers.swaption_helper cimport SwaptionHelper
 from quantlib.models.calibration_helper cimport CalibrationHelper
 
@@ -54,7 +56,7 @@ cdef class HullWhite(Vasicek):
         cdef Handle[_ff.YieldTermStructure] yts_handle = \
                 deref(term_structure._thisptr.get())
 
-        self._thisptr = new shared_ptr[_va.Vasicek](
+        self._thisptr = new shared_ptr[_mo.CalibratedModel](
             new _hw.HullWhite(
                 yts_handle,
                 a, sigma
@@ -62,17 +64,17 @@ cdef class HullWhite(Vasicek):
 	)
 
     def __str__(self):
-        return 'Hull-White model\na: %f sigma: %f' % \
+        return 'Hull-White model\na (speed of mean revertion): %f sigma: %f' % \
           (self.a, self.sigma)
 
 
     property a:
         def __get__(self):
-            return self._thisptr.get().a()
+            return (<_hw.HullWhite*> self._thisptr.get()).a()
 
     property sigma:
         def __get__(self):
-            return self._thisptr.get().sigma()
+            return (<_hw.HullWhite*> self._thisptr.get()).sigma()
 
     def calibrate(self, helpers, OptimizationMethod method, EndCriteria
             end_criteria):
@@ -88,7 +90,7 @@ cdef class HullWhite(Vasicek):
             )
             helpers_vector.push_back(deref(chelper))
 
-        self._thisptr.get().calibrate(
+        (<_hw.HullWhite*> self._thisptr.get()).calibrate(
             deref(helpers_vector),
             deref(method._thisptr.get()),
             deref(end_criteria._thisptr.get())
