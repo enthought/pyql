@@ -47,7 +47,7 @@ def jump_samples(eta_1, eta_2, prob_up_jump, jump_times, time_steps):
     upIndx = np.where((dice <= prob_up_jump) & (dt > 0))
     dnIndx = np.where((dice > prob_up_jump) & (dt > 0))
 
-    print upIndx
+    print(upIndx)
     # sample jump magnitude from exponential density
     jump_tmp = np.zeros(dt.shape)
     jump_tmp[upIndx] = np.random.exponential(1. / eta_1, len(upIndx[0]))
@@ -62,7 +62,7 @@ def jump_samples(eta_1, eta_2, prob_up_jump, jump_times, time_steps):
             for k in range(len(indx)):
                 kndx = np.where(jjt[indx[k]] <= time_steps)[0]
                 # there can be more than one jump in one interval
-                print i, kndx[0], k, indx[k]
+                print(i, kndx[0], k, indx[k])
                 jumps[i, kndx[0]] += jump_tmp[i, indx[k]]
 
     return jumps
@@ -81,5 +81,5 @@ if __name__ == '__main__':
     jt = jump_times(beta, nb_paths, horizon)
     js = jump_samples(eta_1, eta_2, prob_up_jump,
                  jt, time_steps)
-    print jt
-    print js
+    print(jt)
+    print(js)
