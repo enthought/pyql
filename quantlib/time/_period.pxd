@@ -19,7 +19,7 @@ cdef extern from 'ql/time/frequency.hpp' namespace "QuantLib":
 
 cdef extern from 'ql/time/timeunit.hpp' namespace "QuantLib":
     cdef enum TimeUnit:
-        Days
+        Days,
         Weeks,
         Months,
         Years
