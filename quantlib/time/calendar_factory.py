@@ -12,18 +12,18 @@ from quantlib.time.calendars.united_kingdom import (
 from quantlib.time.calendars.united_states import (
     UnitedStates, GOVERNMENTBOND, NYSE, NERC, SETTLEMENT as US_SETTLEMENT)
 
-class CalendarFactory
-_lookup = dict([(cal.name(), cal) for cal in
-                [TARGET(), NullCalendar(),
-                 Germany(), Germany(EUREX),
-                 Germany(FrankfurtStockExchange),
-                 Germany(GER_SETTLEMENT), Germany(EUWAX), Germany(XETRA),
-                 UnitedKingdom(),
-                 UnitedKingdom(EXCHANGE), UnitedKingdom(METALS),
-                 UnitedKingdom(UK_SETTLEMENT),
-                 UnitedStates(), UnitedStates(GOVERNMENTBOND),
-                 UnitedStates(NYSE), UnitedStates(NERC), 
-     UnitedStates(US_SETTLEMENT) ]
+class CalendarFactory:
+    _lookup = dict([(cal.name(), cal) for cal in
+                    [TARGET(), NullCalendar(),
+                     Germany(), Germany(EUREX),
+                     Germany(FrankfurtStockExchange),
+                     Germany(GER_SETTLEMENT), Germany(EUWAX), Germany(XETRA),
+                     UnitedKingdom(),
+                     UnitedKingdom(EXCHANGE), UnitedKingdom(METALS),
+                     UnitedKingdom(UK_SETTLEMENT),
+                     UnitedStates(), UnitedStates(GOVERNMENTBOND),
+                     UnitedStates(NYSE), UnitedStates(NERC),
+                     UnitedStates(US_SETTLEMENT) ]
     ])
 
 def calendar_factory(name):
