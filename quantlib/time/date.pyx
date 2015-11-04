@@ -133,13 +133,13 @@ cdef class Period:
                                      % tenor)
                 self._thisptr = \
                 new shared_ptr[QlPeriod](new QlPeriod(<Integer> int(t),
-                                         <_period.TimeUnit> _TU_DICT[u]))
+                                         <TimeUnit> _TU_DICT[u]))
             else:
                 self._thisptr = \
                 new shared_ptr[QlPeriod](new QlPeriod(<_period.Frequency>args[0]))
         elif len(args) == 2:
             self._thisptr = new shared_ptr[QlPeriod](
-                new QlPeriod(<Integer> args[0], <_period.TimeUnit> args[1]))
+                new QlPeriod(<Integer> args[0], <TimeUnit> args[1]))
         elif len(args) == 0:
             self._thisptr = new shared_ptr[QlPeriod]()
         else:
