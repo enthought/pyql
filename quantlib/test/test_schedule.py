@@ -44,7 +44,7 @@ class ScheduleMethodTestCase(unittest.TestCase):
         self.termination_convention = Preceding
         self.rule = Twentieth
 
-        self.schedule = Schedule(
+        self.schedule = Schedule.from_effective_termination(
             self.from_date, self.to_date, self.tenor, self.calendar,
             self.convention, self.termination_convention, self.rule
         )
@@ -88,20 +88,41 @@ class ScheduleMethodTestCase(unittest.TestCase):
         termination_convention = Following
         rule = Forward
 
-        fwd_schedule = Schedule(from_date, to_date, tenor, calendar, convention,
-                termination_convention, rule)
+        fwd_schedule = Schedule.from_effective_termination(from_date, to_date,
+                tenor, calendar, convention, termination_convention, rule)
 
         expected_date = Date(5, Sep, 2011)
         self.assert_(expected_date == fwd_schedule.next_date(from_date))
 
         rule = Backward
 
-        bwd_schedule = Schedule(from_date, to_date, tenor, calendar, convention,
-                termination_convention, rule)
+        bwd_schedule = Schedule.from_effective_termination(from_date, to_date,
+                tenor, calendar, convention, termination_convention, rule)
 
         expected_date = Date(15, Nov, 2011)
         self.assert_(expected_date == bwd_schedule.previous_date(to_date))
 
+    def test_schedule_from_dates(self):
+        dates = [Date(3, Sep, 2011),
+                 Date(5, Nov, 2011),
+                 Date(15, Dec, 2011)]
+        tenor = Period(1, Months)
+        calendar = UnitedKingdom()
+        convention = Following
+        termination_convention = Following
+        rule = Forward
+
+        schedule = Schedule.from_dates(dates,
+                calendar, convention, termination_convention, tenor, rule)
+
+        expected_date = Date(3, Sep, 2011)
+        self.assert_(expected_date == schedule.next_date(Date(3, Sep, 2011)))
+
+        expected_date = Date(5, Nov, 2011)
+        self.assert_(expected_date == schedule.next_date(Date(4, Sep, 2011)))
+
+        expected_date = Date(15, Dec, 2011)
+        self.assert_(expected_date == schedule.next_date(Date(6, Nov, 2011)))
 
 if __name__ == '__main__':
     unittest.main()
