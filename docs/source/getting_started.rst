@@ -39,7 +39,7 @@ Building and installing PyQL
 Prerequisites:
 
 * Boost (version 1.55 or higher)
-* QuantLib_ (version 1.4 or higher)
+* QuantLib_ (version 1.5 or higher)
 * Cython_ (version 0.19 or higher)
 
 Once the dependencies have been installed, enter the pyql root directory. Open the setup.py file
@@ -102,13 +102,13 @@ Prerequisites:
 
 2. Install Quantlib
 
-   a. Download Quantlib 1.4 from Quantlib.org and copy to /opt
+   a. Download Quantlib 1.5 from Quantlib.org and copy to /opt
 
       .. code-block:: bash
 
-        wget -O QuantLib-1.4.tar.gz  \
-        http://sourceforge.net/projects/quantlib/files/QuantLib/1.4/QuantLib-1.4.tar.gz/download
-        sudo cp QuantLib-1.4.tar.gz /opt
+        wget -O QuantLib-1.5.tar.gz  \
+        http://sourceforge.net/projects/quantlib/files/QuantLib/1.5/QuantLib-1.5.tar.gz/download
+        sudo cp QuantLib-1.5.tar.gz /opt
 
 
    b. Extract the Quantlib folder
@@ -116,13 +116,13 @@ Prerequisites:
       .. code-block:: bash
 
 		      cd /opt
-		      sudo tar xzvf QuantLib-1.4.tar.gz
+		      sudo tar xzvf QuantLib-1.5.tar.gz
 
    c. Configure QuantLib
 
       .. code-block:: bash
 
-		      cd QuantLib-1.4
+		      cd QuantLib-1.5
 		      ./configure --disable-static CXXFLAGS=-O2 --with-boost-include=/usr/local/include --with-boost-lib=/usr/local/lib 
 
    d. Make and install
@@ -175,7 +175,7 @@ Prerequisites:
    a. Install the latest version of Boost from sourceforge. You can get the
    binaries of 1.55 for windows 32 or 64bit depending on your target.
    
-   b. Download Quantlib 1.4 from Quantlib.org and unzip locally
+   b. Download Quantlib 1.5 from Quantlib.org and unzip locally
 
    c. Extract the Quantlib folder
 
