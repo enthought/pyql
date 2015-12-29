@@ -7,6 +7,8 @@ python:
 virtualenv:
     system_site_package: true
 before_install:
+ - sudo add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu/ trusty main universe"
+ - sudo apt-get update
  - sudo apt-get install -qq python-numpy python-six
  - sudo add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu/ vivid main universe"
  - sudo apt-get update
