@@ -1,1789 +1,0 @@
-
-quantlib/test/unittest_tools.py,0
-
-quantlib/test/test_util.py,218
-class TestUtil(unittest.TestCase):TestUtil9,158
-    def test_converter_1(self):test_converter_111,194
-    def test_converter_2(self):test_converter_220,526
-    def test_converter_2(self):test_converter_229,787
-
-quantlib/test/test_vanilla_option.py,591
-class VanillaOptionTestCase(unittest.TestCase):VanillaOptionTestCase19,751
-    def setUp(self):setUp25,939
-    def test_str(self):test_str77,2466
-    def test_european_vanilla_option_usage(self):test_european_vanilla_option_usage94,3126
-    def test_american_vanilla_option(self):test_american_vanilla_option108,3578
-    def test_american_vanilla_option_with_earliest_date(self):test_american_vanilla_option_with_earliest_date121,4001
-    def test_american_vanilla_option_with_earliest_date_wrong_order(self):test_american_vanilla_option_with_earliest_date_wrong_order138,4550
-
-quantlib/test/test_date.py,2179
-class TestQuantLibDate(unittest.TestCase):TestQuantLibDate12,385
-    def test_today(self):test_today14,429
-    def test_date_empyt_initialisation(self):test_date_empyt_initialisation24,695
-    def test_date_creation(self):test_date_creation30,810
-    def test_from_datetime_classmethod(self):test_from_datetime_classmethod42,1128
-    def test_comparison_with_datetime(self):test_comparison_with_datetime54,1606
-    def test_equality(self):test_equality65,2005
-    def test_arithmetic_operators(self):test_arithmetic_operators74,2225
-    def test_next_weekday(self):test_next_weekday105,3049
-    def test_nth_weekday(self):test_nth_weekday118,3438
-    def test_nth_weekday_invalid_month(self):test_nth_weekday_invalid_month128,3748
-    def test_end_of_month(self):test_end_of_month134,3889
-    def test_is_end_of_month(self):test_is_end_of_month142,4089
-    def test_is_leap(self):test_is_leap148,4212
-    def test_convertion_to_integer(self):test_convertion_to_integer153,4321
-class ConversionMethodsTestCase(unittest.TestCase):ConversionMethodsTestCase159,4454
-    def test_conversion_from_datetime_to_pyql(self):test_conversion_from_datetime_to_pyql161,4507
-    def test_conversion_from_pyql_to_datetime(self):test_conversion_from_pyql_to_datetime171,4748
-class TestQuantLibPeriod(unittest.TestCase):TestQuantLibPeriod181,4989
-    def test_creation_with_frequency(self):test_creation_with_frequency183,5035
-    def test_normalize_period(self):test_normalize_period196,5335
-    def test_rich_cmp(self):test_rich_cmp205,5530
-    def test_creation_with_time_and_units(self):test_creation_with_time_and_units231,6200
-    def test_adding_period_to_date(self):test_adding_period_to_date239,6441
-    def test_period_substraction(self):test_period_substraction259,6996
-    def test_multiplication(self):test_multiplication269,7250
-    def test_inplace_addition(self):test_inplace_addition281,7550
-    def test_inplace_substraction(self):test_inplace_substraction296,7931
-    def test_inplace_division(self):test_inplace_division312,8319
-    def test_substracting_period_to_date(self):test_substracting_period_to_date321,8510
-
-quantlib/test/test_reference.py,230
-class ReferenceTestCase(unittest.TestCase):ReferenceTestCase9,183
-    def setUp(self):setUp11,228
-    def test_option_quotes(self):test_option_quotes14,263
-    def test_riskfree_dividend(self):test_riskfree_dividend23,542
-
-quantlib/test/test_schedule.py,463
-class ScheduleTestCase(unittest.TestCase):ScheduleTestCase9,320
-    def test_create_schedule(self):test_create_schedule11,364
-class ScheduleMethodTestCase(unittest.TestCase):ScheduleMethodTestCase36,1048
-    def setUp(self):setUp38,1098
-    def test_size(self):test_size52,1581
-    def test_dates(self):test_dates56,1660
-    def test_at(self):test_at64,1848
-    def test_previous_next_reference_date(self):test_previous_next_reference_date76,2246
-
-quantlib/test/test_simulate.py,528
-def flat_rate(forward, daycounter):flat_rate25,821
-class SimTestCase(unittest.TestCase):SimTestCase34,1025
-    def setUp(self):setUp39,1110
-    def test_simulate_heston_1(self):test_simulate_heston_176,2269
-    def test_simulate_heston_2(self):test_simulate_heston_299,2865
-    def test_simulate_bates(self):test_simulate_bates122,3463
-    def test_simulate_batesDetJumpModel(self):test_simulate_batesDetJumpModel140,3902
-    def test_simulate_batesDoubleExpModel(self):test_simulate_batesDoubleExpModel158,4372
-
-quantlib/test/test_currrencies.py,120
-class TestCurrency(unittest.TestCase):TestCurrency5,78
-    def test_create_currency(self):test_create_currency7,118
-
-quantlib/test/test_heston_model.py,537
-def flat_rate(forward, daycounter):flat_rate33,1239
-class HestonModelTestCase(unittest.TestCase):HestonModelTestCase42,1435
-    def setUp(self):setUp47,1566
-    def test_black_calibration(self):test_black_calibration51,1624
-    def test_DAX_calibration(self):test_DAX_calibration143,4682
-    def test_analytic_versus_black(self):test_analytic_versus_black236,7945
-    def test_bates_det_jump(self):test_bates_det_jump289,9315
-    def test_smith(self):test_smith356,11445
-        def payoff(o, scenario):payoff361,11643
-
-quantlib/test/test_indexes.py,599
-class TestIndex(unittest.TestCase):TestIndex22,774
-    def test_create_index(self):test_create_index24,811
-class TestIRIndex(unittest.TestCase):TestIRIndex29,910
-    def test_create_index(self):test_create_index31,949
-class TestLibor(unittest.TestCase):TestLibor36,1060
-    def test_create_libor_index(self):test_create_libor_index38,1097
-class TestEuribor(unittest.TestCase):TestEuribor60,1758
-    def test_creation(self):test_creation62,1797
-class SwapIndexTestCase(unittest.TestCase):SwapIndexTestCase70,1987
-    def test_create_swap_index(self):test_create_swap_index72,2032
-
-quantlib/test/test_daycounter.py,1619
-class TestDayCounter(unittest.TestCase):TestDayCounter19,405
-    def test_create_day_counter(self):test_create_day_counter21,447
-    def test_daycounter_name(self):test_daycounter_name28,627
-class TestDayCounterFromName(unittest.TestCase):TestDayCounterFromName33,759
-    def test_create_simple_daycounter_from_name(self):test_create_simple_daycounter_from_name35,809
-    def test_create_daycounter_with_convention_from_name(self):test_create_daycounter_with_convention_from_name51,1325
-class TestActualActual(unittest.TestCase):TestActualActual70,2040
-    def setUp(self):setUp72,2084
-    def test_first_example_isda(self):test_first_example_isda79,2289
-    def test_first_example_isma(self):test_first_example_isma88,2510
-    def test_first_example_afb(self):test_first_example_afb97,2765
-    def test_short_calculation_first_period_isda(self):test_short_calculation_first_period_isda106,2984
-    def test_short_calculation_first_period_isma(self):test_short_calculation_first_period_isma118,3337
-    def test_short_calculation_first_period_afb(self):test_short_calculation_first_period_afb131,3783
-    def test_short_calculation_second_period_isda(self):test_short_calculation_second_period_isda143,4134
-    def test_short_calculation_second_period_isma(self):test_short_calculation_second_period_isma155,4484
-    def test_short_calculation_second_period_afb(self):test_short_calculation_second_period_afb171,4934
-    def test_simple(self):test_simple183,5282
-    def test_thirty360(self):test_thirty360199,5726
-    def test_equality_method(self):test_equality_method213,6057
-
-quantlib/test/test_cython_bug.pyx,271
-def test_bond_schedule_today_cython():test_bond_schedule_today_cython23,759
-cdef FixedRateBond* get_bond_for_evaluation_date(QlDate& in_date):get_bond_for_evaluation_date39,1201
-def test_bond_schedule_anotherday_cython():test_bond_schedule_anotherday_cython91,2554
-
-quantlib/test/test_calendar.py,961
-class TestQuantLibCalendar(unittest.TestCase):TestQuantLibCalendar16,685
-    def test_calendar_creation(self):test_calendar_creation18,733
-    def test_christmas_is_holiday(self):test_christmas_is_holiday32,1170
-    def test_is_business_day(self):test_is_business_day40,1327
-    def test_joint(self):test_joint50,1643
-    def test_business_days_between_dates(self):test_business_days_between_dates68,2276
-    def test_holiday_list_acces_and_modification(self):test_holiday_list_acces_and_modification81,2600
-    def test_adjust_business_day(self):test_adjust_business_day106,3290
-    def test_calendar_date_advance(self):test_calendar_date_advance126,4099
-    def test_united_states_calendar(self):test_united_states_calendar140,4651
-    def test_german_calendar(self):test_german_calendar152,4981
-class TestDateList(unittest.TestCase):TestDateList194,6082
-    def test_iteration_on_date_list(self):test_iteration_on_date_list196,6122
-
-quantlib/test/test_interest_rate.py,480
-class InterestRateTestCase(unittest.TestCase):InterestRateTestCase9,213
-    def setUp(self):setUp11,261
-    def test_create_interest_rate_frequency_makes_no_sense(self):test_create_interest_rate_frequency_makes_no_sense15,323
-    def test_create_interest_rate_compounded(self):test_create_interest_rate_compounded35,949
-    def test_create_interest_rate_compounded_error(self):test_create_interest_rate_compounded_error48,1381
-    def test_repr(self):test_repr58,1694
-
-quantlib/test/test_mlab.py,185
-class OptionPricerTestCase(unittest.TestCase):OptionPricerTestCase9,217
-    def test_heston_pricer(self):test_heston_pricer11,265
-    def test_blsprice(self):test_blsprice44,1417
-
-quantlib/test/test_settings.py,503
-class SettingsTestCase(unittest.TestCase):SettingsTestCase11,321
-    def test_using_settings(self):test_using_settings13,365
-    def test_settings_instance_method(self):test_settings_instance_method30,871
-    def test_bond_schedule_today(self):test_bond_schedule_today40,1088
-    def test_bond_schedule_anotherday(self):test_bond_schedule_anotherday88,2293
-    def test_bond_schedule_anotherday_bug_cython_implementation(self):test_bond_schedule_anotherday_bug_cython_implementation137,3580
-
-quantlib/test/test_rate_helpers.py,539
-class RateHelpersTestCase(unittest.TestCase):RateHelpersTestCase11,491
-    def test_create_deposit_rate_helper(self):test_create_deposit_rate_helper13,538
-    def test_create_fra_rate_helper(self):test_create_fra_rate_helper33,1052
-    def test_create_futures_rate_helper(self):test_create_futures_rate_helper53,1601
-    def test_create_swap_rate_helper_no_classmethod(self):test_create_swap_rate_helper_no_classmethod73,2135
-    def test_create_swap_rate_helper_from_index(self):test_create_swap_rate_helper_from_index79,2270
-
-quantlib/test/test_termstructures.py,586
-class SimpleQuoteTestCase(unittest.TestCase):SimpleQuoteTestCase23,716
-    def test_using_simple_quote(self):test_using_simple_quote25,763
-    def test_empty_constructor(self):test_empty_constructor36,990
-class YieldTermStructureTestCase(unittest.TestCase):YieldTermStructureTestCase44,1146
-    def test_relinkable_structures(self):test_relinkable_structures46,1200
-class FlatForwardTestCase(unittest.TestCase):FlatForwardTestCase78,2343
-    def setUp(self):setUp80,2390
-    def test_reference_evaluation_data_changed(self):test_reference_evaluation_data_changed90,2708
-
-quantlib/test/test_piecewise_yield_curve.py,378
-class PiecewiseYieldCurveTestCase(unittest.TestCase):PiecewiseYieldCurveTestCase26,1119
-    def test_creation(self):test_creation28,1174
-    def test_all_types_of_piecewise_curves(self):test_all_types_of_piecewise_curves82,2709
-    def test_deposit_swap(self):test_deposit_swap131,4115
-    def test_zero_curve_on_swap_index(self):test_zero_curve_on_swap_index210,6674
-
-quantlib/test/test_bonds.py,328
-class BondTestCase(unittest.TestCase):BondTestCase27,914
-    def test_pricing_bond(self):test_pricing_bond30,1024
-    def test_excel_example_with_fixed_rate_bond(self):test_excel_example_with_fixed_rate_bond122,4092
-    def test_excel_example_with_zero_coupon_bond(self):test_excel_example_with_zero_coupon_bond193,6111
-
-quantlib/test/test_payoff.py,135
-class PayoffTestCase(unittest.TestCase):PayoffTestCase6,121
-    def test_plain_vaniila_payoff(self):test_plain_vaniila_payoff8,163
-
-quantlib/test/test_cds.py,346
-def create_helper():create_helper13,439
-class SpreadCdsHelperTestCase(unittest.TestCase):SpreadCdsHelperTestCase38,1023
-    def test_create_helper(self):test_create_helper40,1074
-class PiecewiseDefaultCurveTestCase(unittest.TestCase):PiecewiseDefaultCurveTestCase46,1194
-    def test_create_piecewise(self):test_create_piecewise48,1251
-
-quantlib/test/test_process.py,278
-def flat_rate(forward, daycounter):flat_rate14,458
-class ProcessTestCase(unittest.TestCase):ProcessTestCase23,662
-    def setUp(self):setUp25,705
-    def test_batest_process(self):test_batest_process53,1334
-    def test_heston_process(self):test_heston_process64,1680
-
-quantlib/_index.pxd,0
-
-quantlib/indexes/_swap_index.pxd,66
-    cdef cppclass SwapIndex(InterestRateIndex):SwapIndex32,1008
-
-quantlib/indexes/_interest_rate_index.pxd,69
-    cdef cppclass InterestRateIndex(Index):InterestRateIndex29,835
-
-quantlib/indexes/libor.pyx,172
-cdef class Libor(IborIndex):Libor30,844
-    def __cinit__(self):__cinit__37,1054
-    def __dealloc__(self):__dealloc__40,1109
-    def __init__(self,__init__45,1238
-
-quantlib/indexes/swap_index.pxd,44
-cdef class SwapIndex(Index):SwapIndex4,75
-
-quantlib/indexes/interest_rate_index.pyx,142
-cdef class InterestRateIndex(Index):InterestRateIndex27,799
-    def __cinit__(self):__cinit__28,836
-    def __str__(self):__str__31,883
-
-quantlib/indexes/interest_rate_index.pxd,62
-cdef class InterestRateIndex(Index):InterestRateIndex12,334
-
-quantlib/indexes/ibor_index.pyx,202
-cdef class IborIndex(InterestRateIndex):IborIndex19,535
-    def __cinit__(self):__cinit__20,576
-cdef class OvernightIndex(IborIndex):OvernightIndex23,615
-    def __cinit__(self):__cinit__24,653
-
-quantlib/indexes/swap_index.pyx,175
-cdef class SwapIndex(Index):SwapIndex28,897
-    def __str__(self):__str__30,927
-    def __init__(self, family_name, Period tenor, Natural settlement_days,__init__33,994
-
-quantlib/indexes/ibor_index.pxd,58
-cdef class IborIndex(InterestRateIndex):IborIndex12,368
-
-quantlib/indexes/libor.pxd,42
-cdef class Libor(IborIndex):Libor12,351
-
-quantlib/indexes/euribor.pyx,174
-cdef class Euribor(IborIndex):Euribor19,591
-    def __init__(self):__init__20,622
-cdef class Euribor6M(Euribor):Euribor6M23,668
-    def __init__(self):__init__24,699
-
-quantlib/indexes/_libor.pxd,49
-    cdef cppclass Libor(IborIndex):Libor28,873
-
-quantlib/indexes/_ibor_index.pxd,134
-    cdef cppclass IborIndex(InterestRateIndex):IborIndex33,1054
-    cdef cppclass OvernightIndex(IborIndex):OvernightIndex60,2077
-
-quantlib/indexes/euribor.pxd,90
-cdef class Euribor(IborIndex):Euribor3,52
-cdef class Euribor6M(Euribor):Euribor6M6,93
-
-quantlib/indexes/_euribor.pxd,108
-    cdef cppclass Euribor(IborIndex):Euribor11,328
-    cdef cppclass Euribor6M(Euribor):Euribor6M14,384
-
-quantlib/processes/_stochastic_process.pxd,0
-
-quantlib/processes/black_scholes_process.pxd,79
-cdef class GeneralizedBlackScholesProcess:GeneralizedBlackScholesProcess4,80
-
-quantlib/processes/heston_process.pyx,989
-        PARTIALTRUNCATION = _hp.PartialTruncationPARTIALTRUNCATION13,403
-        FULLTRUNCATION = _hp.FullTruncationFULLTRUNCATION14,453
-        REFLECTION = _hp.ReflectionREFLECTION15,497
-        NONCENTRALCHISQUAREVARIANCE = _hp.NonCentralChiSquareVarianceNONCENTRALCHISQUAREVARIANCE16,533
-        QUADRATICEXPONENTIAL = _hp.QuadraticExponentialQUADRATICEXPONENTIAL17,603
-        QUADRATICEXPONENTIALMARTINGALE = _hp.QuadraticExponentialMartingaleQUADRATICEXPONENTIALMARTINGALE18,659
-cdef class HestonProcess:HestonProcess20,736
-    def __cinit__(self):__cinit__31,1064
-    def __dealloc(self):__dealloc34,1103
-    def __init__(self,__init__39,1230
-    def __str__(self):__str__75,2389
-    def size(self):size80,2562
-        def __get__(self):__get__84,2642
-        def __get__(self):__get__88,2732
-        def __get__(self):__get__92,2825
-        def __get__(self):__get__96,2920
-        def __get__(self):__get__100,3015
-    def s0(self):s0103,3090
-
-quantlib/processes/bates_process.pyx,854
-        PARTIALTRUNCATION = _hp.PartialTruncationPARTIALTRUNCATION23,744
-        FULLTRUNCATION = _hp.FullTruncationFULLTRUNCATION24,794
-        REFLECTION = _hp.ReflectionREFLECTION25,838
-        NONCENTRALCHISQUAREVARIANCE = _hp.NonCentralChiSquareVarianceNONCENTRALCHISQUAREVARIANCE26,874
-        QUADRATICEXPONENTIAL = _hp.QuadraticExponentialQUADRATICEXPONENTIAL27,944
-        QUADRATICEXPONENTIALMARTINGALE = _hp.QuadraticExponentialMartingaleQUADRATICEXPONENTIALMARTINGALE28,1000
-cdef class BatesProcess(HestonProcess):BatesProcess30,1077
-    def __cinit__(self):__cinit__32,1118
-    def __dealloc(self):__dealloc35,1157
-    def __init__(self,__init__38,1196
-    def __str__(self):__str__76,2414
-        def __get__(self):__get__82,2684
-        def __get__(self):__get__86,2811
-        def __get__(self):__get__90,2925
-
-quantlib/processes/bates_process.pxd,60
-cdef class BatesProcess(HestonProcess):BatesProcess12,342
-
-quantlib/processes/heston_process.pxd,45
-cdef class HestonProcess:HestonProcess4,80
-
-quantlib/processes/black_scholes_process.pyx,486
-cdef class GeneralizedBlackScholesProcess:GeneralizedBlackScholesProcess13,521
-    def __cinit__(self):__cinit__15,565
-    def __dealloc__(self):__dealloc__18,620
-cdef class BlackScholesProcess(GeneralizedBlackScholesProcess):BlackScholesProcess22,716
-    def __init__(self, Quote x0, YieldTermStructure risk_free_ts,__init__24,781
-cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):BlackScholesMertonProcess47,1616
-    def __init__(self,__init__49,1687
-
-quantlib/processes/api.py,0
-
-quantlib/processes/_heston_process.pxd,68
-    cdef cppclass BatesProcess(HestonProcess):BatesProcess51,1675
-
-quantlib/processes/_black_scholes_process.pxd,208
-    cdef cppclass BlackScholesProcess(GeneralizedBlackScholesProcess):BlackScholesProcess18,678
-    cdef cppclass BlackScholesMertonProcess(GeneralizedBlackScholesProcess):BlackScholesMertonProcess26,932
-
-quantlib/math/_optimization.pxd,84
-    cdef cppclass LevenbergMarquardt(OptimizationMethod):LevenbergMarquardt14,300
-
-quantlib/math/optimization.pyx,544
-cdef class OptimizationMethod:OptimizationMethod9,136
-    def __cinit__(self):__cinit__10,167
-    def __dealloc__(self):__dealloc__13,222
-cdef class LevenbergMarquardt(OptimizationMethod):LevenbergMarquardt17,319
-    def __init__(self, double epsfcn=1e-8, double xtol=1e-8, double gtol=1e-8):__init__19,371
-cdef class EndCriteria:EndCriteria28,649
-    def __cinit__(self):__cinit__30,674
-    def __dealloc__(self):__dealloc__33,729
-    def __init__(self, int max_iterations, int max_stationary_state_iterations,__init__36,770
-
-quantlib/math/optimization.pxd,97
-cdef class OptimizationMethod:OptimizationMethod5,72
-cdef class EndCriteria:EndCriteria9,160
-
-quantlib/math/_interpolations.pxd,0
-
-quantlib/termstructures/default_term_structure.pyx,130
-cdef class DefaultProbabilityTermStructure: #not inheriting from TermStructure at this pointDefaultProbabilityTermStructure6,83
-
-quantlib/termstructures/credit/_credit_helpers.pxd,155
-    cdef cppclass CdsHelper(RelativeDateDefaultProbabilityHelper):CdsHelper33,1325
-    cdef cppclass SpreadCdsHelper(CdsHelper):SpreadCdsHelper49,2059
-
-quantlib/termstructures/credit/default_probability_helpers.pxd,99
-cdef class CdsHelper:CdsHelper4,111
-cdef class SpreadCdsHelper(CdsHelper):SpreadCdsHelper7,179
-
-quantlib/termstructures/credit/piecewise_default_curve.pyx,429
-VALID_TRAITS = ['HazardRate', 'DefaultDensity', 'SurvivalProbability']VALID_TRAITS20,641
-VALID_INTERPOLATORS = ['Linear', 'LogLinear', 'BackwardFlat']VALID_INTERPOLATORS21,712
-cdef class PiecewiseDefaultCurve:PiecewiseDefaultCurve24,776
-    def __init__(self, str trait, str interpolator, Date reference_date,__init__27,812
-    def survival_probability(self, Date d, bool extrapolate=False):survival_probability67,2337
-
-quantlib/termstructures/credit/api.py,0
-
-quantlib/termstructures/credit/default_probability_helpers.pyx,199
-cdef class CdsHelper:CdsHelper26,889
-cdef class SpreadCdsHelper(CdsHelper):SpreadCdsHelper39,1391
-    def __init__(self, float running_spread, Period tenor, int settlement_days,__init__42,1490
-
-quantlib/termstructures/credit/piecewise_default_curve.pxd,62
-cdef class PiecewiseDefaultCurve:PiecewiseDefaultCurve4,134
-
-quantlib/termstructures/credit/_piecewise_default_curve.pxd,121
-    cdef shared_ptr[DefaultProbabilityTermStructure] credit_term_structure_factory(credit_term_structure_factory28,909
-
-quantlib/termstructures/_default_term_structure.pxd,0
-
-quantlib/termstructures/volatility/equityfx/black_vol_term_structure.pyx,305
-cdef class BlackVolTermStructure:BlackVolTermStructure9,225
-    def __cinit__(self):__cinit__11,260
-    def __dealloc__(self):__dealloc__14,315
-    def __init__(self):__init__18,411
-cdef class BlackConstantVol(BlackVolTermStructure):BlackConstantVol24,542
-    def __init__(self,__init__26,595
-
-quantlib/termstructures/volatility/equityfx/_black_vol_term_structure.pxd,178
-    cdef cppclass BlackVolTermStructure(VolatilityTermStructure):BlackVolTermStructure22,637
-    cdef cppclass BlackConstantVol(BlackVolTermStructure):BlackConstantVol32,972
-
-quantlib/termstructures/volatility/equityfx/black_vol_term_structure.pxd,61
-cdef class BlackVolTermStructure:BlackVolTermStructure4,82
-
-quantlib/termstructures/volatility/api.py,0
-
-quantlib/termstructures/_helpers.pxd,102
-    cdef cppclass RelativeDateBootstrapHelper[T](BootstrapHelper):RelativeDateBootstrapHelper25,728
-
-quantlib/termstructures/_yield_term_structure.pxd,176
-        Simple = 0Simple27,826
-        Compounded = 1Compounded28,845
-        Continuous = 2Continuous29,868
-        SimpleThenCompounded = 3SimpleThenCompounded30,891
-
-quantlib/termstructures/yields/_piecewise_yield_curve.pxd,94
-    cdef shared_ptr[YieldTermStructure] term_structure_factory(term_structure_factory24,708
-
-quantlib/termstructures/yields/rate_helpers.pxd,103
-cdef class RateHelper:RateHelper4,70
-cdef class RelativeDateRateHelper:RelativeDateRateHelper7,140
-
-quantlib/termstructures/yields/yield_term_structure.pxd,56
-cdef class YieldTermStructure:YieldTermStructure5,122
-
-quantlib/termstructures/yields/zero_curve.pyx,137
-cdef class ZeroCurve(YieldTermStructure):ZeroCurve12,311
-    def __init__(self, dates, yields, DayCounter daycounter):__init__14,354
-
-quantlib/termstructures/yields/piecewise_yield_curve.pyx,430
-VALID_TRAITS = ['discount', 'forward', 'zero']VALID_TRAITS18,538
-VALID_INTERPOLATORS = ['loglinear', 'linear', 'spline']VALID_INTERPOLATORS19,585
-def term_structure_factory(str traits, str interpolator, Date settlement_date,term_structure_factory21,642
-cdef class PiecewiseYieldCurve(YieldTermStructure):PiecewiseYieldCurve61,2127
-    def __init__(self, str trait, str interpolator, Date settlement_date,__init__81,2770
-
-quantlib/termstructures/yields/_zero_curve.pxd,66
-    cdef cppclass ZeroCurve(YieldTermStructure):ZeroCurve14,340
-
-quantlib/termstructures/yields/yield_term_structure.pyx,501
-cdef class YieldTermStructure:YieldTermStructure21,576
-    def __cinit__(self):__cinit__26,701
-    def __dealloc__(self):__dealloc__31,824
-    def __init__(self, relinkable=True):__init__38,1003
-    def link_to(self, YieldTermStructure structure):link_to51,1568
-    def zero_rate(self, Date date, DayCounter day_counter, int compounding, int frequency=Annual, extrapolate=False):zero_rate59,1821
-    def discount(self, value):discount103,3597
-        def __get__(self):__get__129,4507
-
-quantlib/termstructures/yields/flat_forward.pxd,63
-cdef class FlatForward(YieldTermStructure):FlatForward16,489
-
-quantlib/termstructures/yields/flat_forward.pyx,171
-cdef class FlatForward(YieldTermStructure):FlatForward27,836
-    def __init__(self, Date reference_date=None, forward=None, DayCounter daycounter=None,__init__52,1730
-
-quantlib/termstructures/yields/api.py,0
-
-quantlib/termstructures/yields/rate_helpers.pyx,1281
-cdef class RateHelper:RateHelper31,1015
-    def __cinit__(self):__cinit__33,1039
-    def __dealloc__(self):__dealloc__36,1094
-        def __get__(self):__get__42,1243
-        def __get__(self):__get__49,1547
-cdef class RelativeDateRateHelper:RelativeDateRateHelper53,1630
-    def __cinit__(self):__cinit__55,1666
-    def __dealloc__(self):__dealloc__58,1721
-        def __get__(self):__get__64,1870
-        def __get__(self):__get__71,2174
-cdef class DepositRateHelper(RateHelper):DepositRateHelper75,2257
-    def __init__(self, Rate quote, Period tenor=None, Natural fixing_days=0,__init__78,2361
-cdef class SwapRateHelper(RelativeDateRateHelper):SwapRateHelper104,3319
-    def __init__(self, from_classmethod=False):__init__106,3371
-    cdef set_ptr(self, shared_ptr[_rh.RelativeDateRateHelper]* ptr):set_ptr119,4008
-    def from_tenor(cls, float rate, Period tenor,from_tenor123,4123
-    def from_index(cls, float rate, SwapIndex index):from_index164,5738
-cdef class FraRateHelper(RelativeDateRateHelper):FraRateHelper184,6327
-    def __init__(self, Quote rate, Natural months_to_start,__init__187,6437
-cdef class FuturesRateHelper(RateHelper):FuturesRateHelper207,7179
-    def __init__(self, Quote rate, Date imm_date,__init__210,7295
-
-quantlib/termstructures/yields/_rate_helpers.pxd,311
-    cdef cppclass DepositRateHelper(RateHelper):DepositRateHelper34,1226
-    cdef cppclass FraRateHelper(RelativeDateRateHelper):FraRateHelper55,2137
-    cdef cppclass SwapRateHelper(RelativeDateRateHelper):SwapRateHelper66,2552
-    cdef cppclass FuturesRateHelper(RateHelper):FuturesRateHelper105,4236
-
-quantlib/termstructures/yields/_flat_forward.pxd,247
-        Simple = 0Simple29,892
-        Compounded = 1Compounded30,911
-        Continuous = 2Continuous31,934
-        SimpleThenCompounded = 3SimpleThenCompounded32,957
-    cdef cppclass FlatForward(YieldTermStructure):FlatForward36,1073
-
-quantlib/compounding.py,253
-Simple = 0                 # 1+rtSimple2,13
-Compounded = 1             # (1+r)^tCompounded3,47
-Continuous = 2             # e^{rt}Continuous4,84
-SimpleThenCompounded = 3   # Simple up to the first period then CompoundedSimpleThenCompounded5,120
-
-quantlib/instruments/_payoffs.pxd,213
-    cdef cppclass TypePayoff(Payoff):TypePayoff18,378
-    cdef cppclass StrikedTypePayoff(TypePayoff):StrikedTypePayoff23,506
-    cdef cppclass PlainVanillaPayoff(StrikedTypePayoff):PlainVanillaPayoff28,662
-
-quantlib/instruments/_option.pxd,345
-    cdef cppclass Option(Instrument):Option20,440
-    cdef cppclass OneAssetOption(Option):OneAssetOption27,632
-    cdef cppclass VanillaOption(OneAssetOption):VanillaOption36,903
-    cdef cppclass DividendVanillaOption(OneAssetOption):DividendVanillaOption46,1188
-    cdef cppclass EuropeanOption(VanillaOption):EuropeanOption56,1535
-
-quantlib/instruments/bonds.pyx,783
-cdef _bonds.Bond* get_bond(Bond bond):get_bond35,1159
-cdef class Bond(Instrument):Bond44,1423
-    def __init__(self):__init__56,1765
-        def __get__(self):__get__62,1939
-        def __get__(self):__get__68,2147
-        def __get__(self):__get__74,2366
-    def settlement_date(self, Date from_date=None):settlement_date78,2522
-        def __get__(self):__get__92,3052
-        def __get__(self):__get__98,3232
-    def accrued_amount(self, Date date=None):accrued_amount102,3352
-cdef class FixedRateBond(Bond):FixedRateBond110,3661
-    def __init__(self, int settlement_days, float face_amount,__init__121,3977
-cdef class ZeroCouponBond(Bond):ZeroCouponBond161,5890
-    def __init__(self, settlement_days, Calendar calendar, face_amount,__init__164,5954
-
-quantlib/instruments/payoffs.pxd,174
-cdef class Payoff:Payoff4,58
-    cdef set_payoff(self, shared_ptr[_payoffs.Payoff] payoff)set_payoff6,124
-cdef class PlainVanillaPayoff(Payoff):PlainVanillaPayoff8,187
-
-quantlib/instruments/instrument.pyx,296
-cdef class Instrument:Instrument10,227
-    def __cinit__(self):__cinit__12,251
-    def __dealloc__(self):__dealloc__16,347
-    def set_pricing_engine(self, PricingEngine engine):set_pricing_engine21,476
-        def __get__(self):__get__34,887
-        def __get__(self):__get__40,1083
-
-quantlib/instruments/_bonds.pxd,172
-    cdef cppclass Bond(Instrument):Bond14,437
-    cdef cppclass FixedRateBond(Bond):FixedRateBond38,1105
-    cdef cppclass ZeroCouponBond(Bond):ZeroCouponBond57,1949
-
-quantlib/instruments/_credit_default_swap.pxd,74
-    cdef cppclass CreditDefaultSwap(Instrument):CreditDefaultSwap20,474
-
-quantlib/instruments/instrument.pxd,40
-cdef class Instrument:Instrument8,209
-
-quantlib/instruments/_instrument.pxd,0
-
-quantlib/instruments/credit_default_swap.pyx,487
-BUYER = _cds.BuyerBUYER29,842
-SELLER = _cds.SellerSELLER30,861
-cdef _cds.CreditDefaultSwap* _get_cds(CreditDefaultSwap cds):_get_cds32,883
-cdef class CreditDefaultSwap(Instrument):CreditDefaultSwap40,1190
-    def __init__(self, int side, float notional, float spread, Schedule schedule,__init__59,1719
-        def __get__(self):__get__98,3712
-        def __get__(self):__get__110,4100
-        def __get__(self):__get__115,4206
-        def __get__(self):__get__119,4313
-
-quantlib/instruments/_exercise.pxd,286
-    cdef cppclass EarlyExercise(Exercise):EarlyExercise27,606
-    cdef cppclass AmericanExercise(EarlyExercise):AmericanExercise33,811
-    cdef cppclass BermudanExercise(EarlyExercise):BermudanExercise39,1126
-    cdef cppclass EuropeanExercise(Exercise):EuropeanExercise43,1286
-
-quantlib/instruments/api.py,0
-
-quantlib/instruments/option.pxd,118
-cdef class Exercise:Exercise4,59
-    cdef set_exercise(self, shared_ptr[_exercise.Exercise] exc)set_exercise6,130
-
-quantlib/instruments/option.pyx,1544
-    American = _exercise.AmericanAmerican23,692
-    Bermudan  = _exercise.BermudanBermudan24,726
-    European = _exercise.EuropeanEuropean25,761
-EXERCISE_TO_STR = {EXERCISE_TO_STR27,796
-cdef class Exercise:Exercise33,899
-    def __cinit__(self):__cinit__35,921
-    def __dealloc__(self):__dealloc__38,976
-    def __str__(self):__str__43,1105
-    cdef set_exercise(self, shared_ptr[_exercise.Exercise] exc):set_exercise46,1210
-cdef class EuropeanExercise(Exercise):EuropeanExercise51,1444
-    def __init__(self, Date exercise_date):__init__53,1484
-cdef class AmericanExercise(Exercise):AmericanExercise60,1711
-    def __init__(self, Date latest_exercise_date, Date earliest_exercise_date=None):__init__62,1751
-cdef _option.Option* get_option(OneAssetOption option):get_option83,2605
-cdef class OneAssetOption(Instrument):OneAssetOption90,2893
-    def __init__(self):__init__92,2933
-        def __get__(self):__get__99,3126
-        def __get__(self):__get__105,3300
-    def __str__(self):__str__110,3466
-cdef class VanillaOption(OneAssetOption):VanillaOption116,3601
-    def __init__(self, PlainVanillaPayoff payoff, Exercise exercise):__init__118,3644
-cdef class EuropeanOption(OneAssetOption):EuropeanOption135,4228
-    def __init__(self, PlainVanillaPayoff payoff, Exercise exercise):__init__137,4272
-cdef class DividendVanillaOption(OneAssetOption):DividendVanillaOption153,4856
-    def __init__(self, PlainVanillaPayoff payoff, Exercise exercise, dividend_dates, dividends):__init__156,4986
-
-quantlib/instruments/payoffs.pyx,799
-    Put = _option.PutPut8,104
-    Call = _option.CallCall9,126
-PAYOFF_TO_STR = {Call:'Call', Put:'Put'}PAYOFF_TO_STR12,152
-def str_to_option_type(name):str_to_option_type14,194
-cdef class Payoff:Payoff21,364
-    def __cinit__(self):__cinit__23,384
-    def __dealloc__(self):__dealloc__26,439
-    def __str__(self):__str__30,535
-    cdef set_payoff(self, shared_ptr[_payoffs.Payoff] payoff):set_payoff34,666
-cdef _payoffs.PlainVanillaPayoff* _get_payoff(PlainVanillaPayoff payoff):_get_payoff42,996
-cdef class PlainVanillaPayoff(Payoff):PlainVanillaPayoff46,1135
-    def __init__(self, option_type, float strike, from_qlpayoff=False):__init__67,1649
-    def __str__(self):__str__83,2310
-        def __get__(self):__get__96,2685
-        def __get__(self):__get__100,2784
-
-quantlib/pricingengines/engine.pxd,46
-cdef class PricingEngine:PricingEngine6,101
-
-quantlib/pricingengines/_pricing_engine.pxd,0
-
-quantlib/pricingengines/_blackformula.pxd,0
-
-quantlib/pricingengines/_credit.pxd,77
-    cdef cppclass MidPointCdsEngine(PricingEngine):MidPointCdsEngine11,365
-
-quantlib/pricingengines/credit.pyx,156
-cdef class MidPointCdsEngine(PricingEngine):MidPointCdsEngine23,774
-    def __init__(self, PiecewiseDefaultCurve ts, float recovery_rate,__init__25,820
-
-quantlib/pricingengines/vanilla/_vanilla.pxd,912
-    cdef cppclass AnalyticEuropeanEngine(PricingEngine):AnalyticEuropeanEngine12,509
-    cdef cppclass BaroneAdesiWhaleyApproximationEngine(PricingEngine):BaroneAdesiWhaleyApproximationEngine19,769
-    cdef cppclass AnalyticHestonEngine(PricingEngine):AnalyticHestonEngine26,1054
-    cdef cppclass BatesEngine(AnalyticHestonEngine):BatesEngine35,1343
-    cdef cppclass BatesDetJumpEngine(BatesEngine):BatesDetJumpEngine42,1527
-    cdef cppclass BatesDoubleExpEngine(AnalyticHestonEngine):BatesDoubleExpEngine54,1883
-    cdef cppclass BatesDoubleExpDetJumpEngine(BatesDoubleExpEngine):BatesDoubleExpDetJumpEngine66,2260
-    cdef cppclass AnalyticDividendEuropeanEngine(PricingEngine):AnalyticDividendEuropeanEngine80,2782
-    cdef cppclass FDDividendAmericanEngine[T](PricingEngine):FDDividendAmericanEngine87,3083
-    cdef cppclass FDAmericanEngine[T](PricingEngine):FDAmericanEngine101,3592
-
-quantlib/pricingengines/vanilla/vanilla.pxd,663
-cdef class VanillaOptionEngine(PricingEngine):VanillaOptionEngine6,162
-cdef class AnalyticEuropeanEngine(VanillaOptionEngine):AnalyticEuropeanEngine9,258
-cdef class BaroneAdesiWhaleyApproximationEngine(VanillaOptionEngine):BaroneAdesiWhaleyApproximationEngine12,324
-cdef class AnalyticHestonEngine(PricingEngine):AnalyticHestonEngine15,404
-cdef class BatesEngine(AnalyticHestonEngine):BatesEngine18,462
-cdef class BatesDetJumpEngine(BatesEngine):BatesDetJumpEngine21,518
-cdef class BatesDoubleExpEngine(AnalyticHestonEngine):BatesDoubleExpEngine24,572
-cdef class BatesDoubleExpDetJumpEngine(BatesDoubleExpEngine):BatesDoubleExpDetJumpEngine27,637
-
-quantlib/pricingengines/vanilla/vanilla.pyx,1855
-cdef class VanillaOptionEngine(PricingEngine):VanillaOptionEngine14,562
-cdef class AnalyticEuropeanEngine(VanillaOptionEngine):AnalyticEuropeanEngine18,620
-    def __init__(self, GeneralizedBlackScholesProcess process):__init__20,677
-cdef class BaroneAdesiWhaleyApproximationEngine(VanillaOptionEngine):BaroneAdesiWhaleyApproximationEngine31,1072
-    def __init__(self, GeneralizedBlackScholesProcess process):__init__33,1143
-cdef class AnalyticHestonEngine(PricingEngine):AnalyticHestonEngine44,1551
-    def __init__(self, HestonModel model, int integration_order=144):__init__46,1600
-cdef class BatesEngine(AnalyticHestonEngine):BatesEngine55,1886
-    def __init__(self, BatesModel model, int integration_order=144):__init__57,1933
-cdef class BatesDetJumpEngine(BatesEngine):BatesDetJumpEngine66,2239
-    def __init__(self, BatesDetJumpModel model, int integration_order=144):__init__68,2284
-cdef class BatesDoubleExpEngine(AnalyticHestonEngine):BatesDoubleExpEngine75,2589
-    def __init__(self, BatesDoubleExpModel model, int integration_order=144):__init__77,2645
-cdef class BatesDoubleExpDetJumpEngine(BatesDoubleExpEngine):BatesDoubleExpDetJumpEngine84,2956
-    def __init__(self, BatesDoubleExpDetJumpModel model, int integration_order=144):__init__86,3019
-cdef class AnalyticDividendEuropeanEngine(PricingEngine):AnalyticDividendEuropeanEngine94,3352
-    def __init__(self, GeneralizedBlackScholesProcess process):__init__96,3411
-cdef class FDDividendAmericanEngine(PricingEngine):FDDividendAmericanEngine108,3815
-    def __init__(self, scheme, GeneralizedBlackScholesProcess process, timesteps, gridpoints):__init__110,3868
-cdef class FDAmericanEngine(PricingEngine):FDAmericanEngine125,4507
-    def __init__(self, scheme, GeneralizedBlackScholesProcess process, timesteps, gridpoints):__init__127,4552
-
-quantlib/pricingengines/vanilla/mcvanillaengine.pxd,65
-cdef class MCVanillaEngine(PricingEngine):MCVanillaEngine5,154
-
-quantlib/pricingengines/vanilla/_mcvanillaengine.pxd,99
-    cdef shared_ptr[_pe.PricingEngine] mc_vanilla_engine_factory(mc_vanilla_engine_factory22,643
-
-quantlib/pricingengines/vanilla/mcvanillaengine.pyx,235
-VALID_TRAITS = ['MCEuropeanHestonEngine',]VALID_TRAITS20,580
-VALID_RNG = ['PseudoRandom',]VALID_RNG21,623
-cdef class MCVanillaEngine(PricingEngine):MCVanillaEngine23,654
-    def __init__(self, str trait, str RNG,__init__25,698
-
-quantlib/pricingengines/bond.pyx,153
-cdef class DiscountingBondEngine(PricingEngine):DiscountingBondEngine20,617
-    def __init__(self, YieldTermStructure discount_curve):__init__22,667
-
-quantlib/pricingengines/blackformula.pyx,212
-STR_TO_OPTION_TYPE = {'C': Call, 'P':Put}STR_TO_OPTION_TYPE12,246
-def blackFormula(option_type, Real strike,blackFormula14,289
-def blackFormulaImpliedStdDev(cp, Real strike,blackFormulaImpliedStdDev56,1370
-
-quantlib/pricingengines/swap.pyx,141
-cdef class DiscountingSwapEngine(PricingEngine):DiscountingSwapEngine11,414
-    def __init__(self, YieldTermStructure ts):__init__13,464
-
-quantlib/pricingengines/engine.pyx,129
-cdef class PricingEngine:PricingEngine1,0
-    def __cinit__(self):__cinit__4,79
-    def __dealloc__(self):__dealloc__7,134
-
-quantlib/pricingengines/_bond.pxd,85
-    cdef cppclass DiscountingBondEngine(PricingEngine):DiscountingBondEngine25,708
-
-quantlib/pricingengines/api.py,0
-
-quantlib/pricingengines/_swap.pxd,85
-    cdef cppclass DiscountingSwapEngine(PricingEngine):DiscountingSwapEngine10,285
-
-quantlib/time/calendars/null_calendar.pyx,96
-cdef class NullCalendar(Calendar):NullCalendar5,101
-    def __cinit__(self):__cinit__13,324
-
-quantlib/time/calendars/germany.pyx,362
-SETTLEMENT = 0SETTLEMENT5,139
-FrankfurtStockExchange = 1 # Frankfurt stock-exchangeFrankfurtStockExchange6,154
-XETRA = 2                  # XetraXETRA7,208
-EUREX = 3                  # EurexEUREX8,243
-EUWAX = 4                  # EuwaxEUWAX9,278
-cdef class Germany(Calendar):Germany11,314
-    def __cinit__(self, market=SETTLEMENT):__cinit__15,379
-
-quantlib/time/calendars/_united_kingdom.pxd,64
-    cdef cppclass UnitedKingdom(Calendar):UnitedKingdom12,293
-
-quantlib/time/calendars/_null_calendar.pxd,61
-    cdef cppclass NullCalendar(Calendar):NullCalendar4,123
-
-quantlib/time/calendars/united_kingdom.pyx,254
-    SETTLEMENT = _uk.SettlementSETTLEMENT6,171
-    EXCHANGE   = _uk.ExchangeEXCHANGE7,203
-    METALS     = _uk.MetalsMETALS8,233
-cdef class UnitedKingdom(Calendar):UnitedKingdom10,262
-    def __cinit__(self, market=SETTLEMENT):__cinit__53,1807
-
-quantlib/time/calendars/united_states.pyx,430
-    SETTLEMENT     = _us.Settlement # generic settlement calendarSETTLEMENT6,170
-    NYSE           = _us.NYSE # New York stock exchange calendarNYSE7,236
-    GOVERNMENTBOND = _us.GovernmentBond # government-bond calendarGOVERNMENTBOND8,301
-    NERC           = _us.NERC # off-peak days for NERCNERC9,368
-cdef class UnitedStates(Calendar):UnitedStates11,424
-    def __cinit__(self, market=SETTLEMENT):__cinit__86,3498
-
-quantlib/time/calendars/_united_states.pxd,62
-    cdef cppclass UnitedStates(Calendar):UnitedStates13,308
-
-quantlib/time/calendars/jointcalendar.pxd,55
-cdef class JointCalendar(Calendar):JointCalendar3,46
-
-quantlib/time/calendars/_jointcalendar.pxd,64
-    cdef cppclass JointCalendar(Calendar):JointCalendar18,659
-
-quantlib/time/calendars/_germany.pxd,52
-    cdef cppclass Germany(Calendar):Germany14,318
-
-quantlib/time/calendars/jointcalendar.pyx,316
-    JOINHOLIDAYS = _jc.JoinHolidaysJOINHOLIDAYS7,226
-    JOINBUSINESSDAYS = _jc.JoinBusinessDaysJOINBUSINESSDAYS8,262
-cdef class JointCalendar(Calendar):JointCalendar10,307
-    def __cinit__(self, Calendar c1, Calendar c2, int jc = JOINHOLIDAYS):__cinit__18,565
-    def __dealloc__(self):__dealloc__23,822
-
-quantlib/time/schedule.pxd,35
-cdef class Schedule:Schedule3,19
-
-quantlib/time/schedule.pyx,862
-    Backward       = _schedule.BackwardBackward14,307
-    Forward        = _schedule.ForwardForward16,402
-    Zero           = _schedule.ZeroZero19,520
-    ThirdWednesday = _schedule.ThirdWednesdayThirdWednesday23,706
-    Twentieth      = _schedule.TwentiethTwentieth27,934
-    TwentiethIMM   = _schedule.TwentiethIMMTwentiethIMM31,1138
-    OldCDS         = _schedule.OldCDSOldCDS34,1298
-    CDS            = _schedule.CDSCDS37,1415
-cdef class Schedule:Schedule39,1451
-    def __init__(self, Date effective_date, Date termination_date,__init__43,1504
-    def __dealloc__(self):__dealloc__60,2257
-    def dates(self):dates66,2383
-    def next_date(self, Date reference_date):next_date72,2535
-    def previous_date(self, Date reference_date):previous_date78,2730
-    def size(self):size84,2933
-    def at(self, int index):at87,2990
-
-quantlib/time/daycounter.pyx,1155
-cdef class DayCounter:DayCounter9,236
-    def __cinit__(self, *args):__cinit__15,450
-    def name(self):name18,496
-    def year_fraction(self, Date date1, Date date2, Date ref_start=None,year_fraction21,561
-    def day_count(self, Date date1, Date date2):day_count41,1285
-    def __richcmp__(self, other_counter, val):__richcmp__47,1558
-    def from_name(cls, name):from_name67,2154
-def _get_daycounter_type_from_name(name):_get_daycounter_type_from_name79,2578
-cdef _daycounter.DayCounter* daycounter_from_name(str name, str convention):daycounter_from_name91,2910
-cdef class Actual360(DayCounter):Actual360116,3805
-    def __cinit__(self, *args):__cinit__118,3840
-cdef class Actual365Fixed(DayCounter):Actual365Fixed122,3952
-    def __cinit__(self, *args):__cinit__124,3992
-cdef class Business252(DayCounter):Business252128,4109
-    def __cinit__(self, *args, calendar=None):__cinit__130,4146
-cdef class OneDayCounter(DayCounter):OneDayCounter138,4469
-    def __cinit__(self, *args):__cinit__140,4508
-cdef class SimpleDayCounter(DayCounter):SimpleDayCounter143,4623
-    def __cinit__(self, *args):__cinit__145,4665
-
-quantlib/time/calendar.pxd,297
-cdef class Calendar:Calendar6,68
-cdef class TARGET(Calendar):TARGET9,128
-cdef class UnitedStates(Calendar):UnitedStates12,167
-cdef class UnitedKingdom(Calendar):UnitedKingdom15,212
-cdef class DateList:DateList18,258
-    cdef _set_dates(self, vector[_date.Date]& dates)_set_dates21,336
-
-quantlib/time/_period.pxd,866
-        NoFrequency      = -1 # null frequencyNoFrequency6,137
-        Once             = 0  # only once, e.g., a zero-couponOnce7,184
-        Annual           = 1  # once a yearAnnual8,247
-        Semiannual       = 2  # twice a yearSemiannual9,291
-        EveryFourthMonth = 3  # every fourth monthEveryFourthMonth10,336
-        Quarterly        = 4  # every third monthQuarterly11,387
-        Bimonthly        = 6  # every second monthBimonthly12,437
-        Monthly          = 12 # once a monthMonthly13,488
-        EveryFourthWeek  = 13 # every fourth weekEveryFourthWeek14,533
-        Biweekly         = 26 # every second weekBiweekly15,583
-        Weekly           = 52 # once a weekWeekly16,633
-        Daily            = 365 # once a dayDaily17,677
-        OtherFrequency   = 999 # some other unknown frequencyOtherFrequency18,721
-
-quantlib/time/_date.pxd,1192
-        Sunday    = 1Sunday16,311
-        Monday    = 2Monday17,333
-        Tuesday   = 3Tuesday18,355
-        Wednesday = 4Wednesday19,377
-        Thursday  = 5Thursday20,399
-        Friday    = 6Friday21,421
-        Saturday  = 7Saturday22,443
-        Sun = 1Sun23,465
-        Mon = 2Mon24,481
-        Tue = 3Tue25,497
-        Wed = 4Wed26,513
-        Thu = 5Thu27,529
-        Fri = 6Fri28,545
-        Sat = 7Sat29,561
-        January   = 1January34,658
-        February  = 2February35,680
-        March     = 3March36,702
-        April     = 4April37,724
-        May       = 5May38,746
-        June      = 6June39,768
-        July      = 7July40,790
-        August    = 8August41,812
-        September = 9September42,834
-        October   = 10October43,856
-        November  = 11November44,879
-        December  = 12December45,902
-        Jan = 1Jan46,925
-        Feb = 2Feb47,941
-        Mar = 3Mar48,957
-        Apr = 4Apr49,973
-        Jun = 6Jun50,989
-        Jul = 7Jul51,1005
-        Aug = 8Aug52,1021
-        Sep = 9Sep53,1037
-        Oct = 10Oct54,1053
-        Nov = 11Nov55,1070
-        Dec = 12Dec56,1087
-
-quantlib/time/date.pxd,136
-cdef class Period:Period17,409
-cdef class Date:Date20,475
-cdef date.Date date_from_qldate(_date.Date& date)date_from_qldate23,535
-
-quantlib/time/_daycounter.pxd,386
-    cdef cppclass Thirty360(DayCounter):Thirty36023,531
-    cdef cppclass Actual360(DayCounter):Actual36028,662
-    cdef cppclass Actual365Fixed(DayCounter):Actual365Fixed33,798
-    cdef cppclass Business252(DayCounter):Business25239,945
-    cdef cppclass OneDayCounter(DayCounter):OneDayCounter45,1092
-    cdef cppclass SimpleDayCounter(DayCounter):SimpleDayCounter50,1234
-
-quantlib/time/calendar.pyx,1734
-    Following         = _calendar.FollowingFollowing21,654
-    ModifiedFollowing = _calendar.ModifiedFollowingModifiedFollowing22,698
-    Preceding         = _calendar.PrecedingPreceding23,750
-    ModifiedPreceding = _calendar.ModifiedPrecedingModifiedPreceding24,794
-    Unadjusted        = _calendar.UnadjustedUnadjusted25,846
-cdef class Calendar:Calendar27,892
-    def __dealloc__(self):__dealloc__37,1335
-    def name(self):name42,1464
-    def __str__(self):__str__45,1529
-    def is_holiday(self, date.Date test_date):is_holiday48,1580
-    def is_weekend(self,  int week_day):is_weekend55,1859
-    def is_business_day(self, date.Date test_date):is_business_day61,2074
-    def is_end_of_month(self, date.Date test_date):is_end_of_month67,2300
-    def business_days_between(self, date.Date date1, date.Date date2,business_days_between73,2540
-    def end_of_month(self, date.Date current_date):end_of_month84,2962
-    def add_holiday(self, date.Date holiday):add_holiday95,3323
-    def remove_holiday(self, date.Date holiday):remove_holiday100,3562
-    def adjust(self, date.Date given_date, int convention=Following):adjust105,3811
-    def advance(self, date.Date given_date, int step=0, int units=-1,advance115,4283
-cdef class DateList:DateList143,5468
-    def __cinit__(self):__cinit__150,5681
-    cdef _set_dates(self, vector[_date.Date]& dates):_set_dates153,5729
-    def __dealloc__(self):__dealloc__158,5993
-    def __iter__(self):__iter__163,6116
-    def __next__(self):__next__166,6161
-def holiday_list(Calendar calendar, date.Date from_date, date.Date to_date,holiday_list177,6521
-cdef class TARGET(Calendar):TARGET191,6995
-    def __cinit__(self):__cinit__207,7397
-
-quantlib/time/api.py,0
-
-quantlib/time/date.pyx,5015
-    January   = _date.JanuaryJanuary20,499
-    February  = _date.FebruaryFebruary21,529
-    March     = _date.MarchMarch22,560
-    April     = _date.AprilApril23,588
-    May       = _date.MayMay24,616
-    June      = _date.JuneJune25,642
-    July      = _date.JulyJuly26,669
-    August    = _date.AugustAugust27,696
-    September = _date.SeptemberSeptember28,725
-    October   = _date.OctoberOctober29,757
-    November  = _date.NovemberNovember30,787
-    December  = _date.DecemberDecember31,818
-    Jan = _date.JanJan32,849
-    Feb = _date.FebFeb33,869
-    Mar = _date.MarMar34,889
-    Apr = _date.AprApr35,909
-    Jun = _date.JunJun36,929
-    Jul = _date.JulJul37,949
-    Aug = _date.AugAug38,969
-    Sep = _date.SepSep39,989
-    Oct = _date.OctOct40,1009
-    Nov = _date.NovNov41,1029
-    Dec = _date.DecDec42,1049
-    Sunday   = _date.SundaySunday45,1096
-    Monday   = _date.MondayMonday46,1124
-    Tuesday  = _date.TuesdayTuesday47,1152
-    Wednesday = _date.WednesdayWednesday48,1181
-    Thursday = _date.ThursdayThursday49,1213
-    Friday   = _date.FridayFriday50,1243
-    Saturday = _date.SaturdaySaturday51,1271
-    Sun = _date.SunSun52,1301
-    Mon = _date.MonMon53,1321
-    Tue = _date.TueTue54,1341
-    Wed = _date.WedWed55,1361
-    Thu = _date.ThuThu56,1381
-    Fri = _date.FriFri57,1401
-    Sat = _date.SatSat58,1421
-    NoFrequency      = _period.NoFrequency # null frequencyNoFrequency61,1470
-    Once             = _period.Once  # only once, e.g., a zero-couponOnce62,1530
-    Annual           = _period.Annual  # once a yearAnnual63,1600
-    Semiannual       = _period.Semiannual  # twice a yearSemiannual64,1653
-    EveryFourthMonth = _period.EveryFourthMonth  # every fourth monthEveryFourthMonth65,1711
-    Quarterly        = _period.Quarterly  # every third monthQuarterly66,1781
-    Bimonthly        = _period.Bimonthly  # every second monthBimonthly67,1843
-    Monthly          = _period.Monthly # once a monthMonthly68,1906
-    EveryFourthWeek  = _period.EveryFourthWeek # every fourth weekEveryFourthWeek69,1960
-    Biweekly         = _period.Biweekly # every second weekBiweekly70,2027
-    Weekly           = _period.Weekly # once a weekWeekly71,2087
-    Daily            = _period.Daily # once a dayDaily72,2139
-    OtherFrequency   = _period.OtherFrequency # some other unknown frequencyOtherFrequency73,2189
-FREQUENCIES = ['NoFrequency', 'Once', 'Annual', 'Semiannual', 'EveryFourthMonth',FREQUENCIES75,2267
-_FREQ_DICT = {globals()[name]:name for name in FREQUENCIES}_FREQ_DICT78,2484
-def frequency_to_str(Frequency f):frequency_to_str79,2544
-cdef class Period:Period94,2900
-    def __cinit__(self, *args):__cinit__100,3027
-    def __dealloc__(self):__dealloc__108,3412
-        def __get__(self):__get__113,3529
-        def __get__(self):__get__117,3625
-        def __get__(self):__get__121,3724
-    def normalize(self):normalize124,3803
-    def __sub__(self, value):__sub__128,3905
-    def __mul__(self, value):__mul__137,4258
-    def __iadd__(self, value):__iadd__153,4788
-    def __isub__(self, value):__isub__168,5208
-    def __idiv__(self, value):__idiv__183,5628
-    def __richcmp__(self, value, t):__richcmp__195,5882
-    def __str__(self):__str__216,6508
-cdef class Date:Date219,6604
-    def __cinit__(self, *args):__cinit__226,6833
-    def __dealloc__(self):__dealloc__239,7343
-        def __get__(self):__get__245,7492
-        def __get__(self):__get__249,7585
-        def __get__(self):__get__253,7684
-        def __get__(self):__get__257,7779
-        def __get__(self):__get__261,7883
-        def __get__(self):__get__266,8035
-    def __str__(self):__str__269,8114
-    def __repr__(self):__repr__274,8354
-    def __hash__(self):__hash__277,8409
-    def __cmp__(self, date2):__cmp__281,8506
-    def __richcmp__(self, date2, int t):__richcmp__295,8886
-    def __int__(self):__int__319,9655
-    def __add__(self, value):__add__324,9795
-    def __iadd__(self, value):__iadd__338,10286
-    def __sub__(self, value):__sub__349,10663
-    def __isub__(self, value):__isub__362,11173
-    def from_datetime(cls, date):from_datetime374,11558
-def today():today379,11726
-def next_weekday(Date date, int weekday):next_weekday384,11842
-def nth_weekday(int size, int weekday, int month, int year):nth_weekday390,12094
-def end_of_month(Date date):end_of_month400,12487
-def maxdate():maxdate405,12681
-def mindate():mindate410,12802
-def is_end_of_month(Date date):is_end_of_month415,12925
-def is_leap(int year):is_leap419,13070
-cdef Date date_from_qldate(QlDate& date):date_from_qldate423,13178
-cdef object _pydate_from_qldate(QlDate qdate):_pydate_from_qldate433,13420
-cpdef object pydate_from_qldate(Date qdate):pydate_from_qldate442,13671
-cdef QlDate _qldate_from_pydate(object pydate):_qldate_from_pydate451,13897
-cpdef Date qldate_from_pydate(object pydate):qldate_from_pydate460,14156
-
-quantlib/time/daycounter.pxd,39
-cdef class DayCounter:DayCounter3,50
-
-quantlib/time/_calendar.pxd,51
-    cdef cppclass TARGET(Calendar):TARGET58,2496
-
-quantlib/time/_schedule.pxd,0
-
-quantlib/time/daycounters/actual_actual.pxd,137
-cdef class ActualActual(DayCounter):ActualActual5,100
-cdef _daycounter.DayCounter* from_name(str name, str convention)from_name9,148
-
-quantlib/time/daycounters/thirty360.pyx,345
-USA           = _th.USAUSA26,965
-BONDBASIS     = _th.BondBasisBONDBASIS27,989
-EUROPEAN      = _th.EuropeanEUROPEAN28,1019
-EUROBONDBASIS = _th.EurobondBasisEUROBONDBASIS29,1048
-ITALIAN       = _th.ItalianITALIAN30,1082
-cdef class Thirty360(DayCounter):Thirty36032,1111
-    def __cinit__(self, convention=BONDBASIS):__cinit__34,1146
-
-quantlib/time/daycounters/actual_actual.pyx,523
-    ISMA       = _aa.ISMAISMA20,665
-    Bond       = _aa.BondBond21,691
-    ISDA       = _aa.ISDAISDA22,717
-    Historical = _aa.HistoricalHistorical23,743
-    Actual365  = _aa.Actual365Actual36524,775
-    AFB        = _aa.AFBAFB25,806
-    Euro       = _aa.EuroEuro26,831
-CONVENTIONS = {CONVENTIONS28,858
-cdef class ActualActual(DayCounter):ActualActual39,1058
-    def __cinit__(self, convention=ISMA):__cinit__56,1649
-cdef _daycounter.DayCounter* from_name(str name, str convention):from_name61,1806
-
-quantlib/time/daycounters/_thirty360.pxd,58
-    cdef cppclass Thirty360(DayCounter):Thirty36015,336
-
-quantlib/time/daycounters/_actual_actual.pxd,64
-    cdef cppclass ActualActual(DayCounter):ActualActual15,350
-
-quantlib/reference/names.py,842
-EXPIRY_DATE = 'dtExpiry'EXPIRY_DATE7,97
-TRADE_DATE = 'dtTrade'TRADE_DATE8,122
-SPOT = 'Spot'SPOT10,146
-PRICE_BID = 'PBid'PRICE_BID11,160
-PRICE_ASK = 'PAsk'PRICE_ASK12,179
-PRICE = 'Price'PRICE13,198
-INTEREST_RATE = 'iRate'INTEREST_RATE15,215
-DIVIDEND_YIELD = 'dRate'DIVIDEND_YIELD16,239
-MATURITY_DATE = 'dtMaturity'MATURITY_DATE17,264
-OPTION_TYPE = 'Type'OPTION_TYPE21,305
-EXERCISE_STYLE = 'Style'EXERCISE_STYLE22,326
-STRIKE = 'Strike'STRIKE23,351
-ATMVOL = 'ATMVol'ATMVOL24,369
-FORWARD = 'Fwd'FORWARD25,387
-QUICKDELTA = 'QuickDelta'QUICKDELTA26,403
-IVOL_ASK = 'IVAsk'IVOL_ASK28,430
-IVOL_BID = 'IVBid'IVOL_BID29,449
-IVOL_MID = 'IVMid'IVOL_MID30,468
-CALL_OPTION = 'C'CALL_OPTION32,488
-PUT_OPTION = 'P'PUT_OPTION33,506
-EURO_EXERCISE = 'Euro'EURO_EXERCISE34,523
-AMER_EXERCISE = 'Amer'AMER_EXERCISE35,546
-
-quantlib/reference/data_structures.py,128
-def option_quotes_template():option_quotes_template16,425
-def riskfree_dividend_template():riskfree_dividend_template28,990
-
-quantlib/interest_rate.pxd,43
-cdef class InterestRate:InterestRate4,71
-
-quantlib/interest_rate.pyx,416
-cdef class InterestRate:InterestRate22,621
-    def __dealloc__(self):__dealloc__32,925
-    def __cinit__(self, float rate, DayCounter dc, int compounding, int frequency, **kwargs):__cinit__37,1054
-        def __get__(self):__get__51,1469
-        def __get__(self):__get__55,1569
-        def __get__(self):__get__66,1912
-        def __get__(self):__get__71,2018
-    def __repr__(self):__repr__76,2176
-
-quantlib/_interest_rate.pxd,0
-
-quantlib/quotes.pxd,78
-cdef class Quote:Quote4,63
-cdef class SimpleQuote(Quote):SimpleQuote7,123
-
-quantlib/_quote.pxd,57
-    cdef cppclass SimpleQuote(Quote):SimpleQuote16,345
-
-quantlib/mlab/option_pricing.py,367
-CALL_PREMIUM = 'PremiumC'CALL_PREMIUM25,963
-PUT_PREMIUM = 'PremiumP'PUT_PREMIUM26,989
-def options_to_rates(options, t_min=1./12., n_min=6):options_to_rates28,1015
-def heston_pricer(trade_date, options, params, rates, spot):heston_pricer112,3811
-def blsprice(spot, strike, risk_free_rate, time, volatility, option_type='Call', dividend=0.0):blsprice166,5540
-
-quantlib/currency.pxd,143
-cdef class Currency:Currency12,318
-cdef class USDCurrency(Currency):USDCurrency15,378
-cdef class EURCurrency(Currency):EURCurrency18,422
-
-quantlib/models/equity/heston_model.pxd,98
-cdef class HestonModelHelper:HestonModelHelper15,371
-cdef class HestonModel:HestonModel19,456
-
-quantlib/models/equity/_bates_model.pxd,317
-    cdef cppclass BatesModel(HestonModel):BatesModel12,317
-    cdef cppclass BatesDetJumpModel(BatesModel):BatesDetJumpModel23,679
-    cdef cppclass BatesDoubleExpModel(HestonModel):BatesDoubleExpModel35,1045
-    cdef cppclass BatesDoubleExpDetJumpModel(BatesDoubleExpModel):BatesDoubleExpDetJumpModel50,1512
-
-quantlib/models/equity/bates_model.pyx,1390
-cdef class BatesModel(HestonModel):BatesModel26,836
-    def __cinit__(self):__cinit__28,873
-    def __init__(self, BatesProcess process):__init__31,928
-    def __str__(self):__str__36,1134
-    def process(self):process41,1377
-        def __get__(self):__get__50,1708
-        def __get__(self):__get__54,1821
-        def __get__(self):__get__58,1934
-cdef class BatesDetJumpModel(BatesModel):BatesDetJumpModel61,2030
-    def __cinit__(self):__cinit__63,2073
-    def __init__(self, BatesProcess process,__init__66,2128
-    def __str__(self):__str__74,2478
-        def __get__(self):__get__81,2838
-        def __get__(self):__get__85,2972
-cdef class BatesDoubleExpModel(HestonModel):BatesDoubleExpModel88,3080
-    def __cinit__(self):__cinit__90,3126
-    def __init__(self, HestonProcess process,__init__93,3181
-    def __str__(self):__str__101,3509
-        def __get__(self):__get__108,3819
-        def __get__(self):__get__112,3943
-        def __get__(self):__get__116,4068
-        def __get__(self):__get__120,4190
-cdef class BatesDoubleExpDetJumpModel(BatesDoubleExpModel):BatesDoubleExpDetJumpModel123,4291
-    def __cinit__(self):__cinit__125,4352
-    def __init__(self, HestonProcess process,__init__128,4407
-    def __str__(self):__str__136,4801
-        def __get__(self):__get__143,5161
-        def __get__(self):__get__147,5304
-
-quantlib/models/equity/bates_model.pxd,287
-cdef class BatesModel(HestonModel):BatesModel14,452
-cdef class BatesDetJumpModel(BatesModel):BatesDetJumpModel17,498
-cdef class BatesDoubleExpModel(HestonModel):BatesDoubleExpModel20,550
-cdef class BatesDoubleExpDetJumpModel(BatesDoubleExpModel):BatesDoubleExpDetJumpModel23,605
-
-quantlib/models/equity/_heston_model.pxd,82
-    cdef cppclass HestonModelHelper(CalibrationHelper):HestonModelHelper38,1171
-
-quantlib/models/equity/heston_model.pyx,1353
-    RelativePriceError = _hm.RelativePriceErrorRelativePriceError37,1215
-    PriceError = _hm.PriceErrorPriceError38,1263
-    ImpliedVolError = _hm.ImpliedVolErrorImpliedVolError39,1295
-cdef class HestonModelHelper:HestonModelHelper41,1338
-    def __cinit__(self):__cinit__43,1369
-    def __dealloc__(self):__dealloc__46,1424
-    def __str__(self):__str__51,1558
-    def __init__(self,__init__54,1627
-    def set_pricing_engine(self, PricingEngine engine):set_pricing_engine88,2792
-    def model_value(self):model_value94,3058
-    def black_price(self, double volatility):black_price97,3134
-    def market_value(self):market_value100,3239
-    def calibration_error(self):calibration_error103,3317
-    def impliedVolatility(self, Real targetValue,impliedVolatility106,3405
-cdef class HestonModel:HestonModel116,3721
-    def __cinit__(self):__cinit__118,3746
-    def __dealloc__(self):__dealloc__121,3801
-    def __init__(self, HestonProcess process):__init__125,3897
-    def process(self):process131,4070
-        def __get__(self):__get__140,4401
-        def __get__(self):__get__144,4496
-        def __get__(self):__get__148,4591
-        def __get__(self):__get__152,4684
-        def __get__(self):__get__156,4774
-    def calibrate(self, helpers, OptimizationMethod method, EndCriteriacalibrate159,4846
-
-quantlib/models/equity/dejd.py,524
-def jump_times(beta, nb_scenarios, horizon):jump_times9,109
-def jump_samples(eta_1, eta_2, prob_up_jump, jump_times, time_steps):jump_samples33,784
-    eta_1 = .1eta_172,2035
-    eta_2 = .2eta_273,2050
-    prob_up_jump = .4prob_up_jump74,2065
-    horizon = 3horizon75,2087
-    beta = 1beta76,2103
-    nb_paths = 5nb_paths77,2116
-    time_steps = np.arange(0, horizon, .5)time_steps79,2134
-    jt = jump_times(beta, nb_paths, horizon)jt81,2178
-    js = jump_samples(eta_1, eta_2, prob_up_jump,js82,2223
-
-quantlib/index.pyx,192
-cdef class Index:Index1,0
-    def __cinit__(self):__cinit__3,19
-    def __init__(self):__init__6,58
-    def __dealloc__(self):__dealloc__9,136
-       def __get__(self):__get__14,251
-
-quantlib/types.pxi,0
-
-quantlib/index.pxd,31
-cdef class Index:Index13,371
-
-quantlib/handle.pxd,71
-    cdef cppclass RelinkableHandle[T](Handle):RelinkableHandle20,466
-
-quantlib/quotes.pyx,482
-cdef class Quote:Quote4,72
-    def __cinit__(self):__cinit__6,91
-    def __init__(self):__init__9,146
-    def __dealloc__(self):__dealloc__14,273
-        def __get__(self):__get__19,392
-        def __get__(self):__get__23,489
-cdef class SimpleQuote(Quote):SimpleQuote31,765
-    def __init__(self, float value=0.0):__init__33,797
-    def __str__(self):__str__36,917
-        def __get__(self):__get__40,1025
-        def __set__(self, float value):__set__46,1196
-
-quantlib/_currency.pxd,121
-    cdef cppclass USDCurrency(Currency):USDCurrency37,923
-    cdef cppclass EURCurrency(Currency):EURCurrency42,1054
-
-quantlib/util/converter.py,640
-_dayOfWeekName = ['Monday', 'Tuesday', 'Wednesday', 'Thursday',_dayOfWeekName7,141
-_monthName = ['January', 'February', 'March', 'April', 'May',_monthName9,255
-_shortMonthName = ['jan', 'feb', 'mar', 'apr', 'may', 'jun',_shortMonthName12,419
-    (re.compile("([0-9]+)-([A-Za-z]+)-([0-9]{2,4})"),date_re_list18,580
-DAYS = 1DAYS33,1011
-MONTHS = 2MONTHS34,1020
-YEARS = 3YEARS35,1031
-def _partition_date(date):_partition_date38,1043
-def _parsedate(date):_parsedate65,1677
-def pydate_to_qldate(date):pydate_to_qldate90,2238
-def df_to_zero_curve(rates, settlement_date, daycounter=Actual365Fixed()):df_to_zero_curve103,2523
-
-quantlib/sim/simulate.pyx,469
-cdef simulate_sub(void *tmp, int nbPaths, int nbSteps,simulate_sub27,887
-def simulateHeston(HestonModel model, int nbPaths, int nbSteps,simulateHeston39,1363
-def simulateBates(BatesModel model, int nbPaths, int nbSteps,simulateBates54,1780
-def simulateBatesDetJumpModel(BatesDetJumpModel model, int nbPaths, int nbSteps,simulateBatesDetJumpModel69,2198
-def simulateBatesDoubleExpModel(BatesDoubleExpModel model, int nbPaths,simulateBatesDoubleExpModel89,2705
-
-quantlib/sim/simulate.pxd,0
-
-quantlib/currency.pyx,521
-cdef class Currency:Currency13,342
-    def __cinit__(self):__cinit__14,363
-        def __get__(self):__get__18,451
-        def __get__(self):__get__22,546
-        def __get__(self):__get__26,643
-        def __get__(self):__get__30,750
-        def __get__(self):__get__34,867
-    def __str__(self):__str__37,955
-cdef class USDCurrency(Currency):USDCurrency43,1114
-    def __cinit__(self):__cinit__44,1148
-cdef class EURCurrency(Currency):EURCurrency47,1236
-    def __cinit__(self):__cinit__48,1270
-
-quantlib/settings/settings.pyx,481
-__quantlib_version__ = QL_VERSION__quantlib_version__19,465
-__quantlib_lib_version__ = QL_LIB_VERSION__quantlib_lib_version__20,499
-__quantlib_hex_version__ = QL_HEX_VERSION__quantlib_hex_version__21,541
-cdef class Settings:Settings23,584
-    def __init__(self):__init__25,606
-        def __get__(self):__get__30,730
-        def __set__(self, date.Date evaluation_date):__set__34,885
-        def __get__(self):__get__40,1179
-    def instance(cls):instance44,1254
-
-quantlib/settings/settings.pxd,0
-
-setup.py,1266
-SUPPORT_CODE_INCLUDE = './cpp_layer'SUPPORT_CODE_INCLUDE16,324
-    INCLUDE_DIRS = ['/opt/local/include', '.', SUPPORT_CODE_INCLUDE]INCLUDE_DIRS21,509
-    LIBRARY_DIRS = ["/opt/local/lib"]LIBRARY_DIRS22,578
-    INCLUDE_DIRS = [INCLUDE_DIRS24,646
-    LIBRARY_DIRS = [LIBRARY_DIRS30,816
-    QL_LIBRARY = 'QuantLib'QL_LIBRARY34,929
-    INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.', SUPPORT_CODE_INCLUDE]INCLUDE_DIRS37,1060
-    LIBRARY_DIRS = ['/usr/local/lib', '/usr/lib', ]LIBRARY_DIRS38,1145
-def get_define_macros():get_define_macros43,1353
-def get_extra_compile_args():get_extra_compile_args56,1799
-def get_extra_link_args():get_extra_link_args64,1957
-CYTHON_DIRECTIVES = {"embedsignatur": True}CYTHON_DIRECTIVES72,2118
-def collect_extensions():collect_extensions74,2163
-    name = 'quantlib',name219,7210
-    version = '0.1',version220,7233
-    author = 'Didrik Pinte,Patrick Henaff',author221,7254
-    license = 'BSD',license222,7298
-    packages = find_packages(),packages223,7319
-    ext_modules = collect_extensions(),ext_modules224,7351
-    cmdclass = {'build_ext': build_ext},cmdclass225,7391
-    install_requires = ['distribute', 'cython'],install_requires226,7432
-    zip_safe = Falsezip_safe227,7481
-
-examples/settings_with_QL_error.py,603
-logger = logging.getLogger(__name__)logger13,401
-calendar = TARGET()calendar15,439
-date_today      = Date(6,9,2011)date_today17,460
-date_payment    = Date(6,12,2000)date_payment18,493
-settlement_days = 2settlement_days19,527
-quote = SimpleQuote(value=0.03)quote21,548
-term_structure = FlatForward(term_structure23,581
-    settlement_days = settlement_days,settlement_days24,611
-    quote           = quote,quote25,650
-    calendar        = NullCalendar(),calendar26,679
-    daycounter      = Actual360()daycounter27,717
-    df_1 = term_structure.discount(date_payment)df_131,759
-
-examples/scripts/Download_USD_LIBOR.py,974
-def get_frb_url(dtStart, dtEnd):get_frb_url24,978
-def dataconverter(s):dataconverter33,1394
-def good_row(z):good_row46,1607
-    fname = os.path.join('..', 'data', 'frb_h15.csv')fname59,1824
-        url = get_frb_url(dtStart=date(2000,1,1),url62,1913
-                          dtEnd=date(2011,12,20))dtEnd63,1963
-        frb_site = urllib.urlopen(url)frb_site64,2013
-        text = frb_site.read().strip()text65,2052
-        f = open(fname, 'w')f67,2092
-    columns_dic = {"RIFLDIY01_N.B":'Swap1Y',columns_dic73,2184
-    dc_dict = {i: dataconverter for idc_dict88,2740
-    df_libor = read_csv(fname, sep=',', header=0,df_libor93,2859
-                    converters=dc_dict,converters95,2960
-                    skiprows=[0,1,2,3,4])skiprows96,3000
-    df_libor = df_libor.rename(columns=columns_dic)df_libor97,3042
-    good_rows = df_libor.apply(good_row, axis=1)good_rows99,3095
-    df_libor_good = df_libor[good_rows]df_libor_good101,3145
-
-examples/scripts/HestonSimulation-2.py,1077
-def flat_rate(forward, daycounter):flat_rate51,1175
-settings = Settings.instance()settings59,1400
-settlement_date = today()settlement_date60,1431
-daycounter = ActualActual()daycounter63,1501
-calendar = NullCalendar()calendar64,1529
-interest_rate = .1interest_rate66,1556
-dividend_yield = .04dividend_yield67,1575
-risk_free_ts = flat_rate(interest_rate, daycounter)risk_free_ts69,1597
-dividend_ts = flat_rate(dividend_yield, daycounter)dividend_ts70,1649
-s0 = SimpleQuote(100.0)s072,1702
-v0 = 0.05v076,1743
-kappa = 5.0;kappa77,1753
-theta = 0.05;theta78,1766
-sigma = 1.0e-4;sigma79,1780
-rho = -0.5;rho80,1796
-discretization = QUADRATICEXPONENTIALMARTINGALEdiscretization81,1808
-process = HestonProcess(risk_free_ts, dividend_ts, s0, v0,process84,1858
-paths = 2paths100,2355
-steps = 100steps101,2365
-horizon = 2horizon102,2377
-seed = 12345seed103,2389
-model = HestonModel(process)model105,2403
-res = simulateHeston(model, paths, steps, horizon,res107,2433
-time = res[0,:]time110,2529
-simulations = res[1:, :].Tsimulations111,2545
-
-examples/scripts/HestonSimulation.py,1004
-def flat_rate(forward, daycounter):flat_rate44,942
-settings = Settings.instance()settings52,1137
-settlement_date = today()settlement_date53,1168
-daycounter = ActualActual()daycounter56,1238
-calendar = NullCalendar()calendar57,1266
-interest_rate = .1interest_rate59,1293
-dividend_yield = .04dividend_yield60,1312
-risk_free_ts = flat_rate(interest_rate, daycounter)risk_free_ts62,1334
-dividend_ts = flat_rate(dividend_yield, daycounter)dividend_ts63,1386
-s0 = SimpleQuote(100.0)s065,1439
-v0 = 0.05v069,1480
-kappa = 5.0kappa70,1490
-theta = 0.05theta71,1502
-sigma = 1.0e-4sigma72,1515
-rho = -0.5rho73,1530
-process = HestonProcess(risk_free_ts, dividend_ts, s0, v0,process75,1542
-paths = 20paths93,2026
-steps = 100steps94,2037
-horizon = 2horizon95,2049
-seed = 12345seed96,2061
-model = HestonModel(process)model98,2075
-res = simulateHeston(model, paths, steps, horizon, seed)res100,2105
-time = res[0, :]time102,2163
-simulations = res[1:, :].Tsimulations103,2180
-
-examples/scripts/LiborRiskFactors.py,1168
-def QLDateTodate(dt):QLDateTodate51,1723
-def dateToDate(dt):dateToDate58,1864
-def get_term_structure(df_libor, dtObs):get_term_structure73,2338
-def zero_curve(ts, days, dtObs):zero_curve156,5071
-df_libor = pandas.load(os.path.join('..','data','df_libor.pkl'))df_libor174,5586
-dtObs = df_libor.indexdtObs176,5666
-dtI = dtObs[range(0, len(dtObs)-1, 60)]dtI178,5690
-days = [10, 30, 90, 182, 365, 365*2, 365*3, 365*5, 365*10, 365*15]days179,5730
-zc_rate = np.empty((len(dtI), len(days)), dtype='float64')zc_rate183,5847
-dt_maturity = np.empty_like(zc_rate, dtype='object')dt_maturity184,5906
-    ts = get_term_structure(df_libor, dt)ts187,5989
-zc_pca = ml.PCA(np.diff(zc_rate, axis=0))zc_pca205,6529
-fig = plt.figure()fig207,6572
-ax = fig.add_subplot(121)ax210,6618
-dtCalc = dtObs[0]dtCalc213,6669
-ts = get_term_structure(df_libor, dtCalc)ts214,6687
-dtMin = dtMat[0]dtMin216,6772
-dtCalc = dtObs[-1]dtCalc218,6794
-ts = get_term_structure(df_libor, dtCalc)ts219,6813
-dtMax = dtMat[-1]dtMax221,6898
-ax2 = fig.add_subplot(122)ax2231,7117
-ttm = np.array(days)/365.0ttm232,7144
-leg = ax2.legend(('PC 1', 'PC 2', 'PC 3'))leg234,7258
-
-examples/scripts/heston_calibration.py,822
-def dateToQLDate(dt):dateToQLDate46,1284
-def dfToZeroCurve(df_rates, dtSettlement, daycounter=Actual365Fixed()):dfToZeroCurve53,1417
-def heston_helpers(spot, df_option, dtTrade, df_rates):heston_helpers73,2014
-def merge_df(df_option, options, model_name):merge_df131,3795
-def heston_calibration(df_option, ival=None):heston_calibration160,4734
-    def aggregate(serie):aggregate169,5001
-df_options = pandas.load('../data/df_options_SPX_24jan2011.pkl')df_options236,7005
-df_heston_cal = heston_calibration(df_options)df_heston_cal237,7070
-def calibration_subplot(ax, group, i, model_name):calibration_subplot249,7370
-def calibration_plot(title, df_calibration, model_name):calibration_plot264,7836
-dtTrade = df_options['dtTrade'][0]dtTrade290,8606
-title = 'Heston Model (%s)' % dtTradetitle291,8641
-
-examples/scripts/USD_Deposit_Swap.py,52
-def get_frb_url(dtStart, dtEnd):get_frb_url30,888
-
-examples/scripts/SPX_Options.py,355
-def ExpiryMonth(s):ExpiryMonth40,1264
-spx_symbol = re.compile("\\(SPX(1[0-9])([0-9]{2})([A-Z])([0-9]{3,4})-E\\)")spx_symbol54,1502
-def parseSPX(s):parseSPX56,1579
-def read_SPX_file(option_data_file):read_SPX_file83,2199
-    '../data/SPX-Options-24jan2011.csv'option_data_file132,3692
-    df_SPX = read_SPX_file(option_data_file)df_SPX135,3760
-
-examples/scripts/OptionQuotes.py,162
-def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1, keepOTMData=True):Compute_IV128,4359
-        def impvol(cp, strike, premium):impvol200,6883
-
-examples/swap.py,3726
-calendar = TARGET()calendar19,901
-todaysDate = Date(6,November,2001);todaysDate20,921
-settlementDate = Date(8,November,2001);settlementDate22,1006
-deposits = { (1,Weeks): 0.0382,deposits25,1063
-FRAs = { (3,6): 0.037125,FRAs32,1261
-futures = { Date(19,12,2001): 96.2875,futures36,1342
-swaps = { (2,Years): 0.037125,swaps45,1650
-dayCounter = Actual360()dayCounter63,2163
-settlementDays = 2settlementDays64,2188
-depositHelpers = [ DepositRateHelper(deposits[(n,unit)],depositHelpers65,2207
-dayCounter = Actual360()dayCounter72,2594
-settlementDays = 2settlementDays73,2619
-fraHelpers = [ FraRateHelper(FRAs[(n,m)],fraHelpers74,2638
-dayCounter = Actual360()dayCounter80,2879
-months = 3months81,2904
-futuresHelpers = [ FuturesRateHelper(futures[d],futuresHelpers82,2915
-settlementDays = 2settlementDays88,3179
-fixedLegFrequency = AnnualfixedLegFrequency89,3198
-fixedLegTenor = Period(1,Years)fixedLegTenor90,3225
-fixedLegAdjustment = UnadjustedfixedLegAdjustment91,3257
-fixedLegDayCounter = Thirty360()fixedLegDayCounter92,3289
-floatingLegFrequency = SemiannualfloatingLegFrequency93,3322
-floatingLegTenor = Period(6,Months)floatingLegTenor94,3356
-floatingLegAdjustment = ModifiedFollowingfloatingLegAdjustment95,3392
-swapHelpers = [ SwapRateHelper.from_tenor(swaps[(n,unit)],swapHelpers96,3434
-ts_daycounter = ActualActual(ISDA)ts_daycounter104,3752
-helpers = depositHelpers + swapHelpershelpers107,3818
-depoSwapCurve = PiecewiseYieldCurve(depoSwapCurve108,3857
-helpers = depositHelpers[:2] + futuresHelpers + swapHelpers[1:]helpers112,3965
-depoFuturesSwapCurve = PiecewiseYieldCurve(depoFuturesSwapCurve113,4029
-helpers = depositHelpers[:3] + fraHelpers + swapHelpershelpers117,4143
-depoFraSwapCurve = PiecewiseYieldCurve(depoFraSwapCurve118,4199
-discountTermStructure = YieldTermStructure(relinkable=True)discountTermStructure124,4360
-forecastTermStructure = YieldTermStructure(relinkable=True)forecastTermStructure125,4420
-nominal = 1000000nominal130,4506
-length = 5length131,4524
-maturity = calendar.advance(settlementDate,length,Years)maturity132,4535
-payFixed = TruepayFixed133,4592
-fixedLegFrequency = AnnualfixedLegFrequency135,4609
-fixedLegAdjustment = UnadjustedfixedLegAdjustment136,4636
-fixedLegDayCounter = Thirty360()fixedLegDayCounter137,4668
-fixedRate = 0.04fixedRate138,4701
-floatingLegFrequency = SemiannualfloatingLegFrequency140,4719
-spread = 0.0spread141,4753
-fixingDays = 2fixingDays142,4766
-index = Euribor6M(forecastTermStructure)index143,4781
-floatingLegAdjustment = ModifiedFollowingfloatingLegAdjustment144,4822
-floatingLegDayCounter = index.dayCounter()floatingLegDayCounter145,4864
-fixedSchedule = Schedule(settlementDate, maturity,fixedSchedule147,4908
-floatingSchedule = Schedule(settlementDate, maturity,floatingSchedule151,5115
-spot = VanillaSwap(VanillaSwap.Payer, nominal,spot156,5344
-forwardStart = calendar.advance(settlementDate,1,Years)forwardStart162,5585
-forwardEnd = calendar.advance(forwardStart,length,Years)forwardEnd163,5641
-fixedSchedule = Schedule(forwardStart, forwardEnd,fixedSchedule164,5698
-floatingSchedule = Schedule(forwardStart, forwardEnd,floatingSchedule168,5905
-forward = VanillaSwap(VanillaSwap.Payer, nominal,forward173,6134
-swapEngine = DiscountingSwapEngine(discountTermStructure)swapEngine178,6353
-def formatPrice(p,digits=2):formatPrice184,6486
-def formatRate(r,digits=2):formatRate188,6569
-headers = ("term structure", "net present value",headers192,6662
-separator = " | "separator194,6758
-format = ''format196,6777
-width = 0width197,6789
-rule = "-" * widthrule205,6978
-tab = " " * 8tab207,7019
-def report(swap, name):report209,7034
-
-examples/basic_example.py,1528
-settings = Settings.instance()settings15,632
-calendar = TARGET()calendar16,663
-offset = 366offset18,684
-todays_date = today() - offsettodays_date20,698
-settlement_date = todays_date + 2settlement_date21,729
-option_type = Putoption_type26,825
-underlying = 36underlying27,843
-strike = 40strike28,859
-dividend_yield = 0.00dividend_yield29,871
-risk_free_rate = 0.06risk_free_rate30,893
-volatility = 0.20volatility31,915
-maturity = settlement_date + 363maturity32,933
-daycounter = Actual365Fixed()daycounter33,966
-underlyingH = SimpleQuote(underlying)underlyingH35,997
-flat_term_structure = FlatForward(flat_term_structure38,1078
-    reference_date=settlement_date,reference_date39,1113
-    forward=risk_free_rate,forward40,1149
-    daycounter=daycounterdaycounter41,1177
-flat_dividend_ts = FlatForward(flat_dividend_ts44,1206
-    reference_date=settlement_date,reference_date45,1238
-    forward=dividend_yield,forward46,1274
-    daycounter=daycounterdaycounter47,1302
-flat_vol_ts = BlackConstantVol(flat_vol_ts50,1331
-black_scholes_merton_process = BlackScholesMertonProcess(black_scholes_merton_process54,1420
-payoff = PlainVanillaPayoff(option_type, strike)payoff58,1549
-european_exercise = EuropeanExercise(maturity)european_exercise60,1599
-european_option = VanillaOption(payoff, european_exercise)european_option62,1647
-method = 'Black-Scholes'method65,1708
-analytic_european_engine = AnalyticEuropeanEngine(black_scholes_merton_process)analytic_european_engine66,1733
-
-examples/settings_test.py,799
-calendar = TARGET()calendar9,263
-settings = Settings()settings10,283
-date_today      = Date(6,9,2011)date_today12,306
-date_payment    = Date(6,10,2011)date_payment13,339
-settlement_days = 2settlement_days14,373
-quote = SimpleQuote(value=0.03)quote17,432
-term_structure = FlatForward(term_structure19,465
-    settlement_days = settlement_days,settlement_days20,495
-    quote           = quote,quote21,534
-    calendar        = NullCalendar(),calendar22,563
-    daycounter      = Actual360()daycounter23,601
-df_1 = term_structure.discount(date_payment)df_126,638
-date_today = Date(19,9,2011)date_today28,684
-date_payment = Date(19,10,2011)date_payment31,752
-df_2 = term_structure.discount(date_payment)df_232,784
-df_2 = term_structure.discount(date_payment)df_241,1105
-
-examples/option_valuation.py,45
-def dividendOption():dividendOption48,2121
-
-examples/simulate_example.py,1370
-def flat_rate(forward, daycounter):flat_rate19,607
-settings = Settings.instance()settings27,830
-settlement_date = today()settlement_date28,861
-daycounter = ActualActual()daycounter31,931
-calendar = NullCalendar()calendar32,959
-interest_rate = .1interest_rate34,986
-dividend_yield = .04dividend_yield35,1005
-risk_free_ts = flat_rate(interest_rate, daycounter)risk_free_ts37,1027
-dividend_ts = flat_rate(dividend_yield, daycounter)dividend_ts38,1079
-s0 = SimpleQuote(32.0)s040,1132
-v0 = 0.05v044,1172
-kappa = 5.0kappa45,1182
-theta = 0.05theta46,1194
-sigma = 1.0e-4sigma47,1207
-rho = -0.5rho48,1222
-process = HestonProcess(risk_free_ts, dividend_ts, s0, v0,process50,1234
-paths = 200paths55,1377
-steps = 200steps56,1389
-horizon = 1horizon57,1401
-seed = 12345seed58,1413
-model = HestonModel(process)model60,1427
-res = simulateHeston(model, paths, steps, horizon, seed)res62,1457
-time = res[0, :]time64,1515
-simulations = res[1:, :].Tsimulations65,1532
-ival = {'v0': v0, 'kappa': 3.7, 'theta': v0,ival71,1601
-spot = SimpleQuote(1200)spot75,1719
-proc_bates = BatesProcess(proc_bates77,1745
-model_bates = BatesModel(proc_bates)model_bates82,1933
-res_bates = simulateBates(model_bates, paths, steps, horizon, seed)res_bates84,1971
-time = res_bates[0, :]time86,2040
-simulations = res_bates[1:, :].Tsimulations87,2063
-
-examples/make_zero_coupon.py,693
-def QLDateTodate(dt):QLDateTodate35,1161
-def dateToDate(dt):dateToDate42,1302
-def get_term_structure(df_libor, dtObs):get_term_structure45,1366
-def zero_curve(ts, dtObs):zero_curve119,3500
-    df_libor = pandas.load('data/df_libor.pkl')df_libor132,3932
-    dtObs = df_libor.indexdtObs133,3980
-    fig = plt.figure()fig135,4012
-    ax = fig.add_subplot(111)ax136,4035
-    ts = get_term_structure(df_libor, dtObs[0])ts139,4094
-    dtMin = dtMat[0]dtMin141,4185
-    ts = get_term_structure(df_libor, dtObs[-1])ts142,4206
-    dtMax = dtMat[-1]dtMax144,4299
-    dtI = dtObs[range(0, len(dtObs)-1, 100)]dtI151,4440
-        ts = get_term_structure(df_libor, dt)ts153,4504
-
-examples/download_libor_rates.py,586
-logger = logging.getLogger(__name__)logger22,571
-FRB_DATE_FORMAT = '%m/%d/%Y'FRB_DATE_FORMAT25,610
-def get_frb_url(start, end):get_frb_url31,858
-def good_row(z):good_row43,1120
-def load_frb_data(target_file='data/frb_h15.csv'):load_frb_data61,1468
-    fname = load_frb_data()fname87,2193
-    columns_dic = {columns_dic90,2243
-    df_libor = read_csv(df_libor107,2824
-    df_libor = df_libor.rename(columns=columns_dic)df_libor113,3008
-    good_rows = df_libor.apply(good_row, axis=1)good_rows115,3061
-    df_libor_clean = df_libor[good_rows]df_libor_clean117,3115
-
-examples/traits_example.py,928
-settings = Settings.instance()settings20,877
-calendar = TARGET()calendar21,908
-offset = 366offset23,929
-todays_date = today() - offsettodays_date25,943
-settlement_date = todays_date + 2settlement_date26,974
-class OptionValuation(HasTraits):OptionValuation31,1050
-    option_type = Enum(Put, Call)option_type34,1110
-    underlying = Float(36)underlying35,1144
-    strike = Float(40)strike36,1171
-    dividend_yield = Range(0.0, 0.5)dividend_yield37,1194
-    risk_free_rate = Range(0.0, 0.2)risk_free_rate38,1231
-    volatility = Range(0.0, 0.5)volatility39,1268
-    maturity = Date(datetime.date.today())maturity40,1301
-    daycounter = Actual365Fixed()daycounter41,1344
-    option_npv = Property(option_npv43,1379
-        depends_on=[depends_on44,1406
-    traits_view = View(traits_view52,1650
-    def _get_option_npv(self):_get_option_npv61,2004
-    model = OptionValuation()model109,3490
-
-examples/american_option.py,77
-def main():main22,957
-    def report(method, x, dx = None):report60,2099
-
-examples/cds.py,1826
-    calendar = TARGET()calendar24,733
-    todays_date = Date(15, May, 2007)todays_date26,758
-    todays_date = calendar.adjust(todays_date)todays_date28,825
-    ts_curve = FlatForward(ts_curve33,946
-    recovery_rate = 0.5recovery_rate44,1393
-    quoted_spreads = [0.0150, 0.0150, 0.0150, 0.0150 ]quoted_spreads45,1417
-    tenors = [Period(i, Months) for i in [3, 6, 12, 24]]tenors46,1472
-    maturities = [maturities47,1529
-    instruments = []instruments50,1632
-        helper = SpreadCdsHelper(helper52,1676
-    hazard_rate_structure = PiecewiseDefaultCurve(hazard_rate_structure60,1931
-    target = todays_date + Period(1, Years)target74,2405
-    nominal = 1000000.0;nominal88,2904
-    engine = MidPointCdsEngine(hazard_rate_structure, recovery_rate, ts_curve)engine90,3008
-    cds_schedule = Schedule(cds_schedule92,3088
-        termination_date_convention=Unadjusted,termination_date_convention94,3182
-        date_generation_rule=TwentiethIMMdate_generation_rule95,3230
-    cds_3m = CreditDefaultSwap(cds_3m98,3279
-    cds_schedule = Schedule(cds_schedule103,3412
-        termination_date_convention=Unadjusted,termination_date_convention105,3506
-        date_generation_rule=TwentiethIMMdate_generation_rule106,3554
-    cds_6m = CreditDefaultSwap(cds_6m109,3603
-    cds_schedule = Schedule(cds_schedule114,3736
-        termination_date_convention=Unadjusted,termination_date_convention116,3830
-        date_generation_rule=TwentiethIMMdate_generation_rule117,3878
-    cds_1y = CreditDefaultSwap(cds_1y120,3927
-    cds_schedule = Schedule(cds_schedule125,4060
-        termination_date_convention=Unadjusted,termination_date_convention127,4154
-        date_generation_rule=TwentiethIMMdate_generation_rule128,4202
-    cds_2y = CreditDefaultSwap(cds_2y131,4251
-
-examples/bonds.py,1125
-todays_date = Date(25, August, 2011)todays_date22,751
-settings = Settings.instance()settings25,790
-calendar = TARGET()calendar28,861
-effective_date = Date(10, Jul, 2006)effective_date29,881
-termination_date = calendar.advance(termination_date30,918
-settlement_days = 3settlement_days35,1012
-face_amount = 100.0face_amount36,1032
-coupon_rate = 0.05coupon_rate37,1052
-redemption = 100.0redemption38,1071
-fixed_bond_schedule = Schedule(fixed_bond_schedule40,1091
-issue_date = effective_dateissue_date50,1261
-bond = FixedRateBond(bond51,1289
-discounting_term_structure = YieldTermStructure(relinkable=True)discounting_term_structure62,1466
-flat_term_structure = FlatForward(flat_term_structure63,1531
-    settlement_days = 1,settlement_days64,1566
-    forward         = 0.044,forward65,1591
-    calendar        = NullCalendar(),calendar66,1620
-    daycounter      = Actual365Fixed(),daycounter67,1658
-    compounding     = Continuous,compounding68,1698
-    frequency       = Annual)frequency69,1732
-pricing_engine = DiscountingBondEngine(discounting_term_structure)pricing_engine71,1818
-
-examples/calibrate_heston.py,1447
-def dateToQLDate(dt):dateToQLDate21,873
-def dfToZeroCurve(df, dtSettlement, daycounter=Actual365Fixed()):dfToZeroCurve28,1006
-def heston_helpers(df_option, dtTrade=None, df_rates=None, ival=None):heston_helpers41,1393
-def merge_df(df_option, options, model_name):merge_df107,3485
-def bates_calibration(df_option, dtTrade=None, df_rates=None, ival=None):bates_calibration127,4244
-def heston_calibration(df_option, dtTrade=None, df_rates=None, ival=None):heston_calibration172,5652
-def batesdetjump_calibration(df_option, dtTrade=None, df_rates=None, ival=None):batesdetjump_calibration218,6995
-def batesdoubleexp_calibration(df_option, dtTrade=None, df_rates=None, ival=None):batesdoubleexp_calibration264,8517
-def batesdoubleexpdetjump_calibration(df_option, dtTrade=None, df_rates=None, ival=None):batesdoubleexpdetjump_calibration309,9949
-df_rates = pandas.load('data/df_rates.pkl')df_rates355,11495
-df_option = pandas.load('data/df_SPX_24jan2011.pkl')df_option358,11569
-dtTrade = df_option['dtTrade'][0]dtTrade359,11622
-    df_output = heston_calibration(df_option, dtTrade,df_output363,11701
-    df_output = bates_calibration(df_option, dtTrade,df_output369,11902
-   df_output = batesdetjump_calibration(df_option, dtTrade,df_output375,12107
-   df_output = batesdoubleexp_calibration(df_option, dtTrade,df_output381,12328
-   df_output = batesdoubleexpdetjump_calibration(df_option, dtTrade,df_output387,12562
-
-examples/calibration_plot.py,1208
-def calibration_subplot(ax, group, i, model_name):calibration_subplot7,129
-def calibration_plot(title, df_calibration, model_name):calibration_plot22,562
-  pandas.load('data/df_calibration_output_heston.pkl')df_calibration49,1399
-dtTrade = df_calibration['dtTrade'][0]dtTrade50,1454
-title = 'Heston Model (%s)' % dtTradetitle51,1493
-                   pandas.load('data/df_calibration_output_bates.pkl')df_calibration57,1633
-    dtTrade = df_calibration['dtTrade'][0]dtTrade58,1704
-    title = 'Bates Model (%s)' % dtTradetitle59,1747
-      pandas.load('data/df_calibration_output_batesdetjump.pkl')df_calibration64,1880
-    dtTrade = df_calibration['dtTrade'][0]dtTrade65,1945
-    title = 'Bates Det Jump Model (%s)' % dtTradetitle66,1988
-      pandas.load('data/df_calibration_output_batesdoubleexp.pkl')df_calibration71,2139
-    dtTrade = df_calibration['dtTrade'][0]dtTrade72,2206
-    title = 'Bates Double Exp Model (%s)' % dtTradetitle73,2249
-      pandas.load('data/df_calibration_output_batesdoubleexpdetjump.pkl')df_calibration78,2413
-    dtTrade = df_calibration['dtTrade'][0]dtTrade79,2487
-    title = 'Bates Double Exp Det Jump Model (%s)' % dtTradetitle80,2530
-
-examples/make_zc.py,323
-def get_term_structure(df_libor, dtObs):get_term_structure31,1049
-def QLDateTodate(dt):QLDateTodate104,3155
-def zero_curve(ts):zero_curve111,3283
-    df_libor = pandas.load('data/df_libor.pkl')df_libor123,3676
-    dtObs = datetime(2011,12,29)dtObs125,3725
-    ts = get_term_structure(df_libor, dtObs)ts127,3759
-
-docs/source/conf.py,755
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.autosummary']extensions28,1053
-templates_path = ['_templates']templates_path31,1189
-source_suffix = '.rst'source_suffix34,1256
-master_doc = 'index'master_doc40,1375
-project = u'Quantlib cython wrapper'project43,1438
-copyright = u'2011, Didrik Pinte, Patrick Henaff'copyright44,1475
-version = '0.1'version51,1727
-release = '0.1.1'release53,1793
-exclude_patterns = []exclude_patterns67,2280
-pygments_style = 'sphinx'pygments_style84,2846
-html_theme = 'default'html_theme94,3145
-html_static_path = ['_static']html_static_path123,4229
-htmlhelp_basename = 'Quantlibcythonwrapperdoc'htmlhelp_basename167,5655
-latex_documents = [latex_documents180,6067
-man_pages = [man_pages213,7011
