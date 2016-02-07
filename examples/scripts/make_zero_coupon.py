@@ -125,9 +125,11 @@ def get_term_structure(df_libor, dtObs):
 
 
 def zero_curve(ts, dtObs):
+    dtMax = ts.max_date
     calendar = TARGET()
     days = range(10, 365 * 20, 30)
-    dtMat = [calendar.advance(dateToDate(dtObs), d, Days) for d in days]
+    dtMat = [min(dtMax, calendar.advance(dateToDate(dtObs), d, Days))
+             for d in days]
     df = np.array([ts.discount(dt) for dt in dtMat])
     dtMat = [QLDateTodate(dt) for dt in dtMat]
     dtToday = QLDateTodate(dtObs)
@@ -137,7 +139,7 @@ def zero_curve(ts, dtObs):
 
 if __name__ == '__main__':
 
-    df_libor = pandas.load('data/df_libor.pkl')
+    df_libor = pandas.load('../data/df_libor.pkl')
     dtObs = df_libor.index
 
     fig = plt.figure()
@@ -156,11 +158,10 @@ if __name__ == '__main__':
     ax.set_xlim(dtMin, dtMax)
     ax.set_ylim(0.0, 0.1)
 
-    dtI = dtObs[range(0, len(dtObs) - 1, 100)]
+    # TODO: fix uncaught python error when range step=100
+    dtI = dtObs[range(0, len(dtObs) - 1, 99)]
     for dt in dtI:
-        print('dt: %s' % dt)
         ts = get_term_structure(df_libor, dt)
-        print('after get_term_structure' )
         (dtMat, zc) = zero_curve(ts, dt)
         ax.plot(dtMat, zc)
 
