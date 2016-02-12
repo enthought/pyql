@@ -18,7 +18,8 @@ namespace QuantLib {
     typedef boost::shared_ptr<YieldTermStructure> TS;
 
     // Creates a YieldTermStructure based on a PiecewiseYieldCurve
-    TS term_structure_factory(
+    // Throws QuanlLib::Error
+  TS term_structure_factory(
         std::string& traits, std::string& interpolator, 
         const Date& settlement_date,
         const std::vector<boost::shared_ptr<RateHelper> >& curve_input, 

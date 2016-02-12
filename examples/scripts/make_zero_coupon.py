@@ -92,7 +92,7 @@ def get_term_structure(df_libor, dtObs):
 
         rate_helpers.append(helper)
 
-    liborIndex = Libor('USD Libor', Period(6, Months),
+    liborIndex = Libor('USD Libor', Period(3, Months),
                        settlement_days,
                        USDCurrency(), calendar,
                        Actual360())
@@ -105,8 +105,8 @@ def get_term_structure(df_libor, dtObs):
         helper = SwapRateHelper.from_tenor(
             SimpleQuote(rate / 100.0),
             Period(m, Years),
-            calendar, Annual,
-            Unadjusted, Thirty360(),
+            calendar, Semiannual,
+            ModifiedFollowing, Thirty360(),
             liborIndex, spread, fwdStart)
 
         rate_helpers.append(helper)
@@ -126,11 +126,20 @@ def get_term_structure(df_libor, dtObs):
 
 def zero_curve(ts, dtObs):
     dtMax = ts.max_date
+    print('dtObs: %s Max date: %s' % (dtObs, dtMax))
+    
     calendar = TARGET()
     days = range(10, 365 * 20, 30)
     dtMat = [min(dtMax, calendar.advance(dateToDate(dtObs), d, Days))
              for d in days]
-    df = np.array([ts.discount(dt) for dt in dtMat])
+    print('Largest dtMat: %s' % dtMat[-1])
+    # largest dtMat < dtMax, yet QL run time error
+    for dt in dtMat:
+        print('dt: %s' % dt)
+
+        df = ts.discount(dt, True)
+
+    df = np.array([ts.discount(dt, extrapolate=True) for dt in dtMat])
     dtMat = [QLDateTodate(dt) for dt in dtMat]
     dtToday = QLDateTodate(dtObs)
     dt = np.array([(d - dtToday).days / 365.0 for d in dtMat])
@@ -159,10 +168,15 @@ if __name__ == '__main__':
     ax.set_ylim(0.0, 0.1)
 
     # TODO: fix uncaught python error when range step=100
-    dtI = dtObs[range(0, len(dtObs) - 1, 99)]
+    dtI = dtObs[range(0, len(dtObs) - 1, 100)]
     for dt in dtI:
+        print('dt: %s' % dt)
         ts = get_term_structure(df_libor, dt)
+        print('after get_term_structure')
+        # dt 2007-04-27 causes an exception
         (dtMat, zc) = zero_curve(ts, dt)
+        print('after zero_curve')
+
         ax.plot(dtMat, zc)
 
     plt.title('Zero-coupon USD Libor from %s to %s' %

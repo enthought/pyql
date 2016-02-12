@@ -1,7 +1,7 @@
 include '../../types.pxi'
 from cython.operator cimport dereference as deref
 
-from libcpp cimport bool as cbool
+from libcpp cimport bool
 
 from quantlib.time._period cimport Frequency
 from quantlib.time.calendar cimport Calendar
@@ -85,7 +85,7 @@ cdef class YieldTermStructure:
 
     def zero_rate(
             self, Date date, DayCounter day_counter,
-            int compounding, int frequency=Annual, extrapolate=False):
+            int compounding, int frequency=Annual, bool extrapolate=False):
         """ Returns the implied zero-yield rate for the given date.
 
         The time is calculated as a fraction of year from the reference date.
@@ -126,7 +126,7 @@ cdef class YieldTermStructure:
 
     def forward_rate(
             self, Date d1, Date d2, DayCounter day_counter,
-            int compounding, int frequency=Annual, extrapolate=False):
+            int compounding, int frequency=Annual, bool extrapolate=False):
         """ Returns the forward interest rate between two dates or times.
 
         In the former case, times are calculated as fractions of year from the
@@ -167,19 +167,22 @@ cdef class YieldTermStructure:
 
         return forward_rate
 
-    def discount(self, value):
+    def discount(self, value, bool extrapolate=None):
         self._raise_if_empty()
 
         cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
 
+        if extrapolate is None:
+            extrapolate = False
+
+        discount_value = 0	
+
         if isinstance(value, Date):
             discount_value = term_structure.discount(
-                deref((<Date>value)._thisptr.get())
-            )
+                deref((<Date>value)._thisptr.get()), extrapolate)
         elif isinstance(value, float):
             discount_value = term_structure.discount(
-                <Time>value
-            )
+                <Time>value, extrapolate)
         else:
             raise ValueError('Unsupported value type')
 

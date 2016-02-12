@@ -66,7 +66,7 @@ cdef class SimpleCashFlow(CashFlow):
             self.amount, self.date
         )
 
-cdef object leg_items(vector[shared_ptr[_cf.CashFlow]] leg):
+cdef leg_items(vector[shared_ptr[_cf.CashFlow]] leg):
     """
     Returns a list of (amount, pydate)
     """
