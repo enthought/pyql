@@ -6,6 +6,7 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
+
 from __future__ import division
 from __future__ import print_function
 
@@ -20,7 +21,7 @@ from quantlib.termstructures.yields.piecewise_yield_curve import \
     PiecewiseYieldCurve
 from quantlib.time.api import Date, TARGET, Period, Months, Years, Days
 from quantlib.time.api import (ModifiedFollowing, Unadjusted, Actual360,
-                               Thirty360, ActualActual)
+                               Thirty360, Semiannual, ActualActual)
 
 from quantlib.time.api import ISDA
 from quantlib.currency.api import USDCurrency
@@ -126,19 +127,13 @@ def get_term_structure(df_libor, dtObs):
 
 def zero_curve(ts, dtObs):
     dtMax = ts.max_date
-    print('dtObs: %s Max date: %s' % (dtObs, dtMax))
     
     calendar = TARGET()
     days = range(10, 365 * 20, 30)
     dtMat = [min(dtMax, calendar.advance(dateToDate(dtObs), d, Days))
              for d in days]
-    print('Largest dtMat: %s' % dtMat[-1])
     # largest dtMat < dtMax, yet QL run time error
-    for dt in dtMat:
-        print('dt: %s' % dt)
-
-        df = ts.discount(dt, True)
-
+  
     df = np.array([ts.discount(dt, extrapolate=True) for dt in dtMat])
     dtMat = [QLDateTodate(dt) for dt in dtMat]
     dtToday = QLDateTodate(dtObs)
@@ -148,7 +143,7 @@ def zero_curve(ts, dtObs):
 
 if __name__ == '__main__':
 
-    df_libor = pandas.load('../data/df_libor.pkl')
+    df_libor = pandas.load('examples/data/df_libor.pkl')
     dtObs = df_libor.index
 
     fig = plt.figure()
@@ -167,18 +162,15 @@ if __name__ == '__main__':
     ax.set_xlim(dtMin, dtMax)
     ax.set_ylim(0.0, 0.1)
 
-    # TODO: fix uncaught python error when range step=100
     dtI = dtObs[range(0, len(dtObs) - 1, 100)]
     for dt in dtI:
-        print('dt: %s' % dt)
-        ts = get_term_structure(df_libor, dt)
-        print('after get_term_structure')
-        # dt 2007-04-27 causes an exception
-        (dtMat, zc) = zero_curve(ts, dt)
-        print('after zero_curve')
-
-        ax.plot(dtMat, zc)
-
+        try:
+            ts = get_term_structure(df_libor, dt)
+            (dtMat, zc) = zero_curve(ts, dt)
+            ax.plot(dtMat, zc)
+        except:
+            print('Error when computing ZC curve for %s' % dt)
+            
     plt.title('Zero-coupon USD Libor from %s to %s' %
               (dtI[0].strftime('%m/%d/%Y'),
                dtI[-1].strftime('%m/%d/%Y')))
