@@ -8,9 +8,12 @@
 """
 
 from .unittest_tools import unittest
+
+import datetime
+
 from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure
-)
+    FlatForward, YieldTermStructure)
+
 from quantlib.quotes import SimpleQuote
 
 from quantlib.settings import Settings
@@ -24,6 +27,15 @@ from quantlib.time.api import Date, Actual360
 from quantlib.market.market import libor_market, IborMarket
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.forward_spreaded_term_structure import ForwardSpreadedTermStructure
+
+from quantlib.util.rates import make_rate_helper, zero_rate
+import quantlib.reference.names as nm
+import quantlib.reference.data_structures as ds
+
+from quantlib.termstructures.yields.api import PiecewiseYieldCurve
+from quantlib.time.api import ActualActual, ISDA
+from quantlib.util.converter import pydate_to_qldate
+from quantlib.quotes import SimpleQuote
 
 class SimpleQuoteTestCase(unittest.TestCase):
 
@@ -87,6 +99,7 @@ class YieldTermStructureTestCase(unittest.TestCase):
             discounting_term_structure.discount(evaluation_date)
         )
 
+
 class FlatForwardTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -99,12 +112,46 @@ class FlatForwardTestCase(unittest.TestCase):
             today(), self.settlement_days, Days
         )
 
+
+    def test_accessors(self):
+        """ testing accessors """
+
+        rates_data = [('Libor1M',.01),
+                  ('Libor3M', .015),
+                  ('Libor6M', .017),
+                  ('Swap1Y', .02),
+                  ('Swap2Y', .03),
+                  ('Swap3Y', .04),
+                  ('Swap5Y', .05),
+                  ('Swap7Y', .06),
+                  ('Swap10Y', .07),
+                  ('Swap20Y', .08)]
+
+        settlement_date = pydate_to_qldate('01-Dec-2013')
+        rate_helpers = []
+        for label, rate in rates_data:
+            h = make_rate_helper(label, rate, settlement_date)
+            rate_helpers.append(h)
+
+            ts_day_counter = ActualActual(ISDA)
+            tolerance = 1.0e-15
+
+        ts = PiecewiseYieldCurve(
+            'discount', 'loglinear', settlement_date, rate_helpers,
+            ts_day_counter, tolerance)
+
+        self.assertEqual(ts.day_counter.name(), 'Actual/Actual (ISDA)')
+        self.assertAlmostEqual(ts.time_from_reference(Date(1, 12, 2016)), 3.0,
+                               delta=0.001)
+        self.assertEqual(ts.reference_date, datetime.date(2013, 12, 1))
+
     def test_reference_evaluation_data_changed(self):
         """Testing term structure against evaluation date change... """
 
         quote = SimpleQuote()
         term_structure = FlatForward(settlement_days=self.settlement_days,
-            forward=quote, calendar=NullCalendar(), daycounter=Actual360())
+                                     forward=quote, calendar=NullCalendar(),
+                                     daycounter=Actual360())
 
         quote.value = 0.03
 
@@ -119,18 +166,19 @@ class FlatForwardTestCase(unittest.TestCase):
         calculated = []
         for days in [10, 30, 60, 120, 360, 720]:
             calculated.append(
-                term_structure.discount(self.adjusted_today+ 30 + days)
+                term_structure.discount(self.adjusted_today + 30 + days)
             )
 
         for i, val in enumerate(expected):
             self.assertAlmostEquals(val, calculated[i])
 
-class ForwardSpreadedTestCase(unittest.TestCase): 
-    
+            
+class ForwardSpreadedTestCase(unittest.TestCase):
+
     def test_forward_spreaded_ts(self):
         m = libor_market('USD(NY)')
         eval_date = Date(20, 9, 2004)
-        
+       
         quotes = [('DEP', '1W', SimpleQuote(0.0382)),
                     ('DEP', '1M', SimpleQuote(0.0372)),
                     ('DEP', '3M', SimpleQuote(0.0363)),

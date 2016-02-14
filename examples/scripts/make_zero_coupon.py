@@ -20,7 +20,7 @@ from quantlib.termstructures.yields.rate_helpers import \
 from quantlib.termstructures.yields.piecewise_yield_curve import \
     PiecewiseYieldCurve
 from quantlib.time.api import Date, TARGET, Period, Months, Years, Days
-from quantlib.time.api import (ModifiedFollowing, Unadjusted, Actual360,
+from quantlib.time.api import (ModifiedFollowing, Actual360,
                                Thirty360, Semiannual, ActualActual)
 
 from quantlib.time.api import ISDA
@@ -28,7 +28,6 @@ from quantlib.currency.api import USDCurrency
 from quantlib.quotes import SimpleQuote
 
 from quantlib.indexes.libor import Libor
-from quantlib.time.date import Annual
 
 import datetime
 
@@ -127,13 +126,13 @@ def get_term_structure(df_libor, dtObs):
 
 def zero_curve(ts, dtObs):
     dtMax = ts.max_date
-    
+
     calendar = TARGET()
     days = range(10, 365 * 20, 30)
     dtMat = [min(dtMax, calendar.advance(dateToDate(dtObs), d, Days))
              for d in days]
     # largest dtMat < dtMax, yet QL run time error
-  
+
     df = np.array([ts.discount(dt, extrapolate=True) for dt in dtMat])
     dtMat = [QLDateTodate(dt) for dt in dtMat]
     dtToday = QLDateTodate(dtObs)
@@ -170,7 +169,7 @@ if __name__ == '__main__':
             ax.plot(dtMat, zc)
         except:
             print('Error when computing ZC curve for %s' % dt)
-            
+
     plt.title('Zero-coupon USD Libor from %s to %s' %
               (dtI[0].strftime('%m/%d/%Y'),
                dtI[-1].strftime('%m/%d/%Y')))
