@@ -166,7 +166,7 @@ class FlatForwardTestCase(unittest.TestCase):
             'discount', 'loglinear', settlement_date, rate_helpers,
             ts_day_counter, tolerance)
 
-        self.assertEqual(ts.day_counter.name(), 'Actual/Actual (ISDA)')
+        self.assertEqual(ts.day_counter.name(), b"Actual/Actual (ISDA)")
         self.assertAlmostEqual(ts.time_from_reference(Date(1, 12, 2016)), 3.0,
                                delta=0.001)
         self.assertEqual(ts.reference_date, datetime.date(2013, 12, 1))
