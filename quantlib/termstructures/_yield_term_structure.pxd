@@ -46,8 +46,6 @@ cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib'
         Time maxTime() except +
         Calendar calendar() except +
         int settlementDays() except +
-        vector[Date] jumpDates() except +
-        vector[Time] jumpTimes() except +
         InterestRate zeroRate(Date& d,
                               DayCounter& resultDayCounter,
                               Compounding comp,

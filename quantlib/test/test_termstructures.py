@@ -10,6 +10,7 @@
 from .unittest_tools import unittest
 
 import datetime
+import numpy as np
 
 from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure)
@@ -32,10 +33,35 @@ from quantlib.util.rates import make_rate_helper, zero_rate
 import quantlib.reference.names as nm
 import quantlib.reference.data_structures as ds
 
-from quantlib.termstructures.yields.api import PiecewiseYieldCurve
+from quantlib.termstructures.yields.api import PiecewiseYieldCurve, ZeroCurve
 from quantlib.time.api import ActualActual, ISDA
 from quantlib.util.converter import pydate_to_qldate
 from quantlib.quotes import SimpleQuote
+
+def QLDateTodate(dt):
+    """
+    Converts a QL Date to a datetime
+    """
+
+    return datetime.datetime(dt.year, dt.month, dt.day)
+
+def dateToDate(dt):
+    return Date(dt.day, dt.month, dt.year)
+
+def zero_curve(ts, dtObs):
+    dtMax = ts.max_date
+
+    calendar = TARGET()
+    days = range(10, 365 * 10, 100)
+    dtMat = [min(dtMax, calendar.advance(dateToDate(dtObs), d, Days))
+             for d in days]
+
+    df = np.array([ts.discount(dt, extrapolate=True) for dt in dtMat])
+    dtP = [QLDateTodate(dt) for dt in dtMat]
+    dtToday = QLDateTodate(dtObs)
+    dt = np.array([(d - dtToday).days / 365.0 for d in dtP])
+    zc = -np.log(df) / dt
+    return (dtMat, zc)
 
 class SimpleQuoteTestCase(unittest.TestCase):
 
@@ -144,6 +170,7 @@ class FlatForwardTestCase(unittest.TestCase):
         self.assertAlmostEqual(ts.time_from_reference(Date(1, 12, 2016)), 3.0,
                                delta=0.001)
         self.assertEqual(ts.reference_date, datetime.date(2013, 12, 1))
+
 
     def test_reference_evaluation_data_changed(self):
         """Testing term structure against evaluation date change... """

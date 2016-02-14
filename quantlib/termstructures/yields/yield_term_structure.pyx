@@ -232,16 +232,4 @@ cdef class YieldTermStructure:
             cdef int days = term_structure.settlementDays()
             return days
 
-    property jump_dates:
-        def __get__(self):
-            self._raise_if_empty()
-            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
-            cdef vector[_date.Date] tmp = term_structure.jumpDates()
-            return [date_from_qldate(dt) for dt in tmp]
-
-    property jump_times:
-        def __get__(self):
-            self._raise_if_empty()
-            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
-            cdef vector[Time] tmp = term_structure.jumpTimes()
-            return [t for t in tmp]
+        
