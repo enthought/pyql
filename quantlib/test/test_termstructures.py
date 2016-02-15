@@ -24,19 +24,17 @@ from quantlib.time.daycounter import Actual360, Actual365Fixed
 from quantlib.time.date import today, Days
 
 from quantlib.compounding import Simple
-from quantlib.time.api import Date, Actual360
-from quantlib.market.market import libor_market, IborMarket
-from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.forward_spreaded_term_structure import ForwardSpreadedTermStructure
+from quantlib.time.api import Date
+from quantlib.market.market import libor_market
+from quantlib.termstructures.yields.forward_spreaded_term_structure import \
+    ForwardSpreadedTermStructure
 
-from quantlib.util.rates import make_rate_helper, zero_rate
-import quantlib.reference.names as nm
-import quantlib.reference.data_structures as ds
+from quantlib.util.rates import make_rate_helper
 
-from quantlib.termstructures.yields.api import PiecewiseYieldCurve, ZeroCurve
+from quantlib.termstructures.yields.api import PiecewiseYieldCurve
 from quantlib.time.api import ActualActual, ISDA
 from quantlib.util.converter import pydate_to_qldate
-from quantlib.quotes import SimpleQuote
+
 
 def QLDateTodate(dt):
     """
@@ -45,8 +43,10 @@ def QLDateTodate(dt):
 
     return datetime.datetime(dt.year, dt.month, dt.day)
 
+
 def dateToDate(dt):
     return Date(dt.day, dt.month, dt.year)
+
 
 def zero_curve(ts, dtObs):
     dtMax = ts.max_date
@@ -62,6 +62,7 @@ def zero_curve(ts, dtObs):
     dt = np.array([(d - dtToday).days / 365.0 for d in dtP])
     zc = -np.log(df) / dt
     return (dtMat, zc)
+
 
 class SimpleQuoteTestCase(unittest.TestCase):
 
@@ -108,7 +109,6 @@ class YieldTermStructureTestCase(unittest.TestCase):
             flat_term_structure.discount(evaluation_date),
             discounting_term_structure.discount(evaluation_date)
         )
-
 
         another_flat_term_structure = FlatForward(settlement_days=10,
             forward=0.067, calendar=NullCalendar(), daycounter=Actual365Fixed())
