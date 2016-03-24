@@ -19,5 +19,5 @@ Prerequisites
 Building the library
 --------------------
 
-See the getting_started.rst documentation in docs/source for the 
+See the [Getting started](docs/source/getting_started.rst) document for the 
 full details!
