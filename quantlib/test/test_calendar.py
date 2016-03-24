@@ -34,16 +34,16 @@ class TestQuantLibCalendar(unittest.TestCase):
     def test_calendar_creation(self):
 
         calendar = TARGET()
-        self.assertEquals('TARGET',  calendar.name)
+        self.assertEqual('TARGET',  calendar.name)
 
         ukcalendar = UnitedKingdom()
-        self.assertEquals('UK settlement',  ukcalendar.name)
+        self.assertEqual('UK settlement',  ukcalendar.name)
 
         lse_cal = UnitedKingdom(market=EXCHANGE)
-        self.assertEquals('London stock exchange',  lse_cal.name)
+        self.assertEqual('London stock exchange',  lse_cal.name)
 
         null_calendar = NullCalendar()
-        self.assertEquals('Null', null_calendar.name)
+        self.assertEqual('Null', null_calendar.name)
 
     def test_christmas_is_holiday(self):
 
@@ -92,7 +92,7 @@ class TestQuantLibCalendar(unittest.TestCase):
 
         day_count = ukcal.business_days_between(date1, date2, include_last=True)
 
-        self.assertEquals(4, day_count)
+        self.assertEqual(4, day_count)
 
     def test_holiday_list_acces_and_modification(self):
 
@@ -101,7 +101,7 @@ class TestQuantLibCalendar(unittest.TestCase):
         holidays = list(
             holiday_list(ukcal, Date(1, Jan, 2011), Date(31, 12,2011) )
         )
-        self.assertEquals(UK_HOLIDAYS_2011, len(holidays))
+        self.assertEqual(UK_HOLIDAYS_2011, len(holidays))
 
         new_holiday_date = Date(23, August, 2011)
 
@@ -110,14 +110,14 @@ class TestQuantLibCalendar(unittest.TestCase):
         holidays = list(
             holiday_list(ukcal, Date(1, Jan, 2011), Date(31, 12,2011) )
         )
-        self.assertEquals(UK_HOLIDAYS_2011 + 1, len(holidays))
+        self.assertEqual(UK_HOLIDAYS_2011 + 1, len(holidays))
 
         ukcal.remove_holiday(new_holiday_date)
 
         holidays = list(
             holiday_list(ukcal, Date(1, Jan, 2011), Date(31, 12,2011) )
         )
-        self.assertEquals(UK_HOLIDAYS_2011, len(holidays))
+        self.assertEqual(UK_HOLIDAYS_2011, len(holidays))
 
     def test_adjust_business_day(self):
 
@@ -186,31 +186,31 @@ class TestQuantLibCalendar(unittest.TestCase):
         Dec_30_2009 = Date(30, Dec, 2009)
         Jan_4_2010 = Date(4, Jan, 2010)
 
-        self.assertEquals(
+        self.assertEqual(
             Dec_30_2009, frankfcal.adjust(second_date , Preceding)
         )
-        self.assertEquals(
+        self.assertEqual(
             Jan_4_2010,
             frankfcal.adjust(second_date , ModifiedPreceding)
         )
 
         mat = Period(2,Months)
 
-        self.assertEquals(
+        self.assertEqual(
             Jan_4_2010,
             frankfcal.advance(
                 first_date, period=mat, convention=Following,
                 end_of_month=False
             )
         )
-        self.assertEquals(
+        self.assertEqual(
             Dec_30_2009,
             frankfcal.advance(
                 first_date, period=mat, convention=ModifiedFollowing,
                 end_of_month=False
             )
         )
-        self.assertEquals(
+        self.assertEqual(
             41,
             frankfcal.business_days_between(
                 first_date, second_date, False, False

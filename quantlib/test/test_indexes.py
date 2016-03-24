@@ -67,9 +67,9 @@ class TestLibor(unittest.TestCase):
                       term_structure)
 
         t = index.tenor
-        self.assertEquals(t.length, 6)
-        self.assertEquals(t.units, 2)
-        self.assertEquals('USD Libor6M Actual/360', index.name)
+        self.assertEqual(t.length, 6)
+        self.assertEqual(t.units, 2)
+        self.assertEqual('USD Libor6M Actual/360', index.name)
 
 
 class TestEuribor(unittest.TestCase):
@@ -83,13 +83,13 @@ class TestEuribor(unittest.TestCase):
         # Makes sure the constructor does not segfault anymore ;-)
         index = Euribor6M(term_structure)
 
-        self.assertEquals(index.name, 'Euribor6M Actual/360')
+        self.assertEqual(index.name, 'Euribor6M Actual/360')
 
 
     def test_empty_constructor(self):
 
         euribor_6m_index = Euribor6M()
-        self.assertEquals(euribor_6m_index.name, 'Euribor6M Actual/360')
+        self.assertEqual(euribor_6m_index.name, 'Euribor6M Actual/360')
 
 
 class SwapIndexTestCase(unittest.TestCase):

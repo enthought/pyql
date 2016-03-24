@@ -175,15 +175,15 @@ class BondFunctionTestCase(unittest.TestCase):
         yld_disco  = bf.yld(bond, 95.0, ActualActual(ISDA), Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)
         dur_disco  = bf.duration(bond, yld_disco, ActualActual(ISDA), Compounded, Semiannual, 2, settlement_date)        
         
-        self.assertEquals(round(zspd, 6), 0.001281)
-        self.assertEquals(round(pyc_zspd, 4), -0.0264)
-        self.assertEquals(round(pyc_zspd_disco, 4), -0.0114)
+        self.assertEqual(round(zspd, 6), 0.001281)
+        self.assertEqual(round(pyc_zspd, 4), -0.0264)
+        self.assertEqual(round(pyc_zspd_disco, 4), -0.0114)
         
-        self.assertEquals(round(yld, 4), 0.0338)
-        self.assertEquals(round(yld_disco, 4), 0.0426)
+        self.assertEqual(round(yld, 4), 0.0338)
+        self.assertEqual(round(yld_disco, 4), 0.0426)
         
-        self.assertEquals(round(dur, 4), 8.0655)
-        self.assertEquals(round(dur_disco, 4), 7.9702)
+        self.assertEqual(round(dur, 4), 8.0655)
+        self.assertEqual(round(dur_disco, 4), 7.9702)
 
 
 

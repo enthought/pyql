@@ -32,7 +32,7 @@ class RateHelpersTestCase(unittest.TestCase):
         )
 
         self.assertIsNotNone(helper)
-        self.assertEquals(quote.value, helper.quote)
+        self.assertEqual(quote.value, helper.quote)
 
 
     def test_create_fra_rate_helper(self):
@@ -53,7 +53,7 @@ class RateHelpersTestCase(unittest.TestCase):
         )
 
         self.assertIsNotNone(helper)
-        self.assertEquals(quote.value, helper.quote)
+        self.assertEqual(quote.value, helper.quote)
 
     def test_create_futures_rate_helper(self):
 
@@ -72,7 +72,7 @@ class RateHelpersTestCase(unittest.TestCase):
         )
 
         self.assertIsNotNone(helper)
-        self.assertEquals(quote.value, helper.quote)
+        self.assertEqual(quote.value, helper.quote)
 
 
     def test_create_swap_rate_helper_no_classmethod(self):
@@ -110,10 +110,10 @@ class RateHelpersTestCase(unittest.TestCase):
         #)
 
         self.assertIsNotNone(helper)
-        self.assertAlmostEquals(rate.value, helper.quote)
+        self.assertAlmostEqual(rate.value, helper.quote)
 
         with self.assertRaises(RuntimeError):
-            self.assertAlmostEquals(rate.value, helper.implied_quote)
+            self.assertAlmostEqual(rate.value, helper.implied_quote)
 
 if __name__ == '__main__':
     unittest.main()
