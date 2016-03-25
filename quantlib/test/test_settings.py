@@ -31,7 +31,7 @@ class SettingsTestCase(unittest.TestCase):
 
         Settings.instance().evaluation_date = today()
 
-        self.assertEquals(
+        self.assertEqual(
                 today(),
                 Settings.instance().evaluation_date
         )
@@ -82,7 +82,7 @@ class SettingsTestCase(unittest.TestCase):
             issue_date
         )
 
-        self.assertEquals(
+        self.assertEqual(
             calendar.advance(todays_date, 3, Days), bond.settlement_date())
 
     def test_bond_schedule_anotherday(self):
@@ -131,7 +131,7 @@ class SettingsTestCase(unittest.TestCase):
             issue_date
         )
 
-        self.assertEquals(
+        self.assertEqual(
             calendar.advance(todays_date, 3, Days), bond.settlement_date())
        
     def test_bond_schedule_anotherday_bug_cython_implementation(self):
@@ -139,9 +139,9 @@ class SettingsTestCase(unittest.TestCase):
         import quantlib.test.test_cython_bug as tcb
 
         date1, date2  = tcb.test_bond_schedule_today_cython()
-        self.assertEquals(date1, date2)
+        self.assertEqual(date1, date2)
         
         date1, date2  = tcb.test_bond_schedule_anotherday_cython()
-        self.assertEquals(date1, date2)
+        self.assertEqual(date1, date2)
     
 

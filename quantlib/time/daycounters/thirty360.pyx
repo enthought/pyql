@@ -1,3 +1,6 @@
+# coding: utf-8
+
+from __future__ cimport unicode_literals
 
 cimport quantlib.time._daycounter as _daycounter
 cimport quantlib.time.daycounters._thirty360 as _th
@@ -56,7 +59,7 @@ cdef class Thirty360(DayCounter):
         self._thisptr = <_daycounter.DayCounter*> new \
             _th.Thirty360(<_th.Convention> convention)
 
-cdef _daycounter.DayCounter* from_name(str name, str convention):
+cdef _daycounter.DayCounter* from_name(convention):
 
     cdef _th.Convention ql_convention = <_th.Convention>CONVENTIONS[convention]
 

@@ -6,5 +6,5 @@ cdef class ActualActual(DayCounter):
     pass
 
 
-cdef _daycounter.DayCounter* from_name(str name, str convention)
+cdef _daycounter.DayCounter* from_name(convention)
 

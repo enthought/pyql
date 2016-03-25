@@ -92,19 +92,19 @@ class VanillaOptionTestCase(unittest.TestCase):
 
     def test_str(self):
         quote_str = str(self.underlyingH)
-        self.assertEquals('Simple Quote: 36.000000', quote_str)
+        self.assertEqual('Simple Quote: 36.000000', quote_str)
 
         payoff_str = str(self.payoff)
-        self.assertEquals('Payoff: Vanilla Put @ 40.000000', payoff_str)
+        self.assertEqual('Payoff: Vanilla Put @ 40.000000', payoff_str)
 
         exercise = EuropeanExercise(self.maturity)
         exercise_str = str(exercise)
-        self.assertEquals('Exercise type: European', exercise_str)
+        self.assertEqual('Exercise type: European', exercise_str)
 
         option = VanillaOption(self.payoff, exercise)
-        self.assertEquals('Exercise type: European', str(option.exercise))
+        self.assertEqual('Exercise type: European', str(option.exercise))
         vanilla_str = str(option)
-        self.assertEquals('VanillaOption Exercise type: ' +
+        self.assertEqual('VanillaOption Exercise type: ' +
                           'European Payoff: Vanilla', vanilla_str)
 
     def test_european_vanilla_option_usage(self):
@@ -118,7 +118,7 @@ class VanillaOptionTestCase(unittest.TestCase):
 
         european_option.set_pricing_engine(analytic_european_engine)
 
-        self.assertAlmostEquals(3.844308, european_option.net_present_value, 6)
+        self.assertAlmostEqual(3.844308, european_option.net_present_value, 6)
 
     def test_implied_volatility(self):
 
@@ -140,7 +140,7 @@ class VanillaOptionTestCase(unittest.TestCase):
             .1,
             .5)
 
-        self.assertAlmostEquals(.20, implied_volatility, 4)
+        self.assertAlmostEqual(.20, implied_volatility, 4)
 
     def test_american_vanilla_option(self):
 
@@ -153,7 +153,7 @@ class VanillaOptionTestCase(unittest.TestCase):
 
         american_option.set_pricing_engine(engine)
 
-        self.assertAlmostEquals(4.459628, american_option.net_present_value, 6)
+        self.assertAlmostEqual(4.459628, american_option.net_present_value, 6)
 
     def test_american_vanilla_option_with_earliest_date(self):
 
@@ -169,7 +169,7 @@ class VanillaOptionTestCase(unittest.TestCase):
 
         american_option.set_pricing_engine(engine)
 
-        self.assertAlmostEquals(4.459628, american_option.net_present_value, 6)
+        self.assertAlmostEqual(4.459628, american_option.net_present_value, 6)
 
     def test_american_vanilla_option_with_earliest_date_wrong_order(self):
 
@@ -194,7 +194,7 @@ class VanillaOptionTestCase(unittest.TestCase):
         american_option.set_pricing_engine(engine)
 
         #Note slightly different value using CrankNicolson
-        self.assertAlmostEquals(4.485992, american_option.net_present_value, 6)
+        self.assertAlmostEqual(4.485992, american_option.net_present_value, 6)
 
     def test_dividend_american_option_implied_volatility(self):
 
@@ -219,7 +219,7 @@ class VanillaOptionTestCase(unittest.TestCase):
             self.max_vol
         )
 
-        self.assertAlmostEquals(0.200, implied_volatility, 3)
+        self.assertAlmostEqual(0.200, implied_volatility, 3)
 
 if __name__ == '__main__':
     unittest.main()

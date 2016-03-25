@@ -29,3 +29,17 @@ cdef py_string_from_utf8_array(const char* char_array):
     else:
         return char_array.decode('UTF-8')
 
+# from Cython doc: convert various string representations to UTF-8 if needed
+
+cdef unicode _ustring(s):
+    if type(s) is unicode:
+        # fast path for most common case(s)
+        return <unicode>s
+    elif PY_MAJOR_VERSION < 3 and isinstance(s, str):
+        return s.decode('UTF-8')
+    elif PY_MAJOR_VERSION >= 3 and isinstance(s, bytes):
+        return s.decode('UTF-8')
+    elif isinstance(s, unicode):
+        return unicode(s)
+    else:
+        raise TypeError("Unknown type for s: %s (trying to convert to unicode)" % type(s))

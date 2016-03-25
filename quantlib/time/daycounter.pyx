@@ -1,3 +1,6 @@
+# coding: utf-8
+from __future__ cimport unicode_literals
+
 from cython.operator cimport dereference as deref
 from libcpp.string cimport string
 
@@ -10,6 +13,8 @@ from calendar cimport Calendar
 from quantlib.util.compat cimport py_string_from_utf8_array
 from quantlib.time.daycounters.actual_actual cimport from_name as aa_from_name
 from quantlib.time.daycounters.thirty360 cimport from_name as th_from_name
+
+from quantlib.util.compat cimport _ustring
 
 cdef class DayCounter:
     '''This class provides methods for determining the length of a time
@@ -92,15 +97,16 @@ def _get_daycounter_type_from_name(name):
     """ Returns a tuple (counter type, convention) from the DayCounter name. """
     DAYCOUNTER_NAME_PATTERN = '(.*) \((.*)\)'
     import re
-    match = re.match(DAYCOUNTER_NAME_PATTERN, name)
+    u_name = _ustring(name)
+    match = re.match(DAYCOUNTER_NAME_PATTERN, u_name)
 
     if match is not None:
         return match.groups()
     else:
-        return (name, None)
+        return (u_name, None)
 
 
-cdef _daycounter.DayCounter* daycounter_from_name(str name, str convention):
+cdef _daycounter.DayCounter* daycounter_from_name(name, convention):
     """ Returns a new DayCounter pointer.
 
     The QuantLib DayCounter don't have a copy constructor or any other easy
@@ -121,12 +127,12 @@ cdef _daycounter.DayCounter* daycounter_from_name(str name, str convention):
         cnt = new _daycounter.OneDayCounter()
     elif name_u == 'SIMPLEDAYCOUNTER':
         cnt = new _daycounter.SimpleDayCounter()
-    elif name.startswith('Actual/Actual') or name.startswith('ACT/ACT') :
-        cnt = aa_from_name(name, convention)
-    elif name.startswith('30/360'):
+    elif name_u.startswith('ACTUAL/ACTUAL') or name_u.startswith('ACT/ACT') :
+        cnt = aa_from_name(convention)
+    elif name_u.startswith('30/360'):
         if convention is None:
             convention = 'BONDBASIS'
-        cnt = th_from_name(name, convention)
+        cnt = th_from_name(convention)
     return cnt
 
 
