@@ -276,7 +276,7 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1, keepOTMData=Tr
 
 if __name__ == '__main__':
 
-    option_data_frame = pandas.core.common.load('../data/df_SPX_24jan2011.pkl')
+    option_data_frame = pandas.read_pickle('../data/df_SPX_24jan2011.pkl')
 
     df_final = Compute_IV(option_data_frame, tMin=1.0/12, nMin=6, QDMin=.2, QDMax=.8)
 
