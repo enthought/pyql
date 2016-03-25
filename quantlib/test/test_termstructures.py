@@ -31,11 +31,11 @@ class SimpleQuoteTestCase(unittest.TestCase):
 
         quote = SimpleQuote(10)
 
-        self.assertEquals(10, quote.value)
+        self.assertEqual(10, quote.value)
 
         quote.value = 15
 
-        self.assertEquals(15, quote.value)
+        self.assertEqual(15, quote.value)
         self.assertTrue(quote.is_valid)
 
     def test_empty_constructor(self):
@@ -43,7 +43,7 @@ class SimpleQuoteTestCase(unittest.TestCase):
         quote = SimpleQuote()
 
         self.assertTrue(quote.is_valid)
-        self.assertEquals(0.0, quote.value)
+        self.assertEqual(0.0, quote.value)
 
 
 class YieldTermStructureTestCase(unittest.TestCase):
@@ -66,7 +66,7 @@ class YieldTermStructureTestCase(unittest.TestCase):
         discounting_term_structure.link_to(flat_term_structure)
 
         evaluation_date = Settings().evaluation_date +100
-        self.assertEquals(
+        self.assertEqual(
             flat_term_structure.discount(evaluation_date),
             discounting_term_structure.discount(evaluation_date)
         )
@@ -77,12 +77,12 @@ class YieldTermStructureTestCase(unittest.TestCase):
 
         discounting_term_structure.link_to(another_flat_term_structure)
 
-        self.assertEquals(
+        self.assertEqual(
             another_flat_term_structure.discount(evaluation_date),
             discounting_term_structure.discount(evaluation_date)
         )
 
-        self.assertNotEquals(
+        self.assertNotEqual(
             flat_term_structure.discount(evaluation_date),
             discounting_term_structure.discount(evaluation_date)
         )
@@ -123,7 +123,7 @@ class FlatForwardTestCase(unittest.TestCase):
             )
 
         for i, val in enumerate(expected):
-            self.assertAlmostEquals(val, calculated[i])
+            self.assertAlmostEqual(val, calculated[i])
 
 class ForwardSpreadedTestCase(unittest.TestCase): 
     
@@ -166,10 +166,10 @@ class ForwardSpreadedTestCase(unittest.TestCase):
         ff_diff = ffc_rate - ff_rate
         fz_diff = ffz_rate - fz_rate
 
-        self.assertAlmostEquals(df_diff, discount_spd)
-        self.assertAlmostEquals(dz_diff, discount_spd)
-        self.assertAlmostEquals(ff_diff, forecast_spd)
-        self.assertAlmostEquals(fz_diff, forecast_spd)
+        self.assertAlmostEqual(df_diff, discount_spd)
+        self.assertAlmostEqual(dz_diff, discount_spd)
+        self.assertAlmostEqual(ff_diff, forecast_spd)
+        self.assertAlmostEqual(fz_diff, forecast_spd)
 
 if __name__ == '__main__':
     unittest.main()

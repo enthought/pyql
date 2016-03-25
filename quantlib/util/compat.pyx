@@ -28,4 +28,3 @@ cdef py_string_from_utf8_array(const char* char_array):
         return char_array
     else:
         return char_array.decode('UTF-8')
-

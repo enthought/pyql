@@ -97,7 +97,7 @@ class TestQuantLibSwap(unittest.TestCase):
 
         p = swap.net_present_value
         print('NPV: %f' % p)
-        self.assertAlmostEquals(p, 0)
+        self.assertAlmostEqual(p, 0)
 
     def test_swap_from_market(self):
         """
@@ -162,14 +162,14 @@ class TestQuantLibSwap(unittest.TestCase):
             df = m.discount(pydate_to_qldate(dt))
             tot += a * df
         print('fixed npv: %f discounted cf: %f' % (fixed_npv, tot))
-        self.assertAlmostEquals(fixed_npv, -tot)
+        self.assertAlmostEqual(fixed_npv, -tot)
 
         tot = 0.0
         for a, dt in float_l.items:
             df = m.discount(pydate_to_qldate(dt))
             tot += a * df
         print('float npv: %f discounted cf: %f' % (float_npv, tot))
-        self.assertAlmostEquals(float_npv, tot)
+        self.assertAlmostEqual(float_npv, tot)
 
 
 if __name__ == '__main__':

@@ -14,8 +14,8 @@ class TestQuantLibDate(unittest.TestCase):
 
         test_cf = cf.SimpleCashFlow(cf_amount, cf_date)
 
-        self.assertEquals(test_cf.amount, cf_amount)
-        self.assertEquals(test_cf.date, cf_date)
+        self.assertEqual(test_cf.amount, cf_amount)
+        self.assertEqual(test_cf.date, cf_date)
 
     def test_leg(self):
 
@@ -26,5 +26,5 @@ class TestQuantLibDate(unittest.TestCase):
         leg = ((cf_amount, cf_date),)
 
         test_leg = cf.SimpleLeg(leg)
-        self.assertEquals(test_leg.size, 1)
-        self.assertEquals(test_leg.items, [(100.0, pydate)])
+        self.assertEqual(test_leg.size, 1)
+        self.assertEqual(test_leg.items, [(100.0, pydate)])
