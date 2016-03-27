@@ -97,7 +97,8 @@ cdef class InflationTermStructure:
     property max_date:
         def __get__(self):
             self._raise_if_empty()
-            cdef _if.InflationTermStructure* term_structure = self._get_term_structure()
+            cdef _if.InflationTermStructure* term_structure = \
+              self._get_term_structure()
             cdef _date.Date max_date = term_structure.maxDate()
             return date_from_qldate(max_date)
 
@@ -107,40 +108,13 @@ cdef class ZeroInflationTermStructure(InflationTermStructure):
     def __cinit__(self):
         pass
     
-    # def __init__(self,
-    #              DayCounter day_counter,
-    #              Rate baseZeroRate,
-    #              Period lag,
-    #              int frequency,
-    #              bool indexIsInterpolated,
-    #              YieldTermStructure yTS,
-    #              Seasonality seasonality):
-        
-    #     cdef Handle[_ff.YieldTermStructure] yTS_handle = \
-    #             deref(yTS._thisptr.get())
-
-    #     cdef _dc.DayCounter* _day_counter = <_dc.DayCounter*>day_counter._thisptr
-
-    #     cdef _if.ZeroInflationTermStructure* _zifts
-        
-    #     _zifts = new _if.ZeroInflationTermStructure(
-    #             deref(_day_counter),
-    #             <Real> baseZeroRate,
-    #             deref(lag._thisptr.get()),
-    #             <_ir.Frequency>frequency,
-    #             indexIsInterpolated,
-    #             yTS_handle,
-    #             deref(seasonality._thisptr.get()))
-
-    #     self._thisptr = new shared_ptr[Handle[_if.InflationTermStructure]](
-    #          new Handle[_if.InflationTermStructure](shared_ptr[_if.InflationTermStructure](_zifts)))
-
     def zeroRate(self, Date d,
                  Period inst_obs_lag,
                  bool force_linear_interpolation,
                  bool extrapolate):
         
-        cdef _if.ZeroInflationTermStructure* term_structure = <_if.ZeroInflationTermStructure*>self._get_term_structure()
+        cdef _if.ZeroInflationTermStructure* term_structure = \
+          <_if.ZeroInflationTermStructure*>self._get_term_structure()
         return term_structure.zeroRate(
             deref(d._thisptr.get()),
             deref(inst_obs_lag._thisptr.get()),
@@ -150,7 +124,8 @@ cdef class ZeroInflationTermStructure(InflationTermStructure):
     def zeroRate(self, Time t,
                  bool extrapolate):
 
-        cdef _if.ZeroInflationTermStructure* term_structure = <_if.ZeroInflationTermStructure*>self._get_term_structure()
+        cdef _if.ZeroInflationTermStructure* term_structure = \
+          <_if.ZeroInflationTermStructure*>self._get_term_structure()
         return term_structure.zeroRate(t, extrapolate)
         
 cdef class YoYInflationTermStructure(InflationTermStructure):
@@ -158,40 +133,13 @@ cdef class YoYInflationTermStructure(InflationTermStructure):
     def __cinit__(self):
         pass
     
-    # def __init__(self,
-    #              DayCounter day_counter,
-    #              Rate baseZeroRate,
-    #              Period lag,
-    #              Frequency frequency,
-    #              bool indexIsInterpolated,
-    #              YieldTermStructure yTS,
-    #              Seasonality seasonality):
-        
-    #     cdef Handle[_ff.YieldTermStructure] yTS_handle = \
-    #             deref(yTS._thisptr.get())
-
-    #     cdef _dc.DayCounter* _day_counter = <_dc.DayCounter*>day_counter._thisptr
-
-    #     cdef _if.YoYInflationTermStructure* _yoyifts
-
-    #     _yoyifts = new _if.YoYInflationTermStructure(
-    #             deref(_day_counter),
-    #             <Real> baseZeroRate,
-    #             deref(lag._thisptr.get()),
-    #             <_ir.Frequency>frequency,
-    #             indexIsInterpolated,
-    #             yTS_handle,
-    #             deref(seasonality._thisptr.get()))
-
-    #     self._thisptr = new shared_ptr[Handle[_if.InflationTermStructure]](
-    #          new Handle[_if.InflationTermStructure](shared_ptr[_if.InflationTermStructure](_yoyifts)))
-        
     def yoyRate(self, Date d,
                 Period inst_obs_lag,
                 bool force_linear_interpolation,
                 bool extrapolate):
 
-        cdef _if.YoYInflationTermStructure* term_structure = <_if.YoYInflationTermStructure*>self._get_term_structure()
+        cdef _if.YoYInflationTermStructure* term_structure = \
+          <_if.YoYInflationTermStructure*>self._get_term_structure()
 
         return term_structure.yoyRate(
             deref(d._thisptr.get()),
@@ -202,5 +150,6 @@ cdef class YoYInflationTermStructure(InflationTermStructure):
     def yoyRate(self, Time t,
                 bool extrapolate):
 
-        cdef _if.YoYInflationTermStructure* term_structure = <_if.YoYInflationTermStructure*>self._get_term_structure()
+        cdef _if.YoYInflationTermStructure* term_structure = \
+          <_if.YoYInflationTermStructure*>self._get_term_structure()
         return term_structure.yoyRate(t, extrapolate)
