@@ -14,15 +14,10 @@ from libcpp.string cimport string
 from quantlib._index cimport Index
 from quantlib.currency._currency cimport Currency
 from quantlib.indexes._region cimport Region
-from quantlib.handle cimport shared_ptr
-from quantlib.indexes._interest_rate_index cimport InterestRateIndex
-from quantlib.indexes._ibor_index cimport IborIndex
-from quantlib.time._calendar cimport BusinessDayConvention
-from quantlib.time._date cimport Date
+from quantlib.handle cimport shared_ptr, Handle
 from quantlib.time._period cimport Period, Frequency
-from quantlib.time._calendar cimport Calendar
-from quantlib.time._daycounter cimport DayCounter
 
+cimport quantlib.termstructures._inflation_term_structure as _its
 
 cdef extern from 'ql/indexes/inflationindex.hpp' namespace 'QuantLib':
 
@@ -36,3 +31,23 @@ cdef extern from 'ql/indexes/inflationindex.hpp' namespace 'QuantLib':
                   Period& availabilitiyLag,
                   Currency& currency) except +
         string familyName()
+        Region region()
+        bool revised()
+        bool interpolated()
+        Frequency frequency()
+        Period availabilityLag()
+        Currency currency()
+        
+        
+    cdef cppclass ZeroInflationIndex(Index):
+        ZeroInflationIndex()
+        ZeroInflationIndex(string& familyName,
+                  Region& region,
+                  bool revised,
+                  bool interpolated,
+                  Frequency frequency,
+                  Period& availabilitiyLag,
+                  Currency& currency,
+                  Handle[_its.ZeroInflationTermStructure]& h) except +
+
+        
