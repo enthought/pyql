@@ -159,7 +159,7 @@ class NoteBooksTestCase(unittest.TestCase):
 
     def test_option_quotes(self):
 
-        option_data_frame = pandas.core.common.load(
+        option_data_frame = pandas.read_pickle(
             './quantlib/test/data/df_SPX_24jan2011.pkl'
         )
 
