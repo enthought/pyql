@@ -8,7 +8,6 @@ from libcpp.string cimport string
 cimport _piecewise_default_curve as _pdc
 
 from quantlib.handle cimport shared_ptr
-from quantlib.util.compat cimport utf8_array_from_py_string
 from quantlib.math._interpolations cimport Linear
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
@@ -42,8 +41,8 @@ cdef class PiecewiseDefaultCurve:
             raise ValueError('Cannot initialize curve with no helpers')
 
         # convert Python string to C++ string
-        cdef string trait_string = utf8_array_from_py_string(trait)
-        cdef string interpolator_string = utf8_array_from_py_string(interpolator)
+        cdef string trait_string = trait.encode('utf-8')
+        cdef string interpolator_string = interpolator.encode('utf-8')
 
         # convert Python list to std::vector
         cdef vector[shared_ptr[DefaultProbabilityHelper]]* instruments = \

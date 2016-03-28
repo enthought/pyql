@@ -8,7 +8,6 @@
 """
 
 from libcpp.string cimport string
-#from quantlib.util.compat cimport py_string_from_utf8_array
 cimport quantlib.time._calendar as _ca
 
 cdef extern from "businessdayconvention_support_code.hpp" namespace "QL":

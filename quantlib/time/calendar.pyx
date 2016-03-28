@@ -18,9 +18,6 @@ cimport quantlib.time._date as _date
 cimport quantlib.time.date as date
 cimport quantlib.time._period as _period
 
-# PyQL cimports
-#from quantlib.util.compat cimport py_string_from_utf8_array
-
 # BusinessDayConvention:
 cdef public enum BusinessDayConvention:
     Following         = _calendar.Following

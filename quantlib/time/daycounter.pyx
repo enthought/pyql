@@ -98,7 +98,7 @@ def _get_daycounter_type_from_name(name):
         return (name, None)
 
 
-cdef _daycounter.DayCounter* daycounter_from_name(str name, str convention):
+cdef _daycounter.DayCounter* daycounter_from_name(basestring name, basestring convention):
     """ Returns a new DayCounter pointer.
 
     The QuantLib DayCounter don't have a copy constructor or any other easy

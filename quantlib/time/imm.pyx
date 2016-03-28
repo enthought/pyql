@@ -15,7 +15,6 @@ cimport quantlib.time._imm as _imm
 
 from quantlib.time.date cimport Date
 from quantlib.time.date cimport date_from_qldate
-#from quantlib.util.compat cimport _ustring
 
 # IMM Months
 cdef public enum Month:
