@@ -77,12 +77,12 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         self.assertIsNotNone(ts)
 
-        self.assertEquals( Date(18, September, 2008), ts.reference_date)
+        self.assertEqual( Date(18, September, 2008), ts.reference_date)
 
         # this is not a real test ...
-        self.assertAlmostEquals(0.9975, ts.discount(Date(21, 12, 2008)), 4)
-        self.assertAlmostEquals(0.9944, ts.discount(Date(21, 4, 2009)), 4)
-        self.assertAlmostEquals(0.9904, ts.discount(Date(21, 9, 2009)), 4)
+        self.assertAlmostEqual(0.9975, ts.discount(Date(21, 12, 2008)), 4)
+        self.assertAlmostEqual(0.9944, ts.discount(Date(21, 4, 2009)), 4)
+        self.assertAlmostEqual(0.9904, ts.discount(Date(21, 9, 2009)), 4)
 
     def test_all_types_of_piecewise_curves(self):
 
@@ -131,7 +131,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
                 )
 
                 self.assertIsNotNone(ts)
-                self.assertEquals( Date(18, September, 2008), ts.reference_date)
+                self.assertEqual( Date(18, September, 2008), ts.reference_date)
 
 
     def test_deposit_swap(self):
@@ -203,16 +203,16 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
             ts_day_counter, tolerance
         )
 
-        self.assertEquals(settlement_date, ts.reference_date)
+        self.assertEqual(settlement_date, ts.reference_date)
 
         # this is not a real test ...
-        self.assertAlmostEquals(0.9103,
+        self.assertAlmostEqual(0.9103,
              ts.discount(calendar.advance(todays_date, 2, Years)),3)
-        self.assertAlmostEquals(0.7836,
+        self.assertAlmostEqual(0.7836,
              ts.discount(calendar.advance(todays_date, 5, Years)),3)
-        self.assertAlmostEquals(0.5827,
+        self.assertAlmostEqual(0.5827,
              ts.discount(calendar.advance(todays_date, 10, Years)),3)
-        self.assertAlmostEquals(0.4223,
+        self.assertAlmostEqual(0.4223,
              ts.discount(calendar.advance(todays_date, 15, Years)),3)
 
 
@@ -290,7 +290,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
             tolerance
         )
 
-        self.assertEquals(settlement_date, ts.reference_date)
+        self.assertEqual(settlement_date, ts.reference_date)
 
 if __name__ == '__main__':
     unittest.main()

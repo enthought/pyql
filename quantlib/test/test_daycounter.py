@@ -110,7 +110,7 @@ class TestActualActual(unittest.TestCase):
 
         expected_result = 0.410958904110
 
-        self.assertAlmostEquals(
+        self.assertAlmostEqual(
             expected_result,
             day_counter.year_fraction(from_date, to_date)
         )
@@ -123,7 +123,7 @@ class TestActualActual(unittest.TestCase):
         ref_end = Date(1,July,1999)
         expected_result = 0.410958904110
 
-        self.assertAlmostEquals(
+        self.assertAlmostEqual(
             expected_result,
             day_counter.year_fraction(from_date, to_date, ref_start, ref_end)
         )
@@ -135,7 +135,7 @@ class TestActualActual(unittest.TestCase):
 
         expected_result = 0.410958904110
 
-        self.assertAlmostEquals(
+        self.assertAlmostEqual(
             expected_result,
             day_counter.year_fraction(from_date, to_date)
         )
@@ -147,7 +147,7 @@ class TestActualActual(unittest.TestCase):
 
         expected_result = 1.001377348600
 
-        self.assertAlmostEquals(
+        self.assertAlmostEqual(
             expected_result,
             day_counter.year_fraction(from_date, to_date)
         )
@@ -162,7 +162,7 @@ class TestActualActual(unittest.TestCase):
 
         expected_result = 1.000000000000
 
-        self.assertAlmostEquals(
+        self.assertAlmostEqual(
             expected_result,
             day_counter.year_fraction(from_date, to_date, ref_start, ref_end)
         )
@@ -175,7 +175,7 @@ class TestActualActual(unittest.TestCase):
 
         expected_result = 1.000000000000
 
-        self.assertAlmostEquals(
+        self.assertAlmostEqual(
             expected_result,
             day_counter.year_fraction(from_date, to_date)
         )
@@ -191,7 +191,7 @@ class TestActualActual(unittest.TestCase):
         for index, period in enumerate(periods):
             end = first + Period(period,  Months)
             calculated = day_counter.year_fraction(first,end)
-            self.assertAlmostEquals(
+            self.assertAlmostEqual(
                 expected_times[index], calculated
             )
 
@@ -204,7 +204,7 @@ class TestActualActual(unittest.TestCase):
 
         expected_result = 1.000000000000
 
-        self.assertAlmostEquals(
+        self.assertAlmostEqual(
             expected_result,
             day_counter.year_fraction(from_date, to_date)
         )

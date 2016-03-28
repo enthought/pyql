@@ -203,22 +203,22 @@ class TestHHWCalibration(unittest.TestCase):
         expected_sigma = 0.5
         expected_rho = -0.75
 
-        self.assertAlmostEquals(
+        self.assertAlmostEqual(
             np.abs(hhw_model.v0 - expected_v0) / expected_v0, 0,
             delta=relTol)
 
-        self.assertAlmostEquals(
+        self.assertAlmostEqual(
             np.abs(hhw_model.theta - expected_theta) / expected_theta, 0,
             delta=relTol)
 
-        self.assertAlmostEquals(
+        self.assertAlmostEqual(
             np.abs(hhw_model.kappa - expected_kappa) / expected_kappa, 0,
             delta=relTol)
 
-        self.assertAlmostEquals(
+        self.assertAlmostEqual(
             np.abs(hhw_model.sigma - expected_sigma) / expected_sigma, 0,
             delta=relTol)
 
-        self.assertAlmostEquals(
+        self.assertAlmostEqual(
             np.abs(hhw_model.rho - expected_rho) / expected_rho, 0,
             delta=relTol)
