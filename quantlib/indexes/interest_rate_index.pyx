@@ -39,19 +39,19 @@ cdef _iri.InterestRateIndex* get_iri(InterestRateIndex index):
 cdef class InterestRateIndex(Index):
     def __cinit__(self):
         pass
-        
+
     def __str__(self):
         return 'Interest rate index %s' % self.name
-    
-        
+
+
     property family_name:
         def __get__(self):
-            return get_iri(self).familyName().c_str()
-        
-            
+            return get_iri(self).familyName().decode('utf-8')
+
+
     property tenor:
         def __get__(self):
-            
+
             cdef _pe.Period qlp = get_iri(self).tenor()
             # FIX ME: this should be more efficient but does not work
             # p = Period()
@@ -66,8 +66,8 @@ cdef class InterestRateIndex(Index):
     property day_counter:
         def __get__(self):
             cdef _dc.DayCounter dc = get_iri(self).dayCounter()
-            return DayCounter.from_name(dc.name().c_str())
-            
+            return DayCounter.from_name(dc.name().decode('utf-8'))
+
     def fixing_date(self, Date valueDate):
         cdef _dt.Date dt = deref(valueDate._thisptr.get())
         cdef _dt.Date fixing_date = get_iri(self).fixingDate(dt)
@@ -83,4 +83,3 @@ cdef class InterestRateIndex(Index):
         cdef _dt.Date dt = deref(valueDate._thisptr.get())
         cdef _dt.Date maturity_date = get_iri(self).maturityDate(dt)
         return date_from_qldate(maturity_date)
-            
