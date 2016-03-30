@@ -171,8 +171,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
                 print("calculated: %f" % comp.npv)
                 print("expected  : %f" % npv)
 
-            self.assertAlmostEquals(impliedVol, v, delta=tol)
-            self.assertAlmostEquals(comp.npv / npv, 1, delta=tol)
+            self.assertAlmostEqual(impliedVol, v, delta=tol)
+            self.assertAlmostEqual(comp.npv / npv, 1, delta=tol)
 
     def test_compare_bsm_bsmhw_hestonhw(self):
 
@@ -251,8 +251,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         print("Heston: %f" % npv_heston)
         print("Heston-HW: %f" % npv_hestonhw)
 
-        self.assertAlmostEquals(npv_bsm, npv_bsmhw, delta=tol)
-        self.assertAlmostEquals(npv_bsm, npv_hestonhw, delta=tol)
+        self.assertAlmostEqual(npv_bsm, npv_bsmhw, delta=tol)
+        self.assertAlmostEqual(npv_bsm, npv_hestonhw, delta=tol)
 
     def test_compare_BsmHW_HestonHW(self):
         """
@@ -347,7 +347,7 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
                         print("maturity  : %d" % maturity)
                         print("type      : %s" % cp)
 
-                    self.assertAlmostEquals(expected, calculated,
+                    self.assertAlmostEqual(expected, calculated,
                                             delta=tol)
 
     def test_zanette(self):
@@ -427,6 +427,6 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
                       (rho, tGrid, tmp))
                 calc_price.append(tmp)
 
-        expected_price = [11.38, ] * 4 + [12.81, ] * 4 + [14.08, ] * 4
+        expected_price = [11.38, ] * 4 + [12.79, ] * 4 + [14.06, ] * 4
 
         np.testing.assert_almost_equal(calc_price, expected_price, 2)

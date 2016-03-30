@@ -156,15 +156,15 @@ class SensitivityTestCase(unittest.TestCase):
                                    
                                                             
 
-        self.assertAlmostEquals(bond.npv, 100.83702940160767)
+        self.assertAlmostEqual(bond.npv, 100.83702940160767)
     
 
         ba =  bucket_analysis([simple_quotes], [bond], [1], 0.0001, 1)
         
         self.assertTrue(2, ba) 
         self.assertTrue(type(tuple), ba) 
-        self.assertEquals(len(simple_quotes), len(ba[0][0]))
-        self.assertEquals(0, ba[0][0][8])
+        self.assertEqual(len(simple_quotes), len(ba[0][0]))
+        self.assertEqual(0, ba[0][0][8])
     
     def test_bucket_analysis_option(self):
         
@@ -230,8 +230,8 @@ class SensitivityTestCase(unittest.TestCase):
 
         self.assertTrue(2, ba_eo)
         self.assertTrue(type(tuple), ba_eo) 
-        self.assertEquals(1, len(ba_eo[0][0]))
-        self.assertEquals(-0.4582666150152517, ba_eo[0][0][0])
+        self.assertEqual(1, len(ba_eo[0][0]))
+        self.assertEqual(-0.4582666150152517, ba_eo[0][0][0])
 
 if __name__ == '__main__':
     unittest.main()

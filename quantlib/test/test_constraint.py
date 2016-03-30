@@ -17,7 +17,7 @@ class TestConstraint(unittest.TestCase):
 
         res = c.test(p)
 
-        self.assertEquals(res, True)
+        self.assertEqual(res, True)
 
 if __name__ == '__main__':
     unittest.main()

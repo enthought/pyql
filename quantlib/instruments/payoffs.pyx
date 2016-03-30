@@ -3,7 +3,6 @@ include '../types.pxi'
 # cython imports
 cimport _option
 cimport _payoffs
-from quantlib.util.compat cimport py_string_from_utf8_array as to_pystr
 
 import six
 
@@ -32,7 +31,7 @@ cdef class Payoff:
 
     def __str__(self):
         if self._thisptr is not NULL:
-            return 'Payoff: %s' % to_pystr(self._thisptr.get().name().c_str())
+            return 'Payoff: %s' % self._thisptr.get().name().decode('utf-8')
 
     cdef set_payoff(self, shared_ptr[_payoffs.Payoff] payoff):
         if self._thisptr != NULL:
@@ -87,7 +86,7 @@ cdef class PlainVanillaPayoff(Payoff):
     def __str__(self):
 
         return 'Payoff: %s %s @ %f' % (
-            to_pystr(_get_payoff(self).name().c_str()),
+            _get_payoff(self).name().decode('utf-8'),
             PAYOFF_TO_STR[_get_payoff(self).optionType()],
             _get_payoff(self).strike()
         )

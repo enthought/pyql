@@ -12,11 +12,11 @@ class TestBusinessDayConvention(unittest.TestCase):
 
         b = BusinessDayConvention.from_name('Following')
 
-        self.assertEquals(str(b), 'Following')
-        self.assertEquals(b, Following)
+        self.assertEqual(str(b), 'Following')
+        self.assertEqual(b, Following)
 
         c = BusinessDayConvention(Preceding)
-        self.assertEquals(c, Preceding)
+        self.assertEqual(c, Preceding)
 
 
 if __name__ == '__main__':
