@@ -7,7 +7,6 @@ cimport _piecewise_yield_curve as _pyc
 cimport _rate_helpers as _rh
 cimport _flat_forward as _ff
 from quantlib.handle cimport shared_ptr, Handle
-from quantlib.util.compat cimport utf8_array_from_py_string
 
 from rate_helpers cimport RateHelper
 from quantlib.time.date cimport Date
@@ -57,8 +56,8 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
             raise ValueError('Cannot initialize curve with no helpers')
 
         # convert Python string to C++ string
-        cdef string trait_string = utf8_array_from_py_string(trait)
-        cdef string interpolator_string = utf8_array_from_py_string(interpolator)
+        cdef string trait_string = trait.encode('utf-8')
+        cdef string interpolator_string = interpolator.encode('utf-8')
 
         # convert Python list to std::vector
         cdef vector[shared_ptr[_rh.RateHelper]]* instruments = \

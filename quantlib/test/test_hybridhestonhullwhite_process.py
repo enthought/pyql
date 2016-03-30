@@ -428,6 +428,6 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
                       (rho, tGrid, tmp))
                 calc_price.append(tmp)
 
-        expected_price = [11.38, ] * 4 + [12.81, ] * 4 + [14.08, ] * 4
+        expected_price = [11.38, ] * 4 + [12.79, ] * 4 + [14.06, ] * 4
 
         np.testing.assert_almost_equal(calc_price, expected_price, 2)

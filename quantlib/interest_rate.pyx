@@ -18,7 +18,6 @@ from quantlib import compounding
 from quantlib.time.api import NoFrequency, Once
 from quantlib.time.date import frequency_to_str
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.util.compat cimport py_string_from_utf8_array
 
 cdef class InterestRate:
     """ This class encapsulate the interest rate compounding algebra.
@@ -72,9 +71,7 @@ cdef class InterestRate:
         def __get__(self):
             cdef _ir.DayCounter dc = self._thisptr.get().dayCounter()
 
-            return DayCounter.from_name(
-                py_string_from_utf8_array(dc.name().c_str())
-            )
+            return DayCounter.from_name(dc.name().decode('utf-8'))
 
     def __repr__(self):
         if self.rate == None:
@@ -105,8 +102,6 @@ cdef class InterestRate:
             ValueError('unknown compounding convention ({0})'.format(self.compounding))
         return "{0:.2f} {1} {2}".format(
             self.rate,
-            py_string_from_utf8_array(
-                self._thisptr.get().dayCounter().name().c_str()
-            ),
+            self._thisptr.get().dayCounter().name().decode('utf-8'),
             cpd_str
         )
