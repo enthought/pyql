@@ -21,7 +21,8 @@ from quantlib.time.date cimport Period
 from quantlib.time._period cimport Frequency, Months
 from quantlib.indexes.region cimport Region
 from quantlib.currency.currency cimport Currency
-from quantlib.termstructures.inflation_term_structure cimport ZeroInflationTermStructure
+from quantlib.termstructures.inflation_term_structure cimport \
+    ZeroInflationTermStructure
 
 cimport quantlib._index as _in
 cimport quantlib.indexes._inflation_index as _ii
