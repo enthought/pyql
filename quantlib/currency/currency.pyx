@@ -9,28 +9,25 @@
 
 cimport _currency as _cu
 
-from quantlib.util.compat cimport py_string_from_utf8_array as to_pystr
-
-
 cdef class Currency:
     def __cinit__(self):
         self._thisptr = new _cu.Currency()
 
     property name:
         def __get__(self):
-            return to_pystr(self._thisptr.name().c_str())
+            return self._thisptr.name().decode('utf-8')
 
     property code:
         def __get__(self):
-            return to_pystr(self._thisptr.code().c_str())
+            return self._thisptr.code().decode('utf-8')
 
     property symbol:
         def __get__(self):
-            return to_pystr(self._thisptr.symbol().c_str())
+            return self._thisptr.symbol().decode('utf-8')
 
     property fractionSymbol:
         def __get__(self):
-            return to_pystr(self._thisptr.fractionSymbol().c_str())
+            return self._thisptr.fractionSymbol().decode('utf-8')
 
     property fractionsPerUnit:
         def __get__(self):
@@ -38,7 +35,7 @@ cdef class Currency:
 
     def __str__(self):
         if not self._thisptr.empty():
-            return to_pystr(self._thisptr.name().c_str())
+            return self._thisptr.name().decode('utf-8')
         else:
             return 'null currency'
 
@@ -46,4 +43,3 @@ cdef class Currency:
     def from_name(cls, code):
         from .currency_registry import REGISTRY
         return REGISTRY.from_name(code)
-

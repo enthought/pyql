@@ -59,16 +59,16 @@ class MLabTestCase(unittest.TestCase):
                      option_type=('Call', 'Put'),
                      dividend=0.045)
 
-        self.assertAlmostEquals(p[0], 22.6716, 3)
-        self.assertAlmostEquals(p[1], 36.7626, 3)
+        self.assertAlmostEqual(p[0], 22.6716, 3)
+        self.assertAlmostEqual(p[1], 36.7626, 3)
 
         v = blsimpv(p, spot=585, strike=600, risk_free_rate=.05,
                      time=1 / 4.,
                      option_type=('Call', 'Put'),
                      dividend=0.045)
 
-        self.assertAlmostEquals(v[0], .25, 3)
-        self.assertAlmostEquals(v[1], .25, 3)
+        self.assertAlmostEqual(v[0], .25, 3)
+        self.assertAlmostEqual(v[1], .25, 3)
 
     def test_yield(self):
 
@@ -149,8 +149,8 @@ class MLabTestCase(unittest.TestCase):
         cf = res[0]
         pydate = date(1993, 6, 15)
 
-        self.assertEquals(cf[6], 100.0)
-        self.assertEquals(dt[1], pydate)
+        self.assertEqual(cf[6], 100.0)
+        self.assertEqual(dt[1], pydate)
 
     def test_greeks(self):
         """

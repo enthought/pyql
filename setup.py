@@ -1,10 +1,7 @@
+from setuptools import setup, find_packages, Extension
 
-from setuptools import setup, find_packages
-# Warning : do not import the distutils extension before setuptools
-# It does break the cythonize function calls
-from distutils.extension import Extension
-from distutils.sysconfig import get_config_vars
 from distutils import log
+from distutils.sysconfig import customize_compiler
 
 import glob
 import os
@@ -42,12 +39,6 @@ if sys.platform == 'darwin':
     ]
     LIBRARY_DIRS = ["/usr/local/lib"]
 
-    ## From SO: hack to remove warning about strict prototypes
-    ## http://stackoverflow.com/questions/8106258/cc1plus-warning-command-line-option-wstrict-prototypes-is-valid-for-ada-c-o 
-    (opt,) = get_config_vars('OPT')
-    os.environ['OPT'] = " ".join(
-        flag for flag in opt.split() if flag != '-Wstrict-prototypes')
-
 elif sys.platform == 'win32':
     # With MSVC2008, the library is called QuantLib.lib but with MSVC2010, the
     # naming is QuantLib-vc100-mt
@@ -68,15 +59,8 @@ elif sys.platform == 'win32':
         r'.\dll',
     ]
 elif sys.platform.startswith('linux'):   # 'linux' on Py3, 'linux2' on Py2
-    # good for Debian / ubuntu 10.04 (with QL .99 installed by default)
-    (opt,) = get_config_vars('OPT')
-    os.environ['OPT'] = " ".join(
-        flag for flag in opt.split() if flag != '-Wstrict-prototypes')
     INCLUDE_DIRS = ['/usr/local/include', '/usr/include', '.', SUPPORT_CODE_INCLUDE]
-    LIBRARY_DIRS = ['/usr/local/lib', '/usr/lib', ]
-    # custom install of QuantLib 1.1
-    # INCLUDE_DIRS = ['/opt/QuantLib-1.1', '.', SUPPORT_CODE_INCLUDE]
-    # LIBRARY_DIRS = ['/opt/QuantLib-1.1/lib',]
+    LIBRARY_DIRS = ['/usr/local/lib', '/usr/lib']
 
 if HAS_NUMPY:
     INCLUDE_DIRS.append(numpy.get_include())
@@ -264,12 +248,18 @@ def collect_extensions():
 
     return extensions
 
-
 class pyql_build_ext(build_ext):
     """
     Custom build command for quantlib that on Windows copies the quantlib dll
     and optionally c runtime dlls to the quantlib package.
     """
+    def build_extensions(self):
+        customize_compiler(self.compiler)
+        try:
+            self.compiler.compiler_so.remove("-Wstrict-prototypes")
+        except (AttributeError, ValueError):
+            pass
+        build_ext.build_extensions(self)
 
     def run(self):
         build_ext.run(self)
@@ -323,7 +313,8 @@ setup(
     packages = find_packages(),
     include_package_data = True,
     ext_modules = collect_extensions(),
+    setup_requires=['cython'],
     cmdclass = {'build_ext': pyql_build_ext},
-    install_requires = ['distribute', 'tabulate', 'pandas', 'six'],
+    install_requires = ['tabulate', 'pandas', 'six'],
     zip_safe = False
 )

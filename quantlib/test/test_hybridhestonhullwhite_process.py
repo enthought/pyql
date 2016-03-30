@@ -171,8 +171,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
                 print("calculated: %f" % comp.npv)
                 print("expected  : %f" % npv)
 
-            self.assertAlmostEquals(impliedVol, v, delta=tol)
-            self.assertAlmostEquals(comp.npv / npv, 1, delta=tol)
+            self.assertAlmostEqual(impliedVol, v, delta=tol)
+            self.assertAlmostEqual(comp.npv / npv, 1, delta=tol)
 
     def test_compare_bsm_bsmhw_hestonhw(self):
 
@@ -251,8 +251,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         print("Heston: %f" % npv_heston)
         print("Heston-HW: %f" % npv_hestonhw)
 
-        self.assertAlmostEquals(npv_bsm, npv_bsmhw, delta=tol)
-        self.assertAlmostEquals(npv_bsm, npv_hestonhw, delta=tol)
+        self.assertAlmostEqual(npv_bsm, npv_bsmhw, delta=tol)
+        self.assertAlmostEqual(npv_bsm, npv_hestonhw, delta=tol)
 
     def test_compare_BsmHW_HestonHW(self):
         """
@@ -347,7 +347,86 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
                         print("maturity  : %d" % maturity)
                         print("type      : %s" % cp)
 
-                    self.assertAlmostEquals(expected, calculated,
+                    self.assertAlmostEqual(expected, calculated,
                                             delta=tol)
 
+    def test_zanette(self):
+        """
+        From paper by A. Zanette et al.
+        """
 
+        dc = Actual365Fixed()
+
+        todays_date = today()
+        settings = Settings()
+        settings.evaluation_date = todays_date
+
+        # constant yield and div curves
+
+        dates = [todays_date + Period(i, Years) for i in range(3)]
+        rates = [0.04 for i in range(3)]
+        divRates = [0.03 for i in range(3)]
+        r_ts = ZeroCurve(dates, rates, dc)
+        q_ts = ZeroCurve(dates, divRates, dc)
+
+        s0 = SimpleQuote(100)
+
+        # Heston model
+
+        v0 = .1
+        kappa_v = 2
+        theta_v = 0.1
+        sigma_v = 0.3
+        rho_sv = -0.5
+
+        hestonProcess = HestonProcess(
+            risk_free_rate_ts=r_ts,
+            dividend_ts=q_ts,
+            s0=s0,
+            v0=v0,
+            kappa=kappa_v,
+            theta=theta_v,
+            sigma=sigma_v,
+            rho=rho_sv)
+
+        hestonModel = HestonModel(hestonProcess)
+
+        # Hull-White
+
+        kappa_r = 1
+        sigma_r = .2
+
+        hullWhiteProcess = HullWhiteProcess(r_ts, a=kappa_r, sigma=sigma_r)
+
+        strike = 100
+        maturity = 1
+        type = Call
+
+        maturity_date = todays_date + Period(maturity, Years)
+
+        exercise = EuropeanExercise(maturity_date)
+
+        payoff = PlainVanillaPayoff(type, strike)
+
+        option = VanillaOption(payoff, exercise)
+
+        def price_cal(rho, tGrid):
+            fd_hestonHwEngine = FdHestonHullWhiteVanillaEngine(
+                hestonModel,
+                hullWhiteProcess,
+                rho,
+                tGrid, 100, 40, 20, 0, True, FdmSchemeDesc.Hundsdorfer())
+            option.set_pricing_engine(fd_hestonHwEngine)
+            return option.npv
+
+        calc_price = []
+        for rho in [-0.5, 0, .5]:
+            for tGrid in [50, 100, 150, 200]:
+                tmp = price_cal(rho, tGrid)
+                print("rho (S,r): %f Ns: %d Price: %f" %
+                      (rho, tGrid, tmp))
+                calc_price.append(tmp)
+
+        expected_price = [11.38, ] * 4 + [12.79, ] * 4 + [14.06, ] * 4
+
+        np.testing.assert_almost_equal(calc_price, expected_price, 2)

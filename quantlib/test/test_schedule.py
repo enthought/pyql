@@ -51,14 +51,14 @@ class ScheduleMethodTestCase(unittest.TestCase):
 
     def test_size(self):
 
-        self.assertEquals(15, self.schedule.size())
+        self.assertEqual(15, self.schedule.size())
 
     def test_dates(self):
 
         expected_dates_length = self.schedule.size()
         dates = list(self.schedule.dates())
 
-        self.assertEquals(expected_dates_length, len(dates))
+        self.assertEqual(expected_dates_length, len(dates))
 
     def test_iter_dates(self):
 

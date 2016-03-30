@@ -1,7 +1,6 @@
 from cython.operator cimport dereference as deref
 from libcpp cimport bool as cbool
 
-from quantlib.util.compat cimport py_string_from_utf8_array
 cimport quantlib.time._date as qldate
 cimport quantlib.time.date as date
 
@@ -37,7 +36,7 @@ cdef class Settings:
     property version:
         """Returns the QuantLib C++ version (QL_VERSION) used by this wrapper."""
         def __get__(self):
-            return py_string_from_utf8_array(QL_VERSION)
+            return QL_VERSION.decode('utf-8')
 
     @classmethod
     def instance(cls):

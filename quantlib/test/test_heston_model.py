@@ -113,12 +113,12 @@ class HestonModelTestCase(unittest.TestCase):
                 risk_free_ts, dividend_ts, s0, v0, kappa, theta, sigma, rho
             )
 
-            self.assertEquals(v0, process.v0)
-            self.assertEquals(kappa, process.kappa)
-            self.assertEquals(theta, process.theta)
-            self.assertEquals(sigma, process.sigma)
-            self.assertEquals(rho, process.rho)
-            self.assertEquals(1.0, process.s0().value)
+            self.assertEqual(v0, process.v0)
+            self.assertEqual(kappa, process.kappa)
+            self.assertEqual(theta, process.theta)
+            self.assertEqual(sigma, process.sigma)
+            self.assertEqual(rho, process.rho)
+            self.assertEqual(1.0, process.s0().value)
 
             model = HestonModel(process)
             engine = AnalyticHestonEngine(model, 96)
@@ -233,7 +233,7 @@ class HestonModelTestCase(unittest.TestCase):
             sse += diff * diff
 
         expected = 177.2  # see article by A. Sepp.
-        self.assertAlmostEquals(expected, sse, delta=1.0)
+        self.assertAlmostEqual(expected, sse, delta=1.0)
 
     def test_analytic_versus_black(self):
         settlement_date = today()
