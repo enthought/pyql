@@ -128,10 +128,9 @@ quantlib.pricingengines
 
 .. automodule:: quantlib.pricingengines.blackformula
 
-.. currentmodule:: quantlib.pricingengines.vanilla
+.. automodule:: quantlib.pricingengines.engine
 
-.. autoclass:: PricingEngine
-    :members:
+.. currentmodule:: quantlib.pricingengines.vanilla
 
 .. autoclass:: VanillaOptionEngine
     :members:
