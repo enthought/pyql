@@ -1,9 +1,5 @@
-from quantlib.currency.currencies import (
-    USDCurrency, EURCurrency, GBPCurrency, JPYCurrency, CHFCurrency,
-    AUDCurrency, DKKCurrency, INRCurrency, HKDCurrency, NOKCurrency,
-    NZDCurrency, PLNCurrency, SEKCurrency, SGDCurrency, ZARCurrency
-)
-from quantlib.util.object_registry import ObjectRegistry
+from .currencies import *
+from ..util.object_registry import ObjectRegistry
 
 REGISTERED_CURRENCY = [
     USDCurrency, EURCurrency, GBPCurrency, JPYCurrency, CHFCurrency,
