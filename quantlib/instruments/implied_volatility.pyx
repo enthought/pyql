@@ -15,7 +15,7 @@ from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.quotes cimport SimpleQuote
 
-from quantlib.instruments cimport _implied_volatility as _iv
+cimport quantlib.instruments._implied_volatility as _iv
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 cimport quantlib.processes._black_scholes_process as _bsp
 cimport quantlib._quote as _qt

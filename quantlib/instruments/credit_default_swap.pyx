@@ -17,8 +17,8 @@ from quantlib.handle cimport shared_ptr
 
 cimport _credit_default_swap as _cds
 cimport _instrument
-from quantlib.pricingengines cimport _pricing_engine as _pe
-from quantlib.time cimport _calendar
+cimport quantlib.pricingengines._pricing_engine as _pe
+cimport quantlib.time._calendar as _calendar
 
 from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine

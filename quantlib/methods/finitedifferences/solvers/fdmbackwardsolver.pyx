@@ -1,7 +1,7 @@
 include '../../../types.pxi'
 
 from quantlib.handle cimport shared_ptr
-from quantlib.methods.finitedifferences.solvers cimport _fdmbackwardsolver as _fdm
+cimport quantlib.methods.finitedifferences.solvers._fdmbackwardsolver as _fdm
 import numpy as np
 
 cdef public enum FdmSchemeType:
