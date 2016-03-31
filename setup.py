@@ -128,8 +128,7 @@ def collect_extensions():
         'define_macros':get_define_macros(),
         'extra_compile_args':get_extra_compile_args(),
         'extra_link_args':get_extra_link_args(),
-        'libraries':[QL_LIBRARY],
-        'cython_directives':CYTHON_DIRECTIVES
+        'libraries':[QL_LIBRARY]
     }
 
     settings_extension = Extension('quantlib.settings',
@@ -234,7 +233,7 @@ def collect_extensions():
             Extension('*', ['{0}/*.pyx'.format(dirpath)], **kwargs)
             for dirpath in cython_extension_directories
         ]
-    )
+    , compiler_directives=CYTHON_DIRECTIVES)
 
     # remove  all the manual extensions from the collected ones
     names = [extension.name for extension in manual_extensions]
