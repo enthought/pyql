@@ -59,7 +59,7 @@ cdef class Thirty360(DayCounter):
         self._thisptr = <_daycounter.DayCounter*> new \
             _th.Thirty360(<_th.Convention> convention)
 
-cdef _daycounter.DayCounter* from_name(convention):
+cdef _daycounter.DayCounter* from_name(str convention):
 
     cdef _th.Convention ql_convention = <_th.Convention>CONVENTIONS[convention]
 

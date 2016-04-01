@@ -6,4 +6,4 @@ cdef class Thirty360(DayCounter):
     pass
 
 
-cdef _daycounter.DayCounter* from_name(convention)
+cdef _daycounter.DayCounter* from_name(str convention)
