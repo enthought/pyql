@@ -24,25 +24,22 @@ from pandas import DataFrame
 import datetime
 from six.moves import input
 
-from quantlib.models.equity.heston_model import (
-    HestonModelHelper, HestonModel, ImpliedVolError)
-from quantlib.models.equity.bates_model import (BatesModel,
-                                                BatesDetJumpModel,
-                                                BatesDoubleExpModel)
+from quantlib.models import ImpliedVolError
+from quantlib.models.equity import (HestonModelHelper, HestonModel,
+    BatesModel, BatesDetJumpModel, BatesDoubleExpModel)
 
-from quantlib.pricingengines.api import (AnalyticHestonEngine,
-                                         BatesEngine,
-                                         BatesDetJumpEngine,
-                                         BatesDoubleExpEngine)
+from quantlib.pricingengines import (AnalyticHestonEngine,
+                                     BatesEngine,
+                                     BatesDetJumpEngine,
+                                     BatesDoubleExpEngine)
 
-from quantlib.processes.heston_process import HestonProcess
-from quantlib.processes.bates_process import BatesProcess
+from quantlib.processes import HestonProcess, BatesProcess
 
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
-from quantlib.time.api import Period, Date, Actual365Fixed, TARGET, Days
+from quantlib.time import Period, Date, Actual365Fixed, TARGET, Days
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.zero_curve import ZeroCurve
+from quantlib.termstructures.yields import ZeroCurve
 
 import matplotlib.pyplot as plt
 
@@ -394,7 +391,7 @@ def batesdoubleexp_calibration(df_option, ival=None):
 # for selected maturities.
 
 def calibration_subplot(ax, group, i, model_name):
-    group = group.sort_index(by='Strike')
+    group = group.sort_values(by='Strike')
     dtExpiry = group.get_value(group.index[0], 'dtExpiry')
     K = group['Strike']
     VB = group['IVBid']
@@ -439,7 +436,7 @@ def calibration_plot(df_calibration, model_name):
         plt.show(block=False)
 
 if __name__ == '__main__':
-    df_options = pandas.load('../data/df_options_SPX_24jan2011.pkl')
+    df_options = pandas.read_pickle('./examples/data/df_options_SPX_24jan2011.pkl')
 
     df_heston_cal = heston_calibration(df_options)
     calibration_plot(df_heston_cal, 'Heston')

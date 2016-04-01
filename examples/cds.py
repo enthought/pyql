@@ -7,15 +7,15 @@ Copyright (C) 2012 Enthought Inc.
 """
 from __future__ import print_function
 
-from quantlib.instruments.credit_default_swap import CreditDefaultSwap, SELLER
+from quantlib.instruments import CreditDefaultSwap, SELLER
 from quantlib.pricingengines.credit import MidPointCdsEngine
 from quantlib.settings import Settings
-from quantlib.time.api import (
+from quantlib.time import (
     Date, May, Actual365Fixed, Following, TARGET, Period, Months,
     Quarterly, TwentiethIMM, Years, Schedule, Unadjusted
 )
-from quantlib.termstructures.credit.api import SpreadCdsHelper, PiecewiseDefaultCurve
-from quantlib.termstructures.yields.api import FlatForward
+from quantlib.termstructures.credit import SpreadCdsHelper, PiecewiseDefaultCurve
+from quantlib.termstructures.yields import FlatForward
 
 if __name__ == '__main__':
 

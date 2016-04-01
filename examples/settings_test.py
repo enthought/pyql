@@ -4,8 +4,8 @@ from __future__ import print_function
 
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
-from quantlib.termstructures.yields.api import FlatForward
-from quantlib.time.api import Actual360, Date, NullCalendar, TARGET
+from quantlib.termstructures.yields import FlatForward
+from quantlib.time import Actual360, Date, NullCalendar, TARGET
 
 calendar = TARGET()
 settings = Settings()
@@ -19,7 +19,7 @@ quote = SimpleQuote(value=0.03)
 
 term_structure = FlatForward(
     settlement_days = settlement_days,
-    quote           = quote,
+    forward         = quote,
     calendar        = NullCalendar(),
     daycounter      = Actual360()
 )

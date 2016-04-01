@@ -3,19 +3,19 @@
 Warning: this is work in progress and currently not working.
 """
 from __future__ import print_function
-from quantlib.indexes.euribor import Euribor6M
-from quantlib.instruments.swap import VanillaSwap, Payer
-from quantlib.pricingengines.swap import DiscountingSwapEngine
+from quantlib.indexes import Euribor6M
+from quantlib.instruments import VanillaSwap, Payer
+from quantlib.pricingengines import DiscountingSwapEngine
 from quantlib.settings import Settings
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.api import DepositRateHelper, FraRateHelper
-from quantlib.termstructures.yields.api import FuturesRateHelper, SwapRateHelper
-from quantlib.termstructures.yields.api import YieldTermStructure
-from quantlib.termstructures.yields.api import PiecewiseYieldCurve
-from quantlib.time.api import Actual360, Date, November, TARGET, Weeks, Annual
-from quantlib.time.api import Months, Years, Period, ModifiedFollowing
-from quantlib.time.api import Unadjusted, Thirty360, Semiannual, Schedule
-from quantlib.time.api import Forward, ActualActual, ISDA
+from quantlib.termstructures.yields import DepositRateHelper, FraRateHelper
+from quantlib.termstructures.yields import FuturesRateHelper, SwapRateHelper
+from quantlib.termstructures.yields import YieldTermStructure
+from quantlib.termstructures.yields import PiecewiseYieldCurve
+from quantlib.time import Actual360, Date, November, TARGET, Weeks, Annual
+from quantlib.time import Months, Years, Period, ModifiedFollowing
+from quantlib.time import Unadjusted, Thirty360, Semiannual, Schedule
+from quantlib.time import Forward, ActualActual, ISDA
 
 # global data
 calendar = TARGET()
@@ -24,12 +24,12 @@ Settings.instance().evaluation_date = todaysDate
 settlementDate = Date(8,November,2001);
 
 # market quotes
-deposits = { (1,Weeks): 0.0382,
-             (1,Months): 0.0372,
-             (3,Months): 0.0363,
-             (6,Months): 0.0353,
-             (9,Months): 0.0348,
-             (1,Years): 0.0345 }
+deposits = { (1,Weeks): SimpleQuote(0.0382),
+             (1,Months): SimpleQuote(0.0372),
+             (3,Months): SimpleQuote(0.0363),
+             (6,Months): SimpleQuote(0.0353),
+             (9,Months): SimpleQuote(0.0348),
+             (1,Years): SimpleQuote(0.0345) }
 
 FRAs = { (3,6): 0.037125,
          (6,9): 0.037125,

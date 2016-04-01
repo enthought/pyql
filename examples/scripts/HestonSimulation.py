@@ -35,7 +35,7 @@ from quantlib.processes.heston_process import HestonProcess
 from quantlib.models.equity.heston_model import HestonModel
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
-from quantlib.time.api import today, NullCalendar, ActualActual
+from quantlib.time import today, NullCalendar, ActualActual
 from quantlib.util.rates import flat_rate
 import pylab as pl
 from quantlib.sim.simulate import simulateHeston, simulateBates
