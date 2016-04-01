@@ -13,24 +13,20 @@ from libcpp.string cimport string
 from quantlib.handle cimport Handle, shared_ptr
 
 
-from quantlib.util.compat cimport py_string_from_utf8_array as to_pystr
-from quantlib.util.compat cimport utf8_array_from_py_string
-
-
 cdef class Region:
     def __cinit__(self):
         pass
     
     property name:
         def __get__(self):
-            return to_pystr(self._thisptr.name().c_str())
+            return self._thisptr.name().decode('utf-8')
 
     property code:
         def __get__(self):
-            return to_pystr(self._thisptr.code().c_str())
+            return self._thisptr.code().decode('utf-8')
 
     def __str__(self):
-        return to_pystr(self._thisptr.name().c_str())
+        return self._thisptr.name().decode('utf-8')
 
     @classmethod
     def from_name(cls, code):
@@ -41,8 +37,8 @@ cdef class Region:
 cdef class CustomRegion(Region):
     def __init__(self, str name, str code):
         # convert the Python str to C++ string
-        cdef string name_string = utf8_array_from_py_string(name)
-        cdef string code_string = utf8_array_from_py_string(code)
+        cdef string name_string = name.encode('utf-8')
+        cdef string code_string = code.encode('utf-8')
 
         self._thisptr = new _re.CustomRegion(
             name_string,

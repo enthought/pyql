@@ -11,7 +11,6 @@ include '../types.pxi'
 
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport Handle, shared_ptr
-from quantlib.util.compat cimport utf8_array_from_py_string
 
 from libcpp cimport bool
 from libcpp.string cimport string
@@ -82,7 +81,7 @@ cdef class ZeroInflationIndex(InflationIndex):
             ts_handle = deref(<Handle[_its.ZeroInflationTermStructure]*>ts._thisptr.get())
 
         # convert the Python str to C++ string
-        cdef string c_family_name = utf8_array_from_py_string(family_name)
+        cdef string c_family_name = family_name.encode('utf-8')
 
         self._thisptr = new shared_ptr[_in.Index](
             new _ii.ZeroInflationIndex(
