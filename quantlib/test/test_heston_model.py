@@ -6,22 +6,18 @@ from .unittest_tools import unittest
 
 from quantlib.instruments.option import EuropeanExercise, VanillaOption
 from quantlib.instruments.payoffs import Call, PlainVanillaPayoff, Put
-from quantlib.models.equity.heston_model import (
-    HestonModelHelper, HestonModel, ImpliedVolError
-)
-
-from quantlib.processes.heston_process import HestonProcess
-from quantlib.processes.bates_process import BatesProcess
-from quantlib.models.equity.bates_model import (BatesDetJumpModel)
+from quantlib.models.equity import (HestonModelHelper, HestonModel,
+    BatesDetJumpModel)
+from quantlib.models import ImpliedVolError
+from quantlib.processes import (HestonProcess, BatesProcess)
 
 from quantlib.pricingengines.blackformula import blackFormula
-from quantlib.pricingengines.vanilla.vanilla import (
-    AnalyticHestonEngine,
+from quantlib.pricingengines.vanilla import ( AnalyticHestonEngine,
     BatesDetJumpEngine)
 from quantlib.processes.heston_process import QUADRATICEXPONENTIAL
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
-from quantlib.time.api import (
+from quantlib.time import (
     today, Actual360, NullCalendar, Period, Months, Years, Date, July,
     Actual365Fixed, TARGET, Weeks, ActualActual
 )

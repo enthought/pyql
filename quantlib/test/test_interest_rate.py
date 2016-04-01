@@ -3,7 +3,7 @@ from .unittest_tools import unittest
 from quantlib.interest_rate import InterestRate
 
 from quantlib.compounding import Continuous, Compounded
-from quantlib.time.api import Actual360, Monthly, NoFrequency, Once
+from quantlib.time import Actual360, Monthly, NoFrequency, Once
 
 
 class InterestRateTestCase(unittest.TestCase):

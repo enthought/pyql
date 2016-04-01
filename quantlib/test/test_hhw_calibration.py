@@ -5,7 +5,7 @@ import numpy as np
 from quantlib.math.hestonhwcorrelationconstraint import (
     HestonHullWhiteCorrelationConstraint)
 
-from quantlib.time.api import (
+from quantlib.time import (
     Period, Months, March, Date,
     Actual365Fixed, TARGET
 )
@@ -15,17 +15,14 @@ from quantlib.settings import Settings
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.flat_forward import FlatForward
+from quantlib.termstructures.yields import FlatForward
 
-from quantlib.models.equity.heston_model import (
-    HestonModelHelper, HestonModel, PriceError
-)
+from quantlib.models import PriceError
+from quantlib.models.equity import HestonModelHelper, HestonModel
 
-from quantlib.processes.heston_process import HestonProcess
+from quantlib.processes import HestonProcess, HullWhiteProcess
 
-from quantlib.processes.api import HullWhiteProcess
-
-from quantlib.pricingengines.api import (
+from quantlib.pricingengines import (
     AnalyticHestonEngine,
     FdHestonHullWhiteVanillaEngine)
 

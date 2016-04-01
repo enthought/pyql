@@ -1,7 +1,7 @@
 from .unittest_tools import unittest
 from quantlib.compounding import Simple
-from quantlib.time.api import Date, Actual360
-from quantlib.market.market import libor_market, IborMarket
+from quantlib.time import Date, Actual360
+from quantlib.market import libor_market, IborMarket
 from quantlib.quotes import SimpleQuote
 
 class MarketTestCase(unittest.TestCase):

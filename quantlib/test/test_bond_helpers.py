@@ -3,7 +3,7 @@ from .unittest_tools import unittest
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.bond_helpers import (
     FixedRateBondHelper)
-from quantlib.time.api import (
+from quantlib.time import (
     Annual, Backward, Date, DayCounter, Following, Period, Schedule, TARGET)
 from quantlib.time.calendar import ModifiedFollowing
 

@@ -1,6 +1,6 @@
 from .unittest_tools import unittest
 
-from quantlib.currency.api import Currency, USDCurrency
+from quantlib.currency import Currency, USDCurrency
 
 class TestCurrency(unittest.TestCase):
 

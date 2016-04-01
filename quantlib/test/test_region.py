@@ -9,7 +9,7 @@
 
 from .unittest_tools import unittest
 
-from quantlib.indexes.api import Region, CustomRegion, USRegion
+from quantlib.indexes import Region, CustomRegion, USRegion
 
 
 class TestRegion(unittest.TestCase):

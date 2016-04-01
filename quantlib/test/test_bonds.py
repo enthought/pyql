@@ -5,31 +5,29 @@ from quantlib.instruments.bonds import (
 )
 from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.time.calendar import (
-    TARGET, Unadjusted, ModifiedFollowing, Following
+    Unadjusted, ModifiedFollowing, Following
 )
 from quantlib.time.calendars.united_states import (
     UnitedStates, GOVERNMENTBOND, SETTLEMENT
 )
-from quantlib.time.calendars.null_calendar import NullCalendar
+from quantlib.time.calendars import (TARGET, NullCalendar)
 from quantlib.compounding import Compounded, Continuous
 from quantlib.time.date import (
-    Date, Days, Semiannual, January, August, Period, March, February,Oct,Nov,
+    Date, Days, Months, Semiannual, January, August, Period, March, February,Oct,Nov,
     Jul, Annual, Years, Quarterly
 )
-from quantlib.time.daycounter import Actual365Fixed, Actual360
-from quantlib.time.daycounters.actual_actual import ActualActual, Bond, ISMA
+from quantlib.time.daycounters import Actual365Fixed, Actual360, ActualActual, Bond, ISMA
 from quantlib.time.schedule import Schedule, Backward
 from quantlib.settings import Settings
-from quantlib.termstructures.yields.api import (
+from quantlib.termstructures.yields import (
     FlatForward, YieldTermStructure
 )
 from quantlib.indexes.libor import Libor
-from quantlib.currency.api import USDCurrency
-from quantlib.time.api import Months
+from quantlib.currency import USDCurrency
 from quantlib.cashflow import Leg, SimpleLeg
 from quantlib.cashflows.coupon_pricer import IborCouponPricer, BlackIborCouponPricer, set_coupon_pricer
-from quantlib.termstructures.volatility.optionlet.optionlet_volatility_structure import ConstantOptionletVolatility, OptionletVolatilityStructure
-from quantlib.indexes.euribor import Euribor6M
+from quantlib.termstructures.volatility.optionlet import ConstantOptionletVolatility, OptionletVolatilityStructure
+from quantlib.indexes import Euribor6M
 
 class BondTestCase(unittest.TestCase):
 

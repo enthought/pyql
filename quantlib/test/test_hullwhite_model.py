@@ -6,9 +6,9 @@ from .unittest_tools import unittest
 from quantlib.models.shortrate.onefactormodels.hullwhite import HullWhite
 from quantlib.settings import Settings
 
-from quantlib.time.api import (Date, Years, Actual365Fixed,
-                               Thirty360, Actual360, Period,
-                               February, NullCalendar)
+from quantlib.time import (Date, Years, Actual365Fixed,
+                           Thirty360, Actual360, Period,
+                           February, NullCalendar)
 
 from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.indexes.euribor import Euribor6M

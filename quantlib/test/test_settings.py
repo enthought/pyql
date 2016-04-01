@@ -1,6 +1,6 @@
 from .unittest_tools import unittest
 from quantlib.instruments.bonds import FixedRateBond
-from quantlib.time.api import (
+from quantlib.time import (
     Date, Days, August, Period, Jul, Annual, today, Years, TARGET,
     Unadjusted, Schedule, ModifiedFollowing, Backward, ActualActual, ISMA,
     Following

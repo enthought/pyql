@@ -1,14 +1,11 @@
 from .unittest_tools import unittest
 
-from quantlib.currency.api import USDCurrency
-from quantlib.indexes.swap_index import SwapIndex
-from quantlib.indexes.libor import Libor
+from quantlib.currency import USDCurrency
+from quantlib.indexes import SwapIndex, Libor
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.rate_helpers import (
-    DepositRateHelper, FraRateHelper, FuturesRateHelper, SwapRateHelper
-)
-from quantlib.termstructures.yields.api import YieldTermStructure
-from quantlib.time.api import (
+from quantlib.termstructures.yields import (
+    DepositRateHelper, FraRateHelper, FuturesRateHelper, SwapRateHelper, YieldTermStructure)
+from quantlib.time import (
     Period, Months, TARGET, ModifiedFollowing, Actual365Fixed, Date, Years,
     UnitedStates, Actual360
 )

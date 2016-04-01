@@ -4,9 +4,9 @@ from .unittest_tools import  unittest
 
 from quantlib.settings import Settings
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.api import FlatForward
-from quantlib.termstructures.credit.api import SpreadCdsHelper, PiecewiseDefaultCurve
-from quantlib.time.api import TARGET, Date, Actual365Fixed, Months, \
+from quantlib.termstructures.yields import FlatForward
+from quantlib.termstructures.credit import SpreadCdsHelper, PiecewiseDefaultCurve
+from quantlib.time import TARGET, Date, Actual365Fixed, Months, \
         Following, Quarterly, TwentiethIMM, May, Period
 
 
