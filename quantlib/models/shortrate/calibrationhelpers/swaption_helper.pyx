@@ -18,7 +18,7 @@ from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.time.date cimport Period
 from quantlib.time._daycounter cimport DayCounter as QlDayCounter
 from quantlib.quotes cimport Quote
-from quantlib.models.calibration_helper import RelativePriceError
+from quantlib.models.calibration_helper cimport RelativePriceError
 cimport quantlib._quote as _qt
 cimport quantlib.termstructures._yield_term_structure as _yts
 cimport quantlib.indexes._ibor_index as _ii

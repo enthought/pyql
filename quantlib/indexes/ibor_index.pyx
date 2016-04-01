@@ -12,10 +12,9 @@ from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStruct
 cimport quantlib._index as _in
 cimport quantlib.indexes._ibor_index as _ib
 
-from quantlib.time.api import calendar_from_name
-from quantlib.market.conventions.swap import params as swap_params
+from quantlib.time import calendar_from_name
 
-
+from quantlib.conventions import params as swap_params
 from quantlib.indexes.interest_rate_index cimport InterestRateIndex
 
 cdef class IborIndex(InterestRateIndex):

@@ -15,18 +15,17 @@ from pandas import DataFrame
 from quantlib.instruments.option import EuropeanExercise, VanillaOption
 from quantlib.instruments.payoffs import PlainVanillaPayoff, Put, Call
 from quantlib.models.equity.heston_model import HestonModel
-from quantlib.pricingengines.vanilla.vanilla import AnalyticHestonEngine
-from quantlib.processes.heston_process import HestonProcess
+from quantlib.pricingengines.vanilla import AnalyticHestonEngine
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.util.converter import pydate_to_qldate, df_to_zero_curve
 
-from quantlib.instruments.api import EuropeanOption
-from quantlib.pricingengines.api import AnalyticEuropeanEngine
-from quantlib.processes.api import BlackScholesMertonProcess
-from quantlib.termstructures.yields.api import FlatForward
-from quantlib.termstructures.volatility.api import BlackConstantVol
-from quantlib.time.api import Actual360, today, NullCalendar
+from quantlib.instruments import EuropeanOption
+from quantlib.pricingengines import AnalyticEuropeanEngine
+from quantlib.processes import BlackScholesMertonProcess, HestonProcess
+from quantlib.termstructures.yields import FlatForward
+from quantlib.termstructures.volatility import BlackConstantVol
+from quantlib.time import Actual360, today, NullCalendar
 
 
 def options_to_rates(options, t_min=1. / 12., n_min=6):

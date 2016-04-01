@@ -1,14 +1,14 @@
-from quantlib.market.conventions.swap import params as swap_params
-from quantlib.indexes.api import IborIndex
+from quantlib.conventions import params as swap_params
+from quantlib.indexes import IborIndex
 from quantlib.instruments.swap import VanillaSwap, Payer
-from quantlib.pricingengines.swap import DiscountingSwapEngine
+from quantlib.pricingengines import DiscountingSwapEngine
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
-from quantlib.termstructures.yields.api import (
+from quantlib.termstructures.yields import (
     FixedRateBondHelper, DepositRateHelper, FuturesRateHelper, SwapRateHelper,
     PiecewiseYieldCurve, YieldTermStructure
 )
-from quantlib.time.api import (
+from quantlib.time import (
     Date, Period, Years, Days, JointCalendar, UnitedStates, UnitedKingdom,
     code_to_frequency, pydate_from_qldate, qldate_from_pydate, DayCounter,
     BusinessDayConvention, Backward, Following, calendar_from_name,

@@ -14,16 +14,16 @@ from __future__ import division
 import re
 import numpy as np
 
-from quantlib.currency.api import USDCurrency
-from quantlib.indexes.libor import Libor
+from quantlib.currency import USDCurrency
+from quantlib.indexes import Libor
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
-from quantlib.termstructures.yields.rate_helpers import \
-    DepositRateHelper, SwapRateHelper
-from quantlib.termstructures.yields.api import (
-    FlatForward, PiecewiseYieldCurve
+from quantlib.termstructures.yields import \
+     DepositRateHelper, SwapRateHelper
+from quantlib.termstructures.yields import (
+    FlatForward, YieldTermStructure, PiecewiseYieldCurve
 )
-from quantlib.time.api import (
+from quantlib.time import (
     TARGET, Period, Months, Years, Days, ModifiedFollowing, Unadjusted,
     Actual360, Thirty360, Annual, ActualActual, ISDA, JointCalendar,
     UnitedStates, UnitedKingdom, NullCalendar, Date

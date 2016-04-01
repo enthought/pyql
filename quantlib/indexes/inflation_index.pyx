@@ -28,7 +28,7 @@ cimport quantlib.indexes._inflation_index as _ii
 cimport quantlib.termstructures._inflation_term_structure as _its
 cimport quantlib._interest_rate as _ir
 
-from quantlib.currency.api import AUDCurrency
+from quantlib.currency import AUDCurrency
 from quantlib.indexes.regions import AustraliaRegion
 
 cimport quantlib.time._period as _pe
