@@ -350,6 +350,7 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
                     self.assertAlmostEqual(expected, calculated,
                                             delta=tol)
 
+    @unittest.skip("skipping very long zanette test...")
     def test_zanette(self):
         """
         From paper by A. Zanette et al.

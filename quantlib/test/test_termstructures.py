@@ -82,7 +82,7 @@ class YieldTermStructureTestCase(unittest.TestCase):
             discounting_term_structure.discount(evaluation_date)
         )
 
-        self.assertNotEquals(
+        self.assertNotEqual(
             flat_term_structure.discount(evaluation_date),
             discounting_term_structure.discount(evaluation_date)
         )
