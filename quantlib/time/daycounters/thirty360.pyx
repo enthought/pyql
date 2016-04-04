@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from __future__ cimport unicode_literals
+from __future__ import unicode_literals
 
 cimport quantlib.time._daycounter as _daycounter
 cimport quantlib.time.daycounters._thirty360 as _th
