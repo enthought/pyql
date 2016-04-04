@@ -19,9 +19,9 @@ from quantlib.indexes.libor import Libor
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.rate_helpers import \
-     DepositRateHelper, SwapRateHelper
+    DepositRateHelper, SwapRateHelper
 from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure, PiecewiseYieldCurve
+    FlatForward, PiecewiseYieldCurve
 )
 from quantlib.time.api import (
     TARGET, Period, Months, Years, Days, ModifiedFollowing, Unadjusted,
@@ -68,6 +68,7 @@ def make_rate_helper(label, rate, dt_obs, currency='USD'):
 
     if not isinstance(dt_obs, Date):
         dt_obs = pydate_to_qldate(dt_obs)
+        
     settings = Settings()
     calendar = JointCalendar(UnitedStates(), UnitedKingdom())
     # must be a business day
@@ -86,17 +87,20 @@ def make_rate_helper(label, rate, dt_obs, currency='USD'):
         )
         spread = SimpleQuote(0)
         fwdStart = Period(0, Days)
-        helper = SwapRateHelper.from_tenor(rate,
-                 Period(tenor, Years),
-                 calendar, Annual,
-                 Unadjusted, Thirty360(),
-                 liborIndex, spread, fwdStart)
+        helper = SwapRateHelper.from_tenor(
+            SimpleQuote(rate),
+            Period(tenor, Years),
+            calendar, Annual,
+            Unadjusted, Thirty360(),
+            liborIndex, spread, fwdStart)
     elif((rate_type == 'LIBOR') & (period == 'M')):
-        helper = DepositRateHelper(rate, Period(tenor, Months),
-                 settlement_days,
-                 calendar, ModifiedFollowing,
-                 end_of_month,
-                 Actual360())
+        helper = DepositRateHelper(SimpleQuote(rate),
+                                   Period(tenor, Months),
+                                   settlement_days,
+                                   calendar,
+                                   ModifiedFollowing,
+                                   end_of_month,
+                                   Actual360())
     else:
         raise Exception("Rate type %s not supported" % label)
 
@@ -120,7 +124,7 @@ def make_term_structure(rates, dt_obs):
     ts_day_counter = ActualActual(ISDA)
     tolerance = 1.0e-15
     ts = PiecewiseYieldCurve(
-        'discount', 'loglinear',settlement_date, rate_helpers, ts_day_counter,
+        'discount', 'loglinear', settlement_date, rate_helpers, ts_day_counter,
         tolerance
     )
 

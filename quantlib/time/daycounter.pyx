@@ -120,11 +120,11 @@ cdef _daycounter.DayCounter* daycounter_from_name(basestring name, basestring co
     elif name_u == 'SIMPLEDAYCOUNTER':
         cnt = new _daycounter.SimpleDayCounter()
     elif name.startswith('Actual/Actual') or name.startswith('ACT/ACT') :
-        cnt = aa_from_name(name, convention)
+        cnt = aa_from_name(convention)
     elif name.startswith('30/360'):
         if convention is None:
             convention = 'BONDBASIS'
-        cnt = th_from_name(name, convention)
+        cnt = th_from_name(convention)
     return cnt
 
 

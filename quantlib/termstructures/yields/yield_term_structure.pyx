@@ -1,7 +1,8 @@
 include '../../types.pxi'
 from cython.operator cimport dereference as deref
 
-from libcpp cimport bool as cbool
+from libcpp cimport bool
+from libcpp.vector cimport vector
 
 from quantlib.time._period cimport Frequency
 from quantlib.time.calendar cimport Calendar
@@ -15,7 +16,9 @@ cimport quantlib.termstructures._yield_term_structure as _yts
 cimport quantlib._quote as _qt
 cimport quantlib._interest_rate as _ir
 from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle
-
+cimport quantlib.time._date as _date
+cimport quantlib.time._daycounter as _dc
+cimport quantlib.time._calendar as _cal
 from quantlib.quotes cimport Quote
 from quantlib.interest_rate cimport InterestRate
 
@@ -85,7 +88,7 @@ cdef class YieldTermStructure:
 
     def zero_rate(
             self, Date date, DayCounter day_counter,
-            int compounding, int frequency=Annual, extrapolate=False):
+            int compounding, int frequency=Annual, bool extrapolate=False):
         """ Returns the implied zero-yield rate for the given date.
 
         The time is calculated as a fraction of year from the reference date.
@@ -126,7 +129,7 @@ cdef class YieldTermStructure:
 
     def forward_rate(
             self, Date d1, Date d2, DayCounter day_counter,
-            int compounding, int frequency=Annual, extrapolate=False):
+            int compounding, int frequency=Annual, bool extrapolate=False):
         """ Returns the forward interest rate between two dates or times.
 
         In the former case, times are calculated as fractions of year from the
@@ -167,23 +170,32 @@ cdef class YieldTermStructure:
 
         return forward_rate
 
-    def discount(self, value):
+    def discount(self, value, bool extrapolate=None):
         self._raise_if_empty()
 
         cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
 
+        if extrapolate is None:
+            extrapolate = False
+
+        discount_value = 0
+
         if isinstance(value, Date):
             discount_value = term_structure.discount(
-                deref((<Date>value)._thisptr.get())
-            )
+                deref((<Date>value)._thisptr.get()), extrapolate)
         elif isinstance(value, float):
             discount_value = term_structure.discount(
-                <Time>value
-            )
+                <Time>value, extrapolate)
         else:
             raise ValueError('Unsupported value type')
 
         return discount_value
+
+    def time_from_reference(self, Date dt):
+        self._raise_if_empty()
+        cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
+        cdef Time time = term_structure.timeFromReference(deref(dt._thisptr.get()))
+        return time
 
     property reference_date:
         def __get__(self):
@@ -198,3 +210,26 @@ cdef class YieldTermStructure:
             cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
             cdef _yts.Date max_date = term_structure.maxDate()
             return date_from_qldate(max_date)
+
+    property max_time:
+        def __get__(self):
+            self._raise_if_empty()
+            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
+            cdef Time max_time = term_structure.maxTime()
+            return max_time
+
+    property day_counter:
+        def __get__(self):
+            self._raise_if_empty()
+            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
+            cdef _dc.DayCounter dc = term_structure.dayCounter()
+            return DayCounter.from_name(dc.name())
+
+    property settlement_days:
+        def __get__(self):
+            self._raise_if_empty()
+            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
+            cdef int days = term_structure.settlementDays()
+            return days
+
+        

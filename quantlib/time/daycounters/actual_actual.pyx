@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 '''Actual/Actual day count
 
 The day count can be calculated according to:
@@ -12,6 +14,9 @@ The day count can be calculated according to:
 For more details, refer to
 http://www.isda.org/publications/pdf/Day-Count-Fracation1999.pdf
 '''
+
+from __future__ cimport unicode_literals
+
 cimport quantlib.time._daycounter as _daycounter
 cimport quantlib.time.daycounters._actual_actual as _aa
 from quantlib.time.daycounter cimport DayCounter
@@ -61,7 +66,7 @@ cdef class ActualActual(DayCounter):
         self._thisptr = <_daycounter.DayCounter*> new \
             _aa.ActualActual(<_aa.Convention>convention)
 
-cdef _daycounter.DayCounter* from_name(str name, str convention):
+cdef _daycounter.DayCounter* from_name(str convention):
 
     cdef _aa.Convention ql_convention = <_aa.Convention>CONVENTIONS[convention]
 

@@ -30,7 +30,7 @@ class MarketTestCase(unittest.TestCase):
                   ('SWAP', '5Y', SimpleQuote(0.0443)),
                   ('SWAP', '10Y', SimpleQuote(0.05165)),
                   ('SWAP', '15Y', SimpleQuote(0.055175))]
-
+        
         m.set_quotes(eval_date, quotes)
 
         m.bootstrap_term_structure()
