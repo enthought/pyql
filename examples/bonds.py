@@ -6,17 +6,16 @@ This example is based on the QuantLib Excel bond demo.
 from __future__ import print_function
 
 from quantlib.instruments.bonds import FixedRateBond
-from quantlib.time.api import (
+from quantlib.time import (
     TARGET, Unadjusted, ModifiedFollowing, Following, NullCalendar
 )
 from quantlib.compounding import Continuous
-from quantlib.pricingengines.bond import DiscountingBondEngine
+from quantlib.pricingengines import DiscountingBondEngine
 from quantlib.time.date import Date, August, Period, Jul, Annual, Years
-from quantlib.time.daycounter import Actual365Fixed
-from quantlib.time.daycounters.actual_actual import ActualActual, ISMA
+from quantlib.time.daycounters import ActualActual, ISMA, Actual365Fixed
 from quantlib.time.schedule import Schedule, Backward
 from quantlib.settings import Settings
-from quantlib.termstructures.yields.api import (
+from quantlib.termstructures.yields import (
     FlatForward, YieldTermStructure
 )
 

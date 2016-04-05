@@ -1,15 +1,15 @@
 from .unittest_tools import unittest
 
-from quantlib.currency.api import USDCurrency
+from quantlib.currency import USDCurrency
 from quantlib.instruments.swap import VanillaSwap, Payer
 from quantlib.indexes.libor import Libor
 from quantlib.market.market import libor_market
-from quantlib.pricingengines.swap import DiscountingSwapEngine
+from quantlib.pricingengines import DiscountingSwapEngine
 from quantlib.settings import Settings
-from quantlib.termstructures.yields.api import (
+from quantlib.termstructures.yields import (
     FlatForward, YieldTermStructure
 )
-from quantlib.time.api import (
+from quantlib.time import (
     Unadjusted, ModifiedFollowing, Date, Days, Semiannual, January, Period,
     Annual, Years, Months, Actual365Fixed, Thirty360, TARGET, Actual360,
     Schedule, Forward

@@ -18,7 +18,6 @@ cimport quantlib.time._calendar as _calendar
 from quantlib.time.date cimport Date
 
 from quantlib.time.calendar_registry import calendar_from_internal_name
-from quantlib.time.api import calendar_from_name
 
 cdef class Index:
 

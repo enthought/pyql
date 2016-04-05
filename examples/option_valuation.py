@@ -25,26 +25,25 @@ from __future__ import print_function
 from quantlib.settings import Settings
 from quantlib.compounding import Simple
 from quantlib.currency import USDCurrency
-from quantlib.indexes.libor import Libor
-from quantlib.indexes.swap_index import SwapIndex
+from quantlib.indexes import (Libor, SwapIndex)
 from quantlib.instruments.option import EuropeanExercise, AmericanExercise
 from quantlib.instruments.option import VanillaOption, DividendVanillaOption
 from quantlib.instruments.payoffs import PlainVanillaPayoff
-from quantlib.pricingengines.api import AnalyticDividendEuropeanEngine
-from quantlib.pricingengines.api import FDDividendAmericanEngine
-from quantlib.pricingengines.api import AnalyticEuropeanEngine
-from quantlib.pricingengines.api import FDAmericanEngine
-from quantlib.processes.black_scholes_process import BlackScholesProcess
+from quantlib.pricingengines import AnalyticDividendEuropeanEngine
+from quantlib.pricingengines import FDDividendAmericanEngine
+from quantlib.pricingengines import AnalyticEuropeanEngine
+from quantlib.pricingengines import FDAmericanEngine
+from quantlib.processes import BlackScholesProcess
 from quantlib.quotes import SimpleQuote
-from quantlib.time.api import (
+from quantlib.time import (
     Date, Days, Period, Actual360, Months, Jan, ModifiedFollowing, Years, Feb
 )
-from quantlib.time.calendars.united_states import UnitedStates
-from quantlib.termstructures.yields.api import (
+from quantlib.time.calendars import UnitedStates
+from quantlib.termstructures.yields import (
     PiecewiseYieldCurve, DepositRateHelper
 )
-from quantlib.termstructures.volatility.equityfx.black_vol_term_structure import BlackConstantVol
-from quantlib.termstructures.yields.api import SwapRateHelper
+from quantlib.termstructures.volatility import BlackConstantVol
+from quantlib.termstructures.yields import SwapRateHelper
 
 def dividendOption():
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -64,7 +63,7 @@ def dividendOption():
     currency = USDCurrency() # INPUT	
 
     print("Date of the evaluation:			", todaysDate)
-    print("Calendar used:         			", calendar.name())
+    print("Calendar used:         			", calendar.name)
     print("Number of settlement Days:		", settlement_days)
     print("Date of settlement:       		", settlementDate)
     print("Convention of day counter:		", dayCounter.name())
@@ -147,7 +146,7 @@ def dividendOption():
         liborIndex =  Libor(LiborFamilyName, tenor, settlement_days, currency, calendar,
                 Libor_dayCounter)
         # Initialize rate helper	___ the DepositRateHelper link the recording rate with the Libor index													
-        instruments.append(DepositRateHelper(rate, index=liborIndex))
+        instruments.append(DepositRateHelper(SimpleQuote(rate), index=liborIndex))
 
     # +++++++++++++++++++++ Swap
     SwapFamilyName = currency.name + "swapIndex";
@@ -157,7 +156,7 @@ def dividendOption():
                 Swap_fixedLegTenor, Swap_fixedLegConvention, Swap_fixedLegDayCounter,
                 Swap_iborIndex)
         # Initialize rate helper __ the SwapRateHelper links the swap index width his rate
-        instruments.append(SwapRateHelper.from_index(rate,swapIndex))
+        instruments.append(SwapRateHelper.from_index(SimpleQuote(rate), swapIndex))
     
     # ++++++++++++++++++  Now the creation of the yield curve
 

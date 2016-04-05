@@ -8,23 +8,23 @@
 """
 
 import numpy as np
-from quantlib.instruments.bonds import (
+from quantlib.instruments import (
     FixedRateBond
 )
 
 from quantlib.compounding import Compounded
 
-from quantlib.pricingengines.bond import DiscountingBondEngine
+from quantlib.pricingengines import DiscountingBondEngine
 from quantlib.time.calendar import (
     TARGET, Unadjusted, ModifiedFollowing, Following)
 
-from quantlib.time.calendars.null_calendar import NullCalendar
+from quantlib.time.calendars import NullCalendar
 from quantlib.time.date import (
     Date, Days, Period, Years, str_to_frequency)
 
 from quantlib.time.schedule import Schedule, Backward
 from quantlib.settings import Settings
-from quantlib.termstructures.yields.api import (
+from quantlib.termstructures.yields import (
     FlatForward, YieldTermStructure
 )
 

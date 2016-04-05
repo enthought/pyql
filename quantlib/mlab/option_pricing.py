@@ -10,21 +10,21 @@
 import numpy as np
 import quantlib.reference.names as nm
 
-from quantlib.instruments.option import EuropeanExercise, VanillaOption
-from quantlib.instruments.payoffs import PlainVanillaPayoff, Put, Call
-from quantlib.models.equity.heston_model import HestonModel
-from quantlib.pricingengines.vanilla.vanilla import AnalyticHestonEngine
-from quantlib.processes.heston_process import HestonProcess
+from quantlib.instruments import (EuropeanExercise, VanillaOption,
+    PlainVanillaPayoff, Put, Call)
+from quantlib.models.equity import HestonModel
+from quantlib.pricingengines import AnalyticHestonEngine
+from quantlib.processes import HestonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.util.converter import pydate_to_qldate, df_to_zero_curve
 
-from quantlib.instruments.api import EuropeanOption
-from quantlib.pricingengines.api import AnalyticEuropeanEngine
-from quantlib.processes.api import BlackScholesMertonProcess
-from quantlib.termstructures.yields.api import FlatForward
-from quantlib.termstructures.volatility.api import BlackConstantVol
-from quantlib.time.api import today, NullCalendar, ActualActual
+from quantlib.instruments import EuropeanOption
+from quantlib.pricingengines import AnalyticEuropeanEngine
+from quantlib.processes import BlackScholesMertonProcess
+from quantlib.termstructures.yields import FlatForward
+from quantlib.termstructures.volatility import BlackConstantVol
+from quantlib.time import today, NullCalendar, ActualActual
 
 from quantlib.time.date import (Period, Days)
 from quantlib.mlab.util import common_shape, array_call

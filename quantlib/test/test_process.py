@@ -4,7 +4,7 @@ from quantlib.processes.heston_process import HestonProcess
 from quantlib.processes.bates_process import BatesProcess
 
 from quantlib.settings import Settings
-from quantlib.time.api import (
+from quantlib.time import (
     today, NullCalendar, ActualActual
 )
 from quantlib.termstructures.yields.flat_forward import FlatForward

@@ -12,30 +12,26 @@ import numpy as np
 
 from quantlib.settings import Settings
 
-from quantlib.instruments.option import (
-    EuropeanExercise)
+from quantlib.instruments import (EuropeanExercise, PAYOFF_TO_STR)
 
-from quantlib.instruments.payoffs import PAYOFF_TO_STR
-
-from quantlib.models.shortrate.onefactormodels.hullwhite import HullWhite
+from quantlib.models.shortrate.onefactormodels import HullWhite
 
 from quantlib.instruments.option import VanillaOption
 
-from quantlib.time.api import (today, Years, Actual365Fixed,
-                               Period, May, Date,
-                               NullCalendar)
+from quantlib.time import (today, Years, Actual365Fixed,
+                           Period, May, Date,
+                           NullCalendar)
 
-from quantlib.processes.api import (BlackScholesMertonProcess,
-                                    HestonProcess,
-                                    HullWhiteProcess)
+from quantlib.processes import (BlackScholesMertonProcess,
+                                HestonProcess,
+                                HullWhiteProcess)
 
-from quantlib.models.equity.heston_model import (
-    HestonModel)
+from quantlib.models.equity import HestonModel
 
-from quantlib.termstructures.yields.api import ZeroCurve, FlatForward
-from quantlib.termstructures.volatility.api import BlackConstantVol
+from quantlib.termstructures.yields import ZeroCurve, FlatForward
+from quantlib.termstructures.volatility import BlackConstantVol
 
-from quantlib.pricingengines.api import (
+from quantlib.pricingengines import (
     AnalyticEuropeanEngine,
     AnalyticBSMHullWhiteEngine,
     AnalyticHestonEngine,

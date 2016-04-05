@@ -17,14 +17,13 @@ from __future__ import print_function
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.rate_helpers import \
     DepositRateHelper, SwapRateHelper
-from quantlib.termstructures.yields.piecewise_yield_curve import \
-    PiecewiseYieldCurve
-from quantlib.time.api import Date, TARGET, Period, Months, Years, Days
-from quantlib.time.api import (ModifiedFollowing, Actual360,
-                               Thirty360, Semiannual, ActualActual)
+from quantlib.termstructures.yields import PiecewiseYieldCurve 
+from quantlib.time import Date, TARGET, Period, Months, Years, Days
+from quantlib.time import (ModifiedFollowing, Actual360,
+                               Thirty360, ActualActual)
 
-from quantlib.time.api import ISDA
-from quantlib.currency.api import USDCurrency
+from quantlib.time import ISDA
+from quantlib.currency import USDCurrency
 from quantlib.quotes import SimpleQuote
 
 from quantlib.indexes.libor import Libor
@@ -142,7 +141,7 @@ def zero_curve(ts, dtObs):
 
 if __name__ == '__main__':
 
-    df_libor = pandas.load('examples/data/df_libor.pkl')
+    df_libor = pandas.read_pickle('examples/data/df_libor.pkl')
     dtObs = df_libor.index
 
     fig = plt.figure()

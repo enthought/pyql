@@ -9,8 +9,8 @@ from quantlib.util.rates import make_rate_helper, zero_rate
 import quantlib.reference.names as nm
 import quantlib.reference.data_structures as ds
 
-from quantlib.termstructures.yields.api import PiecewiseYieldCurve
-from quantlib.time.api import ActualActual, ISDA
+from quantlib.termstructures.yields import PiecewiseYieldCurve
+from quantlib.time import ActualActual, ISDA
 from quantlib.util.converter import pydate_to_qldate
 from quantlib.quotes import SimpleQuote
 

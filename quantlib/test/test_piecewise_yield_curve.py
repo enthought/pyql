@@ -10,7 +10,7 @@ from __future__ import division
 
 from .unittest_tools import unittest
 
-from quantlib.currency.api import USDCurrency
+from quantlib.currency import USDCurrency
 from quantlib.indexes.swap_index import SwapIndex
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.rate_helpers import (
@@ -18,13 +18,11 @@ from quantlib.termstructures.yields.rate_helpers import (
 from quantlib.termstructures.yields.piecewise_yield_curve import (
     VALID_TRAITS, VALID_INTERPOLATORS, PiecewiseYieldCurve
 )
-from quantlib.time.api import Date, TARGET, Period, Months, Years, Days
-from quantlib.time.api import September, ISDA, today, Mar
-from quantlib.time.api import ModifiedFollowing, Unadjusted, Actual360
-from quantlib.time.api import Thirty360, ActualActual, Actual365Fixed
-from quantlib.time.api import Annual, UnitedStates
+from quantlib.time import (Date, TARGET, Period, Months, Years, Days,
+    September, ISDA, today, Mar, ModifiedFollowing, Unadjusted, Actual360,
+    Thirty360, ActualActual, Actual365Fixed, Annual, UnitedStates)
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.api import YieldTermStructure
+from quantlib.termstructures.yields import YieldTermStructure
 from quantlib.indexes.libor import Libor
 
 

@@ -6,6 +6,10 @@ cimport _currency as _cu
 
 from currency cimport Currency
 
+__all__ = [code+'Currency' for code in ['USD', 'EUR', 'GBP', 'JPY', 'CHF',
+					'AUD', 'DKK', 'INR', 'HKD', 'NOK',
+					'NZD', 'PLN', 'SEK', 'SGD', 'ZAR']]
+
 cdef class USDCurrency(Currency):
     def __cinit__(self):
         self._thisptr = <_cu.Currency*> new _cu.USDCurrency()

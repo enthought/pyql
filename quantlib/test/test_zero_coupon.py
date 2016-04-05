@@ -2,14 +2,14 @@ from .unittest_tools import unittest
 
 from quantlib.settings import Settings
 
-from quantlib.currency.api import USDCurrency
-from quantlib.indexes.libor import Libor
+from quantlib.currency import USDCurrency
+from quantlib.indexes import Libor
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.rate_helpers import (
     DepositRateHelper, SwapRateHelper)
-from quantlib.termstructures.yields.api import PiecewiseYieldCurve
+from quantlib.termstructures.yields import PiecewiseYieldCurve
 
-from quantlib.time.api import (
+from quantlib.time import (
     Period, Months, Days, TARGET, ModifiedFollowing,
     Years, Actual360, Semiannual,
     Thirty360, ActualActual, ISDA

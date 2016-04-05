@@ -8,22 +8,19 @@
 """
 
 from .unittest_tools import unittest
-from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure
+from quantlib.termstructures.yields import (
+    FlatForward, ForwardSpreadedTermStructure, YieldTermStructure
 )
 from quantlib.quotes import SimpleQuote
 
 from quantlib.settings import Settings
-from quantlib.time.calendar import TARGET
-from quantlib.time.calendars.null_calendar import NullCalendar
-from quantlib.time.daycounter import Actual360, Actual365Fixed
-from quantlib.time.date import today, Days
+from quantlib.time.calendars import (NullCalendar, TARGET)
+from quantlib.time.daycounters import Actual360, Actual365Fixed
+from quantlib.time import today, Date, Days
 
 from quantlib.compounding import Simple
-from quantlib.time.api import Date, Actual360
-from quantlib.market.market import libor_market, IborMarket
+from quantlib.market import libor_market, IborMarket
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.forward_spreaded_term_structure import ForwardSpreadedTermStructure
 
 class SimpleQuoteTestCase(unittest.TestCase):
 

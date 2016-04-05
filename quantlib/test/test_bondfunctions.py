@@ -4,37 +4,34 @@ from .unittest_tools import unittest
 from quantlib.instruments.bonds import (
     FixedRateBond, ZeroCouponBond
 )
-from quantlib.pricingengines.bond import DiscountingBondEngine
+from quantlib.pricingengines import DiscountingBondEngine
 from quantlib.time.calendar import (
-    TARGET, Unadjusted, ModifiedFollowing, Following
+    Unadjusted, ModifiedFollowing, Following
 )
 from quantlib.time.calendars.united_states import (
     UnitedStates, GOVERNMENTBOND
 )
-from quantlib.currency.api import USDCurrency
+from quantlib.currency import USDCurrency
 
-from quantlib.time.calendars.null_calendar import NullCalendar
+from quantlib.time.calendars import (NullCalendar, TARGET)
 from quantlib.compounding import Compounded, Continuous
 from quantlib.time.date import (
     Date, Days, Semiannual, January, August, Period, March, February, April, May,
     Jul, Annual, Years
 )
-from quantlib.time.api import (TARGET, Period, Months, Years, Days,September, ISDA, today, Mar,
-    ModifiedFollowing, Unadjusted, Actual360, Thirty360, ActualActual, Actual365Fixed,
-    Annual, UnitedStates, Months, Actual365Fixed)
-from quantlib.time.daycounters.actual_actual import Bond, ISMA
+from quantlib.time import (Period, Months, Years, Days,September, ISDA, today, Mar,
+    ModifiedFollowing, Unadjusted, Annual, Months)
+from quantlib.time.daycounters import *
 from quantlib.time.schedule import Schedule, Backward
 from quantlib.settings import Settings
-from quantlib.indexes.libor import Libor
+from quantlib.indexes import Libor
 
-from quantlib.termstructures.yields.rate_helpers import (
-    DepositRateHelper, SwapRateHelper)
+from quantlib.termstructures.yields import (
+    DepositRateHelper, SwapRateHelper, FlatForward, YieldTermStructure)
 from quantlib.termstructures.yields.piecewise_yield_curve import (
     VALID_TRAITS, VALID_INTERPOLATORS,
     PiecewiseYieldCurve)
-from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure
-)
+
 from quantlib.quotes import SimpleQuote
 
 import quantlib.pricingengines.bondfunctions as bf

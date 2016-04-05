@@ -15,7 +15,7 @@ from quantlib.handle cimport shared_ptr
 cimport _interest_rate as _ir
 
 from quantlib import compounding
-from quantlib.time.api import NoFrequency, Once
+from quantlib.time import NoFrequency, Once
 from quantlib.time.date import frequency_to_str
 from quantlib.time.daycounter cimport DayCounter
 

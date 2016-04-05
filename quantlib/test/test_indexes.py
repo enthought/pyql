@@ -9,19 +9,14 @@
 
 from .unittest_tools import unittest
 
-from quantlib.currency.api import USDCurrency
+from quantlib.currency import USDCurrency
 from quantlib.index import Index
-from quantlib.indexes.interest_rate_index import InterestRateIndex
-from quantlib.indexes.libor import Libor
-from quantlib.indexes.swap_index import SwapIndex
-from quantlib.indexes.euribor import Euribor6M
+from quantlib.indexes import (InterestRateIndex, Libor, SwapIndex, Euribor6M)
 from quantlib.settings import Settings
-from quantlib.time.api import (Days, Months, Period, TARGET, Actual360,
-                               today, Actual365Fixed)
-from quantlib.time.api import Following
-from quantlib.termstructures.yields.api import (
+from quantlib.time import (Date, Days, January, Months, Period, TARGET, Actual360,
+                               today, Actual365Fixed, Following)
+from quantlib.termstructures.yields import (
     FlatForward, YieldTermStructure)
-from quantlib.time.api import Date, January
 
 
 class TestIndex(unittest.TestCase):

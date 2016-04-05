@@ -8,17 +8,16 @@
 """
 from __future__ import print_function
 
-from quantlib.instruments.api import AmericanExercise, VanillaOption, Put
+from quantlib.instruments import AmericanExercise, VanillaOption, Put
 from quantlib.instruments.payoffs import PlainVanillaPayoff
-from quantlib.pricingengines.api import BaroneAdesiWhaleyApproximationEngine
-from quantlib.pricingengines.api import FDAmericanEngine
+from quantlib.pricingengines import BaroneAdesiWhaleyApproximationEngine
+from quantlib.pricingengines import FDAmericanEngine
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
-from quantlib.time.api import Actual365Fixed, Date, May, TARGET
-from quantlib.termstructures.volatility.equityfx.black_vol_term_structure \
-    import BlackConstantVol
-from quantlib.termstructures.yields.api import FlatForward
+from quantlib.time import Actual365Fixed, Date, May, TARGET
+from quantlib.termstructures.volatility import BlackConstantVol
+from quantlib.termstructures.yields import FlatForward
 
 
 def main():

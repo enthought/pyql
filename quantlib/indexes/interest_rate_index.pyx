@@ -19,7 +19,6 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date, date_from_qldate
-from quantlib.util.converter import pydate_to_qldate
 
 cimport quantlib._index as _in
 cimport quantlib.indexes._interest_rate_index as _iri

@@ -13,7 +13,7 @@ import re
 import datetime
 
 import six
-from quantlib.time.api import Date, Actual365Fixed
+from quantlib.time import Date, Actual365Fixed
 import quantlib.time.date as dt
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
 

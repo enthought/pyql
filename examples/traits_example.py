@@ -11,8 +11,8 @@ from quantlib.pricingengines.vanilla import AnalyticEuropeanEngine
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
-from quantlib.time.api import TARGET, Actual365Fixed, today, Date as QlDate
-from quantlib.termstructures.yields.api import FlatForward
+from quantlib.time import TARGET, Actual365Fixed, today, Date as QlDate
+from quantlib.termstructures.yields import FlatForward
 from quantlib.termstructures.volatility.equityfx.black_vol_term_structure \
     import BlackConstantVol
 

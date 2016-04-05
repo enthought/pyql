@@ -7,7 +7,7 @@ from quantlib.models.equity.heston_model import HestonModel
 from quantlib.models.equity.bates_model import BatesModel
 
 from quantlib.settings import Settings
-from quantlib.time.api import (
+from quantlib.time import (
     today, NullCalendar, ActualActual
 )
 from quantlib.termstructures.yields.flat_forward import FlatForward

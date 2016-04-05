@@ -12,7 +12,7 @@ from quantlib.instruments.implied_volatility import ImpliedVolatilityHelper
 
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.settings import Settings
-from quantlib.time.api import Date, TARGET, May, Actual365Fixed
+from quantlib.time import Date, TARGET, May, Actual365Fixed
 from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 
