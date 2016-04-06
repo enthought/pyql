@@ -18,12 +18,12 @@ from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.flat_forward import FlatForward
 
 from quantlib.models.equity.heston_model import (
-    HestonModelHelper, HestonModel, PriceError
+    HestonModelHelper, HestonModel
 )
 
-from quantlib.processes.heston_process import HestonProcess
+from quantlib.models.calibration_helper import PriceError
 
-from quantlib.processes.api import HullWhiteProcess
+from quantlib.processes.api import HullWhiteProcess, HestonProcess
 
 from quantlib.pricingengines.api import (
     AnalyticHestonEngine,

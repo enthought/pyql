@@ -9,7 +9,7 @@
 
 from .unittest_tools import unittest
 from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure
+    FlatForward, YieldTermStructure, ForwardSpreadedTermStructure
 )
 from quantlib.quotes import SimpleQuote
 
@@ -23,7 +23,6 @@ from quantlib.compounding import Simple
 from quantlib.time.api import Date, Actual360
 from quantlib.market.market import libor_market, IborMarket
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.forward_spreaded_term_structure import ForwardSpreadedTermStructure
 
 class SimpleQuoteTestCase(unittest.TestCase):
 
