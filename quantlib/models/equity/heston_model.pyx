@@ -35,11 +35,6 @@ from quantlib.termstructures.yields.flat_forward cimport (
 from quantlib.models.calibration_helper cimport CalibrationHelper
 
 
-cdef public enum CALIBRATION_ERROR_TYPE:
-    RelativePriceError = _ch.RelativePriceError
-    PriceError = _ch.PriceError
-    ImpliedVolError = _ch.ImpliedVolError
-
 cdef class HestonModelHelper(CalibrationHelper):
 
     def __cinit__(self):
@@ -56,7 +51,7 @@ cdef class HestonModelHelper(CalibrationHelper):
         Quote volatility,
         YieldTermStructure risk_free_rate,
         YieldTermStructure dividend_yield,
-        error_type=RelativePriceError
+        error_type=_ch.RelativePriceError
     ):
         # create handles
         cdef Handle[_qt.Quote] volatility_handle = \

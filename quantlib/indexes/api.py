@@ -10,6 +10,7 @@
 from .libor import Libor
 from .euribor import Euribor, Euribor6M
 from .ibor_index import IborIndex
+from .swap_index import SwapIndex
 
 from .region_registry import region_from_name
 from .region import Region, CustomRegion

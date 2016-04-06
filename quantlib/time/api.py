@@ -19,6 +19,8 @@ from .calendars.weekends_only import WeekendsOnly
 from .calendars.united_kingdom import UnitedKingdom
 from .calendars.united_states import UnitedStates
 from .calendars.canada import Canada
+from .calendars.switzerland import Switzerland
+from .calendars.japan import Japan
 
 from .daycounter import Actual360, Actual365Fixed, DayCounter
 from .daycounters.thirty360 import Thirty360
