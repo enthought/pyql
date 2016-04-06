@@ -25,7 +25,8 @@ import datetime
 from six.moves import input
 
 from quantlib.models.equity.heston_model import (
-    HestonModelHelper, HestonModel, ImpliedVolError)
+    HestonModelHelper, HestonModel)
+from quantlib.models.calibration_helper import ImpliedVolError
 from quantlib.models.equity.bates_model import (BatesModel,
                                                 BatesDetJumpModel,
                                                 BatesDoubleExpModel)
