@@ -7,8 +7,8 @@ cdef extern from 'boost/shared_ptr.hpp' namespace 'boost':
         shared_ptr(T*)
         shared_ptr(shared_ptr[T]&)
         T* get()
-        long use_count()
-        #void reset(shared_ptr[T]&)
+        T& operator*()
+        void reset(T*)
 
 cdef extern from 'boost/pointer_cast.hpp' namespace 'boost':
     shared_ptr[T] static_pointer_cast[T](...)

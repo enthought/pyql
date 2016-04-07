@@ -68,6 +68,7 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
     cdef cppclass Date:
         Date() except +
         Date(serial_type serialnumber) except +
+        Date(const Date&)
         Date(int d, int m, int y) except +
         Day dayOfMonth() except +
         Month month()
