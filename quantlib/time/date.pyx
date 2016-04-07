@@ -259,6 +259,40 @@ cdef class Period:
     def __str__(self):
         return 'Period %d %s' % (self.length, _STR_TU_DICT[self.units])
 
+    def __float__(self):
+        """ Converts the period to a year fraction.
+
+        This will throw an exception if the time unit is not Years or Month."""
+        return _period.years(deref(self._thisptr.get()))
+
+def years(p):
+    """Converts the period into years as a float.
+
+    This will throw an exception if the time unit is not Years or Months."""
+    if isinstance(p, Period):
+        return _period.years(deref((<Period>p)._thisptr.get()))
+
+def months(p):
+    """Converts the period intho months as a float.
+
+    This will throw an exception if the time unit is not Years or Months."""
+    if isinstance(p, Period):
+        return _period.months(deref((<Period>p)._thisptr.get()))
+
+def weeks(p):
+    """Converts the period into weeks as a float.
+
+    This will throw an exception if the time unit is not Days or Weeks."""
+    if isinstance(p, Period):
+        return _period.weeks(deref((<Period>p)._thisptr.get()))
+
+def days(p):
+    """Converts the period into days as a float.
+
+    This will throw an exception if the time unit is not Days or Weeks."""
+    if isinstance(p, Period):
+        return _period.days(deref((<Period>p)._thisptr.get()))
+
 cdef class Date:
     """ This class provides methods to inspect dates as well as methods and
     operators which implement a limited date algebra (increasing and decreasing

@@ -32,9 +32,9 @@ cdef extern from 'ql/time/period.hpp' namespace "QuantLib":
         Period (Integer n, TimeUnit units)
         Period (Frequency f)
 
-        Integer length () 
+        Integer length ()
         TimeUnit units ()
-        Frequency frequency () 
+        Frequency frequency ()
         void normalize ()
 
         # unsupported operators
@@ -52,3 +52,7 @@ cdef extern from 'ql/time/period.hpp' namespace "QuantLib":
     bool l_op 'operator<'(Period& p1, Period& p2)
     bool leq_op 'operator<='(Period& p1, Period& p2)
 
+    Real years(const Period& p) except +
+    Real months(const Period& p) except +
+    Real weeks(const Period& p) except +
+    Real days(const Period& p) except +
