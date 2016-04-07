@@ -45,6 +45,7 @@ cdef extern from 'ql/time/period.hpp' namespace "QuantLib":
 
     Period mult_op 'operator*'(Period& p, Integer i) except +
     Period sub_op 'operator-'(Period& p1, Period& p2)
+    Period add_op 'operator+'(Period& p1, Period& p2)
     bool eq_op 'operator=='(Period& p1, Period& p2)
     bool neq_op 'operator!='(Period& p1, Period& p2)
     bool g_op 'operator>'(Period& p1, Period& p2)

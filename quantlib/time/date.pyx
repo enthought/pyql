@@ -12,7 +12,7 @@ from _date cimport (
     Date_isLeap, Size, Date_nthWeekday, BigInteger, Integer
 )
 from _period cimport (
-    Period as QlPeriod, mult_op, sub_op, eq_op, neq_op,
+    Period as QlPeriod, mult_op, add_op, sub_op, eq_op, neq_op,
     g_op, geq_op, l_op, leq_op
     )
 
@@ -169,6 +169,15 @@ cdef class Period:
         cdef QlPeriod outp
         if isinstance(self, Period) and isinstance(value, Period):
             outp = sub_op(deref( (<Period>self)._thisptr.get()),
+                    deref( (<Period>value)._thisptr.get()))
+
+        # fixme : this is inefficient and ugly ;-)
+        return Period(outp.length(), outp.units())
+
+    def __add__(self, value):
+        cdef QlPeriod outp
+        if isinstance(self, Period) and isinstance(value, Period):
+            outp = add_op(deref( (<Period>self)._thisptr.get()),
                     deref( (<Period>value)._thisptr.get()))
 
         # fixme : this is inefficient and ugly ;-)
@@ -540,6 +549,3 @@ cpdef Date qldate_from_pydate(object pydate):
     cdef Date qdate_ref = Date.from_datetime(pydate)
 
     return qdate_ref
-
-
-
