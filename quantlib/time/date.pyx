@@ -268,6 +268,9 @@ cdef class Period:
     def __str__(self):
         return 'Period %d %s' % (self.length, _STR_TU_DICT[self.units])
 
+    def __repr__(self):
+        return "Period('{0}{1}')".format(self.length, _STR_TU_DICT[self.units])
+
     def __float__(self):
         """ Converts the period to a year fraction.
 
