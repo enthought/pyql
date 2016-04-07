@@ -26,7 +26,7 @@ class TestQuantLibDate(unittest.TestCase):
         self.assertEqual(py_today.month, ql_today.month)
         self.assertEqual(py_today.year, ql_today.year)
 
-    def test_date_empyt_initialisation(self):
+    def test_date_empty_initialisation(self):
 
         date1 = Date()
         self.assertTrue(date1 is not None)
@@ -263,6 +263,15 @@ class TestQuantLibPeriod(unittest.TestCase):
         period3 = period1 - period2
         self.assertEqual(7, period3.length)
         self.assertEqual(Months, period3.units)
+        with self.assertRaisesRegexp(RuntimeError, 'impossible addition'):
+            period1 - Period('3W')
+
+    def test_period_addition(self):
+        period1 = Period(4, Months)
+        period2 = Period(7, Months)
+        self.assertEqual(period1+period2, Period(11, Months))
+        with self.assertRaisesRegexp(RuntimeError, 'impossible addition'):
+            period1 + Period('2W')
 
     def test_multiplication(self):
 
