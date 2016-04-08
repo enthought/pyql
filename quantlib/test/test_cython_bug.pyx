@@ -9,8 +9,9 @@ from quantlib.time._date cimport (
 )
 from quantlib.time._period cimport Years, Period, Annual, Days
 from quantlib.time._calendar cimport (
-    Calendar, TARGET, Unadjusted, ModifiedFollowing, Following
+    Calendar, Unadjusted, ModifiedFollowing, Following
 )
+from quantlib.time.calendars._target cimport TARGET
 from quantlib.time._schedule cimport Schedule, Backward
 from quantlib.time.date cimport date_from_qldate, Date
 from quantlib.time.daycounters._actual_actual cimport ISMA, ActualActual

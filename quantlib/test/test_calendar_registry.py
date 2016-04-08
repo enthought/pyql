@@ -3,7 +3,7 @@ from quantlib.test.unittest_tools import unittest
 from quantlib.time.calendar_registry import (
    initialize_code_registry, calendar_from_name
 )
-from quantlib.time.calendar import TARGET
+from quantlib.time.calendars.target import TARGET
 from quantlib.time.calendars.united_states import UnitedStates
 
 class CalendarRegistryTestCase(unittest.TestCase):

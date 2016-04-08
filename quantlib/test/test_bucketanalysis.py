@@ -3,7 +3,8 @@ from .unittest_tools import unittest
 
 from quantlib.instruments.bonds import (FixedRateBond)
 from quantlib.pricingengines.bond import DiscountingBondEngine
-from quantlib.time.calendar import ( TARGET, Unadjusted, ModifiedFollowing, Following)
+from quantlib.time.calendar import ( Unadjusted, ModifiedFollowing, Following)
+from quantlib.time.calendars.target import TARGET
 from quantlib.time.calendars.united_states import ( UnitedStates, GOVERNMENTBOND)
 from quantlib.currency.api import USDCurrency
 from quantlib.instruments.option import VanillaOption

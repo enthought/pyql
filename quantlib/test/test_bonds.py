@@ -5,12 +5,13 @@ from quantlib.instruments.bonds import (
 )
 from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.time.calendar import (
-    TARGET, Unadjusted, ModifiedFollowing, Following
+    Unadjusted, ModifiedFollowing, Following
 )
 from quantlib.time.calendars.united_states import (
     UnitedStates, GOVERNMENTBOND, SETTLEMENT
 )
 from quantlib.time.calendars.null_calendar import NullCalendar
+from quantlib.time.calendars.target import TARGET
 from quantlib.compounding import Compounded, Continuous
 from quantlib.time.date import (
     Date, Days, Semiannual, January, August, Period, March, February,Oct,Nov,
