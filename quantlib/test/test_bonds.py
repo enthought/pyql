@@ -17,7 +17,7 @@ from quantlib.time.date import (
     Date, Days, Semiannual, January, August, Period, March, February,Oct,Nov,
     Jul, Annual, Years, Quarterly
 )
-from quantlib.time.daycounter import Actual365Fixed, Actual360
+from quantlib.time.daycounters.simple import Actual365Fixed, Actual360
 from quantlib.time.daycounters.actual_actual import ActualActual, Bond, ISMA
 from quantlib.time.schedule import Schedule, Backward
 from quantlib.settings import Settings

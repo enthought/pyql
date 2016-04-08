@@ -12,7 +12,7 @@ from quantlib.time.api import (
 from quantlib.compounding import Continuous
 from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.time.date import Date, August, Period, Jul, Annual, Years
-from quantlib.time.daycounter import Actual365Fixed
+from quantlib.time.daycounters.simple import Actual365Fixed
 from quantlib.time.daycounters.actual_actual import ActualActual, ISMA
 from quantlib.time.schedule import Schedule, Backward
 from quantlib.settings import Settings
