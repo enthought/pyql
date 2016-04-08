@@ -9,7 +9,7 @@ from _period cimport Period, TimeUnit
 
 
 cdef extern from 'ql/time/businessdayconvention.hpp' namespace 'QuantLib':
-    cdef enum BusinessDayConvention: 
+    cdef enum BusinessDayConvention:
         #ISDA
         Following          # Choose the first business day after
                            #     the given holiday. */
@@ -50,10 +50,3 @@ cdef extern from 'ql/time/calendar.hpp' namespace 'QuantLib':
     #cdef vector[Date] 'Calendar::holidayList'(Calendar& calendar, Date& f, Date& to, bool includeWeekEnds)
     cdef vector[Date] Calendar_holidayList 'QuantLib::Calendar::holidayList'(Calendar&
             calendar, Date& from_date, Date& to_date, int includeWeekEnds)
-
-
-cdef extern from 'ql/time/calendars/target.hpp' namespace 'QuantLib':
-    cdef cppclass TARGET(Calendar):
-        TARGET()
-
-

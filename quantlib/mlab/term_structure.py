@@ -7,7 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from quantlib.time.calendar import TARGET
+from quantlib.time.calendars.target import TARGET
 from quantlib.settings import Settings
 from quantlib.time.schedule import Schedule
 
