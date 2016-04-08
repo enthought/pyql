@@ -23,7 +23,8 @@ from .calendars.switzerland import Switzerland
 from .calendars.japan import Japan
 from .calendars.target import TARGET
 
-from .daycounter import Actual360, Actual365Fixed, DayCounter
+from .daycounter import DayCounter
+from .daycounters.simple import Actual360, Actual365Fixed
 from .daycounters.thirty360 import Thirty360
 from .daycounters.actual_actual import (ActualActual, ISMA, ISDA, Bond,
     Historical, Actual365, AFB, Euro)
