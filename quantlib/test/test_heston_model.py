@@ -6,8 +6,9 @@ from .unittest_tools import unittest
 
 from quantlib.instruments.option import EuropeanExercise, VanillaOption
 from quantlib.instruments.payoffs import Call, PlainVanillaPayoff, Put
+from quantlib.models.calibration_helper import ImpliedVolError
 from quantlib.models.equity.heston_model import (
-    HestonModelHelper, HestonModel, ImpliedVolError
+    HestonModelHelper, HestonModel
 )
 
 from quantlib.processes.heston_process import HestonProcess

@@ -1,9 +1,10 @@
 from .unittest_tools import unittest
 
 from quantlib.time.calendar import (
-    Following, ModifiedFollowing, ModifiedPreceding, Preceding, TARGET,
+    Following, ModifiedFollowing, ModifiedPreceding, Preceding,
     holiday_list
 )
+from quantlib.time.calendars.target import TARGET
 from quantlib.time.calendars.united_kingdom import UnitedKingdom, EXCHANGE
 from quantlib.time.calendars.united_states import UnitedStates, NYSE
 from quantlib.time.calendars.canada import Canada, TSX

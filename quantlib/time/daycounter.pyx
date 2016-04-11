@@ -3,12 +3,11 @@ from libcpp.string cimport string
 
 cimport _daycounter
 cimport _date
-cimport _calendar
 
 from date cimport Date
-from calendar cimport Calendar
 from quantlib.time.daycounters.actual_actual cimport from_name as aa_from_name
 from quantlib.time.daycounters.thirty360 cimport from_name as th_from_name
+cimport quantlib.time.daycounters._simple as _simple
 
 cdef class DayCounter:
     '''This class provides methods for determining the length of a time
@@ -108,17 +107,17 @@ cdef _daycounter.DayCounter* daycounter_from_name(basestring name, basestring co
 
     cdef _daycounter.DayCounter* cnt = NULL
     if name_u in ['ACTUAL360', 'ACTUAL/360', 'ACT/360']:
-        cnt = new _daycounter.Actual360()
+        cnt = new _simple.Actual360()
     elif name_u in ['ACTUAL365FIXED', 'ACTUAL/365', 'ACT/365']:
-        cnt = new _daycounter.Actual365Fixed()
+        cnt = new _simple.Actual365Fixed()
     elif name_u == 'BUSINESS252':
         raise ValueError(
             'Business252 from name is not supported. Requires a calendar'
         )
     elif name_u in ['1/1', 'ONEDAYCOUNTER']:
-        cnt = new _daycounter.OneDayCounter()
+        cnt = new _simple.OneDayCounter()
     elif name_u == 'SIMPLEDAYCOUNTER':
-        cnt = new _daycounter.SimpleDayCounter()
+        cnt = new _simple.SimpleDayCounter()
     elif name.startswith('Actual/Actual') or name.startswith('ACT/ACT') :
         cnt = aa_from_name(convention)
     elif name.startswith('30/360'):
@@ -126,37 +125,3 @@ cdef _daycounter.DayCounter* daycounter_from_name(basestring name, basestring co
             convention = 'BONDBASIS'
         cnt = th_from_name(convention)
     return cnt
-
-
-cdef class Actual360(DayCounter):
-
-    def __cinit__(self, *args):
-        self._thisptr = <_daycounter.DayCounter*> new _daycounter.Actual360()
-
-
-cdef class Actual365Fixed(DayCounter):
-
-    def __cinit__(self, *args):
-        self._thisptr = <_daycounter.DayCounter*> new _daycounter.Actual365Fixed()
-
-
-cdef class Business252(DayCounter):
-
-    def __cinit__(self, *args, calendar=None):
-        cdef _calendar.Calendar* cl
-        if calendar is None:
-           cl = <_calendar.Calendar*> new _calendar.TARGET()
-        else:
-           cl = (<Calendar>calendar)._thisptr
-        self._thisptr = <_daycounter.DayCounter*> new _daycounter.Business252(deref(cl))
-
-cdef class OneDayCounter(DayCounter):
-
-    def __cinit__(self, *args):
-        self._thisptr = <_daycounter.DayCounter*> new _daycounter.OneDayCounter()
-
-cdef class SimpleDayCounter(DayCounter):
-
-    def __cinit__(self, *args):
-        self._thisptr = <_daycounter.DayCounter*> new _daycounter.SimpleDayCounter()
-

@@ -6,7 +6,7 @@ import quantlib.time.calendars.united_kingdom as uk
 import quantlib.time.calendars.japan as jp
 import quantlib.time.calendars.switzerland as sw
 import quantlib.time.calendars.canada as ca
-from quantlib.time.calendar import TARGET
+from quantlib.time.calendars.target import TARGET
 from quantlib.util.object_registry import ObjectRegistry
 
 #ISO-3166 country codes (http://en.wikipedia.org/wiki/ISO_3166-1)

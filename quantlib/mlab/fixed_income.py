@@ -16,9 +16,10 @@ from quantlib.compounding import Compounded
 
 from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.time.calendar import (
-    TARGET, Unadjusted, ModifiedFollowing, Following)
+    Unadjusted, ModifiedFollowing, Following)
 
 from quantlib.time.calendars.null_calendar import NullCalendar
+from quantlib.time.calendars.target import TARGET
 from quantlib.time.date import (
     Date, Days, Period, Years, str_to_frequency)
 

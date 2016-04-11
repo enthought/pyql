@@ -1,7 +1,9 @@
 from .unittest_tools import unittest
 
-from quantlib.time.daycounter import (
-    Actual360, DayCounter, SimpleDayCounter
+from quantlib.time.daycounter import DayCounter
+
+from quantlib.time.daycounters.simple import (
+    Actual360, SimpleDayCounter
 )
 
 from quantlib.time.daycounters.actual_actual import (
