@@ -12,7 +12,7 @@ from _date cimport (
     Date_isLeap, Size, Date_nthWeekday, BigInteger, Integer
 )
 from _period cimport (
-    Period as QlPeriod, mult_op, sub_op, eq_op, neq_op,
+    Period as QlPeriod, mult_op, add_op, sub_op, eq_op, neq_op,
     g_op, geq_op, l_op, leq_op
     )
 
@@ -174,6 +174,15 @@ cdef class Period:
         # fixme : this is inefficient and ugly ;-)
         return Period(outp.length(), outp.units())
 
+    def __add__(self, value):
+        cdef QlPeriod outp
+        if isinstance(self, Period) and isinstance(value, Period):
+            outp = add_op(deref( (<Period>self)._thisptr.get()),
+                    deref( (<Period>value)._thisptr.get()))
+
+        # fixme : this is inefficient and ugly ;-)
+        return Period(outp.length(), outp.units())
+
     def __mul__(self, value):
         cdef QlPeriod inp
         if isinstance(self, Period):
@@ -258,6 +267,43 @@ cdef class Period:
 
     def __str__(self):
         return 'Period %d %s' % (self.length, _STR_TU_DICT[self.units])
+
+    def __repr__(self):
+        return "Period('{0}{1}')".format(self.length, _STR_TU_DICT[self.units])
+
+    def __float__(self):
+        """ Converts the period to a year fraction.
+
+        This will throw an exception if the time unit is not Years or Month."""
+        return _period.years(deref(self._thisptr.get()))
+
+def years(p):
+    """Converts the period into years as a float.
+
+    This will throw an exception if the time unit is not Years or Months."""
+    if isinstance(p, Period):
+        return _period.years(deref((<Period>p)._thisptr.get()))
+
+def months(p):
+    """Converts the period intho months as a float.
+
+    This will throw an exception if the time unit is not Years or Months."""
+    if isinstance(p, Period):
+        return _period.months(deref((<Period>p)._thisptr.get()))
+
+def weeks(p):
+    """Converts the period into weeks as a float.
+
+    This will throw an exception if the time unit is not Days or Weeks."""
+    if isinstance(p, Period):
+        return _period.weeks(deref((<Period>p)._thisptr.get()))
+
+def days(p):
+    """Converts the period into days as a float.
+
+    This will throw an exception if the time unit is not Days or Weeks."""
+    if isinstance(p, Period):
+        return _period.days(deref((<Period>p)._thisptr.get()))
 
 cdef class Date:
     """ This class provides methods to inspect dates as well as methods and
@@ -506,6 +552,3 @@ cpdef Date qldate_from_pydate(object pydate):
     cdef Date qdate_ref = Date.from_datetime(pydate)
 
     return qdate_ref
-
-
-
