@@ -38,6 +38,11 @@ class TestDayCounter(unittest.TestCase):
         with self.assertRaisesRegexp(RuntimeError, 'no implementation provided'):
             day_counter.name
 
+    def test_empty_daycounter(self):
+        day_counter = DayCounter()
+        with self.assertRaisesRegexp(RuntimeError, 'no implementation provided'):
+            day_counter.name()
+
 class TestDayCounterFromName(unittest.TestCase):
 
     def test_create_simple_daycounter_from_name(self):
