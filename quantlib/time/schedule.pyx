@@ -58,7 +58,7 @@ cdef class Schedule:
 
 
     def __dealloc__(self):
-        if self._thisptr is NULL:
+        if self._thisptr is not NULL:
             del self._thisptr
             self._thisptr = NULL
 
@@ -90,3 +90,10 @@ cdef class Schedule:
 
     def __iter__(self):
         return (d for d in self.dates())
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, int index):
+        cdef _date.Date date = self._thisptr.at(index)
+        return date_from_qldate(date)
