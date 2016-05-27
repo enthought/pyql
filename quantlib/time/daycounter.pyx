@@ -16,7 +16,7 @@ cdef class DayCounter:
     '''
 
     def __cinit__(self, *args):
-        pass
+        self._thisptr = new _daycounter.DayCounter()
 
     def __dealloc__(self):
         if self._thisptr is not NULL:

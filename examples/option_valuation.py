@@ -67,7 +67,7 @@ def dividendOption():
     print("Calendar used:         			", calendar.name)
     print("Number of settlement Days:		", settlement_days)
     print("Date of settlement:       		", settlementDate)
-    print("Convention of day counter:		", dayCounter.name())
+    print("Convention of day counter:		", dayCounter.name)
     print("Currency of the actual context:\t\t", currency.name)
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

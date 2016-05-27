@@ -33,6 +33,11 @@ class TestDayCounter(unittest.TestCase):
         self.assertEqual('Actual/360', day_counter.name)
         self.assertEqual('Actual/360', str(day_counter))
 
+    def test_empty_daycounter(self):
+        day_counter = DayCounter()
+        with self.assertRaisesRegexp(RuntimeError, 'no implementation provided'):
+            day_counter.name
+
 class TestDayCounterFromName(unittest.TestCase):
 
     def test_create_simple_daycounter_from_name(self):
