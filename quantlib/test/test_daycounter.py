@@ -50,6 +50,7 @@ class TestDayCounterFromName(unittest.TestCase):
         type_vs_name = {
             'Actual360' : 'Actual/360',
             'Actual/360' : 'Actual/360',
+            'Actual/360 (inc)': 'Actual/360 (inc)',
             'Actual365Fixed' : 'Actual/365 (Fixed)',
             'Actual/365' : 'Actual/365 (Fixed)',
             'OneDayCounter' : '1/1',
