@@ -6,8 +6,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 from cython.operator cimport dereference as deref
+from libcpp cimport bool
 
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib.handle cimport Handle, shared_ptr, optional
 cimport _pricing_engine as _pe
 cimport _credit
 
@@ -36,5 +37,6 @@ cdef class MidPointCdsEngine(PricingEngine):
             deref(discount_curve._thisptr.get())
 
         self._thisptr = new shared_ptr[_pe.PricingEngine](
-            new _credit.MidPointCdsEngine(handle, recovery_rate, yts_handle)
+            new _credit.MidPointCdsEngine(handle, recovery_rate, yts_handle,
+                                          optional[bool]())
         )
