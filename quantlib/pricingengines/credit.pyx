@@ -29,7 +29,6 @@ cdef class MidPointCdsEngine(PricingEngine):
 
         """
 
-
         cdef Handle[_dts.DefaultProbabilityTermStructure] handle = \
             Handle[_dts.DefaultProbabilityTermStructure](ts._thisptr)
         cdef optional[bool] c_include_settlement_date_flows
@@ -39,3 +38,30 @@ cdef class MidPointCdsEngine(PricingEngine):
             new _credit.MidPointCdsEngine(handle, recovery_rate, discount_curve._thisptr,
                                           c_include_settlement_date_flows)
         )
+
+cdef class IsdaCdsEngine(PricingEngine):
+
+    def __init__(self, DefaultProbabilityTermStructure ts, double recovery_rate,
+                 YieldTermStructure discount_curve, bool include_settlement_date_flows = None,
+                 _credit.NumericalFix numerical_fix = _credit.Taylor,
+                 _credit.AccrualBias accrual_bias = _credit.NoBias,
+                 _credit.ForwardsInCouponPeriod forwards_in_coupon_period = _credit.Piecewise):
+        """
+        First argument should be a DefaultProbabilityTermStructure. Using
+        the PiecewiseDefaultCurve at the moment.
+
+        """
+
+
+        cdef Handle[_dts.DefaultProbabilityTermStructure] handle = \
+            Handle[_dts.DefaultProbabilityTermStructure](deref(ts._thisptr))
+
+        cdef optional[bool] settlement_flows = make_option[bool](
+                include_settlement_date_flows is not None,
+                include_settlement_date_flows)
+
+        self._thisptr = shared_ptr[_pe.PricingEngine](
+            new _credit.IsdaCdsEngine(handle, recovery_rate, discount_curve._thisptr,
+                                      settlement_flows, _credit.Taylor,
+                                      _credit.NoBias, _credit.Piecewise)
+            )

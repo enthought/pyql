@@ -17,3 +17,29 @@ cdef extern from 'ql/pricingengines/credit/midpointcdsengine.hpp' namespace 'Qua
               optional[bool] includeSettlementDateFlows
         )
 
+cdef extern from 'ql/pricingengines/credit/isdacdsengine.hpp' namespace 'QuantLib':
+
+    cdef cppclass IsdaCdsEngine(PricingEngine):
+        IsdaCdsEngine(
+            Handle[DefaultProbabilityTermStructure]&,
+            Real recoveryRate,
+            Handle[YieldTermStructure]& discountCurve,
+            optional[bool] includeSettlementDateFlows,
+            NumericalFix,
+            AccrualBias,
+            ForwardsInCouponPeriod
+        )
+
+cdef extern from 'ql/pricingengines/credit/isdacdsengine.hpp' namespace 'QuantLib::IsdaCdsEngine':
+
+    cdef enum NumericalFix:
+        No "QuantLib::IsdaCdsEngine::None"
+        Taylor
+
+    cdef enum AccrualBias:
+        HalfDayBias
+        NoBias
+
+    cdef enum ForwardsInCouponPeriod:
+        Flat
+        Piecewise
