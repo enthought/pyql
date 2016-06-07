@@ -100,7 +100,7 @@ cdef class YieldTermStructure:
 
     def zero_rate(
             self, Date date, DayCounter day_counter,
-            int compounding, int frequency=Annual, bool extrapolate=False):
+            int compounding=Continuous, int frequency=Annual, bool extrapolate=False):
         """ Returns the implied zero-yield rate for the given date.
 
         The time is calculated as a fraction of year from the reference date.
@@ -141,7 +141,7 @@ cdef class YieldTermStructure:
 
     def forward_rate(
             self, Date d1, Date d2, DayCounter day_counter,
-            int compounding, int frequency=Annual, bool extrapolate=False):
+            int compounding = Continuous, int frequency=Annual, bool extrapolate=False):
         """ Returns the forward interest rate between two dates or times.
 
         In the former case, times are calculated as fractions of year from the
@@ -182,15 +182,12 @@ cdef class YieldTermStructure:
 
         return forward_rate
 
-    def discount(self, value, bool extrapolate=None):
+    def discount(self, value, bool extrapolate=False):
         self._raise_if_empty()
 
         cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
 
-        if extrapolate is None:
-            extrapolate = False
-
-        discount_value = 0
+        cdef double discount_value
 
         if isinstance(value, Date):
             discount_value = term_structure.discount(
