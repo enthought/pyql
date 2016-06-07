@@ -59,3 +59,6 @@ cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib'
                                  Frequency freq,  # = Annual
                                  bool extrapolate  # = False
                              ) except +
+        bool allowsExtrapolation()
+        void enableExtrapolation()
+        void disableExtrapolation()

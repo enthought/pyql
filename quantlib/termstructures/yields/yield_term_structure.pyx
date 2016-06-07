@@ -86,6 +86,18 @@ cdef class YieldTermStructure:
         if self._is_empty():
             raise ValueError('Empty handle to the term structure')
 
+    property extrapolation:
+        def __get__(self):
+            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
+            return term_structure.allowsExtrapolation()
+
+        def __set__(self, bool flag):
+            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
+            if flag:
+                term_structure.enableExtrapolation()
+            else:
+                term_structure.disableExtrapolation()
+
     def zero_rate(
             self, Date date, DayCounter day_counter,
             int compounding, int frequency=Annual, bool extrapolate=False):
