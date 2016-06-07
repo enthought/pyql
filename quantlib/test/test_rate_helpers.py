@@ -10,7 +10,7 @@ from quantlib.termstructures.yields.rate_helpers import (
 from quantlib.termstructures.yields.api import YieldTermStructure
 from quantlib.time.api import (
     Period, Months, TARGET, ModifiedFollowing, Actual365Fixed, Date, Years,
-    UnitedStates, Actual360
+    UnitedStates, Actual360, Annual
 )
 
 class RateHelpersTestCase(unittest.TestCase):
@@ -26,13 +26,19 @@ class RateHelpersTestCase(unittest.TestCase):
         deposit_day_counter = Actual365Fixed()
 
 
-        helper = DepositRateHelper(
+        helper_from_quote = DepositRateHelper(
             quote, tenor, fixing_days, calendar, convention, end_of_month,
             deposit_day_counter
         )
 
-        self.assertIsNotNone(helper)
-        self.assertEqual(quote.value, helper.quote)
+        ## create helper from float directly
+        helper_from_float = DepositRateHelper(
+            0.0096, tenor, fixing_days, calendar, convention, end_of_month,
+            deposit_day_counter
+        )
+        self.assertIsNotNone(helper_from_quote, helper_from_float)
+        self.assertEqual(quote.value, helper_from_quote.quote)
+        self.assertEqual(helper_from_quote.quote, helper_from_float.quote)
 
 
     def test_create_fra_rate_helper(self):
@@ -47,13 +53,17 @@ class RateHelpersTestCase(unittest.TestCase):
         day_counter = Actual365Fixed()
 
 
-        helper = FraRateHelper(
+        helper_from_quote = FraRateHelper(
             quote, month_to_start, month_to_end, fixing_days, calendar,
             convention, end_of_month, day_counter
         )
-
-        self.assertIsNotNone(helper)
-        self.assertEqual(quote.value, helper.quote)
+        helper_from_float = FraRateHelper(
+            0.0096, month_to_start, month_to_end, fixing_days, calendar,
+            convention, end_of_month, day_counter
+        )
+        self.assertIsNotNone(helper_from_float, helper_from_quote)
+        self.assertEqual(quote.value, helper_from_quote.quote)
+        self.assertEqual(helper_from_quote.quote, helper_from_float.quote)
 
     def test_create_futures_rate_helper(self):
 
@@ -66,14 +76,18 @@ class RateHelpersTestCase(unittest.TestCase):
         day_counter = Actual365Fixed()
 
 
-        helper = FuturesRateHelper(
+        helper_from_quote = FuturesRateHelper(
             quote, imm_date, length_in_months, calendar,
             convention, end_of_month, day_counter
         )
+        helper_from_float = FuturesRateHelper(
+            0.0096, imm_date, length_in_months, calendar,
+            convention, end_of_month, day_counter
+        )
 
-        self.assertIsNotNone(helper)
-        self.assertEqual(quote.value, helper.quote)
-
+        self.assertIsNotNone(helper_from_float, helper_from_quote)
+        self.assertEqual(quote.value, helper_from_quote.quote)
+        self.assertEqual(helper_from_quote.quote, helper_from_float.quote)
 
     def test_create_swap_rate_helper_no_classmethod(self):
 
@@ -102,18 +116,43 @@ class RateHelpersTestCase(unittest.TestCase):
             fixed_leg_tenor, fixed_leg_convention,
             fixed_leg_daycounter, ibor_index)
 
-        helper = SwapRateHelper.from_index(rate, index)
+        helper_from_quote = SwapRateHelper.from_index(rate, index)
+        helper_from_float = SwapRateHelper.from_index(0.005681, index)
 
         #self.fail(
         #    'Make this pass: create and ask for the .quote property'
         #    ' Test the from_index and from_tenor methods'
         #)
 
-        self.assertIsNotNone(helper)
-        self.assertAlmostEqual(rate.value, helper.quote)
+        self.assertIsNotNone(helper_from_quote, helper_from_float)
+        self.assertAlmostEqual(rate.value, helper_from_quote.quote)
+        self.assertAlmostEqual(helper_from_float.quote, helper_from_quote.quote)
 
         with self.assertRaises(RuntimeError):
-            self.assertAlmostEqual(rate.value, helper.implied_quote)
+            self.assertAlmostEqual(rate.value, helper_from_quote.implied_quote)
+
+    def test_create_swap_rate_helper_from_tenor(self):
+        calendar = UnitedStates()
+        settlement_days = 2
+
+        rate = SimpleQuote(0.005681)
+
+        ibor_index =  Libor(
+            "USDLibor", Period(3,Months), settlement_days, USDCurrency(),
+            UnitedStates(), Actual360())
+        helper_from_quote = SwapRateHelper.from_tenor(rate, Period(12, Months), calendar,
+                                            Annual, ModifiedFollowing, Actual360(),
+                                            ibor_index)
+        helper_from_float =  SwapRateHelper.from_tenor(0.005681, Period(12, Months), calendar,
+                                            Annual, ModifiedFollowing, Actual360(),
+                                            ibor_index)
+
+        self.assertIsNotNone(helper_from_float, helper_from_quote)
+        self.assertEqual(rate.value, helper_from_quote.quote)
+        self.assertEqual(helper_from_quote.quote, helper_from_float.quote)
+
+        with self.assertRaises(RuntimeError):
+            self.assertAlmostEqual(rate.value, helper_from_quote.implied_quote)
 
 if __name__ == '__main__':
     unittest.main()
