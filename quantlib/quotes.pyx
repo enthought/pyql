@@ -8,7 +8,7 @@ cdef class Quote:
 
     def __init__(self):
         raise ValueError(
-            'This is an abstract class. Use SimpleQuote instaed.'
+            'This is an abstract class. Use SimpleQuote instead.'
         )
 
     def __dealloc__(self):
@@ -21,27 +21,34 @@ cdef class Quote:
 
     property value:
         def __get__(self):
-            # TODO: check if we can get rid of this test,
-            # now that we catch c++ exceptions
-            if self._thisptr.get().isValid():
-                return self._thisptr.get().value()
-            else:
-                return None
+            return self._thisptr.get().value()
 
 cdef class SimpleQuote(Quote):
 
-    def __init__(self, double value=0.0):
-        self._thisptr = new shared_ptr[_qt.Quote](new _qt.SimpleQuote(value))
+    def __init__(self, value = None):
+        if value is None:
+            self._thisptr = new shared_ptr[_qt.Quote](new _qt.SimpleQuote())
+        else:
+            self._thisptr = new shared_ptr[_qt.Quote](new _qt.SimpleQuote(<double>value))
 
     def __str__(self):
-        return 'Simple Quote: %f' % self._thisptr.get().value()
+        if self._thisptr.get().isValid():
+            return 'Simple Quote: %f' % self._thisptr.get().value()
+        else:
+            return 'Empty Quote'
+
+    def __repr__(self):
+        try:
+            return "SimpleQuote({0})".format(self._thisptr.get().value())
+        except RuntimeError:
+            return "SimpleQuote()"
 
     property value:
         def __get__(self):
-            if self._thisptr.get().isValid():
-                return self._thisptr.get().value()
-            else:
-                return None
+            return self._thisptr.get().value()
 
         def __set__(self, double value):
             (<_qt.SimpleQuote*>self._thisptr.get()).setValue(value)
+
+    def reset(self):
+        (<_qt.SimpleQuote*>self._thisptr.get()).reset()
