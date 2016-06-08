@@ -28,8 +28,13 @@ from quantlib.termstructures._helpers cimport BootstrapHelper, \
 
 cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
 
-    ctypedef BootstrapHelper[YieldTermStructure] RateHelper
-    ctypedef RelativeDateBootstrapHelper[YieldTermStructure] RelativeDateRateHelper
+    cdef cppclass RateHelper:
+        Date latestDate() except +
+        Handle[Quote] quote()
+        Real impliedQuote() except +
+
+    cdef cppclass RelativeDateRateHelper(RateHelper):
+        void update()
 
     cdef cppclass DepositRateHelper(RateHelper):
         DepositRateHelper(Handle[Quote]& rate,
