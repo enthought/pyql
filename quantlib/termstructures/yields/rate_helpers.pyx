@@ -19,7 +19,7 @@ cimport quantlib.indexes._ibor_index as _ib
 cimport quantlib.indexes._swap_index as _si
 from quantlib.time._period cimport Frequency, Days
 from quantlib.time._calendar cimport BusinessDayConvention
-
+from quantlib.time.date cimport date_from_qldate
 from quantlib.quotes cimport Quote, SimpleQuote
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
@@ -48,11 +48,14 @@ cdef class RateHelper:
         def __get__(self):
             return self._thisptr.get().impliedQuote()
 
+    @property
+    def latest_date(self):
+        return date_from_qldate(self._thisptr.get().latestDate())
 
 cdef class RelativeDateRateHelper(RateHelper):
 
-    def __cinit__(self):
-        self._thisptr = NULL
+    def update(self):
+        return (<_rh.RelativeDateRateHelper*>self._thisptr.get()).update()
 
 
 cdef class DepositRateHelper(RelativeDateRateHelper):

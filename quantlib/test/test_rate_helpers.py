@@ -12,6 +12,7 @@ from quantlib.time.api import (
     Period, Months, TARGET, ModifiedFollowing, Actual365Fixed, Date, Years,
     UnitedStates, Actual360, Annual
 )
+from quantlib.settings import Settings
 
 class RateHelpersTestCase(unittest.TestCase):
 
@@ -40,6 +41,20 @@ class RateHelpersTestCase(unittest.TestCase):
         self.assertEqual(quote.value, helper_from_quote.quote)
         self.assertEqual(helper_from_quote.quote, helper_from_float.quote)
 
+    def test_relativedate_rate_helper(self):
+        tenor = Period(3, Months)
+        fixing_days = 3
+        calendar =  TARGET()
+        convention = ModifiedFollowing
+        end_of_month = True
+        deposit_day_counter = Actual365Fixed()
+
+        helper = DepositRateHelper(
+            0.005, tenor, fixing_days, calendar, convention, end_of_month,
+            deposit_day_counter
+        )
+        Settings.instance().evaluation_date = Date(8, 6, 2016)
+        self.assertEqual(helper.latest_date, Date(13, 9, 2016))
 
     def test_create_fra_rate_helper(self):
 
