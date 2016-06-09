@@ -22,27 +22,6 @@ from quantlib.time.date import today, Days
 from quantlib.compounding import Simple
 from quantlib.time.api import Date, Actual360
 from quantlib.market.market import libor_market, IborMarket
-from quantlib.quotes import SimpleQuote
-
-class SimpleQuoteTestCase(unittest.TestCase):
-
-    def test_using_simple_quote(self):
-
-        quote = SimpleQuote(10)
-
-        self.assertEqual(10, quote.value)
-
-        quote.value = 15
-
-        self.assertEqual(15, quote.value)
-        self.assertTrue(quote.is_valid)
-
-    def test_empty_constructor(self):
-
-        quote = SimpleQuote()
-
-        self.assertTrue(quote.is_valid)
-        self.assertEqual(0.0, quote.value)
 
 
 class YieldTermStructureTestCase(unittest.TestCase):

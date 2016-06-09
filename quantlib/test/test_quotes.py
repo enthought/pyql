@@ -9,4 +9,16 @@ class SimpleQuoteTestCase(unittest.TestCase):
 
         value = 72.03
         quote = SimpleQuote(value)
-        self.assertLess(abs(value - quote.value), 1e-12)
+        self.assertAlmostEqual(value, quote.value)
+
+    def test_empty_constructor(self):
+        quote = SimpleQuote()
+        self.assertFalse(quote.is_valid)
+        with self.assertRaisesRegexp(RuntimeError, 'invalid SimpleQuote'):
+            x = quote.value
+        # test quote reset
+        quote.value = 1.
+        quote.reset()
+        self.assertFalse(quote.is_valid)
+        with self.assertRaisesRegexp(RuntimeError, 'invalid SimpleQuote'):
+            x = quote.value
