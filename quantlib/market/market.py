@@ -74,7 +74,7 @@ def make_rate_helper(market, quote, reference_date=None):
         forward_date = next_imm_date(reference_date, tenor)
 
         helper = FuturesRateHelper(
-            rate =SimpleQuote(quote_value),
+            price =SimpleQuote(quote_value),
             imm_date = qldate_from_pydate(forward_date),
             length_in_months = 3,
             calendar = market._floating_rate_index.fixing_calendar,
@@ -88,7 +88,7 @@ def make_rate_helper(market, quote, reference_date=None):
         # evaluation date, as for ED futures. To achieve this, we pass the
         # `imm_date` in the `tenor` field of the quote.
         helper = FuturesRateHelper(
-            rate=SimpleQuote(quote_value),
+            price=SimpleQuote(quote_value),
             imm_date=tenor,
             length_in_months=3,
             calendar=market._floating_rate_index.fixing_calendar,
