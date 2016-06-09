@@ -13,13 +13,11 @@ from _date cimport (
 )
 from _period cimport (
     Period as QlPeriod, mult_op, add_op, sub_op, eq_op, neq_op,
-    g_op, geq_op, l_op, leq_op
+    g_op, geq_op, l_op, leq_op, parse
     )
 
 # Python imports
 import datetime
-import re
-
 import six
 
 cdef public enum Month:
@@ -111,11 +109,6 @@ _TU_DICT = {'D': Days, 'W': Weeks, 'M': Months, 'Y': Years}
 _STR_TU_DICT = {v:k for k, v in _TU_DICT.items()}
 
 
-tenor_re = re.compile("([0-9]+)([DWMY]{1,1})")
-def parse(tenor):
-    mo = tenor_re.match(tenor)
-    return (mo.group(1), mo.group(2))
-
 cdef class Period:
     ''' Class providing a Period (length + time unit) class and implements a
     limited algebra.
@@ -126,14 +119,7 @@ cdef class Period:
         if len(args) == 1:
             tenor = args[0]
             if(isinstance(tenor, six.string_types)):
-                try:
-                    t, u = parse(tenor)
-                except:
-                    raise ValueError("Parse Error: could not parse period %s" \
-                                     % tenor)
-                self._thisptr = \
-                new shared_ptr[QlPeriod](new QlPeriod(<Integer> int(t),
-                                         <TimeUnit> _TU_DICT[u]))
+                self._thisptr = new shared_ptr[QlPeriod](new QlPeriod(parse(tenor.encode('utf-8'))))
             else:
                 self._thisptr = \
                 new shared_ptr[QlPeriod](new QlPeriod(<_period.Frequency>args[0]))
