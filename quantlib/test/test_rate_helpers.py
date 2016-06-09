@@ -56,6 +56,28 @@ class RateHelpersTestCase(unittest.TestCase):
         Settings.instance().evaluation_date = Date(8, 6, 2016)
         self.assertEqual(helper.latest_date, Date(13, 9, 2016))
 
+    def test_deposit_end_of_month(self):
+        tenor = Period(3, Months)
+        fixing_days = 0
+        calendar =  TARGET()
+        convention = ModifiedFollowing
+        end_of_month = True
+        deposit_day_counter = Actual365Fixed()
+
+        helper_end_of_month = DepositRateHelper(
+            0.005, tenor, fixing_days, calendar, convention, True,
+            deposit_day_counter
+        )
+        helper_no_end_of_month = DepositRateHelper(
+            0.005, tenor, fixing_days, calendar, convention, False,
+            deposit_day_counter
+        )
+        Settings.instance().evaluation_date = Date(29, 2, 2016)
+        self.assertEqual(helper_end_of_month.latest_date, Date(31, 5, 2016))
+        self.assertEqual(helper_no_end_of_month.latest_date, Date(30, 5, 2016))
+
+
+
     def test_create_fra_rate_helper(self):
 
         quote = SimpleQuote(0.0096)
