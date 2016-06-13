@@ -18,5 +18,6 @@ cdef extern from 'ql/termstructures/defaulttermstructure.hpp' namespace 'QuantLi
     cdef cppclass DefaultProbabilityTermStructure:
         DefaultProbabilityTermStructure()
 
-        Probability survivalProbability(Date& d, bool extrapolate) except + # = false 
-
+        Probability survivalProbability(Date& d, bool extrapolate) except + # = false
+        Rate hazardRate(const Date&d, bool extrapolate # = false
+        ) except +

@@ -13,18 +13,17 @@ from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.termstructures.credit._credit_helpers cimport DefaultProbabilityHelper
 from default_probability_helpers cimport CdsHelper
-from quantlib.termstructures._default_term_structure cimport DefaultProbabilityTermStructure
 
+from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
 
 VALID_TRAITS = ['HazardRate', 'DefaultDensity', 'SurvivalProbability']
 VALID_INTERPOLATORS = ['Linear', 'LogLinear', 'BackwardFlat']
 
 
-cdef class PiecewiseDefaultCurve:
-
+cdef class PiecewiseDefaultCurve(DefaultProbabilityTermStructure):
 
     def __init__(self, str trait, str interpolator, Date reference_date,
-                 helpers, DayCounter daycounter, double accuracy=1e-12):
+                 list helpers, DayCounter daycounter, double accuracy=1e-12):
 
         # validate inputs
         if trait not in VALID_TRAITS:
@@ -45,8 +44,7 @@ cdef class PiecewiseDefaultCurve:
         cdef string interpolator_string = interpolator.encode('utf-8')
 
         # convert Python list to std::vector
-        cdef vector[shared_ptr[DefaultProbabilityHelper]]* instruments = \
-                new vector[shared_ptr[DefaultProbabilityHelper]]()
+        cdef vector[shared_ptr[DefaultProbabilityHelper]] instruments
 
         for helper in helpers:
             instruments.push_back(
@@ -62,10 +60,3 @@ cdef class PiecewiseDefaultCurve:
                 accuracy
             )
         )
-
-    def survival_probability(self, Date d, bool extrapolate=False):
-
-        return self._thisptr.get().survivalProbability(
-            deref(d._thisptr.get()), extrapolate
-        )
-
