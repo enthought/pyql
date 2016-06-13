@@ -70,9 +70,8 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
         Real couponLegNPV() except +
         Real defaultLegNPV() except +
         Real upfrontNPV() except +
-        Leg& coupons()
-        int side()
-        optional[Rate] upfront()
+        Real accrualRebateNPV() except +
+
         Rate conventionalSpread(Real conventionalRecovery,
                                 Handle[YieldTermStructure]& discountCurve,
                                 DayCounter& dayCounter)

@@ -28,6 +28,8 @@ from quantlib.time.schedule cimport Schedule
 cimport quantlib.cashflow as cashflow
 from quantlib.time.date cimport _pydate_from_qldate
 
+cimport quantlib.cashflows._fixed_rate_coupon as _frc
+
 BUYER = _cds.Buyer
 SELLER = _cds.Seller
 
@@ -201,12 +203,22 @@ cdef class CreditDefaultSwap(Instrument):
         return cashflow.leg_items(_get_cds(self).coupons())
 
     @property
+    def first_coupon(self):
+        cdef shared_ptr[_frc.FixedRateCoupon] coupon = \
+            dynamic_pointer_cast[_frc.FixedRateCoupon](_get_cds(self).coupons()[0])
+        return (_pydate_from_qldate(coupon.get().accrualStartDate()), coupon.get().accrualDays())
+
+    @property
     def protection_start_date(self):
         return _pydate_from_qldate(_get_cds(self).protectionStartDate())
 
     @property
     def protection_end_date(self):
         return _pydate_from_qldate(_get_cds(self).protectionEndDate())
+
+    @property
+    def rebates_accrual(self):
+         return _get_cds(self).rebatesAccrual()
 
     property fair_upfront:
         """ Returns the upfront spread that, given the running spread
@@ -250,5 +262,5 @@ cdef class CreditDefaultSwap(Instrument):
         return _get_cds(self).upfrontNPV()
 
     @property
-    def coupons(self):
-        return cashflow.leg_items(_get_cds(self).coupons())
+    def accrual_rebate_npv(self):
+        return  _get_cds(self).accrualRebateNPV()
