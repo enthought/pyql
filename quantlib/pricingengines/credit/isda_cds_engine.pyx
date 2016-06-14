@@ -1,7 +1,8 @@
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from libcpp.vector cimport vector
-from quantlib.handle cimport shared_ptr, Handle, optional
+from quantlib.handle cimport (shared_ptr, Handle, optional, make_optional,
+                              static_pointer_cast)
 
 from quantlib.pricingengines.engine cimport PricingEngine
 
@@ -12,6 +13,8 @@ cimport quantlib.termstructures._default_term_structure as _dts
 cimport quantlib.termstructures._yield_term_structure as _yts
 from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
 from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yields.rate_helpers cimport RateHelper
+from quantlib.termstructures.credit.default_probability_helpers cimport CdsHelper
 
 cpdef enum NumericalFix:
     No = _ice.No
@@ -27,31 +30,61 @@ cpdef enum ForwardsInCouponPeriod:
 
 cdef class IsdaCdsEngine(PricingEngine):
 
-    def __init__(self, DefaultProbabilityTermStructure ts, double recovery_rate,
-                 YieldTermStructure discount_curve, bool include_settlement_date_flows = None,
-                 _ice.NumericalFix numerical_fix = NumericalFix.Taylor,
-                 _ice.AccrualBias accrual_bias = AccrualBias.NoBias,
-                 _ice.ForwardsInCouponPeriod forwards_in_coupon_period = ForwardsInCouponPeriod.Piecewise):
+    def __init__(self, ts, double recovery_rate, discount_curve,
+                 bool include_settlement_date_flows=None,
+                 _ice.NumericalFix numerical_fix=NumericalFix.Taylor,
+                 _ice.AccrualBias accrual_bias=AccrualBias.HalfDayBias,
+                 _ice.ForwardsInCouponPeriod forwards_in_coupon_period=ForwardsInCouponPeriod.Piecewise):
         """
-        First argument should be a DefaultProbabilityTermStructure. Using
-        the PiecewiseDefaultCurve at the moment.
+        First argument should be a DefaultProbabilityTermStructure.
 
         """
 
+        cdef optional[bool] settlement_flows = make_optional[bool](
+                include_settlement_date_flows is not None,
+                include_settlement_date_flows)
+        cdef Handle[_dts.DefaultProbabilityTermStructure] handle
+        cdef vector[shared_ptr[_ice.DefaultProbabilityHelper]] cds_helpers
+        cdef vector[shared_ptr[_ice.RateHelper]] rate_helpers
 
-        cdef Handle[_dts.DefaultProbabilityTermStructure] handle = \
-            Handle[_dts.DefaultProbabilityTermStructure](<shared_ptr[_dts.DefaultProbabilityTermStructure]>
-                                                         ts._thisptr)
+        if isinstance(ts, DefaultProbabilityTermStructure) and \
+           isinstance(discount_curve, YieldTermStructure):
+            handle = Handle[_dts.DefaultProbabilityTermStructure](
+                (<DefaultProbabilityTermStructure>ts)._thisptr)
 
-        cdef Handle[_yts.YieldTermStructure] yts_handle = \
-            deref(discount_curve._thisptr.get())
-        cdef optional[bool] settlement_flows
-        if include_settlement_date_flows is None:
-            settlement_flows = optional[bool]()
-        else:
-             settlement_flows = optional[bool](include_settlement_date_flows)
-        self._thisptr = shared_ptr[_pe.PricingEngine](
-            new _ice.IsdaCdsEngine(handle, recovery_rate, yts_handle,
-                                   settlement_flows, _ice.Taylor,
-                                   _ice.NoBias, _ice.Piecewise)
+            self._thisptr = shared_ptr[_pe.PricingEngine](
+                new _ice.IsdaCdsEngine(handle, recovery_rate,
+                                       (<YieldTermStructure>discount_curve)._thisptr,
+                                       settlement_flows, numerical_fix,
+                                       accrual_bias, forwards_in_coupon_period)
             )
+        elif isinstance(ts, list) and isinstance(discount_curve, list):
+            for cds_helper in ts:
+                cds_helpers.push_back(
+                    static_pointer_cast[_ice.DefaultProbabilityHelper](
+                        (<CdsHelper?>cds_helper)._thisptr))
+            for rate_helper in discount_curve:
+                rate_helpers.push_back(deref((<RateHelper?>rate_helper)._thisptr))
+            self._thisptr = shared_ptr[_pe.PricingEngine](
+                new _ice.IsdaCdsEngine(cds_helpers, recovery_rate, rate_helpers,
+                                       settlement_flows, _ice.Taylor,
+                                       _ice.NoBias, _ice.Piecewise))
+
+        else:
+            raise ValueError('pomme')
+
+    cdef _ice.IsdaCdsEngine* _get_cds_engine(self):
+        cdef _ice.IsdaCdsEngine* ref = <_ice.IsdaCdsEngine*>(self._thisptr.get())
+        return ref
+
+    @property
+    def isda_rate_curve(self):
+        cdef YieldTermStructure yts = YieldTermStructure()
+        yts._thisptr.linkTo(self._get_cds_engine().isdaRateCurve().currentLink())
+        return yts
+
+    @property
+    def isda_credit_curve(self):
+        cdef DefaultProbabilityTermStructure dts = DefaultProbabilityTermStructure()
+        dts._thisptr = deref(self._get_cds_engine().isdaCreditCurve())
+        return dts

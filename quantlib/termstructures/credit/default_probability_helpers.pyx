@@ -25,6 +25,7 @@ from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 cimport quantlib._quote as _qt
+from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
 
 cdef class CdsHelper:
     """Base default-probability bootstrap helper
@@ -44,6 +45,13 @@ cdef class CdsHelper:
         and protection period calculations.
 
     """
+    def set_isda_engine_parameters(self, int numerical_fix, int accrual_bias,
+                                   int forwards_in_coupon_period):
+        self._thisptr.get().setIsdaEngineParameters(numerical_fix, accrual_bias,
+                                                    forwards_in_coupon_period)
+
+    def set_term_structure(self, DefaultProbabilityTermStructure ts not None):
+         self._thisptr.get().setTermStructure(ts._thisptr.get())
 
     @property
     def latest_date(self):
