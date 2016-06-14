@@ -8,7 +8,9 @@ Copyright (C) 2012 Enthought Inc.
 from __future__ import print_function
 
 from quantlib.instruments.credit_default_swap import CreditDefaultSwap, SELLER, BUYER
-from quantlib.pricingengines.credit import MidPointCdsEngine, IsdaCdsEngine
+from quantlib.pricingengines.credit.midpoint_cds_engine import MidPointCdsEngine
+from quantlib.pricingengines.credit.isda_cds_engine import (
+    IsdaCdsEngine, NumericalFix, AccrualBias, ForwardsInCouponPeriod )
 from quantlib.settings import Settings
 from quantlib.time.api import (
     Date, May, September, Actual365Fixed, Following, TARGET, Period, Months,
@@ -21,7 +23,7 @@ from quantlib.termstructures.credit.api import (
 from quantlib.indexes.euribor import Euribor6M
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.api import (
-    FlatForward, DepositRateHelper, SwapRateHelper, PiecewiseYieldCurve)
+    FlatForward, DepositRateHelper, SwapRateHelper, PiecewiseYieldCurve, YieldTermStructure)
 
 def example01():
     #*********************
@@ -163,6 +165,7 @@ def example01():
     print("   NPV:         ", cds_2y.net_present_value)
     print("   default leg: ", cds_2y.default_leg_npv)
     print("   coupon leg:  ", cds_2y.coupon_leg_npv)
+    print()
 
 def example02():
     print("example 2:\n")
@@ -206,10 +209,59 @@ def example02():
     nominal = 100000000
     trade = CreditDefaultSwap(BUYER, nominal, 0.01, cds_schedule, Following,
                             Actual360(), True, True, Date(22, 10, 2014), Actual360(True), True)
+    print(trade.coupons_as_fixedratecoupons)
     engine = IsdaCdsEngine(defaultTs0, 0.4, YC, False)
     trade.set_pricing_engine(engine)
-    print("reference trade NPV = {0}".format(trade.npv))
+    print("reference trade NPV = {0}\n".format(trade.npv))
+
+def example03():
+    print("example 3:\n")
+    todays_date = Date(13, 6, 2011)
+    Settings.instance().evaluation_date = todays_date
+    quotes = [0.00445, 0.00949, 0.01234, 0.01776, 0.01935, 0.02084]
+    tenors = [1, 2, 3, 6, 9, 12]
+    calendar = WeekendsOnly()
+    deps = [DepositRateHelper(q, Period(t, Months), 2, calendar, ModifiedFollowing, False, Actual360())
+            for q, t in zip(quotes, tenors)]
+    quotes = [0.01652, 0.02018, 0.02303, 0.02525, 0.0285, 0.02931, 0.03017, 0.03092, 0.03160, 0.03231,
+              0.03367, 0.03419, 0.03411, 0.03411, 0.03412]
+    tenors = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 20, 25, 30]
+    swaps =  [SwapRateHelper.from_tenor(q, Period(t, Years),
+                                        calendar, Annual, ModifiedFollowing,
+                                        Thirty360(), Euribor6M(), SimpleQuote(0)) for q, t
+              in zip(quotes, tenors)]
+    yield_helpers = deps+swaps
+    empty_yts = YieldTermStructure()
+    spreads = [0.007927, 0.012239, 0.016979, 0.019271, 0.020860]
+    tenors = [1, 3, 5, 7, 10]
+    spread_helpers = [SpreadCdsHelper(0.007927, Period(6, Months), 1,
+                                      WeekendsOnly(), Quarterly, Following, CDS,
+                                      Actual360(), 0.4, empty_yts, True, True,
+                                      Actual360(True), True, True)] + \
+        [SpreadCdsHelper(s, Period(t, Years), 1, WeekendsOnly(), Quarterly, Following, CDS,
+                         Actual360(), 0.4, empty_yts, True, True, Actual360(True), True, True)
+         for s, t in zip(spreads, tenors)]
+
+    for sh in spread_helpers:
+        sh.set_isda_engine_parameters(NumericalFix.Taylor, AccrualBias.NoBias,
+                                      ForwardsInCouponPeriod.Piecewise)
+    isda_pricer = IsdaCdsEngine(spread_helpers, 0.4, yield_helpers)
+    isda_yts = isda_pricer.isda_rate_curve
+    isda_cts = isda_pricer.isda_credit_curve
+    print("Isda yield curve:")
+    for h in yield_helpers:
+        d = h.latest_date
+        t = isda_yts.time_from_reference(d)
+        print(d, t, isda_yts.zero_rate(d, Actual365Fixed()).rate)
+
+    print()
+    print("Isda credit curve:")
+    for h in spread_helpers:
+        d = h.latest_date
+        t = isda_cts.time_from_reference(d)
+        print(d, t, isda_cts.survival_probability(d))
 
 if __name__ == '__main__':
     example01()
     example02()
+    example03()
