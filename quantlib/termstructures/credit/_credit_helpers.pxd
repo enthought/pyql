@@ -45,6 +45,7 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                   bool paysADefaultTime) # removed default value (true)
 
         void setTermStructure(DefaultProbabilityTermStructure*)
+        Date latestDate()
 
     cdef cppclass SpreadCdsHelper(CdsHelper):
          SpreadCdsHelper(Rate runningSpread,

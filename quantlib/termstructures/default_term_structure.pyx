@@ -11,7 +11,7 @@ cdef class DefaultProbabilityTermStructure: #not inheriting from TermStructure a
     def survival_probability(self, d, bool extrapolate = False):
         if isinstance(d, Date):
             return self._thisptr.get().survivalProbability(
-                deref((<Date>d)._thisptr), extrapolate)
+                deref((<Date>d)._thisptr.get()), extrapolate)
         elif isinstance(d, float) or isinstance(d, int):
             return self._thisptr.get().survivalProbability(<Time>d, extrapolate)
         else:
@@ -20,7 +20,7 @@ cdef class DefaultProbabilityTermStructure: #not inheriting from TermStructure a
     def hazard_rate(self, d, bool extrapolate = False):
         if isinstance(d, Date):
             return self._thisptr.get().hazardRate(
-                deref((<Date>d)._thisptr), extrapolate)
+                deref((<Date>d)._thisptr.get()), extrapolate)
         elif isinstance(d, float) or isinstance(d, int):
             return self._thisptr.get().hazardRate(<Time>d, extrapolate)
         else:
@@ -35,3 +35,6 @@ cdef class DefaultProbabilityTermStructure: #not inheriting from TermStructure a
         cdef DateList l = DateList.__new__(DateList)
         l._set_dates(self._thisptr.get().jumpDates())
         return l
+
+    def time_from_reference(self, Date d):
+        return self._thisptr.get().timeFromReference(deref(d._thisptr.get()))

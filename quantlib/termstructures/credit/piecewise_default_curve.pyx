@@ -15,7 +15,7 @@ from quantlib.termstructures.credit._credit_helpers cimport DefaultProbabilityHe
 from default_probability_helpers cimport CdsHelper
 
 from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
-
+cimport quantlib.termstructures._default_term_structure as _dts
 VALID_TRAITS = ['HazardRate', 'DefaultDensity', 'SurvivalProbability']
 VALID_INTERPOLATORS = ['Linear', 'LogLinear', 'BackwardFlat']
 
@@ -51,12 +51,10 @@ cdef class PiecewiseDefaultCurve(DefaultProbabilityTermStructure):
                 <shared_ptr[DefaultProbabilityHelper]>deref((<CdsHelper> helper)._thisptr)
             )
 
-        self._thisptr = new shared_ptr[DefaultProbabilityTermStructure](
-            _pdc.credit_term_structure_factory(
+        self._thisptr = _pdc.credit_term_structure_factory(
                 trait_string, interpolator_string,
                 deref(reference_date._thisptr.get()),
-                deref(instruments),
+                instruments,
                 deref(daycounter._thisptr),
                 accuracy
             )
-        )

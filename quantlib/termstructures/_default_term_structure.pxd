@@ -26,3 +26,4 @@ cdef extern from 'ql/termstructures/defaulttermstructure.hpp' namespace 'QuantLi
         ) except +
         const vector[Time]& jumpTimes()
         const vector[Date]& jumpDates()
+        Time timeFromReference(const Date&)
