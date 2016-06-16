@@ -160,13 +160,13 @@ cdef class CreditDefaultSwap(Instrument):
         """
 
         cdef CreditDefaultSwap instance = cls.__new__(cls)
-        instance._thisptr = shared_ptr[_instrument.Instrument](
+        instance._thisptr = new shared_ptr[_instrument.Instrument](
             new _cds.CreditDefaultSwap(
                 <_cds.Side>side, notional, upfront, spread, deref(schedule._thisptr),
                 <_calendar.BusinessDayConvention>payment_convention,
                 deref(day_counter._thisptr), settles_accrual, pays_at_default_time,
-                deref(protection_start._thisptr),
-                deref(upfront_date._thisptr),
+                deref(protection_start._thisptr.get()),
+                deref(upfront_date._thisptr.get()),
                 shared_ptr[_cds.Claim](),
                 deref(last_period_day_counter._thisptr),
                 rebates_accrual)
@@ -203,10 +203,17 @@ cdef class CreditDefaultSwap(Instrument):
         return cashflow.leg_items(_get_cds(self).coupons())
 
     @property
-    def first_coupon(self):
-        cdef shared_ptr[_frc.FixedRateCoupon] coupon = \
-            dynamic_pointer_cast[_frc.FixedRateCoupon](_get_cds(self).coupons()[0])
-        return (_pydate_from_qldate(coupon.get().accrualStartDate()), coupon.get().accrualDays())
+    def coupons_as_fixedratecoupons(self):
+        cdef _cds.Leg coupon_leg = _get_cds(self).coupons()
+        cdef size_t i
+        cdef _frc.FixedRateCoupon* coupon
+        cdef list r  = []
+        for i in range(coupon_leg.size()):
+            coupon = <_frc.FixedRateCoupon*>(coupon_leg[i].get())
+            r.append({'accrual_start_date':
+                      _pydate_from_qldate(coupon.accrualStartDate()),
+                      'accrual_days': coupon.accrualDays()})
+        return r
 
     @property
     def protection_start_date(self):
