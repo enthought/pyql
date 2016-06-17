@@ -8,10 +8,7 @@ cimport quantlib.processes._heston_process as _hp
 cimport quantlib.processes._stochastic_process as _sp
 
 from quantlib.processes.heston_process cimport HestonProcess
-from quantlib.processes.bates_process cimport BatesProcess
 from quantlib.models.equity.heston_model cimport HestonModel
-from quantlib.models.equity.bates_model cimport (
-    BatesModel, BatesDetJumpModel, BatesDoubleExpModel, BatesDoubleExpDetJumpModel)
 
 import numpy as np
 cimport numpy as cnp
