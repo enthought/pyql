@@ -10,6 +10,14 @@ cdef extern from 'boost/shared_ptr.hpp' namespace 'boost':
         long use_count()
         #void reset(shared_ptr[T]&)
 
+cdef extern from 'boost/optional.hpp' namespace 'boost':
+    cdef cppclass optional[T]:
+        optional()
+        optional(T*)
+        optional(const T&)
+        T get()
+        bool operator bool()
+
 cdef extern from 'ql/handle.hpp' namespace 'QuantLib':
     cdef cppclass Handle[T]:
         Handle()

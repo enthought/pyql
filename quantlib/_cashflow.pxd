@@ -3,12 +3,8 @@ include 'types.pxi'
 from libcpp cimport bool
 from libcpp.vector cimport vector
 
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport shared_ptr, optional
 from quantlib.time._date cimport Date
-
-cdef extern from 'boost/optional.hpp' namespace 'boost':
-    cdef cppclass optional[T]:
-        optional(T*)
 
 cdef extern from 'ql/event.hpp' namespace 'QuantLib':
     cdef cppclass Event:        
