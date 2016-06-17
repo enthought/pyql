@@ -15,7 +15,7 @@ cdef extern from 'boost/optional.hpp' namespace 'boost':
         optional()
         optional(const T&)
         T get()
-        bool operator bool()
+        bool operator!()
 
     optional[T] make_optional[T](bool, const T&)
 

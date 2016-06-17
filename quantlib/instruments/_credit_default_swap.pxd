@@ -4,7 +4,7 @@ from libcpp cimport bool
 from quantlib.handle cimport optional, Handle, shared_ptr
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from _instrument cimport Instrument
-
+from quantlib._cashflow cimport Leg
 from quantlib.time._calendar cimport BusinessDayConvention
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
@@ -44,6 +44,16 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                           Date& protectionStart, #= Date(),
                           Date& upfrontDate, #=Date(),
         )
+        int side()
+        Real notional()
+        Rate runningSpread()
+        optional[Rate] upfront()
+        bool settlesAccrual()
+        bool paysAtDefaultTime()
+        const Leg& coupons()
+        const Date& protectionStartDate()
+        const Date& protectionEndDate()
+        bool rebatesAccrual()
 
         Rate fairUpfront() except +
         Rate fairSpread() except +
@@ -53,3 +63,6 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
         Real defaultLegNPV() except +
         Real upfrontNPV() except +
 
+        Rate conventionalSpread(Real conventionalRecovery,
+                                Handle[YieldTermStructure]& discountCurve,
+                                DayCounter& dayCounter)

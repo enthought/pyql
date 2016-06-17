@@ -12,7 +12,7 @@ from cython.operator cimport dereference as deref
 
 from libcpp cimport bool
 
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport shared_ptr, optional
 
 cimport _credit_default_swap as _cds
 cimport _instrument
@@ -24,6 +24,8 @@ from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.schedule cimport Schedule
+cimport quantlib.cashflow as cashflow
+from quantlib.time.date cimport _pydate_from_qldate
 
 BUYER = _cds.Buyer
 SELLER = _cds.Seller
@@ -81,7 +83,6 @@ cdef class CreditDefaultSwap(Instrument):
             calculation. This might not be what you want.
 
     """
-
 
     def __init__(self, int side, double notional, double spread, Schedule schedule,
                  int payment_convention,
@@ -149,6 +150,43 @@ cdef class CreditDefaultSwap(Instrument):
                 deref(upfront_date._thisptr.get()))
         )
         return instance
+
+    @property
+    def side(self):
+         return _get_cds(self).side()
+
+    @property
+    def notional(self):
+        return _get_cds(self).notional()
+
+    @property
+    def running_spread(self):
+         return _get_cds(self).runningSpread()
+
+    @property
+    def upfront(self):
+        cdef optional[Rate] upf =  _get_cds(self).upfront()
+        return None if not upf else upf.get()
+
+    @property
+    def settles_accrual(self):
+        return _get_cds(self).settlesAccrual()
+
+    @property
+    def pays_at_default_time(self):
+        return _get_cds(self).paysAtDefaultTime()
+
+    @property
+    def coupons(self):
+        return cashflow.leg_items(_get_cds(self).coupons())
+
+    @property
+    def protection_start_date(self):
+        return _pydate_from_qldate(_get_cds(self).protectionStartDate())
+
+    @property
+    def protection_end_date(self):
+        return _pydate_from_qldate(_get_cds(self).protectionEndDate())
 
     property fair_upfront:
         """ Returns the upfront spread that, given the running spread
