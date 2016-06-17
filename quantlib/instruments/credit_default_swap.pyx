@@ -37,7 +37,7 @@ cdef _cds.CreditDefaultSwap* _get_cds(CreditDefaultSwap cds):
     return ref
 
 cdef class CreditDefaultSwap(Instrument):
-    """Credit default swap
+    """Credit default swap as running-spread only
 
         Parameters
         ----------
@@ -88,8 +88,7 @@ cdef class CreditDefaultSwap(Instrument):
                  DayCounter day_counter, bool settles_accrual=True,
                  bool pays_at_default_time=True,
                  Date protection_start=Date()):
-        """ CDS quoted as running-spread only
-
+        """Credit default swap as running-spread only
         """
 
         self._thisptr = new shared_ptr[_instrument.Instrument](
@@ -100,6 +99,56 @@ cdef class CreditDefaultSwap(Instrument):
                 deref(protection_start._thisptr.get())
             )
         )
+
+    @classmethod
+    def from_upfront(cls, int side, double notional, double upfront, double spread,
+                     Schedule schedule not None, int payment_convention,
+                     DayCounter day_counter not None, bool settles_accrual=True,
+                     bool pays_at_default_time=True, Date protection_start=Date(),
+                     Date upfront_date=Date()):
+        """Credit default swap quoted as upfront and running spread
+
+        Parameters
+        ----------
+        side : int or {BUYER, SELLER}
+           Whether the protection is bought or sold.
+        notional : float
+            Notional value
+        upront : float
+            Upfront payment in fractional units.
+        spread : float
+            Running spread in fractional units.
+        schedule : :class:`~quantlib.time.schedule.Schedule`
+            Coupon schedule.
+        paymentConvention : int
+            Business-day convention for
+            payment-date adjustment.
+        dayCounter : :class:`~quantlib.time.daycounter.DayCounter`
+            Day-count convention for accrual.
+        settlesAccrual : bool, optional
+            Whether or not the accrued coupon is
+            due in the event of a default.
+        paysAtDefaultTime : bool, optional
+            If set to True, any payments
+            triggered by a default event are
+            due at default time. If set to
+            False, they are due at the end of
+            the accrual period.
+        protectionStart : :class:`~quantlib.time.date.Date`, optional
+            The first date where a default
+            event will trigger the contract.
+        """
+
+        cdef CreditDefaultSwap instance = cls.__new__(cls)
+        instance._thisptr = new shared_ptr[_instrument.Instrument](
+            new _cds.CreditDefaultSwap(
+                <_cds.Side>side, notional, upfront, spread, deref(schedule._thisptr),
+                <_calendar.BusinessDayConvention>payment_convention,
+                deref(day_counter._thisptr), settles_accrual, pays_at_default_time,
+                deref(protection_start._thisptr.get()),
+                deref(upfront_date._thisptr.get()))
+        )
+        return instance
 
     property fair_upfront:
         """ Returns the upfront spread that, given the running spread

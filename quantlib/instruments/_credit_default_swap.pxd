@@ -1,6 +1,8 @@
 include '../types.pxi'
 
 from libcpp cimport bool
+from quantlib.handle cimport optional, Handle, shared_ptr
+from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from _instrument cimport Instrument
 
 from quantlib.time._calendar cimport BusinessDayConvention
@@ -30,6 +32,19 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                           #const boost::shared_ptr<Claim>& =
                           #                        boost::shared_ptr<Claim>());
         )
+        CreditDefaultSwap(Side side,
+                          Real notional,
+                          Rate upfront,
+                          Rate spread,
+                          Schedule& schedule,
+                          BusinessDayConvention paymentConvention,
+                          DayCounter& dayCounter,
+                          bool settlesAccrual, # = true,
+                          bool paysAtDefaultTime, # = true,
+                          Date& protectionStart, #= Date(),
+                          Date& upfrontDate, #=Date(),
+        )
+
         Rate fairUpfront() except +
         Rate fairSpread() except +
         Real couponLegBPS() except +
