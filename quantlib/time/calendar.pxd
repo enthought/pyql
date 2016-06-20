@@ -12,5 +12,5 @@ cdef class TARGET(Calendar):
 cdef class DateList:
     cdef vector[_date.Date]* _dates
     cdef size_t _pos
-    cdef _set_dates(self, vector[_date.Date]& dates)
+    cdef _set_dates(self, const vector[_date.Date]& dates)
 

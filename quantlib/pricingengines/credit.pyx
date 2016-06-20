@@ -31,7 +31,7 @@ cdef class MidPointCdsEngine(PricingEngine):
 
 
         cdef Handle[_dts.DefaultProbabilityTermStructure] handle = \
-            Handle[_dts.DefaultProbabilityTermStructure](deref(ts._thisptr))
+            Handle[_dts.DefaultProbabilityTermStructure](ts._thisptr)
 
         cdef Handle[_yts.YieldTermStructure] yts_handle = \
             deref(discount_curve._thisptr.get())
