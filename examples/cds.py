@@ -81,7 +81,7 @@ if __name__ == '__main__':
     print("               expected: {:%}".format(0.9704))
 
     print("2Y survival probability: {:%}".format(
-        hazard_rate_structure.survival_probability(todays_date + 2*Years)
+        hazard_rate_structure.survival_probability(todays_date + Period(2, Years))
     ))
     print("               expected: {:%}".format(0.9418))
 

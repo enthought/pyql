@@ -29,7 +29,7 @@ cdef class PiecewiseDefaultCurve:
         # validate inputs
         if trait not in VALID_TRAITS:
             raise ValueError(
-                'Traits must b in {0}'.format(','.join(VALID_TRAITS))
+                'Traits must be in {0}'.format(','.join(VALID_TRAITS))
             )
 
         if interpolator not in VALID_INTERPOLATORS:
