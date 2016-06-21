@@ -3,7 +3,7 @@ from quantlib.time.calendar cimport Calendar
 
 
 cdef class WeekendsOnly(Calendar):
-    '''Calendar for reproducing SNAC computaions.
+    '''Calendar for reproducing SNAC computations.
 
     This calendar has no bank holidays except for weekends (Saturdays and Sundays)
     as required by ISDA for calculating conventional CDS spreads.
