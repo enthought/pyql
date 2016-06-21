@@ -9,16 +9,17 @@
 
 from .unittest_tools import unittest
 
-from quantlib.currency.api import USDCurrency
+from quantlib.currency.api import USDCurrency, EURCurrency
 from quantlib.index import Index
 from quantlib.indexes.interest_rate_index import InterestRateIndex
 from quantlib.indexes.libor import Libor
 from quantlib.indexes.swap_index import SwapIndex
+from quantlib.indexes.ibor_index import IborIndex
 from quantlib.indexes.euribor import Euribor6M
 from quantlib.settings import Settings
 from quantlib.time.api import (Days, Months, Period, TARGET, Actual360,
                                today, Actual365Fixed)
-from quantlib.time.api import Following
+from quantlib.time.api import Following, ModifiedFollowing
 from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure)
 from quantlib.time.api import Date, January
@@ -39,6 +40,16 @@ class TestIRIndex(unittest.TestCase):
         with self.assertRaises(ValueError):
             InterestRateIndex()
 
+class TestIbor(unittest.TestCase):
+    def test_create_ibor_index(self):
+        euribor6m = IborIndex("Euribor", Period(6, Months), 2, EURCurrency(), TARGET(),
+                              ModifiedFollowing, True, Actual360())
+        default_euribor6m = Euribor6M()
+        for attribute in ["business_day_convention", "end_of_month",
+                           "fixing_calendar", "tenor", "fixing_days",
+                           "day_counter", "family_name", "name"]:
+            self.assertEqual(getattr(euribor6m, attribute),
+                             getattr(default_euribor6m, attribute))
 
 class TestLibor(unittest.TestCase):
 
