@@ -1,13 +1,14 @@
 include '../types.pxi'
 from cython.operator cimport dereference as deref
 from libcpp.string cimport string
+from libcpp cimport bool
 
 from quantlib.handle cimport shared_ptr
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
-from quantlib.time._calendar cimport ModifiedFollowing
+from quantlib.time._calendar cimport ModifiedFollowing, BusinessDayConvention
 from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
 cimport quantlib._index as _in
 cimport quantlib.indexes._ibor_index as _ib
@@ -21,6 +22,19 @@ from quantlib.indexes.interest_rate_index cimport InterestRateIndex
 cdef class IborIndex(InterestRateIndex):
     def __cinit__(self):
         pass
+
+    def __init__(self, str family_name, Period tenor not None, Natural settlement_days,
+            Currency currency, Calendar fixing_calendar, int convention,
+            bool end_of_month, DayCounter day_counter not None):
+        self._thisptr = new shared_ptr[_in.Index](
+            new _ib.IborIndex(family_name.encode('utf-8'),
+                              deref(tenor._thisptr.get()),
+                              settlement_days,
+                              deref(currency._thisptr),
+                              deref(fixing_calendar._thisptr),
+                              <BusinessDayConvention> convention,
+                              end_of_month,
+                              deref(day_counter._thisptr)))
 
     property business_day_convention:
         def __get__(self):
@@ -61,4 +75,3 @@ cdef class IborIndex(InterestRateIndex):
 cdef class OvernightIndex(IborIndex):
     def __cinit__(self):
         pass
-
