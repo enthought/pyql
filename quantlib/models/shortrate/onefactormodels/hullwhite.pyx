@@ -76,22 +76,19 @@ cdef class HullWhite(Vasicek):
         def __get__(self):
             return (<_hw.HullWhite*> self._thisptr.get()).sigma()
 
-    def calibrate(self, helpers, OptimizationMethod method, EndCriteria
+    def calibrate(self, list helpers, OptimizationMethod method, EndCriteria
             end_criteria):
 
         #convert list to vector
-        cdef vector[shared_ptr[_ch.CalibrationHelper]]* helpers_vector = \
-            new vector[shared_ptr[_ch.CalibrationHelper]]()
+        cdef vector[shared_ptr[_ch.CalibrationHelper]] helpers_vector
 
-        cdef shared_ptr[_ch.CalibrationHelper]* chelper
+        cdef shared_ptr[_ch.CalibrationHelper] chelper
         for helper in helpers:
-            chelper = new shared_ptr[_ch.CalibrationHelper](
-                (<CalibrationHelper>helper)._thisptr.get()
-            )
-            helpers_vector.push_back(deref(chelper))
+            chelper = deref((<CalibrationHelper>helper)._thisptr)
+            helpers_vector.push_back(chelper)
 
         (<_hw.HullWhite*> self._thisptr.get()).calibrate(
-            deref(helpers_vector),
+            helpers_vector,
             deref(method._thisptr.get()),
             deref(end_criteria._thisptr.get())
         )

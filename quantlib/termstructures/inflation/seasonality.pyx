@@ -74,28 +74,21 @@ cdef class Seasonality:
 
 cdef class MultiplicativePriceSeasonality(Seasonality):
 
-    def __init__(self, Date d, Frequency frequency, seasonality_factors):
-        cdef vector[Rate] _seasonality_factors = vector[Rate]()
-        for sf in seasonality_factors:
-            _seasonality_factors.push_back(sf)
+    def __init__(self, Date d, Frequency frequency, vector[Rate] seasonality_factors):
         self._thisptr = new shared_ptr[_se.Seasonality](
             new _se.MultiplicativePriceSeasonality(
                 deref(d._thisptr.get()),
                 frequency,
-                _seasonality_factors))
+                seasonality_factors))
 
     def set(self, Date seasonality_base_date,
             Frequency frequency,
-            seasonality_factors):
-
-        cdef vector[Rate] _seasonality_factors = vector[Rate]()
-        for sf in seasonality_factors:
-            _seasonality_factors.push_back(sf)
+            vector[Rate] seasonality_factors):
 
         (<_se.MultiplicativePriceSeasonality*> self._thisptr.get()).set(
                 deref(seasonality_base_date._thisptr.get()),
                 frequency,
-                _seasonality_factors)
+                seasonality_factors)
             
     property seasonality_base_date:
         def __get__(self):
@@ -108,11 +101,7 @@ cdef class MultiplicativePriceSeasonality(Seasonality):
 
     property seasonality_factors:
         def __get__(self):
-            cdef vector[Rate] sf = (<_se.MultiplicativePriceSeasonality*> self._thisptr.get()).seasonalityFactors()
-            sf_list = []
-            for i in xrange(sf.size()):
-                sf_list.append(sf.at(i))
-            return sf_list
+            return (<_se.MultiplicativePriceSeasonality*> self._thisptr.get()).seasonalityFactors()
 
     def seasonality_factor(self, Date d):
         return (<_se.MultiplicativePriceSeasonality*> self._thisptr.get()).seasonalityFactor(

@@ -60,8 +60,7 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
         cdef string interpolator_string = interpolator.encode('utf-8')
 
         # convert Python list to std::vector
-        cdef vector[shared_ptr[_rh.RateHelper]]* instruments = \
-                new vector[shared_ptr[_rh.RateHelper]]()
+        cdef vector[shared_ptr[_rh.RateHelper]] instruments
 
         for helper in helpers:
             instruments.push_back(
@@ -74,7 +73,7 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
                         trait_string,
                         interpolator_string,
                         deref(settlement_date._thisptr.get()),
-                        deref(instruments),
+                        instruments,
                         deref(day_counter._thisptr),
                         tolerance
                 )

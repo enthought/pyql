@@ -155,7 +155,7 @@ cdef class FixedRateBond(Bond):
 
     def __init__(self, int settlement_days, double face_amount,
             Schedule fixed_bonds_schedule,
-            coupons, DayCounter accrual_day_counter,
+            vector[Rate] coupons, DayCounter accrual_day_counter,
             payment_convention=Following,
             double redemption=100.0, Date issue_date = None):
             """ Fixed rate bond (constructor)
@@ -180,11 +180,6 @@ cdef class FixedRateBond(Bond):
                 Date bond was issued
             """
            
-            # convert input type to internal structures
-            cdef vector[Rate] _coupons = vector[Rate]()
-            for rate in coupons:
-                _coupons.push_back(rate)
-
             cdef QlSchedule* _fixed_bonds_schedule = <QlSchedule*>fixed_bonds_schedule._thisptr
             cdef QlDayCounter* _accrual_day_counter = <QlDayCounter*>accrual_day_counter._thisptr
 
@@ -196,7 +191,7 @@ cdef class FixedRateBond(Bond):
                 # shall we default on the first date of the schedule ?
                 self._thisptr = new shared_ptr[_instrument.Instrument](
                     new _bonds.FixedRateBond(settlement_days,
-                        face_amount, deref(_fixed_bonds_schedule), _coupons,
+                        face_amount, deref(_fixed_bonds_schedule), coupons,
                         deref(_accrual_day_counter),
                         <BusinessDayConvention>payment_convention,
                         redemption)
@@ -207,7 +202,7 @@ cdef class FixedRateBond(Bond):
                 self._thisptr = new shared_ptr[_instrument.Instrument](\
                     new _bonds.FixedRateBond(settlement_days,
                         face_amount, deref(_fixed_bonds_schedule),
-                        _coupons,
+                        coupons,
                         deref(_accrual_day_counter),
                         <BusinessDayConvention>payment_convention,
                         redemption, deref(_issue_date)
@@ -256,7 +251,9 @@ cdef class FloatingRateBond(Bond):
     """ Floating rate bond """ 
     def __init__(self, int settlement_days, double face_amount, Schedule float_schedule, 
         IborIndex ibor_index, DayCounter accrual_day_counter, int fixing_days, 
-        gearings, spreads, caps, floors, payment_convention=Following, redemption=100.0, Date issue_date=None
+        vector[Real] gearings, vector[Spread] spreads, vector[Rate] caps, vector[Rate] floors,
+        BusinessDayConvention payment_convention=Following, double redemption=100.0,
+        Date issue_date=None
         ):
         """ Floating rate bond (constructor)
         Parameters
@@ -293,25 +290,11 @@ cdef class FloatingRateBond(Bond):
         cdef QlDayCounter* _accrual_day_counter = <QlDayCounter*>accrual_day_counter._thisptr
         
         
-        cdef vector[Real] _gearings = vector[Real]()
-        cdef vector[Spread] _spreads = vector[Spread]()
-        cdef vector[Rate] _caps = vector[Rate]()
-        cdef vector[Rate] _floors = vector[Rate]()
-        
-        for item in gearings: 
-            _gearings.push_back(item)
-        for spd in spreads: 
-            _spreads.push_back(spd)
-        for rtc in caps:
-            _caps.push_back(rtc)
-        for rtf in floors: 
-            _floors.push_back(rtf)
-        
         self._thisptr = new shared_ptr[_instrument.Instrument](
             new _bonds.FloatingRateBond(
                 <Natural> settlement_days, <Real> face_amount, deref(_float_bonds_schedule),deref(<shared_ptr[_ii.IborIndex]*> ibor_index._thisptr),
                 deref(_accrual_day_counter), <BusinessDayConvention> payment_convention, 
-                <Natural> fixing_days, _gearings, _spreads, _caps, _floors, True, redemption, deref(issue_date._thisptr.get())
+                <Natural> fixing_days, gearings, spreads, caps, floors, True, redemption, deref(issue_date._thisptr.get())
                 )
             )       
                
