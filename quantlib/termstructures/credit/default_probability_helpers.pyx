@@ -18,7 +18,8 @@ from quantlib.time._schedule cimport Rule
 from quantlib.time._calendar cimport BusinessDayConvention
 
 
-from quantlib.time.date cimport Period
+from quantlib.time.date cimport Period, date_from_qldate, Date
+cimport quantlib.time._date as _date
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
@@ -34,7 +35,10 @@ cdef class CdsHelper:
                                  and protection period calculations.
     """
 
-
+    @property
+    def latest_date(self):
+        cdef _date.Date d = self._thisptr.get().latestDate()
+        return date_from_qldate(d)
 
 cdef class SpreadCdsHelper(CdsHelper):
     """Spread-quoted CDS hazard rate bootstrap helper. """

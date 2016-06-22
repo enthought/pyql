@@ -154,7 +154,7 @@ cdef class DateList:
     def __cinit__(self):
         self._pos = 0
 
-    cdef _set_dates(self, vector[_date.Date]& dates):
+    cdef _set_dates(self, const vector[_date.Date]& dates):
         # fixme : would be great to be able to do that at construction time ...
         # but Cython does not allow to pass C object in the __cinit__ method
         self._dates = new vector[_date.Date](dates)

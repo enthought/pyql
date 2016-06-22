@@ -13,18 +13,17 @@ from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.termstructures.credit._credit_helpers cimport DefaultProbabilityHelper
 from default_probability_helpers cimport CdsHelper
-from quantlib.termstructures._default_term_structure cimport DefaultProbabilityTermStructure
 
-
+from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
+cimport quantlib.termstructures._default_term_structure as _dts
 VALID_TRAITS = ['HazardRate', 'DefaultDensity', 'SurvivalProbability']
 VALID_INTERPOLATORS = ['Linear', 'LogLinear', 'BackwardFlat']
 
 
-cdef class PiecewiseDefaultCurve:
-
+cdef class PiecewiseDefaultCurve(DefaultProbabilityTermStructure):
 
     def __init__(self, str trait, str interpolator, Date reference_date,
-                 helpers, DayCounter daycounter, double accuracy=1e-12):
+                 list helpers, DayCounter daycounter, double accuracy=1e-12):
 
         # validate inputs
         if trait not in VALID_TRAITS:
@@ -45,27 +44,17 @@ cdef class PiecewiseDefaultCurve:
         cdef string interpolator_string = interpolator.encode('utf-8')
 
         # convert Python list to std::vector
-        cdef vector[shared_ptr[DefaultProbabilityHelper]]* instruments = \
-                new vector[shared_ptr[DefaultProbabilityHelper]]()
+        cdef vector[shared_ptr[DefaultProbabilityHelper]] instruments
 
         for helper in helpers:
             instruments.push_back(
                 <shared_ptr[DefaultProbabilityHelper]>deref((<CdsHelper> helper)._thisptr)
             )
 
-        self._thisptr = new shared_ptr[DefaultProbabilityTermStructure](
-            _pdc.credit_term_structure_factory(
+        self._thisptr = _pdc.credit_term_structure_factory(
                 trait_string, interpolator_string,
                 deref(reference_date._thisptr.get()),
-                deref(instruments),
+                instruments,
                 deref(daycounter._thisptr),
                 accuracy
             )
-        )
-
-    def survival_probability(self, Date d, bool extrapolate=False):
-
-        return self._thisptr.get().survivalProbability(
-            deref(d._thisptr.get()), extrapolate
-        )
-
