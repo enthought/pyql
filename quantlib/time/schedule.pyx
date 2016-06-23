@@ -94,6 +94,12 @@ cdef class Schedule:
     def __len__(self):
         return self.size()
 
-    def __getitem__(self, int index):
-        cdef _date.Date date = self._thisptr.at(index)
-        return date_from_qldate(date)
+    def __getitem__(self, index):
+        cdef size_t i
+        if isinstance(index, slice):
+            return [date_from_qldate(self._thisptr.at(i))
+                    for i in range(*index.indices(len(self)))]
+        elif isinstance(index, int):
+            return date_from_qldate(self._thisptr.at(index))
+        else:
+            raise TypeError('index needs to be an integer or a slice')
