@@ -79,6 +79,10 @@ cdef class CdsHelper:
                 <shared_ptr[_instrument.Instrument]>(temp))
         return cds
 
+    @property
+    def implied_quote(self):
+        return self._thisptr.get().impliedQuote()
+
 cdef class SpreadCdsHelper(CdsHelper):
     """Spread-quoted CDS hazard rate bootstrap helper.
 
