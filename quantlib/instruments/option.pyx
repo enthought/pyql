@@ -234,7 +234,7 @@ cdef class EuropeanOption(VanillaOption):
 cdef class DividendVanillaOption(OneAssetOption):
     """ Single-asset vanilla option (no barriers) with discrete dividends. """
 
-    def __init__(self, PlainVanillaPayoff payoff, Exercise exercise, dividend_dates, dividends):
+    def __init__(self, PlainVanillaPayoff payoff, Exercise exercise, dividend_dates, vector[Real] dividends):
 
         cdef shared_ptr[_payoffs.StrikedTypePayoff] payoff_ptr = \
             shared_ptr[_payoffs.StrikedTypePayoff](
@@ -247,25 +247,17 @@ cdef class DividendVanillaOption(OneAssetOption):
         )
 
         # convert the list of PyQL dates into a vector of QL dates
-        cdef vector[_date.Date]* _dividend_dates = new vector[_date.Date]()
+        cdef vector[_date.Date] _dividend_dates
         for date in dividend_dates:
             _dividend_dates.push_back(deref((<Date>date)._thisptr.get()))
 
-        # convert the list of float to a vector of Real
-        cdef vector[Real]* _dividends = new vector[Real]()
-        for value in dividends:
-            _dividends.push_back(<Real>value)
-
         self._thisptr = new shared_ptr[_instrument.Instrument]( \
             new _option.DividendVanillaOption(
-                payoff_ptr, exercise_ptr, deref(_dividend_dates),
-                deref(_dividends)
+                payoff_ptr, exercise_ptr, _dividend_dates,
+                dividends
             )
         )
 
-        # cleanup temporary allocated pointers
-        del _dividend_dates
-        del _dividends
 
     def implied_volatility(self, Real target_value,
         GeneralizedBlackScholesProcess process, Real accuracy, Size max_evaluations,

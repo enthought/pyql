@@ -16,7 +16,7 @@ cdef public enum SensitivityAnalysis:
     Centered
  
 def bucket_analysis(quotes_vvsq, instruments,
-                    quantity, shift, sa_type):
+                    vector[Real] quantity, shift, sa_type):
 
     """ Parameters :
     ----------
@@ -33,9 +33,8 @@ def bucket_analysis(quotes_vvsq, instruments,
     """
 
     #C++ Inputs
-    cdef vector[vector[Handle[_qt.SimpleQuote]]]* vvh_quotes = new vector[vector[Handle[_qt.SimpleQuote]]]()
-    cdef vector[shared_ptr[_it.Instrument]]* vsp_instruments = new vector[shared_ptr[_it.Instrument]]()
-    cdef vector[Real]* rates = new vector[Real]()
+    cdef vector[vector[Handle[_qt.SimpleQuote]]] vvh_quotes
+    cdef vector[shared_ptr[_it.Instrument]] vsp_instruments
    
     #intermediary temps
     cdef vector[Handle[_qt.SimpleQuote]] sqh_vector
@@ -46,9 +45,6 @@ def bucket_analysis(quotes_vvsq, instruments,
     #C++ Output
     cdef pair[vector[vector[Real]],vector[vector[Real]]] ps
 	
-	
-    for rate in quantity:
-        rates.push_back(rate)
 	
     for qlinstrument in instruments:
         instrument_sp = deref((<Instrument>qlinstrument)._thisptr)
@@ -64,9 +60,9 @@ def bucket_analysis(quotes_vvsq, instruments,
 			
         vvh_quotes.push_back(sqh_vector)
 
-    ps = _sa.bucketAnalysis(deref(vvh_quotes),
-                            deref(vsp_instruments),
-                            deref(rates),
+    ps = _sa.bucketAnalysis(vvh_quotes,
+                            vsp_instruments,
+                            quantity,
                             shift,
                             sa_type)
     

@@ -73,14 +73,14 @@ cdef FixedRateBond* get_bond_for_evaluation_date(QlDate& in_date):
 
     cdef QlDate issue_date = QlDate(10, Jul, 2006)
 
-    cdef vector[Rate]* coupons = new vector[Rate]()
+    cdef vector[Rate] coupons
     coupons.push_back(coupon_rate)
 
     cdef FixedRateBond* bond = new FixedRateBond(
             settlement_days,
 		    face_amount,
 		    fixed_bond_schedule,
-		    deref(coupons),
+		    coupons,
             ActualActual(ISMA),
 		    Following,
             redemption,
