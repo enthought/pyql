@@ -21,5 +21,5 @@ cdef class Period:
 cdef class Date:
     cdef shared_ptr[_date.Date]* _thisptr
 
-cdef date.Date date_from_qldate(_date.Date& date)
+cdef date.Date date_from_qldate(const _date.Date& date)
 cdef object _pydate_from_qldate(_date.Date qdate)

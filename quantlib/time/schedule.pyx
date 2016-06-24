@@ -58,7 +58,7 @@ cdef class Schedule:
 
 
     def __dealloc__(self):
-        if self._thisptr is NULL:
+        if self._thisptr is not NULL:
             del self._thisptr
             self._thisptr = NULL
 
@@ -90,3 +90,16 @@ cdef class Schedule:
 
     def __iter__(self):
         return (d for d in self.dates())
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, index):
+        cdef size_t i
+        if isinstance(index, slice):
+            return [date_from_qldate(self._thisptr.at(i))
+                    for i in range(*index.indices(len(self)))]
+        elif isinstance(index, int):
+            return date_from_qldate(self._thisptr.at(index))
+        else:
+            raise TypeError('index needs to be an integer or a slice')

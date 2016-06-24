@@ -52,6 +52,7 @@ class ScheduleMethodTestCase(unittest.TestCase):
     def test_size(self):
 
         self.assertEqual(15, self.schedule.size())
+        self.assertEqual(15, len(self.schedule))
 
     def test_dates(self):
 
@@ -70,14 +71,16 @@ class ScheduleMethodTestCase(unittest.TestCase):
     def test_at(self):
 
         expected_date = self.calendar.adjust(self.from_date, Following)
-        self.assertTrue(expected_date == self.schedule.at(0))
+        self.assertEqual(expected_date, self.schedule.at(0))
+        self.assertEqual(expected_date, self.schedule[0])
 
         next_date = self.calendar.adjust(
             self.from_date + Period(4, Weeks), Following
         )
         expected_date = Date(20, next_date.month, next_date.year)
 
-        self.assertTrue(expected_date == self.schedule.at(1))
+        self.assertEqual(expected_date, self.schedule.at(1))
+        self.assertEqual(expected_date, self.schedule[1])
 
     def test_previous_next_reference_date(self):
         from_date = Date(3, Sep, 2011)
@@ -92,7 +95,7 @@ class ScheduleMethodTestCase(unittest.TestCase):
                 termination_convention, rule)
 
         expected_date = Date(5, Sep, 2011)
-        self.assert_(expected_date == fwd_schedule.next_date(from_date))
+        self.assertEqual(expected_date, fwd_schedule.next_date(from_date))
 
         rule = Backward
 
@@ -100,7 +103,7 @@ class ScheduleMethodTestCase(unittest.TestCase):
                 termination_convention, rule)
 
         expected_date = Date(15, Nov, 2011)
-        self.assert_(expected_date == bwd_schedule.previous_date(to_date))
+        self.assertEqual(expected_date, bwd_schedule.previous_date(to_date))
 
 
 if __name__ == '__main__':
