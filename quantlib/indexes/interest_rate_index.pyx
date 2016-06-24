@@ -65,8 +65,9 @@ cdef class InterestRateIndex(Index):
 
     property day_counter:
         def __get__(self):
-            cdef _dc.DayCounter dc = get_iri(self).dayCounter()
-            return DayCounter.from_name(dc.name().decode('utf-8'))
+            cdef DayCounter dc = DayCounter()
+            dc._thisptr = new _dc.DayCounter(get_iri(self).dayCounter())
+            return dc
 
     def fixing_date(self, Date valueDate):
         cdef _dt.Date dt = deref(valueDate._thisptr.get())
