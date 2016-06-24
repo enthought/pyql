@@ -231,8 +231,9 @@ cdef class YieldTermStructure:
         def __get__(self):
             self._raise_if_empty()
             cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
-            cdef _dc.DayCounter dc = term_structure.dayCounter()
-            return DayCounter.from_name(dc.name())
+            cdef DayCounter dc = DayCounter()
+            dc._thisptr = new _dc.DayCounter(term_structure.dayCounter())
+            return dc
 
     property settlement_days:
         def __get__(self):

@@ -10,6 +10,7 @@ cdef extern from 'ql/time/daycounter.hpp' namespace 'QuantLib':
 
     cdef cppclass DayCounter:
         DayCounter()
+        DayCounter(const DayCounter&)
         bool empty()
         string name()
         BigInteger dayCount(Date&, Date&)

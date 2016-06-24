@@ -3,8 +3,8 @@ from .unittest_tools import unittest
 from quantlib.interest_rate import InterestRate
 
 from quantlib.compounding import Continuous, Compounded
-from quantlib.time.api import Actual360, Monthly, NoFrequency, Once
-
+from quantlib.time.api import Actual360, Monthly, NoFrequency, Once, Thirty360
+from quantlib.time.daycounters.thirty360 import Thirty360, ITALIAN
 
 class InterestRateTestCase(unittest.TestCase):
 
@@ -52,6 +52,14 @@ class InterestRateTestCase(unittest.TestCase):
         for frequency in [Once, NoFrequency]:
             with self.assertRaises(RuntimeError):
                 InterestRate(rate, counter, compounding, frequency)
+
+    def test_create_intereste_rate_with_daycounter_convention(self):
+        rate = 0.05
+        counter = Thirty360(ITALIAN)
+        compounding = Compounded
+        frequency = Monthly
+        interest_rate = InterestRate(rate, counter, compounding, frequency)
+        self.assertEqual(interest_rate.day_counter, counter)
 
     def test_repr(self):
 
