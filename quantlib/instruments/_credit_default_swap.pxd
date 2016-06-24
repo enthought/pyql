@@ -74,4 +74,13 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
 
         Rate conventionalSpread(Real conventionalRecovery,
                                 Handle[YieldTermStructure]& discountCurve,
-                                DayCounter& dayCounter)
+                                const DayCounter dayCounter,
+                                bool useIsdaEngine # = false
+        ) except +
+        Rate impliedHazardRate(Real targetNPV,
+                               const Handle[YieldTermStructure]& discountCurve,
+                               const DayCounter dayCounter,
+                               Real recoveryRate, # = 0.4,
+                               Real accuracy, # = 1.0e-8
+                               bool useIsdaEngine # = false
+        ) except +

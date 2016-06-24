@@ -24,7 +24,9 @@ from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStruct
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.time.daycounters.simple cimport Actual360
+from quantlib.time.daycounters.simple cimport Actual360, Actual365Fixed
+
+
 from quantlib.time.schedule cimport Schedule
 cimport quantlib.cashflow as cashflow
 from quantlib.time.date cimport _pydate_from_qldate
@@ -274,6 +276,23 @@ cdef class CreditDefaultSwap(Instrument):
         return  _get_cds(self).accrualRebateNPV()
 
     def conventional_spread(self, Real recovery, YieldTermStructure yts not None,
-                            DayCounter day_counter not None):
-        return _get_cds(self).conventionalSpread(recovery, yts._thisptr,
-                                                 deref(day_counter._thisptr))
+                            bool use_isda_engine = True):
+
+        cdef DayCounter dc = Actual365Fixed()
+        return _get_cds(self).conventionalSpread(recovery,
+                                                 yts._thisptr,
+                                                 deref(dc._thisptr),
+                                                 use_isda_engine)
+
+    def implied_hazard_rate(self, Real target_npv, YieldTermStructure yts not None,
+                            Real recovery_rate = 0.4,
+                            Real accuracy = 1e-8,
+                            bool use_isda_engine = True):
+
+        cdef DayCounter dc = Actual365Fixed()
+        return _get_cds(self).impliedHazardRate(target_npv,
+                                                yts._thisptr,
+                                                deref(dc._thisptr),
+                                                recovery_rate,
+                                                accuracy,
+                                                use_isda_engine)
