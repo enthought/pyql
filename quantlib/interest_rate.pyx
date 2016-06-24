@@ -50,6 +50,9 @@ cdef class InterestRate:
         def __get__(self):
             return self._thisptr.get().compounding()
 
+    def __float__(self):
+        return self._thisptr.get().rate()
+
     property frequency:
         """ Returns the frequency used for computation.
 
