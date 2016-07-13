@@ -67,11 +67,11 @@ cdef class IsdaCdsEngine(PricingEngine):
                 rate_helpers.push_back(deref((<RateHelper?>rate_helper)._thisptr))
             self._thisptr = shared_ptr[_pe.PricingEngine](
                 new _ice.IsdaCdsEngine(cds_helpers, recovery_rate, rate_helpers,
-                                       settlement_flows, _ice.Taylor,
-                                       _ice.NoBias, _ice.Piecewise))
+                                       settlement_flows, numerical_fix,
+                                       accrual_bias, forwards_in_coupon_period))
 
         else:
-            raise ValueError('pomme')
+            raise ValueError('ts and discount_curve need to be both a list of helpers or a TermStructure')
 
     cdef _ice.IsdaCdsEngine* _get_cds_engine(self):
         cdef _ice.IsdaCdsEngine* ref = <_ice.IsdaCdsEngine*>(self._thisptr.get())
