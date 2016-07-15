@@ -160,8 +160,11 @@ cdef class CreditDefaultSwap(Instrument):
         protectionStart : :class:`~quantlib.time.date.Date`, optional
             The first date where a default
             event will trigger the contract.
+        upfront_date : :class:`~quantlib.time.date.Date`, optionl
+            Settlement date for the upfront and accrual
+            rebate (if any) payments.
+            Typically T+3, this is also the default value.
         """
-
         cdef CreditDefaultSwap instance = cls.__new__(cls)
         instance._thisptr = new shared_ptr[_instrument.Instrument](
             new _cds.CreditDefaultSwap(
