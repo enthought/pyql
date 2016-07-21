@@ -107,6 +107,14 @@ class FlatHazardRateTestCase(unittest.TestCase):
         self.assertAlmostEqual(flat_curve.survival_probability(self.d),
                                math.exp(-0.05*flat_curve.time_from_reference(self.d)))
 
+    def test_flat_hazard_with_quote(self):
+        Settings.instance().evaluation_date = self.todays_date
+        hazard_rate = SimpleQuote()
+        flat_curve = FlatHazardRate(2, self.calendar, hazard_rate, Actual365Fixed())
+        for h in [0.01, 0.02, 0.03]:
+            hazard_rate.value =  h
+            self.assertAlmostEqual(flat_curve.survival_probability(self.d),
+                                   math.exp(-h * flat_curve.time_from_reference(self.d)))
 
 if __name__ == '__main__':
     unittest.main()
