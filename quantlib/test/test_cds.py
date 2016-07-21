@@ -6,7 +6,8 @@ from quantlib.settings import Settings
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.api import FlatForward
 from quantlib.termstructures.credit.api import (
-    SpreadCdsHelper, PiecewiseDefaultCurve, FlatHazardRate)
+    SpreadCdsHelper, PiecewiseDefaultCurve, FlatHazardRate,
+    InterpolatedHazardRateCurve)
 from quantlib.time.api import TARGET, Date, Actual365Fixed, Years, \
         Following, Quarterly, TwentiethIMM, May, Period, Days
 import math
@@ -115,6 +116,48 @@ class FlatHazardRateTestCase(unittest.TestCase):
             hazard_rate.value =  h
             self.assertAlmostEqual(flat_curve.survival_probability(self.d),
                                    math.exp(-h * flat_curve.time_from_reference(self.d)))
+
+class InterpolatedHazardRateTestCase(unittest.TestCase):
+
+    calendar = TARGET()
+
+    todays_date = Date(15, May, 2007)
+    todays_date = calendar.adjust(todays_date)
+
+    def test_create_interpolated_hazard(self):
+        Settings.instance().evaluation_date = self.todays_date
+
+        dates = [self.todays_date + Period(i, Years) for i in [3, 5, 7]]
+        hazard_rates =  [0.01, 0.03, 0.05]
+
+        interpolation_date = self.todays_date + Period(4, Years)
+
+        trait = "Linear"
+        interpolated_curve = InterpolatedHazardRateCurve(trait, dates,
+                                                         hazard_rates,
+                                                         Actual365Fixed())
+        t0 = interpolated_curve.time_from_reference(dates[0])
+        t1 = interpolated_curve.time_from_reference(interpolation_date)
+        t2 = interpolated_curve.time_from_reference(dates[1])
+        interpolated_value = hazard_rates[0] + (t1-t0) /(t2-t0) * \
+                             (hazard_rates[1] - hazard_rates[0])
+
+        self.assertAlmostEqual(interpolated_value,
+                               interpolated_curve.hazard_rate(interpolation_date))
+        trait = "BackwardFlat"
+        interpolated_curve = InterpolatedHazardRateCurve(trait, dates,
+                                                         hazard_rates,
+                                                         Actual365Fixed())
+        interpolated_value = hazard_rates[1]
+        self.assertAlmostEqual(interpolated_value,
+                               interpolated_curve.hazard_rate(interpolation_date))
+        trait = "LogLinear"
+        interpolated_curve = InterpolatedHazardRateCurve(trait, dates,
+                                                         hazard_rates,
+                                                         Actual365Fixed())
+        with self.assertRaisesRegexp(RuntimeError,
+                                     'LogInterpolation primitive not implemented'):
+            hazard_rate = interpolated_curve.hazard_rate(interpolation_date)
 
 if __name__ == '__main__':
     unittest.main()
