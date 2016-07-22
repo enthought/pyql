@@ -30,6 +30,8 @@ from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTe
 from quantlib.instruments.credit_default_swap cimport CreditDefaultSwap
 cimport quantlib.instruments._credit_default_swap as _cds
 cimport quantlib.instruments._instrument as _instrument
+from quantlib.quotes cimport SimpleQuote
+cimport quantlib._quote as _qt
 
 cdef class CdsHelper:
     """Base default-probability bootstrap helper
@@ -71,7 +73,7 @@ cdef class CdsHelper:
         cdef shared_ptr[_qt.Quote] quote_ptr = \
             shared_ptr[_qt.Quote](self._thisptr.get().quote().currentLink())
         return quote_ptr.get().value()
-
+    
     def swap(self):
         cdef CreditDefaultSwap cds = CreditDefaultSwap.__new__(CreditDefaultSwap)
         cdef shared_ptr[_cds.CreditDefaultSwap] temp = self._thisptr.get().swap()
@@ -111,51 +113,89 @@ cdef class SpreadCdsHelper(CdsHelper):
 
     """
 
-    def __init__(self, double running_spread, Period tenor, int settlement_days,
+    def __init__(self, running_spread, Period tenor, Integer settlement_days,
                  Calendar calendar, int frequency,
                  int paymentConvention, int date_generation_rule,
-                 DayCounter daycounter, double recovery_rate,
-                 YieldTermStructure discount_curve, bool settles_accrual=True,
+                 DayCounter daycounter, Real recovery_rate,
+                 YieldTermStructure discount_curve = YieldTermStructure(),
+                 bool settles_accrual=True,
                  bool pays_at_default_time=True,
                  DayCounter lastperiod = DayCounter(),
-                 rebates_accrual=True,
-                 use_isda_engine=True):
+                 bool rebates_accrual=True,
+                 bool use_isda_engine=True):
         """
         """
+        cdef Handle[_qt.Quote] running_spread_handle
 
-        self._thisptr = new shared_ptr[_ci.CdsHelper](\
-            new _ci.SpreadCdsHelper(running_spread, deref(tenor._thisptr.get()),
-                settlement_days, deref(calendar._thisptr), <Frequency>frequency,
-                <BusinessDayConvention>paymentConvention, <Rule>date_generation_rule,
-                deref(daycounter._thisptr),
-                recovery_rate, discount_curve._thisptr, settles_accrual,
-                pays_at_default_time, deref(lastperiod._thisptr),
-                rebates_accrual, use_isda_engine)
-        )
+        if isinstance(running_spread, float):
+            self._thisptr = new shared_ptr[_ci.CdsHelper](
+                new _ci.SpreadCdsHelper(
+                    <Rate>running_spread, deref(tenor._thisptr.get()),
+                    settlement_days, deref(calendar._thisptr),
+                    <Frequency>frequency,
+                    <BusinessDayConvention>paymentConvention, <Rule>date_generation_rule,
+                    deref(daycounter._thisptr),
+                    recovery_rate, discount_curve._thisptr, settles_accrual,
+                    pays_at_default_time, deref(lastperiod._thisptr),
+                    rebates_accrual, use_isda_engine)
+                )
+        elif isinstance(running_spread, SimpleQuote):
+            running_spread_handle = Handle[_qt.Quote](deref(
+                (<SimpleQuote>running_spread)._thisptr))
+
+            self._thisptr = new shared_ptr[_ci.CdsHelper](
+                new _ci.SpreadCdsHelper(
+                    running_spread_handle, deref(tenor._thisptr.get()),
+                    settlement_days, deref(calendar._thisptr),
+                    <Frequency>frequency,
+                    <BusinessDayConvention>paymentConvention, <Rule>date_generation_rule,
+                    deref(daycounter._thisptr),
+                    recovery_rate, discount_curve._thisptr, settles_accrual,
+                    pays_at_default_time, deref(lastperiod._thisptr),
+                    rebates_accrual, use_isda_engine)
+            )
+        else:
+            raise TypeError("running_spread needs to be a float or a Quote Handle")
 
 cdef class UpfrontCdsHelper(CdsHelper):
     """Upfront+running-quoted CDS hazard rate bootstrap helper. """
 
-    def __init__(self, double upfront, double running_spread, Period tenor,
-                 int settlement_days, Calendar calendar not None, int frequency,
+    def __init__(self, upfront, Rate running_spread, Period tenor not None,
+                 Integer settlement_days, Calendar calendar not None, int frequency,
                  int paymentConvention, int date_generation_rule,
-                 DayCounter daycounter, double recovery_rate,
-                 YieldTermStructure discount_curve not None,
-                 int upfront_settlement_days=3,
-                 settles_accrual=True,
-                 pays_at_default_time=True,
-                 DayCounter lastperiod = DayCounter(),
-                 rebates_accrual=True,
-                 use_isda_engine=True):
+                 DayCounter daycounter not None, Real recovery_rate,
+                 YieldTermStructure discount_curve=YieldTermStructure(),
+                 Natural upfront_settlement_days=3,
+                 bool settles_accrual=True,
+                 bool pays_at_default_time=True,
+                 DayCounter lastperiod=DayCounter(),
+                 bool rebates_accrual=True,
+                 bool use_isda_engine=True):
         """
         """
+        cdef Handle[_qt.Quote] upfront_handle
 
-        self._thisptr = new shared_ptr[_ci.CdsHelper](\
-            new _ci.UpfrontCdsHelper(upfront, running_spread, deref(tenor._thisptr.get()),
-                settlement_days, deref(calendar._thisptr), <Frequency>frequency,
-                <BusinessDayConvention>paymentConvention, <Rule>date_generation_rule,
-                deref(daycounter._thisptr), recovery_rate, discount_curve._thisptr,
-                upfront_settlement_days, settles_accrual,
-                pays_at_default_time, deref(lastperiod._thisptr),
-                rebates_accrual, use_isda_engine)
-        )
+        if isinstance(upfront, float):
+            self._thisptr = new shared_ptr[_ci.CdsHelper](
+                new _ci.UpfrontCdsHelper(
+                    <Rate>upfront, running_spread, deref(tenor._thisptr.get()),
+                    settlement_days, deref(calendar._thisptr), <Frequency>frequency,
+                    <BusinessDayConvention>paymentConvention, <Rule>date_generation_rule,
+                    deref(daycounter._thisptr),
+                    recovery_rate, discount_curve._thisptr, upfront_settlement_days, settles_accrual,
+                    pays_at_default_time, deref(lastperiod._thisptr),
+                    rebates_accrual, use_isda_engine)
+            )
+        elif isinstance(upfront, SimpleQuote):
+            upfront_handle = Handle[_qt.Quote](deref((<SimpleQuote>upfront)._thisptr))
+
+            self._thisptr = new shared_ptr[_ci.CdsHelper](
+                new _ci.UpfrontCdsHelper(
+                    upfront_handle, running_spread, deref(tenor._thisptr.get()),
+                    settlement_days, deref(calendar._thisptr), <Frequency>frequency,
+                    <BusinessDayConvention>paymentConvention, <Rule>date_generation_rule,
+                    deref(daycounter._thisptr),
+                    recovery_rate, discount_curve._thisptr, upfront_settlement_days, settles_accrual,
+                    pays_at_default_time, deref(lastperiod._thisptr),
+                    rebates_accrual, use_isda_engine)
+            )

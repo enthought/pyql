@@ -55,38 +55,73 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
         const shared_ptr[CreditDefaultSwap]& swap()
 
     cdef cppclass SpreadCdsHelper(CdsHelper):
-         SpreadCdsHelper(Rate runningSpread,
-                        Period& tenor,
+        SpreadCdsHelper(Rate runningSpread,
+                        const Period& tenor,
                         Integer settlementDays,
-                        Calendar& calendar,
+                        const Calendar& calendar,
                         Frequency frequency,
                         BusinessDayConvention paymentConvention,
                         Rule rule,
-                        DayCounter& dayCounter,
+                        const DayCounter& dayCounter,
                         Real recoveryRate,
-                        Handle[YieldTermStructure]& discountCurve,
+                        const Handle[YieldTermStructure]& discountCurve,
                         bool settlesAccrual,  # removed default value (true)
                         bool paysAtDefaultTime, # removed default value (true)
-                        DayCounter lastPeriodDayCounter,
+                        const DayCounter lastPeriodDayCounter,
+                        bool rebatesAccrual, # removed default value (true)
+                        bool useIsdaEngine) # removed default value (false)
+
+        SpreadCdsHelper(const Handle[Quote]& runningSpread,
+                        const Period& tenor,
+                        Integer settlementDays,
+                        const Calendar& calendar,
+                        Frequency frequency,
+                        BusinessDayConvention paymentConvention,
+                        Rule rule,
+                        const DayCounter& dayCounter,
+                        Real recoveryRate,
+                        const Handle[YieldTermStructure]& discountCurve,
+                        bool settlesAccrual,  # removed default value (true)
+                        bool paysAtDefaultTime, # removed default value (true)
+                        const DayCounter lastPeriodDayCounter,
                         bool rebatesAccrual, # removed default value (true)
                         bool useIsdaEngine) # removed default value (false)
 
     cdef cppclass UpfrontCdsHelper(CdsHelper):
-         UpfrontCdsHelper(Rate upfrontSpread,
-                          Rate runningSpread,
-                          Period& tenor,
-                          Integer settlementDays,
-                          Calendar& calendar,
-                          Frequency frequency,
-                          BusinessDayConvention paymentConvention,
-                          Rule rule,
-                          DayCounter& dayCounter,
-                          Real recoveryRate,
-                          Handle[YieldTermStructure]& discountCurve,
-                          Natural upfrontSettlementDays,
-                          bool settlesAccrual,  # removed default value (true)
-                          bool paysAtDefaultTime, # removed default value (true)
-                          DayCounter lastPeriodDayCounter,
-                          bool rebatesAccrual, # removed default value (true)
-                          bool useIsdaEngine # removed default value (false)
-                ) except +
+        UpfrontCdsHelper(Rate upfront,
+                         Rate runningSpread,
+                         const Period& tenor,
+                         Integer settlementDays,
+                         const Calendar& calendar,
+                         Frequency frequency,
+                         BusinessDayConvention paymentConvention,
+                         Rule rule,
+                         const DayCounter& dayCounter,
+                         Real recoveryRate,
+                         const Handle[YieldTermStructure]& discountCurve,
+                         Natural upfrontSettlementDays,
+                         bool settlesAccrual,  # removed default value (true)
+                         bool paysAtDefaultTime, # removed default value (true)
+                         const DayCounter& lastPeriodDayCounter,
+                         bool rebatesAccrual, # removed default value (true)
+                         bool useIsdaEngine # removed default value (false)
+                         ) except +
+
+        UpfrontCdsHelper(const Handle[Quote]& upfront,
+                         Rate runningSpread,
+                         const Period& tenor,
+                         Integer settlementDays,
+                         const Calendar& calendar,
+                         Frequency frequency,
+                         BusinessDayConvention paymentConvention,
+                         Rule rule,
+                         const DayCounter& dayCounter,
+                         Real recoveryRate,
+                         const Handle[YieldTermStructure]& discountCurve,
+                         Natural upfrontSettlementDays,
+                         bool settlesAccrual,  # removed default value (true)
+                         bool paysAtDefaultTime, # removed default value (true)
+                         const DayCounter& lastPeriodDayCounter,
+                         bool rebatesAccrual, # removed default value (true)
+                         bool useIsdaEngine # removed default value (false)
+                         ) except +
