@@ -94,7 +94,7 @@ cdef class Bond(Instrument):
         return date_from_qldate(settlement_date)
 
     property clean_price:
-        """ Bond clena price. """
+        """ Bond clean price. """
         def __get__(self):
             if self._has_pricing_engine:
                 return get_bond(self).cleanPrice()
