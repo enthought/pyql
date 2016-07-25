@@ -306,7 +306,9 @@ def days(p):
         return _period.days(deref((<Period>p)._thisptr.get()))
 
 cdef class Date:
-    """ This class provides methods to inspect dates as well as methods and
+    """ Date class
+
+    It provides methods to inspect dates as well as methods and
     operators which implement a limited date algebra (increasing and decreasing
     dates, and calculating their difference).
 
