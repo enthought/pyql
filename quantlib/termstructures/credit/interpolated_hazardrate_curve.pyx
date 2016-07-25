@@ -18,7 +18,20 @@ cimport quantlib.time._calendar as _calendar
 cdef class InterpolatedHazardRateCurve(DefaultProbabilityTermStructure):
     def __init__(self, Interpolator interpolator, list dates, vector[Rate] hazard_rates,
                  DayCounter day_counter not None, Calendar cal = None):
+        """DefaultProbabilityTermStructure based on interpolation of hazard rates
 
+        Parameters
+        ----------
+        interpolator :
+            can be one of Linear, LogLinear, BackwardFlat
+        dates : :obj:`list` of :class:`~quantlib.time.date.Date`
+            list of dates
+        hazard_rates: :obj:`list` of float
+            corresponding list of hazard rates
+        day_counter: :class:`~quantlib.time.daycounter.DayCounter`
+        cal: :class:`~quantlib.time.calendar.Calendar`
+
+        """
         # convert the list of PyQL dates into a vector of QL dates
         cdef vector[_date.Date] _dates
         for date in dates:
@@ -58,6 +71,7 @@ cdef class InterpolatedHazardRateCurve(DefaultProbabilityTermStructure):
 
     @property
     def dates(self):
+        """list of curve dates"""
         cdef vector[_date.Date] _dates
         if self._trait == Linear:
             _dates = (<_ihc.InterpolatedHazardRateCurve[_ihc.Linear]*>
@@ -77,6 +91,7 @@ cdef class InterpolatedHazardRateCurve(DefaultProbabilityTermStructure):
 
     @property
     def times(self):
+        """list of curve times"""
         if self._trait == Linear:
             return (<_ihc.InterpolatedHazardRateCurve[_ihc.Linear]*>
                     self._thisptr.get()).times()
@@ -89,24 +104,26 @@ cdef class InterpolatedHazardRateCurve(DefaultProbabilityTermStructure):
 
     @property
     def data(self):
-         if self._trait == Linear:
+        """"list of curve data"""
+        if self._trait == Linear:
             return (<_ihc.InterpolatedHazardRateCurve[_ihc.Linear]*>
                     self._thisptr.get()).data()
-         elif self._trait == LogLinear:
-             return (<_ihc.InterpolatedHazardRateCurve[_ihc.LogLinear]*>
-                     self._thisptr.get()).data()
-         else:
-             return (<_ihc.InterpolatedHazardRateCurve[_ihc.BackwardFlat]*>
+        elif self._trait == LogLinear:
+            return (<_ihc.InterpolatedHazardRateCurve[_ihc.LogLinear]*>
+                    self._thisptr.get()).data()
+        else:
+            return (<_ihc.InterpolatedHazardRateCurve[_ihc.BackwardFlat]*>
                      self._thisptr.get()).data()
 
     @property
     def hazard_rates(self):
-         if self._trait == Linear:
+        """list of curve hazard rates"""
+        if self._trait == Linear:
             return (<_ihc.InterpolatedHazardRateCurve[_ihc.Linear]*>
+                self._thisptr.get()).hazardRates()
+        elif self._trait == LogLinear:
+            return (<_ihc.InterpolatedHazardRateCurve[_ihc.LogLinear]*>
+                self._thisptr.get()).hazardRates()
+        else:
+            return (<_ihc.InterpolatedHazardRateCurve[_ihc.BackwardFlat]*>
                     self._thisptr.get()).hazardRates()
-         elif self._trait == LogLinear:
-             return (<_ihc.InterpolatedHazardRateCurve[_ihc.LogLinear]*>
-                     self._thisptr.get()).hazardRates()
-         else:
-             return (<_ihc.InterpolatedHazardRateCurve[_ihc.BackwardFlat]*>
-                     self._thisptr.get()).hazardRates()
