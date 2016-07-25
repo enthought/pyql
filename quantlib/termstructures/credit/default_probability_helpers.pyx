@@ -26,13 +26,21 @@ from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStruct
 
 cdef class CdsHelper:
     """Base default-probability bootstrap helper
-        @param tenor  CDS tenor.
-        @param frequency  Coupon frequency.
-        @param settlementDays  The number of days from today's date
-                               to the start of the protection period.
-        @param paymentConvention The payment convention applied to
-                                 coupons schedules, settlement dates
-                                 and protection period calculations.
+
+    Parameters
+    ----------
+    tenor :  :class:`~quantlib.time.date.Period`
+        CDS tenor.
+    frequency :  Frequency
+        Coupon frequency.
+    settlementDays : Integer
+        The number of days from today's date
+        to the start of the protection period.
+    paymentConvention : BusinessDayConvention
+        The payment convention applied to
+        coupons schedules, settlement dates
+        and protection period calculations.
+
     """
 
     @property
