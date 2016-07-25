@@ -107,16 +107,17 @@ cdef class YieldTermStructure:
 
         Parameters
         ----------
-        date: :py:class`~quantlib.time.date.Date'
+        date : :class:`~quantlib.time.date.Date`
             The date used to calcule the zero-yield rate.
-        day_counter: :py:class`~quantlib.time.daycounter.DayCounter'
+        day_counter : :class:`~quantlib.time.daycounter.DayCounter`
             The day counter used to compute the time.
-        compounding: int
+        compounding : int
             The compounding as defined in quantlib.compounding
-        frequency: int
+        frequency : int
             A frequency as defined in quantlib.time.date
-        extraplolate: bool, optional
+        extraplolate : bool, optional
             Default to False
+
         """
         self._raise_if_empty()
 
@@ -150,16 +151,17 @@ cdef class YieldTermStructure:
 
         Parameters
         ----------
-        d1, d2: :py:class`~quantlib.time.date.Date'
+        d1, d2 : :class:`~quantlib.time.date.Date`
             The start and end dates used to calcule the forward rate.
-        day_counter: :py:class`~quantlib.time.daycounter.DayCounter'
+        day_counter : :class:`~quantlib.time.daycounter.DayCounter`
             The day counter used to compute the time.
-        compounding: int
+        compounding : int
             The compounding as defined in quantlib.compounding
-        frequency: int
-            A frequency as defined in quantlib.time.date
-        extraplolate: bool, optional
+        frequency : int
+            A frequency as defined in :mod:`quantlib.time.date`
+        extrapolate : bool, optional
             Default to False
+
         """
         self._raise_if_empty()
 
@@ -241,5 +243,3 @@ cdef class YieldTermStructure:
             cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
             cdef int days = term_structure.settlementDays()
             return days
-
-        
