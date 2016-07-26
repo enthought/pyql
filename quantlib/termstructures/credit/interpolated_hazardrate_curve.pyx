@@ -16,13 +16,11 @@ from quantlib.time.calendar cimport Calendar
 cimport quantlib.time._calendar as _calendar
 
 cdef class InterpolatedHazardRateCurve(DefaultProbabilityTermStructure):
-    def __init__(self, Interpolator interpolator, list dates, vector[Rate] hazard_rates,
-                 DayCounter day_counter not None, Calendar cal = None):
-        """DefaultProbabilityTermStructure based on interpolation of hazard rates
+    """DefaultProbabilityTermStructure based on interpolation of hazard rates
 
         Parameters
         ----------
-        interpolator :
+        interpolator : int {Linear, LogLinear, BackwardFlat}
             can be one of Linear, LogLinear, BackwardFlat
         dates : :obj:`list` of :class:`~quantlib.time.date.Date`
             list of dates
@@ -31,7 +29,9 @@ cdef class InterpolatedHazardRateCurve(DefaultProbabilityTermStructure):
         day_counter: :class:`~quantlib.time.daycounter.DayCounter`
         cal: :class:`~quantlib.time.calendar.Calendar`
 
-        """
+    """
+    def __init__(self, Interpolator interpolator, list dates, vector[Rate] hazard_rates,
+                 DayCounter day_counter not None, Calendar cal = None):
         # convert the list of PyQL dates into a vector of QL dates
         cdef vector[_date.Date] _dates
         for date in dates:
@@ -104,7 +104,7 @@ cdef class InterpolatedHazardRateCurve(DefaultProbabilityTermStructure):
 
     @property
     def data(self):
-        """"list of curve data"""
+        """list of curve data"""
         if self._trait == Linear:
             return (<_ihc.InterpolatedHazardRateCurve[_ihc.Linear]*>
                     self._thisptr.get()).data()

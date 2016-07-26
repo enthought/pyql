@@ -42,7 +42,10 @@ Italian convention: starting dates or ending dates that
 occur on February and are grater than 27 become equal to 30
 for computational sake.
 
-Valid names for 30/360 daycounts are:\n{}
+Valid names for 30/360 daycounts are:
+
+* {}
+
 
 """
 
@@ -52,7 +55,7 @@ cdef class Thirty360(DayCounter):
         '30/360({})'.format(convention ) for convention in CONVENTIONS
     ]
     __doc__ =  DOC_TEMPLATE.format(
-        '\n'.join(_valid_names)
+        '\n* '.join(_valid_names)
     )
 
     def __cinit__(self, convention=BONDBASIS):
