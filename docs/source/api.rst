@@ -13,68 +13,78 @@ quantlib
 
 .. autoclass:: Currency
     :members:
-
-.. autoclass:: USDCurrency
-    :members:
-
-.. autoclass:: EURCurrency
-    :members:
+    :undoc-members:
+    :noindex:
 
 .. currentmodule:: quantlib.settings
 
 .. autoclass:: Settings
     :members:
+    :undoc-members:
+    :noindex:
 
-.. currentmodule:: quantlib.quotes
-
-.. autoclass:: Quote
+:mod:`quantlib.settings`
+------------------------
+.. automodule:: quantlib.settings
     :members:
+    :undoc-members:
+    :noindex:
 
-.. autoclass:: SimpleQuote
+:mod:`quantlib.quotes`
+----------------------
+.. automodule:: quantlib.quotes
     :members:
+    :undoc-members:
+    :noindex:
 
-quantlib.indexes
-----------------
-
+:mod:`quantlib.indexes`
+-----------------------
 .. currentmodule:: quantlib.index
 
 .. autoclass:: Index
     :members:
+    :noindex:
 
 .. currentmodule:: quantlib.indexes.interest_rate_index
 
 .. autoclass:: InterestRateIndex
     :members:
+    :noindex:
 
 .. currentmodule:: quantlib.indexes.ibor_index
 
 .. autoclass:: IborIndex
     :members:
+    :noindex:
 
 .. currentmodule:: quantlib.indexes.euribor
 
 .. autoclass:: Euribor
     :members:
+    :noindex:
 
 .. currentmodule:: quantlib.indexes.libor
 
 .. autoclass:: Libor
     :members:
+    :noindex:
 
 quantlib.instruments
 --------------------
-
 
 .. currentmodule:: quantlib.instruments.bonds
 
 .. autoclass:: Bond
     :members:
+    :noindex:
 
 .. autoclass:: FixedRateBond
     :members:
+    :noindex:
 
 .. autoclass:: ZeroCouponBond
     :members:
+    :noindex:
 
 .. currentmodule:: quantlib.instruments.option
 
@@ -82,6 +92,7 @@ quantlib.instruments
 
 .. autoclass:: VanillaOption
     :members:
+    :noindex:
 
 quantlib.math
 -------------
@@ -90,12 +101,15 @@ quantlib.math
 
 .. autoclass:: OptimizationMethod
     :members:
+    :noindex:
 
 .. autoclass:: LevenbergMarquardt
     :members:
+    :noindex:
 
 .. autoclass:: EndCriteria
     :members:
+    :noindex:
 
 
 quantlib.model.equity
@@ -105,104 +119,124 @@ quantlib.model.equity
 
 .. autoclass:: HestonModel
     :members:
+    :noindex:
 
 .. autoclass:: HestonModelHelper
     :members:
+    :noindex:
 
 .. currentmodule:: quantlib.models.equity.bates_model
 
 .. autoclass:: BatesModel
     :members:
+    :noindex:
 
 .. autoclass:: BatesDetJumpModel
     :members:
+    :noindex:
 
 .. autoclass:: BatesDoubleExpModel
     :members:
+    :noindex:
 
 .. autoclass:: BatesDoubleExpDetJumpModel
     :members:
+    :noindex:
 
-quantlib.pricingengines
------------------------
+:mod:`quantlib.pricingengines`
+------------------------------
 
 .. automodule:: quantlib.pricingengines.blackformula
 
 .. automodule:: quantlib.pricingengines.engine
 
-.. currentmodule:: quantlib.pricingengines.vanilla
+.. automodule:: quantlib.pricingengines.vanilla
+.. currentmodule:: quantlib.pricingengines.vanilla.vanilla
 
 .. autoclass:: VanillaOptionEngine
     :members:
+    :noindex:
 
 .. autoclass:: AnalyticEuropeanEngine
     :members:
+    :noindex:
 
 .. autoclass:: AnalyticHestonEngine
     :members:
+    :noindex:
 
 .. autoclass:: BaroneAdesiWhaleyApproximationEngine
     :members:
+    :noindex:
 
 .. autoclass:: BatesEngine
     :members:
+    :noindex:
 
 .. autoclass:: BatesDetJumpEngine
     :members:
+    :noindex:
 
 .. autoclass:: BatesDoubleExpEngine
     :members:
+    :noindex:
 
 .. autoclass:: BatesDoubleExpDetJumpEngine
     :members:
+    :noindex:
 
-quantlib.processes
-------------------
+:mod:`quantlib.processes`
+-------------------------
 
 .. currentmodule:: quantlib.processes.black_scholes_process
 
 .. autoclass:: GeneralizedBlackScholesProcess
     :members:
+    :noindex:
 
 .. autoclass:: BlackScholesMertonProcess
     :members:
+    :noindex:
 
 .. currentmodule:: quantlib.processes.bates_process
 
 .. autoclass:: BatesProcess
     :members:
+    :noindex:
 
 .. currentmodule:: quantlib.processes.heston_process
 
 .. autoclass:: HestonProcess
     :members:
+    :noindex:
 
-quantlib.termstructures
------------------------
+:mod:`quantlib.termstructures`
+------------------------------
 
-.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_vol_term_structure
-
-.. autoclass:: BlackVolTermStructure
-    :members:
-
-.. autoclass:: BlackConstantVol
-    :members:
+.. automodule:: quantlib.termstructures.volatility.equityfx.black_vol_term_structure
+   :members:
+   :noindex:
 
 .. currentmodule:: quantlib.termstructures.yields.api
 
 .. autoclass:: YieldTermStructure
     :members:
+    :noindex:
 
 .. autoclass:: FlatForward
     :members:
 
 .. autoclass:: ZeroCurve
     :members:
+    :noindex:
 
 .. autoclass:: RateHelper
     :members:
+    :noindex:
 
 .. autoclass:: DepositRateHelper
+    :members:
+    :noindex:
 
 .. automodule:: quantlib.termstructures.yields.piecewise_yield_curve
     :members:
@@ -213,35 +247,46 @@ quantlib.termstructures
 .. automodule:: quantlib.termstructures.credit.interpolated_hazardrate_curve
     :members:
 
-quantlib.time
--------------
-
-.. currentmodule:: quantlib.time.date 
-
-.. autoclass:: Date
+.. autoclass:: FlatForward
     :members:
     :noindex:
 
-.. autoclass:: Period
+.. automodule:: quantlib.termstructures.credit.default_probability_helpers
     :members:
+    :noindex:
+
+.. automodule:: quantlib.termstructures.credit.piecewise_default_curve
+    :members:
+    :noindex:
+
+.. automodule:: quantlib.termstructures.credit.flat_hazard_rate
+    :members:
+    :noindex:
+
+:mod:`quantlib.time`
+--------------------
+
+.. automodule:: quantlib.time.date
+    :members:
+    :undoc-members:
+
+.. py:data:: quantlib.time.date.Months
+.. data:: quantlib.time.date.Days
 
 .. currentmodule:: quantlib.time.calendar 
 
 .. autoclass:: Calendar
     :members:
+    :noindex:
 
 .. autoclass:: TARGET
 
 .. autofunction:: holiday_list
 
-.. currentmodule:: quantlib.time.daycounter
+.. automodule:: quantlib.time.daycounter
+   :members:
 
-.. autoclass:: DayCounter
-    :members:
-
-.. currentmodule:: quantlib.time.schedule
-
-.. autoclass:: Schedule
+.. automodule:: quantlib.time.schedule
     :members:
 
 
