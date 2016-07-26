@@ -6,44 +6,59 @@ original source but keeping a Pythonic simple access to classes, methods and
 functions. Most of the complex structures related to proper memory management
 are completely hidden being the Python layers (for example boost::shared_ptr and Handle).
 
-quantlib
---------
-
-.. currentmodule:: quantlib.currency
-
-.. autoclass:: Currency
-    :members:
-    :undoc-members:
-    :noindex:
-
-.. currentmodule:: quantlib.settings
-
-.. autoclass:: Settings
-    :members:
-    :undoc-members:
-    :noindex:
+:mod:`quantlib`
+---------------
 
 :mod:`quantlib.settings`
-------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 .. automodule:: quantlib.settings
     :members:
     :undoc-members:
     :noindex:
 
 :mod:`quantlib.quotes`
-----------------------
+^^^^^^^^^^^^^^^^^^^^^^
 .. automodule:: quantlib.quotes
     :members:
     :undoc-members:
-    :noindex:
+
+:mod:`quantlib.cashflow`
+^^^^^^^^^^^^^^^^^^^^^^^^
+.. automodule:: quantlib.cashflow
+    :members:
+    :undoc-members:
+
+:mod:`quantlib.index`
+^^^^^^^^^^^^^^^^^^^^^^^
+.. automodule:: quantlib.index
+    :members:
+    :undoc-members:
+
+:mod:`quantlib.interest_rate`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. automodule:: quantlib.interest_rate
+    :members:
+
+:mod:`quantlib.currency`
+------------------------
+
+:mod:`quantlib.currency.currency`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: quantlib.currency.currency
+    :members:
+    :undoc-members:
+
+:mod:`quantlib.currency.currencies`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: quantlib.currency.currencies
+    :members:
+    :undoc-members:
+
 
 :mod:`quantlib.indexes`
 -----------------------
-.. currentmodule:: quantlib.index
-
-.. autoclass:: Index
-    :members:
-    :noindex:
 
 .. currentmodule:: quantlib.indexes.interest_rate_index
 
@@ -69,47 +84,33 @@ quantlib
     :members:
     :noindex:
 
-quantlib.instruments
---------------------
+:mod:`quantlib.instruments`
+---------------------------
 
-.. currentmodule:: quantlib.instruments.bonds
-
-.. autoclass:: Bond
+:mod:`quantlib.instruments.bonds`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. automodule:: quantlib.instruments.bonds
     :members:
-    :noindex:
 
-.. autoclass:: FixedRateBond
+:mod:`quantlib.instruments.option`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. automodule:: quantlib.instruments.option
     :members:
-    :noindex:
 
-.. autoclass:: ZeroCouponBond
+:mod:`quantlib.instruments.credit_default_swap`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. automodule:: quantlib.instruments.credit_default_swap
     :members:
-    :noindex:
 
-.. currentmodule:: quantlib.instruments.option
-
-.. autosummary::
-
-.. autoclass:: VanillaOption
-    :members:
-    :noindex:
+.. currentmodule:: quantlib.instruments.credit_default_swap
+.. autodata
 
 quantlib.math
 -------------
 
-.. currentmodule:: quantlib.math.optimization
-
-.. autoclass:: OptimizationMethod
+.. automodule:: quantlib.math.optimization
     :members:
-    :noindex:
-
-.. autoclass:: LevenbergMarquardt
-    :members:
-    :noindex:
-
-.. autoclass:: EndCriteria
-    :members:
-    :noindex:
+    :undoc-members:
 
 
 quantlib.model.equity
@@ -125,65 +126,23 @@ quantlib.model.equity
     :members:
     :noindex:
 
-.. currentmodule:: quantlib.models.equity.bates_model
-
-.. autoclass:: BatesModel
+.. automodule:: quantlib.models.equity.bates_model
     :members:
-    :noindex:
-
-.. autoclass:: BatesDetJumpModel
-    :members:
-    :noindex:
-
-.. autoclass:: BatesDoubleExpModel
-    :members:
-    :noindex:
-
-.. autoclass:: BatesDoubleExpDetJumpModel
-    :members:
-    :noindex:
 
 :mod:`quantlib.pricingengines`
 ------------------------------
 
 .. automodule:: quantlib.pricingengines.blackformula
 
-.. automodule:: quantlib.pricingengines.engine
+.. automodule:: quantlib.pricingengines.vanilla.vanilla
+   :members:
+   :undoc-members:
 
-.. automodule:: quantlib.pricingengines.vanilla
-.. currentmodule:: quantlib.pricingengines.vanilla.vanilla
-
-.. autoclass:: VanillaOptionEngine
-    :members:
-    :noindex:
-
-.. autoclass:: AnalyticEuropeanEngine
-    :members:
-    :noindex:
-
-.. autoclass:: AnalyticHestonEngine
-    :members:
-    :noindex:
-
-.. autoclass:: BaroneAdesiWhaleyApproximationEngine
-    :members:
-    :noindex:
-
-.. autoclass:: BatesEngine
-    :members:
-    :noindex:
-
-.. autoclass:: BatesDetJumpEngine
-    :members:
-    :noindex:
-
-.. autoclass:: BatesDoubleExpEngine
-    :members:
-    :noindex:
-
-.. autoclass:: BatesDoubleExpDetJumpEngine
-    :members:
-    :noindex:
+:mod:`quantlib.pricingengines.swaption`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. automodule:: quantlib.pricingengines.swaption
+   :members:
+   :undoc-members:
 
 :mod:`quantlib.processes`
 -------------------------
@@ -217,77 +176,113 @@ quantlib.model.equity
    :members:
    :noindex:
 
-.. currentmodule:: quantlib.termstructures.yields.api
+:mod:`quantlib.termstructures.inflation_term_structure`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. automodule:: quantlib.termstructures.inflation_term_structure
+   :members:
 
-.. autoclass:: YieldTermStructure
+
+:mod:`quantlib.termstructures.default_term_structure`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. automodule:: quantlib.termstructures.default_term_structure
+   :members:
+   :undoc-members:
+
+:mod:`quantlib.termstructures.yields`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:mod:`~quantlib.termstructures.yields.yield_term_structure`
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.. automodule:: quantlib.termstructures.yields.yield_term_structure
+   :members:
+   :undoc-members:
+
+:mod:`~quantlib.termstructures.yields.rate_helpers`
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+.. automodule:: quantlib.termstructures.yields.rate_helpers
     :members:
     :noindex:
 
-.. autoclass:: FlatForward
-    :members:
-
-.. autoclass:: ZeroCurve
-    :members:
-    :noindex:
-
-.. autoclass:: RateHelper
+:mod:`~quantlib.termstructures.yields.bond_helpers`
+""""""""""""""""""""""""""""""""""""""""""""""""""
+.. automodule:: quantlib.termstructures.yields.bond_helpers
     :members:
     :noindex:
 
-.. autoclass:: DepositRateHelper
-    :members:
-    :noindex:
-
-.. automodule:: quantlib.termstructures.yields.piecewise_yield_curve
+:mod:`~quantlib.termstructures.yields.flat_forward`
+""""""""""""""""""""""""""""""""""""""""""""""""""
+.. automodule:: quantlib.termstructures.yields.flat_forward
     :members:
 
-.. automodule:: quantlib.termstructures.credit.flat_forward
+:mod:`~quantlib.termstructures.yields.zero_curve`
+""""""""""""""""""""""""""""""""""""""""""""""""
+.. automodule:: quantlib.termstructures.yields.zero_curve
     :members:
 
-.. automodule:: quantlib.termstructures.credit.interpolated_hazardrate_curve
-    :members:
 
-.. autoclass:: FlatForward
-    :members:
-    :noindex:
+:mod:`quantlib.termstructures.credit`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+:mod:`~quantlib.termstructures.credit.default_probability_helpers`
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 .. automodule:: quantlib.termstructures.credit.default_probability_helpers
     :members:
     :noindex:
 
+:mod:`~quantlib.termstructures.credit.piecewise_default_curve`
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 .. automodule:: quantlib.termstructures.credit.piecewise_default_curve
     :members:
     :noindex:
 
+:mod:`~quantlib.termstructures.credit.flat_hazard_rate`
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 .. automodule:: quantlib.termstructures.credit.flat_hazard_rate
     :members:
     :noindex:
 
+:mod:`~quantlib.termstructures.credit.interpolated_hazardrate_curve`
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.. automodule:: quantlib.termstructures.credit.interpolated_hazardrate_curve
+    :members:
+
 :mod:`quantlib.time`
 --------------------
 
+:mod:`quantlib.time.date`
+^^^^^^^^^^^^^^^^^^^^^^^^^
 .. automodule:: quantlib.time.date
     :members:
     :undoc-members:
+.. autodata::
 
-.. py:data:: quantlib.time.date.Months
-.. data:: quantlib.time.date.Days
-
-.. currentmodule:: quantlib.time.calendar 
-
-.. autoclass:: Calendar
+:mod:`quantlib.time.calendar`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. automodule:: quantlib.time.calendar
     :members:
-    :noindex:
 
 .. autoclass:: TARGET
 
-.. autofunction:: holiday_list
-
+:mod:`quantlib.time.daycounter`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. automodule:: quantlib.time.daycounter
    :members:
 
+:mod:`quantlib.time.daycounters`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:mod:`~quantlib.time.daycounters.simple`
+""""""""""""""""""""""""""""""""""""""""
+.. automodule:: quantlib.time.daycounters.simple
+   :members:
+   :undoc-members:
+
+:mod:`~quantlib.time.daycounters.thirty360`
+"""""""""""""""""""""""""""""""""""""""""""
+.. automodule:: quantlib.time.daycounters.thirty360
+   :members:
+
+:mod:`quantlib.time.schedule`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. automodule:: quantlib.time.schedule
     :members:
-
-
-
