@@ -206,6 +206,13 @@ quantlib.termstructures
 .. autoclass:: DepositRateHelper
 
 .. automodule:: quantlib.termstructures.yields.piecewise_yield_curve
+    :members:
+
+.. automodule:: quantlib.termstructures.credit.flat_forward
+    :members:
+
+.. automodule:: quantlib.termstructures.credit.interpolated_hazardrate_curve
+    :members:
 
 quantlib.time
 -------------
