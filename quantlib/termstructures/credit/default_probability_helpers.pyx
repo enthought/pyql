@@ -49,7 +49,32 @@ cdef class CdsHelper:
         return date_from_qldate(d)
 
 cdef class SpreadCdsHelper(CdsHelper):
-    """Spread-quoted CDS hazard rate bootstrap helper. """
+    """Spread-quoted CDS hazard rate bootstrap helper.
+
+    Parameters
+    ----------
+    running_spread : float
+        Running spread of the CDS.
+    tenor :  :class:`~quantlib.time.date.Period`
+        CDS tenor.
+    settlementDays : int
+        The number of days from today's date
+        to the start of the protection period.
+    calendar: :class:`~quantlib.time.calendar.Calendar`
+    frequency :  Frequency
+        Coupon frequency.
+    payment_convention : int
+        The payment convention applied to
+        coupons schedules, settlement dates
+        and protection period calculations.
+    date_generation_rule : int
+    daycounter : :class:`~quantlib.time.daycounter.DayCounter`
+    recovery_rate : float
+    discount_curve : :class:`~quantlib.termstructures.yields.yield_term_structure.YieldTermStructure`
+    settles_accrual : bool, optional
+    pays_at_default_time : bool, optional
+
+    """
 
     def __init__(self, double running_spread, Period tenor, int settlement_days,
                  Calendar calendar, int frequency,
