@@ -146,11 +146,11 @@ cdef class Bond(Instrument):
 cdef class FixedRateBond(Bond):
     """ Fixed rate bond.
     Support:
-        - simple annual compounding coupon rates
+    - simple annual compounding coupon rates
 
     Unsupported: (needs interfacing)
-        - simple annual compounding coupon rates with internal schedule calculation
-        - generic compounding and frequency InterestRate coupons
+    - simple annual compounding coupon rates with internal schedule calculation
+    - generic compounding and frequency InterestRate coupons
     """
 
     def __init__(self, int settlement_days, double face_amount,
