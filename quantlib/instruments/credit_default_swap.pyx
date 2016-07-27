@@ -1,11 +1,10 @@
-"""
- Copyright (C) 2011, Enthought Inc
- Copyright (C) 2011, Patrick Henaff
-
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE.  See the license for more details.
-"""
+# Copyright (C) 2011, Enthought Inc
+# Copyright (C) 2011, Patrick Henaff
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the license for more details.
+#
 
 include '../types.pxi'
 
@@ -40,15 +39,43 @@ cdef _cds.CreditDefaultSwap* _get_cds(CreditDefaultSwap cds):
 cdef class CreditDefaultSwap(Instrument):
     """Credit default swap
 
-        .. note::
+        Parameters
+        ----------
+        side : int or {BUYER, SELLER}
+           Whether the protection is bought or sold.
+        notional : float
+            Notional value
+        spread  : float
+            Running spread in fractional units.
+        schedule : :class:`~quantlib.time.schedule.Schedule`
+            Coupon schedule.
+        paymentConvention : int
+            Business-day convention for
+            payment-date adjustment.
+        dayCounter : :class:`~quantlib.time.daycounter.DayCounter`
+            Day-count convention for accrual.
+        settlesAccrual : bool, optional
+            Whether or not the accrued coupon is
+            due in the event of a default.
+        paysAtDefaultTime : bool, optional
+            If set to True, any payments
+            triggered by a default event are
+            due at default time. If set to
+            False, they are due at the end of
+            the accrual period.
+        protectionStart : :class:`~quantlib.time.date.Date`, optional
+            The first date where a default
+            event will trigger the contract.
 
-            This instrument currently assumes that the issuer did
-              not default until today's date.
+        Notes
+        -----
+        This instrument currently assumes that the issuer did
+        not default until today's date.
 
-        ..warning::
+        .. warning::
 
-            if Settings.includeReferenceDateCashFlows()
-            is set to <tt>true</tt>, payments occurring at the
+            if ``Settings.include_reference_date_cashflows``
+            is set to ``True``, payments occurring at the
             settlement date of the swap might be included in the
             NPV and therefore affect the fair-spread
             calculation. This might not be what you want.
@@ -63,22 +90,6 @@ cdef class CreditDefaultSwap(Instrument):
                  Date protection_start=Date()):
         """ CDS quoted as running-spread only
 
-            @param side  Whether the protection is bought or sold.
-            @param notional  Notional value
-            @param spread  Running spread in fractional units.
-            @param schedule  Coupon schedule.
-            @param paymentConvention  Business-day convention for
-                                      payment-date adjustment.
-            @param dayCounter  Day-count convention for accrual.
-            @param settlesAccrual  Whether or not the accrued coupon is
-                                   due in the event of a default.
-            @param paysAtDefaultTime  If set to true, any payments
-                                      triggered by a default event are
-                                      due at default time. If set to
-                                      false, they are due at the end of
-                                      the accrual period.
-            @param protectionStart  The first date where a default
-                                    event will trigger the contract.
         """
 
         self._thisptr = new shared_ptr[_instrument.Instrument](
@@ -102,10 +113,10 @@ cdef class CreditDefaultSwap(Instrument):
         """ Returns the running spread that, given the quoted recovery
             rate, will make the running-only CDS have an NPV of 0.
 
-            .. note::
-
-                This calculation does not take any upfront into account, even if
-                one was given.
+            Notes
+            -----
+            This calculation does not take any upfront into account, even if
+            one was given.
         """
         def __get__(self):
             return _get_cds(self).fairSpread()

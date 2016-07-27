@@ -7,7 +7,7 @@ Debugging with gdb
 
 When running into segfault, the easiest way to debug things is to use gdb. Here
 is a example trying to debug a segfault while accessing the implied_quote
-propery of a SwapRateHelper
+property of a SwapRateHelper::
 
     gdb python
     (gdb) run quantlib/test/test_rate_helpers.py

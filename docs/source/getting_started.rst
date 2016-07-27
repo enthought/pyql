@@ -60,10 +60,11 @@ The instructions have been tested on Ubuntu 12.04 LTS.
 Prerequisites:
 
 * python 2.7
-* C++ development environment 
+* C++ development environment
 * pandas 0.9
 
 1. Install Boost (taken from a nice post_ by S. Zebardast)
+
 
    a. Download the Boost source package
 
@@ -72,33 +73,32 @@ Prerequisites:
         wget -O boost_1_55_0.tar.gz \
         http://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.tar.gz/download
         tar xzvf boost_1_55_0.tar.gz
-
    b. Make sure you have the required libraries
 
       .. code-block:: bash
 
         sudo apt-get update
-        sudo apt-get install build-essential g++ python-dev autotools-dev libicu-dev libbz2-dev 
+        sudo apt-get install build-essential g++ python-dev autotools-dev libicu-dev libbz2-dev
 
-  c. Build and install
+   c. Build and install
 
-     .. code-block:: bash
+      .. code-block:: bash
 
-       cd boost_1_55_0
-       sudo ./bootstrap.sh --prefix=/usr/local
-       sudo ./b2 install
+        cd boost_1_55_0
+        sudo ./bootstrap.sh --prefix=/usr/local
+        sudo ./b2 install
 
-   If /usr/local/lib is not in your path:
+      If /usr/local/lib is not in your path:
 
-   .. code-block:: bash
+      .. code-block:: bash
 
-     sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/local.conf'
-  
-   and finally:
+        sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/local.conf'
 
-   .. code-block:: bash
+      and finally:
 
-     sudo ldconfig
+      .. code-block:: bash
+
+        sudo ldconfig
 
 2. Install Quantlib
 
@@ -123,7 +123,7 @@ Prerequisites:
       .. code-block:: bash
 
 		      cd QuantLib-1.5
-		      ./configure --disable-static CXXFLAGS=-O2 --with-boost-include=/usr/local/include --with-boost-lib=/usr/local/lib 
+		      ./configure --disable-static CXXFLAGS=-O2 --with-boost-include=/usr/local/include --with-boost-lib=/usr/local/lib
 
    d. Make and install
 
@@ -173,51 +173,51 @@ Prerequisites:
 1. Install Quantlib
 
    a. Install the latest version of Boost from sourceforge. You can get the
-   binaries of 1.55 for windows 32 or 64bit depending on your target.
-   
+      binaries of 1.55 for windows 32 or 64bit depending on your target.
+
    b. Download Quantlib 1.5 from Quantlib.org and unzip locally
 
    c. Extract the Quantlib folder
 
    d. Open the QuantLib_vc9 solution with Visual Studio
-   
+
    e. Patch ql/settings.py
 
-    In the ql/settings.py file, update the Settings class defintion as
-    following (line 37)::
-    
+      In the ql/settings.py file, update the Settings class defintion as
+      following (line 37)::
+
         class __declspec(dllexport) Settings : public Singleton<Settings> {
 
    f. In the QuantLib project properties
-    
+
     - Change "General" -> "Configuration type" to "Dynamic Library (DLL)"
     - Apply
     - Add the Boost include directory to "C/C++" -> "Additional Include Directories"
     - Apply
-    
+
     Do a first build to get all the object files generated
-    
+
    g. Generate the def file:
-   
+
     In your PyQL clone, got the scripts directory, and edit the main function.
-    Set `input_directory` to the Release directory where your object files are 
+    Set `input_directory` to the Release directory where your object files are
     and change the `output_file` if appropriate (symbol_win32.def is the
     default) ! The def file is platform specific (you can't reuse a 32bit def
     file for a 64bit linker).
-    
+
     This will generate a def file of about 44 Mb with all the needed symbols for
     PyQL compilation.
-    
+
    h. Build the dll with the new def file
-   
-    - Change "Linker" -> "Input" -> "Module definition file" to point to 
+
+    - Change "Linker" -> "Input" -> "Module definition file" to point to
       def file you just generated.
-   
+
      Apply the changes and build the project
-     
+
    i. Copy the QuantLib.dll to a directory which is on the PATH (or just the
       PyQL directory if you're in development mode)
-   
+
 2. Install Cython. While you can install Cython from source, we strongly
    recommend to install Cython via the Canopy Package Manager, another Python
    distribution or via pip_::
@@ -239,12 +239,12 @@ Prerequisites:
         PS C:\dev\pyql> python setup.py install
 
    .. note:: Development mode
-   
+
         If you want to build the library in place and test things, you can do:
-        
+
 
         .. code-block:: bash
-        
+
                 PS C:\dev\pyql> python setup.py build_ext --inplace
                 PS C:\dev\pyql> python -m unittest discover -v
 

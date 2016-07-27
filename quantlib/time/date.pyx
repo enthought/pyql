@@ -102,10 +102,10 @@ def str_to_frequency(str name):
     return _STR_FREQ_DICT[name]
 
 cdef public enum TimeUnit:
-    Days   = _period.Days
-    Weeks  = _period.Weeks
-    Months = _period.Months
-    Years  = _period.Years
+    Days   = _period.Days #: Days = 0
+    Weeks  = _period.Weeks #: Weeks = 1
+    Months = _period.Months #: Months = 2
+    Years  = _period.Years #: Years = 3
 
 _TU_DICT = {'D': Days, 'W': Weeks, 'M': Months, 'Y': Years}
 _STR_TU_DICT = {v:k for k, v in _TU_DICT.items()}
@@ -306,7 +306,9 @@ def days(p):
         return _period.days(deref((<Period>p)._thisptr.get()))
 
 cdef class Date:
-    """ This class provides methods to inspect dates as well as methods and
+    """ Date class
+
+    It provides methods to inspect dates as well as methods and
     operators which implement a limited date algebra (increasing and decreasing
     dates, and calculating their difference).
 

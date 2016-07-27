@@ -1,11 +1,11 @@
-"""
- Copyright (C) 2011, Enthought Inc
- Copyright (C) 2011, Patrick Henaff
-
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE.  See the license for more details.
-"""
+#
+# Copyright (C) 2011, Enthought Inc
+# Copyright (C) 2011, Patrick Henaff
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the license for more details.
+#
 
 from cython.operator cimport dereference as deref
 
@@ -26,13 +26,21 @@ from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStruct
 
 cdef class CdsHelper:
     """Base default-probability bootstrap helper
-        @param tenor  CDS tenor.
-        @param frequency  Coupon frequency.
-        @param settlementDays  The number of days from today's date
-                               to the start of the protection period.
-        @param paymentConvention The payment convention applied to
-                                 coupons schedules, settlement dates
-                                 and protection period calculations.
+
+    Parameters
+    ----------
+    tenor :  :class:`~quantlib.time.date.Period`
+        CDS tenor.
+    frequency :  Frequency
+        Coupon frequency.
+    settlementDays : Integer
+        The number of days from today's date
+        to the start of the protection period.
+    paymentConvention : BusinessDayConvention
+        The payment convention applied to
+        coupons schedules, settlement dates
+        and protection period calculations.
+
     """
 
     @property
@@ -41,7 +49,32 @@ cdef class CdsHelper:
         return date_from_qldate(d)
 
 cdef class SpreadCdsHelper(CdsHelper):
-    """Spread-quoted CDS hazard rate bootstrap helper. """
+    """Spread-quoted CDS hazard rate bootstrap helper.
+
+    Parameters
+    ----------
+    running_spread : float
+        Running spread of the CDS.
+    tenor :  :class:`~quantlib.time.date.Period`
+        CDS tenor.
+    settlementDays : int
+        The number of days from today's date
+        to the start of the protection period.
+    calendar: :class:`~quantlib.time.calendar.Calendar`
+    frequency :  Frequency
+        Coupon frequency.
+    payment_convention : int
+        The payment convention applied to
+        coupons schedules, settlement dates
+        and protection period calculations.
+    date_generation_rule : int
+    daycounter : :class:`~quantlib.time.daycounter.DayCounter`
+    recovery_rate : float
+    discount_curve : :class:`~quantlib.termstructures.yields.yield_term_structure.YieldTermStructure`
+    settles_accrual : bool, optional
+    pays_at_default_time : bool, optional
+
+    """
 
     def __init__(self, double running_spread, Period tenor, int settlement_days,
                  Calendar calendar, int frequency,

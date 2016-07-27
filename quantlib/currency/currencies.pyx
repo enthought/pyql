@@ -1,5 +1,5 @@
-""" Module that contains all the country specific currency implementations.
-
+"""
+Contains all the country specific currency implementations.
 """
 
 cimport _currency as _cu

@@ -17,7 +17,7 @@ date handling is also known from Excel. The alternative is the construction via:
 
     Date(day, month, year)
     
-Here, day, month and year are of integer. A set of month constant are available in the date module (January,  ..., December or Jan, ..., Dec)
+Here, day, month and year are of integer. A set of month constant are available in the date module (January, …, December or Jan, …, Dec)
 
 After constructing a Date, we can do simple date arithmetics, such as adding/subtracting days and months to the current date. Furthermore, the known convenient operators such as +=,-= can be used. 
 
@@ -26,35 +26,37 @@ It is possible to add a Period to a date. Period can be created using time units
     Period(frequency)
     Period(lenght, time_units)
     
-Frequencies are define with the following constants : NoFrequency, Once,
+Frequencies are defined with the following constants: NoFrequency, Once,
 Annual, Semiannual, EveryFourthMonth, Quartely, Bimonthly, Monthly,
 EveryFourthWeek, Biweekly, Weekly, Daily and OtherFrequency.
 
-Time units are constants defined in the date module :  Days, Weeks, Months, Years. 
+Time units are constants defined in the date module: :data:`~quantlib.time.date.Days`, :data:`~quantlib.time.date.Weeks`, :data:`~quantlib.time.date.Months`, :data:`~quantlib.time.date.Years`.
 
 
-Each Date object has the following properties :
+Each :class:`~quantlib.time.date.Date` object has the following properties:
 
- * **weekday** returns the weekday using the weekday constants defined in the
+ * :attr:`~quantlib.time.date.Date.weekday` returns the weekday using the weekday constants defined in the
    date module (Sunday to Saturday and Sun to Sat). 
- * **day** returns the day of the month 
- * **day_of_year** returns the day of the year
- * **month** returns the month 
- * **year** returns the year 
- * **serial** returns a the serial number of this date
+ * :attr:`~quantlib.time.date.Date.day` returns the day of the month
+ * :attr:`~quantlib.time.date.Date.day_of_year` returns the day of the year
+ * :attr:`~quantlib.time.date.Date.month` returns the month
+ * :attr:`~quantlib.time.date.Date.year` returns the year
+ * :attr:`~quantlib.time.date.Date.serial` returns a the serial number of this date
 
-The QuantLib Date class has some useful static functions, which give general results, such as whether a given year is a leap year or a given date is the end of the month. The currently available functions are:
+The :mod:`quantlib.time.date` module has some useful static functions,
+which give general results, such as whether a given year is a leap
+year or a given date is the end of the month. The currently available
+functions are:
 
- * **today()**
- * **min_date()**: earliest possible Date in QuantLib
- * **max_date()**: latest possible Date in QuantLib
- * **is_leap(year)**: is year a leap year?
- * **end_of_month(date)**: what is the end of the month in which date is a 
-   day?
- * **is_end_of_month(date)**: is date the end of the month?
- * **next_weekday(date, weekday)**: on which date is the weekday following 
+ * :func:`~quantlib.time.date.today()`
+ * :func:`~quantlib.time.date.mindate()`: earliest possible Date in QuantLib
+ * :func:`~quantlib.time.date.maxdate()`: latest possible Date in QuantLib
+ * :func:`~quantlib.time.date.is_leap()`: is year a leap year?
+ * :func:`~quantlib.time.date.end_of_month()`: what is the end of the current month the date is in?
+ * :func:`~quantlib.time.date.is_end_of_month(date)`: is date the end of the month?
+ * :func:`~quantlib.time.date.next_weekday(date, weekday)`: on which date is the weekday following
    the date? (e.g. date of the next Friday)
- * **nth_weekday(n, weekday, month, year)**: what is the n-th weekday in the 
+ * :func:`~quantlib.time.date.nth_weekday(n, weekday, month, year)`: what is the n-th weekday in the
    given year and month? (e.g. date of the 3rd Wednesday in July 2010)
 
 
@@ -66,7 +68,7 @@ One of the crucial objects in the daily business is a calendar for different cou
     uk_calendar = UnitedKingdom()
 
 for the UK. Calendars implementation are available in the
-quantlib.time.calendars subpackage.
+:mod:`quantlib.time.calendars` subpackage.
 
 Various other calendars are available, for example for Germany, United States, Switzerland, Ukraine, Turkey, Japan, India, Canada and Australia. In addition, special exchange calendars can be initialized for several countries. 
 For example, the New-York Stock Exchange calendar can be initialized via::
@@ -75,21 +77,21 @@ For example, the New-York Stock Exchange calendar can be initialized via::
 
 The following functions are available:
 
- * **is_business_day(date)**
- * **is_holiday(date)**
- * **is_weekend(week_day)**: is the given weekday part of the weekend?
- * **is_end_of_month(date)**: indicates, whether the given date is the last 
+ * :meth:`~quantlib.time.calendar.Calendar.is_business_day(date)`
+ * :meth:`~quantlib.time.calendar.Calendar.is_holiday(date)`
+ * :meth:`~quantlib.time.calendar.Calendar.is_weekend(week_day)`: is the given weekday part of the weekend?
+ * :meth:`~quantlib.time.calendar.Calendar.is_end_of_month(date)`: indicates, whether the given date is the last
    business day in the month.
- * **end_of_month(date)**: returns the last business day in the month.
+ * :meth:`~quantlib.time.calendar.Calendar.end_of_month(date)`: returns the last business day in the month.
 
 The calendars are customizable, so you can add and remove holidays in your calendar: 
 
- * **addHoliday(date)**: adds a user specified holiday
- * **removeHoliday(date)**: removes a user specified holiday
+ * :meth:`~quantlib.time.calendar.Calendar.addHoliday(date)`
+ * :meth:`~quantlib.time.calendar.Calendar.removeHoliday(date)`: removes a user specified holiday
 
 Furthermore, a function is provided to return a list of holidays
 
- * **holidayList(calendar, from_date, to_date, include_weekends=False)**: 
+ * :func:`~quantlib.time.calendar.Calendar.holidayList(calendar, from_date, to_date, include_weekends=False)`:
    returns a holiday list, including or excluding weekends. This function
    returns a DateList object that provides an list/iterator-like interface on
    top of the C++ QuantLib date vector.
@@ -181,7 +183,7 @@ TODO : add example
 Date generation
 ---------------
 
-An often needed functionality is a schedule of payments, for example for coupon payments of a bond. The task is to produce a series of dates from a start to an end date following a given frequency(e.g. annual, quarterly...). We might want the dates to follow a certain business day convention. And we might want the schedule to go backwards (e.g. start the frequency going backwards from the last date). 
+An often needed functionality is a schedule of payments, for example for coupon payments of a bond. The task is to produce a series of dates from a start to an end date following a given frequency(e.g. annual, quarterly…). We might want the dates to follow a certain business day convention. And we might want the schedule to go backwards (e.g. start the frequency going backwards from the last date).
 
 For example:
 
@@ -240,6 +242,3 @@ In [4]: %timeit datetime.date.today() + datetime.timedelta(days=10)
 
 In [5]: %timeit quantlib.date.today() + quantlib.date.Period(10, quantlib.date.Days)
 100000 loops, best of 3: 2.17 us per loop
-
-
-

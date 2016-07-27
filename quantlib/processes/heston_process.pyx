@@ -20,12 +20,14 @@ cdef public enum Discretization:
         QUADRATICEXPONENTIALMARTINGALE = _hp.QuadraticExponentialMartingale
 
 cdef class HestonProcess:
-    """Heston process: a diffusion process with mean-reverting stochastic variance.
+    r"""
+    Heston process: a diffusion process with mean-reverting stochastic variance.
 
     .. math::
-    dS_t &=& (r-d) S_t dt + \sqrt{V_t} S_t dW^s_t \\
-    dV_t &=& \kappa (\theta - V_t) dt + \varepsilon \sqrt{V_t} dW^\\upsilon_t \nonumber \\
-    dW^s_t dW^\\upsilon_t &=& \rho dt \nonumber
+
+        dS_t =& (r-d) S_t dt + \sqrt{V_t} S_t dW^s_t \\
+        dV_t =& \kappa (\theta - V_t) dt + \varepsilon \sqrt{V_t} dW^\upsilon_t \\
+        dW^s_t dW^\upsilon_t =& \rho dt
 
     """
 
