@@ -4,7 +4,7 @@ Getting started
 PyQL - an overview
 ------------------
 
-Why building a new set of QuantLib wrappers for Python ?
+Why building a new set of QuantLib wrappers for Python?
 
 The SWIG wrappers provide a very good coverage of the library but have
 a number of pain points:
@@ -181,9 +181,9 @@ Prerequisites:
 
    d. Open the QuantLib_vc9 solution with Visual Studio
 
-   e. Patch ql/settings.py
+   e. Patch ql/settings.hpp.
 
-      In the ql/settings.py file, update the Settings class defintion as
+      In the ql/settings.hpp file, update the Settings class defintion as
       following (line 37)::
 
         class __declspec(dllexport) Settings : public Singleton<Settings> {
@@ -212,8 +212,7 @@ Prerequisites:
 
     - Change "Linker" -> "Input" -> "Module definition file" to point to
       def file you just generated.
-
-     Apply the changes and build the project
+    - Apply the changes and build the project
 
    i. Copy the QuantLib.dll to a directory which is on the PATH (or just the
       PyQL directory if you're in development mode)
