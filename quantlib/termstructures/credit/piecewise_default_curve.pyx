@@ -9,7 +9,8 @@ from libcpp.string cimport string
 cimport _piecewise_default_curve as _pdc
 
 from quantlib.handle cimport shared_ptr
-from quantlib.time.date cimport Date
+from quantlib.time.date cimport Date, date_from_qldate
+cimport quantlib.time._date as _date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar cimport Calendar
 cimport quantlib.termstructures.credit._credit_helpers as _ch
@@ -23,6 +24,7 @@ globals()["ProbabilityTrait"] = IntEnum('ProbabilityTrait',
         [('HazardRate', 0), ('DefaultDensity', 1), ('SurvivalProbability', 2)])
 globals()["Interpolator"] = IntEnum('Interpolator',
         [('Linear', 0), ('LogLinear', 1), ('BackwardFlat', 2)])
+
 
 cdef class PiecewiseDefaultCurve(DefaultProbabilityTermStructure):
 
@@ -164,3 +166,113 @@ cdef class PiecewiseDefaultCurve(DefaultProbabilityTermStructure):
                         deref(daycounter._thisptr), accuracy))
 
         return instance
+
+    @property
+    def times(self):
+        """list of curve times"""
+        if self._trait == HazardRate:
+            if self._interpolator == Linear:
+                return (<_pdc.PiecewiseDefaultCurve[_pdc.HazardRate,_pdc.Linear]*>
+                        self._thisptr.get()).times()
+            elif self._interpolator == LogLinear:
+                return (<_pdc.PiecewiseDefaultCurve[_pdc.HazardRate,_pdc.LogLinear]*>
+                        self._thisptr.get()).times()
+            else:
+                 return (<_pdc.PiecewiseDefaultCurve[_pdc.HazardRate,_pdc.BackwardFlat]*>
+                        self._thisptr.get()).times()
+        elif self._trait == DefaultDensity:
+            if self._interpolator == Linear:
+                return (<_pdc.PiecewiseDefaultCurve[_pdc.DefaultDensity,_pdc.Linear]*>
+                        self._thisptr.get()).times()
+            elif self._interpolator == LogLinear:
+                return (<_pdc.PiecewiseDefaultCurve[_pdc.DefaultDensity,_pdc.LogLinear]*>
+                        self._thisptr.get()).times()
+            else:
+                 return (<_pdc.PiecewiseDefaultCurve[_pdc.DefaultDensity,_pdc.BackwardFlat]*>
+                        self._thisptr.get()).times()
+        else:
+            if self._interpolator == Linear:
+                return (<_pdc.PiecewiseDefaultCurve[_pdc.SurvivalProbability,_pdc.Linear]*>
+                        self._thisptr.get()).times()
+            elif self._interpolator == LogLinear:
+                return (<_pdc.PiecewiseDefaultCurve[_pdc.SurvivalProbability,_pdc.LogLinear]*>
+                        self._thisptr.get()).times()
+            else:
+                 return (<_pdc.PiecewiseDefaultCurve[_pdc.SurvivalProbability,_pdc.BackwardFlat]*>
+                        self._thisptr.get()).times()
+
+    @property
+    def dates(self):
+        """list of curve dates"""
+        cdef vector[_date.Date] _dates
+
+        if self._trait == HazardRate:
+            if self._interpolator == Linear:
+                _dates =  (<_pdc.PiecewiseDefaultCurve[_pdc.HazardRate,_pdc.Linear]*>
+                           self._thisptr.get()).dates()
+            elif self._interpolator == LogLinear:
+                _dates =  (<_pdc.PiecewiseDefaultCurve[_pdc.HazardRate,_pdc.LogLinear]*>
+                           self._thisptr.get()).dates()
+            else:
+                _dates =  (<_pdc.PiecewiseDefaultCurve[_pdc.HazardRate,_pdc.BackwardFlat]*>
+                           self._thisptr.get()).dates()
+        elif self._trait == DefaultDensity:
+            if self._interpolator == Linear:
+                _dates =  (<_pdc.PiecewiseDefaultCurve[_pdc.DefaultDensity,_pdc.Linear]*>
+                           self._thisptr.get()).dates()
+            elif self._interpolator == LogLinear:
+                _dates =  (<_pdc.PiecewiseDefaultCurve[_pdc.DefaultDensity,_pdc.LogLinear]*>
+                           self._thisptr.get()).dates()
+            else:
+                _dates =  (<_pdc.PiecewiseDefaultCurve[_pdc.DefaultDensity,_pdc.BackwardFlat]*>
+                           self._thisptr.get()).dates()
+        else:
+            if self._interpolator == Linear:
+                _dates =  (<_pdc.PiecewiseDefaultCurve[_pdc.SurvivalProbability,_pdc.Linear]*>
+                           self._thisptr.get()).dates()
+            elif self._interpolator == LogLinear:
+                _dates =  (<_pdc.PiecewiseDefaultCurve[_pdc.SurvivalProbability,_pdc.LogLinear]*>
+                           self._thisptr.get()).dates()
+            else:
+                _dates =  (<_pdc.PiecewiseDefaultCurve[_pdc.SurvivalProbability,_pdc.BackwardFlat]*>
+                           self._thisptr.get()).dates()
+        cdef size_t i
+        cdef list r  = []
+        cdef _date.Date qldate
+        for i in range(_dates.size()):
+            r.append(date_from_qldate(_dates[i]))
+        return r
+
+    @property
+    def data(self):
+        """list of curve data"""
+        if self._trait == HazardRate:
+            if self._interpolator == Linear:
+                return (<_pdc.PiecewiseDefaultCurve[_pdc.HazardRate,_pdc.Linear]*>
+                        self._thisptr.get()).data()
+            elif self._interpolator == LogLinear:
+                return (<_pdc.PiecewiseDefaultCurve[_pdc.HazardRate,_pdc.LogLinear]*>
+                        self._thisptr.get()).data()
+            else:
+                 return (<_pdc.PiecewiseDefaultCurve[_pdc.HazardRate,_pdc.BackwardFlat]*>
+                        self._thisptr.get()).data()
+        elif self._trait == DefaultDensity:
+            if self._interpolator == Linear:
+                return (<_pdc.PiecewiseDefaultCurve[_pdc.DefaultDensity,_pdc.Linear]*>
+                        self._thisptr.get()).data()
+            elif self._interpolator == LogLinear:
+                return (<_pdc.PiecewiseDefaultCurve[_pdc.DefaultDensity,_pdc.LogLinear]*>
+                        self._thisptr.get()).data()
+            else:
+                 return (<_pdc.PiecewiseDefaultCurve[_pdc.DefaultDensity,_pdc.BackwardFlat]*>
+                        self._thisptr.get()).data()
+        else:
+            if self._interpolator == Linear:
+                return (<_pdc.PiecewiseDefaultCurve[_pdc.SurvivalProbability,_pdc.Linear]*>
+                        self._thisptr.get()).data()
+            elif self._interpolator == LogLinear:
+                return (<_pdc.PiecewiseDefaultCurve[_pdc.SurvivalProbability,_pdc.LogLinear]*>
+                        self._thisptr.get()).data()
+            else:
+                 return (<_pdc.PiecewiseDefaultCurve[_pdc.SurvivalProbability,_pdc.BackwardFlat]*>
+                        self._thisptr.get()).data()
