@@ -16,6 +16,7 @@ from quantlib.termstructures.credit._credit_helpers cimport DefaultProbabilityHe
 from quantlib.termstructures._default_term_structure cimport DefaultProbabilityTermStructure
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
+from quantlib.time._calendar cimport Calendar
 
 cdef extern from 'ql/termstructures/credit/probabilitytraits.hpp' namespace 'QuantLib':
 
@@ -38,9 +39,16 @@ cdef extern from 'ql/math/interpolations/all.hpp' namespace 'QuantLib':
     cdef cppclass BackwardFlat:
         pass
 
+
+
 cdef extern from 'ql/termstructures/credit/piecewisedefaultcurve.hpp' namespace 'QuantLib':
-    cdef cppclass PiecewiseDefaultCurve[T, I]:
+    cdef cppclass PiecewiseDefaultCurve[T, I](DefaultProbabilityTermStructure):
         PiecewiseDefaultCurve(Date& referenceDate,
+                              vector[shared_ptr[DefaultProbabilityHelper]]& instruments,
+                              DayCounter& dayCounter,
+                              Real accuracy)
+        PiecewiseDefaultCurve(Natural settlementDays,
+                              Calendar& calendar,
                               vector[shared_ptr[DefaultProbabilityHelper]]& instruments,
                               DayCounter& dayCounter,
                               Real accuracy)
