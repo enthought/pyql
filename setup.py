@@ -151,15 +151,6 @@ def collect_extensions():
 
     )
 
-    piecewise_default_curve_extension = Extension(
-        'quantlib.termstructures.credit.piecewise_default_curve',
-        [
-            'quantlib/termstructures/credit/piecewise_default_curve.pyx',
-            'cpp_layer/credit_piecewise_support_code.cpp'
-        ],
-        **kwargs
-    )
-
     mc_vanilla_engine_extension = Extension(
         name='quantlib.pricingengines.vanilla.mcvanillaengine',
         sources=[
@@ -211,7 +202,6 @@ def collect_extensions():
         multipath_extension,
         mc_vanilla_engine_extension,
         piecewise_yield_curve_extension,
-        piecewise_default_curve_extension,
         settings_extension,
         test_extension,
         business_day_convention_extension
