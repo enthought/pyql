@@ -20,9 +20,9 @@ from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTe
 from enum import IntEnum
 
 globals()["ProbabilityTrait"] = IntEnum('ProbabilityTrait',
-                                        'HazardRate DefaultDensity SurvivalProbability', start=0)
+        [('HazardRate', 0), ('DefaultDensity', 1), ('SurvivalProbability', 2)])
 globals()["Interpolator"] = IntEnum('Interpolator',
-                                    'Linear LogLinear BackwardFlat', start=0)
+        [('Linear', 0), ('LogLinear', 1), ('BackwardFlat', 2)])
 
 cdef class PiecewiseDefaultCurve(DefaultProbabilityTermStructure):
 
