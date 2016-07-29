@@ -46,12 +46,12 @@ cdef extern from 'ql/termstructures/credit/piecewisedefaultcurve.hpp' namespace 
         PiecewiseDefaultCurve(Date& referenceDate,
                               vector[shared_ptr[DefaultProbabilityHelper]]& instruments,
                               DayCounter& dayCounter,
-                              Real accuracy)
+                              Real accuracy) except +
         PiecewiseDefaultCurve(Natural settlementDays,
                               Calendar& calendar,
                               vector[shared_ptr[DefaultProbabilityHelper]]& instruments,
                               DayCounter& dayCounter,
-                              Real accuracy)
+                              Real accuracy) except +
         vector[Time]& times() except +
         vector[Date]& dates() except +
         vector[Real]& data() except +
