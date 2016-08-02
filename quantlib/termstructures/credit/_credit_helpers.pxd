@@ -42,9 +42,15 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                   Real recoveryRate,
                   Handle[YieldTermStructure]& discountCurve,
                   bool settlesAccrual, # removed default value (true)
-                  bool paysADefaultTime) # removed default value (true)
+                  bool paysADefaultTime, # removed default value (true)
+                  DayCounter lastPeriodDayCounter,
+                  bool rebatesAccrual, # removed default value (true)
+                  bool useIsdaEngine) # removed default value (false)
 
         void setTermStructure(DefaultProbabilityTermStructure*)
+        void setIsdaEngineParameters(int numericalFix,
+                                     int accrualBias,
+                                     int forwardsInCouponPeriod)
 
     cdef cppclass SpreadCdsHelper(CdsHelper):
          SpreadCdsHelper(Rate runningSpread,
@@ -58,7 +64,10 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                         Real recoveryRate,
                         Handle[YieldTermStructure]& discountCurve,
                         bool settlesAccrual,  # removed default value (true)
-                        bool paysAtDefaultTime) # removed default value (true)
+                        bool paysAtDefaultTime, # removed default value (true)
+                        DayCounter lastPeriodDayCounter,
+                        bool rebatesAccrual, # removed default value (true)
+                        bool useIsdaEngine) # removed default value (false)
 
     cdef cppclass UpfrontCdsHelper(CdsHelper):
          UpfrontCdsHelper(Rate upfrontSpread,
@@ -74,5 +83,8 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                           Handle[YieldTermStructure]& discountCurve,
                           Natural upfrontSettlementDays,
                           bool settlesAccrual,  # removed default value (true)
-                          bool paysAtDefaultTime # removed default value (true)
-         ) except +
+                          bool paysAtDefaultTime, # removed default value (true)
+                          DayCounter lastPeriodDayCounter,
+                          bool rebatesAccrual, # removed default value (true)
+                          bool useIsdaEngine # removed default value (false)
+                ) except +
