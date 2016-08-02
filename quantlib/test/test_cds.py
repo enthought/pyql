@@ -7,9 +7,7 @@ from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.api import FlatForward
 from quantlib.termstructures.credit.api import (
     SpreadCdsHelper, PiecewiseDefaultCurve, FlatHazardRate,
-    InterpolatedHazardRateCurve)
-from quantlib.termstructures.credit.interpolated_hazardrate_curve import (
-    Interpolator)
+    InterpolatedHazardRateCurve, ProbabilityTrait, Interpolator)
 from quantlib.time.api import TARGET, Date, Actual365Fixed, Years, \
         Following, Quarterly, TwentiethIMM, May, Period, Days
 import math
@@ -54,9 +52,9 @@ class PiecewiseDefaultCurveTestCase(unittest.TestCase):
 
     def test_create_piecewise(self):
 
-        for trait in ['HazardRate', 'DefaultDensity', 'SurvivalProbability']:
-            for interpolator in ['Linear', 'LogLinear', 'BackwardFlat']:
-                curve = PiecewiseDefaultCurve(
+        for trait in ProbabilityTrait:
+            for interpolator in Interpolator:
+                curve = PiecewiseDefaultCurve.from_reference_date(
                     trait,
                     interpolator,
                     reference_date=self.todays_date,
@@ -67,9 +65,9 @@ class PiecewiseDefaultCurveTestCase(unittest.TestCase):
 
     def test_piecewise_methods(self):
 
-        for trait in ['HazardRate', 'DefaultDensity', 'SurvivalProbability']:
-            for interpolator in ['Linear', 'LogLinear', 'BackwardFlat']:
-                curve = PiecewiseDefaultCurve(
+        for trait in ProbabilityTrait:
+            for interpolator in Interpolator:
+                curve = PiecewiseDefaultCurve.from_reference_date(
                     trait,
                     interpolator,
                     reference_date=self.todays_date,
@@ -77,8 +75,8 @@ class PiecewiseDefaultCurveTestCase(unittest.TestCase):
                     daycounter=Actual365Fixed()
                 )
 
-                if interpolator == "LogLinear" and trait in ["HazardRate",
-                                                             "DefaultDensity"]:
+                if interpolator == Interpolator.LogLinear and \
+                   trait in [ProbabilityTrait.HazardRate, ProbabilityTrait.DefaultDensity]:
                     with self.assertRaisesRegexp(RuntimeError,
                                                  'LogInterpolation primitive not implemented'):
                         curve.survival_probability(self.d)

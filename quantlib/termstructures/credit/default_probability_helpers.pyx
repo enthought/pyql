@@ -23,6 +23,7 @@ cimport quantlib.time._date as _date
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+cimport quantlib._quote as _qt
 
 cdef class CdsHelper:
     """Base default-probability bootstrap helper
@@ -47,6 +48,16 @@ cdef class CdsHelper:
     def latest_date(self):
         cdef _date.Date d = self._thisptr.get().latestDate()
         return date_from_qldate(d)
+
+    @property
+    def implied_quote(self):
+        return self._thisptr.get().impliedQuote()
+
+    @property
+    def quote(self):
+        cdef shared_ptr[_qt.Quote] quote_ptr = \
+            shared_ptr[_qt.Quote](self._thisptr.get().quote().currentLink())
+        return quote_ptr.get().value()
 
 cdef class SpreadCdsHelper(CdsHelper):
     """Spread-quoted CDS hazard rate bootstrap helper.

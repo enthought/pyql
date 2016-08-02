@@ -12,6 +12,7 @@ include '../types.pxi'
 from libcpp cimport bool
 from libcpp.vector cimport vector
 from quantlib.time._date cimport Date
+from quantlib.time._daycounter cimport DayCounter
 
 cdef extern from 'ql/termstructures/defaulttermstructure.hpp' namespace 'QuantLib':
 
@@ -27,3 +28,6 @@ cdef extern from 'ql/termstructures/defaulttermstructure.hpp' namespace 'QuantLi
         const vector[Time]& jumpTimes()
         const vector[Date]& jumpDates()
         Time timeFromReference(const Date&)
+        Date maxDate() except +
+        const Date& referenceDate()
+        DayCounter dayCounter()

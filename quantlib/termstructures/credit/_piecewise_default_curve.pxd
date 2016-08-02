@@ -10,43 +10,48 @@
 include '../../types.pxi'
 
 from libcpp.vector cimport vector
-from libcpp.string cimport string
 
 from quantlib.handle cimport shared_ptr
 from quantlib.termstructures.credit._credit_helpers cimport DefaultProbabilityHelper
 from quantlib.termstructures._default_term_structure cimport DefaultProbabilityTermStructure
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
+from quantlib.time._calendar cimport Calendar
 
 cdef extern from 'ql/termstructures/credit/probabilitytraits.hpp' namespace 'QuantLib':
 
-    cdef struct HazardRate:
+    cdef cppclass HazardRate:
         pass
 
-cdef extern from 'credit_piecewise_support_code.hpp' namespace 'QuantLib':
+    cdef cppclass SurvivalProbability:
+        pass
 
-    cdef shared_ptr[DefaultProbabilityTermStructure] credit_term_structure_factory(
-        string& traits,
-        string& interpolator,
-        Date& reference_date,
-        vector[shared_ptr[DefaultProbabilityHelper]]& curve_input,
-        DayCounter& day_counter,
-        Real tolerance
-    ) except +
+    cdef cppclass DefaultDensity:
+        pass
+
+cdef extern from 'ql/math/interpolations/all.hpp' namespace 'QuantLib':
+    cdef cppclass Linear:
+        pass
+
+    cdef cppclass LogLinear:
+        pass
+
+    cdef cppclass BackwardFlat:
+        pass
+
 
 
 cdef extern from 'ql/termstructures/credit/piecewisedefaultcurve.hpp' namespace 'QuantLib':
-
-    cdef cppclass PiecewiseDefaultCurve[T, I]:
-        pass
-        # Not using the constructor because of the missing support for typemaps
-        # in Cython --> use only the credit_term_structure_factory!
-        #PiecewiseDefaultCurve(
-        #    Date& referenceDate,
-        #    #std::vector<boost::shared_ptr<typename Traits::helper> >& 
-        #    vector[shared_ptr[CdsHelper] ]& instruments, # typename not supported by Cython
-        #    DayCounter& dayCounter,
-        #    Real accuracy,
-        #    #Interpolator& i = Interpolator()
-        #)
-
+    cdef cppclass PiecewiseDefaultCurve[T, I](DefaultProbabilityTermStructure):
+        PiecewiseDefaultCurve(Date& referenceDate,
+                              vector[shared_ptr[DefaultProbabilityHelper]]& instruments,
+                              DayCounter& dayCounter,
+                              Real accuracy) except +
+        PiecewiseDefaultCurve(Natural settlementDays,
+                              Calendar& calendar,
+                              vector[shared_ptr[DefaultProbabilityHelper]]& instruments,
+                              DayCounter& dayCounter,
+                              Real accuracy) except +
+        vector[Time]& times() except +
+        vector[Date]& dates() except +
+        vector[Real]& data() except +
