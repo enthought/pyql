@@ -10,7 +10,7 @@ before_install:
  - sudo add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu/ trusty main universe"
  - sudo apt-get update
  - sudo apt-get install -qq python-numpy python-six
- - sudo add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu/ vivid main universe"
+ - sudo add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu/ xenial main universe"
  - sudo apt-get update
  - sudo apt-get install libquantlib0-dev
  - pip install -r requirements.txt --use-mirrors
