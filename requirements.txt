@@ -1,4 +1,4 @@
-cython >= 0.23
+cython >= 0.24
 pandas >= 0.16.2
 tabulate
 enum34
