@@ -47,7 +47,7 @@ cdef class IborIndex(InterestRateIndex):
             return ref.endOfMonth()
 
     @classmethod
-    def from_name(self, market, term_structure=None, **kwargs):
+    def from_name(self, market, term_structure=YieldTermStructure(), **kwargs):
         """
         Create default IBOR for the market, modify attributes if provided
         """
