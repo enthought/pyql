@@ -9,7 +9,8 @@ from quantlib.util.rates import make_rate_helper, zero_rate
 import quantlib.reference.names as nm
 import quantlib.reference.data_structures as ds
 
-from quantlib.termstructures.yields.api import PiecewiseYieldCurve
+from quantlib.termstructures.yields.api import (
+    PiecewiseYieldCurve, BootstrapTrait, Interpolator )
 from quantlib.time.api import ActualActual, ISDA
 from quantlib.util.converter import pydate_to_qldate
 from quantlib.quotes import SimpleQuote
@@ -92,8 +93,8 @@ class MLabTestCase(unittest.TestCase):
             ts_day_counter = ActualActual(ISDA)
             tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve(
-            'discount', 'loglinear', settlement_date, rate_helpers,
+        ts = PiecewiseYieldCurve.from_reference_date(
+            BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers,
             ts_day_counter, tolerance
         )
 
@@ -190,13 +191,13 @@ class MLabTestCase(unittest.TestCase):
                    'Swap20Y',
                    'Swap30Y']
         yields = [float(x+1)/100 for x in range(len(instruments))]
-        
+
         pricing_date = '01-dec-2013'
         dt, rates = zbt_libor_yield(instruments, yields, pricing_date,
                     compounding_freq='Continuous',
                     maturity_dates=None)
 
         self.assertAlmostEqual(rates[0], .01, 3)
-        
+
 if __name__ == '__main__':
     unittest.main()

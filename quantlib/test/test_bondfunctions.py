@@ -29,11 +29,9 @@ from quantlib.indexes.libor import Libor
 
 from quantlib.termstructures.yields.rate_helpers import (
     DepositRateHelper, SwapRateHelper)
-from quantlib.termstructures.yields.piecewise_yield_curve import (
-    VALID_TRAITS, VALID_INTERPOLATORS,
-    PiecewiseYieldCurve)
+from quantlib.termstructures.yields.piecewise_yield_curve import PiecewiseYieldCurve
 from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure
+    FlatForward, YieldTermStructure, BootstrapTrait, Interpolator
 )
 from quantlib.quotes import SimpleQuote
 
@@ -71,7 +69,7 @@ class BondFunctionTestCase(unittest.TestCase):
         coupon_rate = 0.03625
         bond_yield = 0.034921
 
-        flat_discounting_term_structure = YieldTermStructure(relinkable=True)
+        flat_discounting_term_structure = YieldTermStructure()
         flat_term_structure = FlatForward(
             reference_date = settlement_date,
             forward        = bond_yield,
@@ -105,16 +103,16 @@ class BondFunctionTestCase(unittest.TestCase):
             redemption,
             issue_date
         )
-        
-        
+
+
 
         d=bf.startDate(bond)
 
         zspd=bf.zSpread(bond, 100.0, flat_term_structure, Actual365Fixed(),
         Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)
-        
 
-        #Also need a test case for a PiecewiseTermStructure...                
+
+        #Also need a test case for a PiecewiseTermStructure...
         depositData = [[ 1, Months, 4.581 ],
                        [ 2, Months, 4.573 ],
                        [ 3, Months, 4.557 ],
@@ -158,30 +156,30 @@ class BondFunctionTestCase(unittest.TestCase):
         ts_day_counter = ActualActual(ISDA)
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve(
-            'discount', 'loglinear', settlement_date, rate_helpers,
-            ts_day_counter, tolerance)   
+        ts = PiecewiseYieldCurve.from_reference_date(
+            BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers,
+            ts_day_counter, tolerance)
 
         pyc_zspd=bf.zSpread(bond, 102.0, ts, ActualActual(ISDA),
-        Compounded, Semiannual, Date(1, April, 2015), 1e-6, 100, 0.5)                                      
+        Compounded, Semiannual, Date(1, April, 2015), 1e-6, 100, 0.5)
 
         pyc_zspd_disco=bf.zSpread(bond, 95.0, ts, ActualActual(ISDA),
-        Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)                                      
-        
+        Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)
+
 
         yld  = bf.yld(bond, 102.0, ActualActual(ISDA), Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)
-        dur  = bf.duration(bond, yld, ActualActual(ISDA), Compounded, Semiannual, 2, settlement_date) 
+        dur  = bf.duration(bond, yld, ActualActual(ISDA), Compounded, Semiannual, 2, settlement_date)
 
         yld_disco  = bf.yld(bond, 95.0, ActualActual(ISDA), Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)
-        dur_disco  = bf.duration(bond, yld_disco, ActualActual(ISDA), Compounded, Semiannual, 2, settlement_date)        
-        
+        dur_disco  = bf.duration(bond, yld_disco, ActualActual(ISDA), Compounded, Semiannual, 2, settlement_date)
+
         self.assertEqual(round(zspd, 6), 0.001281)
         self.assertEqual(round(pyc_zspd, 4), -0.0264)
         self.assertEqual(round(pyc_zspd_disco, 4), -0.0114)
-        
+
         self.assertEqual(round(yld, 4), 0.0338)
         self.assertEqual(round(yld_disco, 4), 0.0426)
-        
+
         self.assertEqual(round(dur, 4), 8.0655)
         self.assertEqual(round(dur_disco, 4), 7.9702)
 

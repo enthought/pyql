@@ -16,7 +16,7 @@ from quantlib.settings import Settings
 from quantlib.termstructures.yields.rate_helpers import (
     DepositRateHelper, SwapRateHelper)
 from quantlib.termstructures.yields.piecewise_yield_curve import (
-    VALID_TRAITS, VALID_INTERPOLATORS, PiecewiseYieldCurve
+    PiecewiseYieldCurve, BootstrapTrait, Interpolator
 )
 from quantlib.time.api import Date, TARGET, Period, Months, Years, Days
 from quantlib.time.api import September, ISDA, today, Mar
@@ -70,8 +70,8 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve(
-            'discount', 'loglinear', settlement_date, rate_helpers,
+        ts = PiecewiseYieldCurve.from_reference_date(
+            BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers,
             ts_day_counter, tolerance
         )
 
@@ -98,7 +98,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         settlement_date = Date(18, September, 2008)
         # must be a business day
         settlement_date = calendar.adjust(settlement_date);
-        
+
         quotes = [SimpleQuote(0.0096), SimpleQuote(0.0145), SimpleQuote(0.0194)]
 
         tenors =  [3, 6, 12]
@@ -121,11 +121,11 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
             rate_helpers.append(helper)
 
 
-        tolerance = 1.0e-15 
+        tolerance = 1.0e-15
 
-        for trait in VALID_TRAITS:
-            for interpolation in VALID_INTERPOLATORS:
-                ts = PiecewiseYieldCurve(
+        for trait in BootstrapTrait:
+            for interpolation in Interpolator:
+                ts = PiecewiseYieldCurve.from_reference_date(
                     trait, interpolation, settlement_date, rate_helpers,
                     deposit_day_counter, tolerance
                 )
@@ -198,8 +198,8 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         ts_day_counter = ActualActual(ISDA)
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve(
-            'discount', 'loglinear', settlement_date, rate_helpers,
+        ts = PiecewiseYieldCurve.from_reference_date(
+            BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers,
             ts_day_counter, tolerance
         )
 
@@ -223,7 +223,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         calendar = UnitedStates() # INPUT
         dayCounter = Actual360() # INPUT
-        currency = USDCurrency() # INPUT	
+        currency = USDCurrency() # INPUT
 
         Settings.instance().evaluation_date = todays_date
         settlement_days	= 2
@@ -232,7 +232,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
             todays_date, period=Period(settlement_days, Days)
         )
 
-        liborRates = [ SimpleQuote(0.002763), SimpleQuote(0.004082), SimpleQuote(0.005601), SimpleQuote(0.006390), SimpleQuote(0.007125), 
+        liborRates = [ SimpleQuote(0.002763), SimpleQuote(0.004082), SimpleQuote(0.005601), SimpleQuote(0.006390), SimpleQuote(0.007125),
             SimpleQuote(0.007928), SimpleQuote(0.009446), SimpleQuote(0.01110)]
         liborRatesTenor = [Period(tenor, Months) for tenor in [1,2,3,4,5,6,9,12]]
         Libor_dayCounter = Actual360();
@@ -255,7 +255,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         instruments = []
 
         # ++++++++++++++++++++ Creation of the vector of RateHelper (need for the Yield Curve construction)
-        # ++++++++++++++++++++ Libor 
+        # ++++++++++++++++++++ Libor
         LiborFamilyName = currency.name + "Libor"
         instruments = []
         for rate, tenor in zip(liborRates, liborRatesTenor):
@@ -285,8 +285,8 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve(
-            'zero', 'linear', settlement_date, instruments, dayCounter,
+        ts = PiecewiseYieldCurve.from_reference_date(
+            BootstrapTrait.ZeroYield, Interpolator.Linear, settlement_date, instruments, dayCounter,
             tolerance
         )
 

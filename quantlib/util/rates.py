@@ -21,7 +21,7 @@ from quantlib.settings import Settings
 from quantlib.termstructures.yields.rate_helpers import \
     DepositRateHelper, SwapRateHelper
 from quantlib.termstructures.yields.api import (
-    FlatForward, PiecewiseYieldCurve
+    FlatForward, PiecewiseYieldCurve, BootstrapTrait, Interpolator
 )
 from quantlib.time.api import (
     TARGET, Period, Months, Years, Days, ModifiedFollowing, Unadjusted,
@@ -68,7 +68,7 @@ def make_rate_helper(label, rate, dt_obs, currency='USD'):
 
     if not isinstance(dt_obs, Date):
         dt_obs = pydate_to_qldate(dt_obs)
-        
+
     settings = Settings()
     calendar = JointCalendar(UnitedStates(), UnitedKingdom())
     # must be a business day
@@ -123,8 +123,8 @@ def make_term_structure(rates, dt_obs):
 
     ts_day_counter = ActualActual(ISDA)
     tolerance = 1.0e-15
-    ts = PiecewiseYieldCurve(
-        'discount', 'loglinear', settlement_date, rate_helpers, ts_day_counter,
+    ts = PiecewiseYieldCurve.from_reference_date(
+        BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers, ts_day_counter,
         tolerance
     )
 
