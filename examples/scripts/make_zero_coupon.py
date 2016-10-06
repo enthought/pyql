@@ -18,7 +18,7 @@ from quantlib.settings import Settings
 from quantlib.termstructures.yields.rate_helpers import \
     DepositRateHelper, SwapRateHelper
 from quantlib.termstructures.yields.piecewise_yield_curve import \
-    PiecewiseYieldCurve
+    PiecewiseYieldCurve, BootstrapTrait, Interpolator
 from quantlib.time.api import Date, TARGET, Period, Months, Years, Days
 from quantlib.time.api import (ModifiedFollowing, Actual360,
                                Thirty360, Semiannual, ActualActual)
@@ -114,8 +114,8 @@ def get_term_structure(df_libor, dtObs):
     ts_day_counter = ActualActual(ISDA)
     tolerance = 1.0e-15
 
-    ts = PiecewiseYieldCurve('discount',
-                             'loglinear',
+    ts = PiecewiseYieldCurve(BootstrapTrait.Discount,
+                             Interpolator.LogLinear,
                              settlement_date,
                              rate_helpers,
                              ts_day_counter,
@@ -142,7 +142,7 @@ def zero_curve(ts, dtObs):
 
 if __name__ == '__main__':
 
-    df_libor = pandas.load('examples/data/df_libor.pkl')
+    df_libor = pandas.read_pickle('examples/data/df_libor.pkl')
     dtObs = df_libor.index
 
     fig = plt.figure()
