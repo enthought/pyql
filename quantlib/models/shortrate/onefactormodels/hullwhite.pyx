@@ -36,7 +36,7 @@ cdef class HullWhite(Vasicek):
     dr_t = (\theta(t) - \alpha r_t)dt + \sigma dW_t
 
     where \alpha and \sigma are constants.
-    
+
     """
 
     def __cinit__(self):
@@ -48,17 +48,13 @@ cdef class HullWhite(Vasicek):
             self._thisptr = NULL
 
     def __init__(self,
-       YieldTermStructure term_structure=None,
+       YieldTermStructure term_structure=YieldTermStructure(),
        Real a=0,
        Real sigma=0):
 
-        #create handles
-        cdef Handle[_ff.YieldTermStructure] yts_handle = \
-                deref(term_structure._thisptr.get())
-
         self._thisptr = new shared_ptr[_mo.CalibratedModel](
             new _hw.HullWhite(
-                yts_handle,
+                term_structure._thisptr,
                 a, sigma
 	    )
 	)

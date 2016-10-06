@@ -33,10 +33,7 @@ cdef class MidPointCdsEngine(PricingEngine):
         cdef Handle[_dts.DefaultProbabilityTermStructure] handle = \
             Handle[_dts.DefaultProbabilityTermStructure](ts._thisptr)
 
-        cdef Handle[_yts.YieldTermStructure] yts_handle = \
-            deref(discount_curve._thisptr.get())
-
         self._thisptr = new shared_ptr[_pe.PricingEngine](
-            new _credit.MidPointCdsEngine(handle, recovery_rate, yts_handle,
+            new _credit.MidPointCdsEngine(handle, recovery_rate, discount_curve._thisptr,
                                           optional[bool]())
         )

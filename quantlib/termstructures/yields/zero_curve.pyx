@@ -21,11 +21,9 @@ cdef class ZeroCurve(YieldTermStructure):
             _date_vector.push_back(deref((<Date>date)._thisptr.get()))
 
         # create the curve
-        self._thisptr = new shared_ptr[Handle[_zc.YieldTermStructure]](
-            new Handle[_zc.YieldTermStructure](shared_ptr[_zc.YieldTermStructure](
+        self._thisptr.linkTo(shared_ptr[_zc.YieldTermStructure](
                 new _zc.ZeroCurve(
                     _date_vector,
                     yields,
                     deref(daycounter._thisptr)))
             )
-        )

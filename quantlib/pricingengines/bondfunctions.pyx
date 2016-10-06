@@ -21,7 +21,7 @@ cdef extern from 'ql/compounding.hpp' namespace 'QuantLib':
         Simple = 0
         Compounded = 1
         Continuous = 2
-        SimpleThenCompounded = 3    
+        SimpleThenCompounded = 3
 
 cdef extern from 'ql/cashflows/duration.hpp' namespace 'QuantLib':
     ctypedef enum Type "QuantLib::Duration::Type":
@@ -34,15 +34,15 @@ cdef extern from 'ql/cashflows/duration.hpp' namespace 'QuantLib':
         Type type
 
 cdef extern from 'ql/pricingengines/bond/bondfunctions.hpp' namespace 'QuantLib':
-    cdef Rate _bf_yield     "QuantLib::BondFunctions::yield" (QLBond, Real, _DayCounter, int, _Frequency, _dt.Date, Real, Size, Rate)     
-            
-    
+    cdef Rate _bf_yield     "QuantLib::BondFunctions::yield" (QLBond, Real, _DayCounter, int, _Frequency, _dt.Date, Real, Size, Rate)
+
+
 def startDate(Bond bond):
     cpdef QLBond* _bp = <QLBond*>bond._thisptr.get()
     d =  _bf.startDate(deref(<QLBond*>_bp))
     return date_from_qldate(d)
-  
- 
+
+
 def duration(Bond bond,
                 Rate yld,
                 DayCounter dayCounter,
@@ -51,7 +51,7 @@ def duration(Bond bond,
                 Type dur_type,
                 Date settlementDate = Date()):
         cpdef QLBond* _bp = <QLBond*>bond._thisptr.get()
-       
+
         d =  _bf.duration(
                 deref(<QLBond*>_bp),
                 yld,
@@ -61,7 +61,7 @@ def duration(Bond bond,
                 dur_type,
                 deref(settlementDate._thisptr.get()))
         return d
-        
+
 def yld(Bond bond,
         Real cleanPrice,
         DayCounter dayCounter,
@@ -71,10 +71,10 @@ def yld(Bond bond,
         Real accuracy,
         Size maxIterations,
         Rate guess):
-            
+
         cpdef QLBond* _bp = <QLBond*>bond._thisptr.get()
         cpdef _DayCounter* dc = <_DayCounter*>dayCounter._thisptr
-        
+
         y =  _bf_yield(
                 deref(<QLBond*>_bp),
                 cleanPrice,
@@ -84,10 +84,10 @@ def yld(Bond bond,
                 deref(settlementDate._thisptr.get()),
                 accuracy,
                 maxIterations,
-                guess)                    
+                guess)
         return y
-        
-                    
+
+
 def basisPointValue(Bond bond,
         Rate yld,
         DayCounter dayCounter,
@@ -104,10 +104,10 @@ def basisPointValue(Bond bond,
                 <Compounding> compounding,
                 <_Frequency> frequency,
                 deref(settlementDate._thisptr.get()))
-        
+
         return b
-        
-    
+
+
 def zSpread(Bond bond, Real cleanPrice,
     YieldTermStructure pyts,
     DayCounter dayCounter,
@@ -117,10 +117,9 @@ def zSpread(Bond bond, Real cleanPrice,
     Real accuracy,
     Size maxIterations,
     Rate guess):
-                    
+
     cpdef QLBond* _bp = <QLBond*>bond._thisptr.get()
-    cdef Handle[_yt.YieldTermStructure] yts_handle = deref(pyts._thisptr.get())
-    cdef shared_ptr[_yt.YieldTermStructure] _yts = shared_ptr[_yt.YieldTermStructure](yts_handle.currentLink())
+    cdef shared_ptr[_yt.YieldTermStructure] _yts = pyts._thisptr.currentLink()
     cpdef _DayCounter* dc = <_DayCounter*>dayCounter._thisptr
 
     d =  _bf.zSpread(
@@ -133,6 +132,6 @@ def zSpread(Bond bond, Real cleanPrice,
     deref(settlementDate._thisptr.get()),
     accuracy,
     maxIterations,
-    guess)                    
-                
-    return d                
+    guess)
+
+    return d

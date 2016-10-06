@@ -23,16 +23,9 @@ from quantlib.models.shortrate.onefactormodels.hullwhite cimport HullWhite
 cdef class JamshidianSwaptionEngine(PricingEngine):
 
     def __init__(self, HullWhite model,
-                 YieldTermStructure ts=None):
-
-        cdef Handle[_yts.YieldTermStructure] yts_handle
-        if ts is None:
-            yts_handle = Handle[_yts.YieldTermStructure]()
-        else:
-            yts_handle = deref(ts._thisptr.get())
-
+                 YieldTermStructure ts=YieldTermStructure()):
 
         self._thisptr = new shared_ptr[_pe.PricingEngine](
             new _swaption.JamshidianSwaptionEngine(
                 deref(<shared_ptr[_ofm.OneFactorAffineModel]*> model._thisptr),
-                yts_handle))
+                ts._thisptr))

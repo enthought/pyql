@@ -39,7 +39,7 @@ cdef class SwaptionHelper(CalibrationHelper):
                  Period fixed_leg_tenor,
                  DayCounter fixed_leg_daycounter,
                  DayCounter floating_leg_daycounter,
-                 YieldTermStructure ts,
+                 YieldTermStructure ts not None,
                  error_type=RelativePriceError,
                  strike=None,
                  Real nominal=1.0):
@@ -51,12 +51,9 @@ cdef class SwaptionHelper(CalibrationHelper):
         cdef Handle[_qt.Quote] volatility_handle = \
                 Handle[_qt.Quote](deref(volatility._thisptr))
 
-        cdef Handle[_yts.YieldTermStructure] yts_handle = \
-            deref(ts._thisptr.get())
-
         if strike is None:
             strike = QL_NULL_REAL
-            
+
         self._thisptr = new shared_ptr[_ch.CalibrationHelper](
             new _sh.SwaptionHelper(
                 deref(maturity._thisptr.get()),
@@ -66,7 +63,7 @@ cdef class SwaptionHelper(CalibrationHelper):
                 deref(fixed_leg_tenor._thisptr.get()),
                 deref(_fixed_leg_daycounter),
                 deref(_floating_leg_daycounter),
-                yts_handle,
+                ts._thisptr,
                 <_ch.CalibrationErrorType>error_type,
                 strike,
                 nominal))

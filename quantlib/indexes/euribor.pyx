@@ -24,7 +24,7 @@ cdef class Euribor(IborIndex):
         if ts is None:
             ts_handle = Handle[_yts.YieldTermStructure]()
         else:
-            ts_handle = deref(ts._thisptr.get())
+            ts_handle = ts._thisptr
 
         self._thisptr = new shared_ptr[_in.Index](
             new _eu.Euribor(
@@ -39,9 +39,8 @@ cdef class Euribor6M(Euribor):
         if ts is None:
             ts_handle = Handle[_yts.YieldTermStructure]()
         else:
-            ts_handle = deref(ts._thisptr.get())
+            ts_handle = ts._thisptr
 
         self._thisptr = new shared_ptr[_in.Index](
             new _eu.Euribor6M(ts_handle)
         )
-

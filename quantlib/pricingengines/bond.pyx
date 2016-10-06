@@ -21,9 +21,7 @@ cdef class DiscountingBondEngine(PricingEngine):
     def __init__(self, YieldTermStructure discount_curve):
         """
         """
-        cdef Handle[_yts.YieldTermStructure] yts_handle = \
-            deref(discount_curve._thisptr.get())
 
         self._thisptr = new shared_ptr[_pe.PricingEngine](
-            new _bond.DiscountingBondEngine(yts_handle)
+            new _bond.DiscountingBondEngine(discount_curve._thisptr)
         )
