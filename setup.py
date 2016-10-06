@@ -141,16 +141,6 @@ def collect_extensions():
         **kwargs
     )
 
-    piecewise_yield_curve_extension = Extension(
-        'quantlib.termstructures.yields.piecewise_yield_curve',
-        [
-            'quantlib/termstructures/yields/piecewise_yield_curve.pyx',
-            'cpp_layer/yield_piecewise_support_code.cpp'
-        ],
-        **kwargs
-
-    )
-
     mc_vanilla_engine_extension = Extension(
         name='quantlib.pricingengines.vanilla.mcvanillaengine',
         sources=[
@@ -201,7 +191,6 @@ def collect_extensions():
         hestonhw_constraint_extension,
         multipath_extension,
         mc_vanilla_engine_extension,
-        piecewise_yield_curve_extension,
         settings_extension,
         test_extension,
         business_day_convention_extension

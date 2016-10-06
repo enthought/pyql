@@ -1,42 +1,47 @@
 include '../../types.pxi'
 
-from libcpp cimport bool
 from libcpp.vector cimport vector
-from libcpp.string cimport string
 
-from quantlib.handle cimport shared_ptr, Handle, RelinkableHandle
+from quantlib.handle cimport shared_ptr
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
-from quantlib.time._period cimport Frequency
-from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
+from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yields._rate_helpers cimport RateHelper
 
-cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
 
-    cdef cppclass RateHelper:
+cdef extern from 'ql/termstructures/yield/bootstraptraits.hpp' namespace 'QuantLib':
+
+    cdef cppclass Discount:
         pass
 
-cdef extern from 'yield_piecewise_support_code.hpp' namespace 'QuantLib':
+    cdef cppclass ZeroYield:
+        pass
 
-    cdef shared_ptr[YieldTermStructure] term_structure_factory(
-        string& traits,
-        string& interpolator,
-        Date& settlement_date,
-        vector[shared_ptr[RateHelper]]& curve_input,
-        DayCounter& day_counter,
-        Real tolerance
-    ) except +
+    cdef cppclass ForwardRate:
+        pass
+
+cdef extern from 'ql/math/interpolations/all.hpp' namespace 'QuantLib':
+    cdef cppclass Linear:
+        pass
+
+    cdef cppclass LogLinear:
+        pass
+
+    cdef cppclass BackwardFlat:
+        pass
 
 cdef extern from 'ql/termstructures/yield/piecewiseyieldcurve.hpp' namespace 'QuantLib':
-
-    cdef cppclass PiecewiseYieldcurve[Traits, Interpolator]:
-        PiecewiseYieldCurve()
-        # Constructurors are not supported through the Cython syntax !
-        #PiecewiseYieldCurve(
-        #    Date& referenceDate,
-        #    #vector[shared_ptr[Traits::helper]]& instruments,
-        #    DayCounter& dayCounter,
-        #    Real accuracy,
-        #    #Interpolator& i,
-        #    #Bootstrap<this_curve>& bootstrap
-        #)
+    cdef cppclass PiecewiseYieldCurve[T, I](YieldTermStructure):
+        PiecewiseYieldCurve(Date& referenceDate,
+                            vector[shared_ptr[RateHelper]]& instruments,
+                            DayCounter& dayCounter,
+                            Real accuracy) except +
+        PiecewiseYieldCurve(Natural settlementDays,
+                            Calendar& calendar,
+                            vector[shared_ptr[RateHelper]]& instruments,
+                            DayCounter& dayCounter,
+                            Real accuracy) except +
+        vector[Time]& times() except +
+        vector[Date]& dates() except +
+        vector[Real]& data() except +
