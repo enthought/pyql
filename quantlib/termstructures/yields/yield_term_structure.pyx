@@ -30,7 +30,7 @@ cdef class YieldTermStructure:
     def link_to(self, YieldTermStructure structure):
         self._thisptr.linkTo(structure._thisptr.currentLink())
 
-    cdef _yts.YieldTermStructure* _get_term_structure(self):
+    cdef inline _yts.YieldTermStructure* _get_term_structure(self):
 
         cdef shared_ptr[_yts.YieldTermStructure] term_structure = self._thisptr.currentLink()
 
