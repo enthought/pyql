@@ -84,6 +84,47 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         self.assertAlmostEqual(0.9944, ts.discount(Date(21, 4, 2009)), 4)
         self.assertAlmostEqual(0.9904, ts.discount(Date(21, 9, 2009)), 4)
 
+    def test_relative_yieldcurve(self):
+        settings = Settings()
+        settings.evaluation_date = Date(6, 10, 2016)
+
+        # Market information
+        calendar = TARGET()
+
+        quotes = [0.0096, 0.0145, 0.0194]
+        tenors =  [3, 6, 12]
+
+        deposit_day_counter = Actual365Fixed()
+        convention = ModifiedFollowing
+        end_of_month = True
+        fixing_days = 3
+        rate_helpers = [DepositRateHelper(
+            quote, Period(month, Months), fixing_days, calendar, convention, end_of_month,
+            deposit_day_counter) for quote, month in zip(quotes, tenors)]
+
+        ts_day_counter = ActualActual(ISDA)
+
+        tolerance = 1.0e-15
+
+        ts_relative = PiecewiseYieldCurve(
+            BootstrapTrait.Discount, Interpolator.LogLinear, 2, calendar, rate_helpers,
+            ts_day_counter, tolerance
+        )
+        self.assertEqual(ts_relative.reference_date,
+                         calendar.advance(settings.evaluation_date, period = Period(2, Days)))
+
+        settings.evaluation_date = Date(10, 10, 2016)
+        settlement_date =  calendar.advance(settings.evaluation_date, period = Period(2, Days))
+        self.assertEqual(ts_relative.reference_date, settlement_date)
+
+        ts_absolute = PiecewiseYieldCurve.from_reference_date(
+            BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers,
+            ts_day_counter, tolerance
+        )
+        self.assertEqual(ts_absolute.data, ts_relative.data)
+        self.assertEqual(ts_absolute.dates, ts_relative.dates)
+        self.assertEqual(ts_absolute.times, ts_relative.times)
+
     def test_all_types_of_piecewise_curves(self):
 
         settings = Settings()

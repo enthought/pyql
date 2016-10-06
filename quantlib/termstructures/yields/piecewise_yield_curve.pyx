@@ -11,7 +11,8 @@ cimport quantlib.termstructures._yield_term_structure as _yts
 
 
 from rate_helpers cimport RateHelper
-from quantlib.time.date cimport Date
+from quantlib.time.date cimport Date, date_from_qldate
+cimport quantlib.time._date as _date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar cimport Calendar
 
@@ -184,3 +185,112 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
                         deref(reference_date._thisptr.get()), instruments,
                         deref(daycounter._thisptr), accuracy)))
         return instance
+
+    @property
+    def data(self):
+        """list of curve data"""
+        if self._trait == Discount:
+            if self._interpolator == Linear:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.Linear]*>
+                        self._get_term_structure()).data()
+            elif self._interpolator == LogLinear:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.LogLinear]*>
+                        self._get_term_structure()).data()
+            else:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.BackwardFlat]*>
+                        self._get_term_structure()).data()
+        elif self._trait == ZeroYield:
+            if self._interpolator == Linear:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.Linear]*>
+                        self._get_term_structure()).data()
+            elif self._interpolator == LogLinear:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.LogLinear]*>
+                        self._get_term_structure()).data()
+            else:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.BackwardFlat]*>
+                        self._get_term_structure()).data()
+        else:
+            if self._interpolator == Linear:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.Linear]*>
+                        self._get_term_structure()).data()
+            elif self._interpolator == LogLinear:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.LogLinear]*>
+                        self._get_term_structure()).data()
+            else:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.BackwardFlat]*>
+                        self._get_term_structure()).data()
+    @property
+    def times(self):
+        """list of curve times"""
+        if self._trait == Discount:
+            if self._interpolator == Linear:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.Linear]*>
+                        self._get_term_structure()).times()
+            elif self._interpolator == LogLinear:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.LogLinear]*>
+                        self._get_term_structure()).times()
+            else:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.BackwardFlat]*>
+                        self._get_term_structure()).times()
+        elif self._trait == ZeroYield:
+            if self._interpolator == Linear:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.Linear]*>
+                        self._get_term_structure()).times()
+            elif self._interpolator == LogLinear:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.LogLinear]*>
+                        self._get_term_structure()).times()
+            else:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.BackwardFlat]*>
+                        self._get_term_structure()).times()
+        else:
+            if self._interpolator == Linear:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.Linear]*>
+                        self._get_term_structure()).times()
+            elif self._interpolator == LogLinear:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.LogLinear]*>
+                        self._get_term_structure()).times()
+            else:
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.BackwardFlat]*>
+                        self._get_term_structure()).times()
+
+    @property
+    def dates(self):
+        """list of curve dates"""
+        cdef vector[_date.Date] _dates
+        if self._trait == Discount:
+            if self._interpolator == Linear:
+                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.Linear]*>
+                          self._get_term_structure()).dates()
+            elif self._interpolator == LogLinear:
+                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.LogLinear]*>
+                          self._get_term_structure()).dates()
+            else:
+                 _dates =  (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.BackwardFlat]*>
+                            self._get_term_structure()).dates()
+        elif self._trait == ZeroYield:
+            if self._interpolator == Linear:
+                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.Linear]*>
+                          self._get_term_structure()).dates()
+            elif self._interpolator == LogLinear:
+                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.LogLinear]*>
+                          self._get_term_structure()).dates()
+            else:
+                 _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.BackwardFlat]*>
+                           self._get_term_structure()).dates()
+        else:
+            if self._interpolator == Linear:
+                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.Linear]*>
+                          self._get_term_structure()).dates()
+            elif self._interpolator == LogLinear:
+                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.LogLinear]*>
+                          self._get_term_structure()).dates()
+            else:
+                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.BackwardFlat]*>
+                          self._get_term_structure()).dates()
+        cdef size_t i
+        cdef list r  = []
+        cdef _date.Date qldate
+        for i in range(_dates.size()):
+            r.append(date_from_qldate(_dates[i]))
+
+        return r
