@@ -11,7 +11,8 @@ from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.api import DepositRateHelper, FraRateHelper
 from quantlib.termstructures.yields.api import FuturesRateHelper, SwapRateHelper
 from quantlib.termstructures.yields.api import YieldTermStructure
-from quantlib.termstructures.yields.api import PiecewiseYieldCurve
+from quantlib.termstructures.yields.api import (
+    PiecewiseYieldCurve, BootstrapTrait, Interpolator )
 from quantlib.time.api import Actual360, Date, November, TARGET, Weeks, Annual
 from quantlib.time.api import Months, Years, Period, ModifiedFollowing
 from quantlib.time.api import Unadjusted, Thirty360, Semiannual, Schedule
@@ -109,18 +110,18 @@ ts_daycounter = ActualActual(ISDA)
 
 # term-structure construction
 helpers = depositHelpers + swapHelpers
-depoSwapCurve = PiecewiseYieldCurve(
-    'discount', 'loglinear', settlementDate, helpers, ts_daycounter
+depoSwapCurve = PiecewiseYieldCurve.from_reference_date(
+    BootstrapTrait.Discount, Interpolator.LogLinear, settlementDate, helpers, ts_daycounter
 )
 
 helpers = depositHelpers[:2] + futuresHelpers + swapHelpers[1:]
-depoFuturesSwapCurve = PiecewiseYieldCurve(
-    'discount', 'loglinear',settlementDate, helpers, ts_daycounter
+depoFuturesSwapCurve = PiecewiseYieldCurve.from_reference_date(
+    BootstrapTrait.Discount, Interpolator.LogLinear,settlementDate, helpers, ts_daycounter
 )
 
 helpers = depositHelpers[:3] + fraHelpers + swapHelpers
-depoFraSwapCurve = PiecewiseYieldCurve(
-    'discount', 'loglinear', settlementDate, helpers, ts_daycounter
+depoFraSwapCurve = PiecewiseYieldCurve.from_reference_date(
+    BootstrapTrait.Discount, Interpolator.LogLinear, settlementDate, helpers, ts_daycounter
 )
 
 

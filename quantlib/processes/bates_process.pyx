@@ -36,8 +36,8 @@ cdef class BatesProcess(HestonProcess):
         pass
 
     def __init__(self,
-       YieldTermStructure risk_free_rate_ts=None,
-       YieldTermStructure dividend_ts=None,
+       YieldTermStructure risk_free_rate_ts=YieldTermStructure(),
+       YieldTermStructure dividend_ts=YieldTermStructure(),
        Quote s0=None,
        Real v0=0,
        Real kappa=0,
@@ -53,18 +53,14 @@ cdef class BatesProcess(HestonProcess):
         if 'noalloc' in kwargs:
             self._thisptr = NULL
             return
-        
+
         #create handles
         cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](deref(s0._thisptr))
-        cdef Handle[_ff.YieldTermStructure] dividend_ts_handle = \
-                deref(dividend_ts._thisptr.get())
-        cdef Handle[_ff.YieldTermStructure] risk_free_rate_ts_handle = \
-                deref(risk_free_rate_ts._thisptr.get())
 
         self._thisptr = new shared_ptr[_hp.HestonProcess](
             new _hp.BatesProcess(
-                risk_free_rate_ts_handle,
-                dividend_ts_handle,
+                risk_free_rate_ts._thisptr,
+                dividend_ts._thisptr,
                 s0_handle,
                 v0, kappa, theta, sigma, rho,
                 lambda_, nu, delta, d))
@@ -73,11 +69,11 @@ cdef class BatesProcess(HestonProcess):
         return 'Bates process\nv0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f nu: %f delta: %f' % \
           (self.v0, self.kappa, self.theta, self.sigma,
            self.rho, self.Lambda, self.nu, self.delta)
-    
+
     property Lambda:
         def __get__(self):
             return (<_hp.BatesProcess*> self._thisptr.get()).Lambda()
-            
+
     property nu:
         def __get__(self):
             return (<_hp.BatesProcess*> self._thisptr.get()).nu()

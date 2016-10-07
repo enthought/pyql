@@ -41,8 +41,8 @@ cdef class HestonProcess:
             self._thisptr = NULL
 
     def __init__(self,
-       YieldTermStructure risk_free_rate_ts=None,
-       YieldTermStructure dividend_ts=None,
+       YieldTermStructure risk_free_rate_ts=YieldTermStructure(),
+       YieldTermStructure dividend_ts=YieldTermStructure(),
        Quote s0=None,
        Real v0=0,
        Real kappa=0,
@@ -55,26 +55,14 @@ cdef class HestonProcess:
         if 'noalloc' in kwargs:
             self._thisptr = NULL
             return
-        
+
         #create handles
         cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](deref(s0._thisptr))
 
-        cdef Handle[_yts.YieldTermStructure] dividend_ts_handle
-        if dividend_ts is None:
-            dividend_ts_handle = Handle[_yts.YieldTermStructure]()
-        else:
-            dividend_ts_handle = deref(dividend_ts._thisptr.get())
-
-        cdef Handle[_ff.YieldTermStructure] risk_free_rate_ts_handle
-        if risk_free_rate_ts is None:
-            risk_free_rate_ts_handle = Handle[_yts.YieldTermStructure]()
-        else:
-            risk_free_rate_ts_handle = deref(risk_free_rate_ts._thisptr.get())
-
         self._thisptr = new shared_ptr[_hp.HestonProcess](
             new _hp.HestonProcess(
-                risk_free_rate_ts_handle,
-                dividend_ts_handle,
+                risk_free_rate_ts._thisptr,
+                dividend_ts._thisptr,
                 s0_handle,
                 v0, kappa, theta, sigma, rho, d
             )
@@ -115,4 +103,3 @@ cdef class HestonProcess:
 
         # maybe not optmal but easiest to do
         return  SimpleQuote(quote_sptr.get().value())
-

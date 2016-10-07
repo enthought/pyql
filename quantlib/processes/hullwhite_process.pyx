@@ -33,12 +33,9 @@ cdef class HullWhiteProcess:
        Real a,
        Real sigma):
 
-        cdef Handle[_ff.YieldTermStructure] risk_free_rate_ts_handle
-        risk_free_rate_ts_handle = deref(risk_free_rate_ts._thisptr.get())
-
         self._thisptr = new shared_ptr[_hw.HullWhiteProcess](
             new _hw.HullWhiteProcess(
-                risk_free_rate_ts_handle,
+                risk_free_rate_ts._thisptr,
                 a, sigma))
 
     def __str__(self):
@@ -53,4 +50,3 @@ cdef class HullWhiteProcess:
     property sigma:
         def __get__(self):
             return self._thisptr.get().sigma()
-

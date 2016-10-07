@@ -8,6 +8,7 @@
 #
 
 from cython.operator cimport dereference as deref
+from libcpp cimport bool
 
 from quantlib.handle cimport shared_ptr, Handle
 
@@ -91,20 +92,16 @@ cdef class SpreadCdsHelper(CdsHelper):
                  Calendar calendar, int frequency,
                  int paymentConvention, int date_generation_rule,
                  DayCounter daycounter, double recovery_rate,
-                 YieldTermStructure discount_curve, settles_accrual=True,
-                 pays_at_default_time=True):
+                 YieldTermStructure discount_curve, bool settles_accrual=True,
+                 bool pays_at_default_time=True):
         """
         """
-
-        cdef Handle[_yts.YieldTermStructure] yts = \
-            deref(discount_curve._thisptr.get())
-
 
         self._thisptr = new shared_ptr[_ci.CdsHelper](\
             new _ci.SpreadCdsHelper(running_spread, deref(tenor._thisptr.get()),
                 settlement_days, deref(calendar._thisptr), <Frequency>frequency,
                 <BusinessDayConvention>paymentConvention, <Rule>date_generation_rule,
                 deref(daycounter._thisptr),
-                recovery_rate, yts, settles_accrual,
+                recovery_rate, discount_curve._thisptr, settles_accrual,
                 pays_at_default_time)
         )

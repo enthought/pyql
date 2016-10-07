@@ -24,10 +24,10 @@ cdef class GeneralizedBlackScholesProcess:
     property x0:
         def __get__(self):
             return self._thisptr.get().x0()
-        
+
     def drift(self, Time t, Real x):
         return self._thisptr.get().drift(t, x)
-        
+
 
 cdef class BlackScholesProcess(GeneralizedBlackScholesProcess):
 
@@ -37,9 +37,6 @@ cdef class BlackScholesProcess(GeneralizedBlackScholesProcess):
         cdef Handle[_qt.Quote] x0_handle = Handle[_qt.Quote](
             deref(x0._thisptr)
         )
-        cdef Handle[_ff.YieldTermStructure] risk_free_ts_handle = \
-                deref(risk_free_ts._thisptr.get())
-
         cdef Handle[_bvts.BlackVolTermStructure] black_vol_ts_handle = \
             Handle[_bvts.BlackVolTermStructure](
                 deref(black_vol_ts._thisptr)
@@ -48,7 +45,7 @@ cdef class BlackScholesProcess(GeneralizedBlackScholesProcess):
         self._thisptr = new shared_ptr[_bsp.GeneralizedBlackScholesProcess]( new \
             _bsp.BlackScholesProcess(
                 x0_handle,
-                risk_free_ts_handle,
+                risk_free_ts._thisptr,
                 black_vol_ts_handle
             )
         )
@@ -64,11 +61,6 @@ cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):
         cdef Handle[_qt.Quote] x0_handle = Handle[_qt.Quote](
             deref(x0._thisptr)
         )
-        cdef Handle[_ff.YieldTermStructure] dividend_ts_handle = \
-                deref(dividend_ts._thisptr.get())
-
-        cdef Handle[_ff.YieldTermStructure] risk_free_ts_handle = \
-                deref(risk_free_ts._thisptr.get())
 
         cdef Handle[_bvts.BlackVolTermStructure] black_vol_ts_handle = \
             Handle[_bvts.BlackVolTermStructure](
@@ -78,7 +70,7 @@ cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):
         self._thisptr = new shared_ptr[_bsp.GeneralizedBlackScholesProcess]( new \
             _bsp.BlackScholesMertonProcess(
                 x0_handle,
-                dividend_ts_handle,
-                risk_free_ts_handle,
+                dividend_ts._thisptr,
+                risk_free_ts._thisptr,
                 black_vol_ts_handle
             ))

@@ -39,10 +39,10 @@ cdef class HestonModelHelper(CalibrationHelper):
 
     def __cinit__(self):
         pass
-    
+
     def __str__(self):
         return 'Heston model helper'
-        
+
     def __init__(self,
         Period maturity,
         Calendar calendar,
@@ -57,12 +57,6 @@ cdef class HestonModelHelper(CalibrationHelper):
         cdef Handle[_qt.Quote] volatility_handle = \
                 Handle[_qt.Quote](deref(volatility._thisptr))
 
-        cdef Handle[_ffwd.YieldTermStructure] dividend_yield_handle = \
-            deref(dividend_yield._thisptr.get())
-
-        cdef Handle[_ffwd.YieldTermStructure]risk_free_rate_handle = \
-            deref(risk_free_rate._thisptr.get())
-
         self._thisptr = new shared_ptr[_ch.CalibrationHelper](
             new _hm.HestonModelHelper(
                 deref(maturity._thisptr.get()),
@@ -70,8 +64,8 @@ cdef class HestonModelHelper(CalibrationHelper):
                 s0,
                 strike_price,
                 volatility_handle,
-                risk_free_rate_handle,
-                dividend_yield_handle,
+                risk_free_rate._thisptr,
+                dividend_yield._thisptr,
                 <_hm.CalibrationErrorType>error_type
             )
         )
@@ -96,7 +90,7 @@ cdef class HestonModel:
         cdef shared_ptr[_hp.HestonProcess] hp_ptr = self._thisptr.get().process()
         cdef shared_ptr[_hp.HestonProcess]* hp_pt = new shared_ptr[_hp.HestonProcess](hp_ptr)
         process._thisptr = hp_pt
-        
+
         return process
 
     property theta:
@@ -141,7 +135,3 @@ cdef class HestonModel:
                 deref(method._thisptr.get()),
                 deref(end_criteria._thisptr.get()),
                 deref(constraint._thisptr.get()))
-
-
-
-

@@ -7,7 +7,8 @@ from quantlib.indexes.libor import Libor
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.rate_helpers import (
     DepositRateHelper, SwapRateHelper)
-from quantlib.termstructures.yields.api import PiecewiseYieldCurve
+from quantlib.termstructures.yields.api import (
+    PiecewiseYieldCurve, BootstrapTrait, Interpolator )
 
 from quantlib.time.api import (
     Period, Months, Date, Days, TARGET, ModifiedFollowing,
@@ -93,8 +94,8 @@ class ZeroCouponTestCase(unittest.TestCase):
         ts_day_counter = ActualActual(ISDA)
         tolerance = 1.0e-2
 
-        ts = PiecewiseYieldCurve('discount',
-                                 'loglinear',
+        ts = PiecewiseYieldCurve.from_reference_date(BootstrapTrait.Discount,
+                                 Interpolator.LogLinear,
                                  settlement_date,
                                  rate_helpers,
                                  ts_day_counter,
@@ -125,8 +126,8 @@ class ZeroCouponTestCase(unittest.TestCase):
         ts_day_counter = ActualActual(ISDA)
         tolerance = 1.0e-2
 
-        ts = PiecewiseYieldCurve('discount',
-                                 'loglinear',
+        ts = PiecewiseYieldCurve.from_reference_date(BootstrapTrait.Discount,
+                                 Interpolator.LogLinear,
                                  settlement_date,
                                  rate_helpers,
                                  ts_day_counter,

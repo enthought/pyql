@@ -15,22 +15,17 @@ from quantlib.time.date cimport Date
 
 cdef class ForwardSpreadedTermStructure(YieldTermStructure):
     """
-        Constructor Inputs: 
+        Constructor Inputs:
            1. YieldTermStructure
            2. Quote
-        
-    """
-    def __init__(self,YieldTermStructure yldtermstruct, Quote spread):
-        
-        cdef Handle[_qt.Quote] q_handle = Handle[_qt.Quote](deref(spread._thisptr))
-        cdef Handle[_ff.YieldTermStructure] yts_handle = deref(yldtermstruct._thisptr.get())
-        cdef _fsts.ForwardSpreadedTermStructure* _fwdts
 
-        _fwdts = new _fsts.ForwardSpreadedTermStructure(
-                    yts_handle, 
-                    q_handle
-                    )
-        
-        self._thisptr = new shared_ptr[Handle[_ff.YieldTermStructure]](
-             new Handle[_ff.YieldTermStructure](shared_ptr[_ff.YieldTermStructure](_fwdts))
-        )
+    """
+    def __init__(self, YieldTermStructure yldtermstruct, Quote spread):
+
+        cdef Handle[_qt.Quote] q_handle = Handle[_qt.Quote](deref(spread._thisptr))
+
+        self._thisptr.linkTo(shared_ptr[_ff.YieldTermStructure](new
+                                         _fsts.ForwardSpreadedTermStructure(
+                                             yldtermstruct._thisptr,
+                                             q_handle)
+        ))

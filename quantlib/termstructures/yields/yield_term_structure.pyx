@@ -27,57 +27,21 @@ cdef class YieldTermStructure:
     # FIXME: the relinkable stuff is really ugly. Do we need this on the
     # python side?
 
-    def __cinit__(self):
-        self.relinkable = False
-        self._thisptr = NULL
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-
-    def __init__(self, relinkable=True):
-        if relinkable:
-            self.relinkable = True
-            # Create a new RelinkableHandle to a YieldTermStructure within a
-            # new shared_ptr
-            self._thisptr = <shared_ptr[Handle[_yts.YieldTermStructure]]*> new \
-                shared_ptr[RelinkableHandle[_yts.YieldTermStructure]](
-                    new RelinkableHandle[_yts.YieldTermStructure]()
-                )
-        else:
-            self._thisptr = new shared_ptr[Handle[_yts.YieldTermStructure]](
-                new Handle[_yts.YieldTermStructure]()
-            )
-
     def link_to(self, YieldTermStructure structure):
-        cdef RelinkableHandle[_yts.YieldTermStructure]* rh
-        if not self.relinkable:
-            raise ValueError('Non relinkable term structure !')
-        else:
-            rh = <RelinkableHandle[_yts.YieldTermStructure]*>self._thisptr.get()
-            rh.linkTo(
-                structure._thisptr.get().currentLink()
-            )
+        self._thisptr.linkTo(structure._thisptr.currentLink())
 
-        return
+    cdef inline _yts.YieldTermStructure* _get_term_structure(self):
 
-    cdef _yts.YieldTermStructure* _get_term_structure(self):
+        cdef shared_ptr[_yts.YieldTermStructure] term_structure = self._thisptr.currentLink()
 
-        cdef _yts.YieldTermStructure* term_structure
-        cdef shared_ptr[_yts.YieldTermStructure] ts_ptr
-        ts_ptr = shared_ptr[_yts.YieldTermStructure](
-                self._thisptr.get().currentLink()
-        )
-        term_structure = ts_ptr.get()
+        if term_structure.get() is NULL:
+            raise ValueError('Term structure not initialized')
 
-        if term_structure is NULL:
-            raise ValueError('Term structure not intialized')
+        return term_structure.get()
 
-        return term_structure
+    cdef bool _is_empty(self):
 
-    cdef _is_empty(self):
-
-        return self._thisptr.get().empty()
+        return self._thisptr.empty()
 
     cdef _raise_if_empty(self):
         # verify that the handle is not empty. We could add an except + on the
@@ -121,9 +85,9 @@ cdef class YieldTermStructure:
         """
         self._raise_if_empty()
 
-        cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
+        cdef shared_ptr[_yts.YieldTermStructure] term_structure = self._thisptr.currentLink()
 
-        cdef _ir.InterestRate ql_zero_rate = term_structure.zeroRate(
+        cdef _ir.InterestRate ql_zero_rate = term_structure.get().zeroRate(
             deref(date._thisptr.get()), deref(day_counter._thisptr),
             <_ir.Compounding>compounding, <_ir.Frequency>frequency,
             extrapolate)

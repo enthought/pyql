@@ -52,16 +52,10 @@ cdef class Libor(IborIndex):
         Currency currency,
         Calendar financial_center_calendar,
         DayCounter dayCounter,
-        YieldTermStructure ts=None):
+        YieldTermStructure ts = YieldTermStructure()):
 
         # convert the Python str to C++ string
         cdef string familyName_string = familyName.encode('utf-8')
-
-        cdef Handle[_yts.YieldTermStructure] ts_handle
-        if ts is not None:
-             ts_handle = deref(ts._thisptr.get())
-        else:
-            ts_handle = Handle[_yts.YieldTermStructure]()
 
         self._thisptr = new shared_ptr[_in.Index](
         new _libor.Libor(
@@ -71,5 +65,4 @@ cdef class Libor(IborIndex):
             deref(currency._thisptr),
             deref(financial_center_calendar._thisptr),
             deref(dayCounter._thisptr),
-            ts_handle))
-
+            ts._thisptr))

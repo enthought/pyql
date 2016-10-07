@@ -20,8 +20,9 @@ from quantlib.settings import Settings
 from quantlib.indexes.libor import Libor
 from quantlib.instruments.option import (EuropeanExercise, AmericanExercise, DividendVanillaOption)
 from quantlib.termstructures.yields.rate_helpers import (DepositRateHelper, SwapRateHelper)
-from quantlib.termstructures.yields.piecewise_yield_curve import (VALID_TRAITS, VALID_INTERPOLATORS,PiecewiseYieldCurve)
-from quantlib.termstructures.yields.api import (FlatForward, YieldTermStructure)
+from quantlib.termstructures.yields.piecewise_yield_curve import PiecewiseYieldCurve
+from quantlib.termstructures.yields.api import (FlatForward, YieldTermStructure, BootstrapTrait,
+                                                Interpolator)
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.volatility.equityfx.black_vol_term_structure import BlackConstantVol
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
@@ -62,11 +63,11 @@ class SensitivityTestCase(unittest.TestCase):
         coupon_rate = 0.055
         bond_yield = 0.034921
 
-        flat_discounting_term_structure = YieldTermStructure(relinkable=True)
+        flat_discounting_term_structure = YieldTermStructure()
         flat_term_structure = FlatForward(
             reference_date = settlement_date,
             forward        = bond_yield,
-            daycounter     = Actual365Fixed(), 
+            daycounter     = Actual365Fixed(),
             compounding    = Compounded,
             frequency      = Semiannual)
 
@@ -98,7 +99,7 @@ class SensitivityTestCase(unittest.TestCase):
         zspd=bf.zSpread(bond, 100.0, flat_term_structure, Actual365Fixed(),
         Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)
 
-             
+
         depositData = [[ 1, Months, 4.581 ],
                         [ 2, Months, 4.573 ],
                         [ 3, Months, 4.557 ],
@@ -117,8 +118,8 @@ class SensitivityTestCase(unittest.TestCase):
         for m, period, rate in depositData:
             tenor = Period(m, Months)
             sq_rate = SimpleQuote(rate/100)
-            helper = DepositRateHelper(sq_rate, 
-                        tenor, 
+            helper = DepositRateHelper(sq_rate,
+                        tenor,
                         settlement_days,
                         calendar,
                         ModifiedFollowing,
@@ -128,8 +129,7 @@ class SensitivityTestCase(unittest.TestCase):
             rate_helpers.append(helper)
 
         liborIndex = Libor('USD Libor', Period(6, Months), settlement_days,
-                            USDCurrency(), calendar, Actual360(),
-                            YieldTermStructure(relinkable=False))
+                            USDCurrency(), calendar, Actual360())
 
         spread = SimpleQuote(0)
         fwdStart = Period(0, Days)
@@ -146,36 +146,36 @@ class SensitivityTestCase(unittest.TestCase):
         ts_day_counter = ActualActual(ISDA)
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve(
-            'discount', 'loglinear', settlement_date, rate_helpers,
-            ts_day_counter, tolerance)   
+        ts = PiecewiseYieldCurve.from_reference_date(
+            BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers,
+            ts_day_counter, tolerance)
 
-        discounting_term_structure = YieldTermStructure(relinkable=True)
+        discounting_term_structure = YieldTermStructure()
         discounting_term_structure.link_to(ts)
         pricing_engine = DiscountingBondEngine(discounting_term_structure)
         bond.set_pricing_engine(pricing_engine)
-                                   
-                                                            
+
+
 
         self.assertAlmostEqual(bond.npv, 100.83702940160767)
-    
+
 
         ba =  bucket_analysis([simple_quotes], [bond], [1], 0.0001, 1)
-        
-        self.assertTrue(2, ba) 
-        self.assertTrue(type(tuple), ba) 
+
+        self.assertTrue(2, ba)
+        self.assertTrue(type(tuple), ba)
         self.assertEqual(len(simple_quotes), len(ba[0][0]))
         self.assertEqual(0, ba[0][0][8])
-    
+
     def test_bucket_analysis_option(self):
-        
+
         settings = Settings()
-        
+
         calendar = TARGET()
-        
+
         todays_date = Date(15, May, 1998)
         settlement_date = Date(17, May, 1998)
-        
+
         settings.evaluation_date = todays_date
 
         option_type = Put
@@ -186,12 +186,12 @@ class SensitivityTestCase(unittest.TestCase):
         volatility = 0.20
         maturity = Date(17, May, 1999)
         daycounter = Actual365Fixed()
-        
+
         underlyingH = SimpleQuote(underlying)
-        
+
         payoff = PlainVanillaPayoff(option_type, strike)
-        
-        
+
+
         flat_term_structure = FlatForward(
             reference_date = settlement_date,
             forward        = risk_free_rate,
@@ -202,35 +202,35 @@ class SensitivityTestCase(unittest.TestCase):
             forward        = dividend_yield,
             daycounter     = daycounter
         )
-        
+
         flat_vol_ts = BlackConstantVol(
             settlement_date,
             calendar,
             volatility,
             daycounter
         )
-        
+
         black_scholes_merton_process = BlackScholesMertonProcess(
             underlyingH,
             flat_dividend_ts,
             flat_term_structure,
             flat_vol_ts
         )
-        
+
         european_exercise = EuropeanExercise(maturity)
         european_option = VanillaOption(payoff, european_exercise)
         analytic_european_engine = AnalyticEuropeanEngine(
                     black_scholes_merton_process
                 )
-        
+
         european_option.set_pricing_engine(analytic_european_engine)
-        
-        
+
+
         ba_eo= bucket_analysis(
                 [[underlyingH]], [european_option], [1], 0.50, 1)
 
         self.assertTrue(2, ba_eo)
-        self.assertTrue(type(tuple), ba_eo) 
+        self.assertTrue(type(tuple), ba_eo)
         self.assertEqual(1, len(ba_eo[0][0]))
         self.assertEqual(-0.4582666150152517, ba_eo[0][0][0])
 

@@ -24,7 +24,7 @@ from __future__ import print_function
 
 from quantlib.settings import Settings
 from quantlib.compounding import Simple
-from quantlib.currency import USDCurrency
+from quantlib.currency.api import USDCurrency
 from quantlib.indexes.libor import Libor
 from quantlib.indexes.swap_index import SwapIndex
 from quantlib.instruments.option import EuropeanExercise, AmericanExercise
@@ -41,7 +41,7 @@ from quantlib.time.api import (
 )
 from quantlib.time.calendars.united_states import UnitedStates
 from quantlib.termstructures.yields.api import (
-    PiecewiseYieldCurve, DepositRateHelper
+    PiecewiseYieldCurve, DepositRateHelper, Interpolator, BootstrapTrait
 )
 from quantlib.termstructures.volatility.equityfx.black_vol_term_structure import BlackConstantVol
 from quantlib.termstructures.yields.api import SwapRateHelper
@@ -64,7 +64,7 @@ def dividendOption():
     currency = USDCurrency() # INPUT	
 
     print("Date of the evaluation:			", todaysDate)
-    print("Calendar used:         			", calendar.name())
+    print("Calendar used:         			", calendar.name)
     print("Number of settlement Days:		", settlement_days)
     print("Date of settlement:       		", settlementDate)
     print("Convention of day counter:		", dayCounter.name())
@@ -161,7 +161,8 @@ def dividendOption():
     
     # ++++++++++++++++++  Now the creation of the yield curve
 
-    riskFreeTS = PiecewiseYieldCurve('zero', 'linear', settlementDate, instruments, dayCounter)
+    riskFreeTS = PiecewiseYieldCurve.from_reference_date(BootstrapTrait.ZeroYield,
+            Interpolator.Linear, settlementDate, instruments, dayCounter)
 
 
     # ++++++++++++++++++  build of the underlying process : with a Black-Scholes model 

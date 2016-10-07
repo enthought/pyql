@@ -16,7 +16,7 @@ from quantlib.settings import Settings
 from quantlib.termstructures.yields.rate_helpers import (
     DepositRateHelper, SwapRateHelper)
 from quantlib.termstructures.yields.piecewise_yield_curve import (
-    VALID_TRAITS, VALID_INTERPOLATORS, PiecewiseYieldCurve
+    PiecewiseYieldCurve, BootstrapTrait, Interpolator
 )
 from quantlib.time.api import Date, TARGET, Period, Months, Years, Days
 from quantlib.time.api import September, ISDA, today, Mar
@@ -70,8 +70,8 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve(
-            'discount', 'loglinear', settlement_date, rate_helpers,
+        ts = PiecewiseYieldCurve.from_reference_date(
+            BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers,
             ts_day_counter, tolerance
         )
 
@@ -83,6 +83,47 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         self.assertAlmostEqual(0.9975, ts.discount(Date(21, 12, 2008)), 4)
         self.assertAlmostEqual(0.9944, ts.discount(Date(21, 4, 2009)), 4)
         self.assertAlmostEqual(0.9904, ts.discount(Date(21, 9, 2009)), 4)
+
+    def test_relative_yieldcurve(self):
+        settings = Settings()
+        settings.evaluation_date = Date(6, 10, 2016)
+
+        # Market information
+        calendar = TARGET()
+
+        quotes = [0.0096, 0.0145, 0.0194]
+        tenors =  [3, 6, 12]
+
+        deposit_day_counter = Actual365Fixed()
+        convention = ModifiedFollowing
+        end_of_month = True
+        fixing_days = 3
+        rate_helpers = [DepositRateHelper(
+            quote, Period(month, Months), fixing_days, calendar, convention, end_of_month,
+            deposit_day_counter) for quote, month in zip(quotes, tenors)]
+
+        ts_day_counter = ActualActual(ISDA)
+
+        tolerance = 1.0e-15
+
+        ts_relative = PiecewiseYieldCurve(
+            BootstrapTrait.Discount, Interpolator.LogLinear, 2, calendar, rate_helpers,
+            ts_day_counter, tolerance
+        )
+        self.assertEqual(ts_relative.reference_date,
+                         calendar.advance(settings.evaluation_date, period = Period(2, Days)))
+
+        settings.evaluation_date = Date(10, 10, 2016)
+        settlement_date =  calendar.advance(settings.evaluation_date, period = Period(2, Days))
+        self.assertEqual(ts_relative.reference_date, settlement_date)
+
+        ts_absolute = PiecewiseYieldCurve.from_reference_date(
+            BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers,
+            ts_day_counter, tolerance
+        )
+        self.assertEqual(ts_absolute.data, ts_relative.data)
+        self.assertEqual(ts_absolute.dates, ts_relative.dates)
+        self.assertEqual(ts_absolute.times, ts_relative.times)
 
     def test_all_types_of_piecewise_curves(self):
 
@@ -98,7 +139,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         settlement_date = Date(18, September, 2008)
         # must be a business day
         settlement_date = calendar.adjust(settlement_date);
-        
+
         quotes = [SimpleQuote(0.0096), SimpleQuote(0.0145), SimpleQuote(0.0194)]
 
         tenors =  [3, 6, 12]
@@ -121,11 +162,11 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
             rate_helpers.append(helper)
 
 
-        tolerance = 1.0e-15 
+        tolerance = 1.0e-15
 
-        for trait in VALID_TRAITS:
-            for interpolation in VALID_INTERPOLATORS:
-                ts = PiecewiseYieldCurve(
+        for trait in BootstrapTrait:
+            for interpolation in Interpolator:
+                ts = PiecewiseYieldCurve.from_reference_date(
                     trait, interpolation, settlement_date, rate_helpers,
                     deposit_day_counter, tolerance
                 )
@@ -198,8 +239,8 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         ts_day_counter = ActualActual(ISDA)
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve(
-            'discount', 'loglinear', settlement_date, rate_helpers,
+        ts = PiecewiseYieldCurve.from_reference_date(
+            BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers,
             ts_day_counter, tolerance
         )
 
@@ -223,7 +264,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         calendar = UnitedStates() # INPUT
         dayCounter = Actual360() # INPUT
-        currency = USDCurrency() # INPUT	
+        currency = USDCurrency() # INPUT
 
         Settings.instance().evaluation_date = todays_date
         settlement_days	= 2
@@ -232,7 +273,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
             todays_date, period=Period(settlement_days, Days)
         )
 
-        liborRates = [ SimpleQuote(0.002763), SimpleQuote(0.004082), SimpleQuote(0.005601), SimpleQuote(0.006390), SimpleQuote(0.007125), 
+        liborRates = [ SimpleQuote(0.002763), SimpleQuote(0.004082), SimpleQuote(0.005601), SimpleQuote(0.006390), SimpleQuote(0.007125),
             SimpleQuote(0.007928), SimpleQuote(0.009446), SimpleQuote(0.01110)]
         liborRatesTenor = [Period(tenor, Months) for tenor in [1,2,3,4,5,6,9,12]]
         Libor_dayCounter = Actual360();
@@ -255,7 +296,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         instruments = []
 
         # ++++++++++++++++++++ Creation of the vector of RateHelper (need for the Yield Curve construction)
-        # ++++++++++++++++++++ Libor 
+        # ++++++++++++++++++++ Libor
         LiborFamilyName = currency.name + "Libor"
         instruments = []
         for rate, tenor in zip(liborRates, liborRatesTenor):
@@ -285,8 +326,8 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve(
-            'zero', 'linear', settlement_date, instruments, dayCounter,
+        ts = PiecewiseYieldCurve.from_reference_date(
+            BootstrapTrait.ZeroYield, Interpolator.Linear, settlement_date, instruments, dayCounter,
             tolerance
         )
 

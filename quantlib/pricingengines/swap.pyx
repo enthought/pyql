@@ -17,19 +17,17 @@ cdef class DiscountingSwapEngine(PricingEngine):
                  Date settlementDate=None,
                  Date npvDate=None):
 
-        cdef Handle[_yts.YieldTermStructure] yts_handle = \
-                deref(discount_curve._thisptr.get())
         if includeSettlementDateFlows is None and settlementDate is None and \
            npvDate is None:
             self._thisptr = new shared_ptr[_pe.PricingEngine](
-                new _swap.DiscountingSwapEngine(yts_handle)
-            )            
+                new _swap.DiscountingSwapEngine(discount_curve._thisptr)
+            )
         elif includeSettlementDateFlows is not None and \
              settlementDate is not None and \
              npvDate is not None:
             self._thisptr = new shared_ptr[_pe.PricingEngine](
                 new _swap.DiscountingSwapEngine(
-                    yts_handle,
+                    discount_curve._thisptr,
                     includeSettlementDateFlows,
                     deref(settlementDate._thisptr.get()),
                     deref(npvDate._thisptr.get())
@@ -37,4 +35,3 @@ cdef class DiscountingSwapEngine(PricingEngine):
             )
         else:
             raise NotImplementedError('Constructor not yet implemented')
-
