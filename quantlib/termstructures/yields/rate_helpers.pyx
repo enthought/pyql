@@ -39,8 +39,13 @@ cdef class RateHelper:
 
     property quote:
         def __get__(self):
-            cdef shared_ptr[_qt.Quote] quote_ptr = shared_ptr[_qt.Quote](self._thisptr.get().quote().currentLink())
+            cdef shared_ptr[_qt.Quote] quote_ptr = self._thisptr.get().quote().currentLink()
             return quote_ptr.get().value()
+
+        def __set__(self, Real val):
+            cdef shared_ptr[_qt.Quote] quote = self._thisptr.get().quote().currentLink()
+            cdef _qt.SimpleQuote* quote_ptr = <_qt.SimpleQuote*>(quote.get())
+            quote_ptr.setValue(val)
 
     property implied_quote:
         def __get__(self):

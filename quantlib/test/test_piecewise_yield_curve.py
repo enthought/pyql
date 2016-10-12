@@ -125,6 +125,40 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         self.assertEqual(ts_absolute.dates, ts_relative.dates)
         self.assertEqual(ts_absolute.times, ts_relative.times)
 
+    def test_bump_yieldcurve(self):
+        settings = Settings()
+        settings.evaluation_date = Date(6, 10, 2016)
+
+        # Market information
+        calendar = TARGET()
+
+        quotes = [SimpleQuote(0.0096), SimpleQuote(0.0145), SimpleQuote(0.0194)]
+        tenors =  [3, 6, 12]
+
+        deposit_day_counter = Actual365Fixed()
+        convention = ModifiedFollowing
+        end_of_month = True
+        fixing_days = 3
+        rate_helpers = [DepositRateHelper(
+            quote, Period(month, Months), fixing_days, calendar, convention, end_of_month,
+            deposit_day_counter) for quote, month in zip(quotes, tenors)]
+
+        ts_day_counter = ActualActual(ISDA)
+
+        tolerance = 1.0e-15
+
+        ts = PiecewiseYieldCurve(
+            BootstrapTrait.Discount, Interpolator.LogLinear, 2, calendar, rate_helpers,
+            ts_day_counter, tolerance
+        )
+        old_discount = ts.discount(ts.max_date)
+        # parallel shift of 1 bps
+        for rh in rate_helpers:
+            rh.quote += 1e-4
+        self.assertEqual([q.value for q in quotes], [rh.quote for rh in rate_helpers])
+        new_discount = ts.discount(ts.max_date)
+        self.assertTrue(new_discount < old_discount)
+
     def test_all_types_of_piecewise_curves(self):
 
         settings = Settings()
