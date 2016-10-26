@@ -1,5 +1,6 @@
 # Cython imports
 from cython.operator cimport dereference as deref
+from cpython.datetime cimport date_new, date, datetime, import_datetime
 from libcpp.string cimport string
 
 # cannot use date.pxd because of name clashing
@@ -16,7 +17,7 @@ from _period cimport (
     )
 
 # Python imports
-import datetime
+import_datetime()
 import six
 
 cdef public enum Month:
@@ -284,11 +285,9 @@ cdef class Date:
 
     """
 
-    def __cinit__(self, *args):
+    def __init__(self, *args):
 
-        if len(args) == 0:
-            self._thisptr = shared_ptr[QlDate](new QlDate())
-        elif len(args) == 3:
+        if len(args) == 3:
             day, month, year = args
             self._thisptr.reset(new QlDate(<Integer>day, <_date.Month>month, <Year>year))
         elif len(args) == 1:
@@ -337,7 +336,7 @@ cdef class Date:
         return self.serial
 
     def __cmp__(self, date2):
-        if isinstance(date2, (datetime.date, datetime.datetime)):
+        if isinstance(date2, (date, datetime)):
             date2 = Date.from_datetime(date2)
         elif not isinstance(date2, Date):
             return NotImplemented
@@ -427,8 +426,9 @@ cdef class Date:
     @classmethod
     def from_datetime(cls, date):
         """Returns the Quantlib Date object from the date/datetime object. """
-
-        return Date(date.day, date.month, date.year)
+        cdef Date instance = Date.__new__(Date)
+        instance._thisptr.reset(new QlDate(<Integer>date.day, <_date.Month>date.month, <Year>date.year))
+        return instance
 
 def today():
     '''Today's date. '''
@@ -489,7 +489,7 @@ cdef object _pydate_from_qldate(QlDate qdate):
     cdef int d = qdate.dayOfMonth()
     cdef int y = qdate.year()
 
-    return datetime.date(y, m, d)
+    return date_new(y, m, d)
 
 cpdef object pydate_from_qldate(Date qdate):
     """ Converts a PyQL Date to a datetime.date object. """
@@ -499,15 +499,8 @@ cpdef object pydate_from_qldate(Date qdate):
 cdef QlDate _qldate_from_pydate(object pydate):
     """ Converts a datetime.date to a QuantLib (C++) object. """
 
-    cdef Date qdate_ref = Date.from_datetime(pydate)
-    cdef QlDate* date_ref = <QlDate*>qdate_ref._thisptr.get()
-
-    return deref(date_ref)
-
+    return QlDate(<Integer>pydate.day, <_date.Month>pydate.month, <Year>pydate.year)
 
 cpdef Date qldate_from_pydate(object pydate):
     """ Converts a datetime.date to a PyQL date. """
-
-    cdef Date qdate_ref = Date.from_datetime(pydate)
-
-    return qdate_ref
+    return Date.from_datetime(pydate)
