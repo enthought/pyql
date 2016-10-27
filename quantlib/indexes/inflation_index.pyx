@@ -16,7 +16,7 @@ from libcpp cimport bool
 from libcpp.string cimport string
 
 from quantlib.index cimport Index
-from quantlib.time.date cimport Period
+from quantlib.time.date cimport Period, period_from_qlperiod
 from quantlib.time._period cimport Frequency, Months
 from quantlib.indexes.region cimport Region
 from quantlib.currency.currency cimport Currency
@@ -31,7 +31,6 @@ cimport quantlib._interest_rate as _ir
 from quantlib.currency.api import AUDCurrency
 from quantlib.indexes.regions import AustraliaRegion
 
-cimport quantlib.time._period as _pe
 cimport quantlib.currency._currency as _cu
 from quantlib.currency.currency cimport Currency
 
@@ -53,8 +52,7 @@ cdef class InflationIndex(Index):
     property availabilityLag:
         def __get__(self):
             cdef _ii.InflationIndex* ref = <_ii.InflationIndex*>self._thisptr.get()
-            cdef _pe.Period p =  ref.availabilityLag()
-            return Period(p.length(), p.units())
+            return period_from_qlperiod(ref.availabilityLag())
 
 
     property currency:

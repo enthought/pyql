@@ -18,8 +18,7 @@ from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
-from quantlib.time.date cimport Date, date_from_qldate
-from quantlib.util.converter import pydate_to_qldate
+from quantlib.time.date cimport Date, date_from_qldate, period_from_qlperiod
 
 cimport quantlib._index as _in
 cimport quantlib.indexes._interest_rate_index as _iri
@@ -51,13 +50,7 @@ cdef class InterestRateIndex(Index):
 
     property tenor:
         def __get__(self):
-
-            cdef _pe.Period qlp = get_iri(self).tenor()
-            # FIX ME: this should be more efficient but does not work
-            # p = Period()
-            # p._thisptr = new shared_ptr[_pe.Period](&qlp)
-            # return p
-            return Period(qlp.length(),qlp.units())
+            return period_from_qlperiod(get_iri(self).tenor())
 
     property fixing_days:
         def __get__(self):
