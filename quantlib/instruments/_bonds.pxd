@@ -7,14 +7,14 @@ from quantlib.handle cimport shared_ptr, Handle
 from _instrument cimport Instrument
 from quantlib.time._calendar cimport BusinessDayConvention, Calendar
 from quantlib.time._date cimport Date
-from quantlib.time._period cimport Frequency
+from quantlib.time._period cimport Frequency, Period
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._schedule cimport Schedule
 from quantlib._cashflow cimport Leg
 from quantlib.indexes._ibor_index cimport IborIndex
+from quantlib.indexes._inflation_index cimport ZeroInflationIndex
 from quantlib.time._schedule cimport Rule
 from quantlib._compounding cimport Compounding
-
 
 cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib':
     cdef cppclass Bond(Instrument):
@@ -78,22 +78,22 @@ cdef extern from 'ql/instruments/bonds/zerocouponbond.hpp' namespace 'QuantLib':
                       BusinessDayConvention paymentConvention,
                       Real redemption,
                       Date& issueDate) except +
-                      
-cdef extern from 'ql/instruments/bonds/floatingratebond.hpp' namespace 'QuantLib': 
+
+cdef extern from 'ql/instruments/bonds/floatingratebond.hpp' namespace 'QuantLib':
     cdef cppclass FloatingRateBond(Bond):
         FloatingRateBond(Natural settlementDays,
                         Real faceAmount,
-                        Schedule& schedule, 
+                        Schedule& schedule,
                         shared_ptr[IborIndex]& iborIndex,
                         DayCounter& accrualDayCounter,
                         BusinessDayConvention paymentConvention,
-                        Natural fixingDays, 
+                        Natural fixingDays,
                         vector[Real]& gearings,
                         vector[Spread]& spreads,
                         vector[Rate]& caps,
                         vector[Rate]& floors,
                         bool inArrears,
-                        Real redemption, 
+                        Real redemption,
                         Date& issueDate) except +
         FloatingRateBond(Natural settlementDays,
                         Real faceAmount,
@@ -105,12 +105,35 @@ cdef extern from 'ql/instruments/bonds/floatingratebond.hpp' namespace 'QuantLib
                         DayCounter& accrualDayCounter,
                         BusinessDayConvention accrualConvention,
                         BusinessDayConvention paymentConvention,
-                        Natural fixingDays, 
+                        Natural fixingDays,
                         vector[Real]& gearings,
                         vector[Spread]& spreads,
                         vector[Rate]& caps,
-                        vector[Rate]& floors, 
-                        Real redemption, 
+                        vector[Rate]& floors,
+                        Real redemption,
                         Date& issueDate,
                         Date& stubDate,
-                        Rule rule) except +  
+                        Rule rule) except +
+cdef extern from 'ql/cashflows/cpicoupon.hpp' namespace 'QuantLib::CPI':
+    cdef enum InterpolationType:
+        pass
+
+cdef extern from 'ql/instruments/bonds/cpibond.hpp' namespace 'QuantLib':
+    cdef cppclass CPIBond(Bond):
+        CPIBond(Natural settlementDays,
+                Real faceAmount,
+                bool growthOnly,
+                Real baseCPI,
+                const Period& observationLag,
+                shared_ptr[ZeroInflationIndex]& cpiIndex,
+                InterpolationType observationInterpolation,
+                const Schedule& schedule,
+                const vector[Rate]& coupons,
+                const DayCounter& accrualDayCounter,
+                BusinessDayConvention paymentConvention) except +
+                # const Date& issueDate = Date(),
+                # const Calendar& paymentCalendar = Calendar(),
+                # const Period& exCouponPeriod = Period(),
+                # const Calendar& exCouponCalendar = Calendar(),
+                # const BusinessDayConvention exCouponConvention = Unadjusted,
+                # bool exCouponEndOfMonth = false)

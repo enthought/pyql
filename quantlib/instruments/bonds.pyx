@@ -22,15 +22,17 @@ from quantlib.time._businessdayconvention cimport BusinessDayConvention, Followi
 from quantlib.time._daycounter cimport DayCounter as QlDayCounter
 from quantlib.time._schedule cimport Schedule as QlSchedule
 from quantlib.time.calendar cimport Calendar
-from quantlib.time.date cimport Date, date_from_qldate
+from quantlib.time.date cimport Date, date_from_qldate, Period
 from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time._period cimport Frequency
 from quantlib.indexes.ibor_index cimport IborIndex
+from quantlib.indexes.inflation_index cimport ZeroInflationIndex
 
 cimport quantlib._cashflow as _cashflow
 cimport quantlib.cashflow as cashflow
 cimport quantlib.indexes._ibor_index as _ii
+cimport quantlib.indexes._inflation_index as _inf
 
 import datetime
 
@@ -131,7 +133,6 @@ cdef class Bond(Instrument):
         def __get__(self):
             cdef _cashflow.Leg leg
             leg = get_bond(self).cashflows()
-
             return cashflow.leg_items(leg)
 
 cdef class FixedRateBond(Bond):
@@ -267,4 +268,23 @@ cdef class FloatingRateBond(Bond):
                 redemption,
                 deref(issue_date._thisptr)
                 )
+            )
+
+cdef class CPIBond(Bond):
+    """ Floating rate bond """
+    def __init__(self, int settlement_days, double face_amount, bool growth_only,
+                 double baseCPI, Period observation_lag not None,
+                 ZeroInflationIndex cpi_index not None,
+                 int observation_interpolation,
+                 Schedule schedule, vector[Rate] coupons,
+                 DayCounter accrual_day_counter, BusinessDayConvention payment_convention=Following):
+
+        self._thisptr = new shared_ptr[_instrument.Instrument](
+            new _bonds.CPIBond(<Natural> settlement_days, <Real> face_amount,
+                growth_only, baseCPI, deref(observation_lag._thisptr.get()),
+                shared_ptr[_inf.ZeroInflationIndex](
+                    <_inf.ZeroInflationIndex*>cpi_index._thisptr.get()),
+                <_bonds.InterpolationType> observation_interpolation,
+                deref(schedule._thisptr), coupons,
+                deref(accrual_day_counter._thisptr), payment_convention)
             )
