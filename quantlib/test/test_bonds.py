@@ -166,7 +166,7 @@ class BondTestCase(unittest.TestCase):
             issue_date
         )
 
-        discounting_term_structure = YieldTermStructure(relinkable=True)
+        discounting_term_structure = YieldTermStructure()
         flat_term_structure = FlatForward(
             settlement_days = 1,
             forward         = 0.044,
@@ -221,14 +221,14 @@ class BondTestCase(unittest.TestCase):
         engine = DiscountingBondEngine(discounting_term_structure)
 
         bond.set_pricing_engine(engine)
-        
+
         self.assertEqual(
             calendar.advance(todays_date, 3, Days), bond.settlement_date()
         )
         self.assertEqual(0., bond.accrued_amount(bond.settlement_date()))
         self.assertAlmostEqual(57.6915, bond.clean_price, 4)
     def test_excel_example_with_floating_rate_bond(self):
-        
+
         todays_date = Date(25, August, 2011)
 
         settings = Settings()
@@ -255,15 +255,15 @@ class BondTestCase(unittest.TestCase):
             ModifiedFollowing,
             Backward
         )#3
-        
-        flat_discounting_term_structure = YieldTermStructure(relinkable=True)
-        forecastTermStructure = YieldTermStructure(relinkable=True)
-        
-        
+
+        flat_discounting_term_structure = YieldTermStructure()
+        forecastTermStructure = YieldTermStructure()
+
+
         dc = Actual360()
         ibor_index = Euribor6M(forecastTermStructure) #5
 
-        
+
         fixing_days = 2 #6
         gearings = [1,0.0] #7
         spreads = [1,0.05] #8
@@ -276,6 +276,7 @@ class BondTestCase(unittest.TestCase):
         float_bond = FloatingRateBond(settlement_days, face_amount, float_bond_schedule, ibor_index, dc,
                                       fixing_days, gearings, spreads, caps, floors, pmt_conv, True,
                                       redemption, issue_date)
+
         flat_term_structure = FlatForward(
             settlement_days = 1,
             forward         = 0.055,
@@ -285,15 +286,15 @@ class BondTestCase(unittest.TestCase):
             frequency       = Annual)
         flat_discounting_term_structure.link_to(flat_term_structure)
         forecastTermStructure.link_to(flat_term_structure)
-        
+
         engine = DiscountingBondEngine(flat_discounting_term_structure)
-        
+
         float_bond.set_pricing_engine(engine)
         cons_option_vol = ConstantOptionletVolatility(settlement_days, UnitedStates(SETTLEMENT), pmt_conv, 0.95, Actual365Fixed())
         coupon_pricer = BlackIborCouponPricer(cons_option_vol)
-        
+
         set_coupon_pricer(float_bond,coupon_pricer)
-        
+
 
         self.assertEqual(Date(10, Jul, 2016), termination_date)
         self.assertEqual(
@@ -307,6 +308,5 @@ class BondTestCase(unittest.TestCase):
         self.assertAlmostEqual(13500805.2469, float_bond.npv,4)
 
 
-        
 if __name__ == '__main__':
     unittest.main()
