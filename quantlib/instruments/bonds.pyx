@@ -224,8 +224,8 @@ cdef class FloatingRateBond(Bond):
     def __init__(self, Natural settlement_days, Real face_amount,
         Schedule schedule, IborIndex ibor_index,
         DayCounter accrual_day_counter, Natural fixing_days,
-        vector[Real] gearings, vector[Spread] spreads, vector[Rate] caps,
-        vector[Rate] floors,
+        vector[Real] gearings = [1.], vector[Spread] spreads =[0.],
+                 vector[Rate] caps = [], vector[Rate] floors = [],
         BusinessDayConvention payment_convention=Following,
         bool in_arrears=True,
         Real redemption=100.0, Date issue_date=Date()
@@ -247,9 +247,9 @@ cdef class FloatingRateBond(Bond):
         fixing_days : int
             Number of fixing days for bond
         gearings: list [float]
-            Gearings defaulted to [1,0]
+            Gearings defaulted to [1.]
         spreads: list [float]
-            Spread on ibor index, default to [0,0]
+            Spread on ibor index, default to [0.]
         caps: list [float]
             Caps on the spread
         floors: list[float]
@@ -284,14 +284,23 @@ cdef class CPIBond(Bond):
                  _bonds.InterpolationType observation_interpolation,
                  Schedule schedule, vector[Rate] coupons,
                  DayCounter accrual_day_counter,
-                 BusinessDayConvention payment_convention=Following):
+                 BusinessDayConvention payment_convention=Following,
+                 Date issue_date = Date(), Calendar payment_calendar = Calendar(),
+                 Period ex_coupon_period = Period(), Calendar ex_coupon_calendar = Calendar(),
+                 BusinessDayConvention ex_coupon_convention = Unadjusted,
+                 bool ex_coupon_end_of_month = False):
 
         self._thisptr = new shared_ptr[_instrument.Instrument](
-            new _bonds.CPIBond(settlement_days, face_amount,
-                growth_only, baseCPI, deref(observation_lag._thisptr),
-                shared_ptr[_inf.ZeroInflationIndex](
-                    <_inf.ZeroInflationIndex*>cpi_index._thisptr),
+            new _bonds.CPIBond(
+                settlement_days, face_amount, growth_only, baseCPI,
+                deref(observation_lag._thisptr),
+                static_pointer_cast[_inf.ZeroInflationIndex](
+                    cpi_index._thisptr),
                 observation_interpolation,
                 deref(schedule._thisptr), coupons,
-                deref(accrual_day_counter._thisptr), payment_convention)
+                deref(accrual_day_counter._thisptr), payment_convention,
+                deref(issue_date._thisptr),
+                deref(payment_calendar._thisptr), deref(ex_coupon_period._thisptr),
+                deref(ex_coupon_calendar._thisptr), ex_coupon_convention,
+                ex_coupon_end_of_month)
             )

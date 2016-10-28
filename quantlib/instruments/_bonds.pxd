@@ -129,10 +129,11 @@ cdef extern from 'ql/instruments/bonds/cpibond.hpp' namespace 'QuantLib':
                 const Schedule& schedule,
                 const vector[Rate]& coupons,
                 const DayCounter& accrualDayCounter,
-                BusinessDayConvention paymentConvention) except +
-                # const Date& issueDate = Date(),
-                # const Calendar& paymentCalendar = Calendar(),
-                # const Period& exCouponPeriod = Period(),
-                # const Calendar& exCouponCalendar = Calendar(),
-                # const BusinessDayConvention exCouponConvention = Unadjusted,
-                # bool exCouponEndOfMonth = false)
+                BusinessDayConvention paymentConvention,
+                const Date& issueDate, # Date()
+                const Calendar& paymentCalendar, #Calendar()
+                const Period& exCouponPeriod, # Period()
+                const Calendar& exCouponCalendar, # Calendar()
+                const BusinessDayConvention exCouponConvention,  # Unadjusted
+                bool exCouponEndOfMonth # false
+        ) except +
