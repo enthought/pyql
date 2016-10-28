@@ -54,20 +54,18 @@ cdef extern from 'ql/instruments/bonds/fixedratebond.hpp' namespace 'QuantLib':
     cdef cppclass FixedRateBond(Bond):
         FixedRateBond(Natural settlementDays,
                       Real faceAmount,
-                      Schedule& schedule,
+                      const Schedule& schedule,
                       vector[Rate]& coupons,
                       DayCounter& accrualDayCounter,
                       BusinessDayConvention paymentConvention,
-                      Real redemption) except +
-        FixedRateBond(Natural settlementDays,
-                      Real faceAmount,
-                      Schedule& schedule,
-                      vector[Rate]& coupons,
-                      DayCounter& accrualDayCounter,
-                      BusinessDayConvention paymentConvention,
-                      Real redemption,
-                      Date& issueDate) except +
-        Date settlementDate() except +
+                      Real redemption, # 100.0
+                      const Date& issueDate, # Date()
+                      const Calendar& payemntCalendar, # Calendar()
+                      const Period& exCouponPeriod, # Period()
+                      const Calendar& exCouponCalendar, # Calendar()
+                      const BusinessDayConvention exCouponConvention, # Unadjusted,
+                      bool exCouponEndOfMonth, # false
+                      ) except +
 
 cdef extern from 'ql/instruments/bonds/zerocouponbond.hpp' namespace 'QuantLib':
     cdef cppclass ZeroCouponBond(Bond):
@@ -114,6 +112,7 @@ cdef extern from 'ql/instruments/bonds/floatingratebond.hpp' namespace 'QuantLib
                         Date& issueDate,
                         Date& stubDate,
                         Rule rule) except +
+
 cdef extern from 'ql/cashflows/cpicoupon.hpp' namespace 'QuantLib::CPI':
     cdef enum InterpolationType:
         pass
