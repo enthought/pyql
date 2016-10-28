@@ -273,10 +273,9 @@ class BondTestCase(unittest.TestCase):
 
         issue_date = effective_date
 
-        
-        float_bond = FloatingRateBond(settlement_days, face_amount, float_bond_schedule, ibor_index, dc, 
-                                    fixing_days, gearings, spreads, caps, floors, pmt_conv, redemption, issue_date)
-
+        float_bond = FloatingRateBond(settlement_days, face_amount, float_bond_schedule, ibor_index, dc,
+                                      fixing_days, gearings, spreads, caps, floors, pmt_conv, True,
+                                      redemption, issue_date)
         flat_term_structure = FlatForward(
             settlement_days = 1,
             forward         = 0.055,
