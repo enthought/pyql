@@ -80,19 +80,20 @@ cdef extern from 'ql/instruments/bonds/zerocouponbond.hpp' namespace 'QuantLib':
 cdef extern from 'ql/instruments/bonds/floatingratebond.hpp' namespace 'QuantLib':
     cdef cppclass FloatingRateBond(Bond):
         FloatingRateBond(Natural settlementDays,
-                        Real faceAmount,
-                        Schedule& schedule,
-                        shared_ptr[IborIndex]& iborIndex,
-                        DayCounter& accrualDayCounter,
-                        BusinessDayConvention paymentConvention,
-                        Natural fixingDays,
-                        vector[Real]& gearings,
-                        vector[Spread]& spreads,
-                        vector[Rate]& caps,
-                        vector[Rate]& floors,
-                        bool inArrears,
-                        Real redemption,
-                        Date& issueDate) except +
+                         Real faceAmount,
+                         Schedule& schedule,
+                         const shared_ptr[IborIndex]& iborIndex,
+                         DayCounter& accrualDayCounter,
+                         BusinessDayConvention paymentConvention,
+                         Natural fixingDays, # Null<Natural>()
+                         vector[Real]& gearings, # std::vector<Rate>(1, 1.0)
+                         vector[Spread]& spreads, #std::vector<Rate>(1, 0.0)
+                         vector[Rate]& caps, # std::vector<Rate>()
+                         vector[Rate]& floors, # std::vector<Rate>()
+                         bool inArrears, # false
+                         Real redemption, # 100.
+                         Date& issueDate # Date()
+        ) except +
         FloatingRateBond(Natural settlementDays,
                         Real faceAmount,
                         Date& startDate,
