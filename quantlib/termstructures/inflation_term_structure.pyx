@@ -19,7 +19,8 @@ from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle
 cimport quantlib.time._daycounter as _dc
 from quantlib.time.daycounter cimport DayCounter
 
-from quantlib.time._period cimport Frequency 
+from quantlib.time._period cimport Frequency
+from quantlib.time.calendar cimport Calendar
 
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
 
@@ -33,53 +34,23 @@ from quantlib.termstructures.inflation.seasonality cimport Seasonality
 cdef class InflationTermStructure:
     """Abstract Base Class.
     """
-    def __cinit__(self):
-        self.relinkable = False
-        self._thisptr = NULL
-
-    def __init__(self, relinkable=True):
-        if relinkable:
-            self.relinkable = True
-            # Create a new RelinkableHandle to a InflationTermStructure within a
-            # new shared_ptr
-            self._thisptr = <shared_ptr[Handle[_if.InflationTermStructure]]*> new \
-                shared_ptr[RelinkableHandle[_if.InflationTermStructure]](
-                    new RelinkableHandle[_if.InflationTermStructure]()
-                )
-        else:
-            self._thisptr = new shared_ptr[Handle[_if.InflationTermStructure]](
-                new Handle[_if.InflationTermStructure]()
-            )
 
     def link_to(self, InflationTermStructure structure):
-        cdef RelinkableHandle[_if.InflationTermStructure]* rh
-        if not self.relinkable:
-            raise ValueError('Non relinkable inflation term structure !')
-        else:
-            rh = <RelinkableHandle[_if.InflationTermStructure]*>self._thisptr.get()
-            rh.linkTo(
-                structure._thisptr.get().currentLink()
-            )
+        self._thisptr.linkTo(structure._thisptr.currentLink())
 
-        return
+    cdef inline _if.InflationTermStructure* _get_term_structure(self):
 
-    cdef _if.InflationTermStructure* _get_term_structure(self):
+        cdef shared_ptr[_if.InflationTermStructure] ts_ptr = \
+            self._thisptr.currentLink()
 
-        cdef _if.InflationTermStructure* term_structure
-        cdef shared_ptr[_if.InflationTermStructure] ts_ptr
-        ts_ptr = shared_ptr[_if.InflationTermStructure](
-                self._thisptr.get().currentLink()
-        )
-        term_structure = ts_ptr.get()
-
-        if term_structure is NULL:
+        if ts_ptr.get() is NULL:
             raise ValueError('Inflation term structure not intialized')
 
-        return term_structure
+        return ts_ptr.get()
 
-    cdef _is_empty(self):
+    cdef bool _is_empty(self):
 
-        return self._thisptr.get().empty()
+        return self._thisptr.empty()
 
     cdef _raise_if_empty(self):
         # verify that the handle is not empty. We could add an except + on the
@@ -87,10 +58,6 @@ cdef class InflationTermStructure:
         # the code generation with Cython than what it solves
         if self._is_empty():
             raise ValueError('Empty handle to the inflation term structure')
-        
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
 
     property max_date:
         def __get__(self):
@@ -100,17 +67,14 @@ cdef class InflationTermStructure:
             cdef _date.Date max_date = term_structure.maxDate()
             return date_from_qldate(max_date)
 
-        
+
 cdef class ZeroInflationTermStructure(InflationTermStructure):
 
-    def __cinit__(self):
-        pass
-    
     def zeroRate(self, Date d,
                  Period inst_obs_lag,
                  bool force_linear_interpolation,
                  bool extrapolate):
-        
+
         cdef _if.ZeroInflationTermStructure* term_structure = \
           <_if.ZeroInflationTermStructure*>self._get_term_structure()
         return term_structure.zeroRate(
@@ -125,12 +89,12 @@ cdef class ZeroInflationTermStructure(InflationTermStructure):
         cdef _if.ZeroInflationTermStructure* term_structure = \
           <_if.ZeroInflationTermStructure*>self._get_term_structure()
         return term_structure.zeroRate(t, extrapolate)
-        
+
 cdef class YoYInflationTermStructure(InflationTermStructure):
 
     def __cinit__(self):
         pass
-    
+
     def yoyRate(self, Date d,
                 Period inst_obs_lag,
                 bool force_linear_interpolation,
