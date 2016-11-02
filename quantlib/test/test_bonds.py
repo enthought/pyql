@@ -4,9 +4,6 @@ from quantlib.instruments.bonds import (
     FixedRateBond, ZeroCouponBond, FloatingRateBond
 )
 from quantlib.pricingengines.bond import DiscountingBondEngine
-from quantlib.time.calendar import (
-    Unadjusted, ModifiedFollowing, Following
-)
 from quantlib.time.calendars.united_states import (
     UnitedStates, GOVERNMENTBOND, SETTLEMENT
 )
@@ -26,7 +23,7 @@ from quantlib.termstructures.yields.api import (
 )
 from quantlib.indexes.libor import Libor
 from quantlib.currency.api import USDCurrency
-from quantlib.time.api import Months
+from quantlib.time.api import Months, Unadjusted, Following, ModifiedFollowing
 from quantlib.cashflow import Leg, SimpleLeg
 from quantlib.cashflows.coupon_pricer import IborCouponPricer, BlackIborCouponPricer, set_coupon_pricer
 from quantlib.termstructures.volatility.optionlet.optionlet_volatility_structure import ConstantOptionletVolatility, OptionletVolatilityStructure

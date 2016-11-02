@@ -15,7 +15,7 @@ from quantlib.instruments.bonds import (
 from quantlib.compounding import Compounded
 
 from quantlib.pricingengines.bond import DiscountingBondEngine
-from quantlib.time.calendar import (
+from quantlib.time.businessdayconvention import (
     Unadjusted, ModifiedFollowing, Following)
 
 from quantlib.time.calendars.null_calendar import NullCalendar

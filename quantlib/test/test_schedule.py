@@ -2,7 +2,7 @@ from .unittest_tools import unittest
 from quantlib.time.date import (
     Date, Period, Jan, Dec, Weeks, Sep, Months, Nov
 )
-from quantlib.time.calendar import Following, Preceding
+from quantlib.time.businessdayconvention import Following, Preceding
 from quantlib.time.calendars.united_kingdom import UnitedKingdom
 from quantlib.time.schedule import Schedule, Twentieth, Forward, Backward
 

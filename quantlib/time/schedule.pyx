@@ -4,6 +4,7 @@ from libcpp.vector cimport vector
 cimport _schedule
 cimport _date
 cimport _calendar
+from _businessdayconvention cimport Following
 
 from calendar cimport DateList, Calendar
 from date cimport date_from_qldate, Date, Period
@@ -42,8 +43,8 @@ cdef class Schedule:
 
     def __init__(self, Date effective_date, Date termination_date,
             Period tenor, Calendar calendar,
-            int business_day_convention=_calendar.Following,
-            int termination_date_convention=_calendar.Following,
+            int business_day_convention=Following,
+            int termination_date_convention=Following,
            int date_generation_rule=Forward, end_of_month=False):
 
         self._thisptr = new _schedule.Schedule(

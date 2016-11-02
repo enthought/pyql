@@ -16,7 +16,8 @@ cimport quantlib._quote as _qt
 cimport quantlib.indexes._ibor_index as _ib
 cimport quantlib.indexes._swap_index as _si
 from quantlib.time._period cimport Frequency, Days
-from quantlib.time._calendar cimport BusinessDayConvention
+from quantlib.time._businessdayconvention cimport (
+    BusinessDayConvention, ModifiedFollowing )
 from quantlib.time.date cimport date_from_qldate
 from quantlib.quotes cimport Quote, SimpleQuote
 from quantlib.time.calendar cimport Calendar
@@ -24,8 +25,6 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.date cimport Period, Date
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.indexes.swap_index cimport SwapIndex
-
-from quantlib.time.calendar import ModifiedFollowing
 
 cdef class RateHelper:
 

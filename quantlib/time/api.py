@@ -8,9 +8,10 @@
 """
 
 from .businessdayconvention import BusinessDayConvention
-from .calendar import (
-    Calendar, ModifiedFollowing, Following, ModifiedPreceding,
-    Preceding, Unadjusted, holiday_list
+from .calendar import Calendar, holiday_list
+from .businessdayconvention import (
+    ModifiedFollowing, Following, ModifiedPreceding,
+    Preceding, Unadjusted, HalfMonthModifiedFollowing, Nearest
     )
 from .calendar_registry import calendar_from_name
 from .calendars.jointcalendar import JointCalendar

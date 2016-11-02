@@ -15,7 +15,7 @@ from quantlib.quotes cimport Quote
 from quantlib.time.date cimport Date
 from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.time._calendar cimport Following
+from quantlib.time._businessdayconvention cimport Following
 from quantlib.termstructures.yields.rate_helpers cimport RateHelper
 
 
