@@ -8,8 +8,9 @@ from quantlib.time._date cimport (
     Date as QlDate, Date_todaysDate, Jul, August, September, Date_endOfMonth
 )
 from quantlib.time._period cimport Years, Period, Annual, Days
-from quantlib.time._calendar cimport (
-    Calendar, Unadjusted, ModifiedFollowing, Following
+from quantlib.time._calendar cimport Calendar
+from quantlib.time._businessdayconvention cimport (
+        Unadjusted, ModifiedFollowing, Following
 )
 from quantlib.time.calendars._target cimport TARGET
 from quantlib.time._schedule cimport Schedule, Backward

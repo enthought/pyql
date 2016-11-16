@@ -15,14 +15,7 @@ cimport quantlib.time._calendar as _calendar
 cimport quantlib.time._date as _date
 cimport quantlib.time.date as date
 cimport quantlib.time._period as _period
-
-# BusinessDayConvention:
-cdef public enum BusinessDayConvention:
-    Following         = _calendar.Following
-    ModifiedFollowing = _calendar.ModifiedFollowing
-    Preceding         = _calendar.Preceding
-    ModifiedPreceding = _calendar.ModifiedPreceding
-    Unadjusted        = _calendar.Unadjusted
+from quantlib.time._businessdayconvention cimport Following
 
 cdef class Calendar:
     '''This class provides methods for determining whether a date is a

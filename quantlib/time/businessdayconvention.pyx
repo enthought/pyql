@@ -6,18 +6,20 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
+cimport _businessdayconvention as _bdc
 
-from libcpp.string cimport string
-cimport quantlib.time._calendar as _ca
+cdef public enum:
+    Following = _bdc.Following
+    ModifiedFollowing = _bdc.ModifiedFollowing
+    Preceding = _bdc.Preceding
+    ModifiedPreceding = _bdc.ModifiedPreceding
+    Unadjusted = _bdc.Unadjusted
+    HalfMonthModifiedFollowing = _bdc.HalfMonthModifiedFollowing
+    Nearest = _bdc.Nearest
 
-cdef extern from "businessdayconvention_support_code.hpp" namespace "QL":
-    string repr(int b) except +
-
-
-# BusinessDayConvention:
-cdef QL_BDC = [_ca.Following, _ca.ModifiedFollowing,
-               _ca.Preceding, _ca.ModifiedPreceding,
-               _ca.Unadjusted]
+cdef QL_BDC = [Following, ModifiedFollowing,
+               Preceding, ModifiedPreceding, Unadjusted,
+               HalfMonthModifiedFollowing, Nearest]
 
 _BDC_DICT = {str(BusinessDayConvention(v)).replace(" ",""):v for v in QL_BDC}
 
@@ -34,9 +36,9 @@ cdef class BusinessDayConvention(int):
         return BusinessDayConvention(_BDC_DICT[name])
 
     def __str__(self):
-        cdef string res = repr(int(self))
-        return res.decode('utf-8')
+        cdef _bdc.stringstream ss
+        ss << <_bdc.BusinessDayConvention>(self)
+        return ss.str().decode()
 
     def __repr__(self):
-        cdef string res = repr(int(self))
-        return 'Business Day Convention: {}'.format(res.decode('utf-8'))
+        return 'BusinessDayConvention({})'.format(str(self).replace(" ", ""))

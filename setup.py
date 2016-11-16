@@ -150,15 +150,6 @@ def collect_extensions():
         **kwargs
     )
 
-    business_day_convention_extension = Extension(
-        name='quantlib.time.businessdayconvention',
-        sources=[
-            'quantlib/time/businessdayconvention.pyx',
-            'cpp_layer/businessdayconvention_support_code.cpp'
-        ],
-        **kwargs
-    )
-
     multipath_extension = Extension(
         name='quantlib.sim.simulate',
         sources=[
@@ -193,7 +184,6 @@ def collect_extensions():
         mc_vanilla_engine_extension,
         settings_extension,
         test_extension,
-        business_day_convention_extension
     ]
 
     cython_extension_directories = []

@@ -1,6 +1,6 @@
 from .unittest_tools import unittest
 
-from quantlib.time.calendar import (
+from quantlib.time.businessdayconvention import (
     Following, Preceding)
 
 from quantlib.time.businessdayconvention import BusinessDayConvention

@@ -5,9 +5,6 @@ from quantlib.instruments.bonds import (
     FixedRateBond, ZeroCouponBond
 )
 from quantlib.pricingengines.bond import DiscountingBondEngine
-from quantlib.time.calendar import (
-    TARGET, Unadjusted, ModifiedFollowing, Following
-)
 from quantlib.time.calendars.united_states import (
     UnitedStates, GOVERNMENTBOND
 )

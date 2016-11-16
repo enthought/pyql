@@ -18,10 +18,9 @@ from libcpp cimport bool
 from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle
 from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
-from quantlib.time._calendar cimport BusinessDayConvention
+from quantlib.time._businessdayconvention cimport BusinessDayConvention, Following
 from quantlib.time._daycounter cimport DayCounter as QlDayCounter
 from quantlib.time._schedule cimport Schedule as QlSchedule
-from quantlib.time._calendar cimport Following
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time.schedule cimport Schedule
