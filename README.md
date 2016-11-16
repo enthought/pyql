@@ -14,7 +14,7 @@ Prerequisites
 -------------
 
 * [QuantLib](http://www.quantlib.org) (version 1.5 or higher)
-* [Cython](http://www.cython.org) (version 0.22 or higher)
+* [Cython](http://www.cython.org) (version 0.24.1 or higher)
 
 Building the library
 --------------------
