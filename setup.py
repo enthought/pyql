@@ -106,7 +106,7 @@ def get_extra_link_args():
         else:
             args = []
     else:
-        args = []
+        args = ['-Wl,--strip-all']
 
     return args
 
