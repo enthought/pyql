@@ -6,7 +6,7 @@ from quantlib.handle cimport optional, make_optional
 cimport _schedule
 cimport _date
 cimport _calendar
-from _businessdayconvention cimport Following
+from _businessdayconvention cimport Following, BusinessDayConvention
 
 from calendar cimport DateList, Calendar
 from date cimport date_from_qldate, Date, Period
@@ -45,8 +45,8 @@ cdef class Schedule:
 
     def __init__(self, Date effective_date not None, Date termination_date not None,
             Period tenor not None, Calendar calendar not None,
-            int business_day_convention=_calendar.Following,
-            int termination_date_convention=_calendar.Following,
+            BusinessDayConvention business_day_convention=Following,
+            BusinessDayConvention termination_date_convention=Following,
             int date_generation_rule=Forward, bool end_of_month=False,
             from_classmethod=False
            ):
@@ -60,16 +60,18 @@ cdef class Schedule:
                 deref(termination_date._thisptr.get()),
                 deref(tenor._thisptr.get()),
                 deref(calendar._thisptr),
-                <_calendar.BusinessDayConvention>business_day_convention,
-                <_calendar.BusinessDayConvention>termination_date_convention,
+                business_day_convention,
+                termination_date_convention,
                 <_schedule.Rule>date_generation_rule, <bool>end_of_month
             )
         else:
             pass
 
     @classmethod
-    def from_dates(cls, dates, Calendar calendar, int business_day_convention=_calendar.Following,
-            int termination_date_convention=_calendar.Following, Period tenor=None,
+    def from_dates(cls, dates, Calendar calendar,
+            BusinessDayConvention business_day_convention=Following,
+            BusinessDayConvention termination_date_convention=Following,
+            Period tenor=None,
             int date_generation_rule=Forward, bool end_of_month=False,
             vector[bool] is_regular=[]):
         # convert lists to vectors
@@ -81,9 +83,9 @@ cdef class Schedule:
         instance._thisptr = new _schedule.Schedule(
             _dates,
             deref(calendar._thisptr),
-            <_calendar.BusinessDayConvention>business_day_convention,
-            optional[_calendar.BusinessDayConvention](
-                <_calendar.BusinessDayConvention>termination_date_convention),
+            business_day_convention,
+            optional[BusinessDayConvention](
+                termination_date_convention),
             make_optional[_calendar.Period](tenor is not None, deref(tenor._thisptr.get())),
             optional[_schedule.Rule](<_schedule.Rule>date_generation_rule),
             optional[bool](end_of_month),
@@ -95,8 +97,8 @@ cdef class Schedule:
     @classmethod
     def from_effective_termination(cls, Date effective_date not None, Date termination_date not None,
             Period tenor not None, Calendar calendar not None,
-            int business_day_convention=_calendar.Following,
-            int termination_date_convention=_calendar.Following,
+            BusinessDayConvention business_day_convention=Following,
+            BusinessDayConvention termination_date_convention=Following,
             int date_generation_rule=Forward, bool end_of_month=False):
         cdef Schedule instance = cls.__new__(cls)
         instance._thisptr = new _schedule.Schedule(
@@ -104,8 +106,8 @@ cdef class Schedule:
                 deref(termination_date._thisptr.get()),
                 deref(tenor._thisptr.get()),
                 deref(calendar._thisptr),
-                <_calendar.BusinessDayConvention>business_day_convention,
-                <_calendar.BusinessDayConvention>termination_date_convention,
+                business_day_convention,
+                termination_date_convention,
                 <_schedule.Rule>date_generation_rule, end_of_month
             )
         return instance
