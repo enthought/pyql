@@ -1,14 +1,17 @@
 from cython.operator cimport dereference as deref
+from libcpp cimport bool
 from libcpp.vector cimport vector
+from quantlib.handle cimport optional, make_optional
 
 cimport _schedule
 cimport _date
 cimport _calendar
-from _businessdayconvention cimport Following
+from _businessdayconvention cimport Following, BusinessDayConvention
 
 from calendar cimport DateList, Calendar
 from date cimport date_from_qldate, Date, Period
 
+import warnings
 
 cdef public enum Rule:
     # Backward from termination date to effective date.
@@ -40,23 +43,74 @@ cdef public enum Rule:
 cdef class Schedule:
     """ Payment schedule. """
 
+    def __init__(self, Date effective_date not None, Date termination_date not None,
+            Period tenor not None, Calendar calendar not None,
+            BusinessDayConvention business_day_convention=Following,
+            BusinessDayConvention termination_date_convention=Following,
+            int date_generation_rule=Forward, bool end_of_month=False,
+            from_classmethod=False
+           ):
 
-    def __init__(self, Date effective_date, Date termination_date,
-            Period tenor, Calendar calendar,
-            int business_day_convention=Following,
-            int termination_date_convention=Following,
-           int date_generation_rule=Forward, end_of_month=False):
+        if not from_classmethod:
+            warnings.warn("Deprecated: use class method from_effective_termination instead",
+                DeprecationWarning)
 
-        self._thisptr = new _schedule.Schedule(
-            deref(effective_date._thisptr.get()),
-            deref(termination_date._thisptr.get()),
-            deref(tenor._thisptr.get()),
+            self._thisptr = new _schedule.Schedule(
+                deref(effective_date._thisptr.get()),
+                deref(termination_date._thisptr.get()),
+                deref(tenor._thisptr.get()),
+                deref(calendar._thisptr),
+                business_day_convention,
+                termination_date_convention,
+                <_schedule.Rule>date_generation_rule, <bool>end_of_month
+            )
+        else:
+            pass
+
+    @classmethod
+    def from_dates(cls, dates, Calendar calendar,
+            BusinessDayConvention business_day_convention=Following,
+            BusinessDayConvention termination_date_convention=Following,
+            Period tenor=None,
+            int date_generation_rule=Forward, bool end_of_month=False,
+            vector[bool] is_regular=[]):
+        # convert lists to vectors
+        cdef vector[_date.Date] _dates = vector[_date.Date]()
+        for date in dates:
+            _dates.push_back(deref((<Date>date)._thisptr.get()))
+
+        cdef Schedule instance = cls.__new__(cls)
+        instance._thisptr = new _schedule.Schedule(
+            _dates,
             deref(calendar._thisptr),
-            <_calendar.BusinessDayConvention>business_day_convention,
-            <_calendar.BusinessDayConvention>termination_date_convention,
-            <_schedule.Rule>date_generation_rule, end_of_month
+            business_day_convention,
+            optional[BusinessDayConvention](
+                termination_date_convention),
+            make_optional[_calendar.Period](tenor is not None, deref(tenor._thisptr.get())),
+            optional[_schedule.Rule](<_schedule.Rule>date_generation_rule),
+            optional[bool](end_of_month),
+            is_regular
         )
 
+        return instance
+
+    @classmethod
+    def from_effective_termination(cls, Date effective_date not None, Date termination_date not None,
+            Period tenor not None, Calendar calendar not None,
+            BusinessDayConvention business_day_convention=Following,
+            BusinessDayConvention termination_date_convention=Following,
+            int date_generation_rule=Forward, bool end_of_month=False):
+        cdef Schedule instance = cls.__new__(cls)
+        instance._thisptr = new _schedule.Schedule(
+                deref(effective_date._thisptr.get()),
+                deref(termination_date._thisptr.get()),
+                deref(tenor._thisptr.get()),
+                deref(calendar._thisptr),
+                business_day_convention,
+                termination_date_convention,
+                <_schedule.Rule>date_generation_rule, end_of_month
+            )
+        return instance
 
     def __dealloc__(self):
         if self._thisptr is not NULL:
