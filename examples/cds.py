@@ -14,7 +14,8 @@ from quantlib.time.api import (
     Date, May, Actual365Fixed, Following, TARGET, Period, Months,
     Quarterly, TwentiethIMM, Years, Schedule, Unadjusted
 )
-from quantlib.termstructures.credit.api import SpreadCdsHelper, PiecewiseDefaultCurve
+from quantlib.termstructures.credit.api import (
+        SpreadCdsHelper, PiecewiseDefaultCurve, ProbabilityTrait, Interpolator )
 from quantlib.termstructures.yields.api import FlatForward
 
 if __name__ == '__main__':
@@ -58,8 +59,8 @@ if __name__ == '__main__':
         instruments.append(helper)
 
     # Bootstrap hazard rates
-    hazard_rate_structure = PiecewiseDefaultCurve(
-        'HazardRate', 'BackwardFlat', todays_date, instruments, Actual365Fixed()
+    hazard_rate_structure = PiecewiseDefaultCurve.from_reference_date(
+            ProbabilityTrait.HazardRate, Interpolator.BackwardFlat, todays_date, instruments, Actual365Fixed()
     )
 
     #vector<pair<Date, Real> > hr_curve_data = hazardRateStructure->nodes();
