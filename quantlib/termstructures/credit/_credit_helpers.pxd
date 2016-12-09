@@ -74,4 +74,5 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                           Handle[YieldTermStructure]& discountCurve,
                           Natural upfrontSettlementDays,
                           bool settlesAccrual,  # removed default value (true)
-                          bool paysAtDefaultTime) # removed default value (true)
+                          bool paysAtDefaultTime # removed default value (true)
+         ) except +

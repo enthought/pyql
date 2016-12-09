@@ -84,9 +84,9 @@ cdef class CreditDefaultSwap(Instrument):
 
     """
 
-    def __init__(self, int side, double notional, double spread, Schedule schedule,
-                 int payment_convention,
-                 DayCounter day_counter, bool settles_accrual=True,
+    def __init__(self, int side, double notional, double spread,
+                 Schedule schedule not None, int payment_convention,
+                 DayCounter day_counter not None, bool settles_accrual=True,
                  bool pays_at_default_time=True,
                  Date protection_start=Date()):
         """Credit default swap as running-spread only

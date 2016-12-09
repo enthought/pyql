@@ -31,7 +31,7 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                           Date& protectionStart #= Date(),
                           #const boost::shared_ptr<Claim>& =
                           #                        boost::shared_ptr<Claim>());
-        )
+                          ) except +
         CreditDefaultSwap(Side side,
                           Real notional,
                           Rate upfront,
@@ -43,7 +43,7 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                           bool paysAtDefaultTime, # = true,
                           Date& protectionStart, #= Date(),
                           Date& upfrontDate, #=Date(),
-        )
+                          ) except +
         int side()
         Real notional()
         Rate runningSpread()
