@@ -21,10 +21,7 @@ cdef class Instrument:
         '''Sets the pricing engine.
 
         '''
-        cdef shared_ptr[_pe.PricingEngine] engine_ptr = \
-                shared_ptr[_pe.PricingEngine](deref(engine._thisptr))
-
-        self._thisptr.get().setPricingEngine(engine_ptr)
+        self._thisptr.get().setPricingEngine(deref(engine._thisptr))
 
         self._has_pricing_engine = True
 
@@ -38,5 +35,3 @@ cdef class Instrument:
         """ Shortcut to the net_present_value property. """
         def __get__(self):
             return self.net_present_value
-
-

@@ -6,3 +6,6 @@ cdef class CdsHelper:
 
 cdef class SpreadCdsHelper(CdsHelper):
     pass
+
+cdef class UpfrontCdsHelper(CdsHelper):
+    pass
