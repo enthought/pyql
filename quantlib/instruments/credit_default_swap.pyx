@@ -23,6 +23,7 @@ from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
+from quantlib.time.daycounters.simple cimport Actual360
 from quantlib.time.schedule cimport Schedule
 cimport quantlib.cashflow as cashflow
 from quantlib.time.date cimport _pydate_from_qldate
@@ -51,23 +52,33 @@ cdef class CreditDefaultSwap(Instrument):
             Running spread in fractional units.
         schedule : :class:`~quantlib.time.schedule.Schedule`
             Coupon schedule.
-        paymentConvention : int
+        payment_convention : int
             Business-day convention for
             payment-date adjustment.
-        dayCounter : :class:`~quantlib.time.daycounter.DayCounter`
+        day_counter : :class:`~quantlib.time.daycounter.DayCounter`
             Day-count convention for accrual.
-        settlesAccrual : bool, optional
+        settles_accrual : bool, optional
             Whether or not the accrued coupon is
             due in the event of a default.
-        paysAtDefaultTime : bool, optional
+        pays_at_default_time : bool, optional
             If set to True, any payments
             triggered by a default event are
             due at default time. If set to
             False, they are due at the end of
             the accrual period.
-        protectionStart : :class:`~quantlib.time.date.Date`, optional
+        protection_start : :class:`~quantlib.time.date.Date`, optional
             The first date where a default
             event will trigger the contract.
+        upfront_date : :class`~quantlib.time.date.Date`
+            Settlement date for the upfront and accrual
+            rebate (if any) payments.
+            Typically T+3, this is also the default value.
+        last_period_day_counter : :class1~quantlib.time.daycounter.DayCounter`, optional
+            Day-count convention for accrual in last period
+        rebates_accrual : bool, optional
+            The protection seller pays the accrued scheduled current coupon at
+            the start of the contract. The rebate date is not provided
+            but computed to be two days after protection start.
 
         Notes
         -----
@@ -88,7 +99,9 @@ cdef class CreditDefaultSwap(Instrument):
                  Schedule schedule not None, int payment_convention,
                  DayCounter day_counter not None, bool settles_accrual=True,
                  bool pays_at_default_time=True,
-                 Date protection_start=Date()):
+                 Date protection_start=Date(),
+                 DayCounter last_period_day_counter = Actual360(True),
+                 bool rebates_accrual = True):
         """Credit default swap as running-spread only
         """
 
@@ -97,8 +110,10 @@ cdef class CreditDefaultSwap(Instrument):
                 <_cds.Side>side, notional, spread, deref(schedule._thisptr),
                 <_calendar.BusinessDayConvention>payment_convention,
                 deref(day_counter._thisptr), settles_accrual, pays_at_default_time,
-                deref(protection_start._thisptr.get())
-            )
+                deref(protection_start._thisptr.get()),
+                shared_ptr[_cds.Claim](),
+                deref(last_period_day_counter._thisptr),
+                rebates_accrual)
         )
 
     @classmethod
@@ -106,7 +121,9 @@ cdef class CreditDefaultSwap(Instrument):
                      Schedule schedule not None, int payment_convention,
                      DayCounter day_counter not None, bool settles_accrual=True,
                      bool pays_at_default_time=True, Date protection_start=Date(),
-                     Date upfront_date=Date()):
+                     Date upfront_date=Date(),
+                     DayCounter last_period_day_counter=Actual360(True),
+                     bool rebates_accrual=True):
         """Credit default swap quoted as upfront and running spread
 
         Parameters
@@ -141,13 +158,16 @@ cdef class CreditDefaultSwap(Instrument):
         """
 
         cdef CreditDefaultSwap instance = cls.__new__(cls)
-        instance._thisptr = new shared_ptr[_instrument.Instrument](
+        instance._thisptr = shared_ptr[_instrument.Instrument](
             new _cds.CreditDefaultSwap(
                 <_cds.Side>side, notional, upfront, spread, deref(schedule._thisptr),
                 <_calendar.BusinessDayConvention>payment_convention,
                 deref(day_counter._thisptr), settles_accrual, pays_at_default_time,
-                deref(protection_start._thisptr.get()),
-                deref(upfront_date._thisptr.get()))
+                deref(protection_start._thisptr),
+                deref(upfront_date._thisptr),
+                shared_ptr[_cds.Claim](),
+                deref(last_period_day_counter._thisptr),
+                rebates_accrual)
         )
         return instance
 
@@ -228,3 +248,7 @@ cdef class CreditDefaultSwap(Instrument):
     @property
     def upfront_npv(self):
         return _get_cds(self).upfrontNPV()
+
+    @property
+    def coupons(self):
+        return cashflow.leg_items(_get_cds(self).coupons())

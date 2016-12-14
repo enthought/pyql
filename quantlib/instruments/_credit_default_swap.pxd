@@ -16,6 +16,10 @@ cdef extern from 'ql/default.hpp' namespace 'QuantLib::Protection':
         Buyer
         Seller
 
+cdef extern from 'ql/instruments/claim.hpp' namespace 'QuantLib':
+
+    cdef cppclass Claim:
+        Claim()
 
 cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
 
@@ -28,10 +32,11 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                           DayCounter& dayCounter,
                           bool settlesAccrual, # = true,
                           bool paysAtDefaultTime, # = true,
-                          Date& protectionStart #= Date(),
-                          #const boost::shared_ptr<Claim>& =
-                          #                        boost::shared_ptr<Claim>());
-                          ) except +
+                          Date& protectionStart, #= Date(),
+                          shared_ptr[Claim]&, # = boost::shared_ptr<Claim>(),
+                          DayCounter& last_period_day_counter, # = DayCounter()
+                          bool rebates_accrual # = true
+        )
         CreditDefaultSwap(Side side,
                           Real notional,
                           Rate upfront,
@@ -43,6 +48,9 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                           bool paysAtDefaultTime, # = true,
                           Date& protectionStart, #= Date(),
                           Date& upfrontDate, #=Date(),
+                          shared_ptr[Claim]&, # = boost::shared_ptr<Claim>(),
+                          DayCounter& last_period_day_counter, # = DayCounter()
+                          bool rebates_accrual # = true
                           ) except +
         int side()
         Real notional()
@@ -62,7 +70,9 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
         Real couponLegNPV() except +
         Real defaultLegNPV() except +
         Real upfrontNPV() except +
-
+        Leg& coupons()
+        int side()
+        optional[Rate] upfront()
         Rate conventionalSpread(Real conventionalRecovery,
                                 Handle[YieldTermStructure]& discountCurve,
                                 DayCounter& dayCounter)
