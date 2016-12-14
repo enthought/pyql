@@ -1,8 +1,7 @@
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from libcpp.vector cimport vector
-from quantlib.handle cimport (shared_ptr, Handle, optional, make_optional,
-                              static_pointer_cast)
+from quantlib.handle cimport shared_ptr, Handle, optional, make_optional    
 
 from quantlib.pricingengines.engine cimport PricingEngine
 
@@ -52,7 +51,7 @@ cdef class IsdaCdsEngine(PricingEngine):
             handle = Handle[_dts.DefaultProbabilityTermStructure](
                 (<DefaultProbabilityTermStructure>ts)._thisptr)
 
-            self._thisptr = shared_ptr[_pe.PricingEngine](
+            self._thisptr = new shared_ptr[_pe.PricingEngine](
                 new _ice.IsdaCdsEngine(handle, recovery_rate,
                                        (<YieldTermStructure>discount_curve)._thisptr,
                                        settlement_flows, numerical_fix,
@@ -61,11 +60,11 @@ cdef class IsdaCdsEngine(PricingEngine):
         elif isinstance(ts, list) and isinstance(discount_curve, list):
             for cds_helper in ts:
                 cds_helpers.push_back(
-                    static_pointer_cast[_ice.DefaultProbabilityHelper](
-                        (<CdsHelper?>cds_helper)._thisptr))
+                    <shared_ptr[_ice.DefaultProbabilityHelper]>
+                        deref((<CdsHelper?>cds_helper)._thisptr))
             for rate_helper in discount_curve:
                 rate_helpers.push_back(deref((<RateHelper?>rate_helper)._thisptr))
-            self._thisptr = shared_ptr[_pe.PricingEngine](
+            self._thisptr = new shared_ptr[_pe.PricingEngine](
                 new _ice.IsdaCdsEngine(cds_helpers, recovery_rate, rate_helpers,
                                        settlement_flows, numerical_fix,
                                        accrual_bias, forwards_in_coupon_period))
@@ -86,5 +85,5 @@ cdef class IsdaCdsEngine(PricingEngine):
     @property
     def isda_credit_curve(self):
         cdef DefaultProbabilityTermStructure dts = DefaultProbabilityTermStructure()
-        dts._thisptr = deref(self._get_cds_engine().isdaCreditCurve())
+        dts._thisptr = self._get_cds_engine().isdaCreditCurve().currentLink()
         return dts

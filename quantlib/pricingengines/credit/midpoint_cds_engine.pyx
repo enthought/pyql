@@ -35,7 +35,7 @@ cdef class MidPointCdsEngine(PricingEngine):
         cdef Handle[_dts.DefaultProbabilityTermStructure] handle = \
             Handle[_dts.DefaultProbabilityTermStructure](ts._thisptr)
 
-        self._thisptr = shared_ptr[_pe.PricingEngine](
+        self._thisptr = new shared_ptr[_pe.PricingEngine](
             new _mce.MidPointCdsEngine(handle, recovery_rate, discount_curve._thisptr,
                                        make_optional[bool](
                                            include_settlement_date_flows is not None,
