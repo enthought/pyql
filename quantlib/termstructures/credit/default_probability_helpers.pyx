@@ -7,6 +7,7 @@
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
 #
 
+include '../../types.pxi'
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 
@@ -26,6 +27,9 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 cimport quantlib._quote as _qt
 from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
+from quantlib.instruments.credit_default_swap cimport CreditDefaultSwap
+cimport quantlib.instruments._credit_default_swap as _cds
+cimport quantlib.instruments._instrument as _instrument
 
 cdef class CdsHelper:
     """Base default-probability bootstrap helper
@@ -67,6 +71,13 @@ cdef class CdsHelper:
         cdef shared_ptr[_qt.Quote] quote_ptr = \
             shared_ptr[_qt.Quote](self._thisptr.get().quote().currentLink())
         return quote_ptr.get().value()
+
+    def swap(self):
+        cdef CreditDefaultSwap cds = CreditDefaultSwap.__new__(CreditDefaultSwap)
+        cdef shared_ptr[_cds.CreditDefaultSwap] temp = self._thisptr.get().swap()
+        cds._thisptr = new shared_ptr[_instrument.Instrument](
+                <shared_ptr[_instrument.Instrument]>(temp))
+        return cds
 
 cdef class SpreadCdsHelper(CdsHelper):
     """Spread-quoted CDS hazard rate bootstrap helper.

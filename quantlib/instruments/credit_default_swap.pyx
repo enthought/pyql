@@ -20,6 +20,7 @@ cimport quantlib.pricingengines._pricing_engine as _pe
 cimport quantlib.time._calendar as _calendar
 
 from quantlib.instruments.instrument cimport Instrument
+from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
@@ -271,3 +272,8 @@ cdef class CreditDefaultSwap(Instrument):
     @property
     def accrual_rebate_npv(self):
         return  _get_cds(self).accrualRebateNPV()
+
+    def conventional_spread(self, Real recovery, YieldTermStructure yts not None,
+                            DayCounter day_counter not None):
+        return _get_cds(self).conventionalSpread(recovery, yts._thisptr,
+                                                 deref(day_counter._thisptr))

@@ -11,7 +11,7 @@
 include '../../types.pxi'
 from libcpp cimport bool
 
-from quantlib.handle cimport Handle
+from quantlib.handle cimport Handle, shared_ptr
 from quantlib._quote cimport Quote
 from quantlib.time._calendar cimport BusinessDayConvention, Calendar
 from quantlib.time._date cimport Date
@@ -23,6 +23,7 @@ from quantlib.time._schedule cimport Rule
 from quantlib.termstructures._default_term_structure cimport DefaultProbabilityTermStructure
 from quantlib.termstructures._helpers cimport BootstrapHelper, \
                                               RelativeDateBootstrapHelper
+from quantlib.instruments._credit_default_swap cimport CreditDefaultSwap
 
 cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namespace 'QuantLib':
 
@@ -51,6 +52,7 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
         void setIsdaEngineParameters(int numericalFix,
                                      int accrualBias,
                                      int forwardsInCouponPeriod)
+        const shared_ptr[CreditDefaultSwap]& swap()
 
     cdef cppclass SpreadCdsHelper(CdsHelper):
          SpreadCdsHelper(Rate runningSpread,
