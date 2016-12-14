@@ -3,23 +3,27 @@
 This example is based on the QuantLib CDS official example.
 
 Copyright (C) 2012 Enthought Inc.
- 
+
 """
 from __future__ import print_function
 
-from quantlib.instruments.credit_default_swap import CreditDefaultSwap, SELLER
-from quantlib.pricingengines.credit import MidPointCdsEngine
+from quantlib.instruments.credit_default_swap import CreditDefaultSwap, SELLER, BUYER
+from quantlib.pricingengines.credit import MidPointCdsEngine, IsdaCdsEngine
 from quantlib.settings import Settings
 from quantlib.time.api import (
-    Date, May, Actual365Fixed, Following, TARGET, Period, Months,
-    Quarterly, TwentiethIMM, Years, Schedule, Unadjusted
+    Date, May, September, Actual365Fixed, Following, TARGET, Period, Months,
+    Quarterly, Annual, TwentiethIMM, CDS, Years, Schedule, Unadjusted, ModifiedFollowing,
+    WeekendsOnly, Actual360, Thirty360
 )
 from quantlib.termstructures.credit.api import (
         SpreadCdsHelper, PiecewiseDefaultCurve, ProbabilityTrait, Interpolator )
-from quantlib.termstructures.yields.api import FlatForward
 
-if __name__ == '__main__':
+from quantlib.indexes.euribor import Euribor6M
+from quantlib.quotes import SimpleQuote
+from quantlib.termstructures.yields.api import (
+    FlatForward, DepositRateHelper, SwapRateHelper, PiecewiseYieldCurve)
 
+def example01():
     #*********************
     #***  MARKET DATA  ***
     #*********************
@@ -71,7 +75,6 @@ if __name__ == '__main__':
     #         << hr_curve_data[i].second << endl;
     #}
     #cout << endl;
-
 
     target = todays_date + Period(1, Years)
     print(target)
@@ -161,3 +164,52 @@ if __name__ == '__main__':
     print("   default leg: ", cds_2y.default_leg_npv)
     print("   coupon leg:  ", cds_2y.coupon_leg_npv)
 
+def example02():
+    print("example 2:\n")
+    todays_date = Date(25, 9, 2014)
+    Settings.instance().evaluation_date = todays_date
+
+    calendar = TARGET()
+    term_date = calendar.adjust(todays_date + Period(2, Years), Following)
+    cds_schedule =  Schedule(todays_date, term_date, Period(Quarterly),
+                             WeekendsOnly(), ModifiedFollowing,
+                             ModifiedFollowing,
+                             date_generation_rule=CDS)
+    for date in cds_schedule:
+        print(date)
+    print()
+
+    todays_date = Date(21, 10, 2014)
+    Settings.instance().evaluation_date = todays_date
+    quotes = [0.00006, 0.00045, 0.00081, 0.001840, 0.00256, 0.00337]
+    tenors = [1, 2, 3, 6, 9, 12]
+    deps = [DepositRateHelper(q, Period(t, Months), 2, calendar, ModifiedFollowing, False, Actual360())
+           for q, t in zip(quotes, tenors)]
+    tenors = [2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20, 30]
+    quotes = [0.00223, 0.002760, 0.003530, 0.004520, 0.005720, 0.007050, 0.008420, 0.009720, 0.010900,
+              0.012870, 0.014970, 0.017, 0.01821]
+    swaps = [SwapRateHelper.from_tenor(q, Period(t, Years),
+                                       calendar, Annual, ModifiedFollowing,
+                                       Thirty360(), Euribor6M(), SimpleQuote(0))
+             for q, t in zip(quotes, tenors)]
+    helpers = deps + swaps
+    YC = PiecewiseYieldCurve("discount", "loglinear", todays_date, helpers, Actual365Fixed())
+    YC.extrapolation = True
+    print("ISDA rate curve:")
+    for h in helpers:
+        print("{0}: {1:.6f}\t{2:.6f}".format(h.latest_date,
+                                             YC.zero_rate(h.latest_date, Actual365Fixed(), 2).rate,
+                                             YC.discount(h.latest_date)))
+    defaultTs0 = FlatHazardRate(0, WeekendsOnly(), 0.016739207493630, Actual365Fixed())
+    cds_schedule = Schedule(Date(22, 9, 2014), Date(20, 12, 2019), Period(3, Months),
+                            WeekendsOnly(), Following, Unadjusted, CDS, False)
+    nominal = 100000000
+    trade = CreditDefaultSwap(BUYER, nominal, 0.01, cds_schedule, Following,
+                            Actual360(), True, True, Date(22, 10, 2014), Actual360(True), True)
+    engine = IsdaCdsEngine(defaultTs0, 0.4, YC, False)
+    trade.set_pricing_engine(engine)
+    print("reference trade NPV = {0}".format(trade.npv))
+
+if __name__ == '__main__':
+    example01()
+    example02()
