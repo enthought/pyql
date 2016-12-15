@@ -30,7 +30,13 @@ class TestDayCounter(unittest.TestCase):
     def test_daycounter_name(self):
 
         day_counter = Actual360()
-        self.assertEqual('Actual/360', day_counter.name())
+        self.assertEqual('Actual/360', day_counter.name)
+        self.assertEqual('Actual/360', str(day_counter))
+
+    def test_empty_daycounter(self):
+        day_counter = DayCounter()
+        with self.assertRaisesRegexp(RuntimeError, 'no implementation provided'):
+            day_counter.name
 
 class TestDayCounterFromName(unittest.TestCase):
 
@@ -48,7 +54,7 @@ class TestDayCounterFromName(unittest.TestCase):
         for counter_type, expected_name in type_vs_name.items():
 
             cnt = DayCounter.from_name(counter_type)
-            self.assertEqual(cnt.name(), expected_name)
+            self.assertEqual(cnt.name, expected_name)
 
     def test_create_daycounter_with_convention_from_name(self):
 
@@ -65,7 +71,7 @@ class TestDayCounterFromName(unittest.TestCase):
         for counter_type, expected_name in type_vs_name.items():
 
             cnt = DayCounter.from_name(counter_type)
-            self.assertEqual(cnt.name(), expected_name)
+            self.assertEqual(cnt.name, expected_name)
 
 
 
@@ -217,7 +223,7 @@ class TestActualActual(unittest.TestCase):
         day_counter = Thirty360(EUROBONDBASIS)
 
         a = Thirty360()
-        self.assertNotEqual(day_counter.name(), a.name())
+        self.assertNotEqual(day_counter, a)
         self.assertNotEqual(day_counter, Thirty360())
         self.assertEqual(day_counter, Thirty360(EUROBONDBASIS))
 

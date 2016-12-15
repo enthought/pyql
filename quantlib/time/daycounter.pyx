@@ -1,5 +1,4 @@
 from cython.operator cimport dereference as deref
-from libcpp.string cimport string
 
 cimport _daycounter
 cimport _date
@@ -17,15 +16,22 @@ cdef class DayCounter:
     '''
 
     def __cinit__(self, *args):
-        pass
+        self._thisptr = new _daycounter.DayCounter()
 
     def __dealloc__(self):
         if self._thisptr is not NULL:
             del self._thisptr
             self._thisptr = NULL
 
+    @property
     def name(self):
         return self._thisptr.name().decode('utf-8')
+
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return "DayCounter('{0}')".format(self.name)
 
     def year_fraction(self, Date date1, Date date2, Date ref_start=None,
             Date ref_end=None):
@@ -61,8 +67,8 @@ cdef class DayCounter:
         # if we compare two day counter for equality, the underlying
         # QuantLib counter must be of the same type. Testing if names are
         # the same gives us a valid answer
-        a = self.name()
-        b = other_counter.name()
+        a = self.name
+        b = other_counter.name
 
         # we only support testing for equality and inequality
         if val == 2:
