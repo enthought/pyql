@@ -9,7 +9,7 @@ cimport _period
 from _date cimport (
     Date as QlDate, Date_todaysDate, Date_nextWeekday,
     Date_endOfMonth, Date_isEndOfMonth, Date_minDate, Date_maxDate, Year,
-    Date_isLeap, Size, Date_nthWeekday, BigInteger, Integer
+    Date_isLeap, Size, Date_nthWeekday, serial_type, Integer
 )
 from _period cimport (
     Period as QlPeriod, mult_op, add_op, sub_op, eq_op, neq_op,
@@ -107,7 +107,6 @@ cdef public enum TimeUnit:
 
 _TU_DICT = {'D': Days, 'W': Weeks, 'M': Months, 'Y': Years}
 _STR_TU_DICT = {v:k for k, v in _TU_DICT.items()}
-
 
 cdef class Period:
     ''' Class providing a Period (length + time unit) class and implements a
@@ -309,7 +308,7 @@ cdef class Date:
             self._thisptr = new shared_ptr[QlDate](new QlDate(<Integer>day, <_date.Month>month, <Year>year))
         elif len(args) == 1:
             serial = args[0]
-            self._thisptr = new shared_ptr[QlDate](new QlDate(<BigInteger> serial))
+            self._thisptr = new shared_ptr[QlDate](new QlDate(<serial_type> serial))
         else:
             raise RuntimeError('Invalid constructor')
 
@@ -404,7 +403,8 @@ cdef class Date:
             if isinstance(value, Period):
                 add = deref((<Date>self)._thisptr.get()) + deref((<Period>value)._thisptr.get())
             else:
-                add = deref((<Date>self)._thisptr.get()) + <BigInteger>value
+                # want to casst to serial_type here but doesn't work
+                add = deref((<Date>self)._thisptr.get()) + <serial_type>(value)
             return date_from_qldate(add)
             #d = Date()
             #d._set_qldate(add)
@@ -418,7 +418,7 @@ cdef class Date:
             if isinstance(value, Period):
                 add = self._thisptr.get().i_add(deref((<Period>value)._thisptr.get()))
             else:
-                add = self._thisptr.get().i_add(<BigInteger>value)
+                add = self._thisptr.get().i_add(<serial_type>value)
             return self
         else:
             return NotImplemented
@@ -429,7 +429,7 @@ cdef class Date:
             if isinstance(value, Period):
                 sub = deref((<Date>self)._thisptr.get()) - deref((<Period>value)._thisptr.get())
             elif isinstance(value, int):
-                sub = deref((<Date>self)._thisptr.get()) - <BigInteger>value
+                sub = deref((<Date>self)._thisptr.get()) - <serial_type>value
             else:
                 raise ValueError('Unsupported operand')
             return date_from_qldate(sub)
@@ -442,7 +442,7 @@ cdef class Date:
             if isinstance(value, Period):
                 self._thisptr.get().i_sub( deref((<Period>value)._thisptr.get()) )
             else:
-                self._thisptr.get().i_sub( <BigInteger>value)
+                self._thisptr.get().i_sub( <serial_type>value)
             return self
         else:
             return NotImplemented

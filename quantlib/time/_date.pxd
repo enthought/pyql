@@ -52,14 +52,16 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
         Nov = 11
         Dec = 12
 
+    ctypedef serial_type "QuantLib::Date::serial_type"
+
     cdef cppclass Date:
         Date() except +
-        Date(long serialnumber) except +
+        Date(serial_type serialnumber) except +
         Date(int d, int m, int y) except +
         Day dayOfMonth() except +
         Month month()
         int year()
-        long serialNumber()
+        serial_type serialNumber()
         bool operator==(Date*)
         Weekday weekday()
         Day dayOfYear()
@@ -69,15 +71,15 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
         Date& operator--()
         Date& operator--(int value)
 
-        Date operator+(BigInteger days)
+        Date operator+(serial_type days)
         Date operator+(Period p)
-        Date operator-(BigInteger days)
+        Date operator-(serial_type days)
         Date operator-(Period p)
 
-        Date& i_add 'operator+='(BigInteger days)
+        Date& i_add 'operator+='(serial_type days)
         Date& i_add 'operator+='(Period& period)
         Date& i_sub 'operator-='(Period& period)
-        Date& i_sub 'operator-='(BigInteger days)
+        Date& i_sub 'operator-='(serial_type days)
 
     # QuantLib::Date - static methods
     cdef Date Date_todaysDate 'QuantLib::Date::todaysDate'()
@@ -89,6 +91,3 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
     cdef Date Date_nextWeekday 'QuantLib::Date::nextWeekday'(Date& d, Weekday w) except +
     cdef Date Date_nthWeekday 'QuantLib::Date::nthWeekday'(Size n, Weekday w,
             Month m, Year y) except +
-
-
-

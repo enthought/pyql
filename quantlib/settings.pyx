@@ -14,9 +14,13 @@ cdef extern from 'ql/version.hpp':
     int QL_HEX_VERSION
     char* QL_LIB_VERSION
 
+cdef extern from 'ql/config.hpp':
+    cbool QL_HIGH_RESOLUTION_DATE
+
 __quantlib_version__ = QL_VERSION
 __quantlib_lib_version__ = QL_LIB_VERSION
 __quantlib_hex_version__ = QL_HEX_VERSION
+__quantlib_high_resolution_date__ = QL_HIGH_RESOLUTION_DATE
 
 cdef class Settings:
 
