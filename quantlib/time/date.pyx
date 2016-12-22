@@ -7,9 +7,8 @@ cimport _date
 cimport _period
 
 from _date cimport (
-    Date as QlDate, Date_todaysDate, Date_nextWeekday,
-    Date_endOfMonth, Date_isEndOfMonth, Date_minDate, Date_maxDate, Year,
-    Date_isLeap, Size, Date_nthWeekday, serial_type, Integer
+    Date as QlDate, todaysDate, nextWeekday, endOfMonth, isEndOfMonth,
+    minDate, maxDate, Year, isLeap, Size, nthWeekday, serial_type, Integer
 )
 from _period cimport (
     Period as QlPeriod, mult_op, add_op, sub_op, eq_op, neq_op,
@@ -329,9 +328,9 @@ cdef class Date:
         def __get__(self):
             return self._thisptr.get().year()
 
-    property serial:
-        def __get__(self):
-            return self._thisptr.get().serialNumber()
+    @property
+    def serial(self):
+        return <int>self._thisptr.get().serialNumber()
 
     property weekday:
         def __get__(self):
@@ -455,13 +454,13 @@ cdef class Date:
 
 def today():
     '''Today's date. '''
-    cdef QlDate today = Date_todaysDate()
+    cdef QlDate today = todaysDate()
     return date_from_qldate(today)
 
 def next_weekday(Date date, int weekday):
     ''' Returns the next given weekday following or equal to the given date
     '''
-    cdef QlDate nwd = Date_nextWeekday( deref(date._thisptr.get()), <_date.Weekday>weekday)
+    cdef QlDate nwd = nextWeekday( deref(date._thisptr.get()), <_date.Weekday>weekday)
     return date_from_qldate(nwd)
 
 def nth_weekday(int size, int weekday, int month, int year):
@@ -471,31 +470,31 @@ def nth_weekday(int size, int weekday, int month, int year):
 
     see http://www.cpearson.com/excel/DateTimeWS.htm
     '''
-    cdef QlDate nwd = Date_nthWeekday(<Size>size, <_date.Weekday>weekday, <_date.Month>month, <Year>year)
+    cdef QlDate nwd = nthWeekday(<Size>size, <_date.Weekday>weekday, <_date.Month>month, <Year>year)
     return date_from_qldate(nwd)
 
 def end_of_month(Date date):
     '''Last day of the month to which the given date belongs.'''
-    cdef QlDate eom = Date_endOfMonth(deref(date._thisptr.get()))
+    cdef QlDate eom = endOfMonth(deref(date._thisptr.get()))
     return date_from_qldate(eom)
 
 def maxdate():
     '''Latest allowed date.'''
-    cdef QlDate mdate = Date_maxDate()
+    cdef QlDate mdate = maxDate()
     return date_from_qldate(mdate)
 
 def mindate():
     '''Earliest date allowed.'''
-    cdef QlDate mdate = Date_minDate()
+    cdef QlDate mdate = minDate()
     return date_from_qldate(mdate)
 
 def is_end_of_month(Date date):
     '''Whether a date is the last day of its month.'''
-    return Date_isEndOfMonth(deref(date._thisptr.get()))
+    return isEndOfMonth(deref(date._thisptr.get()))
 
 def is_leap(int year):
     '''Whether the given year is a leap one.'''
-    return Date_isLeap(<Year> year)
+    return isLeap(<Year> year)
 
 cdef Date date_from_qldate(const QlDate& date):
     '''Converts a QuantLib::Date (QlDate) to a cython Date instance.
