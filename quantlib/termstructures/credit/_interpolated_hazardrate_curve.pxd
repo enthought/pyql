@@ -2,7 +2,8 @@ include '../../types.pxi'
 
 from libcpp.vector cimport vector
 
-from quantlib.termstructures._default_term_structure cimport DefaultProbabilityTermStructure
+from quantlib.termstructures._default_term_structure cimport (
+    DefaultProbabilityTermStructure )
 
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter

@@ -19,7 +19,7 @@ from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle, static_pointe
 from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time._businessdayconvention cimport (
-        BusinessDayConvention, Following, Unadjusted )
+    BusinessDayConvention, Following, Unadjusted )
 from quantlib.time._daycounter cimport DayCounter as QlDayCounter
 from quantlib.time._schedule cimport Schedule as QlSchedule
 from quantlib.time.calendar cimport Calendar
@@ -224,8 +224,8 @@ cdef class FloatingRateBond(Bond):
     def __init__(self, Natural settlement_days, Real face_amount,
         Schedule schedule, IborIndex ibor_index,
         DayCounter accrual_day_counter, Natural fixing_days,
-        vector[Real] gearings = [1.], vector[Spread] spreads =[0.],
-                 vector[Rate] caps = [], vector[Rate] floors = [],
+        vector[Real] gearings=[1.], vector[Spread] spreads=[0.],
+        vector[Rate] caps=[], vector[Rate] floors=[],
         BusinessDayConvention payment_convention=Following,
         bool in_arrears=True,
         Real redemption=100.0, Date issue_date=Date()
@@ -277,7 +277,7 @@ cdef class FloatingRateBond(Bond):
             )
 
 cdef class CPIBond(Bond):
-    """ Floating rate bond """
+    """ CPI bond """
     def __init__(self, Natural settlement_days, Real face_amount, bool growth_only,
                  Real baseCPI, Period observation_lag not None,
                  ZeroInflationIndex cpi_index not None,
@@ -285,10 +285,10 @@ cdef class CPIBond(Bond):
                  Schedule schedule, vector[Rate] coupons,
                  DayCounter accrual_day_counter,
                  BusinessDayConvention payment_convention=Following,
-                 Date issue_date = Date(), Calendar payment_calendar = Calendar(),
-                 Period ex_coupon_period = Period(), Calendar ex_coupon_calendar = Calendar(),
-                 BusinessDayConvention ex_coupon_convention = Unadjusted,
-                 bool ex_coupon_end_of_month = False):
+                 Date issue_date=Date(), Calendar payment_calendar=Calendar(),
+                 Period ex_coupon_period=Period(), Calendar ex_coupon_calendar=Calendar(),
+                 BusinessDayConvention ex_coupon_convention=Unadjusted,
+                 bool ex_coupon_end_of_month=False):
 
         self._thisptr = new shared_ptr[_instrument.Instrument](
             new _bonds.CPIBond(
