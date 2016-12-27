@@ -21,7 +21,7 @@ from quantlib.time._period cimport Frequency, Months
 from quantlib.indexes.region cimport Region
 from quantlib.currency.currency cimport Currency
 from quantlib.termstructures.inflation_term_structure cimport \
-    ZeroInflationTermStructure
+    ZeroInflationTermStructure, YoYInflationTermStructure
 
 cimport quantlib._index as _in
 cimport quantlib.indexes._inflation_index as _ii
@@ -104,3 +104,27 @@ cdef class AUCPI(ZeroInflationIndex):
         super().__init__("CPI", AustraliaRegion(), revised,
                          interpolated, frequency, Period(2, Months),
                          AUDCurrency(), ts)
+
+
+cdef class YoYInflationIndex(ZeroInflationIndex):
+    def __init__(self, family_name, Region region, bool revised,
+                 bool interpolated, bool ratio, Frequency frequency,
+                 Period availability_lag, Currency currency,
+                 YoYInflationTermStructure ts=None):
+
+        cdef Handle[_its.YoYInflationTermStructure] ts_handle
+        if ts is None:
+            ts_handle = Handle[_its.YoYInflationTermStructure]()
+        else:
+            ts_handle = Handle[_its.YoYInflationTermStructure](
+                static_pointer_cast[_its.YoYInflationTermStructure](
+                    ts._thisptr.currentLink()))
+
+        cdef string c_family_name = family_name.encode('utf-8')
+
+        self._thisptr = new shared_ptr[_in.Index](
+            new _ii.YoYInflationIndex(
+                c_family_name, deref(region._thisptr), revised,
+                interpolated, ratio, frequency,
+                deref(availability_lag._thisptr.get()),
+                deref(currency._thisptr), ts_handle))

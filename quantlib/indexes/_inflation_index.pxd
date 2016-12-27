@@ -37,8 +37,8 @@ cdef extern from 'ql/indexes/inflationindex.hpp' namespace 'QuantLib':
         Frequency frequency()
         Period availabilityLag()
         Currency currency()
-        
-        
+
+
     cdef cppclass ZeroInflationIndex(Index):
         ZeroInflationIndex()
         ZeroInflationIndex(string& familyName,
@@ -50,4 +50,14 @@ cdef extern from 'ql/indexes/inflationindex.hpp' namespace 'QuantLib':
                   Currency& currency,
                   Handle[_its.ZeroInflationTermStructure]& h) except +
 
-        
+    cdef cppclass YoYInflationIndex(InflationIndex):
+        YoYInflationIndex(const string& familyName,
+                          const Region& region,
+                          bool revised,
+                          bool interpolated,
+                          bool ratio, # is this one a genuine index or a ratio?
+                          Frequency frequency,
+                          const Period& availabilityLag,
+                          const Currency& currency,
+                          const Handle[_its.YoYInflationTermStructure]& ts # = Handle<YoYInflationTermStructure>());
+        ) except +
