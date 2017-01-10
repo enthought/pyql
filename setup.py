@@ -106,7 +106,7 @@ def get_extra_link_args():
         else:
             args = []
     else:
-        args = []
+        args = ['-Wl,--strip-all']
 
     return args
 
@@ -186,35 +186,18 @@ def collect_extensions():
         test_extension,
     ]
 
-    cython_extension_directories = []
-    for dirpath, directories, files in os.walk('quantlib'):
-
-        # skip the settings package
-        if dirpath.find('settings') > -1 or dirpath.find('test') > -1:
-            continue
-
-        # if the directory contains pyx files, cythonise it
-        if len(glob.glob('{0}/*.pyx'.format(dirpath))) > 0:
-            cython_extension_directories.append(dirpath)
-
-    collected_extensions = cythonize(
-        [
-            Extension('*', ['{0}/*.pyx'.format(dirpath)], **kwargs)
-            for dirpath in cython_extension_directories
-        ]
-    , compiler_directives=CYTHON_DIRECTIVES)
-
     # remove  all the manual extensions from the collected ones
-    names = [extension.name for extension in manual_extensions]
-    collected_extensions = [ext for ext in collected_extensions if ext.name not in names]
     if not HAS_NUMPY:
         # remove the multipath extension from the list
         manual_extensions = manual_extensions[1:]
         print('Numpy is not available, multipath extension not compiled')
 
-    extensions = collected_extensions + manual_extensions
+    collected_extensions = cythonize(
+            manual_extensions +
+            [Extension('*', ['**/*.pyx'], **kwargs)],
+            compiler_directives=CYTHON_DIRECTIVES, nthreads = 4)
 
-    return extensions
+    return collected_extensions
 
 class pyql_build_ext(build_ext):
     """
