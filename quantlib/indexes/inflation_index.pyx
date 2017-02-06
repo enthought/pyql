@@ -17,7 +17,7 @@ from libcpp.string cimport string
 
 from quantlib.index cimport Index
 from quantlib.time.date cimport Period, period_from_qlperiod
-from quantlib.time._period cimport Frequency, Months
+from quantlib.time._period cimport Frequency
 from quantlib.indexes.region cimport Region
 from quantlib.currency.currency cimport Currency
 from quantlib.termstructures.inflation_term_structure cimport \
@@ -28,11 +28,8 @@ cimport quantlib.indexes._inflation_index as _ii
 cimport quantlib.termstructures._inflation_term_structure as _its
 cimport quantlib._interest_rate as _ir
 
-from quantlib.currency.api import AUDCurrency
-from quantlib.indexes.regions import AustraliaRegion
-
+cimport quantlib.time._period as _pe
 cimport quantlib.currency._currency as _cu
-from quantlib.currency.currency cimport Currency
 
 cdef class InflationIndex(Index):
 
@@ -93,18 +90,6 @@ cdef class ZeroInflationIndex(InflationIndex):
                 deref(availabilityLag._thisptr.get()),
                 deref(currency._thisptr),
                 ts_handle))
-
-
-cdef class AUCPI(ZeroInflationIndex):
-    def __init__(self, Frequency frequency,
-                 bool revised,
-                 interpolated,
-                 ZeroInflationTermStructure ts=None):
-
-        super().__init__("CPI", AustraliaRegion(), revised,
-                         interpolated, frequency, Period(2, Months),
-                         AUDCurrency(), ts)
-
 
 cdef class YoYInflationIndex(ZeroInflationIndex):
     def __init__(self, family_name, Region region, bool revised,
