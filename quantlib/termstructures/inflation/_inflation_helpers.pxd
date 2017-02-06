@@ -14,8 +14,12 @@ from quantlib.indexes._inflation_index cimport (
 from quantlib.termstructures._helpers cimport BootstrapHelper
 cimport quantlib.termstructures._inflation_term_structure as _its
 
+cdef extern from 'ql/termstructures/inflation/inflationtraits.hpp' namespace 'QuantLib':
+    ctypedef BootstrapHelper[_its.ZeroInflationTermStructure] ZeroInflationHelper "ZeroInflationTraits::helper"
+    ctypedef BootstrapHelper[_its.YoYInflationTermStructure] YoYInflationHelper "YoYInflationTraits::helper"
+
 cdef extern from 'ql/termstructures/inflation/inflationhelpers.hpp' namespace 'QuantLib':
-    cdef cppclass ZeroCouponInflationSwapHelper(BootstrapHelper[_its.ZeroInflationTermStructure]):
+    cdef cppclass ZeroCouponInflationSwapHelper(ZeroInflationHelper):
         ZeroCouponInflationSwapHelper(
             const Handle[Quote]& quote,
             const Period& swap_obs_lag,  # lag on swap observation of index
@@ -28,7 +32,7 @@ cdef extern from 'ql/termstructures/inflation/inflationhelpers.hpp' namespace 'Q
         Real impliedQuote() const
 
     # Year-on-year inflation-swap bootstrap helper
-    cdef cppclass YearOnYearInflationSwapHelper(BootstrapHelper[_its.YoYInflationTermStructure]):
+    cdef cppclass YearOnYearInflationSwapHelper(YoYInflationHelper):
         YearOnYearInflationSwapHelper(
             const Handle[Quote]& quote,
             const Period& swap_obs_lag,
