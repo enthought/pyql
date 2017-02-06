@@ -19,7 +19,7 @@ from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle
 cimport quantlib.time._daycounter as _dc
 from quantlib.time.daycounter cimport DayCounter
 
-from quantlib.time._period cimport Frequency
+from quantlib.time._period cimport Frequency, Days
 from quantlib.time.calendar cimport Calendar
 
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
@@ -59,6 +59,7 @@ cdef class InflationTermStructure:
         if self._is_empty():
             raise ValueError('Empty handle to the inflation term structure')
 
+
     property max_date:
         def __get__(self):
             self._raise_if_empty()
@@ -70,48 +71,36 @@ cdef class InflationTermStructure:
 
 cdef class ZeroInflationTermStructure(InflationTermStructure):
 
-    def zeroRate(self, Date d,
-                 Period inst_obs_lag,
-                 bool force_linear_interpolation,
-                 bool extrapolate):
+    def zeroRate(self, d, Period inst_obs_lag=Period(-1, Days),
+                 bool force_linear_interpolation=False, bool extrapolate=False):
+
 
         cdef _if.ZeroInflationTermStructure* term_structure = \
           <_if.ZeroInflationTermStructure*>self._get_term_structure()
-        return term_structure.zeroRate(
-            deref(d._thisptr.get()),
-            deref(inst_obs_lag._thisptr.get()),
-            force_linear_interpolation,
-            extrapolate)
 
-    def zeroRate(self, Time t,
-                 bool extrapolate):
-
-        cdef _if.ZeroInflationTermStructure* term_structure = \
-          <_if.ZeroInflationTermStructure*>self._get_term_structure()
-        return term_structure.zeroRate(t, extrapolate)
+        if isinstance(d, Date):
+            return term_structure.zeroRate(
+                deref((<Date>d)._thisptr.get()),
+                deref(inst_obs_lag._thisptr.get()),
+                force_linear_interpolation,
+                extrapolate)
+        else:
+            return term_structure.zeroRate(<Time?>d, extrapolate)
 
 cdef class YoYInflationTermStructure(InflationTermStructure):
 
-    def __cinit__(self):
-        pass
 
-    def yoyRate(self, Date d,
-                Period inst_obs_lag,
-                bool force_linear_interpolation,
-                bool extrapolate):
+    def yoyRate(self, d, Period inst_obs_lag=Period(-1, Days),
+                bool force_linear_interpolation=False,
+                bool extrapolate=False):
 
         cdef _if.YoYInflationTermStructure* term_structure = \
           <_if.YoYInflationTermStructure*>self._get_term_structure()
-
-        return term_structure.yoyRate(
-            deref(d._thisptr.get()),
-            deref(inst_obs_lag._thisptr.get()),
-            force_linear_interpolation,
-            extrapolate)
-
-    def yoyRate(self, Time t,
-                bool extrapolate):
-
-        cdef _if.YoYInflationTermStructure* term_structure = \
-          <_if.YoYInflationTermStructure*>self._get_term_structure()
-        return term_structure.yoyRate(t, extrapolate)
+        if isinstance(d, Date):
+            return term_structure.yoyRate(
+                deref(d._thisptr.get()),
+                deref(inst_obs_lag._thisptr.get()),
+                force_linear_interpolation,
+                extrapolate)
+        else:
+            return term_structure.yoyRate(<Time?>d, extrapolate)
