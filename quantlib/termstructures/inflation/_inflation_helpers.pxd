@@ -1,13 +1,22 @@
-from quantlib.time._daycounter cimport DayCounter
+
+include '../../types.pxi'
+
 from quantlib._quote cimport Quote
 from quantlib.handle cimport shared_ptr, Handle
+from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time._date cimport Date
+from quantlib.time._daycounter cimport DayCounter
+from quantlib.time._calendar cimport Calendar
 from quantlib.time._period cimport Period
-from quantlib.indexes._inflation_index cimport YoYInflationIndex
+
+from quantlib.indexes._inflation_index cimport (
+    YoYInflationIndex, ZeroInflationIndex)
+from quantlib.termstructures._helpers cimport BootstrapHelper
+cimport quantlib.termstructures._inflation_term_structure as _its
 
 cdef extern from 'ql/termstructures/inflation/inflationhelpers.hpp' namespace 'QuantLib':
-    cdef BootstrapHelper[ZeroInflationTermStructure] InflationHelper
-    cdef cppclass ZeroCouponInflationSwapHelper(InflationHelper):
-        ZeroCouponInflationHelper(
+    cdef cppclass ZeroCouponInflationSwapHelper(BootstrapHelper[_its.ZeroInflationTermStructure]):
+        ZeroCouponInflationSwapHelper(
             const Handle[Quote]& quote,
             const Period& swap_obs_lag,  # lag on swap observation of index
             const Date& maturity,
@@ -15,12 +24,11 @@ cdef extern from 'ql/termstructures/inflation/inflationhelpers.hpp' namespace 'Q
             BusinessDayConvention payment_convention,
             const DayCounter& day_counter,
             const shared_ptr[ZeroInflationIndex]& zii) except +
-        void setTermStructure(ZeroInflationTermStructure*);
+        void setTermStructure(_its.ZeroInflationTermStructure*);
         Real impliedQuote() const
 
     # Year-on-year inflation-swap bootstrap helper
-    cdef BootstrapHelper[YoYInflationTermStructure] YoYInflationHelper
-    cdef cppclass YearOnYearInflationSwapHelper(YoYInflationHelper):
+    cdef cppclass YearOnYearInflationSwapHelper(BootstrapHelper[_its.YoYInflationTermStructure]):
         YearOnYearInflationSwapHelper(
             const Handle[Quote]& quote,
             const Period& swap_obs_lag,
@@ -29,5 +37,5 @@ cdef extern from 'ql/termstructures/inflation/inflationhelpers.hpp' namespace 'Q
             BusinessDayConvention payment_convention,
             const DayCounter& day_counter,
             const shared_ptr[YoYInflationIndex]& yii)
-        void setTermStructure(YoYInflationTermStructure*)
+        void setTermStructure(_its.YoYInflationTermStructure*)
         Real impliedQuote() const
