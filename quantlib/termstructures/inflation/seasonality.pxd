@@ -11,7 +11,7 @@ cimport _seasonality as _se
 from quantlib.handle cimport shared_ptr
 
 cdef class Seasonality:
-    cdef shared_ptr[_se.Seasonality]* _thisptr
+    cdef shared_ptr[_se.Seasonality] _thisptr
 
 cdef class MultiplicativePriceSeasonality(Seasonality):
     pass

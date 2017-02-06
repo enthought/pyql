@@ -67,13 +67,10 @@ cdef class ZeroInflationIndex(InflationIndex):
                  Frequency frequency,
                  Period availabilityLag,
                  Currency currency,
-                 ZeroInflationTermStructure ts=None):
+                 ZeroInflationTermStructure ts=ZeroInflationTermStructure()):
 
-        cdef Handle[_its.ZeroInflationTermStructure] ts_handle
-        if ts is None:
-            ts_handle = Handle[_its.ZeroInflationTermStructure]()
-        else:
-            ts_handle = Handle[_its.ZeroInflationTermStructure](
+        cdef Handle[_its.ZeroInflationTermStructure] ts_handle = \
+            Handle[_its.ZeroInflationTermStructure](
                 static_pointer_cast[_its.ZeroInflationTermStructure](
                     ts._thisptr.currentLink()))
 
@@ -86,7 +83,7 @@ cdef class ZeroInflationIndex(InflationIndex):
                 deref(region._thisptr),
                 revised,
                 interpolated,
-                <_ir.Frequency> frequency,
+                frequency,
                 deref(availabilityLag._thisptr.get()),
                 deref(currency._thisptr),
                 ts_handle))
@@ -95,15 +92,12 @@ cdef class YoYInflationIndex(ZeroInflationIndex):
     def __init__(self, family_name, Region region, bool revised,
                  bool interpolated, bool ratio, Frequency frequency,
                  Period availability_lag, Currency currency,
-                 YoYInflationTermStructure ts=None):
+                 YoYInflationTermStructure ts=YoYInflationTermStructure()):
 
         cdef Handle[_its.YoYInflationTermStructure] ts_handle
-        if ts is None:
-            ts_handle = Handle[_its.YoYInflationTermStructure]()
-        else:
-            ts_handle = Handle[_its.YoYInflationTermStructure](
-                static_pointer_cast[_its.YoYInflationTermStructure](
-                    ts._thisptr.currentLink()))
+        ts_handle = Handle[_its.YoYInflationTermStructure](
+            static_pointer_cast[_its.YoYInflationTermStructure](
+                ts._thisptr.currentLink()))
 
         cdef string c_family_name = family_name.encode('utf-8')
 
