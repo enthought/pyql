@@ -14,7 +14,7 @@ from quantlib.time._period cimport Frequency
 from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
 from quantlib.handle cimport RelinkableHandle, shared_ptr
 
-cdef class  InterpolatedZeroInflationCurve(ZeroInflationTermStructure):
+cdef class InterpolatedZeroInflationCurve(ZeroInflationTermStructure):
     def __cinit__(self, Interpolator interpolator,
                   Date reference_date, Calendar calendar not None,
                   DayCounter day_counter not None,
