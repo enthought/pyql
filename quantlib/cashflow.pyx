@@ -13,7 +13,7 @@ cimport quantlib.time.date as date
 from libcpp.vector cimport vector
 from cython.operator cimport dereference as deref, preincrement as preinc
 from quantlib.handle cimport shared_ptr
-
+import datetime
 
 cdef class CashFlow:
     """Abstract Base Class.
@@ -82,15 +82,19 @@ cdef class SimpleLeg:
     def __init__(self, leg=None):
         '''Takes as input a list of (amount, QL Date) tuples. '''
 
-        #TODO: make so that it handles pydate as well as QL Dates.
         cdef shared_ptr[_cf.CashFlow] _thiscf
-        cdef shared_ptr[_date.Date] _thisdate
+        cdef _date.Date _thisdate
 
-        for _amount, _date in leg:
-            _thisdate = deref((<date.Date?>_date)._thisptr)
+        for amount, d in leg:
+            if isinstance(d, date.Date):
+               _thisdate = deref((<date.Date>d)._thisptr.get())
+            elif isinstance(d, datetime.date):
+               _thisdate = date._qldate_from_pydate(d)
+            else:
+               raise TypeError("second element needs to be a QuantLib Date or datetime.date")
 
             _thiscf = shared_ptr[_cf.CashFlow](
-                new _cf.SimpleCashFlow(_amount, deref(_thisdate.get()))
+                new _cf.SimpleCashFlow(amount, _thisdate)
             )
 
             self._thisptr.push_back(_thiscf)
