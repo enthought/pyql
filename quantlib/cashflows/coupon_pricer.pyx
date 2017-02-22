@@ -8,9 +8,9 @@ from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
 from coupon_pricer cimport FloatingRateCouponPricer
-from quantlib.cashflow cimport Leg
 from quantlib.instruments.bonds cimport Bond
 cimport quantlib._cashflow as _cf
+
 cdef class IborCouponPricer:
 
     def __cinit__(self):

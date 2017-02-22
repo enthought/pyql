@@ -32,7 +32,6 @@ from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.businessdayconvention import Following
-from quantlib.cashflow cimport Leg
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.cashflow cimport SimpleLeg, leg_items
 
