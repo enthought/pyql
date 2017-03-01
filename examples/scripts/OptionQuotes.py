@@ -204,23 +204,21 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1, keepOTMData=Tr
             except:
                 vol = np.nan
             return vol/np.sqrt(timeToMaturity)
-        
+
         # implied bid/ask vol for all options
-        
-        df_call['IVBid'] = [impvol('C', strike, price) for strike, price
-                            in zip(df_call['Strike'], df_call['PBid'])]
-        df_call['IVAsk'] = [impvol('C', strike, price) for strike, price
-                            in zip(df_call['Strike'], df_call['PAsk'])]
-        
-        df_call['IVMid'] = (df_call['IVBid'] + df_call['IVAsk'])/2
-        
-        df_put['IVBid'] = [impvol('P', strike, price) for strike, price
-                           in zip(df_put['Strike'], df_put['PBid'])]
-        df_put['IVAsk'] = [impvol('P', strike, price) for strike, price
-                           in zip(df_put['Strike'], df_put['PAsk'])]
-        
-        df_put['IVMid'] = (df_put['IVBid'] + df_put['IVAsk'])/2
-        
+
+        df_call = df_call.assign(IVBid = [impvol('C', strike, price) for strike, price
+                                          in zip(df_call['Strike'], df_call['PBid'])],
+                                 IVAsk = [impvol('C', strike, price) for strike, price
+                                          in zip(df_call['Strike'], df_call['PBid'])])
+        df_call = df_call.assign(IVMid = (df_call.IVBid + df_call.IVAsk)/2)
+
+        df_put = df_put.assign(IVBid = [impvol('P', strike, price) for strike, price
+                                        in zip(df_put['Strike'], df_put['PBid'])],
+                               IVAsk = [impvol('P', strike, price) for strike, price
+                                        in zip(df_put['Strike'], df_put['PAsk'])])
+        df_put = df_put.assign(IVMid = (df_put['IVBid'] + df_put['IVAsk'])/2)
+
         f_call = interp1d(df_call['Strike'].values, df_call['IVMid'].values)
         f_put = interp1d(df_put['Strike'].values, df_put['IVMid'].values)
 
@@ -229,10 +227,12 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1, keepOTMData=Tr
 
         # Quick Delta, computed with ATM vol
         rv = norm()
-        df_call['QuickDelta'] = [rv.cdf(np.log(Fwd/strike)/(atmVol*np.sqrt(timeToMaturity))) \
-        for strike in df_call['Strike']]
-        df_put['QuickDelta'] = [rv.cdf(np.log(Fwd/strike)/(atmVol*np.sqrt(timeToMaturity))) \
-        for strike in df_put['Strike']]
+        df_call = (df_call.
+                   assign(QuickDelta=
+                          rv.cdf(np.log(Fwd/df_call.Strike.values) / (atmVol*np.sqrt(timeToMaturity)))))
+        df_put = (df_put.
+                  assign(QuickDelta=
+                         rv.cdf(np.log(Fwd/df_put.Strike.values)/(atmVol*np.sqrt(timeToMaturity)))))
 
         # keep data within QD range
     
@@ -282,5 +282,4 @@ if __name__ == '__main__':
 
     # save a csv file and pickled data frame
     df_final.to_csv('../data/df_options_SPX_24jan2011.csv', index=False)
-    df_final.save('../data/df_options_SPX_24jan2011.pkl')
-
+    df_final.to_pickle('../data/df_options_SPX_24jan2011.pkl')

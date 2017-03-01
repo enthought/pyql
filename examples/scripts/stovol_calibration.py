@@ -385,17 +385,17 @@ def batesdoubleexp_calibration(df_option, ival=None):
 
 # Calibration
 # -----------
-# 
+#
 # Finally, the calibration is performed by first loading the option data and calling the calibration routine.
 
 # Plot Actual vs. Fitted Implied Volatility
 # -----------------------------------------
-# 
+#
 # We display 4 graphs in one plot, and show the bid/ask market volatility with the fitted volatility
 # for selected maturities.
 
 def calibration_subplot(ax, group, i, model_name):
-    group = group.sort_index(by='Strike')
+    group = group.sort_values(by='Strike')
     dtExpiry = group.get_value(group.index[0], 'dtExpiry')
     K = group['Strike']
     VB = group['IVBid']
@@ -440,7 +440,7 @@ def calibration_plot(df_calibration, model_name):
         plt.show(block=False)
 
 if __name__ == '__main__':
-    df_options = pandas.load('../data/df_options_SPX_24jan2011.pkl')
+    df_options = pandas.read_pickle('../data/df_options_SPX_24jan2011.pkl')
 
     df_heston_cal = heston_calibration(df_options)
     calibration_plot(df_heston_cal, 'Heston')

@@ -34,7 +34,7 @@ from quantlib.util.rates import zero_rate, make_term_structure
 
 if __name__ == '__main__':
 
-    df_libor = pd.load(os.path.join('..', 'data', 'df_libor.pkl'))
+    df_libor = pd.read_pickle(os.path.join('..', 'data', 'df_libor.pkl'))
 
     dtObs = df_libor.index
 
