@@ -23,7 +23,7 @@ from quantlib.time.api import Date, TARGET, Period, Months, Years, Days
 from quantlib.time.api import (ModifiedFollowing, Actual360,
                                Thirty360, Semiannual, ActualActual)
 
-from quantlib.time.api import ISDA
+from quantlib.time.api import ISDA, pydate_from_qldate
 from quantlib.currency.api import USDCurrency
 from quantlib.quotes import SimpleQuote
 
@@ -35,19 +35,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas
 
-
-def QLDateTodate(dt):
-    """
-    Converts a QL Date to a datetime
-    """
-
-    return datetime.datetime(dt.year, dt.month, dt.day)
-
-
-def dateToDate(dt):
-    return Date(dt.day, dt.month, dt.year)
-
-
 def get_term_structure(df_libor, dtObs):
 
     settings = Settings()
@@ -56,7 +43,7 @@ def get_term_structure(df_libor, dtObs):
     calendar = TARGET()
 
     # must be a business day
-    eval_date = calendar.adjust(dateToDate(dtObs))
+    eval_date = calendar.adjust(Date.from_datetime(dtObs))
     settings.evaluation_date = eval_date
 
     settlement_days = 2
@@ -114,28 +101,27 @@ def get_term_structure(df_libor, dtObs):
     ts_day_counter = ActualActual(ISDA)
     tolerance = 1.0e-15
 
-    ts = PiecewiseYieldCurve(BootstrapTrait.Discount,
-                             Interpolator.LogLinear,
-                             settlement_date,
-                             rate_helpers,
-                             ts_day_counter,
-                             tolerance)
-
+    ts = PiecewiseYieldCurve.from_reference_date(BootstrapTrait.Discount,
+                                                 Interpolator.LogLinear,
+                                                 settlement_date,
+                                                 rate_helpers,
+                                                 ts_day_counter,
+                                                 tolerance)
+    ts.extrapolation = True
     return ts
-
 
 def zero_curve(ts, dtObs):
     dtMax = ts.max_date
 
     calendar = TARGET()
     days = range(10, 365 * 20, 30)
-    dtMat = [min(dtMax, calendar.advance(dateToDate(dtObs), d, Days))
+    dtMat = [min(dtMax, calendar.advance(Date.from_datetime(dtObs), d, Days))
              for d in days]
     # largest dtMat < dtMax, yet QL run time error
 
-    df = np.array([ts.discount(dt, extrapolate=True) for dt in dtMat])
-    dtMat = [QLDateTodate(dt) for dt in dtMat]
-    dtToday = QLDateTodate(dtObs)
+    df = np.array([ts.discount(dt) for dt in dtMat])
+    dtMat = [pydate_from_qldate(dt) for dt in dtMat]
+    dtToday = dtObs.date()
     dt = np.array([(d - dtToday).days / 365.0 for d in dtMat])
     zc = -np.log(df) / dt
     return (dtMat, zc)
