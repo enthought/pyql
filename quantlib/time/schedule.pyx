@@ -52,7 +52,7 @@ cdef class Schedule:
            ):
 
         if not from_classmethod:
-            warnings.warn("Deprecated: use class method from_effective_termination instead",
+            warnings.warn("Deprecated: use class method from_rule instead",
                 DeprecationWarning)
 
             self._thisptr = new _schedule.Schedule(
@@ -62,13 +62,14 @@ cdef class Schedule:
                 deref(calendar._thisptr),
                 business_day_convention,
                 termination_date_convention,
-                <_schedule.Rule>date_generation_rule, <bool>end_of_month
+                <_schedule.Rule>date_generation_rule, end_of_month,
+                _date.Date(), _date.Date()
             )
         else:
             pass
 
     @classmethod
-    def from_dates(cls, dates, Calendar calendar,
+    def from_dates(cls, dates, Calendar calendar not None,
             BusinessDayConvention business_day_convention=Following,
             BusinessDayConvention termination_date_convention=Following,
             Period tenor=None,
@@ -95,20 +96,24 @@ cdef class Schedule:
         return instance
 
     @classmethod
-    def from_effective_termination(cls, Date effective_date not None, Date termination_date not None,
-            Period tenor not None, Calendar calendar not None,
-            BusinessDayConvention business_day_convention=Following,
-            BusinessDayConvention termination_date_convention=Following,
-            int date_generation_rule=Forward, bool end_of_month=False):
+    def from_rule(cls, Date effective_date not None,
+                  Date termination_date not None,
+                  Period tenor not None, Calendar calendar not None,
+                  BusinessDayConvention business_day_convention=Following,
+                  BusinessDayConvention termination_date_convention=Following,
+                  int date_generation_rule=Forward, bool end_of_month=False,
+                  Date first_date=Date(), Date next_to_lastdate=Date()):
+
         cdef Schedule instance = cls.__new__(cls)
         instance._thisptr = new _schedule.Schedule(
-                deref(effective_date._thisptr.get()),
-                deref(termination_date._thisptr.get()),
-                deref(tenor._thisptr.get()),
-                deref(calendar._thisptr),
-                business_day_convention,
-                termination_date_convention,
-                <_schedule.Rule>date_generation_rule, end_of_month
+            deref(effective_date._thisptr.get()),
+            deref(termination_date._thisptr.get()),
+            deref(tenor._thisptr.get()),
+            deref(calendar._thisptr),
+            business_day_convention,
+            termination_date_convention,
+            <_schedule.Rule>date_generation_rule, end_of_month,
+            deref(first_date._thisptr.get()), deref(next_to_lastdate._thisptr.get())
             )
         return instance
 
