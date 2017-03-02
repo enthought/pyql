@@ -32,7 +32,6 @@ from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.businessdayconvention import Following
-from quantlib.cashflow cimport Leg
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.cashflow cimport SimpleLeg, leg_items
 
@@ -116,6 +115,11 @@ cdef class Swap(Instrument):
     ## def npvDateDiscount(self):
     ##     return get_swap(self).npvDateDiscount()
 
+    def __getitem__(self, int i):
+       cdef SimpleLeg leg = SimpleLeg(noalloc=False)
+       leg._thisptr = get_swap(self).leg(i)
+       return leg
+
 cdef _vanillaswap.VanillaSwap* get_vanillaswap(VanillaSwap swap):
     """ Utility function to extract a properly casted Swap pointer out of the
     internal _thisptr attribute of the Instrument base class. """
@@ -197,24 +201,14 @@ cdef class VanillaSwap(Swap):
         def __get__(self):
             cdef Real res = get_vanillaswap(self).floatingLegNPV()
             return res
+    @property
+    def fixed_leg(self):
+        cdef SimpleLeg leg = SimpleLeg.__new__(SimpleLeg)
+        leg._thisptr = get_vanillaswap(self).fixedLeg()
+        return leg
 
-    def leg(self, int i):
-        """
-        Return a swap leg
-        TODO: optimize this - avoid copy
-        """
-        cdef vector[shared_ptr[_cf.CashFlow]] leg = get_vanillaswap(self).leg(i)
-
-        cdef int k
-        cdef shared_ptr[_cf.CashFlow] _thiscf
-        cdef Date _thisdate
-
-        itemlist = []
-        cdef int size = leg.size()
-        for k in xrange(size):
-            _thiscf = leg.at(k)
-            _thisdate = Date(_thiscf.get().date().serialNumber())
-            itemlist.append((_thiscf.get().amount(), _thisdate))
-
-        return SimpleLeg(itemlist)
-
+    @property
+    def floating_leg(self):
+        cdef SimpleLeg leg = SimpleLeg.__new__(SimpleLeg)
+        leg._thisptr = get_vanillaswap(self).floatingLeg()
+        return leg

@@ -134,11 +134,9 @@ cdef class Bond(Instrument):
         """ cash flow stream as a Leg """
         def __get__(self):
             cdef _cashflow.Leg leg
-            cdef object result
             leg = get_bond(self).cashflows()
             
-            result = cashflow.leg_items(leg)
-            return result
+            return cashflow.leg_items(leg)
 
 cdef class FixedRateBond(Bond):
     """ Fixed rate bond.

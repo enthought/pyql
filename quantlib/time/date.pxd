@@ -23,3 +23,4 @@ cdef class Date:
 
 cdef date.Date date_from_qldate(const _date.Date& date)
 cdef object _pydate_from_qldate(_date.Date qdate)
+cdef _date.Date _qldate_from_pydate(object date)

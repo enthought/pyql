@@ -26,5 +26,5 @@ class TestQuantLibDate(unittest.TestCase):
         leg = ((cf_amount, cf_date),)
 
         test_leg = cf.SimpleLeg(leg)
-        self.assertEqual(test_leg.size, 1)
-        self.assertEqual(test_leg.items, [(100.0, pydate)])
+        self.assertEqual(len(test_leg), 1)
+        self.assertEqual(list(test_leg), [(100.0, pydate)])

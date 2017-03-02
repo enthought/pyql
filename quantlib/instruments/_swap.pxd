@@ -34,5 +34,4 @@ cdef extern from 'ql/instruments/swap.hpp' namespace 'QuantLib':
         Date maturityDate()
         Real legBPS(Size j) except +
         Real legNPV(Size j) except +
-        Leg& leg(Size j) # FIXME: we should have 'except +' to catch issues with leg id...
-
+        Leg& leg(Size j) except +
