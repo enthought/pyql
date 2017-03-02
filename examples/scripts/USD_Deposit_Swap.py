@@ -40,20 +40,16 @@ if __name__ == '__main__':
     dt_obs = datetime.datetime(2011, 12, 20)
 
     # extract a yield curve from data frame
-    libor_rates = pd.load(os.path.join('..', 'data', 'df_libor.pkl'))
-    df_libor = pd.DataFrame(libor_rates.xs(dt_obs), columns=['Rate'])
-
+    libor_rates = pd.read_pickle(os.path.join('..', 'data', 'df_libor.pkl'))
+    df_libor = pd.DataFrame({'Rate': libor_rates.loc[dt_obs]})
     # add maturity column
     df_libor['Maturity'] = [maturities_dic[k] for k in df_libor.index]
 
-    # add maturity column
-    df_libor['Maturity'] = [col_mat_dic[k] for k in df_libor.index]
-    
     # ... and sort by increasing maturity
-    df_libor = df_libor.sort_index(by='Maturity')
+    df_libor = df_libor.sort_values('Maturity')
 
     print(df_libor)
-    
+
     pl.plot(df_libor['Maturity'], df_libor['Rate'])
     pl.xlabel('Maturity (Yr)')
     pl.ylabel('Deposit/Libor Rate')

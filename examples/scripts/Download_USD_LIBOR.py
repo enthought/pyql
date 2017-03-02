@@ -22,7 +22,10 @@
 # December 2011. The data is stored in a pandas DataFrame.
 
 import os
-import urllib
+try:
+    import urllib.request as urllib
+except ImportError:
+    import urllib
 import numpy as np
 
 from pandas.io.parsers import read_csv
@@ -105,4 +108,4 @@ if __name__ == '__main__':
     df_libor = df_libor.rename(columns=columns_dic)
     good_rows = df_libor.apply(good_row, axis=1)
     df_libor_good = df_libor[good_rows]
-    df_libor_good.save(os.path.join('..', 'data', 'df_libor.pkl'))
+    df_libor_good.to_pickle(os.path.join('..', 'data', 'df_libor.pkl'))
