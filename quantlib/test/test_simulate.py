@@ -14,7 +14,7 @@ from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 
 
-from quantlib.sim.simulate import (simulateHeston, simulateBates)
+from quantlib.sim.simulate import simulate_model
 
 
 from quantlib.processes.heston_process import PARTIALTRUNCATION
@@ -86,7 +86,7 @@ class SimTestCase(unittest.TestCase):
 
         model = HestonModel(self.heston_process)
 
-        res = simulateHeston(model, paths, steps, horizon, seed)
+        res = simulate_model(model, paths, steps, horizon, seed)
 
         time = res[0, :]
         time_expected = np.arange(0, 1.1, .1)
@@ -113,7 +113,7 @@ class SimTestCase(unittest.TestCase):
         nbSteps = 100
         horizon = 1
         seed = 12345
-        res = simulateHeston(model, nbPaths, nbSteps, horizon, seed)
+        res = simulate_model(model, nbPaths, nbSteps, horizon, seed)
 
         self.assertAlmostEqual(res[1, -1], 152.50, delta=.1)
 
@@ -126,7 +126,7 @@ class SimTestCase(unittest.TestCase):
         horizon = 1
         seed = 12345
 
-        res = simulateBates(model, paths, steps, horizon, seed)
+        res = simulate_model(model, paths, steps, horizon, seed)
 
         time = res[0, :]
         time_expected = np.arange(0, 1.1, .1)

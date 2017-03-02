@@ -38,7 +38,7 @@ from quantlib.settings import Settings
 from quantlib.time.api import today, NullCalendar, ActualActual
 from quantlib.util.rates import flat_rate
 import pylab as pl
-from quantlib.sim.simulate import simulateHeston, simulateBates
+from quantlib.sim.simulate import simulate_model
 
 # The Heston Process
 # ------------------
@@ -85,7 +85,7 @@ seed = 12345
 
 model = HestonModel(process)
 
-res = simulateHeston(model, paths, steps, horizon, seed)
+res = simulate_model(model, paths, steps, horizon, seed)
 
 time = res[0, :]
 simulations = res[1:, :].T
@@ -112,7 +112,7 @@ proc_bates = BatesProcess(
 
 model_bates = BatesModel(proc_bates)
 
-res_bates = simulateBates(model_bates, paths, steps, horizon, seed)
+res_bates = simulate_model(model_bates, paths, steps, horizon, seed)
 
 time = res_bates[0, :]
 simulations = res_bates[1:, :].T
