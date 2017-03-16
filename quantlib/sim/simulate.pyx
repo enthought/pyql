@@ -9,6 +9,8 @@ cimport quantlib.processes._stochastic_process as _sp
 
 from quantlib.processes.heston_process cimport HestonProcess
 from quantlib.models.equity.heston_model cimport HestonModel
+from quantlib.time_grid cimport TimeGrid
+cimport quantlib._time_grid as _tg
 
 import numpy as np
 cimport numpy as cnp
@@ -16,7 +18,7 @@ cimport numpy as cnp
 cdef extern from "simulate_support_code.hpp" namespace 'PyQL':
 
     void simulateMP(const shared_ptr[_sp.StochasticProcess]& process,
-                    int nbPaths, int nbSteps, Time horizon, BigNatural seed,
+                    int nbPaths, _tg.TimeGrid& grid, BigNatural seed,
                     bool antithetic_variates, double *res) except +
 
 def simulate_model(model, int nbPaths, int nbSteps, Time horizon,
@@ -27,6 +29,6 @@ def simulate_model(model, int nbPaths, int nbSteps, Time horizon,
     sp = <shared_ptr[_sp.StochasticProcess]>hp
 
     cdef cnp.ndarray[cnp.double_t, ndim=2] res = np.zeros((nbPaths+1, nbSteps+1), dtype=np.double)
-    simulateMP(sp, nbPaths, nbSteps,
-               horizon, seed, antithetic, <double*> res.data)
+    cdef TimeGrid grid = TimeGrid(horizon, nbSteps)
+    simulateMP(sp, nbPaths, grid._thisptr, seed, antithetic, <double*> res.data)
     return res

@@ -2,6 +2,7 @@
 #include <ql/methods/montecarlo/multipathgenerator.hpp>
 #include <ql/stochasticprocess.hpp>
 #include <ql/methods/montecarlo/path.hpp>
+#include <algorithm>
 
 /*
  * Multipath simulator. A multipath simulator is needed when the stochastic
@@ -14,32 +15,24 @@ using namespace QuantLib;
 namespace PyQL {
 
     void simulateMP(const boost::shared_ptr<StochasticProcess>& process,
-                    int nbPaths, int nbSteps, Time horizon, BigNatural seed,
-		    bool antithetic_variates,
-                    double *res) {
+                    int nbPaths, TimeGrid& grid, BigNatural seed,
+                    bool antithetic_variates, double *res) {
 
         typedef PseudoRandom::rsg_type rsg_type; 
         typedef MultiPathGenerator<rsg_type>::sample_type sample_type;
 
-        Time length = horizon;
-
-        Size timeSteps = nbSteps;
         boost::shared_ptr<StochasticProcess> sp = process;
     
         Size assets = sp->factors();
-        rsg_type rsg = PseudoRandom::make_sequence_generator(timeSteps*assets,
-                       seed);
-
-	MultiPathGenerator<rsg_type> generator(sp, TimeGrid(length, timeSteps),
-          rsg, false);
+        rsg_type rsg = PseudoRandom::make_sequence_generator((grid.size() - 1)* assets,
+                seed);
+        
+        MultiPathGenerator<rsg_type> generator(sp, grid, rsg, false);
 
         // res(nbPaths+1, nbSteps+1)
 
         // time steps in first row        
-        double dt = length/nbSteps;
-        for (int j=0; j<=nbSteps; ++j)
-            res[(0*nbSteps)+j] = dt*j;
-
+        std::copy(grid.begin(), grid.end(), res);
         // fill simulated paths
 
         for (int i=0; i<nbPaths; ++i) {
@@ -51,12 +44,8 @@ namespace PyQL {
                 : generator.next();
 
             Path p1 = sample.value[0];
-            int j=0;
-            for (Path::iterator ip = p1.begin(); ip<p1.end(); ++ip) {
-                res[(i+1)*(nbSteps+1)+j] = (*ip);
-                j++;
-            };
-        };
-    };
+            std::copy(p1.begin(), p1.end(), res+(i+1)*grid.size());
+        }
+    }
 }
 
