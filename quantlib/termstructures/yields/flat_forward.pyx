@@ -21,7 +21,7 @@ from quantlib.handle cimport shared_ptr, RelinkableHandle, Handle
 cimport _flat_forward as ffwd
 cimport quantlib._quote as _qt
 from quantlib.quotes cimport Quote
-from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 
 
 cdef class FlatForward(YieldTermStructure):

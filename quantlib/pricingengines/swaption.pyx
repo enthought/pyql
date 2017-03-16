@@ -15,7 +15,7 @@ from engine cimport PricingEngine
 cimport _swaption
 
 cimport quantlib.termstructures._yield_term_structure as _yts
-from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.models.shortrate.onefactor_model cimport OneFactorAffineModel
 from quantlib.models.shortrate.onefactormodels.hullwhite cimport HullWhite
 

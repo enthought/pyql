@@ -188,16 +188,16 @@ quantlib.model.equity
    :members:
    :undoc-members:
 
-:mod:`quantlib.termstructures.yields`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-:mod:`~quantlib.termstructures.yields.yield_term_structure`
+:mod:`~quantlib.termstructures.yield_term_structure`
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-.. automodule:: quantlib.termstructures.yields.yield_term_structure
+.. automodule:: quantlib.termstructures.yield_term_structure
    :members:
    :undoc-members:
 
-:mod:`~quantlib.termstructures.yields.rate_helpers`
+::mod:`quantlib.termstructures.yields`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+mod:`~quantlib.termstructures.yields.rate_helpers`
 """""""""""""""""""""""""""""""""""""""""""""""""""
 .. automodule:: quantlib.termstructures.yields.rate_helpers
     :members:

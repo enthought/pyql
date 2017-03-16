@@ -4,7 +4,7 @@ from cython.operator cimport dereference as deref
 cimport _hullwhite_process as _hw
 
 cimport quantlib.termstructures._yield_term_structure as _yts
-from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 
 from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib.termstructures.yields._flat_forward as _ff

@@ -17,7 +17,7 @@ from engine cimport PricingEngine
 cimport quantlib.termstructures._default_term_structure as _dts
 cimport quantlib.termstructures._yield_term_structure as _yts
 from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
-from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 
 cdef class MidPointCdsEngine(PricingEngine):
 

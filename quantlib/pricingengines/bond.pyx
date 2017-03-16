@@ -14,7 +14,7 @@ cimport _bond
 from engine cimport PricingEngine
 
 cimport quantlib.termstructures._yield_term_structure as _yts
-from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 
 cdef class DiscountingBondEngine(PricingEngine):
 

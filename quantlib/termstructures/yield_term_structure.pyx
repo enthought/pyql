@@ -1,4 +1,4 @@
-include '../../types.pxi'
+include '../types.pxi'
 from cython.operator cimport dereference as deref
 
 from libcpp cimport bool
