@@ -5,5 +5,6 @@ from .forward_spreaded_term_structure import ForwardSpreadedTermStructure
 from .rate_helpers import (
     RateHelper, DepositRateHelper, FraRateHelper,
     FuturesRateHelper, SwapRateHelper)
-from .yield_term_structure import YieldTermStructure
+from .discount_curve import InterpolatedDiscountCurve, DiscountCurve
+from ..yield_term_structure import YieldTermStructure
 from .zero_curve import ZeroCurve
