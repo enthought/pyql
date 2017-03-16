@@ -21,14 +21,14 @@ cdef extern from "simulate_support_code.hpp" namespace 'PyQL':
                     int nbPaths, _tg.TimeGrid& grid, BigNatural seed,
                     bool antithetic_variates, double *res) except +
 
-def simulate_model(model, int nbPaths, int nbSteps, Time horizon,
-                   BigNatural seed, bool antithetic = True):
+def simulate_model(model, int nbPaths, TimeGrid grid, BigNatural seed,
+                   bool antithetic=True):
     cdef shared_ptr[_sp.StochasticProcess] sp
     cdef shared_ptr[_hp.HestonProcess] hp
     hp = (<HestonModel?>model)._thisptr.get().process()
     sp = <shared_ptr[_sp.StochasticProcess]>hp
 
-    cdef cnp.ndarray[cnp.double_t, ndim=2] res = np.zeros((nbPaths+1, nbSteps+1), dtype=np.double)
-    cdef TimeGrid grid = TimeGrid(horizon, nbSteps)
+    cdef cnp.ndarray[cnp.double_t, ndim=2] res = np.empty(
+        (grid._thisptr.size(), nbPaths), dtype=np.double, order='F')
     simulateMP(sp, nbPaths, grid._thisptr, seed, antithetic, <double*> res.data)
     return res
