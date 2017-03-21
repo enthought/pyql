@@ -9,6 +9,7 @@
 
 include 'types.pxi'
 
+from libcpp.string cimport string
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._period cimport Frequency
 
@@ -20,6 +21,7 @@ cdef extern from 'ql/interestrate.hpp' namespace 'QuantLib':
 
     cppclass InterestRate:
         InterestRate()
+        InterestRate(InterestRate&)
         InterestRate(
             Rate r, DayCounter& dc, Compounding comp, Frequency freq
         ) except+
@@ -30,3 +32,8 @@ cdef extern from 'ql/interestrate.hpp' namespace 'QuantLib':
         Frequency frequency()
 
         DiscountFactor discountFactor(Time t)
+
+cdef extern from "<sstream>" namespace "std":
+    cdef cppclass stringstream:
+        stringstream& operator<<(InterestRate&)
+        string str()
