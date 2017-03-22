@@ -12,6 +12,7 @@ cdef extern from 'ql/time/calendar.hpp' namespace 'QuantLib':
 
     cdef cppclass Calendar:
             Calendar()
+            Calendar(Calendar&)
             string name()
             bool empty()
             bool isHoliday(Date& d)

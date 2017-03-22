@@ -15,6 +15,7 @@ from libcpp.string cimport string
 cimport quantlib.time._calendar as _calendar
 cimport quantlib.time._date as _date
 from quantlib._index cimport TimeSeries
+from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date, date_from_qldate
 
 cdef class Index:
@@ -35,9 +36,9 @@ cdef class Index:
 
     property fixing_calendar:
         def __get__(self):
-            cdef _calendar.Calendar fc
-            fc = self._thisptr.get().fixingCalendar()
-            return calendar_from_internal_name(fc.name().decode('utf-8'))
+            cdef Calendar cal = Calendar.__new__(Calendar)
+            cal._thisptr = new _calendar.Calendar(self._thisptr.get().fixingCalendar())
+            return cal
 
     @property
     def time_series(self):
@@ -53,11 +54,11 @@ cdef class Index:
         return self._thisptr.get().isValidFixingDate(
             deref(fixingDate._thisptr.get()))
 
-    def fixing(self, Date fixingDate, bool forecastTodaysFixing):
+    def fixing(self, Date fixingDate, bool forecastTodaysFixing=False):
         return self._thisptr.get().fixing(
             deref(fixingDate._thisptr.get()), forecastTodaysFixing)
 
-    def add_fixing(self, Date fixingDate, Real fixing, bool forceOverwrite):
+    def add_fixing(self, Date fixingDate, Real fixing, bool forceOverwrite=False):
         self._thisptr.get().addFixing(
             deref(fixingDate._thisptr.get()), fixing, forceOverwrite
         )
