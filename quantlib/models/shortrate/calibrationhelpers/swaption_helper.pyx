@@ -12,7 +12,7 @@ include '../../../types.pxi'
 from quantlib.handle cimport Handle, shared_ptr
 from cython.operator cimport dereference as deref
 
-from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.time.date cimport Period

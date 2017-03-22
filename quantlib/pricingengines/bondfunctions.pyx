@@ -11,7 +11,7 @@ from quantlib.handle cimport shared_ptr, Handle
 from cython.operator cimport dereference as deref
 from quantlib.instruments.bonds cimport Bond
 from quantlib.time.date cimport date_from_qldate, Date
-from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.time.daycounter cimport DayCounter
 
 cimport quantlib.time._date as _dt

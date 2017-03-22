@@ -9,7 +9,7 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
 from quantlib.time._businessdayconvention cimport ModifiedFollowing, BusinessDayConvention
-from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 cimport quantlib._index as _in
 cimport quantlib.indexes._ibor_index as _ib
 

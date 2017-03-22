@@ -3,7 +3,7 @@ from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from quantlib.handle cimport shared_ptr, Handle
 from quantlib.pricingengines.vanilla.vanilla cimport PricingEngine
-from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 
 cimport quantlib.pricingengines._swap as _swap
 cimport quantlib.pricingengines._pricing_engine as _pe

@@ -1,4 +1,4 @@
-from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 
 cdef enum Interpolator:
     Linear

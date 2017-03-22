@@ -23,7 +23,7 @@ from quantlib.time.date cimport Period, date_from_qldate, Date
 cimport quantlib.time._date as _date
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 cimport quantlib._quote as _qt
 
 cdef class CdsHelper:
@@ -82,7 +82,7 @@ cdef class SpreadCdsHelper(CdsHelper):
     date_generation_rule : int
     daycounter : :class:`~quantlib.time.daycounter.DayCounter`
     recovery_rate : float
-    discount_curve : :class:`~quantlib.termstructures.yields.yield_term_structure.YieldTermStructure`
+    discount_curve : :class:`~quantlib.termstructures.yield_term_structure.YieldTermStructure`
     settles_accrual : bool, optional
     pays_at_default_time : bool, optional
 

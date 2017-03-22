@@ -24,7 +24,7 @@ from quantlib.time.api import ModifiedFollowing, Unadjusted, Actual360
 from quantlib.time.api import Thirty360, ActualActual, Actual365Fixed
 from quantlib.time.api import Annual, UnitedStates
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.api import YieldTermStructure
+from quantlib.termstructures.yields.api import DiscountCurve
 from quantlib.indexes.libor import Libor
 
 
@@ -158,6 +158,40 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         self.assertEqual([q.value for q in quotes], [rh.quote for rh in rate_helpers])
         new_discount = ts.discount(ts.max_date)
         self.assertTrue(new_discount < old_discount)
+
+    def test_discount_curve(self):
+        settings = Settings()
+        settings.evaluation_date = Date(6, 10, 2016)
+
+        # Market information
+        calendar = TARGET()
+
+        quotes = [SimpleQuote(0.0096), SimpleQuote(0.0145), SimpleQuote(0.0194)]
+        tenors =  [3, 6, 12]
+
+        deposit_day_counter = Actual365Fixed()
+        convention = ModifiedFollowing
+        end_of_month = True
+        fixing_days = 3
+        rate_helpers = [DepositRateHelper(
+            quote, Period(month, Months), fixing_days, calendar, convention, end_of_month,
+            deposit_day_counter) for quote, month in zip(quotes, tenors)]
+
+        ts_day_counter = ActualActual(ISDA)
+
+        tolerance = 1.0e-15
+
+        ts = PiecewiseYieldCurve(
+            BootstrapTrait.ForwardRate, Interpolator.BackwardFlat, 2, calendar, rate_helpers,
+            ts_day_counter, tolerance
+        )
+
+        dates = [rh.latest_date for rh in rate_helpers]
+        dfs = [ts.discount(d) for d in dates]
+        dates.insert(0, ts.reference_date)
+        dfs.insert(0, 1)
+        ts_discount = DiscountCurve(dates, dfs, ts_day_counter, calendar)
+        self.assertTrue(ts.discount(0.75), ts_discount.discount(0.75))
 
     def test_all_types_of_piecewise_curves(self):
 
