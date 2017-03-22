@@ -236,6 +236,13 @@ class TestQuantLibPeriod(unittest.TestCase):
         self.assertEqual(Months, period.units)
         self.assertEqual(OtherFrequency, period.frequency)
 
+    def test_creation_with_string(self):
+        period1 = Period("3M")
+        period2 = Period("3m")
+        period3 = Period(3, Months)
+        self.assertEqual(period1, period2)
+        self.assertEqual(period1, period3)
+
     def test_adding_period_to_date(self):
 
         date1 = Date(1, May, 2011)

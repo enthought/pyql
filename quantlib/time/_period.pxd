@@ -1,5 +1,6 @@
 include '../types.pxi'
 from libcpp cimport bool
+from libcpp.string cimport string
 
 cdef extern from 'ql/time/frequency.hpp' namespace "QuantLib":
     cdef enum Frequency:
@@ -29,6 +30,7 @@ cdef extern from 'ql/time/period.hpp' namespace "QuantLib":
     cdef cppclass Period:
 
         Period()
+        Period(Period&)
         Period (Integer n, TimeUnit units)
         Period (Frequency f)
 
@@ -57,3 +59,6 @@ cdef extern from 'ql/time/period.hpp' namespace "QuantLib":
     Real months(const Period& p) except +
     Real weeks(const Period& p) except +
     Real days(const Period& p) except +
+
+cdef extern from 'ql/utilities/dataparsers.hpp' namespace "QuantLib::PeriodParser":
+    Period parse(string& str) except +
