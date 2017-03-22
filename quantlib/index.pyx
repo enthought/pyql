@@ -50,7 +50,7 @@ cdef class Index:
             r.append((date_from_qldate(dates[i]), fixings[i]))
         return r
 
-    def is_valid_fixing_date(self, Date fixingDate):
+    def is_valid_fixing_date(self, Date fixingDate not None):
         return self._thisptr.get().isValidFixingDate(
             deref(fixingDate._thisptr.get()))
 
@@ -58,7 +58,7 @@ cdef class Index:
         return self._thisptr.get().fixing(
             deref(fixingDate._thisptr.get()), forecastTodaysFixing)
 
-    def add_fixing(self, Date fixingDate, Real fixing, bool forceOverwrite=False):
+    def add_fixing(self, Date fixingDate not None, Real fixing, bool forceOverwrite=False):
         self._thisptr.get().addFixing(
             deref(fixingDate._thisptr.get()), fixing, forceOverwrite
         )
