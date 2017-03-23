@@ -3,8 +3,7 @@ import numpy as np
 import unittest
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.processes.bates_process import BatesProcess
-from quantlib.models.equity.heston_model import HestonModel
-from quantlib.models.equity.bates_model import BatesModel
+from quantlib.processes.hullwhite_process import HullWhiteProcess
 
 from quantlib.settings import Settings
 from quantlib.time.api import (
@@ -72,6 +71,10 @@ class SimTestCase(unittest.TestCase):
             ival['theta'], ival['sigma'], ival['rho'],
             ival['lambda'], ival['nu'], ival['delta'])
 
+        a = 0.376739
+        sigma = 0.0209
+        self.hullwhite_process = HullWhiteProcess(self.risk_free_ts, a, sigma)
+
     def test_simulate_heston_1(self):
 
         settings = self.settings
@@ -89,7 +92,6 @@ class SimTestCase(unittest.TestCase):
 
         time = list(grid) 
         time_expected = np.arange(0, 1.1, .1)
-        simulations = res
 
         np.testing.assert_array_almost_equal(time, time_expected, decimal=4)
 
@@ -125,10 +127,17 @@ class SimTestCase(unittest.TestCase):
 
         time = list(grid)
         time_expected = np.arange(0, 1.1, .1)
-        simulations = res
 
         np.testing.assert_array_almost_equal(time, time_expected, decimal=4)
 
+    def test_simulate_hullwhite(self):
+        paths = 100
+        steps = 10
+        horizon = 1
+        seed = 12345
+        grid = TimeGrid(horizon, steps)
+        res = simulate_process(self.hullwhite_process, paths, grid, seed, True)
+        self.assertAlmostEqual(res[-1,:].mean(), 0.1001516)
 
 if __name__ == '__main__':
     unittest.main()
