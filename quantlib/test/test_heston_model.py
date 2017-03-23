@@ -119,7 +119,7 @@ class HestonModelTestCase(unittest.TestCase):
             self.assertEqual(theta, process.theta)
             self.assertEqual(sigma, process.sigma)
             self.assertEqual(rho, process.rho)
-            self.assertEqual(1.0, process.s0().value)
+            self.assertEqual(1.0, process.s0.value)
 
             model = HestonModel(process)
             engine = AnalyticHestonEngine(model, 96)
