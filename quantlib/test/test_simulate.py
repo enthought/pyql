@@ -14,7 +14,7 @@ from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 
 
-from quantlib.sim.simulate import simulate_model
+from quantlib.sim.simulate import simulate_process
 from quantlib.time_grid import TimeGrid
 
 from quantlib.processes.heston_process import PARTIALTRUNCATION
@@ -84,9 +84,8 @@ class SimTestCase(unittest.TestCase):
         horizon = 1
         seed = 12345
 
-        model = HestonModel(self.heston_process)
         grid = TimeGrid(horizon, steps)
-        res = simulate_model(model, paths, grid, seed)
+        res = simulate_process(self.heston_process, paths, grid, seed)
 
         time = list(grid) 
         time_expected = np.arange(0, 1.1, .1)
@@ -107,26 +106,22 @@ class SimTestCase(unittest.TestCase):
                                 self.dividend_ts, s0, v0,
                                 kappa, theta, sigma, rho)
 
-        model = HestonModel(process)
-
         nbPaths = 4
         nbSteps = 100
         horizon = 1
         seed = 12345
         grid = TimeGrid(horizon, nbSteps)
-        res = simulate_model(model, nbPaths, grid, seed)
+        res = simulate_process(process, nbPaths, grid, seed)
         self.assertAlmostEqual(res[-1, 0], 152.50, delta=.1)
 
     def test_simulate_bates(self):
-
-        model = BatesModel(self.bates_process)
 
         paths = 4
         steps = 10
         horizon = 1
         seed = 12345
         grid = TimeGrid(horizon, steps)
-        res = simulate_model(model, paths, grid, seed)
+        res = simulate_process(self.bates_process, paths, grid, seed)
 
         time = list(grid)
         time_expected = np.arange(0, 1.1, .1)
