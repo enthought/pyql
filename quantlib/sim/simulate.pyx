@@ -1,14 +1,15 @@
 include '../types.pxi'
 
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport shared_ptr, static_pointer_cast
 from libcpp cimport bool
 
 cimport quantlib.processes._heston_process as _hp
 cimport quantlib.processes._stochastic_process as _sp
 
 from quantlib.processes.heston_process cimport HestonProcess
-from quantlib.models.equity.heston_model cimport HestonModel
+from quantlib.processes.hullwhite_process cimport HullWhiteProcess
+
 from quantlib.time_grid cimport TimeGrid
 cimport quantlib._time_grid as _tg
 
@@ -21,12 +22,15 @@ cdef extern from "simulate_support_code.hpp" namespace 'PyQL':
                     int nbPaths, _tg.TimeGrid& grid, BigNatural seed,
                     bool antithetic_variates, double *res) except +
 
-def simulate_model(model, int nbPaths, TimeGrid grid, BigNatural seed,
-                   bool antithetic=True):
+def simulate_process(process, int nbPaths, TimeGrid grid, BigNatural seed,
+                     bool antithetic=True):
     cdef shared_ptr[_sp.StochasticProcess] sp
-    cdef shared_ptr[_hp.HestonProcess] hp
-    hp = (<HestonModel?>model)._thisptr.get().process()
-    sp = <shared_ptr[_sp.StochasticProcess]>hp
+    if isinstance(process, HestonProcess):
+        sp = static_pointer_cast[_sp.StochasticProcess](deref(
+            (<HestonProcess>process)._thisptr))
+    elif isinstance(process, HullWhiteProcess):
+        sp = static_pointer_cast[_sp.StochasticProcess](deref(
+            (<HullWhiteProcess>process)._thisptr))
 
     cdef cnp.ndarray[cnp.double_t, ndim=2] res = np.empty(
         (grid._thisptr.size(), nbPaths), dtype=np.double, order='F')
