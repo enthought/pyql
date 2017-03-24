@@ -1,10 +1,9 @@
 import numpy as np
 
-from .unittest_tools import unittest
+import unittest
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.processes.bates_process import BatesProcess
-from quantlib.models.equity.heston_model import HestonModel
-from quantlib.models.equity.bates_model import BatesModel
+from quantlib.processes.hullwhite_process import HullWhiteProcess
 
 from quantlib.settings import Settings
 from quantlib.time.api import (
@@ -14,8 +13,8 @@ from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 
 
-from quantlib.sim.simulate import simulate_model
-
+from quantlib.sim.simulate import simulate_process
+from quantlib.time_grid import TimeGrid
 
 from quantlib.processes.heston_process import PARTIALTRUNCATION
 
@@ -72,6 +71,10 @@ class SimTestCase(unittest.TestCase):
             ival['theta'], ival['sigma'], ival['rho'],
             ival['lambda'], ival['nu'], ival['delta'])
 
+        a = 0.376739
+        sigma = 0.0209
+        self.hullwhite_process = HullWhiteProcess(self.risk_free_ts, a, sigma)
+
     def test_simulate_heston_1(self):
 
         settings = self.settings
@@ -84,13 +87,11 @@ class SimTestCase(unittest.TestCase):
         horizon = 1
         seed = 12345
 
-        model = HestonModel(self.heston_process)
+        grid = TimeGrid(horizon, steps)
+        res = simulate_process(self.heston_process, paths, grid, seed)
 
-        res = simulate_model(model, paths, steps, horizon, seed)
-
-        time = res[0, :]
+        time = list(grid) 
         time_expected = np.arange(0, 1.1, .1)
-        simulations = res[1:, :].T
 
         np.testing.assert_array_almost_equal(time, time_expected, decimal=4)
 
@@ -107,33 +108,36 @@ class SimTestCase(unittest.TestCase):
                                 self.dividend_ts, s0, v0,
                                 kappa, theta, sigma, rho)
 
-        model = HestonModel(process)
-
         nbPaths = 4
         nbSteps = 100
         horizon = 1
         seed = 12345
-        res = simulate_model(model, nbPaths, nbSteps, horizon, seed)
-
-        self.assertAlmostEqual(res[1, -1], 152.50, delta=.1)
+        grid = TimeGrid(horizon, nbSteps)
+        res = simulate_process(process, nbPaths, grid, seed)
+        self.assertAlmostEqual(res[-1, 0], 152.50, delta=.1)
 
     def test_simulate_bates(self):
-
-        model = BatesModel(self.bates_process)
 
         paths = 4
         steps = 10
         horizon = 1
         seed = 12345
+        grid = TimeGrid(horizon, steps)
+        res = simulate_process(self.bates_process, paths, grid, seed)
 
-        res = simulate_model(model, paths, steps, horizon, seed)
-
-        time = res[0, :]
+        time = list(grid)
         time_expected = np.arange(0, 1.1, .1)
-        simulations = res[1:, :].T
 
         np.testing.assert_array_almost_equal(time, time_expected, decimal=4)
 
+    def test_simulate_hullwhite(self):
+        paths = 100
+        steps = 10
+        horizon = 1
+        seed = 12345
+        grid = TimeGrid(horizon, steps)
+        res = simulate_process(self.hullwhite_process, paths, grid, seed, True)
+        self.assertAlmostEqual(res[-1,:].mean(), 0.1001516)
 
 if __name__ == '__main__':
     unittest.main()
