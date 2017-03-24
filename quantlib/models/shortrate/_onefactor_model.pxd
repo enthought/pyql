@@ -8,3 +8,4 @@ cdef extern from 'ql/models/shortrate/onefactormodel.hpp' namespace 'QuantLib':
     cdef cppclass OneFactorAffineModel(CalibratedModel):
 
         OneFactorAffineModel()
+        Real discountBond(Time now, Time maturity, Rate rate)
