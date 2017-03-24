@@ -44,7 +44,7 @@ class ScheduleMethodTestCase(unittest.TestCase):
         self.termination_convention = Preceding
         self.rule = Twentieth
 
-        self.schedule = Schedule.from_effective_termination(
+        self.schedule = Schedule.from_rule(
             self.from_date, self.to_date, self.tenor, self.calendar,
             self.convention, self.termination_convention, self.rule
         )
@@ -91,7 +91,7 @@ class ScheduleMethodTestCase(unittest.TestCase):
         termination_convention = Following
         rule = Forward
 
-        fwd_schedule = Schedule.from_effective_termination(from_date, to_date,
+        fwd_schedule = Schedule.from_rule(from_date, to_date,
                 tenor, calendar, convention, termination_convention, rule)
 
         expected_date = Date(5, Sep, 2011)
@@ -99,7 +99,7 @@ class ScheduleMethodTestCase(unittest.TestCase):
 
         rule = Backward
 
-        bwd_schedule = Schedule.from_effective_termination(from_date, to_date,
+        bwd_schedule = Schedule.from_rule(from_date, to_date,
                 tenor, calendar, convention, termination_convention, rule)
 
         expected_date = Date(15, Nov, 2011)

@@ -40,15 +40,6 @@ cdef extern from 'ql/time/schedule.hpp' namespace 'QuantLib':
                  BusinessDayConvention terminationDateConvention,
                  Rule rule,
                  bool endOfMonth,
-        ) except +
-        Schedule(Date& effectiveDate,
-                 Date& terminationDate,
-                 Period& tenor,
-                 Calendar& calendar,
-                 BusinessDayConvention convention,
-                 BusinessDayConvention terminationDateConvention,
-                 Rule rule,
-                 bool endOfMonth,
                  Date& firstDate,
                  Date& nextToLastDate
         ) except +

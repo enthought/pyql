@@ -69,7 +69,9 @@ cdef FixedRateBond* get_bond_for_evaluation_date(QlDate& in_date):
             ModifiedFollowing,
             ModifiedFollowing,
             Backward,
-            False
+            False,
+            QlDate(),
+            QlDate()
     )
 
     cdef QlDate issue_date = QlDate(10, Jul, 2006)
