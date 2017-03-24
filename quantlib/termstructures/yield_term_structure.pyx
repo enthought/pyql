@@ -71,7 +71,7 @@ cdef class YieldTermStructure:
 
         Parameters
         ----------
-        d : :class:`~quantlib.time.date.Date` or float
+        d : :class:`~quantlib.time.date.Date` or Time
             Time or date used to calcule the zero-yield rate.
         day_counter : :class:`~quantlib.time.daycounter.DayCounter`
             The day counter used to compute the time.
@@ -117,10 +117,10 @@ cdef class YieldTermStructure:
 
         Parameters
         ----------
-        d1 : :class:`~quantlib.time.date.Date` or float
-            The start date used to calculate the forward rate.
-        d2 : :class:`~quantlib.time.date.Date` or float or :class:`~quantlib.time.date.Period`
-            The end dates used to calculate the forward rate.
+        d1 : :class:`~quantlib.time.date.Date` or Time.
+            The start date or time used to calculate the forward rate.
+        d2 : :class:`~quantlib.time.date.Date` or Time or :class:`~quantlib.time.date.Period`
+            The end date, time or period used to calculate the forward rate.
         day_counter : :class:`~quantlib.time.daycounter.DayCounter`
             The day counter used to compute the time.
         compounding : int
@@ -157,7 +157,7 @@ cdef class YieldTermStructure:
                deref(day_counter._thisptr), <_ir.Compounding>compounding,
                <_ir.Frequency>frequency, extrapolate)
         else:
-            raise TypeError("d1 and d2 need to be both QuantLib Dates or floats " \
+            raise TypeError("d1 and d2 need to be both QuantLib Dates or Times " \
                             "or d1 a Date, and d2 a Period.")
 
         cdef InterestRate forward_rate = InterestRate.__new__(InterestRate)
