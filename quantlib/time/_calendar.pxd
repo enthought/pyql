@@ -12,6 +12,7 @@ cdef extern from 'ql/time/calendar.hpp' namespace 'QuantLib':
 
     cdef cppclass Calendar:
             Calendar()
+            Calendar(Calendar&)
             string name()
             bool empty()
             bool isHoliday(Date& d)
@@ -26,6 +27,8 @@ cdef extern from 'ql/time/calendar.hpp' namespace 'QuantLib':
             Date adjust(Date&, BusinessDayConvention convention)
             Date advance(Date&, Integer n, TimeUnit unit, BusinessDayConvention convention, bool endOfMonth)
             Date advance(Date& date, Period& period, BusinessDayConvention convention, bool endOfMonth)
+            bool operator==(Calendar&)
+            bool operator!=(Calendar&)
 
     #cdef vector[Date] 'Calendar::holidayList'(Calendar& calendar, Date& f, Date& to, bool includeWeekEnds)
     cdef vector[Date] Calendar_holidayList 'QuantLib::Calendar::holidayList'(Calendar&

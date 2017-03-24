@@ -135,6 +135,21 @@ cdef class Calendar:
 
         return date.date_from_qldate(advanced_date)
 
+    def __richcmp__(Calendar self not None, Calendar cal not None, int op):
+        if op == 0:
+            op_str = '<'
+        elif op == 4:
+            op_str = '>'
+        elif op == 1:
+            op_str = '<='
+        elif op == 5:
+            op_str = '>='
+        elif op == 2:
+            return deref(self._thisptr) == deref(cal._thisptr)
+        elif op == 3:
+            return deref(self._thisptr) != deref(cal._thisptr)
+        raise TypeError(op_str + " not supported between instances of 'Calendar' and 'Calendar'")
+
 cdef class DateList:
     '''Provides an interator interface on top of a vector of QuantLib dates.
 
