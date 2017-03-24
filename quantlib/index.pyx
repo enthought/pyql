@@ -62,3 +62,6 @@ cdef class Index:
         self._thisptr.get().addFixing(
             deref(fixingDate._thisptr.get()), fixing, forceOverwrite
         )
+
+    def clear_fixings(self):
+        self._thisptr.get().clearFixings()
