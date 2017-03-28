@@ -13,7 +13,7 @@ from libcpp.vector cimport vector
 
 from quantlib.handle cimport shared_ptr, Handle, RelinkableHandle
 from quantlib.time._calendar cimport Calendar
-from quantlib.time._date cimport Date
+from quantlib.time._date cimport Date, Period
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._period cimport Frequency
 cimport quantlib._quote as _qt
@@ -35,9 +35,7 @@ cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib'
                            vector[Handle[_qt.Quote]]& jumps,
                            vector[Date]& jumpDates,
                            ) except +
-        DiscountFactor discount(Date& d) except +
         DiscountFactor discount(Date& d, bool extrapolate) except +
-        DiscountFactor discount(Time t) except +
         DiscountFactor discount(Time t, bool extrapolate) except +
         DayCounter dayCounter() except +
         Time timeFromReference(Date& d) except +
@@ -52,6 +50,11 @@ cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib'
                               Frequency freq,  # = Annual
                               bool extrapolate  # = False
                               ) except +
+        InterestRate zeroRate(Time t,
+                              Compounding comp,
+                              Frequency freq, # = Annual
+                              bool extrapolate
+                              ) except +
         InterestRate forwardRate(Date& d1,
                                  Date& d2,
                                  DayCounter& resultDayCounter,
@@ -59,6 +62,21 @@ cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib'
                                  Frequency freq,  # = Annual
                                  bool extrapolate  # = False
                              ) except +
+        InterestRate forwardRate(... # can't specify the types otherwise cython can't find suitable method
+                                 # Date& d1,
+                                 # Period& p,
+                                 # DayCounter& resultDayCounter,
+                                 # Compounding comp,
+                                 # Frequency freq, # = Annual
+                                 # bool extrapolate # = False
+                                 ) except +
+        InterestRate forwardRate(Time t1,
+                                 Time t2,
+                                 Compounding comp,
+                                 Frequency freq, # = Annual
+                                 bool extrapolate # = False
+                                 ) except +
+
         bool allowsExtrapolation()
         void enableExtrapolation()
         void disableExtrapolation()

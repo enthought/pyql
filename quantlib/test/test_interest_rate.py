@@ -72,7 +72,7 @@ class InterestRateTestCase(unittest.TestCase):
 
         self.assertEqual(
             repr(interest_rate),
-            "0.05 Actual/360 Monthly compounding"
+            "5.000000 % Actual/360 Monthly compounding"
         )
 
 

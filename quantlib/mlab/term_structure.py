@@ -69,7 +69,7 @@ def zbt_libor_yield(instruments, yields, pricing_date,
         maturity_dates = [qldate_to_pydate(dt) for dt in s.dates()]
 
     cp_freq = compounding_from_name(compounding_freq)
-    zc = [ts.zero_rate(date=pydate_to_qldate(dt),
+    zc = [ts.zero_rate(pydate_to_qldate(dt),
                        day_counter=cnt,
                        compounding=cp_freq).rate for dt in maturity_dates]
 
