@@ -30,7 +30,7 @@ from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
 
-from quantlib.pricingengines.vanilla.mcvanillaengine import MCVanillaEngine
+from quantlib.pricingengines.vanilla.mceuropeanhestonengine import MCEuropeanHestonEngine
 
 
 def flat_rate(forward, daycounter):

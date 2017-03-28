@@ -14,25 +14,31 @@ from libcpp.string cimport string
 from libcpp cimport bool
 
 from quantlib.handle cimport shared_ptr
-cimport quantlib.processes._heston_process as _hp
-cimport quantlib.pricingengines._pricing_engine as _pe
+cimport quantlib.processes._stochastic_process as _sp
+from quantlib.pricingengines._pricing_engine cimport PricingEngine
 
-cdef extern from 'mc_vanilla_engine_support_code.hpp' namespace 'QuantLib':
 
-    cdef shared_ptr[_pe.PricingEngine] mc_vanilla_engine_factory(
-      string& trait, 
-      string& RNG,
-      shared_ptr[_hp.HestonProcess]& process,
-      bool doAntitheticVariate,
-      Size stepsPerYear,
-      Size requiredSamples,
-      BigNatural seed) except +
+cdef extern from 'ql/math/randomnumbers/rngtraits.hpp' namespace 'QuantLib':
+    cdef cppclass PseudoRandom:
+        pass
+    cdef cppclass LowDiscrepancy:
+        pass
 
-## Cython does not seem to handle nested templates
-## cdef extern from 'ql/pricingengines/vanilla/mcvanillaengine.hpp' namespace 'QuantLib':
+cdef extern from 'ql/methods/montecarlo/mctraits.hpp' namespace 'QuantLib':
+    cdef cppclass MultiVariate:
+        pass
+    cdef cppclass SingleVariate:
+        pass
 
-##     cdef cppclass MCVanillaEngine[[MC], RNG, S, Inst]:
-##         pass
-##         # Not using the constructor because of the missing support for typemaps
-##         # in Cython --> use only the vanilla_engine_factory!
-
+cdef extern from 'ql/pricingengines/vanilla/mcvanillaengine.hpp' namespace 'QuantLib':
+    cdef cppclass MCVanillaEngine[MC, RNG, S=*, INST=*](PricingEngine):
+        MCVanillaEngine(shared_ptr[_sp.StochasticProcess]& sp,
+                        Size timeSteps,
+                        Size timeStepsPerYear,
+                        bool brownianBridge,
+                        bool anitheticVariate,
+                        bool controlVariate,
+                        Size requiredSamples,
+                        Real requiredTolerance,
+                        Size maxSamples,
+                        BigNatural seed)
