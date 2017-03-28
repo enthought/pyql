@@ -7,7 +7,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+include '../../types.pxi'
+
 from quantlib.models.model cimport CalibratedModel
+cimport quantlib.models.shortrate._onefactor_model as _ofm
 
 cdef class OneFactorAffineModel(CalibratedModel):
 
@@ -21,3 +24,7 @@ cdef class OneFactorAffineModel(CalibratedModel):
         if self._thisptr is not NULL:
             del self._thisptr
             self._thisptr = NULL
+
+    def discount_bound(self, Time now, Time maturity, Rate rate):
+        return (<_ofm.OneFactorAffineModel*>self._thisptr.get()).discountBond(
+            now, maturity, rate)

@@ -64,14 +64,6 @@ cdef class HullWhite(Vasicek):
           (self.a, self.sigma)
 
 
-    property a:
-        def __get__(self):
-            return (<_hw.HullWhite*> self._thisptr.get()).a()
-
-    property sigma:
-        def __get__(self):
-            return (<_hw.HullWhite*> self._thisptr.get()).sigma()
-
     def calibrate(self, list helpers, OptimizationMethod method, EndCriteria
             end_criteria):
 
