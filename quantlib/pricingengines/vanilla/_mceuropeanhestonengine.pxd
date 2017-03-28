@@ -18,4 +18,4 @@ cdef extern from 'ql/pricingengines/vanilla/mceuropeanhestonengine.hpp' namespac
                                Size requiredSamples,
                                Real requiredTolerance,
                                Size maxSamples,
-                               BigNatural seed)
+                               BigNatural seed) except +
