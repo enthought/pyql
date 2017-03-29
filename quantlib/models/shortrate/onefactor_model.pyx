@@ -9,8 +9,11 @@
 
 include '../../types.pxi'
 
+from quantlib.handle cimport static_pointer_cast
 from quantlib.models.model cimport CalibratedModel
 cimport quantlib.models.shortrate._onefactor_model as _ofm
+cimport quantlib._stochastic_process as _sp
+from quantlib.stochastic_process cimport StochasticProcess1D
 
 cdef class OneFactorAffineModel(CalibratedModel):
 
@@ -28,3 +31,10 @@ cdef class OneFactorAffineModel(CalibratedModel):
     def discount_bound(self, Time now, Time maturity, Rate rate):
         return (<_ofm.OneFactorAffineModel*>self._thisptr.get()).discountBond(
             now, maturity, rate)
+
+    def process(self):
+        cdef StochasticProcess1D sp = StochasticProcess1D.__new__(StochasticProcess1D)
+        sp._thisptr = static_pointer_cast[_sp.StochasticProcess](
+                (<_ofm.OneFactorAffineModel*>self._thisptr.get()).
+                dynamics().get().process())
+        return sp
