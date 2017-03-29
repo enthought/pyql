@@ -10,6 +10,7 @@
 include '../types.pxi'
 
 from cython.operator cimport dereference as deref
+cimport quantlib._stochastic_process as _sp
 cimport _heston_process as _hp
 
 from quantlib.handle cimport Handle, shared_ptr
@@ -47,17 +48,12 @@ cdef class BatesProcess(HestonProcess):
        Real lambda_=0,
        Real nu=0,
        Real delta=0,
-       Discretization d=FULLTRUNCATION,
-       **kwargs):
-
-        if 'noalloc' in kwargs:
-            self._thisptr = NULL
-            return
+       Discretization d=FULLTRUNCATION):
 
         #create handles
         cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](deref(s0._thisptr))
 
-        self._thisptr = new shared_ptr[_hp.HestonProcess](
+        self._thisptr = shared_ptr[_sp.StochasticProcess](
             new _hp.BatesProcess(
                 risk_free_rate_ts._thisptr,
                 dividend_ts._thisptr,

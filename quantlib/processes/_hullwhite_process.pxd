@@ -11,10 +11,11 @@ include '../types.pxi'
 
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
+from quantlib._stochastic_process cimport StochasticProcess1D
 
 cdef extern from 'ql/processes/hullwhiteprocess.hpp' namespace 'QuantLib':
 
-    cdef cppclass HullWhiteProcess:
+    cdef cppclass HullWhiteProcess(StochasticProcess1D):
         HullWhiteProcess()
         HullWhiteProcess(
             Handle[YieldTermStructure]& riskFreeRate,

@@ -3,8 +3,7 @@ include '../../types.pxi'
 from libcpp cimport bool
 from libcpp.string cimport string
 
-from cython.operator cimport dereference as deref
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport shared_ptr, static_pointer_cast
 
 cimport quantlib.processes._heston_process as _hp
 from quantlib.processes.heston_process cimport HestonProcess
@@ -41,11 +40,10 @@ cdef class MCVanillaEngine(PricingEngine):
         cdef shared_ptr[_pe.PricingEngine] engine = _mc_ve.mc_vanilla_engine_factory(
           traits_string,
           generator_string,
-          deref(process._thisptr),
+          static_pointer_cast[_hp.HestonProcess](process._thisptr),
           doAntitheticVariate,
           stepsPerYear,
           requiredSamples,
           seed)
 
         self._thisptr = new shared_ptr[_pe.PricingEngine](engine)
-

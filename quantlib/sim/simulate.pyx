@@ -1,15 +1,12 @@
 include '../types.pxi'
 
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.handle cimport shared_ptr
 from libcpp cimport bool
 
-cimport quantlib.processes._heston_process as _hp
-cimport quantlib.processes._stochastic_process as _sp
+cimport quantlib._stochastic_process as _sp
 
-from quantlib.processes.heston_process cimport HestonProcess
-from quantlib.processes.hullwhite_process cimport HullWhiteProcess
-from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
+from quantlib.stochastic_process cimport StochasticProcess
 from quantlib.time_grid cimport TimeGrid
 cimport quantlib._time_grid as _tg
 
@@ -22,22 +19,24 @@ cdef extern from "simulate_support_code.hpp" namespace 'PyQL':
                     int nbPaths, _tg.TimeGrid& grid, BigNatural seed,
                     bool antithetic_variates, double *res) except +
 
-def simulate_process(process, int nbPaths, TimeGrid grid, BigNatural seed,
-                     bool antithetic=True):
-    cdef shared_ptr[_sp.StochasticProcess] sp
-    if isinstance(process, HestonProcess):
-        sp = static_pointer_cast[_sp.StochasticProcess](deref(
-            (<HestonProcess>process)._thisptr))
-    elif isinstance(process, HullWhiteProcess):
-        sp = static_pointer_cast[_sp.StochasticProcess](deref(
-            (<HullWhiteProcess>process)._thisptr))
-    elif isinstance(process, GeneralizedBlackScholesProcess):
-        sp = static_pointer_cast[_sp.StochasticProcess](deref(
-            (<GeneralizedBlackScholesProcess>process)._thisptr))
-    else:
-        raise TypeError("process needs to be a HestonProcess, HullWhiteProcess " \
-                        "or GeneralizedBlackScholesProcess instance")
+def simulate_process(StochasticProcess process not None, int nbPaths, TimeGrid grid,
+                     BigNatural seed, bool antithetic=True):
+    """Draws random paths from a stochastic process.
+
+    Parameters
+    ----------
+    process : 'class':`~quantlib.StochasticProcess`
+        Process to simulate.
+    nbPath : int
+        Number of paths.
+    grid : 'class':`~quantlib.TimeGrid`
+        Time grid for the simulation.
+    seed : int
+        Seed for the random number generator.
+    antithetic : bool (default True)
+        Use antithetic variables.
+    """
     cdef cnp.ndarray[cnp.double_t, ndim=2] res = np.empty(
         (grid._thisptr.size(), nbPaths), dtype=np.double, order='F')
-    simulateMP(sp, nbPaths, grid._thisptr, seed, antithetic, <double*> res.data)
+    simulateMP(process._thisptr, nbPaths, grid._thisptr, seed, antithetic, <double*> res.data)
     return res

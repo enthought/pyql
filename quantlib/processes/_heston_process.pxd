@@ -12,6 +12,7 @@ include '../types.pxi'
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
 cimport quantlib._quote as _qt
+from quantlib._stochastic_process cimport StochasticProcess
 
 cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib::HestonProcess':
 
@@ -25,7 +26,7 @@ cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib::HestonPro
 
 cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib':
 
-    cdef cppclass HestonProcess:
+    cdef cppclass HestonProcess(StochasticProcess):
         HestonProcess() # fake empty constructor for Cython
         # fixme: implement the discrization version of the constructor
         HestonProcess(

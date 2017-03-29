@@ -10,7 +10,7 @@
 include '../types.pxi'
 
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.quotes cimport SimpleQuote
@@ -18,6 +18,7 @@ from quantlib.quotes cimport SimpleQuote
 cimport quantlib.instruments._implied_volatility as _iv
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 cimport quantlib.processes._black_scholes_process as _bsp
+cimport quantlib._stochastic_process as _sp
 cimport quantlib._quote as _qt
 
 cdef class ImpliedVolatilityHelper:
@@ -57,17 +58,16 @@ cdef class ImpliedVolatilityHelper:
           GeneralizedBlackScholesProcess process,
           SimpleQuote quote):
     
-        cdef shared_ptr[_qt.SimpleQuote]* quote_ptr
-        quote_ptr = <shared_ptr[_qt.SimpleQuote]*>(quote._thisptr)
+        cdef shared_ptr[_qt.SimpleQuote] quote_ptr = \
+                static_pointer_cast[_qt.SimpleQuote](deref(quote._thisptr))
 
         res = GeneralizedBlackScholesProcess()
-        cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] bsp_ptr
+        cdef shared_ptr[_sp.StochasticProcess] sp_ptr
 
-        bsp_ptr = _iv.IVH_clone(deref(process._thisptr),
-                          deref(quote_ptr))
+        sp_ptr = static_pointer_cast[_sp.StochasticProcess](_iv.IVH_clone(
+                static_pointer_cast[_bsp.GeneralizedBlackScholesProcess](
+                    process._thisptr), quote_ptr))
 
-        res._thisptr = new shared_ptr[_bsp.GeneralizedBlackScholesProcess]( \
-            bsp_ptr)
+        res._thisptr = sp_ptr
 
         return res
-

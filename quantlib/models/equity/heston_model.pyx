@@ -16,11 +16,12 @@ from libcpp.vector cimport vector
 cimport _heston_model as _hm
 cimport quantlib.models._calibration_helper as _ch
 cimport quantlib.processes._heston_process as _hp
+cimport quantlib._stochastic_process as _sp
 cimport quantlib.termstructures.yields._flat_forward as _ffwd
 cimport quantlib._quote as _qt
 cimport quantlib.pricingengines._pricing_engine as _pe
 
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
 from quantlib.math.optimization cimport (Constraint,OptimizationMethod,
                                          EndCriteria)
 
@@ -82,15 +83,14 @@ cdef class HestonModel:
     def __init__(self, HestonProcess process):
 
         self._thisptr = new shared_ptr[_hm.HestonModel](
-            new _hm.HestonModel(deref(process._thisptr))
+            new _hm.HestonModel(static_pointer_cast[_hp.HestonProcess](
+                process._thisptr))
         )
 
     def process(self):
-        process = HestonProcess(noalloc=True)
-        cdef shared_ptr[_hp.HestonProcess] hp_ptr = self._thisptr.get().process()
-        cdef shared_ptr[_hp.HestonProcess]* hp_pt = new shared_ptr[_hp.HestonProcess](hp_ptr)
-        process._thisptr = hp_pt
-
+        cdef HestonProcess process = HestonProcess.__new__(HestonProcess)
+        process._thisptr = static_pointer_cast[_sp.StochasticProcess](
+            self._thisptr.get().process())
         return process
 
     property theta:

@@ -1,6 +1,4 @@
-cimport _heston_process as _hp
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib.stochastic_process cimport StochasticProcess
 
-cdef class HestonProcess:
-
-    cdef shared_ptr[_hp.HestonProcess]* _thisptr
+cdef class HestonProcess(StochasticProcess):
+    pass
