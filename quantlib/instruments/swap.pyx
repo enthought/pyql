@@ -21,7 +21,7 @@ from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 from libcpp cimport bool
 
-from quantlib.handle cimport Handle, shared_ptr, make_optional
+from quantlib.handle cimport Handle, shared_ptr, optional
 from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time._businessdayconvention cimport BusinessDayConvention
@@ -143,6 +143,10 @@ cdef class VanillaSwap(Swap):
                      Spread spread,
                      DayCounter floating_daycount,
                      payment_convention=None):
+        cdef optional[BusinessDayConvention] opt_payment_convention
+        if payment_convention is not None:
+            opt_payment_convention  = optional[BusinessDayConvention](
+                    <BusinessDayConvention>payment_convention)
 
         self._thisptr = new shared_ptr[_instrument.Instrument](
             new _vanillaswap.VanillaSwap(
@@ -155,8 +159,7 @@ cdef class VanillaSwap(Swap):
                 deref(<shared_ptr[_ib.IborIndex]*> ibor_index._thisptr),
                 spread,
                 deref(floating_daycount._thisptr),
-                make_optional(payment_convention is not None,
-                              <BusinessDayConvention>payment_convention)
+                opt_payment_convention
             )
         )
 
