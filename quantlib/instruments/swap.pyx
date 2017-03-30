@@ -21,7 +21,7 @@ from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 from libcpp cimport bool
 
-from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle
+from quantlib.handle cimport Handle, shared_ptr, make_optional
 from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time._businessdayconvention cimport BusinessDayConvention
@@ -144,33 +144,21 @@ cdef class VanillaSwap(Swap):
                      DayCounter floating_daycount,
                      payment_convention=None):
 
-        cdef QlSchedule* _fixed_schedule = <QlSchedule*>fixed_schedule._thisptr
-        cdef QlSchedule* _float_schedule = <QlSchedule*>float_schedule._thisptr
-
-
-        if payment_convention is None:
-             self._thisptr = new shared_ptr[_instrument.Instrument](\
-                new _vanillaswap.VanillaSwap(<_vanillaswap.Type>type, nominal,
-                         deref(_fixed_schedule), fixed_rate,
-                         deref(fixed_daycount._thisptr),
-                         deref(_float_schedule),
-                         deref(<shared_ptr[_ib.IborIndex]*> ibor_index._thisptr),
-                         spread,
-                         deref(floating_daycount._thisptr)
-                )
+        self._thisptr = new shared_ptr[_instrument.Instrument](
+            new _vanillaswap.VanillaSwap(
+                <_vanillaswap.Type>type,
+                nominal,
+                deref(fixed_schedule._thisptr),
+                fixed_rate,
+                deref(fixed_daycount._thisptr),
+                deref(float_schedule._thisptr),
+                deref(<shared_ptr[_ib.IborIndex]*> ibor_index._thisptr),
+                spread,
+                deref(floating_daycount._thisptr),
+                make_optional(payment_convention is not None,
+                              <BusinessDayConvention>payment_convention)
             )
-        else:
-            self._thisptr = new shared_ptr[_instrument.Instrument](\
-                new _vanillaswap.VanillaSwap(<_vanillaswap.Type>type, nominal,
-                         deref(_fixed_schedule), fixed_rate,
-                         deref(fixed_daycount._thisptr),
-                         deref(_float_schedule),
-                         deref(<shared_ptr[_ib.IborIndex]*> ibor_index._thisptr),
-                         spread,
-                         deref(floating_daycount._thisptr),
-                         <BusinessDayConvention>payment_convention
-                )
-            )
+        )
 
     property fair_rate:
         def __get__(self):

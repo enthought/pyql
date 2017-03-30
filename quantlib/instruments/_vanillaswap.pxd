@@ -12,7 +12,7 @@ include '../types.pxi'
 from libcpp.vector cimport vector
 from libcpp cimport bool
 
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.handle cimport shared_ptr, optional
 from _instrument cimport Instrument
 from quantlib.time._calendar cimport BusinessDayConvention, Calendar
 from quantlib.time._date cimport Date
@@ -39,18 +39,8 @@ cdef extern from 'ql/instruments/vanillaswap.hpp' namespace 'QuantLib':
                     Schedule& floatSchedule,
                     shared_ptr[IborIndex] iborIndex,
                     Spread spread,
-                    DayCounter& floatingDayCount)
-
-        VanillaSwap(Type type,
-                    Real nominal,
-                    Schedule& fixedSchedule,
-                    Rate fixedRate,
-                    DayCounter& fixedDayCount,
-                    Schedule& floatSchedule,
-                    shared_ptr[IborIndex] iborIndex,
-                    Spread spread,
                     DayCounter& floatingDayCount,
-                    BusinessDayConvention paymentConvention)
+                    optional[BusinessDayConvention] paymentConvention)
         
         Type type()
         Real nominal()
