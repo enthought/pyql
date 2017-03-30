@@ -7,11 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-cimport _onefactor_model as _ofm
-
-from quantlib.handle cimport shared_ptr
 from quantlib.models.model cimport CalibratedModel
 
 cdef class OneFactorAffineModel(CalibratedModel):
-
     pass

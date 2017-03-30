@@ -2,8 +2,9 @@ include '../types.pxi'
 
 from cython.operator cimport dereference as deref
 cimport _black_scholes_process as _bsp
+cimport quantlib._stochastic_process as _sp
 
-from quantlib.handle cimport Handle
+from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib.termstructures.yields._flat_forward as _ff
 cimport quantlib._quote as _qt
 from quantlib.quotes cimport Quote
@@ -12,22 +13,8 @@ cimport quantlib.termstructures.volatility.equityfx._black_vol_term_structure as
 from quantlib.termstructures.volatility.equityfx.black_vol_term_structure cimport BlackVolTermStructure
 
 
-cdef class GeneralizedBlackScholesProcess:
-
-    def __cinit__(self):
-        self._thisptr = NULL
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-
-    property x0:
-        def __get__(self):
-            return self._thisptr.get().x0()
-
-    def drift(self, Time t, Real x):
-        return self._thisptr.get().drift(t, x)
-
+cdef class GeneralizedBlackScholesProcess(StochasticProcess1D):
+    pass
 
 cdef class BlackScholesProcess(GeneralizedBlackScholesProcess):
 
@@ -42,7 +29,7 @@ cdef class BlackScholesProcess(GeneralizedBlackScholesProcess):
                 deref(black_vol_ts._thisptr)
             )
 
-        self._thisptr = new shared_ptr[_bsp.GeneralizedBlackScholesProcess]( new \
+        self._thisptr = shared_ptr[_sp.StochasticProcess]( new \
             _bsp.BlackScholesProcess(
                 x0_handle,
                 risk_free_ts._thisptr,
@@ -67,7 +54,7 @@ cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):
                 deref(black_vol_ts._thisptr)
             )
 
-        self._thisptr = new shared_ptr[_bsp.GeneralizedBlackScholesProcess]( new \
+        self._thisptr = shared_ptr[_sp.StochasticProcess]( new \
             _bsp.BlackScholesMertonProcess(
                 x0_handle,
                 dividend_ts._thisptr,

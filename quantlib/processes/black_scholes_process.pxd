@@ -1,9 +1,6 @@
-from quantlib.handle cimport shared_ptr
-cimport _black_scholes_process as _bsp
+from quantlib.stochastic_process cimport StochasticProcess1D
 
-cdef class GeneralizedBlackScholesProcess:
-
-    cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess]* _thisptr
-
+cdef class GeneralizedBlackScholesProcess(StochasticProcess1D):
+    pass
 
 
