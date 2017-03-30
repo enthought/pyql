@@ -98,7 +98,7 @@ cdef class YoYInflationTermStructure(InflationTermStructure):
           <_if.YoYInflationTermStructure*>self._get_term_structure()
         if isinstance(d, Date):
             return term_structure.yoyRate(
-                deref(d._thisptr.get()),
+                deref((<Date>d)._thisptr.get()),
                 deref(inst_obs_lag._thisptr.get()),
                 force_linear_interpolation,
                 extrapolate)
