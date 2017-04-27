@@ -33,3 +33,4 @@ cdef extern from 'ql/index.hpp' namespace 'QuantLib':
         Real fixing(Date& fixingDate, bool forecastTodaysFixing)
         void addFixing(Date& fixingDate, Real fixing, bool forceOverwrite) except +
         TimeSeries[Real] timeSeries()
+        void clearFixings()
