@@ -35,22 +35,16 @@ cdef class InflationTermStructure:
     """Abstract Base Class.
     """
 
-    def link_to(self, InflationTermStructure structure):
-        self._thisptr.linkTo(structure._thisptr.currentLink())
-
     cdef inline _if.InflationTermStructure* _get_term_structure(self):
 
-        cdef shared_ptr[_if.InflationTermStructure] ts_ptr = \
-            self._thisptr.currentLink()
-
-        if ts_ptr.get() is NULL:
+        if self._thisptr:
             raise ValueError('Inflation term structure not intialized')
-
-        return ts_ptr.get()
+        else:
+            return self._thisptr.get()
 
     cdef bool _is_empty(self):
 
-        return self._thisptr.empty()
+        return <bool>self._thisptr
 
     cdef _raise_if_empty(self):
         # verify that the handle is not empty. We could add an except + on the

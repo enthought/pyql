@@ -71,8 +71,7 @@ cdef class ZeroInflationIndex(InflationIndex):
 
         cdef Handle[_its.ZeroInflationTermStructure] ts_handle = \
             Handle[_its.ZeroInflationTermStructure](
-                static_pointer_cast[_its.ZeroInflationTermStructure](
-                    ts._thisptr.currentLink()))
+                static_pointer_cast[_its.ZeroInflationTermStructure](ts._thisptr))
 
         # convert the Python str to C++ string
         cdef string c_family_name = family_name.encode('utf-8')
@@ -96,8 +95,7 @@ cdef class YoYInflationIndex(ZeroInflationIndex):
 
         cdef Handle[_its.YoYInflationTermStructure] ts_handle
         ts_handle = Handle[_its.YoYInflationTermStructure](
-            static_pointer_cast[_its.YoYInflationTermStructure](
-                ts._thisptr.currentLink()))
+                static_pointer_cast[_its.YoYInflationTermStructure](ts._thisptr))
 
         cdef string c_family_name = family_name.encode('utf-8')
 

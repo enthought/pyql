@@ -30,35 +30,29 @@ cdef class InterpolatedZeroInflationCurve(ZeroInflationTermStructure):
 
         if interpolator == Linear:
 
-            self._thisptr = RelinkableHandle[_if.InflationTermStructure](
-                shared_ptr[_if.InflationTermStructure](
-                    new _if.InterpolatedZeroInflationCurve[_if.Linear](
-                        deref(reference_date._thisptr.get()), deref(calendar._thisptr),
-                        deref(day_counter._thisptr),
-                        deref(lag._thisptr.get()), frequency,
-                        index_is_interpolated, yts._thisptr,
-                        _dates, rates))
-            )
+            self._thisptr = shared_ptr[_if.InflationTermStructure](
+                new _if.InterpolatedZeroInflationCurve[_if.Linear](
+                    deref(reference_date._thisptr.get()), deref(calendar._thisptr),
+                    deref(day_counter._thisptr),
+                    deref(lag._thisptr.get()), frequency,
+                    index_is_interpolated, yts._thisptr,
+                    _dates, rates))
 
         elif interpolator == LogLinear:
-            self._thisptr = RelinkableHandle[_if.InflationTermStructure](
-            shared_ptr[_if.InflationTermStructure](
+            self._thisptr = shared_ptr[_if.InflationTermStructure](
                 new _if.InterpolatedZeroInflationCurve[_if.LogLinear](
                     deref(reference_date._thisptr.get()), deref(calendar._thisptr),
                     deref(day_counter._thisptr),
                     deref(lag._thisptr.get()), frequency,
                     index_is_interpolated, yts._thisptr,
                     _dates, rates))
-            )
         elif interpolator == BackwardFlat:
-            self._thisptr = RelinkableHandle[_if.InflationTermStructure](
-                shared_ptr[_if.InflationTermStructure](
+            self._thisptr = shared_ptr[_if.InflationTermStructure](
                 new _if.InterpolatedZeroInflationCurve[_if.BackwardFlat](
                     deref(reference_date._thisptr.get()), deref(calendar._thisptr),
                     deref(day_counter._thisptr),
                     deref(lag._thisptr.get()), frequency,
                     index_is_interpolated, yts._thisptr,
                     _dates, rates))
-        )
         else:
             raise ValueError("interpolator needs to be any of Linear, LogLinear or BackwardFlat")
