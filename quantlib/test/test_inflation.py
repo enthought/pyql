@@ -9,7 +9,7 @@
 
 from .unittest_tools import unittest
 
-from quantlib.indexes.inflation_index import AUCPI
+from quantlib.indexes.inflation.australia import AUCPI
 from quantlib.time.date import Monthly, Months, Period
 
 class TestInflationIndex(unittest.TestCase):
