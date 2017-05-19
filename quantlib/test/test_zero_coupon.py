@@ -103,9 +103,11 @@ class ZeroCouponTestCase(unittest.TestCase):
 
         # max_date raises an exception without extrapolaiton...
         self.assertFalse(ts.extrapolation)
-        with self.assertRaisesRegexp(RuntimeError,
-                                     "1st iteration: failed at 2nd alive instrument"):
-            dtMax = ts.max_date
+        with self.assertRaises(RuntimeError) as ctx:
+            ts.discount(ts.max_date + 1)
+        self.assertTrue(str(ctx.exception) in (
+            "time (30.011) is past max curve time (30.0082)",
+            "1st iteration: failed at 2nd alive instrument"))
 
     def test_zero_curve(self):
         rate_helpers = build_helpers()
@@ -136,7 +138,7 @@ class ZeroCouponTestCase(unittest.TestCase):
         # max_date raises an exception...
         ts.extrapolation = True
         zr = ts.zero_rate(Date(10, 5, 2027), ts_day_counter, 2)
-        self.assertAlmostEqual(zr.rate, 0.0539332)
+        self.assertAlmostEqual(zr.rate, 0.0539332, 6)
 
 if __name__ == '__main__':
     unittest.main()
