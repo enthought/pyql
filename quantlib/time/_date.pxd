@@ -1,6 +1,7 @@
 include '../types.pxi'
 
 from libcpp cimport bool
+from libc.stdint cimport int_fast32_t
 from _period cimport Period
 
 cdef extern from "ostream" namespace "std":
@@ -24,6 +25,18 @@ cdef extern from 'ql/time/weekday.hpp' namespace "QuantLib":
         Thu = 5
         Fri = 6
         Sat = 7
+
+cdef extern from "ql/time/date.hpp" namespace "QuantLib::Date":
+    ctypedef int_fast32_t serial_type
+    cdef Date todaysDate()
+    cdef Date minDate()
+    cdef Date maxDate()
+    cdef bool isLeap(Year y)
+    cdef Date endOfMonth(Date& d) except +
+    cdef bool isEndOfMonth(Date& d)
+    cdef Date nextWeekday(Date& d, Weekday w) except +
+    cdef Date nthWeekday(Size n, Weekday w,
+                         Month m, Year y) except +
 
 cdef extern from "ql/time/date.hpp" namespace "QuantLib":
 
@@ -54,12 +67,12 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
 
     cdef cppclass Date:
         Date() except +
-        Date(long serialnumber) except +
+        Date(serial_type serialnumber) except +
         Date(int d, int m, int y) except +
         Day dayOfMonth() except +
         Month month()
         int year()
-        long serialNumber()
+        serial_type serialNumber()
         bool operator==(Date*)
         Weekday weekday()
         Day dayOfYear()
@@ -69,26 +82,12 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
         Date& operator--()
         Date& operator--(int value)
 
-        Date operator+(BigInteger days)
+        Date operator+(serial_type days)
         Date operator+(Period p)
-        Date operator-(BigInteger days)
+        Date operator-(serial_type days)
         Date operator-(Period p)
 
-        Date& i_add 'operator+='(BigInteger days)
+        Date& i_add 'operator+='(serial_type days)
         Date& i_add 'operator+='(Period& period)
         Date& i_sub 'operator-='(Period& period)
-        Date& i_sub 'operator-='(BigInteger days)
-
-    # QuantLib::Date - static methods
-    cdef Date Date_todaysDate 'QuantLib::Date::todaysDate'()
-    cdef Date Date_minDate 'QuantLib::Date::minDate'()
-    cdef Date Date_maxDate 'QuantLib::Date::maxDate'()
-    cdef bool Date_isLeap 'QuantLib::Date::isLeap'(Year y)
-    cdef Date Date_endOfMonth 'QuantLib::Date::endOfMonth'(Date& d) except +
-    cdef bool Date_isEndOfMonth 'QuantLib::Date::isEndOfMonth'(Date& d)
-    cdef Date Date_nextWeekday 'QuantLib::Date::nextWeekday'(Date& d, Weekday w) except +
-    cdef Date Date_nthWeekday 'QuantLib::Date::nthWeekday'(Size n, Weekday w,
-            Month m, Year y) except +
-
-
-
+        Date& i_sub 'operator-='(serial_type days)

@@ -5,7 +5,7 @@ from libcpp.vector cimport vector
 
 from quantlib.instruments._bonds cimport FixedRateBond
 from quantlib.time._date cimport (
-    Date as QlDate, Date_todaysDate, Jul, August, September, Date_endOfMonth
+    Date as QlDate, todaysDate, Jul, August, September, endOfMonth
 )
 from quantlib.time._period cimport Years, Period, Annual, Days
 from quantlib.time._calendar cimport Calendar
@@ -23,7 +23,7 @@ cdef extern from "ql_settings.hpp" namespace "QuantLib":
 
 
 def test_bond_schedule_today_cython():
-    cdef QlDate today = Date_todaysDate()
+    cdef QlDate today = todaysDate()
     cdef Calendar calendar = TARGET()
 
     cdef FixedRateBond* bond = get_bond_for_evaluation_date(today)
@@ -95,7 +95,7 @@ cdef FixedRateBond* get_bond_for_evaluation_date(QlDate& in_date):
 def test_bond_schedule_anotherday_cython():
 
     cdef QlDate last_month = QlDate(30, August, 2011)
-    cdef QlDate today = Date_endOfMonth(last_month)
+    cdef QlDate today = endOfMonth(last_month)
 
     cdef FixedRateBond* bond = get_bond_for_evaluation_date(today)
 
