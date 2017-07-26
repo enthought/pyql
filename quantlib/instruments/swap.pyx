@@ -33,7 +33,7 @@ from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.businessdayconvention import Following
 from quantlib.indexes.ibor_index cimport IborIndex
-from quantlib.cashflow cimport SimpleLeg, leg_items
+from quantlib.cashflow cimport Leg
 
 import datetime
 
@@ -116,11 +116,11 @@ cdef class Swap(Instrument):
     ##     return get_swap(self).npvDateDiscount()
 
     def __getitem__(self, int i):
-       cdef SimpleLeg leg = SimpleLeg(noalloc=False)
-       leg._thisptr = get_swap(self).leg(i)
-       return leg
+        cdef Leg leg = Leg.__new__(Leg)
+        leg._thisptr = get_swap(self).leg(i)
+        return leg
 
-cdef _vanillaswap.VanillaSwap* get_vanillaswap(VanillaSwap swap):
+cdef inline _vanillaswap.VanillaSwap* get_vanillaswap(VanillaSwap swap):
     """ Utility function to extract a properly casted Swap pointer out of the
     internal _thisptr attribute of the Instrument base class. """
 
@@ -194,12 +194,12 @@ cdef class VanillaSwap(Swap):
             return res
     @property
     def fixed_leg(self):
-        cdef SimpleLeg leg = SimpleLeg.__new__(SimpleLeg)
+        cdef Leg leg = Leg.__new__(Leg)
         leg._thisptr = get_vanillaswap(self).fixedLeg()
         return leg
 
     @property
     def floating_leg(self):
-        cdef SimpleLeg leg = SimpleLeg.__new__(SimpleLeg)
+        cdef Leg leg = Leg.__new__(Leg)
         leg._thisptr = get_vanillaswap(self).floatingLeg()
         return leg

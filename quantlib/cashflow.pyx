@@ -75,9 +75,9 @@ cdef list leg_items(const _cf.Leg& leg):
         preinc(it)
     return itemlist
 
-cdef class SimpleLeg:
+cdef class Leg:
 
-    def __init__(self, leg=None):
+    def __init__(self, leg=[]):
         '''Takes as input a list of (amount, QL Date) tuples. '''
 
         cdef shared_ptr[_cf.CashFlow] _thiscf
