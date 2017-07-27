@@ -146,56 +146,50 @@ cdef class Period:
 
     def __sub__(self, value):
         cdef QlPeriod outp
-        if isinstance(self, Period) and isinstance(value, Period):
-            outp = sub_op(deref((<Period>self)._thisptr.get()),
-                          deref((<Period>value)._thisptr.get()))
+        outp = sub_op(deref((<Period?>self)._thisptr),
+                      deref((<Period?>value)._thisptr))
         return period_from_qlperiod(outp)
 
     def __add__(self, value):
         cdef QlPeriod outp
-        if isinstance(self, Period) and isinstance(value, Period):
-            outp = add_op(deref( (<Period>self)._thisptr.get()),
-                    deref( (<Period>value)._thisptr.get()))
+        outp = add_op(deref( (<Period?>self)._thisptr),
+                deref( (<Period?>value)._thisptr))
         return period_from_qlperiod(outp)
 
     def __mul__(self, value):
         cdef QlPeriod inp
         if isinstance(self, Period):
-            inp = deref((<Period>self)._thisptr.get())
+            inp = deref((<Period>self)._thisptr)
             value = <int> value
         elif isinstance(self, int) and isinstance(value, Period):
-            inp = deref((<Period>value)._thisptr.get())
+            inp = deref((<Period>value)._thisptr)
             value = self
         else:
-            raise NotImplemented()
+            return NotImplemented
 
         cdef QlPeriod outp = mult_op(inp, value)
 
         return period_from_qlperiod(outp)
 
     def __iadd__(self, Period value not None):
-        cdef QlPeriod* tmp  = value._thisptr.get()
-
         if isinstance(self, Period):
 
             if self.units != value.units:
                 raise ValueError('Units must be the same')
 
-            self._thisptr.get().i_add( deref( tmp ))
+            self._thisptr.get().i_add( deref( value._thisptr))
 
             return self
         else:
             return NotImplemented
 
     def __isub__(self, Period value not None):
-        cdef QlPeriod* tmp  = value._thisptr.get()
-
         if isinstance(self, Period):
 
             if self.units != value.units:
                 raise ValueError('Units must be the same')
 
-            self._thisptr.get().i_sub( deref( tmp ))
+            self._thisptr.get().i_sub(deref(value._thisptr))
 
             return self
         else:
@@ -215,25 +209,25 @@ cdef class Period:
         else:
             return NotImplemented
 
-    def __richcmp__(self, value, t):
-        cdef QlPeriod* p1 = (<Period>self)._thisptr.get()
+    def __richcmp__(self, value, int t):
+        cdef QlPeriod p1 = deref((<Period?>self)._thisptr)
         if not isinstance(value, Period):
             return False
 
-        cdef QlPeriod* p2 = (<Period>value)._thisptr.get()
+        cdef QlPeriod p2 = deref((<Period>value)._thisptr)
 
         if t==0:
-            return l_op( deref(p1), deref(p2))
+            return l_op(p1, p2)
         elif t==1:
-            return leq_op( deref(p1), deref(p2))
+            return leq_op(p1, p2)
         elif t==2:
-            return eq_op( deref(p1), deref(p2))
+            return eq_op(p1, p2)
         elif t==3:
-            return neq_op( deref(p1), deref(p2))
+            return neq_op(p1, p2)
         elif t==4:
-            return g_op( deref(p1), deref(p2))
+            return g_op(p1, p2)
         elif t==5:
-            return geq_op( deref(p1), deref(p2))
+            return geq_op(p1, p2)
 
     def __str__(self):
         return 'Period %d %s' % (self.length, _STR_TU_DICT[self.units])
@@ -380,21 +374,19 @@ cdef class Date:
 
     def __add__(self, value):
         cdef QlDate add
-        if isinstance(self, Date):
-            if isinstance(value, Period):
-                add = deref((<Date>self)._thisptr.get()) + deref((<Period>value)._thisptr.get())
-            else:
-                # want to casst to serial_type here but doesn't work
-                add = deref((<Date>self)._thisptr.get()) + <serial_type>(value)
-            return date_from_qldate(add)
+        if isinstance(value, Period):
+            add = deref((<Date?>self)._thisptr) + deref((<Period>value)._thisptr)
+        elif isinstance(value, int):
+            add = deref((<Date?>self)._thisptr) + <serial_type>value
         else:
             return NotImplemented
+        return date_from_qldate(add)
 
     def __iadd__(self, value):
         if isinstance(self, Date):
             if isinstance(value, Period):
-                self._thisptr.get().i_add(deref((<Period>value)._thisptr.get()))
-            else:
+                self._thisptr.get().i_add(deref((<Period>value)._thisptr))
+            elif isinstance(value, int):
                 self._thisptr.get().i_add(<serial_type>value)
             return self
         else:
@@ -402,21 +394,20 @@ cdef class Date:
 
     def __sub__(self, value):
         cdef QlDate sub
-        if isinstance(self, Date):
-            if isinstance(value, Period):
-                sub = deref((<Date>self)._thisptr.get()) - deref((<Period>value)._thisptr.get())
-            elif isinstance(value, int):
-                sub = deref((<Date>self)._thisptr.get()) - <serial_type>value
-            else:
-                raise ValueError('Unsupported operand')
-            return date_from_qldate(sub)
+        if isinstance(value, Period):
+            sub = deref((<Date?>self)._thisptr) - deref((<Period>value)._thisptr)
+        elif isinstance(value, int):
+            sub = deref((<Date?>self)._thisptr) - <serial_type>value
+        elif isinstance(value, Date):
+            return deref((<Date?>self)._thisptr) - deref((<Date>value)._thisptr)
         else:
             return NotImplemented
+        return date_from_qldate(sub)
 
     def __isub__(self, value):
         if isinstance(self, Date):
             if isinstance(value, Period):
-                self._thisptr.get().i_sub( deref((<Period>value)._thisptr.get()) )
+                self._thisptr.get().i_sub( deref((<Period>value)._thisptr) )
             else:
                 self._thisptr.get().i_sub( <serial_type>value)
             return self
