@@ -52,15 +52,15 @@ cdef class Index:
 
     def is_valid_fixing_date(self, Date fixingDate not None):
         return self._thisptr.get().isValidFixingDate(
-            deref(fixingDate._thisptr.get()))
+            deref(fixingDate._thisptr))
 
-    def fixing(self, Date fixingDate, bool forecastTodaysFixing=False):
+    def fixing(self, Date fixingDate not None, bool forecastTodaysFixing=False):
         return self._thisptr.get().fixing(
-            deref(fixingDate._thisptr.get()), forecastTodaysFixing)
+            deref(fixingDate._thisptr), forecastTodaysFixing)
 
     def add_fixing(self, Date fixingDate not None, Real fixing, bool forceOverwrite=False):
         self._thisptr.get().addFixing(
-            deref(fixingDate._thisptr.get()), fixing, forceOverwrite
+            deref(fixingDate._thisptr), fixing, forceOverwrite
         )
 
     def clear_fixings(self):

@@ -429,7 +429,7 @@ def today():
 def next_weekday(Date date, int weekday):
     ''' Returns the next given weekday following or equal to the given date
     '''
-    cdef QlDate nwd = nextWeekday( deref(date._thisptr.get()), <_date.Weekday>weekday)
+    cdef QlDate nwd = nextWeekday( deref(date._thisptr), <_date.Weekday>weekday)
     return date_from_qldate(nwd)
 
 def nth_weekday(int size, int weekday, int month, int year):
@@ -444,7 +444,7 @@ def nth_weekday(int size, int weekday, int month, int year):
 
 def end_of_month(Date date not None):
     '''Last day of the month to which the given date belongs.'''
-    cdef QlDate eom = endOfMonth(deref(date._thisptr.get()))
+    cdef QlDate eom = endOfMonth(deref(date._thisptr))
     return date_from_qldate(eom)
 
 def maxdate():

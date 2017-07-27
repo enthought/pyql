@@ -89,8 +89,10 @@ cdef class YieldTermStructure:
         cdef _ir.InterestRate ql_zero_rate
 
         if isinstance(d, Date):
+            if day_counter is None:
+                raise ValueError("day_counter needs to be provided")
             ql_zero_rate = term_structure.get().zeroRate(
-                deref((<Date>d)._thisptr.get()), deref(day_counter._thisptr),
+                deref((<Date>d)._thisptr), deref(day_counter._thisptr),
                 <_ir.Compounding>compounding, <_ir.Frequency>frequency,
                 extrapolate)
         elif isinstance(d, (float, int)):
@@ -141,8 +143,8 @@ cdef class YieldTermStructure:
             if day_counter is None:
                 raise ValueError("day_counter can't be None")
             ql_forward_rate = term_structure.forwardRate(
-                deref((<Date>d1)._thisptr.get()),
-                deref((<Date>d2)._thisptr.get()),
+                deref((<Date>d1)._thisptr),
+                deref((<Date>d2)._thisptr),
                 deref(day_counter._thisptr), <_ir.Compounding>compounding,
                 <_ir.Frequency>frequency, <bool>extrapolate)
         elif isinstance(d1, (float, int)) and isinstance(d2, (float, int)):
@@ -153,7 +155,7 @@ cdef class YieldTermStructure:
            if day_counter is None:
                raise ValueError("day_counter can't be None")
            ql_forward_rate = term_structure.forwardRate(
-               deref((<Date>d1)._thisptr.get()), deref((<Period>d2)._thisptr.get()),
+               deref((<Date>d1)._thisptr), deref((<Period>d2)._thisptr),
                deref(day_counter._thisptr), <_ir.Compounding>compounding,
                <_ir.Frequency>frequency, extrapolate)
         else:
@@ -174,7 +176,7 @@ cdef class YieldTermStructure:
 
         if isinstance(value, Date):
             discount_value = term_structure.discount(
-                deref((<Date>value)._thisptr.get()), extrapolate)
+                deref((<Date>value)._thisptr), extrapolate)
         elif isinstance(value, float):
             discount_value = term_structure.discount(
                 <Time>value, extrapolate)

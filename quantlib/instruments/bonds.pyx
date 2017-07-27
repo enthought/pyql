@@ -25,7 +25,7 @@ from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.time._period cimport Frequency 
+from quantlib.time._period cimport Frequency
 from quantlib.indexes.ibor_index cimport IborIndex
 
 cimport quantlib._cashflow as _cashflow
@@ -80,11 +80,9 @@ cdef class Bond(Instrument):
 
     def settlement_date(self, Date from_date=None):
         """ Returns the bond settlement date after the given date."""
-        cdef _date.Date* date
         cdef _date.Date settlement_date
         if from_date is not None:
-            date = from_date._thisptr.get()
-            settlement_date = get_bond(self).settlementDate(deref(date))
+            settlement_date = get_bond(self).settlementDate(deref(from_date._thisptr))
         else:
             settlement_date = get_bond(self).settlementDate()
 
@@ -102,7 +100,7 @@ cdef class Bond(Instrument):
             if self._has_pricing_engine:
                 return get_bond(self).dirtyPrice()
 
-    def clean_yield(self, Real clean_price, DayCounter dc, int comp, int freq,
+    def clean_yield(self, Real clean_price, DayCounter dc not None, int comp, int freq,
             Date settlement_date=None, Real accuracy=1e-08,
             Size max_evaluations=100):
         """ Return the yield given a (clean) price and settlement date
@@ -120,8 +118,6 @@ cdef class Bond(Instrument):
                 accuracy, max_evaluations
             )
 
-
-
     def accrued_amount(self, Date date=None):
         """ Returns the bond accrued amount at the given date. """
         if date is not None:
@@ -135,7 +131,7 @@ cdef class Bond(Instrument):
         def __get__(self):
             cdef _cashflow.Leg leg
             leg = get_bond(self).cashflows()
-            
+
             return cashflow.leg_items(leg)
 
 cdef class FixedRateBond(Bond):
@@ -149,24 +145,24 @@ cdef class FixedRateBond(Bond):
     """
 
     def __init__(self, int settlement_days, double face_amount,
-            Schedule fixed_bonds_schedule,
-            vector[Rate] coupons, DayCounter accrual_day_counter,
-            payment_convention=Following,
-            double redemption=100.0, Date issue_date = None):
+                 Schedule fixed_bonds_schedule,
+                 vector[Rate] coupons, DayCounter accrual_day_counter not None,
+                 payment_convention=Following,
+                 double redemption=100.0, Date issue_date=Date()):
             """ Fixed rate bond (constructor)
             Parameters
             ----------
-            settlement_days : int 
+            settlement_days : int
                 Number of days before bond settles
             face_amount : float (C double in python)
                 Amount of face value of bond
-             
+
             fixed_bonds_schedule : Quantlib::Schedule
                 Schedule of payments for bond
             coupons : list[float]
                 Interest[s] to be acquired for bond.
             accrual_day_counter: Quantlib::DayCounter
-                dayCounter for Bond            
+                dayCounter for Bond
             payment_convention: Quantlib::BusinessDayConvention
                 The business day convention for the payment schedule
             redemption : float
@@ -174,49 +170,33 @@ cdef class FixedRateBond(Bond):
             issue_date : Quantlib::Date
                 Date bond was issued
             """
-           
+
             cdef QlSchedule* _fixed_bonds_schedule = <QlSchedule*>fixed_bonds_schedule._thisptr
             cdef QlDayCounter* _accrual_day_counter = <QlDayCounter*>accrual_day_counter._thisptr
 
             cdef _date.Date* _issue_date
 
-            if issue_date is None:
-                # empty issue rate seem to break some of the computation with
-                # segfaults. Do we really want to let the user do that ? Or
-                # shall we default on the first date of the schedule ?
-                self._thisptr = new shared_ptr[_instrument.Instrument](
-                    new _bonds.FixedRateBond(settlement_days,
-                        face_amount, deref(_fixed_bonds_schedule), coupons,
-                        deref(_accrual_day_counter),
-                        <BusinessDayConvention>payment_convention,
-                        redemption)
-                )
-            else:
-                _issue_date = <_date.Date*>((<Date>issue_date)._thisptr.get())
-
-                self._thisptr = new shared_ptr[_instrument.Instrument](\
-                    new _bonds.FixedRateBond(settlement_days,
-                        face_amount, deref(_fixed_bonds_schedule),
-                        coupons,
-                        deref(_accrual_day_counter),
-                        <BusinessDayConvention>payment_convention,
-                        redemption, deref(_issue_date)
-                    )
-                )
+            self._thisptr = new shared_ptr[_instrument.Instrument](
+                new _bonds.FixedRateBond(settlement_days,
+                                         face_amount, deref(_fixed_bonds_schedule), coupons,
+                                         deref(_accrual_day_counter),
+                                         <BusinessDayConvention>payment_convention,
+                                         redemption, deref(issue_date._thisptr))
+            )
 
 cdef class ZeroCouponBond(Bond):
     """ Zero coupon bond """
     def __init__(self, settlement_days, Calendar calendar, face_amount,
         Date maturity_date, payment_convention=Following, redemption=100.0,
-        Date issue_date=None
+        Date issue_date=Date()
         ):
-        """ Zero coupon bond (constructor) 
+        """ Zero coupon bond (constructor)
         Parameters
         ----------
         settlement_days : int
             Number of days before bond settles
         calendar : Quantlib::Calendar
-            Type of Calendar 
+            Type of Calendar
         face_amount: float (C double in python)
             Amount of face value of bond
         maturity_date: Quantlib::Date
@@ -225,35 +205,30 @@ cdef class ZeroCouponBond(Bond):
             The business day convention for the payment schedule
         redemption : float
             Amount at redemption
-        issue_date : Quantlib::Date 
+        issue_date : Quantlib::Date
             Date bond was issued"""
-            
-        if issue_date is not None:
-            self._thisptr = new shared_ptr[_instrument.Instrument](
-                new _bonds.ZeroCouponBond(
-                    <Natural> settlement_days, deref(calendar._thisptr),
-                    <Real>face_amount, deref(maturity_date._thisptr.get()),
-                    <BusinessDayConvention>payment_convention,
-                    <Real>redemption, deref(issue_date._thisptr.get())
-                )
-            )
-        else:
-            raise NotImplementedError(
-                'Wrapper for such constructor not yet implemented.'
-            )
 
-cdef class FloatingRateBond(Bond): 
-    """ Floating rate bond """ 
-    def __init__(self, int settlement_days, double face_amount, Schedule float_schedule, 
-        IborIndex ibor_index, DayCounter accrual_day_counter, int fixing_days, 
+        self._thisptr = new shared_ptr[_instrument.Instrument](
+            new _bonds.ZeroCouponBond(
+                <Natural> settlement_days, deref(calendar._thisptr),
+                <Real>face_amount, deref(maturity_date._thisptr.get()),
+                <BusinessDayConvention>payment_convention,
+                <Real>redemption, deref(issue_date._thisptr.get())
+            )
+        )
+
+cdef class FloatingRateBond(Bond):
+    """ Floating rate bond """
+    def __init__(self, int settlement_days, double face_amount, Schedule float_schedule,
+        IborIndex ibor_index, DayCounter accrual_day_counter, int fixing_days,
         vector[Real] gearings, vector[Spread] spreads, vector[Rate] caps, vector[Rate] floors,
         BusinessDayConvention payment_convention=Following, double redemption=100.0,
-        Date issue_date=None
+        Date issue_date=Date()
         ):
         """ Floating rate bond (constructor)
         Parameters
         ----------
-        settlement_days : int 
+        settlement_days : int
             Number of days before bond settles
         face_amount : float (C double in python)
             Amount of face value of bond
@@ -280,16 +255,15 @@ cdef class FloatingRateBond(Bond):
         issue_date : Quantlib::Date
             Date bond was issued
         """
-    
+
         cdef QlSchedule* _float_bonds_schedule = <QlSchedule*>float_schedule._thisptr
         cdef QlDayCounter* _accrual_day_counter = <QlDayCounter*>accrual_day_counter._thisptr
-        
-        
+
+
         self._thisptr = new shared_ptr[_instrument.Instrument](
             new _bonds.FloatingRateBond(
                 <Natural> settlement_days, <Real> face_amount, deref(_float_bonds_schedule),deref(<shared_ptr[_ii.IborIndex]*> ibor_index._thisptr),
-                deref(_accrual_day_counter), <BusinessDayConvention> payment_convention, 
+                deref(_accrual_day_counter), <BusinessDayConvention> payment_convention,
                 <Natural> fixing_days, gearings, spreads, caps, floors, True, redemption, deref(issue_date._thisptr.get())
                 )
-            )       
-               
+            )
