@@ -34,29 +34,34 @@ cdef class CashFlow:
 
     property date:
         def __get__(self):
-            cdef _date.Date cf_date
-            if self._thisptr:
-                cf_date = self._thisptr.get().date()
+            cdef:
+                _date.Date cf_date
+                _cf.CashFlow* cf = self._thisptr.get()
+            if cf:
+                cf_date = cf.date()
                 return date_from_qldate(cf_date)
             else:
                 return None
 
     property amount:
         def __get__(self):
-            if self._thisptr:
-                return self._thisptr.get().amount()
+            cdef _cf.CashFlow* cf = self._thisptr.get()
+            if cf:
+                return cf.amount()
             else:
                 return None
 
     def has_occured(self, Date ref_date, include_ref_date=None):
-        return self._thisptr.get().hasOccurred(deref(ref_date._thisptr.get()),
-                                               make_optional[bool](include_ref_date is not None,
+        cdef _cf.CashFlow* cf = self._thisptr.get()
+        if cf:
+            return cf.hasOccurred(deref(ref_date._thisptr.get()),
+                                  make_optional[bool](include_ref_date is not None,
                                                                    include_ref_date))
 
 cdef class SimpleCashFlow(CashFlow):
 
     def __init__(self, Real amount, Date cfdate):
-        self._thisptr = new shared_ptr[_cf.CashFlow](
+        self._thisptr = shared_ptr[_cf.CashFlow](
             new _cf.SimpleCashFlow(amount, deref(cfdate._thisptr))
         )
 
@@ -88,7 +93,7 @@ cdef class Leg:
 
         for amount, d in leg:
             if isinstance(d, Date):
-               _thisdate = deref((<date.Date>d)._thisptr)
+               _thisdate = deref((<Date>d)._thisptr)
             elif isinstance(d, datetime.date):
                _thisdate = _qldate_from_pydate(d)
             else:
