@@ -6,7 +6,7 @@ from quantlib.handle cimport shared_ptr
 from libcpp.vector cimport vector
 
 cdef class CashFlow:
-    cdef shared_ptr[_cf.CashFlow]* _thisptr
+    cdef shared_ptr[_cf.CashFlow] _thisptr
 
 cdef class SimpleCashFlow(CashFlow):
     pass
