@@ -43,7 +43,7 @@ cdef public enum SwapType:
     Receiver = _vanillaswap.Receiver
 
 
-cdef _swap.Swap* get_swap(Swap swap):
+cdef inline _swap.Swap* get_swap(Swap swap):
     """ Utility function to extract a properly casted Swap pointer out of the
     internal _thisptr attribute of the Instrument base class. """
 
