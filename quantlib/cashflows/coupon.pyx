@@ -28,6 +28,15 @@ cdef class Coupon(CashFlow):
             self._get_coupon().accrualEndDate())
 
     @property
+    def reference_period_start(self):
+        return date_from_qldate(
+            self._get_coupon().referencePeriodStart())
+    @property
+    def reference_period_end(self):
+        return date_from_qldate(
+            self._get_coupon().referencePeriodEnd())
+
+    @property
     def accrual_days(self):
         return self._get_coupon().accrualDays()
 

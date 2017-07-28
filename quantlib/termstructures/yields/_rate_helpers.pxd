@@ -20,6 +20,7 @@ from quantlib.time._period cimport Period, Frequency
 from _flat_forward cimport YieldTermStructure
 from quantlib.indexes._ibor_index cimport IborIndex
 from quantlib.indexes._swap_index cimport SwapIndex
+from quantlib.instruments._vanillaswap cimport VanillaSwap
 
 cimport quantlib.indexes._ibor_index as _ib
 
@@ -107,7 +108,9 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
                        #Handle[YieldTermStructure]& discountingCurve
                                             #= Handle<YieldTermStructure>()
         ) except +
-
+        Spread spread()
+        shared_ptr[VanillaSwap] swap()
+        Period& forwardStart()
 
     cdef cppclass FuturesRateHelper(RateHelper):
         FuturesRateHelper(Handle[Quote]& price,

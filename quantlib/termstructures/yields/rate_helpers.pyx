@@ -11,14 +11,18 @@ from cython.operator cimport dereference as deref
 from libcpp cimport bool
 
 cimport _rate_helpers as _rh
+cimport quantlib.instruments._instrument as _ins
+from quantlib.instruments.swap cimport VanillaSwap
+cimport quantlib.instruments._vanillaswap as _vs
+
 from quantlib.handle cimport shared_ptr, Handle
 cimport quantlib._quote as _qt
 cimport quantlib.indexes._ibor_index as _ib
 cimport quantlib.indexes._swap_index as _si
-from quantlib.time._period cimport Frequency, Days
+from quantlib.time._period cimport Frequency, Days, Period as QlPeriod
 from quantlib.time._businessdayconvention cimport (
     BusinessDayConvention, ModifiedFollowing )
-from quantlib.time.date cimport date_from_qldate
+from quantlib.time.date cimport date_from_qldate, period_from_qlperiod
 from quantlib.quotes cimport Quote, SimpleQuote
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
@@ -190,6 +194,21 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
             raise ValueError('rate needs to be a float or a SimpleQuote')
 
         return instance
+
+    def swap(self):
+        cdef VanillaSwap instance = VanillaSwap.__new__(VanillaSwap)
+        instance._thisptr = new shared_ptr[_ins.Instrument](
+            (<_rh.SwapRateHelper*>self._thisptr.get()).swap().get())
+        return instance
+
+    @property
+    def spread(self):
+        return (<_rh.SwapRateHelper*>self._thisptr.get()).spread()
+
+    @property
+    def forward_start(self):
+        return period_from_qlperiod((<_rh.SwapRateHelper*>self._thisptr.get()).
+                                    forwardStart())
 
 cdef class FraRateHelper(RelativeDateRateHelper):
     """ Rate helper for bootstrapping over %FRA rates. """

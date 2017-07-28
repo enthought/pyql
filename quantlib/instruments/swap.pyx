@@ -21,8 +21,7 @@ from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 from libcpp cimport bool
 
-from quantlib.handle cimport Handle, shared_ptr, optional
-from quantlib.instruments.instrument cimport Instrument
+from quantlib.handle cimport Handle, shared_ptr, optional, make_optional
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time._businessdayconvention cimport BusinessDayConvention
 from quantlib.time._daycounter cimport DayCounter as QlDayCounter
@@ -66,11 +65,11 @@ cdef class Swap(Instrument):
 
     ##     cdef _cf.Leg* leg1 = firstLeg._thisptr.get()
     ##     cdef _cf.Leg* leg2 = secondLeg._thisptr.get()
-        
+
     ##     self._thisptr = new shared_ptr[_instrument.Instrument](\
     ##        new _swap.Swap(deref(leg1),
     ##                       deref(leg2)))
-        
+
 
     ## def __init__(self, vector[Leg] legs,
     ##          vector[bool] payer):
@@ -86,7 +85,7 @@ cdef class Swap(Instrument):
     ##     self._thisptr = new shared_ptr[_instrument.Instrument](\
     ##         new _swap.Swap(_legs, payer)
     ##         )
-            
+
     property is_expired:
         def __get__(self):
             cdef bool is_expired = get_swap(self).isExpired()
@@ -145,10 +144,10 @@ cdef class VanillaSwap(Swap):
                      Spread spread,
                      DayCounter floating_daycount,
                      payment_convention=None):
-        cdef optional[BusinessDayConvention] opt_payment_convention
-        if payment_convention is not None:
-            opt_payment_convention  = optional[BusinessDayConvention](
-                    <BusinessDayConvention>payment_convention)
+        cdef optional[BusinessDayConvention] opt_payment_convention = \
+        make_optional[BusinessDayConvention](
+            payment_convention is not None,
+            <BusinessDayConvention>payment_convention)
 
         self._thisptr = new shared_ptr[_instrument.Instrument](
             new _vanillaswap.VanillaSwap(
@@ -205,3 +204,11 @@ cdef class VanillaSwap(Swap):
         cdef IborLeg leg = IborLeg.__new__(IborLeg)
         leg._thisptr = get_vanillaswap(self).floatingLeg()
         return leg
+
+    @property
+    def nominal(self):
+        return get_vanillaswap(self).nominal()
+
+    @property
+    def type(self):
+        return get_vanillaswap(self).type()
