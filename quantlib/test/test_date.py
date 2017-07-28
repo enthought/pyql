@@ -95,9 +95,11 @@ class TestQuantLibDate(unittest.TestCase):
         expected_date = Date(14, Nov, 1998)
         self.assertTrue(expected_date == date3)
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             # invalid operation
-            date3 - date1
+            date3 - "pomme"
+
+        self.assertTrue(date3 - date1, 5)
 
         # isub
         date1 = Date(19, Nov, 1998)

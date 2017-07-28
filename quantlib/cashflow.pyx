@@ -53,10 +53,8 @@ cdef class CashFlow:
 cdef class SimpleCashFlow(CashFlow):
 
     def __init__(self, Real amount, date.Date cfdate):
-        cdef _date.Date* _cfdate = cfdate._thisptr.get()
-
         self._thisptr = new shared_ptr[_cf.CashFlow](
-            new _cf.SimpleCashFlow(amount, deref(_cfdate))
+            new _cf.SimpleCashFlow(amount, deref(cfdate._thisptr))
         )
 
     def __str__(self):
@@ -87,7 +85,7 @@ cdef class SimpleLeg:
 
         for amount, d in leg:
             if isinstance(d, date.Date):
-               _thisdate = deref((<date.Date>d)._thisptr.get())
+               _thisdate = deref((<date.Date>d)._thisptr)
             elif isinstance(d, datetime.date):
                _thisdate = date._qldate_from_pydate(d)
             else:

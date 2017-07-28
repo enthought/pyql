@@ -68,6 +68,7 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
     cdef cppclass Date:
         Date() except +
         Date(serial_type serialnumber) except +
+        Date(const Date&)
         Date(int d, int m, int y) except +
         Day dayOfMonth() except +
         Month month()
@@ -86,6 +87,7 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
         Date operator+(Period p)
         Date operator-(serial_type days)
         Date operator-(Period p)
+        serial_type operator-(Date d)
 
         Date& i_add 'operator+='(serial_type days)
         Date& i_add 'operator+='(Period& period)

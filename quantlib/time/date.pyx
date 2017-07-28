@@ -1,5 +1,6 @@
 # Cython imports
 from cython.operator cimport dereference as deref
+from cpython.datetime cimport date_new, date, datetime, import_datetime
 from libcpp.string cimport string
 
 # cannot use date.pxd because of name clashing
@@ -16,7 +17,7 @@ from _period cimport (
     )
 
 # Python imports
-import datetime
+import_datetime()
 import six
 
 cdef public enum Month:
@@ -112,26 +113,20 @@ cdef class Period:
     limited algebra.
 
     '''
-
-    def __cinit__(self, *args):
+    def __init__(self, *args):
         if len(args) == 1:
             tenor = args[0]
             if(isinstance(tenor, six.string_types)):
-                self._thisptr = new shared_ptr[QlPeriod](new QlPeriod(parse(tenor.encode('utf-8'))))
+                self._thisptr.reset(new QlPeriod(parse(tenor.encode('utf-8'))))
             else:
-                self._thisptr = \
-                new shared_ptr[QlPeriod](new QlPeriod(<_period.Frequency>args[0]))
+                self._thisptr.reset(new QlPeriod(<_period.Frequency>args[0]))
         elif len(args) == 2:
-            self._thisptr = new shared_ptr[QlPeriod](
-                new QlPeriod(<Integer> args[0], <TimeUnit> args[1]))
+            self._thisptr.reset(new QlPeriod(<Integer> args[0],
+                                             <TimeUnit> args[1]))
         elif len(args) == 0:
-            self._thisptr = new shared_ptr[QlPeriod]()
+            self._thisptr.reset(new QlPeriod())
         else:
-            raise RuntimeError('Invalid arguments for Period.__cinit__')
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
+            raise RuntimeError('Invalid arguments for Period.__init__')
 
     property length:
         def __get__(self):
@@ -151,103 +146,88 @@ cdef class Period:
 
     def __sub__(self, value):
         cdef QlPeriod outp
-        if isinstance(self, Period) and isinstance(value, Period):
-            outp = sub_op(deref( (<Period>self)._thisptr.get()),
-                    deref( (<Period>value)._thisptr.get()))
-
-        # fixme : this is inefficient and ugly ;-)
-        return Period(outp.length(), outp.units())
+        outp = sub_op(deref((<Period?>self)._thisptr),
+                      deref((<Period?>value)._thisptr))
+        return period_from_qlperiod(outp)
 
     def __add__(self, value):
         cdef QlPeriod outp
-        if isinstance(self, Period) and isinstance(value, Period):
-            outp = add_op(deref( (<Period>self)._thisptr.get()),
-                    deref( (<Period>value)._thisptr.get()))
-
-        # fixme : this is inefficient and ugly ;-)
-        return Period(outp.length(), outp.units())
+        outp = add_op(deref( (<Period?>self)._thisptr),
+                deref( (<Period?>value)._thisptr))
+        return period_from_qlperiod(outp)
 
     def __mul__(self, value):
         cdef QlPeriod inp
         if isinstance(self, Period):
-            inp = deref((<Period>self)._thisptr.get())
+            inp = deref((<Period>self)._thisptr)
             value = <int> value
         elif isinstance(self, int) and isinstance(value, Period):
-            inp = deref((<Period>value)._thisptr.get())
+            inp = deref((<Period>value)._thisptr)
             value = self
         else:
-            raise NotImplemented()
+            return NotImplemented
 
         cdef QlPeriod outp = mult_op(inp, value)
 
-        # fixme : this is inefficient and ugly ;-)
-        return Period(outp.length(), outp.units())
+        return period_from_qlperiod(outp)
 
-    def __iadd__(self, value):
-        cdef QlPeriod p1
-        cdef QlPeriod* tmp  = (<Period>value)._thisptr.get()
-
-        if isinstance(self, Period) and isinstance(value, Period):
+    def __iadd__(self, Period value not None):
+        if isinstance(self, Period):
 
             if self.units != value.units:
                 raise ValueError('Units must be the same')
 
-            p1 = self._thisptr.get().i_add( deref( tmp ))
+            self._thisptr.get().i_add( deref( value._thisptr))
 
             return self
         else:
             return NotImplemented
 
-    def __isub__(self, value):
-        cdef QlPeriod p1
-        cdef QlPeriod* tmp  = (<Period>value)._thisptr.get()
-
-        if isinstance(self, Period) and isinstance(value, Period):
+    def __isub__(self, Period value not None):
+        if isinstance(self, Period):
 
             if self.units != value.units:
                 raise ValueError('Units must be the same')
 
-            p1 = self._thisptr.get().i_sub( deref( tmp ))
+            self._thisptr.get().i_sub(deref(value._thisptr))
 
             return self
         else:
             return NotImplemented
 
-    def __itruediv__(self, value):
-        return self._division(value)
-
-    def __idiv__(self, value):
-        return self._division(value)
-
-    cdef _division(self, object value):
-
-        if isinstance(self, Period) and isinstance(value, int):
-            self._thisptr.get().i_div( <int> value)
+    def __idiv__(self, int value):
+        if isinstance(self, Period):
+            self._thisptr.get().i_div(value)
             return self
         else:
             return NotImplemented
 
+    def __itruediv__(self, int value):
+        if isinstance(self, Period):
+            self._thisptr.get().i_div(value)
+            return self
+        else:
+            return NotImplemented
 
-    def __richcmp__(self, value, t):
-
-        cdef QlPeriod* p1 = (<Period>self)._thisptr.get()
+    def __richcmp__(self, value, int t):
+        cdef QlPeriod p1 = deref((<Period?>self)._thisptr)
         if not isinstance(value, Period):
             return False
 
-        cdef QlPeriod* p2 = (<Period>value)._thisptr.get()
+        cdef QlPeriod p2 = deref((<Period>value)._thisptr)
 
         if t==0:
-            return l_op( deref(p1), deref(p2))
+            return l_op(p1, p2)
         elif t==1:
-            return leq_op( deref(p1), deref(p2))
+            return leq_op(p1, p2)
         elif t==2:
-            return eq_op( deref(p1), deref(p2))
+            return eq_op(p1, p2)
         elif t==3:
-            return neq_op( deref(p1), deref(p2))
+            return neq_op(p1, p2)
         elif t==4:
-            return g_op( deref(p1), deref(p2))
+            return g_op(p1, p2)
         elif t==5:
-            return geq_op( deref(p1), deref(p2))
+            return geq_op(p1, p2)
 
     def __str__(self):
         return 'Period %d %s' % (self.length, _STR_TU_DICT[self.units])
@@ -261,33 +241,34 @@ cdef class Period:
         This will throw an exception if the time unit is not Years or Month."""
         return _period.years(deref(self._thisptr.get()))
 
-def years(p):
+cdef Period period_from_qlperiod(const QlPeriod& period):
+    cdef Period instance = Period.__new__(Period)
+    instance._thisptr.reset(new QlPeriod(period))
+    return instance
+
+def years(Period p not None):
     """Converts the period into years as a float.
 
     This will throw an exception if the time unit is not Years or Months."""
-    if isinstance(p, Period):
-        return _period.years(deref((<Period>p)._thisptr.get()))
+    return _period.years(deref(p._thisptr.get()))
 
-def months(p):
+def months(Period p not None):
     """Converts the period intho months as a float.
 
     This will throw an exception if the time unit is not Years or Months."""
-    if isinstance(p, Period):
-        return _period.months(deref((<Period>p)._thisptr.get()))
+    return _period.months(deref(p._thisptr.get()))
 
-def weeks(p):
+def weeks(Period p not None):
     """Converts the period into weeks as a float.
 
     This will throw an exception if the time unit is not Days or Weeks."""
-    if isinstance(p, Period):
-        return _period.weeks(deref((<Period>p)._thisptr.get()))
+    return _period.weeks(deref(p._thisptr.get()))
 
-def days(p):
+def days(Period p not None):
     """Converts the period into days as a float.
 
     This will throw an exception if the time unit is not Days or Weeks."""
-    if isinstance(p, Period):
-        return _period.days(deref((<Period>p)._thisptr.get()))
+    return _period.days(deref(p._thisptr.get()))
 
 cdef class Date:
     """ Date class
@@ -298,23 +279,18 @@ cdef class Date:
 
     """
 
-    def __cinit__(self, *args):
+    def __init__(self, *args):
 
-        if len(args) == 0:
-            self._thisptr = new shared_ptr[QlDate](new QlDate())
-        elif len(args) == 3:
+        if len(args) == 3:
             day, month, year = args
-            self._thisptr = new shared_ptr[QlDate](new QlDate(<Integer>day, <_date.Month>month, <Year>year))
+            self._thisptr.reset(new QlDate(<Integer>day, <_date.Month>month, <Year>year))
         elif len(args) == 1:
             serial = args[0]
-            self._thisptr = new shared_ptr[QlDate](new QlDate(<serial_type> serial))
+            self._thisptr.reset(new QlDate(<serial_type> serial))
+        elif len(args) == 0:
+            self._thisptr.reset(new QlDate())
         else:
             raise RuntimeError('Invalid constructor')
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-            self._thisptr = NULL
 
     property month:
         def __get__(self):
@@ -330,7 +306,7 @@ cdef class Date:
 
     @property
     def serial(self):
-        return <int>self._thisptr.get().serialNumber()
+        return self._thisptr.get().serialNumber()
 
     property weekday:
         def __get__(self):
@@ -354,7 +330,7 @@ cdef class Date:
         return self.serial
 
     def __cmp__(self, date2):
-        if isinstance(date2, (datetime.date, datetime.datetime)):
+        if isinstance(date2, (date, datetime)):
             date2 = Date.from_datetime(date2)
         elif not isinstance(date2, Date):
             return NotImplemented
@@ -369,7 +345,7 @@ cdef class Date:
 
     def __richcmp__(self, date2, int t):
 
-        if isinstance(date2, (datetime.date, datetime.datetime)):
+        if isinstance(date2, (date, datetime)):
             date2 = Date.from_datetime(date2)
         elif not isinstance(date2, Date):
             return NotImplemented
@@ -398,48 +374,40 @@ cdef class Date:
 
     def __add__(self, value):
         cdef QlDate add
-        if isinstance(self, Date):
-            if isinstance(value, Period):
-                add = deref((<Date>self)._thisptr.get()) + deref((<Period>value)._thisptr.get())
-            else:
-                # want to casst to serial_type here but doesn't work
-                add = deref((<Date>self)._thisptr.get()) + <serial_type>(value)
-            return date_from_qldate(add)
-            #d = Date()
-            #d._set_qldate(add)
-            #return d
+        if isinstance(value, Period):
+            add = deref((<Date?>self)._thisptr) + deref((<Period>value)._thisptr)
+        elif isinstance(value, int):
+            add = deref((<Date?>self)._thisptr) + <serial_type>value
         else:
             return NotImplemented
+        return date_from_qldate(add)
 
     def __iadd__(self, value):
-        cdef QlDate add
         if isinstance(self, Date):
             if isinstance(value, Period):
-                add = self._thisptr.get().i_add(deref((<Period>value)._thisptr.get()))
-            else:
-                add = self._thisptr.get().i_add(<serial_type>value)
+                self._thisptr.get().i_add(deref((<Period>value)._thisptr))
+            elif isinstance(value, int):
+                self._thisptr.get().i_add(<serial_type>value)
             return self
         else:
             return NotImplemented
 
     def __sub__(self, value):
         cdef QlDate sub
-        if isinstance(self, Date):
-            if isinstance(value, Period):
-                sub = deref((<Date>self)._thisptr.get()) - deref((<Period>value)._thisptr.get())
-            elif isinstance(value, int):
-                sub = deref((<Date>self)._thisptr.get()) - <serial_type>value
-            else:
-                raise ValueError('Unsupported operand')
-            return date_from_qldate(sub)
+        if isinstance(value, Period):
+            sub = deref((<Date?>self)._thisptr) - deref((<Period>value)._thisptr)
+        elif isinstance(value, int):
+            sub = deref((<Date?>self)._thisptr) - <serial_type>value
+        elif isinstance(value, Date):
+            return deref((<Date?>self)._thisptr) - deref((<Date>value)._thisptr)
         else:
             return NotImplemented
+        return date_from_qldate(sub)
 
     def __isub__(self, value):
-        cdef QlDate sub
         if isinstance(self, Date):
             if isinstance(value, Period):
-                self._thisptr.get().i_sub( deref((<Period>value)._thisptr.get()) )
+                self._thisptr.get().i_sub( deref((<Period>value)._thisptr) )
             else:
                 self._thisptr.get().i_sub( <serial_type>value)
             return self
@@ -449,8 +417,9 @@ cdef class Date:
     @classmethod
     def from_datetime(cls, date):
         """Returns the Quantlib Date object from the date/datetime object. """
-
-        return Date(date.day, date.month, date.year)
+        cdef Date instance = Date.__new__(Date)
+        instance._thisptr.reset(new QlDate(<Integer>date.day, <_date.Month>date.month, <Year>date.year))
+        return instance
 
 def today():
     '''Today's date. '''
@@ -460,7 +429,7 @@ def today():
 def next_weekday(Date date, int weekday):
     ''' Returns the next given weekday following or equal to the given date
     '''
-    cdef QlDate nwd = nextWeekday( deref(date._thisptr.get()), <_date.Weekday>weekday)
+    cdef QlDate nwd = nextWeekday( deref(date._thisptr), <_date.Weekday>weekday)
     return date_from_qldate(nwd)
 
 def nth_weekday(int size, int weekday, int month, int year):
@@ -473,9 +442,9 @@ def nth_weekday(int size, int weekday, int month, int year):
     cdef QlDate nwd = nthWeekday(<Size>size, <_date.Weekday>weekday, <_date.Month>month, <Year>year)
     return date_from_qldate(nwd)
 
-def end_of_month(Date date):
+def end_of_month(Date date not None):
     '''Last day of the month to which the given date belongs.'''
-    cdef QlDate eom = endOfMonth(deref(date._thisptr.get()))
+    cdef QlDate eom = endOfMonth(deref(date._thisptr))
     return date_from_qldate(eom)
 
 def maxdate():
@@ -488,7 +457,7 @@ def mindate():
     cdef QlDate mdate = minDate()
     return date_from_qldate(mdate)
 
-def is_end_of_month(Date date):
+def is_end_of_month(Date date not None):
     '''Whether a date is the last day of its month.'''
     return isEndOfMonth(deref(date._thisptr.get()))
 
@@ -497,12 +466,10 @@ def is_leap(int year):
     return isLeap(<Year> year)
 
 cdef Date date_from_qldate(const QlDate& date):
-    '''Converts a QuantLib::Date (QlDate) to a cython Date instance.
-
-    Inefficient because taking a copy of the date ... but safe!
-    '''
-    return Date(date.serialNumber())
-
+    '''Converts a QuantLib::Date (QlDate) to a cython Date instance.'''
+    cdef Date instance = Date.__new__(Date)
+    instance._thisptr.reset(new QlDate(date))
+    return instance
 
 # Date Interfaces
 
@@ -513,29 +480,18 @@ cdef object _pydate_from_qldate(QlDate qdate):
     cdef int d = qdate.dayOfMonth()
     cdef int y = qdate.year()
 
-    return datetime.date(y, m, d)
+    return date_new(y, m, d)
 
 cpdef object pydate_from_qldate(Date qdate):
     """ Converts a PyQL Date to a datetime.date object. """
-
-    cdef int m = qdate.month
-    cdef int d = qdate.day
-    cdef int y = qdate.year
-
-    return datetime.date(y, m, d)
+    cdef QlDate* d = qdate._thisptr.get()
+    return date_new(d.year(), d.month(), d.dayOfMonth())
 
 cdef QlDate _qldate_from_pydate(object pydate):
     """ Converts a datetime.date to a QuantLib (C++) object. """
 
-    cdef Date qdate_ref = Date.from_datetime(pydate)
-    cdef QlDate* date_ref = <QlDate*>qdate_ref._thisptr.get()
-
-    return deref(date_ref)
-
+    return QlDate(<Integer>pydate.day, <_date.Month>pydate.month, <Year>pydate.year)
 
 cpdef Date qldate_from_pydate(object pydate):
     """ Converts a datetime.date to a PyQL date. """
-
-    cdef Date qdate_ref = Date.from_datetime(pydate)
-
-    return qdate_ref
+    return Date.from_datetime(pydate)
