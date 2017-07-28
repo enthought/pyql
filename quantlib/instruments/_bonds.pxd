@@ -27,10 +27,8 @@ cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib':
         Leg cashflows()
         Date maturityDate()
         Date issueDate()
-        Date settlementDate()
         Date settlementDate(Date d)
         bool isTradable(Date d)
-        Real accruedAmount() except +
         Real accruedAmount(Date d) except +
 
 
@@ -47,8 +45,8 @@ cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib':
                    Real accuracy,
                    Size maxEvaluations) except +
 
-        Date nextCachFlowDate(Date d) except +
-        Date previousCachFlowDate(Date d) except +
+        Date nextCashFlowDate(Date d) except +
+        Date previousCashFlowDate(Date d) except +
 
 cdef extern from 'ql/instruments/bonds/fixedratebond.hpp' namespace 'QuantLib':
     cdef cppclass FixedRateBond(Bond):

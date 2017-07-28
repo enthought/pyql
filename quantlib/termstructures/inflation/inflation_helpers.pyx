@@ -21,9 +21,9 @@ cdef class ZeroCouponInflationSwapHelper:
         self._thisptr = shared_ptr[_ih.ZeroCouponInflationSwapHelper](
             new _ih.ZeroCouponInflationSwapHelper(
                 Handle[_qt.Quote](deref(quote._thisptr)),
-                deref(swap_obs_lag._thisptr.get()),
-                deref(maturity._thisptr.get()),
-                deref(calendar._thisptr), payment_convention._thisptr,
+                deref(swap_obs_lag._thisptr),
+                deref(maturity._thisptr),
+                deref(calendar._thisptr), payment_convention,
                 deref(day_counter._thisptr),
                 static_pointer_cast[_ii.ZeroInflationIndex](deref(zii._thisptr)))
             )
@@ -37,9 +37,9 @@ cdef class YearOnYearInflationSwapHelper:
         self._thisptr = shared_ptr[_ih.YearOnYearInflationSwapHelper](
             new _ih.YearOnYearInflationSwapHelper(
                 Handle[_qt.Quote](deref(quote._thisptr)),
-                deref(swap_obs_lag._thisptr.get()),
-                deref(maturity._thisptr.get()),
-                deref(calendar._thisptr), payment_convention._thisptr,
+                deref(swap_obs_lag._thisptr),
+                deref(maturity._thisptr),
+                deref(calendar._thisptr), payment_convention,
                 deref(day_counter._thisptr),
                 static_pointer_cast[_ii.YoYInflationIndex](deref(yii._thisptr)))
             )

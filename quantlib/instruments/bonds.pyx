@@ -81,14 +81,9 @@ cdef class Bond(Instrument):
             cdef _date.Date valuation_date = get_bond(self).valuationDate()
             return date_from_qldate(valuation_date)
 
-    def settlement_date(self, Date from_date=None):
+    def settlement_date(self, Date from_date=Date()):
         """ Returns the bond settlement date after the given date."""
-        cdef _date.Date settlement_date
-        if from_date is not None:
-            settlement_date = get_bond(self).settlementDate(deref(from_date._thisptr))
-        else:
-            settlement_date = get_bond(self).settlementDate()
-        return date_from_qldate(settlement_date)
+        return date_from_qldate(get_bond(self).settlementDate(deref(from_date._thisptr)))
 
     property clean_price:
         """ Bond clena price. """
