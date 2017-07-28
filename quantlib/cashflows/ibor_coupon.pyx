@@ -28,3 +28,19 @@ cdef class IborCoupon(FloatingRateCoupon):
                 deref(ref_period_start._thisptr), deref(ref_period_end._thisptr),
                 deref(day_counter._thisptr), is_in_arrears)
         )
+
+
+cdef class IborLeg(Leg):
+    def __iter__(self):
+        cdef shared_ptr[_cf.CashFlow] cf
+        cdef IborCoupon ic = IborCoupon.__new__(IborCoupon)
+        for cf in self._thisptr:
+            ic._thisptr = cf
+            yield ic
+
+    def __repr__(self):
+        """ Pretty print cash flow schedule. """
+
+        header = "Cash Flow Schedule:\n"
+        values = ("{0!s} {1:f}".format(ic.date, ic.amount) for ic in self)
+        return header + '\n'.join(values)

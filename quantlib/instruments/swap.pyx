@@ -34,6 +34,8 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.businessdayconvention import Following
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.cashflow cimport Leg
+from quantlib.cashflows.fixed_rate_coupon cimport FixedRateLeg
+from quantlib.cashflows.ibor_coupon cimport IborLeg
 
 import datetime
 
@@ -194,12 +196,12 @@ cdef class VanillaSwap(Swap):
             return res
     @property
     def fixed_leg(self):
-        cdef Leg leg = Leg.__new__(Leg)
+        cdef FixedRateLeg leg = FixedRateLeg.__new__(FixedRateLeg)
         leg._thisptr = get_vanillaswap(self).fixedLeg()
         return leg
 
     @property
     def floating_leg(self):
-        cdef Leg leg = Leg.__new__(Leg)
+        cdef IborLeg leg = IborLeg.__new__(IborLeg)
         leg._thisptr = get_vanillaswap(self).floatingLeg()
         return leg

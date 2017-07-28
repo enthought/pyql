@@ -31,3 +31,18 @@ cdef class FixedRateCoupon(Coupon):
             new _ir.InterestRate(
                 (<_frc.FixedRateCoupon*>self._thisptr.get()).interestRate()))
         return ir
+
+cdef class FixedRateLeg(Leg):
+    def __iter__(self):
+        cdef shared_ptr[_cf.CashFlow] cf
+        cdef FixedRateCoupon frc = FixedRateCoupon.__new__(FixedRateCoupon)
+        for cf in self._thisptr:
+            frc._thisptr = cf
+            yield frc
+
+    def __repr__(self):
+        """ Pretty print cash flow schedule. """
+
+        header = "Cash Flow Schedule:\n"
+        values = ("{0!s} {1:f}".format(frc.date, frc.amount) for frc in self)
+        return header + '\n'.join(values)

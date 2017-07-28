@@ -15,8 +15,6 @@ from libcpp.vector cimport vector
 from libcpp cimport bool
 from cython.operator cimport dereference as deref, preincrement as preinc
 from quantlib.handle cimport shared_ptr, static_pointer_cast, make_optional
-from quantlib.cashflows.fixed_rate_coupon cimport FixedRateCoupon
-cimport quantlib.cashflows._fixed_rate_coupon as _frc
 import datetime
 
 cdef class CashFlow:
@@ -121,14 +119,6 @@ cdef class Leg:
             _thiscf = deref(it).get()
             yield (_thiscf.amount(), _pydate_from_qldate(_thiscf.date()))
             preinc(it)
-
-    def as_fixed_rate_cashflows(self):
-        cdef shared_ptr[_cf.CashFlow] cf
-        cdef FixedRateCoupon frc = FixedRateCoupon.__new__(FixedRateCoupon)
-        for cf in self._thisptr:
-            frc._thisptr = cf
-            yield frc
-
 
     def __repr__(self):
         """ Pretty print cash flow schedule. """
