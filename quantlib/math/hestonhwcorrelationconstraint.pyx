@@ -16,13 +16,9 @@ cimport _hestonhwcorrelationconstraint as _hhw
 
 cdef class HestonHullWhiteCorrelationConstraint(Constraint):
 
-    def __cinit__(self):
-        self._thisptr = NULL
-
     def __init__(self, double equity_short_rate_corr):
-        self._thisptr = new shared_ptr[_opt.Constraint](
+        self._thisptr = shared_ptr[_opt.Constraint](
             _hhw.constraint_factory(equity_short_rate_corr))
-        
+
     def __str__(self):
         return 'Heston/Hull-White correlation constraint'
-

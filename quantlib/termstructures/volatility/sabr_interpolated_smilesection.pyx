@@ -45,4 +45,4 @@ cdef class SabrInterpolatedSmileSection:
                 vol_handles_cpp,
                 alpha, beta, nu, rho,
                 is_alpha_fixed, is_beta_fixed, is_nu_fixed, is_rho_fixed, vega_weighted,
-                deref(end_criteria._thisptr), deref(method._thisptr), deref(dc._thisptr), shift))
+                end_criteria._thisptr, method._thisptr, deref(dc._thisptr), shift))
