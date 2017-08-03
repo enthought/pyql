@@ -32,7 +32,7 @@ cdef class Array:
         if key < self._thisptr.get().size():
             deref(self._thisptr.get())[key] = value
         else:
-            raise RuntimeError("index {} is larger than the size of the array {}".
+            raise IndexError("index {} is larger than the size of the array {}".
                                format(key, self._thisptr.get().size()))
 
     property size:
