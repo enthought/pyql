@@ -4,7 +4,7 @@ from quantlib._quote cimport Quote
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._date cimport Date
-from quantlib.math._optimization cimport EndCriteria, OptimizationMethod
+from quantlib.math._optimization cimport EndCriteria, OptimizationMethod, Type
 from libcpp.vector cimport vector
 from libcpp cimport bool
 
@@ -26,3 +26,10 @@ cdef extern from 'ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp'
             const DayCounter& dc, #= Actual365Fixed(),
             const Real shift #= 0.0
         )
+        Real alpha()
+        Real beta()
+        Real nu()
+        Real rho()
+        Real rmsError()
+        Real maxError()
+        Type endCriteria()
