@@ -7,10 +7,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
+include '../types.pxi'
+
 cdef extern from 'ql/math/array.hpp' namespace 'QuantLib':
     cdef cppclass Array:
         Array()
         Array(size_t size)
         Array(size_t size, double value)
-        double at(size_t i) except +
-        size_t size() except +
+        Real& at(Size i) except +
+        Size size()
+        Real& operator[](Size)

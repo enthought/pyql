@@ -11,5 +11,4 @@ cimport quantlib.math._array as _arr
 from quantlib.handle cimport shared_ptr
 
 cdef class Array:
-    cdef shared_ptr[_arr.Array]* _thisptr
-    
+    cdef shared_ptr[_arr.Array] _thisptr
