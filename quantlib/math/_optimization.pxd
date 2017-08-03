@@ -31,7 +31,15 @@ cdef extern from 'ql/math/optimization/endcriteria.hpp' namespace 'QuantLib':
         )
 
 cdef extern from 'ql/math/optimization/endcriteria.hpp' namespace 'QuantLib::EndCriteria':
-    ctypedef Type
+    ctypedef enum Type:
+        No "None"
+        MaxIterations
+        StationaryPoint
+        StationaryFunctionValue
+        StationaryFunctionAccuracy
+        ZeroGradientNorm
+        Unknown
+
 
 cdef extern from 'ql/math/optimization/constraint.hpp' namespace 'QuantLib':
 
