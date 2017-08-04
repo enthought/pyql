@@ -24,7 +24,7 @@ cdef extern from 'ql/termstructures/volatility/sabr.hpp' namespace 'QuantLib':
                         Real alpha,
                         Real beta,
                         Real nu,
-                        Real rho)
+                        Real rho) except +
 
     Real shiftedSabrVolatility(Rate strike,
                                Rate forward,
@@ -33,7 +33,7 @@ cdef extern from 'ql/termstructures/volatility/sabr.hpp' namespace 'QuantLib':
                                Real beta,
                                Real nu,
                                Real rho,
-                               Real shift)
+                               Real shift) except +
 
     void validateSabrParameters(Real alpha,
                                 Real beta,
