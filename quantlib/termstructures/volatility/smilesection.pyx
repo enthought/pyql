@@ -29,8 +29,18 @@ cdef class SmileSection:
         dc._thisptr = new _dc.DayCounter(self._thisptr.get().dayCounter())
         return dc
 
+    @property
+    def reference_date(self):
+        return date_from_qldate(self._thisptr.get().referenceDate())
+
     def option_price(self, Rate strike, OptionType option_type, Real discount=1.):
         return self._thisptr.get().optionPrice(strike, option_type, discount)
 
     def volatility(self, Rate strike, VolatilityType vol_type, Real shift=0.):
         return self._thisptr.get().volatility(strike, vol_type, shift)
+
+    def vega(self, Rate strike, Real discount=1.):
+        return self._thisptr.get().vega(strike, discount)
+
+    def density(self, Rate strike, Real discount=1., Real gap=1e-4):
+        return self._thisptr.get().density(strike, discount, gap)
