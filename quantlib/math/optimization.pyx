@@ -1,5 +1,4 @@
 from quantlib.handle cimport shared_ptr
-from cython.operator cimport dereference as deref
 
 cimport _optimization as _opt
 from quantlib.math.array cimport Array
@@ -41,4 +40,4 @@ cdef class Constraint:
         raise ValueError('Cannot instantiate a Constraint')
 
     def test(self, Array a):
-        return self._thisptr.get().test(deref(a._thisptr.get()))
+        return self._thisptr.get().test(a._thisptr)
