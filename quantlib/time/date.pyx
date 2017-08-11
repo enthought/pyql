@@ -9,12 +9,10 @@ cimport _period
 
 from _date cimport (
     Date as QlDate, todaysDate, nextWeekday, endOfMonth, isEndOfMonth,
-    minDate, maxDate, Year, isLeap, Size, nthWeekday, serial_type, Integer
+    minDate, maxDate, Year, Month, Day, Hour, Minute, Second, Millisecond,
+    Microsecond, isLeap, Size, nthWeekday, serial_type, Integer
 )
-from _period cimport (
-    Period as QlPeriod, mult_op, add_op, sub_op, eq_op, neq_op,
-    g_op, geq_op, l_op, leq_op, parse
-    )
+from _period cimport Period as QlPeriod, parse
 
 # Python imports
 import_datetime()
@@ -105,9 +103,6 @@ cdef public enum TimeUnit:
     Months = _period.Months #: Months = 2
     Years  = _period.Years #: Years = 3
 
-_TU_DICT = {'D': Days, 'W': Weeks, 'M': Months, 'Y': Years}
-_STR_TU_DICT = {v:k for k, v in _TU_DICT.items()}
-
 cdef class Period:
     ''' Class providing a Period (length + time unit) class and implements a
     limited algebra.
@@ -146,28 +141,27 @@ cdef class Period:
 
     def __sub__(self, value):
         cdef QlPeriod outp
-        outp = sub_op(deref((<Period?>self)._thisptr),
-                      deref((<Period?>value)._thisptr))
+        outp = deref((<Period?>self)._thisptr) - deref((<Period?>value)._thisptr)
         return period_from_qlperiod(outp)
 
     def __add__(self, value):
         cdef QlPeriod outp
-        outp = add_op(deref( (<Period?>self)._thisptr),
-                deref( (<Period?>value)._thisptr))
+        outp = deref( (<Period?>self)._thisptr) + \
+                deref( (<Period?>value)._thisptr)
         return period_from_qlperiod(outp)
 
     def __mul__(self, value):
         cdef QlPeriod inp
         if isinstance(self, Period):
             inp = deref((<Period>self)._thisptr)
-            value = <int> value
+            value = <Integer?> value
         elif isinstance(self, int) and isinstance(value, Period):
             inp = deref((<Period>value)._thisptr)
-            value = self
+            value = <Integer> self
         else:
             return NotImplemented
 
-        cdef QlPeriod outp = mult_op(inp, value)
+        cdef QlPeriod outp = inp * (<Integer>value)
 
         return period_from_qlperiod(outp)
 
@@ -211,29 +205,30 @@ cdef class Period:
 
     def __richcmp__(self, value, int t):
         cdef QlPeriod p1 = deref((<Period?>self)._thisptr)
-        if not isinstance(value, Period):
-            return False
-
-        cdef QlPeriod p2 = deref((<Period>value)._thisptr)
+        cdef QlPeriod p2 = deref((<Period?>value)._thisptr)
 
         if t==0:
-            return l_op(p1, p2)
+            return p1 < p2
         elif t==1:
-            return leq_op(p1, p2)
+            return p1 <= p2
         elif t==2:
-            return eq_op(p1, p2)
+            return p1 == p2
         elif t==3:
-            return neq_op(p1, p2)
+            return p1 != p2
         elif t==4:
-            return g_op(p1, p2)
+            return p1 > p2
         elif t==5:
-            return geq_op(p1, p2)
+            return p1 >= p2
 
     def __str__(self):
-        return 'Period %d %s' % (self.length, _STR_TU_DICT[self.units])
+        cdef _period.stringstream ss
+        ss << _period.long_period(deref(self._thisptr))
+        return ss.str().decode()
 
     def __repr__(self):
-        return "Period('{0}{1}')".format(self.length, _STR_TU_DICT[self.units])
+        cdef _period.stringstream ss
+        ss << _period.short_period(deref(self._thisptr))
+        return "Period({})".format(ss.str().decode())
 
     def __float__(self):
         """ Converts the period to a year fraction.
@@ -280,10 +275,13 @@ cdef class Date:
     """
 
     def __init__(self, *args):
-
         if len(args) == 3:
             day, month, year = args
-            self._thisptr.reset(new QlDate(<Integer>day, <_date.Month>month, <Year>year))
+            self._thisptr.reset(new QlDate(<Day>day, <Month>month, <Year>year))
+        elif len(args) == 6:
+            day, month, year, hours, minutes, seconds = args
+            self._thisptr.reset(new QlDate(<Day>day, <Month>month, <Year>year,
+                <Hour>hours, <Minute>minutes, <Second>seconds, 0, 0))
         elif len(args) == 1:
             serial = args[0]
             self._thisptr.reset(new QlDate(<serial_type> serial))
@@ -318,9 +316,9 @@ cdef class Date:
             return self._thisptr.get().dayOfYear()
 
     def __str__(self):
-        # fixme: cannot find an easy way to get the << operator usable here
-        return '%2d/%02d/%2d' % (self._thisptr.get().dayOfMonth(),
-                self._thisptr.get().month(), self._thisptr.get().year())
+        cdef _date.stringstream ss
+        ss << _date.iso_datetime(deref(self._thisptr))
+        return ss.str().decode()
 
     def __repr__(self):
         return self.__str__()
@@ -329,41 +327,29 @@ cdef class Date:
         # Returns a hash based on the serial
         return self.serial
 
-    def __cmp__(self, date2):
-        if isinstance(date2, (date, datetime)):
-            date2 = Date.from_datetime(date2)
-        elif not isinstance(date2, Date):
-            return NotImplemented
-
-        if self.serial < date2.serial:
-            return -1
-        elif self.serial == date2.serial:
-            return 0
-        else:
-            return 1
-
 
     def __richcmp__(self, date2, int t):
-
+        cdef _date.Date date1 = deref((<Date>self)._thisptr)
+        cdef _date.Date c_date2
         if isinstance(date2, (date, datetime)):
-            date2 = Date.from_datetime(date2)
-        elif not isinstance(date2, Date):
+            c_date2 = _qldate_from_pydate(date2)
+        elif isinstance(date2, Date):
+            c_date2 = deref((<Date>date2)._thisptr)
+        else:
             return NotImplemented
 
-        # fixme : operations done on the Python objects, could probably be
-        # done faster on the C++ int directly ?
         if t==0:
-            return self.serial < date2.serial
+            return date1 < c_date2
         elif t==1:
-            return self.serial <= date2.serial
+            return date1 <= c_date2
         elif t==2:
-            return self.serial == date2.serial
+            return date1 == c_date2
         elif t==3:
-            return self.serial != date2.serial
+            return date1 != c_date2
         elif t==4:
-            return self.serial > date2.serial
+            return date1 > c_date2
         elif t==5:
-            return self.serial >= date2.serial
+            return date1 >= c_date2
 
         return False
 
@@ -415,10 +401,12 @@ cdef class Date:
             return NotImplemented
 
     @classmethod
-    def from_datetime(cls, date):
+    def from_datetime(cls, dt):
         """Returns the Quantlib Date object from the date/datetime object. """
         cdef Date instance = Date.__new__(Date)
-        instance._thisptr.reset(new QlDate(<Integer>date.day, <_date.Month>date.month, <Year>date.year))
+        if not isinstance(dt, date):
+            raise TypeError
+        instance._thisptr.reset(new QlDate(_qldate_from_pydate(dt)))
         return instance
 
 def today():
@@ -489,8 +477,12 @@ cpdef object pydate_from_qldate(Date qdate):
 
 cdef QlDate _qldate_from_pydate(object pydate):
     """ Converts a datetime.date to a QuantLib (C++) object. """
-
-    return QlDate(<Integer>pydate.day, <_date.Month>pydate.month, <Year>pydate.year)
+    if isinstance(pydate, datetime):
+        return QlDate(<Day>pydate.day, <Month>pydate.month, <Year>pydate.year,
+                      <Hour>pydate.hour, <Minute>pydate.hour, <Second>pydate.second,
+                      0, <Microsecond>pydate.microsecond)
+    elif isinstance(pydate, date):
+        return QlDate(<Day>pydate.day, <Month>pydate.month, <Year>pydate.year)
 
 cpdef Date qldate_from_pydate(object pydate):
     """ Converts a datetime.date to a PyQL date. """

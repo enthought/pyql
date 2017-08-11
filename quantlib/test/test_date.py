@@ -374,7 +374,7 @@ class TestQuantLibIMM(unittest.TestCase):
 
     def test_imm_date(self):
         dt = imm.date('M9')
-        cd = imm.code(qldate_from_pydate(dt))
+        cd = imm.code(dt)
         self.assertEqual(cd, 'M9')
 
     def test_next_date(self):

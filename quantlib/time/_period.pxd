@@ -45,15 +45,15 @@ cdef extern from 'ql/time/period.hpp' namespace "QuantLib":
         Period& i_sub 'operator-=' (Period &)
         Period& i_div 'operator/=' (Integer)
 
-    Period mult_op 'operator*'(Period& p, Integer i) except +
-    Period sub_op 'operator-'(Period& p1, Period& p2) except +
-    Period add_op 'operator+'(Period& p1, Period& p2) except +
-    bool eq_op 'operator=='(Period& p1, Period& p2)
-    bool neq_op 'operator!='(Period& p1, Period& p2)
-    bool g_op 'operator>'(Period& p1, Period& p2)
-    bool geq_op 'operator>='(Period& p1, Period& p2)
-    bool l_op 'operator<'(Period& p1, Period& p2)
-    bool leq_op 'operator<='(Period& p1, Period& p2)
+    Period operator*(Integer i) except +
+    Period operator-(Period& p2) except +
+    Period operator+(Period& p2) except +
+    bool operator==(Period& p1)
+    bool operator!=(Period& p1)
+    bool operator>(Period& p1)
+    bool operator>=(Period& p1)
+    bool operator<(Period& p1)
+    bool operator<=(Period&)
 
     Real years(const Period& p) except +
     Real months(const Period& p) except +
@@ -62,3 +62,19 @@ cdef extern from 'ql/time/period.hpp' namespace "QuantLib":
 
 cdef extern from 'ql/utilities/dataparsers.hpp' namespace "QuantLib::PeriodParser":
     Period parse(string& str) except +
+
+cdef extern from "ql/time/period.hpp" namespace "QuantLib::detail":
+    cdef cppclass long_period_holder:
+        pass
+    cdef cppclass short_period_holder:
+        pass
+
+cdef extern from "ql/time/period.hpp" namespace "QuantLib::io":
+    cdef short_period_holder short_period(const Period&)
+    cdef long_period_holder long_period(const Period&)
+
+cdef extern from "<sstream>" namespace "std":
+    cdef cppclass stringstream:
+        stringstream& operator<<(long_period_holder)
+        stringstream& operator<<(short_period_holder)
+        string str()
