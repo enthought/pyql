@@ -29,10 +29,9 @@ def next_imm_date(reference_date, tenor):
     """
     Third Wednesday of contract month
     """
-    dt = qldate_from_pydate(reference_date)
+    dt = reference_date
     for k in range(tenor):
-        tmp = imm.next_date(dt)
-        dt = pydate_to_qldate(tmp)
+        dt = imm.next_date(dt)
     return pydate_from_qldate(dt)
 
 
