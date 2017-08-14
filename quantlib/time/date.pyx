@@ -85,11 +85,16 @@ def str_to_frequency(str name):
     """ Converts a string to a PyQL Frequency. """
     return Frequency[name]
 
-cdef public enum TimeUnit:
-    Days   = _period.Days #: Days = 0
-    Weeks  = _period.Weeks #: Weeks = 1
-    Months = _period.Months #: Months = 2
-    Years  = _period.Years #: Years = 3
+cpdef public enum TimeUnit:
+    Days         = _period.Days #: Days = 0
+    Weeks        = _period.Weeks #: Weeks = 1
+    Months       = _period.Months #: Months = 2
+    Years        = _period.Years #: Years = 3
+    Hours        = _period.Hours
+    Minutes      = _period.Minutes
+    Seconds      = _period.Seconds
+    Milliseconds = _period.Milliseconds
+    Microseconds = _period.Microseconds
 
 cdef class Period:
     ''' Class providing a Period (length + time unit) class and implements a

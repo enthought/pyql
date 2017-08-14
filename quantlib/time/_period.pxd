@@ -6,10 +6,15 @@ from frequency cimport Frequency
 
 cdef extern from 'ql/time/timeunit.hpp' namespace "QuantLib":
     cdef enum TimeUnit:
-        Days,
-        Weeks,
-        Months,
+        Days
+        Weeks
+        Months
         Years
+        Hours
+        Minutes
+        Seconds
+        Milliseconds
+        Microseconds
 
 cdef extern from 'ql/time/period.hpp' namespace "QuantLib":
 
