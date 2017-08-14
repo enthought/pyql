@@ -77,4 +77,5 @@ cdef extern from "<sstream>" namespace "std":
     cdef cppclass stringstream:
         stringstream& operator<<(long_period_holder)
         stringstream& operator<<(short_period_holder)
+        stringstream& operator<<(string)
         string str()

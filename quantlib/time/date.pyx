@@ -227,8 +227,8 @@ cdef class Period:
 
     def __repr__(self):
         cdef _period.stringstream ss
-        ss << _period.short_period(deref(self._thisptr))
-        return "Period({})".format(ss.str().decode())
+        ss << string(b"Period('") << _period.short_period(deref(self._thisptr)) << string(b"')")
+        return ss.str().decode()
 
     def __float__(self):
         """ Converts the period to a year fraction.
