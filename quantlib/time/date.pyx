@@ -505,7 +505,7 @@ cdef QlDate _qldate_from_pydate(object pydate):
     """ Converts a datetime.date to a QuantLib (C++) object. """
     if isinstance(pydate, datetime):
         return QlDate(<Day>pydate.day, <Month>pydate.month, <Year>pydate.year,
-                      <Hour>pydate.hour, <Minute>pydate.hour, <Second>pydate.second,
+                      <Hour>pydate.hour, <Minute>pydate.minute, <Second>pydate.second,
                       0, <Microsecond>pydate.microsecond)
     elif isinstance(pydate, date):
         return QlDate(<Day>pydate.day, <Month>pydate.month, <Year>pydate.year)

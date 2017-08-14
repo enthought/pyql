@@ -7,7 +7,8 @@ from quantlib.time.date import (
     Period,
     Annual, Semiannual, Bimonthly, EveryFourthMonth, Months, Years, Weeks,
     Days, OtherFrequency, end_of_month, is_end_of_month, is_leap,
-    next_weekday, nth_weekday, today, pydate_from_qldate, qldate_from_pydate
+    next_weekday, nth_weekday, today, pydate_from_qldate, qldate_from_pydate,
+    local_date_time
 )
 
 import quantlib.time.imm as imm
@@ -25,6 +26,10 @@ class TestQuantLibDate(unittest.TestCase):
         self.assertEqual(py_today.day, ql_today.day)
         self.assertEqual(py_today.month, ql_today.month)
         self.assertEqual(py_today.year, ql_today.year)
+
+        py_now = datetime.datetime.now()
+        ql_datetime = local_date_time()
+        self.assertAlmostEqual(Date.from_datetime(py_now), ql_datetime)
 
     def test_date_empty_initialisation(self):
 
