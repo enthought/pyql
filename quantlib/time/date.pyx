@@ -6,6 +6,7 @@ from libcpp.string cimport string
 # cannot use date.pxd because of name clashing
 cimport _date
 cimport _period
+cimport frequency
 
 from _date cimport (
     Date as QlDate, todaysDate, nextWeekday, endOfMonth, isEndOfMonth,
@@ -59,43 +60,30 @@ cdef public enum Weekday:
     Fri = _date.Fri
     Sat = _date.Sat
 
-cdef public enum Frequency:
-    NoFrequency      = _period.NoFrequency # null frequency
-    Once             = _period.Once  # only once, e.g., a zero-coupon
-    Annual           = _period.Annual  # once a year
-    Semiannual       = _period.Semiannual  # twice a year
-    EveryFourthMonth = _period.EveryFourthMonth  # every fourth month
-    Quarterly        = _period.Quarterly  # every third month
-    Bimonthly        = _period.Bimonthly  # every second month
-    Monthly          = _period.Monthly # once a month
-    EveryFourthWeek  = _period.EveryFourthWeek # every fourth week
-    Biweekly         = _period.Biweekly # every second week
-    Weekly           = _period.Weekly # once a week
-    Daily            = _period.Daily # once a day
-    OtherFrequency   = _period.OtherFrequency # some other unknown frequency
-
-FREQUENCIES = ['NoFrequency', 'Once', 'Annual', 'Semiannual', 'EveryFourthMonth',
-               'Quarterly', 'Bimonthly', 'Monthly', 'EveryFourthWeek',
-               'Biweekly', 'Weekly', 'Daily', 'OtherFrequency']
-
-_FREQ = ['NoFrequency', 'Once', '1Y', '6M', '4M', '3M', '2M', '1M', '4W', '2W',
-        '1W', '1D', 'OtherFrequency']
-
-_FREQ_TO_FREQUENCIES = dict(zip(_FREQ, FREQUENCIES))
-
-_FREQ_DICT = {globals()[name]:name for name in FREQUENCIES}
-_STR_FREQ_DICT = {name:globals()[name] for name in FREQUENCIES}
+cpdef public enum Frequency:
+    NoFrequency      = frequency.NoFrequency # null frequency
+    Once             = frequency.Once  # only once, e.g., a zero-coupon
+    Annual           = frequency.Annual  # once a year
+    Semiannual       = frequency.Semiannual  # twice a year
+    EveryFourthMonth = frequency.EveryFourthMonth  # every fourth month
+    Quarterly        = frequency.Quarterly  # every third month
+    Bimonthly        = frequency.Bimonthly  # every second month
+    Monthly          = frequency.Monthly # once a month
+    EveryFourthWeek  = frequency.EveryFourthWeek # every fourth week
+    Biweekly         = frequency.Biweekly # every second week
+    Weekly           = frequency.Weekly # once a week
+    Daily            = frequency.Daily # once a day
+    OtherFrequency   = frequency.OtherFrequency # some other unknown frequency
 
 def frequency_to_str(Frequency f):
     """ Converts a PyQL Frequency to a human readable string. """
-    return _FREQ_DICT[f]
-
-def code_to_frequency(str name):
-    return _STR_FREQ_DICT[_FREQ_TO_FREQUENCIES[name]]
+    cdef frequency.stringstream ss
+    ss << <frequency.Frequency>f
+    return ss.str().decode()
 
 def str_to_frequency(str name):
     """ Converts a string to a PyQL Frequency. """
-    return _STR_FREQ_DICT[name]
+    return Frequency[name]
 
 cdef public enum TimeUnit:
     Days   = _period.Days #: Days = 0
@@ -133,7 +121,7 @@ cdef class Period:
 
     property frequency:
         def __get__(self):
-            return self._thisptr.get().frequency()
+            return Frequency(self._thisptr.get().frequency())
 
     def normalize(self):
         '''Normalises the units.'''

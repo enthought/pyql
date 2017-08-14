@@ -10,9 +10,9 @@ from quantlib.termstructures.yields.api import (
 )
 from quantlib.time.api import (
     Date, Period, Years, Days, JointCalendar, UnitedStates, UnitedKingdom,
-    code_to_frequency, pydate_from_qldate, qldate_from_pydate, DayCounter,
+    pydate_from_qldate, qldate_from_pydate, DayCounter,
     BusinessDayConvention, Backward, Following, calendar_from_name,
-    Schedule, Forward
+    Schedule, Forward, Frequency
 
 )
 from quantlib.util.converter import pydate_to_qldate
@@ -51,7 +51,7 @@ def make_rate_helper(market, quote, reference_date=None):
             quote_value,
             Period(tenor),
             market._floating_rate_index.fixing_calendar,
-            code_to_frequency(market._params.fixed_leg_period),
+            Period(market._params.fixed_leg_period).frequency,
             BusinessDayConvention.from_name(
                 market._params.fixed_leg_convention),
             DayCounter.from_name(market._params.fixed_leg_daycount),
@@ -360,8 +360,8 @@ class IborMarket(FixedIncomeMarket):
         floating_convention = \
             BusinessDayConvention.from_name(_params.floating_leg_convention)
         fixed_frequency = \
-            code_to_frequency(_params.fixed_leg_period)
-        floating_frequency = code_to_frequency(_params.floating_leg_period)
+            Period(_params.fixed_leg_period)
+        floating_frequency = Period(_params.floating_leg_period)
         fixed_daycount = DayCounter.from_name(_params.fixed_leg_daycount)
         float_daycount = DayCounter.from_name(_params.floating_leg_daycount)
         calendar = calendar_from_name(_params.calendar)
@@ -370,12 +370,12 @@ class IborMarket(FixedIncomeMarket):
                                     convention=floating_convention)
 
         fixed_schedule = Schedule(settlement_date, maturity,
-                                  Period(fixed_frequency), calendar,
+                                  fixed_frequency, calendar,
                                   fixed_convention, fixed_convention,
                                   Forward, False)
 
         float_schedule = Schedule(settlement_date, maturity,
-                                  Period(floating_frequency),
+                                  floating_frequency,
                                   calendar, floating_convention,
                                   floating_convention,
                                   Forward, False)
