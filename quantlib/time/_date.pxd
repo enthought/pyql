@@ -1,6 +1,8 @@
 include '../types.pxi'
 
 cdef extern from 'ql/time/date.hpp' namespace 'QuantLib':
+    ctypedef int Year
+    ctypedef int Day
     ctypedef int Hour
     ctypedef int Minute
     ctypedef int Second
@@ -45,6 +47,8 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib::Date":
     cdef Date nextWeekday(Date& d, Weekday w) except +
     cdef Date nthWeekday(Size n, Weekday w,
                          Month m, Year y) except +
+    cdef Date localDateTime()
+    cdef Date universalDateTime()
 
 cdef extern from "ql/time/date.hpp" namespace "QuantLib":
 
@@ -84,6 +88,14 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
         Month month()
         Year year()
         serial_type serialNumber()
+        Hour hours()
+        Minute minutes()
+        Second seconds()
+        Millisecond milliseconds()
+        Microsecond microseconds()
+        Time fractionOfDay()
+        Time fractionOfSecond()
+
         bool operator==(Date&)
         bool operator!=(Date&)
         bool operator<=(Date&)
@@ -109,6 +121,8 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
         Date& i_add 'operator+='(Period& period)
         Date& i_sub 'operator-='(Period& period)
         Date& i_sub 'operator-='(serial_type days)
+
+        Time daysBetween(const Date&, const Date&)
 
 cdef extern from "ql/time/date.hpp" namespace "QuantLib::detail":
     cdef cppclass iso_date_holder:

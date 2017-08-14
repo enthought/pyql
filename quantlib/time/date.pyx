@@ -234,7 +234,7 @@ cdef class Period:
         """ Converts the period to a year fraction.
 
         This will throw an exception if the time unit is not Years or Month."""
-        return _period.years(deref(self._thisptr.get()))
+        return _period.years(deref(self._thisptr))
 
 cdef Period period_from_qlperiod(const QlPeriod& period):
     cdef Period instance = Period.__new__(Period)
@@ -245,25 +245,25 @@ def years(Period p not None):
     """Converts the period into years as a float.
 
     This will throw an exception if the time unit is not Years or Months."""
-    return _period.years(deref(p._thisptr.get()))
+    return _period.years(deref(p._thisptr))
 
 def months(Period p not None):
     """Converts the period intho months as a float.
 
     This will throw an exception if the time unit is not Years or Months."""
-    return _period.months(deref(p._thisptr.get()))
+    return _period.months(deref(p._thisptr))
 
 def weeks(Period p not None):
     """Converts the period into weeks as a float.
 
     This will throw an exception if the time unit is not Days or Weeks."""
-    return _period.weeks(deref(p._thisptr.get()))
+    return _period.weeks(deref(p._thisptr))
 
 def days(Period p not None):
     """Converts the period into days as a float.
 
     This will throw an exception if the time unit is not Days or Weeks."""
-    return _period.days(deref(p._thisptr.get()))
+    return _period.days(deref(p._thisptr))
 
 cdef class Date:
     """ Date class
@@ -314,6 +314,25 @@ cdef class Date:
     property day_of_year:
         def __get__(self):
             return self._thisptr.get().dayOfYear()
+    @property
+    def hours(self):
+        return self._thisptr.get().hours()
+
+    @property
+    def minutes(self):
+        return self._thisptr.get().minutes()
+
+    @property
+    def seconds(self):
+        return self._thisptr.get().seconds()
+
+    @property
+    def milliseconds(self):
+        return self._thisptr.get().milliseconds()
+
+    @property
+    def microseconds(self):
+        return self._thisptr.get().microseconds()
 
     def __str__(self):
         cdef _date.stringstream ss
@@ -447,11 +466,21 @@ def mindate():
 
 def is_end_of_month(Date date not None):
     '''Whether a date is the last day of its month.'''
-    return isEndOfMonth(deref(date._thisptr.get()))
+    return isEndOfMonth(deref(date._thisptr))
 
 def is_leap(int year):
     '''Whether the given year is a leap one.'''
     return isLeap(<Year> year)
+
+def local_date_time():
+    """local date time, based on the time zone settings of the computer"""
+    cdef QlDate ldt = _date.localDateTime()
+    return date_from_qldate(ldt)
+
+def universal_date_time():
+    """UTC date time"""
+    cdef QlDate utc = _date.universalDateTime()
+    return date_from_qldate(utc)
 
 cdef Date date_from_qldate(const QlDate& date):
     '''Converts a QuantLib::Date (QlDate) to a cython Date instance.'''
