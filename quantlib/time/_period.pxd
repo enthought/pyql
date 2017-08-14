@@ -31,8 +31,9 @@ cdef extern from 'ql/time/period.hpp' namespace "QuantLib":
         Period& i_sub 'operator-=' (Period &)
         Period& i_div 'operator/=' (Integer)
 
-    Period operator*(Integer i) except +
-    Period operator-(Period& p2) except +
+    Period unary_minus 'operator-'(Period&)
+    Period operator-(Period&) except +
+    Period operator*(Integer i)
     Period operator+(Period& p2) except +
     bool operator==(Period& p1)
     bool operator!=(Period& p1)

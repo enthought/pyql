@@ -13,7 +13,7 @@ from _date cimport (
     minDate, maxDate, Year, Month, Day, Hour, Minute, Second, Millisecond,
     Microsecond, isLeap, Size, nthWeekday, serial_type, Integer
 )
-from _period cimport Period as QlPeriod, parse
+from _period cimport Period as QlPeriod, parse, unary_minus
 
 # Python imports
 import_datetime()
@@ -130,6 +130,11 @@ cdef class Period:
     def __sub__(self, value):
         cdef QlPeriod outp
         outp = deref((<Period?>self)._thisptr) - deref((<Period?>value)._thisptr)
+        return period_from_qlperiod(outp)
+
+    def __neg__(self):
+        cdef QlPeriod outp
+        outp = unary_minus(deref((<Period>self)._thisptr))
         return period_from_qlperiod(outp)
 
     def __add__(self, value):
