@@ -122,7 +122,7 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
         Date& i_sub 'operator-='(Period& period)
         Date& i_sub 'operator-='(serial_type days)
 
-        Time daysBetween(const Date&, const Date&)
+    Time daysBetween(const Date&, const Date&)
 
 cdef extern from "ql/time/date.hpp" namespace "QuantLib::detail":
     cdef cppclass iso_date_holder:

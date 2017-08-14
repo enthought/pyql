@@ -322,6 +322,14 @@ cdef class Date:
     def microseconds(self):
         return self._thisptr.get().microseconds()
 
+    @property
+    def fraction_of_day(self):
+        return self._thisptr.get().fractionOfDay()
+
+    @property
+    def fraction_of_second(self):
+        return self._thisptr.get().fractionOfSecond()
+
     def __str__(self):
         cdef _date.stringstream ss
         ss << _date.iso_datetime(deref(self._thisptr))
@@ -392,7 +400,8 @@ cdef class Date:
         elif isinstance(value, int):
             sub = deref((<Date?>self)._thisptr) - <serial_type>value
         elif isinstance(value, Date):
-            return deref((<Date?>self)._thisptr) - deref((<Date>value)._thisptr)
+            return _date.daysBetween(deref((<Date?>value)._thisptr),
+                                     deref((<Date?>self)._thisptr))
         else:
             return NotImplemented
         return date_from_qldate(sub)
