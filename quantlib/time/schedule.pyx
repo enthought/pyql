@@ -6,6 +6,10 @@ from quantlib.handle cimport optional, make_optional
 cimport _schedule
 cimport _date
 cimport _calendar
+cimport cython
+import numpy as np
+cimport numpy as np
+np.import_array()
 from _businessdayconvention cimport Following, BusinessDayConvention
 
 from calendar cimport Calendar
@@ -131,6 +135,17 @@ cdef class Schedule:
         for d in dates:
             t.append(date_from_qldate(d))
         return t
+
+    @cython.boundscheck(False)
+    def to_npdates(self):
+        cdef np.ndarray[np.int64_t] dates = np.empty(self._thisptr.size(), dtype=np.int64)
+        cdef vector[_date.Date].const_iterator it = self._thisptr.begin()
+        cdef size_t i = 0
+        while it != self._thisptr.end():
+            dates[i] = deref(it).serialNumber() - 25569
+            i += 1
+            preinc(it)
+        return dates.view('M8[D]')
 
     def next_date(self, Date reference_date):
         cdef _date.Date dt = self._thisptr.nextDate(
