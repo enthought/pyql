@@ -27,7 +27,8 @@ cdef extern from 'ql/time/dategenerationrule.hpp' namespace \
         OldCDS # Same as TwentiethIMM with unrestricted date ends and log/short
                # stub coupon period (old CDS convention).
         CDS # Credit derivatives standard rule since 'Big Bang' changes in 2009.
- 
+        CDS2015 # Credit derivatives standard rule since December 20th, 2015.
+
 cdef extern from 'ql/time/schedule.hpp' namespace 'QuantLib':
 
     cdef cppclass Schedule:
