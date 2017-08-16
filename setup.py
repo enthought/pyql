@@ -150,15 +150,6 @@ def collect_extensions():
         **kwargs
     )
 
-    array_extension = Extension(
-        name='quantlib.math.array',
-        sources=[
-            'quantlib/math/array.pyx',
-            'cpp_layer/array_support_code.cpp'
-        ],
-        **kwargs
-    )
-
     hestonhw_constraint_extension = Extension(
         name='quantlib.math.hestonhwcorrelationconstraint',
         sources=[
@@ -169,7 +160,6 @@ def collect_extensions():
     )
 
     manual_extensions = [
-        array_extension,
         hestonhw_constraint_extension,
         multipath_extension,
         settings_extension,

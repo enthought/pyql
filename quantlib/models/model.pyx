@@ -28,14 +28,9 @@ cdef class CalibratedModel:
         raise ValueError('Cannot instantiate a CalibratedModel')
 
     def params(self):
-        ## TODO: more efficient code for Array creation
-        cdef _arr.Array tmp =  <_arr.Array> self._thisptr.get().params()
-        cdef size_t size = tmp.size()
-        # TODO: faster way to fill x?
-        x = Array(size,0)
-        for i in range(size):
-            x[i] = tmp.at(i)
-        return x
+        cdef Array instance =  Array.__new__(Array)
+        instance._thisptr = self._thisptr.get().params()
+        return instance
     
     def set_params(self, Array params):
-        self._thisptr.get().setParams(deref(params._thisptr.get()))
+        self._thisptr.get().setParams(params._thisptr)

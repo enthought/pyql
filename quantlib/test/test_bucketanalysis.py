@@ -231,7 +231,7 @@ class SensitivityTestCase(unittest.TestCase):
         self.assertTrue(2, ba_eo)
         self.assertTrue(type(tuple), ba_eo)
         self.assertEqual(1, len(ba_eo[0][0]))
-        self.assertEqual(-0.4582666150152517, ba_eo[0][0][0])
+        self.assertAlmostEqual(-0.4582666150152517, ba_eo[0][0][0])
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,6 +1,5 @@
 from .unittest_tools import unittest
 
-
 from quantlib.math.array import Array, qlarray_from_pyarray
 
 
@@ -22,7 +21,7 @@ class TestMath(unittest.TestCase):
     def test_array_out_of_bounds(self):
         v = 3.14
         x = Array(10, v)
-        with self.assertRaises(ValueError):
+        with self.assertRaises(IndexError):
             x[12] = 2*v
 
     def test_array_conversion(self):
