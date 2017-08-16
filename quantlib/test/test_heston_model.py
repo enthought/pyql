@@ -30,7 +30,7 @@ from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
 
-from quantlib.pricingengines.vanilla.mcvanillaengine import MCVanillaEngine
+from quantlib.pricingengines.vanilla.mceuropeanhestonengine import MCEuropeanHestonEngine
 
 
 def flat_rate(forward, daycounter):
@@ -402,14 +402,12 @@ class HestonModelTestCase(unittest.TestCase):
 
         price_fft  = option.net_present_value
 
-        engine = MCVanillaEngine(
-              trait='MCEuropeanHestonEngine',
-              generator='PseudoRandom',
-              process=process,
-              doAntitheticVariate=True,
-              stepsPerYear=nb_steps_a,
-              requiredSamples=nb_paths,
-              seed=seed)
+        engine = MCEuropeanHestonEngine(
+            process,
+            antithetic_variate=True,
+            steps_per_year=nb_steps_a,
+            required_samples=nb_paths,
+            seed=seed)
 
         option.set_pricing_engine(engine)
         price_mc = option.net_present_value

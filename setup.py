@@ -141,15 +141,6 @@ def collect_extensions():
         **kwargs
     )
 
-    mc_vanilla_engine_extension = Extension(
-        name='quantlib.pricingengines.vanilla.mcvanillaengine',
-        sources=[
-            'quantlib/pricingengines/vanilla/mcvanillaengine.pyx',
-            'cpp_layer/mc_vanilla_engine_support_code.cpp'
-        ],
-        **kwargs
-    )
-
     multipath_extension = Extension(
         name='quantlib.sim.simulate',
         sources=[
@@ -181,7 +172,6 @@ def collect_extensions():
         array_extension,
         hestonhw_constraint_extension,
         multipath_extension,
-        mc_vanilla_engine_extension,
         settings_extension,
         test_extension,
     ]
