@@ -1,4 +1,4 @@
-from cython.operator cimport dereference as deref
+from cython.operator cimport dereference as deref, preincrement as preinc
 from libcpp cimport bool
 from libcpp.vector cimport vector
 from quantlib.handle cimport optional, make_optional
@@ -8,7 +8,7 @@ cimport _date
 cimport _calendar
 from _businessdayconvention cimport Following, BusinessDayConvention
 
-from calendar cimport DateList, Calendar
+from calendar cimport Calendar
 from date cimport date_from_qldate, Date, Period
 
 import warnings
@@ -79,7 +79,7 @@ cdef class Schedule:
         # convert lists to vectors
         cdef vector[_date.Date] _dates = vector[_date.Date]()
         for date in dates:
-            _dates.push_back(deref((<Date>date)._thisptr.get()))
+            _dates.push_back(deref((<Date>date)._thisptr))
 
         cdef Schedule instance = cls.__new__(cls)
         instance._thisptr = new _schedule.Schedule(
@@ -126,8 +126,10 @@ cdef class Schedule:
 
     def dates(self):
         cdef vector[_date.Date] dates = self._thisptr.dates()
-        t = DateList()
-        t._set_dates(dates)
+        cdef list t = []
+        cdef _date.Date d
+        for d in dates:
+            t.append(date_from_qldate(d))
         return t
 
     def next_date(self, Date reference_date):
@@ -150,10 +152,13 @@ cdef class Schedule:
         return date_from_qldate(date)
 
     def __iter__(self):
-        return (d for d in self.dates())
+        cdef vector[_date.Date].const_iterator it = self._thisptr.begin()
+        while it != self._thisptr.end():
+            yield date_from_qldate(deref(it))
+            preinc(it)
 
     def __len__(self):
-        return self.size()
+        return self._thisptr.size()
 
     def __getitem__(self, index):
         cdef size_t i
