@@ -64,9 +64,7 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
         cdef vector[shared_ptr[_rh.RateHelper]] instruments
 
         for helper in helpers:
-            instruments.push_back(
-                deref((<RateHelper?> helper)._thisptr)
-            )
+            instruments.push_back((<RateHelper?> helper)._thisptr)
 
         if trait == Discount:
             if interpolator == Linear:
@@ -130,9 +128,7 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
 
         cdef PiecewiseYieldCurve instance = cls.__new__(cls)
         for helper in helpers:
-            instruments.push_back(
-                deref((<RateHelper?> helper)._thisptr)
-            )
+            instruments.push_back((<RateHelper?> helper)._thisptr)
 
         instance._trait = trait
         instance._interpolator = interpolator

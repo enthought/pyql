@@ -21,8 +21,7 @@ from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 from libcpp cimport bool
 
-from quantlib.handle cimport Handle, shared_ptr, optional
-from quantlib.instruments.instrument cimport Instrument
+from quantlib.handle cimport Handle, shared_ptr, optional, make_optional
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time._businessdayconvention cimport BusinessDayConvention
 from quantlib.time._daycounter cimport DayCounter as QlDayCounter
@@ -33,7 +32,9 @@ from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.businessdayconvention import Following
 from quantlib.indexes.ibor_index cimport IborIndex
-from quantlib.cashflow cimport SimpleLeg, leg_items
+from quantlib.cashflow cimport Leg
+from quantlib.cashflows.fixed_rate_coupon cimport FixedRateLeg
+from quantlib.cashflows.ibor_coupon cimport IborLeg
 
 import datetime
 
@@ -42,7 +43,7 @@ cdef public enum SwapType:
     Receiver = _vanillaswap.Receiver
 
 
-cdef _swap.Swap* get_swap(Swap swap):
+cdef inline _swap.Swap* get_swap(Swap swap):
     """ Utility function to extract a properly casted Swap pointer out of the
     internal _thisptr attribute of the Instrument base class. """
 
@@ -64,11 +65,11 @@ cdef class Swap(Instrument):
 
     ##     cdef _cf.Leg* leg1 = firstLeg._thisptr.get()
     ##     cdef _cf.Leg* leg2 = secondLeg._thisptr.get()
-        
+
     ##     self._thisptr = new shared_ptr[_instrument.Instrument](\
     ##        new _swap.Swap(deref(leg1),
     ##                       deref(leg2)))
-        
+
 
     ## def __init__(self, vector[Leg] legs,
     ##          vector[bool] payer):
@@ -84,7 +85,7 @@ cdef class Swap(Instrument):
     ##     self._thisptr = new shared_ptr[_instrument.Instrument](\
     ##         new _swap.Swap(_legs, payer)
     ##         )
-            
+
     property is_expired:
         def __get__(self):
             cdef bool is_expired = get_swap(self).isExpired()
@@ -116,11 +117,11 @@ cdef class Swap(Instrument):
     ##     return get_swap(self).npvDateDiscount()
 
     def __getitem__(self, int i):
-       cdef SimpleLeg leg = SimpleLeg(noalloc=False)
-       leg._thisptr = get_swap(self).leg(i)
-       return leg
+        cdef Leg leg = Leg.__new__(Leg)
+        leg._thisptr = get_swap(self).leg(i)
+        return leg
 
-cdef _vanillaswap.VanillaSwap* get_vanillaswap(VanillaSwap swap):
+cdef inline _vanillaswap.VanillaSwap* get_vanillaswap(VanillaSwap swap):
     """ Utility function to extract a properly casted Swap pointer out of the
     internal _thisptr attribute of the Instrument base class. """
 
@@ -143,10 +144,10 @@ cdef class VanillaSwap(Swap):
                      Spread spread,
                      DayCounter floating_daycount,
                      payment_convention=None):
-        cdef optional[BusinessDayConvention] opt_payment_convention
-        if payment_convention is not None:
-            opt_payment_convention  = optional[BusinessDayConvention](
-                    <BusinessDayConvention>payment_convention)
+        cdef optional[BusinessDayConvention] opt_payment_convention = \
+        make_optional[BusinessDayConvention](
+            payment_convention is not None,
+            <BusinessDayConvention>payment_convention)
 
         self._thisptr = new shared_ptr[_instrument.Instrument](
             new _vanillaswap.VanillaSwap(
@@ -194,12 +195,20 @@ cdef class VanillaSwap(Swap):
             return res
     @property
     def fixed_leg(self):
-        cdef SimpleLeg leg = SimpleLeg.__new__(SimpleLeg)
+        cdef FixedRateLeg leg = FixedRateLeg.__new__(FixedRateLeg)
         leg._thisptr = get_vanillaswap(self).fixedLeg()
         return leg
 
     @property
     def floating_leg(self):
-        cdef SimpleLeg leg = SimpleLeg.__new__(SimpleLeg)
+        cdef IborLeg leg = IborLeg.__new__(IborLeg)
         leg._thisptr = get_vanillaswap(self).floatingLeg()
         return leg
+
+    @property
+    def nominal(self):
+        return get_vanillaswap(self).nominal()
+
+    @property
+    def type(self):
+        return get_vanillaswap(self).type()

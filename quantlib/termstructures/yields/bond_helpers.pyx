@@ -28,7 +28,7 @@ cdef class BondHelper(RateHelper):
             deref(clean_price._thisptr)
         )
 
-        self._thisptr = new shared_ptr[_bh.RateHelper](
+        self._thisptr = shared_ptr[_bh.RateHelper](
             new _bh.BondHelper(
                 price_handle,
                 deref(<shared_ptr[_bonds.Bond]*> bond._thisptr)
@@ -38,30 +38,22 @@ cdef class BondHelper(RateHelper):
 cdef class FixedRateBondHelper(BondHelper):
 
     def __init__(self, Quote clean_price, Natural settlement_days,
-                 Real face_amount, Schedule schedule, coupons,
-                 DayCounter day_counter, int payment_conv=Following,
-                 Real redemption=100.0, Date issue_date=None):
-
-        # Turn Python coupons list into an STL vector.
-        cdef vector[Rate] cpp_coupons = vector[Rate]()
-        for rate in coupons:
-            cpp_coupons.push_back(rate)
+                 Real face_amount, Schedule schedule not None,
+                 vector[Rate] coupons,
+                 DayCounter day_counter not None, int payment_conv=Following,
+                 Real redemption=100.0, Date issue_date=Date()):
 
         # Create handles.
         cdef Handle[_qt.Quote] price_handle = \
                 Handle[_qt.Quote](deref(clean_price._thisptr))
 
-        # Deal with issue_date default parameter.
-        if issue_date is None:
-            issue_date = Date()
-
-        self._thisptr = new shared_ptr[_bh.RateHelper](
+        self._thisptr = shared_ptr[_bh.RateHelper](
             new _bh.FixedRateBondHelper(
                 price_handle,
                 settlement_days,
                 face_amount,
                 deref(schedule._thisptr),
-                cpp_coupons,
+                coupons,
                 deref(day_counter._thisptr),
                 <_calendar.BusinessDayConvention> payment_conv,
                 redemption,

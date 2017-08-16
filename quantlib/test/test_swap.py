@@ -83,7 +83,7 @@ class TestQuantLibSwap(unittest.TestCase):
 
         fixed_leg = swap.fixed_leg
         floating_leg = swap.floating_leg
-        
+
         f = swap.fair_rate
         print('fair rate: %f' % f)
         p = swap.net_present_value
@@ -156,18 +156,17 @@ class TestQuantLibSwap(unittest.TestCase):
         float_npv = swap.floating_leg_npv
 
         # verify calculation by discounting both legs
-
         tot = 0.0
-        for a, dt in fixed_l:
-            df = m.discount(pydate_to_qldate(dt))
-            tot += a * df
+        for frc in fixed_l:
+            df = m.discount(frc.date)
+            tot += frc.amount * df
         print('fixed npv: %f discounted cf: %f' % (fixed_npv, tot))
         self.assertAlmostEqual(fixed_npv, -tot)
 
         tot = 0.0
-        for a, dt in float_l:
-            df = m.discount(pydate_to_qldate(dt))
-            tot += a * df
+        for ic in float_l:
+            df = m.discount(ic.date)
+            tot += ic.amount * df
         print('float npv: %f discounted cf: %f' % (float_npv, tot))
         self.assertAlmostEqual(float_npv, tot)
 

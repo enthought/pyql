@@ -8,11 +8,13 @@
 
 cimport _cashflow as _cf
 cimport quantlib.time._date as _date
-cimport quantlib.time.date as date
 
+from quantlib.time.date cimport (
+    Date, _qldate_from_pydate, _pydate_from_qldate, date_from_qldate)
 from libcpp.vector cimport vector
+from libcpp cimport bool
 from cython.operator cimport dereference as deref, preincrement as preinc
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport shared_ptr, static_pointer_cast, make_optional
 import datetime
 
 cdef class CashFlow:
@@ -21,39 +23,43 @@ cdef class CashFlow:
     Use SimpleCashFlow instead
 
     """
+
     def __cinit__(self):
-        self._thisptr = NULL
-
-    def __init__(self):
-        raise ValueError(
-            'This is an abstract class.'
-        )
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
+        if __class__ == CashFlow:
+            raise ValueError(
+                'This is an abstract class.'
+            )
 
     property date:
         def __get__(self):
-            cdef _date.Date cf_date
-            if self._thisptr:
-                cf_date = self._thisptr.get().date()
-                return date.date_from_qldate(cf_date)
+            cdef:
+                _date.Date cf_date
+                _cf.CashFlow* cf = self._thisptr.get()
+            if cf:
+                cf_date = cf.date()
+                return date_from_qldate(cf_date)
             else:
                 return None
 
     property amount:
         def __get__(self):
-            if self._thisptr:
-                return self._thisptr.get().amount()
+            cdef _cf.CashFlow* cf = self._thisptr.get()
+            if cf:
+                return cf.amount()
             else:
                 return None
 
+    def has_occured(self, Date ref_date, include_ref_date=None):
+        cdef _cf.CashFlow* cf = self._thisptr.get()
+        if cf:
+            return cf.hasOccurred(deref(ref_date._thisptr.get()),
+                                  make_optional[bool](include_ref_date is not None,
+                                                                   include_ref_date))
 
 cdef class SimpleCashFlow(CashFlow):
 
-    def __init__(self, Real amount, date.Date cfdate):
-        self._thisptr = new shared_ptr[_cf.CashFlow](
+    def __init__(self, Real amount, Date cfdate):
+        self._thisptr = shared_ptr[_cf.CashFlow](
             new _cf.SimpleCashFlow(amount, deref(cfdate._thisptr))
         )
 
@@ -71,23 +77,23 @@ cdef list leg_items(const _cf.Leg& leg):
     cdef _cf.CashFlow* _thiscf
     while it != leg.end():
         _thiscf = deref(it).get()
-        itemlist.append((_thiscf.amount(),  date._pydate_from_qldate(_thiscf.date())))
+        itemlist.append((_thiscf.amount(),  _pydate_from_qldate(_thiscf.date())))
         preinc(it)
     return itemlist
 
-cdef class SimpleLeg:
+cdef class Leg:
 
-    def __init__(self, leg=None):
+    def __init__(self, leg=[]):
         '''Takes as input a list of (amount, QL Date) tuples. '''
 
         cdef shared_ptr[_cf.CashFlow] _thiscf
         cdef _date.Date _thisdate
 
         for amount, d in leg:
-            if isinstance(d, date.Date):
-               _thisdate = deref((<date.Date>d)._thisptr)
+            if isinstance(d, Date):
+               _thisdate = deref((<Date>d)._thisptr)
             elif isinstance(d, datetime.date):
-               _thisdate = date._qldate_from_pydate(d)
+               _thisdate = _qldate_from_pydate(d)
             else:
                raise TypeError("second element needs to be a QuantLib Date or datetime.date")
 
@@ -111,7 +117,7 @@ cdef class SimpleLeg:
         cdef _cf.CashFlow* _thiscf
         while it != self._thisptr.end():
             _thiscf = deref(it).get()
-            yield (_thiscf.amount(), date._pydate_from_qldate(_thiscf.date()))
+            yield (_thiscf.amount(), _pydate_from_qldate(_thiscf.date()))
             preinc(it)
 
     def __repr__(self):
