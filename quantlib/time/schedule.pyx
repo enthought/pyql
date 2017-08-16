@@ -13,7 +13,7 @@ from date cimport date_from_qldate, Date, Period
 
 import warnings
 
-cdef public enum Rule:
+cpdef public enum Rule:
     # Backward from termination date to effective date.
     Backward       = _schedule.Backward
     # Forward from effective date to termination date.
@@ -39,6 +39,7 @@ cdef public enum Rule:
     # Credit derivatives standard rule since 'Big Bang' changes
     # in 2009.
     CDS            = _schedule.CDS
+    CDS2015        = _schedule.CDS2015
 
 cdef class Schedule:
     """ Payment schedule. """
@@ -56,8 +57,8 @@ cdef class Schedule:
                 DeprecationWarning)
 
             self._thisptr = new _schedule.Schedule(
-                deref(effective_date._thisptr.get()),
-                deref(termination_date._thisptr.get()),
+                deref(effective_date._thisptr),
+                deref(termination_date._thisptr),
                 deref(tenor._thisptr.get()),
                 deref(calendar._thisptr),
                 business_day_convention,
@@ -87,7 +88,7 @@ cdef class Schedule:
             business_day_convention,
             optional[BusinessDayConvention](
                 termination_date_convention),
-            make_optional[_calendar.Period](tenor is not None, deref(tenor._thisptr.get())),
+            make_optional[_calendar.Period](tenor is not None, deref(tenor._thisptr)),
             optional[_schedule.Rule](<_schedule.Rule>date_generation_rule),
             optional[bool](end_of_month),
             is_regular
@@ -106,14 +107,14 @@ cdef class Schedule:
 
         cdef Schedule instance = cls.__new__(cls)
         instance._thisptr = new _schedule.Schedule(
-            deref(effective_date._thisptr.get()),
-            deref(termination_date._thisptr.get()),
-            deref(tenor._thisptr.get()),
+            deref(effective_date._thisptr),
+            deref(termination_date._thisptr),
+            deref(tenor._thisptr),
             deref(calendar._thisptr),
             business_day_convention,
             termination_date_convention,
             <_schedule.Rule>date_generation_rule, end_of_month,
-            deref(first_date._thisptr.get()), deref(next_to_lastdate._thisptr.get())
+            deref(first_date._thisptr), deref(next_to_lastdate._thisptr)
             )
         return instance
 
@@ -131,13 +132,13 @@ cdef class Schedule:
 
     def next_date(self, Date reference_date):
         cdef _date.Date dt = self._thisptr.nextDate(
-            deref(reference_date._thisptr.get())
+            deref(reference_date._thisptr)
         )
         return date_from_qldate(dt)
 
     def previous_date(self, Date reference_date):
         cdef _date.Date dt = self._thisptr.previousDate(
-            deref(reference_date._thisptr.get())
+            deref(reference_date._thisptr)
         )
         return date_from_qldate(dt)
 
