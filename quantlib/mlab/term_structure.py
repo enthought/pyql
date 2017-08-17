@@ -13,7 +13,7 @@ from quantlib.time.schedule import Schedule
 
 from quantlib.time.date import (Period, Days, Months)
 from quantlib.time.daycounter import DayCounter
-from quantlib.compounding import compounding_from_name
+from quantlib.compounding import Compounding
 
 from quantlib.util.converter import qldate_to_pydate, pydate_to_qldate
 
@@ -68,7 +68,7 @@ def zbt_libor_yield(instruments, yields, pricing_date,
                      calendar=TARGET())
         maturity_dates = [qldate_to_pydate(dt) for dt in s.dates()]
 
-    cp_freq = compounding_from_name(compounding_freq)
+    cp_freq = Compounding[compounding_freq]
     zc = [ts.zero_rate(pydate_to_qldate(dt),
                        day_counter=cnt,
                        compounding=cp_freq).rate for dt in maturity_dates]

@@ -18,15 +18,9 @@ from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._period cimport Frequency
 cimport quantlib._quote as _qt
+from quantlib._compounding cimport Compounding
 
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
-
-cdef extern from 'ql/compounding.hpp' namespace 'QuantLib':
-    cdef enum Compounding:
-        Simple = 0
-        Compounded = 1
-        Continuous = 2
-        SimpleThenCompounded = 3
 
 cdef extern from 'ql/termstructures/yield/flatforward.hpp' namespace 'QuantLib':
 

@@ -15,6 +15,7 @@ cimport _interest_rate as _ir
 from quantlib.time.date import frequency_to_str
 from quantlib.time.daycounter cimport DayCounter
 cimport quantlib.time._daycounter as _daycounter
+from quantlib._compounding cimport Compounding
 
 cdef class InterestRate:
     """ This class encapsulate the interest rate compounding algebra.
@@ -30,12 +31,12 @@ cdef class InterestRate:
             del self._thisptr
             self._thisptr = NULL
 
-    def __init__(self, double rate, DayCounter dc not None, int compounding,
+    def __init__(self, double rate, DayCounter dc not None, Compounding compounding,
                  int frequency):
 
         self._thisptr = new shared_ptr[_ir.InterestRate](
             new _ir.InterestRate(
-                <Rate>rate, deref(dc._thisptr), <_ir.Compounding>compounding,
+                <Rate>rate, deref(dc._thisptr), compounding,
                 <_ir.Frequency>frequency
             )
         )

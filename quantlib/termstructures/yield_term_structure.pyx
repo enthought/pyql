@@ -9,7 +9,7 @@ from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.date cimport Date, date_from_qldate, Period
 
-from quantlib.compounding import Continuous
+from quantlib._compounding cimport Compounding
 from quantlib.time.date import Annual
 
 cimport quantlib.termstructures._yield_term_structure as _yts
@@ -63,7 +63,7 @@ cdef class YieldTermStructure:
                 term_structure.disableExtrapolation()
 
     def zero_rate(self, d, DayCounter day_counter=None,
-                  int compounding=Continuous, int frequency=Annual,
+                  Compounding compounding=Compounding.Continuous, int frequency=Annual,
                   bool extrapolate=False):
         """ Returns the implied zero-yield rate for the given date.
 
@@ -93,11 +93,11 @@ cdef class YieldTermStructure:
                 raise ValueError("day_counter needs to be provided")
             ql_zero_rate = term_structure.get().zeroRate(
                 deref((<Date>d)._thisptr), deref(day_counter._thisptr),
-                <_ir.Compounding>compounding, <_ir.Frequency>frequency,
+                compounding, <_ir.Frequency>frequency,
                 extrapolate)
         elif isinstance(d, (float, int)):
             ql_zero_rate = term_structure.get().zeroRate(
-                <Time>d, <_ir.Compounding>compounding, <_ir.Frequency>frequency,
+                <Time>d, compounding, <_ir.Frequency>frequency,
                 extrapolate)
         else:
             raise TypeError("d needs to be a QuantLib Date or a float.")
@@ -110,7 +110,7 @@ cdef class YieldTermStructure:
 
     def forward_rate(
             self, d1, d2, DayCounter day_counter=None,
-            int compounding=Continuous, int frequency=Annual, bool extrapolate=False):
+            Compounding compounding=Compounding.Continuous, int frequency=Annual, bool extrapolate=False):
         """ Returns the forward interest rate between two dates or times.
 
         In the former case, times are calculated as fractions of year from the
@@ -137,26 +137,25 @@ cdef class YieldTermStructure:
 
         cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
         cdef _ir.InterestRate ql_forward_rate
-        cdef _date.Date qld1, qld2
 
         if isinstance(d1, Date) and isinstance(d2, Date):
             if day_counter is None:
                 raise ValueError("day_counter can't be None")
             ql_forward_rate = term_structure.forwardRate(
-                deref((<Date>d1)._thisptr),
+                <_date.Date>deref((<Date>d1)._thisptr),
                 deref((<Date>d2)._thisptr),
-                deref(day_counter._thisptr), <_ir.Compounding>compounding,
-                <_ir.Frequency>frequency, <bool>extrapolate)
+                deref(day_counter._thisptr), compounding,
+                <_ir.Frequency>frequency, extrapolate)
         elif isinstance(d1, (float, int)) and isinstance(d2, (float, int)):
             ql_forward_rate = term_structure.forwardRate(
-                <Time>d1, <Time>d2, <_ir.Compounding>compounding,
+                <Time>d1, <Time>d2, compounding,
                 <_ir.Frequency>frequency, extrapolate)
         elif isinstance(d1, Date) and isinstance(d2, Period):
            if day_counter is None:
                raise ValueError("day_counter can't be None")
            ql_forward_rate = term_structure.forwardRate(
                deref((<Date>d1)._thisptr), deref((<Period>d2)._thisptr),
-               deref(day_counter._thisptr), <_ir.Compounding>compounding,
+               deref(day_counter._thisptr), compounding,
                <_ir.Frequency>frequency, extrapolate)
         else:
             raise TypeError("d1 and d2 need to be both QuantLib Dates or Times " \
