@@ -48,6 +48,13 @@ class TestQuantLibDate(unittest.TestCase):
             # getting an invalid day
             date2 = Date(29, Feb, 2009)
 
+        date1 = Date('2017-08-18')
+        date2 = Date(18, 8, 2017)
+        self.assertEqual(date1, date2)
+
+        date2 = Date(str(date1), "%m/%d/%Y")
+        self.assertEqual(date1, date2)
+
     def test_from_datetime_classmethod(self):
 
         date1 = Date(19, Nov, 1998)
@@ -279,6 +286,7 @@ class TestQuantLibPeriod(unittest.TestCase):
         self.assertEqual(Months, period3.units)
         with self.assertRaisesRegexp(RuntimeError, 'impossible addition'):
             period1 - Period('3W')
+        self.assertEqual(-Period('3M') + Period('6M'), Period('3M'))
 
     def test_period_addition(self):
         period1 = Period(4, Months)
