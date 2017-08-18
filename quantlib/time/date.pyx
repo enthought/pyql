@@ -273,16 +273,35 @@ cdef class Date:
     """
 
     def __init__(self, *args):
+        cdef QlDate d
         if len(args) == 3:
             day, month, year = args
             self._thisptr.reset(new QlDate(<Day>day, <Month>month, <Year>year))
+        elif len(args) == 1:
+            arg = args[0]
+            if isinstance(arg, int):
+                self._thisptr.reset(new QlDate(<serial_type> arg))
+            elif isinstance(arg, six.string_types):
+                self._thisptr.reset(new QlDate(_date.parseISO(arg.encode())))
+            else:
+                raise TypeError("needs to be a string or an integer")
         elif len(args) == 6:
             day, month, year, hours, minutes, seconds = args
             self._thisptr.reset(new QlDate(<Day>day, <Month>month, <Year>year,
                 <Hour>hours, <Minute>minutes, <Second>seconds, 0, 0))
-        elif len(args) == 1:
-            serial = args[0]
-            self._thisptr.reset(new QlDate(<serial_type> serial))
+        elif len(args) == 7:
+            day, month, year, hours, minutes, seconds, ms = args
+            self._thisptr.reset(new QlDate(<Day>day, <Month>month, <Year>year,
+                <Hour>hours, <Minute>minutes, <Second>seconds, <Millisecond>ms, 0))
+        elif len(args) == 8:
+            day, month, year, hours, minutes, seconds, ms, mus = args
+            self._thisptr.reset(new QlDate(<Day>day, <Month>month, <Year>year,
+                <Hour>hours, <Minute>minutes, <Second>seconds, <Millisecond>ms,
+                                           <Microsecond>mus))
+        elif len(args) == 2:
+            d = _date.parseFormatted(args[0].encode(), args[1].encode())
+            self._thisptr.reset(new QlDate(
+                _date.parseFormatted(args[0].encode(), args[1].encode())))
         elif len(args) == 0:
             self._thisptr.reset(new QlDate())
         else:
@@ -342,11 +361,14 @@ cdef class Date:
 
     def __str__(self):
         cdef _date.stringstream ss
-        ss << _date.iso_datetime(deref(self._thisptr))
+        ss <<  _date.short_date(deref(self._thisptr))
         return ss.str().decode()
 
     def __repr__(self):
-        return self.__str__()
+        cdef _date.stringstream ss
+        ss << string(b"Date('") << _date.iso_datetime(deref(self._thisptr)) << string(b"')")
+        return ss.str().decode()
+
 
     def __hash__(self):
         # Returns a hash based on the serial

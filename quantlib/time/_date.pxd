@@ -87,7 +87,7 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
         Day dayOfMonth() except +
         Month month()
         Year year()
-        serial_type serialNumber()
+        serial_type serialNumber() except +
         Hour hours()
         Minute minutes()
         Second seconds()
@@ -142,4 +142,9 @@ cdef extern from "<sstream>" namespace "std":
         stringstream& operator<<(iso_date_holder)
         stringstream& operator<<(short_date_holder)
         stringstream& operator<<(iso_datetime_holder)
+        stringstream& operator<<(string)
         string str()
+
+cdef extern from 'ql/utilities/dataparsers.hpp' namespace "QuantLib::DateParser":
+    Date parseISO(const string& str) except +
+    Date parseFormatted(const string&, const string&) except +
