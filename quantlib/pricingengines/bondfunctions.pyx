@@ -13,15 +13,8 @@ from quantlib.instruments.bonds cimport Bond
 from quantlib.time.date cimport date_from_qldate, Date
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.time.daycounter cimport DayCounter
-
+from quantlib._compounding cimport Compounding
 cimport quantlib.time._date as _dt
-
-cdef extern from 'ql/compounding.hpp' namespace 'QuantLib':
-    cdef enum Compounding:
-        Simple = 0
-        Compounded = 1
-        Continuous = 2
-        SimpleThenCompounded = 3
 
 cdef extern from 'ql/cashflows/duration.hpp' namespace 'QuantLib':
     ctypedef enum Type "QuantLib::Duration::Type":

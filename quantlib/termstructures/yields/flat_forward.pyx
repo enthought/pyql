@@ -14,7 +14,7 @@ from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.date cimport Date, date_from_qldate
 
-from quantlib.compounding import Continuous
+from quantlib._compounding cimport Compounding
 from quantlib.time.date import Annual
 
 from quantlib.handle cimport shared_ptr, RelinkableHandle, Handle
@@ -52,7 +52,7 @@ cdef class FlatForward(YieldTermStructure):
     def __init__(self, Date reference_date=None, forward=None,
                  DayCounter daycounter=None,
                  int settlement_days=0, Calendar calendar=None,
-                 compounding=Continuous,
+                 Compounding compounding=Compounding.Continuous,
                  frequency=Annual):
 
         #local cdef's
@@ -65,18 +65,18 @@ cdef class FlatForward(YieldTermStructure):
                 quote_handle = Handle[_qt.Quote](deref( (<Quote>forward)._thisptr))
 
                 _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
-                    deref(reference_date._thisptr.get()),
+                    deref(reference_date._thisptr),
                     quote_handle,
                     deref(daycounter._thisptr),
-                    <ffwd.Compounding>compounding,
+                    compounding,
                     <Frequency>frequency
                 ))
             else:
                 _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
-                        deref(reference_date._thisptr.get()),
+                        deref(reference_date._thisptr),
                         <ffwd.Rate>forward,
                         deref(daycounter._thisptr),
-                        <ffwd.Compounding>compounding,
+                        compounding,
                         <Frequency>frequency
                 ))
         elif settlement_days is not None and \
@@ -90,7 +90,7 @@ cdef class FlatForward(YieldTermStructure):
                         deref(calendar._thisptr),
                         quote_handle,
                         deref(daycounter._thisptr),
-                        <ffwd.Compounding>compounding,
+                        compounding,
                         <Frequency>frequency
                 ))
             else:
@@ -99,7 +99,7 @@ cdef class FlatForward(YieldTermStructure):
                         deref(calendar._thisptr),
                         <Real>forward,
                         deref(daycounter._thisptr),
-                        <ffwd.Compounding>compounding,
+                        compounding,
                         <Frequency>frequency
                 ))
         else:

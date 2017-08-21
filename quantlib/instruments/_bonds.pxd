@@ -13,14 +13,7 @@ from quantlib.time._schedule cimport Schedule
 from quantlib._cashflow cimport Leg
 from quantlib.indexes._ibor_index cimport IborIndex
 from quantlib.time._schedule cimport Rule
-
-# FIXME: this is duplicated everywhere in the code base!!! needs cleanup
-cdef extern from 'ql/compounding.hpp' namespace 'QuantLib':
-    cdef enum Compounding:
-        Simple = 0
-        Compounded = 1
-        Continuous = 2
-        SimpleThenCompounded = 3
+from quantlib._compounding cimport Compounding
 
 
 cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib':

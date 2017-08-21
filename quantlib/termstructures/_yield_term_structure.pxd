@@ -18,13 +18,7 @@ from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._period cimport Frequency
 cimport quantlib._quote as _qt
 from quantlib._interest_rate cimport InterestRate
-
-cdef extern from 'ql/compounding.hpp' namespace 'QuantLib':
-    cdef enum Compounding:
-        Simple = 0
-        Compounded = 1
-        Continuous = 2
-        SimpleThenCompounded = 3
+from quantlib._compounding cimport Compounding
 
 cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib':
 
@@ -62,7 +56,13 @@ cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib'
                                  Frequency freq,  # = Annual
                                  bool extrapolate  # = False
                              ) except +
-        InterestRate forwardRate(... # can't specify the types otherwise cython can't find suitable method
+        InterestRate forwardRate(Date& d1,
+                                 Period& p,
+                                 DayCounter& resultDayCounter,
+                                 Compounding comp,
+                                 Frequency freq,
+                                 bool extrapolate,
+                                 ... # can't specify the types otherwise cython can't find suitable method
                                  # Date& d1,
                                  # Period& p,
                                  # DayCounter& resultDayCounter,
