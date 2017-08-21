@@ -33,63 +33,40 @@ cdef class DayCounter:
     def __repr__(self):
         return "DayCounter('{0}')".format(self.name)
 
-    def year_fraction(self, Date date1, Date date2, Date ref_start=None,
-            Date ref_end=None):
+    def year_fraction(self, Date date1 not None, Date date2 not None,
+            Date ref_start=Date(), Date ref_end=Date()):
         ''' Returns the period between two dates as a fraction of year.'''
-        cdef _date.Date* d1 = date1._thisptr.get()
-        cdef _date.Date* d2 = date2._thisptr.get()
-        cdef _date.Date* refStart
-        cdef _date.Date* refEnd
-        if ref_start is None:
-            refStart = new _date.Date()
-        else:
-            refStart = ref_start._thisptr.get()
-        if ref_end is None:
-            refEnd = new _date.Date()
-        else:
-            refEnd = ref_end._thisptr.get()
-
         return self._thisptr.yearFraction(
-            deref(d1), deref(d2), deref(refStart), deref(refEnd)
+            deref(date1._thisptr), deref(date2._thisptr),
+            deref(ref_start._thisptr), deref(ref_end._thisptr)
         )
 
-    def day_count(self, Date date1, Date date2):
+    def day_count(self, Date date1 not None, Date date2 not None):
         ''' Returns the number of days between two dates.'''
-        cdef _date.Date* d1 = date1._thisptr.get()
-        cdef _date.Date* d2 = date2._thisptr.get()
-        return self._thisptr.dayCount(deref(d1), deref(d2))
+        return self._thisptr.dayCount(deref(date1._thisptr), deref(date2._thisptr))
 
-    def __richcmp__(self, other_counter, val):
+    def __richcmp__(self, other_counter, int val):
 
         if not isinstance(other_counter, DayCounter):
             return NotImplemented
 
-        # if we compare two day counter for equality, the underlying
-        # QuantLib counter must be of the same type. Testing if names are
-        # the same gives us a valid answer
-        a = self.name
-        b = other_counter.name
-
         # we only support testing for equality and inequality
         if val == 2:
-            return a == b
+            return deref((<DayCounter>other_counter)._thisptr) == deref((<DayCounter>self)._thisptr)
         elif val == 3:
-            return a != b
+            return deref((<DayCounter>other_counter)._thisptr) != deref((<DayCounter>self)._thisptr)
         else:
             return False
 
     @classmethod
     def from_name(cls, name):
-        cdef DayCounter cnt = cls()
-        cdef _daycounter.DayCounter* new_counter
+        cdef DayCounter cnt = cls.__new__(cls)
         name, convention = _get_daycounter_type_from_name(name)
-        new_counter = daycounter_from_name(name, convention)
+        cnt._thisptr = daycounter_from_name(name, convention)
 
-        if new_counter == NULL:
+        if cnt._thisptr == NULL:
             raise ValueError('Unknown day counter type: {}'.format(name))
-        else:
-            cnt._thisptr = new_counter
-            return cnt
+        return cnt
 
 def _get_daycounter_type_from_name(name):
     """ Returns a tuple (counter type, convention) from the DayCounter name. """

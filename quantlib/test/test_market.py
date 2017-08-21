@@ -1,6 +1,6 @@
 from .unittest_tools import unittest
 from quantlib.compounding import Simple
-from quantlib.time.api import Date, Actual360
+from quantlib.time.api import Date, Actual360, Frequency
 from quantlib.market.market import libor_market, IborMarket
 from quantlib.quotes import SimpleQuote
 

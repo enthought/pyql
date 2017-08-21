@@ -1,6 +1,16 @@
 include '../types.pxi'
 
+cdef extern from 'ql/time/date.hpp' namespace 'QuantLib':
+    ctypedef int Year
+    ctypedef int Day
+    ctypedef int Hour
+    ctypedef int Minute
+    ctypedef int Second
+    ctypedef int Millisecond
+    ctypedef int Microsecond
+
 from libcpp cimport bool
+from libcpp.string cimport string
 from libc.stdint cimport int_fast32_t
 from _period cimport Period
 
@@ -37,6 +47,8 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib::Date":
     cdef Date nextWeekday(Date& d, Weekday w) except +
     cdef Date nthWeekday(Size n, Weekday w,
                          Month m, Year y) except +
+    cdef Date localDateTime()
+    cdef Date universalDateTime()
 
 cdef extern from "ql/time/date.hpp" namespace "QuantLib":
 
@@ -69,12 +81,28 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
         Date() except +
         Date(serial_type serialnumber) except +
         Date(const Date&)
-        Date(int d, int m, int y) except +
+        Date(Day d, Month m, Year y) except +
+        Date(Day d, Month m, Year y, Hour h, Minute minutes, Second seconds,
+             Millisecond millisec, Microsecond microsec)
         Day dayOfMonth() except +
         Month month()
-        int year()
-        serial_type serialNumber()
-        bool operator==(Date*)
+        Year year()
+        serial_type serialNumber() except +
+        Hour hours()
+        Minute minutes()
+        Second seconds()
+        Millisecond milliseconds()
+        Microsecond microseconds()
+        Time fractionOfDay()
+        Time fractionOfSecond()
+
+        bool operator==(Date&)
+        bool operator!=(Date&)
+        bool operator<=(Date&)
+        bool operator<(Date&)
+        bool operator>=(Date&)
+        bool operator>(Date&)
+
         Weekday weekday()
         Day dayOfYear()
 
@@ -93,3 +121,30 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib":
         Date& i_add 'operator+='(Period& period)
         Date& i_sub 'operator-='(Period& period)
         Date& i_sub 'operator-='(serial_type days)
+
+    Time daysBetween(const Date&, const Date&)
+
+cdef extern from "ql/time/date.hpp" namespace "QuantLib::detail":
+    cdef cppclass iso_date_holder:
+        pass
+    cdef cppclass short_date_holder:
+        pass
+    cdef cppclass iso_datetime_holder:
+        pass
+
+cdef extern from "ql/time/date.hpp" namespace "QuantLib::io":
+    cdef short_date_holder short_date(const Date&)
+    cdef iso_date_holder iso_date(const Date&)
+    cdef iso_datetime_holder iso_datetime(const Date&)
+
+cdef extern from "<sstream>" namespace "std":
+    cdef cppclass stringstream:
+        stringstream& operator<<(iso_date_holder)
+        stringstream& operator<<(short_date_holder)
+        stringstream& operator<<(iso_datetime_holder)
+        stringstream& operator<<(string)
+        string str()
+
+cdef extern from 'ql/utilities/dataparsers.hpp' namespace "QuantLib::DateParser":
+    Date parseISO(const string& str) except +
+    Date parseFormatted(const string&, const string&) except +

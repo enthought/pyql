@@ -7,7 +7,8 @@ from quantlib.time.date import (
     Period,
     Annual, Semiannual, Bimonthly, EveryFourthMonth, Months, Years, Weeks,
     Days, OtherFrequency, end_of_month, is_end_of_month, is_leap,
-    next_weekday, nth_weekday, today, pydate_from_qldate, qldate_from_pydate
+    next_weekday, nth_weekday, today, pydate_from_qldate, qldate_from_pydate,
+    local_date_time
 )
 
 import quantlib.time.imm as imm
@@ -26,6 +27,10 @@ class TestQuantLibDate(unittest.TestCase):
         self.assertEqual(py_today.month, ql_today.month)
         self.assertEqual(py_today.year, ql_today.year)
 
+        py_now = datetime.datetime.now()
+        ql_datetime = local_date_time()
+        self.assertAlmostEqual(Date.from_datetime(py_now), ql_datetime)
+
     def test_date_empty_initialisation(self):
 
         date1 = Date()
@@ -42,6 +47,13 @@ class TestQuantLibDate(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             # getting an invalid day
             date2 = Date(29, Feb, 2009)
+
+        date1 = Date('2017-08-18')
+        date2 = Date(18, 8, 2017)
+        self.assertEqual(date1, date2)
+
+        date2 = Date(str(date1), "%m/%d/%Y")
+        self.assertEqual(date1, date2)
 
     def test_from_datetime_classmethod(self):
 
@@ -274,6 +286,7 @@ class TestQuantLibPeriod(unittest.TestCase):
         self.assertEqual(Months, period3.units)
         with self.assertRaisesRegexp(RuntimeError, 'impossible addition'):
             period1 - Period('3W')
+        self.assertEqual(-Period('3M') + Period('6M'), Period('3M'))
 
     def test_period_addition(self):
         period1 = Period(4, Months)
@@ -374,7 +387,7 @@ class TestQuantLibIMM(unittest.TestCase):
 
     def test_imm_date(self):
         dt = imm.date('M9')
-        cd = imm.code(qldate_from_pydate(dt))
+        cd = imm.code(dt)
         self.assertEqual(cd, 'M9')
 
     def test_next_date(self):

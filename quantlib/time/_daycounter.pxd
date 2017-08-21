@@ -15,3 +15,5 @@ cdef extern from 'ql/time/daycounter.hpp' namespace 'QuantLib':
         string name() except +
         serial_type dayCount(Date&, Date&) except +
         Time yearFraction(Date&, Date&, Date&, Date&) except +
+        bool operator==(DayCounter&)
+        bool operator!=(DayCounter&)

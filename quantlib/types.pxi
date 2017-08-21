@@ -19,7 +19,5 @@ ctypedef double Time
 ctypedef double Rate
 ctypedef double Spread
 ctypedef double Volatility
-ctypedef int Year
-ctypedef int Day
 ctypedef double DiscountFactor
 ctypedef Real Probability

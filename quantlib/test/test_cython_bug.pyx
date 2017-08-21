@@ -7,7 +7,8 @@ from quantlib.instruments._bonds cimport FixedRateBond
 from quantlib.time._date cimport (
     Date as QlDate, todaysDate, Jul, August, September, endOfMonth
 )
-from quantlib.time._period cimport Years, Period, Annual, Days
+from quantlib.time._period cimport Years, Period, Days
+from quantlib.time.frequency cimport Annual
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._businessdayconvention cimport (
         Unadjusted, ModifiedFollowing, Following
