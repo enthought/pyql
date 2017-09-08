@@ -4,7 +4,8 @@ from quantlib.currency.api import EURCurrency
 from quantlib.indexes.regions import EURegion
 from quantlib.indexes.inflation_index cimport (
     ZeroInflationIndex, YoYInflationIndex)
-from quantlib.time._period cimport Monthly, Months
+from quantlib.time.frequency cimport Monthly
+from quantlib.time._period cimport Months
 from quantlib.time.date cimport Period
 from quantlib.termstructures.inflation_term_structure cimport (
     ZeroInflationTermStructure, YoYInflationTermStructure)
