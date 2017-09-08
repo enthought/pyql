@@ -16,9 +16,6 @@ cimport quantlib.time._date as _date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar cimport Calendar
 
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
-
-
 from enum import IntEnum
 
 globals()["BootstrapTrait"] = IntEnum('BootstrapTrait',
