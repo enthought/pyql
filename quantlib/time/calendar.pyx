@@ -32,6 +32,8 @@ cdef class Calendar:
             del self._thisptr
             self._thisptr = NULL
 
+    def __cinit__(self):
+        self._thisptr = new _calendar.Calendar()
 
     property name:
         def __get__(self):
