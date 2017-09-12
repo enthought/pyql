@@ -57,8 +57,13 @@ cdef class FlatForward(YieldTermStructure):
 
         #local cdef's
         cdef Handle[_qt.Quote] quote_handle
-        cdef ffwd.Date _reference_date
         cdef shared_ptr[ffwd.YieldTermStructure] _forward
+
+        if forward is None:
+            raise ValueError('forward must be provided')
+
+        if daycounter is None:
+            raise ValueError('daycounter must be provided')
 
         if reference_date is not None:
             if isinstance(forward, Quote):
