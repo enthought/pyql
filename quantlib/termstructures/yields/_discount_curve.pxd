@@ -8,16 +8,7 @@ from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._calendar cimport Calendar
 
-
-cdef extern from 'ql/math/interpolations/all.hpp' namespace 'QuantLib':
-    cdef cppclass Linear:
-        pass
-
-    cdef cppclass LogLinear:
-        pass
-
-    cdef cppclass BackwardFlat:
-        pass
+from quantlib.math.interpolation cimport LogLinear
 
 cdef extern from 'ql/termstructures/yield/discountcurve.hpp' namespace 'QuantLib':
 

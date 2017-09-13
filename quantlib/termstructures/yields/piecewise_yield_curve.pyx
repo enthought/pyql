@@ -15,9 +15,7 @@ from quantlib.time.date cimport Date, date_from_qldate
 cimport quantlib.time._date as _date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar cimport Calendar
-
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
-
+cimport quantlib.math.interpolation as intpl
 
 from enum import IntEnum
 
@@ -69,49 +67,49 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
         if trait == Discount:
             if interpolator == Linear:
                 self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.Linear](
+                    new _pyc.PiecewiseYieldCurve[_pyc.Discount, intpl.Linear](
                         settlement_days, deref(calendar._thisptr), instruments,
                         deref(daycounter._thisptr), accuracy)))
             elif interpolator == LogLinear:
                 self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.LogLinear](
+                    new _pyc.PiecewiseYieldCurve[_pyc.Discount, intpl.LogLinear](
                         settlement_days, deref(calendar._thisptr), instruments,
                         deref(daycounter._thisptr), accuracy)))
             else:
                 self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.BackwardFlat](
+                    new _pyc.PiecewiseYieldCurve[_pyc.Discount, intpl.BackwardFlat](
                         settlement_days, deref(calendar._thisptr), instruments,
                         deref(daycounter._thisptr), accuracy)))
         elif trait == ZeroYield:
             if interpolator == Linear:
                 self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.Linear](
+                    new _pyc.PiecewiseYieldCurve[_pyc.ZeroYield, intpl.Linear](
                         settlement_days, deref(calendar._thisptr), instruments,
                         deref(daycounter._thisptr), accuracy)))
             elif interpolator == LogLinear:
                 self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.LogLinear](
+                    new _pyc.PiecewiseYieldCurve[_pyc.ZeroYield, intpl.LogLinear](
                         settlement_days, deref(calendar._thisptr), instruments,
                         deref(daycounter._thisptr), accuracy)))
             else:
                 self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.BackwardFlat](
+                    new _pyc.PiecewiseYieldCurve[_pyc.ZeroYield, intpl.BackwardFlat](
                         settlement_days, deref(calendar._thisptr), instruments,
                         deref(daycounter._thisptr), accuracy)))
         else:
             if interpolator == Linear:
                 self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.Linear](
+                    new _pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.Linear](
                         settlement_days, deref(calendar._thisptr), instruments,
                         deref(daycounter._thisptr), accuracy)))
             elif interpolator == LogLinear:
                 self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.LogLinear](
+                    new _pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.LogLinear](
                         settlement_days, deref(calendar._thisptr), instruments,
                         deref(daycounter._thisptr), accuracy)))
             else:
                 self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.BackwardFlat](
+                    new _pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.BackwardFlat](
                         settlement_days, deref(calendar._thisptr), instruments,
                         deref(daycounter._thisptr), accuracy)))
 
@@ -135,49 +133,49 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
         if trait == Discount:
             if interpolator == Linear:
                 instance._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.Linear](
+                    new _pyc.PiecewiseYieldCurve[_pyc.Discount, intpl.Linear](
                         deref(reference_date._thisptr.get()), instruments,
                         deref(daycounter._thisptr), accuracy)))
             elif interpolator == LogLinear:
                 instance._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.LogLinear](
+                    new _pyc.PiecewiseYieldCurve[_pyc.Discount, intpl.LogLinear](
                         deref(reference_date._thisptr.get()), instruments,
                         deref(daycounter._thisptr), accuracy)))
             else:
                 instance._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.BackwardFlat](
+                    new _pyc.PiecewiseYieldCurve[_pyc.Discount, intpl.BackwardFlat](
                         deref(reference_date._thisptr.get()), instruments,
                         deref(daycounter._thisptr), accuracy)))
         elif trait == ZeroYield:
             if interpolator == Linear:
                 instance._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.Linear](
+                    new _pyc.PiecewiseYieldCurve[_pyc.ZeroYield, intpl.Linear](
                         deref(reference_date._thisptr.get()), instruments,
                         deref(daycounter._thisptr), accuracy)))
             elif interpolator == LogLinear:
                 instance._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.LogLinear](
+                    new _pyc.PiecewiseYieldCurve[_pyc.ZeroYield, intpl.LogLinear](
                         deref(reference_date._thisptr.get()), instruments,
                         deref(daycounter._thisptr), accuracy)))
             else:
                 instance._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.BackwardFlat](
+                    new _pyc.PiecewiseYieldCurve[_pyc.ZeroYield, intpl.BackwardFlat](
                         deref(reference_date._thisptr.get()), instruments,
                         deref(daycounter._thisptr), accuracy)))
         else:
             if interpolator == Linear:
                 instance._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.Linear](
+                    new _pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.Linear](
                         deref(reference_date._thisptr.get()), instruments,
                         deref(daycounter._thisptr), accuracy)))
             elif interpolator == LogLinear:
                 instance._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.LogLinear](
+                    new _pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.LogLinear](
                         deref(reference_date._thisptr.get()), instruments,
                         deref(daycounter._thisptr), accuracy)))
             else:
                 instance._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-                    new _pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.BackwardFlat](
+                    new _pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.BackwardFlat](
                         deref(reference_date._thisptr.get()), instruments,
                         deref(daycounter._thisptr), accuracy)))
         return instance
@@ -187,66 +185,66 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
         """list of curve data"""
         if self._trait == Discount:
             if self._interpolator == Linear:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.Linear]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount, intpl.Linear]*>
                         self._get_term_structure()).data()
             elif self._interpolator == LogLinear:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.LogLinear]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount, intpl.LogLinear]*>
                         self._get_term_structure()).data()
             else:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.BackwardFlat]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount, intpl.BackwardFlat]*>
                         self._get_term_structure()).data()
         elif self._trait == ZeroYield:
             if self._interpolator == Linear:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.Linear]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield, intpl.Linear]*>
                         self._get_term_structure()).data()
             elif self._interpolator == LogLinear:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.LogLinear]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield, intpl.LogLinear]*>
                         self._get_term_structure()).data()
             else:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.BackwardFlat]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield, intpl.BackwardFlat]*>
                         self._get_term_structure()).data()
         else:
             if self._interpolator == Linear:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.Linear]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.Linear]*>
                         self._get_term_structure()).data()
             elif self._interpolator == LogLinear:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.LogLinear]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.LogLinear]*>
                         self._get_term_structure()).data()
             else:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.BackwardFlat]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.BackwardFlat]*>
                         self._get_term_structure()).data()
     @property
     def times(self):
         """list of curve times"""
         if self._trait == Discount:
             if self._interpolator == Linear:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.Linear]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount, intpl.Linear]*>
                         self._get_term_structure()).times()
             elif self._interpolator == LogLinear:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.LogLinear]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount, intpl.LogLinear]*>
                         self._get_term_structure()).times()
             else:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.BackwardFlat]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.Discount, intpl.BackwardFlat]*>
                         self._get_term_structure()).times()
         elif self._trait == ZeroYield:
             if self._interpolator == Linear:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.Linear]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield, intpl.Linear]*>
                         self._get_term_structure()).times()
             elif self._interpolator == LogLinear:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.LogLinear]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield, intpl.LogLinear]*>
                         self._get_term_structure()).times()
             else:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.BackwardFlat]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield, intpl.BackwardFlat]*>
                         self._get_term_structure()).times()
         else:
             if self._interpolator == Linear:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.Linear]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.Linear]*>
                         self._get_term_structure()).times()
             elif self._interpolator == LogLinear:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.LogLinear]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.LogLinear]*>
                         self._get_term_structure()).times()
             else:
-                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.BackwardFlat]*>
+                return (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.BackwardFlat]*>
                         self._get_term_structure()).times()
 
     @property
@@ -255,33 +253,33 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
         cdef vector[_date.Date] _dates
         if self._trait == Discount:
             if self._interpolator == Linear:
-                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.Linear]*>
+                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.Discount, intpl.Linear]*>
                           self._get_term_structure()).dates()
             elif self._interpolator == LogLinear:
-                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.LogLinear]*>
+                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.Discount, intpl.LogLinear]*>
                           self._get_term_structure()).dates()
             else:
-                 _dates =  (<_pyc.PiecewiseYieldCurve[_pyc.Discount,_pyc.BackwardFlat]*>
+                 _dates =  (<_pyc.PiecewiseYieldCurve[_pyc.Discount, intpl.BackwardFlat]*>
                             self._get_term_structure()).dates()
         elif self._trait == ZeroYield:
             if self._interpolator == Linear:
-                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.Linear]*>
+                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield, intpl.Linear]*>
                           self._get_term_structure()).dates()
             elif self._interpolator == LogLinear:
-                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.LogLinear]*>
+                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield, intpl.LogLinear]*>
                           self._get_term_structure()).dates()
             else:
-                 _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield,_pyc.BackwardFlat]*>
+                 _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ZeroYield, intpl.BackwardFlat]*>
                            self._get_term_structure()).dates()
         else:
             if self._interpolator == Linear:
-                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.Linear]*>
+                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.Linear]*>
                           self._get_term_structure()).dates()
             elif self._interpolator == LogLinear:
-                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.LogLinear]*>
+                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.LogLinear]*>
                           self._get_term_structure()).dates()
             else:
-                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate,_pyc.BackwardFlat]*>
+                _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.BackwardFlat]*>
                           self._get_term_structure()).dates()
         cdef size_t i
         cdef list r  = []

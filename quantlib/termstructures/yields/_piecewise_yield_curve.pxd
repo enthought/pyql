@@ -9,7 +9,6 @@ from quantlib.time._daycounter cimport DayCounter
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.termstructures.yields._rate_helpers cimport RateHelper
 
-
 cdef extern from 'ql/termstructures/yield/bootstraptraits.hpp' namespace 'QuantLib':
 
     cdef cppclass Discount:
@@ -19,16 +18,6 @@ cdef extern from 'ql/termstructures/yield/bootstraptraits.hpp' namespace 'QuantL
         pass
 
     cdef cppclass ForwardRate:
-        pass
-
-cdef extern from 'ql/math/interpolations/all.hpp' namespace 'QuantLib':
-    cdef cppclass Linear:
-        pass
-
-    cdef cppclass LogLinear:
-        pass
-
-    cdef cppclass BackwardFlat:
         pass
 
 cdef extern from 'ql/termstructures/yield/piecewiseyieldcurve.hpp' namespace 'QuantLib':

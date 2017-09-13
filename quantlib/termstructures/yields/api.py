@@ -8,3 +8,5 @@ from .rate_helpers import (
 from .discount_curve import InterpolatedDiscountCurve, DiscountCurve
 from ..yield_term_structure import YieldTermStructure
 from .zero_curve import ZeroCurve
+from .discount_curve import DiscountCurve
+from .implied_term_structure import ImpliedTermStructure
