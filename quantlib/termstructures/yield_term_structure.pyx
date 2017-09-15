@@ -96,7 +96,8 @@ cdef class YieldTermStructure:
 
     def forward_rate(
             self, d1, d2, DayCounter day_counter=None,
-            Compounding compounding=Compounding.Continuous, int frequency=Annual, bool extrapolate=False):
+            Compounding compounding=Compounding.Continuous,
+            int frequency=Annual, bool extrapolate=False):
         """ Returns the forward interest rate between two dates or times.
 
         In the former case, times are calculated as fractions of year from the
@@ -127,7 +128,7 @@ cdef class YieldTermStructure:
             if day_counter is None:
                 raise ValueError("day_counter can't be None")
             ql_forward_rate = term_structure.forwardRate(
-                <_date.Date>deref((<Date>d1)._thisptr),
+                deref((<Date>d1)._thisptr),
                 deref((<Date>d2)._thisptr),
                 deref(day_counter._thisptr), compounding,
                 <_ir.Frequency>frequency, extrapolate)

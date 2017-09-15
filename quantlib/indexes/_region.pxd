@@ -16,6 +16,7 @@ cdef extern from 'ql/indexes/region.hpp' namespace 'QuantLib':
 
     cdef cppclass Region:
         Region()
+        Region(Region&)
         string name()
         string code()
         

@@ -11,15 +11,13 @@ from quantlib.time._period cimport Period
 
 from quantlib.indexes._inflation_index cimport (
     YoYInflationIndex, ZeroInflationIndex)
-from quantlib.termstructures._helpers cimport BootstrapHelper
+from quantlib.termstructures.inflation.inflation_traits cimport (
+    ZeroInflationTraits, YoYInflationTraits)
+
 cimport quantlib.termstructures._inflation_term_structure as _its
 
-cdef extern from 'ql/termstructures/inflation/inflationtraits.hpp' namespace 'QuantLib':
-    ctypedef BootstrapHelper[_its.ZeroInflationTermStructure] ZeroInflationHelper "ZeroInflationTraits::helper"
-    ctypedef BootstrapHelper[_its.YoYInflationTermStructure] YoYInflationHelper "YoYInflationTraits::helper"
-
 cdef extern from 'ql/termstructures/inflation/inflationhelpers.hpp' namespace 'QuantLib':
-    cdef cppclass ZeroCouponInflationSwapHelper(ZeroInflationHelper):
+    cdef cppclass ZeroCouponInflationSwapHelper(ZeroInflationTraits.helper):
         ZeroCouponInflationSwapHelper(
             const Handle[Quote]& quote,
             const Period& swap_obs_lag,  # lag on swap observation of index
@@ -28,11 +26,9 @@ cdef extern from 'ql/termstructures/inflation/inflationhelpers.hpp' namespace 'Q
             BusinessDayConvention payment_convention,
             const DayCounter& day_counter,
             const shared_ptr[ZeroInflationIndex]& zii) except +
-        void setTermStructure(_its.ZeroInflationTermStructure*);
-        Real impliedQuote() const
 
     # Year-on-year inflation-swap bootstrap helper
-    cdef cppclass YearOnYearInflationSwapHelper(YoYInflationHelper):
+    cdef cppclass YearOnYearInflationSwapHelper(YoYInflationTraits.helper):
         YearOnYearInflationSwapHelper(
             const Handle[Quote]& quote,
             const Period& swap_obs_lag,
@@ -40,6 +36,4 @@ cdef extern from 'ql/termstructures/inflation/inflationhelpers.hpp' namespace 'Q
             const Calendar& calendar,
             BusinessDayConvention payment_convention,
             const DayCounter& day_counter,
-            const shared_ptr[YoYInflationIndex]& yii)
-        void setTermStructure(_its.YoYInflationTermStructure*)
-        Real impliedQuote() const
+            const shared_ptr[YoYInflationIndex]& yii) except +

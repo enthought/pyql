@@ -109,7 +109,7 @@ cdef class Schedule:
                   Period tenor not None, Calendar calendar not None,
                   BusinessDayConvention business_day_convention=Following,
                   BusinessDayConvention termination_date_convention=Following,
-                  int date_generation_rule=Forward, bool end_of_month=False,
+                  Rule date_generation_rule=Forward, bool end_of_month=False,
                   Date first_date=Date(), Date next_to_lastdate=Date()):
 
         cdef Schedule instance = cls.__new__(cls)
@@ -120,7 +120,7 @@ cdef class Schedule:
             deref(calendar._thisptr),
             business_day_convention,
             termination_date_convention,
-            <_schedule.Rule>date_generation_rule, end_of_month,
+            date_generation_rule, end_of_month,
             deref(first_date._thisptr), deref(next_to_lastdate._thisptr)
             )
         return instance

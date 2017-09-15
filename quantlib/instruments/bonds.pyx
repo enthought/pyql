@@ -35,8 +35,10 @@ cimport quantlib.cashflow as cashflow
 cimport quantlib.indexes._ibor_index as _ii
 cimport quantlib.indexes._inflation_index as _inf
 
-import datetime
-
+cpdef enum InterpolationType:
+    AsIndex = _bonds.AsIndex
+    Flat = _bonds.Flat
+    Linear = _bonds.Linear
 
 cdef inline _bonds.Bond* get_bond(Bond bond):
     """ Utility function to extract a properly casted Bond pointer out of the
@@ -276,7 +278,7 @@ cdef class CPIBond(Bond):
     def __init__(self, Natural settlement_days, Real face_amount, bool growth_only,
                  Real baseCPI, Period observation_lag not None,
                  ZeroInflationIndex cpi_index not None,
-                 _bonds.InterpolationType observation_interpolation,
+                 InterpolationType observation_interpolation,
                  Schedule schedule, vector[Rate] coupons,
                  DayCounter accrual_day_counter,
                  BusinessDayConvention payment_convention=Following,

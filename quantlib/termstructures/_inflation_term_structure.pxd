@@ -27,6 +27,10 @@ cdef extern from 'ql/termstructures/inflationtermstructure.hpp' namespace 'Quant
         InflationTermStructure() except +
         Date& referenceDate()
         Date& maxDate()
+        Date& baseDate()
+        Period observationLag()
+        bool indexIsInterpolated()
+        Rate baseRate()
 
 
     cdef cppclass ZeroInflationTermStructure(InflationTermStructure):

@@ -114,7 +114,9 @@ cdef extern from 'ql/instruments/bonds/floatingratebond.hpp' namespace 'QuantLib
 
 cdef extern from 'ql/cashflows/cpicoupon.hpp' namespace 'QuantLib::CPI':
     cdef enum InterpolationType:
-        pass
+        AsIndex
+        Flat
+        Linear
 
 cdef extern from 'ql/instruments/bonds/cpibond.hpp' namespace 'QuantLib':
     cdef cppclass CPIBond(Bond):

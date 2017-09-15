@@ -17,14 +17,6 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar cimport Calendar
 cimport quantlib.math.interpolation as intpl
 
-from enum import IntEnum
-
-globals()["BootstrapTrait"] = IntEnum('BootstrapTrait',
-        [('Discount', 0), ('ZeroYield', 1), ('ForwardRate', 2)])
-globals()["Interpolator"] = IntEnum('Interpolator',
-        [('Linear', 0), ('LogLinear', 1), ('BackwardFlat', 2)])
-
-
 cdef class PiecewiseYieldCurve(YieldTermStructure):
     """A piecewise yield curve.
 

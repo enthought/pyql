@@ -1,8 +1,9 @@
-cimport _inflation_helpers as _ih
 from quantlib.handle cimport shared_ptr
+from quantlib.termstructures.inflation.inflation_traits cimport (
+    ZeroInflationTraits, YoYInflationTraits )
 
 cdef class ZeroCouponInflationSwapHelper:
-    cdef shared_ptr[_ih.ZeroCouponInflationSwapHelper] _thisptr
+    cdef shared_ptr[ZeroInflationTraits.helper] _thisptr
 
 cdef class YearOnYearInflationSwapHelper:
-    cdef shared_ptr[_ih.YearOnYearInflationSwapHelper] _thisptr
+    cdef shared_ptr[YoYInflationTraits.helper] _thisptr
