@@ -4,7 +4,7 @@ from libcpp cimport bool
 from libcpp.vector cimport vector
 from cython.operator import dereference as deref
 
-cimport quantlib.termstructures._inflation_term_structure as _if
+cimport quantlib.termstructures._inflation_term_structure as _its
 cimport quantlib.termstructures.inflation._interpolated_zero_inflation_curve as _izic
 cimport quantlib.math.interpolation as intpl
 cimport quantlib.time._date as _date
@@ -25,13 +25,13 @@ cdef class InterpolatedZeroInflationCurve(ZeroInflationTermStructure):
 
         cdef vector[_date.Date] _dates
         for date in dates:
-            _dates.push_back(deref((<Date?>date)._thisptr.get()))
+            _dates.push_back(deref((<Date?>date)._thisptr))
 
         self._trait = interpolator
 
         if interpolator == Linear:
 
-            self._thisptr.linkTo(shared_ptr[_if.InflationTermStructure](
+            self._thisptr.linkTo(shared_ptr[_its.InflationTermStructure](
                 new _izic.InterpolatedZeroInflationCurve[intpl.Linear](
                     deref(reference_date._thisptr), deref(calendar._thisptr),
                     deref(day_counter._thisptr),
@@ -40,7 +40,7 @@ cdef class InterpolatedZeroInflationCurve(ZeroInflationTermStructure):
                     _dates, rates)))
 
         elif interpolator == LogLinear:
-            self._thisptr.linkTo(shared_ptr[_if.InflationTermStructure](
+            self._thisptr.linkTo(shared_ptr[_its.InflationTermStructure](
                 new _izic.InterpolatedZeroInflationCurve[intpl.LogLinear](
                     deref(reference_date._thisptr), deref(calendar._thisptr),
                     deref(day_counter._thisptr),
@@ -49,7 +49,7 @@ cdef class InterpolatedZeroInflationCurve(ZeroInflationTermStructure):
                     _dates, rates)))
 
         elif interpolator == BackwardFlat:
-            self._thisptr.linkTo(shared_ptr[_if.InflationTermStructure](
+            self._thisptr.linkTo(shared_ptr[_its.InflationTermStructure](
                 new _izic.InterpolatedZeroInflationCurve[intpl.BackwardFlat](
                     deref(reference_date._thisptr), deref(calendar._thisptr),
                     deref(day_counter._thisptr),
@@ -59,14 +59,13 @@ cdef class InterpolatedZeroInflationCurve(ZeroInflationTermStructure):
         else:
             raise ValueError("interpolator needs to be any of Linear, LogLinear or BackwardFlat")
 
-        def data(self):
-            cdef _if.InflationTermStructure* ts = self._get_term_structure()
-            # if self._trait == Linear:
-            #     return (<_izic.InterpolatedZeroInflationCurve[intpl.Linear]*>
-            #             self._get_term_structure()).data()
-            # elif self._trait == LogLinear:
-            #     return (<_izic.InterpolatedZeroInflationCurve[intpl.LogLinear]*>
-            #             self._get_term_structure()).data()
-            # elif self._trait == BackwardFlat:
-            #     return (<_izic.InterpolatedZeroInflationCurve[intpl.BackwardFlat]*>
-            #             self._thisptr.currentLink().get()).data()
+    def data(self):
+        if self._trait == Linear:
+            return (<_izic.InterpolatedZeroInflationCurve[intpl.Linear]*>
+                    self._get_term_structure()).data()
+        elif self._trait == LogLinear:
+            return (<_izic.InterpolatedZeroInflationCurve[intpl.LogLinear]*>
+                    self._get_term_structure()).data()
+        elif self._trait == BackwardFlat:
+            return (<_izic.InterpolatedZeroInflationCurve[intpl.BackwardFlat]*>
+                    self._get_term_structure()).data()
