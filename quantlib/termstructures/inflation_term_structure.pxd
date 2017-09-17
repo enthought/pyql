@@ -3,11 +3,10 @@ from libcpp cimport bool as cbool
 from quantlib.handle cimport shared_ptr, RelinkableHandle
 
 cdef class InflationTermStructure:
-    cdef RelinkableHandle[_its.InflationTermStructure] _thisptr
-    cdef _its.InflationTermStructure* _get_term_structure(self) except NULL
+    cdef shared_ptr[_its.InflationTermStructure] _thisptr
 
 cdef class ZeroInflationTermStructure(InflationTermStructure):
-    pass
+   cdef RelinkableHandle[_its.ZeroInflationTermStructure] _handle
 
 cdef class YoYInflationTermStructure(InflationTermStructure):
-    pass
+   cdef RelinkableHandle[_its.YoYInflationTermStructure] _handle

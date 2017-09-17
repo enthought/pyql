@@ -31,41 +31,40 @@ cdef class InterpolatedZeroInflationCurve(ZeroInflationTermStructure):
 
         if interpolator == Linear:
 
-            self._thisptr.linkTo(shared_ptr[_its.InflationTermStructure](
-                new _izic.InterpolatedZeroInflationCurve[intpl.Linear](
+            self._thisptr.reset(new _izic.InterpolatedZeroInflationCurve[intpl.Linear](
                     deref(reference_date._thisptr), deref(calendar._thisptr),
                     deref(day_counter._thisptr),
                     deref(lag._thisptr), frequency,
                     index_is_interpolated, yts._thisptr,
-                    _dates, rates)))
+                    _dates, rates))
 
         elif interpolator == LogLinear:
-            self._thisptr.linkTo(shared_ptr[_its.InflationTermStructure](
+            self._thisptr.reset(
                 new _izic.InterpolatedZeroInflationCurve[intpl.LogLinear](
                     deref(reference_date._thisptr), deref(calendar._thisptr),
                     deref(day_counter._thisptr),
                     deref(lag._thisptr), frequency,
                     index_is_interpolated, yts._thisptr,
-                    _dates, rates)))
+                    _dates, rates))
 
         elif interpolator == BackwardFlat:
-            self._thisptr.linkTo(shared_ptr[_its.InflationTermStructure](
+            self._thisptr.reset(
                 new _izic.InterpolatedZeroInflationCurve[intpl.BackwardFlat](
                     deref(reference_date._thisptr), deref(calendar._thisptr),
                     deref(day_counter._thisptr),
                     deref(lag._thisptr), frequency,
                     index_is_interpolated, yts._thisptr,
-                    _dates, rates)))
+                    _dates, rates))
         else:
             raise ValueError("interpolator needs to be any of Linear, LogLinear or BackwardFlat")
 
     def data(self):
         if self._trait == Linear:
             return (<_izic.InterpolatedZeroInflationCurve[intpl.Linear]*>
-                    self._get_term_structure()).data()
+                    self._thisptr.get()).data()
         elif self._trait == LogLinear:
             return (<_izic.InterpolatedZeroInflationCurve[intpl.LogLinear]*>
-                    self._get_term_structure()).data()
+                    self._thisptr.get()).data()
         elif self._trait == BackwardFlat:
             return (<_izic.InterpolatedZeroInflationCurve[intpl.BackwardFlat]*>
-                    self._get_term_structure()).data()
+                    self._thisptr.get()).data()

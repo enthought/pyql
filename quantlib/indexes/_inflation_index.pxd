@@ -49,6 +49,7 @@ cdef extern from 'ql/indexes/inflationindex.hpp' namespace 'QuantLib':
                   Period& availabilitiyLag,
                   Currency& currency,
                   Handle[_its.ZeroInflationTermStructure]& h) except +
+        Handle[_its.ZeroInflationTermStructure] zeroInflationTermStructure()
 
     cdef cppclass YoYInflationIndex(InflationIndex):
         YoYInflationIndex(const string& familyName,

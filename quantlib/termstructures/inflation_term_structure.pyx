@@ -14,6 +14,7 @@ from quantlib.time.date cimport Date, Period, date_from_qldate, period_from_qlpe
 
 from libcpp.vector cimport vector
 from cython.operator cimport dereference as deref
+from quantlib.handle cimport static_pointer_cast
 
 cimport quantlib.time._daycounter as _dc
 from quantlib.time.daycounter cimport DayCounter
@@ -34,63 +35,50 @@ cdef class InflationTermStructure:
     """Abstract Base Class.
     """
 
-    def link_to(self, InflationTermStructure structure):
-        if not structure._thisptr.empty():
-            self._thisptr.linkTo(structure._thisptr.currentLink())
-        else:
-            raise ValueError('structure not initialized')
-
-    cdef _if.InflationTermStructure* _get_term_structure(self) except NULL:
-
-        if not self._thisptr.empty():
-            return self._thisptr.currentLink().get()
-        else:
-            raise ValueError('Inflation term structure not initialized')
-
     property max_date:
         def __get__(self):
-            cdef _if.InflationTermStructure* term_structure = \
-              self._get_term_structure()
-            cdef _date.Date max_date = term_structure.maxDate()
+            cdef _date.Date max_date = self._thisptr.get().maxDate()
             return date_from_qldate(max_date)
 
     @property
     def reference_date(self):
-        cdef _if.InflationTermStructure* term_structure = \
-              self._get_term_structure()
-        cdef _date.Date reference_date = term_structure.referenceDate()
+        cdef _date.Date reference_date = self._thisptr.get().referenceDate()
         return date_from_qldate(reference_date)
 
     @property
     def base_date(self):
-        cdef _if.InflationTermStructure* term_structure = \
-            self._get_term_structure()
-        cdef _date.Date base_date = term_structure.baseDate()
+        cdef _date.Date base_date = self._thisptr.get().baseDate()
         return date_from_qldate(base_date)
 
     @property
     def base_rate(self):
-        return self._get_term_structure().baseRate()
+        return self._thisptr.get().baseRate()
 
     @property
     def index_is_interpolated(self):
-        return self._get_term_structure().indexIsInterpolated()
+        return self._thisptr.get().indexIsInterpolated()
 
     @property
     def observation_lag(self):
-        cdef _if.InflationTermStructure* term_structure = \
-            self._get_term_structure()
-        return period_from_qlperiod(term_structure.observationLag())
-
+        return period_from_qlperiod(self._thisptr.get().observationLag())
 
 cdef class ZeroInflationTermStructure(InflationTermStructure):
+
+    def __cinit__(self):
+        self._handle = RelinkableHandle[_if.ZeroInflationTermStructure](
+            static_pointer_cast[_if.ZeroInflationTermStructure](self._thisptr))
+
+    def link_to(self, ZeroInflationTermStructure structure):
+        self._thisptr.reset(structure._thisptr.get())
+        self._handle.linkTo(static_pointer_cast[_if.ZeroInflationTermStructure](
+            structure._thisptr))
 
     def zero_rate(self, d, Period inst_obs_lag=Period(-1, Days),
                   bool force_linear_interpolation=False, bool extrapolate=False):
 
 
         cdef _if.ZeroInflationTermStructure* term_structure = \
-          <_if.ZeroInflationTermStructure*>self._get_term_structure()
+          <_if.ZeroInflationTermStructure*>self._thisptr.get()
 
         if isinstance(d, Date):
             return term_structure.zeroRate(
@@ -103,13 +91,24 @@ cdef class ZeroInflationTermStructure(InflationTermStructure):
 
 cdef class YoYInflationTermStructure(InflationTermStructure):
 
+    def __cinit__(self):
+        self._handle = RelinkableHandle[_if.YoYInflationTermStructure](
+            static_pointer_cast[_if.YoYInflationTermStructure](self._thisptr))
+
+    def __dealloc__(self):
+        self._handle.linkTo(shared_ptr[_if.YoYInflationTermStructure]())
+
+    def link_to(self, YoYInflationTermStructure structure):
+        self._thisptr.reset(structure._thisptr.get())
+        self._handle.linkTo(static_pointer_cast[_if.YoYInflationTermStructure](
+            structure._thisptr))
 
     def yoy_rate(self, d, Period inst_obs_lag=Period(-1, Days),
-                bool force_linear_interpolation=False,
-                bool extrapolate=False):
+                 bool force_linear_interpolation=False,
+                 bool extrapolate=False):
 
         cdef _if.YoYInflationTermStructure* term_structure = \
-          <_if.YoYInflationTermStructure*>self._get_term_structure()
+          <_if.YoYInflationTermStructure*>self._thisptr.get()
 
         if isinstance(d, Date):
             return term_structure.yoyRate(

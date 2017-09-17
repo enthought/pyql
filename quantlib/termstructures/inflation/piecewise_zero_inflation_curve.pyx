@@ -34,39 +34,36 @@ cdef class PiecewiseZeroInflationCurve(InterpolatedZeroInflationCurve):
         self._trait = interpolator
 
         if interpolator == Linear:
-            self._thisptr.linkTo(
-                shared_ptr[_its.InflationTermStructure](
-                    new _pzic.PiecewiseZeroInflationCurve[intpl.Linear](
-                        deref(reference_date._thisptr),
-                        deref(calendar._thisptr),
-                        deref(day_counter._thisptr),
-                        deref(lag._thisptr),
-                        frequency, index_is_interpolated, base_zero_rate,
-                        nominal_ts._thisptr,
-                        instruments_cpp,
-                        accuracy)))
+            self._thisptr.reset(
+                new _pzic.PiecewiseZeroInflationCurve[intpl.Linear](
+                    deref(reference_date._thisptr),
+                    deref(calendar._thisptr),
+                    deref(day_counter._thisptr),
+                    deref(lag._thisptr),
+                    frequency, index_is_interpolated, base_zero_rate,
+                    nominal_ts._thisptr,
+                    instruments_cpp,
+                    accuracy))
 
         elif interpolator == LogLinear:
-            self._thisptr.linkTo(
-                shared_ptr[_its.InflationTermStructure](
-                    new _pzic.PiecewiseZeroInflationCurve[intpl.LogLinear](
-                        deref(reference_date._thisptr),
-                        deref(calendar._thisptr),
-                        deref(day_counter._thisptr),
-                        deref(lag._thisptr),
-                        frequency, index_is_interpolated, base_zero_rate,
-                        nominal_ts._thisptr,
-                        instruments_cpp,
-                        accuracy)))
+            self._thisptr.reset(
+                new _pzic.PiecewiseZeroInflationCurve[intpl.LogLinear](
+                    deref(reference_date._thisptr),
+                    deref(calendar._thisptr),
+                    deref(day_counter._thisptr),
+                    deref(lag._thisptr),
+                    frequency, index_is_interpolated, base_zero_rate,
+                    nominal_ts._thisptr,
+                    instruments_cpp,
+                    accuracy))
         else:
-            self._thisptr.linkTo(
-                shared_ptr[_its.InflationTermStructure](
-                    new _pzic.PiecewiseZeroInflationCurve[intpl.BackwardFlat](
-                        deref(reference_date._thisptr),
-                        deref(calendar._thisptr),
-                        deref(day_counter._thisptr),
-                        deref(lag._thisptr),
-                        frequency, index_is_interpolated, base_zero_rate,
-                        nominal_ts._thisptr,
-                        instruments_cpp,
-                        accuracy)))
+            self._thisptr.reset(
+                new _pzic.PiecewiseZeroInflationCurve[intpl.BackwardFlat](
+                    deref(reference_date._thisptr),
+                    deref(calendar._thisptr),
+                    deref(day_counter._thisptr),
+                    deref(lag._thisptr),
+                    frequency, index_is_interpolated, base_zero_rate,
+                    nominal_ts._thisptr,
+                    instruments_cpp,
+                    accuracy))

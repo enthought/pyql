@@ -83,11 +83,6 @@ cdef class ZeroInflationIndex(InflationIndex):
                  Currency currency,
                  ZeroInflationTermStructure ts=ZeroInflationTermStructure()):
 
-        cdef Handle[_its.ZeroInflationTermStructure] ts_handle
-        if not ts._thisptr.empty():
-            ts_handle = Handle[_its.ZeroInflationTermStructure](
-                static_pointer_cast[_its.ZeroInflationTermStructure](ts._thisptr.currentLink()))
-
         # convert the Python str to C++ string
         cdef string c_family_name = family_name.encode('utf-8')
 
@@ -100,18 +95,20 @@ cdef class ZeroInflationIndex(InflationIndex):
                 frequency,
                 deref(availabilityLag._thisptr),
                 deref(currency._thisptr),
-                ts_handle))
+                ts._handle))
+
+    def zero_inflation_term_structure(self):
+        cdef ZeroInflationTermStructure r = \
+                ZeroInflationTermStructure.__new__(ZeroInflationTermStructure)
+        r._thisptr = static_pointer_cast[_its.InflationTermStructure](
+            (<_ii.ZeroInflationIndex*>(self._thisptr.get())).
+            zeroInflationTermStructure().currentLink())
 
 cdef class YoYInflationIndex(ZeroInflationIndex):
     def __init__(self, family_name, Region region, bool revised,
                  bool interpolated, bool ratio, Frequency frequency,
                  Period availability_lag, Currency currency,
                  YoYInflationTermStructure ts=YoYInflationTermStructure()):
-
-        cdef Handle[_its.YoYInflationTermStructure] ts_handle
-        if not ts._thisptr.empty():
-            ts_handle = Handle[_its.YoYInflationTermStructure](
-                static_pointer_cast[_its.YoYInflationTermStructure](ts._thisptr.currentLink()))
 
         cdef string c_family_name = family_name.encode('utf-8')
 
@@ -120,4 +117,4 @@ cdef class YoYInflationIndex(ZeroInflationIndex):
                 c_family_name, deref(region._thisptr), revised,
                 interpolated, ratio, frequency,
                 deref(availability_lag._thisptr),
-                deref(currency._thisptr), ts_handle))
+                deref(currency._thisptr), ts._handle))

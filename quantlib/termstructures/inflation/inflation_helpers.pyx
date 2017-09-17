@@ -34,7 +34,7 @@ cdef class ZeroCouponInflationSwapHelper:
 
     def set_term_structure(self, ZeroInflationTermStructure ts):
         (<_ih.ZeroCouponInflationSwapHelper*>self._thisptr.get()).setTermStructure(
-            <_its.ZeroInflationTermStructure*>ts._get_term_structure())
+            <_its.ZeroInflationTermStructure*>ts._thisptr.get())
 
     @property
     def implied_quote(self):
@@ -62,7 +62,7 @@ cdef class YearOnYearInflationSwapHelper:
 
     def set_term_structure(self, YoYInflationTermStructure ts):
         (<_ih.YearOnYearInflationSwapHelper*>self._thisptr.get()).setTermStructure(
-            <_its.YoYInflationTermStructure*>ts._get_term_structure())
+            <_its.YoYInflationTermStructure*>ts._thisptr.get())
     @property
     def implied_quote(self):
         return self._thisptr.get().impliedQuote()
