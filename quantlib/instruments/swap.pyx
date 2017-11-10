@@ -38,7 +38,7 @@ from quantlib.cashflows.ibor_coupon cimport IborLeg
 
 import datetime
 
-cdef public enum SwapType:
+cpdef public enum SwapType:
     Payer    = _vanillaswap.Payer
     Receiver = _vanillaswap.Receiver
 
