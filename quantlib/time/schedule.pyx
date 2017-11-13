@@ -1,4 +1,4 @@
-from cython.operator cimport dereference as deref
+from cython.operator cimport dereference as deref, preincrement as preinc
 from libcpp cimport bool
 from libcpp.vector cimport vector
 from quantlib.handle cimport optional, make_optional
@@ -6,9 +6,13 @@ from quantlib.handle cimport optional, make_optional
 cimport _schedule
 cimport _date
 cimport _calendar
+cimport cython
+import numpy as np
+cimport numpy as np
+np.import_array()
 from _businessdayconvention cimport Following, BusinessDayConvention
 
-from calendar cimport DateList, Calendar
+from calendar cimport Calendar
 from date cimport date_from_qldate, Date, Period
 
 import warnings
@@ -79,7 +83,7 @@ cdef class Schedule:
         # convert lists to vectors
         cdef vector[_date.Date] _dates = vector[_date.Date]()
         for date in dates:
-            _dates.push_back(deref((<Date>date)._thisptr.get()))
+            _dates.push_back(deref((<Date>date)._thisptr))
 
         cdef Schedule instance = cls.__new__(cls)
         instance._thisptr = new _schedule.Schedule(
@@ -126,9 +130,22 @@ cdef class Schedule:
 
     def dates(self):
         cdef vector[_date.Date] dates = self._thisptr.dates()
-        t = DateList()
-        t._set_dates(dates)
+        cdef list t = []
+        cdef _date.Date d
+        for d in dates:
+            t.append(date_from_qldate(d))
         return t
+
+    @cython.boundscheck(False)
+    def to_npdates(self):
+        cdef np.ndarray[np.int64_t] dates = np.empty(self._thisptr.size(), dtype=np.int64)
+        cdef vector[_date.Date].const_iterator it = self._thisptr.begin()
+        cdef size_t i = 0
+        while it != self._thisptr.end():
+            dates[i] = deref(it).serialNumber() - 25569
+            i += 1
+            preinc(it)
+        return dates.view('M8[D]')
 
     def next_date(self, Date reference_date):
         cdef _date.Date dt = self._thisptr.nextDate(
@@ -150,10 +167,13 @@ cdef class Schedule:
         return date_from_qldate(date)
 
     def __iter__(self):
-        return (d for d in self.dates())
+        cdef vector[_date.Date].const_iterator it = self._thisptr.begin()
+        while it != self._thisptr.end():
+            yield date_from_qldate(deref(it))
+            preinc(it)
 
     def __len__(self):
-        return self.size()
+        return self._thisptr.size()
 
     def __getitem__(self, index):
         cdef size_t i

@@ -59,7 +59,7 @@ class SettingsTestCase(unittest.TestCase):
         coupon_rate = 0.05
         redemption = 100.0
         
-        fixed_bond_schedule = Schedule(
+        fixed_bond_schedule = Schedule.from_rule(
             effective_date,
             termination_date,
             Period(Annual),
@@ -108,7 +108,7 @@ class SettingsTestCase(unittest.TestCase):
         coupon_rate = 0.05
         redemption = 100.0
         
-        fixed_bond_schedule = Schedule(
+        fixed_bond_schedule = Schedule.from_rule(
             effective_date,
             termination_date,
             Period(Annual),

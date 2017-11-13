@@ -113,7 +113,7 @@ def make_eurobond_helper(
 
     # Create schedule based on market and bond parameters.
     index = market._floating_rate_index
-    schedule = Schedule(
+    schedule = Schedule.from_rule(
         issue_date,
         maturity,
         Period(tenor),
@@ -369,12 +369,12 @@ class IborMarket(FixedIncomeMarket):
         maturity = calendar.advance(settlement_date, length, Years,
                                     convention=floating_convention)
 
-        fixed_schedule = Schedule(settlement_date, maturity,
+        fixed_schedule = Schedule.from_rule(settlement_date, maturity,
                                   fixed_frequency, calendar,
                                   fixed_convention, fixed_convention,
                                   Forward, False)
 
-        float_schedule = Schedule(settlement_date, maturity,
+        float_schedule = Schedule.from_rule(settlement_date, maturity,
                                   floating_frequency,
                                   calendar, floating_convention,
                                   floating_convention,

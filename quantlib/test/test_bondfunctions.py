@@ -79,7 +79,7 @@ class BondFunctionTestCase(unittest.TestCase):
 
 
 	#Rate
-        fixed_bond_schedule = Schedule(
+        fixed_bond_schedule = Schedule.from_rule(
             issue_date,
             maturity_date,
             Period(Semiannual),

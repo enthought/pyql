@@ -1,10 +1,10 @@
 include '../types.pxi'
 
 from libcpp cimport bool
+from libcpp.vector cimport vector
 from cython.operator cimport dereference as deref
 from quantlib.time.date cimport Date, date_from_qldate
 cimport quantlib.time._date as _date
-from quantlib.time.calendar cimport DateList
 from quantlib.time.daycounter cimport DayCounter
 cimport quantlib.time._daycounter as _daycounter
 
@@ -35,8 +35,11 @@ cdef class DefaultProbabilityTermStructure: #not inheriting from TermStructure a
 
     @property
     def jump_dates(self):
-        cdef DateList l = DateList.__new__(DateList)
-        l._set_dates(self._thisptr.get().jumpDates())
+        cdef _date.Date d
+        cdef list l = []
+        cdef vector[_date.Date] jd = self._thisptr.get().jumpDates()
+        for d in jd:
+            l.append(date_from_qldate(d))
         return l
 
     def time_from_reference(self, Date d):
