@@ -1,7 +1,7 @@
 from .unittest_tools import unittest
 
 from quantlib.currency.api import USDCurrency
-from quantlib.instruments.swap import VanillaSwap, Payer
+from quantlib.instruments.swap import VanillaSwap, Payer, Receiver
 from quantlib.indexes.libor import Libor
 from quantlib.market.market import libor_market
 from quantlib.pricingengines.swap import DiscountingSwapEngine
@@ -26,7 +26,6 @@ class TestQuantLibSwap(unittest.TestCase):
         Create from QL objects
         """
 
-        swap_type = Payer
         nominal = 100.0
         fixedConvention = Unadjusted
         floatingConvention = ModifiedFollowing
@@ -70,34 +69,33 @@ class TestQuantLibSwap(unittest.TestCase):
                                  calendar, floatingConvention,
                                  floatingConvention,
                                  Forward, False)
-
-        swap = VanillaSwap(swap_type, nominal, fixedSchedule, fixedRate,
-                           fixedDayCount,
-                           floatSchedule, index, floatingSpread,
-                           floatDayCount, fixedConvention)
-
         engine = DiscountingSwapEngine(termStructure,
                                        False,
                                        settlement_date, settlement_date)
-        swap.set_pricing_engine(engine)
+        for swap_type in [Payer, Receiver]:
+            swap = VanillaSwap(swap_type, nominal, fixedSchedule, fixedRate,
+                    fixedDayCount,
+                    floatSchedule, index, floatingSpread,
+                    floatDayCount, fixedConvention)
+            swap.set_pricing_engine(engine)
 
-        fixed_leg = swap.fixed_leg
-        floating_leg = swap.floating_leg
+            fixed_leg = swap.fixed_leg
+            floating_leg = swap.floating_leg
 
-        f = swap.fair_rate
-        print('fair rate: %f' % f)
-        p = swap.net_present_value
-        print('NPV: %f' % p)
+            f = swap.fair_rate
+            print('fair rate: %f' % f)
+            p = swap.net_present_value
+            print('NPV: %f' % p)
 
-        swap = VanillaSwap(swap_type, nominal, fixedSchedule, f,
-                           fixedDayCount,
-                           floatSchedule, index, floatingSpread,
-                           floatDayCount, fixedConvention)
-        swap.set_pricing_engine(engine)
+            swap = VanillaSwap(swap_type, nominal, fixedSchedule, f,
+                               fixedDayCount,
+                               floatSchedule, index, floatingSpread,
+                               floatDayCount, fixedConvention)
+            swap.set_pricing_engine(engine)
 
-        p = swap.net_present_value
-        print('NPV: %f' % p)
-        self.assertAlmostEqual(p, 0)
+            p = swap.net_present_value
+            print('NPV: %f' % p)
+            self.assertAlmostEqual(p, 0)
 
     def test_swap_from_market(self):
         """

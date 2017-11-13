@@ -24,9 +24,9 @@ from quantlib.indexes._ibor_index cimport IborIndex
 
 cdef extern from 'ql/instruments/vanillaswap.hpp' namespace 'QuantLib::VanillaSwap':
 
-    cdef enum Type:
-        Receiver = -1
-        Payer = 1
+    ctypedef enum Type:
+        Receiver
+        Payer
 
 cdef extern from 'ql/instruments/vanillaswap.hpp' namespace 'QuantLib':
     cdef cppclass VanillaSwap(Swap):

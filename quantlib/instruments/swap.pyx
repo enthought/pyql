@@ -38,7 +38,7 @@ from quantlib.cashflows.ibor_coupon cimport IborLeg
 
 import datetime
 
-cdef public enum SwapType:
+cpdef public enum SwapType:
     Payer    = _vanillaswap.Payer
     Receiver = _vanillaswap.Receiver
 
@@ -143,10 +143,10 @@ cdef class VanillaSwap(Swap):
                      IborIndex ibor_index,
                      Spread spread,
                      DayCounter floating_daycount,
-                     payment_convention=None):
+                     int payment_convention=-1):
         cdef optional[BusinessDayConvention] opt_payment_convention = \
         make_optional[BusinessDayConvention](
-            payment_convention is not None,
+                payment_convention > 0,
             <BusinessDayConvention>payment_convention)
 
         self._thisptr = new shared_ptr[_instrument.Instrument](
