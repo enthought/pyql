@@ -92,7 +92,7 @@ cdef class Schedule:
             business_day_convention,
             optional[BusinessDayConvention](
                 termination_date_convention),
-            make_optional[_calendar.Period](tenor is not None, deref(tenor._thisptr)),
+            make_optional[_calendar.Period](tenor is not None, <_calendar.Period>deref(tenor._thisptr)),
             optional[_schedule.Rule](<_schedule.Rule>date_generation_rule),
             optional[bool](end_of_month),
             is_regular

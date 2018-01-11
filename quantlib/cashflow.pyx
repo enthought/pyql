@@ -52,9 +52,9 @@ cdef class CashFlow:
     def has_occured(self, Date ref_date, include_ref_date=None):
         cdef _cf.CashFlow* cf = self._thisptr.get()
         if cf:
-            return cf.hasOccurred(deref(ref_date._thisptr.get()),
+            return cf.hasOccurred(deref(ref_date._thisptr),
                                   make_optional[bool](include_ref_date is not None,
-                                                                   include_ref_date))
+                                                      <bool>include_ref_date))
 
 cdef class SimpleCashFlow(CashFlow):
 

@@ -37,5 +37,5 @@ cdef class MidPointCdsEngine(PricingEngine):
             new _credit.MidPointCdsEngine(handle, recovery_rate, discount_curve._thisptr,
                                           make_optional[bool](
                                               include_settlement_date_flows is not None,
-                                              include_settlement_date_flows))
+                                              <bool>include_settlement_date_flows))
         )
