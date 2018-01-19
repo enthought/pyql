@@ -20,7 +20,7 @@ cimport quantlib.pricingengines._pricing_engine as _pe
 cimport quantlib.time._calendar as _calendar
 
 from quantlib.instruments.instrument cimport Instrument
-from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
@@ -279,18 +279,18 @@ cdef class CreditDefaultSwap(Instrument):
         return  _get_cds(self).accrualRebateNPV()
 
     def conventional_spread(self, Real recovery, YieldTermStructure yts not None,
-                            bool use_isda_engine = True):
+                            _cds.PricingModel model=_cds.Midpoint):
 
         cdef DayCounter dc = Actual365Fixed()
         return _get_cds(self).conventionalSpread(recovery,
                                                  yts._thisptr,
                                                  deref(dc._thisptr),
-                                                 use_isda_engine)
+                                                 model)
 
     def implied_hazard_rate(self, Real target_npv, YieldTermStructure yts not None,
-                            Real recovery_rate = 0.4,
-                            Real accuracy = 1e-8,
-                            bool use_isda_engine = True):
+                            Real recovery_rate=0.4,
+                            Real accuracy=1e-8,
+                            _cds.PricingModel model=_cds.Midpoint):
 
         cdef DayCounter dc = Actual365Fixed()
         return _get_cds(self).impliedHazardRate(target_npv,
@@ -298,4 +298,4 @@ cdef class CreditDefaultSwap(Instrument):
                                                 deref(dc._thisptr),
                                                 recovery_rate,
                                                 accuracy,
-                                                use_isda_engine)
+                                                model)

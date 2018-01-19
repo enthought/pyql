@@ -15,6 +15,10 @@ cdef extern from 'ql/default.hpp' namespace 'QuantLib::Protection':
     enum Side:
         Buyer
         Seller
+cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib::CreditDefaultSwap':
+    enum PricingModel:
+        Midpoint
+        ISDA
 
 cdef extern from 'ql/instruments/claim.hpp' namespace 'QuantLib':
 
@@ -82,5 +86,5 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                                const DayCounter dayCounter,
                                Real recoveryRate, # = 0.4,
                                Real accuracy, # = 1.0e-8
-                               bool useIsdaEngine # = false
+                               PricingModel model # = Midpoint
         ) except +

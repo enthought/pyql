@@ -11,7 +11,7 @@ cimport _isda_cds_engine as _ice
 cimport quantlib.termstructures._default_term_structure as _dts
 cimport quantlib.termstructures._yield_term_structure as _yts
 from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
-from quantlib.termstructures.yields.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.termstructures.yields.rate_helpers cimport RateHelper
 from quantlib.termstructures.credit.default_probability_helpers cimport CdsHelper
 
@@ -63,7 +63,7 @@ cdef class IsdaCdsEngine(PricingEngine):
                     <shared_ptr[_ice.DefaultProbabilityHelper]>
                         deref((<CdsHelper?>cds_helper)._thisptr))
             for rate_helper in discount_curve:
-                rate_helpers.push_back(deref((<RateHelper?>rate_helper)._thisptr))
+                rate_helpers.push_back((<RateHelper?>rate_helper)._thisptr)
             self._thisptr = new shared_ptr[_pe.PricingEngine](
                 new _ice.IsdaCdsEngine(cds_helpers, recovery_rate, rate_helpers,
                                        settlement_flows, numerical_fix,
