@@ -47,7 +47,7 @@ cdef class SwaptionHelper(CalibrationHelper):
         cdef Handle[_qt.Quote] volatility_handle = \
                 Handle[_qt.Quote](volatility._thisptr)
 
-        self._thisptr = new shared_ptr[_ch.CalibrationHelper](
+        self._thisptr = shared_ptr[_ch.CalibrationHelper](
             new _sh.SwaptionHelper(
                 deref(maturity._thisptr),
                 deref(length._thisptr),

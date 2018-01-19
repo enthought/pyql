@@ -23,18 +23,10 @@ cdef class Vasicek(OneFactorAffineModel):
     Vasicek model defined by
     .. math::
     dr_t = a(b - r_t)dt + \sigma dW_t
-    
+
     where a, b and sigma are constants.
     A risk premium lambda can also be specified.
     """
-    
-    def __cinit__(self):
-        pass
-
-    def __dealloc(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-            self._thisptr = NULL
 
     def __init__(self,
        Rate r0,
@@ -43,7 +35,7 @@ cdef class Vasicek(OneFactorAffineModel):
        Real sigma=0,
        Real Lambda=0):
 
-        self._thisptr = new shared_ptr[_mo.CalibratedModel](
+        self._thisptr = shared_ptr[_mo.CalibratedModel](
             new _va.Vasicek(
                 r0, a, b, sigma, Lambda
 		)

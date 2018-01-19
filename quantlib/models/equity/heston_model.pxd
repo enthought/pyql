@@ -14,10 +14,7 @@ from quantlib.models.calibration_helper cimport CalibrationHelper
 
 
 cdef class HestonModelHelper(CalibrationHelper):
-
     pass
 
 cdef class HestonModel:
-
-    cdef shared_ptr[_hm.HestonModel]* _thisptr
-
+    cdef shared_ptr[_hm.HestonModel] _thisptr

@@ -7,7 +7,7 @@
 
 from cython.operator cimport dereference as deref
 
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
 cimport _pricing_engine as _pe
 cimport quantlib.models.shortrate._onefactor_model as _ofm
 
@@ -27,5 +27,5 @@ cdef class JamshidianSwaptionEngine(PricingEngine):
 
         self._thisptr = new shared_ptr[_pe.PricingEngine](
             new _swaption.JamshidianSwaptionEngine(
-                deref(<shared_ptr[_ofm.OneFactorAffineModel]*> model._thisptr),
+                static_pointer_cast[_ofm.OneFactorAffineModel](model._thisptr),
                 ts._thisptr))

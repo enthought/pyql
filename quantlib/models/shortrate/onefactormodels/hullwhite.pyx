@@ -39,20 +39,12 @@ cdef class HullWhite(Vasicek):
 
     """
 
-    def __cinit__(self):
-        pass
-
-    def __dealloc(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-            self._thisptr = NULL
-
     def __init__(self,
        YieldTermStructure term_structure=YieldTermStructure(),
        Real a=0,
        Real sigma=0):
 
-        self._thisptr = new shared_ptr[_mo.CalibratedModel](
+        self._thisptr = shared_ptr[_mo.CalibratedModel](
             new _hw.HullWhite(
                 term_structure._thisptr,
                 a, sigma
@@ -72,7 +64,7 @@ cdef class HullWhite(Vasicek):
 
         cdef shared_ptr[_ch.CalibrationHelper] chelper
         for helper in helpers:
-            chelper = deref((<CalibrationHelper>helper)._thisptr)
+            chelper = (<CalibrationHelper>helper)._thisptr
             helpers_vector.push_back(chelper)
 
         (<_hw.HullWhite*> self._thisptr.get()).calibrate(

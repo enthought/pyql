@@ -53,7 +53,7 @@ cdef class AnalyticHestonEngine(PricingEngine):
 
         self._thisptr = new shared_ptr[_vanilla.PricingEngine](
             new _vanilla.AnalyticHestonEngine(
-                deref(model._thisptr),
+                model._thisptr,
                 <Size>integration_order
             )
         )
@@ -71,10 +71,10 @@ cdef class AnalyticBSMHullWhiteEngine(PricingEngine):
             new _vanilla.AnalyticBSMHullWhiteEngine(
                 equity_short_rate_correlation,
                 process_ptr,
-                deref(<shared_ptr[_hw.HullWhite]*> hw_model._thisptr)
+                static_pointer_cast[_hw.HullWhite](hw_model._thisptr)
             )
         )
-    
+
 
 cdef class AnalyticHestonHullWhiteEngine(PricingEngine):
 
@@ -84,8 +84,8 @@ cdef class AnalyticHestonHullWhiteEngine(PricingEngine):
 
         self._thisptr = new shared_ptr[_vanilla.PricingEngine](
             new _vanilla.AnalyticHestonHullWhiteEngine(
-                deref(heston_model._thisptr),
-                deref(<shared_ptr[_hw.HullWhite]*> hw_model._thisptr),
+                heston_model._thisptr,
+                static_pointer_cast[_hw.HullWhite](hw_model._thisptr),
                 <Size>integration_order
             )
         )
@@ -97,7 +97,7 @@ cdef class FdHestonHullWhiteVanillaEngine(PricingEngine):
             HullWhiteProcess hw_process,
             Real corr_equity_short_rate,
             Size t_grid,
-            Size x_grid, 
+            Size x_grid,
             Size v_grid,
             Size r_grid,
             Size damping_steps,
@@ -106,11 +106,11 @@ cdef class FdHestonHullWhiteVanillaEngine(PricingEngine):
 
         self._thisptr = new shared_ptr[_vanilla.PricingEngine](
             new _vanilla.FdHestonHullWhiteVanillaEngine(
-                deref(heston_model._thisptr),
+                heston_model._thisptr,
                 static_pointer_cast[_hwp.HullWhiteProcess](hw_process._thisptr),
                 corr_equity_short_rate,
                 t_grid,
-                x_grid, 
+                x_grid,
                 v_grid,
                 r_grid,
                 damping_steps,
@@ -128,7 +128,7 @@ cdef class BatesEngine(AnalyticHestonEngine):
 
         self._thisptr = new shared_ptr[_vanilla.PricingEngine](
             new _vanilla.BatesEngine(
-                deref(<shared_ptr[_bm.BatesModel]*> model._thisptr),
+                static_pointer_cast[_bm.BatesModel](model._thisptr),
                 <Size>integration_order
             )
         )
@@ -139,7 +139,7 @@ cdef class BatesDetJumpEngine(BatesEngine):
 
         self._thisptr = new shared_ptr[_vanilla.PricingEngine](
             new _vanilla.BatesDetJumpEngine(
-                deref(<shared_ptr[_bm.BatesDetJumpModel]*> model._thisptr),
+                static_pointer_cast[_bm.BatesDetJumpModel](model._thisptr),
                 <Size>integration_order))
 
 cdef class BatesDoubleExpEngine(AnalyticHestonEngine):
@@ -148,7 +148,7 @@ cdef class BatesDoubleExpEngine(AnalyticHestonEngine):
 
         self._thisptr = new shared_ptr[_vanilla.PricingEngine](
             new _vanilla.BatesDoubleExpEngine(
-                deref(<shared_ptr[_bm.BatesDoubleExpModel]*> model._thisptr),
+                static_pointer_cast[_bm.BatesDoubleExpModel](model._thisptr),
                 <Size>integration_order))
 
 cdef class BatesDoubleExpDetJumpEngine(BatesDoubleExpEngine):
@@ -157,7 +157,7 @@ cdef class BatesDoubleExpDetJumpEngine(BatesDoubleExpEngine):
 
         self._thisptr = new shared_ptr[_vanilla.PricingEngine](
             new _vanilla.BatesDoubleExpDetJumpEngine(
-                deref(<shared_ptr[_bm.BatesDoubleExpDetJumpModel]*> model._thisptr),
+                static_pointer_cast[_bm.BatesDoubleExpDetJumpModel](model._thisptr),
                 <Size>integration_order))
 
 
@@ -201,5 +201,3 @@ cdef class FDAmericanEngine(PricingEngine):
                 process_ptr, timesteps, gridpoints
             )
         )
-
-
