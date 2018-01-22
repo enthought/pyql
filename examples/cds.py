@@ -7,19 +7,20 @@ Copyright (C) 2012 Enthought Inc.
 """
 from __future__ import print_function
 
-from quantlib.instruments.credit_default_swap import CreditDefaultSwap, SELLER, BUYER
+from quantlib.instruments.api import CreditDefaultSwap, Side, PricingModel
 from quantlib.pricingengines.credit.midpoint_cds_engine import MidPointCdsEngine
 from quantlib.pricingengines.credit.isda_cds_engine import (
     IsdaCdsEngine, NumericalFix, AccrualBias, ForwardsInCouponPeriod )
 from quantlib.settings import Settings
 from quantlib.time.api import (
     Date, May, September, Actual365Fixed, Following, TARGET, Period, Months,
-    Quarterly, Annual, TwentiethIMM, CDS, Years, Schedule, Unadjusted, ModifiedFollowing,
+    Quarterly, Annual, Rule, Years, Schedule, Unadjusted, ModifiedFollowing,
     WeekendsOnly, Actual360, Thirty360
 )
 from quantlib.termstructures.credit.api import (
-        SpreadCdsHelper, PiecewiseDefaultCurve, ProbabilityTrait, Interpolator )
-
+        SpreadCdsHelper, PiecewiseDefaultCurve, ProbabilityTrait, Interpolator,
+        FlatHazardRate )
+from quantlib.termstructures.yields.api import BootstrapTrait
 from quantlib.indexes.euribor import Euribor6M
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.api import (
@@ -59,7 +60,7 @@ def example01():
     for i in range(4):
         helper = SpreadCdsHelper(
             quoted_spreads[i], tenors[i], 0, calendar, Quarterly,
-            Following, TwentiethIMM, Actual365Fixed(), recovery_rate, ts_curve
+            Following, Rule.TwentiethIMM, Actual365Fixed(), recovery_rate, ts_curve
         )
 
         instruments.append(helper)
@@ -96,47 +97,47 @@ def example01():
     #Handle<DefaultProbabilityTermStructure> probability(hazardRateStructure);
     engine = MidPointCdsEngine(hazard_rate_structure, recovery_rate, ts_curve)
 
-    cds_schedule = Schedule(
+    cds_schedule = Schedule.from_rule(
         todays_date, maturities[0], Period(Quarterly), calendar,
         termination_date_convention=Unadjusted,
-        date_generation_rule=TwentiethIMM
+        date_generation_rule=Rule.TwentiethIMM
     )
 
     cds_3m = CreditDefaultSwap(
-        SELLER, nominal, quoted_spreads[0], cds_schedule, Following,
+        Side.Seller, nominal, quoted_spreads[0], cds_schedule, Following,
         Actual365Fixed()
     )
 
-    cds_schedule = Schedule(
+    cds_schedule = Schedule.from_rule(
         todays_date, maturities[1], Period(Quarterly), calendar,
         termination_date_convention=Unadjusted,
-        date_generation_rule=TwentiethIMM
+        date_generation_rule=Rule.TwentiethIMM
     )
 
     cds_6m = CreditDefaultSwap(
-        SELLER, nominal, quoted_spreads[1], cds_schedule, Following,
+        Side.Seller, nominal, quoted_spreads[1], cds_schedule, Following,
         Actual365Fixed()
     )
 
-    cds_schedule = Schedule(
+    cds_schedule = Schedule.from_rule(
         todays_date, maturities[2], Period(Quarterly), calendar,
         termination_date_convention=Unadjusted,
-        date_generation_rule=TwentiethIMM
+        date_generation_rule=Rule.TwentiethIMM
     )
 
     cds_1y = CreditDefaultSwap(
-        SELLER, nominal, quoted_spreads[2], cds_schedule, Following,
+        Side.Seller, nominal, quoted_spreads[2], cds_schedule, Following,
         Actual365Fixed()
     )
 
-    cds_schedule = Schedule(
+    cds_schedule = Schedule.from_rule(
         todays_date, maturities[3], Period(Quarterly), calendar,
         termination_date_convention=Unadjusted,
-        date_generation_rule=TwentiethIMM
+        date_generation_rule=Rule.TwentiethIMM
     )
 
     cds_2y = CreditDefaultSwap(
-        SELLER, nominal, quoted_spreads[3], cds_schedule, Following,
+        Side.Seller, nominal, quoted_spreads[3], cds_schedule, Following,
         Actual365Fixed()
     )
 
@@ -177,7 +178,7 @@ def example02():
     cds_schedule =  Schedule(todays_date, term_date, Period(Quarterly),
                              WeekendsOnly(), ModifiedFollowing,
                              ModifiedFollowing,
-                             date_generation_rule=CDS)
+                             date_generation_rule=Rule.CDS)
     for date in cds_schedule:
         print(date)
     print()
@@ -196,7 +197,8 @@ def example02():
                                        Thirty360(), Euribor6M(), SimpleQuote(0))
              for q, t in zip(quotes, tenors)]
     helpers = deps + swaps
-    YC = PiecewiseYieldCurve("discount", "loglinear", todays_date, helpers, Actual365Fixed())
+    YC = PiecewiseYieldCurve.from_reference_date(BootstrapTrait.Discount, Interpolator.LogLinear,
+            todays_date, helpers, Actual365Fixed())
     YC.extrapolation = True
     print("ISDA rate curve:")
     for h in helpers:
@@ -204,10 +206,10 @@ def example02():
                                              YC.zero_rate(h.latest_date, Actual365Fixed(), 2).rate,
                                              YC.discount(h.latest_date)))
     defaultTs0 = FlatHazardRate(0, WeekendsOnly(), 0.016739207493630, Actual365Fixed())
-    cds_schedule = Schedule(Date(22, 9, 2014), Date(20, 12, 2019), Period(3, Months),
-                            WeekendsOnly(), Following, Unadjusted, CDS, False)
+    cds_schedule = Schedule.from_rule(Date(22, 9, 2014), Date(20, 12, 2019), Period(3, Months),
+                            WeekendsOnly(), Following, Unadjusted, Rule.CDS, False)
     nominal = 100000000
-    trade = CreditDefaultSwap(BUYER, nominal, 0.01, cds_schedule, Following,
+    trade = CreditDefaultSwap(Side.Buyer, nominal, 0.01, cds_schedule, Following,
                             Actual360(), True, True, Date(22, 10, 2014), Actual360(True), True)
     print(trade.coupons_as_fixedratecoupons)
     engine = IsdaCdsEngine(defaultTs0, 0.4, YC, False)
@@ -235,16 +237,14 @@ def example03():
     spreads = [0.007927, 0.012239, 0.016979, 0.019271, 0.020860]
     tenors = [1, 3, 5, 7, 10]
     spread_helpers = [SpreadCdsHelper(0.007927, Period(6, Months), 1,
-                                      WeekendsOnly(), Quarterly, Following, CDS,
+                                      WeekendsOnly(), Quarterly, Following, Rule.CDS2015,
                                       Actual360(), 0.4, empty_yts, True, True,
-                                      Actual360(True), True, True)] + \
-        [SpreadCdsHelper(s, Period(t, Years), 1, WeekendsOnly(), Quarterly, Following, CDS,
-                         Actual360(), 0.4, empty_yts, True, True, Actual360(True), True, True)
+                                      Date(), Actual360(True), True, PricingModel.ISDA)] + \
+        [SpreadCdsHelper(s, Period(t, Years), 1, WeekendsOnly(), Quarterly, Following, Rule.CDS2015,
+                         Actual360(), 0.4, empty_yts, True, True, Date(), Actual360(True), True,
+                         PricingModel.ISDA)
          for s, t in zip(spreads, tenors)]
 
-    for sh in spread_helpers:
-        sh.set_isda_engine_parameters(NumericalFix.Taylor, AccrualBias.NoBias,
-                                      ForwardsInCouponPeriod.Piecewise)
     isda_pricer = IsdaCdsEngine(spread_helpers, 0.4, yield_helpers)
     isda_yts = isda_pricer.isda_rate_curve
     isda_cts = isda_pricer.isda_credit_curve
