@@ -25,7 +25,7 @@ cdef class BondHelper(RateHelper):
 
         # Create quote handle.
         cdef Handle[_qt.Quote] price_handle = Handle[_qt.Quote](
-            deref(clean_price._thisptr)
+            clean_price._thisptr
         )
 
         self._thisptr = shared_ptr[_bh.RateHelper](
@@ -45,7 +45,7 @@ cdef class FixedRateBondHelper(BondHelper):
 
         # Create handles.
         cdef Handle[_qt.Quote] price_handle = \
-                Handle[_qt.Quote](deref(clean_price._thisptr))
+                Handle[_qt.Quote](clean_price._thisptr)
 
         self._thisptr = shared_ptr[_bh.RateHelper](
             new _bh.FixedRateBondHelper(
@@ -57,5 +57,5 @@ cdef class FixedRateBondHelper(BondHelper):
                 deref(day_counter._thisptr),
                 <_calendar.BusinessDayConvention> payment_conv,
                 redemption,
-                deref(issue_date._thisptr.get())
+                deref(issue_date._thisptr)
             ))

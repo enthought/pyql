@@ -42,7 +42,7 @@ cdef class ImpliedVolatilityHelper:
         return _iv.IVH_calculate(
             deref(instrument._thisptr.get()),
             deref(engine._thisptr.get()),
-            deref((<shared_ptr[_qt.SimpleQuote]*> volatility._thisptr).get()),
+            deref(<_qt.SimpleQuote*>volatility._thisptr.get()),
             target_value,
             accuracy,
             max_evaluations,
@@ -59,7 +59,7 @@ cdef class ImpliedVolatilityHelper:
           SimpleQuote quote):
     
         cdef shared_ptr[_qt.SimpleQuote] quote_ptr = \
-                static_pointer_cast[_qt.SimpleQuote](deref(quote._thisptr))
+                static_pointer_cast[_qt.SimpleQuote](quote._thisptr)
 
         res = GeneralizedBlackScholesProcess()
         cdef shared_ptr[_sp.StochasticProcess] sp_ptr

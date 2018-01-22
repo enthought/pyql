@@ -72,7 +72,7 @@ cdef class DepositRateHelper(RelativeDateRateHelper):
                 )
             elif isinstance(rate, SimpleQuote):
                 self._thisptr = shared_ptr[_rh.RateHelper](
-                    new _rh.DepositRateHelper(Handle[_qt.Quote](deref((<SimpleQuote>rate)._thisptr)),
+                    new _rh.DepositRateHelper(Handle[_qt.Quote]((<SimpleQuote>rate)._thisptr),
                                               static_pointer_cast[_ib.IborIndex](index._thisptr)
                     )
                 )
@@ -97,7 +97,7 @@ cdef class DepositRateHelper(RelativeDateRateHelper):
             elif isinstance(rate, SimpleQuote):
                 self._thisptr = shared_ptr[_rh.RateHelper](
                     new _rh.DepositRateHelper(
-                        Handle[_qt.Quote](deref((<SimpleQuote>rate)._thisptr)),
+                        Handle[_qt.Quote]((<SimpleQuote>rate)._thisptr),
                         deref(tenor._thisptr),
                         <int>fixing_days,
                         deref(calendar._thisptr),
@@ -128,11 +128,14 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
     def from_tenor(cls, rate, Period tenor,
         Calendar calendar, Frequency fixedFrequency,
         BusinessDayConvention fixedConvention, DayCounter fixedDayCount,
-        IborIndex iborIndex, Quote spread=SimpleQuote(0),
+        IborIndex iborIndex, Quote spread=SimpleQuote(),
         Period fwdStart=Period(0, Days)):
 
-        cdef Handle[_qt.Quote] spread_handle = \
-            Handle[_qt.Quote](deref((<SimpleQuote>spread)._thisptr))
+        cdef Handle[_qt.Quote] spread_handle
+        if spread._thisptr.get().isValid():
+            spread_handle = Handle[_qt.Quote](spread._thisptr)
+        else:
+            spread_handle = Handle[_qt.Quote]()
 
         cdef SwapRateHelper instance = cls(from_classmethod=True)
 
@@ -150,7 +153,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
             )
         elif isinstance(rate, SimpleQuote):
             instance._thisptr.reset(new _rh.SwapRateHelper(
-                Handle[_qt.Quote](deref((<SimpleQuote>rate)._thisptr)),
+                Handle[_qt.Quote]((<SimpleQuote>rate)._thisptr),
                 deref(tenor._thisptr),
                 deref(calendar._thisptr),
                 <Frequency> fixedFrequency,
@@ -168,8 +171,11 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
     @classmethod
     def from_index(cls, rate, SwapIndex index not None, SimpleQuote spread=SimpleQuote(),
                    Period fwdStart=Period(0, Days)):
-        cdef Handle[_qt.Quote] spread_handle = \
-            Handle[_qt.Quote](deref(spread._thisptr))
+        cdef Handle[_qt.Quote] spread_handle
+        if spread._thisptr.get().isValid():
+            spread_handle = Handle[_qt.Quote](spread._thisptr)
+        else:
+            spread_handle = Handle[_qt.Quote]()
         cdef Handle[_qt.Quote] rate_handle
         cdef SwapRateHelper instance = cls.__new__(cls)
 
@@ -182,7 +188,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                 )
             )
         elif isinstance(rate, SimpleQuote):
-            rate_handle = Handle[_qt.Quote](deref((<SimpleQuote>rate)._thisptr))
+            rate_handle = Handle[_qt.Quote]((<SimpleQuote>rate)._thisptr)
             instance._thisptr.reset(new _rh.SwapRateHelper(
                 rate_handle,
                 static_pointer_cast[_si.SwapIndex](index._thisptr),
@@ -234,7 +240,7 @@ cdef class FraRateHelper(RelativeDateRateHelper):
         elif isinstance(rate, SimpleQuote):
             self._thisptr = shared_ptr[_rh.RateHelper](
                 new _rh.FraRateHelper(
-                    Handle[_qt.Quote](deref((<SimpleQuote>rate)._thisptr)),
+                    Handle[_qt.Quote]((<SimpleQuote>rate)._thisptr),
                     months_to_start,
                     months_to_end,
                     fixing_days,
@@ -272,7 +278,7 @@ cdef class FuturesRateHelper(RateHelper):
         elif isinstance(price, SimpleQuote):
             self._thisptr = shared_ptr[_rh.RateHelper](
                 new _rh.FuturesRateHelper(
-                    Handle[_qt.Quote](deref((<SimpleQuote>price)._thisptr)),
+                    Handle[_qt.Quote]((<SimpleQuote>price)._thisptr),
                     deref(imm_date._thisptr),
                     length_in_months,
                     deref(calendar._thisptr),
