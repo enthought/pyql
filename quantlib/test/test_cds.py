@@ -7,7 +7,7 @@ from quantlib.termstructures.credit.api import FlatHazardRate
 from quantlib.pricingengines.credit.api import MidPointCdsEngine
 from quantlib.instruments.api import CreditDefaultSwap, Side
 from quantlib.time.api import ( TARGET, today, Years, Schedule,
-    Following, Quarterly, TwentiethIMM, Actual360, Period )
+    Following, Quarterly, Rule, Actual360, Period )
 import math
 
 
@@ -25,7 +25,7 @@ class CreditDefaultSwapTest(unittest.TestCase):
     maturity = calendar.advance(issue_date, 10, Years)
     convention = Following
     schedule = Schedule(issue_date, maturity, Period("3M"), calendar, convention,
-                            convention, TwentiethIMM)
+                            convention, Rule.TwentiethIMM)
     recovery_rate = 0.4
     engine = MidPointCdsEngine(probability_curve, recovery_rate, discount_curve, True)
 

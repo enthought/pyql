@@ -157,7 +157,7 @@ def dividendOption():
                 Swap_fixedLegTenor, Swap_fixedLegConvention, Swap_fixedLegDayCounter,
                 Swap_iborIndex)
         # Initialize rate helper __ the SwapRateHelper links the swap index width his rate
-        instruments.append(SwapRateHelper.from_index(rate,swapIndex))
+        instruments.append(SwapRateHelper.from_index(rate, swapIndex))
     
     # ++++++++++++++++++  Now the creation of the yield curve
 
@@ -177,7 +177,7 @@ def dividendOption():
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     
     Option_name = "IBM Option"
-    maturity = Date(26, Jan,2013)
+    maturity = Date(26, Jan, 2013)
     strike = 190
     option_type = 'call'
 
