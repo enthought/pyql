@@ -1,7 +1,7 @@
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from libcpp.vector cimport vector
-from quantlib.handle cimport shared_ptr, Handle, optional, make_optional    
+from quantlib.handle cimport shared_ptr, Handle, optional, make_optional
 
 from quantlib.pricingengines.engine cimport PricingEngine
 
@@ -29,48 +29,33 @@ cpdef enum ForwardsInCouponPeriod:
 
 cdef class IsdaCdsEngine(PricingEngine):
 
-    def __init__(self, ts, double recovery_rate, discount_curve,
+    def __init__(self, DefaultProbabilityTermStructure ts not None,
+                 double recovery_rate,
+                 YieldTermStructure discount_curve not None,
                  bool include_settlement_date_flows=None,
-                 _ice.NumericalFix numerical_fix=NumericalFix.Taylor,
-                 _ice.AccrualBias accrual_bias=AccrualBias.HalfDayBias,
-                 _ice.ForwardsInCouponPeriod forwards_in_coupon_period=ForwardsInCouponPeriod.Piecewise):
+                 NumericalFix numerical_fix=NumericalFix.Taylor,
+                 AccrualBias accrual_bias=AccrualBias.HalfDayBias,
+                 ForwardsInCouponPeriod forwards_in_coupon_period=ForwardsInCouponPeriod.Piecewise):
         """
-        First argument should be a DefaultProbabilityTermStructure.
-
+        constructor where client code is responsible for providing a default curve
+        and an interest curve compliant with the ISDA specifications.
         """
 
         cdef optional[bool] settlement_flows = make_optional[bool](
                 include_settlement_date_flows is not None,
-                include_settlement_date_flows)
-        cdef Handle[_dts.DefaultProbabilityTermStructure] handle
-        cdef vector[shared_ptr[_ice.DefaultProbabilityHelper]] cds_helpers
-        cdef vector[shared_ptr[_ice.RateHelper]] rate_helpers
+                <bool>include_settlement_date_flows)
 
-        if isinstance(ts, DefaultProbabilityTermStructure) and \
-           isinstance(discount_curve, YieldTermStructure):
-            handle = Handle[_dts.DefaultProbabilityTermStructure](
-                (<DefaultProbabilityTermStructure>ts)._thisptr)
+        cdef Handle[_dts.DefaultProbabilityTermStructure] handle = \
+            Handle[_dts.DefaultProbabilityTermStructure](ts._thisptr)
 
-            self._thisptr = new shared_ptr[_pe.PricingEngine](
-                new _ice.IsdaCdsEngine(handle, recovery_rate,
-                                       (<YieldTermStructure>discount_curve)._thisptr,
-                                       settlement_flows, numerical_fix,
-                                       accrual_bias, forwards_in_coupon_period)
-            )
-        elif isinstance(ts, list) and isinstance(discount_curve, list):
-            for cds_helper in ts:
-                cds_helpers.push_back(
-                    <shared_ptr[_ice.DefaultProbabilityHelper]>
-                        deref((<CdsHelper?>cds_helper)._thisptr))
-            for rate_helper in discount_curve:
-                rate_helpers.push_back((<RateHelper?>rate_helper)._thisptr)
-            self._thisptr = new shared_ptr[_pe.PricingEngine](
-                new _ice.IsdaCdsEngine(cds_helpers, recovery_rate, rate_helpers,
-                                       settlement_flows, numerical_fix,
-                                       accrual_bias, forwards_in_coupon_period))
-
-        else:
-            raise ValueError('ts and discount_curve need to be both a list of helpers or a TermStructure')
+        self._thisptr = new shared_ptr[_pe.PricingEngine](
+            new _ice.IsdaCdsEngine(handle, recovery_rate,
+                                   discount_curve._thisptr,
+                                   settlement_flows,
+                                   <_ice.NumericalFix>numerical_fix,
+                                   <_ice.AccrualBias>accrual_bias,
+                                   <_ice.ForwardsInCouponPeriod>forwards_in_coupon_period)
+        )
 
     cdef _ice.IsdaCdsEngine* _get_cds_engine(self):
         cdef _ice.IsdaCdsEngine* ref = <_ice.IsdaCdsEngine*>(self._thisptr.get())

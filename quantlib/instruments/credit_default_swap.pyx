@@ -25,7 +25,7 @@ from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.daycounters.simple cimport Actual360, Actual365Fixed
-
+from quantlib.time._businessdayconvention cimport BusinessDayConvention
 
 from quantlib.time.schedule cimport Schedule
 cimport quantlib.cashflow as cashflow
@@ -33,16 +33,19 @@ from quantlib.time.date cimport _pydate_from_qldate
 
 cimport quantlib.cashflows._fixed_rate_coupon as _frc
 
-BUYER = _cds.Buyer
-SELLER = _cds.Seller
+cpdef public enum Side:
+    Buyer = _cds.Buyer
+    Seller = _cds.Seller
 
-cdef _cds.CreditDefaultSwap* _get_cds(CreditDefaultSwap cds):
+cpdef public enum PricingModel:
+    Midpoint = _cds.Midpoint
+    ISDA = _cds.ISDA
+
+cdef inline _cds.CreditDefaultSwap* _get_cds(CreditDefaultSwap cds):
     """ Utility function to extract a properly casted Bond pointer out of the
     internal _thisptr attribute of the Instrument base class. """
 
-    cdef _cds.CreditDefaultSwap* ref = <_cds.CreditDefaultSwap*>cds._thisptr.get()
-
-    return ref
+    return <_cds.CreditDefaultSwap*>cds._thisptr.get()
 
 cdef class CreditDefaultSwap(Instrument):
     """Credit default swap as running-spread only
@@ -100,30 +103,30 @@ cdef class CreditDefaultSwap(Instrument):
 
     """
 
-    def __init__(self, int side, double notional, double spread,
-                 Schedule schedule not None, int payment_convention,
+    def __init__(self, Side side, double notional, double spread,
+                 Schedule schedule not None, BusinessDayConvention payment_convention,
                  DayCounter day_counter not None, bool settles_accrual=True,
                  bool pays_at_default_time=True,
                  Date protection_start=Date(),
                  DayCounter last_period_day_counter = Actual360(True),
-                 bool rebates_accrual = True):
+                 bool rebates_accrual=True):
         """Credit default swap as running-spread only
         """
 
         self._thisptr = new shared_ptr[_instrument.Instrument](
             new _cds.CreditDefaultSwap(
-                <_cds.Side>side, notional, spread, deref(schedule._thisptr),
-                <_calendar.BusinessDayConvention>payment_convention,
+                side, notional, spread, deref(schedule._thisptr),
+                payment_convention,
                 deref(day_counter._thisptr), settles_accrual, pays_at_default_time,
-                deref(protection_start._thisptr.get()),
+                deref(protection_start._thisptr),
                 shared_ptr[_cds.Claim](),
                 deref(last_period_day_counter._thisptr),
                 rebates_accrual)
         )
 
     @classmethod
-    def from_upfront(cls, int side, double notional, double upfront, double spread,
-                     Schedule schedule not None, int payment_convention,
+    def from_upfront(cls, Side side, double notional, double upfront, double spread,
+                     Schedule schedule not None, BusinessDayConvention payment_convention,
                      DayCounter day_counter not None, bool settles_accrual=True,
                      bool pays_at_default_time=True, Date protection_start=Date(),
                      Date upfront_date=Date(),
@@ -168,11 +171,11 @@ cdef class CreditDefaultSwap(Instrument):
         cdef CreditDefaultSwap instance = cls.__new__(cls)
         instance._thisptr = new shared_ptr[_instrument.Instrument](
             new _cds.CreditDefaultSwap(
-                <_cds.Side>side, notional, upfront, spread, deref(schedule._thisptr),
-                <_calendar.BusinessDayConvention>payment_convention,
+                side, notional, upfront, spread, deref(schedule._thisptr),
+                payment_convention,
                 deref(day_counter._thisptr), settles_accrual, pays_at_default_time,
-                deref(protection_start._thisptr.get()),
-                deref(upfront_date._thisptr.get()),
+                deref(protection_start._thisptr),
+                deref(upfront_date._thisptr),
                 shared_ptr[_cds.Claim](),
                 deref(last_period_day_counter._thisptr),
                 rebates_accrual)
@@ -279,18 +282,18 @@ cdef class CreditDefaultSwap(Instrument):
         return  _get_cds(self).accrualRebateNPV()
 
     def conventional_spread(self, Real recovery, YieldTermStructure yts not None,
-                            _cds.PricingModel model=_cds.Midpoint):
+                            PricingModel model=Midpoint):
 
         cdef DayCounter dc = Actual365Fixed()
         return _get_cds(self).conventionalSpread(recovery,
                                                  yts._thisptr,
                                                  deref(dc._thisptr),
-                                                 model)
+                                                 <_cds.PricingModel>model)
 
     def implied_hazard_rate(self, Real target_npv, YieldTermStructure yts not None,
                             Real recovery_rate=0.4,
                             Real accuracy=1e-8,
-                            _cds.PricingModel model=_cds.Midpoint):
+                            PricingModel model=Midpoint):
 
         cdef DayCounter dc = Actual365Fixed()
         return _get_cds(self).impliedHazardRate(target_npv,
@@ -298,4 +301,4 @@ cdef class CreditDefaultSwap(Instrument):
                                                 deref(dc._thisptr),
                                                 recovery_rate,
                                                 accuracy,
-                                                model)
+                                                <_cds.PricingModel>model)

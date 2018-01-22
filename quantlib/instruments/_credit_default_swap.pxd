@@ -11,10 +11,10 @@ from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._schedule cimport Schedule
 
 cdef extern from 'ql/default.hpp' namespace 'QuantLib::Protection':
-
     enum Side:
         Buyer
         Seller
+
 cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib::CreditDefaultSwap':
     enum PricingModel:
         Midpoint

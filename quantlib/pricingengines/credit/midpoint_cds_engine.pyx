@@ -15,7 +15,6 @@ cimport _midpoint_cds_engine as _mce
 from quantlib.pricingengines.engine cimport PricingEngine
 
 cimport quantlib.termstructures._default_term_structure as _dts
-cimport quantlib.termstructures._yield_term_structure as _yts
 from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 
@@ -39,5 +38,5 @@ cdef class MidPointCdsEngine(PricingEngine):
             new _mce.MidPointCdsEngine(handle, recovery_rate, discount_curve._thisptr,
                                        make_optional[bool](
                                            include_settlement_date_flows is not None,
-                                           include_settlement_date_flows))
+                                           <bool>include_settlement_date_flows))
         )

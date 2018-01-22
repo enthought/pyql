@@ -23,7 +23,7 @@ from quantlib.time._schedule cimport Rule
 from quantlib.termstructures._default_term_structure cimport DefaultProbabilityTermStructure
 from quantlib.termstructures._helpers cimport BootstrapHelper, \
                                               RelativeDateBootstrapHelper
-from quantlib.instruments._credit_default_swap cimport CreditDefaultSwap
+from quantlib.instruments._credit_default_swap cimport CreditDefaultSwap, PricingModel
 
 cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namespace 'QuantLib':
 
@@ -44,9 +44,10 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                   Handle[YieldTermStructure]& discountCurve,
                   bool settlesAccrual, # removed default value (true)
                   bool paysADefaultTime, # removed default value (true)
-                  DayCounter lastPeriodDayCounter,
+                  const Date startDate, # = Date()
+                  DayCounter lastPeriodDayCounter, # = DayCounter()
                   bool rebatesAccrual, # removed default value (true)
-                  bool useIsdaEngine) # removed default value (false)
+                  const PricingModel model) # = CreditDefaultSwap::Midpoint
 
         void setTermStructure(DefaultProbabilityTermStructure*)
         void setIsdaEngineParameters(int numericalFix,
@@ -67,9 +68,10 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                         const Handle[YieldTermStructure]& discountCurve,
                         bool settlesAccrual,  # removed default value (true)
                         bool paysAtDefaultTime, # removed default value (true)
-                        const DayCounter lastPeriodDayCounter,
+                          const Date startDate, # = Date()
+                        DayCounter lastPeriodDayCounter, # = DayCounter()
                         bool rebatesAccrual, # removed default value (true)
-                        bool useIsdaEngine) # removed default value (false)
+                        const PricingModel model) # = CreditDefaultSwap::Midpoint
 
         SpreadCdsHelper(const Handle[Quote]& runningSpread,
                         const Period& tenor,
@@ -83,9 +85,10 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                         const Handle[YieldTermStructure]& discountCurve,
                         bool settlesAccrual,  # removed default value (true)
                         bool paysAtDefaultTime, # removed default value (true)
-                        const DayCounter lastPeriodDayCounter,
+                        const Date startDate, # = Date()
+                        DayCounter lastPeriodDayCounter, # = DayCounter()
                         bool rebatesAccrual, # removed default value (true)
-                        bool useIsdaEngine) # removed default value (false)
+                        const PricingModel model) # = CreditDefaultSwap::Midpoint
 
     cdef cppclass UpfrontCdsHelper(CdsHelper):
         UpfrontCdsHelper(Rate upfront,
@@ -102,10 +105,10 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                          Natural upfrontSettlementDays,
                          bool settlesAccrual,  # removed default value (true)
                          bool paysAtDefaultTime, # removed default value (true)
-                         const DayCounter& lastPeriodDayCounter,
+                         const Date startDate, # = Date()
+                         DayCounter lastPeriodDayCounter, # = DayCounter()
                          bool rebatesAccrual, # removed default value (true)
-                         bool useIsdaEngine # removed default value (false)
-                         ) except +
+                         const PricingModel model) # = CreditDefaultSwap::Midpoint
 
         UpfrontCdsHelper(const Handle[Quote]& upfront,
                          Rate runningSpread,
@@ -121,7 +124,7 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                          Natural upfrontSettlementDays,
                          bool settlesAccrual,  # removed default value (true)
                          bool paysAtDefaultTime, # removed default value (true)
-                         const DayCounter& lastPeriodDayCounter,
+                           const Date startDate, # = Date()
+                         DayCounter lastPeriodDayCounter, # = DayCounter()
                          bool rebatesAccrual, # removed default value (true)
-                         bool useIsdaEngine # removed default value (false)
-                         ) except +
+                         const PricingModel model) # = CreditDefaultSwap::Midpoint

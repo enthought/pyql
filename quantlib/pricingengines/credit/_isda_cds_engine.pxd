@@ -21,14 +21,6 @@ cdef extern from 'ql/pricingengines/credit/isdacdsengine.hpp' namespace 'QuantLi
             AccrualBias, # = NoBias
             ForwardsInCouponPeriod # = Piecewise
         )
-        IsdaCdsEngine(
-            const vector[shared_ptr[DefaultProbabilityHelper]] & probabilityHelpers,
-            Real recoveryRate,
-            const vector[shared_ptr[RateHelper]] & rateHelpers,
-            optional[bool] includeSettlementDateFlows, # = none
-            const NumericalFix numericalFix, # = Taylor
-            const AccrualBias accrualBias, # = NoBias
-            const ForwardsInCouponPeriod) # = Piecewise
         const Handle[YieldTermStructure]& isdaRateCurve()
         const Handle[DefaultProbabilityTermStructure]& isdaCreditCurve()
         void calculate()
