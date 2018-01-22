@@ -142,8 +142,8 @@ cdef class SpreadCdsHelper(CdsHelper):
                     <_cds.PricingModel>model)
                 )
         elif isinstance(running_spread, SimpleQuote):
-            running_spread_handle = Handle[_qt.Quote](deref(
-                (<SimpleQuote>running_spread)._thisptr))
+            running_spread_handle = Handle[_qt.Quote](
+                    (<SimpleQuote>running_spread)._thisptr)
 
             self._thisptr = new shared_ptr[_ci.CdsHelper](
                 new _ci.SpreadCdsHelper(
@@ -196,7 +196,7 @@ cdef class UpfrontCdsHelper(CdsHelper):
                     <_cds.PricingModel>model)
             )
         elif isinstance(upfront, SimpleQuote):
-            upfront_handle = Handle[_qt.Quote](deref((<SimpleQuote>upfront)._thisptr))
+            upfront_handle = Handle[_qt.Quote]((<SimpleQuote>upfront)._thisptr)
 
             self._thisptr = new shared_ptr[_ci.CdsHelper](
                 new _ci.UpfrontCdsHelper(
