@@ -23,7 +23,7 @@ ISO_3166_CALENDARS = {
     'LSE': uk.UnitedKingdom(uk.EXCHANGE),
     'LME': uk.UnitedKingdom(uk.METALS),
     'USA': us.UnitedStates(),
-    'USA-GVT-BONDS': us.UnitedStates(us.GOVERNMENTBOND),
+    'USA-GVT-BONDS': us.UnitedStates(us.GovernmentBond),
     'NYSE': us.UnitedStates(us.NYSE),
     'NERC': us.UnitedStates(us.NERC),
     'JPN': jp.Japan(),
