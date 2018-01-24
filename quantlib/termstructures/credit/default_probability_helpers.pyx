@@ -107,7 +107,9 @@ cdef class SpreadCdsHelper(CdsHelper):
     discount_curve : :class:`~quantlib.termstructures.yield_term_structure.YieldTermStructure`
     settles_accrual : bool, optional
     pays_at_default_time : bool, optional
-
+    start_date: :class:`~quantlib.time.date.Date`
+    lastperiod: :class:`~quantlib.time.daycounter.DayCounter`
+    rebates_accrual : bool
     """
 
     def __init__(self, running_spread, Period tenor, Integer settlement_days,
