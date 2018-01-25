@@ -46,4 +46,5 @@ cdef extern from 'ql/indexes/swapindex.hpp' namespace 'QuantLib':
                   const DayCounter& fixedLegDayCounter,
                   const shared_ptr[IborIndex]& iborIndex,
                   const Handle[YieldTermStructure]& discountingTermStructure)
-        shared_ptr[VanillaSwap] underlying_swap(const Date& fixingDate)
+        shared_ptr[VanillaSwap] underlyingSwap(const Date& fixingDate) except +
+        shared_ptr[IborIndex] iborIndex()

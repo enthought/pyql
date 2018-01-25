@@ -12,7 +12,8 @@ from cython.operator cimport dereference as deref
 from libcpp.string cimport string
 
 from quantlib.handle cimport static_pointer_cast
-from quantlib.index cimport Index
+from quantlib.indexes.interest_rate_index cimport InterestRateIndex
+from quantlib.instruments.swap cimport VanillaSwap
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.handle cimport shared_ptr
 from quantlib.time.date cimport Period
@@ -23,10 +24,11 @@ from quantlib.time.calendar cimport Calendar
 from quantlib.time._calendar cimport BusinessDayConvention
 
 cimport quantlib._index as _in
+cimport quantlib.instruments._instrument as _instrument
 cimport _swap_index as _si
 cimport _ibor_index as _ii
 
-cdef class SwapIndex(Index):
+cdef class SwapIndex(InterestRateIndex):
 
     def __str__(self):
         return 'Swap index %s' % self.name
@@ -54,5 +56,16 @@ cdef class SwapIndex(Index):
             )
         )
 
-    def underlying_swap(self, Date fixing_date):
-        pass
+    def underlying_swap(self, Date fixing_date not None):
+        cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
+        cdef VanillaSwap swap = VanillaSwap.__new__(VanillaSwap)
+        swap._thisptr = new shared_ptr[_instrument.Instrument](
+            swap_index.underlyingSwap(deref(fixing_date._thisptr)).get())
+        return swap
+
+    @property
+    def ibor_index(self):
+        cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
+        cdef IborIndex ibor_index = IborIndex.__new__(IborIndex)
+        ibor_index._thisptr = static_pointer_cast[_in.Index](swap_index.iborIndex())
+        return ibor_index

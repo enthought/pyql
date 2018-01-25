@@ -1,7 +1,5 @@
 from quantlib.handle cimport shared_ptr
-from quantlib.index cimport Index
+from quantlib.indexes.interest_rate_index cimport InterestRateIndex
 
-cdef class SwapIndex(Index):
+cdef class SwapIndex(InterestRateIndex):
     pass
-
-

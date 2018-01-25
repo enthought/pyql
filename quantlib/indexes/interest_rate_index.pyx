@@ -62,18 +62,18 @@ cdef class InterestRateIndex(Index):
             dc._thisptr = new _dc.DayCounter(get_iri(self).dayCounter())
             return dc
 
-    def fixing_date(self, Date valueDate):
-        cdef _dt.Date dt = deref(valueDate._thisptr.get())
+    def fixing_date(self, Date valueDate not None):
+        cdef _dt.Date dt = deref(valueDate._thisptr)
         cdef _dt.Date fixing_date = get_iri(self).fixingDate(dt)
         return date_from_qldate(fixing_date)
 
 
-    def value_date(self, Date fixingDate):
-        cdef _dt.Date dt = deref(fixingDate._thisptr.get())
+    def value_date(self, Date fixingDate not None):
+        cdef _dt.Date dt = deref(fixingDate._thisptr)
         cdef _dt.Date value_date = get_iri(self).valueDate(dt)
         return date_from_qldate(value_date)
 
-    def maturity_date(self, Date valueDate):
-        cdef _dt.Date dt = deref(valueDate._thisptr.get())
+    def maturity_date(self, Date valueDate not None):
+        cdef _dt.Date dt = deref(valueDate._thisptr)
         cdef _dt.Date maturity_date = get_iri(self).maturityDate(dt)
         return date_from_qldate(maturity_date)
