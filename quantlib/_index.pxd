@@ -13,15 +13,10 @@ from libcpp cimport bool
 from libcpp.string cimport string
 from libcpp.vector cimport vector
 
+from quantlib._time_series cimport TimeSeries
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._date cimport Date
 
-cdef extern from "ql/timeseries.hpp" namespace "QuantLib":
-    cdef cppclass TimeSeries[T]:
-        TimeSeries()
-        vector[T] values()
-        vector[Date] dates()
-        Size size()
 
 cdef extern from 'ql/index.hpp' namespace 'QuantLib':
 
