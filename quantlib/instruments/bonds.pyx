@@ -90,14 +90,12 @@ cdef class Bond(Instrument):
     property clean_price:
         """ Bond clena price. """
         def __get__(self):
-            if self._has_pricing_engine:
-                return get_bond(self).cleanPrice()
+            return get_bond(self).cleanPrice()
 
     property dirty_price:
         """ Bond dirty price. """
         def __get__(self):
-            if self._has_pricing_engine:
-                return get_bond(self).dirtyPrice()
+            return get_bond(self).dirtyPrice()
 
     def clean_yield(self, Real clean_price, DayCounter dc not None,
             _bonds.Compounding comp, _bonds.Frequency freq,
