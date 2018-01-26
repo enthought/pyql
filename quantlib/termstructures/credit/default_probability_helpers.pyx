@@ -11,7 +11,7 @@ include '../../types.pxi'
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
 
 cimport quantlib.termstructures.credit._credit_helpers as _ci
 cimport quantlib.termstructures._yield_term_structure as _yts
@@ -74,7 +74,7 @@ cdef class CdsHelper:
     def swap(self):
         cdef CreditDefaultSwap cds = CreditDefaultSwap.__new__(CreditDefaultSwap)
         cdef shared_ptr[_cds.CreditDefaultSwap] temp = (<_ci.CdsHelper*>self._thisptr.get()).swap()
-        cds._thisptr = shared_ptr[_instrument.Instrument](<shared_ptr[_instrument.Instrument]>(temp))
+        cds._thisptr = static_pointer_cast[_instrument.Instrument](temp)
         return cds
 
     @property
