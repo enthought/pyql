@@ -17,6 +17,7 @@ from quantlib.handle cimport shared_ptr
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.currency.currency cimport Currency
+from quantlib.time.date cimport Date
 from quantlib.time.calendar cimport Calendar
 from quantlib.time._calendar cimport BusinessDayConvention
 
@@ -29,10 +30,11 @@ cdef class SwapIndex(Index):
     def __str__(self):
         return 'Swap index %s' % self.name
 
-    def __init__(self, family_name, Period tenor, Natural settlement_days,
-                 Currency currency, Calendar calendar, Period fixed_leg_tenor,
-                 int fixed_leg_convention, DayCounter fixed_leg_daycounter,
-                 IborIndex ibor_index):
+    def __init__(self, family_name, Period tenor not None, Natural settlement_days,
+                 Currency currency, Calendar calendar not None,
+                 Period fixed_leg_tenor not None,
+                 int fixed_leg_convention, DayCounter fixed_leg_daycounter not None,
+                 IborIndex ibor_index not None):
 
         # convert the Python str to C++ string
         cdef string family_name_string = family_name.encode('utf-8')
@@ -40,15 +42,16 @@ cdef class SwapIndex(Index):
         self._thisptr = new shared_ptr[_in.Index](
             new _si.SwapIndex(
                 family_name_string,
-                deref(tenor._thisptr.get()),
+                deref(tenor._thisptr),
                 <Natural> settlement_days,
                 deref(currency._thisptr),
                 deref(calendar._thisptr),
-                deref(fixed_leg_tenor._thisptr.get()),
+                deref(fixed_leg_tenor._thisptr),
                 <BusinessDayConvention> fixed_leg_convention,
                 deref(fixed_leg_daycounter._thisptr),
                 deref(<shared_ptr[_ii.IborIndex]*> ibor_index._thisptr)
             )
         )
 
-
+    def underlying_swap(self, Date fixing_date):
+        pass
