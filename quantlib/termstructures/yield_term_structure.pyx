@@ -28,27 +28,15 @@ cdef class YieldTermStructure:
     # python side?
 
     def link_to(self, YieldTermStructure structure):
+        if structure._thisptr.empty():
+            raise ValueError('Term structure not initialized')
         self._thisptr.linkTo(structure._thisptr.currentLink())
 
-    cdef inline _yts.YieldTermStructure* _get_term_structure(self):
+    cdef inline _yts.YieldTermStructure* _get_term_structure(self) except NULL:
 
-        cdef shared_ptr[_yts.YieldTermStructure] term_structure = self._thisptr.currentLink()
-
-        if term_structure.get() is NULL:
+        if self._thisptr.empty():
             raise ValueError('Term structure not initialized')
-
-        return term_structure.get()
-
-    cdef bool _is_empty(self):
-
-        return self._thisptr.empty()
-
-    cdef _raise_if_empty(self):
-        # verify that the handle is not empty. We could add an except + on the
-        # definition of the currentLink() method but it creates more trouble on
-        # the code generation with Cython than what it solves
-        if self._is_empty():
-            raise ValueError('Empty handle to the term structure')
+        return self._thisptr.currentLink().get()
 
     property extrapolation:
         def __get__(self):
@@ -83,20 +71,18 @@ cdef class YieldTermStructure:
             Default to False
 
         """
-        self._raise_if_empty()
-
-        cdef shared_ptr[_yts.YieldTermStructure] term_structure = self._thisptr.currentLink()
+        cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
         cdef _ir.InterestRate ql_zero_rate
 
         if isinstance(d, Date):
             if day_counter is None:
                 raise ValueError("day_counter needs to be provided")
-            ql_zero_rate = term_structure.get().zeroRate(
+            ql_zero_rate = term_structure.zeroRate(
                 deref((<Date>d)._thisptr), deref(day_counter._thisptr),
                 compounding, <_ir.Frequency>frequency,
                 extrapolate)
         elif isinstance(d, (float, int)):
-            ql_zero_rate = term_structure.get().zeroRate(
+            ql_zero_rate = term_structure.zeroRate(
                 <Time>d, compounding, <_ir.Frequency>frequency,
                 extrapolate)
         else:
@@ -133,7 +119,6 @@ cdef class YieldTermStructure:
             Default to False
 
         """
-        self._raise_if_empty()
 
         cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
         cdef _ir.InterestRate ql_forward_rate
@@ -167,8 +152,6 @@ cdef class YieldTermStructure:
         return forward_rate
 
     def discount(self, value, bool extrapolate=False):
-        self._raise_if_empty()
-
         cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
 
         cdef double discount_value
@@ -185,35 +168,30 @@ cdef class YieldTermStructure:
         return discount_value
 
     def time_from_reference(self, Date dt):
-        self._raise_if_empty()
         cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
-        cdef Time time = term_structure.timeFromReference(deref(dt._thisptr.get()))
+        cdef Time time = term_structure.timeFromReference(deref(dt._thisptr))
         return time
 
     property reference_date:
         def __get__(self):
-            self._raise_if_empty()
             cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
             cdef _yts.Date ref_date = term_structure.referenceDate()
             return date_from_qldate(ref_date)
 
     property max_date:
         def __get__(self):
-            self._raise_if_empty()
             cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
             cdef _yts.Date max_date = term_structure.maxDate()
             return date_from_qldate(max_date)
 
     property max_time:
         def __get__(self):
-            self._raise_if_empty()
             cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
             cdef Time max_time = term_structure.maxTime()
             return max_time
 
     property day_counter:
         def __get__(self):
-            self._raise_if_empty()
             cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
             cdef DayCounter dc = DayCounter()
             dc._thisptr = new _dc.DayCounter(term_structure.dayCounter())
@@ -221,7 +199,6 @@ cdef class YieldTermStructure:
 
     property settlement_days:
         def __get__(self):
-            self._raise_if_empty()
             cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
             cdef int days = term_structure.settlementDays()
             return days

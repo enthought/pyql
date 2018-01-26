@@ -4,6 +4,4 @@ from quantlib.handle cimport RelinkableHandle
 
 cdef class YieldTermStructure:
     cdef RelinkableHandle[_yts.YieldTermStructure] _thisptr
-    cdef _yts.YieldTermStructure* _get_term_structure(self)
-    cdef cbool _is_empty(self)
-    cdef _raise_if_empty(self)
+    cdef _yts.YieldTermStructure* _get_term_structure(self) except NULL
