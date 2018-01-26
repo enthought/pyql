@@ -15,7 +15,7 @@ cimport quantlib.time._date as _date
 from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 from libcpp cimport bool
-from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle
+from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle, static_pointer_cast
 from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time._businessdayconvention cimport BusinessDayConvention, Following
@@ -256,14 +256,15 @@ cdef class FloatingRateBond(Bond):
             Date bond was issued
         """
 
-        cdef QlSchedule* _float_bonds_schedule = <QlSchedule*>float_schedule._thisptr
-        cdef QlDayCounter* _accrual_day_counter = <QlDayCounter*>accrual_day_counter._thisptr
-
-
         self._thisptr = new shared_ptr[_instrument.Instrument](
             new _bonds.FloatingRateBond(
-                <Natural> settlement_days, <Real> face_amount, deref(_float_bonds_schedule),deref(<shared_ptr[_ii.IborIndex]*> ibor_index._thisptr),
-                deref(_accrual_day_counter), <BusinessDayConvention> payment_convention,
-                <Natural> fixing_days, gearings, spreads, caps, floors, True, redemption, deref(issue_date._thisptr.get())
+                <Natural> settlement_days, <Real> face_amount,
+                deref(float_schedule._thisptr),
+                static_pointer_cast[_ii.IborIndex](ibor_index._thisptr),
+                deref(accrual_day_counter._thisptr),
+                <BusinessDayConvention> payment_convention,
+                <Natural> fixing_days, gearings, spreads, caps, floors, True,
+                redemption,
+                deref(issue_date._thisptr)
                 )
             )

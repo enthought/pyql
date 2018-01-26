@@ -11,6 +11,7 @@ include '../types.pxi'
 from cython.operator cimport dereference as deref
 from libcpp.string cimport string
 
+from quantlib.handle cimport static_pointer_cast
 from quantlib.index cimport Index
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.handle cimport shared_ptr
@@ -39,7 +40,7 @@ cdef class SwapIndex(Index):
         # convert the Python str to C++ string
         cdef string family_name_string = family_name.encode('utf-8')
 
-        self._thisptr = new shared_ptr[_in.Index](
+        self._thisptr = shared_ptr[_in.Index](
             new _si.SwapIndex(
                 family_name_string,
                 deref(tenor._thisptr),
@@ -49,7 +50,7 @@ cdef class SwapIndex(Index):
                 deref(fixed_leg_tenor._thisptr),
                 <BusinessDayConvention> fixed_leg_convention,
                 deref(fixed_leg_daycounter._thisptr),
-                deref(<shared_ptr[_ii.IborIndex]*> ibor_index._thisptr)
+                static_pointer_cast[_ii.IborIndex](ibor_index._thisptr)
             )
         )
 

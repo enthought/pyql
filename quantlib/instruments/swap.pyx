@@ -21,7 +21,7 @@ from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 from libcpp cimport bool
 
-from quantlib.handle cimport Handle, shared_ptr, optional, make_optional
+from quantlib.handle cimport Handle, shared_ptr, optional, make_optional, static_pointer_cast
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time._businessdayconvention cimport BusinessDayConvention
 from quantlib.time._daycounter cimport DayCounter as QlDayCounter
@@ -136,13 +136,13 @@ cdef class VanillaSwap(Swap):
 
     def __init__(self, SwapType type,
                      Real nominal,
-                     Schedule fixed_schedule,
+                     Schedule fixed_schedule not None,
                      Rate fixed_rate,
-                     DayCounter fixed_daycount,
-                     Schedule float_schedule,
-                     IborIndex ibor_index,
+                     DayCounter fixed_daycount not None,
+                     Schedule float_schedule not None,
+                     IborIndex ibor_index not None,
                      Spread spread,
-                     DayCounter floating_daycount,
+                     DayCounter floating_daycount not None,
                      int payment_convention=-1):
         cdef optional[BusinessDayConvention] opt_payment_convention = \
         make_optional[BusinessDayConvention](
@@ -157,7 +157,7 @@ cdef class VanillaSwap(Swap):
                 fixed_rate,
                 deref(fixed_daycount._thisptr),
                 deref(float_schedule._thisptr),
-                deref(<shared_ptr[_ib.IborIndex]*> ibor_index._thisptr),
+                static_pointer_cast[_ib.IborIndex](ibor_index._thisptr),
                 spread,
                 deref(floating_daycount._thisptr),
                 opt_payment_convention

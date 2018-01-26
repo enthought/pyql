@@ -26,9 +26,9 @@ cdef class IborIndex(InterestRateIndex):
     def __init__(self, str family_name, Period tenor not None, Natural settlement_days,
             Currency currency, Calendar fixing_calendar, int convention,
             bool end_of_month, DayCounter day_counter not None):
-        self._thisptr = new shared_ptr[_in.Index](
+        self._thisptr = shared_ptr[_in.Index](
             new _ib.IborIndex(family_name.encode('utf-8'),
-                              deref(tenor._thisptr.get()),
+                              deref(tenor._thisptr),
                               settlement_days,
                               deref(currency._thisptr),
                               deref(fixing_calendar._thisptr),

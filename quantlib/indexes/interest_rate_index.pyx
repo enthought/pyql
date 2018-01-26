@@ -58,7 +58,7 @@ cdef class InterestRateIndex(Index):
 
     property day_counter:
         def __get__(self):
-            cdef DayCounter dc = DayCounter()
+            cdef DayCounter dc = DayCounter.__new__(DayCounter)
             dc._thisptr = new _dc.DayCounter(get_iri(self).dayCounter())
             return dc
 

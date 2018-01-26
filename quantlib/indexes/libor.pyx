@@ -37,14 +37,6 @@ cdef class Libor(IborIndex):
         See <http://www.bba.org.uk/bba/jsp/polopoly.jsp?d=225&a=1414>.
     """
 
-    def __cinit__(self):
-        self._thisptr = NULL
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-            self._thisptr = NULL
-
     def __init__(self,
         basestring familyName,
         Period tenor,
@@ -57,10 +49,10 @@ cdef class Libor(IborIndex):
         # convert the Python str to C++ string
         cdef string familyName_string = familyName.encode('utf-8')
 
-        self._thisptr = new shared_ptr[_in.Index](
+        self._thisptr = shared_ptr[_in.Index](
         new _libor.Libor(
             familyName_string,
-            deref(tenor._thisptr.get()),
+            deref(tenor._thisptr),
             <Natural> settlementDays,
             deref(currency._thisptr),
             deref(financial_center_calendar._thisptr),
