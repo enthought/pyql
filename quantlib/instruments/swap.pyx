@@ -148,7 +148,7 @@ cdef class VanillaSwap(Swap):
         if payment_convention > 0:
             opt_payment_convention = <BusinessDayConvention>payment_convention
 
-        self._thisptr = new shared_ptr[_instrument.Instrument](
+        self._thisptr = shared_ptr[_instrument.Instrument](
             new _vanillaswap.VanillaSwap(
                 <_vanillaswap.Type>type,
                 nominal,

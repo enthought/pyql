@@ -14,7 +14,7 @@ from quantlib.instruments.instrument cimport Instrument
 cdef public enum SensitivityAnalysis:
     OneSide
     Centered
- 
+
 def bucket_analysis(quotes_vvsq, instruments,
                     vector[Real] quantity, shift, sa_type):
 
@@ -23,31 +23,31 @@ def bucket_analysis(quotes_vvsq, instruments,
     1) quotes_vvsq : list[list[Quantlib::SimpleQuote]]
         list of list of quotes to be tweaked by a certain shift, usually passed from ratehelpers
     2) instruments : List of instruments
-        list of instruments to be analyzed.Bond and option in unit test. 
-    3) quantity : Quantity of instrument   
-        A multiplier for the resulting buckets, Usually 1 or lower.  
-    4) shift : Amount of shift for analysis. 
-        Tends to be 0.0001 (1 bp). Can be larger as well as positive or negative. 
+        list of instruments to be analyzed.Bond and option in unit test.
+    3) quantity : Quantity of instrument
+        A multiplier for the resulting buckets, Usually 1 or lower.
+    4) shift : Amount of shift for analysis.
+        Tends to be 0.0001 (1 bp). Can be larger as well as positive or negative.
     5) sa_type : Sensitivity Analysis Type
-        Will be either OneSided or Centered 
+        Will be either OneSided or Centered
     """
 
     #C++ Inputs
     cdef vector[vector[Handle[_qt.SimpleQuote]]] vvh_quotes
     cdef vector[shared_ptr[_it.Instrument]] vsp_instruments
-   
+
     #intermediary temps
     cdef vector[Handle[_qt.SimpleQuote]] sqh_vector
     cdef shared_ptr[_qt.SimpleQuote] q_ptr
     cdef Handle[_qt.SimpleQuote] sq_handle
     cdef shared_ptr[_it.Instrument] instrument_sp
-	
+
     #C++ Output
     cdef pair[vector[vector[Real]],vector[vector[Real]]] ps
-	
-	
+
+
     for qlinstrument in instruments:
-        instrument_sp = deref((<Instrument>qlinstrument)._thisptr)
+        instrument_sp = (<Instrument>qlinstrument)._thisptr
         vsp_instruments.push_back(instrument_sp)
 
     for qlsq_out in quotes_vvsq:
@@ -65,6 +65,5 @@ def bucket_analysis(quotes_vvsq, instruments,
                             quantity,
                             shift,
                             sa_type)
-    
-    return ps
 
+    return ps

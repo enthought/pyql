@@ -189,7 +189,7 @@ cdef class VanillaOption(OneAssetOption):
                 deref(exercise._thisptr)
             )
 
-        self._thisptr = new shared_ptr[_instrument.Instrument]( \
+        self._thisptr = shared_ptr[_instrument.Instrument]( \
             new _option.VanillaOption(payoff_ptr, exercise_ptr)
         )
 
@@ -225,7 +225,7 @@ cdef class EuropeanOption(VanillaOption):
                 deref(exercise._thisptr)
             )
 
-        self._thisptr = new shared_ptr[_instrument.Instrument]( \
+        self._thisptr = shared_ptr[_instrument.Instrument]( \
             new _option.EuropeanOption(payoff_ptr, exercise_ptr)
         )
 
@@ -246,7 +246,7 @@ cdef class DividendVanillaOption(OneAssetOption):
         for date in dividend_dates:
             _dividend_dates.push_back(deref((<Date>date)._thisptr.get()))
 
-        self._thisptr = new shared_ptr[_instrument.Instrument]( \
+        self._thisptr = shared_ptr[_instrument.Instrument]( \
             new _option.DividendVanillaOption(
                 payoff_ptr, exercise_ptr, _dividend_dates,
                 dividends

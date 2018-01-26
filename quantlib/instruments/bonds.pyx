@@ -167,18 +167,15 @@ cdef class FixedRateBond(Bond):
                 Date bond was issued
             """
 
-            self._thisptr = new shared_ptr[_instrument.Instrument](
-                    new _bonds.FixedRateBond(settlement_days,
-                        face_amount, deref(schedule._thisptr), coupons,
-                        deref(accrual_day_counter._thisptr),
-                        payment_convention, redemption,
-                        deref(issue_date._thisptr),
-                        deref(payment_calendar._thisptr),
-                        deref(ex_coupon_period._thisptr),
-                        deref(ex_coupon_calendar._thisptr),
-                        ex_coupon_convention,
-                        ex_coupon_end_of_month)
-                )
+            self._thisptr = shared_ptr[_instrument.Instrument](
+                new _bonds.FixedRateBond(settlement_days,
+                                         face_amount,
+                                         deref(fixed_bonds_schedule._thisptr),
+                                         coupons,
+                                         deref(accrual_day_counter._thisptr),
+                                         <BusinessDayConvention>payment_convention,
+                                         redemption, deref(issue_date._thisptr))
+            )
 
 cdef class ZeroCouponBond(Bond):
     """ Zero coupon bond """
@@ -205,7 +202,7 @@ cdef class ZeroCouponBond(Bond):
         issue_date : Quantlib::Date
             Date bond was issued"""
 
-        self._thisptr = new shared_ptr[_instrument.Instrument](
+        self._thisptr = shared_ptr[_instrument.Instrument](
                 new _bonds.ZeroCouponBond(settlement_days,
                     deref(calendar._thisptr), face_amount,
                     deref(maturity_date._thisptr),
@@ -258,7 +255,7 @@ cdef class FloatingRateBond(Bond):
             Date bond was issued
         """
 
-        self._thisptr = new shared_ptr[_instrument.Instrument](
+        self._thisptr = shared_ptr[_instrument.Instrument](
             new _bonds.FloatingRateBond(
                 settlement_days, face_amount,
                 deref(schedule._thisptr),
