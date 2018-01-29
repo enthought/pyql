@@ -2,7 +2,6 @@ include '../types.pxi'
 
 # cython imports
 cimport _option
-cimport _payoffs
 
 import six
 
@@ -11,39 +10,16 @@ cdef public enum OptionType:
     Call = _option.Call
 
 
-PAYOFF_TO_STR = {Call:'Call', Put:'Put'}
-
-def str_to_option_type(name):
-    if name.lower() == 'call':
-        option_type = Call
-    elif name.lower() == 'put':
-        option_type = Put
-    return option_type
+PAYOFF_TO_STR = {Call: 'Call', Put: 'Put'}
 
 cdef class Payoff:
 
-    def __cinit__(self):
-        self._thisptr = NULL
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-
     def __str__(self):
-        if self._thisptr is not NULL:
+        if self._thisptr:
             return 'Payoff: %s' % self._thisptr.get().name().decode('utf-8')
 
-    cdef set_payoff(self, shared_ptr[_payoffs.Payoff] payoff):
-        if self._thisptr != NULL:
-            del self._thisptr
-            self._thisptr = NULL
-        if payoff.get() == NULL:
-            raise ValueError('Setting the payoff with a null pointer.')
-        self._thisptr = new shared_ptr[_payoffs.Payoff](payoff)
-
-cdef _payoffs.PlainVanillaPayoff* _get_payoff(PlainVanillaPayoff payoff):
-
-    return <_payoffs.PlainVanillaPayoff*>payoff._thisptr.get()
+cdef inline _payoffs.PlainVanillaPayoff* _get_payoff(PlainVanillaPayoff payoff):
+    return <_payoffs.PlainVanillaPayoff*> payoff._thisptr.get()
 
 cdef class PlainVanillaPayoff(Payoff):
     """ Plain vanilla payoff.
@@ -55,8 +31,6 @@ cdef class PlainVanillaPayoff(Payoff):
         The type of option, can be either Call or Put
     strike: double
         The strike value
-    from_qlpayoff: bool, optional
-        For internal use only
 
     Properties
     ----------
@@ -66,22 +40,15 @@ cdef class PlainVanillaPayoff(Payoff):
         Read-only property that returns a PlainVanillaPayoff instance
     """
 
-    def __init__(self, option_type, double strike, from_qlpayoff=False):
+    def __init__(self, OptionType option_type, double strike):
 
-        if isinstance(option_type, six.string_types):
-            option_type = str_to_option_type(option_type)
-
-        if not from_qlpayoff:
-            self._thisptr = new shared_ptr[_payoffs.Payoff]( \
-                new _payoffs.PlainVanillaPayoff(
-                    <_option.Type>option_type, <Real>strike
-                )
+        self._thisptr = shared_ptr[_payoffs.Payoff](
+            new _payoffs.PlainVanillaPayoff(
+                <_option.Type>option_type, <Real>strike
             )
-        else:
-            # instance is created based on a cpp QuantLib payoff
-            # user is supposed to call the set_payoff method afterwards.
-            # This can be dangerous as we use an instance with a NULL ptr ...
-            pass
+        )
+
+
 
     def __str__(self):
 
@@ -103,6 +70,3 @@ cdef class PlainVanillaPayoff(Payoff):
     property strike:
         def __get__(self):
             return _get_payoff(self).strike()
-
-
-
