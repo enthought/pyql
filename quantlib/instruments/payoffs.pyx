@@ -1,4 +1,5 @@
 include '../types.pxi'
+from cython.operator import dereference as deref
 
 # cython imports
 cimport _option
@@ -7,9 +8,16 @@ import six
 
 cdef class Payoff:
 
-    def __str__(self):
+    def __repr__(self):
         if self._thisptr.get():
             return self._thisptr.get().description().decode('utf-8')
+
+    def __str__(self):
+        if self._thisptr.get():
+            return self._thisptr.get().name().decode('utf-8')
+
+    def __call__(self, Real price):
+        return deref(self._thisptr)(price)
 
 cdef inline _payoffs.PlainVanillaPayoff* _get_payoff(PlainVanillaPayoff payoff):
     return <_payoffs.PlainVanillaPayoff*> payoff._thisptr.get()
@@ -27,10 +35,8 @@ cdef class PlainVanillaPayoff(Payoff):
 
     Properties
     ----------
-    exercise: Exercise
-        Read-only property that returns an Exercise instance
-    payoff: PlainVanilaPayoff
-        Read-only property that returns a PlainVanillaPayoff instance
+    option_type: Call or Put
+    strike: float
     """
 
     def __init__(self, _option.Type option_type, double strike):

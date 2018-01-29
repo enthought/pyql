@@ -277,7 +277,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         forward_price = 32 * np.exp((0.1 - 0.04) * year_fraction)
         expected = blackFormula(
-            payoff.type, payoff.strike, forward_price,
+            payoff.option_type, payoff.strike, forward_price,
             np.sqrt(0.05 * year_fraction)
         ) * np.exp(-0.1 * year_fraction)
 

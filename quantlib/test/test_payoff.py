@@ -9,10 +9,9 @@ class PayoffTestCase(unittest.TestCase):
 
         payoff = PlainVanillaPayoff(OptionType.Call, 10.0)
 
-        self.assertEqual(payoff.type, Call)
+        self.assertEqual(payoff.option_type, Call)
         self.assertEqual(payoff.strike, 10.0)
-
+        self.assertEqual(payoff(30.), 20.)
         payoff = PlainVanillaPayoff(OptionType['Call'], 10.0)
-
-        self.assertEqual(payoff.type, Call)
+        self.assertEqual(payoff.option_type, Call)
         self.assertEqual(payoff.strike, 10.0)

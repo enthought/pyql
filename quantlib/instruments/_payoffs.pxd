@@ -10,6 +10,7 @@ cdef extern from 'ql/payoff.hpp' namespace 'QuantLib':
         Payoff()
         string name()
         string description()
+        Real operator()(Real price)
 
 cdef extern from 'ql/instruments/payoffs.hpp' namespace 'QuantLib':
 
