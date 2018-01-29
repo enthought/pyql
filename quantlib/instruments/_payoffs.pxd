@@ -9,7 +9,7 @@ cdef extern from 'ql/payoff.hpp' namespace 'QuantLib':
     cdef cppclass Payoff:
         Payoff()
         string name()
-
+        string description()
 
 cdef extern from 'ql/instruments/payoffs.hpp' namespace 'QuantLib':
 

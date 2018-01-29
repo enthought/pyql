@@ -8,9 +8,7 @@ import numpy as np
 from quantlib.settings import Settings
 
 from quantlib.instruments.option import (
-    EuropeanExercise)
-
-from quantlib.instruments.payoffs import PAYOFF_TO_STR
+    EuropeanExercise, Put, Call)
 
 from quantlib.models.shortrate.onefactormodels.hullwhite import HullWhite
 
@@ -40,7 +38,7 @@ from quantlib.pricingengines.api import (
 from quantlib.quotes import SimpleQuote
 
 from quantlib.instruments.payoffs import (
-    PlainVanillaPayoff, Put, Call)
+    PlainVanillaPayoff)
 
 from quantlib.methods.finitedifferences.solvers.fdmbackwardsolver import FdmSchemeDesc
 
@@ -317,7 +315,7 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         maturities = [1, 2, 3, 5, 10, 15, 20, 25, 30]
         types = [Put, Call]
 
-        for type in types:
+        for option_type in types:
             for strike in strikes:
                 for maturity in maturities:
                     maturity_date = todays_date + Period(maturity, Years)
@@ -328,7 +326,7 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
                         q_ts.discount(maturity_date) / \
                         r_ts.discount(maturity_date)
 
-                    payoff = PlainVanillaPayoff(type, fwd)
+                    payoff = PlainVanillaPayoff(option_type, fwd)
 
                     option = VanillaOption(payoff, exercise)
 
@@ -341,11 +339,10 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
                     if ((np.abs(expected - calculated) > calculated * tol) and
                        (np.abs(expected - calculated) > tol)):
 
-                        cp = PAYOFF_TO_STR[type]
                         print("Failed to reproduce npv")
                         print("strike    : %f" % strike)
                         print("maturity  : %d" % maturity)
-                        print("type      : %s" % cp)
+                        print("type      : %s" % option_type.name) 
 
                     self.assertAlmostEqual(expected, calculated,
                                             delta=tol)

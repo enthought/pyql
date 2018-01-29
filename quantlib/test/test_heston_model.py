@@ -4,8 +4,8 @@ import numpy as np
 
 from .unittest_tools import unittest
 
-from quantlib.instruments.option import EuropeanExercise, VanillaOption
-from quantlib.instruments.payoffs import Call, PlainVanillaPayoff, Put
+from quantlib.instruments.option import EuropeanExercise, VanillaOption, Call, Put
+from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.models.calibration_helper import ImpliedVolError
 from quantlib.models.equity.heston_model import (
     HestonModelHelper, HestonModel

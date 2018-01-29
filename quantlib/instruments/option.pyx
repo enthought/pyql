@@ -5,9 +5,7 @@ from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from libcpp.vector cimport vector
 
-cimport _bonds #fixme :should move the PricingEngine declaration somewhere else
 cimport _exercise
-cimport _option
 cimport _payoffs
 cimport _instrument
 cimport quantlib.time._date as _date
@@ -25,6 +23,10 @@ cdef public enum ExerciseType:
     American = _exercise.American
     Bermudan  = _exercise.Bermudan
     European = _exercise.European
+
+cpdef public enum OptionType:
+    Call = _option.Type.Call
+    Put  = _option.Type.Put
 
 EXERCISE_TO_STR = {
     American : 'American',

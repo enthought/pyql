@@ -28,7 +28,7 @@ from quantlib.currency.api import USDCurrency
 from quantlib.indexes.libor import Libor
 from quantlib.indexes.swap_index import SwapIndex
 from quantlib.instruments.option import EuropeanExercise, AmericanExercise
-from quantlib.instruments.option import VanillaOption, DividendVanillaOption
+from quantlib.instruments.option import VanillaOption, DividendVanillaOption, Call
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.pricingengines.api import AnalyticDividendEuropeanEngine
 from quantlib.pricingengines.api import FDDividendAmericanEngine
@@ -179,7 +179,7 @@ def dividendOption():
     Option_name = "IBM Option"
     maturity = Date(26, Jan, 2013)
     strike = 190
-    option_type = 'call'
+    option_type = Call 
 
     # Here, as an implementation exemple, we make the test with borth american and european exercise
     europeanExercise = EuropeanExercise(maturity)
