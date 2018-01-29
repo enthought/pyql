@@ -131,13 +131,8 @@ def collect_extensions():
         'libraries':[QL_LIBRARY]
     }
 
-    settings_extension = Extension('quantlib.settings',
-        ['quantlib/settings.pyx', 'cpp_layer/ql_settings.cpp'],
-        **kwargs
-    )
-
     test_extension = Extension('quantlib.test.test_cython_bug',
-        ['quantlib/test/test_cython_bug.pyx', 'cpp_layer/ql_settings.cpp'],
+        ['quantlib/test/test_cython_bug.pyx'],
         **kwargs
     )
 
@@ -162,7 +157,6 @@ def collect_extensions():
     manual_extensions = [
         hestonhw_constraint_extension,
         multipath_extension,
-        settings_extension,
         test_extension,
     ]
 

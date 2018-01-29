@@ -1,12 +1,11 @@
 from cython.operator cimport dereference as deref
-from libcpp cimport bool as cbool
+from libcpp cimport bool
 
-cimport quantlib.time._date as qldate
-cimport quantlib.time.date as date
+from quantlib.handle cimport optional, make_optional
+from quantlib.time._date cimport Date as QlDate
+from quantlib.time.date cimport Date, date_from_qldate
 
-cdef extern from "ql_settings.hpp" namespace "QuantLib":
-    qldate.Date get_evaluation_date()
-    void set_evaluation_date(qldate.Date& date)
+cimport quantlib._settings as _settings
 
 cdef extern from 'ql/version.hpp':
 
@@ -15,7 +14,11 @@ cdef extern from 'ql/version.hpp':
     char* QL_LIB_VERSION
 
 cdef extern from 'ql/config.hpp':
-    cbool QL_HIGH_RESOLUTION_DATE
+    bool QL_HIGH_RESOLUTION_DATE
+
+cdef extern from 'settings.hpp':
+    cdef void SET_VALUE(bool&, bool)
+    cdef void SET_VALUE(optional[bool]&, optional[bool])
 
 __quantlib_version__ = QL_VERSION
 __quantlib_lib_version__ = QL_LIB_VERSION
@@ -30,17 +33,54 @@ cdef class Settings:
     property evaluation_date:
         """Property to set/get the evaluation date. """
         def __get__(self):
-            cdef qldate.Date evaluation_date = get_evaluation_date()
-            return date.date_from_qldate(evaluation_date)
+            cdef QlDate evaluation_date = <QlDate>_settings.Settings.instance().evaluationDate()
+            return date_from_qldate(evaluation_date)
 
-        def __set__(self, date.Date evaluation_date):
-            cdef qldate.Date* date_ref = <qldate.Date*>evaluation_date._thisptr.get()
-            set_evaluation_date(deref(date_ref))
+        def __set__(self, Date evaluation_date):
+            _settings.Settings.instance().evaluationDate().assign_date(deref(evaluation_date._thisptr))
 
     property version:
         """Returns the QuantLib C++ version (QL_VERSION) used by this wrapper."""
         def __get__(self):
             return QL_VERSION.decode('utf-8')
+
+    def anchor_evaluation_date(self):
+        _settings.Settings.instance().anchorEvaluationDate()
+
+    def reset_evaluation_date(self):
+        _settings.Settings.instance().resetEvaluationDate()
+
+    @property
+    def include_reference_date_events(self):
+        return _settings.Settings.instance().includeReferenceDateEvents()
+
+    @include_reference_date_events.setter
+    def include_reference_date_events(self, bool val):
+        SET_VALUE(_settings.Settings.instance().includeReferenceDateEvents(),
+                  val)
+
+    @property
+    def enforces_todays_historic_fixings(self):
+        return _settings.Settings.instance().enforcesTodaysHistoricFixings()
+
+    @enforces_todays_historic_fixings.setter
+    def enforces_todays_historic_fixings(self, bool val):
+        SET_VALUE(_settings.Settings.instance().enforcesTodaysHistoricFixings(),
+                  val)
+    @property
+    def include_todays_cashflows(self):
+        cdef optional[bool] flag = _settings.Settings.instance().includeTodaysCashFlows()
+        if not flag:
+            return None
+        else:
+            return flag.get()
+
+    @include_todays_cashflows.setter
+    def include_todays_cashflows(self, val):
+
+        cdef optional[bool] flag = make_optional[bool](val is not None, <bool>val)
+        SET_VALUE(_settings.Settings.instance().includeTodaysCashFlows(),
+                  flag)
 
     @classmethod
     def instance(cls):
@@ -51,6 +91,3 @@ cdef class Settings:
         """
 
         return cls()
-
-
-

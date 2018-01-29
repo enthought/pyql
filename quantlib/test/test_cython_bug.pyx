@@ -18,10 +18,7 @@ from quantlib.time._schedule cimport Schedule, Backward
 from quantlib.time.date cimport date_from_qldate, Date
 from quantlib.time.daycounters._actual_actual cimport ISMA, ActualActual
 
-cdef extern from "ql_settings.hpp" namespace "QuantLib":
-    QlDate get_evaluation_date()
-    void set_evaluation_date(QlDate& date)
-
+from quantlib._settings cimport Settings
 
 def test_bond_schedule_today_cython():
     cdef QlDate today = todaysDate()
@@ -41,10 +38,10 @@ def test_bond_schedule_today_cython():
 
 cdef FixedRateBond* get_bond_for_evaluation_date(QlDate& in_date):
 
-    set_evaluation_date(in_date)
+    Settings.instance().evaluationDate().assign_date(in_date)
 
     # debugged evaluation date
-    cdef QlDate evaluation_date = get_evaluation_date()
+    cdef QlDate evaluation_date = <QlDate>Settings.instance().evaluationDate()
     cdef Date cython_evaluation_date = date_from_qldate(evaluation_date)
     print 'Current evaluation date', cython_evaluation_date
 
@@ -105,7 +102,7 @@ def test_bond_schedule_anotherday_cython():
             False)
     cdef QlDate b_date = bond.settlementDate()
 
-    cdef QlDate e_date = get_evaluation_date()
+    cdef QlDate e_date = <QlDate>Settings.instance().evaluationDate()
 
     print s_date.serialNumber()
     print b_date.serialNumber()
