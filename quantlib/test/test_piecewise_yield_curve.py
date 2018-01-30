@@ -25,7 +25,7 @@ from quantlib.time.api import Thirty360, ActualActual, Actual365Fixed
 from quantlib.time.api import Annual, UnitedStates
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.api import DiscountCurve
-from quantlib.indexes.libor import Libor
+from quantlib.indexes.ibor.libor import Libor
 
 
 class PiecewiseYieldCurveTestCase(unittest.TestCase):

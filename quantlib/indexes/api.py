@@ -7,8 +7,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from .libor import Libor
-from .euribor import Euribor, Euribor6M
+from .ibor.libor import Libor
+from .ibor.euribor import Euribor, Euribor6M
+from .ibor.usdlibor import USDLibor
 from .ibor_index import IborIndex
 from .swap_index import SwapIndex
 

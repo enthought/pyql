@@ -12,7 +12,7 @@ from .unittest_tools import unittest
 from quantlib.currency.api import USDCurrency, EURCurrency
 from quantlib.index import Index
 from quantlib.indexes.interest_rate_index import InterestRateIndex
-from quantlib.indexes.libor import Libor
+from quantlib.indexes.ibor.libor import Libor
 from quantlib.indexes.swap_index import SwapIndex
 from quantlib.indexes.ibor_index import IborIndex
 from quantlib.indexes.euribor import Euribor6M

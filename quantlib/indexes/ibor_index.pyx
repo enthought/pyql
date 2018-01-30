@@ -56,11 +56,11 @@ cdef class IborIndex(InterestRateIndex):
         row = row._replace(**kwargs)
 
         if row.currency == 'EUR':
-            from quantlib.indexes.euribor import Euribor
+            from quantlib.indexes.ibor.euribor import Euribor
             ibor_index = Euribor(Period(row.floating_leg_period), term_structure)
         else:
             label = row.currency + ' ' + row.floating_leg_reference
-            from quantlib.indexes.libor import Libor
+            from quantlib.indexes.ibor.libor import Libor
             ibor_index = Libor(label,
                                Period(row.floating_leg_period),
                                row.settlement_days,

@@ -16,7 +16,7 @@ from quantlib.time.api import (TARGET, Period, Months, Years, Days,September, IS
 from quantlib.time.daycounters.actual_actual import Bond, ISMA
 from quantlib.time.schedule import Schedule, Backward
 from quantlib.settings import Settings
-from quantlib.indexes.libor import Libor
+from quantlib.indexes.ibor.libor import Libor
 from quantlib.instruments.option import (EuropeanExercise, AmericanExercise, DividendVanillaOption)
 from quantlib.termstructures.yields.rate_helpers import (DepositRateHelper, SwapRateHelper)
 from quantlib.termstructures.yields.piecewise_yield_curve import PiecewiseYieldCurve

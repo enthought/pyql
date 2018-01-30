@@ -21,12 +21,11 @@ from quantlib.settings import Settings
 from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure
 )
-from quantlib.indexes.libor import Libor
+from quantlib.indexes.api import Libor, Euribor6M
 from quantlib.currency.api import USDCurrency
 from quantlib.time.api import Months, Unadjusted, Following, ModifiedFollowing
 from quantlib.cashflows.coupon_pricer import IborCouponPricer, BlackIborCouponPricer, set_coupon_pricer
 from quantlib.termstructures.volatility.optionlet.optionlet_volatility_structure import ConstantOptionletVolatility, OptionletVolatilityStructure
-from quantlib.indexes.euribor import Euribor6M
 
 class BondTestCase(unittest.TestCase):
 
