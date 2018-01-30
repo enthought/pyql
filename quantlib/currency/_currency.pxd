@@ -16,6 +16,7 @@ cdef extern from 'ql/currency.hpp' namespace 'QuantLib':
 
     cdef cppclass Currency:
         Currency()
+        Currency(Currency&)
         string name()
         string code()
         Integer numericCode()
@@ -26,6 +27,8 @@ cdef extern from 'ql/currency.hpp' namespace 'QuantLib':
     
         string format()
         bool empty()
+        bool operator==(Currency&)
+        bool operator!=(Currency&)
 
 cdef extern from 'ql/currencies/all.hpp' namespace 'QuantLib':
 

@@ -20,6 +20,7 @@ from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date, date_from_qldate, period_from_qlperiod
 
+cimport quantlib.currency._currency as _cu
 cimport quantlib._index as _in
 cimport quantlib.indexes._interest_rate_index as _iri
 cimport quantlib.time._date as _dt
@@ -61,6 +62,11 @@ cdef class InterestRateIndex(Index):
             cdef DayCounter dc = DayCounter.__new__(DayCounter)
             dc._thisptr = new _dc.DayCounter(get_iri(self).dayCounter())
             return dc
+    @property
+    def currency(self):
+        cdef Currency curr = Currency.__new__(Currency)
+        curr._thisptr = new _cu.Currency(get_iri(self).currency())
+        return curr
 
     def fixing_date(self, Date valueDate not None):
         cdef _dt.Date dt = deref(valueDate._thisptr)
