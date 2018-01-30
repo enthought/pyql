@@ -8,12 +8,12 @@ cimport _smilesection as _ss
 from quantlib.handle cimport shared_ptr, Handle
 from quantlib.quotes cimport SimpleQuote
 from quantlib._quote cimport Quote
-from quantlib.math.optimization cimport EndCriteria, OptimizationMethod, _opt
+from quantlib.math.optimization cimport EndCriteria, OptimizationMethod
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.daycounters.simple cimport Actual365Fixed
 
-cdef inline _sis.SabrInterpolatedSmileSection* _get_siss(shared_ptr[_ss.SmileSection] ref):
+cdef inline _sis.SabrInterpolatedSmileSection* _get_siss(shared_ptr[_ss.SmileSection]& ref):
     return <_sis.SabrInterpolatedSmileSection*> ref.get()
 
 cdef class SabrInterpolatedSmileSection:
@@ -27,7 +27,7 @@ cdef class SabrInterpolatedSmileSection:
                  bool is_alpha_fixed=False, bool is_beta_fixed=False,
                  bool is_nu_fixed=False, bool is_rho_fixed=False,
                  bool vega_weighted=True,
-                 EndCriteria end_criteria=None,
+                 EndCriteria end_criteria=EndCriteria.__new__(EndCriteria),
                  OptimizationMethod method=OptimizationMethod(),
                  DayCounter dc=Actual365Fixed(),
                  Real shift=0.):
@@ -38,11 +38,7 @@ cdef class SabrInterpolatedSmileSection:
         cdef Handle[Quote] forward_handle = Handle[Quote](deref(forward._thisptr))
         cdef Handle[Quote] atm_volatility_handle = Handle[Quote](
             deref((<SimpleQuote?>atm_volatility)._thisptr))
-        cdef shared_ptr[_opt.EndCriteria] end_criteria_cpp
-        if end_criteria is None:
-            end_criteria_cpp = shared_ptr[_opt.EndCriteria]()
-        else:
-            end_criteria_cpp = end_criteria._thisptr
+
         self._thisptr = shared_ptr[_sis.SmileSection](
             new _sis.SabrInterpolatedSmileSection(
                 deref(option_date._thisptr),
@@ -53,7 +49,7 @@ cdef class SabrInterpolatedSmileSection:
                 vol_handles_cpp,
                 alpha, beta, nu, rho,
                 is_alpha_fixed, is_beta_fixed, is_nu_fixed, is_rho_fixed, vega_weighted,
-                end_criteria_cpp, method._thisptr, deref(dc._thisptr), shift))
+                end_criteria._thisptr, method._thisptr, deref(dc._thisptr), shift))
 
 
     @property
