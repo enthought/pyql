@@ -25,7 +25,7 @@ cdef extern from 'ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp'
             shared_ptr[OptimizationMethod]& method, #= boost::shared_ptr[OptimizationMethod](),
             const DayCounter& dc, #= Actual365Fixed(),
             const Real shift #= 0.0
-        )
+        ) except +
         Real alpha()
         Real beta()
         Real nu()
