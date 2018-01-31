@@ -81,7 +81,7 @@ cdef class ZeroInflationIndex(InflationIndex):
         # convert the Python str to C++ string
         cdef string c_family_name = family_name.encode('utf-8')
 
-        self._thisptr = new shared_ptr[_in.Index](
+        self._thisptr = shared_ptr[_in.Index](
             new _ii.ZeroInflationIndex(
                 c_family_name,
                 deref(region._thisptr),
@@ -98,9 +98,7 @@ cdef class AUCPI(ZeroInflationIndex):
                  bool revised,
                  interpolated,
                  ZeroInflationTermStructure ts=None):
-        
+
         super().__init__("CPI", AustraliaRegion(), revised,
                          interpolated, frequency, Period(2, Months),
                          AUDCurrency(), ts)
-
-        

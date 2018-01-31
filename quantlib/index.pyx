@@ -14,21 +14,14 @@ from libcpp.string cimport string
 
 cimport quantlib.time._calendar as _calendar
 cimport quantlib.time._date as _date
-from quantlib._index cimport TimeSeries
+from quantlib.time_series cimport TimeSeries
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date, date_from_qldate
 
 cdef class Index:
 
-    def __cinit__(self):
-        pass
-
     def __init__(self):
         raise ValueError('Cannot instantiate Index')
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
 
     property name:
        def __get__(self):
@@ -42,13 +35,9 @@ cdef class Index:
 
     @property
     def time_series(self):
-        cdef TimeSeries[Real] ts = self._thisptr.get().timeSeries()
-        cdef vector[_date.Date] dates = ts.dates()
-        cdef vector[Real] fixings = ts.values()
-        cdef list r = []
-        for i in range(ts.size()):
-            r.append((date_from_qldate(dates[i]), fixings[i]))
-        return r
+        cdef TimeSeries ts = TimeSeries.__new__(TimeSeries)
+        ts._thisptr = self._thisptr.get().timeSeries()
+        return ts
 
     def is_valid_fixing_date(self, Date fixingDate not None):
         return self._thisptr.get().isValidFixingDate(

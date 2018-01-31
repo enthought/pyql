@@ -12,14 +12,17 @@ from .unittest_tools import unittest
 from quantlib.currency.api import USDCurrency, EURCurrency
 from quantlib.index import Index
 from quantlib.indexes.interest_rate_index import InterestRateIndex
-from quantlib.indexes.libor import Libor
+from quantlib.indexes.ibor.libor import Libor
 from quantlib.indexes.swap_index import SwapIndex
 from quantlib.indexes.ibor_index import IborIndex
-from quantlib.indexes.euribor import Euribor6M
+from quantlib.indexes.ibor.euribor import Euribor6M
+from quantlib.indexes.ibor.usdlibor import USDLibor
+from quantlib.indexes.swap.usd_libor_swap import UsdLiborSwapIsdaFixAm
 from quantlib.settings import Settings
-from quantlib.time.api import (Days, Months, Period, TARGET, Actual360,
-                               today, Actual365Fixed)
+from quantlib.time.api import (Days, Months, Years, Period, TARGET, Actual360,
+                               today, Actual365Fixed, UnitedStates, Thirty360)
 from quantlib.time.api import Following, ModifiedFollowing
+from quantlib.time.calendars.united_states import GOVERNMENTBOND
 from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure)
 from quantlib.time.api import Date, January
@@ -88,9 +91,9 @@ class TestEuribor(unittest.TestCase):
     def test_creation(self):
 
         settlement_date = Date(1, January, 2014)
-        term_structure = YieldTermStructure(relinkable=True)
+        term_structure = YieldTermStructure()
         term_structure.link_to(FlatForward(settlement_date, 0.05,
-                                          Actual365Fixed()))
+                                           Actual365Fixed()))
         # Makes sure the constructor does not segfault anymore ;-)
         index = Euribor6M(term_structure)
 
@@ -102,37 +105,45 @@ class TestEuribor(unittest.TestCase):
         euribor_6m_index = Euribor6M()
         self.assertEqual(euribor_6m_index.name, 'Euribor6M Actual/360')
 
+class TestUSDLibor(unittest.TestCase):
+
+    def test_creation(self):
+
+        settlement_date = Date(1, January, 2014)
+        term_structure = YieldTermStructure()
+        term_structure.link_to(FlatForward(settlement_date, 0.05,
+                                           Actual365Fixed()))
+        index = USDLibor(Period(3, Months), term_structure)
+
+        self.assertEqual(index.name, 'USDLibor3M Actual/360')
+
+
+    def test_empty_constructor(self):
+
+        usdlibor_6m_index = USDLibor(Period(6, Months))
+        self.assertEqual(usdlibor_6m_index.name, 'USDLibor6M Actual/360')
 
 class SwapIndexTestCase(unittest.TestCase):
 
     def test_create_swap_index(self):
 
-        settings = Settings.instance()
+        term_structure = YieldTermStructure()
+        term_structure.link_to(FlatForward(forward=0.05,
+                                           daycounter=Actual365Fixed(),
+                                           settlement_days=2,
+                                           calendar=UnitedStates()))
 
-        # Market information
-        calendar = TARGET()
-
-        # must be a business day
-        eval_date = calendar.adjust(today())
-        settings.evaluation_date = eval_date
-
-        settlement_days = 2
-        settlement_date = calendar.advance(eval_date, settlement_days, Days)
-        # must be a business day
-        settlement_date = calendar.adjust(settlement_date)
-        term_structure = YieldTermStructure(relinkable=True)
-        term_structure.link_to(FlatForward(settlement_date, 0.05,
-                                          Actual365Fixed()))
-
-        ibor_index = Libor('USD Libor', Period(6, Months), settlement_days,
-                        USDCurrency(), calendar, Actual360(),
-                           term_structure)
+        ibor_index = USDLibor(Period(3, Months), term_structure)
 
         index = SwapIndex(
-            'family name', Period(3, Months), 10, USDCurrency(), TARGET(),
-            Period(12, Months), Following, Actual360(), ibor_index)
-
-        self.assertIsNotNone(index)
+            'UsdLiborSwapIsdaFixAm', Period(10, Years), 2, USDCurrency(),
+            UnitedStates(GOVERNMENTBOND),
+            Period(6, Months), ModifiedFollowing,
+            Thirty360(), ibor_index)
+        index2 = UsdLiborSwapIsdaFixAm(Period(10, Years), term_structure)
+        for attr in ['name', 'family_name', 'fixing_calendar', 'tenor',
+                'day_counter', 'currency']:
+            self.assertEqual(getattr(index, attr), getattr(index2, attr))
 
 
 if __name__ == '__main__':

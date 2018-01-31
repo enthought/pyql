@@ -12,9 +12,11 @@ from libcpp cimport bool
 from libcpp.string cimport string
 
 from quantlib.currency._currency cimport Currency
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport shared_ptr, Handle
 from quantlib.indexes._interest_rate_index cimport InterestRateIndex
 from quantlib.indexes._ibor_index cimport IborIndex
+from quantlib.instruments._vanillaswap cimport VanillaSwap
+from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.time._calendar cimport BusinessDayConvention
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
@@ -34,3 +36,15 @@ cdef extern from 'ql/indexes/swapindex.hpp' namespace 'QuantLib':
                   BusinessDayConvention fixedLegConvention,
                   DayCounter& fixedLegDayCounter,
                   shared_ptr[IborIndex]& iborIndex)
+        SwapIndex(const string& familyName,
+                  const Period& tenor,
+                  Natural settlementDays,
+                  Currency currency,
+                  const Calendar& fixingCalendar,
+                  const Period& fixedLegTenor,
+                  BusinessDayConvention fixedLegConvention,
+                  const DayCounter& fixedLegDayCounter,
+                  const shared_ptr[IborIndex]& iborIndex,
+                  const Handle[YieldTermStructure]& discountingTermStructure)
+        shared_ptr[VanillaSwap] underlyingSwap(const Date& fixingDate) except +
+        shared_ptr[IborIndex] iborIndex()

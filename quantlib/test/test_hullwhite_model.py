@@ -11,7 +11,7 @@ from quantlib.time.api import (Date, Years, Actual365Fixed,
                                February, NullCalendar)
 
 from quantlib.termstructures.yields.flat_forward import FlatForward
-from quantlib.indexes.euribor import Euribor6M
+from quantlib.indexes.ibor.euribor import Euribor6M
 from quantlib.pricingengines.swaption import JamshidianSwaptionEngine
 from quantlib.quotes import SimpleQuote
 from quantlib.models.shortrate.calibrationhelpers.swaption_helper \

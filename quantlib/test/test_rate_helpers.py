@@ -2,7 +2,7 @@ from .unittest_tools import unittest
 
 from quantlib.currency.api import USDCurrency
 from quantlib.indexes.swap_index import SwapIndex
-from quantlib.indexes.libor import Libor
+from quantlib.indexes.ibor.libor import Libor
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.rate_helpers import (
     DepositRateHelper, FraRateHelper, FuturesRateHelper, SwapRateHelper

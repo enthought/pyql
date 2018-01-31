@@ -6,6 +6,7 @@
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
 
 cimport _currency as _cu
+from cython.operator import dereference as deref
 
 cdef class Currency:
     def __cinit__(self):
@@ -36,6 +37,12 @@ cdef class Currency:
             return self._thisptr.name().decode('utf-8')
         else:
             return 'null currency'
+
+    def __eq__(self, Currency other):
+        return deref(self._thisptr) == deref(other._thisptr)
+
+    def __neq__(self, Currency other):
+        return deref(self._thisptr) != deref(other._thisptr)
 
     @classmethod
     def from_name(cls, code):

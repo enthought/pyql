@@ -20,6 +20,7 @@ from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date, date_from_qldate, period_from_qlperiod
 
+cimport quantlib.currency._currency as _cu
 cimport quantlib._index as _in
 cimport quantlib.indexes._interest_rate_index as _iri
 cimport quantlib.time._date as _dt
@@ -58,22 +59,27 @@ cdef class InterestRateIndex(Index):
 
     property day_counter:
         def __get__(self):
-            cdef DayCounter dc = DayCounter()
+            cdef DayCounter dc = DayCounter.__new__(DayCounter)
             dc._thisptr = new _dc.DayCounter(get_iri(self).dayCounter())
             return dc
+    @property
+    def currency(self):
+        cdef Currency curr = Currency.__new__(Currency)
+        curr._thisptr = new _cu.Currency(get_iri(self).currency())
+        return curr
 
-    def fixing_date(self, Date valueDate):
-        cdef _dt.Date dt = deref(valueDate._thisptr.get())
+    def fixing_date(self, Date valueDate not None):
+        cdef _dt.Date dt = deref(valueDate._thisptr)
         cdef _dt.Date fixing_date = get_iri(self).fixingDate(dt)
         return date_from_qldate(fixing_date)
 
 
-    def value_date(self, Date fixingDate):
-        cdef _dt.Date dt = deref(fixingDate._thisptr.get())
+    def value_date(self, Date fixingDate not None):
+        cdef _dt.Date dt = deref(fixingDate._thisptr)
         cdef _dt.Date value_date = get_iri(self).valueDate(dt)
         return date_from_qldate(value_date)
 
-    def maturity_date(self, Date valueDate):
-        cdef _dt.Date dt = deref(valueDate._thisptr.get())
+    def maturity_date(self, Date valueDate not None):
+        cdef _dt.Date dt = deref(valueDate._thisptr)
         cdef _dt.Date maturity_date = get_iri(self).maturityDate(dt)
         return date_from_qldate(maturity_date)

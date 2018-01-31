@@ -9,7 +9,7 @@
 
 include '../../../types.pxi'
 
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
 from cython.operator cimport dereference as deref
 
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
@@ -32,21 +32,17 @@ from quantlib.defines cimport QL_NULL_REAL
 cdef class SwaptionHelper(CalibrationHelper):
 
     def __init__(self,
-                 Period maturity,
-                 Period length,
-                 Quote volatility,
-                 IborIndex index,
-                 Period fixed_leg_tenor,
-                 DayCounter fixed_leg_daycounter,
-                 DayCounter floating_leg_daycounter,
+                 Period maturity not None,
+                 Period length not None,
+                 Quote volatility not None,
+                 IborIndex index not None,
+                 Period fixed_leg_tenor not None,
+                 DayCounter fixed_leg_daycounter not None,
+                 DayCounter floating_leg_daycounter not None,
                  YieldTermStructure ts not None,
                  error_type=RelativePriceError,
                  strike=None,
                  Real nominal=1.0):
-
-
-        cdef QlDayCounter* _fixed_leg_daycounter = <QlDayCounter*>fixed_leg_daycounter._thisptr
-        cdef QlDayCounter* _floating_leg_daycounter = <QlDayCounter*>floating_leg_daycounter._thisptr
 
         cdef Handle[_qt.Quote] volatility_handle = \
                 Handle[_qt.Quote](deref(volatility._thisptr))
@@ -56,13 +52,13 @@ cdef class SwaptionHelper(CalibrationHelper):
 
         self._thisptr = new shared_ptr[_ch.CalibrationHelper](
             new _sh.SwaptionHelper(
-                deref(maturity._thisptr.get()),
-                deref(length._thisptr.get()),
+                deref(maturity._thisptr),
+                deref(length._thisptr),
                 volatility_handle,
-                deref(<shared_ptr[_ii.IborIndex]*> index._thisptr),
-                deref(fixed_leg_tenor._thisptr.get()),
-                deref(_fixed_leg_daycounter),
-                deref(_floating_leg_daycounter),
+                static_pointer_cast[_ii.IborIndex](index._thisptr),
+                deref(fixed_leg_tenor._thisptr),
+                deref(fixed_leg_daycounter._thisptr),
+                deref(floating_leg_daycounter._thisptr),
                 ts._thisptr,
                 <_ch.CalibrationErrorType>error_type,
                 strike,

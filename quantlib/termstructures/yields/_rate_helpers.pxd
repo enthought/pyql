@@ -22,8 +22,6 @@ from quantlib.indexes._ibor_index cimport IborIndex
 from quantlib.indexes._swap_index cimport SwapIndex
 from quantlib.instruments._vanillaswap cimport VanillaSwap
 
-cimport quantlib.indexes._ibor_index as _ib
-
 from quantlib.termstructures._helpers cimport BootstrapHelper, \
                                               RelativeDateBootstrapHelper
 
@@ -78,7 +76,7 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
                        Frequency& fixedFrequency,
                        BusinessDayConvention fixedConvention,
                        DayCounter& fixedDayCount,
-                       shared_ptr[_ib.IborIndex]& iborIndex,
+                       shared_ptr[IborIndex]& iborIndex,
                        Handle[Quote]& spread,
                        Period& fwdStart
         ) except +
@@ -88,7 +86,7 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
                        Frequency& fixedFrequency,
                        BusinessDayConvention fixedConvention,
                        DayCounter& fixedDayCount,
-                       shared_ptr[_ib.IborIndex]& iborIndex,
+                       shared_ptr[IborIndex]& iborIndex,
                        Handle[Quote]& spread,
                        Period& fwdStart
         ) except +

@@ -14,7 +14,7 @@ cdef class IborCoupon(FloatingRateCoupon):
 
     def __init__(self, Date payment_date not None, Real nominal,
                  Date start_date not None, Date end_date not None,
-                 Natural fixing_days, IborIndex index, Real gearing=1.,
+                 Natural fixing_days, IborIndex index not None, Real gearing=1.,
                  Spread spread=0.,
                  Date ref_period_start=Date(), Date ref_period_end=Date(),
                  DayCounter day_counter=DayCounter(), bool is_in_arrears=False):
@@ -23,7 +23,7 @@ cdef class IborCoupon(FloatingRateCoupon):
                 deref(payment_date._thisptr), nominal,
                 deref(start_date._thisptr), deref(end_date._thisptr),
                 fixing_days,
-                static_pointer_cast[_ii.IborIndex](deref(index._thisptr)),
+                static_pointer_cast[_ii.IborIndex](index._thisptr),
                 gearing, spread,
                 deref(ref_period_start._thisptr), deref(ref_period_end._thisptr),
                 deref(day_counter._thisptr), is_in_arrears)
