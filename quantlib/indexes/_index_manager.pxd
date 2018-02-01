@@ -10,7 +10,7 @@ cdef extern from "ql/indexes/indexmanager.hpp" namespace "QuantLib":
     cdef cppclass IndexManager:
         bool hasHistory(const string& name)
         TimeSeries[Real] getHistory(string& name)
-        setHistory(string& name, const TimeSeries[Real]&)
+        void setHistory(string& name, const TimeSeries[Real]&)
         vector[string] histories()
         void clearHistory(const string name)
         void clearHistories()
