@@ -12,12 +12,9 @@ from .unittest_tools import unittest
 from quantlib.currency.api import USDCurrency, EURCurrency
 from quantlib.index import Index
 from quantlib.indexes.interest_rate_index import InterestRateIndex
-from quantlib.indexes.ibor.libor import Libor
-from quantlib.indexes.swap_index import SwapIndex
-from quantlib.indexes.ibor_index import IborIndex
-from quantlib.indexes.ibor.euribor import Euribor6M
-from quantlib.indexes.ibor.usdlibor import USDLibor
-from quantlib.indexes.swap.usd_libor_swap import UsdLiborSwapIsdaFixAm
+from quantlib.indexes.api import (
+    Libor, SwapIndex, IborIndex, Euribor6M, USDLibor,
+    UsdLiborSwapIsdaFixAm, IndexManager)
 from quantlib.settings import Settings
 from quantlib.time.api import (Days, Months, Years, Period, TARGET, Actual360,
                                today, Actual365Fixed, UnitedStates, Thirty360)
@@ -145,6 +142,22 @@ class SwapIndexTestCase(unittest.TestCase):
                 'day_counter', 'currency']:
             self.assertEqual(getattr(index, attr), getattr(index2, attr))
 
+class IndexManagerTestCase(unittest.TestCase):
+    settlement_date = Date(1, January, 2014)
+    term_structure = YieldTermStructure()
+    term_structure.link_to(FlatForward(settlement_date, 0.05,
+                                           Actual365Fixed()))
+    index = USDLibor(Period(3, Months), term_structure)
+    index.add_fixing(Date(5, 2, 2018), 1.79345)
+    index.add_fixing(Date(2, 2, 2018), 1.78902)
+
+    def test_index_manager_methods(self):
+        self.assertIn(self.index.name.upper(), IndexManager.histories())
+        ts = IndexManager.get_history(self.index.name.upper())
+        self.assertEqual(ts[Date(5, 2, 2018)], 1.79345)
+        self.assertEqual(ts[Date(2, 2, 2018)], 1.78902)
+        IndexManager.clear_histories()
+        self.assertFalse(IndexManager.get_history(self.index.name.upper()))
 
 if __name__ == '__main__':
     unittest.main()
