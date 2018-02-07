@@ -1,7 +1,7 @@
 include '../../types.pxi'
 
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
 
 cimport quantlib._quote as _qt
 cimport _sensitivityanalysis as _sa
@@ -38,8 +38,8 @@ def bucket_analysis(quotes_vvsq, instruments,
    
     #intermediary temps
     cdef vector[Handle[_qt.SimpleQuote]] sqh_vector
-    cdef shared_ptr[_qt.SimpleQuote]* q_ptr
-    cdef Handle[_qt.SimpleQuote]* sq_handle
+    cdef shared_ptr[_qt.SimpleQuote] q_ptr
+    cdef Handle[_qt.SimpleQuote] sq_handle
     cdef shared_ptr[_it.Instrument] instrument_sp
 	
     #C++ Output
@@ -54,9 +54,9 @@ def bucket_analysis(quotes_vvsq, instruments,
         for qlsq_in in qlsq_out:
 
             #be sure to pass shared_ptr pointing to same SimpleQuotes as were created outside of bucketAnalysis
-            q_ptr = <shared_ptr[_qt.SimpleQuote]*>(<SimpleQuote>qlsq_in)._thisptr
-            sq_handle = new Handle[_qt.SimpleQuote](deref(q_ptr))
-            sqh_vector.push_back(deref(sq_handle))
+            q_ptr = static_pointer_cast[_qt.SimpleQuote]((<SimpleQuote>qlsq_in)._thisptr)
+            sq_handle = Handle[_qt.SimpleQuote](q_ptr)
+            sqh_vector.push_back(sq_handle)
 			
         vvh_quotes.push_back(sqh_vector)
 

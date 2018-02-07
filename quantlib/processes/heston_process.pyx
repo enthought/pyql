@@ -47,7 +47,7 @@ cdef class HestonProcess(StochasticProcess):
        Discretization d=QUADRATICEXPONENTIALMARTINGALE):
 
         #create handles
-        cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](deref(s0._thisptr))
+        cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](s0._thisptr)
 
         self._thisptr = shared_ptr[_sp.StochasticProcess](
             new _hp.HestonProcess(
@@ -88,5 +88,5 @@ cdef class HestonProcess(StochasticProcess):
     def s0(self):
         cdef Handle[_qt.Quote] handle = (<_hp.HestonProcess*>self._thisptr.get()).s0()
         cdef SimpleQuote q = SimpleQuote.__new__(SimpleQuote)
-        q._thisptr = new shared_ptr[_qt.Quote](handle.currentLink())
+        q._thisptr = handle.currentLink()
         return q

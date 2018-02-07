@@ -51,7 +51,7 @@ cdef class BatesProcess(HestonProcess):
        Discretization d=FULLTRUNCATION):
 
         #create handles
-        cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](deref(s0._thisptr))
+        cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](s0._thisptr)
 
         self._thisptr = shared_ptr[_sp.StochasticProcess](
             new _hp.BatesProcess(

@@ -41,14 +41,11 @@ cdef class SwaptionHelper(CalibrationHelper):
                  DayCounter floating_leg_daycounter not None,
                  YieldTermStructure ts not None,
                  error_type=RelativePriceError,
-                 strike=None,
+                 Real strike=QL_NULL_REAL,
                  Real nominal=1.0):
 
         cdef Handle[_qt.Quote] volatility_handle = \
-                Handle[_qt.Quote](deref(volatility._thisptr))
-
-        if strike is None:
-            strike = QL_NULL_REAL
+                Handle[_qt.Quote](volatility._thisptr)
 
         self._thisptr = new shared_ptr[_ch.CalibrationHelper](
             new _sh.SwaptionHelper(

@@ -56,7 +56,7 @@ cdef class HestonModelHelper(CalibrationHelper):
     ):
         # create handles
         cdef Handle[_qt.Quote] volatility_handle = \
-                Handle[_qt.Quote](deref(volatility._thisptr))
+                Handle[_qt.Quote](volatility._thisptr)
 
         self._thisptr = new shared_ptr[_ch.CalibrationHelper](
             new _hm.HestonModelHelper(

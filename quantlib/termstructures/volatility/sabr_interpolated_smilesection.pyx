@@ -34,10 +34,10 @@ cdef class SabrInterpolatedSmileSection:
 
         cdef vector[Handle[Quote]] vol_handles_cpp
         for vol_handle in vol_handles:
-            vol_handles_cpp.push_back(Handle[Quote](deref((<SimpleQuote?>vol_handle)._thisptr)))
-        cdef Handle[Quote] forward_handle = Handle[Quote](deref(forward._thisptr))
+            vol_handles_cpp.push_back(Handle[Quote]((<SimpleQuote?>vol_handle)._thisptr))
+        cdef Handle[Quote] forward_handle = Handle[Quote](forward._thisptr)
         cdef Handle[Quote] atm_volatility_handle = Handle[Quote](
-            deref((<SimpleQuote?>atm_volatility)._thisptr))
+            (<SimpleQuote?>atm_volatility)._thisptr)
 
         self._thisptr = shared_ptr[_sis.SmileSection](
             new _sis.SabrInterpolatedSmileSection(
