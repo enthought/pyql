@@ -23,12 +23,8 @@ cdef extern from 'settings.hpp':
 __quantlib_version__ = QL_VERSION
 __quantlib_lib_version__ = QL_LIB_VERSION
 __quantlib_hex_version__ = QL_HEX_VERSION
-__quantlib_high_resolution_date__ = QL_HIGH_RESOLUTION_DATE
 
 cdef class Settings:
-
-    def __init__(self):
-        pass
 
     property evaluation_date:
         """Property to set/get the evaluation date. """
