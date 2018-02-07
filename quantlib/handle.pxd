@@ -21,8 +21,7 @@ cdef extern from 'boost/optional.hpp' namespace 'boost':
         optional(const T&)
         T get()
         bool operator!()
-
-    optional[T] make_optional[T](bool, const T&)
+        optional& operator=(T&)
 
 cdef extern from 'ql/handle.hpp' namespace 'QuantLib':
     cdef cppclass Handle[T]:
