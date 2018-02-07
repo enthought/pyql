@@ -18,3 +18,15 @@ cdef class IndexManager:
         cdef TimeSeries ts = TimeSeries.__new__(TimeSeries)
         ts._thisptr = _im.IndexManager.instance().getHistory(name)
         return ts
+
+    @staticmethod
+    def set_history(string name, TimeSeries ts not None):
+        _im.IndexManager.instance().setHistory(name, ts._thisptr)
+
+    @staticmethod
+    def clear_history(string name):
+        _im.IndexManager.instance().clearHistory(name)
+
+    @staticmethod
+    def clear_histories():
+        _im.IndexManager.instance().clearHistories()

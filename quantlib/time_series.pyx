@@ -25,6 +25,9 @@ cdef class TimeSeries:
     def __len__(self):
         return self._thisptr.size()
 
+    def __bool__(self):
+        return not self._thisptr.empty()
+
     def __getitem__(self, Date date not None):
         return self._thisptr[deref(date._thisptr)]
 
