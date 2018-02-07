@@ -242,7 +242,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         daycounter = ActualActual()
 
-        exercise_date = settlement_date + 6 * Months
+        exercise_date = settlement_date + Period(6, Months)
 
         payoff = PlainVanillaPayoff(Put, 30)
 
@@ -299,7 +299,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         daycounter = ActualActual()
 
-        exercise_date = settlement_date + 6 * Months
+        exercise_date = settlement_date + Period(6, Months)
 
         payoff = PlainVanillaPayoff(Put, 1290)
         exercise = EuropeanExercise(exercise_date)
