@@ -13,9 +13,9 @@ from Cython.Build import cythonize
 
 if sys.platform == 'win32':
     VC_INCLUDE_REDIST = False  # Set to True to include C runtime dlls in distribution.
-    from distutils import msvc9compiler
+    from distutils import msvccompiler
     from platform import architecture
-    VC_VERSION = msvc9compiler.VERSION
+    VC_VERSION = msvccompiler.get_build_version()
     ARCH = "x64" if architecture()[0] == "64bit" else "x86"
 
 try:
@@ -155,8 +155,8 @@ def collect_extensions():
     )
 
     manual_extensions = [
-        hestonhw_constraint_extension,
         multipath_extension,
+        hestonhw_constraint_extension,
         test_extension,
     ]
 
@@ -229,17 +229,17 @@ class pyql_build_ext(build_ext):
                 with open(filename, "wt") as fh:
                     fh.write("\n".join(map(os.path.basename, dlls)))
 
-
-setup(
-    name = 'quantlib',
-    version = '0.1',
-    author = 'Didrik Pinte,Patrick Henaff',
-    license = 'BSD',
-    packages = find_packages(),
-    include_package_data = True,
-    ext_modules = collect_extensions(),
-    setup_requires=['cython'],
-    cmdclass = {'build_ext': pyql_build_ext},
-    install_requires = ['tabulate', 'pandas', 'six'],
-    zip_safe = False
-)
+if __name__ == '__main__':
+    setup(
+        name = 'quantlib',
+        version = '0.1',
+        author = 'Didrik Pinte,Patrick Henaff',
+        license = 'BSD',
+        packages = find_packages(),
+        include_package_data = True,
+        ext_modules = collect_extensions(),
+        setup_requires=['cython'],
+        cmdclass = {'build_ext': pyql_build_ext},
+        install_requires = ['tabulate', 'pandas', 'six'],
+        zip_safe = False
+    )
