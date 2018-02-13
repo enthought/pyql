@@ -11,7 +11,7 @@ from quantlib.handle cimport shared_ptr, static_pointer_cast, dynamic_pointer_ca
 cdef class SwapSpreadIndex(InterestRateIndex):
     def __init__(self, string family_name, SwapIndex swap_index1,
                  SwapIndex swap_index2, Real gearing1=1.,
-                 Real gearing2=2.):
+                 Real gearing2=-1.):
         self._thisptr = shared_ptr[_in.Index](
             new _ssi.SwapSpreadIndex(family_name,
                                      static_pointer_cast[_si.SwapIndex](swap_index1._thisptr),
