@@ -13,6 +13,7 @@ cdef extern from 'boost/shared_ptr.hpp' namespace 'boost':
 
 cdef extern from 'boost/pointer_cast.hpp' namespace 'boost':
     shared_ptr[T] static_pointer_cast[T](...)
+    shared_ptr[T] dynamic_pointer_cast[T](...)
 
 cdef extern from 'boost/optional.hpp' namespace 'boost':
     cdef cppclass optional[T]:
