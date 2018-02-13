@@ -1,7 +1,7 @@
 from cython.operator cimport dereference as deref, preincrement as preinc
 from libcpp cimport bool
 from libcpp.vector cimport vector
-from quantlib.handle cimport optional, make_optional
+from quantlib.handle cimport optional
 
 cimport _schedule
 cimport _date
@@ -86,13 +86,16 @@ cdef class Schedule:
             _dates.push_back(deref((<Date>date)._thisptr))
 
         cdef Schedule instance = cls.__new__(cls)
+        cdef optional[_calendar.Period] opt_tenor
+        if tenor is not None:
+            opt_tenor = deref(tenor._thisptr)
         instance._thisptr = new _schedule.Schedule(
             _dates,
             deref(calendar._thisptr),
             business_day_convention,
             optional[BusinessDayConvention](
                 termination_date_convention),
-            make_optional[_calendar.Period](tenor is not None, <_calendar.Period>deref(tenor._thisptr)),
+            opt_tenor,
             optional[_schedule.Rule](<_schedule.Rule>date_generation_rule),
             optional[bool](end_of_month),
             is_regular

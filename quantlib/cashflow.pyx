@@ -14,7 +14,7 @@ from quantlib.time.date cimport (
 from libcpp.vector cimport vector
 from libcpp cimport bool
 from cython.operator cimport dereference as deref, preincrement as preinc
-from quantlib.handle cimport shared_ptr, static_pointer_cast, make_optional
+from quantlib.handle cimport shared_ptr, static_pointer_cast, optional
 import datetime
 
 cdef class CashFlow:
@@ -51,10 +51,11 @@ cdef class CashFlow:
 
     def has_occured(self, Date ref_date, include_ref_date=None):
         cdef _cf.CashFlow* cf = self._thisptr.get()
+        cdef optional[bool] c_include_ref_date
+        if include_ref_date is not None:
+            c_include_ref_date = <bool>include_ref_date
         if cf:
-            return cf.hasOccurred(deref(ref_date._thisptr),
-                                  make_optional[bool](include_ref_date is not None,
-                                                      <bool>include_ref_date))
+            return cf.hasOccurred(deref(ref_date._thisptr), c_include_ref_date)
 
 cdef class SimpleCashFlow(CashFlow):
 

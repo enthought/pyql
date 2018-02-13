@@ -1,7 +1,7 @@
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 
-from quantlib.handle cimport optional, make_optional
+from quantlib.handle cimport optional
 from quantlib.time._date cimport Date as QlDate
 from quantlib.time.date cimport Date, date_from_qldate
 
@@ -23,12 +23,8 @@ cdef extern from 'settings.hpp':
 __quantlib_version__ = QL_VERSION
 __quantlib_lib_version__ = QL_LIB_VERSION
 __quantlib_hex_version__ = QL_HEX_VERSION
-__quantlib_high_resolution_date__ = QL_HIGH_RESOLUTION_DATE
 
 cdef class Settings:
-
-    def __init__(self):
-        pass
 
     property evaluation_date:
         """Property to set/get the evaluation date. """
@@ -77,8 +73,9 @@ cdef class Settings:
 
     @include_todays_cashflows.setter
     def include_todays_cashflows(self, val):
-
-        cdef optional[bool] flag = make_optional[bool](val is not None, <bool>val)
+        cdef optional[bool] flag
+        if val is not None:
+            flag = <bool>val
         SET_VALUE(_settings.Settings.instance().includeTodaysCashFlows(),
                   flag)
 
