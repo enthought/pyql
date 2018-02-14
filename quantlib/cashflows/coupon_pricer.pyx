@@ -5,6 +5,9 @@ cimport _coupon_pricer as _cp
 cimport quantlib.instruments._bonds as _bonds
 from quantlib.termstructures.volatility.optionlet.optionlet_volatility_structure cimport OptionletVolatilityStructure
 cimport quantlib.termstructures.volatility.optionlet._optionlet_volatility_structure as _ovs
+from quantlib.termstructures.volatility.swaption.swaption_vol_structure \
+    cimport  SwaptionVolatilityStructure
+cimport quantlib.termstructures.volatility.swaption._swaption_vol_structure  as _svs
 from quantlib.handle cimport Handle
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date

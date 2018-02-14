@@ -6,3 +6,6 @@ cdef class FloatingRateCouponPricer:
 
 cdef class IborCouponPricer(FloatingRateCouponPricer):
     pass
+
+cdef class CmsCouponPricer(FloatingRateCouponPricer):
+    pass
