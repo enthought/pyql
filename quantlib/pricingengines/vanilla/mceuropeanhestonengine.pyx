@@ -1,7 +1,8 @@
 include '../../types.pxi'
 from libcpp cimport bool
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport shared_ptr, static_pointer_cast, QL_NULL_INTEGER, QL_NULL_REAL
+from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.defines cimport QL_NULL_INTEGER, QL_NULL_REAL
 cimport quantlib.pricingengines._pricing_engine as _pe
 from quantlib.processes.heston_process cimport HestonProcess
 cimport quantlib.processes._heston_process as _hp

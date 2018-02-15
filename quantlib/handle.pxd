@@ -36,7 +36,3 @@ cdef extern from 'ql/handle.hpp' namespace 'QuantLib':
         RelinkableHandle(shared_ptr[T]&)
         void linkTo(shared_ptr[T]&)
         void linkTo(shared_ptr[T]&, bool registerAsObserver)
-
-cdef extern from 'ql/qldefines.hpp':
-    cdef int QL_NULL_INTEGER
-    cdef float QL_NULL_REAL
