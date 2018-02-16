@@ -23,7 +23,7 @@ cdef extern from 'ql/cashflows/coupon.hpp' namespace 'QuantLib':
         const Date& referencePeriodEnd()
         Time accrualPeriod()
         serial_type accrualDays()
-        Rate rate()
+        Rate rate() except +
         DayCounter dayCounter()
         Time accruedPeriod(const Date&)
         serial_type accruedDays(const Date&)
