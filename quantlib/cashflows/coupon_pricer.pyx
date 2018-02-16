@@ -22,7 +22,7 @@ cdef class FloatingRateCouponPricer:
 
     def __init__(self):
         raise ValueError(
-            'IborCouponPricer cannot be directly instantiated!'
+            'CouponPricer cannot be directly instantiated!'
         )
 
     def swaplet_price(self):
