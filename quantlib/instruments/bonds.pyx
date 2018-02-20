@@ -119,11 +119,12 @@ cdef class Bond(Instrument):
         """ Returns the bond accrued amount at the given date. """
         return get_bond(self).accruedAmount(deref(date._thisptr))
 
-    property cashflows:
+    @property
+    def cashflows(self):
         """ cash flow stream as a Leg """
-        def __get__(self):
-            cdef _cashflow.Leg leg = get_bond(self).cashflows()
-            return cashflow.leg_items(leg)
+        cdef cashflow.Leg leg = cashflow.Leg.__new__(cashflow.Leg)
+        leg._thisptr = get_bond(self).cashflows()
+        return leg
 
 cdef class FixedRateBond(Bond):
     """ Fixed rate bond.
