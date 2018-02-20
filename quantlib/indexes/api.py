@@ -14,6 +14,7 @@ from .ibor_index import IborIndex
 from .swap_index import SwapIndex
 from .index_manager import IndexManager
 from .swap.usd_libor_swap import UsdLiborSwapIsdaFixAm, UsdLiborSwapIsdaFixPm
+from .swap.euribor_swap import EuriborSwapIsdaFixA, EuriborSwapIsdaFixB
 from .region_registry import region_from_name
 from .region import Region, CustomRegion
 from .regions import *
