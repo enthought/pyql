@@ -1,18 +1,21 @@
 import unittest
 
 from quantlib.time.api import (
-    Period, Months, Years, Following, Actual365Fixed,
+    Period, Months, Days, Years, Following, Actual365Fixed,
     UnitedStates, today, Unadjusted)
 from quantlib.math.matrix import Matrix
 import numpy as np
 from quantlib.termstructures.volatility.swaption.swaption_vol_matrix \
     import SwaptionVolatilityMatrix
-from quantlib.indexes.api import IborIndex, SwapIndex, Euribor6M
+from quantlib.indexes.api import EuriborSwapIsdaFixA
+from quantlib.instruments.make_cms import MakeCms
 from quantlib.termstructures.yields.api import FlatForward
+from quantlib.cashflows.coupon_pricer import set_coupon_pricer
 from quantlib.cashflows.cap_floored_coupon import CappedFlooredCmsCoupon
 from quantlib.cashflows.conundrum_pricer import (
     YieldCurveModel, NumericHaganPricer, AnalyticHaganPricer)
 from quantlib.quotes import SimpleQuote
+from quantlib.settings import Settings
 
 class CmsFairRateTestCase(unittest.TestCase):
     def setUp(self):
@@ -39,20 +42,12 @@ class CmsFairRateTestCase(unittest.TestCase):
                                                 Actual365Fixed())
 
         reference_date = calendar.adjust(today())
-
+        Settings().evaluation_date = reference_date
         self.term_structure = FlatForward(reference_date, 0.05, Actual365Fixed())
-        self.ibor_index = Euribor6M(self.term_structure)
+        self.swap_index = EuriborSwapIsdaFixA(Period(10, Years),
+                                              forwarding=self.term_structure)
 
     def test_fair_rate(self):
-        swap_index = SwapIndex("EuriborSwapIsdaFixA",
-                               Period(10, Years),
-                               self.ibor_index.fixing_days,
-                               self.ibor_index.currency,
-                               self.ibor_index.fixing_calendar,
-                               Period(1, Years),
-                               Unadjusted,
-                               self.ibor_index.day_counter,
-                               self.ibor_index)
 
         start_date = self.term_structure.reference_date + Period(20, Years)
         payment_date = start_date + Period(1, Years)
@@ -60,14 +55,15 @@ class CmsFairRateTestCase(unittest.TestCase):
         nominal = 1.0
         gearing = 1.0
         spread = 0.0
-
         coupon = CappedFlooredCmsCoupon(payment_date, nominal,
                                         start_date, end_date,
-                                        swap_index.fixing_days, swap_index,
+                                        self.swap_index.fixing_days,
+                                        self.swap_index,
                                         gearing, spread,
                                         ref_period_start=start_date,
                                         ref_period_end=end_date,
-                                        day_counter=self.ibor_index.day_counter)
+                                        day_counter=self.swap_index.day_counter)
+
 
         for model in YieldCurveModel:
             pricer = NumericHaganPricer(self.atm_vol, model, SimpleQuote(0.))
@@ -77,6 +73,24 @@ class CmsFairRateTestCase(unittest.TestCase):
             coupon.set_pricer(pricer)
             rate_analytic = coupon.rate
             self.assertAlmostEqual(rate_numeric, rate_analytic, 3)
+
+    def test_cms_swap(self):
+        swap_lengths = [1, 5, 6, 10]
+        spread = 0.
+        cms_list = [MakeCms(Period(t, Years),
+                            self.swap_index,
+                            self.swap_index.ibor_index,
+                            spread,
+                            Period(10, Days))() for t in swap_lengths]
+        for model in YieldCurveModel:
+            num_pricer = NumericHaganPricer(self.atm_vol, model, SimpleQuote(0.))
+            analytic_pricer = AnalyticHaganPricer(self.atm_vol, model, SimpleQuote(0.))
+            for cms in cms_list:
+                set_coupon_pricer(cms[0], num_pricer)
+                price_num = cms.npv
+                set_coupon_pricer(cms[0], analytic_pricer)
+                price_analytic = cms.npv
+                self.assertAlmostEqual(price_num, price_analytic, 3)
 
 if __name__ == '__main__':
     unittest.main()
