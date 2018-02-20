@@ -69,7 +69,7 @@ cdef class ZeroInflationTermStructure(InflationTermStructure):
             static_pointer_cast[_if.ZeroInflationTermStructure](self._thisptr))
 
     def link_to(self, ZeroInflationTermStructure structure):
-        self._thisptr.reset(structure._thisptr.get())
+        self._thisptr = structure._thisptr
         self._handle.linkTo(static_pointer_cast[_if.ZeroInflationTermStructure](
             structure._thisptr))
 
@@ -95,11 +95,8 @@ cdef class YoYInflationTermStructure(InflationTermStructure):
         self._handle = RelinkableHandle[_if.YoYInflationTermStructure](
             static_pointer_cast[_if.YoYInflationTermStructure](self._thisptr))
 
-    def __dealloc__(self):
-        self._handle.linkTo(shared_ptr[_if.YoYInflationTermStructure]())
-
     def link_to(self, YoYInflationTermStructure structure):
-        self._thisptr.reset(structure._thisptr.get())
+        self._thisptr = structure._thisptr
         self._handle.linkTo(static_pointer_cast[_if.YoYInflationTermStructure](
             structure._thisptr))
 

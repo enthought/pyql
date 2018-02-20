@@ -263,7 +263,7 @@ cdef class FloatingRateBond(Bond):
         self._thisptr = new shared_ptr[_instrument.Instrument](
             new _bonds.FloatingRateBond(
                 settlement_days, face_amount,
-                deref(float_schedule._thisptr),
+                deref(schedule._thisptr),
                 static_pointer_cast[_ii.IborIndex](ibor_index._thisptr),
                 deref(accrual_day_counter._thisptr),
                 payment_convention,

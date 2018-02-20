@@ -112,7 +112,7 @@ cdef class YoYInflationIndex(ZeroInflationIndex):
 
         cdef string c_family_name = family_name.encode('utf-8')
 
-        self._thisptr = new shared_ptr[_in.Index](
+        self._thisptr = shared_ptr[_in.Index](
             new _ii.YoYInflationIndex(
                 c_family_name, deref(region._thisptr), revised,
                 interpolated, ratio, frequency,
