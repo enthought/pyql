@@ -1,7 +1,7 @@
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from libcpp.vector cimport vector
-from quantlib.handle cimport shared_ptr, Handle, optional, make_optional
+from quantlib.handle cimport shared_ptr, Handle, optional
 
 from quantlib.pricingengines.engine cimport PricingEngine
 
@@ -41,9 +41,9 @@ cdef class IsdaCdsEngine(PricingEngine):
         and an interest curve compliant with the ISDA specifications.
         """
 
-        cdef optional[bool] settlement_flows = make_optional[bool](
-                include_settlement_date_flows is not None,
-                <bool>include_settlement_date_flows)
+        cdef optional[bool] settlement_flows
+        if include_settlement_date_flows is not None:
+            settlement_flos = include_settlement_date_flows
 
         cdef Handle[_dts.DefaultProbabilityTermStructure] handle = \
             Handle[_dts.DefaultProbabilityTermStructure](ts._thisptr)
