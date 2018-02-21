@@ -21,10 +21,8 @@ from quantlib.termstructures.inflation_term_structure import \
     ZeroInflationTermStructure
 from quantlib.termstructures.yields.api import FlatForward
 from quantlib.indexes.inflation.ukrpi import UKRPI
-from quantlib.termstructures.inflation.inflation_helpers import \
-    ZeroCouponInflationSwapHelper
-from quantlib.termstructures.inflation.piecewise_zero_inflation_curve \
-    import PiecewiseZeroInflationCurve, Interpolator
+from quantlib.termstructures.inflation.api import \
+    ZeroCouponInflationSwapHelper, PiecewiseZeroInflationCurve, Interpolator
 from quantlib.quotes import SimpleQuote
 
 class TestInflationIndex(unittest.TestCase):

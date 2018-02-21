@@ -10,8 +10,6 @@ from quantlib.time._period cimport Frequency
 from quantlib.time.date cimport Date, Period
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
-from quantlib.termstructures.inflation.interpolated_zero_inflation_curve  \
-    cimport InterpolatedZeroInflationCurve
 from quantlib.termstructures.inflation.inflation_helpers cimport ZeroCouponInflationSwapHelper
 from quantlib.termstructures.inflation.inflation_traits cimport ZeroInflationTraits
 cimport quantlib.math.interpolation as intpl
@@ -33,7 +31,7 @@ cdef class PiecewiseZeroInflationCurve(InterpolatedZeroInflationCurve):
 
         self._trait = interpolator
 
-        if interpolator == Linear:
+        if interpolator == Interpolator.Linear:
             self._thisptr.reset(
                 new _pzic.PiecewiseZeroInflationCurve[intpl.Linear](
                     deref(reference_date._thisptr),
@@ -45,7 +43,7 @@ cdef class PiecewiseZeroInflationCurve(InterpolatedZeroInflationCurve):
                     instruments_cpp,
                     accuracy))
 
-        elif interpolator == LogLinear:
+        elif interpolator == Interpolator.LogLinear:
             self._thisptr.reset(
                 new _pzic.PiecewiseZeroInflationCurve[intpl.LogLinear](
                     deref(reference_date._thisptr),
