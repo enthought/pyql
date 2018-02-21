@@ -21,7 +21,7 @@ from quantlib.termstructures.credit.api import (
         SpreadCdsHelper, PiecewiseDefaultCurve, ProbabilityTrait, Interpolator,
         FlatHazardRate )
 from quantlib.termstructures.yields.api import BootstrapTrait
-from quantlib.indexes.euribor import Euribor6M
+from quantlib.indexes.api import Euribor6M
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.api import (
     FlatForward, DepositRateHelper, SwapRateHelper, PiecewiseYieldCurve, YieldTermStructure)
@@ -211,7 +211,6 @@ def example02():
     nominal = 100000000
     trade = CreditDefaultSwap(Side.Buyer, nominal, 0.01, cds_schedule, Following,
                             Actual360(), True, True, Date(22, 10, 2014), Actual360(True), True)
-    print(trade.coupons_as_fixedratecoupons)
     engine = IsdaCdsEngine(defaultTs0, 0.4, YC, False)
     trade.set_pricing_engine(engine)
     print("reference trade NPV = {0}\n".format(trade.npv))
@@ -232,22 +231,24 @@ def example03():
                                         calendar, Annual, ModifiedFollowing,
                                         Thirty360(), Euribor6M(), SimpleQuote(0)) for q, t
               in zip(quotes, tenors)]
-    yield_helpers = deps+swaps
-    empty_yts = YieldTermStructure()
+    yield_helpers = deps + swaps
+    isda_yts = PiecewiseYieldCurve(BootstrapTrait.Discount, Interpolator.LogLinear, 0,
+                                   WeekendsOnly(), yield_helpers, Actual365Fixed())
+
     spreads = [0.007927, 0.012239, 0.016979, 0.019271, 0.020860]
     tenors = [1, 3, 5, 7, 10]
     spread_helpers = [SpreadCdsHelper(0.007927, Period(6, Months), 1,
                                       WeekendsOnly(), Quarterly, Following, Rule.CDS2015,
-                                      Actual360(), 0.4, empty_yts, True, True,
+                                      Actual360(), 0.4, isda_yts, True, True,
                                       Date(), Actual360(True), True, PricingModel.ISDA)] + \
-        [SpreadCdsHelper(s, Period(t, Years), 1, WeekendsOnly(), Quarterly, Following, Rule.CDS2015,
-                         Actual360(), 0.4, empty_yts, True, True, Date(), Actual360(True), True,
-                         PricingModel.ISDA)
-         for s, t in zip(spreads, tenors)]
-
-    isda_pricer = IsdaCdsEngine(spread_helpers, 0.4, yield_helpers)
-    isda_yts = isda_pricer.isda_rate_curve
-    isda_cts = isda_pricer.isda_credit_curve
+    [SpreadCdsHelper(s, Period(t, Years), 1, WeekendsOnly(), Quarterly, Following, Rule.CDS2015,
+                     Actual360(), 0.4, isda_yts, True, True, Date(), Actual360(True), True,
+                     PricingModel.ISDA)
+     for s, t in zip(spreads, tenors)]
+    isda_cts = PiecewiseDefaultCurve(ProbabilityTrait.SurvivalProbability,
+                                     Interpolator.LogLinear, 0, WeekendsOnly(), spread_helpers,
+                                     Actual365Fixed())
+    isda_pricer = IsdaCdsEngine(isda_cts, 0.4, isda_yts)
     print("Isda yield curve:")
     for h in yield_helpers:
         d = h.latest_date
