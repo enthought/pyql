@@ -52,7 +52,7 @@ cdef class Schedule:
             Period tenor not None, Calendar calendar not None,
             BusinessDayConvention business_day_convention=Following,
             BusinessDayConvention termination_date_convention=Following,
-            int date_generation_rule=Forward, bool end_of_month=False,
+            Rule date_generation_rule=Forward, bool end_of_month=False,
             from_classmethod=False
            ):
 
@@ -63,11 +63,11 @@ cdef class Schedule:
             self._thisptr = new _schedule.Schedule(
                 deref(effective_date._thisptr),
                 deref(termination_date._thisptr),
-                deref(tenor._thisptr.get()),
+                deref(tenor._thisptr),
                 deref(calendar._thisptr),
                 business_day_convention,
                 termination_date_convention,
-                <_schedule.Rule>date_generation_rule, end_of_month,
+                date_generation_rule, end_of_month,
                 _date.Date(), _date.Date()
             )
         else:
@@ -78,7 +78,7 @@ cdef class Schedule:
             BusinessDayConvention business_day_convention=Following,
             BusinessDayConvention termination_date_convention=Following,
             Period tenor=None,
-            int date_generation_rule=Forward, bool end_of_month=False,
+            Rule date_generation_rule=Forward, bool end_of_month=False,
             vector[bool] is_regular=[]):
         # convert lists to vectors
         cdef vector[_date.Date] _dates = vector[_date.Date]()
@@ -109,7 +109,7 @@ cdef class Schedule:
                   Period tenor not None, Calendar calendar not None,
                   BusinessDayConvention business_day_convention=Following,
                   BusinessDayConvention termination_date_convention=Following,
-                  int date_generation_rule=Forward, bool end_of_month=False,
+                  Rule date_generation_rule=Forward, bool end_of_month=False,
                   Date first_date=Date(), Date next_to_lastdate=Date()):
 
         cdef Schedule instance = cls.__new__(cls)
@@ -120,7 +120,7 @@ cdef class Schedule:
             deref(calendar._thisptr),
             business_day_convention,
             termination_date_convention,
-            <_schedule.Rule>date_generation_rule, end_of_month,
+            date_generation_rule, end_of_month,
             deref(first_date._thisptr), deref(next_to_lastdate._thisptr)
             )
         return instance
@@ -182,7 +182,7 @@ cdef class Schedule:
         cdef size_t i
         if isinstance(index, slice):
             return [date_from_qldate(self._thisptr.at(i))
-                    for i in range(*index.indices(len(self)))]
+                    for i in range(*index.indices(self._thisptr.size()))]
         elif isinstance(index, int):
             return date_from_qldate(self._thisptr.at(index))
         else:

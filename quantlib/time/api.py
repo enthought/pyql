@@ -43,4 +43,4 @@ from .date import (
 
 )
 
-from .schedule import Schedule, Backward, Forward, TwentiethIMM, CDS
+from .schedule import Schedule, Rule

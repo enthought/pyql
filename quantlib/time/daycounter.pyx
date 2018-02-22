@@ -90,7 +90,10 @@ cdef _daycounter.DayCounter* daycounter_from_name(basestring name, basestring co
 
     cdef _daycounter.DayCounter* cnt = NULL
     if name_u in ['ACTUAL360', 'ACTUAL/360', 'ACT/360']:
-        cnt = new _simple.Actual360()
+        if convention == 'inc':
+            cnt = new _simple.Actual360(True)
+        else:
+            cnt = new _simple.Actual360()
     elif name_u in ['ACTUAL365FIXED', 'ACTUAL/365', 'ACT/365']:
         cnt = new _simple.Actual365Fixed()
     elif name_u == 'BUSINESS252':

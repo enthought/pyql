@@ -60,3 +60,4 @@ cdef class SwaptionHelper(CalibrationHelper):
                 <_ch.CalibrationErrorType>error_type,
                 strike,
                 nominal))
+

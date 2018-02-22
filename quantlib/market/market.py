@@ -11,8 +11,8 @@ from quantlib.termstructures.yields.api import (
 from quantlib.time.api import (
     Date, Period, Years, Days, JointCalendar, UnitedStates, UnitedKingdom,
     pydate_from_qldate, qldate_from_pydate, DayCounter,
-    BusinessDayConvention, Backward, Following, calendar_from_name,
-    Schedule, Forward, Frequency
+    BusinessDayConvention, Rule, Following, calendar_from_name,
+    Schedule, Frequency
 
 )
 from quantlib.util.converter import pydate_to_qldate
@@ -120,7 +120,7 @@ def make_eurobond_helper(
         index.fixing_calendar,
         index.business_day_convention,
         index.business_day_convention,
-        Backward,  # Date generation rule
+        Rule.Backward,  # Date generation rule
         index.end_of_month,
         )
 
@@ -372,13 +372,13 @@ class IborMarket(FixedIncomeMarket):
         fixed_schedule = Schedule.from_rule(settlement_date, maturity,
                                   fixed_frequency, calendar,
                                   fixed_convention, fixed_convention,
-                                  Forward, False)
+                                  Rule.Forward, False)
 
         float_schedule = Schedule.from_rule(settlement_date, maturity,
                                   floating_frequency,
                                   calendar, floating_convention,
                                   floating_convention,
-                                  Forward, False)
+                                  Rule.Forward, False)
 
         swap = VanillaSwap(swap_type, nominal, fixed_schedule, fixed_rate,
                            fixed_daycount, float_schedule, index,

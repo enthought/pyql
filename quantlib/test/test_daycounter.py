@@ -38,6 +38,11 @@ class TestDayCounter(unittest.TestCase):
         with self.assertRaisesRegexp(RuntimeError, 'no implementation provided'):
             day_counter.name
 
+    def test_empty_daycounter(self):
+        day_counter = DayCounter()
+        with self.assertRaisesRegexp(RuntimeError, 'no implementation provided'):
+            day_counter.name()
+
 class TestDayCounterFromName(unittest.TestCase):
 
     def test_create_simple_daycounter_from_name(self):
@@ -45,6 +50,7 @@ class TestDayCounterFromName(unittest.TestCase):
         type_vs_name = {
             'Actual360' : 'Actual/360',
             'Actual/360' : 'Actual/360',
+            'Actual/360 (inc)': 'Actual/360 (inc)',
             'Actual365Fixed' : 'Actual/365 (Fixed)',
             'Actual/365' : 'Actual/365 (Fixed)',
             'OneDayCounter' : '1/1',

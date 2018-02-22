@@ -11,7 +11,7 @@
 include '../../types.pxi'
 from libcpp cimport bool
 
-from quantlib.handle cimport Handle
+from quantlib.handle cimport Handle, shared_ptr
 from quantlib._quote cimport Quote
 from quantlib.time._calendar cimport BusinessDayConvention, Calendar
 from quantlib.time._date cimport Date
@@ -23,6 +23,7 @@ from quantlib.time._schedule cimport Rule
 from quantlib.termstructures._default_term_structure cimport DefaultProbabilityTermStructure
 from quantlib.termstructures._helpers cimport BootstrapHelper, \
                                               RelativeDateBootstrapHelper
+from quantlib.instruments._credit_default_swap cimport CreditDefaultSwap, PricingModel
 
 cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namespace 'QuantLib':
 
@@ -42,37 +43,88 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                   Real recoveryRate,
                   Handle[YieldTermStructure]& discountCurve,
                   bool settlesAccrual, # removed default value (true)
-                  bool paysADefaultTime) # removed default value (true)
+                  bool paysADefaultTime, # removed default value (true)
+                  const Date startDate, # = Date()
+                  DayCounter lastPeriodDayCounter, # = DayCounter()
+                  bool rebatesAccrual, # removed default value (true)
+                  const PricingModel model) # = CreditDefaultSwap::Midpoint
 
         void setTermStructure(DefaultProbabilityTermStructure*)
+        void setIsdaEngineParameters(int numericalFix,
+                                     int accrualBias,
+                                     int forwardsInCouponPeriod)
+        const shared_ptr[CreditDefaultSwap]& swap()
 
     cdef cppclass SpreadCdsHelper(CdsHelper):
-         SpreadCdsHelper(Rate runningSpread,
-                        Period& tenor,
+        SpreadCdsHelper(Rate runningSpread,
+                        const Period& tenor,
                         Integer settlementDays,
-                        Calendar& calendar,
+                        const Calendar& calendar,
                         Frequency frequency,
                         BusinessDayConvention paymentConvention,
                         Rule rule,
-                        DayCounter& dayCounter,
+                        const DayCounter& dayCounter,
                         Real recoveryRate,
-                        Handle[YieldTermStructure]& discountCurve,
+                        const Handle[YieldTermStructure]& discountCurve,
                         bool settlesAccrual,  # removed default value (true)
-                        bool paysAtDefaultTime) # removed default value (true)
+                        bool paysAtDefaultTime, # removed default value (true)
+                          const Date startDate, # = Date()
+                        DayCounter lastPeriodDayCounter, # = DayCounter()
+                        bool rebatesAccrual, # removed default value (true)
+                        const PricingModel model) # = CreditDefaultSwap::Midpoint
+
+        SpreadCdsHelper(const Handle[Quote]& runningSpread,
+                        const Period& tenor,
+                        Integer settlementDays,
+                        const Calendar& calendar,
+                        Frequency frequency,
+                        BusinessDayConvention paymentConvention,
+                        Rule rule,
+                        const DayCounter& dayCounter,
+                        Real recoveryRate,
+                        const Handle[YieldTermStructure]& discountCurve,
+                        bool settlesAccrual,  # removed default value (true)
+                        bool paysAtDefaultTime, # removed default value (true)
+                        const Date startDate, # = Date()
+                        DayCounter lastPeriodDayCounter, # = DayCounter()
+                        bool rebatesAccrual, # removed default value (true)
+                        const PricingModel model) # = CreditDefaultSwap::Midpoint
 
     cdef cppclass UpfrontCdsHelper(CdsHelper):
-         UpfrontCdsHelper(Rate upfrontSpread,
-                          Rate runningSpread,
-                          Period& tenor,
-                          Integer settlementDays,
-                          Calendar& calendar,
-                          Frequency frequency,
-                          BusinessDayConvention paymentConvention,
-                          Rule rule,
-                          DayCounter& dayCounter,
-                          Real recoveryRate,
-                          Handle[YieldTermStructure]& discountCurve,
-                          Natural upfrontSettlementDays,
-                          bool settlesAccrual,  # removed default value (true)
-                          bool paysAtDefaultTime # removed default value (true)
-         ) except +
+        UpfrontCdsHelper(Rate upfront,
+                         Rate runningSpread,
+                         const Period& tenor,
+                         Integer settlementDays,
+                         const Calendar& calendar,
+                         Frequency frequency,
+                         BusinessDayConvention paymentConvention,
+                         Rule rule,
+                         const DayCounter& dayCounter,
+                         Real recoveryRate,
+                         const Handle[YieldTermStructure]& discountCurve,
+                         Natural upfrontSettlementDays,
+                         bool settlesAccrual,  # removed default value (true)
+                         bool paysAtDefaultTime, # removed default value (true)
+                         const Date startDate, # = Date()
+                         DayCounter lastPeriodDayCounter, # = DayCounter()
+                         bool rebatesAccrual, # removed default value (true)
+                         const PricingModel model) # = CreditDefaultSwap::Midpoint
+
+        UpfrontCdsHelper(const Handle[Quote]& upfront,
+                         Rate runningSpread,
+                         const Period& tenor,
+                         Integer settlementDays,
+                         const Calendar& calendar,
+                         Frequency frequency,
+                         BusinessDayConvention paymentConvention,
+                         Rule rule,
+                         const DayCounter& dayCounter,
+                         Real recoveryRate,
+                         const Handle[YieldTermStructure]& discountCurve,
+                         Natural upfrontSettlementDays,
+                         bool settlesAccrual,  # removed default value (true)
+                         bool paysAtDefaultTime, # removed default value (true)
+                           const Date startDate, # = Date()
+                         DayCounter lastPeriodDayCounter, # = DayCounter()
+                         bool rebatesAccrual, # removed default value (true)
+                         const PricingModel model) # = CreditDefaultSwap::Midpoint

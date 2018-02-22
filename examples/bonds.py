@@ -38,7 +38,7 @@ face_amount = 100.0
 coupon_rate = 0.05
 redemption = 100.0
 
-fixed_bond_schedule = Schedule(
+fixed_bond_schedule = Schedule.from_rule(
     effective_date,
     termination_date,
     Period(Annual),

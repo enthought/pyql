@@ -9,6 +9,7 @@ from quantlib.time.daycounter cimport DayCounter
 cimport quantlib.time.calendars._target as _tg
 cimport quantlib.time._calendar as _calendar
 from quantlib.time.calendar cimport Calendar
+from libcpp cimport bool
 
 cdef class Actual365Fixed(DayCounter):
 
@@ -18,8 +19,8 @@ cdef class Actual365Fixed(DayCounter):
 
 cdef class Actual360(DayCounter):
 
-    def __cinit__(self, *args):
-        self._thisptr = <_daycounter.DayCounter*> new _simple.Actual360()
+    def __cinit__(self, bool include_last_day = False):
+        self._thisptr = <_daycounter.DayCounter*> new _simple.Actual360(include_last_day)
 
 
 cdef class Business252(DayCounter):

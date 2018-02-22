@@ -19,7 +19,7 @@ from quantlib.settings import Settings
 from quantlib.time.api import (Days, Months, Years, Period, TARGET, Actual360,
                                today, Actual365Fixed, UnitedStates, Thirty360)
 from quantlib.time.api import Following, ModifiedFollowing
-from quantlib.time.calendars.united_states import GOVERNMENTBOND
+from quantlib.time.calendars.united_states import GovernmentBond
 from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure)
 from quantlib.time.api import Date, January
@@ -134,7 +134,7 @@ class SwapIndexTestCase(unittest.TestCase):
 
         index = SwapIndex(
             'UsdLiborSwapIsdaFixAm', Period(10, Years), 2, USDCurrency(),
-            UnitedStates(GOVERNMENTBOND),
+            UnitedStates(GovernmentBond),
             Period(6, Months), ModifiedFollowing,
             Thirty360(), ibor_index)
         index2 = UsdLiborSwapIsdaFixAm(Period(10, Years), term_structure)

@@ -4,7 +4,7 @@ from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.bond_helpers import (
     FixedRateBondHelper)
 from quantlib.time.api import (
-    Annual, Backward, Date, DayCounter, ModifiedFollowing, Following, Period, Schedule, TARGET)
+    Annual, Rule, Date, DayCounter, ModifiedFollowing, Following, Period, Schedule, TARGET)
 
 class TestFixedRateBondHelper(unittest.TestCase):
 
@@ -20,7 +20,7 @@ class TestFixedRateBondHelper(unittest.TestCase):
             TARGET(),
             ModifiedFollowing,
             ModifiedFollowing,
-            Backward,
+            Rule.Backward,
             False
         )
 

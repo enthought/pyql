@@ -1,4 +1,4 @@
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.handle cimport shared_ptr
 cimport quantlib.termstructures.credit._credit_helpers as _ci
 
 cdef class CdsHelper:

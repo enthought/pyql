@@ -8,8 +8,9 @@ from quantlib.termstructures.yields.api import FlatForward
 from quantlib.termstructures.credit.api import (
     SpreadCdsHelper, PiecewiseDefaultCurve, FlatHazardRate,
     InterpolatedHazardRateCurve, ProbabilityTrait, Interpolator)
+from quantlib.instruments.api import PricingModel
 from quantlib.time.api import TARGET, Date, Actual365Fixed, Years, \
-        Following, Quarterly, TwentiethIMM, May, Period, Days
+        Following, Quarterly, Rule, May, Period, Days
 import math
 
 def create_helper():
@@ -30,7 +31,8 @@ def create_helper():
 
     helper = SpreadCdsHelper(
             quoted_spreads, tenor, 0, calendar, Quarterly,
-            Following, TwentiethIMM, Actual365Fixed(), recovery_rate, ts_curve
+            Following, Rule.TwentiethIMM, Actual365Fixed(), recovery_rate, ts_curve,
+            model=PricingModel.Midpoint
     )
 
     return todays_date, helper
