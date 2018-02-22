@@ -9,8 +9,8 @@ from quantlib.time.calendar cimport Calendar
 from quantlib.time._businessdayconvention cimport BusinessDayConvention
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.math.matrix cimport Matrix
-from ..volatilitytype cimport VolatilityType
-from ..volatilitytype cimport ShiftedLognormal
+from ..volatilitytype cimport VolatilityType, ShiftedLognormal
+cimport quantlib.termstructures.volatility._volatilitytype as _voltype
 cimport _swaption_vol_structure as _svs
 
 cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
@@ -42,7 +42,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
                 volatilities._thisptr,
                 deref(day_counter._thisptr),
                 flat_extrapolation,
-                vol_type,
+                <_voltype.VolatilityType>vol_type,
                 shifts._thisptr
             )
         )
@@ -78,7 +78,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
                 volatilities._thisptr,
                 deref(day_counter._thisptr),
                 flat_extrapolation,
-                vol_type,
+                <_voltype.VolatilityType>vol_type,
                 shifts._thisptr
             )
         )

@@ -1,4 +1,5 @@
-cdef extern from 'ql/termstructures/volatility/volatilitytype.hpp' namespace 'QuantLib':
-    enum VolatilityType:
-        ShiftedLognormal
-        Normal
+cimport _volatilitytype as _voltype
+
+cpdef enum VolatilityType:
+    ShiftedLognormal = _voltype.ShiftedLognormal
+    Normal = _voltype.Normal

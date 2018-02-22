@@ -9,9 +9,8 @@ from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._businessdayconvention cimport BusinessDayConvention
 from quantlib.handle cimport shared_ptr, Handle
 from quantlib._quote cimport Quote
-from quantlib.termstructures.volatility.swaption._swaption_vol_structure \
-    cimport SwaptionVolatilityStructure
-from quantlib.termstructures.volatility.volatilitytype cimport VolatilityType
+from ._swaption_vol_structure cimport SwaptionVolatilityStructure
+from .._volatilitytype cimport VolatilityType
 from quantlib.math._matrix cimport Matrix
 
 cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolmatrix.hpp' namespace 'QuantLib':
