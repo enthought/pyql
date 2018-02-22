@@ -18,24 +18,29 @@ from libcpp cimport bool
 from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle, static_pointer_cast
 from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
-from quantlib.time._businessdayconvention cimport BusinessDayConvention, Following
+from quantlib.time._businessdayconvention cimport (
+    BusinessDayConvention, Following, Unadjusted )
 from quantlib.time._daycounter cimport DayCounter as QlDayCounter
 from quantlib.time._schedule cimport Schedule as QlSchedule
 from quantlib.time.calendar cimport Calendar
-from quantlib.time.date cimport Date, date_from_qldate
+from quantlib.time.date cimport Date, date_from_qldate, Period
 from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time._period cimport Frequency
 from quantlib.indexes.ibor_index cimport IborIndex
+from quantlib.indexes.inflation_index cimport ZeroInflationIndex
 
 cimport quantlib._cashflow as _cashflow
 cimport quantlib.cashflow as cashflow
 cimport quantlib.indexes._ibor_index as _ii
+cimport quantlib.indexes._inflation_index as _inf
 
-import datetime
+cpdef enum InterpolationType:
+    AsIndex = _bonds.AsIndex
+    Flat = _bonds.Flat
+    Linear = _bonds.Linear
 
-
-cdef _bonds.Bond* get_bond(Bond bond):
+cdef inline _bonds.Bond* get_bond(Bond bond):
     """ Utility function to extract a properly casted Bond pointer out of the
     internal _thisptr attribute of the Instrument base class. """
 
@@ -78,15 +83,9 @@ cdef class Bond(Instrument):
             cdef _date.Date valuation_date = get_bond(self).valuationDate()
             return date_from_qldate(valuation_date)
 
-    def settlement_date(self, Date from_date=None):
+    def settlement_date(self, Date from_date=Date()):
         """ Returns the bond settlement date after the given date."""
-        cdef _date.Date settlement_date
-        if from_date is not None:
-            settlement_date = get_bond(self).settlementDate(deref(from_date._thisptr))
-        else:
-            settlement_date = get_bond(self).settlementDate()
-
-        return date_from_qldate(settlement_date)
+        return date_from_qldate(get_bond(self).settlementDate(deref(from_date._thisptr)))
 
     property clean_price:
         """ Bond clena price. """
@@ -100,8 +99,9 @@ cdef class Bond(Instrument):
             if self._has_pricing_engine:
                 return get_bond(self).dirtyPrice()
 
-    def clean_yield(self, Real clean_price, DayCounter dc not None, int comp, int freq,
-            Date settlement_date=None, Real accuracy=1e-08,
+    def clean_yield(self, Real clean_price, DayCounter dc not None,
+            _bonds.Compounding comp, _bonds.Frequency freq,
+            Date settlement_date not None, Real accuracy=1e-08,
             Size max_evaluations=100):
         """ Return the yield given a (clean) price and settlement date
 
@@ -111,27 +111,20 @@ cdef class Bond(Instrument):
         Python does not allow us to use the yield statement as a method name.
 
         """
-        if settlement_date is not None:
-            return get_bond(self).clean_yield(
-                clean_price, deref(dc._thisptr), <_bonds.Compounding>comp,
-                <_bonds.Frequency>freq, deref(settlement_date._thisptr.get()),
+        return get_bond(self).clean_yield(
+                clean_price, deref(dc._thisptr), comp,
+                freq, deref(settlement_date._thisptr),
                 accuracy, max_evaluations
             )
 
-    def accrued_amount(self, Date date=None):
+    def accrued_amount(self, Date date=Date()):
         """ Returns the bond accrued amount at the given date. """
-        if date is not None:
-            amount = get_bond(self).accruedAmount(deref(date._thisptr.get()))
-        else:
-            amount = get_bond(self).accruedAmount()
-        return amount
+        return get_bond(self).accruedAmount(deref(date._thisptr))
 
     property cashflows:
         """ cash flow stream as a Leg """
         def __get__(self):
-            cdef _cashflow.Leg leg
-            leg = get_bond(self).cashflows()
-
+            cdef _cashflow.Leg leg = get_bond(self).cashflows()
             return cashflow.leg_items(leg)
 
 cdef class FixedRateBond(Bond):
@@ -144,20 +137,25 @@ cdef class FixedRateBond(Bond):
         - generic compounding and frequency InterestRate coupons
     """
 
-    def __init__(self, int settlement_days, double face_amount,
-                 Schedule fixed_bonds_schedule,
-                 vector[Rate] coupons, DayCounter accrual_day_counter not None,
-                 payment_convention=Following,
-                 double redemption=100.0, Date issue_date=Date()):
+    def __init__(self, Natural settlement_days, Real face_amount,
+            Schedule schedule, vector[Rate] coupons,
+            DayCounter accrual_day_counter,
+            BusinessDayConvention payment_convention=Following,
+            Real redemption=100.0, Date issue_date=Date(),
+            Calendar payment_calendar=Calendar(),
+            Period ex_coupon_period=Period(),
+            Calendar ex_coupon_calendar=Calendar(),
+            BusinessDayConvention ex_coupon_convention=Unadjusted,
+            bool ex_coupon_end_of_month=False):
             """ Fixed rate bond (constructor)
+
             Parameters
             ----------
             settlement_days : int
                 Number of days before bond settles
             face_amount : float (C double in python)
                 Amount of face value of bond
-
-            fixed_bonds_schedule : Quantlib::Schedule
+            schedule : Quantlib::Schedule
                 Schedule of payments for bond
             coupons : list[float]
                 Interest[s] to be acquired for bond.
@@ -171,26 +169,27 @@ cdef class FixedRateBond(Bond):
                 Date bond was issued
             """
 
-            cdef QlSchedule* _fixed_bonds_schedule = <QlSchedule*>fixed_bonds_schedule._thisptr
-            cdef QlDayCounter* _accrual_day_counter = <QlDayCounter*>accrual_day_counter._thisptr
-
-            cdef _date.Date* _issue_date
-
             self._thisptr = new shared_ptr[_instrument.Instrument](
-                new _bonds.FixedRateBond(settlement_days,
-                                         face_amount, deref(_fixed_bonds_schedule), coupons,
-                                         deref(_accrual_day_counter),
-                                         <BusinessDayConvention>payment_convention,
-                                         redemption, deref(issue_date._thisptr))
-            )
+                    new _bonds.FixedRateBond(settlement_days,
+                        face_amount, deref(schedule._thisptr), coupons,
+                        deref(accrual_day_counter._thisptr),
+                        payment_convention, redemption,
+                        deref(issue_date._thisptr),
+                        deref(payment_calendar._thisptr),
+                        deref(ex_coupon_period._thisptr),
+                        deref(ex_coupon_calendar._thisptr),
+                        ex_coupon_convention,
+                        ex_coupon_end_of_month)
+                )
 
 cdef class ZeroCouponBond(Bond):
     """ Zero coupon bond """
-    def __init__(self, settlement_days, Calendar calendar, face_amount,
-        Date maturity_date, payment_convention=Following, redemption=100.0,
-        Date issue_date=Date()
-        ):
+    def __init__(self, Natural settlement_days, Calendar calendar,
+        Real face_amount, Date maturity_date not None,
+        BusinessDayConvention payment_convention=Following,
+        Real redemption=100.0, Date issue_date=Date()):
         """ Zero coupon bond (constructor)
+
         Parameters
         ----------
         settlement_days : int
@@ -209,23 +208,27 @@ cdef class ZeroCouponBond(Bond):
             Date bond was issued"""
 
         self._thisptr = new shared_ptr[_instrument.Instrument](
-            new _bonds.ZeroCouponBond(
-                <Natural> settlement_days, deref(calendar._thisptr),
-                <Real>face_amount, deref(maturity_date._thisptr.get()),
-                <BusinessDayConvention>payment_convention,
-                <Real>redemption, deref(issue_date._thisptr.get())
+                new _bonds.ZeroCouponBond(settlement_days,
+                    deref(calendar._thisptr), face_amount,
+                    deref(maturity_date._thisptr),
+                    payment_convention, redemption,
+                    deref(issue_date._thisptr)
+                )
             )
-        )
 
 cdef class FloatingRateBond(Bond):
     """ Floating rate bond """
-    def __init__(self, int settlement_days, double face_amount, Schedule float_schedule,
-        IborIndex ibor_index, DayCounter accrual_day_counter, int fixing_days,
-        vector[Real] gearings, vector[Spread] spreads, vector[Rate] caps, vector[Rate] floors,
-        BusinessDayConvention payment_convention=Following, double redemption=100.0,
-        Date issue_date=Date()
+    def __init__(self, Natural settlement_days, Real face_amount,
+        Schedule schedule, IborIndex ibor_index,
+        DayCounter accrual_day_counter, Natural fixing_days,
+        vector[Real] gearings=[1.], vector[Spread] spreads=[0.],
+        vector[Rate] caps=[], vector[Rate] floors=[],
+        BusinessDayConvention payment_convention=Following,
+        bool in_arrears=True,
+        Real redemption=100.0, Date issue_date=Date()
         ):
         """ Floating rate bond (constructor)
+
         Parameters
         ----------
         settlement_days : int
@@ -241,15 +244,16 @@ cdef class FloatingRateBond(Bond):
         fixing_days : int
             Number of fixing days for bond
         gearings: list [float]
-            Gearings defaulted to [1,0]
+            Gearings defaulted to [1.]
         spreads: list [float]
-            Spread on ibor index, default to [0,0]
+            Spread on ibor index, default to [0.]
         caps: list [float]
             Caps on the spread
         floors: list[float]
             Floors on the spread
         payment_convention: Quantlib::BusinessDayConvention
             The business day convention for the payment schedule
+        in_arrears: bool
         redemption : float
             Amount at redemption
         issue_date : Quantlib::Date
@@ -258,13 +262,42 @@ cdef class FloatingRateBond(Bond):
 
         self._thisptr = new shared_ptr[_instrument.Instrument](
             new _bonds.FloatingRateBond(
-                <Natural> settlement_days, <Real> face_amount,
-                deref(float_schedule._thisptr),
+                settlement_days, face_amount,
+                deref(schedule._thisptr),
                 static_pointer_cast[_ii.IborIndex](ibor_index._thisptr),
                 deref(accrual_day_counter._thisptr),
-                <BusinessDayConvention> payment_convention,
-                <Natural> fixing_days, gearings, spreads, caps, floors, True,
+                payment_convention,
+                fixing_days, gearings, spreads, caps, floors, True,
                 redemption,
                 deref(issue_date._thisptr)
                 )
+            )
+
+cdef class CPIBond(Bond):
+    """ CPI bond """
+    def __init__(self, Natural settlement_days, Real face_amount, bool growth_only,
+                 Real baseCPI, Period observation_lag not None,
+                 ZeroInflationIndex cpi_index not None,
+                 InterpolationType observation_interpolation,
+                 Schedule schedule, vector[Rate] coupons,
+                 DayCounter accrual_day_counter,
+                 BusinessDayConvention payment_convention=Following,
+                 Date issue_date=Date(), Calendar payment_calendar=Calendar(),
+                 Period ex_coupon_period=Period(), Calendar ex_coupon_calendar=Calendar(),
+                 BusinessDayConvention ex_coupon_convention=Unadjusted,
+                 bool ex_coupon_end_of_month=False):
+
+        self._thisptr = new shared_ptr[_instrument.Instrument](
+            new _bonds.CPIBond(
+                settlement_days, face_amount, growth_only, baseCPI,
+                deref(observation_lag._thisptr),
+                static_pointer_cast[_inf.ZeroInflationIndex](
+                    cpi_index._thisptr),
+                observation_interpolation,
+                deref(schedule._thisptr), coupons,
+                deref(accrual_day_counter._thisptr), payment_convention,
+                deref(issue_date._thisptr),
+                deref(payment_calendar._thisptr), deref(ex_coupon_period._thisptr),
+                deref(ex_coupon_calendar._thisptr), ex_coupon_convention,
+                ex_coupon_end_of_month)
             )

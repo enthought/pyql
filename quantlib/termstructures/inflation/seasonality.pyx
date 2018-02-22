@@ -30,66 +30,56 @@ cimport quantlib._interest_rate as _ir
 
 cdef class Seasonality:
 
-    def __cinit__(self):
-        self._thisptr = NULL
-
     def __init__(self):
         raise ValueError(
             'This is an abstract class: use MultiplicativePriceSeasonality instead.'
         )
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
 
     def correctZeroRate(self,
 		    Date d,
 		    Rate r,
 		    InflationTermStructure iTS):
 
-        cdef _if.InflationTermStructure* _iTS = iTS._get_term_structure()
         return self._thisptr.get().correctZeroRate(
-            deref(d._thisptr.get()),
+            deref(d._thisptr),
             r,
-            deref(_iTS))
+            deref(iTS._thisptr))
 
     def correctYoYRate(self,
 		    Date d,
 		    Rate r,
 		    InflationTermStructure iTS):
 
-        cdef _if.InflationTermStructure* _iTS = iTS._get_term_structure()
         return self._thisptr.get().correctYoYRate(
-            deref(d._thisptr.get()),
+            deref(d._thisptr),
             r,
-            deref(_iTS))
+            deref(iTS._thisptr))
 
     def isConsistent(self,
 		    InflationTermStructure iTS):
 
-        cdef _if.InflationTermStructure* _iTS = iTS._get_term_structure()
         return self._thisptr.get().isConsistent(
-            deref(_iTS))
-                  
+            deref(iTS._thisptr))
+
 
 cdef class MultiplicativePriceSeasonality(Seasonality):
 
-    def __init__(self, Date d, Frequency frequency, vector[Rate] seasonality_factors):
-        self._thisptr = new shared_ptr[_se.Seasonality](
+    def __init__(self, Date d not None, Frequency frequency, vector[Rate] seasonality_factors):
+        self._thisptr = shared_ptr[_se.Seasonality](
             new _se.MultiplicativePriceSeasonality(
-                deref(d._thisptr.get()),
+                deref(d._thisptr),
                 frequency,
                 seasonality_factors))
 
-    def set(self, Date seasonality_base_date,
+    def set(self, Date seasonality_base_date not None,
             Frequency frequency,
             vector[Rate] seasonality_factors):
 
-        (<_se.MultiplicativePriceSeasonality*> self._thisptr.get()).set(
-                deref(seasonality_base_date._thisptr.get()),
-                frequency,
-                seasonality_factors)
-            
+        (<_se.MultiplicativePriceSeasonality*>self._thisptr.get()).set(
+            deref(seasonality_base_date._thisptr),
+            frequency,
+            seasonality_factors)
+
     property seasonality_base_date:
         def __get__(self):
             cdef _date.Date base_date = (<_se.MultiplicativePriceSeasonality*> self._thisptr.get()).seasonalityBaseDate()
@@ -105,12 +95,9 @@ cdef class MultiplicativePriceSeasonality(Seasonality):
 
     def seasonality_factor(self, Date d):
         return (<_se.MultiplicativePriceSeasonality*> self._thisptr.get()).seasonalityFactor(
-            deref(d._thisptr.get()))
-    
+            deref(d._thisptr))
+
     def isConsistent(self, InflationTermStructure iTS):
 
-        cdef _if.InflationTermStructure* _iTS = iTS._get_term_structure()
-
         return self._thisptr.get().isConsistent(
-            deref(_iTS))
-    
+            deref(iTS._thisptr))

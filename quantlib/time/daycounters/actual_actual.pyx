@@ -62,9 +62,9 @@ cdef class ActualActual(DayCounter):
         Valid names for ACT/ACT daycounters are: \n {}
     """.format('\n'.join(_valid_names))
 
-    def __cinit__(self, convention=ISMA):
+    def __init__(self, _aa.Convention convention=ISDA):
         self._thisptr = <_daycounter.DayCounter*> new \
-            _aa.ActualActual(<_aa.Convention>convention)
+            _aa.ActualActual(convention)
 
 cdef _daycounter.DayCounter* from_name(str convention):
 

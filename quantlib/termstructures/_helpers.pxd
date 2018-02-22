@@ -24,6 +24,7 @@ cdef extern from 'ql/termstructures/bootstraphelper.hpp' namespace 'QuantLib':
         Date maturityDate() except +
         Date latestDate() except +
         void update()
+        void setTermStructure(T*)
 
     cdef cppclass RelativeDateBootstrapHelper[T](BootstrapHelper):
         pass

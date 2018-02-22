@@ -10,13 +10,11 @@
 cimport _region as _re
 
 from libcpp.string cimport string
-from quantlib.handle cimport Handle, shared_ptr
-
 
 cdef class Region:
     def __cinit__(self):
         pass
-    
+
     property name:
         def __get__(self):
             return self._thisptr.name().decode('utf-8')
@@ -43,6 +41,3 @@ cdef class CustomRegion(Region):
         self._thisptr = new _re.CustomRegion(
             name_string,
             code_string)
-        
- 
-        

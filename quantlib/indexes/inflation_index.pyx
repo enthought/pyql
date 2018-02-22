@@ -10,29 +10,28 @@
 include '../types.pxi'
 
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
 
 from libcpp cimport bool
 from libcpp.string cimport string
 
 from quantlib.index cimport Index
 from quantlib.time.date cimport Period, period_from_qlperiod
-from quantlib.time._period cimport Frequency, Months
+from quantlib.time._period cimport Frequency
 from quantlib.indexes.region cimport Region
+
 from quantlib.currency.currency cimport Currency
 from quantlib.termstructures.inflation_term_structure cimport \
-    ZeroInflationTermStructure
+    ZeroInflationTermStructure, YoYInflationTermStructure
 
 cimport quantlib._index as _in
 cimport quantlib.indexes._inflation_index as _ii
 cimport quantlib.termstructures._inflation_term_structure as _its
 cimport quantlib._interest_rate as _ir
 
-from quantlib.currency.api import AUDCurrency
-from quantlib.indexes.regions import AustraliaRegion
-
+cimport quantlib.time._period as _pe
 cimport quantlib.currency._currency as _cu
-from quantlib.currency.currency cimport Currency
+cimport quantlib.indexes._region as _region
 
 cdef class InflationIndex(Index):
 
@@ -49,7 +48,7 @@ cdef class InflationIndex(Index):
             cdef _ii.InflationIndex* ref = <_ii.InflationIndex*>self._thisptr.get()
             return ref.frequency()
 
-    property availabilityLag:
+    property availability_lag:
         def __get__(self):
             cdef _ii.InflationIndex* ref = <_ii.InflationIndex*>self._thisptr.get()
             return period_from_qlperiod(ref.availabilityLag())
@@ -58,9 +57,21 @@ cdef class InflationIndex(Index):
     property currency:
         def __get__(self):
             cdef _ii.InflationIndex* ref = <_ii.InflationIndex*>self._thisptr.get()
-            cdef _cu.Currency c = ref.currency()
-            return Currency.from_name(c.code())
+            cdef Currency c = Currency.__new__(Currency)
+            c._thisptr = new _cu.Currency(ref.currency())
+            return c
 
+    @property
+    def interpolated(self):
+         cdef _ii.InflationIndex* ref = <_ii.InflationIndex*>self._thisptr.get()
+         return ref.interpolated()
+
+    @property
+    def region(self):
+        cdef _ii.InflationIndex* ref = <_ii.InflationIndex*>self._thisptr.get()
+        cdef Region region = Region.__new__(Region)
+        region._thisptr = new _region.Region(ref.region())
+        return region
 
 cdef class ZeroInflationIndex(InflationIndex):
     def __init__(self, str family_name,
@@ -70,13 +81,7 @@ cdef class ZeroInflationIndex(InflationIndex):
                  Frequency frequency,
                  Period availabilityLag,
                  Currency currency,
-                 ZeroInflationTermStructure ts=None):
-
-        cdef Handle[_its.ZeroInflationTermStructure] ts_handle
-        if ts is None:
-            ts_handle = Handle[_its.ZeroInflationTermStructure]()
-        else:
-            ts_handle = deref(<Handle[_its.ZeroInflationTermStructure]*>ts._thisptr.get())
+                 ZeroInflationTermStructure ts=ZeroInflationTermStructure()):
 
         # convert the Python str to C++ string
         cdef string c_family_name = family_name.encode('utf-8')
@@ -87,18 +92,29 @@ cdef class ZeroInflationIndex(InflationIndex):
                 deref(region._thisptr),
                 revised,
                 interpolated,
-                <_ir.Frequency> frequency,
-                deref(availabilityLag._thisptr.get()),
+                frequency,
+                deref(availabilityLag._thisptr),
                 deref(currency._thisptr),
-                ts_handle))
+                ts._handle))
 
+    def zero_inflation_term_structure(self):
+        cdef ZeroInflationTermStructure r = \
+                ZeroInflationTermStructure.__new__(ZeroInflationTermStructure)
+        r._thisptr = static_pointer_cast[_its.InflationTermStructure](
+            (<_ii.ZeroInflationIndex*>(self._thisptr.get())).
+            zeroInflationTermStructure().currentLink())
 
-cdef class AUCPI(ZeroInflationIndex):
-    def __init__(self, Frequency frequency,
-                 bool revised,
-                 interpolated,
-                 ZeroInflationTermStructure ts=None):
+cdef class YoYInflationIndex(ZeroInflationIndex):
+    def __init__(self, family_name, Region region, bool revised,
+                 bool interpolated, bool ratio, Frequency frequency,
+                 Period availability_lag, Currency currency,
+                 YoYInflationTermStructure ts=YoYInflationTermStructure()):
 
-        super().__init__("CPI", AustraliaRegion(), revised,
-                         interpolated, frequency, Period(2, Months),
-                         AUDCurrency(), ts)
+        cdef string c_family_name = family_name.encode('utf-8')
+
+        self._thisptr = shared_ptr[_in.Index](
+            new _ii.YoYInflationIndex(
+                c_family_name, deref(region._thisptr), revised,
+                interpolated, ratio, frequency,
+                deref(availability_lag._thisptr),
+                deref(currency._thisptr), ts._handle))

@@ -60,7 +60,7 @@ cdef class Calendar:
         '''
         return self._thisptr.isBusinessDay(deref(test_date._thisptr))
 
-    def is_end_of_month(self, date.Date test_date):
+    def is_end_of_month(self, date.Date test_date not None):
         '''Is this date the last business day of the month to which the given
         date belongs
         '''

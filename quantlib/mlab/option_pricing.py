@@ -24,7 +24,7 @@ from quantlib.pricingengines.api import AnalyticEuropeanEngine
 from quantlib.processes.api import BlackScholesMertonProcess
 from quantlib.termstructures.yields.api import FlatForward
 from quantlib.termstructures.volatility.api import BlackConstantVol
-from quantlib.time.api import today, NullCalendar, ActualActual
+from quantlib.time.api import today, NullCalendar, ActualActual, ISMA
 
 from quantlib.time.date import (Period, Days)
 from quantlib.mlab.util import common_shape, array_call
@@ -104,7 +104,7 @@ def _blsprice(spot, strike, risk_free_rate, time, volatility,
     """
     _spot = SimpleQuote(spot)
 
-    daycounter = ActualActual()
+    daycounter = ActualActual(ISMA)
     risk_free_ts = FlatForward(today(), risk_free_rate, daycounter)
     dividend_ts = FlatForward(today(), dividend, daycounter)
     volatility_ts = BlackConstantVol(today(), NullCalendar(),

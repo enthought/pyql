@@ -28,7 +28,7 @@ def test_bond_schedule_today_cython():
 
     cdef QlDate s_date = calendar.advance(today, <Integer>3, Days, Following,
             False)
-    cdef QlDate b_date = bond.settlementDate()
+    cdef QlDate b_date = bond.settlementDate(QlDate())
 
     cdef Date s1 = date_from_qldate(s_date)
     cdef Date s2 = date_from_qldate(b_date)
@@ -85,7 +85,12 @@ cdef FixedRateBond* get_bond_for_evaluation_date(QlDate& in_date):
             ActualActual(ISMA),
 		    Following,
             redemption,
-            issue_date
+            issue_date,
+            Calendar(),
+            Period(),
+            Calendar(),
+            Unadjusted,
+            False,
     )
 
     return bond
@@ -100,7 +105,7 @@ def test_bond_schedule_anotherday_cython():
     cdef Calendar calendar = TARGET()
     cdef QlDate s_date = calendar.advance(today, <Integer>3, Days, Following,
             False)
-    cdef QlDate b_date = bond.settlementDate()
+    cdef QlDate b_date = bond.settlementDate(QlDate())
 
     cdef QlDate e_date = <QlDate>Settings.instance().evaluationDate()
 

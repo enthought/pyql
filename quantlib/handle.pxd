@@ -9,7 +9,6 @@ cdef extern from 'boost/shared_ptr.hpp' namespace 'boost':
         T* get()
         T& operator*()
         void reset(T*)
-        long use_count()
         bool operator bool()
 
 cdef extern from 'boost/pointer_cast.hpp' namespace 'boost':

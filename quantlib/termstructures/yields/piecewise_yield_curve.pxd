@@ -1,11 +1,11 @@
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 
-cdef enum Interpolator:
+cpdef enum Interpolator:
     Linear
     LogLinear
     BackwardFlat
 
-cdef enum BootstrapTrait:
+cpdef enum BootstrapTrait:
     Discount
     ZeroYield
     ForwardRate
