@@ -32,7 +32,7 @@ cdef extern from 'ql/indexes/interestrateindex.hpp' namespace 'QuantLib':
         string name()
         bool isValidFixingDate(Date& fixingDate)
         Rate fixing(Date& fixingDate,
-                    bool forecastTodaysFixing)
+                    bool forecastTodaysFixing) except +
         update()
         string familyName()
         Period tenor()
