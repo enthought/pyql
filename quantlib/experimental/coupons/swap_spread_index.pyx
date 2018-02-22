@@ -1,3 +1,5 @@
+# cython: c_string_type=unicode, c_string_encoding=ascii
+
 include '../../types.pxi'
 cimport cython
 from libcpp.string cimport string
