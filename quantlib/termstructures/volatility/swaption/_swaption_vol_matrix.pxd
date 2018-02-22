@@ -25,7 +25,7 @@ cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolmatrix.hpp' n
                     const DayCounter& dayCounter,
                     const bool flatExtrapolation, # = false,
                     const VolatilityType type, # = ShiftedLognormal,
-                    const vector[vector[Real]]& shifts) #= vector[vector[Real]]());
+                    const vector[vector[Real]]& shifts) except +#= vector[vector[Real]]());
         # fixed reference date, floating market data
         SwaptionVolatilityMatrix(
                     const Date& referenceDate,
@@ -37,7 +37,7 @@ cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolmatrix.hpp' n
                     const DayCounter& dayCounter,
                     const bool flatExtrapolation, # = false,
                     const VolatilityType type, # = ShiftedLognormal,
-                    const vector[vector[Real]]& shifts) # = vector[vector[Real]]());
+                    const vector[vector[Real]]& shifts) except +# = vector[vector[Real]]());
         # floating reference date, fixed market data
         SwaptionVolatilityMatrix(
                     const Calendar& calendar,
@@ -48,7 +48,7 @@ cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolmatrix.hpp' n
                     const DayCounter& dayCounter,
                     const bool flatExtrapolation, # = false,
                     const VolatilityType type, # = ShiftedLognormal,
-                    const Matrix& shifts) #= Matrix())
+                    const Matrix& shifts) except +#= Matrix())
         # fixed reference date, fixed market data
         SwaptionVolatilityMatrix(
                     const Date& referenceDate,
@@ -60,7 +60,7 @@ cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolmatrix.hpp' n
                     const DayCounter& dayCounter,
                     const bool flatExtrapolation, #= false,
                     const VolatilityType type, # = ShiftedLognormal,
-                    const Matrix& shifts) #= Matrix());
+                    const Matrix& shifts) except +#= Matrix());
         # fixed reference date and fixed market data, option dates
         SwaptionVolatilityMatrix(const Date& referenceDate,
                                  const vector[Date]& optionDates,
@@ -69,4 +69,4 @@ cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolmatrix.hpp' n
                                  const DayCounter& dayCounter,
                                  const bool flatExtrapolation, # = false,
                                  const VolatilityType type, # = ShiftedLognormal,
-                                 const Matrix& shifts) # = Matrix());
+                                 const Matrix& shifts) except + # = Matrix());
