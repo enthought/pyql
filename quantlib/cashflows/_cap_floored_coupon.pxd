@@ -41,7 +41,6 @@ cdef extern from 'ql/cashflows/capflooredcoupon.hpp' namespace 'QuantLib':
         Rate effectiveFloored()
         bool isCapped()
         bool isFloored()
-        void setPricer(const shared_ptr[FloatingRateCouponPricer]&)
 
     cdef cppclass CappedFlooredIborCoupon(CappedFlooredCoupon):
         CappedFlooredIborCoupon(

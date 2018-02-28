@@ -45,10 +45,6 @@ cdef class CappedFlooredCoupon(FloatingRateCoupon):
     def is_floored(self):
         return (<_cfc.CappedFlooredCoupon*>self._thisptr.get()).isFloored()
 
-    def set_pricer(self, FloatingRateCouponPricer pricer not None):
-        (<_cfc.CappedFlooredCoupon*>self._thisptr.get()).setPricer(
-            pricer._thisptr)
-
 
 cdef class CappedFlooredIborCoupon(CappedFlooredCoupon):
     def __init__(self, Date payment_date not None,

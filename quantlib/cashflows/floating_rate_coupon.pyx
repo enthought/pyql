@@ -5,7 +5,8 @@ from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
-cimport quantlib.cashflows._floating_rate_coupon as _frc
+cimport _floating_rate_coupon as _frc
+from coupon_pricer cimport FloatingRateCouponPricer
 cimport quantlib._cashflow as _cf
 from quantlib.indexes.interest_rate_index cimport InterestRateIndex
 cimport quantlib.indexes._interest_rate_index as _iri
@@ -27,3 +28,6 @@ cdef class FloatingRateCoupon(Coupon):
                 deref(ref_period_start._thisptr), deref(ref_period_end._thisptr),
                 deref(day_counter._thisptr), is_in_arrears)
         )
+
+    def set_pricer(self, FloatingRateCouponPricer pricer):
+        (<_frc.FloatingRateCoupon*>self._thisptr.get()).setPricer(pricer._thisptr)
