@@ -306,6 +306,8 @@ class TestQuantLibPeriod(unittest.TestCase):
         period2 = 10 * period
         self.assertIsInstance(period2, Period)
         self.assertEqual(20, period2.length)
+        self.assertEqual(3 * Months, Period(3, Months))
+        self.assertEqual(Days * 10, Period(10, Days))
 
     def test_inplace_addition(self):
 
