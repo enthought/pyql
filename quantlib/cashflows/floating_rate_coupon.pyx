@@ -30,4 +30,7 @@ cdef class FloatingRateCoupon(Coupon):
         )
 
     def set_pricer(self, FloatingRateCouponPricer pricer):
-        (<_frc.FloatingRateCoupon*>self._thisptr.get()).setPricer(pricer._thisptr)
+        if type(self) is FloatingRateCoupon:
+            raise RuntimeError('virtual method: call it on a derived class')
+        else:
+            (<_frc.FloatingRateCoupon*>self._thisptr.get()).setPricer(pricer._thisptr)

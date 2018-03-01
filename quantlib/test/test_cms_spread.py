@@ -38,7 +38,7 @@ class CmsSpreadTestCase(unittest.TestCase):
         self.cms_spread_pricer_ln = LognormalCmsSpreadPricer(self.cms_pricer_ln,
                                                              correlation, self.yts, 32)
         self.cms_spread_pricer_sln = LognormalCmsSpreadPricer(self.cms_pricer_sln,
-                                                         correlation, self.yts, 32)
+                                                              correlation, self.yts, 32)
         self.cms_spread_pricer_n = LognormalCmsSpreadPricer(self.cms_pricer_n,
                                                             correlation, self.yts, 32)
 
