@@ -2,6 +2,7 @@
 from cython.operator cimport dereference as deref
 from cpython.datetime cimport date_new, date, datetime, import_datetime
 from libcpp.string cimport string
+cimport cython
 
 # cannot use date.pxd because of name clashing
 cimport _date
@@ -14,6 +15,7 @@ from _date cimport (
     Microsecond, isLeap, Size, nthWeekday, serial_type, Integer
 )
 from _period cimport Period as QlPeriod, parse, unary_minus
+from enum import IntEnum
 
 # Python imports
 import_datetime()
@@ -85,7 +87,7 @@ def str_to_frequency(str name):
     """ Converts a string to a PyQL Frequency. """
     return Frequency[name]
 
-cpdef public enum TimeUnit:
+class TimeUnit(IntEnum):
     Days         = _period.Days #: Days = 0
     Weeks        = _period.Weeks #: Weeks = 1
     Months       = _period.Months #: Months = 2
@@ -96,12 +98,24 @@ cpdef public enum TimeUnit:
     Milliseconds = _period.Milliseconds
     Microseconds = _period.Microseconds
 
+    def __rmul__(self, int other):
+        cdef Period r = Period.__new__(Period)
+        cdef int tu = <int>self.value
+        r._thisptr.reset(new QlPeriod(other, <_period.TimeUnit>tu))
+        return r
+
+    __mul__ = __rmul__
+
+globals().update(TimeUnit.__members__)
+
+@cython.final
 cdef class Period:
     ''' Class providing a Period (length + time unit) class and implements a
     limited algebra.
 
     '''
     def __init__(self, *args):
+        cdef int tu
         if len(args) == 1:
             tenor = args[0]
             if(isinstance(tenor, six.string_types)):
@@ -109,8 +123,9 @@ cdef class Period:
             else:
                 self._thisptr.reset(new QlPeriod(<_period.Frequency>args[0]))
         elif len(args) == 2:
+            tu = <int>args[1]
             self._thisptr.reset(new QlPeriod(<Integer> args[0],
-                                             <TimeUnit> args[1]))
+                                             <_period.TimeUnit>tu))
         elif len(args) == 0:
             self._thisptr.reset(new QlPeriod())
         else:
@@ -263,6 +278,7 @@ def days(Period p not None):
     This will throw an exception if the time unit is not Days or Weeks."""
     return _period.days(deref(p._thisptr))
 
+@cython.final
 cdef class Date:
     """ Date class
 
