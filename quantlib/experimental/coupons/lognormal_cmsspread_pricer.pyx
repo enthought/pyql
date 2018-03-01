@@ -7,7 +7,7 @@ from quantlib.cashflows.coupon_pricer cimport CmsCouponPricer
 from quantlib.quotes cimport SimpleQuote
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.termstructures.volatility.volatilitytype cimport VolatilityType
-from quantlib.defines cimport QL_NULL_REAL
+from quantlib._defines cimport QL_NULL_REAL
 cimport quantlib.cashflows._coupon_pricer as _cp
 cimport quantlib._quote as _qt
 cimport _lognormal_cmsspread_pricer as _lcp

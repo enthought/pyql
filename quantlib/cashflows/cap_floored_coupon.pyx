@@ -2,7 +2,7 @@ include '../types.pxi'
 from libcpp cimport bool
 from cython.operator cimport dereference as deref
 
-from quantlib.defines cimport QL_NULL_REAL
+from quantlib._defines cimport QL_NULL_REAL
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.cashflows.coupon_pricer cimport FloatingRateCouponPricer
 from quantlib.indexes.ibor_index cimport IborIndex

@@ -1,5 +1,5 @@
 from cython.operator cimport dereference as deref
-from quantlib.defines cimport QL_NULL_REAL
+from quantlib._defines cimport QL_NULL_REAL
 from quantlib.instruments.swap cimport Swap
 from quantlib.handle cimport static_pointer_cast, shared_ptr
 from quantlib.indexes.swap_index cimport SwapIndex
