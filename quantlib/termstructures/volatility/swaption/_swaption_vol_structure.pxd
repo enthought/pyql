@@ -7,6 +7,7 @@ from quantlib.time._calendar cimport Calendar
 from quantlib.time._businessdayconvention cimport BusinessDayConvention
 from quantlib.termstructures._vol_term_structure cimport VolatilityTermStructure
 from .._smilesection cimport SmileSection
+from quantlib.termstructures.volatility._volatilitytype cimport VolatilityType
 
 cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolstructure.hpp' namespace 'QuantLib' nogil:
     cdef cppclass SwaptionVolatilityStructure(VolatilityTermStructure):
@@ -132,3 +133,5 @@ cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolstructure.hpp
         shared_ptr[SmileSection] smileSection(Time optionTime,
                                               Time swapLength,
                                               bool extr) const # = false)
+
+        VolatilityType volatilityType()
