@@ -52,3 +52,15 @@ cdef class Matrix:
         cdef size_t i, j
         i, j = coord
         self._thisptr[i][j] = val
+
+cpdef enum SalvagingAlgorithm:
+    Nothing = _matrix.Nothing
+    Spectral = _matrix.Spectral
+    Hypersphere = _matrix.Hypersphere
+    LowerDiagonal = _matrix.LowerDiagonal
+    Higham = _matrix.Higham
+
+def pseudo_sqrt(Matrix m, SalvagingAlgorithm algo=Nothing):
+    cdef Matrix r = Matrix.__new__(Matrix)
+    r._thisptr = pseudoSqrt(m._thisptr, <_matrix.Type>algo)
+    return r
