@@ -13,6 +13,7 @@ cdef extern from 'boost/shared_ptr.hpp' namespace 'boost':
 
 cdef extern from 'boost/pointer_cast.hpp' namespace 'boost':
     shared_ptr[T] static_pointer_cast[T](...)
+    shared_ptr[T] dynamic_pointer_cast[T](...)
 
 cdef extern from 'boost/optional.hpp' namespace 'boost':
     cdef cppclass optional[T]:
@@ -35,7 +36,3 @@ cdef extern from 'ql/handle.hpp' namespace 'QuantLib':
         RelinkableHandle(shared_ptr[T]&)
         void linkTo(shared_ptr[T]&)
         void linkTo(shared_ptr[T]&, bool registerAsObserver)
-
-cdef extern from 'ql/qldefines.hpp':
-    cdef int QL_NULL_INTEGER
-    cdef float QL_NULL_REAL

@@ -17,13 +17,6 @@ cimport quantlib.math._array as _arr
 
 cdef class CalibratedModel:
 
-    def __cinit__(self):
-        pass
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-
     def __init__(self):
         raise ValueError('Cannot instantiate a CalibratedModel')
 
@@ -31,6 +24,6 @@ cdef class CalibratedModel:
         cdef Array instance =  Array.__new__(Array)
         instance._thisptr = self._thisptr.get().params()
         return instance
-    
+
     def set_params(self, Array params):
         self._thisptr.get().setParams(params._thisptr)

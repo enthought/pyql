@@ -8,18 +8,7 @@ from quantlib.time.daycounter cimport DayCounter
 
 
 cdef class OptionletVolatilityStructure:
-
-    def __cinit__(self):
-        self._thisptr = NULL
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-
-    def __init__(self):
-        raise ValueError(
-            'OptionletVolatilityStructure cannot be directly instantiated!'
-        )
+    pass
 
 
 cdef class ConstantOptionletVolatility(OptionletVolatilityStructure):
@@ -32,7 +21,7 @@ cdef class ConstantOptionletVolatility(OptionletVolatilityStructure):
         DayCounter daycounter
     ):
 
-        self._thisptr = new shared_ptr[_ov.OptionletVolatilityStructure](
+        self._thisptr = shared_ptr[_ov.OptionletVolatilityStructure](
             new _ov.ConstantOptionletVolatility(
                 settlement_days,
                 deref(calendar._thisptr),
@@ -41,4 +30,3 @@ cdef class ConstantOptionletVolatility(OptionletVolatilityStructure):
                 deref(daycounter._thisptr)
             )
         )
-

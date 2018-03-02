@@ -21,24 +21,14 @@ cdef public enum CalibrationErrorType:
     RelativePriceError = _ch.RelativePriceError
     PriceError = _ch.PriceError
     ImpliedVolError = _ch.ImpliedVolError
-    
+
 cdef class CalibrationHelper:
-
-    def __cinit__(self):
-        pass
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
 
     def __init__(self):
         raise ValueError('Cannot instantiate a CalibrationHelper')
 
     def set_pricing_engine(self, PricingEngine engine):
-        cdef shared_ptr[_pe.PricingEngine] pengine = \
-            shared_ptr[_pe.PricingEngine](<shared_ptr[_pe.PricingEngine] &>deref(engine._thisptr))
-
-        self._thisptr.get().setPricingEngine(pengine)
+        self._thisptr.get().setPricingEngine(deref(engine._thisptr))
 
 
     def model_value(self):
@@ -54,12 +44,9 @@ cdef class CalibrationHelper:
         return self._thisptr.get().calibrationError()
 
     def impliedVolatility(self, Real targetValue,
-        Real accuracy, Size maxEvaluations,
-        Volatility minVol, Volatility maxVol):
+                          Real accuracy, Size maxEvaluations,
+                          Volatility minVol, Volatility maxVol):
 
-        vol = \
-        (<_ch.CalibrationHelper *> self._thisptr.get()).impliedVolatility(targetValue,
-        accuracy, maxEvaluations, minVol, maxVol)
-
-        return vol
-
+        return self._thisptr.get().impliedVolatility(targetValue,
+                                                     accuracy, maxEvaluations,
+                                                     minVol, maxVol)

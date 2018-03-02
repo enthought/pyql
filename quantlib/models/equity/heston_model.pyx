@@ -38,9 +38,6 @@ from quantlib.models.calibration_helper cimport CalibrationHelper
 
 cdef class HestonModelHelper(CalibrationHelper):
 
-    def __cinit__(self):
-        pass
-
     def __str__(self):
         return 'Heston model helper'
 
@@ -58,9 +55,9 @@ cdef class HestonModelHelper(CalibrationHelper):
         cdef Handle[_qt.Quote] volatility_handle = \
                 Handle[_qt.Quote](volatility._thisptr)
 
-        self._thisptr = new shared_ptr[_ch.CalibrationHelper](
+        self._thisptr = shared_ptr[_ch.CalibrationHelper](
             new _hm.HestonModelHelper(
-                deref(maturity._thisptr.get()),
+                deref(maturity._thisptr),
                 deref(calendar._thisptr),
                 s0,
                 strike_price,
@@ -73,16 +70,9 @@ cdef class HestonModelHelper(CalibrationHelper):
 
 cdef class HestonModel:
 
-    def __cinit__(self):
-        self._thisptr = NULL
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-
     def __init__(self, HestonProcess process):
 
-        self._thisptr = new shared_ptr[_hm.HestonModel](
+        self._thisptr = shared_ptr[_hm.HestonModel](
             new _hm.HestonModel(static_pointer_cast[_hp.HestonProcess](
                 process._thisptr))
         )
@@ -121,7 +111,7 @@ cdef class HestonModel:
 
         cdef shared_ptr[_ch.CalibrationHelper] chelper
         for helper in helpers:
-            chelper = deref((<HestonModelHelper>helper)._thisptr)
+            chelper = (<HestonModelHelper>helper)._thisptr
             helpers_vector.push_back(chelper)
 
         if constraint is None:

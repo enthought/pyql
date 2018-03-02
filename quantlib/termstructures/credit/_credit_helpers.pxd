@@ -49,7 +49,6 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                   bool rebatesAccrual, # removed default value (true)
                   const PricingModel model) # = CreditDefaultSwap::Midpoint
 
-        void setTermStructure(DefaultProbabilityTermStructure*)
         void setIsdaEngineParameters(int numericalFix,
                                      int accrualBias,
                                      int forwardsInCouponPeriod)

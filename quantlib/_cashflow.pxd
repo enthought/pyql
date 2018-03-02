@@ -14,7 +14,7 @@ cdef extern from 'ql/event.hpp' namespace 'QuantLib':
 
 cdef extern from 'ql/cashflow.hpp' namespace 'QuantLib':
     cdef cppclass CashFlow(Event):
-        Real amount()
+        Real amount() except +
 
     ctypedef vector[shared_ptr[CashFlow]] Leg
 
