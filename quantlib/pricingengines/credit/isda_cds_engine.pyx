@@ -43,7 +43,7 @@ cdef class IsdaCdsEngine(PricingEngine):
 
         cdef optional[bool] settlement_flows
         if include_settlement_date_flows is not None:
-            settlement_flos = include_settlement_date_flows
+            settlement_flows = include_settlement_date_flows
 
         cdef Handle[_dts.DefaultProbabilityTermStructure] handle = \
             Handle[_dts.DefaultProbabilityTermStructure](ts._thisptr)
