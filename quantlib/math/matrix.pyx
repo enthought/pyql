@@ -18,7 +18,7 @@ cdef class Matrix:
         cdef Matrix instance = Matrix.__new__(Matrix)
         cdef Size rows = data.shape[0]
         cdef Size columns = data.shape[1]
-        instance._thisptr = QlMatrix(rows, columns, &data[0,0], &data[-1, -1] + 1)
+        instance._thisptr = QlMatrix(rows, columns, &data[0,0], &data[-1,-1] + 1)
         return instance
 
     @cython.boundscheck(False)
@@ -29,8 +29,8 @@ cdef class Matrix:
         cdef arr = np.PyArray_SimpleNew(2, &dims[0], np.NPY_DOUBLE)
         cdef double[:,::1] r = arr
         cdef size_t i, j
-        for i in range(self._thisptr.rows()):
-            for j in range(self._thisptr.columns()):
+        for i in range(dims[0]):
+            for j in range(dims[1]):
                 r[i,j] = self._thisptr[i][j]
         return arr
 
