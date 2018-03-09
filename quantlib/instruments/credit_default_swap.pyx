@@ -28,10 +28,8 @@ from quantlib.time.daycounters.simple cimport Actual360, Actual365Fixed
 from quantlib.time._businessdayconvention cimport BusinessDayConvention
 
 from quantlib.time.schedule cimport Schedule
-cimport quantlib.cashflow as cashflow
+from quantlib.cashflows.fixed_rate_coupon cimport FixedRateLeg
 from quantlib.time.date cimport _pydate_from_qldate
-
-cimport quantlib.cashflows._fixed_rate_coupon as _frc
 
 cpdef public enum Side:
     Buyer = _cds.Buyer
@@ -209,20 +207,8 @@ cdef class CreditDefaultSwap(Instrument):
 
     @property
     def coupons(self):
-        return cashflow.leg_items(_get_cds(self).coupons())
-
-    @property
-    def coupons_as_fixedratecoupons(self):
-        cdef _cds.Leg coupon_leg = _get_cds(self).coupons()
-        cdef size_t i
-        cdef _frc.FixedRateCoupon* coupon
-        cdef list r  = []
-        for i in range(coupon_leg.size()):
-            coupon = <_frc.FixedRateCoupon*>(coupon_leg[i].get())
-            r.append({'accrual_start_date':
-                      _pydate_from_qldate(coupon.accrualStartDate()),
-                      'accrual_days': coupon.accrualDays()})
-        return r
+        cdef FixedRateLeg leg = FixedRateLeg.__new__(FixedRateLeg)
+        leg._thisptr = _get_cds(self).coupons()
 
     @property
     def protection_start_date(self):
