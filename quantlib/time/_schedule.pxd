@@ -18,10 +18,10 @@ cdef extern from 'ql/time/dategenerationrule.hpp' namespace \
         ThirdWednesday # All dates but effective date and termination
                        # date are taken to be on the third wednesday
                        # of their month (with forward calculation.)
-        Twentieth # All dates but the effective date are taken to be the 
+        Twentieth # All dates but the effective date are taken to be the
                   # twentieth of their month (used for CDS schedules in
                   # emerging markets.)  The termination date is also modified.
-        TwentiethIMM # All dates but the effective date are taken to be the 
+        TwentiethIMM # All dates but the effective date are taken to be the
                      # twentieth of an IMM month (used for CDS schedules.)  The
                      # termination date is also modified.
         OldCDS # Same as TwentiethIMM with unrestricted date ends and log/short
@@ -55,7 +55,8 @@ cdef extern from 'ql/time/schedule.hpp' namespace 'QuantLib':
         ) except +
 
         Size size()
-        Date& at(Size i)
+        Date& at(Size i) except +IndexError
+        Date& operator[](Size i)
         Date previousDate(Date& refDate)
         Date nextDate(Date& refDate)
         vector[Date] dates()

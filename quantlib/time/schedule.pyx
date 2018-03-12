@@ -184,6 +184,10 @@ cdef class Schedule:
             return [date_from_qldate(self._thisptr.at(i))
                     for i in range(*index.indices(self._thisptr.size()))]
         elif isinstance(index, int):
+            if index < 0:
+                index += self._thisptr.size()
+            if index < 0:
+                raise IndexError
             return date_from_qldate(self._thisptr.at(index))
         else:
             raise TypeError('index needs to be an integer or a slice')
