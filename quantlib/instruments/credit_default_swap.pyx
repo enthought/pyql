@@ -194,7 +194,7 @@ cdef class CreditDefaultSwap(Instrument):
 
     @property
     def upfront(self):
-        cdef optional[Rate] upf =  _get_cds(self).upfront()
+        cdef optional[Rate] upf = _get_cds(self).upfront()
         return None if not upf else upf.get()
 
     @property
@@ -209,6 +209,7 @@ cdef class CreditDefaultSwap(Instrument):
     def coupons(self):
         cdef FixedRateLeg leg = FixedRateLeg.__new__(FixedRateLeg)
         leg._thisptr = _get_cds(self).coupons()
+        return leg
 
     @property
     def protection_start_date(self):
