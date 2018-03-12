@@ -14,6 +14,7 @@ from quantlib.cashflows.coupon_pricer import set_coupon_pricer
 from quantlib.cashflows.cap_floored_coupon import CappedFlooredCmsCoupon
 from quantlib.cashflows.conundrum_pricer import (
     YieldCurveModel, NumericHaganPricer, AnalyticHaganPricer)
+from quantlib.cashflows.linear_tsr_pricer import LinearTsrPricer
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 
@@ -64,7 +65,6 @@ class CmsFairRateTestCase(unittest.TestCase):
                                         ref_period_end=end_date,
                                         day_counter=self.swap_index.day_counter)
 
-
         for model in YieldCurveModel:
             pricer = NumericHaganPricer(self.atm_vol, model, SimpleQuote(0.))
             coupon.set_pricer(pricer)
@@ -72,7 +72,10 @@ class CmsFairRateTestCase(unittest.TestCase):
             pricer = AnalyticHaganPricer(self.atm_vol, model, SimpleQuote(0.))
             coupon.set_pricer(pricer)
             rate_analytic = coupon.rate
-            self.assertAlmostEqual(rate_numeric, rate_analytic, 3)
+        pricer = LinearTsrPricer(self.atm_vol, SimpleQuote(0.))
+        coupon.set_pricer(pricer)
+        rate_lineartsr = coupon.rate
+        self.assertAlmostEqual(rate_lineartsr, rate_analytic, 3)
 
     def test_cms_swap(self):
         swap_lengths = [1, 5, 6, 10]
@@ -85,12 +88,17 @@ class CmsFairRateTestCase(unittest.TestCase):
         for model in YieldCurveModel:
             num_pricer = NumericHaganPricer(self.atm_vol, model, SimpleQuote(0.))
             analytic_pricer = AnalyticHaganPricer(self.atm_vol, model, SimpleQuote(0.))
+            if model == YieldCurveModel.NonParallelShifts:
+                lineartsr_pricer = LinearTsrPricer(self.atm_vol, SimpleQuote(0.))
             for cms in cms_list:
                 set_coupon_pricer(cms[0], num_pricer)
                 price_num = cms.npv
                 set_coupon_pricer(cms[0], analytic_pricer)
                 price_analytic = cms.npv
                 self.assertAlmostEqual(price_num, price_analytic, 3)
+                if model == YieldCurveModel.NonParallelShifts:
+                    set_coupon_pricer(cms[0], lineartsr_pricer)
+                    self.assertAlmostEqual(cms.npv, price_analytic, 3)
 
 if __name__ == '__main__':
     unittest.main()
