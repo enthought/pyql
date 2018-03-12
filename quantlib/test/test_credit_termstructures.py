@@ -49,8 +49,9 @@ class SpreadCdsHelperTestCase(unittest.TestCase):
         self.assertEqual(helper.latest_date, Date(20, 6, 2012))
 
 class PiecewiseDefaultCurveTestCase(unittest.TestCase):
-    todays_date, helper = create_helper()
-    d = todays_date + Period(3, Years)
+    def setUp(self):
+        self.todays_date, self.helper = create_helper()
+        self.d = self.todays_date + Period(3, Years)
 
     def test_create_piecewise(self):
 
