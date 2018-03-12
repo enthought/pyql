@@ -2,7 +2,7 @@ include '../../types.pxi'
 
 cdef class LowDiscrepancy:
 
-    def __init__(self, Size dimension, BigNatural seed):
+    def __init__(self, Size dimension, BigNatural seed=0):
         self._thisptr = new InverseCumulativeRsg[SobolRsg, InverseCumulativeNormal](
                 _rngtraits.LowDiscrepancy.make_sequence_generator(dimension, seed))
 
