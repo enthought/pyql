@@ -168,7 +168,7 @@ class CmsSpreadTestCase(unittest.TestCase):
         z = np.empty((samples, 2))
         for i in range(samples):
             z[i] = next(g)
-        z = z @ C.T + avg
+        z = z.dot(C.T) + avg
         if vol.volatility_type == VolatilityType.ShiftedLognormal:
             z = (atm_rate + vol_shift) * np.exp(z) - vol_shift
         return z[:,0] - z[:,1]
