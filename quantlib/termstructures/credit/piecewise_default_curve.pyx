@@ -14,7 +14,7 @@ cimport quantlib.time._date as _date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar cimport Calendar
 cimport quantlib.termstructures.credit._credit_helpers as _ch
-from default_probability_helpers cimport CdsHelper
+from default_probability_helpers cimport CdsHelper, DefaultProbabilityHelper
 cimport quantlib.termstructures._default_term_structure as _dts
 from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
 
@@ -40,9 +40,7 @@ cdef class PiecewiseDefaultCurve(DefaultProbabilityTermStructure):
         cdef vector[shared_ptr[_ch.DefaultProbabilityHelper]] instruments
 
         for helper in helpers:
-            instruments.push_back(
-                <shared_ptr[_ch.DefaultProbabilityHelper]>deref((<CdsHelper?>helper)._thisptr)
-            )
+            instruments.push_back((<DefaultProbabilityHelper?>helper)._thisptr)
 
         self._trait = trait
         self._interpolator = interpolator
@@ -110,8 +108,7 @@ cdef class PiecewiseDefaultCurve(DefaultProbabilityTermStructure):
         cdef PiecewiseDefaultCurve instance = cls.__new__(cls)
         for helper in helpers:
             instruments.push_back(
-                <shared_ptr[_ch.DefaultProbabilityHelper]>deref((<CdsHelper?>helper)._thisptr)
-            )
+                (<DefaultProbabilityHelper?>helper)._thisptr)
 
         instance._trait = trait
         instance._interpolator = interpolator

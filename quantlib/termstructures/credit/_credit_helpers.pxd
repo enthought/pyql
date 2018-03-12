@@ -48,10 +48,6 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                   DayCounter lastPeriodDayCounter, # = DayCounter()
                   bool rebatesAccrual, # removed default value (true)
                   const PricingModel model) # = CreditDefaultSwap::Midpoint
-
-        void setIsdaEngineParameters(int numericalFix,
-                                     int accrualBias,
-                                     int forwardsInCouponPeriod)
         const shared_ptr[CreditDefaultSwap]& swap()
 
     cdef cppclass SpreadCdsHelper(CdsHelper):
