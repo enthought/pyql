@@ -9,8 +9,8 @@ from quantlib._time_series cimport TimeSeries
 cdef extern from "ql/indexes/indexmanager.hpp" namespace "QuantLib":
     cdef cppclass IndexManager:
         bool hasHistory(const string& name)
-        TimeSeries[Real] getHistory(string& name)
-        void setHistory(string& name, const TimeSeries[Real]&)
+        TimeSeries[Real] getHistory(string& name) const
+        void setHistory(string& name, TimeSeries[Real]&)
         vector[string] histories()
         void clearHistory(const string name)
         void clearHistories()

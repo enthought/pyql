@@ -14,6 +14,6 @@ cdef extern from 'ql/experimental/coupons/lognormalcmsspreadpricer.hpp' namespac
             const Handle[Quote] &correlation,
             const Handle[YieldTermStructure] &couponDiscountCurve, # = Handle[YieldTermStructure]()
             const Size IntegrationPoints, # = 16,
-            const optional[VolatilityType] volatilityType, # = boost::none,
+            optional[VolatilityType] volatilityType, # = boost::none,
             const Real shift1, # = Null<Real>
             const Real shift2) # = Null<Real>

@@ -21,7 +21,7 @@ from quantlib.time._date cimport Date
 cdef extern from 'ql/index.hpp' namespace 'QuantLib':
 
     cdef cppclass Index:
-        Index()
+        Index() nogil
         string name()
         Calendar& fixingCalendar()
         bool isValidFixingDate(Date& fixingDate)

@@ -28,7 +28,7 @@ cdef extern from 'ql/cashflows/couponpricer.hpp' namespace 'QuantLib':
         BlackIborCouponPricer() except +
         BlackIborCouponPricer(
             Handle[OptionletVolatilityStructure]& v,
-            const TimingAdjustment timing_adjustment,
+            TimingAdjustment timing_adjustment,
             const Handle[Quote] correlation) except +
 
     void setCouponPricer(Leg& leg, shared_ptr[FloatingRateCouponPricer]& pricer) except +

@@ -128,7 +128,7 @@ cdef extern from 'ql/instruments/bonds/cpibond.hpp' namespace 'QuantLib':
                 shared_ptr[ZeroInflationIndex]& cpiIndex,
                 InterpolationType observationInterpolation,
                 const Schedule& schedule,
-                const vector[Rate]& coupons,
+                vector[Rate]& coupons,
                 const DayCounter& accrualDayCounter,
                 BusinessDayConvention paymentConvention,
                 const Date& issueDate, # Date()

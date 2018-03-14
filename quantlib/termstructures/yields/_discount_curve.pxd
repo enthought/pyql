@@ -14,7 +14,7 @@ cdef extern from 'ql/termstructures/yield/discountcurve.hpp' namespace 'QuantLib
 
     cdef cppclass InterpolatedDiscountCurve[T](YieldTermStructure):
         InterpolatedDiscountCurve(const vector[Date]& dates,
-                                  const vector[DiscountFactor]& dfs,
+                                  vector[DiscountFactor]& dfs,
                                   const DayCounter& dayCounter,
                                   const Calendar& cal # = Calendar()
         ) except +

@@ -9,8 +9,8 @@ from _calendar cimport Calendar
 cdef extern from 'ql/time/daycounter.hpp' namespace 'QuantLib':
 
     cdef cppclass DayCounter:
-        DayCounter()
-        DayCounter(const DayCounter&)
+        DayCounter() nogil
+        DayCounter(const DayCounter&) nogil
         bool empty()
         string name() except +
         serial_type dayCount(Date&, Date&) except +

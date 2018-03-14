@@ -13,7 +13,7 @@ cdef extern from 'ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp'
         SabrInterpolatedSmileSection(
             const Date& optionDate,
             const Handle[Quote]& forward,
-            const vector[Rate]& strikes,
+            vector[Rate]& strikes,
             bool hasFloatingStrikes,
             const Handle[Quote]& atmVolatility,
             const vector[Handle[Quote]]& volHandles,
