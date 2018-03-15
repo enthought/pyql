@@ -32,3 +32,21 @@ cdef class SwapSpreadIndex(InterestRateIndex):
         cdef shared_ptr[_ssi.SwapSpreadIndex] swap_spread_index = \
             dynamic_pointer_cast[_ssi.SwapSpreadIndex](self._thisptr)
         return swap_spread_index.get().gearing2()
+
+    @property
+    def swap_index1(self):
+        cdef shared_ptr[_ssi.SwapSpreadIndex] swap_spread_index = \
+            dynamic_pointer_cast[_ssi.SwapSpreadIndex](self._thisptr)
+        cdef SwapIndex r = SwapIndex.__new__(SwapIndex)
+        r._thisptr = static_pointer_cast[_in.Index](swap_spread_index.get().
+                                                    swapIndex1())
+        return r
+
+    @property
+    def swap_index2(self):
+        cdef shared_ptr[_ssi.SwapSpreadIndex] swap_spread_index = \
+            dynamic_pointer_cast[_ssi.SwapSpreadIndex](self._thisptr)
+        cdef SwapIndex r = SwapIndex.__new__(SwapIndex)
+        r._thisptr = static_pointer_cast[_in.Index](swap_spread_index.get().
+                                                    swapIndex2())
+        return r

@@ -13,3 +13,5 @@ cdef extern from 'ql/experimental/coupons/swapspreadindex.hpp' namespace 'QuantL
                         const Real gearing2) # = -1.0)
         Real gearing1()
         Real gearing2()
+        shared_ptr[SwapIndex] swapIndex1()
+        shared_ptr[SwapIndex] swapIndex2()
