@@ -68,14 +68,13 @@ cdef class CdsHelper:
     @property
     def quote(self):
         cdef shared_ptr[_qt.Quote] quote_ptr = \
-            shared_ptr[_qt.Quote](self._thisptr.get().quote().currentLink())
+            self._thisptr.get().quote().currentLink()
         return quote_ptr.get().value()
 
     def swap(self):
         cdef CreditDefaultSwap cds = CreditDefaultSwap.__new__(CreditDefaultSwap)
-        cdef shared_ptr[_cds.CreditDefaultSwap] temp = self._thisptr.get().swap()
-        cds._thisptr = new shared_ptr[_instrument.Instrument](
-                <shared_ptr[_instrument.Instrument]>(temp))
+        cdef shared_ptr[_cds.CreditDefaultSwap] temp = (<_ci.CdsHelper*>self._thisptr.get()).swap()
+        cds._thisptr = new shared_ptr[_instrument.Instrument](<shared_ptr[_instrument.Instrument]>(temp))
         return cds
 
     @property
@@ -113,7 +112,7 @@ cdef class SpreadCdsHelper(CdsHelper):
     """
 
     def __init__(self, running_spread, Period tenor, Integer settlement_days,
-                 Calendar calendar, int frequency,
+                 Calendar calendar not None, int frequency,
                  int paymentConvention, Rule date_generation_rule,
                  DayCounter daycounter, Real recovery_rate,
                  YieldTermStructure discount_curve=YieldTermStructure(),
@@ -129,7 +128,7 @@ cdef class SpreadCdsHelper(CdsHelper):
         cdef Handle[_qt.Quote] running_spread_handle
 
         if isinstance(running_spread, float):
-            self._thisptr = new shared_ptr[_ci.CdsHelper](
+            self._thisptr = shared_ptr[_ci.DefaultProbabilityHelper](
                 new _ci.SpreadCdsHelper(
                     <Rate>running_spread, deref(tenor._thisptr),
                     settlement_days, deref(calendar._thisptr),
@@ -147,7 +146,7 @@ cdef class SpreadCdsHelper(CdsHelper):
             running_spread_handle = Handle[_qt.Quote](
                     (<SimpleQuote>running_spread)._thisptr)
 
-            self._thisptr = new shared_ptr[_ci.CdsHelper](
+            self._thisptr = shared_ptr[_ci.DefaultProbabilityHelper](
                 new _ci.SpreadCdsHelper(
                     running_spread_handle, deref(tenor._thisptr),
                     settlement_days, deref(calendar._thisptr),
@@ -184,7 +183,7 @@ cdef class UpfrontCdsHelper(CdsHelper):
         cdef Handle[_qt.Quote] upfront_handle
 
         if isinstance(upfront, float):
-            self._thisptr = new shared_ptr[_ci.CdsHelper](
+            self._thisptr = shared_ptr[_ci.DefaultProbabilityHelper](
                 new _ci.UpfrontCdsHelper(
                     <Rate>upfront, running_spread, deref(tenor._thisptr.get()),
                     settlement_days, deref(calendar._thisptr), <Frequency>frequency,
@@ -200,7 +199,7 @@ cdef class UpfrontCdsHelper(CdsHelper):
         elif isinstance(upfront, SimpleQuote):
             upfront_handle = Handle[_qt.Quote]((<SimpleQuote>upfront)._thisptr)
 
-            self._thisptr = new shared_ptr[_ci.CdsHelper](
+            self._thisptr = shared_ptr[_ci.DefaultProbabilityHelper](
                 new _ci.UpfrontCdsHelper(
                     upfront_handle, running_spread, deref(tenor._thisptr),
                     settlement_days, deref(calendar._thisptr), <Frequency>frequency,

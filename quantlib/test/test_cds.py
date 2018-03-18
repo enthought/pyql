@@ -12,22 +12,23 @@ import math
 
 
 class CreditDefaultSwapTest(unittest.TestCase):
-    calendar = TARGET()
-    today_date = today()
+    def setUp(self):
+        calendar = TARGET()
+        today_date = today()
 
-    Settings().evaluation_date = today_date
+        Settings().evaluation_date = today_date
 
-    hazard_rate = SimpleQuote(0.01234)
-    probability_curve = FlatHazardRate(0, calendar, hazard_rate, Actual360())
-    discount_curve = FlatForward(today_date, 0.06, Actual360())
-    issue_date  = today_date
-    #calendar.advance(today_date, -1, Years)
-    maturity = calendar.advance(issue_date, 10, Years)
-    convention = Following
-    schedule = Schedule(issue_date, maturity, Period("3M"), calendar, convention,
-                            convention, Rule.TwentiethIMM)
-    recovery_rate = 0.4
-    engine = MidPointCdsEngine(probability_curve, recovery_rate, discount_curve, True)
+        hazard_rate = SimpleQuote(0.01234)
+        probability_curve = FlatHazardRate(0, calendar, hazard_rate, Actual360())
+        discount_curve = FlatForward(today_date, 0.06, Actual360())
+        issue_date  = today_date
+        #calendar.advance(today_date, -1, Years)
+        maturity = calendar.advance(issue_date, 10, Years)
+        self.convention = Following
+        self.schedule = Schedule(issue_date, maturity, Period("3M"), calendar,
+                self.convention, self.convention, Rule.TwentiethIMM)
+        recovery_rate = 0.4
+        self.engine = MidPointCdsEngine(probability_curve, recovery_rate, discount_curve, True)
 
     def test_fair_spread(self):
         fixed_rate = 0.001
