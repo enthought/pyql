@@ -23,7 +23,7 @@ cdef class MidPointCdsEngine(PricingEngine):
 
     def __init__(self, DefaultProbabilityTermStructure ts not None, double recovery_rate,
                  YieldTermStructure discount_curve not None,
-                 bool include_settlement_date_flows=None):
+                 include_settlement_date_flows=None):
         """
         First argument should be a DefaultProbabilityTermStructure. Using
         the PiecewiseDefaultCurve at the moment.
@@ -35,7 +35,7 @@ cdef class MidPointCdsEngine(PricingEngine):
             Handle[_dts.DefaultProbabilityTermStructure](ts._thisptr)
         cdef optional[bool] include_settlement_date_flows_opt
         if include_settlement_date_flows is not None:
-            include_settlement_date_flows_opt = include_settlement_date_flows
+            include_settlement_date_flows_opt = <bool>include_settlement_date_flows
         self._thisptr = new shared_ptr[_pe.PricingEngine](
             new _mce.MidPointCdsEngine(handle, recovery_rate, discount_curve._thisptr,
                 include_settlement_date_flows_opt,

@@ -9,17 +9,17 @@ from quantlib.termstructures._vol_term_structure cimport VolatilityTermStructure
 cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolstructure.hpp' namespace 'QuantLib':
     cdef cppclass SwaptionVolatilityStructure(VolatilityTermStructure):
         SwaptionVolatilityStructure(BusinessDayConvention bdc,
-                                    const DayCounter& dc) #= DayCounter())
+                                    const DayCounter& dc) nogil#= DayCounter())
         # initialize with a fixed reference date
         SwaptionVolatilityStructure(const Date& referenceDate,
                                     const Calendar& calendar,
                                     BusinessDayConvention bdc,
-                                    const DayCounter& dc) #= DayCounter())
+                                    const DayCounter& dc) nogil#= DayCounter())
         # calculate the reference date based on the global evaluation date
         SwaptionVolatilityStructure(Natural settlementDays,
                                     const Calendar&,
                                     BusinessDayConvention bdc,
-                                    const DayCounter& dc) # = DayCounter())
+                                    const DayCounter& dc) nogil# = DayCounter())
         # returns the volatility for a given option tenor and swap tenor
         Volatility volatility(const Period& optionTenor,
                               const Period& swapTenor,

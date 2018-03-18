@@ -21,7 +21,7 @@ cdef extern from 'ql/termstructures/inflation/interpolatedzeroinflationcurve.hpp
                                        bool indexIsInterpolated,
                                        const Handle[YieldTermStructure]& yTS,
                                        const vector[Date]& dates,
-                                       const vector[Rate]& rates)
+                                       vector[Rate]& rates)
         vector[Date]& dates()
         vector[Real]& data()
         vector[Rate]& rates()

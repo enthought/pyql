@@ -14,7 +14,7 @@ from libcpp.string cimport string
 
 cdef extern from 'ql/indexes/region.hpp' namespace 'QuantLib':
 
-    cdef cppclass Region:
+    cdef cppclass Region nogil:
         Region()
         Region(Region&)
         string name()

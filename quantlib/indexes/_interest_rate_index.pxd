@@ -28,7 +28,7 @@ cdef extern from 'ql/indexes/interestrateindex.hpp' namespace 'QuantLib':
                          Natural settlementDays,
                          Currency& currency,
                          Calendar& fixingCalendar,
-                         DayCounter& dayCounter) except +
+                         DayCounter& dayCounter) nogil
         string name()
         bool isValidFixingDate(Date& fixingDate)
         Rate fixing(Date& fixingDate,

@@ -32,7 +32,7 @@ cdef class IsdaCdsEngine(PricingEngine):
     def __init__(self, DefaultProbabilityTermStructure ts not None,
                  double recovery_rate,
                  YieldTermStructure discount_curve not None,
-                 bool include_settlement_date_flows=None,
+                 include_settlement_date_flows=None,
                  NumericalFix numerical_fix=NumericalFix.Taylor,
                  AccrualBias accrual_bias=AccrualBias.HalfDayBias,
                  ForwardsInCouponPeriod forwards_in_coupon_period=ForwardsInCouponPeriod.Piecewise):
@@ -43,7 +43,7 @@ cdef class IsdaCdsEngine(PricingEngine):
 
         cdef optional[bool] settlement_flows
         if include_settlement_date_flows is not None:
-            settlement_flows = include_settlement_date_flows
+            settlement_flows = <bool>include_settlement_date_flows
 
         cdef Handle[_dts.DefaultProbabilityTermStructure] handle = \
             Handle[_dts.DefaultProbabilityTermStructure](ts._thisptr)

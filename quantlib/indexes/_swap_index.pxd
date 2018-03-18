@@ -35,7 +35,7 @@ cdef extern from 'ql/indexes/swapindex.hpp' namespace 'QuantLib':
                   Period& fixedLegTenor,
                   BusinessDayConvention fixedLegConvention,
                   DayCounter& fixedLegDayCounter,
-                  shared_ptr[IborIndex]& iborIndex)
+                  shared_ptr[IborIndex]& iborIndex) nogil
         SwapIndex(const string& familyName,
                   const Period& tenor,
                   Natural settlementDays,
@@ -45,6 +45,6 @@ cdef extern from 'ql/indexes/swapindex.hpp' namespace 'QuantLib':
                   BusinessDayConvention fixedLegConvention,
                   const DayCounter& fixedLegDayCounter,
                   const shared_ptr[IborIndex]& iborIndex,
-                  const Handle[YieldTermStructure]& discountingTermStructure)
+                  const Handle[YieldTermStructure]& discountingTermStructure) nogil
         shared_ptr[VanillaSwap] underlyingSwap(const Date& fixingDate) except +
         shared_ptr[IborIndex] iborIndex()

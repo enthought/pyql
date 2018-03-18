@@ -13,7 +13,7 @@ cdef extern from 'ql/termstructures/credit/interpolatedhazardratecurve.hpp' name
 
     cdef cppclass InterpolatedHazardRateCurve[T](DefaultProbabilityTermStructure):
         InterpolatedHazardRateCurve(const vector[Date]& dates,
-                                    const vector[Rate]& hazardRates,
+                                    vector[Rate]& hazardRates,
                                     const DayCounter& dayCounter,
                                     const Calendar& cal # = Calendar()
         ) except +
