@@ -74,7 +74,7 @@ cdef class CdsHelper:
     def swap(self):
         cdef CreditDefaultSwap cds = CreditDefaultSwap.__new__(CreditDefaultSwap)
         cdef shared_ptr[_cds.CreditDefaultSwap] temp = (<_ci.CdsHelper*>self._thisptr.get()).swap()
-        cds._thisptr = new shared_ptr[_instrument.Instrument](<shared_ptr[_instrument.Instrument]>(temp))
+        cds._thisptr = shared_ptr[_instrument.Instrument](<shared_ptr[_instrument.Instrument]>(temp))
         return cds
 
     @property
