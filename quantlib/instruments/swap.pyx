@@ -10,7 +10,7 @@
 include '../types.pxi'
 
 cimport _swap
-cimport _vanillaswap
+from _vanillaswap cimport VanillaSwap as _VanillaSwap
 cimport _instrument
 cimport quantlib.pricingengines._pricing_engine as _pe
 cimport quantlib.time._date as _date
@@ -38,10 +38,9 @@ from quantlib.cashflows.ibor_coupon cimport IborLeg
 
 import datetime
 
-cpdef public enum SwapType:
-    Payer    = _vanillaswap.Payer
-    Receiver = _vanillaswap.Receiver
-
+cpdef enum SwapType:
+    Receiver = -1
+    Payer    =  1
 
 cdef inline _swap.Swap* get_swap(Swap swap):
     """ Utility function to extract a properly casted Swap pointer out of the
@@ -121,12 +120,12 @@ cdef class Swap(Instrument):
         leg._thisptr = get_swap(self).leg(i)
         return leg
 
-cdef inline _vanillaswap.VanillaSwap* get_vanillaswap(VanillaSwap swap):
+cdef inline _VanillaSwap* get_vanillaswap(VanillaSwap swap):
     """ Utility function to extract a properly casted Swap pointer out of the
     internal _thisptr attribute of the Instrument base class. """
 
-    cdef _vanillaswap.VanillaSwap* ref = \
-         <_vanillaswap.VanillaSwap*>swap._thisptr.get()
+    cdef _VanillaSwap* ref = \
+         <_VanillaSwap*>swap._thisptr.get()
     return ref
 
 cdef class VanillaSwap(Swap):
@@ -149,8 +148,8 @@ cdef class VanillaSwap(Swap):
             opt_payment_convention = <BusinessDayConvention>payment_convention
 
         self._thisptr = shared_ptr[_instrument.Instrument](
-            new _vanillaswap.VanillaSwap(
-                <_vanillaswap.Type>type,
+            new _VanillaSwap(
+                <_VanillaSwap.Type>type,
                 nominal,
                 deref(fixed_schedule._thisptr),
                 fixed_rate,
@@ -210,4 +209,4 @@ cdef class VanillaSwap(Swap):
 
     @property
     def type(self):
-        return get_vanillaswap(self).type()
+        return SwapType(get_vanillaswap(self).type())
