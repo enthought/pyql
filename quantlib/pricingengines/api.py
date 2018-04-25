@@ -11,3 +11,5 @@ from .vanilla.vanilla import FDDividendAmericanEngine, FDAmericanEngine
 from .vanilla.vanilla import FdHestonHullWhiteVanillaEngine
 
 from .swaption import JamshidianSwaptionEngine
+from .swaption.black_swaption_engine import (
+        BlackSwaptionEngine, BachelierSwaptionEngine)
