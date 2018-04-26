@@ -48,3 +48,15 @@ cdef class Swaption(Instrument):
             (<_swaption.Swaption*>self._thisptr.get()).
             underlyingSwap())
         return instance
+
+    @property
+    def vega(self):
+        return self._thisptr.get().result[Real]("vega")
+
+    @property
+    def annuity(self):
+        return self._thisptr.get().result[Real]("annuity")
+
+    @property
+    def atm_forward(self):
+        return self._thisptr.get().result[Real]("atmForward")
