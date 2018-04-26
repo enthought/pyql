@@ -9,10 +9,6 @@ from .swap cimport VanillaSwap
 cimport _vanillaswap
 cimport _instrument
 
-cpdef enum SettlementType:
-    Physical
-    Cash
-
 cdef class Swaption(Instrument):
     def __init__(self, VanillaSwap swap not None, Exercise exercise not None,
                  SettlementType delivery=Physical):

@@ -38,10 +38,6 @@ from quantlib.cashflows.ibor_coupon cimport IborLeg
 
 import datetime
 
-cpdef enum SwapType:
-    Receiver = -1
-    Payer    =  1
-
 cdef inline _swap.Swap* get_swap(Swap swap):
     """ Utility function to extract a properly casted Swap pointer out of the
     internal _thisptr attribute of the Instrument base class. """
