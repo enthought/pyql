@@ -81,11 +81,6 @@ cdef class Swap(Instrument):
     ##         new _swap.Swap(_legs, payer)
     ##         )
 
-    property is_expired:
-        def __get__(self):
-            cdef bool is_expired = get_swap(self).isExpired()
-            return is_expired
-
     property start_date:
         def __get__(self):
             cdef _date.Date dt = get_swap(self).startDate()

@@ -103,10 +103,6 @@ cdef class OneAssetOption(Instrument):
             payoff._thisptr = get_option(self).payoff()
             return payoff
 
-    property is_expired:
-        def __get__(self):
-            return (<_option.OneAssetOption *> self._thisptr.get()).isExpired()
-
     property delta:
         def __get__(self):
             return (<_option.OneAssetOption *> self._thisptr.get()).delta()
