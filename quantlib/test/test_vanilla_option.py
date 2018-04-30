@@ -2,8 +2,8 @@ from .unittest_tools import unittest
 from quantlib.instruments.option import (
     EuropeanExercise, AmericanExercise, DividendVanillaOption)
 
-from quantlib.instruments.payoffs import PlainVanillaPayoff, Put
-from quantlib.instruments.option import VanillaOption
+from quantlib.instruments.payoffs import PlainVanillaPayoff
+from quantlib.instruments.option import VanillaOption, Put
 from quantlib.pricingengines.vanilla.vanilla import (
     AnalyticEuropeanEngine, BaroneAdesiWhaleyApproximationEngine,
     FDDividendAmericanEngine)
@@ -94,8 +94,8 @@ class VanillaOptionTestCase(unittest.TestCase):
         quote_str = str(self.underlyingH)
         self.assertEqual('Simple Quote: 36.000000', quote_str)
 
-        payoff_str = str(self.payoff)
-        self.assertEqual('Payoff: Vanilla Put @ 40.000000', payoff_str)
+        payoff_str = repr(self.payoff)
+        self.assertEqual('Vanilla Put, 40 strike', payoff_str)
 
         exercise = EuropeanExercise(self.maturity)
         exercise_str = str(exercise)
@@ -104,8 +104,8 @@ class VanillaOptionTestCase(unittest.TestCase):
         option = VanillaOption(self.payoff, exercise)
         self.assertEqual('Exercise type: European', str(option.exercise))
         vanilla_str = str(option)
-        self.assertEqual('VanillaOption Exercise type: ' +
-                          'European Payoff: Vanilla', vanilla_str)
+        self.assertEqual('VanillaOption Exercise type: European ' +
+                         'Vanilla', vanilla_str)
 
     def test_european_vanilla_option_usage(self):
 

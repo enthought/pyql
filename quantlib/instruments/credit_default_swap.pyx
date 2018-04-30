@@ -111,7 +111,7 @@ cdef class CreditDefaultSwap(Instrument):
         """Credit default swap as running-spread only
         """
 
-        self._thisptr = new shared_ptr[_instrument.Instrument](
+        self._thisptr = shared_ptr[_instrument.Instrument](
             new _cds.CreditDefaultSwap(
                 side, notional, spread, deref(schedule._thisptr),
                 payment_convention,
@@ -167,7 +167,7 @@ cdef class CreditDefaultSwap(Instrument):
             Typically T+3, this is also the default value.
         """
         cdef CreditDefaultSwap instance = cls.__new__(cls)
-        instance._thisptr = new shared_ptr[_instrument.Instrument](
+        instance._thisptr = shared_ptr[_instrument.Instrument](
             new _cds.CreditDefaultSwap(
                 side, notional, upfront, spread, deref(schedule._thisptr),
                 payment_convention,

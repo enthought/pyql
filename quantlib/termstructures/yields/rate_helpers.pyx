@@ -203,8 +203,8 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
 
     def swap(self):
         cdef VanillaSwap instance = VanillaSwap.__new__(VanillaSwap)
-        instance._thisptr = new shared_ptr[_ins.Instrument](
-            (<_rh.SwapRateHelper*>self._thisptr.get()).swap().get())
+        instance._thisptr = static_pointer_cast[_ins.Instrument](
+            (<_rh.SwapRateHelper*>self._thisptr.get()).swap())
         return instance
 
     @property

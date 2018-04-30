@@ -90,14 +90,12 @@ cdef class Bond(Instrument):
     property clean_price:
         """ Bond clena price. """
         def __get__(self):
-            if self._has_pricing_engine:
-                return get_bond(self).cleanPrice()
+            return get_bond(self).cleanPrice()
 
     property dirty_price:
         """ Bond dirty price. """
         def __get__(self):
-            if self._has_pricing_engine:
-                return get_bond(self).dirtyPrice()
+            return get_bond(self).dirtyPrice()
 
     def clean_yield(self, Real clean_price, DayCounter dc not None,
             _bonds.Compounding comp, _bonds.Frequency freq,
@@ -169,18 +167,20 @@ cdef class FixedRateBond(Bond):
                 Date bond was issued
             """
 
-            self._thisptr = new shared_ptr[_instrument.Instrument](
-                    new _bonds.FixedRateBond(settlement_days,
-                        face_amount, deref(schedule._thisptr), coupons,
-                        deref(accrual_day_counter._thisptr),
-                        payment_convention, redemption,
-                        deref(issue_date._thisptr),
-                        deref(payment_calendar._thisptr),
-                        deref(ex_coupon_period._thisptr),
-                        deref(ex_coupon_calendar._thisptr),
-                        ex_coupon_convention,
-                        ex_coupon_end_of_month)
-                )
+            self._thisptr = shared_ptr[_instrument.Instrument](
+                new _bonds.FixedRateBond(settlement_days,
+                                         face_amount,
+                                         deref(schedule._thisptr),
+                                         coupons,
+                                         deref(accrual_day_counter._thisptr),
+                                         payment_convention,
+                                         redemption, deref(issue_date._thisptr),
+                                         deref(payment_calendar._thisptr),
+                                         deref(ex_coupon_period._thisptr),
+                                         deref(ex_coupon_calendar._thisptr),
+                                         ex_coupon_convention,
+                                         ex_coupon_end_of_month)
+            )
 
 cdef class ZeroCouponBond(Bond):
     """ Zero coupon bond """
@@ -207,7 +207,7 @@ cdef class ZeroCouponBond(Bond):
         issue_date : Quantlib::Date
             Date bond was issued"""
 
-        self._thisptr = new shared_ptr[_instrument.Instrument](
+        self._thisptr = shared_ptr[_instrument.Instrument](
                 new _bonds.ZeroCouponBond(settlement_days,
                     deref(calendar._thisptr), face_amount,
                     deref(maturity_date._thisptr),
@@ -260,7 +260,7 @@ cdef class FloatingRateBond(Bond):
             Date bond was issued
         """
 
-        self._thisptr = new shared_ptr[_instrument.Instrument](
+        self._thisptr = shared_ptr[_instrument.Instrument](
             new _bonds.FloatingRateBond(
                 settlement_days, face_amount,
                 deref(schedule._thisptr),
@@ -287,7 +287,7 @@ cdef class CPIBond(Bond):
                  BusinessDayConvention ex_coupon_convention=Unadjusted,
                  bool ex_coupon_end_of_month=False):
 
-        self._thisptr = new shared_ptr[_instrument.Instrument](
+        self._thisptr = shared_ptr[_instrument.Instrument](
             new _bonds.CPIBond(
                 settlement_days, face_amount, growth_only, baseCPI,
                 deref(observation_lag._thisptr),

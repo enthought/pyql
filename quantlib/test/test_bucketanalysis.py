@@ -6,7 +6,7 @@ from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.time.calendars.target import TARGET
 from quantlib.time.calendars.united_states import ( UnitedStates, GovernmentBond)
 from quantlib.currency.api import USDCurrency
-from quantlib.instruments.option import VanillaOption
+from quantlib.instruments.option import VanillaOption, Put
 from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.compounding import Compounded, Continuous
 from quantlib.time.date import ( Date, Days, Semiannual, January, August, Period, March, February, May,Jul, Annual, Years)
@@ -29,7 +29,7 @@ from quantlib.pricingengines.vanilla.vanilla import (
     AnalyticEuropeanEngine, BaroneAdesiWhaleyApproximationEngine,
     FDDividendAmericanEngine
     )
-from quantlib.instruments.payoffs import PlainVanillaPayoff, Put
+from quantlib.instruments.payoffs import PlainVanillaPayoff
 import quantlib.pricingengines.bondfunctions as bf
 from  quantlib.experimental.risk.sensitivityanalysis import bucket_analysis
 

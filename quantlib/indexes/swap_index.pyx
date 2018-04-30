@@ -59,9 +59,8 @@ cdef class SwapIndex(InterestRateIndex):
     def underlying_swap(self, Date fixing_date not None):
         cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
         cdef VanillaSwap swap = VanillaSwap.__new__(VanillaSwap)
-        swap._thisptr = new shared_ptr[_instrument.Instrument](
-                static_pointer_cast[_instrument.Instrument](
-            swap_index.underlyingSwap(deref(fixing_date._thisptr))))
+        swap._thisptr = static_pointer_cast[_instrument.Instrument](
+            swap_index.underlyingSwap(deref(fixing_date._thisptr)))
         return swap
 
     @property

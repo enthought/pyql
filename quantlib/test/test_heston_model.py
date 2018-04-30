@@ -4,8 +4,8 @@ import numpy as np
 
 from .unittest_tools import unittest
 
-from quantlib.instruments.option import EuropeanExercise, VanillaOption
-from quantlib.instruments.payoffs import Call, PlainVanillaPayoff, Put
+from quantlib.instruments.option import EuropeanExercise, VanillaOption, Call, Put
+from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.models.calibration_helper import ImpliedVolError
 from quantlib.models.equity.heston_model import (
     HestonModelHelper, HestonModel
@@ -277,7 +277,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         forward_price = 32 * np.exp((0.1 - 0.04) * year_fraction)
         expected = blackFormula(
-            payoff.type, payoff.strike, forward_price,
+            payoff.option_type, payoff.strike, forward_price,
             np.sqrt(0.05 * year_fraction)
         ) * np.exp(-0.1 * year_fraction)
 
