@@ -22,15 +22,11 @@ from quantlib._cashflow cimport Leg
 from quantlib.instruments._swap cimport Swap
 from quantlib.indexes._ibor_index cimport IborIndex
 
-cdef extern from 'ql/instruments/vanillaswap.hpp' namespace 'QuantLib::VanillaSwap':
-
-    ctypedef enum Type:
-        Receiver
-        Payer
-
 cdef extern from 'ql/instruments/vanillaswap.hpp' namespace 'QuantLib':
     cdef cppclass VanillaSwap(Swap):
-
+        enum Type:
+            Receiver
+            Payer
         VanillaSwap(Type type,
                     Real nominal,
                     Schedule& fixedSchedule,
@@ -41,7 +37,7 @@ cdef extern from 'ql/instruments/vanillaswap.hpp' namespace 'QuantLib':
                     Spread spread,
                     DayCounter& floatingDayCount,
                     optional[BusinessDayConvention] paymentConvention)
-        
+
         Type type()
         Real nominal()
 

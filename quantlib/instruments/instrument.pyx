@@ -20,6 +20,9 @@ cdef class Instrument:
         """ Shortcut to the net_present_value property. """
         def __get__(self):
             return self._thisptr.get().NPV()
+    @property
+    def is_expired(self):
+        return self.thisptr.isExpired()
 
     @property
     def valuation_date(self):

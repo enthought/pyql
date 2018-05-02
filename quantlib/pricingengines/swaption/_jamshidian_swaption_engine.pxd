@@ -1,9 +1,9 @@
 
-include '../types.pxi'
+include '../../types.pxi'
 
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
-from _pricing_engine cimport PricingEngine
+from quantlib.pricingengines._pricing_engine cimport PricingEngine
 cimport quantlib.models.shortrate._onefactor_model as _ofm
 
 

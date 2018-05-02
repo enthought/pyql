@@ -78,7 +78,6 @@ class TestQuantLibSwap(unittest.TestCase):
                     floatSchedule, index, floatingSpread,
                     floatDayCount, fixedConvention)
             swap.set_pricing_engine(engine)
-
             fixed_leg = swap.fixed_leg
             floating_leg = swap.floating_leg
 

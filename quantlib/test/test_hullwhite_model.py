@@ -12,7 +12,7 @@ from quantlib.time.api import (Date, Years, Actual365Fixed,
 
 from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.indexes.ibor.euribor import Euribor6M
-from quantlib.pricingengines.swaption import JamshidianSwaptionEngine
+from quantlib.pricingengines.swaption.jamshidian_swaption_engine import JamshidianSwaptionEngine
 from quantlib.quotes import SimpleQuote
 from quantlib.models.shortrate.calibrationhelpers.swaption_helper \
     import SwaptionHelper
