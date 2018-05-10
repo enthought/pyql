@@ -26,6 +26,8 @@ __quantlib_hex_version__ = QL_HEX_VERSION
 
 cdef class Settings:
 
+    cdef _settings.SavedSettings* backup
+
     property evaluation_date:
         """Property to set/get the evaluation date. """
         def __get__(self):
@@ -88,3 +90,10 @@ cdef class Settings:
         """
 
         return cls()
+
+    def __enter__(self):
+        self.backup = new _settings.SavedSettings()
+        return self
+
+    def __exit__(self, exception_type, exception_value, traceback):
+        del self.backup
