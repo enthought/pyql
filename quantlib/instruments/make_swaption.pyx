@@ -54,3 +54,7 @@ cdef class MakeSwaption:
     def with_underlying_type(self, SwapType swap_type):
         self._thisptr.withUnderlyingType(<VanillaSwap.Type>swap_type)
         return self
+    
+    def with_nominal(self, Real nominal):
+        self._thisptr.withNominal(nominal)
+        return self
