@@ -38,8 +38,8 @@ class RateHelpersTestCase(unittest.TestCase):
             deposit_day_counter
         )
         self.assertIsNotNone(helper_from_quote, helper_from_float)
-        self.assertEqual(quote.value, helper_from_quote.quote)
-        self.assertEqual(helper_from_quote.quote, helper_from_float.quote)
+        self.assertEqual(quote.value, helper_from_quote.quote.value)
+        self.assertEqual(helper_from_quote.quote.value, helper_from_float.quote.value)
 
     def test_relativedate_rate_helper(self):
         tenor = Period(3, Months)
@@ -99,8 +99,8 @@ class RateHelpersTestCase(unittest.TestCase):
             convention, end_of_month, day_counter
         )
         self.assertIsNotNone(helper_from_float, helper_from_quote)
-        self.assertEqual(quote.value, helper_from_quote.quote)
-        self.assertEqual(helper_from_quote.quote, helper_from_float.quote)
+        self.assertEqual(quote.value, helper_from_quote.quote.value)
+        self.assertEqual(helper_from_quote.quote.value, helper_from_float.quote.value)
 
     def test_create_futures_rate_helper(self):
 
@@ -123,8 +123,8 @@ class RateHelpersTestCase(unittest.TestCase):
         )
 
         self.assertIsNotNone(helper_from_float, helper_from_quote)
-        self.assertEqual(quote.value, helper_from_quote.quote)
-        self.assertEqual(helper_from_quote.quote, helper_from_float.quote)
+        self.assertEqual(quote.value, helper_from_quote.quote.value)
+        self.assertEqual(helper_from_quote.quote.value, helper_from_float.quote.value)
 
     def test_create_swap_rate_helper_no_classmethod(self):
 
@@ -162,8 +162,8 @@ class RateHelpersTestCase(unittest.TestCase):
         #)
 
         self.assertIsNotNone(helper_from_quote, helper_from_float)
-        self.assertAlmostEqual(rate.value, helper_from_quote.quote)
-        self.assertAlmostEqual(helper_from_float.quote, helper_from_quote.quote)
+        self.assertAlmostEqual(rate.value, helper_from_quote.quote.value)
+        self.assertAlmostEqual(helper_from_float.quote.value, helper_from_quote.quote.value)
 
         with self.assertRaises(RuntimeError):
             self.assertAlmostEqual(rate.value, helper_from_quote.implied_quote)
@@ -185,8 +185,8 @@ class RateHelpersTestCase(unittest.TestCase):
                                             ibor_index)
 
         self.assertIsNotNone(helper_from_float, helper_from_quote)
-        self.assertEqual(rate.value, helper_from_quote.quote)
-        self.assertEqual(helper_from_quote.quote, helper_from_float.quote)
+        self.assertEqual(rate.value, helper_from_quote.quote.value)
+        self.assertEqual(helper_from_quote.quote.value, helper_from_float.quote.value)
 
         with self.assertRaises(RuntimeError):
             self.assertAlmostEqual(rate.value, helper_from_quote.implied_quote)
