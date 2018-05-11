@@ -15,6 +15,13 @@ cdef extern from 'ql/experimental/risk/sensitivityanalysis.hpp' namespace 'Quant
 cdef extern from 'ql/experimental/risk/sensitivityanalysis.hpp' namespace 'QuantLib':
     pair[vector[vector[Real]], vector[vector[Real]]] bucketAnalysis(
         vector[vector[Handle[SimpleQuote]]]& quotes,
+        vector[shared_ptr[Instrument]]& instr,
+        vector[Real]& quant,
+        Real shift,
+        SensitivityAnalysis type) except +
+    # rename the function otherwise cython can't distinguish between the two
+    pair[vector[Real], vector[Real]] bucketAnalysis1 "bucketAnalysis"(
+        vector[Handle[SimpleQuote]]& quotes,
 	vector[shared_ptr[Instrument]]& instr,
 	vector[Real]& quant,
 	Real shift,

@@ -64,8 +64,9 @@ def bucket_analysis(list quotes, list instruments,
     """
     Parameters
     ----------
-    1) quotes : list[list[Quantlib::SimpleQuote]]
-        list of list of quotes to be tweaked by a certain shift, usually passed from ratehelpers
+    1) quotes : list[SimpleQuote] or list[list[SimpleQuote]]
+        list or list of list of quotes to be tweaked by a certain shift,
+        usually passed from ratehelpers
     2) instruments : List of instruments
         list of instruments to be analyzed.
     3) quantity : Quantity of instrument
@@ -77,38 +78,36 @@ def bucket_analysis(list quotes, list instruments,
     """
 
     #C++ Inputs
-    cdef vector[vector[Handle[_qt.SimpleQuote]]] vvh_quotes
-    cdef vector[shared_ptr[_it.Instrument]] vsp_instruments
+    cdef vector[vector[Handle[_qt.SimpleQuote]]] _Quotes
+    cdef vector[shared_ptr[_it.Instrument]] _instruments
 
     #intermediary temps
-    cdef vector[Handle[_qt.SimpleQuote]] sqh_vector
+    cdef vector[Handle[_qt.SimpleQuote]] _quotes
     cdef shared_ptr[_qt.SimpleQuote] q_ptr
-    cdef Handle[_qt.SimpleQuote] sq_handle
-    cdef list qlsq_out
-    cdef SimpleQuote qlsq_in
+    cdef Handle[_qt.SimpleQuote] quote_handle
+    cdef list quotes_list
+    cdef SimpleQuote q
     cdef Instrument inst
 
-    #C++ Output
-    cdef pair[vector[vector[Real]], vector[vector[Real]]] ps
-
-
     for inst in instruments:
-        vsp_instruments.push_back(inst._thisptr)
+        _instruments.push_back(inst._thisptr)
 
-    for qlsq_out in quotes:
-        for qlsq_in in qlsq_out:
-
-            #be sure to pass shared_ptr pointing to same SimpleQuotes as were created outside of bucketAnalysis
-            q_ptr = static_pointer_cast[_qt.SimpleQuote](qlsq_in._thisptr)
-            sq_handle = Handle[_qt.SimpleQuote](q_ptr)
-            sqh_vector.push_back(sq_handle)
-
-        vvh_quotes.push_back(sqh_vector)
-
-    ps = _sa.bucketAnalysis(vvh_quotes,
-                            vsp_instruments,
-                            quantities,
-                            shift,
-                            type)
-
-    return ps
+    if isinstance(quotes[0], list):
+        for quotes_list in quotes:
+            _quotes.clear()
+            for q in quotes_list:
+                q_ptr = static_pointer_cast[_qt.SimpleQuote](q._thisptr)
+                quote_handle = Handle[_qt.SimpleQuote](q_ptr)
+                _quotes.push_back(quote_handle)
+            _Quotes.push_back(_quotes)
+        return _sa.bucketAnalysis(_Quotes, _instruments, quantities, shift,
+                                  <_sa.SensitivityAnalysis>(type))
+    elif isinstance(quotes[0], SimpleQuote):
+        for q in quotes:
+            q_ptr = static_pointer_cast[_qt.SimpleQuote](q._thisptr)
+            quote_handle = Handle[_qt.SimpleQuote](q_ptr)
+            _quotes.push_back(quote_handle)
+        return _sa.bucketAnalysis1(_quotes, _instruments, quantities, shift,
+                                   <_sa.SensitivityAnalysis>(type))
+    else:
+        raise RuntimeError("quotes need to be either a list or list of lists of SimpleQuote")
