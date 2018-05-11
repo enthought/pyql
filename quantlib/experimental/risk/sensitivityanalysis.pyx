@@ -2,7 +2,7 @@ include '../../types.pxi'
 
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
-
+from quantlib.defines cimport QL_NULL_REAL
 cimport quantlib._quote as _qt
 cimport _sensitivityanalysis as _sa
 cimport quantlib.instruments._instrument as _it
@@ -11,14 +11,36 @@ from libcpp.pair cimport pair
 from quantlib.quotes cimport SimpleQuote, Quote
 from quantlib.instruments.instrument cimport Instrument
 
-cdef public enum SensitivityAnalysis:
+cpdef enum SensitivityAnalysis:
     OneSide
     Centered
 
-def bucket_analysis(quotes_vvsq, instruments,
-                    vector[Real] quantity, shift, sa_type):
 
-    """ Parameters :
+def parallel_analysis(list quotes, list instruments, vector[Real] quantities,
+                      Real shift=0.0001, SensitivityAnalysis type=Centered,
+                      Real reference_npv=QL_NULL_REAL):
+    cdef vector[Handle[_qt.SimpleQuote]] _quotes
+    cdef vector[shared_ptr[_it.Instrument]] _instruments
+    cdef shared_ptr[_qt.SimpleQuote] q_ptr
+    for q in quotes:
+        q_ptr = static_pointer_cast[_qt.SimpleQuote]((<SimpleQuote?>q)._thisptr)
+        _quotes.push_back(Handle[_qt.SimpleQuote](q_ptr))
+    for it in instruments:
+        _instruments.push_back((<Instrument?>it)._thisptr)
+
+    return _sa.parallelAnalysis(_quotes,
+                                _instruments,
+                                quantities,
+                                shift,
+                                <_sa.SensitivityAnalysis>(type),
+                                reference_npv)
+
+
+def bucket_analysis(quotes_vvsq, instruments,
+                    vector[Real] quantity, Real shift, SensitivityAnalysis sa_type):
+
+    """
+    Parameters
     ----------
     1) quotes_vvsq : list[list[Quantlib::SimpleQuote]]
         list of list of quotes to be tweaked by a certain shift, usually passed from ratehelpers
@@ -43,7 +65,7 @@ def bucket_analysis(quotes_vvsq, instruments,
     cdef shared_ptr[_it.Instrument] instrument_sp
 
     #C++ Output
-    cdef pair[vector[vector[Real]],vector[vector[Real]]] ps
+    cdef pair[vector[vector[Real]], vector[vector[Real]]] ps
 
 
     for qlinstrument in instruments:
@@ -54,10 +76,10 @@ def bucket_analysis(quotes_vvsq, instruments,
         for qlsq_in in qlsq_out:
 
             #be sure to pass shared_ptr pointing to same SimpleQuotes as were created outside of bucketAnalysis
-            q_ptr = static_pointer_cast[_qt.SimpleQuote]((<SimpleQuote>qlsq_in)._thisptr)
+            q_ptr = static_pointer_cast[_qt.SimpleQuote]((<SimpleQuote?>qlsq_in)._thisptr)
             sq_handle = Handle[_qt.SimpleQuote](q_ptr)
             sqh_vector.push_back(sq_handle)
-			
+
         vvh_quotes.push_back(sqh_vector)
 
     ps = _sa.bucketAnalysis(vvh_quotes,
