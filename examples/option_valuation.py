@@ -25,7 +25,7 @@ from __future__ import print_function
 from quantlib.settings import Settings
 from quantlib.compounding import Simple
 from quantlib.currency.api import USDCurrency
-from quantlib.indexes.libor import Libor
+from quantlib.indexes.api import Libor
 from quantlib.indexes.swap_index import SwapIndex
 from quantlib.instruments.option import EuropeanExercise, AmericanExercise
 from quantlib.instruments.option import VanillaOption, DividendVanillaOption, Call
