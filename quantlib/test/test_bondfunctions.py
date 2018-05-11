@@ -164,11 +164,11 @@ class BondFunctionTestCase(unittest.TestCase):
         Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)
 
 
-        yld  = bf.yld(bond, 102.0, ActualActual(ISDA), Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)
-        dur  = bf.duration(bond, yld, ActualActual(ISDA), Compounded, Semiannual, 2, settlement_date)
+        yld  = bf.bond_yield(bond, 102.0, ActualActual(ISDA), Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)
+        dur  = bf.duration(bond, yld, ActualActual(ISDA), Compounded, Semiannual, bf.Modified, settlement_date)
 
-        yld_disco  = bf.yld(bond, 95.0, ActualActual(ISDA), Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)
-        dur_disco  = bf.duration(bond, yld_disco, ActualActual(ISDA), Compounded, Semiannual, 2, settlement_date)
+        yld_disco  = bf.bond_yield(bond, 95.0, ActualActual(ISDA), Compounded, Semiannual, settlement_date, 1e-6, 100, 0.5)
+        dur_disco  = bf.duration(bond, yld_disco, ActualActual(ISDA), Compounded, Semiannual, bf.Modified, settlement_date)
 
         self.assertEqual(round(zspd, 6), 0.001281)
         self.assertEqual(round(pyc_zspd, 4), -0.0264)
