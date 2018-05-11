@@ -19,14 +19,35 @@ cpdef enum SensitivityAnalysis:
 def parallel_analysis(list quotes, list instruments, vector[Real] quantities=[],
                       Real shift=0.0001, SensitivityAnalysis type=Centered,
                       Real reference_npv=QL_NULL_REAL):
+    """
+    Parallel shift PV01 sensitivity analysis for a SimpleQuote vector
+
+    Returns a pair of first and second derivative values. Second derivative
+    is not available if type is OneSide.
+
+    Empty quantities vector is considered as unit vector. The same if the
+    vector is just one single element equal to one.
+
+    Parameters
+    ----------
+    quotes : list[SimpleQuote]
+    instrument : list[Instrument]
+    quantities : list[Real]
+    shift : Real
+    type : SensitivityAnalysis
+    """
     cdef vector[Handle[_qt.SimpleQuote]] _quotes
     cdef vector[shared_ptr[_it.Instrument]] _instruments
     cdef shared_ptr[_qt.SimpleQuote] q_ptr
+    cdef Instrument inst
+    cdef SimpleQuote q
+
     for q in quotes:
-        q_ptr = static_pointer_cast[_qt.SimpleQuote]((<SimpleQuote?>q)._thisptr)
+        q_ptr = static_pointer_cast[_qt.SimpleQuote](q._thisptr)
         _quotes.push_back(Handle[_qt.SimpleQuote](q_ptr))
-    for it in instruments:
-        _instruments.push_back((<Instrument?>it)._thisptr)
+
+    for inst in instruments:
+        _instruments.push_back(inst._thisptr)
 
     return _sa.parallelAnalysis(_quotes,
                                 _instruments,
@@ -36,22 +57,23 @@ def parallel_analysis(list quotes, list instruments, vector[Real] quantities=[],
                                 reference_npv)
 
 
-def bucket_analysis(quotes_vvsq, instruments,
-                    vector[Real] quantity, Real shift, SensitivityAnalysis sa_type):
+def bucket_analysis(list quotes, list instruments,
+                    vector[Real] quantities=[], Real shift=0.0001,
+                    SensitivityAnalysis type=Centered):
 
     """
     Parameters
     ----------
-    1) quotes_vvsq : list[list[Quantlib::SimpleQuote]]
+    1) quotes : list[list[Quantlib::SimpleQuote]]
         list of list of quotes to be tweaked by a certain shift, usually passed from ratehelpers
     2) instruments : List of instruments
-        list of instruments to be analyzed.Bond and option in unit test.
+        list of instruments to be analyzed.
     3) quantity : Quantity of instrument
         A multiplier for the resulting buckets, Usually 1 or lower.
     4) shift : Amount of shift for analysis.
         Tends to be 0.0001 (1 bp). Can be larger as well as positive or negative.
-    5) sa_type : Sensitivity Analysis Type
-        Will be either OneSided or Centered
+    5) type : Sensitivity Analysis Type
+        Will be either OneSide or Centered
     """
 
     #C++ Inputs
@@ -62,21 +84,22 @@ def bucket_analysis(quotes_vvsq, instruments,
     cdef vector[Handle[_qt.SimpleQuote]] sqh_vector
     cdef shared_ptr[_qt.SimpleQuote] q_ptr
     cdef Handle[_qt.SimpleQuote] sq_handle
-    cdef shared_ptr[_it.Instrument] instrument_sp
+    cdef list qlsq_out
+    cdef SimpleQuote qlsq_in
+    cdef Instrument inst
 
     #C++ Output
     cdef pair[vector[vector[Real]], vector[vector[Real]]] ps
 
 
-    for qlinstrument in instruments:
-        instrument_sp = (<Instrument>qlinstrument)._thisptr
-        vsp_instruments.push_back(instrument_sp)
+    for inst in instruments:
+        vsp_instruments.push_back(inst._thisptr)
 
-    for qlsq_out in quotes_vvsq:
+    for qlsq_out in quotes:
         for qlsq_in in qlsq_out:
 
             #be sure to pass shared_ptr pointing to same SimpleQuotes as were created outside of bucketAnalysis
-            q_ptr = static_pointer_cast[_qt.SimpleQuote]((<SimpleQuote?>qlsq_in)._thisptr)
+            q_ptr = static_pointer_cast[_qt.SimpleQuote](qlsq_in._thisptr)
             sq_handle = Handle[_qt.SimpleQuote](q_ptr)
             sqh_vector.push_back(sq_handle)
 
@@ -84,8 +107,8 @@ def bucket_analysis(quotes_vvsq, instruments,
 
     ps = _sa.bucketAnalysis(vvh_quotes,
                             vsp_instruments,
-                            quantity,
+                            quantities,
                             shift,
-                            sa_type)
+                            type)
 
     return ps
