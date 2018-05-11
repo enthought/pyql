@@ -34,8 +34,9 @@ cdef class RateHelper:
 
     property quote:
         def __get__(self):
-            cdef shared_ptr[_qt.Quote] quote_ptr = self._thisptr.get().quote().currentLink()
-            return quote_ptr.get().value()
+            cdef SimpleQuote r = SimpleQuote.__new__(SimpleQuote)
+            r._thisptr = self._thisptr.get().quote().currentLink()
+            return r
 
         def __set__(self, Real val):
             cdef shared_ptr[_qt.Quote] quote = self._thisptr.get().quote().currentLink()
@@ -125,10 +126,10 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
             )
 
     @classmethod
-    def from_tenor(cls, rate, Period tenor,
-        Calendar calendar, Frequency fixedFrequency,
-        BusinessDayConvention fixedConvention, DayCounter fixedDayCount,
-        IborIndex iborIndex, Quote spread=SimpleQuote(),
+    def from_tenor(cls, rate, Period tenor not None,
+        Calendar calendar not None, Frequency fixedFrequency,
+        BusinessDayConvention fixedConvention, DayCounter fixedDayCount not None,
+        IborIndex iborIndex not None, Quote spread=SimpleQuote(),
         Period fwdStart=Period(0, Days)):
 
         cdef Handle[_qt.Quote] spread_handle
@@ -137,7 +138,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
         else:
             spread_handle = Handle[_qt.Quote]()
 
-        cdef SwapRateHelper instance = cls(from_classmethod=True)
+        cdef SwapRateHelper instance = SwapRateHelper.__new__(SwapRateHelper)
 
         if isinstance(rate, float):
             instance._thisptr.reset(new _rh.SwapRateHelper(
