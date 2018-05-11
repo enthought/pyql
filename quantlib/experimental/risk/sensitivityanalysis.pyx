@@ -16,7 +16,7 @@ cpdef enum SensitivityAnalysis:
     Centered
 
 
-def parallel_analysis(list quotes, list instruments, vector[Real] quantities,
+def parallel_analysis(list quotes, list instruments, vector[Real] quantities=[],
                       Real shift=0.0001, SensitivityAnalysis type=Centered,
                       Real reference_npv=QL_NULL_REAL):
     cdef vector[Handle[_qt.SimpleQuote]] _quotes
