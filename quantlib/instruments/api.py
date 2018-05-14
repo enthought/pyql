@@ -5,3 +5,6 @@ from .option import DividendVanillaOption, EuropeanOption, Put, Call
 from .payoffs import PlainVanillaPayoff
 from .instrument import Instrument
 from .swap import VanillaSwap, Payer, Receiver
+from .make_vanilla_swap import MakeVanillaSwap
+from .swaption import Swaption
+from .make_swaption import MakeSwaption
