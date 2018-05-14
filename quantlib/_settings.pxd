@@ -16,3 +16,6 @@ cdef extern from "ql/settings.hpp" namespace "QuantLib":
         optional[bool]& includeTodaysCashFlows()
         @staticmethod
         Settings& instance()
+
+    cdef cppclass SavedSettings:
+        pass
