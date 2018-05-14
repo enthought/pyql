@@ -1,12 +1,11 @@
 import unittest
 
-from quantlib.instruments.bonds import FixedRateBond
+from quantlib.instruments.api import MakeVanillaSwap, FixedRateBond
 from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.time.calendars.target import TARGET
 from quantlib.time.calendars.united_states import UnitedStates, GovernmentBond
-from quantlib.currency.api import USDCurrency
-from quantlib.instruments.option import VanillaOption, Put
-from quantlib.compounding import Compounded
+from quantlib.instruments.option import (VanillaOption, Put,
+                                         EuropeanExercise)
 from quantlib.time.date import (
     Date, Days, Semiannual, January,
     Period, May, Annual, Years)
@@ -17,22 +16,24 @@ from quantlib.time.api import (Months, ISDA,
 from quantlib.time.daycounters.actual_actual import Bond
 from quantlib.time.schedule import Schedule, Backward
 from quantlib.settings import Settings
-from quantlib.indexes.ibor.libor import Libor
-from quantlib.instruments.option import EuropeanExercise
+from quantlib.indexes.ibor.usdlibor import USDLibor
 from quantlib.termstructures.yields.rate_helpers import (
     DepositRateHelper, SwapRateHelper)
-from quantlib.termstructures.yields.piecewise_yield_curve import PiecewiseYieldCurve
+from quantlib.termstructures.yields.piecewise_yield_curve \
+    import PiecewiseYieldCurve
 from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure, BootstrapTrait, Interpolator)
+    FlatForward, BootstrapTrait, Interpolator)
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.volatility.equityfx.black_constant_vol import BlackConstantVol
+from quantlib.termstructures.volatility.equityfx.black_constant_vol \
+    import BlackConstantVol
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.pricingengines.vanilla.vanilla import (
-    AnalyticEuropeanEngine, BaroneAdesiWhaleyApproximationEngine
+    AnalyticEuropeanEngine
 )
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 import quantlib.pricingengines.bondfunctions as bf
-from quantlib.experimental.risk.sensitivityanalysis import bucket_analysis, Centered
+from quantlib.experimental.risk.sensitivityanalysis import (
+    bucket_analysis, parallel_analysis, Centered)
 from numpy.testing import assert_allclose
 
 class SensitivityTestCase(unittest.TestCase):
@@ -72,19 +73,13 @@ class SensitivityTestCase(unittest.TestCase):
                                        Actual360())
             self.rate_helpers.append(helper)
 
-        liborIndex = Libor('USD Libor', Period(6, Months),
-                           self.settlement_days,
-                           USDCurrency(), self.calendar, Actual360())
-
-        spread = SimpleQuote(0)
-        fwdStart = Period(0, Days)
+        liborIndex = USDLibor(Period(6, Months))
 
         for m, period, rate in swapData:
             sq_rate = SimpleQuote(rate/100)
             helper = SwapRateHelper.from_tenor(
                 sq_rate, Period(m, Years), self.calendar, Annual, Unadjusted,
-                Thirty360(), liborIndex,
-                spread, fwdStart
+                Thirty360(), liborIndex
             )
             self.rate_helpers.append(helper)
 
@@ -127,7 +122,7 @@ class SensitivityTestCase(unittest.TestCase):
         pricing_engine = DiscountingBondEngine(self.ts)
         bond.set_pricing_engine(pricing_engine)
 
-        self.assertAlmostEqual(bond.npv, 100.83702940160767)
+        self.assertAlmostEqual(bond.npv, 100.82127876105724)
         quotes = [rh.quote for rh in self.rate_helpers]
         delta, gamma = bucket_analysis(quotes, [bond])
         self.assertEqual(len(quotes), len(delta))
@@ -145,7 +140,7 @@ class SensitivityTestCase(unittest.TestCase):
             gamma_manual.append((pv_plus - 2 * pv + pv_minus) / shift ** 2)
             q.value = v
         assert_allclose(delta, delta_manual)
-        assert_allclose(gamma, gamma_manual, atol=1e-5)
+        assert_allclose(gamma, gamma_manual, atol=1e-4)
 
     def test_bucket_analysis_option(self):
 
@@ -200,8 +195,8 @@ class SensitivityTestCase(unittest.TestCase):
         european_exercise = EuropeanExercise(maturity)
         european_option = VanillaOption(payoff, european_exercise)
         analytic_european_engine = AnalyticEuropeanEngine(
-                    black_scholes_merton_process
-                )
+            black_scholes_merton_process
+        )
 
         european_option.set_pricing_engine(analytic_european_engine)
 
@@ -214,7 +209,23 @@ class SensitivityTestCase(unittest.TestCase):
         self.assertAlmostEqual(gamma[0], european_option.gamma, 5)
 
     def test_parallel_analysis(self):
+        index = USDLibor(Period(3, Months), self.ts)
+        swap = MakeVanillaSwap(Period(10, Years),
+                               index)()
+        quotes = [rh.quote for rh in self.rate_helpers]
+        old_values = [q.value for q in quotes]
+        dv01, _ = parallel_analysis(quotes, [swap])
+        shift = 1e-4
 
+        for v, q in zip(old_values, quotes):
+            q.value = v + shift
+        pv_plus = swap.npv
+
+        for v, q in zip(old_values, quotes):
+            q.value = v - shift
+        pv_minus = swap.npv
+
+        self.assertAlmostEqual((pv_plus - pv_minus) * 0.5 / shift, dv01)
 
 if __name__ == '__main__':
     unittest.main()
