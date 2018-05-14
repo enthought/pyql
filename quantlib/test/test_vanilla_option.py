@@ -16,7 +16,7 @@ from quantlib.time.api import Date, TARGET, May, Actual365Fixed
 from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 
-from quantlib.termstructures.volatility.equityfx.black_vol_term_structure \
+from quantlib.termstructures.volatility.api \
     import BlackConstantVol
 
 
