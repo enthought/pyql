@@ -40,7 +40,7 @@ class TestFixedRateBondHelper(unittest.TestCase):
             100.0,
             issue_date)
 
-        self.assertEqual(helper.quote, clean_price)
+        self.assertEqual(helper.quote.value, clean_price)
 
 
 if __name__ == '__main__':

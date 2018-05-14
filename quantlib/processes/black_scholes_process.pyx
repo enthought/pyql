@@ -1,6 +1,5 @@
 include '../types.pxi'
 
-from cython.operator cimport dereference as deref
 cimport _black_scholes_process as _bsp
 cimport quantlib._stochastic_process as _sp
 
@@ -18,15 +17,13 @@ cdef class GeneralizedBlackScholesProcess(StochasticProcess1D):
 
 cdef class BlackScholesProcess(GeneralizedBlackScholesProcess):
 
-    def __init__(self, Quote x0, YieldTermStructure risk_free_ts,
-                 BlackVolTermStructure black_vol_ts):
+    def __init__(self, Quote x0 not None, YieldTermStructure risk_free_ts not None,
+                 BlackVolTermStructure black_vol_ts not None):
 
         cdef Handle[_qt.Quote] x0_handle = Handle[_qt.Quote](x0._thisptr)
 
         cdef Handle[_bvts.BlackVolTermStructure] black_vol_ts_handle = \
-            Handle[_bvts.BlackVolTermStructure](
-                deref(black_vol_ts._thisptr)
-            )
+            Handle[_bvts.BlackVolTermStructure](black_vol_ts._thisptr)
 
         self._thisptr = shared_ptr[_sp.StochasticProcess]( new \
             _bsp.BlackScholesProcess(
@@ -39,16 +36,16 @@ cdef class BlackScholesProcess(GeneralizedBlackScholesProcess):
 cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):
 
     def __init__(self,
-        Quote x0,
-        YieldTermStructure dividend_ts,
-        YieldTermStructure risk_free_ts,
-        BlackVolTermStructure black_vol_ts):
+                 Quote x0 not None,
+                 YieldTermStructure dividend_ts not None,
+                 YieldTermStructure risk_free_ts not None,
+                 BlackVolTermStructure black_vol_ts not None):
 
         cdef Handle[_qt.Quote] x0_handle = Handle[_qt.Quote](x0._thisptr)
 
         cdef Handle[_bvts.BlackVolTermStructure] black_vol_ts_handle = \
             Handle[_bvts.BlackVolTermStructure](
-                deref(black_vol_ts._thisptr)
+                black_vol_ts._thisptr
             )
 
         self._thisptr = shared_ptr[_sp.StochasticProcess]( new \
