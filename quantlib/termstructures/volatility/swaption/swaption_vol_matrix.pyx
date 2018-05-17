@@ -13,12 +13,12 @@ from ..volatilitytype cimport VolatilityType
 from ..volatilitytype cimport ShiftedLognormal
 cimport _swaption_vol_structure as _svs
 
-cdef class SwaptionVolatilityMatrix(SwaptionVolatilityStructure):
+cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
 
     def __init__(self, Calendar calendar not None,
                  BusinessDayConvention bdc,
-                 option_tenors,
-                 swap_tenors,
+                 list option_tenors not None,
+                 list swap_tenors not None,
                  Matrix volatilities not None,
                  DayCounter day_counter not None,
                  bool flat_extrapolation=False,

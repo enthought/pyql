@@ -7,3 +7,6 @@ cdef extern from 'ql/math/interpolations/all.hpp' namespace 'QuantLib':
 
     cdef cppclass BackwardFlat:
         pass
+
+    cdef cppclass SABRInterpolation:
+        pass
