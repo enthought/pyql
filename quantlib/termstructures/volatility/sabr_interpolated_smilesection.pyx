@@ -16,7 +16,7 @@ from quantlib.time.daycounters.simple cimport Actual365Fixed
 cdef inline _sis.SabrInterpolatedSmileSection* _get_siss(shared_ptr[_ss.SmileSection]& ref):
     return <_sis.SabrInterpolatedSmileSection*> ref.get()
 
-cdef class SabrInterpolatedSmileSection:
+cdef class SabrInterpolatedSmileSection(SmileSection):
     def __init__(self, Date option_date not None,
                  SimpleQuote forward not None,
                  vector[Rate] strikes,
