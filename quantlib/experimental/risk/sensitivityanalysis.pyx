@@ -15,9 +15,6 @@ cpdef enum SensitivityAnalysis:
     OneSide
     Centered
 
-cdef extern from 'boost/move/core.hpp' namespace 'boost':
-    cdef Handle[_qt.SimpleQuote] move(Handle[_qt.SimpleQuote])
-
 def parallel_analysis(list quotes not None, list instruments not None,
                       vector[Real] quantities=[],
                       Real shift=0.0001, SensitivityAnalysis type=Centered,
@@ -47,7 +44,7 @@ def parallel_analysis(list quotes not None, list instruments not None,
 
     for q in quotes:
         q_ptr = static_pointer_cast[_qt.SimpleQuote](q._thisptr)
-        _quotes.push_back(move(Handle[_qt.SimpleQuote](q_ptr)))
+        _quotes.push_back(Handle[_qt.SimpleQuote](q_ptr))
 
     for inst in instruments:
         _instruments.push_back(inst._thisptr)
@@ -100,13 +97,13 @@ def bucket_analysis(list quotes not None, list instruments not None,
             _Quotes.push_back(vector[Handle[_qt.SimpleQuote]]())
             for q in quotes_list:
                 q_ptr = static_pointer_cast[_qt.SimpleQuote](q._thisptr)
-                _Quotes.back().push_back(move(Handle[_qt.SimpleQuote](q_ptr)))
+                _Quotes.back().push_back(Handle[_qt.SimpleQuote](q_ptr))
         return _sa.bucketAnalysis(_Quotes, _instruments, quantities, shift,
                                   <_sa.SensitivityAnalysis>(type))
     elif isinstance(quotes[0], SimpleQuote):
         for q in quotes:
             q_ptr = static_pointer_cast[_qt.SimpleQuote](q._thisptr)
-            _quotes.push_back(move(Handle[_qt.SimpleQuote](q_ptr)))
+            _quotes.push_back(Handle[_qt.SimpleQuote](q_ptr))
         return _sa.bucketAnalysis1(_quotes, _instruments, quantities, shift,
                                    <_sa.SensitivityAnalysis>(type))
     else:

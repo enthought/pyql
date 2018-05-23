@@ -17,9 +17,6 @@ cimport quantlib.indexes._swap_index as _si
 cimport _swaption_vol_structure as _svs
 cimport quantlib._quote as _qt
 
-cdef extern from 'boost/move/core.hpp' namespace 'boost':
-    cdef T move[T](T)
-
 cdef class SwaptionVolCube1(SwaptionVolatilityCube):
 
     def __init__(self, SwaptionVolatilityStructure atm_vol_structure not None,
@@ -55,14 +52,14 @@ cdef class SwaptionVolCube1(SwaptionVolatilityCube):
         for l in vol_spreads:
             vol_spreads_matrix.push_back(vector[Handle[_qt.Quote]]())
             for q in l:
-                vol_spreads_matrix.back().push_back(move(Handle[_qt.Quote](q._thisptr)))
+                vol_spreads_matrix.back().push_back(Handle[_qt.Quote](q._thisptr))
 
         for l in parameters_guess:
             parameters_guess_matrix.push_back(vector[Handle[_qt.Quote]]())
             for q in l:
                 (parameters_guess_matrix.
                  back().
-                 push_back(move(Handle[_qt.Quote](q._thisptr))))
+                 push_back(Handle[_qt.Quote](q._thisptr)))
 
         for p in option_tenors:
             option_tenors_vec.push_back(deref(p._thisptr))
