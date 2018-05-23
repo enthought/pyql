@@ -34,7 +34,7 @@ class SabrTestCase(unittest.TestCase):
     def test_sabr_formula(self):
         alpha, rho, nu = self.sabr_smile.alpha, self.sabr_smile.rho, self.sabr_smile.nu
         for K in self.strikes:
-            self.assertEqual(self.sabr_smile.volatility(K, 0),
+            self.assertEqual(self.sabr_smile.volatility(K),
                              unsafe_sabr_volatility(K,
                                                     self.forward.value,
                                                     self.sabr_smile.exercise_time,

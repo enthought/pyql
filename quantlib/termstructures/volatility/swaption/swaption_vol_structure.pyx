@@ -2,6 +2,7 @@ include '../../../types.pxi'
 from libcpp cimport bool
 from cython.operator cimport dereference as deref
 from quantlib.time.date cimport Date, Period
+from ..smilesection cimport SmileSection
 
 cdef class SwaptionVolatilityStructure:
 
@@ -51,3 +52,13 @@ cdef class SwaptionVolatilityStructure:
                 raise TypeError('option_date needs to be a Period, Date or Time')
         else:
             raise TypeError('swap_date needs to be a Period or a Time')
+
+
+    def smile_section(self, Period option_tenor not None,
+                      Period swap_tenor not None,
+                      bool extrapolation=False):
+        cdef SmileSection r = SmileSection.__new__(SmileSection)
+        r._thisptr = self._thisptr.get().smileSection(deref(option_tenor._thisptr),
+                                                      deref(swap_tenor._thisptr),
+                                                      extrapolation)
+        return r
