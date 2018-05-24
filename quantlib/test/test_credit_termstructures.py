@@ -1,6 +1,6 @@
 """ Unittests for the CDS related classes. """
 
-from .unittest_tools import  unittest
+import  unittest
 
 from quantlib.settings import Settings
 from quantlib.quotes import SimpleQuote
@@ -91,12 +91,12 @@ class PiecewiseDefaultCurveTestCase(unittest.TestCase):
 
 class FlatHazardRateTestCase(unittest.TestCase):
 
-    calendar = TARGET()
+    def setUp(self):
+        self.calendar = TARGET()
 
-    todays_date = Date(15, May, 2007)
-    todays_date = calendar.adjust(todays_date)
-
-    d = todays_date + Period(3, Years)
+        todays_date = Date(15, May, 2007)
+        self.todays_date = self.calendar.adjust(todays_date)
+        self.d = self.todays_date + Period(3, Years)
 
     def test_create_flat_hazard(self):
         Settings.instance().evaluation_date = self.todays_date
@@ -122,10 +122,11 @@ class FlatHazardRateTestCase(unittest.TestCase):
 
 class InterpolatedHazardRateTestCase(unittest.TestCase):
 
-    calendar = TARGET()
+    def setUp(self):
+        calendar = TARGET()
 
-    todays_date = Date(15, May, 2007)
-    todays_date = calendar.adjust(todays_date)
+        todays_date = Date(15, May, 2007)
+        self.todays_date = calendar.adjust(todays_date)
 
     def test_create_interpolated_hazard(self):
         Settings.instance().evaluation_date = self.todays_date

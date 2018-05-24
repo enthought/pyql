@@ -1,7 +1,7 @@
 import unittest
 from quantlib.math.matrix import Matrix
 from quantlib.time.api import (Period, Years, Months, UnitedStates,
-                               Following, Actual365Fixed, today)
+                               Following, Actual365Fixed)
 from quantlib.termstructures.yields.api import FlatForward
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.volatility.swaption.swaption_vol_matrix \
@@ -37,8 +37,8 @@ class SwaptionVolatilityCubeTestCase(unittest.TestCase):
                                                        atm_swap_tenors,
                                                        M,
                                                        Actual365Fixed())
-        reference_date = calendar.adjust(today())
-        term_structure = FlatForward(reference_date, 0.05, Actual365Fixed())
+        term_structure = FlatForward(forward=0.05, settlement_days=2, calendar=calendar,
+            daycounter=Actual365Fixed())
         self.swap_index_base = EuriborSwapIsdaFixA(Period(2, Years),
                                                    term_structure)
         self.short_swap_index_base = EuriborSwapIsdaFixA(Period(1, Years),
@@ -136,3 +136,6 @@ class SwaptionVolatilityCubeTestCase(unittest.TestCase):
                            smile_section_by_cube.volatility(k)
 
                     self.assertAlmostEqual(diff, spread.value)
+
+if __name__ == "__main__":
+    unittest.main()

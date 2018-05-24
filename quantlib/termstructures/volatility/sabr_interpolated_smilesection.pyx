@@ -13,8 +13,8 @@ from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.daycounters.simple cimport Actual365Fixed
 
-cdef inline _sis.SabrInterpolatedSmileSection* _get_siss(shared_ptr[_ss.SmileSection]& ref):
-    return <_sis.SabrInterpolatedSmileSection*> ref.get()
+cdef inline _sis.SabrInterpolatedSmileSection* _get_siss(SabrInterpolatedSmileSection ref):
+    return <_sis.SabrInterpolatedSmileSection*> ref._thisptr.get()
 
 cdef class SabrInterpolatedSmileSection(SmileSection):
     def __init__(self, Date option_date not None,
@@ -39,7 +39,7 @@ cdef class SabrInterpolatedSmileSection(SmileSection):
         cdef Handle[Quote] atm_volatility_handle = Handle[Quote](
             (<SimpleQuote?>atm_volatility)._thisptr)
 
-        self._thisptr = shared_ptr[_sis.SmileSection](
+        self._thisptr = shared_ptr[_ss.SmileSection](
             new _sis.SabrInterpolatedSmileSection(
                 deref(option_date._thisptr),
                 forward_handle,
@@ -54,28 +54,28 @@ cdef class SabrInterpolatedSmileSection(SmileSection):
 
     @property
     def alpha(self):
-        return _get_siss(self._thisptr).alpha()
+        return _get_siss(self).alpha()
 
     @property
     def beta(self):
-        return _get_siss(self._thisptr).beta()
+        return _get_siss(self).beta()
 
     @property
     def nu(self):
-        return _get_siss(self._thisptr).nu()
+        return _get_siss(self).nu()
 
     @property
     def rho(self):
-        return _get_siss(self._thisptr).rho()
+        return _get_siss(self).rho()
 
     @property
     def rms_error(self):
-        return _get_siss(self._thisptr).rmsError()
+        return _get_siss(self).rmsError()
 
     @property
     def max_error(self):
-        return _get_siss(self._thisptr).maxError()
+        return _get_siss(self).maxError()
 
     @property
     def end_criteria(self):
-        return _get_siss(self._thisptr).endCriteria()
+        return _get_siss(self).endCriteria()
