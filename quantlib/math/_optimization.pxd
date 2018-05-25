@@ -22,6 +22,14 @@ cdef extern from 'ql/math/optimization/levenbergmarquardt.hpp' namespace 'QuantL
 cdef extern from 'ql/math/optimization/endcriteria.hpp' namespace 'QuantLib':
 
     cdef cppclass EndCriteria:
+        ctypedef enum Type:
+            No "None"
+            MaxIterations
+            StationaryPoint
+            StationaryFunctionValue
+            StationaryFunctionAccuracy
+            ZeroGradientNorm
+            Unknown
         EndCriteria(
             Size maxIterations,
             Size maxStationaryStateIterations,
@@ -29,16 +37,6 @@ cdef extern from 'ql/math/optimization/endcriteria.hpp' namespace 'QuantLib':
             Real functionEpsilon,
             Real gradientEpsilon
         )
-
-cdef extern from 'ql/math/optimization/endcriteria.hpp' namespace 'QuantLib::EndCriteria':
-    ctypedef enum Type:
-        No "None"
-        MaxIterations
-        StationaryPoint
-        StationaryFunctionValue
-        StationaryFunctionAccuracy
-        ZeroGradientNorm
-        Unknown
 
 
 cdef extern from 'ql/math/optimization/constraint.hpp' namespace 'QuantLib':
