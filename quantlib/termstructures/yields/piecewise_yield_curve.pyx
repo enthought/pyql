@@ -273,10 +273,9 @@ cdef class PiecewiseYieldCurve(YieldTermStructure):
             else:
                 _dates = (<_pyc.PiecewiseYieldCurve[_pyc.ForwardRate, intpl.BackwardFlat]*>
                           self._get_term_structure()).dates()
-        cdef size_t i
         cdef list r  = []
         cdef _date.Date qldate
-        for i in range(_dates.size()):
-            r.append(date_from_qldate(_dates[i]))
+        for qldate in _dates:
+            r.append(date_from_qldate(qldate))
 
         return r
