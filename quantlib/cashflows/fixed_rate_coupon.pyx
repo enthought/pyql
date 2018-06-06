@@ -27,9 +27,7 @@ cdef class FixedRateCoupon(Coupon):
 
     def interest_rate(self):
         cdef InterestRate ir = InterestRate.__new__(InterestRate)
-        ir._thisptr = new shared_ptr[_ir.InterestRate](
-            new _ir.InterestRate(
-                (<_frc.FixedRateCoupon*>self._thisptr.get()).interestRate()))
+        ir._thisptr = (<_frc.FixedRateCoupon*>self._thisptr.get()).interestRate()
         return ir
 
 cdef class FixedRateLeg(Leg):

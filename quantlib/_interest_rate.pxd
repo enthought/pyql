@@ -29,6 +29,16 @@ cdef extern from 'ql/interestrate.hpp' namespace 'QuantLib':
         Frequency frequency()
 
         DiscountFactor discountFactor(Time t)
+        InterestRate impliedRate(Real compound,
+                                 const DayCounter& resultDC,
+                                 Compounding comp,
+                                 Frequency freq,
+                                 Time t)
+
+        InterestRate equivalentRate(Compounding comp,
+                                    Frequency freq,
+                                    Time t)
+        Real compoundFactor(Time t)
 
 cdef extern from "<sstream>" namespace "std":
     cdef cppclass stringstream:
