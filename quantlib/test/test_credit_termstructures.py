@@ -89,6 +89,10 @@ class PiecewiseDefaultCurveTestCase(unittest.TestCase):
                     self.assertEqual(curve.hazard_rate(self.d),
                                      curve.hazard_rate(curve.time_from_reference(self.d)))
 
+    def tearDown(self):
+        del self.helper
+        self.helper = None
+
 class FlatHazardRateTestCase(unittest.TestCase):
 
     def setUp(self):
