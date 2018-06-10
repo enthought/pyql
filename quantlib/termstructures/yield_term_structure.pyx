@@ -89,8 +89,7 @@ cdef class YieldTermStructure:
             raise TypeError("d needs to be a QuantLib Date or a float.")
 
         cdef InterestRate zero_rate = InterestRate.__new__(InterestRate)
-        zero_rate._thisptr = new shared_ptr[_ir.InterestRate](
-            new _ir.InterestRate(ql_zero_rate))
+        zero_rate._thisptr = ql_zero_rate
 
         return zero_rate
 
@@ -148,8 +147,7 @@ cdef class YieldTermStructure:
                             "or d1 a Date, and d2 a Period.")
 
         cdef InterestRate forward_rate = InterestRate.__new__(InterestRate)
-        forward_rate._thisptr = new shared_ptr[_ir.InterestRate](
-            new _ir.InterestRate(ql_forward_rate))
+        forward_rate._thisptr = ql_forward_rate
         return forward_rate
 
     def discount(self, value, bool extrapolate=False):

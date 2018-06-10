@@ -12,10 +12,10 @@ from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
 cimport _interest_rate as _ir
 
-from quantlib.time.date import frequency_to_str
 from quantlib.time.daycounter cimport DayCounter
 cimport quantlib.time._daycounter as _daycounter
 from quantlib._compounding cimport Compounding
+from quantlib.time.frequency cimport Frequency
 
 cdef class InterestRate:
     """ This class encapsulate the interest rate compounding algebra.
@@ -26,32 +26,25 @@ cdef class InterestRate:
 
     """
 
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-            self._thisptr = NULL
-
     def __init__(self, double rate, DayCounter dc not None, Compounding compounding,
                  int frequency):
 
-        self._thisptr = new shared_ptr[_ir.InterestRate](
-            new _ir.InterestRate(
-                <Rate>rate, deref(dc._thisptr), compounding,
-                <_ir.Frequency>frequency
-            )
+        self._thisptr = _ir.InterestRate(
+            <Rate>rate, deref(dc._thisptr), compounding,
+            <_ir.Frequency>frequency
         )
 
 
     property rate:
         def __get__(self):
-            return self._thisptr.get().rate()
+            return self._thisptr.rate()
 
     property compounding:
         def __get__(self):
-            return self._thisptr.get().compounding()
+            return self._thisptr.compounding()
 
     def __float__(self):
-        return self._thisptr.get().rate()
+        return self._thisptr.rate()
 
     property frequency:
         """ Returns the frequency used for computation.
@@ -62,16 +55,39 @@ cdef class InterestRate:
 
         """
         def __get__(self):
-            return self._thisptr.get().frequency()
+            return self._thisptr.frequency()
 
 
     property day_counter:
         def __get__(self):
             cdef DayCounter dc = DayCounter.__new__(DayCounter)
-            dc._thisptr = new _daycounter.DayCounter(self._thisptr.get().dayCounter())
+            dc._thisptr = new _daycounter.DayCounter(self._thisptr.dayCounter())
             return dc
 
     def __repr__(self):
         cdef _ir.stringstream ss
-        ss << deref(self._thisptr.get())
+        ss << self._thisptr
         return ss.str().decode()
+
+    def compound_factor(self, Time t):
+        return self._thisptr.compoundFactor(t)
+
+    def implied_rate(self, Real compound,
+                     DayCounter result_dc not None,
+                     Compounding comp,
+                     Frequency freq,
+                     Time t):
+        cdef InterestRate r = InterestRate.__new__(InterestRate)
+        r._thisptr = self._thisptr.impliedRate(compound,
+                                               deref(result_dc._thisptr),
+                                               comp,
+                                               freq,
+                                               t)
+        return r
+
+    def equivalent_rate(self, Compounding comp,
+                        Frequency freq,
+                        Time t):
+        cdef InterestRate r = InterestRate.__new__(InterestRate)
+        r._thisptr = self._thisptr.equivalentRate(comp, freq, t)
+        return r

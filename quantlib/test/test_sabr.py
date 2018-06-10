@@ -13,7 +13,8 @@ class SabrTestCase(unittest.TestCase):
     def setUp(self):
         option_date = Date(20, 9, 2017)
         Settings().evaluation_date = Date(4, 8, 2017)
-        self.strikes = np.array([50, 55, 57.5, 60, 62.5, 65, 67.5, 70, 75, 80, 85, 90, 95, 100]) * 1e-4
+        self.strikes = (np.array([50, 55, 57.5, 60, 62.5, 65, 67.5,
+            70, 75, 80, 85, 90, 95, 100]) * 1e-4).tolist()
         vol = np.array([28.5, 31.6, 33.7, 36.1, 38.7, 41.5, 44.1,
                         46.5, 50.8, 54.4, 57.3, 59.8, 61.8, 63.6]) * 1e-2
         vol_quotes = [SimpleQuote(q) for q in vol]
@@ -39,6 +40,10 @@ class SabrTestCase(unittest.TestCase):
                                                     self.forward.value,
                                                     self.sabr_smile.exercise_time,
                                                     alpha, 1., nu, rho))
+
+    def tearDown(self):
+        del self.sabr_smile
+        self.sabr_smile = None
 
 
 if __name__ == "__main__":

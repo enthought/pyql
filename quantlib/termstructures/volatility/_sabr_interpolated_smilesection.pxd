@@ -33,3 +33,21 @@ cdef extern from 'ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp'
         Real rmsError()
         Real maxError()
         EndCriteria.Type endCriteria()
+cdef extern from 'ql/termstructures/volatility/sabrinterpolatedsmilesection.hpp':
+    # ugly hack to distinguish contructors
+    SabrInterpolatedSmileSection* SabrInterpolatedSmileSection_ "new QuantLib::SabrInterpolatedSmileSection"(
+            const Date& optionDate,
+            const Rate& forward,
+            vector[Rate]& strikes,
+            bool hasFloatingStrikes,
+            Volatility& atmVolatility,
+            vector[Volatility]& vols,
+            Real alpha, Real beta, Real nu, Real rho,
+            bool isAlphaFixed, bool isBetaFixed,
+            bool isNuFixed, bool isRhoFixed,
+            bool vegaWeighted,
+            shared_ptr[EndCriteria]& endCriteria, #= shared_ptr[EndCriteria](),
+            shared_ptr[OptimizationMethod]& method, #= boost::shared_ptr[OptimizationMethod](),
+            const DayCounter& dc, #= Actual365Fixed(),
+            const Real shift #= 0.0
+        ) except +

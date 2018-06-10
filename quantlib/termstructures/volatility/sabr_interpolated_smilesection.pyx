@@ -6,8 +6,8 @@ from libcpp cimport bool
 
 cimport _smilesection as _ss
 from quantlib.handle cimport shared_ptr, Handle
-from quantlib.quotes cimport SimpleQuote
-from quantlib._quote cimport Quote
+from quantlib.quotes cimport Quote
+cimport quantlib._quote as _qt
 from quantlib.math.optimization cimport EndCriteria, OptimizationMethod
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
@@ -18,11 +18,11 @@ cdef inline _sis.SabrInterpolatedSmileSection* _get_siss(SabrInterpolatedSmileSe
 
 cdef class SabrInterpolatedSmileSection(SmileSection):
     def __init__(self, Date option_date not None,
-                 SimpleQuote forward not None,
+                 forward,
                  vector[Rate] strikes,
                  bool has_floating_strikes,
-                 SimpleQuote atm_volatility,
-                 vol_handles,
+                 atm_volatility,
+                 list vol_handles,
                  Real alpha, Real beta, Real nu, Real rho,
                  bool is_alpha_fixed=False, bool is_beta_fixed=False,
                  bool is_nu_fixed=False, bool is_rho_fixed=False,
@@ -32,24 +32,43 @@ cdef class SabrInterpolatedSmileSection(SmileSection):
                  DayCounter dc=Actual365Fixed(),
                  Real shift=0.):
 
-        cdef vector[Handle[Quote]] vol_handles_cpp
-        for vol_handle in vol_handles:
-            vol_handles_cpp.push_back(Handle[Quote]((<SimpleQuote?>vol_handle)._thisptr))
-        cdef Handle[Quote] forward_handle = Handle[Quote](forward._thisptr)
-        cdef Handle[Quote] atm_volatility_handle = Handle[Quote](
-            (<SimpleQuote?>atm_volatility)._thisptr)
-
-        self._thisptr = shared_ptr[_ss.SmileSection](
-            new _sis.SabrInterpolatedSmileSection(
-                deref(option_date._thisptr),
-                forward_handle,
-                strikes,
-                has_floating_strikes,
-                atm_volatility_handle,
-                vol_handles_cpp,
-                alpha, beta, nu, rho,
-                is_alpha_fixed, is_beta_fixed, is_nu_fixed, is_rho_fixed, vega_weighted,
-                end_criteria._thisptr, method._thisptr, deref(dc._thisptr), shift))
+        cdef vector[Handle[_qt.Quote]] _vol_handles
+        cdef Handle[_qt.Quote] forward_handle
+        cdef Handle[_qt.Quote] atm_volatility_handle
+        cdef Quote q
+        cdef vector[Volatility] _vols
+        cdef Real q_real
+        if isinstance(forward, Quote):
+            forward_handle = Handle[_qt.Quote]((<Quote>forward)._thisptr)
+            for q in vol_handles:
+                _vol_handles.push_back(Handle[_qt.Quote](q._thisptr))
+            atm_volatility_handle = Handle[_qt.Quote](
+                (<Quote>atm_volatility)._thisptr)
+            self._thisptr = shared_ptr[_ss.SmileSection](
+                new _sis.SabrInterpolatedSmileSection(
+                    deref(option_date._thisptr),
+                    forward_handle,
+                    strikes,
+                    has_floating_strikes,
+                    atm_volatility_handle,
+                    _vol_handles,
+                    alpha, beta, nu, rho,
+                    is_alpha_fixed, is_beta_fixed, is_nu_fixed, is_rho_fixed, vega_weighted,
+                    end_criteria._thisptr, method._thisptr, deref(dc._thisptr), shift))
+        elif isinstance(forward, float):
+            for q_real in vol_handles:
+                _vols.push_back(q_real)
+            self._thisptr = shared_ptr[_ss.SmileSection](
+                _sis.SabrInterpolatedSmileSection_(
+                    deref(option_date._thisptr),
+                    <Rate>forward,
+                    strikes,
+                    has_floating_strikes,
+                    <Volatility>atm_volatility,
+                    _vols,
+                    alpha, beta, nu, rho,
+                    is_alpha_fixed, is_beta_fixed, is_nu_fixed, is_rho_fixed, vega_weighted,
+                    end_criteria._thisptr, method._thisptr, deref(dc._thisptr), shift))
 
 
     @property
