@@ -2,7 +2,7 @@ include '../types.pxi'
 from libcpp cimport bool
 from cython.operator cimport dereference as deref
 
-from quantlib.defines cimport QL_NULL_REAL
+from quantlib._defines cimport QL_NULL_REAL
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.cashflows.coupon_pricer cimport FloatingRateCouponPricer
 from quantlib.indexes.ibor_index cimport IborIndex
@@ -44,10 +44,6 @@ cdef class CappedFlooredCoupon(FloatingRateCoupon):
     @property
     def is_floored(self):
         return (<_cfc.CappedFlooredCoupon*>self._thisptr.get()).isFloored()
-
-    def set_pricer(self, FloatingRateCouponPricer pricer not None):
-        (<_cfc.CappedFlooredCoupon*>self._thisptr.get()).setPricer(
-            pricer._thisptr)
 
 
 cdef class CappedFlooredIborCoupon(CappedFlooredCoupon):

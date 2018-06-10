@@ -7,6 +7,7 @@ from quantlib.time._daycounter cimport DayCounter
 from quantlib._cashflow cimport CashFlow
 from quantlib._interest_rate cimport InterestRate
 from quantlib.cashflows._coupon cimport Coupon
+from _coupon_pricer cimport FloatingRateCouponPricer
 from quantlib.indexes._interest_rate_index cimport InterestRateIndex
 
 cdef extern from 'ql/cashflows/floatingratecoupon.hpp' namespace 'QuantLib':
@@ -24,7 +25,6 @@ cdef extern from 'ql/cashflows/floatingratecoupon.hpp' namespace 'QuantLib':
                            const DayCounter& dayCounter, #= DayCounter(),
                            bool isInArrears) #=false
 
-        InterestRate interestRate()
         const shared_ptr[InterestRateIndex]& index()
         Natural fixingDays()
         Date fixingDate()
@@ -34,3 +34,4 @@ cdef extern from 'ql/cashflows/floatingratecoupon.hpp' namespace 'QuantLib':
         Rate convexityAdjustment()
         Rate adjustedFixing()
         bool isInArrears()
+        void setPricer(const shared_ptr[FloatingRateCouponPricer]&)

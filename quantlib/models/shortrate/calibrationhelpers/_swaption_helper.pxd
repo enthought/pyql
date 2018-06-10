@@ -14,15 +14,8 @@ from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.indexes._ibor_index cimport IborIndex
 from quantlib.time._period cimport Period
-from quantlib.models._calibration_helper cimport CalibrationHelper
+from quantlib.models._calibration_helper cimport CalibrationHelper, CalibrationErrorType
 cimport quantlib._quote as _qt
-
-cdef extern from 'ql/models/calibrationhelper.hpp' namespace 'QuantLib::CalibrationHelper':
-
-    enum CalibrationErrorType:
-        RelativePriceError
-        PriceError
-        ImpliedVolError
 
 cdef extern from 'ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp' namespace 'QuantLib':
 

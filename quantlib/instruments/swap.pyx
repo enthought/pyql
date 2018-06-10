@@ -106,6 +106,11 @@ cdef class Swap(Instrument):
     ## def npvDateDiscount(self):
     ##     return get_swap(self).npvDateDiscount()
 
+    def leg(self, int i):
+        cdef Leg leg = Leg.__new__(Leg)
+        leg._thisptr = get_swap(self).leg(i)
+        return leg
+
     def __getitem__(self, int i):
         cdef Leg leg = Leg.__new__(Leg)
         leg._thisptr = get_swap(self).leg(i)

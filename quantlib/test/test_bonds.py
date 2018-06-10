@@ -273,9 +273,11 @@ class BondTestCase(unittest.TestCase):
 
         issue_date = effective_date
 
-        float_bond = FloatingRateBond(settlement_days, face_amount, float_bond_schedule, ibor_index, dc,
-                                      fixing_days, gearings, spreads, caps, floors, pmt_conv, True,
-                                      redemption, issue_date)
+
+        float_bond = FloatingRateBond(settlement_days, face_amount, float_bond_schedule,
+                                      ibor_index, dc,
+                                      fixing_days, gearings, spreads, caps, floors,
+                                      pmt_conv, True, redemption, issue_date)
 
         flat_term_structure = FlatForward(
             settlement_days = 1,
@@ -293,7 +295,7 @@ class BondTestCase(unittest.TestCase):
         cons_option_vol = ConstantOptionletVolatility(settlement_days, UnitedStates(Settlement), pmt_conv, 0.95, Actual365Fixed())
         coupon_pricer = BlackIborCouponPricer(cons_option_vol)
 
-        set_coupon_pricer(float_bond,coupon_pricer)
+        set_coupon_pricer(float_bond.cashflows, coupon_pricer)
 
 
         self.assertEqual(Date(10, Jul, 2016), termination_date)

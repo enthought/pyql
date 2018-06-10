@@ -1,9 +1,8 @@
 include '../types.pxi'
 from cython.operator import dereference as deref, preincrement as preinc
 cimport cython
-
 cimport numpy as np
-import numpy as np
+np.import_array()
 
 cdef class Matrix:
 
@@ -16,21 +15,24 @@ cdef class Matrix:
     @classmethod
     @cython.boundscheck(False)
     def from_ndarray(cls, double[:,::1] data):
-        cdef Matrix instance = cls.__new__(cls)
+        cdef Matrix instance = Matrix.__new__(Matrix)
         cdef Size rows = data.shape[0]
         cdef Size columns = data.shape[1]
-        instance._thisptr = QlMatrix(rows, columns, &data[0,0], &data[-1, -1] + 1)
+        instance._thisptr = QlMatrix(rows, columns, &data[0,0], &data[-1,-1] + 1)
         return instance
 
     @cython.boundscheck(False)
     def to_ndarray(self):
-        cdef double[:,::1] r = np.empty((self._thisptr.rows(),
-            self._thisptr.columns()))
+        cdef np.npy_intp[2] dims
+        dims[0] = self._thisptr.rows()
+        dims[1] = self._thisptr.columns()
+        cdef arr = np.PyArray_SimpleNew(2, &dims[0], np.NPY_DOUBLE)
+        cdef double[:,::1] r = arr
         cdef size_t i, j
-        for i in range(self._thisptr.rows()):
-            for j in range(self._thisptr.columns()):
+        for i in range(dims[0]):
+            for j in range(dims[1]):
                 r[i,j] = self._thisptr[i][j]
-        return np.array(r)
+        return arr
 
     @property
     def rows(self):
@@ -39,3 +41,26 @@ cdef class Matrix:
     @property
     def columns(self):
         return self._thisptr.columns()
+
+    def __getitem__(self, coord):
+        cdef size_t i, j
+        i = coord[0]
+        j = coord[1]
+        return self._thisptr[i][j]
+
+    def __setitem__(self, coord, Real val):
+        cdef size_t i, j
+        i, j = coord
+        self._thisptr[i][j] = val
+
+cpdef enum SalvagingAlgorithm:
+    Nothing = _matrix.Nothing
+    Spectral = _matrix.Spectral
+    Hypersphere = _matrix.Hypersphere
+    LowerDiagonal = _matrix.LowerDiagonal
+    Higham = _matrix.Higham
+
+def pseudo_sqrt(Matrix m, SalvagingAlgorithm algo=Nothing):
+    cdef Matrix r = Matrix.__new__(Matrix)
+    r._thisptr = pseudoSqrt(m._thisptr, <_matrix.Type>algo)
+    return r

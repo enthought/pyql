@@ -6,7 +6,7 @@ from cython.operator cimport dereference as deref
 from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
 from quantlib.math.optimization cimport OptimizationMethod, EndCriteria
 from quantlib.indexes.swap_index cimport SwapIndex
-from quantlib.defines cimport QL_NULL_REAL
+from quantlib._defines cimport QL_NULL_REAL
 from quantlib.quotes cimport SimpleQuote
 from quantlib.time.date cimport Period
 from quantlib.time._period cimport Period as QlPeriod

@@ -2,6 +2,7 @@ include '../types.pxi'
 
 from cython.operator cimport dereference as deref
 cimport _coupon_pricer as _cp
+from quantlib.cashflow cimport Leg
 cimport quantlib.instruments._bonds as _bonds
 from quantlib.termstructures.volatility.optionlet.optionlet_volatility_structure cimport OptionletVolatilityStructure
 cimport quantlib.termstructures.volatility.optionlet._optionlet_volatility_structure as _ovs
@@ -73,12 +74,10 @@ cdef class BlackIborCouponPricer(IborCouponPricer):
             )
         )
 
-def set_coupon_pricer(Bond frb, FloatingRateCouponPricer pricer):
+def set_coupon_pricer(Leg leg, FloatingRateCouponPricer pricer):
     """ Parameters :
         ----------
-        1) frb : FloatingRateBond
-            Bond object to be used to extract cashflows
+        1) leg : Leg object
         2) pricer : FloatingRateCouponPricer
             BlackIborCouponPricer has been exposed"""
-    bond_leg = (<_bonds.Bond*>frb._thisptr.get()).cashflows()
-    _cp.setCouponPricer(bond_leg, pricer._thisptr)
+    _cp.setCouponPricer(leg._thisptr, pricer._thisptr)

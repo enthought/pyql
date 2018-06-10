@@ -26,6 +26,7 @@ cdef extern from 'ql/instruments/makeswaption.hpp' namespace 'QuantLib':
         MakeSwaption& withOptionConvention(BusinessDayConvention bdc)
         MakeSwaption& withExerciseDate(const Date&)
         MakeSwaption& withUnderlyingType(const VanillaSwap.Type type)
+        MakeSwaption& withNominal(Real n)
 
         MakeSwaption& withPricingEngine(
             const shared_ptr[PricingEngine]& engine)
