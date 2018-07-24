@@ -18,8 +18,8 @@ from quantlib.indexes.api import (
 from quantlib.settings import Settings
 from quantlib.time.api import (Days, Months, Years, Period, TARGET, Actual360,
                                today, Actual365Fixed, UnitedStates, Thirty360)
-from quantlib.time.api import Following, ModifiedFollowing
-from quantlib.time.calendars.united_states import GovernmentBond
+from quantlib.time.api import ModifiedFollowing
+from quantlib.time.calendars.united_states import GovernmentBond, LiborImpact
 from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure)
 from quantlib.time.api import Date, January
@@ -46,8 +46,8 @@ class TestIbor(unittest.TestCase):
                               ModifiedFollowing, True, Actual360())
         default_euribor6m = Euribor6M()
         for attribute in ["business_day_convention", "end_of_month",
-                           "fixing_calendar", "tenor", "fixing_days",
-                           "day_counter", "family_name", "name"]:
+                          "fixing_calendar", "tenor",
+                          "fixing_days", "day_counter", "family_name", "name"]:
             self.assertEqual(getattr(euribor6m, attribute),
                              getattr(default_euribor6m, attribute))
 
@@ -58,7 +58,7 @@ class TestLibor(unittest.TestCase):
         settings = Settings.instance()
 
         # Market information
-        calendar = TARGET()
+        calendar = UnitedStates(LiborImpact)
 
         # must be a business day
         eval_date = calendar.adjust(today())
@@ -73,14 +73,15 @@ class TestLibor(unittest.TestCase):
         term_structure.link_to(FlatForward(settlement_date, 0.05,
                                            Actual365Fixed()))
 
-        index = Libor('USD Libor', Period(6, Months), settlement_days,
+        index = Libor('USDLibor', Period(6, Months), settlement_days,
                       USDCurrency(), calendar, Actual360(),
                       term_structure)
-
-        t = index.tenor
-        self.assertEqual(t.length, 6)
-        self.assertEqual(t.units, 2)
-        self.assertEqual('USD Libor6M Actual/360', index.name)
+        default_libor = USDLibor(Period(6, Months))
+        for attribute in ["business_day_convention", "end_of_month",
+                          "fixing_calendar", "joint_calendar", "tenor",
+                          "fixing_days", "day_counter", "family_name", "name"]:
+            self.assertEqual(getattr(index, attribute),
+                             getattr(default_libor, attribute))
 
 
 class TestEuribor(unittest.TestCase):
@@ -139,14 +140,15 @@ class SwapIndexTestCase(unittest.TestCase):
             Thirty360(), ibor_index)
         index2 = UsdLiborSwapIsdaFixAm(Period(10, Years), term_structure)
         for attr in ['name', 'family_name', 'fixing_calendar', 'tenor',
-                'day_counter', 'currency']:
+                     'day_counter', 'currency']:
             self.assertEqual(getattr(index, attr), getattr(index2, attr))
+
 
 class IndexManagerTestCase(unittest.TestCase):
     settlement_date = Date(1, January, 2014)
     term_structure = YieldTermStructure()
     term_structure.link_to(FlatForward(settlement_date, 0.05,
-                                           Actual365Fixed()))
+                                       Actual365Fixed()))
     index = USDLibor(Period(3, Months), term_structure)
     index.add_fixing(Date(5, 2, 2018), 1.79345)
     index.add_fixing(Date(2, 2, 2018), 1.78902)

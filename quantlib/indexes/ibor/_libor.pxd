@@ -30,4 +30,4 @@ cdef extern from 'ql/indexes/ibor/libor.hpp' namespace 'QuantLib':
                   Calendar& finencialCenterCalendar,
                   DayCounter& dayCounter,
                   Handle[_yts.YieldTermStructure]& h) except +
-        
+        Calendar jointCalendar()
