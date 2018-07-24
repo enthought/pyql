@@ -25,7 +25,7 @@ cdef extern from 'ql/index.hpp' namespace 'QuantLib':
         string name()
         Calendar& fixingCalendar()
         bool isValidFixingDate(Date& fixingDate)
-        Real fixing(Date& fixingDate, bool forecastTodaysFixing)
+        Real fixing(Date& fixingDate, bool forecastTodaysFixing) except +
         void addFixing(Date& fixingDate, Real fixing, bool forceOverwrite) except +
         TimeSeries[Real] timeSeries()
         void clearFixings()
