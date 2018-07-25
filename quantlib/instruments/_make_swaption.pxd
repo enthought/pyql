@@ -20,7 +20,6 @@ cdef extern from 'ql/instruments/makeswaption.hpp' namespace 'QuantLib':
                      Rate strike)# = Null<Rate>())
 
         Swaption operator()
-        shared_ptr[Swaption] operator()
 
         MakeSwaption& withSettlementType(Settlement.Type delivery)
         MakeSwaption& withOptionConvention(BusinessDayConvention bdc)
@@ -30,3 +29,5 @@ cdef extern from 'ql/instruments/makeswaption.hpp' namespace 'QuantLib':
 
         MakeSwaption& withPricingEngine(
             const shared_ptr[PricingEngine]& engine)
+
+    shared_ptr[Swaption] get "(QuantLib::ext::shared_ptr<QuantLib::Swaption>)" (MakeSwaption) except +
