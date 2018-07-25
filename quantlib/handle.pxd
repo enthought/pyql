@@ -1,6 +1,6 @@
 from libcpp cimport bool
 
-cdef extern from 'boost/shared_ptr.hpp' namespace 'boost':
+cdef extern from 'ql/shared_ptr.hpp' namespace 'QuantLib::ext':
 
     cdef cppclass shared_ptr[T]:
         shared_ptr()
@@ -10,8 +10,6 @@ cdef extern from 'boost/shared_ptr.hpp' namespace 'boost':
         T& operator*()
         void reset(T*)
         bool operator bool()
-
-cdef extern from 'boost/pointer_cast.hpp' namespace 'boost':
     shared_ptr[T] static_pointer_cast[T](...)
     shared_ptr[T] dynamic_pointer_cast[T](...)
 

@@ -30,13 +30,13 @@ namespace QuantLib {
       public:
         HestonHullWhiteCorrelationConstraint() {}
         HestonHullWhiteCorrelationConstraint(Real equityShortRateCorr)
-        : Constraint(boost::shared_ptr<Constraint::Impl>(
+        : Constraint(ext::shared_ptr<Constraint::Impl>(
              new HestonHullWhiteCorrelationConstraint::Impl(
                  equityShortRateCorr))) {}
    };
 
 
-    typedef boost::shared_ptr<Constraint> CT;
+    typedef ext::shared_ptr<Constraint> CT;
 
     CT constraint_factory(Real equityShortRateCorr) {
         
