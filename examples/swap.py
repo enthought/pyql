@@ -3,7 +3,7 @@
 Warning: this is work in progress and currently not working.
 """
 from __future__ import print_function
-from quantlib.indexes.euribor import Euribor6M
+from quantlib.indexes.api import Euribor6M
 from quantlib.instruments.swap import VanillaSwap, Payer
 from quantlib.pricingengines.swap import DiscountingSwapEngine
 from quantlib.settings import Settings
@@ -16,8 +16,8 @@ from quantlib.termstructures.yields.api import (
 from quantlib.time.api import Actual360, Date, November, TARGET, Weeks, Annual
 from quantlib.time.api import Months, Years, Period, ModifiedFollowing
 from quantlib.time.api import Unadjusted, Thirty360, Semiannual, Schedule
-from quantlib.time.api import Forward, ActualActual, ISDA
-
+from quantlib.time.api import ActualActual, ISDA
+from quantlib.time.schedule import Forward
 # global data
 calendar = TARGET()
 todaysDate = Date(6,November,2001);
@@ -67,20 +67,19 @@ for s in swaps.keys():
 
 day_counter = Actual360()
 settlementDays = 2
-depositHelpers = [ DepositRateHelper(deposits[(n,unit)],
+depositHelpers = [ DepositRateHelper(v,
                                      Period(n,unit), settlementDays,
                                      calendar, ModifiedFollowing,
                                      False, day_counter)
-                   for n, unit in [(1,Weeks),(1,Months),(3,Months),
-                                   (6,Months),(9,Months),(1,Years)] ]
+                   for (n, unit), v in deposits.items()]
 
 day_counter = Actual360()
 settlementDays = 2
-fraHelpers = [ FraRateHelper(FRAs[(n,m)],
+fraHelpers = [ FraRateHelper(v,
                              n, m, settlementDays,
                              calendar, ModifiedFollowing,
                              False, day_counter)
-               for n, m in FRAs.keys() ]
+               for (n, m), v in FRAs.items() ]
 
 day_counter = Actual360()
 months = 3
@@ -126,8 +125,8 @@ depoFraSwapCurve = PiecewiseYieldCurve.from_reference_date(
 
 
 # Term structures that will be used for pricing:
-discountTermStructure = YieldTermStructure(relinkable=True)
-forecastTermStructure = YieldTermStructure(relinkable=True)
+discountTermStructure = YieldTermStructure()
+forecastTermStructure = YieldTermStructure()
 
 ### SWAPS TO BE PRICED
 
@@ -149,11 +148,11 @@ index = Euribor6M(forecastTermStructure)
 floatingLegAdjustment = ModifiedFollowing
 floatingLegDayCounter = index.day_counter
 
-fixedSchedule = Schedule(settlementDate, maturity,
+fixedSchedule = Schedule.from_rule(settlementDate, maturity,
                          fixedLegTenor, calendar,
                          fixedLegAdjustment, fixedLegAdjustment,
                          Forward, False)
-floatingSchedule = Schedule(settlementDate, maturity,
+floatingSchedule = Schedule.from_rule(settlementDate, maturity,
                             floatingLegTenor, calendar,
                             floatingLegAdjustment, floatingLegAdjustment,
                             Forward, False)
@@ -167,11 +166,11 @@ spot.set_pricing_engine(swapEngine)
 
 forwardStart = calendar.advance(settlementDate,1,Years)
 forwardEnd = calendar.advance(forwardStart,length,Years)
-fixedSchedule = Schedule(forwardStart, forwardEnd,
+fixedSchedule = Schedule.from_rule(forwardStart, forwardEnd,
                          fixedLegTenor, calendar,
                          fixedLegAdjustment, fixedLegAdjustment,
                          Forward, False)
-floatingSchedule = Schedule(forwardStart, forwardEnd,
+floatingSchedule = Schedule.from_rule(forwardStart, forwardEnd,
                             floatingLegTenor, calendar,
                             floatingLegAdjustment, floatingLegAdjustment,
                             Forward, False)
