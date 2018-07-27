@@ -33,6 +33,7 @@ cdef extern from 'ql/time/schedule.hpp' namespace 'QuantLib':
 
     cdef cppclass Schedule:
         Schedule()
+        Schedule(Schedule&)
         Schedule(Date& effectiveDate,
                  Date& terminationDate,
                  Period& tenor,
