@@ -22,11 +22,13 @@ cdef class MakeSwaption:
                 static_pointer_cast[_si.SwapIndex](swap_index._thisptr),
                 deref((<Date>option_tenor)._thisptr),
                 strike)
-        else:
+        elif isinstance(option_tenor, Period):
             self._thisptr = new _make_swaption.MakeSwaption(
                 static_pointer_cast[_si.SwapIndex](swap_index._thisptr),
                 deref((<Period>option_tenor)._thisptr),
                 strike)
+        else:
+            raise TypeError("'option_tenor' type needs to be either Date or Period")
 
     def __dealloc__(self):
         if self._thisptr is not NULL:
@@ -35,7 +37,7 @@ cdef class MakeSwaption:
 
     def __call__(self):
         cdef Swaption instance = Swaption.__new__(Swaption)
-        cdef shared_ptr[_Swaption] temp = <shared_ptr[_Swaption]>deref(self._thisptr)
+        cdef shared_ptr[_Swaption] temp = _make_swaption.get(deref(self._thisptr))
         instance._thisptr = static_pointer_cast[_in.Instrument](temp)
         return instance
 
@@ -54,7 +56,7 @@ cdef class MakeSwaption:
     def with_underlying_type(self, SwapType swap_type):
         self._thisptr.withUnderlyingType(<VanillaSwap.Type>swap_type)
         return self
-    
+
     def with_nominal(self, Real nominal):
         self._thisptr.withNominal(nominal)
         return self

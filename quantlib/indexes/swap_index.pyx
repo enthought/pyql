@@ -1,3 +1,4 @@
+# cython: c_string_type=unicode, c_string_encoding=ascii
 """
  Copyright (C) 2011, Enthought Inc
  Copyright (C) 2011, Patrick Henaff
@@ -22,6 +23,8 @@ from quantlib.currency.currency cimport Currency
 from quantlib.time.date cimport Date
 from quantlib.time.calendar cimport Calendar
 from quantlib.time._calendar cimport BusinessDayConvention
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+cimport quantlib.termstructures._yield_term_structure as _yts
 
 cimport quantlib._index as _in
 cimport quantlib.instruments._instrument as _instrument
@@ -33,18 +36,15 @@ cdef class SwapIndex(InterestRateIndex):
     def __str__(self):
         return 'Swap index %s' % self.name
 
-    def __init__(self, family_name, Period tenor not None, Natural settlement_days,
+    def __init__(self, string family_name, Period tenor not None, Natural settlement_days,
                  Currency currency, Calendar calendar not None,
                  Period fixed_leg_tenor not None,
                  int fixed_leg_convention, DayCounter fixed_leg_daycounter not None,
                  IborIndex ibor_index not None):
 
-        # convert the Python str to C++ string
-        cdef string family_name_string = family_name.encode('utf-8')
-
         self._thisptr = shared_ptr[_in.Index](
             new _si.SwapIndex(
-                family_name_string,
+                family_name,
                 deref(tenor._thisptr),
                 <Natural> settlement_days,
                 deref(currency._thisptr),
@@ -69,3 +69,21 @@ cdef class SwapIndex(InterestRateIndex):
         cdef IborIndex ibor_index = IborIndex.__new__(IborIndex)
         ibor_index._thisptr = static_pointer_cast[_in.Index](swap_index.iborIndex())
         return ibor_index
+
+    @property
+    def forwarding_term_structure(self):
+        cdef YieldTermStructure yts = YieldTermStructure.__new__(YieldTermStructure)
+        cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
+        yts._thisptr.linkTo(swap_index.
+                            forwardingTermStructure().
+                            currentLink())
+        return yts
+
+    @property
+    def discounting_term_structure(self):
+        cdef YieldTermStructure yts = YieldTermStructure.__new__(YieldTermStructure)
+        cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
+        yts._thisptr.linkTo(swap_index.
+                            forwardingTermStructure().
+                            currentLink())
+        return yts
