@@ -19,7 +19,7 @@ from libcpp.string cimport string
 cimport quantlib.termstructures._yield_term_structure as _yts
 cimport _libor
 cimport quantlib._index as _in
-from quantlib.time._calendar cimport BusinessDayConvention
+cimport quantlib.time._calendar as _calendar
 
 # PyQL cimport
 from quantlib.handle cimport Handle, shared_ptr
@@ -39,12 +39,12 @@ cdef class Libor(IborIndex):
 
     def __init__(self,
         basestring familyName,
-        Period tenor,
+        Period tenor not None,
         Natural settlementDays,
-        Currency currency,
-        Calendar financial_center_calendar,
-        DayCounter dayCounter,
-        YieldTermStructure ts = YieldTermStructure()):
+        Currency currency not None,
+        Calendar financial_center_calendar not None,
+        DayCounter dayCounter not None,
+        YieldTermStructure ts not None=YieldTermStructure()):
 
         # convert the Python str to C++ string
         cdef string familyName_string = familyName.encode('utf-8')
@@ -58,3 +58,9 @@ cdef class Libor(IborIndex):
             deref(financial_center_calendar._thisptr),
             deref(dayCounter._thisptr),
             ts._thisptr))
+
+    @property
+    def joint_calendar(self):
+        cdef Calendar cal = Calendar.__new__(Calendar)
+        cal._thisptr = new _calendar.Calendar((<_libor.Libor*>self._thisptr.get()).jointCalendar())
+        return cal
