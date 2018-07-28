@@ -386,8 +386,8 @@ class IborMarket(FixedIncomeMarket):
 
         engine = DiscountingSwapEngine(self._discount_term_structure,
                                        False,
-                                       settlementDate=settlement_date,
-                                       npvDate=settlement_date)
+                                       settlement_date=settlement_date,
+                                       npv_date=settlement_date)
 
         swap.set_pricing_engine(engine)
 
