@@ -187,6 +187,7 @@ cdef class VanillaSwap(Swap):
         def __get__(self):
             cdef Real res = get_vanillaswap(self).floatingLegNPV()
             return res
+
     @property
     def fixed_leg(self):
         cdef FixedRateLeg leg = FixedRateLeg.__new__(FixedRateLeg)
@@ -206,3 +207,35 @@ cdef class VanillaSwap(Swap):
     @property
     def type(self):
         return SwapType(get_vanillaswap(self).type())
+
+    @property
+    def fixed_rate(self):
+        return get_vanillaswap(self).fixedRate()
+
+    @property
+    def fixed_schedule(self):
+        cdef Schedule sched = Schedule.__new__(Schedule)
+        sched._thisptr = new QlSchedule(get_vanillaswap(self).fixedSchedule())
+        return sched
+
+    @property
+    def fixed_day_count(self):
+        cdef DayCounter dc = DayCounter.__new__(DayCounter)
+        dc._thisptr = new QlDayCounter(get_vanillaswap(self).fixedDayCount())
+        return dc
+
+    @property
+    def floating_schedule(self):
+        cdef Schedule sched = Schedule.__new__(Schedule)
+        sched._thisptr = new QlSchedule(get_vanillaswap(self).floatingSchedule())
+        return sched
+
+    @property
+    def spread(self):
+        return get_vanillaswap(self).spread()
+
+    @property
+    def floating_day_count(self):
+        cdef DayCounter dc = DayCounter.__new__(DayCounter)
+        dc._thisptr = new QlDayCounter(get_vanillaswap(self).floatingDayCount())
+        return dc
