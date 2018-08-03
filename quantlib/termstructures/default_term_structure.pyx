@@ -3,13 +3,17 @@ include '../types.pxi'
 from libcpp cimport bool
 from libcpp.vector cimport vector
 from cython.operator cimport dereference as deref
+from quantlib.handle cimport static_pointer_cast
+from quantlib._observable cimport Observable as QlObservable
 from quantlib.time.date cimport Date, date_from_qldate
 cimport quantlib.time._date as _date
 from quantlib.time.daycounter cimport DayCounter
 cimport quantlib.time._daycounter as _daycounter
 
-cdef class DefaultProbabilityTermStructure: #not inheriting from TermStructure at this point
+cdef class DefaultProbabilityTermStructure(Observable): #not inheriting from TermStructure at this point
 
+    cdef shared_ptr[QlObservable] as_observable(self):
+        return static_pointer_cast[QlObservable](self._thisptr)
 
     def survival_probability(self, d, bool extrapolate = False):
         if isinstance(d, Date):
@@ -42,8 +46,8 @@ cdef class DefaultProbabilityTermStructure: #not inheriting from TermStructure a
             l.append(date_from_qldate(d))
         return l
 
-    def time_from_reference(self, Date d):
-        return self._thisptr.get().timeFromReference(deref(d._thisptr.get()))
+    def time_from_reference(self, Date d not None):
+        return self._thisptr.get().timeFromReference(deref(d._thisptr))
 
     @property
     def max_date(self):

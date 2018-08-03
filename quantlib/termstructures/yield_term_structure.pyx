@@ -15,19 +15,20 @@ from quantlib.time.date import Annual
 cimport quantlib.termstructures._yield_term_structure as _yts
 cimport quantlib._quote as _qt
 cimport quantlib._interest_rate as _ir
-from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle
+from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle, static_pointer_cast
+from quantlib._observable cimport Observable as QlObservable
 cimport quantlib.time._date as _date
 cimport quantlib.time._daycounter as _dc
 cimport quantlib.time._calendar as _cal
 from quantlib.quotes cimport Quote
 from quantlib.interest_rate cimport InterestRate
 
-cdef class YieldTermStructure:
+cdef class YieldTermStructure(Observable):
 
     # FIXME: the relinkable stuff is really ugly. Do we need this on the
     # python side?
 
-    def link_to(self, YieldTermStructure structure):
+    def link_to(self, YieldTermStructure structure not None):
         if structure._thisptr.empty():
             raise ValueError('Term structure not initialized')
         self._thisptr.linkTo(structure._thisptr.currentLink())
@@ -37,6 +38,11 @@ cdef class YieldTermStructure:
         if self._thisptr.empty():
             raise ValueError('Term structure not initialized')
         return self._thisptr.currentLink().get()
+
+    cdef shared_ptr[QlObservable] as_observable(self):
+        if self._thisptr.empty():
+            raise ValueError('Term structure not initialized')
+        return static_pointer_cast[QlObservable](self._thisptr.currentLink())
 
     property extrapolation:
         def __get__(self):

@@ -1,7 +1,8 @@
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport shared_ptr, static_pointer_cast
 cimport quantlib._quote as _qt
+from quantlib._observable cimport Observable as QlObservable
 
-cdef class Quote:
+cdef class Quote(Observable):
 
     def __init__(self):
         raise ValueError(
@@ -15,6 +16,9 @@ cdef class Quote:
     property value:
         def __get__(self):
             return self._thisptr.get().value()
+
+    cdef shared_ptr[QlObservable] as_observable(self):
+        return static_pointer_cast[QlObservable](self._thisptr)
 
 cdef class SimpleQuote(Quote):
 
