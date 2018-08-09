@@ -7,6 +7,7 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.indexes.swap_index cimport SwapIndex
 cimport _cms_coupon as _cc
 cimport quantlib.indexes._swap_index as _si
+cimport quantlib._index as _ii
 cimport quantlib._cashflow as _cf
 
 cdef class CmsCoupon(FloatingRateCoupon):
@@ -37,4 +38,9 @@ cdef class CmsCoupon(FloatingRateCoupon):
                     deref(day_counter._thisptr),
                     is_in_arrears))
 
-
+    @property
+    def swap_index(self):
+        cdef SwapIndex instance = SwapIndex.__new__(SwapIndex)
+        instance._thisptr = static_pointer_cast[_ii.Index](
+            (<_cc.CmsCoupon*>self._thisptr.get()).swapIndex())
+        return instance

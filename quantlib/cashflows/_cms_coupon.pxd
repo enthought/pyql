@@ -21,3 +21,4 @@ cdef extern from 'ql/cashflows/cmscoupon.hpp' namespace 'QuantLib':
                   const Date& refPeriodEnd, # = Date(),
                   const DayCounter& dayCounter, #= DayCounter(),
                   bool isInArrears)
+        shared_ptr[SwapIndex]& swapIndex()
