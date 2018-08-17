@@ -1,9 +1,11 @@
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 
-from quantlib.handle cimport optional
+from quantlib.handle cimport optional, shared_ptr
 from quantlib.time._date cimport Date as QlDate
 from quantlib.time.date cimport Date, date_from_qldate
+from quantlib.observable cimport Observable
+from quantlib._observable cimport Observable as QlObservable
 
 cimport quantlib._settings as _settings
 
@@ -24,6 +26,10 @@ __quantlib_version__ = QL_VERSION
 __quantlib_lib_version__ = QL_LIB_VERSION
 __quantlib_hex_version__ = QL_HEX_VERSION
 
+cdef class DateProxy(Observable):
+    cdef shared_ptr[QlObservable] as_observable(self):
+        return _settings.Settings.instance().evaluationDate1()
+
 cdef class Settings:
 
     cdef _settings.SavedSettings* backup
@@ -34,8 +40,13 @@ cdef class Settings:
             cdef QlDate evaluation_date = <QlDate>_settings.Settings.instance().evaluationDate()
             return date_from_qldate(evaluation_date)
 
-        def __set__(self, Date evaluation_date):
+        def __set__(self, Date evaluation_date not None):
             _settings.Settings.instance().evaluationDate().assign_date(deref(evaluation_date._thisptr))
+
+    @property
+    def observable_evaluation_date(self):
+        cdef DateProxy instance = DateProxy.__new__(DateProxy)
+        return instance
 
     property version:
         """Returns the QuantLib C++ version (QL_VERSION) used by this wrapper."""

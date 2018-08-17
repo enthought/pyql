@@ -30,4 +30,4 @@ cdef extern from 'ql/instruments/makeswaption.hpp' namespace 'QuantLib':
         MakeSwaption& withPricingEngine(
             const shared_ptr[PricingEngine]& engine)
 
-    shared_ptr[Swaption] get "(QuantLib::ext::shared_ptr<QuantLib::Swaption>)" (MakeSwaption) except +
+    shared_ptr[Swaption] get "(boost::shared_ptr<QuantLib::Swaption>)" (MakeSwaption) except +

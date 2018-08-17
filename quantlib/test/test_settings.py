@@ -1,4 +1,4 @@
-from .unittest_tools import unittest
+import unittest
 from quantlib.instruments.bonds import FixedRateBond
 from quantlib.time.api import (
     Date, Days, August, Period, Jul, Annual, today, Years, TARGET,
@@ -152,3 +152,6 @@ class SettingsTestCase(unittest.TestCase):
 
         date1, date2  = tcb.test_bond_schedule_anotherday_cython()
         self.assertEqual(date1, date2)
+
+if __name__ == "__main__":
+    unittest.main()
