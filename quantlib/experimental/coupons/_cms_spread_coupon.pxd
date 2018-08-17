@@ -24,6 +24,7 @@ cdef extern from 'ql/experimental/coupons/cmsspreadcoupon.hpp' namespace 'QuantL
                         const Date& refPeriodEnd, # = Date(),
                         const DayCounter& dayCounter, # = DayCounter(),
                         bool isInArrears) # = false)
+        shared_ptr[SwapSpreadIndex]& swapSpreadIndex()
 
     cdef cppclass CappedFlooredCmsSpreadCoupon(CappedFlooredCoupon):
         CappedFlooredCmsSpreadCoupon(
