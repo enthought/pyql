@@ -39,7 +39,7 @@ cdef class BlackSwaptionEngine(PricingEngine):
                 new _BlackSwaptionEngine(discount_curve._thisptr,
                                          <Volatility>vol,
                                          deref(dc._thisptr),
-                                        displacement,
+                                         displacement,
                                          <_BlackSwaptionEngine.CashAnnuityModel>model))
         elif isinstance(vol, Quote):
             quote_handle = Handle[_qt.Quote]((<Quote>vol)._thisptr)

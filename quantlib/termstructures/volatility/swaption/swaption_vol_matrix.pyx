@@ -17,8 +17,8 @@ cimport quantlib.termstructures.volatility._volatilitytype as _voltype
 cimport _swaption_vol_structure as _svs
 
 cdef build_vols_shifts(list volatilities, list shifts,
-                      vector[vector[Handle[Quote]]]& c_vols,
-                      vector[vector[Real]]& c_shifts):
+                       vector[vector[Handle[Quote]]]& c_vols,
+                       vector[vector[Real]]& c_shifts):
     cdef vector[Handle[Quote]] row
     cdef vector[Real] row2
     cdef Handle[Quote] quote_handle
@@ -94,7 +94,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
                             "or lists of lists")
 
     @classmethod
-    def from_reference_date(cls, Date reference_date,
+    def from_reference_date(cls, Date reference_date not None,
                             Calendar calendar not None,
                             BusinessDayConvention bdc,
                             option_tenors,

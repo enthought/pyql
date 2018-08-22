@@ -47,7 +47,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
         )
 
     @classmethod
-    def from_reference_date(cls, Date reference_date,
+    def from_reference_date(cls, Date reference_date not None,
                             Calendar calendar not None,
                             BusinessDayConvention bdc,
                             volatility,

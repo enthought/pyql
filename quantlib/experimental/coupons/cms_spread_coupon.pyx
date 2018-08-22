@@ -18,7 +18,7 @@ cdef class CmsSpreadCoupon(FloatingRateCoupon):
             Date start_date not None,
             Date end_date not None,
             Natural fixing_days,
-            SwapSpreadIndex index,
+            SwapSpreadIndex index not None,
             Real gearing=1.,
             Real spread=0.,
             Date ref_period_start=Date(),

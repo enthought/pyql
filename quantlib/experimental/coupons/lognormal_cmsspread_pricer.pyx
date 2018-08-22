@@ -13,9 +13,9 @@ cimport quantlib._quote as _qt
 cimport _lognormal_cmsspread_pricer as _lcp
 
 cdef class LognormalCmsSpreadPricer(CmsSpreadCouponPricer):
-    def __init__(self, CmsCouponPricer cms_pricer,
+    def __init__(self, CmsCouponPricer cms_pricer not None,
                  SimpleQuote correlation not None,
-                 YieldTermStructure coupon_discount_curve not None,
+                 YieldTermStructure coupon_discount_curve=YieldTermStructure(),
                  Size integration_points=16,
                  vol_type=None,
                  Real shift1=QL_NULL_REAL,

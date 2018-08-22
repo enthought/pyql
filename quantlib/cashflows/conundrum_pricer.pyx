@@ -17,9 +17,9 @@ cpdef enum YieldCurveModel:
 
 
 cdef class NumericHaganPricer(CmsCouponPricer):
-    def __init__(self, SwaptionVolatilityStructure swaption_vol,
+    def __init__(self, SwaptionVolatilityStructure swaption_vol not None,
                  YieldCurveModel yieldcurve_model,
-                 SimpleQuote mean_reversion,
+                 SimpleQuote mean_reversion not None,
                  Rate lower_limit=0.,
                  Rate upper_limit=1.,
                  Real precision=1e-6):
@@ -38,9 +38,9 @@ cdef class NumericHaganPricer(CmsCouponPricer):
         ))
 
 cdef class AnalyticHaganPricer(CmsCouponPricer):
-    def __init__(self, SwaptionVolatilityStructure swaption_vol,
+    def __init__(self, SwaptionVolatilityStructure swaption_vol not None,
                  YieldCurveModel yieldcurve_model,
-                 SimpleQuote mean_reversion):
+                 SimpleQuote mean_reversion not None):
         cdef Handle[_svs.SwaptionVolatilityStructure] swaption_vol_handle = \
             Handle[_svs.SwaptionVolatilityStructure](swaption_vol._thisptr)
         cdef Handle[_qt.Quote] mean_reversion_handle = \
