@@ -4,25 +4,29 @@ from cython.operator cimport dereference as deref
 from quantlib.time.date cimport Date, Period
 from ..smilesection cimport SmileSection
 
+
 cdef class SwaptionVolatilityStructure:
+
+    cdef inline _svs.SwaptionVolatilityStructure* get_svs(self):
+        return <_svs.SwaptionVolatilityStructure*>self._thisptr.get()
 
     def volatility(self, option_date, swap_date, Rate strike,
                    bool extrapolate=False):
         if isinstance(swap_date, Period):
             if isinstance(option_date, Period):
-                return self._thisptr.get().volatility(
+                return self.get_svs().volatility(
                     deref((<Period>option_date)._thisptr),
                     deref((<Period>swap_date)._thisptr),
                     strike,
                     extrapolate)
             elif isinstance(option_date, Date):
-                return self._thisptr.get().volatility(
+                return self.get_svs().volatility(
                     deref((<Date>option_date)._thisptr),
                     deref((<Period>swap_date)._thisptr),
                     strike,
                     extrapolate)
             elif isinstance(option_date, float):
-                return self._thisptr.get().volatility(
+                return self.get_svs().volatility(
                     <Time>option_date,
                     deref((<Period>swap_date)._thisptr),
                     strike,
@@ -31,19 +35,19 @@ cdef class SwaptionVolatilityStructure:
                 raise TypeError('option_date needs to be a Period, Date or Time')
         elif isinstance(swap_date, float):
             if isinstance(option_date, Period):
-                return self._thisptr.get().volatility(
+                return self.get_svs().volatility(
                     deref((<Period>option_date)._thisptr),
                     <Time>swap_date,
                     strike,
                     extrapolate)
             elif isinstance(option_date, Date):
-                return self._thisptr.get().volatility(
+                return self.get_svs().volatility(
                     deref((<Date>option_date)._thisptr),
                     <Time>swap_date,
                     strike,
                     extrapolate)
             elif isinstance(option_date, float):
-                return self._thisptr.get().volatility(
+                return self.get_svs().volatility(
                     <Time>option_date,
                     <Time>swap_date,
                     strike,
@@ -58,7 +62,7 @@ cdef class SwaptionVolatilityStructure:
                       Period swap_tenor not None,
                       bool extrapolation=False):
         cdef SmileSection r = SmileSection.__new__(SmileSection)
-        r._thisptr = self._thisptr.get().smileSection(deref(option_tenor._thisptr),
+        r._thisptr = self.get_svs().smileSection(deref(option_tenor._thisptr),
                                                       deref(swap_tenor._thisptr),
                                                       extrapolation)
         return r
@@ -67,19 +71,19 @@ cdef class SwaptionVolatilityStructure:
                        bool extrapolate=False):
         if isinstance(swap_date, Period):
             if isinstance(option_date, Period):
-                return self._thisptr.get().blackVariance(
+                return self.get_svs().blackVariance(
                     deref((<Period>option_date)._thisptr),
                     deref((<Period>swap_date)._thisptr),
                     strike,
                     extrapolate)
             elif isinstance(option_date, Date):
-                return self._thisptr.get().blackVariance(
+                return self.get_svs().blackVariance(
                     deref((<Date>option_date)._thisptr),
                     deref((<Period>swap_date)._thisptr),
                     strike,
                     extrapolate)
             elif isinstance(option_date, float):
-                return self._thisptr.get().blackVariance(
+                return self.get_svs().blackVariance(
                     <Time>option_date,
                     deref((<Period>swap_date)._thisptr),
                     strike,
@@ -88,19 +92,19 @@ cdef class SwaptionVolatilityStructure:
                 raise TypeError('option_date needs to be a Period, Date or Time')
         elif isinstance(swap_date, float):
             if isinstance(option_date, Period):
-                return self._thisptr.get().blackVariance(
+                return self.get_svs().blackVariance(
                     deref((<Period>option_date)._thisptr),
                     <Time>swap_date,
                     strike,
                     extrapolate)
             elif isinstance(option_date, Date):
-                return self._thisptr.get().blackVariance(
+                return self.get_svs().blackVariance(
                     deref((<Date>option_date)._thisptr),
                     <Time>swap_date,
                     strike,
                     extrapolate)
             elif isinstance(option_date, float):
-                return self._thisptr.get().blackVariance(
+                return self.get_svs().blackVariance(
                     <Time>option_date,
                     <Time>swap_date,
                     strike,
@@ -113,17 +117,17 @@ cdef class SwaptionVolatilityStructure:
     def shift(self, option_date, swap_date, bool extrapolate=False):
         if isinstance(swap_date, Period):
             if isinstance(option_date, Period):
-                return self._thisptr.get().shift(
+                return self.get_svs().shift(
                     deref((<Period>option_date)._thisptr),
                     deref((<Period>swap_date)._thisptr),
                     extrapolate)
             elif isinstance(option_date, Date):
-                return self._thisptr.get().shift(
+                return self.get_svs().shift(
                     deref((<Date>option_date)._thisptr),
                     deref((<Period>swap_date)._thisptr),
                     extrapolate)
             elif isinstance(option_date, float):
-                return self._thisptr.get().shift(
+                return self.get_svs().shift(
                     <Time>option_date,
                     deref((<Period>swap_date)._thisptr),
                     extrapolate)
@@ -131,17 +135,17 @@ cdef class SwaptionVolatilityStructure:
                 raise TypeError('option_date needs to be a Period, Date or Time')
         elif isinstance(swap_date, float):
             if isinstance(option_date, Period):
-                return self._thisptr.get().shift(
+                return self.get_svs().shift(
                     deref((<Period>option_date)._thisptr),
                     <Time>swap_date,
                     extrapolate)
             elif isinstance(option_date, Date):
-                return self._thisptr.get().shift(
+                return self.get_svs().shift(
                     deref((<Date>option_date)._thisptr),
                     <Time>swap_date,
                     extrapolate)
             elif isinstance(option_date, float):
-                return self._thisptr.get().shift(
+                return self.get_svs().shift(
                     <Time>option_date,
                     <Time>swap_date,
                     extrapolate)
@@ -152,4 +156,4 @@ cdef class SwaptionVolatilityStructure:
 
     @property
     def volatility_type(self):
-        return self._thisptr.get().volatilityType()
+        return self.get_svs().volatilityType()

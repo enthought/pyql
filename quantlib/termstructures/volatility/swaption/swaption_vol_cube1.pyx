@@ -15,6 +15,7 @@ cimport _swaption_vol_cube1 as _svc1
 cimport quantlib.indexes._swap_index as _si
 
 cimport _swaption_vol_structure as _svs
+from ..._vol_term_structure cimport VolatilityTermStructure
 cimport quantlib._quote as _qt
 
 cdef class SwaptionVolCube1(SwaptionVolatilityCube):
@@ -40,7 +41,9 @@ cdef class SwaptionVolCube1(SwaptionVolatilityCube):
                  Real cutoff_strike=0.0001):
         cdef:
             Handle[_svs.SwaptionVolatilityStructure] atm_vol_structure_handle = \
-                Handle[_svs.SwaptionVolatilityStructure](atm_vol_structure._thisptr)
+                Handle[_svs.SwaptionVolatilityStructure](
+                    static_pointer_cast[_svs.SwaptionVolatilityStructure](
+                        atm_vol_structure._thisptr))
             vector[QlPeriod] option_tenors_vec
             vector[QlPeriod] swap_tenors_vec
             Period p
@@ -67,7 +70,7 @@ cdef class SwaptionVolCube1(SwaptionVolatilityCube):
             swap_tenors_vec.push_back(deref(p._thisptr))
 
 
-        self._thisptr = shared_ptr[_svs.SwaptionVolatilityStructure](
+        self._thisptr = shared_ptr[VolatilityTermStructure](
             new _svc1.SwaptionVolCube1(
                 atm_vol_structure_handle,
                 option_tenors_vec,

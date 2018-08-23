@@ -3,7 +3,7 @@ from cython.operator cimport dereference as deref
 from quantlib.pricingengines.engine cimport PricingEngine
 cimport quantlib.pricingengines._pricing_engine as _pe
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.daycounters.simple cimport Actual365Fixed
 from quantlib.quotes cimport Quote
@@ -51,7 +51,8 @@ cdef class BlackSwaptionEngine(PricingEngine):
                                          <_BlackSwaptionEngine.CashAnnuityModel>model))
         elif isinstance(vol, SwaptionVolatilityStructure):
             vol_structure_handle = Handle[_svs.SwaptionVolatilityStructure](
-                (<SwaptionVolatilityStructure>vol)._thisptr)
+                static_pointer_cast[_svs.SwaptionVolatilityStructure](
+                    (<SwaptionVolatilityStructure>vol)._thisptr))
             self._thisptr = new shared_ptr[_pe.PricingEngine](
                 new _BlackSwaptionEngine(discount_curve._thisptr,
                                          quote_handle,

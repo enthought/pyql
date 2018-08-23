@@ -5,7 +5,7 @@ cimport _coupon_pricer as _cp
 cimport quantlib.termstructures.volatility.swaption._swaption_vol_structure as _svs
 from quantlib.termstructures.volatility.swaption.swaption_vol_structure \
     cimport SwaptionVolatilityStructure
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
 cimport quantlib._quote as _qt
 from quantlib.quotes cimport SimpleQuote
 
@@ -25,7 +25,8 @@ cdef class NumericHaganPricer(CmsCouponPricer):
                  Real precision=1e-6):
 
         cdef Handle[_svs.SwaptionVolatilityStructure] swaption_vol_handle = \
-            Handle[_svs.SwaptionVolatilityStructure](swaption_vol._thisptr)
+            Handle[_svs.SwaptionVolatilityStructure](
+                static_pointer_cast[_svs.SwaptionVolatilityStructure](swaption_vol._thisptr))
         cdef Handle[_qt.Quote] mean_reversion_handle = \
             Handle[_qt.Quote](mean_reversion._thisptr)
         self._thisptr = shared_ptr[_cp.FloatingRateCouponPricer](new _conp.NumericHaganPricer(
@@ -42,7 +43,8 @@ cdef class AnalyticHaganPricer(CmsCouponPricer):
                  YieldCurveModel yieldcurve_model,
                  SimpleQuote mean_reversion not None):
         cdef Handle[_svs.SwaptionVolatilityStructure] swaption_vol_handle = \
-            Handle[_svs.SwaptionVolatilityStructure](swaption_vol._thisptr)
+            Handle[_svs.SwaptionVolatilityStructure](
+                static_pointer_cast[_svs.SwaptionVolatilityStructure](swaption_vol._thisptr))
         cdef Handle[_qt.Quote] mean_reversion_handle = \
             Handle[_qt.Quote](mean_reversion._thisptr)
         self._thisptr = shared_ptr[_cp.FloatingRateCouponPricer](new _conp.AnalyticHaganPricer(
