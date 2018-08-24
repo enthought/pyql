@@ -37,10 +37,11 @@ cdef extern from 'ql/cashflows/capflooredcoupon.hpp' namespace 'QuantLib':
             Rate floor) # = Null<Rate>()
         Rate cap()
         Rate floor()
-        Rate effetiveCap()
-        Rate effectiveFloored()
+        Rate effectiveCap()
+        Rate effectiveFloor()
         bool isCapped()
         bool isFloored()
+        shared_ptr[FloatingRateCoupon] underlying()
 
     cdef cppclass CappedFlooredIborCoupon(CappedFlooredCoupon):
         CappedFlooredIborCoupon(
