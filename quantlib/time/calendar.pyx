@@ -42,7 +42,7 @@ cdef class Calendar:
     def __str__(self):
         return self.name
 
-    def is_holiday(self, date.Date test_date):
+    def is_holiday(self, date.Date test_date not None):
         '''Returns true iff the weekday is part of the
         weekend for the given market.
         '''
@@ -54,7 +54,7 @@ cdef class Calendar:
         '''
         return self._thisptr.isWeekend(<_date.Weekday>week_day)
 
-    def is_business_day(self, date.Date test_date):
+    def is_business_day(self, date.Date test_date not None):
         '''Returns true iff the date is a business day for the
         given market.
         '''
@@ -66,18 +66,19 @@ cdef class Calendar:
         '''
         return self._thisptr.isBusinessDay(deref(test_date._thisptr))
 
-    def business_days_between(self, date.Date date1, date.Date date2,
-            include_first=True, include_last=False):
+    def business_days_between(self, date.Date date1 not None,
+                              date.Date date2 not None,
+                              include_first=True, include_last=False):
         """ Returns the number of business days between date1 and date2. """
 
         return self._thisptr.businessDaysBetween(
-            deref((<date.Date>date1)._thisptr),
-            deref((<date.Date>date2)._thisptr),
+            deref(date1._thisptr),
+            deref(date2._thisptr),
             include_first,
             include_last
         )
 
-    def end_of_month(self, date.Date current_date):
+    def end_of_month(self, date.Date current_date not None):
         """ Returns the ending date for the month that contains the given
         date.
 
@@ -87,15 +88,15 @@ cdef class Calendar:
 
         return date.date_from_qldate(eom_date)
 
-    def add_holiday(self, date.Date holiday):
+    def add_holiday(self, date.Date holiday not None):
         '''Adds a date to the set of holidays for the given calendar. '''
         self._thisptr.addHoliday(deref(holiday._thisptr))
 
-    def remove_holiday(self, date.Date holiday):
+    def remove_holiday(self, date.Date holiday not None):
         '''Removes a date from the set of holidays for the given calendar.'''
         self._thisptr.removeHoliday(deref(holiday._thisptr))
 
-    def adjust(self, date.Date given_date, int convention=Following):
+    def adjust(self, date.Date given_date not None, int convention=Following):
         '''Adjusts a non-business day to the appropriate near business day
             with respect to the given convention.
         '''
@@ -105,7 +106,7 @@ cdef class Calendar:
 
         return date.date_from_qldate(adjusted_date)
 
-    def advance(self, date.Date given_date, int step=0, int units=-1,
+    def advance(self, date.Date given_date not None, int step=0, int units=-1,
                date.Period period=None, int convention=Following,
                end_of_month=False):
         '''Advances the given date of the given number of business days,
@@ -148,8 +149,8 @@ cdef class Calendar:
         raise TypeError(op_str + " not supported between instances of 'Calendar' and 'Calendar'")
 
 
-def holiday_list(Calendar calendar, date.Date from_date, date.Date to_date,
-        bool include_weekends=False):
+def holiday_list(Calendar calendar not None, date.Date from_date not None,
+                 date.Date to_date not None, bool include_weekends=False):
     '''Returns the holidays between two dates. '''
 
     cdef vector[_date.Date] dates = _calendar.Calendar_holidayList(
