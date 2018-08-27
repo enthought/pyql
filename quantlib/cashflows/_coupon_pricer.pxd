@@ -37,7 +37,7 @@ cdef extern from 'ql/cashflows/couponpricer.hpp' namespace 'QuantLib':
         CmsCouponPricer()
         CmsCouponPricer(const Handle[SwaptionVolatilityStructure]& v) except +
         Handle[SwaptionVolatilityStructure] swaptionVolatility()
-        setSwaptionVolatility(const Handle[SwaptionVolatilityStructure]& v)
+        void setSwaptionVolatility(const Handle[SwaptionVolatilityStructure]& v)
 
 cdef extern from 'ql/cashflows/couponpricer.hpp' namespace 'QuantLib::BlackIborCouponPricer':
     cdef enum TimingAdjustment:
