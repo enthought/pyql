@@ -31,7 +31,7 @@ cdef extern from 'ql/cashflows/floatingratecoupon.hpp' namespace 'QuantLib':
         Real gearing()
         Spread spread()
         Rate indexFixing()
-        Rate convexityAdjustment()
-        Rate adjustedFixing()
+        Rate convexityAdjustment() except +
+        Rate adjustedFixing() except +
         bool isInArrears()
         void setPricer(const shared_ptr[FloatingRateCouponPricer]&)

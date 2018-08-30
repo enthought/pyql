@@ -41,7 +41,7 @@ cdef extern from 'ql/experimental/coupons/cmsspreadcoupon.hpp' namespace 'QuantL
                   const Date& refPeriodStart, # = Date(),
                   const Date& refPeriodEnd, # = Date(),
                   const DayCounter& dayCounter, # = DayCounter(),
-                  bool isInArrears) # = false)
+                  bool isInArrears) except + # = false)
 
     cdef cppclass CmsSpreadCouponPricer(FloatingRateCouponPricer):
         CmsSpreadCouponPricer(const Handle& correlation) # = Handle[Quote](),

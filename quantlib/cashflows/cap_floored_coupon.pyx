@@ -38,6 +38,18 @@ cdef class CappedFlooredCoupon(FloatingRateCoupon):
             return temp
 
     @property
+    def effective_cap(self):
+        cdef Real temp = (<_cfc.CappedFlooredCoupon*>self._thisptr.get()).effectiveCap()
+        if temp != QL_NULL_REAL:
+            return temp
+
+    @property
+    def effective_floor(self):
+        cdef Real temp = (<_cfc.CappedFlooredCoupon*>self._thisptr.get()).effectiveFloor()
+        if temp != QL_NULL_REAL:
+            return temp
+
+    @property
     def is_capped(self):
         return (<_cfc.CappedFlooredCoupon*>self._thisptr.get()).isCapped()
 
@@ -45,6 +57,12 @@ cdef class CappedFlooredCoupon(FloatingRateCoupon):
     def is_floored(self):
         return (<_cfc.CappedFlooredCoupon*>self._thisptr.get()).isFloored()
 
+    @property
+    def underlying(self):
+        cdef FloatingRateCoupon instance = FloatingRateCoupon.__new__(FloatingRateCoupon)
+        instance._thisptr = static_pointer_cast[CashFlow](
+            (<_cfc.CappedFlooredCoupon*>self._thisptr.get()).underlying())
+        return instance
 
 cdef class CappedFlooredIborCoupon(CappedFlooredCoupon):
     def __init__(self, Date payment_date not None,

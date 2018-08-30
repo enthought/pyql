@@ -10,8 +10,8 @@ from quantlib.time._businessdayconvention cimport BusinessDayConvention
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.quotes cimport SimpleQuote
 from ..volatilitytype cimport VolatilityType, ShiftedLognormal
+from ..._vol_term_structure cimport VolatilityTermStructure
 cimport quantlib.termstructures.volatility._volatilitytype as _voltype
-cimport _swaption_vol_structure as _svs
 cimport _swaption_constant_vol as _scv
 cimport quantlib._quote as _qt
 
@@ -35,7 +35,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
         else:
             raise TypeError
 
-        self._thisptr = shared_ptr[_svs.SwaptionVolatilityStructure](
+        self._thisptr = shared_ptr[VolatilityTermStructure](
             new _scv.ConstantSwaptionVolatility(
                 settlement_days,
                 deref(calendar._thisptr),
@@ -47,7 +47,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
         )
 
     @classmethod
-    def from_reference_date(cls, Date reference_date,
+    def from_reference_date(cls, Date reference_date not None,
                             Calendar calendar not None,
                             BusinessDayConvention bdc,
                             volatility,
@@ -66,7 +66,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
             raise TypeError
 
         cdef ConstantSwaptionVolatility instance = cls.__new__(cls)
-        instance._thisptr = shared_ptr[_svs.SwaptionVolatilityStructure](
+        instance._thisptr = shared_ptr[VolatilityTermStructure](
             new _scv.ConstantSwaptionVolatility(
                 deref(reference_date._thisptr),
                 deref(calendar._thisptr),

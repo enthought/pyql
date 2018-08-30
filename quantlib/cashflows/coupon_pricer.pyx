@@ -8,8 +8,9 @@ from quantlib.termstructures.volatility.optionlet.optionlet_volatility_structure
 cimport quantlib.termstructures.volatility.optionlet._optionlet_volatility_structure as _ovs
 from quantlib.termstructures.volatility.swaption.swaption_vol_structure \
     cimport  SwaptionVolatilityStructure
+from quantlib.termstructures._vol_term_structure cimport VolatilityTermStructure
 cimport quantlib.termstructures.volatility.swaption._swaption_vol_structure  as _svs
-from quantlib.handle cimport Handle
+from quantlib.handle cimport Handle, static_pointer_cast
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
@@ -81,3 +82,23 @@ def set_coupon_pricer(Leg leg, FloatingRateCouponPricer pricer):
         2) pricer : FloatingRateCouponPricer
             BlackIborCouponPricer has been exposed"""
     _cp.setCouponPricer(leg._thisptr, pricer._thisptr)
+
+cdef class CmsCouponPricer(FloatingRateCouponPricer):
+
+    @property
+    def swaption_volatility(self):
+        cdef Handle[_svs.SwaptionVolatilityStructure] vol_handle = \
+        (<_cp.CmsCouponPricer*>self._thisptr.get()).swaptionVolatility()
+        cdef SwaptionVolatilityStructure instance = (SwaptionVolatilityStructure.
+                                                     __new__(SwaptionVolatilityStructure))
+        instance._thisptr = static_pointer_cast[VolatilityTermStructure](
+            vol_handle.currentLink())
+        return instance
+
+    @swaption_volatility.setter
+    def swaption_volatility(self, SwaptionVolatilityStructure v not None):
+        cdef Handle[_svs.SwaptionVolatilityStructure] vol_handle = \
+            Handle[_svs.SwaptionVolatilityStructure](
+                static_pointer_cast[_svs.SwaptionVolatilityStructure](
+                    v._thisptr))
+        (<_cp.CmsCouponPricer*>self._thisptr.get()).setSwaptionVolatility(vol_handle)
