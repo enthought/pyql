@@ -197,9 +197,7 @@ class pyql_build_ext(build_ext):
             self.compiler.compiler_so.remove("-Wstrict-prototypes")
         except (AttributeError, ValueError):
             pass
-        lto_flags=["-flto", "-flto-partition=none", "-fuse-linker-plugin",
-                   "-ffat-lto-objects"]
-        self.compiler.compiler_so = [f for f in self.compiler.compiler_so if f not in lto_flags]
+        self.compiler.compiler_so = [f for f in self.compiler.compiler_so if 'lto' not in f]
         build_ext.build_extensions(self)
 
     def run(self):
