@@ -1,6 +1,6 @@
 include 'types.pxi'
 from libcpp.vector cimport vector
-cimport _time_grid as _tg
+from . cimport _time_grid as _tg
 
 cdef class TimeGrid:
     def __init__(self, Time end, Size steps):

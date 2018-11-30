@@ -4,7 +4,7 @@ from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
 from quantlib._defines cimport QL_NULL_REAL
 cimport quantlib._quote as _qt
-cimport _sensitivityanalysis as _sa
+from . cimport _sensitivityanalysis as _sa
 cimport quantlib.instruments._instrument as _it
 from libcpp.vector cimport vector
 from libcpp.pair cimport pair

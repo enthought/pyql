@@ -9,7 +9,7 @@ from quantlib.time.date cimport Date
 from quantlib.quotes cimport Quote
 cimport quantlib._quote as _qt
 cimport quantlib.termstructures._yield_term_structure as _yts
-cimport _piecewise_zerospreaded_termstructure as _pzt
+from . cimport _piecewise_zerospreaded_termstructure as _pzt
 
 cdef class PiecewiseZeroSpreadedTermStructure(YieldTermStructure):
     def __init__(self, YieldTermStructure h not None, list spreads, list dates,

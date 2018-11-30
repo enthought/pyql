@@ -9,8 +9,8 @@ include '../../types.pxi'
 
 from cython.operator cimport dereference as deref
 
-cimport _bates_model as _bm
-cimport _heston_model as _hm
+from . cimport _bates_model as _bm
+from . cimport _heston_model as _hm
 cimport quantlib.processes._heston_process as _hp
 cimport quantlib._stochastic_process as _sp
 from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast

@@ -2,7 +2,7 @@ from quantlib.handle cimport shared_ptr
 from quantlib._observable cimport Observable
 from quantlib.time._date cimport Date
 from libcpp cimport bool
-from handle cimport optional
+from .handle cimport optional
 
 cdef extern from "ql/settings.hpp" namespace "QuantLib":
     cdef cppclass Settings:

@@ -11,14 +11,14 @@ include '../types.pxi'
 
 from cython.operator cimport dereference as deref
 cimport quantlib._stochastic_process as _sp
-cimport _heston_process as _hp
+from . cimport _heston_process as _hp
 
 from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib.termstructures.yields._flat_forward as _ff
 cimport quantlib._quote as _qt
 from quantlib.quotes cimport Quote, SimpleQuote
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
-from heston_process cimport HestonProcess
+from .heston_process cimport HestonProcess
 
 cdef public enum Discretization:
         PARTIALTRUNCATION = _hp.PartialTruncation

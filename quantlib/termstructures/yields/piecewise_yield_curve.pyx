@@ -2,15 +2,15 @@ include '../../types.pxi'
 from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 
-cimport _piecewise_yield_curve as _pyc
+from . cimport _piecewise_yield_curve as _pyc
 
 from quantlib.handle cimport shared_ptr
 
-cimport _rate_helpers as _rh
+from . cimport _rate_helpers as _rh
 cimport quantlib.termstructures._yield_term_structure as _yts
 
 
-from rate_helpers cimport RateHelper
+from .rate_helpers cimport RateHelper
 from quantlib.time.date cimport Date, date_from_qldate
 cimport quantlib.time._date as _date
 from quantlib.time.daycounter cimport DayCounter

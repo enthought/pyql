@@ -7,7 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-cimport _model as _mo
+from . cimport _model as _mo
 from quantlib.handle cimport shared_ptr
 
 

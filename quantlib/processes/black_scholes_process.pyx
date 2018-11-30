@@ -1,6 +1,6 @@
 include '../types.pxi'
 
-cimport _black_scholes_process as _bsp
+from . cimport _black_scholes_process as _bsp
 cimport quantlib._stochastic_process as _sp
 
 from quantlib.handle cimport Handle, shared_ptr

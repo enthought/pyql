@@ -1,7 +1,7 @@
 include 'types.pxi'
 
 from libcpp cimport bool
-from _observable cimport Observable
+from ._observable cimport Observable
 
 cdef extern from 'ql/quote.hpp' namespace 'QuantLib':
     cdef cppclass Quote(Observable):

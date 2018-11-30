@@ -7,7 +7,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-cimport _flat_forward as ffwd
 from libcpp cimport bool as cbool
 from quantlib.handle cimport shared_ptr
 

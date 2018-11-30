@@ -5,7 +5,7 @@
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
 
-cimport _currency as _cu
+from . cimport _currency as _cu
 from cython.operator import dereference as deref
 
 cdef class Currency:

@@ -1,4 +1,5 @@
-cimport _compounding
+from . cimport _compounding
+
 cpdef public enum Compounding:
     Simple = _compounding.Simple
     Compounded = _compounding.Compounded

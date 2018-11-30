@@ -5,7 +5,7 @@ from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.indexes.swap_index cimport SwapIndex
-cimport _cms_coupon as _cc
+from . cimport _cms_coupon as _cc
 cimport quantlib.indexes._swap_index as _si
 cimport quantlib._index as _ii
 cimport quantlib._cashflow as _cf

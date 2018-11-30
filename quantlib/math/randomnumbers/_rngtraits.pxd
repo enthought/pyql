@@ -1,7 +1,7 @@
 include '../../types.pxi'
 
-from _inverse_cumulative_rsg cimport InverseCumulativeRsg
-from _sobol_rsg cimport SobolRsg
+from ._inverse_cumulative_rsg cimport InverseCumulativeRsg
+from ._sobol_rsg cimport SobolRsg
 
 cdef extern from 'ql/math/distributions/normaldistribution.hpp' namespace 'QuantLib' nogil:
     cdef cppclass InverseCumulativeNormal:

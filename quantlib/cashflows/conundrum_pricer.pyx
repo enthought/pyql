@@ -1,7 +1,7 @@
 include '../types.pxi'
 
-cimport _conundrum_pricer as _conp
-cimport _coupon_pricer as _cp
+from . cimport _conundrum_pricer as _conp
+from . cimport _coupon_pricer as _cp
 cimport quantlib.termstructures.volatility.swaption._swaption_vol_structure as _svs
 from quantlib.termstructures.volatility.swaption.swaption_vol_structure \
     cimport SwaptionVolatilityStructure

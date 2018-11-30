@@ -6,9 +6,9 @@ from quantlib._defines cimport QL_NULL_REAL
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
-from swap_spread_index cimport SwapSpreadIndex
-cimport _cms_spread_coupon as _csc
-cimport _swap_spread_index as _ssi
+from .swap_spread_index cimport SwapSpreadIndex
+from . cimport _cms_spread_coupon as _csc
+from . cimport _swap_spread_index as _ssi
 cimport quantlib._index as _ii
 cimport quantlib._cashflow as _cf
 

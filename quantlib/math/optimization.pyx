@@ -1,6 +1,6 @@
 from quantlib.handle cimport shared_ptr
 
-cimport _optimization as _opt
+from . cimport _optimization as _opt
 from quantlib.math.array cimport Array
 
 cdef class OptimizationMethod:

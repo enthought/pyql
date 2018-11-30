@@ -14,8 +14,8 @@ from libcpp cimport bool
 
 from quantlib.handle cimport shared_ptr, optional
 
-cimport _credit_default_swap as _cds
-cimport _instrument
+cimport quantlib.instruments._credit_default_swap as _cds
+cimport quantlib.instruments._instrument as _instrument
 cimport quantlib.pricingengines._pricing_engine as _pe
 cimport quantlib.time._calendar as _calendar
 

@@ -12,7 +12,7 @@ cimport quantlib.termstructures.volatility.swaption._swaption_vol_structure \
     as _svs
 from quantlib.termstructures.volatility.swaption.swaption_vol_structure \
     cimport SwaptionVolatilityStructure
-from _black_swaption_engine cimport BlackSwaptionEngine as _BlackSwaptionEngine
+from ._black_swaption_engine cimport BlackSwaptionEngine as _BlackSwaptionEngine
 
 cpdef enum CashAnnuityModel:
     SwapRate = 0

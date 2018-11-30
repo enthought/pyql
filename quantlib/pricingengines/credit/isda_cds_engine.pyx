@@ -6,7 +6,7 @@ from quantlib.handle cimport shared_ptr, Handle, optional
 from quantlib.pricingengines.engine cimport PricingEngine
 
 cimport quantlib.pricingengines._pricing_engine as _pe
-cimport _isda_cds_engine as _ice
+from . cimport _isda_cds_engine as _ice
 
 cimport quantlib.termstructures._default_term_structure as _dts
 cimport quantlib.termstructures._yield_term_structure as _yts

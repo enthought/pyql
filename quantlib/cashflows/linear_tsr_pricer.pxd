@@ -1,5 +1,5 @@
-from coupon_pricer cimport CmsCouponPricer
-from _linear_tsr_pricer cimport LinearTsrPricer as QlLinearTsrPricer
+from .coupon_pricer cimport CmsCouponPricer
+from ._linear_tsr_pricer cimport LinearTsrPricer as QlLinearTsrPricer
 
 cdef class Settings:
     cdef QlLinearTsrPricer.Settings _thisptr

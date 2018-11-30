@@ -5,7 +5,7 @@ from quantlib.handle cimport shared_ptr, Handle
 from quantlib.cashflows._floating_rate_coupon cimport FloatingRateCoupon
 from quantlib.cashflows._coupon_pricer cimport FloatingRateCouponPricer
 from quantlib.cashflows._cap_floored_coupon cimport CappedFlooredCoupon
-from _swap_spread_index cimport SwapSpreadIndex
+from ._swap_spread_index cimport SwapSpreadIndex
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib._quote cimport Quote

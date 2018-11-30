@@ -9,9 +9,6 @@
 
 include '../types.pxi'
 
-cimport _array as _arr
-
-
 cdef class Array:
     """
     1D array for linear algebra

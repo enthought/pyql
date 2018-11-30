@@ -10,7 +10,7 @@ from libcpp cimport bool
 
 from quantlib.handle cimport Handle, shared_ptr, optional
 cimport quantlib.pricingengines._pricing_engine as _pe
-cimport _midpoint_cds_engine as _mce
+from . cimport _midpoint_cds_engine as _mce
 
 from quantlib.pricingengines.engine cimport PricingEngine
 

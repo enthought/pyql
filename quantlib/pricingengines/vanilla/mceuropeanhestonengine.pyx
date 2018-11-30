@@ -7,7 +7,7 @@ cimport quantlib.pricingengines._pricing_engine as _pe
 from quantlib.processes.heston_process cimport HestonProcess
 cimport quantlib.processes._heston_process as _hp
 from .mcvanillaengine cimport MCVanillaEngine
-cimport _mceuropeanhestonengine as _mceh
+from . cimport _mceuropeanhestonengine as _mceh
 
 cdef class MCEuropeanHestonEngine(MCVanillaEngine):
 

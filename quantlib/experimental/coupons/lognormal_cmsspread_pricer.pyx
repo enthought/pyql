@@ -2,7 +2,7 @@ include '../../types.pxi'
 
 from quantlib.handle cimport Handle, optional, shared_ptr, static_pointer_cast
 
-from cms_spread_coupon cimport CmsSpreadCouponPricer
+from .cms_spread_coupon cimport CmsSpreadCouponPricer
 from quantlib.cashflows.coupon_pricer cimport CmsCouponPricer
 from quantlib.quotes cimport SimpleQuote
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
@@ -10,7 +10,7 @@ from quantlib.termstructures.volatility.volatilitytype cimport VolatilityType
 from quantlib._defines cimport QL_NULL_REAL
 cimport quantlib.cashflows._coupon_pricer as _cp
 cimport quantlib._quote as _qt
-cimport _lognormal_cmsspread_pricer as _lcp
+from . cimport _lognormal_cmsspread_pricer as _lcp
 
 cdef class LognormalCmsSpreadPricer(CmsSpreadCouponPricer):
     def __init__(self, CmsCouponPricer cms_pricer not None,

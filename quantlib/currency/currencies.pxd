@@ -1,4 +1,4 @@
-from currency cimport Currency
+from .currency cimport Currency
 
 cdef class USDCurrency(Currency):
     pass

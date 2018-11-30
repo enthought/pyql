@@ -7,7 +7,7 @@
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
 #
 
-cimport _currency
+from . cimport _currency
 
 cdef class Currency:
     cdef _currency.Currency *_thisptr

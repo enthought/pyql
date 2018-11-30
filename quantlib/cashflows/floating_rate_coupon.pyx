@@ -5,8 +5,8 @@ from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time.daycounter cimport DayCounter
-cimport _floating_rate_coupon as _frc
-from coupon_pricer cimport FloatingRateCouponPricer
+from . cimport _floating_rate_coupon as _frc
+from .coupon_pricer cimport FloatingRateCouponPricer
 cimport quantlib._cashflow as _cf
 from quantlib.indexes.interest_rate_index cimport InterestRateIndex
 cimport quantlib.indexes._interest_rate_index as _iri

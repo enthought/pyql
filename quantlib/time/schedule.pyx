@@ -3,17 +3,16 @@ from libcpp cimport bool
 from libcpp.vector cimport vector
 from quantlib.handle cimport optional
 
-cimport _schedule
-cimport _date
-cimport _calendar
+cimport quantlib.time._date as _date
+cimport quantlib.time._calendar as _calendar
 cimport cython
 import numpy as np
 cimport numpy as np
 np.import_array()
-from _businessdayconvention cimport Following, BusinessDayConvention
+from ._businessdayconvention cimport Following, BusinessDayConvention
 
-from calendar cimport Calendar
-from date cimport date_from_qldate, Date, Period
+from .calendar cimport Calendar
+from .date cimport date_from_qldate, Date, Period
 
 import warnings
 

@@ -1,4 +1,4 @@
-from coupon_pricer cimport CmsCouponPricer
+from .coupon_pricer cimport CmsCouponPricer
 
 cdef class HaganPricer(CmsCouponPricer):
     pass

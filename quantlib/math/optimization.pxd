@@ -1,4 +1,4 @@
-cimport _optimization as _opt
+from . cimport _optimization as _opt
 
 from quantlib.handle cimport shared_ptr
 

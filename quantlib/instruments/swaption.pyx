@@ -1,5 +1,5 @@
 include '../types.pxi'
-cimport _swaption
+from . cimport _swaption
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.termstructures.volatility.volatilitytype cimport (
     VolatilityType, ShiftedLognormal )
@@ -7,8 +7,8 @@ cimport quantlib.termstructures.volatility._volatilitytype as _voltype
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from .option cimport Exercise
 from .swap cimport VanillaSwap
-cimport _vanillaswap
-cimport _instrument
+from . cimport _vanillaswap
+from . cimport _instrument
 
 cdef class Swaption(Instrument):
     def __init__(self, VanillaSwap swap not None, Exercise exercise not None,
@@ -52,12 +52,12 @@ cdef class Swaption(Instrument):
 
     @property
     def vega(self):
-        return self._thisptr.get().result[Real]("vega")
+        return self._thisptr.get().result[Real](b"vega")
 
     @property
     def annuity(self):
-        return self._thisptr.get().result[Real]("annuity")
+        return self._thisptr.get().result[Real](b"annuity")
 
     @property
     def atm_forward(self):
-        return self._thisptr.get().result[Real]("atmForward")
+        return self._thisptr.get().result[Real](b"atmForward")

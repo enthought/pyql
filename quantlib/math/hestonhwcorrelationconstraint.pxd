@@ -1,4 +1,4 @@
-from optimization cimport Constraint 
+from .optimization cimport Constraint
 
 cdef class HestonHullWhiteCorrelationConstraint(Constraint):
     pass

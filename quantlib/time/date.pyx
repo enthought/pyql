@@ -5,16 +5,16 @@ from libcpp.string cimport string
 cimport cython
 
 # cannot use date.pxd because of name clashing
-cimport _date
-cimport _period
-cimport frequency
+from . cimport _date
+from . cimport _period
+from . cimport frequency
 
-from _date cimport (
+from ._date cimport (
     Date as QlDate, todaysDate, nextWeekday, endOfMonth, isEndOfMonth,
     minDate, maxDate, Year, Month, Day, Hour, Minute, Second, Millisecond,
     Microsecond, isLeap, Size, nthWeekday, serial_type, Integer
 )
-from _period cimport Period as QlPeriod, parse, unary_minus
+from ._period cimport Period as QlPeriod, parse, unary_minus
 from enum import IntEnum
 
 # Python imports

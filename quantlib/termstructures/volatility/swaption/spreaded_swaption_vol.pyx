@@ -1,6 +1,6 @@
 from quantlib.quotes cimport Quote
 from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
-cimport _swaption_vol_structure as _svs
+from . cimport _swaption_vol_structure as _svs
 cimport quantlib._quote as _qt
 from ..._vol_term_structure cimport VolatilityTermStructure
 

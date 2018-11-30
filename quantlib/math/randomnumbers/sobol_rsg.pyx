@@ -1,5 +1,5 @@
 include '../../types.pxi'
-from _sobol_rsg cimport SobolRsg as QlSobolRsg
+from ._sobol_rsg cimport SobolRsg as QlSobolRsg
 
 cpdef enum DirectionIntegers:
     Unit=0

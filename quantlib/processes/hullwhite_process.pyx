@@ -1,7 +1,7 @@
 include '../types.pxi'
 
 from cython.operator cimport dereference as deref
-cimport _hullwhite_process as _hw
+from .cimport _hullwhite_process as _hw
 cimport quantlib._stochastic_process as _sp
 cimport quantlib.termstructures._yield_term_structure as _yts
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure

@@ -6,7 +6,7 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
-cimport _businessdayconvention as _bdc
+from . cimport _businessdayconvention as _bdc
 
 cdef public enum:
     Following = _bdc.Following

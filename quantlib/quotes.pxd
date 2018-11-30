@@ -1,4 +1,4 @@
-cimport _quote as _qt
+cimport quantlib._quote as _qt
 from quantlib.handle cimport shared_ptr
 from quantlib.observable cimport Observable
 

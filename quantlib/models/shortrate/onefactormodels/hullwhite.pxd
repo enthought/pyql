@@ -7,8 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from vasicek cimport Vasicek
+from .vasicek cimport Vasicek
 
 cdef class HullWhite(Vasicek):
-
     pass

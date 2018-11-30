@@ -8,8 +8,8 @@
 """
 
 from libcpp cimport bool
-cimport _date
-cimport _period
+cimport quantlib.time._date as _date
+cimport quantlib.time._period as _period
 from quantlib.handle cimport shared_ptr
 
 cdef class Period:

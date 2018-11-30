@@ -3,7 +3,7 @@ include '../types.pxi'
 from libcpp cimport bool
 from quantlib.handle cimport optional, Handle, shared_ptr
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
-from _instrument cimport Instrument
+from ._instrument cimport Instrument
 from quantlib._cashflow cimport Leg
 from quantlib.time._calendar cimport BusinessDayConvention
 from quantlib.time._date cimport Date

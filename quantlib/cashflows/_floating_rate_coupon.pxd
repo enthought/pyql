@@ -7,7 +7,7 @@ from quantlib.time._daycounter cimport DayCounter
 from quantlib._cashflow cimport CashFlow
 from quantlib._interest_rate cimport InterestRate
 from quantlib.cashflows._coupon cimport Coupon
-from _coupon_pricer cimport FloatingRateCouponPricer
+from ._coupon_pricer cimport FloatingRateCouponPricer
 from quantlib.indexes._interest_rate_index cimport InterestRateIndex
 
 cdef extern from 'ql/cashflows/floatingratecoupon.hpp' namespace 'QuantLib':

@@ -2,7 +2,7 @@ from quantlib.handle cimport Handle, shared_ptr
 
 from cython.operator cimport dereference as deref
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
-cimport _usdlibor as _usd
+from . cimport _usdlibor as _usd
 cimport quantlib._index as _in
 from quantlib.time.date cimport Period
 

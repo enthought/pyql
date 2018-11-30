@@ -1,9 +1,9 @@
 from cython.operator cimport dereference as deref
 
-cimport _daycounter
-cimport _date
+from . cimport _daycounter
+from . cimport _date
 
-from date cimport Date
+from .date cimport Date
 from quantlib.time.daycounters.actual_actual cimport from_name as aa_from_name
 from quantlib.time.daycounters.thirty360 cimport from_name as th_from_name
 cimport quantlib.time.daycounters._simple as _simple

@@ -2,9 +2,9 @@
 Contains all the country specific currency implementations.
 """
 
-cimport _currency as _cu
+from . cimport _currency as _cu
 
-from currency cimport Currency
+from .currency cimport Currency
 
 cdef class USDCurrency(Currency):
     def __cinit__(self):

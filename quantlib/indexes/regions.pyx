@@ -2,9 +2,9 @@
 
 """
 
-cimport _region as _re
+from . cimport _region as _re
 
-from region cimport Region
+from .region cimport Region
 
 cdef class AustraliaRegion(Region):
     def __cinit__(self):

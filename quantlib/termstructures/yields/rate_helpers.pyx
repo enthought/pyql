@@ -10,7 +10,6 @@ include '../../types.pxi'
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 
-cimport _rate_helpers as _rh
 cimport quantlib.instruments._instrument as _ins
 from quantlib.instruments.swap cimport VanillaSwap
 cimport quantlib.instruments._vanillaswap as _vs
