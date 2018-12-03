@@ -66,7 +66,7 @@ cdef class ActualActual(DayCounter):
         self._thisptr = <_daycounter.DayCounter*> new \
             _aa.ActualActual(convention)
 
-cdef _daycounter.DayCounter* from_name(str convention):
+cdef _daycounter.DayCounter* from_name(basestring convention):
 
     cdef _aa.Convention ql_convention = <_aa.Convention>CONVENTIONS[convention]
 
