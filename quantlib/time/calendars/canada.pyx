@@ -2,7 +2,7 @@ cimport quantlib.time._calendar as _calendar
 cimport quantlib.time.calendars._canada as _ca
 from quantlib.time.calendar cimport Calendar
 
-cdef public enum Market:
+cpdef enum Market:
     SETTLEMENT = _ca.Settlement # generic settlement calendar
     TSX        = _ca.TSX # Toronto stock exchange calendar
 

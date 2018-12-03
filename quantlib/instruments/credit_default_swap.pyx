@@ -31,11 +31,11 @@ from quantlib.time.schedule cimport Schedule
 from quantlib.cashflows.fixed_rate_coupon cimport FixedRateLeg
 from quantlib.time.date cimport _pydate_from_qldate
 
-cpdef public enum Side:
+cpdef enum Side:
     Buyer = _cds.Buyer
     Seller = _cds.Seller
 
-cpdef public enum PricingModel:
+cpdef enum PricingModel:
     Midpoint = _cds.Midpoint
     ISDA = _cds.ISDA
 

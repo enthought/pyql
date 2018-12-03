@@ -16,7 +16,7 @@ from .date cimport date_from_qldate, Date, Period
 
 import warnings
 
-cpdef public enum Rule:
+cpdef enum Rule:
     # Backward from termination date to effective date.
     Backward       = _schedule.Backward
     # Forward from effective date to termination date.

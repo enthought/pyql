@@ -4,7 +4,7 @@ from quantlib.handle cimport shared_ptr
 cimport quantlib.methods.finitedifferences.solvers._fdmbackwardsolver as _fdm
 import numpy as np
 
-cdef public enum FdmSchemeType:
+cpdef enum FdmSchemeType:
     HundsdorferType = _fdm.HundsdorferType
     DouglasType = _fdm.DouglasType
     CraigSneydType = _fdm.CraigSneydType

@@ -19,12 +19,12 @@ from quantlib.time.date cimport Date
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 
-cdef public enum ExerciseType:
+cpdef enum ExerciseType:
     American = _exercise.American
     Bermudan  = _exercise.Bermudan
     European = _exercise.European
 
-cpdef public enum OptionType:
+cpdef enum OptionType:
     Call = _option.Type.Call
     Put  = _option.Type.Put
 

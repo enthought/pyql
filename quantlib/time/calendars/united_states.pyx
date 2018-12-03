@@ -2,7 +2,7 @@ cimport quantlib.time._calendar as _calendar
 cimport quantlib.time.calendars._united_states as _us
 from quantlib.time.calendar cimport Calendar
 
-cpdef public enum Market:
+cpdef enum Market:
     Settlement     = _us.Settlement # generic settlement calendar
     NYSE           = _us.NYSE # New York stock exchange calendar
     GovernmentBond = _us.GovernmentBond # government-bond calendar

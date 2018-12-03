@@ -8,7 +8,7 @@
 """
 from . cimport _businessdayconvention as _bdc
 
-cdef public enum:
+cpdef enum:
     Following = _bdc.Following
     ModifiedFollowing = _bdc.ModifiedFollowing
     Preceding = _bdc.Preceding

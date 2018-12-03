@@ -21,7 +21,7 @@ cimport quantlib.time._daycounter as _daycounter
 cimport quantlib.time.daycounters._actual_actual as _aa
 from quantlib.time.daycounter cimport DayCounter
 
-cdef public enum Convention:
+cpdef enum Convention:
     ISMA       = _aa.ISMA
     Bond       = _aa.Bond
     ISDA       = _aa.ISDA
