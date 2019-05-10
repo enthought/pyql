@@ -13,7 +13,7 @@ from cython.operator cimport dereference as deref
 
 from quantlib.models.shortrate.onefactor_model cimport OneFactorAffineModel
 cimport quantlib.models._model as _mo
-cimport _vasicek as _va
+from . cimport _vasicek as _va
 from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib._quote as _qt
 from quantlib.quotes cimport Quote, SimpleQuote

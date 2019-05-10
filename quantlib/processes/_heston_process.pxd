@@ -14,28 +14,28 @@ from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
 cimport quantlib._quote as _qt
 from quantlib._stochastic_process cimport StochasticProcess
 
-cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib::HestonProcess':
-
-    cdef enum Discretization:
-        PartialTruncation
-        FullTruncation
-        Reflection
-        NonCentralChiSquareVariance
-        QuadraticExponential
-        QuadraticExponentialMartingale
-
 cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib':
 
     cdef cppclass HestonProcess(StochasticProcess):
         HestonProcess() # fake empty constructor for Cython
         # fixme: implement the discrization version of the constructor
+        enum Discretization:
+            PartialTruncation
+            FullTruncation
+            Reflection
+            NonCentralChiSquareVariance
+            QuadraticExponential
+            QuadraticExponentialMartingale
+            BroadieKayaExactSchemeLobatto
+            BroadieKayaExactSchemeLaguerre
+            BroadieKayaExactSchemeTrapezoidal
         HestonProcess(
             Handle[YieldTermStructure]& riskFreeRate,
             Handle[YieldTermStructure]& dividendYield,
             Handle[_qt.Quote]& s0,
             Real v0, Real kappa,
-            Real theta, Real sigma, Real rho, Discretization d) except +
-            
+            Real theta, Real sigma, Real rho, HestonProcess.Discretization d) except +
+
         Size size() except +
         Real v0() except +
         Real rho() except +
@@ -47,6 +47,7 @@ cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib':
         Handle[YieldTermStructure] dividendYield()
         Handle[YieldTermStructure] riskeFreeRate()
 
+
 cdef extern from 'ql/processes/batesprocess.hpp' namespace 'QuantLib':
 
     cdef cppclass BatesProcess(HestonProcess):
@@ -56,7 +57,7 @@ cdef extern from 'ql/processes/batesprocess.hpp' namespace 'QuantLib':
             Handle[_qt.Quote]& s0,
             Real v0, Real kappa,
             Real theta, Real sigma, Real rho,
-            Real lambda_, Real nu, Real delta, Discretization d) except +
+            Real lambda_, Real nu, Real delta, HestonProcess.Discretization d) except +
 
         Real Lambda 'lambda'() except +
         Real nu() except +

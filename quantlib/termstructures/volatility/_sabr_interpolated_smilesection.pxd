@@ -1,5 +1,5 @@
 include "../../types.pxi"
-from _smilesection cimport SmileSection
+from ._smilesection cimport SmileSection
 from quantlib._quote cimport Quote
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.time._daycounter cimport DayCounter

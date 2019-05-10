@@ -1,4 +1,4 @@
-from _swaption cimport Settlement
+from ._swaption cimport Settlement
 from .instrument cimport Instrument
 
 cpdef enum SettlementType:

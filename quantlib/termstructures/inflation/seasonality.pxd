@@ -7,7 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-cimport _seasonality as _se
+from . cimport _seasonality as _se
 from quantlib.handle cimport shared_ptr
 
 cdef class Seasonality:

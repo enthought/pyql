@@ -1,8 +1,8 @@
 build:
 	python setup.py build_ext --inplace
 
-build3:
-	python3 setup.py build_ext --inplace
+build2:
+	python2 setup.py build_ext --inplace
 
 docs:
 	make -C docs html
@@ -20,9 +20,9 @@ tests:
 	cd quantlib/test
 	python -m unittest discover -v
 
-tests3:
+tests2: build2
 	cd quantlib/test
-	python3 -m unittest discover -v
+	python2 -m unittest discover -v
 
 build_ex:
 	g++ -m32 -I/opt/local/include/ -I/opt/local/include/boost quantlib_test2.cpp \
@@ -33,7 +33,8 @@ clean:
 	find quantlib -name \*.pyc -exec rm {} \;
 	find quantlib -name \*.cpp -exec rm {} \;
 	find quantlib -name \*.c -exec rm {} \;
+	find quantlib -name \*.h -exec rm {} \;
 	rm -rf build
 	rm -rf dist
 
-.PHONY: build docs clean
+.PHONY: build build2 docs clean

@@ -12,7 +12,7 @@ cdef extern from 'ql/time/date.hpp' namespace 'QuantLib':
 from libcpp cimport bool
 from libcpp.string cimport string
 from libc.stdint cimport int_fast32_t
-from _period cimport Period
+from ._period cimport Period
 
 cdef extern from "ostream" namespace "std":
     cdef cppclass ostream:

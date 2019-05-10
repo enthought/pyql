@@ -11,8 +11,8 @@ include '../types.pxi'
 
 from quantlib.handle cimport shared_ptr
 from quantlib.math.optimization cimport Constraint
-cimport _optimization as _opt
-cimport _hestonhwcorrelationconstraint as _hhw
+from . cimport _optimization as _opt
+from . cimport _hestonhwcorrelationconstraint as _hhw
 
 cdef class HestonHullWhiteCorrelationConstraint(Constraint):
 

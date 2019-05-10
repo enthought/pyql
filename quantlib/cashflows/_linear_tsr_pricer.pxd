@@ -1,7 +1,7 @@
 include '../types.pxi'
 from quantlib.handle cimport Handle
 from quantlib._quote cimport Quote
-from _coupon_pricer cimport CmsCouponPricer
+from ._coupon_pricer cimport CmsCouponPricer
 from quantlib.termstructures.volatility.swaption._swaption_vol_structure \
     cimport SwaptionVolatilityStructure
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure

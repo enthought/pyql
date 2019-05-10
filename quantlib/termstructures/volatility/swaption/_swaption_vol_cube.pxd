@@ -1,8 +1,8 @@
 include '../../../types.pxi'
 from libcpp.vector cimport vector
 from libcpp cimport bool
-from _swaption_vol_discrete cimport SwaptionVolatilityDiscrete
-from _swaption_vol_structure cimport SwaptionVolatilityStructure
+from ._swaption_vol_discrete cimport SwaptionVolatilityDiscrete
+from ._swaption_vol_structure cimport SwaptionVolatilityStructure
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib._quote cimport Quote
 from quantlib.indexes._swap_index cimport SwapIndex

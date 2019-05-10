@@ -7,7 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-cimport _region
+from . cimport _region
 
 cdef class Region:
     cdef _region.Region *_thisptr

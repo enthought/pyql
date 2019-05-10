@@ -10,11 +10,11 @@ from quantlib._defines cimport QL_NULL_REAL
 from quantlib.quotes cimport SimpleQuote
 from quantlib.time.date cimport Period
 from quantlib.time._period cimport Period as QlPeriod
-from swaption_vol_structure cimport SwaptionVolatilityStructure
-cimport _swaption_vol_cube1 as _svc1
+from .swaption_vol_structure cimport SwaptionVolatilityStructure
+from . cimport _swaption_vol_cube1 as _svc1
 cimport quantlib.indexes._swap_index as _si
 
-cimport _swaption_vol_structure as _svs
+from . cimport _swaption_vol_structure as _svs
 from ..._vol_term_structure cimport VolatilityTermStructure
 cimport quantlib._quote as _qt
 

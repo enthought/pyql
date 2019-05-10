@@ -110,7 +110,8 @@ def get_extra_link_args():
 
     return args
 
-CYTHON_DIRECTIVES = {"embedsignature": True}
+CYTHON_DIRECTIVES = {"embedsignature": True,
+        "language_level": '3str'}
 
 
 def collect_extensions():

@@ -17,7 +17,7 @@ from libcpp.string cimport string
 
 # QuantLib header cimports
 cimport quantlib.termstructures._yield_term_structure as _yts
-cimport _libor
+from . cimport _libor
 cimport quantlib._index as _in
 cimport quantlib.time._calendar as _calendar
 

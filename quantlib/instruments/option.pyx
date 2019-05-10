@@ -5,9 +5,9 @@ from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from libcpp.vector cimport vector
 
-cimport _exercise
-cimport _payoffs
-cimport _instrument
+from . cimport _option
+from . cimport _payoffs
+cimport quantlib.instruments._instrument as _instrument
 cimport quantlib.time._date as _date
 cimport quantlib.pricingengines._pricing_engine as _pe
 cimport quantlib.processes._black_scholes_process as _bsp
@@ -19,12 +19,12 @@ from quantlib.time.date cimport Date
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 
-cdef public enum ExerciseType:
+cpdef enum ExerciseType:
     American = _exercise.American
     Bermudan  = _exercise.Bermudan
     European = _exercise.European
 
-cpdef public enum OptionType:
+cpdef enum OptionType:
     Call = _option.Type.Call
     Put  = _option.Type.Put
 

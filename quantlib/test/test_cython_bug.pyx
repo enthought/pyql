@@ -43,7 +43,7 @@ cdef FixedRateBond* get_bond_for_evaluation_date(QlDate& in_date):
     # debugged evaluation date
     cdef QlDate evaluation_date = <QlDate>Settings.instance().evaluationDate()
     cdef Date cython_evaluation_date = date_from_qldate(evaluation_date)
-    print 'Current evaluation date', cython_evaluation_date
+    print('Current evaluation date', cython_evaluation_date)
 
 
 
@@ -109,12 +109,12 @@ def test_bond_schedule_anotherday_cython():
 
     cdef QlDate e_date = <QlDate>Settings.instance().evaluationDate()
 
-    print s_date.serialNumber()
-    print b_date.serialNumber()
+    print(s_date.serialNumber())
+    print(b_date.serialNumber())
 
     cdef Date s1 = date_from_qldate(s_date)
     cdef Date s2 = date_from_qldate(b_date)
     cdef Date s3 = date_from_qldate(e_date)
-    print s3
+    print(s3)
 
     return s1, s2

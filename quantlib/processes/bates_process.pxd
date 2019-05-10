@@ -7,7 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from heston_process cimport HestonProcess
+from .heston_process cimport HestonProcess
 
 cdef class BatesProcess(HestonProcess):
     pass

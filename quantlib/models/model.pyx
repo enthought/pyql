@@ -9,7 +9,6 @@
 
 include '../types.pxi'
 
-cimport _model as _mo
 from quantlib.handle cimport shared_ptr
 from cython.operator cimport dereference as deref
 from quantlib.math.array cimport Array

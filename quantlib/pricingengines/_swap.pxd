@@ -5,7 +5,7 @@ from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
 from libcpp cimport bool
 from quantlib.time._date cimport Date
 
-from _pricing_engine cimport PricingEngine
+from ._pricing_engine cimport PricingEngine
 
 cdef extern from 'ql/pricingengines/swap/discountingswapengine.hpp' namespace 'QuantLib':
 

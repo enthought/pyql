@@ -7,8 +7,8 @@
 
 include '../types.pxi'
 
-cimport _bonds
-cimport _instrument
+cimport quantlib.instruments._bonds as _bonds
+cimport quantlib.instruments._instrument as _instrument
 cimport quantlib.pricingengines._pricing_engine as _pe
 cimport quantlib.time._date as _date
 

@@ -7,11 +7,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-cimport _swaption_helper as _sh
-
 from quantlib.handle cimport shared_ptr
 from quantlib.models.calibration_helper cimport CalibrationHelper
 
 cdef class SwaptionHelper(CalibrationHelper):
-
     pass

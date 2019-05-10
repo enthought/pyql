@@ -11,30 +11,16 @@ include '../types.pxi'
 
 from cython.operator cimport dereference as deref
 cimport quantlib._stochastic_process as _sp
-cimport _heston_process as _hp
+from ._heston_process cimport BatesProcess as QlBatesProcess
+from .heston_process cimport HestonProcess, Discretization, FullTruncation
 
 from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib.termstructures.yields._flat_forward as _ff
 cimport quantlib._quote as _qt
 from quantlib.quotes cimport Quote, SimpleQuote
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
-from heston_process cimport HestonProcess
-
-cdef public enum Discretization:
-        PARTIALTRUNCATION = _hp.PartialTruncation
-        FULLTRUNCATION = _hp.FullTruncation
-        REFLECTION = _hp.Reflection
-        NONCENTRALCHISQUAREVARIANCE = _hp.NonCentralChiSquareVariance
-        QUADRATICEXPONENTIAL = _hp.QuadraticExponential
-        QUADRATICEXPONENTIALMARTINGALE = _hp.QuadraticExponentialMartingale
 
 cdef class BatesProcess(HestonProcess):
-
-    def __cinit__(self):
-        pass
-
-    def __dealloc(self):
-        pass
 
     def __init__(self,
        YieldTermStructure risk_free_rate_ts=YieldTermStructure(),
@@ -48,13 +34,13 @@ cdef class BatesProcess(HestonProcess):
        Real lambda_=0,
        Real nu=0,
        Real delta=0,
-       Discretization d=FULLTRUNCATION):
+       Discretization d=FullTruncation):
 
         #create handles
         cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](s0._thisptr)
 
         self._thisptr = shared_ptr[_sp.StochasticProcess](
-            new _hp.BatesProcess(
+            new QlBatesProcess(
                 risk_free_rate_ts._thisptr,
                 dividend_ts._thisptr,
                 s0_handle,
@@ -68,12 +54,12 @@ cdef class BatesProcess(HestonProcess):
 
     property Lambda:
         def __get__(self):
-            return (<_hp.BatesProcess*> self._thisptr.get()).Lambda()
+            return (<QlBatesProcess*> self._thisptr.get()).Lambda()
 
     property nu:
         def __get__(self):
-            return (<_hp.BatesProcess*> self._thisptr.get()).nu()
+            return (<QlBatesProcess*> self._thisptr.get()).nu()
 
     property delta:
         def __get__(self):
-            return (<_hp.BatesProcess*> self._thisptr.get()).delta()
+            return (<QlBatesProcess*> self._thisptr.get()).delta()

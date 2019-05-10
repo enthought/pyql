@@ -8,7 +8,7 @@ from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
 cimport quantlib.instruments._bonds as _bonds
 cimport quantlib.time._calendar as _calendar
 cimport quantlib._quote as _qt
-cimport _bond_helpers as _bh
+from . cimport _bond_helpers as _bh
 
 from quantlib.instruments.bonds cimport Bond
 from quantlib.quotes cimport Quote

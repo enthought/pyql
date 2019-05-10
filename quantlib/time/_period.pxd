@@ -2,7 +2,7 @@ include '../types.pxi'
 from libcpp cimport bool
 from libcpp.string cimport string
 
-from frequency cimport Frequency
+from .frequency cimport Frequency
 
 cdef extern from 'ql/time/timeunit.hpp' namespace "QuantLib":
     cdef enum TimeUnit:

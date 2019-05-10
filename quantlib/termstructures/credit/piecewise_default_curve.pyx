@@ -6,7 +6,7 @@ from libcpp cimport bool
 from libcpp.vector cimport vector
 from libcpp.string cimport string
 
-cimport _piecewise_default_curve as _pdc
+from . cimport _piecewise_default_curve as _pdc
 
 from quantlib.handle cimport shared_ptr
 from quantlib.time.date cimport Date, date_from_qldate
@@ -14,7 +14,7 @@ cimport quantlib.time._date as _date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar cimport Calendar
 cimport quantlib.termstructures.credit._credit_helpers as _ch
-from default_probability_helpers cimport CdsHelper, DefaultProbabilityHelper
+from .default_probability_helpers cimport CdsHelper, DefaultProbabilityHelper
 cimport quantlib.termstructures._default_term_structure as _dts
 from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
 

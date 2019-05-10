@@ -1,4 +1,4 @@
-from floating_rate_coupon cimport FloatingRateCoupon
+from .floating_rate_coupon cimport FloatingRateCoupon
 
 cdef class CappedFlooredCoupon(FloatingRateCoupon):
     pass

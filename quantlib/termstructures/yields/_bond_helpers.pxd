@@ -9,8 +9,8 @@ from quantlib.termstructures._helpers cimport BootstrapHelper
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._schedule cimport Schedule
-from _flat_forward cimport YieldTermStructure
-from _rate_helpers cimport RateHelper
+from ._flat_forward cimport YieldTermStructure
+from ._rate_helpers cimport RateHelper
 
 
 cdef extern from 'ql/termstructures/yield/bondhelpers.hpp' namespace 'QuantLib':

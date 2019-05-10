@@ -23,7 +23,7 @@ cimport quantlib._quote as _qt
 cimport quantlib.termstructures._yield_term_structure as _yts
 cimport quantlib.indexes._ibor_index as _ii
 cimport quantlib.models._calibration_helper as _ch
-cimport _swaption_helper as _sh
+from . cimport _swaption_helper as _sh
 
 from quantlib.models.calibration_helper cimport CalibrationHelper
 

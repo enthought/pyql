@@ -1,5 +1,5 @@
 from quantlib.handle cimport shared_ptr
-cimport _stochastic_process as _sp
+cimport quantlib._stochastic_process as _sp
 
 cdef class StochasticProcess:
     cdef shared_ptr[_sp.StochasticProcess] _thisptr

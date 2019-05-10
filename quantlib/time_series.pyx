@@ -1,6 +1,5 @@
 from cython.operator cimport dereference as deref, preincrement as preinc
 
-cimport _time_series as _ts
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time._date cimport Date as QlDate
 from libcpp.utility cimport pair

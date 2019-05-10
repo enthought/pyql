@@ -18,7 +18,7 @@ from quantlib._compounding cimport Compounding
 from quantlib.time.date import Annual
 
 from quantlib.handle cimport shared_ptr, RelinkableHandle, Handle
-cimport _flat_forward as ffwd
+from . cimport _flat_forward as ffwd
 cimport quantlib._quote as _qt
 from quantlib.quotes cimport Quote
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure

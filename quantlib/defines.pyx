@@ -1,4 +1,4 @@
-cimport _defines
+from . cimport _defines
 QL_MIN_INTEGER = _defines.QL_MIN_INTEGER
 QL_MAX_INTEGER = _defines.QL_MAX_INTEGER
 QL_MIN_REAL = _defines.QL_MIN_REAL

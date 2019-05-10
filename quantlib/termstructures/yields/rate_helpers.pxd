@@ -1,4 +1,4 @@
-cimport _rate_helpers as _rh
+from . cimport _rate_helpers as _rh
 from quantlib.handle cimport shared_ptr
 
 cdef class RateHelper:

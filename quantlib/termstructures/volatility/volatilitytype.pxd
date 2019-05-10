@@ -1,4 +1,4 @@
-cimport _volatilitytype as _voltype
+from . cimport _volatilitytype as _voltype
 
 cpdef enum VolatilityType:
     ShiftedLognormal = _voltype.ShiftedLognormal

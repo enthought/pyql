@@ -1,5 +1,4 @@
-cimport _calendar
-cimport _date
+cimport quantlib.time._calendar as _calendar
 
 from libcpp.vector cimport vector
 

@@ -11,8 +11,8 @@ from quantlib.time.date cimport Date, Period
 from quantlib.time.daycounter cimport DayCounter
 
 from .._cashflow cimport CashFlow
-cimport _cap_floored_coupon as _cfc
-cimport _floating_rate_coupon as _frc
+from . cimport _cap_floored_coupon as _cfc
+from . cimport _floating_rate_coupon as _frc
 cimport quantlib.indexes._ibor_index as _ii
 cimport quantlib.indexes._swap_index as _si
 

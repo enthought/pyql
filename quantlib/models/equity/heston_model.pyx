@@ -13,7 +13,7 @@ from cython.operator cimport dereference as deref
 
 from libcpp.vector cimport vector
 
-cimport _heston_model as _hm
+from . cimport _heston_model as _hm
 cimport quantlib.models._calibration_helper as _ch
 cimport quantlib.processes._heston_process as _hp
 cimport quantlib._stochastic_process as _sp

@@ -9,7 +9,7 @@
 
 include '../types.pxi'
 
-cimport _calibration_helper as _ch
+from . cimport _calibration_helper as _ch
 from quantlib.handle cimport shared_ptr
 from cython.operator cimport dereference as deref
 
@@ -17,7 +17,7 @@ cimport quantlib.pricingengines._pricing_engine as _pe
 from quantlib.pricingengines.engine cimport PricingEngine
 
 
-cdef public enum CalibrationErrorType:
+cpdef enum CalibrationErrorType:
     RelativePriceError = _ch.RelativePriceError
     PriceError = _ch.PriceError
     ImpliedVolError = _ch.ImpliedVolError

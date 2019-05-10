@@ -10,7 +10,6 @@ include 'types.pxi'
 from cython.operator cimport dereference as deref
 
 from quantlib.handle cimport shared_ptr
-cimport _interest_rate as _ir
 
 from quantlib.time.daycounter cimport DayCounter
 cimport quantlib.time._daycounter as _daycounter

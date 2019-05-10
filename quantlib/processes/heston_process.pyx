@@ -1,24 +1,14 @@
 include '../types.pxi'
 
-from cython.operator cimport dereference as deref
-cimport _heston_process as _hp
+from .heston_process cimport PartialTruncation
 cimport quantlib._stochastic_process as _sp
 
 cimport quantlib.termstructures._yield_term_structure as _yts
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 
 from quantlib.handle cimport Handle, shared_ptr
-cimport quantlib.termstructures.yields._flat_forward as _ff
 cimport quantlib._quote as _qt
 from quantlib.quotes cimport Quote, SimpleQuote
-
-cdef public enum Discretization:
-        PARTIALTRUNCATION = _hp.PartialTruncation
-        FULLTRUNCATION = _hp.FullTruncation
-        REFLECTION = _hp.Reflection
-        NONCENTRALCHISQUAREVARIANCE = _hp.NonCentralChiSquareVariance
-        QUADRATICEXPONENTIAL = _hp.QuadraticExponential
-        QUADRATICEXPONENTIALMARTINGALE = _hp.QuadraticExponentialMartingale
 
 cdef class HestonProcess(StochasticProcess):
     r"""
@@ -32,9 +22,6 @@ cdef class HestonProcess(StochasticProcess):
 
     """
 
-    def __cinit__(self):
-        pass
-
     def __init__(self,
        YieldTermStructure risk_free_rate_ts=YieldTermStructure(),
        YieldTermStructure dividend_ts=YieldTermStructure(),
@@ -44,13 +31,13 @@ cdef class HestonProcess(StochasticProcess):
        Real theta=0,
        Real sigma=0,
        Real rho=0,
-       Discretization d=QUADRATICEXPONENTIALMARTINGALE):
+       Discretization d=PartialTruncation):
 
         #create handles
         cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](s0._thisptr)
 
         self._thisptr = shared_ptr[_sp.StochasticProcess](
-            new _hp.HestonProcess(
+            new QlHestonProcess(
                 risk_free_rate_ts._thisptr,
                 dividend_ts._thisptr,
                 s0_handle,
@@ -66,27 +53,27 @@ cdef class HestonProcess(StochasticProcess):
 
     property v0:
         def __get__(self):
-            return (<_hp.HestonProcess*>self._thisptr.get()).v0()
+            return (<QlHestonProcess*>self._thisptr.get()).v0()
 
     property rho:
         def __get__(self):
-            return (<_hp.HestonProcess*>self._thisptr.get()).rho()
+            return (<QlHestonProcess*>self._thisptr.get()).rho()
 
     property kappa:
         def __get__(self):
-            return (<_hp.HestonProcess*>self._thisptr.get()).kappa()
+            return (<QlHestonProcess*>self._thisptr.get()).kappa()
 
     property theta:
         def __get__(self):
-            return (<_hp.HestonProcess*>self._thisptr.get()).theta()
+            return (<QlHestonProcess*>self._thisptr.get()).theta()
 
     property sigma:
         def __get__(self):
-            return (<_hp.HestonProcess*>self._thisptr.get()).sigma()
+            return (<QlHestonProcess*>self._thisptr.get()).sigma()
 
     @property
     def s0(self):
-        cdef Handle[_qt.Quote] handle = (<_hp.HestonProcess*>self._thisptr.get()).s0()
+        cdef Handle[_qt.Quote] handle = (<QlHestonProcess*>self._thisptr.get()).s0()
         cdef SimpleQuote q = SimpleQuote.__new__(SimpleQuote)
         q._thisptr = handle.currentLink()
         return q

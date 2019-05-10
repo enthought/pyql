@@ -6,7 +6,7 @@ from libcpp.string cimport string
 from quantlib.indexes.swap_index cimport SwapIndex
 cimport quantlib._index as _in
 cimport quantlib.indexes._swap_index as _si
-cimport _swap_spread_index as _ssi
+cimport quantlib.experimental.coupons._swap_spread_index as _ssi
 from quantlib.handle cimport shared_ptr, static_pointer_cast, dynamic_pointer_cast
 
 @cython.final

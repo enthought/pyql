@@ -17,7 +17,7 @@ from quantlib.time._calendar cimport BusinessDayConvention, Calendar
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._period cimport Period, Frequency
-from _flat_forward cimport YieldTermStructure
+from ._flat_forward cimport YieldTermStructure
 from quantlib.indexes._ibor_index cimport IborIndex
 from quantlib.indexes._swap_index cimport SwapIndex
 from quantlib.instruments._vanillaswap cimport VanillaSwap

@@ -16,7 +16,7 @@ from quantlib.quotes import SimpleQuote
 from quantlib.sim.simulate import simulate_process
 from quantlib.time_grid import TimeGrid
 
-from quantlib.processes.heston_process import PARTIALTRUNCATION
+from quantlib.processes.heston_process import PartialTruncation
 
 
 def flat_rate(forward, daycounter):
@@ -56,7 +56,7 @@ class SimTestCase(unittest.TestCase):
         self.heston_process = HestonProcess(self.risk_free_ts,
                                             self.dividend_ts, s0, v0,
                                             kappa, theta, sigma, rho,
-                                            PARTIALTRUNCATION)
+                                            PartialTruncation)
 
         v0 = 0.05
         ival = {'v0': v0, 'kappa': 3.7, 'theta': v0,

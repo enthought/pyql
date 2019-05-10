@@ -17,7 +17,7 @@ from quantlib.time.date cimport Date
 from quantlib.time.date cimport date_from_qldate
 
 # IMM Months
-cdef public enum Month:
+cpdef enum Month:
      F = _imm.F
      G = _imm.G
      H = _imm.H

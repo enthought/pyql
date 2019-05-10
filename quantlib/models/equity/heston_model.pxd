@@ -7,7 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-cimport _heston_model as _hm
+from . cimport _heston_model as _hm
 
 from quantlib.handle cimport shared_ptr
 from quantlib.models.calibration_helper cimport CalibrationHelper

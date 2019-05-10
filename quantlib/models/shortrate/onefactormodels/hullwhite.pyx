@@ -11,8 +11,8 @@ include '../../../types.pxi'
 
 from libcpp.vector cimport vector
 from cython.operator cimport dereference as deref
-cimport _hullwhite as _hw
-cimport _vasicek as _va
+from . cimport _hullwhite as _hw
+from . cimport _vasicek as _va
 
 from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib.termstructures.yields._flat_forward as _ff
@@ -27,7 +27,7 @@ from quantlib.quotes cimport Quote, SimpleQuote
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
 from quantlib.math.optimization cimport OptimizationMethod, EndCriteria
 
-from vasicek cimport Vasicek
+from .vasicek cimport Vasicek
 
 cdef class HullWhite(Vasicek):
     """ Single-factor Hull-White (extended Vasicek) model.

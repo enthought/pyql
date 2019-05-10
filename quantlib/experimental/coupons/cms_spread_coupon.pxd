@@ -1,4 +1,3 @@
-cimport _cms_spread_coupon as _csc
 from quantlib.cashflows.floating_rate_coupon cimport FloatingRateCoupon
 from quantlib.cashflows.coupon_pricer cimport FloatingRateCouponPricer
 from quantlib.cashflows.cap_floored_coupon cimport CappedFlooredCoupon

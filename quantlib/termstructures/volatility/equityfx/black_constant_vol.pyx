@@ -4,11 +4,11 @@ from quantlib.handle cimport shared_ptr, Handle
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
-from black_vol_term_structure cimport BlackVolatilityTermStructure
+from .black_vol_term_structure cimport BlackVolatilityTermStructure
 from quantlib.quotes cimport Quote
 cimport quantlib._quote as _qt
-cimport _black_vol_term_structure as _bvts
-cimport _black_constant_vol as _bcv
+from . cimport _black_vol_term_structure as _bvts
+from . cimport _black_constant_vol as _bcv
 
 
 cdef class BlackConstantVol(BlackVolatilityTermStructure):

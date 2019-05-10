@@ -1,5 +1,5 @@
 from cython.operator cimport dereference as deref
-cimport _optionlet_volatility_structure as _ov
+from . cimport _optionlet_volatility_structure as _ov
 
 from quantlib.time._calendar cimport BusinessDayConvention
 from quantlib.time.calendar cimport Calendar

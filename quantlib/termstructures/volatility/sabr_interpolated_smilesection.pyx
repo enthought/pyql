@@ -4,7 +4,7 @@ from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 from libcpp cimport bool
 
-cimport _smilesection as _ss
+from . cimport _smilesection as _ss
 from quantlib.handle cimport shared_ptr, Handle
 from quantlib.quotes cimport Quote
 cimport quantlib._quote as _qt

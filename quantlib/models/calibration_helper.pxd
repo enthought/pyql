@@ -7,7 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-cimport _calibration_helper as _ch
+from . cimport _calibration_helper as _ch
 from quantlib.handle cimport shared_ptr
 
 

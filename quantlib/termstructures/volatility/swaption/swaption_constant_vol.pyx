@@ -12,7 +12,7 @@ from quantlib.quotes cimport SimpleQuote
 from ..volatilitytype cimport VolatilityType, ShiftedLognormal
 from ..._vol_term_structure cimport VolatilityTermStructure
 cimport quantlib.termstructures.volatility._volatilitytype as _voltype
-cimport _swaption_constant_vol as _scv
+from . cimport _swaption_constant_vol as _scv
 cimport quantlib._quote as _qt
 
 cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):

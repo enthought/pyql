@@ -6,7 +6,7 @@ cimport quantlib.time._daycounter as _daycounter
 cimport quantlib.time.daycounters._thirty360 as _th
 from quantlib.time.daycounter cimport DayCounter
 
-cdef public enum Convention:
+cpdef enum Convention:
     USA           = _th.USA
     BONDBASIS     = _th.BondBasis
     EUROPEAN      = _th.European
@@ -62,7 +62,7 @@ cdef class Thirty360(DayCounter):
         self._thisptr = <_daycounter.DayCounter*> new \
             _th.Thirty360(<_th.Convention> convention)
 
-cdef _daycounter.DayCounter* from_name(str convention):
+cdef _daycounter.DayCounter* from_name(basestring convention):
 
     cdef _th.Convention ql_convention = <_th.Convention>CONVENTIONS[convention]
 

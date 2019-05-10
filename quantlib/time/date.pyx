@@ -5,23 +5,23 @@ from libcpp.string cimport string
 cimport cython
 
 # cannot use date.pxd because of name clashing
-cimport _date
-cimport _period
-cimport frequency
+from . cimport _date
+from . cimport _period
+from . cimport frequency
 
-from _date cimport (
+from ._date cimport (
     Date as QlDate, todaysDate, nextWeekday, endOfMonth, isEndOfMonth,
-    minDate, maxDate, Year, Month, Day, Hour, Minute, Second, Millisecond,
+    minDate, maxDate, Year, Day, Month as QlMonth, Hour, Minute, Second, Millisecond,
     Microsecond, isLeap, Size, nthWeekday, serial_type, Integer
 )
-from _period cimport Period as QlPeriod, parse, unary_minus
+from ._period cimport Period as QlPeriod, parse, unary_minus
 from enum import IntEnum
 
 # Python imports
 import_datetime()
 import six
 
-cdef public enum Month:
+cpdef enum Month:
     January   = _date.January
     February  = _date.February
     March     = _date.March
@@ -46,7 +46,7 @@ cdef public enum Month:
     Nov = _date.Nov
     Dec = _date.Dec
 
-cdef public enum Weekday:
+cpdef enum Weekday:
     Sunday   = _date.Sunday
     Monday   = _date.Monday
     Tuesday  = _date.Tuesday
@@ -62,7 +62,7 @@ cdef public enum Weekday:
     Fri = _date.Fri
     Sat = _date.Sat
 
-cpdef public enum Frequency:
+cpdef enum Frequency:
     NoFrequency      = frequency.NoFrequency # null frequency
     Once             = frequency.Once  # only once, e.g., a zero-coupon
     Annual           = frequency.Annual  # once a year
@@ -292,7 +292,7 @@ cdef class Date:
         cdef QlDate d
         if len(args) == 3:
             day, month, year = args
-            self._thisptr.reset(new QlDate(<Day>day, <Month>month, <Year>year))
+            self._thisptr.reset(new QlDate(<Day>day, <QlMonth>month, <Year>year))
         elif len(args) == 1:
             arg = args[0]
             if isinstance(arg, int):
@@ -303,15 +303,15 @@ cdef class Date:
                 raise TypeError("needs to be a string or an integer")
         elif len(args) == 6:
             day, month, year, hours, minutes, seconds = args
-            self._thisptr.reset(new QlDate(<Day>day, <Month>month, <Year>year,
+            self._thisptr.reset(new QlDate(<Day>day, <QlMonth>month, <Year>year,
                 <Hour>hours, <Minute>minutes, <Second>seconds, 0, 0))
         elif len(args) == 7:
             day, month, year, hours, minutes, seconds, ms = args
-            self._thisptr.reset(new QlDate(<Day>day, <Month>month, <Year>year,
+            self._thisptr.reset(new QlDate(<Day>day, <QlMonth>month, <Year>year,
                 <Hour>hours, <Minute>minutes, <Second>seconds, <Millisecond>ms, 0))
         elif len(args) == 8:
             day, month, year, hours, minutes, seconds, ms, mus = args
-            self._thisptr.reset(new QlDate(<Day>day, <Month>month, <Year>year,
+            self._thisptr.reset(new QlDate(<Day>day, <QlMonth>month, <Year>year,
                 <Hour>hours, <Minute>minutes, <Second>seconds, <Millisecond>ms,
                                            <Microsecond>mus))
         elif len(args) == 2:

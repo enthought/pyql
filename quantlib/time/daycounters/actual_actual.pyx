@@ -21,7 +21,7 @@ cimport quantlib.time._daycounter as _daycounter
 cimport quantlib.time.daycounters._actual_actual as _aa
 from quantlib.time.daycounter cimport DayCounter
 
-cdef public enum Convention:
+cpdef enum Convention:
     ISMA       = _aa.ISMA
     Bond       = _aa.Bond
     ISDA       = _aa.ISDA
@@ -66,7 +66,7 @@ cdef class ActualActual(DayCounter):
         self._thisptr = <_daycounter.DayCounter*> new \
             _aa.ActualActual(convention)
 
-cdef _daycounter.DayCounter* from_name(str convention):
+cdef _daycounter.DayCounter* from_name(basestring convention):
 
     cdef _aa.Convention ql_convention = <_aa.Convention>CONVENTIONS[convention]
 

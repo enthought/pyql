@@ -7,8 +7,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-cimport _region as _re
-
 from libcpp.string cimport string
 
 cdef class Region:
@@ -38,6 +36,6 @@ cdef class CustomRegion(Region):
         cdef string name_string = name.encode('utf-8')
         cdef string code_string = code.encode('utf-8')
 
-        self._thisptr = new _re.CustomRegion(
+        self._thisptr = new _region.CustomRegion(
             name_string,
             code_string)

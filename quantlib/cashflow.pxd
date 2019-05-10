@@ -1,6 +1,6 @@
 include 'types.pxi'
 
-cimport _cashflow as _cf
+cimport quantlib._cashflow as _cf
 
 from quantlib.handle cimport shared_ptr
 from libcpp.vector cimport vector

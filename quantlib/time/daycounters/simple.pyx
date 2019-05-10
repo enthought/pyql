@@ -4,7 +4,7 @@ a convention"""
 from cython.operator cimport dereference as deref
 
 cimport quantlib.time._daycounter as _daycounter
-cimport _simple
+from . cimport _simple
 from quantlib.time.daycounter cimport DayCounter
 cimport quantlib.time.calendars._target as _tg
 cimport quantlib.time._calendar as _calendar

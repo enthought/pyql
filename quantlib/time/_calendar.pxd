@@ -4,9 +4,9 @@ from libcpp cimport bool
 from libcpp.string cimport string
 from libcpp.vector cimport vector
 
-from _date cimport Date, Weekday
-from _period cimport Period, TimeUnit
-from _businessdayconvention cimport BusinessDayConvention
+from ._date cimport Date, Weekday
+from ._period cimport Period, TimeUnit
+from ._businessdayconvention cimport BusinessDayConvention
 
 cdef extern from 'ql/time/calendar.hpp' namespace 'QuantLib':
 

@@ -1,13 +1,11 @@
 include '../types.pxi'
 
-cimport _blackformula as _bf
+from . cimport _blackformula as _bf
 cimport quantlib.instruments._option as _opt
 
 from quantlib.instruments._option cimport Type as OptionType
 
 from math import sqrt, log
-
-import six
 
 from quantlib.instruments.option import Call, Put
 

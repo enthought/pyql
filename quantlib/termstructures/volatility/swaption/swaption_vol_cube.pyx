@@ -1,4 +1,4 @@
-cimport _swaption_vol_cube as _svc
+from . cimport _swaption_vol_cube as _svc
 from libcpp.vector cimport vector
 from quantlib.handle cimport Handle
 from quantlib.time.date cimport Date, Period

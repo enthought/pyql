@@ -2,9 +2,7 @@ include '../types.pxi'
 from cython.operator import dereference as deref
 
 # cython imports
-cimport _option
-
-import six
+from . cimport _option
 
 cdef class Payoff:
 

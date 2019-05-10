@@ -12,7 +12,7 @@ cimport quantlib.pricingengines._pricing_engine as _pe
 cimport quantlib.models.shortrate._onefactor_model as _ofm
 
 from quantlib.pricingengines.engine cimport PricingEngine
-cimport _jamshidian_swaption_engine as _jse
+from . cimport _jamshidian_swaption_engine as _jse
 
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.models.shortrate.onefactormodels.hullwhite cimport HullWhite

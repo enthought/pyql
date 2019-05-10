@@ -28,8 +28,8 @@ cimport quantlib.termstructures._yield_term_structure as _yts
 
 cimport quantlib._index as _in
 cimport quantlib.instruments._instrument as _instrument
-cimport _swap_index as _si
-cimport _ibor_index as _ii
+from . cimport _swap_index as _si
+from . cimport _ibor_index as _ii
 
 cdef class SwapIndex(InterestRateIndex):
 
