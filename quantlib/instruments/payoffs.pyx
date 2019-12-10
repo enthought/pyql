@@ -26,7 +26,7 @@ cdef class PlainVanillaPayoff(Payoff):
     Parameters
     ----------
 
-    option_type: int or str
+    option_type: int
         The type of option, can be either Call or Put
     strike: double
         The strike value

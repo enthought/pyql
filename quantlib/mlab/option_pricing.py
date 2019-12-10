@@ -98,7 +98,7 @@ def blsprice(spot, strike, risk_free_rate, time, volatility,
 
 
 def _blsprice(spot, strike, risk_free_rate, time, volatility,
-             option_type='Call', dividend=0.0, calc='price'):
+              option_type, dividend, calc):
     """
     Black-Scholes option pricing model + greeks.
     """
@@ -143,7 +143,7 @@ def _blsprice(spot, strike, risk_free_rate, time, volatility,
 
 
 def blsimpv(price, spot, strike, risk_free_rate, time,
-             option_type='Call', dividend=0.0):
+            option_type=Call, dividend=0.0):
 
     args = locals()
     the_shape, shape = common_shape(args)
@@ -159,7 +159,7 @@ def blsimpv(price, spot, strike, risk_free_rate, time,
 
 
 def _blsimpv(price, spot, strike, risk_free_rate, time,
-             option_type='Call', dividend=0.0):
+             option_type, dividend):
 
     spot = SimpleQuote(spot)
     daycounter = ActualActual()
