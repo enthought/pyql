@@ -162,7 +162,7 @@ def _blsimpv(price, spot, strike, risk_free_rate, time,
              option_type, dividend):
 
     spot = SimpleQuote(spot)
-    daycounter = ActualActual()
+    daycounter = ActualActual(ISMA)
     risk_free_ts = FlatForward(today(), risk_free_rate, daycounter)
     dividend_ts = FlatForward(today(), dividend, daycounter)
     volatility_ts = BlackConstantVol(today(), NullCalendar(),
