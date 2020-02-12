@@ -1,6 +1,6 @@
 # Cython imports
 from cython.operator cimport dereference as deref
-from cpython.datetime cimport date_new, date, datetime, import_datetime
+from cpython.datetime cimport date, date_new, datetime_new, datetime, import_datetime, date_year, date_month, date_day, datetime_year, datetime_month, datetime_day, datetime_hour, datetime_minute, datetime_second, datetime_microsecond, PyDate_Check, PyDateTime_Check
 from libcpp.string cimport string
 cimport cython
 
@@ -417,7 +417,7 @@ cdef class Date:
     def __richcmp__(self, date2, int t):
         cdef _date.Date date1 = deref((<Date>self)._thisptr)
         cdef _date.Date c_date2
-        if isinstance(date2, (date, datetime)):
+        if isinstance(date2, date):
             c_date2 = _qldate_from_pydate(date2)
         elif isinstance(date2, Date):
             c_date2 = deref((<Date>date2)._thisptr)
@@ -447,9 +447,9 @@ cdef class Date:
     def __add__(self, value):
         cdef QlDate add
         if isinstance(value, Period):
-            add = deref((<Date?>self)._thisptr) + deref((<Period>value)._thisptr)
+            add = deref((<Date>self)._thisptr) + deref((<Period>value)._thisptr)
         elif isinstance(value, int):
-            add = deref((<Date?>self)._thisptr) + <serial_type>value
+            add = deref((<Date>self)._thisptr) + <serial_type>value
         else:
             return NotImplemented
         return date_from_qldate(add)
@@ -467,9 +467,9 @@ cdef class Date:
     def __sub__(self, value):
         cdef QlDate sub
         if isinstance(value, Period):
-            sub = deref((<Date?>self)._thisptr) - deref((<Period>value)._thisptr)
+            sub = deref((<Date>self)._thisptr) - deref((<Period>value)._thisptr)
         elif isinstance(value, int):
-            sub = deref((<Date?>self)._thisptr) - <serial_type>value
+            sub = deref((<Date>self)._thisptr) - <serial_type>value
         elif isinstance(value, Date):
             return _date.daysBetween(deref((<Date?>value)._thisptr),
                                      deref((<Date?>self)._thisptr))
@@ -488,10 +488,10 @@ cdef class Date:
             return NotImplemented
 
     @classmethod
-    def from_datetime(cls, dt):
+    def from_datetime(cls, object dt not None):
         """Returns the Quantlib Date object from the date/datetime object. """
         cdef Date instance = Date.__new__(Date)
-        if not isinstance(dt, date):
+        if not PyDate_Check(dt):
             raise TypeError
         instance._thisptr.reset(new QlDate(_qldate_from_pydate(dt)))
         return instance
@@ -574,13 +574,14 @@ cpdef object pydate_from_qldate(Date qdate):
 
 cdef QlDate _qldate_from_pydate(object pydate):
     """ Converts a datetime.date to a QuantLib (C++) object. """
-    if isinstance(pydate, datetime):
-        return QlDate(<Day>pydate.day, <Month>pydate.month, <Year>pydate.year,
-                      <Hour>pydate.hour, <Minute>pydate.minute, <Second>pydate.second,
-                      0, <Microsecond>pydate.microsecond)
-    elif isinstance(pydate, date):
-        return QlDate(<Day>pydate.day, <Month>pydate.month, <Year>pydate.year)
+    if PyDateTime_Check(pydate):
+        return QlDate(datetime_day(pydate), <Month>datetime_month(pydate), datetime_year(pydate),
+                      datetime_hour(pydate), datetime_minute(pydate), datetime_second(pydate),
+                      0, datetime_microsecond(pydate))
+    if PyDate_Check(pydate):
+        return QlDate(date_day(pydate), <Month>date_month(pydate), date_year(pydate))
+    raise TypeError
 
 cpdef Date qldate_from_pydate(object pydate):
     """ Converts a datetime.date to a PyQL date. """
-    return Date.from_datetime(pydate)
+    return date_from_qldate(_qldate_from_pydate(pydate))

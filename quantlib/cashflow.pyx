@@ -13,9 +13,11 @@ from quantlib.time.date cimport (
     Date, _qldate_from_pydate, _pydate_from_qldate, date_from_qldate)
 from libcpp.vector cimport vector
 from libcpp cimport bool
+from cpython.datetime cimport date, import_datetime
 from cython.operator cimport dereference as deref, preincrement as preinc
 from quantlib.handle cimport shared_ptr, static_pointer_cast, optional
-import datetime
+
+import_datetime()
 
 cdef class CashFlow:
     """Abstract Base Class.
@@ -93,7 +95,7 @@ cdef class Leg:
         for amount, d in leg:
             if isinstance(d, Date):
                _thisdate = deref((<Date>d)._thisptr)
-            elif isinstance(d, datetime.date):
+            elif isinstance(d, date):
                _thisdate = _qldate_from_pydate(d)
             else:
                raise TypeError("second element needs to be a QuantLib Date or datetime.date")
