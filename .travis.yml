@@ -2,11 +2,11 @@
 #   http://lint.travis-ci.org/
 language: python
 sudo: required
-dist: trusty
+dist: bionic
 
 python:
   - 2.7
-  - 3.4
+  - 3.7
 virtualenv:
     system_site_package: true
 before_install:
@@ -18,8 +18,7 @@ before_install:
 install:
     make build
 script:
- - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then python -m unittest discover; fi
- - if [[ $TRAVIS_PYTHON_VERSION == '3.4' ]]; then python -m unittest discover; fi
+ - python -m unittest discover
 notifications:
   email: 
     - dpinte@enthought.com
