@@ -121,6 +121,7 @@ from scipy.linalg import lstsq
 
 import quantlib.pricingengines.blackformula
 from quantlib.pricingengines.blackformula import blackFormulaImpliedStdDev
+from quantlib.instruments.option import Call, Put
 
 def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1, keepOTMData=True):
     
@@ -184,7 +185,7 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1, keepOTMData=Tr
         x = np.array(df_all['Strike'])
         A = np.vstack((x, np.ones(x.shape))).T
 
-        b = np.linalg.lstsq(A, y)[0]
+        b = np.linalg.lstsq(A, y, rcond=None)[0]
         # intercept is last coef
         iRate = -np.log(-b[0])/timeToMaturity
         dRate = np.log(spot/b[1])/timeToMaturity
@@ -199,23 +200,23 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1, keepOTMData=Tr
         def impvol(cp, strike, premium):
             try:
                 vol = blackFormulaImpliedStdDev(cp, strike,
-                    forward=Fwd, blackPrice=premium, discount=discountFactor,
+                        forward=Fwd, blackPrice=premium, discount=discountFactor,
                     TTM=timeToMaturity)
-            except:
+            except RuntimeError:
                 vol = np.nan
             return vol/np.sqrt(timeToMaturity)
 
         # implied bid/ask vol for all options
 
-        df_call = df_call.assign(IVBid = [impvol('C', strike, price) for strike, price
+        df_call = df_call.assign(IVBid = [impvol(Call, strike, price) for strike, price
                                           in zip(df_call['Strike'], df_call['PBid'])],
-                                 IVAsk = [impvol('C', strike, price) for strike, price
+                                 IVAsk = [impvol(Call, strike, price) for strike, price
                                           in zip(df_call['Strike'], df_call['PBid'])])
         df_call = df_call.assign(IVMid = (df_call.IVBid + df_call.IVAsk)/2)
 
-        df_put = df_put.assign(IVBid = [impvol('P', strike, price) for strike, price
+        df_put = df_put.assign(IVBid = [impvol(Put, strike, price) for strike, price
                                         in zip(df_put['Strike'], df_put['PBid'])],
-                               IVAsk = [impvol('P', strike, price) for strike, price
+                               IVAsk = [impvol(Put, strike, price) for strike, price
                                         in zip(df_put['Strike'], df_put['PAsk'])])
         df_put = df_put.assign(IVMid = (df_put['IVBid'] + df_put['IVAsk'])/2)
 
