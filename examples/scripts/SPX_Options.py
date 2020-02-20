@@ -138,6 +138,6 @@ if __name__ == '__main__':
 
     # save a csv file and pickled data frame
     df_SPX.to_csv('../data/df_SPX_24jan2011.csv', index=False)
-    df_SPX.to_pickle('../data/df_SPX_24jan2011.pkl')
+    df_SPX.to_pickle('../data/df_SPX_24jan2011.pkl', protocol=4)
     print('File saved')
 

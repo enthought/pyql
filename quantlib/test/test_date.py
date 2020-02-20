@@ -398,7 +398,7 @@ class TestQuantLibIMM(unittest.TestCase):
         # 17 sep 2014
         self.assertEqual(dt_2, date(2014, 9, 17))
 
-        dt_3 = imm.next_date('M9', True, today())
+        dt_3 = imm.next_date('M9', True, Date(1, 6, 2019))
         # 18 sep 2019
         self.assertEqual(dt_3, date(2019, 9, 18))
 
