@@ -22,7 +22,7 @@ cpdef enum CalibrationErrorType:
     PriceError = _ch.PriceError
     ImpliedVolError = _ch.ImpliedVolError
 
-cdef class CalibrationHelper:
+cdef class BlackCalibrationHelper:
 
     def __init__(self):
         raise ValueError('Cannot instantiate a CalibrationHelper')

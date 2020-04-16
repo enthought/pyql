@@ -14,12 +14,12 @@ from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.indexes._ibor_index cimport IborIndex
 from quantlib.time._period cimport Period
-from quantlib.models._calibration_helper cimport CalibrationHelper, CalibrationErrorType
+from quantlib.models._calibration_helper cimport BlackCalibrationHelper, CalibrationErrorType
 cimport quantlib._quote as _qt
 
 cdef extern from 'ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp' namespace 'QuantLib':
 
-    cdef cppclass SwaptionHelper(CalibrationHelper):
+    cdef cppclass SwaptionHelper(BlackCalibrationHelper):
 
         SwaptionHelper(Period& maturity,
                        Period& length,
@@ -32,4 +32,3 @@ cdef extern from 'ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp' nam
                        CalibrationErrorType errorType,
                        Real strike,
                        Real nominal) except +
-

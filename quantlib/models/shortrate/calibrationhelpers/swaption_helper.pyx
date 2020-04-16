@@ -25,11 +25,11 @@ cimport quantlib.indexes._ibor_index as _ii
 cimport quantlib.models._calibration_helper as _ch
 from . cimport _swaption_helper as _sh
 
-from quantlib.models.calibration_helper cimport CalibrationHelper
+from quantlib.models.calibration_helper cimport BlackCalibrationHelper
 
 from quantlib._defines cimport QL_NULL_REAL
 
-cdef class SwaptionHelper(CalibrationHelper):
+cdef class SwaptionHelper(BlackCalibrationHelper):
 
     def __init__(self,
                  Period maturity not None,
@@ -47,7 +47,7 @@ cdef class SwaptionHelper(CalibrationHelper):
         cdef Handle[_qt.Quote] volatility_handle = \
                 Handle[_qt.Quote](volatility._thisptr)
 
-        self._thisptr = shared_ptr[_ch.CalibrationHelper](
+        self._thisptr = shared_ptr[_ch.BlackCalibrationHelper](
             new _sh.SwaptionHelper(
                 deref(maturity._thisptr),
                 deref(length._thisptr),
@@ -60,4 +60,3 @@ cdef class SwaptionHelper(CalibrationHelper):
                 <_ch.CalibrationErrorType>error_type,
                 strike,
                 nominal))
-
