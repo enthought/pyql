@@ -21,6 +21,5 @@ cdef extern from 'ql/termstructures/inflation/piecewisezeroinflationcurve.hpp' n
                                     Frequency frequency,
                                     bool index_is_interpolated,
                                     Rate baseZeroRate,
-                                    const Handle[YieldTermStructure]& nominal_ts,
                                     const vector[shared_ptr[ZeroInflationTraits.helper]]& instruments,
                                     Real accuracy) #= 1.0e-12,
