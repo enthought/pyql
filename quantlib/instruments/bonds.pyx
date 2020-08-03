@@ -44,9 +44,7 @@ cdef inline _bonds.Bond* get_bond(Bond bond):
     """ Utility function to extract a properly casted Bond pointer out of the
     internal _thisptr attribute of the Instrument base class. """
 
-    cdef _bonds.Bond* ref = <_bonds.Bond*>bond._thisptr.get()
-
-    return ref
+    return <_bonds.Bond*>bond._thisptr.get()
 
 
 cdef class Bond(Instrument):
@@ -88,7 +86,7 @@ cdef class Bond(Instrument):
         return date_from_qldate(get_bond(self).settlementDate(deref(from_date._thisptr)))
 
     property clean_price:
-        """ Bond clena price. """
+        """ Bond clean price. """
         def __get__(self):
             return get_bond(self).cleanPrice()
 
@@ -125,6 +123,9 @@ cdef class Bond(Instrument):
         cdef cashflow.Leg leg = cashflow.Leg.__new__(cashflow.Leg)
         leg._thisptr = get_bond(self).cashflows()
         return leg
+
+    def notional(self, Date date=Date()):
+        return get_bond(self).notional(deref(date._thisptr))
 
 cdef class FixedRateBond(Bond):
     """ Fixed rate bond.
