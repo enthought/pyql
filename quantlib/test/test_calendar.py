@@ -10,7 +10,7 @@ from quantlib.time.calendars.united_states import UnitedStates, NYSE
 from quantlib.time.calendars.canada import Canada, TSX
 from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.time.calendars.germany import (
-    Germany, FRANKFURT_STOCK_EXCHANGE
+    Germany, Market
 )
 from quantlib.time.calendars.weekends_only import WeekendsOnly
 from quantlib.time.date import (
@@ -180,9 +180,9 @@ class TestQuantLibCalendar(unittest.TestCase):
 
     def test_german_calendar(self):
 
-        frankfcal   = Germany(FRANKFURT_STOCK_EXCHANGE);
-        first_date  = Date(31,Oct,2009)
-        second_date = Date(1,Jan ,2010);
+        frankfcal   = Germany(Market.Eurex);
+        first_date  = Date(31, Oct, 2009)
+        second_date = Date(1, Jan, 2010);
 
         Dec_30_2009 = Date(30, Dec, 2009)
         Jan_4_2010 = Date(4, Jan, 2010)
@@ -192,10 +192,10 @@ class TestQuantLibCalendar(unittest.TestCase):
         )
         self.assertEqual(
             Jan_4_2010,
-            frankfcal.adjust(second_date , ModifiedPreceding)
+            frankfcal.adjust(second_date, ModifiedPreceding)
         )
 
-        mat = Period(2,Months)
+        mat = Period(2, Months)
 
         self.assertEqual(
             Jan_4_2010,
