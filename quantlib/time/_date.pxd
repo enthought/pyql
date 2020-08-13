@@ -1,4 +1,4 @@
-include '../types.pxi'
+from quantlib.types cimport *
 
 cdef extern from 'ql/time/date.hpp' namespace 'QuantLib':
     ctypedef int Year

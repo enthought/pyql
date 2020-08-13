@@ -1,5 +1,4 @@
-include '../types.pxi'
-
+from quantlib.types cimport *
 from . cimport _make_swaption
 
 cdef class MakeSwaption:
