@@ -1,4 +1,3 @@
-include '../../types.pxi'
 from libcpp.string cimport string
 
 from quantlib.time._calendar cimport Calendar

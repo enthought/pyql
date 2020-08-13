@@ -1,5 +1,4 @@
-include '../types.pxi'
-
+from quantlib.types cimport Time
 from libcpp cimport bool
 from libcpp.string cimport string
 from ._date cimport Date, serial_type
