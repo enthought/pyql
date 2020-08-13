@@ -1,23 +1,37 @@
 include '../types.pxi'
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport shared_ptr, optional
 from ._vanillaswap cimport VanillaSwap
 from ._option cimport Option
 from ._exercise cimport Exercise
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.termstructures.volatility._volatilitytype cimport VolatilityType
-from quantlib.handle cimport Handle
+from quantlib.handle cimport Handle, optional
+
+cdef extern from "ql/instruments/swaption.hpp" namespace "QuantLib::Settlement":
+    enum Method:
+        PhysicalOTC
+        PhysicalCleared
+        CollateralizedCashPrice
+        ParYieldCurve
+
+    enum Type:
+        Physical
+        Cash
 
 cdef extern from 'ql/instruments/swaption.hpp' namespace 'QuantLib':
     cdef cppclass Settlement:
         enum Type:
-            Physical
-            Cash
+            pass
+        enum Method:
+            pass
 
     cdef cppclass Swaption(Option):
         Swaption(const shared_ptr[VanillaSwap]& swap,
                  const shared_ptr[Exercise]& exercise,
-                 Settlement.Type delivery)# = Settlement.Physical)
+                 Settlement.Type delivery, # = Settlement::Physical
+                 Settlement.Method settlementMethod) # Settlement::PhysicalOTC
         Settlement.Type settlementType()
+        Settlement.Method settlementMethod()
         Volatility impliedVolatility(Real price,
                                      const Handle[YieldTermStructure]& discountCurve,
                                      Volatility guess,
