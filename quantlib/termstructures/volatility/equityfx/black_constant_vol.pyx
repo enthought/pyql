@@ -12,6 +12,21 @@ from . cimport _black_constant_vol as _bcv
 
 
 cdef class BlackConstantVol(BlackVolatilityTermStructure):
+    """
+    Constant Black volatility, no time-strike dependence
+
+    This class implements the BlackVolatilityTermStructure
+    interface for a constant Black volatility (no time/strike
+    dependence)
+
+    Attributes
+    ----------
+    reference_date : :obj:`Date`
+    calendar : :obj:`Calendar`
+    volatility : float or :obj:`Quote`
+    day_counter: :obj:`DayCounter`
+
+    """
 
     def __init__(self,
                  Date reference_date not None,

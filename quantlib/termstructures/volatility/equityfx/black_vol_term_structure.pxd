@@ -1,8 +1,11 @@
 from quantlib.handle cimport shared_ptr
-from . cimport _black_vol_term_structure as _bv
+from ._black_vol_term_structure cimport BlackVolTermStructure as _BlackVolTermStructure
 
 cdef class BlackVolTermStructure:
-    cdef shared_ptr[_bv.BlackVolTermStructure] _thisptr
+    cdef shared_ptr[_BlackVolTermStructure] _thisptr
 
 cdef class BlackVolatilityTermStructure(BlackVolTermStructure):
+    pass
+
+cdef class BlackVarianceTermStructure(BlackVolTermStructure):
     pass
