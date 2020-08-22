@@ -11,7 +11,6 @@ from quantlib.time.date cimport Date, Period
 from quantlib.time.daycounter cimport DayCounter
 
 from .._cashflow cimport CashFlow
-from . cimport _cap_floored_coupon as _cfc
 from . cimport _floating_rate_coupon as _frc
 cimport quantlib.indexes._ibor_index as _ii
 cimport quantlib.indexes._swap_index as _si
@@ -25,33 +24,36 @@ cdef class CappedFlooredCoupon(FloatingRateCoupon):
             cap,
             floor))
 
+    cdef inline _cfc.CappedFlooredCoupon* as_ptr(self):
+        return <_cfc.CappedFlooredCoupon*>self._thisptr.get()
+
     @property
     def cap(self):
-        cdef Real temp = (<_cfc.CappedFlooredCoupon*>self._thisptr.get()).cap()
+        cdef Real temp = self.as_ptr().cap()
         if temp != QL_NULL_REAL:
             return temp
 
     @property
     def floor(self):
-        cdef Real temp = (<_cfc.CappedFlooredCoupon*>self._thisptr.get()).floor()
+        cdef Real temp = self.as_ptr().floor()
         if temp != QL_NULL_REAL:
             return temp
 
     @property
     def effective_cap(self):
-        cdef Real temp = (<_cfc.CappedFlooredCoupon*>self._thisptr.get()).effectiveCap()
+        cdef Real temp = self.as_ptr().effectiveCap()
         if temp != QL_NULL_REAL:
             return temp
 
     @property
     def effective_floor(self):
-        cdef Real temp = (<_cfc.CappedFlooredCoupon*>self._thisptr.get()).effectiveFloor()
+        cdef Real temp = self.as_ptr().effectiveFloor()
         if temp != QL_NULL_REAL:
             return temp
 
     @property
     def is_capped(self):
-        return (<_cfc.CappedFlooredCoupon*>self._thisptr.get()).isCapped()
+        return self.as_ptr().isCapped()
 
     @property
     def is_floored(self):
