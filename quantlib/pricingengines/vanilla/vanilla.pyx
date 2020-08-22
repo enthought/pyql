@@ -116,8 +116,9 @@ cdef class FdHestonHullWhiteVanillaEngine(PricingEngine):
                 r_grid,
                 damping_steps,
                 control_variate,
-                deref(desc._thisptr.get()))
+                deref(desc._thisptr)
             )
+        )
 
     def enable_multiple_strikes_caching(self, strikes):
         cdef vector[double] v = strikes
