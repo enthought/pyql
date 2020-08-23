@@ -8,7 +8,7 @@
 """
 
 from .businessdayconvention import BusinessDayConvention
-from .calendar import Calendar, holiday_list
+from .calendar import Calendar
 from .businessdayconvention import (
     ModifiedFollowing, Following, ModifiedPreceding,
     Preceding, Unadjusted, HalfMonthModifiedFollowing, Nearest

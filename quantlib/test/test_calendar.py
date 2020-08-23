@@ -1,6 +1,5 @@
 from .unittest_tools import unittest
 
-from quantlib.time.calendar import holiday_list
 from quantlib.time.businessdayconvention import (
     Following, ModifiedFollowing, ModifiedPreceding, Preceding,
 )
@@ -99,25 +98,19 @@ class TestQuantLibCalendar(unittest.TestCase):
 
         ukcal = UnitedKingdom()
 
-        holidays = list(
-            holiday_list(ukcal, Date(1, Jan, 2011), Date(31, 12,2011) )
-        )
+        holidays = ukcal.holiday_list(Date(1, Jan, 2011), Date(31, 12, 2011))
         self.assertEqual(UK_HOLIDAYS_2011, len(holidays))
 
         new_holiday_date = Date(23, August, 2011)
 
         ukcal.add_holiday(new_holiday_date)
 
-        holidays = list(
-            holiday_list(ukcal, Date(1, Jan, 2011), Date(31, 12,2011) )
-        )
+        holidays = ukcal.holiday_list(Date(1, Jan, 2011), Date(31, 12, 2011))
         self.assertEqual(UK_HOLIDAYS_2011 + 1, len(holidays))
 
         ukcal.remove_holiday(new_holiday_date)
 
-        holidays = list(
-            holiday_list(ukcal, Date(1, Jan, 2011), Date(31, 12,2011) )
-        )
+        holidays = ukcal.holiday_list(Date(1, Jan, 2011), Date(31, 12, 2011))
         self.assertEqual(UK_HOLIDAYS_2011, len(holidays))
 
     def test_adjust_business_day(self):
@@ -238,9 +231,7 @@ class TestDateList(unittest.TestCase):
 
     def test_iteration_on_date_list(self):
 
-        date_iterator = holiday_list(
-            TARGET(), Date(1, Jan, 2000), Date(1, Jan, 2001)
-        )
+        date_iterator = TARGET().holiday_list(Date(1, Jan, 2000), Date(1, Jan, 2001))
 
         holidays = [
             Date(21, Apr, 2000), Date(24, Apr, 2000),

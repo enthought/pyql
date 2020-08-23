@@ -30,6 +30,6 @@ cdef extern from 'ql/time/calendar.hpp' namespace 'QuantLib':
             bool operator==(Calendar&)
             bool operator!=(Calendar&)
 
-    #cdef vector[Date] 'Calendar::holidayList'(Calendar& calendar, Date& f, Date& to, bool includeWeekEnds)
-    cdef vector[Date] Calendar_holidayList 'QuantLib::Calendar::holidayList'(Calendar&
-            calendar, Date& from_date, Date& to_date, int includeWeekEnds)
+            vector[Date] holidayList(const Date& from_date, const Date& to_date, int includeWeekEnds)
+            vector[Date] businessDayList(const Date& from_date,
+                                         const Date& to)
