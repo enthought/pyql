@@ -3,16 +3,15 @@ include '../../types.pxi'
 from libcpp.vector cimport vector
 
 from quantlib.handle cimport Handle, shared_ptr
-from quantlib.math._optimization cimport OptimizationMethod, EndCriteria
+
 from quantlib.processes._heston_process cimport HestonProcess
 from quantlib.pricingengines._pricing_engine cimport PricingEngine
 from quantlib.termstructures.yields._flat_forward cimport (
     YieldTermStructure
 )
 from quantlib.models._calibration_helper cimport BlackCalibrationHelper, CalibrationErrorType
-from quantlib.math._optimization cimport Constraint
+from .._model cimport CalibratedModel
 
-cimport quantlib.models._calibration_helper as _ch
 cimport quantlib._quote as _qt
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._period cimport Period
@@ -35,7 +34,7 @@ cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
 
 cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib':
 
-    cdef cppclass HestonModel:
+    cdef cppclass HestonModel(CalibratedModel):
 
         HestonModel() # fake empty constructor solving Cython dep. issue
         HestonModel(shared_ptr[HestonProcess]& process)
@@ -52,14 +51,3 @@ cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib':
         Real rho() except +
         # spot variance
         Real v0() except +
-
-        void calibrate(
-               vector[shared_ptr[_ch.BlackCalibrationHelper]]&,
-               OptimizationMethod& method,
-               EndCriteria& endCriteria) except +
-
-        void calibrate(
-               vector[shared_ptr[_ch.BlackCalibrationHelper]]&,
-               OptimizationMethod& method,
-               EndCriteria& endCriteria,
-               Constraint& constraint) except +

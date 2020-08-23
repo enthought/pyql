@@ -7,8 +7,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../../types.pxi'
-
+from quantlib.types cimport Real
+from libcpp cimport bool
 from cython.operator cimport dereference as deref
 
 from libcpp.vector cimport vector
@@ -33,7 +33,7 @@ from quantlib.time.date cimport Period
 from quantlib.termstructures.yields.flat_forward cimport (
     YieldTermStructure
 )
-from quantlib.models.calibration_helper cimport BlackCalibrationHelper
+from quantlib.models.calibration_helper cimport BlackCalibrationHelper, CalibrationErrorType
 
 
 cdef class HestonModelHelper(BlackCalibrationHelper):
@@ -49,13 +49,13 @@ cdef class HestonModelHelper(BlackCalibrationHelper):
         Quote volatility,
         YieldTermStructure risk_free_rate,
         YieldTermStructure dividend_yield,
-        error_type=_ch.RelativePriceError
+        CalibrationErrorType error_type=_ch.RelativePriceError
     ):
         # create handles
         cdef Handle[_qt.Quote] volatility_handle = \
                 Handle[_qt.Quote](volatility._thisptr)
 
-        self._thisptr = shared_ptr[_ch.BlackCalibrationHelper](
+        self._thisptr = shared_ptr[_ch.CalibrationHelper](
             new _hm.HestonModelHelper(
                 deref(maturity._thisptr),
                 deref(calendar._thisptr),
@@ -64,7 +64,7 @@ cdef class HestonModelHelper(BlackCalibrationHelper):
                 volatility_handle,
                 risk_free_rate._thisptr,
                 dividend_yield._thisptr,
-                <_hm.CalibrationErrorType>error_type
+                error_type
             )
         )
 
@@ -104,24 +104,21 @@ cdef class HestonModel:
             return self._thisptr.get().v0()
 
     def calibrate(self, list helpers, OptimizationMethod method, EndCriteria
-            end_criteria, Constraint constraint=None):
+                  end_criteria, Constraint constraint=Constraint(),
+                  vector[Real] weights=[], vector[bool] fix_parameters=[]):
 
         #convert list to vector
-        cdef vector[shared_ptr[_ch.BlackCalibrationHelper]] helpers_vector
+        cdef vector[shared_ptr[_ch.CalibrationHelper]] helpers_vector
 
-        cdef shared_ptr[_ch.BlackCalibrationHelper] chelper
+        cdef shared_ptr[_ch.CalibrationHelper] chelper
         for helper in helpers:
             chelper = (<HestonModelHelper>helper)._thisptr
             helpers_vector.push_back(chelper)
 
-        if constraint is None:
-            self._thisptr.get().calibrate(
-                helpers_vector,
-                deref(method._thisptr),
-                deref(end_criteria._thisptr))
-        else:
-            self._thisptr.get().calibrate(
-                helpers_vector,
-                deref(method._thisptr),
-                deref(end_criteria._thisptr),
-                deref(constraint._thisptr))
+        self._thisptr.get().calibrate(
+            helpers_vector,
+            deref(method._thisptr),
+            deref(end_criteria._thisptr),
+            deref(constraint._thisptr),
+            weights,
+            fix_parameters)

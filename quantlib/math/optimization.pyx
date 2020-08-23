@@ -1,4 +1,4 @@
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport shared_ptr, make_shared
 
 from . cimport _optimization as _opt
 from quantlib.math.array cimport Array
@@ -23,21 +23,19 @@ cdef class EndCriteria:
             double root_epsilon, double function_epsilon,
             double gradient_epsilon
     ):
-        self._thisptr = shared_ptr[_opt.EndCriteria](
-            new _opt.EndCriteria(
+        self._thisptr = make_shared[_opt.EndCriteria](
                 max_iterations,
                 max_stationary_state_iterations,
                 root_epsilon,
                 function_epsilon,
                 gradient_epsilon
-            )
         )
 
 
 cdef class Constraint:
 
-    def __init__(self):
-        raise ValueError('Cannot instantiate a Constraint')
+    def __cinit__(self):
+        self._thisptr = make_shared[_opt.Constraint]()
 
     def test(self, Array a):
         return self._thisptr.get().test(a._thisptr)

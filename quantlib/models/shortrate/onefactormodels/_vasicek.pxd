@@ -32,9 +32,3 @@ cdef extern from 'ql/models/shortrate/onefactormodels/vasicek.hpp' namespace 'Qu
         Real Lambda 'lambda'() except +
 
         Real sigma() except +
-
-        void calibrate(
-               vector[shared_ptr[BlackCalibrationHelper]]&,
-               OptimizationMethod& method,
-               EndCriteria& endCriteria,
-        ) except +

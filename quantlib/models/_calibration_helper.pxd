@@ -1,12 +1,21 @@
-include '../types.pxi'
-
+from quantlib.types cimport Real, Size, Volatility
 from quantlib.pricingengines._pricing_engine cimport PricingEngine
-from quantlib.handle cimport shared_ptr
+from quantlib.termstructures.volatility._volatilitytype cimport VolatilityType
+from quantlib.handle cimport shared_ptr, Handle
+from quantlib._quote cimport Quote
 
 cdef extern from 'ql/models/calibrationhelper.hpp' namespace 'QuantLib':
+    cdef cppclass CalibrationHelper:
+        pass
 
-    cdef cppclass BlackCalibrationHelper:
-        BlackCalibrationHelper()
+    cdef cppclass BlackCalibrationHelper(CalibrationHelper):
+        enum CalibrationErrorType:
+            pass
+
+        BlackCalibrationHelper(const Handle[Quote]& volatility,
+                               CalibrationErrorType calibrationErrorType, #= RelativePriceError,
+                               const VolatilityType type,# = ShiftedLognormal,
+                               const Real shift) # = 0.0)
 
         Volatility impliedVolatility(
             Real targetValue,

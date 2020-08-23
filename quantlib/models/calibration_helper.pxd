@@ -10,6 +10,11 @@
 from . cimport _calibration_helper as _ch
 from quantlib.handle cimport shared_ptr
 
+cpdef enum CalibrationErrorType:
+    RelativePriceError = _ch.RelativePriceError
+    PriceError = _ch.PriceError
+    ImpliedVolError = _ch.ImpliedVolError
 
 cdef class BlackCalibrationHelper:
-    cdef shared_ptr[_ch.BlackCalibrationHelper] _thisptr
+    cdef shared_ptr[_ch.CalibrationHelper] _thisptr
+    cdef inline _ch.BlackCalibrationHelper* as_ptr(self)
