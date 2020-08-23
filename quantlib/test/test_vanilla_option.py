@@ -5,8 +5,9 @@ from quantlib.instruments.option import (
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.instruments.option import VanillaOption, Put
 from quantlib.pricingengines.vanilla.vanilla import (
-    AnalyticEuropeanEngine, BaroneAdesiWhaleyApproximationEngine,
-    FDDividendAmericanEngine)
+    AnalyticEuropeanEngine, BaroneAdesiWhaleyApproximationEngine)
+from quantlib.pricingengines.vanilla.fdblackscholesvanillaengine import (
+    FdBlackScholesVanillaEngine)
 
 from quantlib.instruments.implied_volatility import ImpliedVolatilityHelper
 
@@ -15,7 +16,7 @@ from quantlib.settings import Settings
 from quantlib.time.api import Date, TARGET, May, Actual365Fixed
 from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
-
+from quantlib.methods.finitedifferences.solvers.fdmbackwardsolver import FdmSchemeDesc
 from quantlib.termstructures.volatility.api \
     import BlackConstantVol
 
@@ -186,15 +187,14 @@ class VanillaOptionTestCase(unittest.TestCase):
             self.payoff, american_exercise, self.dividend_dates, self.dividends
         )
 
-        engine = FDDividendAmericanEngine(
-            'CrankNicolson', self.black_scholes_merton_process,
-            self.american_time_steps, self.american_grid_points
+        engine = FdBlackScholesVanillaEngine(self.black_scholes_merton_process,
+                                             self.american_time_steps, self.american_grid_points, scheme=FdmSchemeDesc.CrankNicolson(),
         )
 
         american_option.set_pricing_engine(engine)
 
         #Note slightly different value using CrankNicolson
-        self.assertAlmostEqual(4.485992, american_option.net_present_value, 6)
+        self.assertAlmostEqual(4.485920, american_option.net_present_value, 6)
 
     def test_dividend_american_option_implied_volatility(self):
 
@@ -203,8 +203,7 @@ class VanillaOptionTestCase(unittest.TestCase):
             self.payoff, american_exercise, self.dividend_dates, self.dividends
         )
 
-        engine = FDDividendAmericanEngine(
-            'CrankNicolson', self.black_scholes_merton_process,
+        engine = FdBlackScholesVanillaEngine(self.black_scholes_merton_process,
             self.american_time_steps, self.american_grid_points
         )
 

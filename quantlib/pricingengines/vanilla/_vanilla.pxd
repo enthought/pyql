@@ -64,14 +64,14 @@ cdef extern from 'ql/pricingengines/vanilla/fdhestonhullwhitevanillaengine.hpp' 
             shared_ptr[HestonModel]& heston_model,
             shared_ptr[HullWhiteProcess]& hw_process,
             Real corrEquityShortRate,
-            Size tGrid, Size xGrid, 
+            Size tGrid, Size xGrid,
             Size vGrid, Size rGrid,
             Size dampingSteps,
             bool controlVariate,
             _fdm.FdmSchemeDesc& schemeDesc)
 
         void enableMultipleStrikesCaching(vector[double]&)
-        
+
 
 cdef extern from 'ql/pricingengines/vanilla/batesengine.hpp' namespace 'QuantLib':
 
@@ -125,33 +125,3 @@ cdef extern from 'ql/pricingengines/vanilla/analyticdividendeuropeanengine.hpp' 
             shared_ptr[GeneralizedBlackScholesProcess]& process
         )
         void calculate()
-
-cdef extern from 'ql/pricingengines/vanilla/fddividendamericanengine.hpp' namespace 'QuantLib':
-    cdef cppclass FDDividendAmericanEngine[T](PricingEngine):
-        FDDividendAmericanEngine(
-            shared_ptr[GeneralizedBlackScholesProcess]& process,
-            Size timesteps,
-            Size gridpoints,
-
-        )
-        FDDividendAmericanEngine(
-            shared_ptr[GeneralizedBlackScholesProcess]& process,
-            Size timesteps,
-            Size gridpoints,
-            timedependent
-        )
-cdef extern from 'ql/pricingengines/vanilla/fdamericanengine.hpp' namespace 'QuantLib':
-    cdef cppclass FDAmericanEngine[T](PricingEngine):
-        FDAmericanEngine(
-             shared_ptr[GeneralizedBlackScholesProcess]& process,
-             Size timeSteps,
-             Size gridPoints,
-             #bool timeDependent = false
-        )
-
-
-cdef extern from 'ql/methods/finitedifferences/cranknicolson.hpp' namespace 'QuantLib':
-
-    cdef cppclass CrankNicolson:
-        pass
-
