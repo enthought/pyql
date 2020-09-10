@@ -9,6 +9,7 @@ from quantlib.quotes cimport Quote
 cimport quantlib._quote as _qt
 from . cimport _black_vol_term_structure as _bvts
 from . cimport _black_constant_vol as _bcv
+from ..._vol_term_structure cimport VolatilityTermStructure
 
 
 cdef class BlackConstantVol(BlackVolatilityTermStructure):
@@ -37,7 +38,7 @@ cdef class BlackConstantVol(BlackVolatilityTermStructure):
         cdef Handle[_qt.Quote] volatility_handle
         if isinstance(volatility, Quote):
             volatility_handle = Handle[_qt.Quote]((<Quote>volatility)._thisptr)
-            self._thisptr = shared_ptr[_bvts.BlackVolTermStructure](
+            self._thisptr = shared_ptr[VolatilityTermStructure](
                 new _bcv.BlackConstantVol(
                     deref(reference_date._thisptr),
                     deref(calendar._thisptr),
@@ -46,7 +47,7 @@ cdef class BlackConstantVol(BlackVolatilityTermStructure):
                 )
             )
         elif isinstance(volatility, float):
-            self._thisptr = shared_ptr[_bvts.BlackVolTermStructure](
+            self._thisptr = shared_ptr[VolatilityTermStructure](
                 new _bcv.BlackConstantVol(
                     deref(reference_date._thisptr),
                     deref(calendar._thisptr),

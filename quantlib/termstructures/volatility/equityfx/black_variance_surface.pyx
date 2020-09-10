@@ -11,11 +11,12 @@ from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time._date cimport Date as _Date
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.time._daycounter cimport DayCounter as _DayCounter
+from quantlib.time._daycounter cimport DayCounter as QlDayCounter
 
 from .black_vol_term_structure cimport BlackVarianceTermStructure
 from . cimport _black_variance_surface as _bvs
 from . cimport _black_vol_term_structure as _bvts
+from ..._vol_term_structure cimport VolatilityTermStructure
 
 cpdef public enum Extrapolation:
     ConstantExtrapolation = _bvs.ConstantExtrapolation
@@ -69,32 +70,30 @@ cdef class BlackVarianceSurface(BlackVarianceTermStructure):
 
         cdef vector[_Date] _dates
         for d in dates:
-            _dates.push_back(deref((<Date>d)._thisptr))
+            _dates.push_back(deref((<Date?>d)._thisptr))
 
-        self._thisptr = shared_ptr[_bvts.BlackVolTermStructure](
+        self._thisptr = shared_ptr[VolatilityTermStructure](
                                 new _bvs.BlackVarianceSurface(
                                              deref(reference_date._thisptr),
                                              deref(cal._thisptr),
                                              _dates,
                                              strikes,
-                                             (<Matrix>black_vol_matrix)._thisptr,
+                                             (black_vol_matrix)._thisptr,
                                              deref(dc._thisptr),
                                              lower_extrap,
                                              upper_extrap,
                                              ))
 
-
     # TermStructure interface
-    @property
-    def day_counter(self):
-        """ ql lacks a copy constructor for DayCounter"""
-        cdef _DayCounter _dc = get_bvs(self).dayCounter()
-        cdef DayCounter dc = DayCounter.from_name(_dc.name())
-        return dc
+    #@property
+    #def day_counter(self):
+    #    cdef DayCounter dc = DayCounter.__new__(DayCounter)
+    #    dc._thisptr = new QlDayCounter(get_bvs(self).dayCounter())
+    #    return dc
 
-    @property
-    def max_date(self):
-        return date_from_qldate(get_bvs(self).maxDate())
+    #@property
+    #def max_date(self):
+    #    return date_from_qldate(get_bvs(self).maxDate())
 
     @property
     def min_strike(self):

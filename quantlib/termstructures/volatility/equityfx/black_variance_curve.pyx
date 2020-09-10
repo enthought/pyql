@@ -8,20 +8,19 @@ from quantlib.handle cimport shared_ptr
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time._date cimport Date as _Date
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.time._daycounter cimport DayCounter as _DayCounter
+from quantlib.time._daycounter cimport DayCounter as QlDayCounter
 
-from ._black_vol_term_structure cimport (BlackVarianceTermStructure as _BlackVarianceTermStructure,
-                                        BlackVolTermStructure as _BlackVolTermStructure)
-from ._black_variance_curve cimport BlackVarianceCurve as _BlackVarianceCurve
+from .black_vol_term_structure cimport BlackVarianceTermStructure
+from . cimport _black_vol_term_structure as _bvts
+from . cimport _black_variance_curve as _bvc
+from ..._vol_term_structure cimport VolatilityTermStructure
 
 
-
-
-cdef inline _BlackVarianceCurve* get_bvc(BlackVarianceCurve bvc):
+cdef inline _bvc.BlackVarianceCurve* get_bvc(BlackVarianceCurve bvc):
     """ Utility function to extract a properly casted BlackVarianceCurve out
     of the internal _thisptr attribute of the BlackVolTermStructure base class.
     """
-    cdef _BlackVarianceCurve* ref = <_BlackVarianceCurve*>bvc._thisptr.get()
+    cdef _bvc.BlackVarianceCurve* ref = <_bvc.BlackVarianceCurve*>bvc._thisptr.get()
     return ref
 
 
@@ -39,6 +38,7 @@ cdef class BlackVarianceCurve(BlackVarianceTermStructure):
     For strike dependence, see BlackVarianceSurface.
 
     todo check time extrapolation
+
 
     Attributes
     ----------
@@ -60,10 +60,10 @@ cdef class BlackVarianceCurve(BlackVarianceTermStructure):
 
         cdef vector[_Date] _dates
         for d in dates:
-            _dates.push_back(deref((<Date>d)._thisptr))
+            _dates.push_back(deref((<Date?>d)._thisptr))
 
-        self._thisptr = shared_ptr[_BlackVolTermStructure](
-                                   new _BlackVarianceCurve(
+        self._thisptr = shared_ptr[VolatilityTermStructure](
+                                   new _bvc.BlackVarianceCurve(
                                                deref(reference_date._thisptr),
                                                _dates,
                                                black_vols,
@@ -71,16 +71,16 @@ cdef class BlackVarianceCurve(BlackVarianceTermStructure):
                                                force_monotone_variance,
                                                ))
     # TermStructure interface
-    @property
-    def day_counter(self):
-        """ ql lacks a copy constructor for DayCounter"""
-        cdef _DayCounter _dc = get_bvc(self).dayCounter()
-        cdef DayCounter dc = DayCounter.from_name(_dc.name())
-        return dc
+    #@property
+    #def day_counter(self):
+    #    cdef DayCounter dc = DayCounter.__new__(DayCounter)
+    #    dc._thisptr = new QlDayCounter(get_bvc(self).dayCounter())
+    #    return dc
 
-    @property
-    def max_date(self):
-        return date_from_qldate(get_bvc(self).maxDate())
+
+    #@property
+    #def max_date(self):
+    #    return date_from_qldate(get_bvc(self).maxDate())
 
     @property
     def min_strike(self):

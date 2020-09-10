@@ -115,6 +115,7 @@ class VarianceSwapTestCase(unittest.TestCase):
         vol_ts = BlackVarianceSurface(self.today, NullCalendar(), dates, strikes,
                                       vols_mat, self.dc)
 
+
         stoch_process = BlackScholesMertonProcess(self.spot, self.q_ts, self.r_ts,
                                                   vol_ts)
 

@@ -9,7 +9,7 @@ from quantlib.termstructures._vol_term_structure cimport VolatilityTermStructure
 
 cdef extern from 'ql/termstructures/volatility/equityfx/blackvoltermstructure.hpp' namespace 'QuantLib':
 
-    cdef cppclass BlackVolTermStructure:
+    cdef cppclass BlackVolTermStructure(VolatilityTermStructure):
         # Constructors
         #    See the TermStructure documentation for issues regarding
         #    constructors.

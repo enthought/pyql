@@ -10,9 +10,12 @@ from quantlib.time._daycounter cimport DayCounter as _DayCounter
 from quantlib.time.calendar cimport Calendar
 from quantlib.time._calendar cimport Calendar as _Calendar
 from quantlib.time._businessdayconvention cimport BusinessDayConvention, Following
+from quantlib.termstructures.vol_term_structure import VolatilityTermStructure
+
+from . cimport _black_vol_term_structure as _bvts
 
 
-cdef class BlackVolTermStructure:
+cdef class BlackVolTermStructure(VolatilityTermStructure):
     """ Black-volatility term structure
 
         This abstract class defines the interface of concrete
@@ -29,10 +32,10 @@ cdef class BlackVolTermStructure:
         """ spot volatility
         """
         if isinstance(maturity, float):
-            return self._thisptr.get().blackVol(<float>maturity, strike, extrapolate)
+            return self.get_bvts().blackVol(<float>maturity, strike, extrapolate)
         elif isinstance(maturity, Date):
-            return self._thisptr.get().blackVol(
-                deref((<Date>maturity)._thisptr),
+            return self.get_bvts().blackVol(
+                deref((<Date?>maturity)._thisptr),
                 strike,
                 extrapolate
             )
@@ -43,14 +46,14 @@ cdef class BlackVolTermStructure:
         """ spot variance
         """
         if isinstance(maturity, float):
-            return self._thisptr.get().blackVariance(
+            return self.get_bvts().blackVariance(
                 <float>maturity,
                 strike,
                 extrapolate
             )
         elif isinstance(maturity, Date):
-            return self._thisptr.get().blackVariance(
-                deref((<Date>maturity)._thisptr),
+            return self.get_bvts().blackVariance(
+                deref((<Date?>maturity)._thisptr),
                 strike,
                 extrapolate
             )
@@ -61,16 +64,16 @@ cdef class BlackVolTermStructure:
         """ forward (at-the-money) volatility
         """
         if isinstance(time_1, float) and isinstance(time_2, float):
-            return self._thisptr.get().blackForwardVol(
+            return self.get_bvts().blackForwardVol(
                 <float>time_1,
                 <float>time_2,
                 strike,
                 extrapolate
             )
         elif isinstance(time_1, Date) and isinstance(time_2, Date):
-            return self._thisptr.get().blackForwardVol(
-                deref((<Date>time_1)._thisptr),
-                deref((<Date>time_2)._thisptr),
+            return self.get_bvts().blackForwardVol(
+                deref((<Date?>time_1)._thisptr),
+                deref((<Date?>time_2)._thisptr),
                 strike,
                 extrapolate
             )
@@ -81,16 +84,16 @@ cdef class BlackVolTermStructure:
         """  forward (at-the-money) variance
         """
         if isinstance(time_1, float) and isinstance(time_2, float):
-            return self._thisptr.get().blackForwardVariance(
+            return self.get_bvts().blackForwardVariance(
                 <float>time_1,
                 <float>time_2,
                 strike,
                 extrapolate
             )
         elif isinstance(time_1, Date) and isinstance(time_2, Date):
-            return self._thisptr.get().blackForwardVariance(
-                deref((<Date>time_1)._thisptr),
-                deref((<Date>time_2)._thisptr),
+            return self.get_bvts().blackForwardVariance(
+                deref((<Date?>time_1)._thisptr),
+                deref((<Date?>time_2)._thisptr),
                 strike,
                 extrapolate
             )

@@ -16,18 +16,6 @@ cdef extern from 'ql/math/interpolations/linearinterpolation.hpp' namespace 'Qua
         pass
 
 
-cdef extern from 'ql/math/interpolations/linearinterpolation.hpp' namespace 'QuantLib':
-
-    cdef cppclass Linear:
-        pass
-
-
-cdef extern from 'ql/math/interpolations/linearinterpolation.hpp' namespace 'QuantLib':
-
-    cdef cppclass Linear:
-        pass
-
-
 cdef extern from 'ql/math/interpolations/bilinearinterpolation.hpp' namespace 'QuantLib':
 
     cdef cppclass Bilinear:
