@@ -24,6 +24,8 @@ from quantlib.indexes.inflation.ukrpi import UKRPI
 from quantlib.termstructures.inflation.api import \
     ZeroCouponInflationSwapHelper, PiecewiseZeroInflationCurve, Interpolator
 from quantlib.quotes import SimpleQuote
+from quantlib.cashflows.cpi_coupon_pricer import CPICouponPricer
+from quantlib.cashflows.inflation_coupon_pricer import set_coupon_pricer
 
 class TestInflationIndex(unittest.TestCase):
 
@@ -98,7 +100,7 @@ class TestCPIBond(unittest.TestCase):
         self.helpers = [ZeroCouponInflationSwapHelper(
             SimpleQuote(r / 100),
             observation_lag,
-            maturity, self.calendar, ModifiedFollowing, day_counter, self.ii) \
+            maturity, self.calendar, ModifiedFollowing, day_counter, self.ii, self.yts) \
                         for maturity, r in zip(dates, rates)]
         base_zero_rate = rates[0] / 100
 
@@ -106,7 +108,7 @@ class TestCPIBond(unittest.TestCase):
             PiecewiseZeroInflationCurve(Interpolator.Linear,
                                         evaluation_date, self.calendar, day_counter,
                                         observation_lag, self.ii.frequency, self.ii.interpolated,
-                                        base_zero_rate, self.yts, self.helpers))
+                                        base_zero_rate, self.helpers))
 
     def test_clean_price(self):
         notional = 1000000.0;
@@ -135,7 +137,7 @@ class TestCPIBond(unittest.TestCase):
 
         engine = DiscountingBondEngine(self.yts)
         cpi_bond.set_pricing_engine(engine)
-
+        set_coupon_pricer(cpi_bond.cashflows, CPICouponPricer(self.yts))
         storedPrice = 383.01816406
         calculated = cpi_bond.clean_price
         self.assertAlmostEqual(storedPrice, calculated)

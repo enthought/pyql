@@ -8,7 +8,7 @@
 """
 
 from quantlib.handle cimport shared_ptr
-from quantlib.models.calibration_helper cimport CalibrationHelper
+from quantlib.models.calibration_helper cimport BlackCalibrationHelper
 
-cdef class SwaptionHelper(CalibrationHelper):
+cdef class SwaptionHelper(BlackCalibrationHelper):
     pass

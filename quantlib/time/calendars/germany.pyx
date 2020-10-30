@@ -2,19 +2,18 @@ cimport quantlib.time._calendar as _calendar
 cimport quantlib.time.calendars._germany as _gm
 from quantlib.time.calendar cimport Calendar
 
-SETTLEMENT = 0
-FRANKFURT_STOCK_EXCHANGE = 1 # Frankfurt stock-exchange
-XETRA = 2                  # Xetra
-EUREX = 3                  # Eurex
-EUWAX = 4                  # Euwax
+cpdef enum Market:
+    Settlement = _gm.Settlement
+    FrankfurtStockExchange = _gm.FrankfurtStockExchange # Frankfurt stock-exchange
+    Xetra = _gm.Xetra                  # Xetra
+    Eurex = _gm.Eurex                  # Eurex
+    Euwax = _gm.Euwax                  # Euwax
 
 cdef class Germany(Calendar):
     ''' Germany calendars.
    '''
 
-    def __cinit__(self, market=SETTLEMENT):
+    def __cinit__(self, Market market=Market.Settlement):
 
         self._thisptr = <_calendar.Calendar*> new \
             _gm.Germany(<_gm.Market>market)
-
-

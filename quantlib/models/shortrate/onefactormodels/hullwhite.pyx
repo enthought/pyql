@@ -21,7 +21,7 @@ cimport quantlib.models._calibration_helper as _ch
 cimport quantlib.models._model as _mo
 
 from quantlib.models.shortrate.calibrationhelpers.swaption_helper cimport SwaptionHelper
-from quantlib.models.calibration_helper cimport CalibrationHelper
+from quantlib.models.calibration_helper cimport BlackCalibrationHelper
 
 from quantlib.quotes cimport Quote, SimpleQuote
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
@@ -60,11 +60,11 @@ cdef class HullWhite(Vasicek):
             end_criteria):
 
         #convert list to vector
-        cdef vector[shared_ptr[_ch.CalibrationHelper]] helpers_vector
+        cdef vector[shared_ptr[_ch.BlackCalibrationHelper]] helpers_vector
 
-        cdef shared_ptr[_ch.CalibrationHelper] chelper
+        cdef shared_ptr[_ch.BlackCalibrationHelper] chelper
         for helper in helpers:
-            chelper = (<CalibrationHelper>helper)._thisptr
+            chelper = (<BlackCalibrationHelper>helper)._thisptr
             helpers_vector.push_back(chelper)
 
         (<_hw.HullWhite*> self._thisptr.get()).calibrate(

@@ -33,10 +33,10 @@ from quantlib.time.date cimport Period
 from quantlib.termstructures.yields.flat_forward cimport (
     YieldTermStructure
 )
-from quantlib.models.calibration_helper cimport CalibrationHelper
+from quantlib.models.calibration_helper cimport BlackCalibrationHelper
 
 
-cdef class HestonModelHelper(CalibrationHelper):
+cdef class HestonModelHelper(BlackCalibrationHelper):
 
     def __str__(self):
         return 'Heston model helper'
@@ -55,7 +55,7 @@ cdef class HestonModelHelper(CalibrationHelper):
         cdef Handle[_qt.Quote] volatility_handle = \
                 Handle[_qt.Quote](volatility._thisptr)
 
-        self._thisptr = shared_ptr[_ch.CalibrationHelper](
+        self._thisptr = shared_ptr[_ch.BlackCalibrationHelper](
             new _hm.HestonModelHelper(
                 deref(maturity._thisptr),
                 deref(calendar._thisptr),
@@ -107,9 +107,9 @@ cdef class HestonModel:
             end_criteria, Constraint constraint=None):
 
         #convert list to vector
-        cdef vector[shared_ptr[_ch.CalibrationHelper]] helpers_vector
+        cdef vector[shared_ptr[_ch.BlackCalibrationHelper]] helpers_vector
 
-        cdef shared_ptr[_ch.CalibrationHelper] chelper
+        cdef shared_ptr[_ch.BlackCalibrationHelper] chelper
         for helper in helpers:
             chelper = (<HestonModelHelper>helper)._thisptr
             helpers_vector.push_back(chelper)
@@ -117,11 +117,11 @@ cdef class HestonModel:
         if constraint is None:
             self._thisptr.get().calibrate(
                 helpers_vector,
-                deref(method._thisptr.get()),
-                deref(end_criteria._thisptr.get()))
+                deref(method._thisptr),
+                deref(end_criteria._thisptr))
         else:
             self._thisptr.get().calibrate(
                 helpers_vector,
-                deref(method._thisptr.get()),
-                deref(end_criteria._thisptr.get()),
-                deref(constraint._thisptr.get()))
+                deref(method._thisptr),
+                deref(end_criteria._thisptr),
+                deref(constraint._thisptr))

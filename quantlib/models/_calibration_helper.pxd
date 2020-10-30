@@ -5,9 +5,9 @@ from quantlib.handle cimport shared_ptr
 
 cdef extern from 'ql/models/calibrationhelper.hpp' namespace 'QuantLib':
 
-    cdef cppclass CalibrationHelper:
-        CalibrationHelper()
-        
+    cdef cppclass BlackCalibrationHelper:
+        BlackCalibrationHelper()
+
         Volatility impliedVolatility(
             Real targetValue,
             Real accuracy,
@@ -24,7 +24,7 @@ cdef extern from 'ql/models/calibrationhelper.hpp' namespace 'QuantLib':
         Real calibrationError() except +
 
 
-cdef extern from 'ql/models/calibrationhelper.hpp' namespace 'QuantLib::CalibrationHelper':
+cdef extern from 'ql/models/calibrationhelper.hpp' namespace 'QuantLib::BlackCalibrationHelper':
 
     cdef enum CalibrationErrorType:
         RelativePriceError

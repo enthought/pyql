@@ -12,12 +12,15 @@ from . cimport _instrument
 
 cdef class Swaption(Instrument):
     def __init__(self, VanillaSwap swap not None, Exercise exercise not None,
-                 SettlementType delivery=Physical):
+                 SettlementType delivery=Physical,
+                 SettlementMethod settlement_method=PhysicalOTC):
         self._thisptr = shared_ptr[_instrument.Instrument](
             new _swaption.Swaption(
                 static_pointer_cast[_vanillaswap.VanillaSwap](swap._thisptr),
                 exercise._thisptr,
-                <Settlement.Type>delivery))
+                <Settlement.Type>delivery,
+                <Settlement.Method>settlement_method)
+        )
 
     def implied_volatility(self, Real price,
                            YieldTermStructure discount_curve not None,
@@ -42,6 +45,10 @@ cdef class Swaption(Instrument):
     @property
     def settlement_type(self):
         return SettlementType((<_swaption.Swaption*>self._thisptr.get()).settlementType())
+
+    @property
+    def settlement_method(self):
+        return SettlementMethod((<_swaption.Swaption*>self._thisptr.get()).settlementMethod())
 
     def underlying_swap(self):
         cdef VanillaSwap instance = VanillaSwap.__new__(VanillaSwap)

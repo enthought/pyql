@@ -9,7 +9,7 @@ from quantlib.pricingengines._pricing_engine cimport PricingEngine
 from quantlib.termstructures.yields._flat_forward cimport (
     YieldTermStructure
 )
-from quantlib.models._calibration_helper cimport CalibrationHelper, CalibrationErrorType
+from quantlib.models._calibration_helper cimport BlackCalibrationHelper, CalibrationErrorType
 from quantlib.math._optimization cimport Constraint
 
 cimport quantlib.models._calibration_helper as _ch
@@ -19,19 +19,19 @@ from quantlib.time._period cimport Period
 
 cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
 
-    cdef cppclass HestonModelHelper(CalibrationHelper):
+    cdef cppclass HestonModelHelper(BlackCalibrationHelper):
 
         HestonModelHelper(
             Period& maturity,
             Calendar& calendar,
-            Real s0, 
+            Real s0,
             Real strikePrice,
             Handle[_qt.Quote]& volatility,
             Handle[YieldTermStructure]& riskFreeRate,
             Handle[YieldTermStructure]& dividendYield,
             CalibrationErrorType errorType
         ) except +
-        
+
 
 cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib':
 
@@ -41,7 +41,7 @@ cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib':
         HestonModel(shared_ptr[HestonProcess]& process)
 
         shared_ptr[HestonProcess] process() except +
-        
+
         #variance mean reversion level
         Real theta() except +
         #variance mean reversion speed
@@ -54,14 +54,12 @@ cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib':
         Real v0() except +
 
         void calibrate(
-               vector[shared_ptr[_ch.CalibrationHelper]]&,
+               vector[shared_ptr[_ch.BlackCalibrationHelper]]&,
                OptimizationMethod& method,
                EndCriteria& endCriteria) except +
 
         void calibrate(
-               vector[shared_ptr[_ch.CalibrationHelper]]&,
+               vector[shared_ptr[_ch.BlackCalibrationHelper]]&,
                OptimizationMethod& method,
                EndCriteria& endCriteria,
                Constraint& constraint) except +
-
-

@@ -11,6 +11,7 @@ from quantlib.time.calendar cimport Calendar
 from quantlib.indexes.inflation_index cimport (
     ZeroInflationIndex, YoYInflationIndex)
 cimport quantlib.indexes._inflation_index as _ii
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.termstructures.inflation_term_structure cimport (
     ZeroInflationTermStructure, YoYInflationTermStructure)
 cimport quantlib.termstructures._inflation_term_structure as _its
@@ -21,7 +22,8 @@ cdef class ZeroCouponInflationSwapHelper:
                   Date maturity not None, Calendar calendar not None,
                   BusinessDayConvention payment_convention,
                   DayCounter day_counter not None,
-                  ZeroInflationIndex zii not None):
+                  ZeroInflationIndex zii not None,
+                  YieldTermStructure nominal_term_structure not None):
         self._thisptr = shared_ptr[ZeroInflationTraits.helper](
             new _ih.ZeroCouponInflationSwapHelper(
                 Handle[_qt.Quote](quote._thisptr),
@@ -29,7 +31,8 @@ cdef class ZeroCouponInflationSwapHelper:
                 deref(maturity._thisptr),
                 deref(calendar._thisptr), payment_convention,
                 deref(day_counter._thisptr),
-                static_pointer_cast[_ii.ZeroInflationIndex](zii._thisptr))
+                static_pointer_cast[_ii.ZeroInflationIndex](zii._thisptr),
+                nominal_term_structure._thisptr)
             )
 
     def set_term_structure(self, ZeroInflationTermStructure ts):
@@ -49,7 +52,8 @@ cdef class YearOnYearInflationSwapHelper:
                   Date maturity not None, Calendar calendar not None,
                   BusinessDayConvention payment_convention,
                   DayCounter day_counter not None,
-                  YoYInflationIndex yii not None):
+                  YoYInflationIndex yii not None,
+                  YieldTermStructure nominal_term_structure not None):
         self._thisptr = shared_ptr[YoYInflationTraits.helper](
             new _ih.YearOnYearInflationSwapHelper(
                 Handle[_qt.Quote](quote._thisptr),
@@ -57,7 +61,8 @@ cdef class YearOnYearInflationSwapHelper:
                 deref(maturity._thisptr),
                 deref(calendar._thisptr), payment_convention,
                 deref(day_counter._thisptr),
-                static_pointer_cast[_ii.YoYInflationIndex](yii._thisptr))
+                static_pointer_cast[_ii.YoYInflationIndex](yii._thisptr),
+                nominal_term_structure._thisptr)
             )
 
     def set_term_structure(self, YoYInflationTermStructure ts):

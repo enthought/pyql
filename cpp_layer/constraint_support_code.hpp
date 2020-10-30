@@ -8,6 +8,7 @@
 
 #include <ql/types.hpp>
 #include <ql/math/optimization/constraint.hpp>
+#include <ql/shared_ptr.hpp>
 
 namespace QuantLib {
 
@@ -18,6 +19,6 @@ namespace QuantLib {
     };
 
     // wrapper function 
-    boost::shared_ptr<Constraint> constraint_factory(double equityShortRateCorr);
+    ext::shared_ptr<Constraint> constraint_factory(double equityShortRateCorr);
 }
 

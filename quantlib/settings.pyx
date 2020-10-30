@@ -13,7 +13,6 @@ cdef extern from 'ql/version.hpp':
 
     char* QL_VERSION
     int QL_HEX_VERSION
-    char* QL_LIB_VERSION
 
 cdef extern from 'ql/config.hpp':
     bool QL_HIGH_RESOLUTION_DATE
@@ -23,7 +22,6 @@ cdef extern from 'settings.hpp':
     cdef void SET_VALUE(optional[bool]&, optional[bool])
 
 __quantlib_version__ = QL_VERSION
-__quantlib_lib_version__ = QL_LIB_VERSION
 __quantlib_hex_version__ = QL_HEX_VERSION
 
 cdef class DateProxy(Observable):

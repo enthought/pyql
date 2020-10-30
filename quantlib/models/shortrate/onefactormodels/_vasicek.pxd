@@ -14,7 +14,7 @@ from quantlib.handle cimport Handle, shared_ptr
 
 from quantlib.instruments._option cimport Type as OptionType
 from quantlib.math._optimization cimport OptimizationMethod, EndCriteria
-from quantlib.models._calibration_helper cimport CalibrationHelper
+from quantlib.models._calibration_helper cimport BlackCalibrationHelper
 from quantlib.models.shortrate._onefactor_model cimport OneFactorAffineModel
 
 cdef extern from 'ql/models/shortrate/onefactormodels/vasicek.hpp' namespace 'QuantLib':
@@ -24,7 +24,7 @@ cdef extern from 'ql/models/shortrate/onefactormodels/vasicek.hpp' namespace 'Qu
         Vasicek() # fake empty constructor due to Cython issue
 
         Vasicek(Rate r0, Real a, Real b, Real sigma, Real Lambda) except +
-        
+
         Real a() except +
 
         Real b() except +
@@ -34,7 +34,7 @@ cdef extern from 'ql/models/shortrate/onefactormodels/vasicek.hpp' namespace 'Qu
         Real sigma() except +
 
         void calibrate(
-               vector[shared_ptr[CalibrationHelper]]&,
+               vector[shared_ptr[BlackCalibrationHelper]]&,
                OptimizationMethod& method,
                EndCriteria& endCriteria,
         ) except +

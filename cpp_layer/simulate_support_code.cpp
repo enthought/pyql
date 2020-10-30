@@ -14,7 +14,7 @@ using namespace QuantLib;
 
 namespace PyQL {
 
-    void simulateMP(const boost::shared_ptr<StochasticProcess>& process,
+    void simulateMP(const ext::shared_ptr<StochasticProcess>& process,
                     int nbPaths, TimeGrid& grid, BigNatural seed,
                     bool antithetic_variates, double *res) {
 
