@@ -8,7 +8,6 @@ from quantlib.instruments.option import EuropeanExercise, OptionType
 from quantlib.instruments.variance_swap import VarianceSwap, SwapType
 from quantlib.math.matrix import Matrix
 from quantlib.pricingengines.forward.replicating_variance_swap_engine import ReplicatingVarianceSwapEngine
-from quantlib.pricingengines.forward.mc_variance_swap_engine import MakeMCVarianceSwapEngine
 from quantlib.pricingengines.forward.mc_variance_swap_engine import MCVarianceSwapEngine
 from quantlib.processes.api import BlackScholesMertonProcess
 from quantlib.quotes import SimpleQuote

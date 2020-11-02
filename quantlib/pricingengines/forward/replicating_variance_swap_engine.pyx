@@ -6,7 +6,7 @@ from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesPro
 from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess as _GeneralizedBlackScholesProcess
 from quantlib.pricingengines._pricing_engine cimport PricingEngine as _PricingEngine
 from quantlib.pricingengines.engine cimport PricingEngine
-from _replicating_variance_swap_engine cimport ReplicatingVarianceSwapEngine as _ReplicatingVarianceSwapEngine
+from ._replicating_variance_swap_engine cimport ReplicatingVarianceSwapEngine as _ReplicatingVarianceSwapEngine
 
 cdef class ReplicatingVarianceSwapEngine(PricingEngine):
     """

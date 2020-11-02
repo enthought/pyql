@@ -10,8 +10,7 @@ from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.pricingengines._pricing_engine cimport PricingEngine as _PricingEngine
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess as _GeneralizedBlackScholesProcess
-import _mc_variance_swap_engine
-from _mc_variance_swap_engine cimport MCVarianceSwapEngine as _MCVarianceSwapEngine
+from ._mc_variance_swap_engine cimport MCVarianceSwapEngine as _MCVarianceSwapEngine
 
 
 
