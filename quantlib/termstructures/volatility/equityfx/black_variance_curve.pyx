@@ -70,18 +70,7 @@ cdef class BlackVarianceCurve(BlackVarianceTermStructure):
                                                deref(day_counter._thisptr),
                                                force_monotone_variance,
                                                ))
-    # TermStructure interface
-    #@property
-    #def day_counter(self):
-    #    cdef DayCounter dc = DayCounter.__new__(DayCounter)
-    #    dc._thisptr = new QlDayCounter(get_bvc(self).dayCounter())
-    #    return dc
-
-
-    #@property
-    #def max_date(self):
-    #    return date_from_qldate(get_bvc(self).maxDate())
-
+    
     @property
     def min_strike(self):
         return get_bvc(self).minStrike()

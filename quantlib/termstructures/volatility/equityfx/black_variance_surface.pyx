@@ -84,16 +84,6 @@ cdef class BlackVarianceSurface(BlackVarianceTermStructure):
                                              upper_extrap,
                                              ))
 
-    # TermStructure interface
-    #@property
-    #def day_counter(self):
-    #    cdef DayCounter dc = DayCounter.__new__(DayCounter)
-    #    dc._thisptr = new QlDayCounter(get_bvs(self).dayCounter())
-    #    return dc
-
-    #@property
-    #def max_date(self):
-    #    return date_from_qldate(get_bvs(self).maxDate())
 
     @property
     def min_strike(self):

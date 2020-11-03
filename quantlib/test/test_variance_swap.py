@@ -47,10 +47,7 @@ class VarianceSwapTestCase(unittest.TestCase):
         self.q_rate.value = self.values['q']
         self.r_rate.value = self.values['r']
         self.ex_date = self.today + int(self.values['t']*365+0.5)
-        #self.factory = (MakeMCVarianceSwapEngine(stochProcess).
-        #                                                with_steps_per_year(250).
-        #                                                with_samples(1023).
-        #                                                with_seed(42))
+
 
     def test_replicating_variance_swap(self):
         """
@@ -97,7 +94,6 @@ class VarianceSwapTestCase(unittest.TestCase):
             else:
                 raise ValueError("unknown option type")
 
-        #vols = Matrix(len(replicating_option_data)-1, 1)
         vols = np.zeros((len(replicating_option_data)-1, 1))
         strikes = []
         for j, v in enumerate(put_vols):
