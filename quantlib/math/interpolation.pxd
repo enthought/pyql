@@ -10,3 +10,9 @@ cdef extern from 'ql/math/interpolations/all.hpp' namespace 'QuantLib':
 
     cdef cppclass SABRInterpolation:
         pass
+
+    cdef cppclass Bilinear:
+       pass
+
+    cdef cppclass Bicubic:
+        pass

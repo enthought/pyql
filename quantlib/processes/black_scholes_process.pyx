@@ -3,7 +3,7 @@ include '../types.pxi'
 from . cimport _black_scholes_process as _bsp
 cimport quantlib._stochastic_process as _sp
 
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib.handle cimport Handle, shared_ptr, dynamic_pointer_cast
 cimport quantlib.termstructures.yields._flat_forward as _ff
 cimport quantlib._quote as _qt
 from quantlib.quotes cimport Quote
@@ -23,7 +23,9 @@ cdef class BlackScholesProcess(GeneralizedBlackScholesProcess):
         cdef Handle[_qt.Quote] x0_handle = Handle[_qt.Quote](x0._thisptr)
 
         cdef Handle[_bvts.BlackVolTermStructure] black_vol_ts_handle = \
-            Handle[_bvts.BlackVolTermStructure](black_vol_ts._thisptr)
+            Handle[_bvts.BlackVolTermStructure](
+                dynamic_pointer_cast[_bvts.BlackVolTermStructure](black_vol_ts._thisptr)
+            )
 
         self._thisptr = shared_ptr[_sp.StochasticProcess]( new \
             _bsp.BlackScholesProcess(
@@ -45,7 +47,7 @@ cdef class BlackScholesMertonProcess(GeneralizedBlackScholesProcess):
 
         cdef Handle[_bvts.BlackVolTermStructure] black_vol_ts_handle = \
             Handle[_bvts.BlackVolTermStructure](
-                black_vol_ts._thisptr
+                dynamic_pointer_cast[_bvts.BlackVolTermStructure](black_vol_ts._thisptr)
             )
 
         self._thisptr = shared_ptr[_sp.StochasticProcess]( new \
