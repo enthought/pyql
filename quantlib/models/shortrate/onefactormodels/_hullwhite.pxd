@@ -43,9 +43,3 @@ cdef extern from 'ql/models/shortrate/onefactormodels/hullwhite.hpp' namespace '
                            Time T,
                            Real sigma,
                            Real a) except +
-
-        void calibrate(
-               vector[shared_ptr[SwaptionHelper]]&,
-               OptimizationMethod& method,
-               EndCriteria& endCriteria,
-        ) except +

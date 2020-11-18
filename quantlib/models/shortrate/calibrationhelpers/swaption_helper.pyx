@@ -25,7 +25,7 @@ cimport quantlib.indexes._ibor_index as _ii
 cimport quantlib.models._calibration_helper as _ch
 from . cimport _swaption_helper as _sh
 
-from quantlib.models.calibration_helper cimport BlackCalibrationHelper
+from quantlib.models.calibration_helper cimport BlackCalibrationHelper, CalibrationErrorType
 
 from quantlib._defines cimport QL_NULL_REAL
 
@@ -40,14 +40,14 @@ cdef class SwaptionHelper(BlackCalibrationHelper):
                  DayCounter fixed_leg_daycounter not None,
                  DayCounter floating_leg_daycounter not None,
                  YieldTermStructure ts not None,
-                 error_type=RelativePriceError,
+                 CalibrationErrorType error_type=RelativePriceError,
                  Real strike=QL_NULL_REAL,
                  Real nominal=1.0):
 
         cdef Handle[_qt.Quote] volatility_handle = \
                 Handle[_qt.Quote](volatility._thisptr)
 
-        self._thisptr = shared_ptr[_ch.BlackCalibrationHelper](
+        self._thisptr = shared_ptr[_ch.CalibrationHelper](
             new _sh.SwaptionHelper(
                 deref(maturity._thisptr),
                 deref(length._thisptr),
@@ -57,6 +57,6 @@ cdef class SwaptionHelper(BlackCalibrationHelper):
                 deref(fixed_leg_daycounter._thisptr),
                 deref(floating_leg_daycounter._thisptr),
                 ts._thisptr,
-                <_ch.CalibrationErrorType>error_type,
+                error_type,
                 strike,
                 nominal))

@@ -7,9 +7,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../../../types.pxi'
-
+from quantlib.types cimport Real
 from libcpp.vector cimport vector
+from libcpp cimport bool
 from cython.operator cimport dereference as deref
 from . cimport _hullwhite as _hw
 from . cimport _vasicek as _va
@@ -20,6 +20,7 @@ cimport quantlib._quote as _qt
 cimport quantlib.models._calibration_helper as _ch
 cimport quantlib.models._model as _mo
 
+from quantlib.math.optimization cimport Constraint
 from quantlib.models.shortrate.calibrationhelpers.swaption_helper cimport SwaptionHelper
 from quantlib.models.calibration_helper cimport BlackCalibrationHelper
 
@@ -57,18 +58,22 @@ cdef class HullWhite(Vasicek):
 
 
     def calibrate(self, list helpers, OptimizationMethod method, EndCriteria
-            end_criteria):
+                  end_criteria, Constraint constraint=Constraint(),
+                  vector[Real] weights=[], vector[bool] fix_parameters=[]):
 
         #convert list to vector
-        cdef vector[shared_ptr[_ch.BlackCalibrationHelper]] helpers_vector
+        cdef vector[shared_ptr[_ch.CalibrationHelper]] helpers_vector
 
-        cdef shared_ptr[_ch.BlackCalibrationHelper] chelper
+        cdef shared_ptr[_ch.CalibrationHelper] chelper
         for helper in helpers:
             chelper = (<BlackCalibrationHelper>helper)._thisptr
             helpers_vector.push_back(chelper)
 
         (<_hw.HullWhite*> self._thisptr.get()).calibrate(
             helpers_vector,
-            deref(method._thisptr.get()),
-            deref(end_criteria._thisptr.get())
+            deref(method._thisptr),
+            deref(end_criteria._thisptr),
+            deref(constraint._thisptr),
+            weights,
+            fix_parameters
         )

@@ -148,19 +148,29 @@ cdef class Calendar:
             return deref(self._thisptr) != deref(cal._thisptr)
         raise TypeError(op_str + " not supported between instances of 'Calendar' and 'Calendar'")
 
+    def holiday_list(self, date.Date from_date not None,
+                     date.Date to_date not None, bool include_weekends=False):
+        '''Returns the holidays between two dates. '''
+        cdef vector[_date.Date] dates = self._thisptr.holidayList(
+            deref(from_date._thisptr),
+            deref(to_date._thisptr),
+            include_weekends
+        )
+        cdef _date.Date d
+        cdef list l = []
+        for d in dates:
+            l.append(date.date_from_qldate(d))
+        return l
 
-def holiday_list(Calendar calendar not None, date.Date from_date not None,
-                 date.Date to_date not None, bool include_weekends=False):
-    '''Returns the holidays between two dates. '''
-
-    cdef vector[_date.Date] dates = _calendar.Calendar_holidayList(
-        deref(calendar._thisptr),
-        deref(from_date._thisptr),
-        deref(to_date._thisptr),
-        include_weekends
-    )
-    cdef _date.Date d
-    cdef list l = []
-    for d in dates:
-        l.append(date.date_from_qldate(d))
-    return l
+    def business_day_list(self, date.Date from_date not None,
+                          date.Date to_date not None):
+        '''Returns the business days between two dates. '''
+        cdef vector[_date.Date] dates = self._thisptr.businessDayList(
+            deref(from_date._thisptr),
+            deref(to_date._thisptr),
+        )
+        cdef _date.Date d
+        cdef list l = []
+        for d in dates:
+            l.append(date.date_from_qldate(d))
+        return l

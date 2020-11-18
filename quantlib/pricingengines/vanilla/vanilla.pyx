@@ -20,10 +20,8 @@ from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesPro
 
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.methods.finitedifferences.solvers.fdmbackwardsolver cimport FdmSchemeDesc
-import warnings
 
 cdef class VanillaOptionEngine(PricingEngine):
-
     pass
 
 cdef class AnalyticEuropeanEngine(VanillaOptionEngine):
@@ -93,7 +91,6 @@ cdef class AnalyticHestonHullWhiteEngine(PricingEngine):
 
 
 cdef class FdHestonHullWhiteVanillaEngine(PricingEngine):
-
     def __init__(self, HestonModel heston_model,
             HullWhiteProcess hw_process,
             Real corr_equity_short_rate,
@@ -116,8 +113,9 @@ cdef class FdHestonHullWhiteVanillaEngine(PricingEngine):
                 r_grid,
                 damping_steps,
                 control_variate,
-                deref(desc._thisptr.get()))
+                deref(desc._thisptr)
             )
+        )
 
     def enable_multiple_strikes_caching(self, strikes):
         cdef vector[double] v = strikes
@@ -171,34 +169,4 @@ cdef class AnalyticDividendEuropeanEngine(PricingEngine):
 
         self._thisptr = new shared_ptr[QlPricingEngine](\
             new _va.AnalyticDividendEuropeanEngine(process_ptr)
-        )
-
-
-cdef class FDDividendAmericanEngine(PricingEngine):
-
-    def __init__(self, scheme, GeneralizedBlackScholesProcess process, timesteps, gridpoints):
-
-        # FIXME: first implementation using a fixed scheme!
-        warnings.warn('Warning : rough implementation using CrankNicolson schema')
-        cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
-            static_pointer_cast[_bsp.GeneralizedBlackScholesProcess](process._thisptr)
-
-        self._thisptr = new shared_ptr[QlPricingEngine](\
-            new _va.FDDividendAmericanEngine[_va.CrankNicolson](
-                process_ptr, timesteps, gridpoints
-            )
-        )
-
-cdef class FDAmericanEngine(PricingEngine):
-
-    def __init__(self, scheme, GeneralizedBlackScholesProcess process, timesteps, gridpoints):
-
-        # FIXME: first implementation using a fixed scheme!
-        cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
-            static_pointer_cast[_bsp.GeneralizedBlackScholesProcess](process._thisptr)
-
-        self._thisptr = new shared_ptr[QlPricingEngine](\
-            new _va.FDAmericanEngine[_va.CrankNicolson](
-                process_ptr, timesteps, gridpoints
-            )
         )
