@@ -28,6 +28,7 @@ from quantlib.time.daycounters.simple cimport Actual360, Actual365Fixed
 from quantlib.time._businessdayconvention cimport BusinessDayConvention
 
 from quantlib.time.schedule cimport Schedule
+from quantlib.cashflow cimport SimpleCashFlow
 from quantlib.cashflows.fixed_rate_coupon cimport FixedRateLeg
 from quantlib.time.date cimport _pydate_from_qldate
 
@@ -222,6 +223,20 @@ cdef class CreditDefaultSwap(Instrument):
     @property
     def rebates_accrual(self):
          return _get_cds(self).rebatesAccrual()
+
+    @property
+    def accrual(self):
+        cdef SimpleCashFlow cf = SimpleCashFlow.__new__(SimpleCashFlow)
+        cf._thisptr = _get_cds(self).accrualRebate()
+        return cf
+
+    @property
+    def trade_date(self):
+        return _pydate_from_qldate(_get_cds(self).tradeDate())
+
+    @property
+    def cash_settlement_days(self):
+        return _get_cds(self).cashSettlementDays()
 
     property fair_upfront:
         """ Returns the upfront spread that, given the running spread
