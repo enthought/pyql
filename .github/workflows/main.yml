@@ -27,6 +27,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install libquantlib0-dev
           
+      - name: check header is at the correct location
+        run: ls /usr/include/ql/shared_ptr.hpp
+          
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
@@ -43,9 +46,9 @@ jobs:
 
       - name: Build
         run: |
-           make build
+           python setup.py build_ext --inplace
 
-      - name: Test with pytest
+      - name: Run tests
         run: |
            python -m unittest discover -v
 
