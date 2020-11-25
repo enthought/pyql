@@ -29,8 +29,8 @@ jobs:
           
       - name: check header is at the correct location
         run: | 
-          ls -d /usr/include/
-          ls -d /usr/local/include/
+          ls -d /usr/include/*
+          ls -d /usr/local/include/*
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
