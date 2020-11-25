@@ -24,9 +24,9 @@ jobs:
     steps:
       - name: install dependencies
         run: | 
-          add-apt-repository ppa:edd/misc -y 
-          apt-get update
-          apt-get install libquantlib0-dev
+          sudo add-apt-repository ppa:edd/misc -y 
+          sudo apt-get update
+          sudo apt-get install libquantlib0-dev
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
