@@ -28,7 +28,9 @@ jobs:
           sudo apt-get install libquantlib0-dev
           
       - name: check header is at the correct location
-        run: ls /usr/include/ql/shared_ptr.hpp
+        run: | 
+          ls -d /usr/include/
+          ls -d /usr/local/include/
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
