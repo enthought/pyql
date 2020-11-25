@@ -24,7 +24,6 @@ jobs:
     steps:
       - name: install dependencies
         run: | 
-          sudo add-apt-repository ppa:edd/misc -y 
           sudo apt-get update
           sudo apt-get install libquantlib0-dev
           
