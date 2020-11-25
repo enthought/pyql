@@ -31,7 +31,7 @@ jobs:
       - name: check header is at the correct location
         run: | 
           ls /usr/include/ql/*
-          sudo find / | grep shared_ptr.hpp
+          find /usr/include | grep shared_ptr.hpp
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
