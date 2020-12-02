@@ -1,0 +1,57 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        python-version: [3.6]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: install dependencies
+        run: | 
+          sudo add-apt-repository ppa:edd/misc -y
+          sudo apt-get update
+          sudo apt-get install libquantlib0-dev
+          
+      - name: check header is at the correct location
+        run: | 
+          ls /usr/include/ql/*
+          find /usr/include | grep shared_ptr.hpp
+          
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Build
+        run: |
+           python setup.py build_ext --inplace
+
+      - name: Run tests
+        run: |
+           python -m unittest discover -v
+
