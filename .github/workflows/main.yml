@@ -3,8 +3,6 @@ name: CI
 
 on: [push, pull_request]
 
-  workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-20.04 # required for latest QuantLib
