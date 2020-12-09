@@ -1,37 +1,23 @@
-# This is a basic workflow to help you get started with Actions
 
 name: CI
 
-# Controls when the action will run. 
-on:
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-20.04 # required for latest QuantLib
     strategy:
       matrix:
-        python-version: [3.6]
+        python-version: ['3.6', '3.7', '3.8']
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: install dependencies
         run: | 
           sudo add-apt-repository ppa:edd/misc -y
           sudo apt-get update
           sudo apt-get install libquantlib0-dev
-          
-      - name: check header is at the correct location
-        run: | 
-          ls /usr/include/ql/*
-          find /usr/include | grep shared_ptr.hpp
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
