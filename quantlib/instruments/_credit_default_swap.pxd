@@ -39,7 +39,9 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                           Date& protectionStart, #= Date(),
                           shared_ptr[Claim]&, # = boost::shared_ptr<Claim>(),
                           DayCounter& last_period_day_counter, # = DayCounter()
-                          bool rebates_accrual # = true
+                          bool rebates_accrual, # = true
+                          Date tradeDate, # = Date(),
+                          Natural cashSettlementDays, # = 3
         )
         CreditDefaultSwap(Side side,
                           Real notional,
@@ -54,7 +56,9 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                           Date& upfrontDate, #=Date(),
                           shared_ptr[Claim]&, # = boost::shared_ptr<Claim>(),
                           DayCounter& last_period_day_counter, # = DayCounter()
-                          bool rebates_accrual # = true
+                          bool rebates_accrual, # = true
+                          Date tradeDate, # = Date(),
+                          Natural cashSettlementDays, # = 3
                           ) except +
         int side()
         Real notional()

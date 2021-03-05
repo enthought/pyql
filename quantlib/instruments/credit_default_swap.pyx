@@ -108,7 +108,9 @@ cdef class CreditDefaultSwap(Instrument):
                  bool pays_at_default_time=True,
                  Date protection_start=Date(),
                  DayCounter last_period_day_counter = Actual360(True),
-                 bool rebates_accrual=True):
+                 bool rebates_accrual=True,
+                 Date trade_date=Date(),
+                 Natural cash_settlement_days=3):
         """Credit default swap as running-spread only
         """
 
@@ -120,7 +122,9 @@ cdef class CreditDefaultSwap(Instrument):
                 deref(protection_start._thisptr),
                 shared_ptr[_cds.Claim](),
                 deref(last_period_day_counter._thisptr),
-                rebates_accrual)
+                rebates_accrual,
+                deref(trade_date._thisptr),
+                cash_settlement_days)
         )
 
     @classmethod
@@ -130,7 +134,9 @@ cdef class CreditDefaultSwap(Instrument):
                      bool pays_at_default_time=True, Date protection_start=Date(),
                      Date upfront_date=Date(),
                      DayCounter last_period_day_counter=Actual360(True),
-                     bool rebates_accrual=True):
+                     bool rebates_accrual=True,
+                     Date trade_date=Date(),
+                     Natural cash_settlement_days=3):
         """Credit default swap quoted as upfront and running spread
 
         Parameters
@@ -177,7 +183,9 @@ cdef class CreditDefaultSwap(Instrument):
                 deref(upfront_date._thisptr),
                 shared_ptr[_cds.Claim](),
                 deref(last_period_day_counter._thisptr),
-                rebates_accrual)
+                rebates_accrual,
+                deref(trade_date._thisptr),
+                cash_settlement_days)
         )
         return instance
 
