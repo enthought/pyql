@@ -235,16 +235,12 @@ def example03():
     isda_yts = PiecewiseYieldCurve(BootstrapTrait.Discount, Interpolator.LogLinear, 0,
                                    WeekendsOnly(), yield_helpers, Actual365Fixed())
 
-    spreads = [0.007927, 0.012239, 0.016979, 0.019271, 0.020860]
-    tenors = [1, 3, 5, 7, 10]
-    spread_helpers = [SpreadCdsHelper(0.007927, Period(6, Months), 1,
-                                      WeekendsOnly(), Quarterly, Following, Rule.CDS2015,
-                                      Actual360(), 0.4, isda_yts, True, True,
-                                      Date(), Actual360(True), True, PricingModel.ISDA)] + \
-    [SpreadCdsHelper(s, Period(t, Years), 1, WeekendsOnly(), Quarterly, Following, Rule.CDS2015,
-                     Actual360(), 0.4, isda_yts, True, True, Date(), Actual360(True), True,
-                     PricingModel.ISDA)
-     for s, t in zip(spreads, tenors)]
+    spreads = [0.007927, 0.007927, 0.012239, 0.016979, 0.019271, 0.020860]
+    tenors = [Period(6, Months)] + [Period(t, Years) for t in [1, 3, 5, 7, 10]]
+    spread_helpers = [SpreadCdsHelper(s, t, 0, WeekendsOnly(), Quarterly, Following,
+                                      Rule.CDS2015, Actual360(), 0.4, isda_yts, True, True,
+                                      Date(), Actual360(True), True, PricingModel.ISDA)
+                      for s, t in zip(spreads, tenors)]
     isda_cts = PiecewiseDefaultCurve(ProbabilityTrait.SurvivalProbability,
                                      Interpolator.LogLinear, 0, WeekendsOnly(), spread_helpers,
                                      Actual365Fixed())
