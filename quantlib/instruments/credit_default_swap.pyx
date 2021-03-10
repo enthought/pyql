@@ -18,11 +18,12 @@ cimport quantlib.instruments._credit_default_swap as _cds
 cimport quantlib.instruments._instrument as _instrument
 cimport quantlib.pricingengines._pricing_engine as _pe
 cimport quantlib.time._calendar as _calendar
+cimport quantlib.time._schedule as _schedule
 
 from quantlib.instruments.instrument cimport Instrument
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.pricingengines.engine cimport PricingEngine
-from quantlib.time.date cimport Date
+from quantlib.time.date cimport Date, Period
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.daycounters.simple cimport Actual360, Actual365Fixed
 from quantlib.time._businessdayconvention cimport BusinessDayConvention
@@ -31,6 +32,7 @@ from quantlib.time.schedule cimport Schedule
 from quantlib.cashflow cimport SimpleCashFlow
 from quantlib.cashflows.fixed_rate_coupon cimport FixedRateLeg
 from quantlib.time.date cimport _pydate_from_qldate
+from quantlib.time._date cimport Date as QlDate
 
 cpdef enum Side:
     Buyer = _cds.Buyer
@@ -292,23 +294,50 @@ cdef class CreditDefaultSwap(Instrument):
         return  _get_cds(self).accrualRebateNPV()
 
     def conventional_spread(self, Real recovery, YieldTermStructure yts not None,
+                            DayCounter dc=Actual365Fixed(),
                             PricingModel model=Midpoint):
 
-        cdef DayCounter dc = Actual365Fixed()
         return _get_cds(self).conventionalSpread(recovery,
                                                  yts._thisptr,
                                                  deref(dc._thisptr),
                                                  <_cds.PricingModel>model)
 
     def implied_hazard_rate(self, Real target_npv, YieldTermStructure yts not None,
+                            DayCounter dc=Actual365Fixed(),
                             Real recovery_rate=0.4,
                             Real accuracy=1e-8,
                             PricingModel model=Midpoint):
 
-        cdef DayCounter dc = Actual365Fixed()
         return _get_cds(self).impliedHazardRate(target_npv,
                                                 yts._thisptr,
                                                 deref(dc._thisptr),
                                                 recovery_rate,
                                                 accuracy,
                                                 <_cds.PricingModel>model)
+
+
+def cds_maturity(Date trade_date, Period tenor, _schedule.Rule rule):
+    """Computes a CDS maturity date.
+
+    Parameters
+    ----------
+    trade_date : Date
+    tenor : Period
+    rule : Rule
+
+    Returns
+    -------
+    datetime.date
+        The maturity date. Returns None when a `rule` of CDS2015 and a `tenor` length of zero fail to yield a valid CDS maturity date.
+
+    Raises
+    ------
+    ValueError
+        - if the `rule` is not 'CDS2015', 'CDS' or 'OldCDS'.
+        - if the `rule` is 'OldCDS' and a `tenor` of 0 months is provided. This restriction can be removed if 0M tenor was available before the CDS Big Bang 2009.
+        - if the `tenor` is not a multiple of 3 months. For the avoidance of doubt, a `tenor` of 0 months is supported. """
+    cdef QlDate r = _cds.cdsMaturity(deref(trade_date._thisptr), deref(tenor._thisptr), rule)
+    if r == QlDate():
+        return None
+    else:
+        return _pydate_from_qldate(r)

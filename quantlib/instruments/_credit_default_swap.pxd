@@ -6,9 +6,9 @@ from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from ._instrument cimport Instrument
 from quantlib._cashflow cimport CashFlow, Leg
 from quantlib.time._calendar cimport BusinessDayConvention
-from quantlib.time._date cimport Date
+from quantlib.time._date cimport Date, Period
 from quantlib.time._daycounter cimport DayCounter
-from quantlib.time._schedule cimport Schedule
+from quantlib.time._schedule cimport Schedule, Rule
 
 cdef extern from 'ql/default.hpp' namespace 'QuantLib::Protection':
     enum Side:
@@ -60,7 +60,7 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                           Date tradeDate, # = Date(),
                           Natural cashSettlementDays, # = 3
                           ) except +
-        int side()
+        Side side()
         Real notional()
         Rate runningSpread()
         optional[Rate] upfront()
@@ -95,3 +95,4 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                                Real accuracy, # = 1.0e-8
                                PricingModel model # = Midpoint
         ) except +
+    Date cdsMaturity(const Date& tradeDate, const Period& tenor, Rule rule) except +ValueError
