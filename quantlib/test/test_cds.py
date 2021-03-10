@@ -6,8 +6,11 @@ from quantlib.termstructures.yields.api import FlatForward
 from quantlib.termstructures.credit.api import FlatHazardRate
 from quantlib.pricingengines.credit.api import MidPointCdsEngine
 from quantlib.instruments.api import CreditDefaultSwap, Side
+from quantlib.instruments.credit_default_swap import cds_maturity
+from quantlib.instruments.make_cds import MakeCreditDefaultSwap
 from quantlib.time.api import ( TARGET, today, Years, Schedule,
     Following, Quarterly, Rule, Actual360, Period )
+from quantlib.time.schedule import CDS2015
 import math
 
 
@@ -25,8 +28,8 @@ class CreditDefaultSwapTest(unittest.TestCase):
         #calendar.advance(today_date, -1, Years)
         maturity = calendar.advance(issue_date, 10, Years)
         self.convention = Following
-        self.schedule = Schedule(issue_date, maturity, Period("3M"), calendar,
-                self.convention, self.convention, Rule.TwentiethIMM)
+        self.schedule = Schedule.from_rule(issue_date, maturity, Period("3M"), calendar,
+                                           self.convention, self.convention, Rule.TwentiethIMM)
         recovery_rate = 0.4
         self.engine = MidPointCdsEngine(probability_curve, recovery_rate, discount_curve, True)
 
@@ -77,6 +80,12 @@ class CreditDefaultSwapTest(unittest.TestCase):
                                                    self.convention, day_count, True, True)
         fair_cds2.set_pricing_engine(self.engine)
         self.assertAlmostEqual(fair_cds2.npv, 0.)
+
+    def test_makecds(self):
+        cds = (MakeCreditDefaultSwap(Period(5, Years), 0.01).
+               with_date_generation_rule(CDS2015)())
+        self.assertEqual(cds.cash_settlement_days, 3)
+        self.assertEqual(cds.protection_end_date, cds_maturity(Settings().evaluation_date, Period(5, Years), CDS2015))
 
 if __name__ == "__main__":
     unittest.main()
