@@ -6,8 +6,7 @@
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
 #
 
-include '../types.pxi'
-
+from quantlib.types cimport Natural, Rate, Real
 from cython.operator cimport dereference as deref
 
 from libcpp cimport bool
@@ -78,16 +77,18 @@ cdef class CreditDefaultSwap(Instrument):
         protection_start : :class:`~quantlib.time.date.Date`, optional
             The first date where a default
             event will trigger the contract.
-        upfront_date : :class`~quantlib.time.date.Date`
-            Settlement date for the upfront and accrual
-            rebate (if any) payments.
-            Typically T+3, this is also the default value.
-        last_period_day_counter : :class1~quantlib.time.daycounter.DayCounter`, optional
+        last_period_day_counter : :class:`~quantlib.time.daycounter.DayCounter`, optional
             Day-count convention for accrual in last period
         rebates_accrual : bool, optional
             The protection seller pays the accrued scheduled current coupon at
             the start of the contract. The rebate date is not provided
             but computed to be two days after protection start.
+        trade_date :  :class`~quantlib.time.date.Date`
+            The contract's trade date. It will be used with the ``cash_settlement_days`` to determine
+            the date on which the cash settlement amount is paid. If not given, the trade date is
+            guessed from the protection start date and ``schedule`` date generation rule.
+        cash_settlement_days : int
+            The number of business days from ``trade_date`` to cash settlement date.
 
         Notes
         -----
@@ -109,12 +110,11 @@ cdef class CreditDefaultSwap(Instrument):
                  DayCounter day_counter not None, bool settles_accrual=True,
                  bool pays_at_default_time=True,
                  Date protection_start=Date(),
-                 DayCounter last_period_day_counter = Actual360(True),
+                 DayCounter last_period_day_counter=Actual360(True),
                  bool rebates_accrual=True,
                  Date trade_date=Date(),
                  Natural cash_settlement_days=3):
-        """Credit default swap as running-spread only
-        """
+        """Credit default swap as running-spread only"""
 
         self._thisptr = shared_ptr[_instrument.Instrument](
             new _cds.CreditDefaultSwap(
@@ -153,29 +153,42 @@ cdef class CreditDefaultSwap(Instrument):
             Running spread in fractional units.
         schedule : :class:`~quantlib.time.schedule.Schedule`
             Coupon schedule.
-        paymentConvention : int
+        payment_convention : int
             Business-day convention for
             payment-date adjustment.
-        dayCounter : :class:`~quantlib.time.daycounter.DayCounter`
+        day_counter : :class:`~quantlib.time.daycounter.DayCounter`
             Day-count convention for accrual.
-        settlesAccrual : bool, optional
+        settles_accrual : bool, optional
             Whether or not the accrued coupon is
             due in the event of a default.
-        paysAtDefaultTime : bool, optional
+        pays_at_default_time : bool, optional
             If set to True, any payments
             triggered by a default event are
             due at default time. If set to
             False, they are due at the end of
             the accrual period.
-        protectionStart : :class:`~quantlib.time.date.Date`, optional
+        protection_start : :class:`~quantlib.time.date.Date`, optional
             The first date where a default
             event will trigger the contract.
-        upfront_date : :class:`~quantlib.time.date.Date`, optionl
+        upfront_date : :class:`~quantlib.time.date.Date`, optional
             Settlement date for the upfront and accrual
             rebate (if any) payments.
             Typically T+3, this is also the default value.
+        last_period_day_counter : :class:`~quantlib.time.daycounter.DayCounter`, optional
+            Day-count convention for accrual in last period
+        rebates_accrual : bool, optional
+            The protection seller pays the accrued scheduled current coupon at
+            the start of the contract. The rebate date is not provided
+            but computed to be two days after protection start.
+        trade_date :  :class`~quantlib.time.date.Date`
+            The contract's trade date. It will be used with the `cash_settlement_days` to determine
+            the date on which the cash settlement amount is paid. If not given, the trade date is
+            guessed from the protection start date and `schedule` date generation rule.
+        cash_settlement_days : int
+            The number of business days from `trade_date` to cash settlement date.
+
         """
-        cdef CreditDefaultSwap instance = cls.__new__(cls)
+        cdef CreditDefaultSwap instance = CreditDefaultSwap.__new__(CreditDefaultSwap)
         instance._thisptr = shared_ptr[_instrument.Instrument](
             new _cds.CreditDefaultSwap(
                 side, notional, upfront, spread, deref(schedule._thisptr),
