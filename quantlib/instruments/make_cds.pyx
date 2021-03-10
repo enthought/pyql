@@ -3,6 +3,7 @@ from quantlib.types cimport Natural, Real
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport static_pointer_cast, shared_ptr
 from quantlib.time.date cimport Date, Period
+from quantlib.time.daycounter cimport DayCounter
 from quantlib.time._date cimport Date as QlDate, Period as QlPeriod
 from quantlib.time._schedule cimport Rule
 from quantlib.pricingengines.engine cimport PricingEngine
@@ -44,6 +45,10 @@ cdef class MakeCreditDefaultSwap:
 
     def with_side(self, _cds.Side side):
         self._thisptr.withSide(side)
+        return self
+
+    def with_last_period_daycounter(self, DayCounter dc):
+        self._thisptr.withLastPeriodDayCounter(deref(dc._thisptr))
         return self
 
     def with_date_generation_rule(self, Rule rule):
