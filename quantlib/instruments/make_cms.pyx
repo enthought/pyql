@@ -46,13 +46,17 @@ cdef class MakeCms:
 
     def with_nominal(self, Real n):
         self._thisptr.withNominal(n)
+        return self
 
     def with_effective_date(self, Date effective_date not None):
         self._thisptr.withEffectiveDate(deref(effective_date._thisptr))
+        return self
 
     def with_discounting_term_structure(self, YieldTermStructure discounting_term_structure not None):
         self._thisptr.withDiscountingTermStructure(
             discounting_term_structure._thisptr)
+        return self
 
     def with_cms_leg_tenor(self, Period t not None):
         self._thisptr.withCmsLegTenor(deref(t._thisptr))
+        return self

@@ -6,8 +6,7 @@
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
 #
 
-include '../types.pxi'
-
+from quantlib.types cimport Natural, Rate, Real
 from cython.operator cimport dereference as deref
 
 from libcpp cimport bool
@@ -18,18 +17,21 @@ cimport quantlib.instruments._credit_default_swap as _cds
 cimport quantlib.instruments._instrument as _instrument
 cimport quantlib.pricingengines._pricing_engine as _pe
 cimport quantlib.time._calendar as _calendar
+cimport quantlib.time._schedule as _schedule
 
 from quantlib.instruments.instrument cimport Instrument
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.pricingengines.engine cimport PricingEngine
-from quantlib.time.date cimport Date
+from quantlib.time.date cimport Date, Period
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.daycounters.simple cimport Actual360, Actual365Fixed
 from quantlib.time._businessdayconvention cimport BusinessDayConvention
 
 from quantlib.time.schedule cimport Schedule
+from quantlib.cashflow cimport SimpleCashFlow
 from quantlib.cashflows.fixed_rate_coupon cimport FixedRateLeg
 from quantlib.time.date cimport _pydate_from_qldate
+from quantlib.time._date cimport Date as QlDate
 
 cpdef enum Side:
     Buyer = _cds.Buyer
@@ -75,16 +77,18 @@ cdef class CreditDefaultSwap(Instrument):
         protection_start : :class:`~quantlib.time.date.Date`, optional
             The first date where a default
             event will trigger the contract.
-        upfront_date : :class`~quantlib.time.date.Date`
-            Settlement date for the upfront and accrual
-            rebate (if any) payments.
-            Typically T+3, this is also the default value.
-        last_period_day_counter : :class1~quantlib.time.daycounter.DayCounter`, optional
+        last_period_day_counter : :class:`~quantlib.time.daycounter.DayCounter`, optional
             Day-count convention for accrual in last period
         rebates_accrual : bool, optional
             The protection seller pays the accrued scheduled current coupon at
             the start of the contract. The rebate date is not provided
             but computed to be two days after protection start.
+        trade_date :  :class`~quantlib.time.date.Date`
+            The contract's trade date. It will be used with the ``cash_settlement_days`` to determine
+            the date on which the cash settlement amount is paid. If not given, the trade date is
+            guessed from the protection start date and ``schedule`` date generation rule.
+        cash_settlement_days : int
+            The number of business days from ``trade_date`` to cash settlement date.
 
         Notes
         -----
@@ -106,10 +110,11 @@ cdef class CreditDefaultSwap(Instrument):
                  DayCounter day_counter not None, bool settles_accrual=True,
                  bool pays_at_default_time=True,
                  Date protection_start=Date(),
-                 DayCounter last_period_day_counter = Actual360(True),
-                 bool rebates_accrual=True):
-        """Credit default swap as running-spread only
-        """
+                 DayCounter last_period_day_counter=Actual360(True),
+                 bool rebates_accrual=True,
+                 Date trade_date=Date(),
+                 Natural cash_settlement_days=3):
+        """Credit default swap as running-spread only"""
 
         self._thisptr = shared_ptr[_instrument.Instrument](
             new _cds.CreditDefaultSwap(
@@ -119,7 +124,9 @@ cdef class CreditDefaultSwap(Instrument):
                 deref(protection_start._thisptr),
                 shared_ptr[_cds.Claim](),
                 deref(last_period_day_counter._thisptr),
-                rebates_accrual)
+                rebates_accrual,
+                deref(trade_date._thisptr),
+                cash_settlement_days)
         )
 
     @classmethod
@@ -129,7 +136,9 @@ cdef class CreditDefaultSwap(Instrument):
                      bool pays_at_default_time=True, Date protection_start=Date(),
                      Date upfront_date=Date(),
                      DayCounter last_period_day_counter=Actual360(True),
-                     bool rebates_accrual=True):
+                     bool rebates_accrual=True,
+                     Date trade_date=Date(),
+                     Natural cash_settlement_days=3):
         """Credit default swap quoted as upfront and running spread
 
         Parameters
@@ -144,29 +153,42 @@ cdef class CreditDefaultSwap(Instrument):
             Running spread in fractional units.
         schedule : :class:`~quantlib.time.schedule.Schedule`
             Coupon schedule.
-        paymentConvention : int
+        payment_convention : int
             Business-day convention for
             payment-date adjustment.
-        dayCounter : :class:`~quantlib.time.daycounter.DayCounter`
+        day_counter : :class:`~quantlib.time.daycounter.DayCounter`
             Day-count convention for accrual.
-        settlesAccrual : bool, optional
+        settles_accrual : bool, optional
             Whether or not the accrued coupon is
             due in the event of a default.
-        paysAtDefaultTime : bool, optional
+        pays_at_default_time : bool, optional
             If set to True, any payments
             triggered by a default event are
             due at default time. If set to
             False, they are due at the end of
             the accrual period.
-        protectionStart : :class:`~quantlib.time.date.Date`, optional
+        protection_start : :class:`~quantlib.time.date.Date`, optional
             The first date where a default
             event will trigger the contract.
-        upfront_date : :class:`~quantlib.time.date.Date`, optionl
+        upfront_date : :class:`~quantlib.time.date.Date`, optional
             Settlement date for the upfront and accrual
             rebate (if any) payments.
             Typically T+3, this is also the default value.
+        last_period_day_counter : :class:`~quantlib.time.daycounter.DayCounter`, optional
+            Day-count convention for accrual in last period
+        rebates_accrual : bool, optional
+            The protection seller pays the accrued scheduled current coupon at
+            the start of the contract. The rebate date is not provided
+            but computed to be two days after protection start.
+        trade_date :  :class`~quantlib.time.date.Date`
+            The contract's trade date. It will be used with the `cash_settlement_days` to determine
+            the date on which the cash settlement amount is paid. If not given, the trade date is
+            guessed from the protection start date and `schedule` date generation rule.
+        cash_settlement_days : int
+            The number of business days from `trade_date` to cash settlement date.
+
         """
-        cdef CreditDefaultSwap instance = cls.__new__(cls)
+        cdef CreditDefaultSwap instance = CreditDefaultSwap.__new__(CreditDefaultSwap)
         instance._thisptr = shared_ptr[_instrument.Instrument](
             new _cds.CreditDefaultSwap(
                 side, notional, upfront, spread, deref(schedule._thisptr),
@@ -176,7 +198,9 @@ cdef class CreditDefaultSwap(Instrument):
                 deref(upfront_date._thisptr),
                 shared_ptr[_cds.Claim](),
                 deref(last_period_day_counter._thisptr),
-                rebates_accrual)
+                rebates_accrual,
+                deref(trade_date._thisptr),
+                cash_settlement_days)
         )
         return instance
 
@@ -222,6 +246,20 @@ cdef class CreditDefaultSwap(Instrument):
     @property
     def rebates_accrual(self):
          return _get_cds(self).rebatesAccrual()
+
+    @property
+    def accrual(self):
+        cdef SimpleCashFlow cf = SimpleCashFlow.__new__(SimpleCashFlow)
+        cf._thisptr = _get_cds(self).accrualRebate()
+        return cf
+
+    @property
+    def trade_date(self):
+        return _pydate_from_qldate(_get_cds(self).tradeDate())
+
+    @property
+    def cash_settlement_days(self):
+        return _get_cds(self).cashSettlementDays()
 
     property fair_upfront:
         """ Returns the upfront spread that, given the running spread
@@ -269,23 +307,50 @@ cdef class CreditDefaultSwap(Instrument):
         return  _get_cds(self).accrualRebateNPV()
 
     def conventional_spread(self, Real recovery, YieldTermStructure yts not None,
+                            DayCounter dc=Actual365Fixed(),
                             PricingModel model=Midpoint):
 
-        cdef DayCounter dc = Actual365Fixed()
         return _get_cds(self).conventionalSpread(recovery,
                                                  yts._thisptr,
                                                  deref(dc._thisptr),
                                                  <_cds.PricingModel>model)
 
     def implied_hazard_rate(self, Real target_npv, YieldTermStructure yts not None,
+                            DayCounter dc=Actual365Fixed(),
                             Real recovery_rate=0.4,
                             Real accuracy=1e-8,
                             PricingModel model=Midpoint):
 
-        cdef DayCounter dc = Actual365Fixed()
         return _get_cds(self).impliedHazardRate(target_npv,
                                                 yts._thisptr,
                                                 deref(dc._thisptr),
                                                 recovery_rate,
                                                 accuracy,
                                                 <_cds.PricingModel>model)
+
+
+def cds_maturity(Date trade_date, Period tenor, _schedule.Rule rule):
+    """Computes a CDS maturity date.
+
+    Parameters
+    ----------
+    trade_date : Date
+    tenor : Period
+    rule : Rule
+
+    Returns
+    -------
+    datetime.date
+        The maturity date. Returns None when a `rule` of CDS2015 and a `tenor` length of zero fail to yield a valid CDS maturity date.
+
+    Raises
+    ------
+    ValueError
+        - if the `rule` is not 'CDS2015', 'CDS' or 'OldCDS'.
+        - if the `rule` is 'OldCDS' and a `tenor` of 0 months is provided. This restriction can be removed if 0M tenor was available before the CDS Big Bang 2009.
+        - if the `tenor` is not a multiple of 3 months. For the avoidance of doubt, a `tenor` of 0 months is supported. """
+    cdef QlDate r = _cds.cdsMaturity(deref(trade_date._thisptr), deref(tenor._thisptr), rule)
+    if r == QlDate():
+        return None
+    else:
+        return _pydate_from_qldate(r)

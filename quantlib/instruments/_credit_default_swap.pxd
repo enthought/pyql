@@ -1,14 +1,14 @@
-include '../types.pxi'
+from quantlib.types cimport Natural, Rate, Real
 
 from libcpp cimport bool
 from quantlib.handle cimport optional, Handle, shared_ptr
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from ._instrument cimport Instrument
-from quantlib._cashflow cimport Leg
+from quantlib._cashflow cimport CashFlow, Leg
 from quantlib.time._calendar cimport BusinessDayConvention
-from quantlib.time._date cimport Date
+from quantlib.time._date cimport Date, Period
 from quantlib.time._daycounter cimport DayCounter
-from quantlib.time._schedule cimport Schedule
+from quantlib.time._schedule cimport Schedule, Rule
 
 cdef extern from 'ql/default.hpp' namespace 'QuantLib::Protection':
     enum Side:
@@ -39,7 +39,9 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                           Date& protectionStart, #= Date(),
                           shared_ptr[Claim]&, # = boost::shared_ptr<Claim>(),
                           DayCounter& last_period_day_counter, # = DayCounter()
-                          bool rebates_accrual # = true
+                          bool rebates_accrual, # = true
+                          Date tradeDate, # = Date(),
+                          Natural cashSettlementDays, # = 3
         )
         CreditDefaultSwap(Side side,
                           Real notional,
@@ -54,9 +56,11 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                           Date& upfrontDate, #=Date(),
                           shared_ptr[Claim]&, # = boost::shared_ptr<Claim>(),
                           DayCounter& last_period_day_counter, # = DayCounter()
-                          bool rebates_accrual # = true
+                          bool rebates_accrual, # = true
+                          Date tradeDate, # = Date(),
+                          Natural cashSettlementDays, # = 3
                           ) except +
-        int side()
+        Side side()
         Real notional()
         Rate runningSpread()
         optional[Rate] upfront()
@@ -66,6 +70,9 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
         const Date& protectionStartDate()
         const Date& protectionEndDate()
         bool rebatesAccrual()
+        const shared_ptr[CashFlow]& accrualRebate()
+        const Date& tradeDate()
+        Natural cashSettlementDays()
 
         Rate fairUpfront() except +
         Rate fairSpread() except +
@@ -88,3 +95,4 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                                Real accuracy, # = 1.0e-8
                                PricingModel model # = Midpoint
         ) except +
+    Date cdsMaturity(const Date& tradeDate, const Period& tenor, Rule rule) except +ValueError
