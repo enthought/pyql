@@ -4,5 +4,8 @@ from . cimport _payoffs
 cdef class Payoff:
     cdef shared_ptr[_payoffs.Payoff] _thisptr
 
+cdef class StrikedTypePayoff(Payoff):
+    pass
+
 cdef class PlainVanillaPayoff(Payoff):
     pass
