@@ -7,5 +7,5 @@ cdef class Payoff:
 cdef class StrikedTypePayoff(Payoff):
     pass
 
-cdef class PlainVanillaPayoff(Payoff):
+cdef class PlainVanillaPayoff(StrikedTypePayoff):
     pass
