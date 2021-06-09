@@ -25,14 +25,12 @@ cpdef enum AverageType:
 
 cdef class ContinuousAveragingAsianOption(OneAssetOption):
     """ Continuous-averaging Asian option
-
+        
         Attributes
         ----------
         average_type: Enum (Arithmetic or Geometric)
         payoff : StrikedTypePayoff
         exercise : Exercise
-
-
     """
     def __init__(self,
                  AverageType average_type,
@@ -57,6 +55,10 @@ cdef class DiscreteAveragingAsianOption(OneAssetOption):
         average_type: Enum (Arithmetic or Geometric)
         payoff : StrikedTypePayoff
         exercise : Exercise
+        fixing_dates : list of dates
+        running_accum: (float) Optional
+        past_fixings: (float) Optional
+        all_past_fixings: list of floats  Optional
 
 
     """
