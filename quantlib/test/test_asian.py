@@ -4,9 +4,14 @@ from quantlib.instruments.option import EuropeanExercise
 
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.instruments.option import Put
-from quantlib.instruments.asian_options import ContinuousAveragingAsianOption, Geometric
+from quantlib.instruments.asian_options import (
+    ContinuousAveragingAsianOption, DiscreteAveragingAsianOption,  Geometric
+)
 from quantlib.pricingengines.asian.analyticcontgeomavprice import (
     AnalyticContinuousGeometricAveragePriceAsianEngine
+)
+from quantlib.pricingengines.asian.analyticdiscrgeomavprice import (
+    AnalyticDiscreteGeometricAveragePriceAsianEngine
 )
 
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
@@ -106,30 +111,33 @@ class AsianOptionTestCase(unittest.TestCase):
         tolerance = 1.0e-4
 
         self.assertAlmostEqual(4.6922, option.net_present_value, delta=tolerance)
+        
+        # trying to approximate the continuous version with the discrete version
+        running_accumulator = 1.0
+        past_fixings = 0
     
-    # trying to approximate the continuous version with the discrete version
-    #runningAccumulator = 1.0;
-    #pastFixings = 0;
-    ##fixingDates(exerciseDate-today+1);
-    #for (Size i=0; i<fixingDates.size(); i++) {
-    #    fixingDates[i] = today + i;
-    #}
-    #engine2 = AnalyticDiscreteGeometricAveragePriceAsianEngine(stochProcess))
-    
-    #DiscreteAveragingAsianOption option2(averageType,
-    #                                     runningAccumulator, pastFixings,
-    #                                     fixingDates,
-    #                                     payoff,
-    #                                     exercise);
-    #option2.setPricingEngine(engine2);
+        ##fixingDates(exerciseDate-today+1);
+        #for (Size i=0; i<fixingDates.size(); i++) {
+        #    fixingDates[i] = today + i;
+        #}
+        fixing_dates = [self.todays_date + i for i in range(91)]
+        
+        engine2 = AnalyticDiscreteGeometricAveragePriceAsianEngine(
+            self.black_scholes_merton_process
+        )
+        
+        option2 = DiscreteAveragingAsianOption(
+            Geometric,
+            self.payoff,
+            exercise,
+            fixing_dates,
+            past_fixings=past_fixings,
+            running_accum=running_accumulator,
+        )
+        
+        option2.set_pricing_engine(engine2)
 
-    #calculated = option2.NPV();
-    #tolerance = 3.0e-3;
-    #if (std::fabs(calculated-expected) > tolerance) {
-    #    REPORT_FAILURE("value", averageType, runningAccumulator, pastFixings,
-    #                   fixingDates, payoff, exercise, spot->value(),
-    #                   qRate->value(), rRate->value(), today,
-    #                   vol->value(), expected, calculated, tolerance);
-    #}
+        tolerance = 3.0e-3
 
+        self.assertAlmostEqual(4.6922, option.net_present_value, delta=tolerance)
         
