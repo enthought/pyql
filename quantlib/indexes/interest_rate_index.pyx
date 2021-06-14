@@ -80,3 +80,7 @@ cdef class InterestRateIndex(Index):
         cdef _dt.Date dt = deref(valueDate._thisptr)
         cdef _dt.Date maturity_date = get_iri(self).maturityDate(dt)
         return date_from_qldate(maturity_date)
+
+    def forecast_fixing(self, Date fixing_date not None):
+        cdef _dt.Date dt = deref(fixing_date._thisptr)
+        return get_iri(self).forecastFixing(dt)
