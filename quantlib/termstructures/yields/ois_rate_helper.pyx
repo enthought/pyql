@@ -3,10 +3,11 @@ include '../../types.pxi'
 from libcpp cimport bool
 
 from cython.operator cimport dereference as deref
-
+from quantlib.cashflows.rateaveraging cimport RateAveraging
+from quantlib.termstructures.helpers cimport Pillar
 from quantlib.handle cimport shared_ptr, static_pointer_cast, Handle
 from quantlib.quote cimport Quote
-from quantlib.time.date cimport Period
+from quantlib.time.date cimport Date, Period
 from quantlib.termstructures.yields.rate_helpers cimport RelativeDateRateHelper
 from quantlib.indexes.ibor_index cimport OvernightIndex
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
@@ -22,20 +23,24 @@ cimport quantlib.termstructures._yield_term_structure as _yts
 
 cdef class OISRateHelper(RelativeDateRateHelper):
 
-    def __init__(self, Natural settlement_days,
-                       Period tenor, # swap maturity
-                       Quote fixed_rate,
-                       OvernightIndex overnight_index not None,
-                       # exogenous discounting curve
-                       YieldTermStructure ts not None=YieldTermStructure(),
-                       bool telescopic_value_dates = False,
-                       Natural payment_lag = 0,
-                       BusinessDayConvention payment_convention = Following,
-                       Frequency payment_frequency = Frequency.Annual,
-                       Calendar payment_calendar = Calendar(),
-                       Period forward_start = Period(0, Days),
-                       Spread overnight_spread = 0.0):
-
+    def __init__(self,
+                 Natural settlement_days,
+                 Period tenor, # swap maturity
+                 Quote fixed_rate,
+                 OvernightIndex overnight_index not None,
+                 # exogenous discounting curve
+                 YieldTermStructure ts not None=YieldTermStructure(),
+                 bool telescopic_value_dates = False,
+                 Natural payment_lag = 0,
+                 BusinessDayConvention payment_convention = Following,
+                 Frequency payment_frequency = Frequency.Annual,
+                 Calendar payment_calendar = Calendar(),
+                 Period forward_start = Period(0, Days),
+                 Spread overnight_spread = 0.0,
+                 Pillar pillar=Pillar.LastRelevantDate,
+                 Date custom_pillar_date=Date(),
+                 RateAveraging averaging_method=RateAveraging.Compound,
+                 ):
         self._thisptr = shared_ptr[_rh.RateHelper](
             new _orh.OISRateHelper(
                 settlement_days,
@@ -49,6 +54,9 @@ cdef class OISRateHelper(RelativeDateRateHelper):
                 <Frequency> payment_frequency,
                 deref(payment_calendar._thisptr),
                 deref(forward_start._thisptr),
-                overnight_spread
+                overnight_spread,
+                pillar,
+                deref(custom_pillar_date._thisptr),
+                averaging_method
             )
         )
