@@ -1,4 +1,4 @@
-include '../../types.pxi'
+from quantlib.types cimport Natural, Spread
 
 from libcpp cimport bool
 
@@ -8,7 +8,7 @@ from quantlib.termstructures.helpers cimport Pillar
 from quantlib.handle cimport shared_ptr, static_pointer_cast, Handle
 from quantlib.quote cimport Quote
 from quantlib.time.date cimport Date, Period
-from quantlib.termstructures.yields.rate_helpers cimport RelativeDateRateHelper
+from quantlib.termstructures.yields.rate_helpers cimport RelativeDateRateHelper, RateHelper
 from quantlib.indexes.ibor_index cimport OvernightIndex
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.time.calendar cimport Calendar
@@ -57,6 +57,30 @@ cdef class OISRateHelper(RelativeDateRateHelper):
                 overnight_spread,
                 pillar,
                 deref(custom_pillar_date._thisptr),
+                averaging_method
+            )
+        )
+
+cdef class DatedOISRateHelper(RateHelper):
+
+    def __init__(self,
+                 Date start_date,
+                 Date end_date,
+                 Quote fixed_rate,
+                 OvernightIndex overnight_index not None,
+                 # exogenous discounting curve
+                 YieldTermStructure discounting_curve not None=YieldTermStructure(),
+                 bool telescopic_value_dates = False,
+                 RateAveraging averaging_method=RateAveraging.Compound,
+                 ):
+        self._thisptr = shared_ptr[_rh.RateHelper](
+            new _orh.DatedOISRateHelper(
+                deref(start_date._thisptr),
+                deref(end_date._thisptr),
+                Handle[_qt.Quote](fixed_rate._thisptr),
+                static_pointer_cast[_ib.OvernightIndex](overnight_index._thisptr),
+                discounting_curve._thisptr,
+                telescopic_value_dates,
                 averaging_method
             )
         )

@@ -8,12 +8,12 @@ from quantlib.handle cimport shared_ptr, Handle
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period, Frequency
 from quantlib.termstructures.helpers cimport Pillar
-from quantlib.termstructures.yields._rate_helpers cimport RelativeDateRateHelper
+from quantlib.termstructures.yields._rate_helpers cimport RateHelper, RelativeDateRateHelper
 from quantlib.indexes._ibor_index cimport OvernightIndex
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._businessdayconvention cimport BusinessDayConvention
 
-cimport quantlib.termstructures._yield_term_structure as _yts
+from .._yield_term_structure cimport YieldTermStructure
 
 cdef extern from 'ql/termstructures/yield/oisratehelper.hpp' namespace 'QuantLib':
     cdef cppclass OISRateHelper(RelativeDateRateHelper):
@@ -22,7 +22,7 @@ cdef extern from 'ql/termstructures/yield/oisratehelper.hpp' namespace 'QuantLib
                       Handle[Quote]& fixedRate,
                       shared_ptr[OvernightIndex]& overnightIndex,
                       # exogenous discounting curve
-                      Handle[_yts.YieldTermStructure]& discountingCurve, # = Handle<YieldTermStructure>()
+                      Handle[YieldTermStructure]& discountingCurve, # = Handle<YieldTermStructure>()
                       bool telescopicValueDates, # False)
                       Natural paymentLag, # = 0
                       BusinessDayConvention paymentConvention, # = Following
@@ -34,3 +34,15 @@ cdef extern from 'ql/termstructures/yield/oisratehelper.hpp' namespace 'QuantLib
                       Date customPillarDate, # = Date(),
                       RateAveraging averagingMethod,# = RateAveraging::Compound,
         ) except + # = 0.0
+
+    cdef cppclass DatedOISRateHelper(RateHelper):
+        DatedOISRateHelper(
+            Date& startDate,
+            Date& endDate,
+            Handle[Quote]& fixedRate,
+            shared_ptr[OvernightIndex]& overnightIndex,
+            # exogenous discounting curve
+            Handle[YieldTermStructure] discountingCurve,# = Handle<YieldTermStructure>(),
+            bool telescopicValueDates, #= false,
+            RateAveraging averagingMethod #= RateAveraging::Compound)
+        ) except +
