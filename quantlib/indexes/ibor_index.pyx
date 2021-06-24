@@ -20,8 +20,6 @@ from quantlib.market.conventions.swap import params as swap_params
 from quantlib.indexes.interest_rate_index cimport InterestRateIndex
 
 cdef class IborIndex(InterestRateIndex):
-    def __cinit__(self):
-        pass
 
     def __init__(self, str family_name, Period tenor not None, Natural settlement_days,
             Currency currency, Calendar fixing_calendar, int convention,
@@ -46,8 +44,16 @@ cdef class IborIndex(InterestRateIndex):
             cdef _ib.IborIndex* ref = <_ib.IborIndex*>self._thisptr.get()
             return ref.endOfMonth()
 
-    @classmethod
-    def from_name(self, market, term_structure=YieldTermStructure(), **kwargs):
+    @property
+    def forwarding_term_structure(self):
+        cdef:
+            _ib.IborIndex* ref = <_ib.IborIndex*>self._thisptr.get()
+            YieldTermStructure yts = YieldTermStructure.__new__(YieldTermStructure)
+        yts._thisptr.linkTo(ref.forwardingTermStructure().currentLink())
+        return yts
+
+    @staticmethod
+    def from_name(market, term_structure=YieldTermStructure(), **kwargs):
         """
         Create default IBOR for the market, modify attributes if provided
         """
@@ -73,5 +79,4 @@ cdef class IborIndex(InterestRateIndex):
 
 
 cdef class OvernightIndex(IborIndex):
-    def __cinit__(self):
-        pass
+    pass
