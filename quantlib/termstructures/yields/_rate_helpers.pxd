@@ -26,6 +26,7 @@ from quantlib.termstructures._helpers cimport BootstrapHelper, \
                                               RelativeDateBootstrapHelper
 from quantlib.instruments.futures cimport FuturesType
 
+from ..helpers cimport Pillar
 
 cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
     ctypedef BootstrapHelper[YieldTermStructure] RateHelper
@@ -60,7 +61,10 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
                       Calendar& calendar,
                       BusinessDayConvention convention,
                       bool endOfMonth,
-                      DayCounter& dayCounter) except +
+                      DayCounter& dayCounter,
+                      Pillar pillar, # = Pillar::LastRelevantDate,
+                      Date customPillarDate, # = Date(),
+                      bool useIndexedCoupon) except + # = true)
         FraRateHelper(Rate rate,
                       Natural monthsToStart,
                       Natural monthsToEnd,
@@ -68,8 +72,22 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
                       Calendar& calendar,
                       BusinessDayConvention convention,
                       bool endOfMonth,
-                      DayCounter& dayCounter) except +
-
+                      DayCounter& dayCounter,
+                      Pillar pillar, #= Pillar::LastRelevantDate,
+                      Date customPillarDate, # = Date(),
+                      bool useIndexedCoupon) except + # = true
+        FraRateHelper(const Handle[Quote]& rate,
+                      Natural monthsToStart,
+                      const shared_ptr[IborIndex]& iborIndex,
+                      Pillar pillar, #= Pillar::LastRelevantDate,
+                      Date customPillarDate, # = Date(),
+                      bool useIndexedCoupon) except + # = true
+        FraRateHelper(Rate rate,
+                      Natural monthsToStart,
+                      const shared_ptr[IborIndex]& iborIndex,
+                      Pillar pillar, #= Pillar::LastRelevantDate,
+                      Date customPillarDate, # = Date(),
+                      bool useIndexedCoupon) except + # = true
 
     cdef cppclass SwapRateHelper(RelativeDateRateHelper):
         SwapRateHelper(Handle[Quote]& rate,
@@ -80,7 +98,12 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
                        DayCounter& fixedDayCount,
                        shared_ptr[IborIndex]& iborIndex,
                        Handle[Quote]& spread,
-                       Period& fwdStart
+                       Period& fwdStart,
+                       Handle[YieldTermStructure] discountingCurve, #= Handle<YieldTermStructure>(),
+                       Natural settlementDays,# = Null<Natural>(),
+                       Pillar pillar, #= Pillar::LastRelevantDate,
+                       Date customPillarDate, # = Date(),
+                       bool endOfMonth # = false);
         ) except +
         SwapRateHelper(Rate rate,
                        Period& tenor,
@@ -90,23 +113,32 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
                        DayCounter& fixedDayCount,
                        shared_ptr[IborIndex]& iborIndex,
                        Handle[Quote]& spread,
-                       Period& fwdStart
+                       Period& fwdStart,
+                       Handle[YieldTermStructure] discountingCurve, #= Handle<YieldTermStructure>(),
+                       Natural settlementDays,# = Null<Natural>(),
+                       Pillar pillar, #= Pillar::LastRelevantDate,
+                       Date customPillarDate, # = Date(),
+                       bool endOfMonth # = false);
         ) except +
         SwapRateHelper(Handle[Quote]& rate,
                        shared_ptr[SwapIndex]& swapIndex,
                        Handle[Quote]& spread, # = Handle<Quote>(),
                        Period& fwdStart, # = 0*Days,
                        # exogenous discounting curve
-                       #Handle[YieldTermStructure]& discountingCurve
-                                            #= Handle<YieldTermStructure>()
+                       Handle[YieldTermStructure] discountingCurve, #= Handle<YieldTermStructure>()
+                       Pillar pillar, # = Pillar::LastRelevantDate,
+                       Date customPillarDate, #= Date(),
+                       bool endOfMonth #= false
         ) except +
         SwapRateHelper(Rate rate,
                        shared_ptr[SwapIndex]& swapIndex,
                        Handle[Quote]& spread, # = Handle<Quote>(),
                        Period& fwdStart, # = 0*Days,
                        # exogenous discounting curve
-                       #Handle[YieldTermStructure]& discountingCurve
-                                            #= Handle<YieldTermStructure>()
+                       Handle[YieldTermStructure] discountingCurve, #= Handle<YieldTermStructure>()
+                       Pillar pillar, # = Pillar::LastRelevantDate,
+                       Date customPillarDate, #= Date(),
+                       bool endOfMonth #= false
         ) except +
         Spread spread()
         shared_ptr[VanillaSwap] swap()
