@@ -16,7 +16,7 @@ from quantlib.settings import Settings
 from quantlib.termstructures.yields.rate_helpers import (
     DepositRateHelper, SwapRateHelper)
 from quantlib.termstructures.yields.piecewise_yield_curve import (
-    PiecewiseYieldCurve, BootstrapTrait, Interpolator
+    PiecewiseYieldCurve
 )
 from quantlib.time.api import Date, TARGET, Period, Months, Years, Days
 from quantlib.time.api import September, ISDA, today, Mar
@@ -24,7 +24,8 @@ from quantlib.time.api import ModifiedFollowing, Unadjusted, Actual360
 from quantlib.time.api import Thirty360, ActualActual, Actual365Fixed
 from quantlib.time.api import Annual, UnitedStates
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.api import DiscountCurve
+from quantlib.math.interpolation import Linear, LogLinear, BackwardFlat
+from quantlib.termstructures.yields.api import BootstrapTrait, DiscountCurve
 from quantlib.indexes.ibor.libor import Libor
 
 
@@ -70,9 +71,9 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve.from_reference_date(
-            BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers,
-            ts_day_counter, tolerance
+        ts = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(
+            settlement_date, rate_helpers,
+            ts_day_counter, accuracy=tolerance
         )
 
         self.assertIsNotNone(ts)
@@ -106,9 +107,9 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         tolerance = 1.0e-15
 
-        ts_relative = PiecewiseYieldCurve(
-            BootstrapTrait.Discount, Interpolator.LogLinear, 2, calendar, rate_helpers,
-            ts_day_counter, tolerance
+        ts_relative = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear](
+            2, calendar, rate_helpers,
+            ts_day_counter, accuracy=tolerance
         )
         self.assertEqual(ts_relative.reference_date,
                          calendar.advance(settings.evaluation_date, period = Period(2, Days)))
@@ -117,9 +118,9 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         settlement_date =  calendar.advance(settings.evaluation_date, period = Period(2, Days))
         self.assertEqual(ts_relative.reference_date, settlement_date)
 
-        ts_absolute = PiecewiseYieldCurve.from_reference_date(
-            BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers,
-            ts_day_counter, tolerance
+        ts_absolute = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(
+            settlement_date, rate_helpers,
+            ts_day_counter, accuracy=tolerance
         )
         self.assertEqual(ts_absolute.data, ts_relative.data)
         self.assertEqual(ts_absolute.dates, ts_relative.dates)
@@ -147,9 +148,9 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve(
-            BootstrapTrait.Discount, Interpolator.LogLinear, 2, calendar, rate_helpers,
-            ts_day_counter, tolerance
+        ts = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear](
+            2, calendar, rate_helpers,
+            ts_day_counter, accuracy=tolerance
         )
         old_discount = ts.discount(ts.max_date)
         # parallel shift of 1 bps
@@ -181,9 +182,9 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve(
-            BootstrapTrait.ForwardRate, Interpolator.BackwardFlat, 2, calendar, rate_helpers,
-            ts_day_counter, tolerance
+        ts = PiecewiseYieldCurve[BootstrapTrait.ForwardRate, BackwardFlat](
+            2, calendar, rate_helpers,
+            ts_day_counter, accuracy=tolerance
         )
 
         dates = [rh.latest_date for rh in rate_helpers]
@@ -233,10 +234,10 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         tolerance = 1.0e-15
 
         for trait in BootstrapTrait:
-            for interpolation in Interpolator:
-                ts = PiecewiseYieldCurve.from_reference_date(
-                    trait, interpolation, settlement_date, rate_helpers,
-                    deposit_day_counter, tolerance
+            for interpolation in (Linear, LogLinear, BackwardFlat):
+                ts = PiecewiseYieldCurve[trait, interpolation].from_reference_date(
+                    settlement_date, rate_helpers,
+                    deposit_day_counter, accuracy=tolerance
                 )
 
                 self.assertIsNotNone(ts)
@@ -307,9 +308,9 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         ts_day_counter = ActualActual(ISDA)
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve.from_reference_date(
-            BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers,
-            ts_day_counter, tolerance
+        ts = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(
+            settlement_date, rate_helpers,
+            ts_day_counter, accuracy=tolerance
         )
 
         self.assertEqual(settlement_date, ts.reference_date)
@@ -394,9 +395,9 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve.from_reference_date(
-            BootstrapTrait.ZeroYield, Interpolator.Linear, settlement_date, instruments, dayCounter,
-            tolerance
+        ts = PiecewiseYieldCurve[BootstrapTrait.ZeroYield, Linear].from_reference_date(
+            settlement_date, instruments, dayCounter,
+            accuracy=tolerance
         )
 
         self.assertEqual(settlement_date, ts.reference_date)

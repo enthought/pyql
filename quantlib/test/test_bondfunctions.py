@@ -28,8 +28,9 @@ from quantlib.termstructures.yields.rate_helpers import (
     DepositRateHelper, SwapRateHelper)
 from quantlib.termstructures.yields.piecewise_yield_curve import PiecewiseYieldCurve
 from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure, BootstrapTrait, Interpolator
+    FlatForward, YieldTermStructure, BootstrapTrait
 )
+from quantlib.math.interpolation import LogLinear
 from quantlib.quotes import SimpleQuote
 
 import quantlib.pricingengines.bondfunctions as bf
@@ -153,9 +154,9 @@ class BondFunctionTestCase(unittest.TestCase):
         ts_day_counter = ActualActual(ISDA)
         tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve.from_reference_date(
-            BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers,
-            ts_day_counter, tolerance)
+        ts = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(
+            settlement_date, rate_helpers,
+            ts_day_counter, accuracy=tolerance)
 
         pyc_zspd=bf.zSpread(bond, 102.0, ts, ActualActual(ISDA),
         Compounded, Semiannual, Date(1, April, 2015), 1e-6, 100, 0.5)
