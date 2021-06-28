@@ -8,7 +8,7 @@ from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._calendar cimport Calendar
 
-from quantlib.math.interpolation cimport LogLinear
+from quantlib.math._interpolations cimport LogLinear
 
 cdef extern from 'ql/termstructures/yield/discountcurve.hpp' namespace 'QuantLib':
 

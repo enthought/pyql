@@ -6,7 +6,7 @@ from cython.operator import dereference as deref
 
 cimport quantlib.termstructures._inflation_term_structure as _its
 cimport quantlib.termstructures.inflation._interpolated_zero_inflation_curve as _izic
-cimport quantlib.math.interpolation as intpl
+cimport quantlib.math._interpolations as intpl
 cimport quantlib.time._date as _date
 from quantlib.time.date cimport Date, Period
 from quantlib.time.calendar cimport Calendar

@@ -6,7 +6,7 @@ include '../../types.pxi'
 
 cimport quantlib.termstructures.credit._interpolated_hazardrate_curve as _ihc
 cimport quantlib.termstructures._default_term_structure as _dts
-cimport quantlib.math.interpolation as intpl
+cimport quantlib.math._interpolations as intpl
 from quantlib.time.date cimport Date, date_from_qldate
 cimport quantlib.time._date as _date
 

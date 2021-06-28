@@ -8,7 +8,7 @@ cimport quantlib.termstructures.yields._discount_curve as _dc
 cimport quantlib.termstructures._yield_term_structure as _yts
 from quantlib.time.date cimport Date, date_from_qldate
 cimport quantlib.time._date as _date
-cimport quantlib.math.interpolation as intpl
+cimport quantlib.math._interpolations as intpl
 
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar cimport Calendar
