@@ -371,6 +371,10 @@ class TestQuantLibPeriod(unittest.TestCase):
         expected_date = Date(21, Apr, 2011)
         self.assertTrue(expected_date == date2)
 
+    def test_hashing(self):
+        p = Period(3, Months)
+        self.assertEqual(hash(p), hash((p.length, p.units)))
+
 class TestQuantLibIMM(unittest.TestCase):
 
     def test_is_imm_date(self):
