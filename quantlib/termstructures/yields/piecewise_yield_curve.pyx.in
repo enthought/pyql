@@ -12,13 +12,13 @@ from quantlib.time.date cimport Date, date_from_qldate
 cimport quantlib.time._date as _date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar cimport Calendar
-from quantlib.math.interpolation cimport Linear, LogLinear, BackwardFlat
+from quantlib.math.interpolation cimport Linear, LogLinear, BackwardFlat, Cubic
 from .bootstraptraits import BootstrapTrait
 from itertools import product
 
 _registry = {}
 
-for T, I in product(BootstrapTrait, [Linear, LogLinear, BackwardFlat]):
+for T, I in product(BootstrapTrait, [Linear, LogLinear, BackwardFlat, Cubic]):
     _registry[T,I] = globals()[f"{T.name}{I.__name__}PiecewiseYieldCurve"]
 
 
@@ -47,7 +47,7 @@ cdef class PiecewiseYieldCurve:
         return _registry[tup]
 
 {{py: from itertools import product}}
-{{for T, I in product(["Discount", "ZeroYield", "ForwardRate"], ["Linear", "LogLinear", "BackwardFlat"])}}
+{{for T, I in product(["Discount", "ZeroYield", "ForwardRate"], ["Linear", "LogLinear", "BackwardFlat", "Cubic"])}}
 cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
     def __init__(self, Natural settlement_days, Calendar calendar not None,
                  list helpers, DayCounter daycounter not None,

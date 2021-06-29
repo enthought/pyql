@@ -31,3 +31,8 @@ cdef extern from 'ql/math/interpolations/sabrinterpolation.hpp' namespace 'Quant
 
     cdef cppclass SABRInterpolation:
         pass
+
+cdef extern from 'ql/math/interpolations/cubicinterpolation.hpp' namespace 'QuantLib' nogil:
+
+    cdef cppclass Cubic:
+        pass

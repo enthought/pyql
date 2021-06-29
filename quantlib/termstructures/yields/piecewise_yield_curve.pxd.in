@@ -6,7 +6,7 @@ cimport quantlib.math._interpolations as intpl
 
 
 {{py: from itertools import product}}
-{{for T, I in product(["Discount", "ZeroYield", "ForwardRate"], ["Linear", "LogLinear", "BackwardFlat"])}}
+{{for T, I in product(["Discount", "ZeroYield", "ForwardRate"], ["Linear", "LogLinear", "BackwardFlat", "Cubic"])}}
 cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
     cdef _pyc.PiecewiseYieldCurve[trait.{{T}}, intpl.{{I}}]* _curve
 

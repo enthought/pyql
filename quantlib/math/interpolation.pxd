@@ -12,3 +12,7 @@ cdef class LogLinear:
 @cython.final
 cdef class BackwardFlat:
     cdef _intpl.BackwardFlat _thisptr
+
+@cython.final
+cdef class Cubic:
+    cdef _intpl.Cubic _thisptr
