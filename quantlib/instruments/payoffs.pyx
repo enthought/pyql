@@ -4,6 +4,9 @@ from cython.operator import dereference as deref
 # cython imports
 from . cimport _option
 
+cdef inline _payoffs.PlainVanillaPayoff* _get_payoff(PlainVanillaPayoff payoff):
+    return <_payoffs.PlainVanillaPayoff*> payoff._thisptr.get()
+
 cdef class Payoff:
 
     def __repr__(self):
@@ -17,10 +20,13 @@ cdef class Payoff:
     def __call__(self, Real price):
         return deref(self._thisptr)(price)
 
-cdef inline _payoffs.PlainVanillaPayoff* _get_payoff(PlainVanillaPayoff payoff):
-    return <_payoffs.PlainVanillaPayoff*> payoff._thisptr.get()
 
-cdef class PlainVanillaPayoff(Payoff):
+cdef class StrikedTypePayoff(Payoff):
+    pass        
+
+
+cdef class PlainVanillaPayoff(StrikedTypePayoff):
+
     """ Plain vanilla payoff.
 
     Parameters
@@ -44,8 +50,6 @@ cdef class PlainVanillaPayoff(Payoff):
                 option_type, <Real>strike
             )
         )
-
-
 
     property option_type:
         """ Exposes the internal option type.
