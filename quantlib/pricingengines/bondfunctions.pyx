@@ -22,7 +22,7 @@ cpdef enum DurationType:
 
 
 def startDate(Bond bond):
-    cpdef QLBond* _bp = <QLBond*>bond._thisptr.get()
+    cdef QLBond* _bp = <QLBond*>bond._thisptr.get()
     return date_from_qldate(_bf.startDate(deref(_bp)))
 
 
@@ -33,7 +33,7 @@ def duration(Bond bond not None,
              Frequency frequency,
              DurationType type,
              Date settlementDate=Date()):
-        cpdef QLBond* _bp = <QLBond*>bond._thisptr.get()
+        cdef QLBond* _bp = <QLBond*>bond._thisptr.get()
 
         return _bf.duration(
             deref(_bp),
@@ -55,7 +55,7 @@ def bond_yield(Bond bond not None,
                Size maxIterations,
                Rate guess):
 
-        cpdef QLBond* _bp = <QLBond*>bond._thisptr.get()
+        cdef QLBond* _bp = <QLBond*>bond._thisptr.get()
 
         return _bf.bf_yield(
             deref(_bp),
