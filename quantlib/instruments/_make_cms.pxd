@@ -5,7 +5,7 @@ from quantlib.indexes._swap_index cimport SwapIndex
 from quantlib.indexes._ibor_index cimport IborIndex
 from quantlib.instruments._swap cimport Swap
 from quantlib.cashflows._coupon_pricer cimport CmsCouponPricer
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._date cimport Date

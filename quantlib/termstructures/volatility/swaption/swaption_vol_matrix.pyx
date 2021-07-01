@@ -9,7 +9,7 @@ from quantlib.quote cimport Quote
 from quantlib.time._period cimport Period as QlPeriod
 from quantlib.time.date cimport Period, Date
 from quantlib.time.calendar cimport Calendar
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.math.matrix cimport Matrix
 from ..volatilitytype cimport VolatilityType, ShiftedLognormal

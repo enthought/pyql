@@ -17,7 +17,7 @@ from . cimport _ois_rate_helper as _orh
 from . cimport _rate_helpers as _rh
 cimport quantlib._quote as _qt
 cimport quantlib.indexes._ibor_index as _ib
-from quantlib.time._businessdayconvention cimport BusinessDayConvention, Following
+from quantlib.time.businessdayconvention cimport BusinessDayConvention, Following
 from quantlib.time._period cimport Frequency, Days
 cimport quantlib.termstructures._yield_term_structure as _yts
 

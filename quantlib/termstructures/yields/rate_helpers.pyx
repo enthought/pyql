@@ -19,7 +19,7 @@ cimport quantlib.indexes._ibor_index as _ib
 cimport quantlib.indexes._swap_index as _si
 from quantlib.instruments.futures cimport FuturesType
 from quantlib.time._period cimport Frequency, Days, Period as QlPeriod
-from quantlib.time._businessdayconvention cimport (
+from quantlib.time.businessdayconvention cimport (
     BusinessDayConvention, ModifiedFollowing )
 from quantlib.time.date cimport date_from_qldate, period_from_qlperiod
 from quantlib.quote cimport Quote

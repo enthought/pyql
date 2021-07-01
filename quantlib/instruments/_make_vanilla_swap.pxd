@@ -5,7 +5,7 @@ from quantlib.handle cimport shared_ptr, Handle
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
 from quantlib.time._calendar cimport Calendar
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time._schedule cimport Rule
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.indexes._ibor_index cimport IborIndex

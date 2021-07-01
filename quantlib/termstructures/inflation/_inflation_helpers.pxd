@@ -3,7 +3,7 @@ include '../../types.pxi'
 
 from quantlib._quote cimport Quote
 from quantlib.handle cimport shared_ptr, Handle
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._calendar cimport Calendar

@@ -9,7 +9,7 @@ cimport cython
 import numpy as np
 cimport numpy as np
 np.import_array()
-from ._businessdayconvention cimport Following, BusinessDayConvention
+from .businessdayconvention cimport Following, BusinessDayConvention
 
 from .calendar cimport Calendar
 from .date cimport date_from_qldate, Date, Period
@@ -88,12 +88,12 @@ cdef class Schedule:
         cdef optional[_calendar.Period] opt_tenor
         if tenor is not None:
             opt_tenor = deref(tenor._thisptr)
+        cdef optional[BusinessDayConvention] opt_termination_convention = termination_date_convention
         instance._thisptr = new _schedule.Schedule(
             _dates,
             deref(calendar._thisptr),
             business_day_convention,
-            optional[BusinessDayConvention](
-                termination_date_convention),
+            opt_termination_convention,
             opt_tenor,
             optional[_schedule.Rule](<_schedule.Rule>date_generation_rule),
             optional[bool](end_of_month),

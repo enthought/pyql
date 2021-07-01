@@ -1,7 +1,5 @@
-from libcpp.string cimport string
-
 cdef extern from "ql/time/businessdayconvention.hpp" namespace "QuantLib":
-    cdef enum BusinessDayConvention:
+    cpdef enum BusinessDayConvention:
         Following
         ModifiedFollowing
         Preceding
@@ -9,8 +7,3 @@ cdef extern from "ql/time/businessdayconvention.hpp" namespace "QuantLib":
         Unadjusted
         HalfMonthModifiedFollowing
         Nearest
-
-cdef extern from "<sstream>" namespace "std":
-    cdef cppclass stringstream:
-        stringstream& operator<<(BusinessDayConvention)
-        string str()

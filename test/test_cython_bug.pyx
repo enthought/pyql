@@ -9,7 +9,7 @@ from quantlib.time._date cimport (
 from quantlib.time._period cimport Years, Period, Days
 from quantlib.time.frequency cimport Annual
 from quantlib.time._calendar cimport Calendar
-from quantlib.time._businessdayconvention cimport (
+from quantlib.time.businessdayconvention cimport (
         Unadjusted, ModifiedFollowing, Following
 )
 from quantlib.time.calendars._target cimport TARGET

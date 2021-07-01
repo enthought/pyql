@@ -25,7 +25,7 @@ from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time.date cimport Date, Period
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.daycounters.simple cimport Actual360, Actual365Fixed
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
 
 from quantlib.time.schedule cimport Schedule
 from quantlib.cashflow cimport SimpleCashFlow

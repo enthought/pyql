@@ -4,7 +4,7 @@ from libcpp.vector cimport vector
 from quantlib.time._date cimport Date, Period
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._daycounter cimport DayCounter
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.termstructures.volatility.swaption._swaption_vol_structure \
     cimport SwaptionVolatilityStructure
 

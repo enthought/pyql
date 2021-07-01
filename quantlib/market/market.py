@@ -54,8 +54,7 @@ def make_rate_helper(market, quote, reference_date=None):
             Period(tenor),
             market._floating_rate_index.fixing_calendar,
             Period(market._params.fixed_leg_period).frequency,
-            BusinessDayConvention.from_name(
-                market._params.fixed_leg_convention),
+            BusinessDayConvention[market._params.fixed_leg_convention],
             DayCounter.from_name(market._params.fixed_leg_daycount),
             libor_index, spread, fwdStart)
     elif rate_type == 'DEP':
@@ -358,9 +357,9 @@ class IborMarket(FixedIncomeMarket):
         swap_type = Payer
         nominal = 100.0
         fixed_convention = \
-            BusinessDayConvention.from_name(_params.fixed_leg_convention)
+            BusinessDayConvention[_params.fixed_leg_convention]
         floating_convention = \
-            BusinessDayConvention.from_name(_params.floating_leg_convention)
+            BusinessDayConvention[_params.floating_leg_convention]
         fixed_frequency = \
             Period(_params.fixed_leg_period)
         floating_frequency = Period(_params.floating_leg_period)

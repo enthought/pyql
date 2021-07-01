@@ -10,9 +10,9 @@ class TestBusinessDayConvention(unittest.TestCase):
 
     def test_creation(self):
 
-        b = BusinessDayConvention.from_name('Following')
+        b = BusinessDayConvention['Following']
 
-        self.assertEqual(str(b), 'Following')
+        self.assertEqual(b.name, 'Following')
         self.assertEqual(b, Following)
 
         c = BusinessDayConvention(Preceding)

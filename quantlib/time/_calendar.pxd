@@ -6,7 +6,7 @@ from libcpp.vector cimport vector
 
 from ._date cimport Date, Weekday
 from ._period cimport Period, TimeUnit
-from ._businessdayconvention cimport BusinessDayConvention
+from .businessdayconvention cimport BusinessDayConvention
 
 cdef extern from 'ql/time/calendar.hpp' namespace 'QuantLib' nogil:
 

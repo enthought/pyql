@@ -6,7 +6,7 @@ from quantlib.handle cimport shared_ptr
 
 from quantlib.time.date cimport Date
 from quantlib.time.calendar cimport Calendar
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.quote cimport Quote
 from ..volatilitytype cimport VolatilityType, ShiftedLognormal

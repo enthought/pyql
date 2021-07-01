@@ -11,7 +11,7 @@ from quantlib.termstructures.helpers cimport Pillar
 from quantlib.termstructures.yields._rate_helpers cimport RateHelper, RelativeDateRateHelper
 from quantlib.indexes._ibor_index cimport OvernightIndex
 from quantlib.time._calendar cimport Calendar
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
 
 from .._yield_term_structure cimport YieldTermStructure
 

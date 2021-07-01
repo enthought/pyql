@@ -5,7 +5,7 @@ from quantlib.instruments.swap cimport Swap, SwapType
 from quantlib.handle cimport static_pointer_cast, shared_ptr
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.time.date cimport Period, Date
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time._period cimport Days
 from quantlib.time._schedule cimport Rule
