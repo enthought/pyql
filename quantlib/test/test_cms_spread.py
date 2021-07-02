@@ -17,7 +17,8 @@ from quantlib.cashflows.linear_tsr_pricer import LinearTsrPricer
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.defines import QL_MAX_REAL, QL_NULL_REAL
-from quantlib.math.matrix import Matrix, pseudo_sqrt
+from quantlib.math.matrix import Matrix
+from quantlib.math.matrixutilities.pseudosqrt import pseudo_sqrt
 from quantlib.math.randomnumbers.rngtraits import LowDiscrepancy
 from math import sqrt
 import numpy as np

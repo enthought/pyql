@@ -8,6 +8,7 @@
 """
 
 include '../types.pxi'
+from libcpp.utility cimport move
 
 cdef class Array:
     """
@@ -16,9 +17,9 @@ cdef class Array:
 
     def __init__(self, Size size, value=None):
         if value is None:
-            self._thisptr = _arr.Array(size)
+            self._thisptr = move[_arr.Array](_arr.Array(size))
         else:
-            self._thisptr = _arr.Array(size, <Real?>value)
+            self._thisptr = move[_arr.Array](_arr.Array(size, <Real?>value))
 
     def __getitem__(self, Size i):
         return self._thisptr.at(i)

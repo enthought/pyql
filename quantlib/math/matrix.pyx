@@ -1,5 +1,7 @@
 include '../types.pxi'
 from cython.operator import dereference as deref, preincrement as preinc
+from libcpp.utility cimport move
+
 cimport cython
 cimport numpy as np
 np.import_array()
@@ -8,9 +10,9 @@ cdef class Matrix:
 
     def __init__(self, Size rows, Size columns, value=None):
         if value is None:
-            self._thisptr = QlMatrix(rows, columns)
+            self._thisptr = move[QlMatrix](QlMatrix(rows, columns))
         else:
-            self._thisptr = QlMatrix(rows, columns, <Real?>value)
+            self._thisptr = move[QlMatrix](QlMatrix(rows, columns, <Real?>value))
 
     @classmethod
     @cython.boundscheck(False)
@@ -52,15 +54,3 @@ cdef class Matrix:
         cdef size_t i, j
         i, j = coord
         self._thisptr[i][j] = val
-
-cpdef enum SalvagingAlgorithm:
-    Nothing = _matrix.Nothing
-    Spectral = _matrix.Spectral
-    Hypersphere = _matrix.Hypersphere
-    LowerDiagonal = _matrix.LowerDiagonal
-    Higham = _matrix.Higham
-
-def pseudo_sqrt(Matrix m, SalvagingAlgorithm algo=Nothing):
-    cdef Matrix r = Matrix.__new__(Matrix)
-    r._thisptr = pseudoSqrt(m._thisptr, <_matrix.Type>algo)
-    return r
