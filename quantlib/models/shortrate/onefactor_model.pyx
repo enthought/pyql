@@ -15,6 +15,20 @@ cimport quantlib.models.shortrate._onefactor_model as _ofm
 cimport quantlib._stochastic_process as _sp
 from quantlib.stochastic_process cimport StochasticProcess1D
 
+cdef class ShortRateDynamics:
+
+    @property
+    def process(self):
+        cdef StochasticProcess1D sp = StochasticProcess1D.__new__(StochasticProcess1D)
+        sp._thisptr = static_pointer_cast[_sp.StochasticProcess](self._thisptr.get().process())
+        return sp
+
+    def variable(self, Time t, Rate r):
+        return self._thisptr.get().variable(t, r)
+
+    def short_rate(self, Time t, Real variable):
+        return self._thisptr.get().shortRate(t, variable)
+
 cdef class OneFactorAffineModel(CalibratedModel):
 
     def __init__(self):
@@ -24,9 +38,8 @@ cdef class OneFactorAffineModel(CalibratedModel):
         return (<_ofm.OneFactorAffineModel*>self._thisptr.get()).discountBond(
             now, maturity, rate)
 
-    def process(self):
-        cdef StochasticProcess1D sp = StochasticProcess1D.__new__(StochasticProcess1D)
-        sp._thisptr = static_pointer_cast[_sp.StochasticProcess](
-                (<_ofm.OneFactorAffineModel*>self._thisptr.get()).
-                dynamics().get().process())
-        return sp
+    @property
+    def dynamics(self):
+        cdef ShortRateDynamics dyn = ShortRateDynamics.__new__(ShortRateDynamics)
+        dyn._thisptr =  (<_ofm.OneFactorAffineModel*>self._thisptr.get()).dynamics()
+        return dyn
