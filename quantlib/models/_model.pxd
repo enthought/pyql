@@ -1,4 +1,4 @@
-from quantlib.types cimport Real
+from quantlib.types cimport Real, Size
 
 from libcpp cimport bool
 from libcpp.vector cimport vector
@@ -20,3 +20,6 @@ cdef extern from 'ql/models/model.hpp' namespace 'QuantLib':
             )
         Array& params()
         void setParams(Array& params)
+
+    cdef cppclass ShortRateModel(CalibratedModel):
+        ShortRateModel(Size nArguments)

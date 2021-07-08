@@ -8,6 +8,11 @@
 """
 
 from quantlib.models.model cimport CalibratedModel
+from quantlib.handle cimport shared_ptr
+from . cimport _onefactor_model as _ofm
+
+cdef class ShortRateDynamics:
+    cdef shared_ptr[_ofm.OneFactorModel.ShortRateDynamics] _thisptr
 
 cdef class OneFactorAffineModel(CalibratedModel):
     pass
