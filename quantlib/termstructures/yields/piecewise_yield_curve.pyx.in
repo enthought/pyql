@@ -14,7 +14,7 @@ cimport quantlib.time._date as _date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar cimport Calendar
 from quantlib.math.interpolation cimport Linear, LogLinear, BackwardFlat, Cubic
-from .bootstraptraits import BootstrapTrait
+from .bootstraptraits cimport BootstrapTrait
 from itertools import product
 
 
@@ -67,6 +67,8 @@ cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
             the tolerance
 
         """
+
+        self.trait = BootstrapTrait.{{T}}
         if len(helpers) == 0:
             raise ValueError('Cannot initialize curve with no helpers')
 
@@ -83,6 +85,7 @@ cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
             _pyc.PiecewiseYieldCurve[trait.{{T}}, intpl.{{I}}].bootstrap_type(accuracy)
         )
         self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](self._curve))
+
 
     @classmethod
     def from_reference_date(cls, Date reference_date, list helpers,
@@ -115,6 +118,7 @@ cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
         for helper in helpers:
             instruments.push_back((<RateHelper?> helper)._thisptr)
 
+        instance.trait = BootstrapTrait.{{T}}
         instance._curve = new _pyc.PiecewiseYieldCurve[trait.{{T}}, intpl.{{I}}](
             deref(reference_date._thisptr), instruments, deref(daycounter._thisptr),
             i._thisptr,
