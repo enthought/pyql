@@ -1,5 +1,6 @@
 from ..yield_term_structure cimport YieldTermStructure
 from . cimport _bootstraptraits as trait
+from .bootstraptraits cimport BootstrapTrait as Trait
 from . cimport _piecewise_yield_curve as _pyc
 
 cimport quantlib.math._interpolations as intpl
@@ -9,6 +10,7 @@ cimport quantlib.math._interpolations as intpl
 {{for T, I in product(["Discount", "ZeroYield", "ForwardRate"], ["Linear", "LogLinear", "BackwardFlat", "Cubic"])}}
 cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
     cdef _pyc.PiecewiseYieldCurve[trait.{{T}}, intpl.{{I}}]* _curve
+    cdef readonly Trait trait
 
 
 {{endfor}}
