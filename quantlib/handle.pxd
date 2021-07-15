@@ -10,6 +10,7 @@ cdef extern from 'ql/shared_ptr.hpp' namespace 'QuantLib::ext':
         T& operator*()
         void reset(T*)
         bool operator bool()
+        shared_ptr[T]& operator=[Y](const shared_ptr[Y]& ptr)
 
     shared_ptr[T] make_shared[T](...)
     shared_ptr[T] static_pointer_cast[T](...)
