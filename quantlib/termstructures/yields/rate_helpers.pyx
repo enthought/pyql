@@ -60,7 +60,7 @@ cdef class DepositRateHelper(RelativeDateRateHelper):
     """Rate helper for bootstrapping over deposit rates."""
 
     def __init__(self, rate, Period tenor=None, Natural fixing_days=2,
-        Calendar calendar=None, int convention=ModifiedFollowing,
+        Calendar calendar=None, BusinessDayConvention convention=ModifiedFollowing,
         bool end_of_month=True, DayCounter deposit_day_counter=None,
         IborIndex index=None):
 
@@ -89,7 +89,7 @@ cdef class DepositRateHelper(RelativeDateRateHelper):
                         deref(tenor._thisptr),
                         <int>fixing_days,
                         deref(calendar._thisptr),
-                        <_rh.BusinessDayConvention>convention,
+                        convention,
                         end_of_month,
                         deref(deposit_day_counter._thisptr)
                     )
@@ -101,7 +101,7 @@ cdef class DepositRateHelper(RelativeDateRateHelper):
                         deref(tenor._thisptr),
                         <int>fixing_days,
                         deref(calendar._thisptr),
-                        <_rh.BusinessDayConvention>convention,
+                        convention,
                         end_of_month,
                         deref(deposit_day_counter._thisptr)
                     )
@@ -145,7 +145,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                     deref(tenor._thisptr),
                     deref(calendar._thisptr),
                     <Frequency> fixedFrequency,
-                    <_rh.BusinessDayConvention> fixedConvention,
+                    fixedConvention,
                     deref(fixedDayCount._thisptr),
                     static_pointer_cast[_ib.IborIndex](iborIndex._thisptr),
                     spread.handle(),
@@ -164,7 +164,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                     deref(tenor._thisptr),
                     deref(calendar._thisptr),
                     <Frequency> fixedFrequency,
-                    <_rh.BusinessDayConvention> fixedConvention,
+                    fixedConvention,
                     deref(fixedDayCount._thisptr),
                     static_pointer_cast[_ib.IborIndex](iborIndex._thisptr),
                     spread.handle(),
@@ -223,8 +223,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
 
     def swap(self):
         cdef VanillaSwap instance = VanillaSwap.__new__(VanillaSwap)
-        instance._thisptr = static_pointer_cast[_ins.Instrument](
-            (<_rh.SwapRateHelper*>self._thisptr.get()).swap())
+        instance._thisptr = (<_rh.SwapRateHelper*>self._thisptr.get()).swap()
         return instance
 
     @property
@@ -240,7 +239,7 @@ cdef class FraRateHelper(RelativeDateRateHelper):
     """ Rate helper for bootstrapping over %FRA rates. """
 
     def __init__(self, rate, Natural months_to_start,
-            Natural months_to_end, Natural fixing_days, Calendar calendar,
+                 Natural months_to_end, Natural fixing_days, Calendar calendar,
                  BusinessDayConvention convention, bool end_of_month,
                  DayCounter day_counter, Pillar pillar=Pillar.LastRelevantDate,
                    Date custom_pillar_date=Date(),
@@ -254,7 +253,7 @@ cdef class FraRateHelper(RelativeDateRateHelper):
                     months_to_end,
                     fixing_days,
                     deref(calendar._thisptr),
-                    <_rh.BusinessDayConvention> convention,
+                    convention,
                     end_of_month,
                     deref(day_counter._thisptr),
                     pillar,
@@ -270,7 +269,7 @@ cdef class FraRateHelper(RelativeDateRateHelper):
                     months_to_end,
                     fixing_days,
                     deref(calendar._thisptr),
-                    <_rh.BusinessDayConvention> convention,
+                    convention,
                     end_of_month,
                     deref(day_counter._thisptr),
                     pillar,
