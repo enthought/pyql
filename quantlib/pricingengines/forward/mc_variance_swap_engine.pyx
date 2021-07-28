@@ -53,7 +53,7 @@ cdef class MCVarianceSwapEngine(PricingEngine):
         # Cast the shared_ptr
         cdef shared_ptr[_GeneralizedBlackScholesProcess] process_ptr = \
              static_pointer_cast[_GeneralizedBlackScholesProcess](process._thisptr)
-        self._thisptr = new shared_ptr[_PricingEngine](
+        self._thisptr.reset(
                         new _MCVarianceSwapEngine(process_ptr,
                                                   time_steps,
                                                   time_steps_per_year,

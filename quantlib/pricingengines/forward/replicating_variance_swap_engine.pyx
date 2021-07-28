@@ -35,7 +35,7 @@ cdef class ReplicatingVarianceSwapEngine(PricingEngine):
         cdef shared_ptr[_GeneralizedBlackScholesProcess] process_ptr = \
              static_pointer_cast[_GeneralizedBlackScholesProcess](process._thisptr)
 
-        self._thisptr = new shared_ptr[_PricingEngine](new \
+        self._thisptr.reset(new \
                         _ReplicatingVarianceSwapEngine(process_ptr,
                                                        dk,
                                                        call_strikes,

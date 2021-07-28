@@ -48,7 +48,7 @@ cdef class IsdaCdsEngine(PricingEngine):
         cdef Handle[_dts.DefaultProbabilityTermStructure] handle = \
             Handle[_dts.DefaultProbabilityTermStructure](ts._thisptr)
 
-        self._thisptr = new shared_ptr[_pe.PricingEngine](
+        self._thisptr.reset(
             new _ice.IsdaCdsEngine(handle, recovery_rate,
                                    discount_curve._thisptr,
                                    settlement_flows,

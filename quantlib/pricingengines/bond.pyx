@@ -22,6 +22,4 @@ cdef class DiscountingBondEngine(PricingEngine):
         """
         """
 
-        self._thisptr = new shared_ptr[_pe.PricingEngine](
-            new _bond.DiscountingBondEngine(discount_curve._thisptr)
-        )
+        self._thisptr.reset(new _bond.DiscountingBondEngine(discount_curve._thisptr))
