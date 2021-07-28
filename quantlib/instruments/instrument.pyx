@@ -10,7 +10,7 @@ cdef class Instrument(Observable):
         '''Sets the pricing engine.
 
         '''
-        self._thisptr.get().setPricingEngine(deref(engine._thisptr))
+        self._thisptr.get().setPricingEngine(engine._thisptr)
 
     cdef shared_ptr[QlObservable] as_observable(self):
         return static_pointer_cast[QlObservable](self._thisptr)
