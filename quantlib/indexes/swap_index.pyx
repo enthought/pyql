@@ -84,6 +84,6 @@ cdef class SwapIndex(InterestRateIndex):
         cdef YieldTermStructure yts = YieldTermStructure.__new__(YieldTermStructure)
         cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
         yts._thisptr.linkTo(swap_index.
-                            forwardingTermStructure().
+                            discountingTermStructure().
                             currentLink())
         return yts
