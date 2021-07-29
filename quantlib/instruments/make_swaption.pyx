@@ -8,6 +8,7 @@ from quantlib.time._businessdayconvention cimport BusinessDayConvention
 from quantlib.time._period cimport Days
 cimport quantlib.indexes._swap_index as _si
 cimport quantlib.instruments._instrument as _in
+from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.instruments._swaption cimport Swaption as _Swaption, Settlement
 from quantlib.instruments.swaption cimport Swaption
 from quantlib.instruments._vanillaswap cimport VanillaSwap
@@ -63,4 +64,8 @@ cdef class MakeSwaption:
 
     def with_nominal(self, Real nominal):
         self._thisptr.withNominal(nominal)
+        return self
+
+    def with_pricing_engine(self, PricingEngine engine not None):
+        self._thisptr.withPricingEngine(engine._thisptr)
         return self
