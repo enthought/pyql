@@ -21,7 +21,7 @@ cdef class FdBlackScholesVanillaEngine(PricingEngine):
                  CashDividendModel cash_dividend_model=Spot):
         cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
             static_pointer_cast[_bsp.GeneralizedBlackScholesProcess](process._thisptr)
-        self._thisptr = new shared_ptr[QlPricingEngine](
+        self._thisptr.reset(
             new _fdbs.FdBlackScholesVanillaEngine(
                 process_ptr,
                 t_grid,

@@ -35,7 +35,7 @@ cdef class BlackSwaptionEngine(PricingEngine):
         cdef Handle[_svs.SwaptionVolatilityStructure] vol_structure_handle
 
         if isinstance(vol, float):
-            self._thisptr = new shared_ptr[_pe.PricingEngine](
+            self._thisptr.reset(
                 new _BlackSwaptionEngine(discount_curve._thisptr,
                                          <Volatility>vol,
                                          deref(dc._thisptr),
@@ -43,7 +43,7 @@ cdef class BlackSwaptionEngine(PricingEngine):
                                          <_BlackSwaptionEngine.CashAnnuityModel>model))
         elif isinstance(vol, Quote):
             quote_handle = Handle[_qt.Quote]((<Quote>vol)._thisptr)
-            self._thisptr = new shared_ptr[_pe.PricingEngine](
+            self._thisptr.reset(
                 new _BlackSwaptionEngine(discount_curve._thisptr,
                                          quote_handle,
                                          deref(dc._thisptr),
@@ -53,7 +53,7 @@ cdef class BlackSwaptionEngine(PricingEngine):
             vol_structure_handle = Handle[_svs.SwaptionVolatilityStructure](
                 static_pointer_cast[_svs.SwaptionVolatilityStructure](
                     (<SwaptionVolatilityStructure>vol)._thisptr))
-            self._thisptr = new shared_ptr[_pe.PricingEngine](
+            self._thisptr.reset(
                 new _BlackSwaptionEngine(discount_curve._thisptr,
                                          quote_handle,
                                          deref(dc._thisptr),

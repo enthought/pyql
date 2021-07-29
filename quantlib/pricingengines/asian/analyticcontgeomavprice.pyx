@@ -25,7 +25,7 @@ cdef class AnalyticContinuousGeometricAveragePriceAsianEngine(PricingEngine):
     def __init__(self,  GeneralizedBlackScholesProcess process):
         cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
             static_pointer_cast[_bsp.GeneralizedBlackScholesProcess](process._thisptr)
-        self._thisptr = new shared_ptr[QlPricingEngine](
+        self._thisptr.reset(
             new _acgap.AnalyticContinuousGeometricAveragePriceAsianEngine(
                 process_ptr))
     

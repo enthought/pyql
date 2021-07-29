@@ -16,7 +16,7 @@ cdef class MCEuropeanHestonEngine(MCVanillaEngine):
                  Size required_samples=QL_NULL_INTEGER, Real required_tolerance=QL_NULL_REAL,
                  Size max_samples=QL_NULL_INTEGER,
                  BigNatural seed=0):
-        self._thisptr = new shared_ptr[_pe.PricingEngine](
+        self._thisptr.reset(
             new _mceh.MCEuropeanHestonEngine(
                 static_pointer_cast[_hp.HestonProcess](process._thisptr),
                 time_steps,

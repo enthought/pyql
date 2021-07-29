@@ -25,7 +25,7 @@ cdef class BlackCalibrationHelper:
         return (<_ch.BlackCalibrationHelper*>self._thisptr.get())
 
     def set_pricing_engine(self, PricingEngine engine):
-        self.as_ptr().setPricingEngine(deref(engine._thisptr))
+        self.as_ptr().setPricingEngine(engine._thisptr)
 
 
     def model_value(self):

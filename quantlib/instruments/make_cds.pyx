@@ -64,5 +64,5 @@ cdef class MakeCreditDefaultSwap:
         return self
 
     def with_pricing_engine(self, PricingEngine pe):
-        self._thisptr.withPricingEngine(deref(pe._thisptr))
+        self._thisptr.withPricingEngine(pe._thisptr)
         return self

@@ -36,7 +36,7 @@ cdef class MidPointCdsEngine(PricingEngine):
         cdef optional[bool] include_settlement_date_flows_opt
         if include_settlement_date_flows is not None:
             include_settlement_date_flows_opt = <bool>include_settlement_date_flows
-        self._thisptr = new shared_ptr[_pe.PricingEngine](
+        self._thisptr.reset(
             new _mce.MidPointCdsEngine(handle, recovery_rate, discount_curve._thisptr,
                 include_settlement_date_flows_opt,
                 )
