@@ -18,6 +18,7 @@ from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
 cimport quantlib._quote as _qt
 cimport quantlib.indexes._ibor_index as _ib
 cimport quantlib.indexes._swap_index as _si
+from quantlib.instruments.futures cimport FuturesType
 from quantlib.time._period cimport Frequency, Days, Period as QlPeriod
 from quantlib.time._businessdayconvention cimport (
     BusinessDayConvention, ModifiedFollowing )
@@ -258,12 +259,15 @@ cdef class FuturesRateHelper(RateHelper):
     """ Rate helper for bootstrapping over IborIndex futures prices. """
 
     def __init__(self, price, Date imm_date,
-            Natural length_in_months, Calendar calendar,
-            BusinessDayConvention convention, bool end_of_month,
-            DayCounter day_counter, double convexity_adjustment = 0):
+                 Natural length_in_months, Calendar calendar,
+                 BusinessDayConvention convention, bool end_of_month,
+                 DayCounter day_counter, convexity_adjustment=0.0,
+                 FuturesType future_type=FuturesType.IMM):
 
-        if isinstance(price, float):
-            self._thisptr = shared_ptr[_rh.RateHelper](
+        if convexity_adjustment == 0.0 and isinstance(price, SimpleQuote):
+            convexity_adjustment = SimpleQuote(0.0)
+        if isinstance(price, float) and isinstance(convexity_adjustment, float):
+            self._thisptr.reset(
                 new _rh.FuturesRateHelper(
                     <Real>price,
                     deref(imm_date._thisptr),
@@ -272,11 +276,12 @@ cdef class FuturesRateHelper(RateHelper):
                     <_rh.BusinessDayConvention> convention,
                     end_of_month,
                     deref(day_counter._thisptr),
-                    <Rate>convexity_adjustment
+                    <Rate>convexity_adjustment,
+                    future_type
                 )
-             )
-        elif isinstance(price, SimpleQuote):
-            self._thisptr = shared_ptr[_rh.RateHelper](
+            )
+        elif isinstance(price, SimpleQuote) and isinstance(convexity_adjustment, SimpleQuote):
+            self._thisptr.reset(
                 new _rh.FuturesRateHelper(
                     Handle[_qt.Quote]((<SimpleQuote>price)._thisptr),
                     deref(imm_date._thisptr),
@@ -285,9 +290,34 @@ cdef class FuturesRateHelper(RateHelper):
                     <_rh.BusinessDayConvention> convention,
                     end_of_month,
                     deref(day_counter._thisptr),
-                    Handle[_qt.Quote](shared_ptr[_qt.Quote](
-                        new _qt.SimpleQuote(convexity_adjustment)))
+                    Handle[_qt.Quote]((<SimpleQuote>convexity_adjustment)._thisptr),
+                    future_type
                 )
-             )
+            )
         else:
             raise ValueError('price needs to be a float or a SimpleQuote')
+
+    @classmethod
+    def from_index(cls, price, Date ibor_start_date, IborIndex i, convexity_adjustment=0.0, FuturesType future_type=FuturesType.IMM):
+        cdef FuturesRateHelper instance = FuturesRateHelper.__new__(FuturesRateHelper)
+        if convexity_adjustment == 0.0 and isinstance(price, SimpleQuote):
+            convexity_adjustment = SimpleQuote(0.0)
+        if isinstance(price, float) and isinstance(convexity_adjustment, float):
+            instance._thisptr.reset(
+                new _rh.FuturesRateHelper(<Real>price,
+                                          deref(ibor_start_date._thisptr),
+                                          static_pointer_cast[_ib.IborIndex](i._thisptr),
+                                          <Rate>convexity_adjustment,
+                                          future_type)
+            )
+        elif isinstance(price, SimpleQuote) and isinstance(convexity_adjustment, SimpleQuote):
+            instance._thisptr.reset(
+                new _rh.FuturesRateHelper(Handle[_qt.Quote]((<SimpleQuote>price)._thisptr),
+                                          deref(ibor_start_date._thisptr),
+                                          static_pointer_cast[_ib.IborIndex](i._thisptr),
+                                          Handle[_qt.Quote]((<SimpleQuote>convexity_adjustment)._thisptr),
+                                          future_type)
+            )
+        else:
+            raise ValueError('price needs to be a float or a SimpleQuote')
+        return instance
