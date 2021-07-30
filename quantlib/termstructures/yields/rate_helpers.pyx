@@ -50,10 +50,19 @@ cdef class RateHelper:
     def latest_date(self):
         return date_from_qldate(self._thisptr.get().latestDate())
 
-cdef class RelativeDateRateHelper(RateHelper):
+    @property
+    def earliest_date(self):
+        return date_from_qldate(self._thisptr.get().earliestDate())
+
+    @property
+    def maturity_date(self):
+        return date_from_qldate(self._thisptr.get().maturityDate())
 
     def update(self):
         return self._thisptr.get().update()
+
+cdef class RelativeDateRateHelper(RateHelper):
+    pass
 
 
 cdef class DepositRateHelper(RelativeDateRateHelper):

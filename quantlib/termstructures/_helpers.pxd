@@ -19,6 +19,7 @@ cdef extern from 'ql/termstructures/bootstraphelper.hpp' namespace 'QuantLib':
         BootstrapHelper(Real quote)
         Handle[Quote] quote()
         Real impliedQuote() except +
+        Date earliestDate() except +
         Date maturityDate() except +
         Date latestDate() except +
         void update()
