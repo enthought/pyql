@@ -11,7 +11,7 @@ cimport quantlib.termstructures.volatility.swaption._swaption_vol_structure \
     as _svs
 from quantlib.termstructures.volatility.swaption.swaption_vol_structure \
     cimport SwaptionVolatilityStructure
-from ._black_swaption_engine cimport BlackSwaptionEngine as _BlackSwaptionEngine
+from ._black_swaption_engine cimport BlackSwaptionEngine as _BlackSwaptionEngine, BachelierSwaptionEngine as _BachelierSwaptionEngine
 
 cpdef enum CashAnnuityModel:
     SwapRate = 0
@@ -64,4 +64,31 @@ cdef class BachelierSwaptionEngine(PricingEngine):
     The engine assumes that the exercise date lies before the
     start date of the passed swap.
     """
-    pass
+    def __init__(self, YieldTermStructure discount_curve not None,
+                  vol,
+                  DayCounter dc=Actual365Fixed(),
+                  CashAnnuityModel model=DiscountCurve):
+        cdef Handle[_qt.Quote] quote_handle
+        cdef Handle[_svs.SwaptionVolatilityStructure] vol_structure_handle
+
+        if isinstance(vol, float):
+            self._thisptr.reset(
+                new _BachelierSwaptionEngine(discount_curve._thisptr,
+                                             <Volatility>vol,
+                                             deref(dc._thisptr),
+                                             <_BachelierSwaptionEngine.CashAnnuityModel>model))
+        elif isinstance(vol, Quote):
+            quote_handle = Handle[_qt.Quote]((<Quote>vol)._thisptr)
+            self._thisptr.reset(
+                new _BachelierSwaptionEngine(discount_curve._thisptr,
+                                             quote_handle,
+                                             deref(dc._thisptr),
+                                             <_BachelierSwaptionEngine.CashAnnuityModel>model))
+        elif isinstance(vol, SwaptionVolatilityStructure):
+            vol_structure_handle = Handle[_svs.SwaptionVolatilityStructure](
+                static_pointer_cast[_svs.SwaptionVolatilityStructure](
+                    (<SwaptionVolatilityStructure>vol)._thisptr))
+            self._thisptr.reset(
+                new _BachelierSwaptionEngine(discount_curve._thisptr,
+                                             vol_structure_handle,
+                                             <_BachelierSwaptionEngine.CashAnnuityModel>model))
