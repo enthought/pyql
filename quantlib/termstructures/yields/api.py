@@ -3,6 +3,7 @@ from .flat_forward import FlatForward
 from .piecewise_yield_curve import PiecewiseYieldCurve
 from .bootstraptraits import BootstrapTrait
 from .forward_spreaded_term_structure import ForwardSpreadedTermStructure
+from .zero_spreaded_term_structure import ZeroSpreadedTermStructure
 from .piecewise_zerospreaded_termstructure import PiecewiseZeroSpreadedTermStructure
 from .rate_helpers import (
     RateHelper, DepositRateHelper, FraRateHelper,

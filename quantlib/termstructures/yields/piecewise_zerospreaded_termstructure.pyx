@@ -1,6 +1,6 @@
 from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib.handle cimport Handle, make_shared, static_pointer_cast
 from quantlib._compounding cimport Compounding, Continuous
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.frequency cimport Frequency, NoFrequency
@@ -25,8 +25,8 @@ cdef class PiecewiseZeroSpreadedTermStructure(YieldTermStructure):
         for d in dates:
             dates_vec.push_back(deref(d._thisptr))
 
-        self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-            new _pzt.PiecewiseZeroSpreadedTermStructure(
+        self._thisptr.linkTo(static_pointer_cast[_yts.YieldTermStructure](
+            make_shared[_pzt.PiecewiseZeroSpreadedTermStructure](
                 h._thisptr,
                 spreads_vec,
                 dates_vec,
