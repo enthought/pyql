@@ -1,7 +1,7 @@
 include '../types.pxi'
 
 # Cython imports
-from cython.operator cimport dereference as deref
+from cython.operator cimport dereference as deref, preincrement as preinc
 from libcpp cimport bool
 from libcpp.vector cimport vector
 
@@ -15,7 +15,8 @@ cimport quantlib.processes._black_scholes_process as _bsp
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.instruments.instrument cimport Instrument
 from quantlib.instruments.payoffs cimport Payoff, PlainVanillaPayoff
-from quantlib.time.date cimport Date
+from quantlib.time._date cimport Date as QlDate
+from quantlib.time.date cimport Date, _pydate_from_qldate
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 
@@ -28,16 +29,26 @@ cpdef enum OptionType:
     Call = _option.Type.Call
     Put  = _option.Type.Put
 
-EXERCISE_TO_STR = {
-    American : 'American',
-    Bermudan : 'Bermudan',
-    European : 'European'
-}
 
 cdef class Exercise:
 
     def __str__(self):
-        return 'Exercise type: %s' % EXERCISE_TO_STR[self._thisptr.get().type()]
+        return "Exercise type: {}".format(ExerciseType(self._thisptr.get().type()).name)
+
+    @property
+    def last_date(self):
+        return _pydate_from_qldate(self._thisptr.get().lastDate())
+
+    def dates(self):
+        cdef vector[QlDate].const_iterator it = self._thisptr.get().dates().const_begin()
+        cdef list r = []
+        while it != self._thisptr.get().dates().end():
+            r.append(_pydate_from_qldate(deref(it)))
+            preinc(it)
+
+    @property
+    def type(self):
+       return ExerciseType(self._thisptr.get().type())
 
 cdef class EuropeanExercise(Exercise):
 
