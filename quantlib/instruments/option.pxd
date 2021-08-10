@@ -5,6 +5,8 @@ from quantlib.instruments.instrument cimport Instrument
 cdef class Exercise:
     cdef shared_ptr[_exercise.Exercise] _thisptr
 
+cdef class Option(Instrument):
+    pass
 
-cdef class OneAssetOption(Instrument):
+cdef class OneAssetOption(Option):
     pass

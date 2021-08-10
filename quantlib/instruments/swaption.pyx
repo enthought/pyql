@@ -10,7 +10,7 @@ from .swap cimport VanillaSwap
 from . cimport _vanillaswap
 from . cimport _instrument
 
-cdef class Swaption(Instrument):
+cdef class Swaption(Option):
     def __init__(self, VanillaSwap swap not None, Exercise exercise not None,
                  SettlementType delivery=Physical,
                  SettlementMethod settlement_method=PhysicalOTC):
