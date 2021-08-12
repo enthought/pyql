@@ -7,7 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from quantlib.types cimport Real
+from quantlib.types cimport Real, Time
 from libcpp.vector cimport vector
 from libcpp cimport bool
 from cython.operator cimport dereference as deref
@@ -75,3 +75,18 @@ cdef class HullWhite(Vasicek):
             weights,
             fix_parameters
         )
+
+    @staticmethod
+    def convexity_bias(Real future_price,
+                       Time t,
+                       Time T,
+                       Real sigma,
+                       Real a):
+        """ Futures convexity bias (i.e., the difference between
+            futures implied rate and forward rate) calculated as in
+            G. Kirikos, D. Novak, "Convexity Conundrums", Risk
+            Magazine, March 1997.
+            \note t and T should be expressed in yearfraction using
+                  deposit day counter, F_quoted is futures' market price.
+        """
+        return _hw.HullWhite.convexityBias(future_price, t, T, sigma, a)
