@@ -11,8 +11,10 @@ include '../../../types.pxi'
 
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.volatility._volatilitytype cimport VolatilityType
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.indexes._ibor_index cimport IborIndex
+from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
 from quantlib.models._calibration_helper cimport BlackCalibrationHelper, CalibrationErrorType
 cimport quantlib._quote as _qt
@@ -31,4 +33,39 @@ cdef extern from 'ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp' nam
                        Handle[YieldTermStructure]& termStructure,
                        CalibrationErrorType errorType,
                        Real strike,
-                       Real nominal) except +
+                       Real nominal,
+                       VolatilityType type, # = ShiftedLognormal,
+                       Real shift # = 0.0
+                       ) except +
+    # this should really be a constructor but cython can't disambiguate the
+    # constructors otherwise
+    SwaptionHelper* SwaptionHelper_ "new QuantLib::SwaptionHelper"(
+        Date& maturity,
+        Period& length,
+        Handle[_qt.Quote]& volatility,
+        shared_ptr[IborIndex]& index,
+        Period& fixedLegTenor,
+        DayCounter& fixedLegDayCounter,
+        DayCounter& floatingLegDayCounter,
+        Handle[YieldTermStructure]& termStructure,
+        CalibrationErrorType errorType,
+        Real strike,
+        Real nominal,
+        VolatilityType type, # = ShiftedLognormal,
+        Real shift # = 0.0
+    ) except +
+    SwaptionHelper* SwaptionHelper2_ "new QuantLib::SwaptionHelper"(
+        Date& maturity,
+        Date& length,
+        Handle[_qt.Quote]& volatility,
+        shared_ptr[IborIndex]& index,
+        Period& fixedLegTenor,
+        DayCounter& fixedLegDayCounter,
+        DayCounter& floatingLegDayCounter,
+        Handle[YieldTermStructure]& termStructure,
+        CalibrationErrorType errorType,
+        Real strike,
+        Real nominal,
+        VolatilityType type, # = ShiftedLognormal,
+        Real shift # = 0.0
+    ) except +
