@@ -25,21 +25,19 @@ for T, I in product(BootstrapTrait, [Linear, LogLinear, BackwardFlat, Cubic]):
 cdef class PiecewiseYieldCurve:
     """A piecewise yield curve.
 
+    ``Generics`` class parametered by a couple (trait, interpolator).
+
+
+
     Parameters
     ----------
-    trait : str
-        the kind of curve. Must be either 'discount', 'forward' or 'zero'
-    interpolator : str
-        the kind of interpolator. Must be either 'loglinear', 'linear' or
-        'spline'
-    settlement_date : quantlib.time.date.Date
-        The settlement date
-    helpers : list of quantlib.termstructures.rate_helpers.RateHelper
-        a list of rate helpers used to create the curve
-    day_counter : quantlib.time.day_counter.DayCounter
-        the day counter used by this curve
-    tolerance : double (default 1e-12)
-        the tolerance
+    trait : BootstrapTrait
+        the kind of curve. Must be either 'BootstrapTrait.Discount', 'BootstrapTrait.ZeroYield'
+         or 'BootstrapTrait.ForwardRate'
+    interpolator : Interpolator
+        the kind of interpolator. Must be either 'Linear', 'LogLinear', 'BackwardFlat' or
+        'Cubic'
+
 
     """
 
@@ -53,8 +51,22 @@ cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
                  list helpers, DayCounter daycounter not None,
                  {{I}} i={{I}}(),
                  Real accuracy = 1e-12):
+        """
 
+        Parameters
+        ----------
+        settlement_days : int
+            The settlement date
+        calendar: quantlib.time.calendar.Calendar
+            curve's calendar
+        helpers : list of quantlib.termstructures.rate_helpers.RateHelper
+           a list of rate helpers used to create the curve
+        day_counter : quantlib.time.day_counter.DayCounter
+            the day counter used by this curve
+        accuracy : double (default 1e-12)
+            the tolerance
 
+        """
         if len(helpers) == 0:
             raise ValueError('Cannot initialize curve with no helpers')
 
@@ -76,6 +88,22 @@ cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
     def from_reference_date(cls, Date reference_date, list helpers,
                             DayCounter daycounter not None, {{I}} i={{I}}(),
                             Real accuracy=1e-12):
+        """
+
+        Parameters
+        ----------
+        reference_date : quantlib.time.date.Date
+            The curve's reference date
+        calendar: quantlib.time.calendar.Calendar
+            curve's calendar
+        helpers : list of quantlib.termstructures.rate_helpers.RateHelper
+           a list of rate helpers used to create the curve
+        day_counter : quantlib.time.day_counter.DayCounter
+            the day counter used by this curve
+        accuracy : double (default 1e-12)
+            the tolerance
+
+        """
 
         if len(helpers) == 0:
             raise ValueError('Cannot initialize curve with no helpers')
@@ -108,10 +136,9 @@ cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
     @property
     def dates(self):
         """list of curve dates"""
-        cdef vector[_date.Date] _dates = self._curve.dates()
         cdef list r  = []
         cdef _date.Date qldate
-        for qldate in _dates:
+        for qldate in self._curve.dates():
             r.append(date_from_qldate(qldate))
 
         return r
