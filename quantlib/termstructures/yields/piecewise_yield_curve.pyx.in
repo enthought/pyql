@@ -16,13 +16,17 @@ from quantlib.math.interpolation cimport Linear, LogLinear, BackwardFlat, Cubic
 from .bootstraptraits import BootstrapTrait
 from itertools import product
 
-_registry = {}
+cdef dict _registry = {}
 
 for T, I in product(BootstrapTrait, [Linear, LogLinear, BackwardFlat, Cubic]):
     _registry[T,I] = globals()[f"{T.name}{I.__name__}PiecewiseYieldCurve"]
 
+# with cython3 and python>=3.7 we could use __class_getitem__ instead
+cdef class Meta(type):
+    def __getitem__(cls, tuple tup):
+        return _registry[tup]
 
-cdef class PiecewiseYieldCurve:
+class PiecewiseYieldCurve(metaclass=Meta):
     """A piecewise yield curve.
 
     ``Generics`` class parametered by a couple (trait, interpolator).
@@ -40,9 +44,8 @@ cdef class PiecewiseYieldCurve:
 
 
     """
+    pass
 
-    def __class_getitem__(cls, tuple tup):
-        return _registry[tup]
 
 {{py: from itertools import product}}
 {{for T, I in product(["Discount", "ZeroYield", "ForwardRate"], ["Linear", "LogLinear", "BackwardFlat", "Cubic"])}}
