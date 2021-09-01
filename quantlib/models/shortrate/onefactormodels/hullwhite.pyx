@@ -30,6 +30,7 @@ from .vasicek cimport Vasicek
 
 cdef class HullWhite(Vasicek):
     """ Single-factor Hull-White (extended Vasicek) model.
+
     The standard single-factor Hull-White model is defined by
     .. math::
     dr_t = (\theta(t) - \alpha r_t)dt + \sigma dW_t
@@ -82,11 +83,28 @@ cdef class HullWhite(Vasicek):
                        Time T,
                        Real sigma,
                        Real a):
-        """ Futures convexity bias (i.e., the difference between
-            futures implied rate and forward rate) calculated as in
-            G. Kirikos, D. Novak, "Convexity Conundrums", Risk
-            Magazine, March 1997.
-            \note t and T should be expressed in yearfraction using
-                  deposit day counter, F_quoted is futures' market price.
+        """Futures convexity bias
+
+        i.e., the difference between futures implied rate and forward rate
+        calculated as in [1]_.
+
+        Parameters
+        ----------
+        t : float
+            maturity date of the futures contract
+        T : float
+            maturity of the underlying Libor deposit
+        sigma : float
+            annual volatility of the short rate
+        a :
+           mean-reversion parameter
+
+        Notes
+        -----
+        `t` and `T` should be expressed in yearfraction using deposit day counter,
+        future_price is futures' market price.
+
+        .. [1] G. Kirikos, D. Novak, "Convexity Conundrums", Risk Magazine, March 1997.
+
         """
         return _hw.HullWhite.convexityBias(future_price, t, T, sigma, a)
