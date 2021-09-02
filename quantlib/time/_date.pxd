@@ -131,11 +131,14 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib::detail":
         pass
     cdef cppclass iso_datetime_holder:
         pass
+    cdef cppclass formatted_date_holder:
+        pass
 
 cdef extern from "ql/time/date.hpp" namespace "QuantLib::io":
     cdef short_date_holder short_date(const Date&)
     cdef iso_date_holder iso_date(const Date&)
     cdef iso_datetime_holder iso_datetime(const Date&)
+    cdef formatted_date_holder formatted_date(const Date&, const string& fmt)
 
 cdef extern from "<sstream>" namespace "std":
     cdef cppclass stringstream:
@@ -143,6 +146,7 @@ cdef extern from "<sstream>" namespace "std":
         stringstream& operator<<(short_date_holder)
         stringstream& operator<<(iso_datetime_holder)
         stringstream& operator<<(string)
+        stringstream& operator<<(formatted_date_holder)
         string str()
 
 cdef extern from 'ql/utilities/dataparsers.hpp' namespace "QuantLib::DateParser":

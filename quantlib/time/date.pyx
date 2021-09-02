@@ -385,6 +385,10 @@ cdef class Date:
         ss << string(b"Date('") << _date.iso_datetime(deref(self._thisptr)) << string(b"')")
         return ss.str().decode()
 
+    def __format__(self, str fmt):
+        cdef _date.stringstream ss
+        ss << _date.formatted_date(deref(self._thisptr), fmt.encode())
+        return ss.str().decode()
 
     def __hash__(self):
         # Returns a hash based on the serial

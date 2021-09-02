@@ -172,6 +172,10 @@ class TestQuantLibDate(unittest.TestCase):
 
         self.assertEqual(date1.serial, int(date1))
 
+    def test_formatting(self):
+        date = Date(28, Feb, 2011)
+        self.assertEqual("{0:%b-%Y}".format(date), "Feb-2011")
+
 
 class ConversionMethodsTestCase(unittest.TestCase):
 
