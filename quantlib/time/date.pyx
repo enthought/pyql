@@ -252,21 +252,10 @@ cdef class Period:
     def __hash__(self):
         # this should be the same as tuplehash from cpython
         cdef:
-            unsigned long int _PyHASH_XXPRIME_1 = 11400714785074694791
-            unsigned long int _PyHASH_XXPRIME_2 = 14029467366897019727
-            unsigned long int _PyHASH_XXPRIME_5 = 2870177450012600261
-            unsigned long int acc = _PyHASH_XXPRIME_5
-            unsigned long int lane = self._thisptr.get().length()
+            unsigned long int l = self._thisptr.get().length()
+            unsigned long int u = self._thisptr.get().units()
 
-        acc += lane * _PyHASH_XXPRIME_2
-        acc = (acc << 31) | (acc >> 33)
-        acc *= _PyHASH_XXPRIME_1
-        lane = self._thisptr.get().units()
-        acc += lane * _PyHASH_XXPRIME_2
-        acc = (acc << 31) | (acc >> 33)
-        acc *= _PyHASH_XXPRIME_1
-        acc += 2 ^ (_PyHASH_XXPRIME_5 ^ 3527539)
-        return acc
+        return hash((l, u))
 
 cdef Period period_from_qlperiod(const QlPeriod& period):
     cdef Period instance = Period.__new__(Period)
