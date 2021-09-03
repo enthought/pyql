@@ -137,7 +137,7 @@ cdef class Period:
 
     property units:
         def __get__(self):
-            return self._thisptr.get().units()
+            return TimeUnit(self._thisptr.get().units())
 
     property frequency:
         def __get__(self):
