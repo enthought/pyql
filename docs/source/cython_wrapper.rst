@@ -76,7 +76,7 @@ The syntax is almost identical to the corresponding C++ header file. The
 types used in declaring arguments are defined in ``types.pxi``.
 
 The clause 'except +' signals that the method may throw an exception. It
-is indispensible to append this clause to every declaration. Without it, an
+is indispensable to append this clause to every declaration. Without it, an
 exception thrown in QL will terminate the python process.
 
 Declaration of the python class
@@ -95,8 +95,8 @@ Notice that in our header files we use 'Quote' to refer the the C++
 class (in file _quote.pxd) and to the python class (in file
 quote.pxd). To avoid confusion we use the following convention:
 
-* the C++ class is always refered to as ``_qt.Quote``.
-* the python class is always refered to as ``Quote``
+* the C++ class is always referred to as ``_qt.Quote``.
+* the python class is always referred to as ``Quote``
 
 The cython wrapper class holds a reference to the QL C++ class. As we do not
 want to do any memory handling on the Python side, we always wrap the C++

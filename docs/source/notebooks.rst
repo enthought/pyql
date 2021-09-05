@@ -7,7 +7,7 @@ QuantLib.
 Getting started
 ---------------
 
-In order to use the notebokks, you need to install:
+In order to use the notebooks, you need to install:
 
 * Ipython 0.13
 * pylab

@@ -101,7 +101,7 @@ class TestQuantLibDate(unittest.TestCase):
         expected_date = Date(22, Nov, 1998)
         self.assertTrue(expected_date == date1)
 
-        # substraction
+        # subtraction
         date1 = Date(19, Nov, 1998)
         date3 = date1 - 5
         expected_date = Date(14, Nov, 1998)
@@ -276,7 +276,7 @@ class TestQuantLibPeriod(unittest.TestCase):
         expected_date = Date(1, Mar, 2012)
         self.assertTrue(expected_date == date2)
 
-    def test_period_substraction(self):
+    def test_period_subtraction(self):
 
         period1 = Period(11, Months)
         period2 = Period(EveryFourthMonth)
@@ -324,7 +324,7 @@ class TestQuantLibPeriod(unittest.TestCase):
             period3 = Period(2, Weeks)
             period += period3  # does not support different units
 
-    def test_inplace_substraction(self):
+    def test_inplace_subtraction(self):
 
         period = Period(Semiannual)
 

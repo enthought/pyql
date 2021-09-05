@@ -181,7 +181,7 @@ def dividendOption():
     strike = 190
     option_type = Call 
 
-    # Here, as an implementation exemple, we make the test with borth american and european exercise
+    # Here, as an implementation example, we make the test with borth american and european exercise
     europeanExercise = EuropeanExercise(maturity)
     # The emericanExercise need also the settlement date, as his right to exerce the buy or call start at the settlement date!
     #americanExercise = AmericanExercise(settlementDate, maturity)
@@ -196,7 +196,7 @@ def dividendOption():
 
 
     # ++++++++++++++++++ Description of the discrete dividends
-    # INPUT You have to determine the frequece and rates of the discrete dividend. Here is a sollution, but she's not the only one.
+    # INPUT You have to determine the frequence and rates of the discrete dividend. Here is a sollution, but she's not the only one.
     # Last know dividend:
     dividend			= 0.75 #//0.75
     next_dividend_date	= Date(10,Feb,2012)

@@ -101,7 +101,7 @@ class ZeroCouponTestCase(unittest.TestCase):
                                  ts_day_counter,
                                  tolerance)
 
-        # max_date raises an exception without extrapolaiton...
+        # max_date raises an exception without extrapolation...
         self.assertFalse(ts.extrapolation)
         with self.assertRaises(RuntimeError) as ctx:
             ts.discount(ts.max_date + 1)

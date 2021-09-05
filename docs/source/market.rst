@@ -3,7 +3,7 @@ Market
 
 PyQL is primarily a wrapper around QuantLib, and strictly follows the QuantLib class structure. A casual look at the PyQL test
 suite will convince the user that using QuantLib, or its PyQL wrapper, requires a pretty detailed understanding of its class
-structure. The number of market convention parameters that need to be supplied in order to perform the simplest calculation can be overwelming.  
+structure. The number of market convention parameters that need to be supplied in order to perform the simplest calculation can be overwhelming.  
 
 In an attempt to bring some order and logic to this profusion of market conventions, PyQL introduces the notion of Market.
 A Market is the virtual place where financial assets are traded. It defines all the conventions needed to quote prices, measure yield, compute yield curves from market quotes, etc. Examples of these virtual market places are:

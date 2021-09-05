@@ -54,7 +54,7 @@ class MLabTestCase(unittest.TestCase):
 
     def test_blsprice(self):
         """
-        from maltab documentation of blsprice
+        from matlab documentation of blsprice
         """
         p = blsprice(spot=585, strike=600, risk_free_rate=.05,
                      time=1 / 4., volatility=.25,
