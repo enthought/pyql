@@ -29,6 +29,7 @@ class TestQuantLibSwaption(unittest.TestCase):
         self.assertEqual(swaption.settlement_type, Cash)
         swap = swaption.underlying_swap()
         self.assertEqual(swap.type, Receiver)
+        self.assertEqual(swaption.type, Receiver)
         exercise_date = self.index.fixing_calendar.advance(
             Settings().evaluation_date,
             period=Period(2, Years),

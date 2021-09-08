@@ -9,7 +9,6 @@
 
 include '../types.pxi'
 
-cimport quantlib.instruments._swap as _swap
 from ._vanillaswap cimport VanillaSwap as _VanillaSwap
 cimport quantlib.instruments._instrument as _instrument
 cimport quantlib.pricingengines._pricing_engine as _pe

@@ -1,8 +1,9 @@
 from quantlib.instruments.instrument cimport Instrument
+from . cimport _swap
 
 cpdef enum SwapType:
-    Receiver = -1
-    Payer    = 1
+    Receiver = _swap.Receiver
+    Payer    = _swap.Payer
 
 cdef class Swap(Instrument):
     pass

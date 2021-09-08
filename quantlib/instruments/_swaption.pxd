@@ -3,6 +3,7 @@ from quantlib.handle cimport shared_ptr, optional
 from ._vanillaswap cimport VanillaSwap
 from ._option cimport Option
 from ._exercise cimport Exercise
+from ._swap cimport Type
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.termstructures.volatility._volatilitytype cimport VolatilityType
 from quantlib.handle cimport Handle, optional
@@ -41,4 +42,5 @@ cdef extern from 'ql/instruments/swaption.hpp' namespace 'QuantLib':
                                      Volatility maxVol,# = 4.0,
                                      VolatilityType type,# = ShiftedLognormal,
                                      Real displacement)# = 0.0)
+        Type type() const
         const shared_ptr[VanillaSwap]& underlyingSwap()
