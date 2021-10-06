@@ -145,3 +145,4 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
                           Rate convexityAdjustment, # = 0.0,
                           FuturesType type# = Futures::IMM)
         ) except +
+        Real convexityAdjustment() const

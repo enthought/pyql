@@ -321,3 +321,7 @@ cdef class FuturesRateHelper(RateHelper):
         else:
             raise ValueError('price needs to be a float or a SimpleQuote')
         return instance
+
+    @property
+    def convexity_adjustment(self):
+        return (<_rh.FuturesRateHelper*>self._thisptr.get()).convexityAdjustment()
