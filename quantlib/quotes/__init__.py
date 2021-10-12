@@ -1,0 +1,1 @@
+from .simplequote import SimpleQuote
