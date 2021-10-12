@@ -4,8 +4,8 @@ from libcpp.vector cimport vector
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr, Handle
 
-from quantlib._quote cimport Quote
-from quantlib.quotes cimport SimpleQuote
+from quantlib._quote cimport Quote as QlQuote
+from quantlib.quote cimport Quote
 from quantlib.time._period cimport Period as QlPeriod
 from quantlib.time.date cimport Period, Date
 from quantlib.time.calendar cimport Calendar
@@ -17,19 +17,17 @@ cimport quantlib.termstructures.volatility._volatilitytype as _voltype
 from ..._vol_term_structure cimport VolatilityTermStructure
 
 cdef build_vols_shifts(list volatilities, list shifts,
-                       vector[vector[Handle[Quote]]]& c_vols,
+                       vector[vector[Handle[QlQuote]]]& c_vols,
                        vector[vector[Real]]& c_shifts):
-    cdef vector[Handle[Quote]] row
+    cdef vector[Handle[QlQuote]] row
     cdef vector[Real] row2
-    cdef Handle[Quote] quote_handle
-    cdef SimpleQuote q
+    cdef Quote q
     cdef Real r
     for v, s in zip(volatilities, shifts):
         row.clear()
         row2.clear()
         for q, r in zip(v, s):
-            quote_handle = Handle[Quote]((<SimpleQuote>q)._thisptr)
-            row.push_back(quote_handle)
+            row.push_back(q.handle())
             row2.push_back(<Real>r)
         c_vols.push_back(row)
         c_shifts.push_back(row2)
@@ -47,7 +45,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
                  shifts=[]):
         cdef vector[QlPeriod] option_tenors_vec
         cdef vector[QlPeriod] swap_tenors_vec
-        cdef vector[vector[Handle[Quote]]] c_vols
+        cdef vector[vector[Handle[QlQuote]]] c_vols
         cdef vector[vector[Real]] c_shifts
 
 
@@ -107,7 +105,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
         cdef SwaptionVolatilityMatrix instance = cls.__new__(cls)
         cdef vector[QlPeriod] option_tenors_vec
         cdef vector[QlPeriod] swap_tenors_vec
-        cdef vector[vector[Handle[Quote]]] c_vols
+        cdef vector[vector[Handle[QlQuote]]] c_vols
         cdef vector[vector[Real]] c_shifts
 
         for t in option_tenors:

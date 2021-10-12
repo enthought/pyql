@@ -14,9 +14,8 @@ from cython.operator cimport dereference as deref
 from . cimport _hullwhite as _hw
 from . cimport _vasicek as _va
 
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib.handle cimport shared_ptr
 cimport quantlib.termstructures.yields._flat_forward as _ff
-cimport quantlib._quote as _qt
 cimport quantlib.models._calibration_helper as _ch
 cimport quantlib.models._model as _mo
 
@@ -24,7 +23,6 @@ from quantlib.math.optimization cimport Constraint
 from quantlib.models.shortrate.calibrationhelpers.swaption_helper cimport SwaptionHelper
 from quantlib.models.calibration_helper cimport BlackCalibrationHelper
 
-from quantlib.quotes cimport Quote, SimpleQuote
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
 from quantlib.math.optimization cimport OptimizationMethod, EndCriteria
 

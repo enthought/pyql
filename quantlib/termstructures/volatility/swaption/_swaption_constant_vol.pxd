@@ -12,22 +12,27 @@ from quantlib.termstructures.volatility._volatilitytype cimport (
         VolatilityType, ShiftedLognormal)
 
 cdef extern from 'ql/termstructures/volatility/swaption/swaptionconstantvol.hpp' namespace 'QuantLib' nogil:
-    cdef cppclass ConstantSwaptionVolatility(SwaptionVolatilityStructure):
-        ConstantSwaptionVolatility(Natural settlementDays,
-                                   const Calendar& cal,
-                                   BusinessDayConvention bdc,
-                                   const Handle[Quote]& volatility,
-                                   const DayCounter& dc,
-                                   const VolatilityType type, # = ShiftedLognormal,
-                                   const Real shift)# = 0.0)
+    # this should really be constructors,
+    # but cython can't disambiguate the constructors otherwise
+    # floating reference date, floating market data
+    ConstantSwaptionVolatility* ConstantSwaptionVolatility_ "new QuantLib::ConstantSwaptionVolatility" (
+        Natural settlementDays,
+        const Calendar& cal,
+        BusinessDayConvention bdc,
+        const Handle[Quote]& volatility,
+        const DayCounter& dc,
+        const VolatilityType type, # = ShiftedLognormal,
+        const Real shift)# = 0.0)
         # fixed reference date, floating market data
-        ConstantSwaptionVolatility(const Date& referenceDate,
-                                   const Calendar& cal,
-                                   BusinessDayConvention bdc,
-                                   const Handle[Quote]& volatility,
-                                   const DayCounter& dc,
-                                   const VolatilityType type, # = ShiftedLognormal,
-                                   const Real shift) # = 0.0)
+    ConstantSwaptionVolatility* ConstantSwaptionVolatility__ "new QuantLib::ConstantSwaptionVolatility" (
+        const Date& referenceDate,
+        const Calendar& cal,
+        BusinessDayConvention bdc,
+        const Handle[Quote]& volatility,
+        const DayCounter& dc,
+        const VolatilityType type, # = ShiftedLognormal,
+        const Real shift) # = 0.0)
+    cdef cppclass ConstantSwaptionVolatility(SwaptionVolatilityStructure):
         # floating reference date, fixed market data
         ConstantSwaptionVolatility(Natural settlementDays,
                                    const Calendar& cal,

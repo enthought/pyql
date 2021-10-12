@@ -11,7 +11,7 @@ include '../../types.pxi'
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 
-from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
+from quantlib.handle cimport shared_ptr, static_pointer_cast
 
 cimport quantlib.termstructures.credit._credit_helpers as _ci
 cimport quantlib.termstructures._yield_term_structure as _yts
@@ -31,8 +31,7 @@ from quantlib.instruments.credit_default_swap cimport CreditDefaultSwap
 cimport quantlib.instruments._credit_default_swap as _cds
 from quantlib.instruments._credit_default_swap cimport PricingModel
 cimport quantlib.instruments._instrument as _instrument
-from quantlib.quotes cimport SimpleQuote
-cimport quantlib._quote as _qt
+from quantlib.quote cimport Quote
 
 cdef class CdsHelper:
     """Base default-probability bootstrap helper
@@ -125,8 +124,6 @@ cdef class SpreadCdsHelper(CdsHelper):
                  PricingModel model=PricingModel.ISDA):
         """
         """
-        cdef Handle[_qt.Quote] running_spread_handle
-
         if isinstance(running_spread, float):
             self._thisptr = shared_ptr[_ci.DefaultProbabilityHelper](
                 new _ci.SpreadCdsHelper(
@@ -142,13 +139,10 @@ cdef class SpreadCdsHelper(CdsHelper):
                     rebates_accrual,
                     <_cds.PricingModel>model)
                 )
-        elif isinstance(running_spread, SimpleQuote):
-            running_spread_handle = Handle[_qt.Quote](
-                    (<SimpleQuote>running_spread)._thisptr)
-
+        elif isinstance(running_spread, Quote):
             self._thisptr = shared_ptr[_ci.DefaultProbabilityHelper](
                 new _ci.SpreadCdsHelper(
-                    running_spread_handle, deref(tenor._thisptr),
+                    (<Quote>running_spread).handle(), deref(tenor._thisptr),
                     settlement_days, deref(calendar._thisptr),
                     <Frequency>frequency,
                     <BusinessDayConvention>paymentConvention, <Rule>date_generation_rule,
@@ -180,8 +174,6 @@ cdef class UpfrontCdsHelper(CdsHelper):
                  PricingModel model=PricingModel.ISDA):
         """
         """
-        cdef Handle[_qt.Quote] upfront_handle
-
         if isinstance(upfront, float):
             self._thisptr = shared_ptr[_ci.DefaultProbabilityHelper](
                 new _ci.UpfrontCdsHelper(
@@ -196,12 +188,10 @@ cdef class UpfrontCdsHelper(CdsHelper):
                     rebates_accrual,
                     <_cds.PricingModel>model)
             )
-        elif isinstance(upfront, SimpleQuote):
-            upfront_handle = Handle[_qt.Quote]((<SimpleQuote>upfront)._thisptr)
-
+        elif isinstance(upfront, Quote):
             self._thisptr = shared_ptr[_ci.DefaultProbabilityHelper](
                 new _ci.UpfrontCdsHelper(
-                    upfront_handle, running_spread, deref(tenor._thisptr),
+                    (<Quote>upfront).handle(), running_spread, deref(tenor._thisptr),
                     settlement_days, deref(calendar._thisptr), <Frequency>frequency,
                     <BusinessDayConvention>paymentConvention, date_generation_rule,
                     deref(daycounter._thisptr),

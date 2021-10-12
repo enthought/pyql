@@ -4,7 +4,7 @@ from quantlib.handle cimport Handle
 from quantlib.time.date cimport Date, Period
 from cython.operator cimport dereference as deref
 cimport quantlib._quote as _qt
-from quantlib.quotes cimport SimpleQuote
+from quantlib.quote cimport Quote
 
 cdef inline _svc.SwaptionVolatilityCube* _get_svc(SwaptionVolatilityCube volcube):
     return <_svc.SwaptionVolatilityCube*> volcube._thisptr.get()
@@ -35,11 +35,11 @@ cdef class SwaptionVolatilityCube(SwaptionVolatilityDiscrete):
             Handle[_qt.Quote] quote_handle
             list py_m = []
             list py_row
-            SimpleQuote q
+            Quote q
         for row in m:
             py_row = []
             for quote_handle in row:
-                q = SimpleQuote.__new__(SimpleQuote)
+                q = Quote.__new__(Quote)
                 q._thisptr = quote_handle.currentLink()
                 py_row.append(q)
             py_m.append(py_row)

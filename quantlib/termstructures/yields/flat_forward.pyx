@@ -19,8 +19,7 @@ from quantlib.time.date import Annual
 
 from quantlib.handle cimport shared_ptr, RelinkableHandle, Handle
 from . cimport _flat_forward as ffwd
-cimport quantlib._quote as _qt
-from quantlib.quotes cimport Quote
+from quantlib.quote cimport Quote
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 
 
@@ -56,7 +55,6 @@ cdef class FlatForward(YieldTermStructure):
                  frequency=Annual):
 
         #local cdef's
-        cdef Handle[_qt.Quote] quote_handle
         cdef shared_ptr[ffwd.YieldTermStructure] _forward
 
         if forward is None:
@@ -67,11 +65,9 @@ cdef class FlatForward(YieldTermStructure):
 
         if reference_date is not None:
             if isinstance(forward, Quote):
-                quote_handle = Handle[_qt.Quote]((<Quote>forward)._thisptr)
-
                 _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
                     deref(reference_date._thisptr),
-                    quote_handle,
+                    (<Quote>forward).handle(),
                     deref(daycounter._thisptr),
                     compounding,
                     <Frequency>frequency
@@ -88,12 +84,10 @@ cdef class FlatForward(YieldTermStructure):
             calendar is not None:
 
             if isinstance(forward, Quote):
-                quote_handle = Handle[_qt.Quote]((<Quote>forward)._thisptr)
-
                 _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
                         <ffwd.Natural>settlement_days,
                         deref(calendar._thisptr),
-                        quote_handle,
+                        (<Quote>forward).handle(),
                         deref(daycounter._thisptr),
                         compounding,
                         <Frequency>frequency

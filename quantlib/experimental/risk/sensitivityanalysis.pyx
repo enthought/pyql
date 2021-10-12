@@ -3,12 +3,12 @@ include '../../types.pxi'
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
 from quantlib._defines cimport QL_NULL_REAL
-cimport quantlib._quote as _qt
+cimport quantlib.quotes._simplequote as _sq
 from . cimport _sensitivityanalysis as _sa
 cimport quantlib.instruments._instrument as _it
 from libcpp.vector cimport vector
 from libcpp.pair cimport pair
-from quantlib.quotes cimport SimpleQuote, Quote
+from quantlib.quotes.simplequote cimport SimpleQuote
 from quantlib.instruments.instrument cimport Instrument
 
 cpdef enum SensitivityAnalysis:
@@ -36,15 +36,15 @@ def parallel_analysis(list quotes not None, list instruments not None,
     shift : Real
     type : SensitivityAnalysis
     """
-    cdef vector[Handle[_qt.SimpleQuote]] _quotes
+    cdef vector[Handle[_sq.SimpleQuote]] _quotes
     cdef vector[shared_ptr[_it.Instrument]] _instruments
-    cdef shared_ptr[_qt.SimpleQuote] q_ptr
+    cdef shared_ptr[_sq.SimpleQuote] q_ptr
     cdef Instrument inst
     cdef SimpleQuote q
 
     for q in quotes:
-        q_ptr = static_pointer_cast[_qt.SimpleQuote](q._thisptr)
-        _quotes.push_back(Handle[_qt.SimpleQuote](q_ptr))
+        q_ptr = static_pointer_cast[_sq.SimpleQuote](q._thisptr)
+        _quotes.push_back(Handle[_sq.SimpleQuote](q_ptr))
 
     for inst in instruments:
         _instruments.push_back(inst._thisptr)
@@ -78,13 +78,13 @@ def bucket_analysis(list quotes not None, list instruments not None,
     """
 
     #C++ Inputs
-    cdef vector[vector[Handle[_qt.SimpleQuote]]] _Quotes
+    cdef vector[vector[Handle[_sq.SimpleQuote]]] _Quotes
     cdef vector[shared_ptr[_it.Instrument]] _instruments
 
     #intermediary temps
-    cdef vector[Handle[_qt.SimpleQuote]] _quotes
-    cdef shared_ptr[_qt.SimpleQuote] q_ptr
-    cdef Handle[_qt.SimpleQuote] quote_handle
+    cdef vector[Handle[_sq.SimpleQuote]] _quotes
+    cdef shared_ptr[_sq.SimpleQuote] q_ptr
+    cdef Handle[_sq.SimpleQuote] quote_handle
     cdef list quotes_list
     cdef SimpleQuote q
     cdef Instrument inst
@@ -94,16 +94,16 @@ def bucket_analysis(list quotes not None, list instruments not None,
 
     if isinstance(quotes[0], list):
         for quotes_list in quotes:
-            _Quotes.push_back(vector[Handle[_qt.SimpleQuote]]())
+            _Quotes.push_back(vector[Handle[_sq.SimpleQuote]]())
             for q in quotes_list:
-                q_ptr = static_pointer_cast[_qt.SimpleQuote](q._thisptr)
-                _Quotes.back().push_back(Handle[_qt.SimpleQuote](q_ptr))
+                q_ptr = static_pointer_cast[_sq.SimpleQuote](q._thisptr)
+                _Quotes.back().push_back(Handle[_sq.SimpleQuote](q_ptr))
         return _sa.bucketAnalysis(_Quotes, _instruments, quantities, shift,
                                   <_sa.SensitivityAnalysis>(type))
     elif isinstance(quotes[0], SimpleQuote):
         for q in quotes:
-            q_ptr = static_pointer_cast[_qt.SimpleQuote](q._thisptr)
-            _quotes.push_back(Handle[_qt.SimpleQuote](q_ptr))
+            q_ptr = static_pointer_cast[_sq.SimpleQuote](q._thisptr)
+            _quotes.push_back(Handle[_sq.SimpleQuote](q_ptr))
         return _sa.bucketAnalysis1(_quotes, _instruments, quantities, shift,
                                    <_sa.SensitivityAnalysis>(type))
     else:

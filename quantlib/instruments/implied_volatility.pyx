@@ -13,13 +13,13 @@ from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
-from quantlib.quotes cimport SimpleQuote
+from quantlib.quotes.simplequote cimport SimpleQuote
 
 cimport quantlib.instruments._implied_volatility as _iv
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 cimport quantlib.processes._black_scholes_process as _bsp
 cimport quantlib._stochastic_process as _sp
-cimport quantlib._quote as _qt
+cimport quantlib.quotes._simplequote as _qt
 
 cdef class ImpliedVolatilityHelper:
     def __cinit__(self):
@@ -28,7 +28,7 @@ cdef class ImpliedVolatilityHelper:
     def __init__(self):
         raise ValueError('Cannot instantiate an ImpliedVolatilityHelper')
 
-        
+
     @classmethod
     def calculate(self, Instrument instrument,
               PricingEngine engine,
@@ -52,22 +52,18 @@ cdef class ImpliedVolatilityHelper:
     # The returned process is equal to the passed one, except
     # for the volatility which is flat and whose value is driven
     # by the passed quote.
-            
+
     @classmethod
     def clone(self,
           GeneralizedBlackScholesProcess process,
           SimpleQuote quote):
-    
+
         cdef shared_ptr[_qt.SimpleQuote] quote_ptr = \
                 static_pointer_cast[_qt.SimpleQuote](quote._thisptr)
 
-        res = GeneralizedBlackScholesProcess()
-        cdef shared_ptr[_sp.StochasticProcess] sp_ptr
+        cdef GeneralizedBlackScholesProcess res = GeneralizedBlackScholesProcess.__new__(GeneralizedBlackScholesProcess)
 
-        sp_ptr = static_pointer_cast[_sp.StochasticProcess](_iv.IVH_clone(
+        res._thisptr = _iv.IVH_clone(
                 static_pointer_cast[_bsp.GeneralizedBlackScholesProcess](
-                    process._thisptr), quote_ptr))
-
-        res._thisptr = sp_ptr
-
+                process._thisptr), quote_ptr)
         return res
