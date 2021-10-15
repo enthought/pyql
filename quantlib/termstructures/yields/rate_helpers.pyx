@@ -25,6 +25,7 @@ from quantlib.time.date cimport date_from_qldate, period_from_qlperiod
 from quantlib.quote cimport Quote
 from quantlib.quotes.simplequote cimport SimpleQuote
 from quantlib.time.calendar cimport Calendar
+cimport quantlib.time._calendar as _cal
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.date cimport Period, Date
 from quantlib.indexes.ibor_index cimport IborIndex
@@ -383,3 +384,107 @@ cdef class FuturesRateHelper(RateHelper):
     @property
     def convexity_adjustment(self):
         return (<_rh.FuturesRateHelper*>self._thisptr.get()).convexityAdjustment()
+
+cdef class FxSwapRateHelper(RelativeDateRateHelper):
+    """ Rate helper for bootstrapping over Fx Swap rates
+
+    The forward is given by `fwdFx = spotFx + fwdPoint`.
+    `isFxBaseCurrencyCollateralCurrency` indicates if the base
+    currency of the FX currency pair is the one used as collateral.
+    `calendar` is usually the joint calendar of the two currencies
+    in the pair.
+    `tradingCalendar` can be used when the cross pairs don't
+    include the currency of the business center (usually USD; the
+    corresponding calendar is `UnitedStates`).  If given, it will
+    be used for adjusting the earliest settlement date and for
+    setting the latest date. Due to FX spot market conventions, it
+    is not sufficient to pass a JointCalendar with UnitedStates
+    included as `calendar`; with regard the earliest date, this
+    calendar is only used in case the spot date of the two
+    currencies is not a US business day.
+
+    .. warning::
+
+    The ON fx swaps can be achieved by setting
+    `fixingDays` to 0 and using a tenor of '1d'. The same
+    tenor should be used for TN swaps, with `fixingDays`
+    set to 1.  However, handling ON and TN swaps for
+    cross rates without USD is not trivial and should be
+    treated with caution. If today is a US holiday, ON
+    trade is not possible. If tomorrow is a US Holiday,
+    the ON trade will be at least two business days long
+    in the other countries and the TN trade will not
+    exist. In such cases, if this helper is used for
+    curve construction, probably it is safer not to pass
+    a trading calendar to the ON and TN helpers and
+    provide fwdPoints that will yield proper level of
+    discount factors.
+    """
+
+    def __init__(self, Quote fwd_point, Quote spot_fx,
+                 Period tenor,
+                 Natural fixing_days,
+                 Calendar calendar,
+                 BusinessDayConvention convention,
+                 bool end_of_month,
+                 bool is_fx_base_currency_collateral_currency,
+                 YieldTermStructure collateral_curve,
+                 Calendar trading_calendar=Calendar()):
+
+        self._thisptr.reset(
+            new _rh.FxSwapRateHelper(
+                fwd_point.handle(),
+                spot_fx.handle(),
+                deref(tenor._thisptr),
+                fixing_days,
+                deref(calendar._thisptr),
+                <_rh.BusinessDayConvention>convention,
+                end_of_month,
+                is_fx_base_currency_collateral_currency,
+                collateral_curve._thisptr,
+                deref(trading_calendar._thisptr),
+            )
+        )
+
+    cdef inline _rh.FxSwapRateHelper* as_ptr(self):
+        return <_rh.FxSwapRateHelper*>self._thisptr.get()
+
+    @property
+    def spot(self):
+        return self.as_ptr().spot()
+
+    @property
+    def tenor(self):
+        cdef Period r = Period.__new__(Period)
+        r._thisptr.reset(new QlPeriod(self.as_ptr().tenor()))
+        return r
+
+    @property
+    def calendar(self):
+        cdef Calendar r = Calendar.__new__(Calendar)
+        r._thisptr = new _cal.Calendar(self.as_ptr().calendar())
+        return r
+
+    @property
+    def business_day_convention(self):
+        return self.as_ptr().businessDayConvention()
+
+    @property
+    def end_of_month(self):
+        return self.as_ptr().endOfMonth()
+
+    @property
+    def is_fx_base_currency_collateral_currency(self):
+        return self.as_ptr().isFxBaseCurrencyCollateralCurrency()
+
+    @property
+    def trading_calendar(self):
+        cdef Calendar r = Calendar.__new__(Calendar)
+        r._thisptr = new _cal.Calendar(self.as_ptr().tradingCalendar())
+        return r
+
+    @property
+    def adjustment_calendar(self):
+        cdef Calendar r = Calendar.__new__(Calendar)
+        r._thisptr = new _cal.Calendar(self.as_ptr().adjustmentCalendar())
+        return r
