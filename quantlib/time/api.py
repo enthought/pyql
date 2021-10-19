@@ -20,6 +20,7 @@ from .calendars.weekends_only import WeekendsOnly
 from .calendars.united_kingdom import UnitedKingdom
 from .calendars.united_states import UnitedStates
 from .calendars.canada import Canada
+from .calendars.poland import Poland
 from .calendars.switzerland import Switzerland
 from .calendars.japan import Japan
 from .calendars.target import TARGET

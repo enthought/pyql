@@ -8,7 +8,7 @@ from ._date cimport Date, Weekday
 from ._period cimport Period, TimeUnit
 from ._businessdayconvention cimport BusinessDayConvention
 
-cdef extern from 'ql/time/calendar.hpp' namespace 'QuantLib':
+cdef extern from 'ql/time/calendar.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass Calendar:
             Calendar()
