@@ -25,8 +25,8 @@ cdef class OISRateHelper(RelativeDateRateHelper):
 
     def __init__(self,
                  Natural settlement_days,
-                 Period tenor, # swap maturity
-                 Quote fixed_rate,
+                 Period tenor not None, # swap maturity
+                 Quote fixed_rate not None,
                  OvernightIndex overnight_index not None,
                  # exogenous discounting curve
                  YieldTermStructure ts not None=YieldTermStructure(),
@@ -45,7 +45,7 @@ cdef class OISRateHelper(RelativeDateRateHelper):
             new _orh.OISRateHelper(
                 settlement_days,
                 deref(tenor._thisptr),
-                Handle[_qt.Quote](fixed_rate._thisptr),
+                fixed_rate.handle(),
                 static_pointer_cast[_ib.OvernightIndex](overnight_index._thisptr),
                 ts._thisptr,
                 telescopic_value_dates,
@@ -64,9 +64,9 @@ cdef class OISRateHelper(RelativeDateRateHelper):
 cdef class DatedOISRateHelper(RateHelper):
 
     def __init__(self,
-                 Date start_date,
-                 Date end_date,
-                 Quote fixed_rate,
+                 Date start_date not None,
+                 Date end_date not None,
+                 Quote fixed_rate not None,
                  OvernightIndex overnight_index not None,
                  # exogenous discounting curve
                  YieldTermStructure discounting_curve not None=YieldTermStructure(),
@@ -77,7 +77,7 @@ cdef class DatedOISRateHelper(RateHelper):
             new _orh.DatedOISRateHelper(
                 deref(start_date._thisptr),
                 deref(end_date._thisptr),
-                Handle[_qt.Quote](fixed_rate._thisptr),
+                fixed_rate.handle(),
                 static_pointer_cast[_ib.OvernightIndex](overnight_index._thisptr),
                 discounting_curve._thisptr,
                 telescopic_value_dates,
