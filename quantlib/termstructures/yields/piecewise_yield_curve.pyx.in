@@ -46,7 +46,6 @@ class PiecewiseYieldCurve(metaclass=Meta):
     """
     pass
 
-
 {{py: from itertools import product}}
 {{for T, I in product(["Discount", "ZeroYield", "ForwardRate"], ["Linear", "LogLinear", "BackwardFlat", "Cubic"])}}
 cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
@@ -131,6 +130,7 @@ cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
     def data(self):
         """list of curve data"""
         return self._curve.data()
+
     @property
     def times(self):
         """list of curve times"""
