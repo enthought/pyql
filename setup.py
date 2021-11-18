@@ -115,7 +115,7 @@ CYTHON_DIRECTIVES = {"embedsignature": True,
         "language_level": '3str'}
 
 def render_templates():
-    for basename in ["piecewise_yield_curve", "discount_curve", "forward_curve"]:
+    for basename in ["piecewise_yield_curve", "discount_curve", "forward_curve", "zero_curve"]:
         for ext in ("pxd", "pyx"):
             fname = f"quantlib/termstructures/yields/{basename}.{ext}.in"
             output = fname[:-3]
