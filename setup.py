@@ -115,13 +115,14 @@ CYTHON_DIRECTIVES = {"embedsignature": True,
         "language_level": '3str'}
 
 def render_templates():
-    for ext in ("pxd", "pyx"):
-        fname = f"quantlib/termstructures/yields/piecewise_yield_curve.{ext}.in"
-        output = fname[:-3]
-        if not os.path.exists(output) or (os.stat(output).st_mtime < os.stat(fname).st_mtime):
-            template = Template.from_filename(fname, encoding="utf-8")
-            with open(output, "wt") as f:
-                f.write(template.substitute())
+    for basename in ["piecewise_yield_curve", "discount_curve"]:
+        for ext in ("pxd", "pyx"):
+            fname = f"quantlib/termstructures/yields/{basename}.{ext}.in"
+            output = fname[:-3]
+            if not os.path.exists(output) or (os.stat(output).st_mtime < os.stat(fname).st_mtime):
+                template = Template.from_filename(fname, encoding="utf-8")
+                with open(output, "wt") as f:
+                    f.write(template.substitute())
 
 def collect_extensions():
     """ Collect all the directories with Cython extensions and return the list
@@ -175,9 +176,9 @@ def collect_extensions():
         # remove the multipath extension from the list
         manual_extensions = manual_extensions[1:]
         print('Numpy is not available, multipath extension not compiled')
-    
+
     render_templates()
-    
+
     collected_extensions = cythonize(
             manual_extensions +
             [Extension('*', ['**/*.pyx'], **kwargs)],

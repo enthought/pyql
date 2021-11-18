@@ -1,14 +1,13 @@
 include '../../types.pxi'
 
 from libcpp.vector cimport vector
+from libcpp.pair cimport pair
 
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._calendar cimport Calendar
-
-from quantlib.math._interpolations cimport LogLinear
 
 cdef extern from 'ql/termstructures/yield/discountcurve.hpp' namespace 'QuantLib':
 
@@ -22,5 +21,4 @@ cdef extern from 'ql/termstructures/yield/discountcurve.hpp' namespace 'QuantLib
         const vector[Real]& data()
         const vector[DiscountFactor]& discounts()
         const vector[Date]& dates()
-
-    ctypedef InterpolatedDiscountCurve[LogLinear] DiscountCurve
+        vector[pair[Date, Real]]& nodes()

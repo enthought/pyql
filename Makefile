@@ -34,8 +34,7 @@ clean:
 	find quantlib -name \*.cpp -exec rm {} +
 	find quantlib -name \*.c -exec rm {} +
 	find quantlib -name \*.h -exec rm {} +
-	-rm quantlib/termstructures/yields/piecewise_yield_curve.pxd
-	-rm quantlib/termstructures/yields/piecewise_yield_curve.pyx
+	-rm quantlib/termstructures/yields/{piecewise_yield_curve,discount_curve}.{pxd,pyx}
 	rm -rf build
 	rm -rf dist
 
