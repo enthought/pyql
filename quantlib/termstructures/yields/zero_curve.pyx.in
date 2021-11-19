@@ -15,14 +15,10 @@ from quantlib.time.calendar cimport Calendar
 from quantlib.math.interpolation cimport Linear, LogLinear, BackwardFlat, Cubic
 
 
-cdef dict _registry = {}
-for I in [Linear, LogLinear, BackwardFlat, Cubic]:
-    _registry[I] = globals()[f"{I.__name__}InterpolatedZeroCurve"]
-
 # with cython3 and python>=3.7 we could use __class_getitem__ instead
 cdef class Meta(type):
-    def __getitem__(cls, tuple tup):
-        return _registry[tup]
+    def __getitem__(cls, I):
+        return globals()[f"{I.__name__}InterpolatedZeroCurve"]
 
 
 class InterpolatedZeroCurve(metaclass=Meta):
@@ -48,7 +44,7 @@ cdef class {{I}}InterpolatedZeroCurve(YieldTermStructure):
         dates : :obj:`list` of :class:`~quantlib.time.date.Date`
             list of dates
         forwards: :obj:`list` of float
-            corresponding list of forwards
+            corresponding list of zero rates
         day_counter: :class:`~quantlib.time.daycounter.DayCounter`
         cal: :class:`~quantlib.time.calendar.Calendar`
 
