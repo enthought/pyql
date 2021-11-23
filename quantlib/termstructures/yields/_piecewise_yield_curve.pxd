@@ -1,6 +1,7 @@
 include '../../types.pxi'
 
 from libcpp.vector cimport vector
+from libcpp.pair cimport pair
 
 from quantlib.handle cimport shared_ptr
 from quantlib.time._calendar cimport Calendar
@@ -29,3 +30,4 @@ cdef extern from 'ql/termstructures/yield/piecewiseyieldcurve.hpp' namespace 'Qu
         vector[Time]& times() except +
         vector[Date]& dates() except +
         vector[Real]& data() except +
+        vector[pair[Date, Real]]& nodes()

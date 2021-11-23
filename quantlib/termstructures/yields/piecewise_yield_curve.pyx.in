@@ -1,5 +1,6 @@
 from quantlib.types cimport Natural, Real
 from cython.operator cimport dereference as deref
+from libcpp.pair cimport pair
 from libcpp.vector cimport vector
 
 from quantlib.handle cimport shared_ptr
@@ -141,6 +142,16 @@ cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
         for qldate in self._curve.dates():
             r.append(date_from_qldate(qldate))
 
+        return r
+
+    @property
+    def nodes(self):
+        cdef:
+            list r = []
+            pair[_date.Date, double] p
+            vector[pair[_date.Date, double]] v = self._curve.nodes()
+        for p in v:
+            r.append((date_from_qldate(p.first), p.second))
         return r
 
 
