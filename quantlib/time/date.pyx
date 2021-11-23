@@ -297,7 +297,6 @@ cdef class Date:
     """
 
     def __init__(self, *args):
-        cdef QlDate d
         if len(args) == 3:
             day, month, year = args
             self._thisptr.reset(new QlDate(<Day>day, <QlMonth>month, <Year>year))
@@ -323,7 +322,6 @@ cdef class Date:
                 <Hour>hours, <Minute>minutes, <Second>seconds, <Millisecond>ms,
                                            <Microsecond>mus))
         elif len(args) == 2:
-            d = _date.parseFormatted(args[0].encode(), args[1].encode())
             self._thisptr.reset(new QlDate(
                 _date.parseFormatted(args[0].encode(), args[1].encode())))
         elif len(args) == 0:
