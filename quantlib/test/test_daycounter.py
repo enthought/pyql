@@ -11,7 +11,7 @@ from quantlib.time.daycounters.actual_actual import (
 )
 
 from quantlib.time.daycounters.thirty360 import (
-        Thirty360, EUROBONDBASIS
+        Thirty360, Convention, EurobondBasis
 )
 from quantlib.time.date import (
     Date, November, May, February, July, January, Period,
@@ -207,7 +207,7 @@ class TestActualActual(unittest.TestCase):
 
     def test_thirty360(self):
 
-        day_counter = Thirty360(EUROBONDBASIS)
+        day_counter = Thirty360(EurobondBasis)
         from_date = Date(1, July, 1999)
         to_date = Date(1, July, 2000)
 
@@ -221,12 +221,22 @@ class TestActualActual(unittest.TestCase):
 
     def test_equality_method(self):
 
-        day_counter = Thirty360(EUROBONDBASIS)
+        day_counter = Thirty360(EurobondBasis)
 
         a = Thirty360()
         self.assertNotEqual(day_counter, a)
         self.assertNotEqual(day_counter, Thirty360())
-        self.assertEqual(day_counter, Thirty360(EUROBONDBASIS))
+        self.assertEqual(day_counter, Thirty360(EurobondBasis))
+
+    def test_thirty360_from_name(self):
+        for c in Convention:
+            dc = Thirty360(c)
+            try:
+                dc2 = DayCounter.from_name(dc.name)
+            except ValueError:
+                pass
+            else:
+                self.assertEqual(dc, dc2)
 
 if __name__ == '__main__':
     unittest.main()

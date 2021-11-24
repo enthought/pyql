@@ -63,9 +63,6 @@ cdef class DayCounter:
         cdef DayCounter cnt = cls.__new__(cls)
         name, convention = _get_daycounter_type_from_name(name)
         cnt._thisptr = daycounter_from_name(name, convention)
-
-        if cnt._thisptr == NULL:
-            raise ValueError('Unknown day counter type: {}'.format(name))
         return cnt
 
 def _get_daycounter_type_from_name(name):
@@ -80,7 +77,7 @@ def _get_daycounter_type_from_name(name):
         return (name, None)
 
 
-cdef _daycounter.DayCounter* daycounter_from_name(basestring name, basestring convention):
+cdef _daycounter.DayCounter* daycounter_from_name(basestring name, basestring convention) except NULL:
     """ Returns a new DayCounter pointer.
 
     The QuantLib DayCounter don't have a copy constructor or any other easy
@@ -106,8 +103,11 @@ cdef _daycounter.DayCounter* daycounter_from_name(basestring name, basestring co
         cnt = new _simple.SimpleDayCounter()
     elif name.startswith('Actual/Actual') or name.startswith('ACT/ACT') :
         cnt = aa_from_name(convention)
-    elif name.startswith('30/360'):
+    elif name == "30/360" or name == "30E/360":
         if convention is None:
-            convention = 'BONDBASIS'
+            convention = 'BondBasis'
+        convention = convention.replace(" ", "")
         cnt = th_from_name(convention)
+    else:
+        raise ValueError("Unkown day counter type: {}".format(name))
     return cnt
