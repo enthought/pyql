@@ -172,6 +172,10 @@ class TestQuantLibDate(unittest.TestCase):
 
         self.assertEqual(date1.serial, int(date1))
 
+    def test_formatting(self):
+        date = Date(28, Feb, 2011)
+        self.assertEqual("{0:%b-%Y}".format(date), "Feb-2011")
+
 
 class ConversionMethodsTestCase(unittest.TestCase):
 
@@ -366,6 +370,10 @@ class TestQuantLibPeriod(unittest.TestCase):
         date2 = date1 - period
         expected_date = Date(21, Apr, 2011)
         self.assertTrue(expected_date == date2)
+
+    def test_hashing(self):
+        p = Period(3, Months)
+        self.assertEqual(hash(p), hash((p.length, p.units)))
 
 class TestQuantLibIMM(unittest.TestCase):
 
