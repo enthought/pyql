@@ -18,16 +18,15 @@ cimport quantlib.models._calibration_helper as _ch
 cimport quantlib.processes._heston_process as _hp
 cimport quantlib._stochastic_process as _sp
 cimport quantlib.termstructures.yields._flat_forward as _ffwd
-cimport quantlib._quote as _qt
 cimport quantlib.pricingengines._pricing_engine as _pe
 
-from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
+from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.math.optimization cimport (Constraint,OptimizationMethod,
                                          EndCriteria)
 
 from quantlib.processes.heston_process cimport HestonProcess
 from quantlib.pricingengines.engine cimport PricingEngine
-from quantlib.quotes cimport Quote
+from quantlib.quote cimport Quote
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Period
 from quantlib.termstructures.yields.flat_forward cimport (
@@ -51,17 +50,13 @@ cdef class HestonModelHelper(BlackCalibrationHelper):
         YieldTermStructure dividend_yield,
         CalibrationErrorType error_type=_ch.RelativePriceError
     ):
-        # create handles
-        cdef Handle[_qt.Quote] volatility_handle = \
-                Handle[_qt.Quote](volatility._thisptr)
-
         self._thisptr = shared_ptr[_ch.CalibrationHelper](
             new _hm.HestonModelHelper(
                 deref(maturity._thisptr),
                 deref(calendar._thisptr),
                 s0,
                 strike_price,
-                volatility_handle,
+                volatility.handle(),
                 risk_free_rate._thisptr,
                 dividend_yield._thisptr,
                 error_type

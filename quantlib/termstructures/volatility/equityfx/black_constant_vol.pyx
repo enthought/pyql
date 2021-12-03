@@ -1,12 +1,11 @@
 from cython.operator cimport dereference as deref
 
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.handle cimport shared_ptr
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
 from .black_vol_term_structure cimport BlackVolatilityTermStructure
-from quantlib.quotes cimport Quote
-cimport quantlib._quote as _qt
+from quantlib.quote cimport Quote
 from . cimport _black_vol_term_structure as _bvts
 from . cimport _black_constant_vol as _bcv
 from ..._vol_term_structure cimport VolatilityTermStructure
@@ -35,14 +34,12 @@ cdef class BlackConstantVol(BlackVolatilityTermStructure):
                  volatility,
                  DayCounter daycounter not None):
 
-        cdef Handle[_qt.Quote] volatility_handle
         if isinstance(volatility, Quote):
-            volatility_handle = Handle[_qt.Quote]((<Quote>volatility)._thisptr)
             self._thisptr = shared_ptr[VolatilityTermStructure](
                 new _bcv.BlackConstantVol(
                     deref(reference_date._thisptr),
                     deref(calendar._thisptr),
-                    volatility_handle,
+                    (<Quote>volatility).handle(),
                     deref(daycounter._thisptr)
                 )
             )

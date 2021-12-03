@@ -24,6 +24,8 @@ from quantlib.instruments._vanillaswap cimport VanillaSwap
 
 from quantlib.termstructures._helpers cimport BootstrapHelper, \
                                               RelativeDateBootstrapHelper
+from quantlib.instruments.futures cimport FuturesType
+
 
 cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
     ctypedef BootstrapHelper[YieldTermStructure] RateHelper
@@ -119,6 +121,7 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
                           bool endOfMonth,
                           DayCounter& dayCounter,
                           Handle[Quote]& convexity_adjustment,
+                          FuturesType type # = Futures::IMM);
         ) except +
         FuturesRateHelper(Real price,
                           Date& immDate,
@@ -128,4 +131,18 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
                           bool endOfMonth,
                           DayCounter& dayCounter,
                           Rate convexity_adjustment,
+                          FuturesType type # = Futures::IMM);
         ) except +
+        FuturesRateHelper(const Handle[Quote]& price,
+                          const Date& iborStartDate,
+                          const shared_ptr[IborIndex]& iborIndex,
+                          const Handle[Quote]& convexityAdjustment,# = Handle<Quote>(),
+                          FuturesType type # = Futures::IMM);
+        ) except +
+        FuturesRateHelper(Real price,
+                          const Date& iborStartDate,
+                          const shared_ptr[IborIndex]& iborIndex,
+                          Rate convexityAdjustment, # = 0.0,
+                          FuturesType type# = Futures::IMM)
+        ) except +
+        Real convexityAdjustment() const

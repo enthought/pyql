@@ -6,12 +6,11 @@ from quantlib.termstructures.volatility.swaption.swaption_vol_structure \
     cimport SwaptionVolatilityStructure
 from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
-cimport quantlib._quote as _qt
-from quantlib.quotes cimport SimpleQuote
+from quantlib.quote cimport Quote
 
 cdef class LinearTsrPricer(CmsCouponPricer):
     def __init__(self, SwaptionVolatilityStructure swaption_vol not None,
-                 SimpleQuote mean_reversion not None,
+                 Quote mean_reversion not None,
                  YieldTermStructure coupon_discount_curve=YieldTermStructure(),
                  Settings settings=Settings()):
 
@@ -19,12 +18,10 @@ cdef class LinearTsrPricer(CmsCouponPricer):
             Handle[_svs.SwaptionVolatilityStructure](
                 static_pointer_cast[_svs.SwaptionVolatilityStructure](
                     swaption_vol._thisptr))
-        cdef Handle[_qt.Quote] mean_reversion_handle = \
-            Handle[_qt.Quote](mean_reversion._thisptr)
         self._thisptr = shared_ptr[_cp.FloatingRateCouponPricer](
                 new QlLinearTsrPricer(
             swaption_vol_handle,
-            mean_reversion_handle,
+            mean_reversion.handle(),
             coupon_discount_curve._thisptr,
             settings._thisptr
         ))

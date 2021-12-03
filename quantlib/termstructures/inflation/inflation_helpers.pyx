@@ -1,10 +1,9 @@
 from cython.operator cimport dereference as deref
 
 from . cimport _inflation_helpers as _ih
-from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
+from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.time._businessdayconvention cimport BusinessDayConvention
-from quantlib.quotes cimport SimpleQuote
-cimport quantlib._quote as _qt
+from quantlib.quote cimport Quote
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.date cimport Period, Date, date_from_qldate
 from quantlib.time.calendar cimport Calendar
@@ -18,7 +17,7 @@ cimport quantlib.termstructures._inflation_term_structure as _its
 cimport quantlib.termstructures.inflation._inflation_helpers as _ih
 
 cdef class ZeroCouponInflationSwapHelper:
-    def __init__(self, SimpleQuote quote, Period swap_obs_lag not None,
+    def __init__(self, Quote quote, Period swap_obs_lag not None,
                   Date maturity not None, Calendar calendar not None,
                   BusinessDayConvention payment_convention,
                   DayCounter day_counter not None,
@@ -26,7 +25,7 @@ cdef class ZeroCouponInflationSwapHelper:
                   YieldTermStructure nominal_term_structure not None):
         self._thisptr = shared_ptr[ZeroInflationTraits.helper](
             new _ih.ZeroCouponInflationSwapHelper(
-                Handle[_qt.Quote](quote._thisptr),
+                quote.handle(),
                 deref(swap_obs_lag._thisptr),
                 deref(maturity._thisptr),
                 deref(calendar._thisptr), payment_convention,
@@ -48,7 +47,7 @@ cdef class ZeroCouponInflationSwapHelper:
         return date_from_qldate(self._thisptr.get().latestDate())
 
 cdef class YearOnYearInflationSwapHelper:
-    def __init__(self, SimpleQuote quote, Period swap_obs_lag not None,
+    def __init__(self, Quote quote, Period swap_obs_lag not None,
                   Date maturity not None, Calendar calendar not None,
                   BusinessDayConvention payment_convention,
                   DayCounter day_counter not None,
@@ -56,7 +55,7 @@ cdef class YearOnYearInflationSwapHelper:
                   YieldTermStructure nominal_term_structure not None):
         self._thisptr = shared_ptr[YoYInflationTraits.helper](
             new _ih.YearOnYearInflationSwapHelper(
-                Handle[_qt.Quote](quote._thisptr),
+                quote.handle(),
                 deref(swap_obs_lag._thisptr),
                 deref(maturity._thisptr),
                 deref(calendar._thisptr), payment_convention,

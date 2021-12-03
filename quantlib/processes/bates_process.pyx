@@ -14,10 +14,10 @@ cimport quantlib._stochastic_process as _sp
 from ._heston_process cimport BatesProcess as QlBatesProcess
 from .heston_process cimport HestonProcess, Discretization, FullTruncation
 
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib.handle cimport shared_ptr
 cimport quantlib.termstructures.yields._flat_forward as _ff
-cimport quantlib._quote as _qt
-from quantlib.quotes cimport Quote, SimpleQuote
+from quantlib.quote cimport Quote
+from quantlib.quotes.simplequote cimport SimpleQuote
 from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
 
 cdef class BatesProcess(HestonProcess):
@@ -25,7 +25,7 @@ cdef class BatesProcess(HestonProcess):
     def __init__(self,
        YieldTermStructure risk_free_rate_ts=YieldTermStructure(),
        YieldTermStructure dividend_ts=YieldTermStructure(),
-       Quote s0=None,
+       Quote s0=SimpleQuote(),
        Real v0=0,
        Real kappa=0,
        Real theta=0,
@@ -36,14 +36,11 @@ cdef class BatesProcess(HestonProcess):
        Real delta=0,
        Discretization d=FullTruncation):
 
-        #create handles
-        cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](s0._thisptr)
-
         self._thisptr = shared_ptr[_sp.StochasticProcess](
             new QlBatesProcess(
                 risk_free_rate_ts._thisptr,
                 dividend_ts._thisptr,
-                s0_handle,
+                s0.handle(),
                 v0, kappa, theta, sigma, rho,
                 lambda_, nu, delta, d))
 

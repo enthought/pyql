@@ -17,7 +17,7 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.time.date cimport Period
 from quantlib.time._daycounter cimport DayCounter as QlDayCounter
-from quantlib.quotes cimport Quote
+from quantlib.quote cimport Quote
 from quantlib.models.calibration_helper import RelativePriceError
 cimport quantlib._quote as _qt
 cimport quantlib.termstructures._yield_term_structure as _yts
@@ -44,14 +44,11 @@ cdef class SwaptionHelper(BlackCalibrationHelper):
                  Real strike=QL_NULL_REAL,
                  Real nominal=1.0):
 
-        cdef Handle[_qt.Quote] volatility_handle = \
-                Handle[_qt.Quote](volatility._thisptr)
-
         self._thisptr = shared_ptr[_ch.CalibrationHelper](
             new _sh.SwaptionHelper(
                 deref(maturity._thisptr),
                 deref(length._thisptr),
-                volatility_handle,
+                volatility.handle(),
                 static_pointer_cast[_ii.IborIndex](index._thisptr),
                 deref(fixed_leg_tenor._thisptr),
                 deref(fixed_leg_daycounter._thisptr),

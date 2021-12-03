@@ -20,7 +20,7 @@ from quantlib._observable cimport Observable as QlObservable
 cimport quantlib.time._date as _date
 cimport quantlib.time._daycounter as _dc
 cimport quantlib.time._calendar as _cal
-from quantlib.quotes cimport Quote
+from quantlib.quote cimport Quote
 from quantlib.interest_rate cimport InterestRate
 
 cdef class YieldTermStructure(Observable):

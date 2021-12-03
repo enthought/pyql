@@ -154,8 +154,8 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         )
         old_discount = ts.discount(ts.max_date)
         # parallel shift of 1 bps
-        for rh in rate_helpers:
-            rh.quote.value += 1e-4
+        for q in quotes:
+            q.value += 1e-4
         self.assertEqual([q.value for q in quotes], [rh.quote.value for rh in rate_helpers])
         new_discount = ts.discount(ts.max_date)
         self.assertTrue(new_discount < old_discount)

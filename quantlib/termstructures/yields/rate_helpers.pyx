@@ -15,14 +15,15 @@ from quantlib.instruments.swap cimport VanillaSwap
 cimport quantlib.instruments._vanillaswap as _vs
 
 from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
-cimport quantlib._quote as _qt
 cimport quantlib.indexes._ibor_index as _ib
 cimport quantlib.indexes._swap_index as _si
+from quantlib.instruments.futures cimport FuturesType
 from quantlib.time._period cimport Frequency, Days, Period as QlPeriod
 from quantlib.time._businessdayconvention cimport (
     BusinessDayConvention, ModifiedFollowing )
 from quantlib.time.date cimport date_from_qldate, period_from_qlperiod
-from quantlib.quotes cimport Quote, SimpleQuote
+from quantlib.quote cimport Quote
+from quantlib.quotes.simplequote cimport SimpleQuote
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.date cimport Period, Date
@@ -33,14 +34,9 @@ cdef class RateHelper:
 
     property quote:
         def __get__(self):
-            cdef SimpleQuote r = SimpleQuote.__new__(SimpleQuote)
+            cdef Quote r = Quote.__new__(Quote)
             r._thisptr = self._thisptr.get().quote().currentLink()
             return r
-
-        def __set__(self, Real val):
-            cdef shared_ptr[_qt.Quote] quote = self._thisptr.get().quote().currentLink()
-            cdef _qt.SimpleQuote* quote_ptr = <_qt.SimpleQuote*>(quote.get())
-            quote_ptr.setValue(val)
 
     property implied_quote:
         def __get__(self):
@@ -70,9 +66,9 @@ cdef class DepositRateHelper(RelativeDateRateHelper):
                     new _rh.DepositRateHelper(<Rate>rate,
                                               static_pointer_cast[_ib.IborIndex](index._thisptr))
                 )
-            elif isinstance(rate, SimpleQuote):
+            elif isinstance(rate, Quote):
                 self._thisptr = shared_ptr[_rh.RateHelper](
-                    new _rh.DepositRateHelper(Handle[_qt.Quote]((<SimpleQuote>rate)._thisptr),
+                    new _rh.DepositRateHelper((<Quote>rate).handle(),
                                               static_pointer_cast[_ib.IborIndex](index._thisptr)
                     )
                 )
@@ -94,10 +90,10 @@ cdef class DepositRateHelper(RelativeDateRateHelper):
                         deref(deposit_day_counter._thisptr)
                     )
                 )
-            elif isinstance(rate, SimpleQuote):
+            elif isinstance(rate, Quote):
                 self._thisptr = shared_ptr[_rh.RateHelper](
                     new _rh.DepositRateHelper(
-                        Handle[_qt.Quote]((<SimpleQuote>rate)._thisptr),
+                        (<Quote>rate).handle(),
                         deref(tenor._thisptr),
                         <int>fixing_days,
                         deref(calendar._thisptr),
@@ -128,14 +124,8 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
     def from_tenor(cls, rate, Period tenor not None,
         Calendar calendar not None, Frequency fixedFrequency,
         BusinessDayConvention fixedConvention, DayCounter fixedDayCount not None,
-        IborIndex iborIndex not None, Quote spread=SimpleQuote(),
+        IborIndex iborIndex not None, Quote spread=None,
         Period fwdStart=Period(0, Days)):
-
-        cdef Handle[_qt.Quote] spread_handle
-        if spread._thisptr.get().isValid():
-            spread_handle = Handle[_qt.Quote](spread._thisptr)
-        else:
-            spread_handle = Handle[_qt.Quote]()
 
         cdef SwapRateHelper instance = SwapRateHelper.__new__(SwapRateHelper)
 
@@ -148,19 +138,19 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                 <_rh.BusinessDayConvention> fixedConvention,
                 deref(fixedDayCount._thisptr),
                 static_pointer_cast[_ib.IborIndex](iborIndex._thisptr),
-                spread_handle,
+                spread.handle() if spread else Quote.empty_handle(),
                 deref(fwdStart._thisptr))
             )
-        elif isinstance(rate, SimpleQuote):
+        elif isinstance(rate, Quote):
             instance._thisptr.reset(new _rh.SwapRateHelper(
-                Handle[_qt.Quote]((<SimpleQuote>rate)._thisptr),
+                (<Quote>rate).handle(),
                 deref(tenor._thisptr),
                 deref(calendar._thisptr),
                 <Frequency> fixedFrequency,
                 <_rh.BusinessDayConvention> fixedConvention,
                 deref(fixedDayCount._thisptr),
                 static_pointer_cast[_ib.IborIndex](iborIndex._thisptr),
-                spread_handle,
+                spread.handle() if spread else Quote.empty_handle(),
                 deref(fwdStart._thisptr))
             )
         else:
@@ -169,30 +159,23 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
         return instance
 
     @classmethod
-    def from_index(cls, rate, SwapIndex index not None, SimpleQuote spread=SimpleQuote(),
+    def from_index(cls, rate, SwapIndex index not None, Quote spread=SimpleQuote.__new__(SimpleQuote),
                    Period fwdStart=Period(0, Days)):
-        cdef Handle[_qt.Quote] spread_handle
-        if spread._thisptr.get().isValid():
-            spread_handle = Handle[_qt.Quote](spread._thisptr)
-        else:
-            spread_handle = Handle[_qt.Quote]()
-        cdef Handle[_qt.Quote] rate_handle
         cdef SwapRateHelper instance = cls.__new__(cls)
 
         if isinstance(rate, float):
             instance._thisptr.reset(new _rh.SwapRateHelper(
                 <Rate>rate,
                 static_pointer_cast[_si.SwapIndex](index._thisptr),
-                spread_handle,
+                spread.handle(),
                 deref(fwdStart._thisptr)
                 )
             )
-        elif isinstance(rate, SimpleQuote):
-            rate_handle = Handle[_qt.Quote]((<SimpleQuote>rate)._thisptr)
+        elif isinstance(rate, Quote):
             instance._thisptr.reset(new _rh.SwapRateHelper(
-                rate_handle,
+                (<Quote>rate).handle(),
                 static_pointer_cast[_si.SwapIndex](index._thisptr),
-                spread_handle,
+                spread.handle(),
                 deref(fwdStart._thisptr)
             )
         )
@@ -237,10 +220,10 @@ cdef class FraRateHelper(RelativeDateRateHelper):
                     deref(day_counter._thisptr),
                 )
                  )
-        elif isinstance(rate, SimpleQuote):
+        elif isinstance(rate, Quote):
             self._thisptr = shared_ptr[_rh.RateHelper](
                 new _rh.FraRateHelper(
-                    Handle[_qt.Quote]((<SimpleQuote>rate)._thisptr),
+                    (<Quote>rate).handle(),
                     months_to_start,
                     months_to_end,
                     fixing_days,
@@ -258,12 +241,15 @@ cdef class FuturesRateHelper(RateHelper):
     """ Rate helper for bootstrapping over IborIndex futures prices. """
 
     def __init__(self, price, Date imm_date,
-            Natural length_in_months, Calendar calendar,
-            BusinessDayConvention convention, bool end_of_month,
-            DayCounter day_counter, double convexity_adjustment = 0):
+                 Natural length_in_months, Calendar calendar,
+                 BusinessDayConvention convention, bool end_of_month,
+                 DayCounter day_counter, convexity_adjustment=0.0,
+                 FuturesType future_type=FuturesType.IMM):
 
-        if isinstance(price, float):
-            self._thisptr = shared_ptr[_rh.RateHelper](
+        if convexity_adjustment == 0.0 and isinstance(price, SimpleQuote):
+            convexity_adjustment = SimpleQuote(0.0)
+        if isinstance(price, float) and isinstance(convexity_adjustment, float):
+            self._thisptr.reset(
                 new _rh.FuturesRateHelper(
                     <Real>price,
                     deref(imm_date._thisptr),
@@ -272,22 +258,52 @@ cdef class FuturesRateHelper(RateHelper):
                     <_rh.BusinessDayConvention> convention,
                     end_of_month,
                     deref(day_counter._thisptr),
-                    <Rate>convexity_adjustment
+                    <Rate>convexity_adjustment,
+                    future_type
                 )
-             )
-        elif isinstance(price, SimpleQuote):
-            self._thisptr = shared_ptr[_rh.RateHelper](
+            )
+        elif isinstance(price, Quote) and isinstance(convexity_adjustment, Quote):
+            self._thisptr.reset(
                 new _rh.FuturesRateHelper(
-                    Handle[_qt.Quote]((<SimpleQuote>price)._thisptr),
+                    (<Quote>price).handle(),
                     deref(imm_date._thisptr),
                     length_in_months,
                     deref(calendar._thisptr),
                     <_rh.BusinessDayConvention> convention,
                     end_of_month,
                     deref(day_counter._thisptr),
-                    Handle[_qt.Quote](shared_ptr[_qt.Quote](
-                        new _qt.SimpleQuote(convexity_adjustment)))
+                    (<Quote>convexity_adjustment).handle(),
+                    future_type
                 )
-             )
+            )
         else:
             raise ValueError('price needs to be a float or a SimpleQuote')
+
+    @classmethod
+    def from_index(cls, price, Date ibor_start_date, IborIndex i, convexity_adjustment=0.0, FuturesType future_type=FuturesType.IMM):
+        cdef FuturesRateHelper instance = FuturesRateHelper.__new__(FuturesRateHelper)
+        if convexity_adjustment == 0.0 and isinstance(price, SimpleQuote):
+            convexity_adjustment = SimpleQuote(0.0)
+        if isinstance(price, float) and isinstance(convexity_adjustment, float):
+            instance._thisptr.reset(
+                new _rh.FuturesRateHelper(<Real>price,
+                                          deref(ibor_start_date._thisptr),
+                                          static_pointer_cast[_ib.IborIndex](i._thisptr),
+                                          <Rate>convexity_adjustment,
+                                          future_type)
+            )
+        elif isinstance(price, Quote) and isinstance(convexity_adjustment, Quote):
+            instance._thisptr.reset(
+                new _rh.FuturesRateHelper((<Quote>price).handle(),
+                                          deref(ibor_start_date._thisptr),
+                                          static_pointer_cast[_ib.IborIndex](i._thisptr),
+                                          (<Quote>convexity_adjustment).handle(),
+                                          future_type)
+            )
+        else:
+            raise ValueError('price needs to be a float or a SimpleQuote')
+        return instance
+
+    @property
+    def convexity_adjustment(self):
+        return (<_rh.FuturesRateHelper*>self._thisptr.get()).convexityAdjustment()

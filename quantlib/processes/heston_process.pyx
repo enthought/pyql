@@ -8,7 +8,8 @@ from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 
 from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib._quote as _qt
-from quantlib.quotes cimport Quote, SimpleQuote
+from quantlib.quote cimport Quote
+from quantlib.quotes.simplequote cimport SimpleQuote
 
 cdef class HestonProcess(StochasticProcess):
     r"""
@@ -34,13 +35,11 @@ cdef class HestonProcess(StochasticProcess):
        Discretization d=PartialTruncation):
 
         #create handles
-        cdef Handle[_qt.Quote] s0_handle = Handle[_qt.Quote](s0._thisptr)
-
         self._thisptr = shared_ptr[_sp.StochasticProcess](
             new QlHestonProcess(
                 risk_free_rate_ts._thisptr,
                 dividend_ts._thisptr,
-                s0_handle,
+                s0.handle(),
                 v0, kappa, theta, sigma, rho, d
             )
         )
@@ -74,6 +73,6 @@ cdef class HestonProcess(StochasticProcess):
     @property
     def s0(self):
         cdef Handle[_qt.Quote] handle = (<QlHestonProcess*>self._thisptr.get()).s0()
-        cdef SimpleQuote q = SimpleQuote.__new__(SimpleQuote)
+        cdef Quote q = Quote.__new__(Quote)
         q._thisptr = handle.currentLink()
         return q

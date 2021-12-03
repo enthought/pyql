@@ -6,7 +6,7 @@ from libcpp cimport bool
 
 from . cimport _smilesection as _ss
 from quantlib.handle cimport shared_ptr, Handle
-from quantlib.quotes cimport Quote
+from quantlib.quote cimport Quote
 cimport quantlib._quote as _qt
 from quantlib.math.optimization cimport EndCriteria, OptimizationMethod
 from quantlib.time.date cimport Date

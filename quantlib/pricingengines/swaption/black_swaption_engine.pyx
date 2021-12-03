@@ -6,8 +6,7 @@ from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.daycounters.simple cimport Actual365Fixed
-from quantlib.quotes cimport Quote
-cimport quantlib._quote as _qt
+from quantlib.quote cimport Quote
 cimport quantlib.termstructures.volatility.swaption._swaption_vol_structure \
     as _svs
 from quantlib.termstructures.volatility.swaption.swaption_vol_structure \
@@ -31,7 +30,6 @@ cdef class BlackSwaptionEngine(PricingEngine):
                   DayCounter dc=Actual365Fixed(),
                   Real displacement=0.,
                   CashAnnuityModel model=DiscountCurve):
-        cdef Handle[_qt.Quote] quote_handle
         cdef Handle[_svs.SwaptionVolatilityStructure] vol_structure_handle
 
         if isinstance(vol, float):
@@ -42,10 +40,9 @@ cdef class BlackSwaptionEngine(PricingEngine):
                                          displacement,
                                          <_BlackSwaptionEngine.CashAnnuityModel>model))
         elif isinstance(vol, Quote):
-            quote_handle = Handle[_qt.Quote]((<Quote>vol)._thisptr)
             self._thisptr.reset(
                 new _BlackSwaptionEngine(discount_curve._thisptr,
-                                         quote_handle,
+                                         (<Quote>vol).handle(),
                                          deref(dc._thisptr),
                                          displacement,
                                          <_BlackSwaptionEngine.CashAnnuityModel>model))
@@ -55,9 +52,7 @@ cdef class BlackSwaptionEngine(PricingEngine):
                     (<SwaptionVolatilityStructure>vol)._thisptr))
             self._thisptr.reset(
                 new _BlackSwaptionEngine(discount_curve._thisptr,
-                                         quote_handle,
-                                         deref(dc._thisptr),
-                                         displacement,
+                                         vol_structure_handle,
                                          <_BlackSwaptionEngine.CashAnnuityModel>model))
 
 

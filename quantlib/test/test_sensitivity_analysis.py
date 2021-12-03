@@ -61,17 +61,20 @@ class SensitivityTestCase(unittest.TestCase):
                     [ 30, Years, 5.96 ]]
 
         self.rate_helpers = []
+        self.quotes = []
 
         end_of_month = True
         for m, period, rate in depositData:
             tenor = Period(m, Months)
-            helper = DepositRateHelper(SimpleQuote(rate / 100),
+            q = SimpleQuote(rate / 100)
+            helper = DepositRateHelper(q,
                                        tenor,
                                        self.settlement_days,
                                        self.calendar,
                                        ModifiedFollowing,
                                        end_of_month,
                                        Actual360())
+            self.quotes.append(q)
             self.rate_helpers.append(helper)
 
         liborIndex = USDLibor(Period(6, Months))
@@ -82,6 +85,7 @@ class SensitivityTestCase(unittest.TestCase):
                 sq_rate, Period(m, Years), self.calendar, Annual, Unadjusted,
                 Thirty360(), liborIndex
             )
+            self.quotes.append(sq_rate)
             self.rate_helpers.append(helper)
 
         ts_day_counter = ActualActual(ISDA)
@@ -124,15 +128,14 @@ class SensitivityTestCase(unittest.TestCase):
         bond.set_pricing_engine(pricing_engine)
 
         self.assertAlmostEqual(bond.npv, 100.82127876105724)
-        quotes = [rh.quote for rh in self.rate_helpers]
-        delta, gamma = bucket_analysis(quotes, [bond])
-        self.assertEqual(len(quotes), len(delta))
-        old_values = [q.value for q in quotes]
+        delta, gamma = bucket_analysis(self.quotes, [bond])
+        self.assertEqual(len(self.quotes), len(delta))
+        old_values = [q.value for q in self.quotes]
         delta_manual = []
         gamma_manual = []
         pv = bond.npv
         shift = 1e-4
-        for v, q in zip(old_values, quotes):
+        for v, q in zip(old_values, self.quotes):
             q.value = v + shift
             pv_plus = bond.npv
             q.value = v - shift
@@ -213,16 +216,15 @@ class SensitivityTestCase(unittest.TestCase):
         index = USDLibor(Period(3, Months), self.ts)
         swap = MakeVanillaSwap(Period(10, Years),
                                index)()
-        quotes = [rh.quote for rh in self.rate_helpers]
-        old_values = [q.value for q in quotes]
-        dv01, _ = parallel_analysis(quotes, [swap])
+        old_values = [q.value for q in self.quotes]
+        dv01, _ = parallel_analysis(self.quotes, [swap])
         shift = 1e-4
 
-        for v, q in zip(old_values, quotes):
+        for v, q in zip(old_values, self.quotes):
             q.value = v + shift
         pv_plus = swap.npv
 
-        for v, q in zip(old_values, quotes):
+        for v, q in zip(old_values, self.quotes):
             q.value = v - shift
         pv_minus = swap.npv
 

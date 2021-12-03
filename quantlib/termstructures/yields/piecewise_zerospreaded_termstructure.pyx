@@ -6,7 +6,7 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.frequency cimport Frequency, NoFrequency
 from quantlib.time._date cimport Date as QlDate
 from quantlib.time.date cimport Date
-from quantlib.quotes cimport Quote
+from quantlib.quote cimport Quote
 cimport quantlib._quote as _qt
 cimport quantlib.termstructures._yield_term_structure as _yts
 from . cimport _piecewise_zerospreaded_termstructure as _pzt
@@ -20,7 +20,7 @@ cdef class PiecewiseZeroSpreadedTermStructure(YieldTermStructure):
         cdef Quote s
         cdef Date d
         for s in spreads:
-            spreads_vec.push_back(Handle[_qt.Quote](s._thisptr))
+            spreads_vec.push_back(s.handle())
 
         for d in dates:
             dates_vec.push_back(deref(d._thisptr))

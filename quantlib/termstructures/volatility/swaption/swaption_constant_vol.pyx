@@ -1,19 +1,18 @@
-include '../../../types.pxi'
+from quantlib.types cimport Natural, Real, Volatility
 from libcpp cimport bool
 from libcpp.vector cimport vector
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib.handle cimport shared_ptr
 
 from quantlib.time.date cimport Date
 from quantlib.time.calendar cimport Calendar
 from quantlib.time._businessdayconvention cimport BusinessDayConvention
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.quotes cimport SimpleQuote
+from quantlib.quote cimport Quote
 from ..volatilitytype cimport VolatilityType, ShiftedLognormal
 from ..._vol_term_structure cimport VolatilityTermStructure
 cimport quantlib.termstructures.volatility._volatilitytype as _voltype
 from . cimport _swaption_constant_vol as _scv
-cimport quantlib._quote as _qt
 
 cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
 
@@ -24,27 +23,33 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
                  DayCounter day_counter not None,
                  VolatilityType vol_type=ShiftedLognormal,
                  Real shift=0.):
-        cdef Handle[_qt.Quote] volatility_handle
 
-        if isinstance(volatility, SimpleQuote):
-            volatility_handle = Handle[_qt.Quote]((<SimpleQuote>volatility)._thisptr)
-        elif isinstance(volatility, float):
-            volatility_handle = Handle[_qt.Quote](
-                    shared_ptr[_qt.Quote](new _qt.SimpleQuote(<Real>volatility))
+        if isinstance(volatility, float):
+            self._thisptr.reset(
+                new _scv.ConstantSwaptionVolatility(
+                    settlement_days,
+                    deref(calendar._thisptr),
+                    bdc,
+                    <Volatility>volatility,
+                    deref(day_counter._thisptr),
+                    <_voltype.VolatilityType>vol_type,
+                    shift)
+            )
+        elif isinstance(volatility, Quote):
+            self._thisptr.reset(
+                _scv.ConstantSwaptionVolatility_(
+                    settlement_days,
+                    deref(calendar._thisptr),
+                    bdc,
+                    (<Quote>volatility).handle(),
+                    deref(day_counter._thisptr),
+                    <_voltype.VolatilityType>vol_type,
+                    shift)
             )
         else:
             raise TypeError
 
-        self._thisptr = shared_ptr[VolatilityTermStructure](
-            new _scv.ConstantSwaptionVolatility(
-                settlement_days,
-                deref(calendar._thisptr),
-                bdc,
-                volatility_handle,
-                deref(day_counter._thisptr),
-                <_voltype.VolatilityType>vol_type,
-                shift)
-        )
+
 
     @classmethod
     def from_reference_date(cls, Date reference_date not None,
@@ -54,27 +59,32 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
                             DayCounter day_counter not None,
                             VolatilityType vol_type=ShiftedLognormal,
                             Real shift=0.):
-        cdef Handle[_qt.Quote] volatility_handle
 
-        if isinstance(volatility, SimpleQuote):
-            volatility_handle = Handle[_qt.Quote]((<SimpleQuote>volatility)._thisptr)
-        elif isinstance(volatility, float):
-            volatility_handle = Handle[_qt.Quote](
-                    shared_ptr[_qt.Quote](new _qt.SimpleQuote(<Real>volatility))
+        cdef ConstantSwaptionVolatility instance = cls.__new__(cls)
+        if isinstance(volatility, float):
+            instance._thisptr.reset(
+                new _scv.ConstantSwaptionVolatility(
+                    deref(reference_date._thisptr),
+                    deref(calendar._thisptr),
+                    bdc,
+                    (<Volatility>volatility),
+                    deref(day_counter._thisptr),
+                    <_voltype.VolatilityType>vol_type,
+                    shift
+                )
+            )
+        elif isinstance(volatility, Quote):
+            instance._thisptr.reset(
+                _scv.ConstantSwaptionVolatility__(
+                    deref(reference_date._thisptr),
+                    deref(calendar._thisptr),
+                    bdc,
+                    (<Quote>volatility).handle(),
+                    deref(day_counter._thisptr),
+                    <_voltype.VolatilityType>vol_type,
+                    shift
+                )
             )
         else:
             raise TypeError
-
-        cdef ConstantSwaptionVolatility instance = cls.__new__(cls)
-        instance._thisptr = shared_ptr[VolatilityTermStructure](
-            new _scv.ConstantSwaptionVolatility(
-                deref(reference_date._thisptr),
-                deref(calendar._thisptr),
-                bdc,
-                volatility_handle,
-                deref(day_counter._thisptr),
-                <_voltype.VolatilityType>vol_type,
-                shift
-            )
-        )
         return instance

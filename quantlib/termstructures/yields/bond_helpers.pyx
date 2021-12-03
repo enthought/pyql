@@ -3,15 +3,14 @@ include '../../types.pxi'
 from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 
-from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
+from quantlib.handle cimport shared_ptr, static_pointer_cast
 
 cimport quantlib.instruments._bonds as _bonds
 cimport quantlib.time._calendar as _calendar
-cimport quantlib._quote as _qt
 from . cimport _bond_helpers as _bh
 
 from quantlib.instruments.bonds cimport Bond
-from quantlib.quotes cimport Quote
+from quantlib.quote cimport Quote
 from quantlib.time.date cimport Date
 from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
@@ -23,14 +22,9 @@ cdef class BondHelper(RateHelper):
 
     def __init__(self, Quote clean_price, Bond bond not None):
 
-        # Create quote handle.
-        cdef Handle[_qt.Quote] price_handle = Handle[_qt.Quote](
-            clean_price._thisptr
-        )
-
         self._thisptr = shared_ptr[_bh.RateHelper](
             new _bh.BondHelper(
-                price_handle,
+                clean_price.handle(),
                 static_pointer_cast[_bonds.Bond](bond._thisptr)
             ))
 
@@ -43,13 +37,9 @@ cdef class FixedRateBondHelper(BondHelper):
                  DayCounter day_counter not None, int payment_conv=Following,
                  Real redemption=100.0, Date issue_date=Date()):
 
-        # Create handles.
-        cdef Handle[_qt.Quote] price_handle = \
-                Handle[_qt.Quote](clean_price._thisptr)
-
         self._thisptr = shared_ptr[_bh.RateHelper](
             new _bh.FixedRateBondHelper(
-                price_handle,
+                clean_price.handle(),
                 settlement_days,
                 face_amount,
                 deref(schedule._thisptr),

@@ -7,16 +7,16 @@ from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
 from quantlib.math.optimization cimport OptimizationMethod, EndCriteria
 from quantlib.indexes.swap_index cimport SwapIndex
 from quantlib._defines cimport QL_NULL_REAL
-from quantlib.quotes cimport SimpleQuote
+from quantlib.quote cimport Quote
 from quantlib.time.date cimport Period
 from quantlib.time._period cimport Period as QlPeriod
 from .swaption_vol_structure cimport SwaptionVolatilityStructure
 from . cimport _swaption_vol_cube1 as _svc1
 cimport quantlib.indexes._swap_index as _si
+cimport quantlib._quote as _qt
 
 from . cimport _swaption_vol_structure as _svs
 from ..._vol_term_structure cimport VolatilityTermStructure
-cimport quantlib._quote as _qt
 
 cdef class SwaptionVolCube1(SwaptionVolatilityCube):
 
@@ -47,7 +47,7 @@ cdef class SwaptionVolCube1(SwaptionVolatilityCube):
             vector[QlPeriod] option_tenors_vec
             vector[QlPeriod] swap_tenors_vec
             Period p
-            SimpleQuote q
+            Quote q
             vector[vector[Handle[_qt.Quote]]] vol_spreads_matrix
             vector[vector[Handle[_qt.Quote]]] parameters_guess_matrix
             list l
@@ -62,7 +62,7 @@ cdef class SwaptionVolCube1(SwaptionVolatilityCube):
             for q in l:
                 (parameters_guess_matrix.
                  back().
-                 push_back(Handle[_qt.Quote](q._thisptr)))
+                 push_back(q.handle()))
 
         for p in option_tenors:
             option_tenors_vec.push_back(deref(p._thisptr))

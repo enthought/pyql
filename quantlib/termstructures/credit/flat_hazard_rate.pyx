@@ -1,7 +1,7 @@
 include '../../types.pxi'
 
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.handle cimport shared_ptr
 
 from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
 
@@ -11,7 +11,7 @@ from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar cimport Calendar
 cimport quantlib._quote as _qt
-from quantlib.quotes cimport SimpleQuote
+from quantlib.quote cimport Quote
 
 cdef class FlatHazardRate(DefaultProbabilityTermStructure):
     """Flat hazard rate curve
@@ -23,7 +23,7 @@ cdef class FlatHazardRate(DefaultProbabilityTermStructure):
             number of days from evaluation date
         calendar: :class:`~quantlib.time.calendar.Calendar`
             calendar used to compute the reference date
-        hazard_rate: float or :class:`~quantlib.quotes.SimpleQuote`
+        hazard_rate: float or :class:`~quantlib.quote.Quote`
             the flat hazard rate
         day_counter: :class:`~quantlib.time.daycounter.DayCounter`
             DayCounter for the curve
@@ -37,12 +37,12 @@ cdef class FlatHazardRate(DefaultProbabilityTermStructure):
                                         deref(calendar._thisptr),
                                         <Rate>hazard_rate,
                                         deref(day_counter._thisptr)))
-        elif isinstance(hazard_rate, SimpleQuote):
+        elif isinstance(hazard_rate, Quote):
             self._thisptr = shared_ptr[_dts.DefaultProbabilityTermStructure](
                 new _fhr.FlatHazardRate(
                     settlement_days,
                     deref(calendar._thisptr),
-                    Handle[_qt.Quote]((<SimpleQuote>hazard_rate)._thisptr),
+                    (<Quote>hazard_rate).handle(),
                     deref(day_counter._thisptr)))
         else:
             raise TypeError("hazard_rate needs to be a float or a Quote")
@@ -57,7 +57,7 @@ cdef class FlatHazardRate(DefaultProbabilityTermStructure):
 
         reference_date : :class:`~quantlib.time.date.Date`
             reference date for the curve
-        hazard_rate: float or :class:`~quantlib.quotes.SimpleQuote`
+        hazard_rate: float or :class:`~quantlib.quote.Quote`
             the flat hazard rate
         day_counter: :class:`~quantlib.time.daycounter.DayCounter`
             DayCounter for the curve
@@ -69,11 +69,11 @@ cdef class FlatHazardRate(DefaultProbabilityTermStructure):
                 new _fhr.FlatHazardRate(deref(reference_date._thisptr),
                                         <Rate>hazard_rate,
                                         deref(day_counter._thisptr)))
-        elif isinstance(hazard_rate, SimpleQuote):
+        elif isinstance(hazard_rate, Quote):
              instance._thisptr =  shared_ptr[_dts.DefaultProbabilityTermStructure](
                 new _fhr.FlatHazardRate(
                     deref(reference_date._thisptr),
-                    Handle[_qt.Quote]((<SimpleQuote>hazard_rate)._thisptr),
+                    ((<Quote>hazard_rate).handle()),
                     deref(day_counter._thisptr)))
         else:
             raise TypeError("hazard_rate needs to be a float or a Quote")
