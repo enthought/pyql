@@ -29,7 +29,7 @@ def zbt_libor_yield(instruments, yields, pricing_date,
 
     Args:
 
-    insruments:    list of instruments, of the form Libor?M for Libor rates
+    instruments:    list of instruments, of the form Libor?M for Libor rates
                    and Swap?Y for swap rates
     yields:        market rates
     pricing_date:  the date where market data is observed. Settlement

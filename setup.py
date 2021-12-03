@@ -129,7 +129,7 @@ def collect_extensions():
     of Extension.
 
     Th function combines static Extension declaration and calls to cythonize
-    to build the list of extenions.
+    to build the list of extensions.
     """
 
     kwargs = {

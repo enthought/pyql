@@ -209,7 +209,7 @@ The schedule is initialized by the Schedule class::
 The arguments represent the following
 
  * effective_date, termination_date: start/end of the schedule
- * tenor: a Period object reprensenting the frequency of the schedule 
+ * tenor: a Period object representing the frequency of the schedule 
    (e.g. every 3 months)
  * termination_date_convention: allows to specify a special business day 
    convention for the final date.

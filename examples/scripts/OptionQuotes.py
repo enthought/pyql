@@ -56,7 +56,7 @@ from __future__ import print_function
 # $$
 # \sigma(K) = \frac{\sigma_b(K)+\sigma_a(K)}{2}
 # $$
-# 3. Let $F$ be the forward price, the corresponding mid-market implied volatility is computed by linear interpolation between the two quuotes braketing $F$.
+# 3. Let $F$ be the forward price, the corresponding mid-market implied volatility is computed by linear interpolation between the two quotes bracketing $F$.
 # 
 # The forward ATM volatility is the average of the volatilities computed on calls and puts.
 # 

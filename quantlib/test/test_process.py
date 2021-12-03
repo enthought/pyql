@@ -71,7 +71,7 @@ class ProcessTestCase(unittest.TestCase):
         me = BatesDoubleExpModel(ph)
         self.assertIsNotNone(me)
 
-        # speficy the arguments
+        # specify the arguments
         me = BatesDoubleExpModel(ph, Lambda=0.234, nuUp=0.43, nuDown=0.54, p=.6)
         self.assertIsNotNone(me)
 
