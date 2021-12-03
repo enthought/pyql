@@ -16,17 +16,12 @@ cdef extern from 'ql/exercise.hpp' namespace 'QuantLib::Exercise':
 cdef extern from 'ql/exercise.hpp' namespace 'QuantLib':
 
     cdef cppclass Exercise:
-        # fixme: I had to add an empty constructor to prevent the following
-        # error :
-        # _option.pxd:50:25: no matching function for call to 
-        # Exercise::Exercise()
-        Exercise()
         Exercise(Type type)
         Type type()
+        const vector[Date]& dates()
+        Date lastDate() const
 
     cdef cppclass EarlyExercise(Exercise):
-        # fixme: same issue as with the Exercise class
-        EarlyExercise()
         EarlyExercise(Type type)
         EarlyExercise(Type type, payoffAtExpiry)
 
@@ -42,4 +37,3 @@ cdef extern from 'ql/exercise.hpp' namespace 'QuantLib':
 
     cdef cppclass EuropeanExercise(Exercise):
         EuropeanExercise(Date& date)
-

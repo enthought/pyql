@@ -34,6 +34,7 @@ class TestQuantLibSwaption(unittest.TestCase):
             period=Period(2, Years),
             convention=ModifiedFollowing)
         self.assertEqual(swap.start_date, self.index.value_date(exercise_date))
+        self.assertEqual(exercise_date, swaption.exercise.last_date)
 
     def test_pricing_engine(self):
         swaption = self.factory()

@@ -1,6 +1,6 @@
 from . cimport _swaption
 from ._swaption cimport Settlement
-from .instrument cimport Instrument
+from .option cimport Option
 
 cpdef enum SettlementType:
     Physical = _swaption.Physical
@@ -11,5 +11,5 @@ cpdef enum SettlementMethod:
     CollateralizedCashPrice = _swaption.CollateralizedCashPrice
     ParYieldCurve = _swaption.ParYieldCurve
 
-cdef class Swaption(Instrument):
+cdef class Swaption(Option):
     pass
