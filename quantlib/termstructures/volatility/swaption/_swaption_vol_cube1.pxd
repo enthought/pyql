@@ -9,7 +9,7 @@ from quantlib._quote cimport Quote
 from quantlib.indexes._swap_index cimport SwapIndex
 from quantlib.math._optimization cimport EndCriteria, OptimizationMethod
 from quantlib.math._matrix cimport Matrix
-from quantlib.math.interpolation cimport SABRInterpolation
+from quantlib.math._interpolations cimport SABRInterpolation
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
 

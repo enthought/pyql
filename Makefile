@@ -29,11 +29,12 @@ build_ex:
     -o test2 -L/opt/local/lib/ -lQuantLib
 
 clean:
-	find quantlib -name \*.so -exec rm {} \;
-	find quantlib -name \*.pyc -exec rm {} \;
-	find quantlib -name \*.cpp -exec rm {} \;
-	find quantlib -name \*.c -exec rm {} \;
-	find quantlib -name \*.h -exec rm {} \;
+	find quantlib -name \*.so -exec rm {} +
+	find quantlib -name \*.pyc -exec rm {} +
+	find quantlib -name \*.cpp -exec rm {} +
+	find quantlib -name \*.c -exec rm {} +
+	find quantlib -name \*.h -exec rm {} +
+	-rm quantlib/termstructures/yields/{piecewise_yield_curve,discount_curve,forward_curve,zero_curve}.{pxd,pyx}
 	rm -rf build
 	rm -rf dist
 

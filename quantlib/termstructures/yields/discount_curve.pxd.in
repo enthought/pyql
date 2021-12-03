@@ -1,0 +1,10 @@
+from ..yield_term_structure cimport YieldTermStructure
+cimport quantlib.math._interpolations as intpl
+from . cimport _discount_curve as _dc
+
+{{for I in ["Linear", "LogLinear", "BackwardFlat", "Cubic"]}}
+cdef class {{I}}InterpolatedDiscountCurve(YieldTermStructure):
+    cdef _dc.InterpolatedDiscountCurve[intpl.{{I}}]* _curve
+
+
+{{endfor}}

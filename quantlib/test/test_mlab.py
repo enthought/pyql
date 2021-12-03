@@ -11,7 +11,8 @@ import quantlib.reference.names as nm
 import quantlib.reference.data_structures as ds
 
 from quantlib.termstructures.yields.api import (
-    PiecewiseYieldCurve, BootstrapTrait, Interpolator )
+    PiecewiseYieldCurve, BootstrapTrait )
+from quantlib.math.interpolation import LogLinear
 from quantlib.time.api import ActualActual, ISDA
 from quantlib.util.converter import pydate_to_qldate
 from quantlib.quotes import SimpleQuote
@@ -94,9 +95,9 @@ class MLabTestCase(unittest.TestCase):
             ts_day_counter = ActualActual(ISDA)
             tolerance = 1.0e-15
 
-        ts = PiecewiseYieldCurve.from_reference_date(
-            BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers,
-            ts_day_counter, tolerance
+        ts = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(
+            settlement_date, rate_helpers,
+            ts_day_counter, accuracy=tolerance
         )
 
         zc = zero_rate(ts, (200, 300), settlement_date)

@@ -1,0 +1,10 @@
+from ..yield_term_structure cimport YieldTermStructure
+cimport quantlib.math._interpolations as intpl
+from . cimport _zero_curve as _zc
+
+{{for I in ["Linear", "LogLinear", "BackwardFlat", "Cubic"]}}
+cdef class {{I}}InterpolatedZeroCurve(YieldTermStructure):
+    cdef _zc.InterpolatedZeroCurve[intpl.{{I}}]* _curve
+
+
+{{endfor}}

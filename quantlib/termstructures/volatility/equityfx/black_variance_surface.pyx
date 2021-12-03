@@ -6,7 +6,7 @@ from libcpp.vector cimport vector
 
 from quantlib.handle cimport shared_ptr
 from quantlib.math.matrix cimport Matrix
-cimport quantlib.math.interpolation as intpl
+cimport quantlib.math._interpolations as intpl
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time._date cimport Date as _Date
 from quantlib.time.calendar cimport Calendar

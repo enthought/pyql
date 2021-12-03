@@ -1,0 +1,106 @@
+from libcpp.vector cimport vector
+from libcpp.pair cimport pair
+from quantlib.types cimport Rate
+from cython.operator cimport dereference as deref, preincrement as preinc
+from quantlib.handle cimport shared_ptr
+
+from quantlib.time.date cimport Date, date_from_qldate
+cimport quantlib.time._date as _date
+from quantlib.time.frequency cimport Frequency
+from .. cimport _yield_term_structure as _yts
+
+from quantlib._compounding cimport Compounding
+from quantlib.time.daycounter cimport DayCounter
+from quantlib.time.calendar cimport Calendar
+from quantlib.math.interpolation cimport Linear, LogLinear, BackwardFlat, Cubic
+
+
+# with cython3 and python>=3.7 we could use __class_getitem__ instead
+cdef class Meta(type):
+    def __getitem__(cls, I):
+        return globals()[f"{I.__name__}InterpolatedZeroCurve"]
+
+
+class InterpolatedZeroCurve(metaclass=Meta):
+    """ YieldTermStructure based on interpolation of zeroRates
+
+    ``Generics`` class parametered by an Interpolator.
+
+    Parameters
+    ----------
+    interpolator: Interpolator
+    the kind of interpolator. Must be either 'Linear', 'LogLinear', 'BackwardFlat' or
+        'Cubic'
+
+    """
+    pass
+
+{{for I in ["Linear", "LogLinear", "BackwardFlat", "Cubic"]}}
+cdef class {{I}}InterpolatedZeroCurve(YieldTermStructure):
+    """YieldTermStructure based on interpolation of discountFactors
+
+        Parameters
+        ----------
+        dates : :obj:`list` of :class:`~quantlib.time.date.Date`
+            list of dates
+        forwards: :obj:`list` of float
+            corresponding list of zero rates
+        day_counter: :class:`~quantlib.time.daycounter.DayCounter`
+        cal: :class:`~quantlib.time.calendar.Calendar`
+
+    """
+    def __init__(self, list dates, vector[Rate] yields,
+                 DayCounter day_counter not None, Calendar cal= Calendar(),
+                 {{I}} i={{I}}(), Compounding compounding=Compounding.Continuous,
+                 Frequency frequency=Frequency.Annual):
+        # convert the list of PyQL dates into a vector of QL dates
+        cdef vector[_date.Date] _dates
+        for date in dates:
+            _dates.push_back(deref((<Date?>date)._thisptr))
+
+        self._curve = new _zc.InterpolatedZeroCurve[intpl.{{I}}](
+                _dates, yields, deref(day_counter._thisptr),
+                deref(cal._thisptr), i._thisptr, compounding, frequency
+            )
+        self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](self._curve))
+
+    @property
+    def data(self):
+        """list of curve data"""
+        return self._curve.data()
+
+    @property
+    def times(self):
+        """list of curve times"""
+        return self._curve.times()
+
+    @property
+    def dates(self):
+        """list of curve dates"""
+        cdef list r = []
+        cdef vector[_date.Date].const_iterator it = self._curve.dates().const_begin()
+
+        while it != self._curve.dates().const_end():
+            r.append(date_from_qldate(deref(it)))
+            preinc(it)
+        return r
+
+    @property
+    def zero_rates(self):
+        return self._curve.zeroRates()
+
+    @property
+    def nodes(self):
+        cdef:
+            list r = []
+            pair[_date.Date, double] p
+            vector[pair[_date.Date, double]] v = self._curve.nodes()
+        for p in v:
+            r.append((date_from_qldate(p.first), p.second))
+        return r
+
+
+
+{{endfor}}
+
+ZeroCurve = LinearInterpolatedZeroCurve

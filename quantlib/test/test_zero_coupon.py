@@ -8,7 +8,8 @@ from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.rate_helpers import (
     DepositRateHelper, SwapRateHelper)
 from quantlib.termstructures.yields.api import (
-    PiecewiseYieldCurve, BootstrapTrait, Interpolator )
+    PiecewiseYieldCurve, BootstrapTrait )
+from quantlib.math.interpolation import LogLinear
 
 from quantlib.time.api import (
     Period, Months, Date, Days, TARGET, ModifiedFollowing,
@@ -94,12 +95,11 @@ class ZeroCouponTestCase(unittest.TestCase):
         ts_day_counter = ActualActual(ISDA)
         tolerance = 1.0e-2
 
-        ts = PiecewiseYieldCurve.from_reference_date(BootstrapTrait.Discount,
-                                 Interpolator.LogLinear,
+        ts = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(
                                  settlement_date,
                                  rate_helpers,
                                  ts_day_counter,
-                                 tolerance)
+                                 accuracy=tolerance)
 
         # max_date raises an exception without extrapolaiton...
         self.assertFalse(ts.extrapolation)
@@ -128,12 +128,11 @@ class ZeroCouponTestCase(unittest.TestCase):
         ts_day_counter = ActualActual(ISDA)
         tolerance = 1.0e-2
 
-        ts = PiecewiseYieldCurve.from_reference_date(BootstrapTrait.Discount,
-                                 Interpolator.LogLinear,
+        ts = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(
                                  settlement_date,
                                  rate_helpers,
                                  ts_day_counter,
-                                 tolerance)
+                                 accuracy=tolerance)
 
         # max_date raises an exception...
         ts.extrapolation = True

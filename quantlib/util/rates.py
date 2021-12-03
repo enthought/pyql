@@ -21,8 +21,9 @@ from quantlib.settings import Settings
 from quantlib.termstructures.yields.rate_helpers import \
     DepositRateHelper, SwapRateHelper
 from quantlib.termstructures.yields.api import (
-    FlatForward, PiecewiseYieldCurve, BootstrapTrait, Interpolator
+    FlatForward, PiecewiseYieldCurve, BootstrapTrait
 )
+from quantlib.math.interpolation import LogLinear
 from quantlib.time.api import (
     TARGET, Period, Months, Years, Days, ModifiedFollowing, Unadjusted,
     Actual360, Thirty360, Annual, ActualActual, ISDA, JointCalendar,
@@ -123,9 +124,8 @@ def make_term_structure(rates, dt_obs):
 
     ts_day_counter = ActualActual(ISDA)
     tolerance = 1.0e-15
-    ts = PiecewiseYieldCurve.from_reference_date(
-        BootstrapTrait.Discount, Interpolator.LogLinear, settlement_date, rate_helpers, ts_day_counter,
-        tolerance
+    ts = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(
+        settlement_date, rate_helpers, ts_day_counter, accuracy=tolerance
     )
 
     return ts

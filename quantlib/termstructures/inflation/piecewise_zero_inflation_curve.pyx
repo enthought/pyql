@@ -12,7 +12,7 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.termstructures.inflation.inflation_helpers cimport ZeroCouponInflationSwapHelper
 from quantlib.termstructures.inflation.inflation_traits cimport ZeroInflationTraits
-cimport quantlib.math.interpolation as intpl
+cimport quantlib.math._interpolations as intpl
 cimport quantlib.termstructures._inflation_term_structure as _its
 cimport quantlib.termstructures.inflation._piecewise_zero_inflation_curve as _pzic
 

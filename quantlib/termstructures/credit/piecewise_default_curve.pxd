@@ -1,4 +1,4 @@
-from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
+from ..default_term_structure cimport DefaultProbabilityTermStructure
 
 cdef enum Interpolator:
     Linear

@@ -1,18 +1,18 @@
-cdef extern from 'ql/math/interpolations/all.hpp' namespace 'QuantLib':
-    cdef cppclass Linear:
-        pass
+cimport cython
+from . cimport _interpolations as _intpl
 
-    cdef cppclass LogLinear:
-        pass
+@cython.final
+cdef class Linear:
+    cdef _intpl.Linear _thisptr
 
-    cdef cppclass BackwardFlat:
-        pass
+@cython.final
+cdef class LogLinear:
+    cdef _intpl.LogLinear _thisptr
 
-    cdef cppclass SABRInterpolation:
-        pass
+@cython.final
+cdef class BackwardFlat:
+    cdef _intpl.BackwardFlat _thisptr
 
-    cdef cppclass Bilinear:
-       pass
-
-    cdef cppclass Bicubic:
-        pass
+@cython.final
+cdef class Cubic:
+    cdef _intpl.Cubic _thisptr

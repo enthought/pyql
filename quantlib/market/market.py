@@ -6,8 +6,9 @@ from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.api import (
     FixedRateBondHelper, DepositRateHelper, FuturesRateHelper, SwapRateHelper,
-    PiecewiseYieldCurve, YieldTermStructure, BootstrapTrait, Interpolator
+    PiecewiseYieldCurve, YieldTermStructure, BootstrapTrait
 )
+from quantlib.math.interpolation import LogLinear
 from quantlib.time.api import (
     Date, Period, Years, Days, JointCalendar, UnitedStates, UnitedKingdom,
     pydate_from_qldate, qldate_from_pydate, DayCounter,
@@ -310,7 +311,7 @@ class IborMarket(FixedIncomeMarket):
 
         return output
 
-    def bootstrap_term_structure(self, interpolator=Interpolator.LogLinear):
+    def bootstrap_term_structure(self, interpolator=LogLinear):
         tolerance = 1.0e-15
         settings = Settings()
         calendar = JointCalendar(UnitedStates(), UnitedKingdom())
@@ -321,10 +322,10 @@ class IborMarket(FixedIncomeMarket):
         settlement_date = calendar.advance(eval_date, settlement_days, Days)
         # must be a business day
         settlement_date = calendar.adjust(settlement_date)
-        ts = PiecewiseYieldCurve.from_reference_date(
-            BootstrapTrait.Discount, interpolator, settlement_date, self._rate_helpers,
+        ts = PiecewiseYieldCurve[BootstrapTrait.Discount, interpolator].from_reference_date(
+            settlement_date, self._rate_helpers,
             DayCounter.from_name(self._termstructure_daycount),
-            tolerance
+            accuracy=tolerance
         )
         self._term_structure = ts
         self._discount_term_structure = YieldTermStructure()
