@@ -169,8 +169,9 @@ cdef class SwaptionVolatilityStructure(VolatilityTermStructure):
 
 
 cdef class HandleSwaptionVolatilityStructure:
-    def __init__(self, SwaptionVolatilityStructure structure not None, bool register_as_observer=True):
-        self.handle = RelinkableHandle[_svs.SwaptionVolatilityStructure](structure._derived_ptr, register_as_observer)
+    def __init__(self, SwaptionVolatilityStructure structure=None, bool register_as_observer=True):
+        if structure is not None:
+            self.handle = RelinkableHandle[_svs.SwaptionVolatilityStructure](structure._derived_ptr, register_as_observer)
 
     def link_to(self, SwaptionVolatilityStructure structure not None, bool register_as_observer=True):
         self.handle.linkTo(structure._derived_ptr, register_as_observer)
