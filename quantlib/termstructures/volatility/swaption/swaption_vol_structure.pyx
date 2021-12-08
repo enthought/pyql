@@ -3,7 +3,7 @@ from cython.operator cimport dereference as deref
 from quantlib.time.date cimport Date, Period
 from quantlib.handle cimport shared_ptr
 from ..smilesection cimport SmileSection
-
+from ..volatilitytype import VolatilityType
 
 cdef class SwaptionVolatilityStructure(VolatilityTermStructure):
 
@@ -165,7 +165,7 @@ cdef class SwaptionVolatilityStructure(VolatilityTermStructure):
 
     @property
     def volatility_type(self):
-        return self.get_svs().volatilityType()
+        return VolatilityType(self.get_svs().volatilityType())
 
 
 cdef class HandleSwaptionVolatilityStructure:
