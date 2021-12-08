@@ -6,7 +6,7 @@ cimport quantlib.instruments._bonds as _bonds
 from quantlib.termstructures.volatility.optionlet.optionlet_volatility_structure cimport OptionletVolatilityStructure
 cimport quantlib.termstructures.volatility.optionlet._optionlet_volatility_structure as _ovs
 from quantlib.termstructures.volatility.swaption.swaption_vol_structure \
-    cimport  SwaptionVolatilityStructure, HandleSwaptionVolatilityStructure
+    cimport  SwaptionVolatilityStructure
 from quantlib.termstructures._vol_term_structure cimport VolatilityTermStructure
 cimport quantlib.termstructures.volatility.swaption._swaption_vol_structure  as _svs
 from quantlib.handle cimport Handle, static_pointer_cast
@@ -93,5 +93,5 @@ cdef class CmsCouponPricer(FloatingRateCouponPricer):
         return instance
 
     @swaption_volatility.setter
-    def swaption_volatility(self, HandleSwaptionVolatilityStructure v not None):
-        (<_cp.CmsCouponPricer*>self._thisptr.get()).setSwaptionVolatility(v.handle)
+    def swaption_volatility(self, v not None):
+        (<_cp.CmsCouponPricer*>self._thisptr.get()).setSwaptionVolatility(SwaptionVolatilityStructure.swaption_vol_handle(v))
