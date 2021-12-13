@@ -1,72 +1,72 @@
-# coding: utf-8
-
-from __future__ import unicode_literals
-
+from cython.operator import dereference as deref
+from quantlib.time.date cimport Date
 cimport quantlib.time._daycounter as _daycounter
-cimport quantlib.time.daycounters._thirty360 as _th
+from . cimport _thirty360 as _th
+from .thirty360 cimport Convention as QlConvention
 from quantlib.time.daycounter cimport DayCounter
 
-cpdef enum Convention:
-    USA           = _th.USA
-    BONDBASIS     = _th.BondBasis
-    EUROPEAN      = _th.European
-    EUROBONDBASIS = _th.EurobondBasis
-    ITALIAN       = _th.Italian
-
-CONVENTIONS = {
-    "USA":       _th.USA,
-    "BONDBASIS": _th.BondBasis,
-    "EUROPEAN":  _th.European,
-    "EUROBONDBASIS": _th.EurobondBasis,
-    "ITALIAN":   _th.Italian
-    }
-
-
-DOC_TEMPLATE = """The 30/360 day count can be calculated according to US, European, or
-Italian conventions.
-
-US (NASD) convention: if the starting date is the 31st of a
-month, it becomes equal to the 30th of the same month.
-If the ending date is the 31st of a month and the starting
-date is earlier than the 30th of a month, the ending date
-becomes equal to the 1st of the next month, otherwise the
-ending date becomes equal to the 30th of the same month.
-Also known as "30/360", "360/360", or "Bond Basis"
-
-European convention: starting dates or ending dates that
-occur on the 31st of a month become equal to the 30th of the
-same month.
-Also known as "30E/360", or "Eurobond Basis"
-
-Italian convention: starting dates or ending dates that
-occur on February and are grater than 27 become equal to 30
-for computational sake.
-
-Valid names for 30/360 daycounts are:
-
-* {}
-
-
-"""
-
 cdef class Thirty360(DayCounter):
+   """The 30/360 day count can be calculated according to a
+    number of convention.
 
-    _valid_names = [
-        '30/360({})'.format(convention ) for convention in CONVENTIONS
-    ]
-    __doc__ =  DOC_TEMPLATE.format(
-        '\n* '.join(_valid_names)
-    )
+   US convention: if the starting date is the 31st of a month or
+   the last day of February, it becomes equal to the 30th of the
+   same month.  If the ending date is the 31st of a month and the
+   starting date is the 30th or 31th of a month, the ending date
+   becomes equal to the 30th.  If the ending date is the last of
+   February and the starting date is also the last of February,
+   the ending date becomes equal to the 30th.
+   Also known as "30/360" or "360/360".
 
-    def __cinit__(self, convention=BONDBASIS):
-        self._thisptr = <_daycounter.DayCounter*> new \
-            _th.Thirty360(<_th.Convention> convention)
 
-cdef _daycounter.DayCounter* from_name(basestring convention):
+   Bond Basis convention: if the starting date is the 31st of a
+   month, it becomes equal to the 30th of the same month.
+   If the ending date is the 31st of a month and the starting
+   date is the 30th or 31th of a month, the ending date
+   also becomes equal to the 30th of the month.
+   Also known as "US (ISMA)".
 
-    cdef _th.Convention ql_convention = <_th.Convention>CONVENTIONS[convention]
+   European convention: starting dates or ending dates that
+   occur on the 31st of a month become equal to the 30th of the
+   same month.
+   Also known as "30E/360", or "Eurobond Basis"
 
-    cdef _daycounter.DayCounter* return_val =  new _th.Thirty360(ql_convention)
+   Italian convention: starting dates or ending dates that
+   occur on February and are grater than 27 become equal to 30
+   for computational sake.
 
-    return return_val
+   ISDA convention: starting or ending dates on the 31st of the
+   month become equal to 30; starting dates or ending dates that
+   occur on the last day of February also become equal to 30,
+   except for the termination date.  Also known as "30E/360
+   ISDA", "30/360 ISDA", or "30/360 German".
 
+   NASD convention: if the starting date is the 31st of a
+   month, it becomes equal to the 30th of the same month.
+   If the ending date is the 31st of a month and the starting
+   date is earlier than the 30th of a month, the ending date
+   becomes equal to the 1st of the next month, otherwise the
+   ending date becomes equal to the 30th of the same month.
+
+   Valid names for 30/360 daycounts are:
+
+   * USA
+   * BondBasis
+   * European
+   * EurobondBasis
+   * Italian
+   * German
+   * ISMA
+   * ISDA
+   * NASD
+    """
+
+   def __cinit__(self, convention=BondBasis, Date termination_date=Date()):
+       self._thisptr = new _th.Thirty360(<QlConvention> convention,
+                                         deref(termination_date._thisptr))
+
+cdef _daycounter.DayCounter* from_name(str convention) except NULL:
+    try:
+        return new _th.Thirty360(<QlConvention>Convention[convention])
+    except KeyError:
+        raise ValueError("Unknown convention: {}".format(convention))
