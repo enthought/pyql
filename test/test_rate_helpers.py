@@ -19,6 +19,7 @@ from quantlib.time.api import (
     JointCalendar, Poland
 )
 from quantlib.settings import Settings
+from .utilities import flat_rate
 
 class RateHelpersTestCase(unittest.TestCase):
 
@@ -570,11 +571,6 @@ class FxSwapRateHelperTest(unittest.TestCase):
 
     def tearDown(self):
         Settings.instance().evaluation_date = Date()
-
-
-def flat_rate(rate):
-    return FlatForward(
-        settlement_days=0, calendar=NullCalendar(), forward=SimpleQuote(rate), daycounter=Actual365Fixed())
 
 
 class CrossCurrencyBasisSwapRateHelperTest(unittest.TestCase):

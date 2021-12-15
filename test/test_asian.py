@@ -31,8 +31,8 @@ def relative_error(x1, x2, reference):
     else:
         # fall back to absolute error
         result = abs(x1-x2)
-    return result            
-    
+    return result
+
 
 class AsianOptionTestCase(unittest.TestCase):
     """Base test for all the cases related to VanillaOption.
@@ -95,11 +95,11 @@ class AsianOptionTestCase(unittest.TestCase):
     def test_analytic_cont_geom_av_price(self):
         """
         "Testing analytic continuous geometric average-price Asians...")
-        
+
         data from "Option Pricing Formulas", Haug, pag.96-97
         """
         exercise = EuropeanExercise(self.settlement_date)
-        
+
         option = ContinuousAveragingAsianOption(Geometric, self.payoff, exercise)
 
         engine = AnalyticContinuousGeometricAveragePriceAsianEngine(
