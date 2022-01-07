@@ -128,8 +128,9 @@ cdef class Bond(Instrument):
 
 cdef class FixedRateBond(Bond):
     """ Fixed rate bond.
+
     Support:
-        - simple annual compounding coupon rates
+    - simple annual compounding coupon rates
 
     Unsupported: (needs interfacing)
         - simple annual compounding coupon rates with internal schedule calculation
