@@ -28,9 +28,10 @@ sys.path.append(os.path.abspath('../..'))
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.autosummary',
         'sphinx.ext.imgmath', 'sphinx.ext.napoleon']
 napoleon_use_param = False
-
+autosummary_generate = True
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+exclude_patterrns = ['_build', '_templates']
 
 # The suffix of source filenames.
 source_suffix = '.rst'
