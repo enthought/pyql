@@ -29,7 +29,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install numpy
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install -r requirements.txt
+
+      - name: Setup ccache
+        uses: Chocobo1/setup-ccache-action@v1
+        with:
+          update_packager_index: false
 
       - name: Build
         run: |
