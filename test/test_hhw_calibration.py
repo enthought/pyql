@@ -32,13 +32,7 @@ from quantlib.pricingengines.api import (
 from quantlib.methods.finitedifferences.solvers.fdmbackwardsolver import (
     FdmSchemeDesc)
 
-
-def flat_rate(today, forward, daycounter):
-    return FlatForward(
-        reference_date=today,
-        forward=SimpleQuote(forward),
-        daycounter=daycounter
-    )
+from .utilities import flat_rate
 
 
 class TestHHWCalibration(unittest.TestCase):
@@ -64,14 +58,14 @@ class TestHHWCalibration(unittest.TestCase):
         settings = Settings()
         settings.evaluation_date = todays_date
 
-        r_ts = flat_rate(todays_date, 0.05, dc)
+        r_ts = flat_rate(0.05, dc)
 
         ## assuming, that the Hull-White process is already calibrated
         ## on a given set of pure interest rate calibration instruments.
 
         hw_process = HullWhiteProcess(r_ts, a=0.00883, sigma=0.00631)
 
-        q_ts = flat_rate(todays_date, 0.02, dc)
+        q_ts = flat_rate(0.02, dc)
         s0 = SimpleQuote(100.0)
 
         # vol surface

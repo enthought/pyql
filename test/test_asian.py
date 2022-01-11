@@ -23,16 +23,7 @@ from quantlib.termstructures.volatility.api import BlackConstantVol
 
 import unittest
 
-
-# taken from quantlib unit-test utils
-def flat_rate(forward, daycounter):
-    return FlatForward(
-        forward=forward,
-        settlement_days=0,
-        calendar=NullCalendar(),
-        daycounter=daycounter
-    )
-
+from .utilities import flat_rate
 
 def relative_error(x1, x2, reference):
     if reference:

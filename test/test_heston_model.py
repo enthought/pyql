@@ -31,16 +31,7 @@ from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
 
 from quantlib.pricingengines.vanilla.mceuropeanhestonengine import MCEuropeanHestonEngine
-
-
-def flat_rate(forward, daycounter):
-    return FlatForward(
-        forward=SimpleQuote(forward),
-        settlement_days=0,
-        calendar=NullCalendar(),
-        daycounter=daycounter
-    )
-
+from .utilities import flat_rate
 
 class HestonModelTestCase(unittest.TestCase):
     """Test cases are based on the test-suite/hestonmodel.cpp in QuantLib.

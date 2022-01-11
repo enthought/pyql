@@ -18,14 +18,7 @@ from quantlib.time_grid import TimeGrid
 
 from quantlib.processes.heston_process import PartialTruncation
 
-
-def flat_rate(forward, daycounter):
-    return FlatForward(
-        forward=SimpleQuote(forward),
-        settlement_days=0,
-        calendar=NullCalendar(),
-        daycounter=daycounter
-    )
+from .utilities import flat_rate
 
 
 class SimTestCase(unittest.TestCase):
@@ -90,7 +83,7 @@ class SimTestCase(unittest.TestCase):
         grid = TimeGrid(horizon, steps)
         res = simulate_process(self.heston_process, paths, grid, seed)
 
-        time = list(grid) 
+        time = list(grid)
         time_expected = np.arange(0, 1.1, .1)
 
         np.testing.assert_array_almost_equal(time, time_expected, decimal=4)

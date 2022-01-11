@@ -10,14 +10,7 @@ from quantlib.time.api import (
 from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 
-
-def flat_rate(forward, daycounter):
-    return FlatForward(
-        forward = SimpleQuote(forward),
-        settlement_days = 0,
-        calendar = NullCalendar(),
-        daycounter = daycounter
-    )
+from .utilities import flat_rate
 
 
 class ProcessTestCase(unittest.TestCase):

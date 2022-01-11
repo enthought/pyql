@@ -42,12 +42,7 @@ from quantlib.instruments.payoffs import (
 
 from quantlib.methods.finitedifferences.solvers.fdmbackwardsolver import FdmSchemeDesc
 
-def flat_rate(today, forward, daycounter):
-    return FlatForward(
-        reference_date=today,
-        forward=SimpleQuote(forward),
-        daycounter=daycounter
-    )
+from .utilities import flat_rate
 
 
 class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
@@ -113,8 +108,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
 
         spot = SimpleQuote(100)
 
-        q_ts = flat_rate(todays_date, 0.04, dc)
-        r_ts = flat_rate(todays_date, 0.0525, dc)
+        q_ts = flat_rate(0.04, dc)
+        r_ts = flat_rate(0.0525, dc)
         vol_ts = BlackConstantVol(todays_date, NullCalendar(), 0.25, dc)
 
         hullWhiteModel = HullWhite(r_ts, 0.00883, 0.00526)
@@ -342,7 +337,7 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
                         print("Failed to reproduce npv")
                         print("strike    : %f" % strike)
                         print("maturity  : %d" % maturity)
-                        print("type      : %s" % option_type.name) 
+                        print("type      : %s" % option_type.name)
 
                     self.assertAlmostEqual(expected, calculated,
                                             delta=tol)

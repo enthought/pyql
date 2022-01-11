@@ -19,15 +19,7 @@ from quantlib.models.shortrate.calibrationhelpers.swaption_helper \
 
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 
-
-def flat_rate(forward, daycounter):
-    return FlatForward(
-        forward=SimpleQuote(forward),
-        settlement_days=0,
-        calendar=NullCalendar(),
-        daycounter=daycounter
-    )
-
+from .utilities import flat_rate
 
 class HullWhiteModelTestCase(unittest.TestCase):
 
@@ -40,7 +32,7 @@ class HullWhiteModelTestCase(unittest.TestCase):
         """
         today = Date(15, February, 2002)
         self.settings.evaluation_date = today
-        yield_ts = flat_rate(forward=0.04875825, daycounter=Actual360())
+        yield_ts = flat_rate(0.04875825, Actual360())
 
         model = HullWhite(yield_ts, a=0.0001, sigma=.1)
 
