@@ -12,14 +12,14 @@ jobs:
 
     steps:
       - name: install dependencies
-        run: | 
+        run: |
           sudo add-apt-repository ppa:edd/misc -y
           sudo apt-get update
           sudo apt-get install libquantlib0-dev
-          
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -32,15 +32,15 @@ jobs:
           pip install -r requirements.txt
 
       - name: Setup ccache
-        uses: Chocobo1/setup-ccache-action@v1
+        uses: hendrikmuhs/ccache-action@v1
         with:
-          update_packager_index: false
+          key: ${{matrix.python-version}}
 
       - name: Build
         run: |
-           python setup.py build_ext --inplace
+          export PATH="/usr/lib/ccache:$PATH"
+          python setup.py build_ext --inplace -j 2
 
       - name: Run tests
         run: |
            python -m unittest discover -v
-
