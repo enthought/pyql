@@ -142,8 +142,8 @@ def collect_extensions():
         'libraries':[QL_LIBRARY]
     }
 
-    test_extension = Extension('quantlib.test.test_cython_bug',
-        ['quantlib/test/test_cython_bug.pyx'],
+    test_extension = Extension('test.test_cython_bug',
+        ['test/test_cython_bug.pyx'],
         **kwargs
     )
 

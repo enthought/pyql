@@ -16,12 +16,10 @@ uninstall:
 tests-preload:
 	LD_PRELOAD=/opt/QuantLib-1.1/lib/libQuantLib.so nosetests -v quantlib/test
 
-tests:
-	cd quantlib/test
+tests: build
 	python -m unittest discover -v
 
 tests2: build2
-	cd quantlib/test
 	python2 -m unittest discover -v
 
 build_ex:
