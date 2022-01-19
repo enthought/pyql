@@ -21,14 +21,14 @@ measurement. The C++ class is defined as follows:
 
 After wrapping the C++ class, this class is now available in python::
 
-   from quantlib.quotes import SimpleQuote
+   from quantlib.quotes.simplequote import SimpleQuote
    spot = SimpleQuote(3.14)
    print('Spot %f' % spot.value)
 
 A couple of observations are worth mentioning:
 
 * pyql preserves the module hierarchy of QuantLib:
-  the SimpleQuote class is defined in the quote module in C++.
+  the SimpleQuote class is defined in the ``quantlib/quotes/simplequote.hpp`` header in C++.
 
 * pyql exposes QuantLib in a pythonic fashion: instead of exposing the accessor value(),
   pyql implements the property value.
@@ -52,47 +52,37 @@ Declaration of the QL classes to be exposed
 .. highlight:: cython
 
 This file contains the declaration of the QL
-class being exposed. For example, the header file ``_quotes.pxd`` is
+class being exposed. For example, the header file ``_simplequote.pxd`` is
 as follows::
 
-  include 'types.pxi'
-
-  from libcpp cimport bool
-
-  cdef extern from 'ql/quote.hpp' namespace 'QuantLib':
-	cdef cppclass Quote:
-	   Quote() except +
-	   Real value() except +
-	   bool isValid() except +
+  from quantlib.types cimport Real
+  from quantlib._quote cimport Quote
 
   cdef extern from 'ql/quotes/simplequote.hpp' namespace 'QuantLib':
 
-	cdef cppclass SimpleQuote(Quote):
-	   SimpleQuote(Real value) except +
-	   Real setValue(Real value) except +
+     cdef cppclass SimpleQuote(Quote):
+        SimpleQuote(Real value)
+        Real setValue(Real value)
+        void reset()
 
-In this file, we declare the class ``SimpleQuote`` and its parent ``Quote``.
+In this file, we declare the class ``SimpleQuote`` qwhich derives from ``Quote``.
 The syntax is almost identical to the corresponding C++ header file. The
-types used in declaring arguments are defined in ``types.pxi``.
+types used in declaring arguments are defined in ``quantlib.types``.
 
-The clause 'except +' signals that the method may throw an exception. It
-is indispensable to append this clause to every declaration. Without it, an
-exception thrown in QL will terminate the python process.
 
 Declaration of the python class
 -------------------------------
 
 The second header file declares the python classes that will be wrapping
-the QL classes. The file ``quotes.pxd`` is reproduced below::
+the QL classes. The file ``simplequote.pxd`` is reproduced below::
 
-    cimport _quote as _qt
-    from quantlib.handle cimport shared_ptr
+    from quantlib.quote cimport Quote
 
-    cdef class Quote:
-       cdef shared_ptr[_qt.Quote]* _thisptr
+    cdef class SimpleQuote(Quote):
+        pass
 
 Notice that in our header files we use 'Quote' to refer the the C++
-class (in file _quote.pxd) and to the python class (in file
+class (in file _simplequote.pxd) and to the python class (in file
 quote.pxd). To avoid confusion we use the following convention:
 
 * the C++ class is always referred to as ``_qt.Quote``.
@@ -100,39 +90,36 @@ quote.pxd). To avoid confusion we use the following convention:
 
 The cython wrapper class holds a reference to the QL C++ class. As we do not
 want to do any memory handling on the Python side, we always wrap the C++
-object into a boost shared pointer that is deallocated properly when
-deallocation the Cython extension.
+object into a shared pointer whose lifetime is tied to the lifetime of the
+wrapping class. That way it will get deallocated automatically when the Python
+GC runs.
 
 Implementation of the python class
 ----------------------------------
 
 The third file contains the implementation of the cython wrapper
-class. As an illustration, the implementation of the ``SingleQuote``
+class. As an illustration, the implementation of the ``SimpleQuote``
 python class is reproduced below::
 
    cdef class SimpleQuote(Quote):
-      def __init__(self, double value=0.0):
-         self._thisptr = new shared_ptr[_qt.Quote](new _qt.SimpleQuote(value))
-
-      def __dealloc__(self):
-         if self._thisptr is not NULL:
-            del self._thisptr # properly deallocates the shared_ptr and
-                              # probably the target object if not referenced
+      def __init__(self, double value=QL_NULL_REAL):
+         """ Market element returning a stored value"""
+         self._thisptr.reset(new _sq.SimpleQuote(value))
 
       def __str__(self):
-         return 'Simple Quote: %f' % self._thisptr.get().value()
+         if self._thisptr and self._thisptr.get().isValid():
+            return 'Simple Quote: %f' % self._thisptr.get().value()
+         else:
+            return 'Empty Quote'
 
       property value:
          def __get__(self):
-            if self._thisptr.get().isValid():
-               return self._thisptr.get().value()
-            else:
-               return None
+            return self._thisptr.get().value()
 
-        def __set__(self, double value):
+         def __set__(self, double value):
             (<_qt.SimpleQuote*>self._thisptr.get()).setValue(value)
 
-The ``__init__`` method invokes the C++ constructor, which returns a boost shared pointer.
+The ``__init__`` method invokes the C++ constructor, which returns a shared pointer.
 
 Properties are used to give a more pythonic flavor to the wrapping.
 In python, we get the value of the ``SimpleQuote`` with the syntax
@@ -148,9 +135,7 @@ into a ``SimpleQuote`` shared pointer in order to invoke ``setValue()``.
 Managing C++ references using shared_ptr
 ----------------------------------------
 
-All the Cython extension references should be declared using shared_ptr. The
-``__dealloc__`` method should always delete the shared_ptr but never the target
-pointer!
+All the Cython extension references should be declared using shared_ptr.
 
 Every time a shared_ptr reference is received, never assigns the target pointer
 to a local pointer variables as it might be deallocated. Always use the copy
