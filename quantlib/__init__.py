@@ -1,3 +1,4 @@
+""" library for quantitative finance"""
 import sys
 import os
 
