@@ -4,6 +4,7 @@
 # This program is distributed in the hope that it will be useful, but WITHOUT
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
+""" deposit, FRA, futures and various swap rate helpers"""
 
 include '../../types.pxi'
 
@@ -119,19 +120,18 @@ cdef class DepositRateHelper(RelativeDateRateHelper):
                 raise ValueError('rate needs to be a float or a SimpleQuote')
 
 cdef class SwapRateHelper(RelativeDateRateHelper):
-    """Rate helper for bootstrapping over swap rates, use from_tenor or from_index function"""
-    def __init__(self, from_classmethod=False):
-        # Creating a SwaprRateHelper without using a class method means the
+    """Rate helper for bootstrapping over swap rates"""
+    def __init__(self):
+        # Creating a SwapRateHelper without using a class method means the
         # shared_ptr won't be initialized properly and break any subsequent calls
         # to the QuantLib internals... To avoid this, we raise a ValueError if
         # the user tries to instantiate this class if not setting the
         # from_classmethod. This is an ugly workaround but is ok so far.
 
-        if from_classmethod is False:
-            raise ValueError(
-                'SwapRateHelpers must be instantiated through the class methods'
-                ' from_index or from_tenor'
-            )
+        raise ValueError(
+            'SwapRateHelpers must be instantiated through the class methods'
+            ' from_index or from_tenor'
+        )
 
     @classmethod
     def from_tenor(cls, rate, Period tenor not None,
@@ -197,6 +197,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                    Pillar pillar=Pillar.LastRelevantDate,
                    Date custom_pillar_date=Date(),
                    bool end_of_month=False):
+        "build a SwapRateHelper from a SwapIndex"
         cdef SwapRateHelper instance = cls.__new__(cls)
 
         if isinstance(rate, float):
