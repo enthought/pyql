@@ -112,7 +112,8 @@ def get_extra_link_args():
     return args
 
 CYTHON_DIRECTIVES = {"embedsignature": True,
-        "language_level": '3str'}
+                     "language_level": '3str',
+                     "auto_pickle": False}
 
 def render_templates():
     for basename in ["piecewise_yield_curve", "discount_curve", "forward_curve", "zero_curve"]:
