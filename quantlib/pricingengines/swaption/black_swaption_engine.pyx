@@ -19,9 +19,8 @@ cdef class BlackSwaptionEngine(PricingEngine):
     """Shifted Lognormal Black-formula swaption engine
 
     .. warning::
-
-    The engine assumes that the exercise date lies before the
-    start date of the passed swap.
+       The engine assumes that the exercise date lies before the
+       start date of the passed swap.
     """
     def __init__(self, YieldTermStructure discount_curve not None,
                  vol,
@@ -61,9 +60,8 @@ cdef class BachelierSwaptionEngine(PricingEngine):
     """Normal Bachelier-formula swaption engine
 
     .. warning::
-
-    The engine assumes that the exercise date lies before the
-    start date of the passed swap.
+       The engine assumes that the exercise date lies before the
+       start date of the passed swap.
     """
     def __init__(
             self,
