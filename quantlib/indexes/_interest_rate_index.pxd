@@ -29,11 +29,12 @@ cdef extern from 'ql/indexes/interestrateindex.hpp' namespace 'QuantLib':
                          Currency& currency,
                          Calendar& fixingCalendar,
                          DayCounter& dayCounter) nogil
-        string name()
         bool isValidFixingDate(Date& fixingDate)
         Rate fixing(Date& fixingDate,
                     bool forecastTodaysFixing) except +
-        update()
+
+        Rate forecastFixing(const Date& fixingDate)
+
         string familyName()
         Period tenor()
         Natural fixingDays()

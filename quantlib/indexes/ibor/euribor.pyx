@@ -25,6 +25,13 @@ cdef class Euribor(IborIndex):
             )
         )
 
+cdef class Euribor3M(Euribor):
+    def __init__(self, YieldTermStructure ts=YieldTermStructure()):
+
+        self._thisptr = shared_ptr[_in.Index](
+            new _eu.Euribor3M(ts._thisptr)
+        )
+
 cdef class Euribor6M(Euribor):
     def __init__(self, YieldTermStructure ts=YieldTermStructure()):
 

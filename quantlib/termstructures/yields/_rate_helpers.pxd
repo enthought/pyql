@@ -178,3 +178,26 @@ cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
                           FuturesType type# = Futures::IMM)
         ) except +
         Real convexityAdjustment() const
+
+
+    cdef cppclass FxSwapRateHelper(RelativeDateRateHelper):
+        FxSwapRateHelper(const Handle[Quote]& fwdPoint,
+                         Handle[Quote] spotFx,
+                         const Period& tenor,
+                         Natural fixingDays,
+                         Calendar calendar,
+                         BusinessDayConvention convention,
+                         bool endOfMonth,
+                         bool isFxBaseCurrencyCollateralCurrency,
+                         Handle[YieldTermStructure] collateralCurve,
+                         Calendar tradingCalendar)# = Calendar());
+
+        Real spot()
+        Period tenor()
+        Natural fixingDays()
+        Calendar calendar()
+        BusinessDayConvention businessDayConvention()
+        bool endOfMonth()
+        bool isFxBaseCurrencyCollateralCurrency()
+        Calendar tradingCalendar()
+        Calendar adjustmentCalendar()

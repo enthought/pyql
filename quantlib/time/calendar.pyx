@@ -107,8 +107,8 @@ cdef class Calendar:
         return date.date_from_qldate(adjusted_date)
 
     def advance(self, date.Date given_date not None, int step=0, int units=-1,
-               date.Period period=None, int convention=Following,
-               end_of_month=False):
+                date.Period period=None, int convention=Following,
+                end_of_month=False):
         '''Advances the given date of the given number of business days,
         or period and returns the result.
 

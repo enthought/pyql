@@ -29,16 +29,12 @@ cimport quantlib.time._daycounter as _dc
 cimport quantlib.time._calendar as _ca
 
 
-cdef _iri.InterestRateIndex* get_iri(InterestRateIndex index):
+cdef inline _iri.InterestRateIndex* get_iri(InterestRateIndex index):
     """ Utility function to extract a properly casted IRI pointer out of the
     internal _thisptr attribute of the Index base class. """
-
-    cdef _iri.InterestRateIndex* ref = <_iri.InterestRateIndex*>index._thisptr.get()
-    return ref
+    return <_iri.InterestRateIndex*>index._thisptr.get()
 
 cdef class InterestRateIndex(Index):
-    def __cinit__(self):
-        pass
 
     def __str__(self):
         return 'Interest rate index %s' % self.name
@@ -62,6 +58,7 @@ cdef class InterestRateIndex(Index):
             cdef DayCounter dc = DayCounter.__new__(DayCounter)
             dc._thisptr = new _dc.DayCounter(get_iri(self).dayCounter())
             return dc
+
     @property
     def currency(self):
         cdef Currency curr = Currency.__new__(Currency)
@@ -83,3 +80,7 @@ cdef class InterestRateIndex(Index):
         cdef _dt.Date dt = deref(valueDate._thisptr)
         cdef _dt.Date maturity_date = get_iri(self).maturityDate(dt)
         return date_from_qldate(maturity_date)
+
+    def forecast_fixing(self, Date fixing_date not None):
+        cdef _dt.Date dt = deref(fixing_date._thisptr)
+        return get_iri(self).forecastFixing(dt)

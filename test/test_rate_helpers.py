@@ -3,14 +3,20 @@ import unittest
 from quantlib.currency.api import USDCurrency
 from quantlib.indexes.swap_index import SwapIndex
 from quantlib.indexes.ibor.libor import Libor
+from quantlib.indexes.api import Euribor3M, USDLibor, Eonia
 from quantlib.quotes import SimpleQuote
+from quantlib.experimental.termstructures.crosscurrencyratehelpers import ConstNotionalCrossCurrencyBasisSwapRateHelper
 from quantlib.termstructures.yields.rate_helpers import (
-    DepositRateHelper, FraRateHelper, FuturesRateHelper, SwapRateHelper
+    DepositRateHelper, FraRateHelper, FuturesRateHelper, SwapRateHelper, FxSwapRateHelper
 )
-from quantlib.termstructures.yields.api import YieldTermStructure
+from quantlib.termstructures.yields.ois_rate_helper import OISRateHelper
+from quantlib.termstructures.yields.api import YieldTermStructure, PiecewiseYieldCurve, FlatForward
+from quantlib.math.interpolation import BackwardFlat, LogLinear
+from quantlib.termstructures.yields.bootstraptraits import Discount, ForwardRate
 from quantlib.time.api import (
     Period, Months, TARGET, ModifiedFollowing, Actual365Fixed, Date, Years,
-    UnitedStates, Actual360, Annual
+    UnitedStates, Actual360, Annual, Following, NullCalendar, Days, Weeks,
+    JointCalendar, Poland
 )
 from quantlib.settings import Settings
 
@@ -190,6 +196,507 @@ class RateHelpersTestCase(unittest.TestCase):
 
         with self.assertRaises(RuntimeError):
             self.assertAlmostEqual(rate.value, helper_from_quote.implied_quote)
+
+
+class FxSwapRateHelperTest(unittest.TestCase):
+
+    def setUp(self):
+
+        # Market rates are artificial, just close to real ones.
+        self.default_quote_date = Date(26, 8, 2016)
+
+        self.fx_swap_quotes = {
+            (1, Months): 20e-4,
+            (3, Months): 60e-4,
+            (6, Months): 120e-4,
+            (1, Years): 240e-4,
+        }
+
+        # Valid only for the quote date of Date(26, 8, 2016)
+        self.maturities = [Date(30, 9, 2016), Date(30, 11, 2016),
+                           Date(28, 2, 2017), Date(30, 8, 2017)]
+
+        self.fx_spot_quote_EURPLN = 4.3
+        self.fx_spot_quote_EURUSD = 1.1
+
+    def build_eur_curve(self, quotes_date):
+        """
+        Builds the EUR OIS curve as the collateral currency discount curve
+        :param quotes_date: date fro which it is assumed all market data are
+            valid
+        :return: tuple consisting of objects related to EUR OIS discounting
+            curve: PiecewiseFlatForward,
+                   YieldTermStructureHandle
+                   RelinkableYieldTermStructureHandle
+        """
+        calendar = TARGET()
+        settlementDays = 2
+
+        todaysDate = quotes_date
+        Settings.instance().evaluation_date = todaysDate
+
+        todays_Eonia_quote = -0.00341
+
+        # market quotes
+        # deposits, key structure as (settlement_days_number, number_of_units_
+        # for_maturity, unit)
+        deposits = {(0, 1, Days): todays_Eonia_quote}
+
+        discounting_yts_handle = YieldTermStructure()
+        on_index = Eonia(discounting_yts_handle)
+        on_index.add_fixing(todaysDate, todays_Eonia_quote / 100.0)
+
+        ois = {
+            (1, Weeks): -0.342,
+            (1, Months): -0.344,
+            (3, Months): -0.349,
+            (6, Months): -0.363,
+            (1, Years): -0.389,
+        }
+
+        # convert them to Quote objects
+        for k, v in deposits.items():
+            deposits[k] = SimpleQuote(v / 100.0)
+
+        for k, v in ois.items():
+            ois[k] = SimpleQuote(v / 100.0)
+
+        # build rate helpers
+        dayCounter = Actual360()
+        # looping left if somone wants two add more deposits to tests, e.g. T/N
+
+        depositHelpers = [
+            DepositRateHelper(
+                q,
+                Period(n, unit),
+                sett_num,
+                calendar,
+                ModifiedFollowing,
+                True,
+                dayCounter,
+            )
+            for (sett_num, n, unit), q in deposits.items()
+        ]
+
+        oisHelpers = [
+            OISRateHelper(
+                settlementDays, Period(n, unit),
+                q, on_index, discounting_yts_handle
+            )
+            for (n, unit), q in ois.items()
+        ]
+
+        rateHelpers = depositHelpers + oisHelpers
+
+        # term-structure construction
+        oisSwapCurve = PiecewiseYieldCurve[ForwardRate, BackwardFlat].from_reference_date(todaysDate, rateHelpers,
+                                                                                    Actual360())
+        oisSwapCurve.extrapolation = True
+        return oisSwapCurve
+
+    def build_pln_fx_swap_curve(self, base_ccy_yts, fx_swaps, fx_spot):
+        """
+        Build curve implied from fx swap curve.
+        :param base_ccy_yts:
+            Relinkable yield term structure handle to curve in base currency.
+        :param fx_swaps:
+            Dictionary with swap points, already divided by 10,000
+        :param fx_spot:
+            Float value of fx spot exchange rate.
+        :return: tuple consisting of objects related to fx swap implied curve:
+                PiecewiseFlatForward,
+                YieldTermStructureHandle
+                RelinkableYieldTermStructureHandle
+                list of FxSwapRateHelper
+        """
+        todaysDate = base_ccy_yts.reference_date
+        # I am not sure if that is required, but I guss it is worth setting
+        # up just in case somewhere another thread updates this setting.
+        Settings.instance().evaluation_date = todaysDate
+
+        calendar = JointCalendar(TARGET(), Poland())
+        spot_date_lag = 2
+        trading_calendar = UnitedStates()
+
+        # build rate helpers
+        spotFx = SimpleQuote(fx_spot)
+
+        fxSwapHelpers = [
+            FxSwapRateHelper(
+                SimpleQuote(fx_swaps[(n, unit)]),
+                spotFx,
+                Period(n, unit),
+                spot_date_lag,
+                calendar,
+                ModifiedFollowing,
+                True,
+                True,
+                base_ccy_yts,
+                trading_calendar,
+            )
+            for n, unit in fx_swaps
+        ]
+
+        # term-structure construction
+        fxSwapCurve = PiecewiseYieldCurve[ForwardRate, BackwardFlat].from_reference_date(todaysDate, fxSwapHelpers,
+                                           Actual365Fixed())
+        fxSwapCurve.extrapolation = True
+        return fxSwapCurve, fxSwapHelpers
+
+    def build_curves(self, quote_date):
+        """
+        Build all the curves in one call for a specified quote date
+        :param quote_date: date for which quotes are valid,
+            e.g. Date(26, 8, 2016)
+        """
+        self.today = quote_date
+        self.eur_ois_curve = self.build_eur_curve(self.today)
+        self.pln_eur_implied_curve, self.eur_pln_fx_swap_helpers = self.build_pln_fx_swap_curve(self.eur_ois_curve, self.fx_swap_quotes, self.fx_spot_quote_EURPLN)
+
+    def testQuote(self):
+        """ Testing FxSwapRateHelper.quote()  method. """
+        self.build_curves(self.default_quote_date)
+        # Not sure if all Python versions and machine will guarantee that the
+        #  lists are not messed, probably some ordered maps should be used
+        # here while retrieving values from fx_swap_quotes dictionary
+        for q, helper in zip(self.fx_swap_quotes.values(), self.eur_pln_fx_swap_helpers):
+            self.assertEqual(q, helper.quote.value)
+
+    def testLatestDate(self):
+        """ Testing FxSwapRateHelper.latestDate()  method. """
+        self.build_curves(self.default_quote_date)
+        # Check if still the test date is unchanged, otherwise all other
+        # tests here make no sense.
+        self.assertEqual(self.today, Date(26, 8, 2016))
+
+        # Hard coded expected maturities of fx swaps
+        for m, helper in zip(self.maturities, self.eur_pln_fx_swap_helpers):
+            self.assertEqual(m, helper.latest_date)
+
+    def testImpliedRates(self):
+        """
+        Testing if rates implied from the curve are returning fx forwards
+        very close to those used for bootstrapping
+        """
+        self.build_curves(self.default_quote_date)
+        # Not sure if all Python versions and machine will guarantee that the
+        #  lists are not messed, probably some ordered maps should be used
+        # here while retrieving values from fx_swap_quotes dictionary
+        original_quotes = list(self.fx_swap_quotes.values())
+        spot_date = Date(30, 8, 2016)
+        spot_df = self.eur_ois_curve.discount(
+            spot_date) / self.pln_eur_implied_curve.discount(spot_date)
+
+        for original_quote, maturity in zip(original_quotes, self.maturities):
+            original_forward = self.fx_spot_quote_EURPLN + original_quote
+            curve_impl_forward = (
+                    self.fx_spot_quote_EURPLN
+                    * self.eur_ois_curve.discount(maturity)
+                    / self.pln_eur_implied_curve.discount(maturity)
+                    / spot_df
+            )
+
+            self.assertAlmostEqual(original_forward, curve_impl_forward,
+                                   places=6)
+
+    def testFxMarketConventionsForCrossRate(self):
+        """
+        Testing if FxSwapRateHelper obeys the fx spot market
+        conventions for cross rates.
+        """
+        today = Date(1, 7, 2016)
+        spot_date = Date(5, 7, 2016)
+        self.build_curves(today)
+
+        us_calendar = UnitedStates()
+
+        joint_calendar = JointCalendar(TARGET(), Poland())
+
+        settlement_calendar = JointCalendar(joint_calendar, us_calendar)
+
+        # Settlement should be on a day where all three centers are operating
+        #  and follow EndOfMonth rule
+        maturities = [
+            settlement_calendar.advance(spot_date, n, unit,
+                                        convention=ModifiedFollowing, end_of_month=True)
+            for n, unit in self.fx_swap_quotes
+        ]
+
+        for m, helper in zip(maturities, self.eur_pln_fx_swap_helpers):
+            self.assertEqual(m, helper.latest_date)
+
+    def testFxMarketConventionsForCrossRateONPeriod(self):
+        """
+        Testing if FxSwapRateHelper obeys the fx spot market
+        conventions for cross rates' ON Period.
+        """
+        today = Date(1, 7, 2016)
+        Settings.instance().evaluation_date = today
+
+        spot_date = Date(5, 7, 2016)
+        fwd_points = 4.0
+        # critical for ON rate helper
+        on_period = Period("1d")
+        fixing_days = 0
+
+        # empty RelinkableYieldTermStructureHandle is sufficient for testing
+        # dates
+        base_ccy_yts = YieldTermStructure()
+
+        us_calendar = UnitedStates()
+
+        joint_calendar = JointCalendar(TARGET(), Poland())
+
+        # Settlement should be on a day where all three centers are operating
+        #  and follow EndOfMonth rule
+        on_rate_helper = FxSwapRateHelper(
+            SimpleQuote(fwd_points),
+            SimpleQuote(self.fx_spot_quote_EURPLN),
+            on_period,
+            fixing_days,
+            joint_calendar,
+            ModifiedFollowing,
+            False,
+            True,
+            base_ccy_yts,
+            us_calendar,
+        )
+
+        self.assertEqual(spot_date, on_rate_helper.latest_date)
+
+    def testFxMarketConventionsForCrossRateAdjustedSpotDate(self):
+        """
+        Testing if FxSwapRateHelper obeys the fx spot market
+        conventions
+        """
+        today = Date(30, 6, 2016)
+        spot_date = Date(5, 7, 2016)
+        self.build_curves(today)
+        us_calendar = UnitedStates()
+        joint_calendar = JointCalendar(TARGET(), Poland())
+
+        settlement_calendar = JointCalendar(joint_calendar, us_calendar)
+        # Settlement should be on a day where all three centers are operating
+        #  and follow EndOfMonth rule
+        maturities = [
+            joint_calendar.advance(spot_date, n, unit, convention=ModifiedFollowing,
+                                   end_of_month=True)
+            for n, unit in self.fx_swap_quotes
+        ]
+
+        maturities = [settlement_calendar.adjust(date) for date in maturities]
+
+        for helper, maturity in zip(self.eur_pln_fx_swap_helpers, maturities):
+            self.assertEqual(maturity, helper.latest_date)
+
+    def testFxMarketConventionsForDatesInEURUSD_ON_Period(self):
+        """
+        Testing if FxSwapRateHelper obeys the fx spot market
+        conventions for EURUSD settlement dates on the ON Period.
+        """
+        today = Date(1, 7, 2016)
+        Settings.instance().evaluation_date = today
+
+        spot_date = Date(5, 7, 2016)
+        fwd_points = 4.0
+        # critical for ON rate helper
+        on_period = Period("1d")
+        fixing_days = 0
+
+        # empty RelinkableYieldTermStructureHandle is sufficient for testing
+        # dates
+        base_ccy_yts = YieldTermStructure()
+
+        # In EURUSD, there must be two days to spot date in Target calendar
+        # and one day in US, therefore it is sufficient to pass only Target
+        # as a base calendar
+        calendar = TARGET()
+        trading_calendar = UnitedStates()
+
+        on_rate_helper = FxSwapRateHelper(
+            SimpleQuote(fwd_points),
+            SimpleQuote(self.fx_spot_quote_EURUSD),
+            on_period,
+            fixing_days,
+            calendar,
+            ModifiedFollowing,
+            False,
+            True,
+            base_ccy_yts,
+            trading_calendar,
+        )
+
+        self.assertEqual(spot_date, on_rate_helper.latest_date)
+
+    def testFxMarketConventionsForDatesInEURUSD_ShortEnd(self):
+        """
+        Testing if FxSwapRateHelper obeys the fx spot market
+        conventions for EURUSD settlement dates on the 3M tenor.
+        """
+        today = Date(1, 7, 2016)
+        Settings.instance().evaluation_date = today
+
+        expected_3M_date = Date(5, 10, 2016)
+        fwd_points = 4.0
+        # critical for ON rate helper
+        period = Period("3M")
+        fixing_days = 2
+
+        # empty RelinkableYieldTermStructureHandle is sufficient for testing
+        # dates
+        base_ccy_yts = YieldTermStructure()
+
+        # In EURUSD, there must be two days to spot date in Target calendar
+        # and one day in US, therefore it is sufficient to pass only Target
+        # as a base calendar. Passing joint calendar would result in wrong
+        # spot date of the trade
+        calendar = TARGET()
+        trading_calendar = UnitedStates()
+
+        rate_helper = FxSwapRateHelper(
+            SimpleQuote(fwd_points),
+            SimpleQuote(self.fx_spot_quote_EURUSD),
+            period,
+            fixing_days,
+            calendar,
+            ModifiedFollowing,
+            True,
+            True,
+            base_ccy_yts,
+            trading_calendar,
+        )
+
+        self.assertEqual(expected_3M_date, rate_helper.latest_date)
+
+    def tearDown(self):
+        Settings.instance().evaluation_date = Date()
+
+
+def flat_rate(rate):
+    return FlatForward(
+        settlement_days=0, calendar=NullCalendar(), forward=SimpleQuote(rate), daycounter=Actual365Fixed())
+
+
+class CrossCurrencyBasisSwapRateHelperTest(unittest.TestCase):
+    def setUp(self):
+        Settings.instance().evaluation_date = Date(26, 5, 2021)
+
+        self.basis_point = 1.0e-4
+        self.settlement_days = 2
+        self.business_day_convention = Following
+        self.calendar = TARGET()
+        self.day_count = Actual365Fixed()
+        self.end_of_month = False
+        base_ccy_idx_handle = flat_rate(0.007)
+        quoted_ccy_idx_handle = flat_rate(0.015)
+        self.base_ccy_idx = Euribor3M(base_ccy_idx_handle)
+        self.quote_ccy_idx = USDLibor(
+            Period(3, Months), quoted_ccy_idx_handle)
+        self.collateral_ccy_handle = flat_rate(0.009)
+        # Cross currency basis swaps data source:
+        #   N. Moreni, A. Pallavicini (2015)
+        #   FX Modelling in Collateralized Markets: foreign measures, basis curves
+        #   and pricing formulae.
+        #   section 4.2.1, Table 2.
+        self.cross_currency_basis_quotes = ((Period(1, Years), -14.5),
+                                            (Period(18, Months), -18.5),
+                                            (Period(2, Years), -20.5),
+                                            (Period(3, Years), -23.75),
+                                            (Period(4, Years), -25.5),
+                                            (Period(5, Years), -26.5),
+                                            (Period(7, Years), -26.75),
+                                            (Period(10, Years), -26.25),
+                                            (Period(15, Years), -24.75),
+                                            (Period(20, Years), -23.25),
+                                            (Period(30, Years), -20.50))
+
+    def buildRateHelper(
+            self,
+            quote_tuple,
+            is_fx_base_ccy_collateral_ccy,
+            is_basis_on_fx_base_ccy_leg):
+        tenor, rate = quote_tuple
+        quote = SimpleQuote(rate * self.basis_point)
+        return ConstNotionalCrossCurrencyBasisSwapRateHelper(
+            quote,
+            tenor,
+            self.settlement_days,
+            self.calendar,
+            self.business_day_convention,
+            self.end_of_month,
+            self.base_ccy_idx,
+            self.quote_ccy_idx,
+            self.collateral_ccy_handle,
+            is_fx_base_ccy_collateral_ccy,
+            is_basis_on_fx_base_ccy_leg)
+
+    def assertImpliedQuotes(
+            self,
+            is_fx_base_ccy_collateral_ccy,
+            is_basis_on_fx_base_ccy_leg):
+        eps = 1.0e-8
+        helpers = [self.buildRateHelper(q,
+                                        is_fx_base_ccy_collateral_ccy,
+                                        is_basis_on_fx_base_ccy_leg)
+                   for q in self.cross_currency_basis_quotes]
+        term_structure = PiecewiseYieldCurve[Discount, LogLinear](
+            self.settlement_days, self.calendar, helpers, self.day_count)
+        settlement_date = term_structure.reference_date
+
+        # Trigger bootstrap
+        discount_at_origin = term_structure.discount(settlement_date)
+        self.assertAlmostEquals(
+            first=discount_at_origin, second=1.0, delta=eps)
+
+        for q, h in zip(self.cross_currency_basis_quotes, helpers):
+            tenor, expected_rate = q
+            actual_rate = h.implied_quote / self.basis_point
+
+            fail_msg = """ Failed to replicate cross currency basis:
+                            tenor: {tenor}
+                            actual basis: {actual_rate}
+                            expected basis: {expected_rate}
+                            tolerance: {tolerance}
+                       """.format(tenor=tenor,
+                                  actual_rate=actual_rate,
+                                  expected_rate=expected_rate,
+                                  tolerance=eps)
+            self.assertAlmostEquals(
+                first=actual_rate,
+                second=expected_rate,
+                delta=eps,
+                msg=fail_msg)
+
+    def testFxBasisSwapsWithCollateralInBaseAndBasisInQuoteCcy(self):
+        """ Testing basis swaps instruments with collateral in base ccy and basis in quote ccy... """
+        is_fx_base_ccy_collateral_ccy = True
+        is_basis_on_fx_base_currency_leg = False
+        self.assertImpliedQuotes(
+            is_fx_base_ccy_collateral_ccy, is_basis_on_fx_base_currency_leg)
+
+    def testFxBasisSwapsWithCollateralInQuoteAndBasisInBaseCcy(self):
+        """ Testing basis swaps instruments with collateral in quote ccy and basis in base ccy... """
+        is_fx_base_ccy_collateral_ccy = False
+        is_basis_on_fx_base_currency_leg = True
+        self.assertImpliedQuotes(
+            is_fx_base_ccy_collateral_ccy, is_basis_on_fx_base_currency_leg)
+
+    def testFxBasisSwapsWithCollateralAndBasisInBaseCcy(self):
+        """ Testing basis swaps instruments with collateral and basis in base ccy... """
+        is_fx_base_ccy_collateral_ccy = True
+        is_basis_on_fx_base_currency_leg = True
+        self.assertImpliedQuotes(
+            is_fx_base_ccy_collateral_ccy, is_basis_on_fx_base_currency_leg)
+
+    def testFxBasisSwapsWithCollateralAndBasisInQuoteCcy(self):
+        """ Testing basis swaps instruments with collateral and basis in quote ccy... """
+        is_fx_base_ccy_collateral_ccy = False
+        is_basis_on_fx_base_currency_leg = False
+        self.assertImpliedQuotes(
+            is_fx_base_ccy_collateral_ccy, is_basis_on_fx_base_currency_leg)
+
+    def tearDown(self):
+        Settings.instance().evaluation_date = Date()
 
 if __name__ == '__main__':
     unittest.main()
