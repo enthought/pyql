@@ -1,6 +1,7 @@
 from quantlib.market.conventions.swap import params as swap_params
 from quantlib.indexes.api import IborIndex
-from quantlib.instruments.swap import VanillaSwap, Payer
+from quantlib.instruments.swap import Payer
+from quantlib.instruments.vanillaswap import VanillaSwap
 from quantlib.pricingengines.swap import DiscountingSwapEngine
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings

@@ -20,23 +20,23 @@ from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._schedule cimport Schedule
 from quantlib._cashflow cimport Leg
 
-cdef extern from "ql/instruments/swap.hpp" namespace "QuantLib::Swap" nogil:
-    enum Type:
-        Receiver
-        Payer
-
 cdef extern from 'ql/instruments/swap.hpp' namespace 'QuantLib' nogil:
     cdef cppclass Swap(Instrument):
-
+        enum Type:
+            Receiver
+            Payer
         ## Swap(Leg& firstLeg,
         ##      Leg& secondLeg)
 
         ## Swap(vector[Leg]& legs,
         ##      vector[bool]& payer)
-
         bool isExpired()
+        Size numberOfLegs()
         Date startDate()
         Date maturityDate()
         Real legBPS(Size j) except +
         Real legNPV(Size j) except +
+        DiscountFactor startDiscounts(Size j) except +
+        DiscountFactor endDiscounts(Size j) except +
+        DiscountFactor npvDateDiscount() except +
         Leg& leg(Size j) except +

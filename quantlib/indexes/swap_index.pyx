@@ -14,7 +14,7 @@ from libcpp.string cimport string
 
 from quantlib.handle cimport static_pointer_cast
 from quantlib.indexes.interest_rate_index cimport InterestRateIndex
-from quantlib.instruments.swap cimport VanillaSwap
+from quantlib.instruments.vanillaswap cimport VanillaSwap
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.handle cimport shared_ptr
 from quantlib.time.date cimport Period
