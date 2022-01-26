@@ -3,7 +3,7 @@ from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
 
 cdef extern from 'ql/termstructures/voltermstructure.hpp' namespace 'QuantLib' nogil:
     cdef cppclass VolatilityTermStructure:

@@ -4,7 +4,7 @@ from quantlib.instruments.swap cimport Swap
 from quantlib.handle cimport static_pointer_cast, shared_ptr
 from quantlib.indexes.swap_index cimport SwapIndex
 from quantlib.time.date cimport Period, Date
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time._period cimport Days
 cimport quantlib.indexes._swap_index as _si
 cimport quantlib.instruments._instrument as _in

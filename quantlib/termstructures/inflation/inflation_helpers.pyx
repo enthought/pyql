@@ -2,7 +2,7 @@ from cython.operator cimport dereference as deref
 
 from . cimport _inflation_helpers as _ih
 from quantlib.handle cimport shared_ptr, static_pointer_cast
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.quote cimport Quote
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.date cimport Period, Date, date_from_qldate

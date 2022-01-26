@@ -4,7 +4,7 @@ from quantlib.handle cimport shared_ptr
 from quantlib.time._date cimport Date, Period
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._calendar cimport Calendar
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.termstructures._vol_term_structure cimport VolatilityTermStructure
 from .._smilesection cimport SmileSection
 from quantlib.termstructures.volatility._volatilitytype cimport VolatilityType

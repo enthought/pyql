@@ -15,7 +15,7 @@ cimport quantlib.time._calendar as _calendar
 cimport quantlib.time._date as _date
 cimport quantlib.time.date as date
 cimport quantlib.time._period as _period
-from quantlib.time._businessdayconvention cimport Following
+from quantlib.time.businessdayconvention cimport Following
 
 cdef class Calendar:
     '''This class provides methods for determining whether a date is a

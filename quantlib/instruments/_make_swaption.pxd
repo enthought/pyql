@@ -3,7 +3,7 @@ include '../types.pxi'
 from quantlib.handle cimport shared_ptr
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.indexes._swap_index cimport SwapIndex
 from quantlib.instruments._swaption cimport Swaption, Settlement
 from quantlib.instruments._vanillaswap cimport VanillaSwap

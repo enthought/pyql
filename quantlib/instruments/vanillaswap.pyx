@@ -5,7 +5,7 @@ from quantlib.cashflows.fixed_rate_coupon cimport FixedRateLeg
 from quantlib.cashflows.ibor_coupon cimport IborLeg
 from quantlib.indexes.ibor_index cimport IborIndex
 cimport quantlib.indexes._ibor_index as _ib
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time._daycounter cimport DayCounter as QlDayCounter

@@ -9,7 +9,7 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.time._daycounter cimport DayCounter as _DayCounter
 from quantlib.time.calendar cimport Calendar
 from quantlib.time._calendar cimport Calendar as _Calendar
-from quantlib.time._businessdayconvention cimport BusinessDayConvention, Following
+from quantlib.time.businessdayconvention cimport BusinessDayConvention, Following
 from quantlib.termstructures.vol_term_structure import VolatilityTermStructure
 
 from . cimport _black_vol_term_structure as _bvts
