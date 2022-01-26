@@ -3,7 +3,7 @@ include '../../../types.pxi'
 from libcpp cimport bool
 from libcpp.vector cimport vector
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
+from quantlib.handle cimport Handle, make_shared, static_pointer_cast
 from quantlib.math.optimization cimport OptimizationMethod, EndCriteria
 from quantlib.indexes.swap_index cimport SwapIndex
 from quantlib._defines cimport QL_NULL_REAL
@@ -20,7 +20,7 @@ from ..._vol_term_structure cimport VolatilityTermStructure
 
 cdef class SwaptionVolCube1(SwaptionVolatilityCube):
 
-    def __init__(self, SwaptionVolatilityStructure atm_vol_structure not None,
+    def __init__(self, atm_vol_structure not None,
                  list option_tenors not None,
                  list swap_tenors not None,
                  vector[Spread] strike_spreads,
@@ -40,10 +40,6 @@ cdef class SwaptionVolCube1(SwaptionVolatilityCube):
                  bool backward_flat=False,
                  Real cutoff_strike=0.0001):
         cdef:
-            Handle[_svs.SwaptionVolatilityStructure] atm_vol_structure_handle = \
-                Handle[_svs.SwaptionVolatilityStructure](
-                    static_pointer_cast[_svs.SwaptionVolatilityStructure](
-                        atm_vol_structure._thisptr))
             vector[QlPeriod] option_tenors_vec
             vector[QlPeriod] swap_tenors_vec
             Period p
@@ -69,25 +65,25 @@ cdef class SwaptionVolCube1(SwaptionVolatilityCube):
         for p in swap_tenors:
             swap_tenors_vec.push_back(deref(p._thisptr))
 
-
-        self._thisptr = shared_ptr[VolatilityTermStructure](
-            new _svc1.SwaptionVolCube1(
-                atm_vol_structure_handle,
-                option_tenors_vec,
-                swap_tenors_vec,
-                strike_spreads,
-                vol_spreads_matrix,
-                static_pointer_cast[_si.SwapIndex](swap_index_base._thisptr),
-                static_pointer_cast[_si.SwapIndex](short_swap_index_base._thisptr),
-                vega_weighted_smile_fit,
-                parameters_guess_matrix,
-                is_parameter_fixed,
-                is_atm_calibrated,
-                end_criteria._thisptr,
-                max_error_tolerance,
-                opt_method._thisptr,
-                error_accept,
-                use_max_error,
-                max_guesses,
-                backward_flat,
-                cutoff_strike))
+        self._derived_ptr = make_shared[_svc1.SwaptionVolCube1](
+            SwaptionVolatilityStructure.swaption_vol_handle(atm_vol_structure),
+            option_tenors_vec,
+            swap_tenors_vec,
+            strike_spreads,
+            vol_spreads_matrix,
+            static_pointer_cast[_si.SwapIndex](swap_index_base._thisptr),
+            static_pointer_cast[_si.SwapIndex](short_swap_index_base._thisptr),
+            vega_weighted_smile_fit,
+            parameters_guess_matrix,
+            is_parameter_fixed,
+            is_atm_calibrated,
+            end_criteria._thisptr,
+            max_error_tolerance,
+            opt_method._thisptr,
+            error_accept,
+            use_max_error,
+            max_guesses,
+            backward_flat,
+            cutoff_strike
+        )
+        self._thisptr = self._derived_ptr

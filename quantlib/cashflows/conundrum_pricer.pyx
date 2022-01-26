@@ -16,18 +16,15 @@ cpdef enum YieldCurveModel:
 
 
 cdef class NumericHaganPricer(CmsCouponPricer):
-    def __init__(self, SwaptionVolatilityStructure swaption_vol not None,
+    def __init__(self, swaption_vol not None,
                  YieldCurveModel yieldcurve_model,
                  Quote mean_reversion not None,
                  Rate lower_limit=0.,
                  Rate upper_limit=1.,
                  Real precision=1e-6):
 
-        cdef Handle[_svs.SwaptionVolatilityStructure] swaption_vol_handle = \
-            Handle[_svs.SwaptionVolatilityStructure](
-                static_pointer_cast[_svs.SwaptionVolatilityStructure](swaption_vol._thisptr))
         self._thisptr = shared_ptr[_cp.FloatingRateCouponPricer](new _conp.NumericHaganPricer(
-            swaption_vol_handle,
+            SwaptionVolatilityStructure.swaption_vol_handle(swaption_vol),
             yieldcurve_model,
             mean_reversion.handle(),
             lower_limit,
@@ -36,13 +33,10 @@ cdef class NumericHaganPricer(CmsCouponPricer):
         ))
 
 cdef class AnalyticHaganPricer(CmsCouponPricer):
-    def __init__(self, SwaptionVolatilityStructure swaption_vol not None,
+    def __init__(self, swaption_vol not None,
                  YieldCurveModel yieldcurve_model,
                  Quote mean_reversion not None):
-        cdef Handle[_svs.SwaptionVolatilityStructure] swaption_vol_handle = \
-            Handle[_svs.SwaptionVolatilityStructure](
-                static_pointer_cast[_svs.SwaptionVolatilityStructure](swaption_vol._thisptr))
         self._thisptr = shared_ptr[_cp.FloatingRateCouponPricer](new _conp.AnalyticHaganPricer(
-            swaption_vol_handle,
+            SwaptionVolatilityStructure.swaption_vol_handle(swaption_vol),
             yieldcurve_model,
             mean_reversion.handle()))

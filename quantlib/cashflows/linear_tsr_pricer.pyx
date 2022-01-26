@@ -9,18 +9,14 @@ from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.quote cimport Quote
 
 cdef class LinearTsrPricer(CmsCouponPricer):
-    def __init__(self, SwaptionVolatilityStructure swaption_vol not None,
+    def __init__(self, swaption_vol not None,
                  Quote mean_reversion not None,
                  YieldTermStructure coupon_discount_curve=YieldTermStructure(),
                  Settings settings=Settings()):
 
-        cdef Handle[_svs.SwaptionVolatilityStructure] swaption_vol_handle = \
-            Handle[_svs.SwaptionVolatilityStructure](
-                static_pointer_cast[_svs.SwaptionVolatilityStructure](
-                    swaption_vol._thisptr))
         self._thisptr = shared_ptr[_cp.FloatingRateCouponPricer](
                 new QlLinearTsrPricer(
-            swaption_vol_handle,
+            SwaptionVolatilityStructure.swaption_vol_handle(swaption_vol),
             mean_reversion.handle(),
             coupon_discount_curve._thisptr,
             settings._thisptr

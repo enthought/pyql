@@ -6,7 +6,7 @@ cimport quantlib.time._date as _date
 
 
 cdef inline _svd.SwaptionVolatilityDiscrete* _get_svd(SwaptionVolatilityDiscrete vs):
-    return <_svd.SwaptionVolatilityDiscrete*> vs._thisptr.get()
+    return <_svd.SwaptionVolatilityDiscrete*> vs.as_ptr()
 
 cdef class SwaptionVolatilityDiscrete(SwaptionVolatilityStructure):
 

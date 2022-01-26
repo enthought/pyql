@@ -35,7 +35,7 @@ cdef class BlackConstantVol(BlackVolatilityTermStructure):
                  DayCounter daycounter not None):
 
         if isinstance(volatility, Quote):
-            self._thisptr = shared_ptr[VolatilityTermStructure](
+            self._thisptr.reset(
                 new _bcv.BlackConstantVol(
                     deref(reference_date._thisptr),
                     deref(calendar._thisptr),
@@ -44,7 +44,7 @@ cdef class BlackConstantVol(BlackVolatilityTermStructure):
                 )
             )
         elif isinstance(volatility, float):
-            self._thisptr = shared_ptr[VolatilityTermStructure](
+            self._thisptr.reset(
                 new _bcv.BlackConstantVol(
                     deref(reference_date._thisptr),
                     deref(calendar._thisptr),

@@ -7,7 +7,7 @@ cpdef enum SettlementType:
     Cash = _swaption.Cash
 
 cpdef enum SettlementMethod:
-    PhysicalOTC= _swaption.PhysicalOTC
+    PhysicalOTC = _swaption.PhysicalOTC
     CollateralizedCashPrice = _swaption.CollateralizedCashPrice
     ParYieldCurve = _swaption.ParYieldCurve
 

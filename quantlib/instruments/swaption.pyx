@@ -73,3 +73,19 @@ cdef class Swaption(Option):
     @property
     def atm_forward(self):
         return self._thisptr.get().result[Real](b"atmForward")
+
+    @property
+    def implied_vol(self):
+        return self._thisptr.get().result[Real](b"impliedVolatility")
+
+    @property
+    def delta(self):
+        return self._thisptr.get().result[Real](b"delta")
+
+    @property
+    def time_to_expiry(self):
+        return self._thisptr.get().result[Real](b"timeToExpiry")
+
+    @property
+    def std_dev(self):
+        return self._thisptr.get().result[Real](b"stdDev")

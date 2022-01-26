@@ -1,5 +1,4 @@
-include '../../../types.pxi'
-from ._swaption_vol_discrete cimport SwaptionVolatilityStructure
+from ._swaption_vol_structure cimport SwaptionVolatilityStructure
 from quantlib.handle cimport Handle
 from quantlib._quote cimport Quote
 

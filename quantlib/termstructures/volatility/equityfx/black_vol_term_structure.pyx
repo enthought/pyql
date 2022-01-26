@@ -24,6 +24,8 @@ cdef class BlackVolTermStructure(VolatilityTermStructure):
 
         Volatilities are assumed to be expressed on an annual basis.
     """
+    cdef inline _bvts.BlackVolTermStructure* get_bvts(self):
+        return <_bvts.BlackVolTermStructure*>self.as_ptr()
 
     def __init__(self):
         raise NotImplementedError

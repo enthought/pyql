@@ -7,7 +7,7 @@ cimport quantlib._quote as _qt
 from quantlib.quote cimport Quote
 
 cdef inline _svc.SwaptionVolatilityCube* _get_svc(SwaptionVolatilityCube volcube):
-    return <_svc.SwaptionVolatilityCube*> volcube._thisptr.get()
+    return <_svc.SwaptionVolatilityCube*> volcube.as_ptr()
 
 
 cdef class SwaptionVolatilityCube(SwaptionVolatilityDiscrete):

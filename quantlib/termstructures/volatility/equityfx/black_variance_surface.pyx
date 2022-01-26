@@ -27,8 +27,7 @@ cdef inline _bvs.BlackVarianceSurface* get_bvs(BlackVarianceSurface bvs):
     of the internal _thisptr attribute of the BlackVolTermStructure base class.
     """
 
-    cdef _bvs.BlackVarianceSurface* ref = <_bvs.BlackVarianceSurface*>bvs._thisptr.get()
-    return ref
+    return <_bvs.BlackVarianceSurface*>bvs.as_ptr()
 
 
 cdef class BlackVarianceSurface(BlackVarianceTermStructure):
@@ -72,17 +71,18 @@ cdef class BlackVarianceSurface(BlackVarianceTermStructure):
         for d in dates:
             _dates.push_back(deref((<Date?>d)._thisptr))
 
-        self._thisptr = shared_ptr[VolatilityTermStructure](
-                                new _bvs.BlackVarianceSurface(
-                                             deref(reference_date._thisptr),
-                                             deref(cal._thisptr),
-                                             _dates,
-                                             strikes,
-                                             (black_vol_matrix)._thisptr,
-                                             deref(dc._thisptr),
-                                             lower_extrap,
-                                             upper_extrap,
-                                             ))
+        self._thisptr.reset(
+                new _bvs.BlackVarianceSurface(
+                    deref(reference_date._thisptr),
+                    deref(cal._thisptr),
+                    _dates,
+                    strikes,
+                    (black_vol_matrix)._thisptr,
+                    deref(dc._thisptr),
+                    lower_extrap,
+                    upper_extrap,
+                    )
+                )
 
 
     @property

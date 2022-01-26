@@ -88,14 +88,10 @@ cdef class CmsCouponPricer(FloatingRateCouponPricer):
         (<_cp.CmsCouponPricer*>self._thisptr.get()).swaptionVolatility()
         cdef SwaptionVolatilityStructure instance = (SwaptionVolatilityStructure.
                                                      __new__(SwaptionVolatilityStructure))
-        instance._thisptr = static_pointer_cast[VolatilityTermStructure](
-            vol_handle.currentLink())
+        if not vol_handle.empty():
+            instance._thisptr = vol_handle.currentLink()
         return instance
 
     @swaption_volatility.setter
-    def swaption_volatility(self, SwaptionVolatilityStructure v not None):
-        cdef Handle[_svs.SwaptionVolatilityStructure] vol_handle = \
-            Handle[_svs.SwaptionVolatilityStructure](
-                static_pointer_cast[_svs.SwaptionVolatilityStructure](
-                    v._thisptr))
-        (<_cp.CmsCouponPricer*>self._thisptr.get()).setSwaptionVolatility(vol_handle)
+    def swaption_volatility(self, v not None):
+        (<_cp.CmsCouponPricer*>self._thisptr.get()).setSwaptionVolatility(SwaptionVolatilityStructure.swaption_vol_handle(v))
