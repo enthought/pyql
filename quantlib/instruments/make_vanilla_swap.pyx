@@ -1,7 +1,7 @@
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from quantlib._defines cimport QL_NULL_REAL
-from quantlib.instruments.swap cimport Swap
+from quantlib.instruments.swap cimport Swap, SwapType
 from quantlib.handle cimport static_pointer_cast, shared_ptr
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.time.date cimport Period, Date
@@ -13,9 +13,8 @@ from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.pricingengines.engine cimport PricingEngine
 cimport quantlib.indexes._ibor_index as _ii
 cimport quantlib.instruments._instrument as _in
-from quantlib.instruments.swap cimport VanillaSwap
+from quantlib.instruments.vanillaswap cimport VanillaSwap
 from quantlib.instruments._vanillaswap cimport VanillaSwap as _VanillaSwap
-from quantlib.instruments.swap cimport SwapType
 
 cdef class MakeVanillaSwap:
     def __init__(self, Period swap_tenor not None,

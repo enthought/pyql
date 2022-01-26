@@ -7,43 +7,17 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../types.pxi'
-
-cimport quantlib.instruments._swap as _swap
-from ._vanillaswap cimport VanillaSwap as _VanillaSwap
-cimport quantlib.instruments._instrument as _instrument
-cimport quantlib.pricingengines._pricing_engine as _pe
-cimport quantlib.time._date as _date
-cimport quantlib._cashflow as _cf
-cimport quantlib.indexes._ibor_index as _ib
-
-from cython.operator cimport dereference as deref
-from libcpp.vector cimport vector
-from libcpp cimport bool
-
-from quantlib.handle cimport Handle, shared_ptr, optional, static_pointer_cast
-from quantlib.pricingengines.engine cimport PricingEngine
-from quantlib.time._businessdayconvention cimport BusinessDayConvention
-from quantlib.time._daycounter cimport DayCounter as QlDayCounter
-from quantlib.time._schedule cimport Schedule as QlSchedule
-from quantlib.time.calendar cimport Calendar
-from quantlib.time.date cimport Date, date_from_qldate
-from quantlib.time.schedule cimport Schedule
-from quantlib.time.daycounter cimport DayCounter
-from quantlib.time.businessdayconvention import Following
-from quantlib.indexes.ibor_index cimport IborIndex
+from quantlib.types cimport Size
 from quantlib.cashflow cimport Leg
-from quantlib.cashflows.fixed_rate_coupon cimport FixedRateLeg
-from quantlib.cashflows.ibor_coupon cimport IborLeg
-
-import datetime
+cimport quantlib.time._date as _date
+from quantlib.time.date cimport date_from_qldate
+from . cimport _swap
 
 cdef inline _swap.Swap* get_swap(Swap swap):
     """ Utility function to extract a properly casted Swap pointer out of the
     internal _thisptr attribute of the Instrument base class. """
 
-    cdef _swap.Swap* ref = <_swap.Swap*>swap._thisptr.get()
-    return ref
+    return <_swap.Swap*>swap._thisptr.get()
 
 
 cdef class Swap(Instrument):
@@ -97,14 +71,14 @@ cdef class Swap(Instrument):
     def leg_NPV(self, Size j):
         return get_swap(self).legNPV(j)
 
-    ## def startDiscounts(self, Size j):
-    ##     return get_swap(self).startDiscounts(j)
+    def startDiscounts(self, Size j):
+        return get_swap(self).startDiscounts(j)
 
-    ## def endDiscounts(self, Size j):
-    ##     return get_swap(self).endDiscounts(j)
+    def endDiscounts(self, Size j):
+        return get_swap(self).endDiscounts(j)
 
-    ## def npvDateDiscount(self):
-    ##     return get_swap(self).npvDateDiscount()
+    def npvDateDiscount(self):
+        return get_swap(self).npvDateDiscount()
 
     def leg(self, int i):
         cdef Leg leg = Leg.__new__(Leg)
@@ -115,127 +89,3 @@ cdef class Swap(Instrument):
         cdef Leg leg = Leg.__new__(Leg)
         leg._thisptr = get_swap(self).leg(i)
         return leg
-
-cdef inline _VanillaSwap* get_vanillaswap(VanillaSwap swap):
-    """ Utility function to extract a properly casted Swap pointer out of the
-    internal _thisptr attribute of the Instrument base class. """
-
-    cdef _VanillaSwap* ref = \
-         <_VanillaSwap*>swap._thisptr.get()
-    return ref
-
-cdef class VanillaSwap(Swap):
-    """
-    Vanilla swap class
-    """
-
-    def __init__(self, SwapType type,
-                     Real nominal,
-                     Schedule fixed_schedule not None,
-                     Rate fixed_rate,
-                     DayCounter fixed_daycount not None,
-                     Schedule float_schedule not None,
-                     IborIndex ibor_index not None,
-                     Spread spread,
-                     DayCounter floating_daycount not None,
-                     int payment_convention=-1):
-        cdef optional[BusinessDayConvention] opt_payment_convention
-        if payment_convention > 0:
-            opt_payment_convention = <BusinessDayConvention>payment_convention
-
-        self._thisptr = shared_ptr[_instrument.Instrument](
-            new _VanillaSwap(
-                <_VanillaSwap.Type>type,
-                nominal,
-                deref(fixed_schedule._thisptr),
-                fixed_rate,
-                deref(fixed_daycount._thisptr),
-                deref(float_schedule._thisptr),
-                static_pointer_cast[_ib.IborIndex](ibor_index._thisptr),
-                spread,
-                deref(floating_daycount._thisptr),
-                opt_payment_convention
-            )
-        )
-
-    property fair_rate:
-        def __get__(self):
-            cdef Rate res = get_vanillaswap(self).fairRate()
-            return res
-
-    property fair_spread:
-        def __get__(self):
-            cdef Spread res = get_vanillaswap(self).fairSpread()
-            return res
-
-    property fixed_leg_bps:
-        def __get__(self):
-            cdef Real res = get_vanillaswap(self).fixedLegBPS()
-            return res
-
-    property floating_leg_bps:
-        def __get__(self):
-            cdef Real res = get_vanillaswap(self).floatingLegBPS()
-            return res
-
-    property fixed_leg_npv:
-        def __get__(self):
-            cdef Real res = get_vanillaswap(self).fixedLegNPV()
-            return res
-
-    property floating_leg_npv:
-        def __get__(self):
-            cdef Real res = get_vanillaswap(self).floatingLegNPV()
-            return res
-
-    @property
-    def fixed_leg(self):
-        cdef FixedRateLeg leg = FixedRateLeg.__new__(FixedRateLeg)
-        leg._thisptr = get_vanillaswap(self).fixedLeg()
-        return leg
-
-    @property
-    def floating_leg(self):
-        cdef IborLeg leg = IborLeg.__new__(IborLeg)
-        leg._thisptr = get_vanillaswap(self).floatingLeg()
-        return leg
-
-    @property
-    def nominal(self):
-        return get_vanillaswap(self).nominal()
-
-    @property
-    def type(self):
-        return SwapType(get_vanillaswap(self).type())
-
-    @property
-    def fixed_rate(self):
-        return get_vanillaswap(self).fixedRate()
-
-    @property
-    def fixed_schedule(self):
-        cdef Schedule sched = Schedule.__new__(Schedule)
-        sched._thisptr = new QlSchedule(get_vanillaswap(self).fixedSchedule())
-        return sched
-
-    @property
-    def fixed_day_count(self):
-        cdef DayCounter dc = DayCounter.__new__(DayCounter)
-        dc._thisptr = new QlDayCounter(get_vanillaswap(self).fixedDayCount())
-        return dc
-
-    @property
-    def floating_schedule(self):
-        cdef Schedule sched = Schedule.__new__(Schedule)
-        sched._thisptr = new QlSchedule(get_vanillaswap(self).floatingSchedule())
-        return sched
-
-    @property
-    def spread(self):
-        return get_vanillaswap(self).spread()
-
-    @property
-    def floating_day_count(self):
-        cdef DayCounter dc = DayCounter.__new__(DayCounter)
-        dc._thisptr = new QlDayCounter(get_vanillaswap(self).floatingDayCount())
-        return dc

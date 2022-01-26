@@ -6,7 +6,8 @@ from quantlib.termstructures.volatility.volatilitytype cimport (
 cimport quantlib.termstructures.volatility._volatilitytype as _voltype
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from .option cimport Exercise
-from .swap cimport VanillaSwap
+from .swap import SwapType
+from .vanillaswap cimport VanillaSwap
 from . cimport _vanillaswap
 from . cimport _instrument
 
@@ -56,6 +57,10 @@ cdef class Swaption(Option):
             (<_swaption.Swaption*>self._thisptr.get()).
             underlyingSwap())
         return instance
+
+    @property
+    def type(self):
+        return SwapType((<_swaption.Swaption*>self._thisptr.get()).type())
 
     @property
     def vega(self):

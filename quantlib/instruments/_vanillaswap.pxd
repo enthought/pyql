@@ -24,9 +24,6 @@ from quantlib.indexes._ibor_index cimport IborIndex
 
 cdef extern from 'ql/instruments/vanillaswap.hpp' namespace 'QuantLib':
     cdef cppclass VanillaSwap(Swap):
-        enum Type:
-            Receiver
-            Payer
         VanillaSwap(Type type,
                     Real nominal,
                     Schedule& fixedSchedule,
@@ -38,7 +35,7 @@ cdef extern from 'ql/instruments/vanillaswap.hpp' namespace 'QuantLib':
                     DayCounter& floatingDayCount,
                     optional[BusinessDayConvention] paymentConvention)
 
-        Type type()
+        Swap.Type type()
         Real nominal()
 
         Schedule& fixedSchedule()

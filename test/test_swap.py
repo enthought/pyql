@@ -1,7 +1,8 @@
 import unittest
 
 from quantlib.currency.api import USDCurrency
-from quantlib.instruments.swap import VanillaSwap, Payer, Receiver
+from quantlib.instruments.swap import Payer, Receiver
+from quantlib.instruments.vanillaswap import VanillaSwap
 from quantlib.indexes.ibor.libor import Libor
 from quantlib.market.market import libor_market
 from quantlib.pricingengines.swap import DiscountingSwapEngine

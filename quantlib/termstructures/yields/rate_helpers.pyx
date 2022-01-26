@@ -11,7 +11,7 @@ from cython.operator cimport dereference as deref
 from libcpp cimport bool
 
 cimport quantlib.instruments._instrument as _ins
-from quantlib.instruments.swap cimport VanillaSwap
+from quantlib.instruments.vanillaswap cimport VanillaSwap
 cimport quantlib.instruments._vanillaswap as _vs
 
 from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
