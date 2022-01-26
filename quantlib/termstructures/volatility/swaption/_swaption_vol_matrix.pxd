@@ -14,10 +14,9 @@ from .._volatilitytype cimport VolatilityType
 from quantlib.math._matrix cimport Matrix
 
 cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolmatrix.hpp' namespace 'QuantLib':
-    # this should really be constructors,
-    # but cython can't disambiguate the constructors otherwise
-    # floating reference date, floating market data
-    SwaptionVolatilityMatrix* SwaptionVolatilityMatrix_ "new QuantLib::SwaptionVolatilityMatrix" (
+    cdef cppclass SwaptionVolatilityMatrix(SwaptionVolatilityStructure):
+        # floating reference date, floating market data
+        SwaptionVolatilityMatrix(
                     const Calendar& calendar,
                     BusinessDayConvention bdc,
                     const vector[Period]& optionTenors,
@@ -27,8 +26,8 @@ cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolmatrix.hpp' n
                     const bool flatExtrapolation, # = false,
                     VolatilityType type, # = ShiftedLognormal,
                     vector[vector[Real]]& shifts) except +#= vector[vector[Real]]());
-    # fixed reference date, floating market data
-    SwaptionVolatilityMatrix* SwaptionVolatilityMatrix__"new QuantLib::SwaptionVolatilityMatrix" (
+        # fixed reference date, floating market data
+        SwaptionVolatilityMatrix(
                     const Date& referenceDate,
                     const Calendar& calendar,
                     BusinessDayConvention bdc,
@@ -39,7 +38,6 @@ cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolmatrix.hpp' n
                     const bool flatExtrapolation, # = false,
                     VolatilityType type, # = ShiftedLognormal,
                     vector[vector[Real]]& shifts) except +# = vector[vector[Real]]());
-    cdef cppclass SwaptionVolatilityMatrix(SwaptionVolatilityStructure):
         # floating reference date, fixed market data
         SwaptionVolatilityMatrix(
                     const Calendar& calendar,

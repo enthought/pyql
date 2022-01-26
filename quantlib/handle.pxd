@@ -1,6 +1,6 @@
 from libcpp cimport bool
 
-cdef extern from 'ql/shared_ptr.hpp' namespace 'QuantLib::ext':
+cdef extern from 'ql/shared_ptr.hpp' namespace 'QuantLib::ext' nogil:
 
     cdef cppclass shared_ptr[T]:
         shared_ptr()
@@ -25,10 +25,11 @@ cdef extern from 'boost/optional.hpp' namespace 'boost':
         bool operator!()
         optional& operator=(T&)
 
-cdef extern from 'ql/handle.hpp' namespace 'QuantLib':
+cdef extern from 'ql/handle.hpp' namespace 'QuantLib' nogil:
     cdef cppclass Handle[T]:
         Handle()
         Handle(shared_ptr[T]&)
+        Handle(shared_ptr[T]&, bool registerAsObserver)
         shared_ptr[T]& currentLink()
         bool empty()
 
@@ -36,5 +37,6 @@ cdef extern from 'ql/handle.hpp' namespace 'QuantLib':
         RelinkableHandle()
         RelinkableHandle(T*)
         RelinkableHandle(shared_ptr[T]&)
+        RelinkableHandle(shared_ptr[T]&, bool registerAsObserver)
         void linkTo(shared_ptr[T]&)
         void linkTo(shared_ptr[T]&, bool registerAsObserver)

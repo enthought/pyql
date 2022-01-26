@@ -12,16 +12,8 @@ from quantlib.time._daycounter cimport DayCounter as QlDayCounter
 
 from .black_vol_term_structure cimport BlackVarianceTermStructure
 from . cimport _black_vol_term_structure as _bvts
-from . cimport _black_variance_curve as _bvc
+
 from ..._vol_term_structure cimport VolatilityTermStructure
-
-
-cdef inline _bvc.BlackVarianceCurve* get_bvc(BlackVarianceCurve bvc):
-    """ Utility function to extract a properly casted BlackVarianceCurve out
-    of the internal _thisptr attribute of the BlackVolTermStructure base class.
-    """
-    cdef _bvc.BlackVarianceCurve* ref = <_bvc.BlackVarianceCurve*>bvc._thisptr.get()
-    return ref
 
 
 cdef class BlackVarianceCurve(BlackVarianceTermStructure):
@@ -49,6 +41,11 @@ cdef class BlackVarianceCurve(BlackVarianceTermStructure):
     force_monotone_variance: bool
 
     """
+    cdef inline _bvc.BlackVarianceCurve* get_bvc(self):
+        """ Utility function to extract a properly casted BlackVarianceCurve out
+        of the internal _thisptr attribute of the BlackVolTermStructure base class.
+        """
+        return <_bvc.BlackVarianceCurve*>self.as_ptr()
 
     def __init__(self,
                  Date reference_date,
@@ -62,19 +59,20 @@ cdef class BlackVarianceCurve(BlackVarianceTermStructure):
         for d in dates:
             _dates.push_back(deref((<Date?>d)._thisptr))
 
-        self._thisptr = shared_ptr[VolatilityTermStructure](
-                                   new _bvc.BlackVarianceCurve(
-                                               deref(reference_date._thisptr),
-                                               _dates,
-                                               black_vols,
-                                               deref(day_counter._thisptr),
-                                               force_monotone_variance,
-                                               ))
-    
+        self._thisptr.reset(
+            new _bvc.BlackVarianceCurve(
+                deref(reference_date._thisptr),
+                _dates,
+                black_vols,
+                deref(day_counter._thisptr),
+                force_monotone_variance,
+            )
+        )
+
     @property
     def min_strike(self):
-        return get_bvc(self).minStrike()
+        return self.get_bvc().minStrike()
 
     @property
     def max_strike(self):
-       return get_bvc(self).maxStrike()
+       return self.get_bvc().maxStrike()

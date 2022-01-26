@@ -1,14 +1,23 @@
 include '../../../types.pxi'
-from libcpp cimport bool
 from cython.operator cimport dereference as deref
 from quantlib.time.date cimport Date, Period
+from quantlib.handle cimport shared_ptr
 from ..smilesection cimport SmileSection
 
 
-cdef class SwaptionVolatilityStructure:
+cdef class SwaptionVolatilityStructure(VolatilityTermStructure):
 
-    cdef inline _svs.SwaptionVolatilityStructure* get_svs(self):
-        return <_svs.SwaptionVolatilityStructure*>self._thisptr.get()
+    cdef inline _svs.SwaptionVolatilityStructure* get_svs(self) nogil:
+        return self._derived_ptr.get()
+
+    @staticmethod
+    cdef Handle[_svs.SwaptionVolatilityStructure] swaption_vol_handle(vol):
+        if isinstance(vol, SwaptionVolatilityStructure):
+            return Handle[_svs.SwaptionVolatilityStructure]((<SwaptionVolatilityStructure>vol)._derived_ptr, False)
+        elif isinstance(vol, HandleSwaptionVolatilityStructure):
+            return (<HandleSwaptionVolatilityStructure>vol).handle
+        else:
+            raise TypeError("vol needs to be either a SwaptionVolatilityStructure or a HandleSwaptionVolatilityStructure")
 
     def volatility(self, option_date, swap_date, Rate strike,
                    bool extrapolate=False):
@@ -157,3 +166,11 @@ cdef class SwaptionVolatilityStructure:
     @property
     def volatility_type(self):
         return self.get_svs().volatilityType()
+
+
+cdef class HandleSwaptionVolatilityStructure:
+    def __init__(self, SwaptionVolatilityStructure structure not None, bool register_as_observer=True):
+        self.handle = RelinkableHandle[_svs.SwaptionVolatilityStructure](structure._derived_ptr, register_as_observer)
+
+    def link_to(self, SwaptionVolatilityStructure structure not None, bool register_as_observer=True):
+        self.handle.linkTo(structure._derived_ptr, register_as_observer)

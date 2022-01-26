@@ -4,8 +4,7 @@ from quantlib.termstructures.vol_term_structure cimport VolatilityTermStructure
 
 cdef class BlackVolTermStructure(VolatilityTermStructure):
 
-    cdef inline _bvts.BlackVolTermStructure* get_bvts(self):
-        return <_bvts.BlackVolTermStructure*>self._thisptr.get()
+    cdef _bvts.BlackVolTermStructure* get_bvts(self)
 
 
 cdef class BlackVolatilityTermStructure(BlackVolTermStructure):

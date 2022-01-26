@@ -7,8 +7,6 @@ from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.daycounters.simple cimport Actual365Fixed
 from quantlib.quote cimport Quote
-cimport quantlib.termstructures.volatility.swaption._swaption_vol_structure \
-    as _svs
 from quantlib.termstructures.volatility.swaption.swaption_vol_structure \
     cimport SwaptionVolatilityStructure
 from ._black_swaption_engine cimport BlackSwaptionEngine as _BlackSwaptionEngine, BachelierSwaptionEngine as _BachelierSwaptionEngine
@@ -26,11 +24,11 @@ cdef class BlackSwaptionEngine(PricingEngine):
     start date of the passed swap.
     """
     def __init__(self, YieldTermStructure discount_curve not None,
-                  vol,
-                  DayCounter dc=Actual365Fixed(),
-                  Real displacement=0.,
-                  CashAnnuityModel model=DiscountCurve):
-        cdef Handle[_svs.SwaptionVolatilityStructure] vol_structure_handle
+                 vol,
+                 DayCounter dc=Actual365Fixed(),
+                 Real displacement=0.,
+                 CashAnnuityModel model=DiscountCurve,
+    ):
 
         if isinstance(vol, float):
             self._thisptr.reset(
@@ -41,19 +39,22 @@ cdef class BlackSwaptionEngine(PricingEngine):
                                          <_BlackSwaptionEngine.CashAnnuityModel>model))
         elif isinstance(vol, Quote):
             self._thisptr.reset(
-                new _BlackSwaptionEngine(discount_curve._thisptr,
-                                         (<Quote>vol).handle(),
-                                         deref(dc._thisptr),
-                                         displacement,
-                                         <_BlackSwaptionEngine.CashAnnuityModel>model))
-        elif isinstance(vol, SwaptionVolatilityStructure):
-            vol_structure_handle = Handle[_svs.SwaptionVolatilityStructure](
-                static_pointer_cast[_svs.SwaptionVolatilityStructure](
-                    (<SwaptionVolatilityStructure>vol)._thisptr))
+                new _BlackSwaptionEngine(
+                    discount_curve._thisptr,
+                    (<Quote>vol).handle(),
+                    deref(dc._thisptr),
+                    displacement,
+                    <_BlackSwaptionEngine.CashAnnuityModel>model,
+                )
+            )
+        else:
             self._thisptr.reset(
-                new _BlackSwaptionEngine(discount_curve._thisptr,
-                                         vol_structure_handle,
-                                         <_BlackSwaptionEngine.CashAnnuityModel>model))
+                new _BlackSwaptionEngine(
+                    discount_curve._thisptr,
+                    SwaptionVolatilityStructure.swaption_vol_handle(vol),
+                    <_BlackSwaptionEngine.CashAnnuityModel>model,
+                )
+            )
 
 
 cdef class BachelierSwaptionEngine(PricingEngine):
@@ -64,12 +65,13 @@ cdef class BachelierSwaptionEngine(PricingEngine):
     The engine assumes that the exercise date lies before the
     start date of the passed swap.
     """
-    def __init__(self, YieldTermStructure discount_curve not None,
-                  vol,
-                  DayCounter dc=Actual365Fixed(),
-                  CashAnnuityModel model=DiscountCurve):
-        cdef Handle[_qt.Quote] quote_handle
-        cdef Handle[_svs.SwaptionVolatilityStructure] vol_structure_handle
+    def __init__(
+            self,
+            YieldTermStructure discount_curve not None,
+            vol,
+            DayCounter dc=Actual365Fixed(),
+            CashAnnuityModel model=DiscountCurve,
+    ):
 
         if isinstance(vol, float):
             self._thisptr.reset(
@@ -78,17 +80,19 @@ cdef class BachelierSwaptionEngine(PricingEngine):
                                              deref(dc._thisptr),
                                              <_BachelierSwaptionEngine.CashAnnuityModel>model))
         elif isinstance(vol, Quote):
-            quote_handle = Handle[_qt.Quote]((<Quote>vol)._thisptr)
             self._thisptr.reset(
-                new _BachelierSwaptionEngine(discount_curve._thisptr,
-                                             quote_handle,
-                                             deref(dc._thisptr),
-                                             <_BachelierSwaptionEngine.CashAnnuityModel>model))
-        elif isinstance(vol, SwaptionVolatilityStructure):
-            vol_structure_handle = Handle[_svs.SwaptionVolatilityStructure](
-                static_pointer_cast[_svs.SwaptionVolatilityStructure](
-                    (<SwaptionVolatilityStructure>vol)._thisptr))
+                new _BachelierSwaptionEngine(
+                    discount_curve._thisptr,
+                    (<Quote>vol).handle(),
+                    deref(dc._thisptr),
+                    <_BachelierSwaptionEngine.CashAnnuityModel>model,
+                )
+            )
+        else:
             self._thisptr.reset(
-                new _BachelierSwaptionEngine(discount_curve._thisptr,
-                                             vol_structure_handle,
-                                             <_BachelierSwaptionEngine.CashAnnuityModel>model))
+                new _BachelierSwaptionEngine(
+                    discount_curve._thisptr,
+                    SwaptionVolatilityStructure.swaption_vol_handle(vol),
+                    <_BachelierSwaptionEngine.CashAnnuityModel>model,
+                )
+            )
