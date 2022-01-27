@@ -23,8 +23,6 @@ from quantlib._compounding cimport Compounding
 cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass YieldTermStructure:
-
-        YieldTermStructure() except +
         YieldTermStructure(DayCounter& dc,
                            vector[Handle[_qt.Quote]]& jumps,
                            vector[Date]& jumpDates,

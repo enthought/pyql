@@ -101,7 +101,7 @@ def zSpread(Bond bond, Real cleanPrice,
     return _bf.zSpread(
         deref(_bp),
         cleanPrice,
-        yts._thisptr.currentLink(),
+        yts.as_shared_ptr(),
         deref(dayCounter._thisptr),
         compounding,
         frequency,

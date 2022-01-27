@@ -63,12 +63,12 @@ cdef class IsdaCdsEngine(PricingEngine):
 
     @property
     def isda_rate_curve(self):
-        cdef YieldTermStructure yts = YieldTermStructure()
+        cdef YieldTermStructure yts = YieldTermStructure.__new__(YieldTermStructure)
         yts._thisptr.linkTo(self._get_cds_engine().isdaRateCurve().currentLink())
         return yts
 
     @property
     def isda_credit_curve(self):
-        cdef DefaultProbabilityTermStructure dts = DefaultProbabilityTermStructure()
+        cdef DefaultProbabilityTermStructure dts = DefaultProbabilityTermStructure.__new__(DefaultProbabilityTermStructure)
         dts._thisptr = self._get_cds_engine().isdaCreditCurve().currentLink()
         return dts
