@@ -38,6 +38,7 @@ cdef extern from 'ql/models/shortrate/onefactormodels/hullwhite.hpp' namespace '
                                 Time bondStart,
                                 Time bondMaturity) except +
 
+        @staticmethod
         Rate convexityBias(Real futurePrice,
                            Time t,
                            Time T,
