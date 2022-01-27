@@ -31,6 +31,7 @@ cdef class Coupon(CashFlow):
     def reference_period_start(self):
         return date_from_qldate(
             self._get_coupon().referencePeriodStart())
+
     @property
     def reference_period_end(self):
         return date_from_qldate(
@@ -49,6 +50,9 @@ cdef class Coupon(CashFlow):
 
     def accrued_days(self, Date date):
         return self._get_coupon().accruedDays(deref(date._thisptr))
+
+    def accrued_amount(self, Date date):
+        return self._get_coupon().accruedAmount(deref(date._thisptr))
 
     @property
     def rate(self):

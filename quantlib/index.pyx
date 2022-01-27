@@ -8,15 +8,18 @@
 include 'types.pxi'
 
 from cython.operator cimport dereference as deref
+from cpython.datetime cimport PyDate_Check, date_year, date_month, date_day, import_datetime
 from libcpp cimport bool
 from libcpp.vector cimport vector
 from libcpp.string cimport string
 
 cimport quantlib.time._calendar as _calendar
-cimport quantlib.time._date as _date
 from quantlib.time_series cimport TimeSeries
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date, date_from_qldate
+from quantlib.time._date cimport Date as QlDate, Month
+
+import_datetime()
 
 cdef class Index:
 
@@ -51,6 +54,20 @@ cdef class Index:
         self._thisptr.get().addFixing(
             deref(fixingDate._thisptr), fixing, forceOverwrite
         )
+
+    def add_fixings(self, list dates, list values, bool force_overwrite=False):
+        cdef:
+            vector[QlDate] qldates
+            vector[Real] qlvalues
+            Real v
+
+        for d, v in zip(dates, values):
+            if PyDate_Check(d):
+                qldates.push_back(QlDate(date_day(d), <Month>date_month(d), date_year(d)))
+            elif isinstance(d, Date):
+                qldates.push_back(deref((<Date>d)._thisptr))
+            qlvalues.push_back(<Real?>v)
+        self._thisptr.get().addFixings(qldates.begin(), qldates.end(), qlvalues.begin(), force_overwrite)
 
     def clear_fixings(self):
         self._thisptr.get().clearFixings()
