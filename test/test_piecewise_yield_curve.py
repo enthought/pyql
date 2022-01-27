@@ -85,6 +85,10 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
         self.assertAlmostEqual(0.9944, ts.discount(Date(21, 4, 2009)), 4)
         self.assertAlmostEqual(0.9904, ts.discount(Date(21, 9, 2009)), 4)
 
+        dates, dfs = zip(*ts.nodes)
+        self.assertAlmostEqual(list(dates), ts.dates)
+        self.assertAlmostEqual(list(dfs), ts.data)
+
     def test_relative_yieldcurve(self):
         settings = Settings()
         settings.evaluation_date = Date(6, 10, 2016)

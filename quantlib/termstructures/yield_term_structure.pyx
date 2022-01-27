@@ -28,33 +28,32 @@ cdef class YieldTermStructure(Observable):
     # FIXME: the relinkable stuff is really ugly. Do we need this on the
     # python side?
 
-    def link_to(self, YieldTermStructure structure not None):
-        if structure._thisptr.empty():
-            raise ValueError('Term structure not initialized')
-        self._thisptr.linkTo(structure._thisptr.currentLink())
+    def link_to(self, YieldTermStructure structure not None, cbool register_as_observer=True):
+        self._thisptr.linkTo(structure.as_shared_ptr(), register_as_observer)
 
-    cdef inline _yts.YieldTermStructure* _get_term_structure(self) except NULL:
-
+    cdef inline _yts.YieldTermStructure* as_ptr(self) except NULL:
         if self._thisptr.empty():
             raise ValueError('Term structure not initialized')
         return self._thisptr.currentLink().get()
 
-    cdef shared_ptr[QlObservable] as_observable(self):
+    cdef inline shared_ptr[_yts.YieldTermStructure] as_shared_ptr(self):
         if self._thisptr.empty():
-            raise ValueError('Term structure not initialized')
-        return static_pointer_cast[QlObservable](self._thisptr.currentLink())
+            return shared_ptr[_yts.YieldTermStructure]()
+        else:
+            return self._thisptr.currentLink()
+
+    cdef shared_ptr[QlObservable] as_observable(self):
+        return static_pointer_cast[QlObservable](self.as_shared_ptr())
 
     property extrapolation:
         def __get__(self):
-            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
-            return term_structure.allowsExtrapolation()
+            return self.as_ptr().allowsExtrapolation()
 
         def __set__(self, bool flag):
-            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
             if flag:
-                term_structure.enableExtrapolation()
+                self.as_ptr().enableExtrapolation()
             else:
-                term_structure.disableExtrapolation()
+                self.as_ptr().disableExtrapolation()
 
     def zero_rate(self, d, DayCounter day_counter=None,
                   Compounding compounding=Compounding.Continuous, int frequency=Annual,
@@ -77,18 +76,17 @@ cdef class YieldTermStructure(Observable):
             Default to False
 
         """
-        cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
         cdef _ir.InterestRate ql_zero_rate
 
         if isinstance(d, Date):
             if day_counter is None:
                 raise ValueError("day_counter needs to be provided")
-            ql_zero_rate = term_structure.zeroRate(
+            ql_zero_rate = self.as_ptr().zeroRate(
                 deref((<Date>d)._thisptr), deref(day_counter._thisptr),
                 compounding, <_ir.Frequency>frequency,
                 extrapolate)
         elif isinstance(d, (float, int)):
-            ql_zero_rate = term_structure.zeroRate(
+            ql_zero_rate = self.as_ptr().zeroRate(
                 <Time>d, compounding, <_ir.Frequency>frequency,
                 extrapolate)
         else:
@@ -126,25 +124,24 @@ cdef class YieldTermStructure(Observable):
 
         """
 
-        cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
         cdef _ir.InterestRate ql_forward_rate
 
         if isinstance(d1, Date) and isinstance(d2, Date):
             if day_counter is None:
                 raise ValueError("day_counter can't be None")
-            ql_forward_rate = term_structure.forwardRate(
+            ql_forward_rate = self.as_ptr().forwardRate(
                 deref((<Date>d1)._thisptr),
                 deref((<Date>d2)._thisptr),
                 deref(day_counter._thisptr), compounding,
                 <_ir.Frequency>frequency, extrapolate)
         elif isinstance(d1, (float, int)) and isinstance(d2, (float, int)):
-            ql_forward_rate = term_structure.forwardRate(
+            ql_forward_rate = self.as_ptr().forwardRate(
                 <Time>d1, <Time>d2, compounding,
                 <_ir.Frequency>frequency, extrapolate)
         elif isinstance(d1, Date) and isinstance(d2, Period):
            if day_counter is None:
                raise ValueError("day_counter can't be None")
-           ql_forward_rate = term_structure.forwardRate(
+           ql_forward_rate = self.as_ptr().forwardRate(
                deref((<Date>d1)._thisptr), deref((<Period>d2)._thisptr),
                deref(day_counter._thisptr), compounding,
                <_ir.Frequency>frequency, extrapolate)
@@ -157,15 +154,13 @@ cdef class YieldTermStructure(Observable):
         return forward_rate
 
     def discount(self, value, bool extrapolate=False):
-        cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
-
         cdef double discount_value
 
         if isinstance(value, Date):
-            discount_value = term_structure.discount(
+            discount_value = self.as_ptr().discount(
                 deref((<Date>value)._thisptr), extrapolate)
         elif isinstance(value, float):
-            discount_value = term_structure.discount(
+            discount_value = self.as_ptr().discount(
                 <Time>value, extrapolate)
         else:
             raise ValueError('Unsupported value type')
@@ -173,37 +168,31 @@ cdef class YieldTermStructure(Observable):
         return discount_value
 
     def time_from_reference(self, Date dt):
-        cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
-        cdef Time time = term_structure.timeFromReference(deref(dt._thisptr))
+        cdef Time time = self.as_ptr().timeFromReference(deref(dt._thisptr))
         return time
 
     property reference_date:
         def __get__(self):
-            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
-            cdef _yts.Date ref_date = term_structure.referenceDate()
+            cdef _yts.Date ref_date = self.as_ptr().referenceDate()
             return date_from_qldate(ref_date)
 
     property max_date:
         def __get__(self):
-            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
-            cdef _yts.Date max_date = term_structure.maxDate()
+            cdef _yts.Date max_date = self.as_ptr().maxDate()
             return date_from_qldate(max_date)
 
     property max_time:
         def __get__(self):
-            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
-            cdef Time max_time = term_structure.maxTime()
+            cdef Time max_time = self.as_ptr().maxTime()
             return max_time
 
     property day_counter:
         def __get__(self):
-            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
-            cdef DayCounter dc = DayCounter()
-            dc._thisptr = new _dc.DayCounter(term_structure.dayCounter())
+            cdef DayCounter dc = DayCounter.__new__(DayCounter)
+            dc._thisptr = new _dc.DayCounter(self.as_ptr().dayCounter())
             return dc
 
     property settlement_days:
         def __get__(self):
-            cdef _yts.YieldTermStructure* term_structure = self._get_term_structure()
-            cdef int days = term_structure.settlementDays()
+            cdef int days = self.as_ptr().settlementDays()
             return days

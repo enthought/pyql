@@ -3,13 +3,15 @@ from cython.operator cimport dereference as deref
 from libcpp.string cimport string
 from libcpp cimport bool
 
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport shared_ptr, Handle
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.businessdayconvention cimport ModifiedFollowing, BusinessDayConvention
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+cimport quantlib.termstructures._yield_term_structure as _yts
+
 cimport quantlib._index as _in
 cimport quantlib.indexes._ibor_index as _ib
 
@@ -52,7 +54,9 @@ cdef class IborIndex(InterestRateIndex):
         cdef:
             _ib.IborIndex* ref = <_ib.IborIndex*>self._thisptr.get()
             YieldTermStructure yts = YieldTermStructure.__new__(YieldTermStructure)
-        yts._thisptr.linkTo(ref.forwardingTermStructure().currentLink())
+            Handle[_yts.YieldTermStructure] _yts = ref.forwardingTermStructure()
+        if not _yts.empty():
+            yts._thisptr.linkTo(_yts.currentLink())
         return yts
 
     @staticmethod

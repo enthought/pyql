@@ -13,3 +13,4 @@ from .vanilla.fdblackscholesvanillaengine import FdBlackScholesVanillaEngine
 from .swaption.jamshidian_swaption_engine import JamshidianSwaptionEngine
 from .swaption.black_swaption_engine import (
         BlackSwaptionEngine, BachelierSwaptionEngine)
+from .swap import DiscountingSwapEngine
