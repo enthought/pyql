@@ -138,51 +138,51 @@ cdef class FixedRateBond(Bond):
     """
 
     def __init__(self, Natural settlement_days, Real face_amount,
-            Schedule schedule, vector[Rate] coupons,
-            DayCounter accrual_day_counter,
-            BusinessDayConvention payment_convention=Following,
-            Real redemption=100.0, Date issue_date=Date(),
-            Calendar payment_calendar=Calendar(),
-            Period ex_coupon_period=Period(),
-            Calendar ex_coupon_calendar=Calendar(),
-            BusinessDayConvention ex_coupon_convention=Unadjusted,
-            bool ex_coupon_end_of_month=False):
-            """ Fixed rate bond (constructor)
+                 Schedule schedule, vector[Rate] coupons,
+                 DayCounter accrual_day_counter,
+                 BusinessDayConvention payment_convention=Following,
+                 Real redemption=100.0, Date issue_date=Date(),
+                 Calendar payment_calendar=Calendar(),
+                 Period ex_coupon_period=Period(),
+                 Calendar ex_coupon_calendar=Calendar(),
+                 BusinessDayConvention ex_coupon_convention=Unadjusted,
+                 bool ex_coupon_end_of_month=False):
+        """ Fixed rate bond
 
-            Parameters
-            ----------
-            settlement_days : int
-                Number of days before bond settles
-            face_amount : float (C double in python)
-                Amount of face value of bond
-            schedule : Quantlib::Schedule
-                Schedule of payments for bond
-            coupons : list[float]
-                Interest[s] to be acquired for bond.
-            accrual_day_counter: Quantlib::DayCounter
-                dayCounter for Bond
-            payment_convention: Quantlib::BusinessDayConvention
-                The business day convention for the payment schedule
-            redemption : float
-                Amount at redemption
-            issue_date : Quantlib::Date
-                Date bond was issued
-            """
+        Parameters
+        ----------
+        settlement_days : int
+           Number of days before bond settles
+        face_amount : float (C double in python)
+           Amount of face value of bond
+        schedule : Quantlib::Schedule
+           Schedule of payments for bond
+        coupons : list[float]
+           Interest[s] to be acquired for bond.
+        accrual_day_counter: Quantlib::DayCounter
+           dayCounter for Bond
+        payment_convention: Quantlib::BusinessDayConvention
+           The business day convention for the payment schedule
+        redemption : float
+           Amount at redemption
+        issue_date : Quantlib::Date
+           Date bond was issued
+        """
 
-            self._thisptr = shared_ptr[_instrument.Instrument](
-                new _bonds.FixedRateBond(settlement_days,
-                                         face_amount,
-                                         deref(schedule._thisptr),
-                                         coupons,
-                                         deref(accrual_day_counter._thisptr),
-                                         payment_convention,
-                                         redemption, deref(issue_date._thisptr),
-                                         deref(payment_calendar._thisptr),
-                                         deref(ex_coupon_period._thisptr),
-                                         deref(ex_coupon_calendar._thisptr),
-                                         ex_coupon_convention,
-                                         ex_coupon_end_of_month)
-            )
+        self._thisptr = shared_ptr[_instrument.Instrument](
+            new _bonds.FixedRateBond(settlement_days,
+                                     face_amount,
+                                     deref(schedule._thisptr),
+                                     coupons,
+                                     deref(accrual_day_counter._thisptr),
+                                     payment_convention,
+                                     redemption, deref(issue_date._thisptr),
+                                     deref(payment_calendar._thisptr),
+                                     deref(ex_coupon_period._thisptr),
+                                     deref(ex_coupon_calendar._thisptr),
+                                     ex_coupon_convention,
+                                     ex_coupon_end_of_month)
+        )
 
 cdef class ZeroCouponBond(Bond):
     """ Zero coupon bond """

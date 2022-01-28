@@ -58,7 +58,7 @@ jobs:
       - name: Build docs
         if: matrix.python-version == '3.9'
         run: |
-          pip install sphinx
+          pip install sphinx nbsphinx scikit-learn
           make docs
 
       - uses: actions/upload-artifact@v2

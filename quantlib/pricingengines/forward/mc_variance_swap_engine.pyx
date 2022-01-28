@@ -15,11 +15,10 @@ from ._mc_variance_swap_engine cimport MCVarianceSwapEngine as _MCVarianceSwapEn
 
 
 cdef class MCVarianceSwapEngine(PricingEngine):
-    """
-    Variance-swap pricing engine using Monte Carlo simulation,
+    """Variance-swap pricing engine using Monte Carlo simulation
+
     as described in Demeterfi, Derman, Kamal & Zou,
     "A Guide to Volatility and Variance Swaps", 1999
-    ingroup forwardengines
     TODO define tolerance of numerical integral and incorporate it
           in errorEstimate
     Test returned fair variances checked for consistency with
@@ -27,7 +26,7 @@ cdef class MCVarianceSwapEngine(PricingEngine):
 
     Calculate variance via Monte Carlo
 
-    Attributes
+    Parameters
     ----------
     process : GeneralizedBlackScholesProcess
     time_steps : Size

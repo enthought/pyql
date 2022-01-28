@@ -1,8 +1,8 @@
 build:
-	python setup.py build_ext --inplace
+	python setup.py build_ext --inplace -j 8
 
 build2:
-	python2 setup.py build_ext --inplace
+	python2 setup.py build_ext --inplace -j 8
 
 docs:
 	make -C docs html
