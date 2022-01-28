@@ -1,13 +1,15 @@
-from __future__ import division
-from __future__ import print_function
 import unittest
 
+import sys
+if sys.version_info < (3, 8):
+    import pickle5 as pickle
 import pandas
 import numpy as np
 from pandas import DataFrame
 
 import quantlib.reference.names as nm
 from quantlib.pricingengines.blackformula import blackFormulaImpliedStdDev
+
 
 def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
                keepOTMData=True):
@@ -158,9 +160,13 @@ class NoteBooksTestCase(unittest.TestCase):
     """
 
     def test_option_quotes(self):
-        option_data_frame = pandas.read_pickle(
-            'test/data/df_SPX_24jan2011.pkl'
-        )
+        import sys
+        if sys.version_info < (3, 8):
+            import pickle5 as pickle
+        else:
+            import pickle
+        with open('test/data/df_SPX_24jan2011.pkl', "rb") as fh:
+            option_data_frame = pickle.load(fh)
         df_final = Compute_IV(
             option_data_frame, tMin=0.5/12, nMin=6, QDMin=.2, QDMax=.8
         )
