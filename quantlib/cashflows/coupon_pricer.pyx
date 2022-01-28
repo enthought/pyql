@@ -73,11 +73,13 @@ cdef class BlackIborCouponPricer(IborCouponPricer):
         )
 
 def set_coupon_pricer(Leg leg, FloatingRateCouponPricer pricer):
-    """ Parameters :
-        ----------
-        1) leg : Leg object
-        2) pricer : FloatingRateCouponPricer
-            BlackIborCouponPricer has been exposed"""
+    """sets the coupon pricer
+
+    Parameters
+    ----------
+    leg : Leg
+    pricer : FloatingRateCouponPricer
+    """
     _cp.setCouponPricer(leg._thisptr, pricer._thisptr)
 
 cdef class CmsCouponPricer(FloatingRateCouponPricer):

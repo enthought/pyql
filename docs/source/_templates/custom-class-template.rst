@@ -17,6 +17,7 @@
 
    {% for item in methods %}
       ~{{ name }}.{{ item }}
+
    {%- endfor %}
    {% endif %}
    {% endblock %}

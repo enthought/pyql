@@ -19,17 +19,15 @@ from itertools import product
 
 
 # with cython3 and python>=3.7 we could use __class_getitem__ instead
-cdef class Meta(type):
+cdef class _Meta(type):
     def __getitem__(cls, tuple tup):
         T, I = tup
         return globals()[f"{T.name}{I.__name__}PiecewiseYieldCurve"]
 
-class PiecewiseYieldCurve(metaclass=Meta):
+class PiecewiseYieldCurve(metaclass=_Meta):
     """A piecewise yield curve.
 
     ``Generics`` class parametered by a couple (trait, interpolator).
-
-
 
     Parameters
     ----------
@@ -51,7 +49,9 @@ cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
                  list helpers, DayCounter daycounter not None,
                  {{I}} i={{I}}(),
                  Real accuracy = 1e-12):
-        """
+        """ Floating yield curve
+
+        updating evaluation_date in Settings will change the reference_date.
 
         Parameters
         ----------
@@ -88,7 +88,7 @@ cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
     def from_reference_date(cls, Date reference_date, list helpers,
                             DayCounter daycounter not None, {{I}} i={{I}}(),
                             Real accuracy=1e-12):
-        """
+        """Fixed `reference_date` yield curve
 
         Parameters
         ----------

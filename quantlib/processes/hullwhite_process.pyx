@@ -1,3 +1,4 @@
+"""HUll-White stochastic process"""
 include '../types.pxi'
 
 from cython.operator cimport dereference as deref
@@ -11,13 +12,15 @@ cimport quantlib.termstructures.yields._flat_forward as _ff
 
 
 cdef class HullWhiteProcess(StochasticProcess1D):
-    """Hull-White process: a diffusion process for the short rate,
-    with mean-reverting stochastic variance.
+    r"""Hull-White process
 
-    .. math::
-    dr_t &=& a(r_t-n) dt + \sigma dW^r_t \\
+     a diffusion process for the short rate,
+     with mean-reverting stochastic variance.
 
-    """
+     .. math::
+        dr_t = a(r_t-n) dt + \sigma dW^r_t
+
+     """
 
     def __init__(self,
        YieldTermStructure risk_free_rate_ts,

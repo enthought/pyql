@@ -414,20 +414,20 @@ cdef class FxSwapRateHelper(RelativeDateRateHelper):
 
     .. warning::
 
-    The ON fx swaps can be achieved by setting
-    `fixingDays` to 0 and using a tenor of '1d'. The same
-    tenor should be used for TN swaps, with `fixingDays`
-    set to 1.  However, handling ON and TN swaps for
-    cross rates without USD is not trivial and should be
-    treated with caution. If today is a US holiday, ON
-    trade is not possible. If tomorrow is a US Holiday,
-    the ON trade will be at least two business days long
-    in the other countries and the TN trade will not
-    exist. In such cases, if this helper is used for
-    curve construction, probably it is safer not to pass
-    a trading calendar to the ON and TN helpers and
-    provide fwdPoints that will yield proper level of
-    discount factors.
+       The ON fx swaps can be achieved by setting
+       `fixingDays` to 0 and using a tenor of '1d'. The same
+       tenor should be used for TN swaps, with `fixingDays`
+       set to 1.  However, handling ON and TN swaps for
+       cross rates without USD is not trivial and should be
+       treated with caution. If today is a US holiday, ON
+       trade is not possible. If tomorrow is a US Holiday,
+       the ON trade will be at least two business days long
+       in the other countries and the TN trade will not
+       exist. In such cases, if this helper is used for
+       curve construction, probably it is safer not to pass
+       a trading calendar to the ON and TN helpers and
+       provide fwdPoints that will yield proper level of
+       discount factors.
     """
 
     def __init__(self, Quote fwd_point, Quote spot_fx,

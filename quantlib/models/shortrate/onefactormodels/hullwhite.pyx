@@ -1,12 +1,11 @@
-"""
- Copyright (C) 2015, Enthought Inc
- Copyright (C) 2015, Patrick Henaff
+# Copyright (C) 2015, Enthought Inc
+# Copyright (C) 2015, Patrick Henaff
 
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE.  See the license for more details.
-"""
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the license for more details.
 
+""" Hull & White (HW) model"""
 from quantlib.types cimport Real, Time
 from libcpp.vector cimport vector
 from libcpp cimport bool
@@ -29,15 +28,20 @@ from quantlib.math.optimization cimport OptimizationMethod, EndCriteria
 from .vasicek cimport Vasicek
 
 cdef class HullWhite(Vasicek):
-    """ Single-factor Hull-White (extended Vasicek) model.
+    r""" Single-factor Hull-White (extended Vasicek) model.
 
-    The standard single-factor Hull-White model is defined by
-    .. math::
-    dr_t = (\theta(t) - \alpha r_t)dt + \sigma dW_t
+     The standard single-factor Hull-White model is defined by
 
-    where \alpha and \sigma are constants.
+     .. math::
+       dr_t = (\theta(t) - \alpha r_t)dt + \sigma dW_t
 
-    """
+     where :math:`\alpha` and :math:`\sigma` are constants.
+
+     .. warning::
+        When the term structure is relinked the :math:`r_0` parameter
+        of the underlying Vasicek model is not updated:
+
+     """
 
     def __init__(self,
        YieldTermStructure term_structure=YieldTermStructure(),
@@ -102,7 +106,7 @@ cdef class HullWhite(Vasicek):
         Notes
         -----
         `t` and `T` should be expressed in yearfraction using deposit day counter,
-        future_price is futures' market price.
+        `future_price` is futures' market price.
 
         .. [1] G. Kirikos, D. Novak, "Convexity Conundrums", Risk Magazine, March 1997.
 

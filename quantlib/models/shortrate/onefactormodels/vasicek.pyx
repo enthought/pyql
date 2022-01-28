@@ -1,11 +1,13 @@
-"""
- Copyright (C) 2015, Enthought Inc
- Copyright (C) 2015, Patrick Henaff
+# Copyright (C) 2015, Enthought Inc
+# Copyright (C) 2015, Patrick Henaff
 
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE.  See the license for more details.
-"""
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the license for more details.
+
+"""Vasiceck model"""
+
+
 
 include '../../../types.pxi'
 
@@ -18,13 +20,15 @@ from quantlib.handle cimport shared_ptr
 from quantlib.quote cimport Quote
 
 cdef class Vasicek(OneFactorAffineModel):
-    """
-    Vasicek model defined by
-    .. math::
-    dr_t = a(b - r_t)dt + \sigma dW_t
+    r"""Vasicek model
 
-    where a, b and sigma are constants.
-    A risk premium lambda can also be specified.
+     defined by
+
+     .. math::
+        dr_t = a(b - r_t)dt + \sigma dW_t
+
+     where :math:`a`, :math:`b` and :math:`\sigma` are constants.
+     A risk premium :math:`\lambda` can also be specified.
     """
 
     def __init__(self,
