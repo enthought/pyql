@@ -52,7 +52,7 @@ cdef inline _bonds.Bond* get_bond(Bond bond):
 cdef class Bond(Instrument):
     """ Base bond class
 
-        .. warning:
+        .. warning::
 
             Most methods assume that the cash flows are stored
             sorted by date, the redemption(s) being after any
@@ -88,7 +88,7 @@ cdef class Bond(Instrument):
         return date_from_qldate(get_bond(self).settlementDate(deref(from_date._thisptr)))
 
     property clean_price:
-        """ Bond clena price. """
+        """ Bond clean price. """
         def __get__(self):
             return get_bond(self).cleanPrice()
 
@@ -129,8 +129,8 @@ cdef class Bond(Instrument):
 cdef class FixedRateBond(Bond):
     """ Fixed rate bond.
 
-    Support:
-    - simple annual compounding coupon rates
+    Support: 
+        - simple annual compounding coupon rates
 
     Unsupported: (needs interfacing)
         - simple annual compounding coupon rates with internal schedule calculation
@@ -155,17 +155,17 @@ cdef class FixedRateBond(Bond):
            Number of days before bond settles
         face_amount : float (C double in python)
            Amount of face value of bond
-        schedule : Quantlib::Schedule
+        schedule : Schedule
            Schedule of payments for bond
         coupons : list[float]
            Interest[s] to be acquired for bond.
-        accrual_day_counter: Quantlib::DayCounter
+        accrual_day_counter: DayCounter
            dayCounter for Bond
-        payment_convention: Quantlib::BusinessDayConvention
+        payment_convention: BusinessDayConvention
            The business day convention for the payment schedule
         redemption : float
            Amount at redemption
-        issue_date : Quantlib::Date
+        issue_date : Date
            Date bond was issued
         """
 
@@ -196,17 +196,17 @@ cdef class ZeroCouponBond(Bond):
         ----------
         settlement_days : int
             Number of days before bond settles
-        calendar : Quantlib::Calendar
+        calendar : Calendar
             Type of Calendar
         face_amount: float (C double in python)
             Amount of face value of bond
-        maturity_date: Quantlib::Date
+        maturity_date: Date
             Date bond matures (pays off)
-        payment_convention : Quantlib::BusinessDayConvention
+        payment_convention : BusinessDayConvention
             The business day convention for the payment schedule
         redemption : float
             Amount at redemption
-        issue_date : Quantlib::Date
+        issue_date : Date
             Date bond was issued"""
 
         self._thisptr = shared_ptr[_instrument.Instrument](
@@ -229,7 +229,7 @@ cdef class FloatingRateBond(Bond):
         bool in_arrears=True,
         Real redemption=100.0, Date issue_date=Date()
         ):
-        """ Floating rate bond (constructor)
+        """ Floating rate bond
 
         Parameters
         ----------
@@ -237,11 +237,11 @@ cdef class FloatingRateBond(Bond):
             Number of days before bond settles
         face_amount : float (C double in python)
             Amount of face value of bond
-        float_schedule : Quantlib::Schedule
+        float_schedule : Schedule
             Schedule of payments for bond
-        ibor_index : Quantlib::IborIndex
+        ibor_index : IborIndex
             Ibor index
-        accrual_day_counter: Quantlib::DayCounter
+        accrual_day_counter: DayCounter
             dayCounter for Bond
         fixing_days : int
             Number of fixing days for bond
@@ -253,12 +253,12 @@ cdef class FloatingRateBond(Bond):
             Caps on the spread
         floors: list[float]
             Floors on the spread
-        payment_convention: Quantlib::BusinessDayConvention
+        payment_convention: BusinessDayConvention
             The business day convention for the payment schedule
         in_arrears: bool
         redemption : float
             Amount at redemption
-        issue_date : Quantlib::Date
+        issue_date : Date
             Date bond was issued
         """
 
