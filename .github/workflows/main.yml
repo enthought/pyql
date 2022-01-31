@@ -59,6 +59,7 @@ jobs:
         if: matrix.python-version == '3.9'
         run: |
           pip install sphinx nbsphinx scikit-learn
+          sudo apt-get install pandoc
           make docs
 
       - uses: actions/upload-artifact@v2
