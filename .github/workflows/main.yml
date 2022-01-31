@@ -58,8 +58,8 @@ jobs:
       - name: Build docs
         if: matrix.python-version == '3.9'
         run: |
-          pip install sphinx nbsphinx scikit-learn
-          sudo apt-get install pandoc
+          pip install sphinx nbsphinx scikit-learn ipython
+          sudo apt-get install pandoc texlive texlive-latex-extra dvipng
           make docs
 
       - uses: actions/upload-artifact@v2
