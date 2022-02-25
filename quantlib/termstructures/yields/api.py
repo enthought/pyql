@@ -7,7 +7,7 @@ from .zero_spreaded_term_structure import ZeroSpreadedTermStructure
 from .piecewise_zerospreaded_termstructure import PiecewiseZeroSpreadedTermStructure
 from .rate_helpers import (
     RateHelper, DepositRateHelper, FraRateHelper,
-    FuturesRateHelper, SwapRateHelper)
+    FuturesRateHelper, SwapRateHelper, FxSwapRateHelper)
 from .ois_rate_helper import OISRateHelper, DatedOISRateHelper
 from .overnightindexfutureratehelper import OvernightIndexFutureRateHelper, SofrFutureRateHelper
 from .discount_curve import InterpolatedDiscountCurve, DiscountCurve
