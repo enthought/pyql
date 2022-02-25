@@ -8,7 +8,7 @@ cpdef enum Market:
     GovernmentBond = _us.GovernmentBond # government-bond calendar
     NERC           = _us.NERC # off-peak days for NERC
     LiborImpact    = _us.LiborImpact
-    #FederalReserve = _us.FederalReserve
+    FederalReserve = _us.FederalReserve
 
 cdef class UnitedStates(Calendar):
     '''United States calendars.
