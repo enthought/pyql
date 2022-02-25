@@ -9,7 +9,7 @@ cdef extern from 'ql/time/calendars/unitedstates.hpp' namespace \
         GovernmentBond
         NERC
         LiborImpact
-        #FederalReserve
+        FederalReserve
 
 cdef extern from 'ql/time/calendars/unitedstates.hpp' namespace 'QuantLib':
     cdef cppclass UnitedStates(Calendar):
