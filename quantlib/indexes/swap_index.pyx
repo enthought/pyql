@@ -10,13 +10,14 @@
 
 include '../types.pxi'
 from cython.operator cimport dereference as deref
+from libcpp cimport bool
 from libcpp.string cimport string
 
-from quantlib.handle cimport static_pointer_cast
+from quantlib.cashflows.rateaveraging cimport RateAveraging
 from quantlib.indexes.interest_rate_index cimport InterestRateIndex
 from quantlib.instruments.vanillaswap cimport VanillaSwap
-from quantlib.indexes.ibor_index cimport IborIndex
-from quantlib.handle cimport shared_ptr
+from quantlib.indexes.ibor_index cimport IborIndex, OvernightIndex
+from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.currency.currency cimport Currency
@@ -87,3 +88,21 @@ cdef class SwapIndex(InterestRateIndex):
                             discountingTermStructure().
                             currentLink())
         return yts
+
+
+cdef class OvernightIndexedSwapIndex(SwapIndex):
+    def __init__(self, string family_name, Period tenor not None, Natural settlement_days,
+                 Currency currency, OvernightIndex overnight_index not None,
+                 bool telescopic_value_dates=False,
+                 RateAveraging averaging_method=RateAveraging.Compound):
+        self._thisptr.reset(
+            new _si.OvernightIndexedSwapIndex(
+                family_name,
+                deref(tenor._thisptr),
+                settlement_days,
+                deref(currency._thisptr),
+                static_pointer_cast[_ii.OvernightIndex](overnight_index._thisptr),
+                telescopic_value_dates,
+                averaging_method,
+            )
+        )
