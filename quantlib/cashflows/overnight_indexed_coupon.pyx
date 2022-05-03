@@ -7,6 +7,7 @@ from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.indexes.ibor_index cimport OvernightIndex
 cimport quantlib.indexes._ibor_index as _ii
+cimport quantlib._cashflow as _cf
 from .rateaveraging cimport RateAveraging
 from . cimport _overnight_indexed_coupon as _oic
 
@@ -26,3 +27,18 @@ cdef class OvernightIndexedCoupon(FloatingRateCoupon):
                 deref(ref_period_start._thisptr), deref(ref_period_end._thisptr),
                 deref(day_counter._thisptr), telescopic_values, averaging_method
         )
+
+cdef class OvernightLeg(Leg):
+    def __iter__(self):
+        cdef shared_ptr[_cf.CashFlow] cf
+        cdef OvernightIndexedCoupon oic = OvernightIndexedCoupon.__new__(OvernightIndexedCoupon)
+        for cf in self._thisptr:
+            oic._thisptr = cf
+            yield oic
+
+    def __repr__(self):
+        """ Pretty print cash flow schedule. """
+
+        header = "Cash Flow Schedule:\n"
+        values = ("{0!s} {1:f}".format(ic.date, ic.amount) for ic in self)
+        return header + '\n'.join(values)
