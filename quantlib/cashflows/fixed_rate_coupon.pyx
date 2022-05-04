@@ -1,6 +1,7 @@
 include '../types.pxi'
 
-from cython.operator cimport dereference as deref
+from cython.operator cimport dereference as deref, preincrement as preinc
+from libcpp.vector cimport vector
 from quantlib.handle cimport shared_ptr
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
@@ -32,11 +33,13 @@ cdef class FixedRateCoupon(Coupon):
 
 cdef class FixedRateLeg(Leg):
     def __iter__(self):
-        cdef shared_ptr[_cf.CashFlow] cf
-        cdef FixedRateCoupon frc = FixedRateCoupon.__new__(FixedRateCoupon)
-        for cf in self._thisptr:
-            frc._thisptr = cf
+        cdef FixedRateCoupon frc
+        cdef vector[shared_ptr[_cf.CashFlow]].iterator it = self._thisptr.begin()
+        while it != self._thisptr.end():
+            frc = FixedRateCoupon.__new__(FixedRateCoupon)
+            frc._thisptr = deref(it)
             yield frc
+            preinc(it)
 
     def __repr__(self):
         """ Pretty print cash flow schedule. """

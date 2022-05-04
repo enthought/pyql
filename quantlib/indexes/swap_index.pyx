@@ -10,13 +10,15 @@
 
 include '../types.pxi'
 from cython.operator cimport dereference as deref
+from libcpp cimport bool
 from libcpp.string cimport string
 
-from quantlib.handle cimport static_pointer_cast
+from quantlib.cashflows.rateaveraging cimport RateAveraging
 from quantlib.indexes.interest_rate_index cimport InterestRateIndex
 from quantlib.instruments.vanillaswap cimport VanillaSwap
-from quantlib.indexes.ibor_index cimport IborIndex
-from quantlib.handle cimport shared_ptr
+from quantlib.instruments.overnightindexedswap cimport OvernightIndexedSwap
+from quantlib.indexes.ibor_index cimport IborIndex, OvernightIndex
+from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.currency.currency cimport Currency
@@ -74,16 +76,47 @@ cdef class SwapIndex(InterestRateIndex):
     def forwarding_term_structure(self):
         cdef YieldTermStructure yts = YieldTermStructure.__new__(YieldTermStructure)
         cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
-        yts._thisptr.linkTo(swap_index.
-                            forwardingTermStructure().
-                            currentLink())
-        return yts
+        if not swap_index.forwardingTermStructure().empty():
+            yts._thisptr.linkTo(swap_index.
+                                forwardingTermStructure().
+                                currentLink())
+            return yts
+        else:
+            raise RuntimeError("Cannot dereference empty handle")
 
     @property
     def discounting_term_structure(self):
         cdef YieldTermStructure yts = YieldTermStructure.__new__(YieldTermStructure)
         cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
-        yts._thisptr.linkTo(swap_index.
-                            discountingTermStructure().
-                            currentLink())
-        return yts
+        if not swap_index.discountingTermStructure().empty():
+            yts._thisptr.linkTo(swap_index.
+                                discountingTermStructure().
+                                currentLink())
+            return yts
+        else:
+            raise RuntimeError("Cannot dereference empty handle")
+
+
+cdef class OvernightIndexedSwapIndex(SwapIndex):
+    def __init__(self, string family_name, Period tenor not None, Natural settlement_days,
+                 Currency currency, OvernightIndex overnight_index not None,
+                 bool telescopic_value_dates=False,
+                 RateAveraging averaging_method=RateAveraging.Compound):
+        self._thisptr.reset(
+            new _si.OvernightIndexedSwapIndex(
+                family_name,
+                deref(tenor._thisptr),
+                settlement_days,
+                deref(currency._thisptr),
+                static_pointer_cast[_ii.OvernightIndex](overnight_index._thisptr),
+                telescopic_value_dates,
+                averaging_method,
+            )
+        )
+
+    def underlying_swap(self, Date fixing_date not None):
+        cdef _si.OvernightIndexedSwapIndex* swap_index = <_si.OvernightIndexedSwapIndex*>self._thisptr.get()
+        cdef OvernightIndexedSwap swap = OvernightIndexedSwap.__new__(OvernightIndexedSwap)
+        swap._thisptr = static_pointer_cast[_instrument.Instrument](
+            <shared_ptr[_si.OvernightIndexedSwap]>swap_index.underlyingSwap(deref(fixing_date._thisptr)))
+        return swap
