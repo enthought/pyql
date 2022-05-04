@@ -14,6 +14,7 @@ from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.handle cimport make_shared, static_pointer_cast
 from .swap cimport Swap
+from .swap import SwapType as PySwapType
 from quantlib.instruments._instrument cimport Instrument
 cimport quantlib.indexes._ibor_index as _ii
 cimport quantlib._index as _ind
@@ -57,7 +58,7 @@ cdef class OvernightIndexedSwap(Swap):
 
     @property
     def type(self):
-        return get_OIS(self).type()
+        return PySwapType(get_OIS(self).type())
 
     @property
     def nominal(self):

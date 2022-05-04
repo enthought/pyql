@@ -41,7 +41,7 @@ cdef class MakeOIS:
         instance._thisptr = static_pointer_cast[_in.Instrument](temp)
         return instance
 
-    def receive_fixed(self, bool flag):
+    def receive_fixed(self, bool flag=True):
         self._thisptr.receiveFixed(flag)
         return self
 
@@ -73,7 +73,7 @@ cdef class MakeOIS:
         self._thisptr.withPaymentFrequency(f)
         return self
 
-    def with_payment_adjustmend(self, BusinessDayConvention convention):
+    def with_payment_adjustment(self, BusinessDayConvention convention):
         self._thisptr.withPaymentAdjustment(convention)
         return self
 

@@ -16,6 +16,7 @@ from libcpp.string cimport string
 from quantlib.cashflows.rateaveraging cimport RateAveraging
 from quantlib.indexes.interest_rate_index cimport InterestRateIndex
 from quantlib.instruments.vanillaswap cimport VanillaSwap
+from quantlib.instruments.overnightindexedswap cimport OvernightIndexedSwap
 from quantlib.indexes.ibor_index cimport IborIndex, OvernightIndex
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.time.date cimport Period
@@ -75,19 +76,25 @@ cdef class SwapIndex(InterestRateIndex):
     def forwarding_term_structure(self):
         cdef YieldTermStructure yts = YieldTermStructure.__new__(YieldTermStructure)
         cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
-        yts._thisptr.linkTo(swap_index.
-                            forwardingTermStructure().
-                            currentLink())
-        return yts
+        if not swap_index.forwardingTermStructure().empty():
+            yts._thisptr.linkTo(swap_index.
+                                forwardingTermStructure().
+                                currentLink())
+            return yts
+        else:
+            raise RuntimeError("Cannot dereference empty handle")
 
     @property
     def discounting_term_structure(self):
         cdef YieldTermStructure yts = YieldTermStructure.__new__(YieldTermStructure)
         cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
-        yts._thisptr.linkTo(swap_index.
-                            discountingTermStructure().
-                            currentLink())
-        return yts
+        if not swap_index.discountingTermStructure().empty():
+            yts._thisptr.linkTo(swap_index.
+                                discountingTermStructure().
+                                currentLink())
+            return yts
+        else:
+            raise RuntimeError("Cannot dereference empty handle")
 
 
 cdef class OvernightIndexedSwapIndex(SwapIndex):
@@ -106,3 +113,10 @@ cdef class OvernightIndexedSwapIndex(SwapIndex):
                 averaging_method,
             )
         )
+
+    def underlying_swap(self, Date fixing_date not None):
+        cdef _si.OvernightIndexedSwapIndex* swap_index = <_si.OvernightIndexedSwapIndex*>self._thisptr.get()
+        cdef OvernightIndexedSwap swap = OvernightIndexedSwap.__new__(OvernightIndexedSwap)
+        swap._thisptr = static_pointer_cast[_instrument.Instrument](
+            <shared_ptr[_si.OvernightIndexedSwap]>swap_index.underlyingSwap(deref(fixing_date._thisptr)))
+        return swap
