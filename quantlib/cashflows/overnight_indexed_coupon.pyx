@@ -1,7 +1,8 @@
 from quantlib.types cimport Real, Spread
 
 from libcpp cimport bool
-from cython.operator cimport dereference as deref
+from libcpp.vector cimport vector
+from cython.operator cimport dereference as deref, preincrement as preinc
 from quantlib.handle cimport make_shared, shared_ptr, static_pointer_cast
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time.daycounter cimport DayCounter
@@ -29,12 +30,15 @@ cdef class OvernightIndexedCoupon(FloatingRateCoupon):
         )
 
 cdef class OvernightLeg(Leg):
+
     def __iter__(self):
-        cdef shared_ptr[_cf.CashFlow] cf
-        cdef OvernightIndexedCoupon oic = OvernightIndexedCoupon.__new__(OvernightIndexedCoupon)
-        for cf in self._thisptr:
-            oic._thisptr = cf
+        cdef OvernightIndexedCoupon oic
+        cdef vector[shared_ptr[_cf.CashFlow]].iterator it = self._thisptr.begin()
+        while it != self._thisptr.end():
+            oic = OvernightIndexedCoupon.__new__(OvernightIndexedCoupon)
+            oic._thisptr = deref(it)
             yield oic
+            preinc(it)
 
     def __repr__(self):
         """ Pretty print cash flow schedule. """
