@@ -86,4 +86,15 @@ cdef class IborIndex(InterestRateIndex):
 
 
 cdef class OvernightIndex(IborIndex):
-    pass
+    def __init__(self, str family_name, Natural settlement_days,
+                 Currency currency, Calendar fixing_calendar,
+                 DayCounter day_counter not None,
+                 YieldTermStructure yts=YieldTermStructure()):
+        self._thisptr = shared_ptr[_in.Index](
+            new _ib.OvernightIndex(family_name.encode('utf-8'),
+                              settlement_days,
+                              deref(currency._thisptr),
+                              deref(fixing_calendar._thisptr),
+                              deref(day_counter._thisptr),
+                              yts._thisptr)
+            )
