@@ -48,38 +48,37 @@ cdef extern from 'ql/time/imm.hpp' namespace "QuantLib::IMM":
     # (e.g. March 20th, 2013 for H3).
     # It raises an exception if the input
     # string is not an IMM code
-    
+
     cdef Date date(string& immCode, Date& referenceDate) except +
 
     # next IMM date following the given date
     # returns the 1st delivery date for next contract listed in the
     #    International Money Market section of the Chicago Mercantile
     #    Exchange.
-    
-    cdef Date nextDate_dt "QuantLib::IMM::nextDate" (Date& d, bool mainCycle)
+
+    cdef Date nextDate(Date& d, bool mainCycle) except +ValueError
 
     # next IMM date following the given IMM code
     # returns the 1st delivery date for next contract listed in the
     # International Money Market section of the Chicago Mercantile
     # Exchange.
 
-    cdef Date nextDate_str "QuantLib::IMM::nextDate" (string& immCode,
+    cdef Date nextDate(string& immCode,
                        bool mainCycle,
-                       Date& referenceDate)
+                       Date& referenceDate) except +ValueError
 
     # next IMM code following the given date
     # returns the IMM code for next contract listed in the
     #    International Money Market section of the Chicago Mercantile
     #    Exchange.
 
-    cdef string nextCode_dt "QuantLib::IMM::nextCode" (Date& d,
-                         bool mainCycle)
+    cdef string nextCode(Date& d, bool mainCycle) except +ValueError
 
     # next IMM code following the given code
     # returns the IMM code for next contract listed in the
     #    International Money Market section of the Chicago Mercantile
     #    Exchange.
 
-    cdef string nextCode_str "QuantLib::IMM::nextCode" (string& immCode,
+    cdef string nextCode(string& immCode,
                          bool mainCycle,
-                         Date& referenceDate)
+                         Date& referenceDate) except +ValueError

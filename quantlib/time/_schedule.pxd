@@ -63,3 +63,5 @@ cdef extern from 'ql/time/schedule.hpp' namespace 'QuantLib':
         vector[Date] dates()
         vector[Date].const_iterator begin()
         vector[Date].const_iterator end()
+
+    Date previousTwentieth(const Date& d, Rule rule)
