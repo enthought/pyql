@@ -49,7 +49,7 @@ def date(str imm_code, Date reference_date=Date()):
     cdef _date.Date tmp = _imm.date(_code, deref(reference_date._thisptr))
     return date_from_qldate(tmp)
 
-def next_date(code_or_date, main_cycle=True, Date reference_date=Date()):
+def next_date(code_or_date, bool main_cycle=True, Date reference_date=Date()):
     """ Next IMM date following the given date
 
     returns the 1st delivery date for next contract listed in the
@@ -62,15 +62,15 @@ def next_date(code_or_date, main_cycle=True, Date reference_date=Date()):
     cdef Date dt
 
     if isinstance(code_or_date, Date):
-        dt = <Date> code_or_date
-        result =  _imm.nextDate_dt(deref(dt._thisptr), <bool>main_cycle)
+        dt = <Date>code_or_date
+        result =  _imm.nextDate(deref(dt._thisptr), main_cycle)
     else:
-        result =  _imm.nextDate_str(code_or_date.encode('utf-8'),
-            <bool>main_cycle, deref(reference_date._thisptr.get()))
+        result =  _imm.nextDate(code_or_date.encode('utf-8'),
+                                main_cycle, deref(reference_date._thisptr))
 
     return date_from_qldate(result)
 
-def next_code(code_or_date, main_cycle=True, Date reference_date=Date()):
+def next_code(code_or_date, bool main_cycle=True, Date reference_date=Date()):
     """ Next IMM code following the given date or code
 
     Returns the IMM code for next contract listed in the
@@ -82,10 +82,10 @@ def next_code(code_or_date, main_cycle=True, Date reference_date=Date()):
 
     if isinstance(code_or_date, Date):
         dt = <Date> code_or_date
-        result =  _imm.nextCode_dt(deref(dt._thisptr), <bool>main_cycle)
+        result =  _imm.nextCode(deref(dt._thisptr), main_cycle)
     else:
-        result =  _imm.nextCode_str(code_or_date.encode('utf-8'),
-                                    <bool>main_cycle,
-                                    deref(reference_date._thisptr.get()))
+        result =  _imm.nextCode(code_or_date.encode('utf-8'),
+                                main_cycle,
+                                deref(reference_date._thisptr))
 
     return result.decode("utf-8")

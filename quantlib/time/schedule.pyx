@@ -190,3 +190,7 @@ cdef class Schedule:
             return date_from_qldate(self._thisptr.at(index))
         else:
             raise TypeError('index needs to be an integer or a slice')
+
+def previous_twentieth(Date d not None, Rule rule):
+    cdef _date.Date date = _schedule.previousTwentieth(deref(d._thisptr), rule)
+    return date_from_qldate(date)
