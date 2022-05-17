@@ -249,7 +249,7 @@ if __name__ == '__main__':
         version = '0.1',
         author = 'Didrik Pinte,Patrick Henaff',
         license = 'BSD',
-        packages = find_packages(),
+        packages = ['quantlib'],
         include_package_data = True,
         ext_modules = collect_extensions(),
         setup_requires=['cython'],
