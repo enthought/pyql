@@ -2,10 +2,15 @@ include '../types.pxi'
 
 from cython.operator cimport dereference as deref, preincrement as preinc
 from libcpp.vector cimport vector
+from quantlib.compounding import Compounding
+from quantlib._compounding cimport Compounding
 from quantlib.handle cimport shared_ptr
+from quantlib.time.businessdayconvention cimport BusinessDayConvention
+from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date
+from quantlib.time.frequency cimport Frequency, Annual
 from quantlib.time.daycounter cimport DayCounter
-cimport quantlib.cashflows._fixed_rate_coupon as _frc
+from quantlib.time.schedule cimport Schedule
 cimport quantlib._cashflow as _cf
 from quantlib.interest_rate cimport InterestRate
 cimport quantlib._interest_rate as _ir
@@ -32,6 +37,34 @@ cdef class FixedRateCoupon(Coupon):
         return ir
 
 cdef class FixedRateLeg(Leg):
+
+    def __init__(self, Schedule schedule):
+        self.frl = new _frc.FixedRateLeg(deref(schedule._thisptr))
+
+    def with_notional(self, Real notional):
+        self.frl.withNotionals(notional)
+        return self
+
+    def with_coupon_rates(self, Rate rate, DayCounter payment_day_counter, Compounding comp=Compounding.Simple, Frequency freq=Annual):
+        self.frl.withCouponRates(rate, deref(payment_day_counter._thisptr), comp, freq)
+        return self
+
+    def with_payment_adjustment(self, BusinessDayConvention bdc):
+        self.frl.withPaymentAdjustment(bdc)
+        return self
+
+    def with_payment_calendar(self, Calendar cal):
+        self.frl.withPaymentCalendar(deref(cal._thisptr))
+        return self
+
+    def with_last_period_day_counter(self, DayCounter dc):
+        self.frl.withLastPeriodDayCounter(deref(dc._thisptr))
+        return self
+
+    def __call__(self):
+        self._thisptr = <_cf.Leg>deref(self.frl)
+        return self
+
     def __iter__(self):
         cdef FixedRateCoupon frc
         cdef vector[shared_ptr[_cf.CashFlow]].iterator it = self._thisptr.begin()
