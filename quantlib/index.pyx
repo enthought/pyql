@@ -42,17 +42,17 @@ cdef class Index:
         ts._thisptr = self._thisptr.get().timeSeries()
         return ts
 
-    def is_valid_fixing_date(self, Date fixingDate not None):
+    def is_valid_fixing_date(self, Date fixing_date not None):
         return self._thisptr.get().isValidFixingDate(
-            deref(fixingDate._thisptr))
+            deref(fixing_date._thisptr))
 
-    def fixing(self, Date fixingDate not None, bool forecastTodaysFixing=False):
+    def fixing(self, Date fixingDate not None, bool forecast_todays_fixing=False):
         return self._thisptr.get().fixing(
-            deref(fixingDate._thisptr), forecastTodaysFixing)
+            deref(fixingDate._thisptr), forecast_todays_fixing)
 
-    def add_fixing(self, Date fixingDate not None, Real fixing, bool forceOverwrite=False):
+    def add_fixing(self, Date fixingDate not None, Real fixing, bool force_overwrite=False):
         self._thisptr.get().addFixing(
-            deref(fixingDate._thisptr), fixing, forceOverwrite
+            deref(fixingDate._thisptr), fixing, force_overwrite
         )
 
     def add_fixings(self, list dates, list values, bool force_overwrite=False):
@@ -66,6 +66,8 @@ cdef class Index:
                 qldates.push_back(QlDate(date_day(d), <Month>date_month(d), date_year(d)))
             elif isinstance(d, Date):
                 qldates.push_back(deref((<Date>d)._thisptr))
+            else:
+                raise TypeError
             qlvalues.push_back(<Real?>v)
         self._thisptr.get().addFixings(qldates.begin(), qldates.end(), qlvalues.begin(), force_overwrite)
 
