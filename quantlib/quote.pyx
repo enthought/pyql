@@ -16,6 +16,9 @@ cdef class Quote(Observable):
         def __get__(self):
             return self._thisptr.get().value()
 
+    def __bool__(self):
+        return self._thisptr.get().isValid()
+
     cdef shared_ptr[QlObservable] as_observable(self):
         return static_pointer_cast[QlObservable](self._thisptr)
 
