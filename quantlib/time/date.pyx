@@ -478,8 +478,6 @@ cdef class Date:
     def from_datetime(cls, object dt not None):
         """Returns the Quantlib Date object from the date/datetime object. """
         cdef Date instance = Date.__new__(Date)
-        if not PyDate_Check(dt):
-            raise TypeError
         instance._thisptr.reset(new QlDate(_qldate_from_pydate(dt)))
         return instance
 
@@ -559,7 +557,7 @@ cpdef object pydate_from_qldate(Date qdate):
     cdef QlDate* d = qdate._thisptr.get()
     return date_new(d.year(), d.month(), d.dayOfMonth())
 
-cdef QlDate _qldate_from_pydate(object pydate):
+cdef inline QlDate _qldate_from_pydate(object pydate):
     """ Converts a datetime.date to a QuantLib (C++) object. """
     if PyDateTime_Check(pydate):
         return QlDate(datetime_day(pydate), <Month>datetime_month(pydate), datetime_year(pydate),
