@@ -62,7 +62,7 @@ cdef class FixedRateLeg(Leg):
         return self
 
     def __call__(self):
-        self._thisptr = <_cf.Leg>deref(self.frl)
+        self._thisptr = _frc.to_leg(deref(self.frl))
         return self
 
     def __iter__(self):

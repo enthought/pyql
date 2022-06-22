@@ -12,8 +12,10 @@ from quantlib.time._schedule cimport Schedule
 from quantlib._cashflow cimport CashFlow
 from quantlib._interest_rate cimport InterestRate
 from quantlib.cashflows._coupon cimport Coupon
+from .._cashflow cimport Leg
 
 cdef extern from 'ql/cashflows/fixedratecoupon.hpp' namespace 'QuantLib':
+
     cdef cppclass FixedRateCoupon(Coupon):
         FixedRateCoupon(const Date& paymentDate,
                         Real nominal,
@@ -57,3 +59,9 @@ cdef extern from 'ql/cashflows/fixedratecoupon.hpp' namespace 'QuantLib':
                                           const Calendar&,
                                           BusinessDayConvention,
                                           bool endOfMonth)# = false)
+
+cdef extern from 'ql/cashflows/fixedratecoupon.hpp':
+    """
+    #define to_leg(x) static_cast<QuantLib::Leg>(x)
+    """
+    cdef Leg to_leg(FixedRateLeg) except +
