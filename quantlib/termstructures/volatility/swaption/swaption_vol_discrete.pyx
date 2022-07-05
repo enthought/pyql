@@ -28,6 +28,7 @@ cdef class SwaptionVolatilityDiscrete(SwaptionVolatilityStructure):
         while it != _get_svd(self).optionDates().const_end():
             r.append(date_from_qldate(deref(it)))
             preinc(it)
+        return r
 
     @property
     def option_times(self):

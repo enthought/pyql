@@ -180,7 +180,8 @@ cdef class HandleSwaptionVolatilityStructure:
     def current_link(self):
         cdef SwaptionVolatilityStructure instance = SwaptionVolatilityStructure.__new__(SwaptionVolatilityStructure)
         if not self.handle.empty():
-            instance._thisptr = self.handle.currentLink()
+            instance._derived_ptr = self.handle.currentLink()
+            instance._thisptr = instance._derived_ptr
             return instance
         else:
             raise ValueError("can't dereference empty handle")
