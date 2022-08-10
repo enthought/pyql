@@ -40,6 +40,7 @@ cdef class OISRateHelper(RelativeDateRateHelper):
                  Pillar pillar=Pillar.LastRelevantDate,
                  Date custom_pillar_date=Date(),
                  RateAveraging averaging_method=RateAveraging.Compound,
+                 bool end_of_month=True,
                  ):
         self._thisptr = shared_ptr[_rh.RateHelper](
             new _orh.OISRateHelper(
@@ -57,7 +58,8 @@ cdef class OISRateHelper(RelativeDateRateHelper):
                 overnight_spread,
                 pillar,
                 deref(custom_pillar_date._thisptr),
-                averaging_method
+                averaging_method,
+                end_of_month,
             )
         )
 
