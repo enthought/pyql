@@ -33,6 +33,7 @@ cdef extern from 'ql/termstructures/yield/oisratehelper.hpp' namespace 'QuantLib
                       Pillar pillar, # = Pillar::LastRelevantDate,
                       Date customPillarDate, # = Date(),
                       RateAveraging averagingMethod,# = RateAveraging::Compound,
+                      bool endOfMonth, # = true
         ) except + # = 0.0
 
     cdef cppclass DatedOISRateHelper(RateHelper):
