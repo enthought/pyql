@@ -21,6 +21,12 @@ cimport quantlib.termstructures._inflation_term_structure as _its
 
 cdef extern from 'ql/indexes/inflationindex.hpp' namespace 'QuantLib':
 
+    cdef cppclass CPI:
+        enum InterpolationType:
+            AsIndex
+            Flat
+            Linear
+
     cdef cppclass InflationIndex(Index):
         InflationIndex()
         InflationIndex(string& familyName,
