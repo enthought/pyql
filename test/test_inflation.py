@@ -21,6 +21,7 @@ from quantlib.termstructures.inflation_term_structure import \
     ZeroInflationTermStructure
 from quantlib.termstructures.yields.api import FlatForward
 from quantlib.indexes.inflation.ukrpi import UKRPI
+from quantlib.indexes.inflation_index import InterpolationType
 from quantlib.termstructures.inflation.api import \
     ZeroCouponInflationSwapHelper, PiecewiseZeroInflationCurve, Interpolator
 from quantlib.quotes import SimpleQuote
@@ -100,7 +101,7 @@ class TestCPIBond(unittest.TestCase):
         self.helpers = [ZeroCouponInflationSwapHelper(
             SimpleQuote(r / 100),
             observation_lag,
-            maturity, self.calendar, ModifiedFollowing, day_counter, self.ii, self.yts) \
+            maturity, self.calendar, ModifiedFollowing, day_counter, self.ii, InterpolationType.AsIndex, self.yts) \
                         for maturity, r in zip(dates, rates)]
         base_zero_rate = rates[0] / 100
 
