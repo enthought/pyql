@@ -5,7 +5,7 @@ from libcpp cimport bool
 from cython.operator cimport dereference as deref
 from quantlib.cashflows.rateaveraging cimport RateAveraging
 from quantlib.termstructures.helpers cimport Pillar
-from quantlib.handle cimport shared_ptr, static_pointer_cast, Handle
+from quantlib.handle cimport shared_ptr, static_pointer_cast, Handle, optional
 from quantlib.quote cimport Quote
 from quantlib.time.date cimport Date, Period
 from quantlib.termstructures.yields.rate_helpers cimport RelativeDateRateHelper, RateHelper
@@ -40,8 +40,11 @@ cdef class OISRateHelper(RelativeDateRateHelper):
                  Pillar pillar=Pillar.LastRelevantDate,
                  Date custom_pillar_date=Date(),
                  RateAveraging averaging_method=RateAveraging.Compound,
-                 bool end_of_month=True,
+                 end_of_month=None,
                  ):
+        cdef optional[bool] end_of_month_opt
+        if end_of_month is not None:
+            end_of_month_opt = <bool>end_of_month
         self._thisptr = shared_ptr[_rh.RateHelper](
             new _orh.OISRateHelper(
                 settlement_days,
@@ -59,7 +62,7 @@ cdef class OISRateHelper(RelativeDateRateHelper):
                 pillar,
                 deref(custom_pillar_date._thisptr),
                 averaging_method,
-                end_of_month,
+                end_of_month_opt,
             )
         )
 
