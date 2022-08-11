@@ -4,7 +4,7 @@ from libcpp cimport bool
 
 from quantlib._quote cimport Quote
 from quantlib.cashflows.rateaveraging cimport RateAveraging
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.handle cimport shared_ptr, Handle, optional
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period, Frequency
 from quantlib.termstructures.helpers cimport Pillar
@@ -33,7 +33,7 @@ cdef extern from 'ql/termstructures/yield/oisratehelper.hpp' namespace 'QuantLib
                       Pillar pillar, # = Pillar::LastRelevantDate,
                       Date customPillarDate, # = Date(),
                       RateAveraging averagingMethod,# = RateAveraging::Compound,
-                      bool endOfMonth, # = true
+                      optional[bool] endOfMonth, # = boost::none
         ) except + # = 0.0
 
     cdef cppclass DatedOISRateHelper(RateHelper):
