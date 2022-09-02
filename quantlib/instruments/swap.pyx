@@ -79,7 +79,7 @@ cdef class Swap(Instrument):
     def endDiscounts(self, Size j):
         return get_swap(self).endDiscounts(j)
 
-    def npvDateDiscount(self):
+    def npv_date_discount(self):
         return get_swap(self).npvDateDiscount()
 
     def leg(self, int i):

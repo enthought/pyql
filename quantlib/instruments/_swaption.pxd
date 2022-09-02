@@ -1,6 +1,7 @@
 include '../types.pxi'
 from quantlib.handle cimport shared_ptr, optional
-from ._vanillaswap cimport VanillaSwap
+from ._fixedvsfloatingswap cimport FixedVsFloatingSwap 
+from ._overnightindexedswap cimport OvernightIndexedSwap
 from ._option cimport Option
 from ._exercise cimport Exercise
 from .swap cimport Type as SwapType
@@ -12,7 +13,7 @@ from .swaption cimport Type, Method
 cdef extern from 'ql/instruments/swaption.hpp' namespace 'QuantLib':
 
     cdef cppclass Swaption(Option):
-        Swaption(const shared_ptr[VanillaSwap]& swap,
+        Swaption(const shared_ptr[FixedVsFloatingSwap]& swap,
                  const shared_ptr[Exercise]& exercise,
                  Type delivery, # = Settlement::Physical
                  Method settlementMethod) # Settlement::PhysicalOTC
@@ -28,4 +29,4 @@ cdef extern from 'ql/instruments/swaption.hpp' namespace 'QuantLib':
                                      VolatilityType type,# = ShiftedLognormal,
                                      Real displacement)# = 0.0)
         SwapType type() const
-        const shared_ptr[VanillaSwap]& underlyingSwap()
+        const shared_ptr[FixedVsFloatingSwap]& underlyingSwap()
