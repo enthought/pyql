@@ -6,9 +6,10 @@ from quantlib.termstructures.volatility.volatilitytype cimport (
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from .exercise cimport Exercise
 from .swap cimport Type as SwapType
-from .vanillaswap cimport VanillaSwap
-from . cimport _vanillaswap
+from .fixedvsfloatingswap cimport FixedVsFloatingSwap
+from . cimport _fixedvsfloatingswap
 from .. cimport _instrument
+from . cimport _overnightindexedswap as _ois
 
 cdef class Settlement:
     PhysicalOTC = Method.PhysicalOTC
@@ -19,12 +20,12 @@ cdef class Settlement:
     Cash = Type.Cash
 
 cdef class Swaption(Option):
-    def __init__(self, VanillaSwap swap not None, Exercise exercise not None,
+    def __init__(self, FixedVsFloatingSwap swap, Exercise exercise not None,
                  Type delivery=Settlement.Physical,
                  Method settlement_method=Settlement.PhysicalOTC):
         self._thisptr.reset(
             new _swaption.Swaption(
-                static_pointer_cast[_vanillaswap.VanillaSwap](swap._thisptr),
+                static_pointer_cast[_fixedvsfloatingswap.FixedVsFloatingSwap](swap._thisptr),
                 exercise._thisptr,
                 delivery,
                 settlement_method)
@@ -42,7 +43,7 @@ cdef class Swaption(Option):
                            Volatility max_vol=4.,
                            VolatilityType type=ShiftedLognormal,
                            Real displacement=0.):
-        return (<_swaption.Swaption*>self._thisptr.get()).impliedVolatility(
+        return self.get_swaption().impliedVolatility(
             price,
             discount_curve._thisptr,
             guess,
@@ -61,16 +62,15 @@ cdef class Swaption(Option):
     def settlement_method(self):
         return self.get_swaption().settlementMethod()
 
-    def underlying_swap(self):
-        cdef VanillaSwap instance = VanillaSwap.__new__(VanillaSwap)
-        instance._thisptr = static_pointer_cast[_instrument.Instrument](
-            self.get_swaption().underlyingSwap()
-        )
-        return instance
-
     @property
     def type(self):
         return <SwapType>(self.get_swaption().type())
+
+    def underlying_swap(self):
+        cdef FixedVsFloatingSwap instance = FixedVsFloatingSwap.__new__(FixedVsFloatingSwap)
+        cdef shared_ptr[_fixedvsfloatingswap.FixedVsFloatingSwap] swap = self.get_swaption().underlyingSwap()
+        instance._thisptr = static_pointer_cast[_instrument.Instrument](swap)
+        return instance
 
     @property
     def vega(self):

@@ -1,4 +1,4 @@
-from .swap cimport Swap
+from .fixedvsfloatingswap cimport FixedVsFloatingSwap
 
-cdef class VanillaSwap(Swap):
+cdef class VanillaSwap(FixedVsFloatingSwap):
     pass

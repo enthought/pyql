@@ -1,4 +1,4 @@
-from .swap cimport Swap
+from .fixedvsfloatingswap cimport FixedVsFloatingSwap
 
-cdef class OvernightIndexedSwap(Swap):
+cdef class OvernightIndexedSwap(FixedVsFloatingSwap):
     pass

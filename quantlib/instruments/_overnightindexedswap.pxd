@@ -1,3 +1,4 @@
+
 from quantlib.types cimport Natural, Rate, Real, Spread
 from quantlib.cashflows.rateaveraging cimport RateAveraging
 from libcpp cimport bool
@@ -10,11 +11,11 @@ from quantlib.time._daycounter cimport DayCounter
 from quantlib.indexes._ibor_index cimport OvernightIndex
 from quantlib.time._period cimport Frequency
 
-from ._swap cimport Swap
+from ._fixedvsfloatingswap cimport FixedVsFloatingSwap
 from .swap cimport Type
 
 cdef extern from 'ql/instruments/overnightindexedswap.hpp' namespace 'QuantLib':
-    cdef cppclass OvernightIndexedSwap(Swap):
+    cdef cppclass OvernightIndexedSwap(FixedVsFloatingSwap):
         OvernightIndexedSwap(Type type,
                              Real nominal,
                              const Schedule& schedule,
@@ -40,27 +41,12 @@ cdef extern from 'ql/instruments/overnightindexedswap.hpp' namespace 'QuantLib':
                              const Calendar& paymentCalendar, # = Calendar(),
                              bool telescopicValueDates, # = false,
                              RateAveraging averagingMethod) # = RateAveraging::Compound);
-
-        Type type() const
-        Real nominal() const
-        vector[Real] nominals() const
-
         Frequency paymentFrequency()
 
-        Rate fixedRate() const
-        const DayCounter& fixedDayCount()
-
         const shared_ptr[OvernightIndex]& overnightIndex()
-        Spread spread() const
-
-        const Leg& fixedLeg() const
         const Leg& overnightLeg() const
 
         RateAveraging averagingMethod() const
-        Real fixedLegBPS() const
-        Real fixedLegNPV() const
-        Real fairRate() const
 
         Real overnightLegBPS() const
         Real overnightLegNPV() const
-        Spread fairSpread() const

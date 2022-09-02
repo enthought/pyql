@@ -3,7 +3,6 @@ from quantlib.types cimport Real
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from libcpp.vector cimport vector
-from quantlib.cashflows.fixed_rate_coupon cimport FixedRateLeg
 from quantlib.cashflows.overnight_indexed_coupon cimport OvernightLeg
 from quantlib.cashflows.rateaveraging cimport RateAveraging
 from quantlib.cashflows.rateaveraging import RateAveraging as PyRateAveraging
@@ -11,8 +10,8 @@ from quantlib.types cimport Natural, Rate, Real, Spread
 from quantlib.indexes.ibor_index cimport OvernightIndex
 from quantlib.time.businessdayconvention cimport BusinessDayConvention, Following
 from quantlib.time.calendar cimport Calendar
-from quantlib.time.schedule cimport Schedule
 from quantlib.time.daycounter cimport DayCounter
+from quantlib.time.schedule cimport Schedule
 from quantlib.handle cimport make_shared, static_pointer_cast
 from .swap cimport Type
 from . cimport _overnightindexedswap as _ois
@@ -24,7 +23,7 @@ cimport quantlib.time._daycounter as _dc
 cdef inline _ois.OvernightIndexedSwap* get_OIS(OvernightIndexedSwap self):
         return <_ois.OvernightIndexedSwap*>self._thisptr.get()
 
-cdef class OvernightIndexedSwap(Swap):
+cdef class OvernightIndexedSwap(FixedVsFloatingSwap):
     """Overnight indexed swap: fix vs compounded overnight rate"""
     def __init__(self, Type swap_type, nominal, Schedule schedule,
                  Rate fixed_rate, DayCounter fixed_dc, OvernightIndex overnight_index,
@@ -34,6 +33,7 @@ cdef class OvernightIndexedSwap(Swap):
                  RateAveraging averaging_method=RateAveraging.Compound):
         cdef vector[double] nominals
         cdef double n
+
 
         if isinstance(nominal, float):
             self._thisptr = static_pointer_cast[Instrument](
@@ -57,30 +57,8 @@ cdef class OvernightIndexedSwap(Swap):
             )
 
     @property
-    def type(self):
-        return get_OIS(self).type()
-
-    @property
-    def nominal(self):
-        return get_OIS(self).nominal()
-
-    @property
-    def nominals(self):
-        return get_OIS(self).nominals()
-
-    @property
     def payment_frequency(self):
         return get_OIS(self).paymentFrequency()
-
-    @property
-    def fixed_rate(self):
-        return get_OIS(self).fixedRate()
-
-    @property
-    def fixed_day_count(self):
-        cdef DayCounter d = DayCounter.__new__(DayCounter)
-        d._thisptr = new _dc.DayCounter(get_OIS(self).fixedDayCount())
-        return d
 
     @property
     def overnight_index(self):
@@ -92,25 +70,6 @@ cdef class OvernightIndexedSwap(Swap):
     def averaging_method(self):
         return PyRateAveraging(get_OIS(self).averagingMethod())
 
-    @property
-    def fixed_leg_BPS(self):
-        return get_OIS(self).fixedLegBPS()
-
-    @property
-    def fixed_leg_NPV(self):
-        return get_OIS(self).fixedLegNPV()
-
-    @property
-    def fair_rate(self):
-        return get_OIS(self).fairRate()
-
-    @property
-    def spread(self):
-        return get_OIS(self).spread()
-
-    @property
-    def fair_spread(self):
-        return get_OIS(self).fairSpread()
 
     @property
     def overnight_leg_BPS(self):
@@ -120,11 +79,6 @@ cdef class OvernightIndexedSwap(Swap):
     def overnight_leg_NPV(self):
         return get_OIS(self).overnightLegNPV()
 
-    @property
-    def fixed_leg(self):
-        cdef FixedRateLeg leg = FixedRateLeg.__new__(FixedRateLeg)
-        leg._thisptr = get_OIS(self).fixedLeg()
-        return leg
 
     @property
     def overnight_leg(self):
