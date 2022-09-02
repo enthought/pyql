@@ -165,7 +165,7 @@ class InterpolatedHazardRateTestCase(unittest.TestCase):
                                                          Actual365Fixed())
         with self.assertRaisesRegexp(RuntimeError,
                                      'LogInterpolation primitive not implemented'):
-            hazard_rate = interpolated_curve.hazard_rate(interpolation_date)
+            hazard_rate = interpolated_curve.survival_probability(interpolation_date)
 
     def test_methods(self):
         Settings.instance().evaluation_date = self.todays_date
