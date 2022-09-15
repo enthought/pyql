@@ -1,11 +1,11 @@
-"""
- Copyright (C) 2015, Enthought Inc
- Copyright (C) 2015, Patrick Henaff
+# Copyright (C) 2015, Enthought Inc
+# Copyright (C) 2015, Patrick Henaff
 
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE.  See the license for more details.
-"""
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the license for more details.
+
+"""Utilities for implied-volatility calculation"""
 
 include '../types.pxi'
 
@@ -38,7 +38,7 @@ cdef class ImpliedVolatilityHelper:
               Natural max_evaluations,
               Volatility min_vol,
               Volatility max_vol):
-    
+
         return _iv.IVH_calculate(
             deref(instrument._thisptr.get()),
             deref(engine._thisptr.get()),

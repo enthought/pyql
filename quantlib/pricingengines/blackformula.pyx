@@ -14,7 +14,7 @@ def blackFormula(OptionType option_type, Real strike, Real forward, Real stdDev,
     """ Black 1976 formula
 
     Parameters
-    ==========
+    ----------
 
     option_type: str or option.Call/Put
 
@@ -28,7 +28,9 @@ def blackFormula(OptionType option_type, Real strike, Real forward, Real stdDev,
 
     displacement: float
 
+
     .. warning::
+
         Instead of volatility it uses standard deviation,
         i.e. volatility*sqrt(timeToMaturity)
 

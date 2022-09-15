@@ -4,7 +4,7 @@
 # This program is distributed in the hope that it will be useful, but WITHOUT
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
-
+"""Abstract base class for indices"""
 include 'types.pxi'
 
 from cython.operator cimport dereference as deref
@@ -22,15 +22,34 @@ from quantlib.time._date cimport Date as QlDate, Month
 import_datetime()
 
 cdef class Index:
+    """Abstract base class for indices
+
+    .. warning::
+
+      this class performs no check that the
+      provided/requested fixings are for dates in the past,
+      i.e. for dates less than or equal to the evaluation
+      date. It is up to the client code to take care of
+      possible inconsistencies due to "seeing in the
+      future"
+    """
 
     def __init__(self):
         raise ValueError('Cannot instantiate Index')
 
     property name:
+       """the name of the index
+
+       .. warning::
+
+         This method is used for output and comparison
+         between indexes.
+       """
        def __get__(self):
            return self._thisptr.get().name().decode('utf-8')
 
     property fixing_calendar:
+        """the calendar defining valid fixing dates"""
         def __get__(self):
             cdef Calendar cal = Calendar.__new__(Calendar)
             cal._thisptr = new _calendar.Calendar(self._thisptr.get().fixingCalendar())
@@ -38,6 +57,7 @@ cdef class Index:
 
     @property
     def time_series(self):
+        """the fixing TimeSeries"""
         cdef TimeSeries ts = TimeSeries.__new__(TimeSeries)
         ts._thisptr = self._thisptr.get().timeSeries()
         return ts

@@ -476,7 +476,7 @@ cdef class Date:
 
     @classmethod
     def from_datetime(cls, object dt not None):
-        """Returns the Quantlib Date object from the date/datetime object. """
+        """Returns a QuantLib Date object from a Python datetime.date """
         cdef Date instance = Date.__new__(Date)
         instance._thisptr.reset(new QlDate(_qldate_from_pydate(dt)))
         return instance

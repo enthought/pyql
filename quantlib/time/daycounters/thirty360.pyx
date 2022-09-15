@@ -6,8 +6,10 @@ from .thirty360 cimport Convention as QlConvention
 from quantlib.time.daycounter cimport DayCounter
 
 cdef class Thirty360(DayCounter):
-   """The 30/360 day count can be calculated according to a
-    number of convention.
+   """30/360 day count convention
+
+   The 30/360 day count can be calculated according to a
+   number of convention.
 
    US convention: if the starting date is the 31st of a month or
    the last day of February, it becomes equal to the 30th of the
