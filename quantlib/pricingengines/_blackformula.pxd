@@ -19,3 +19,9 @@ cdef extern from 'ql/pricingengines/blackformula.hpp' namespace 'QuantLib':
                                    Real guess,
                                    Real accuracy,
                                    Natural maxIterations) except +
+
+    Real bachelierBlackFormula(OptionType optionType,
+                               Real strike,
+                               Real forward,
+                               Real stdDev,
+                               Real discount) except +
