@@ -4,6 +4,7 @@
 # This program is distributed in the hope that it will be useful, but WITHOUT
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
+""" deposit, FRA, futures and various swap rate helpers"""
 
 include '../../types.pxi'
 
@@ -119,19 +120,18 @@ cdef class DepositRateHelper(RelativeDateRateHelper):
                 raise ValueError('rate needs to be a float or a SimpleQuote')
 
 cdef class SwapRateHelper(RelativeDateRateHelper):
-    """Rate helper for bootstrapping over swap rates, use from_tenor or from_index function"""
-    def __init__(self, from_classmethod=False):
-        # Creating a SwaprRateHelper without using a class method means the
+    """Rate helper for bootstrapping over swap rates"""
+    def __init__(self):
+        # Creating a SwapRateHelper without using a class method means the
         # shared_ptr won't be initialized properly and break any subsequent calls
         # to the QuantLib internals... To avoid this, we raise a ValueError if
         # the user tries to instantiate this class if not setting the
         # from_classmethod. This is an ugly workaround but is ok so far.
 
-        if from_classmethod is False:
-            raise ValueError(
-                'SwapRateHelpers must be instantiated through the class methods'
-                ' from_index or from_tenor'
-            )
+        raise ValueError(
+            'SwapRateHelpers must be instantiated through the class methods'
+            ' from_index or from_tenor'
+        )
 
     @classmethod
     def from_tenor(cls, rate, Period tenor not None,
@@ -197,6 +197,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                    Pillar pillar=Pillar.LastRelevantDate,
                    Date custom_pillar_date=Date(),
                    bool end_of_month=False):
+        "build a SwapRateHelper from a SwapIndex"
         cdef SwapRateHelper instance = cls.__new__(cls)
 
         if isinstance(rate, float):
@@ -413,20 +414,20 @@ cdef class FxSwapRateHelper(RelativeDateRateHelper):
 
     .. warning::
 
-    The ON fx swaps can be achieved by setting
-    `fixingDays` to 0 and using a tenor of '1d'. The same
-    tenor should be used for TN swaps, with `fixingDays`
-    set to 1.  However, handling ON and TN swaps for
-    cross rates without USD is not trivial and should be
-    treated with caution. If today is a US holiday, ON
-    trade is not possible. If tomorrow is a US Holiday,
-    the ON trade will be at least two business days long
-    in the other countries and the TN trade will not
-    exist. In such cases, if this helper is used for
-    curve construction, probably it is safer not to pass
-    a trading calendar to the ON and TN helpers and
-    provide fwdPoints that will yield proper level of
-    discount factors.
+       The ON fx swaps can be achieved by setting
+       `fixingDays` to 0 and using a tenor of '1d'. The same
+       tenor should be used for TN swaps, with `fixingDays`
+       set to 1.  However, handling ON and TN swaps for
+       cross rates without USD is not trivial and should be
+       treated with caution. If today is a US holiday, ON
+       trade is not possible. If tomorrow is a US Holiday,
+       the ON trade will be at least two business days long
+       in the other countries and the TN trade will not
+       exist. In such cases, if this helper is used for
+       curve construction, probably it is safer not to pass
+       a trading calendar to the ON and TN helpers and
+       provide fwdPoints that will yield proper level of
+       discount factors.
     """
 
     def __init__(self, Quote fwd_point, Quote spot_fx,

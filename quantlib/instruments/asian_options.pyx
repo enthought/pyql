@@ -1,3 +1,4 @@
+""" Asian option on a single asset """
 include '../types.pxi'
 
 from cython.operator cimport dereference as deref
@@ -15,7 +16,7 @@ from ._asian_options cimport (
     ContinuousAveragingAsianOption as _ContinuousAveragingAsianOption,
     DiscreteAveragingAsianOption as _DiscreteAveragingAsianOption,
     Type as _Type,
-) 
+)
 
 
 cpdef enum AverageType:
@@ -24,17 +25,17 @@ cpdef enum AverageType:
 
 
 cdef class ContinuousAveragingAsianOption(OneAssetOption):
-    """ Continuous-averaging Asian option
-        
-        Attributes
-        ----------
-        average_type: Enum (Arithmetic or Geometric)
-        payoff : StrikedTypePayoff
-        exercise : Exercise
+    """Continuous-averaging Asian option
+
+    Parameters
+    ----------
+    average_type: Enum (Arithmetic or Geometric)
+    payoff : StrikedTypePayoff
+    exercise : Exercise
     """
     def __init__(self,
                  AverageType average_type,
-                 StrikedTypePayoff payoff not None,  
+                 StrikedTypePayoff payoff not None,
                  Exercise exercise not None
                  ):
 
@@ -48,30 +49,28 @@ cdef class ContinuousAveragingAsianOption(OneAssetOption):
 
 
 cdef class DiscreteAveragingAsianOption(OneAssetOption):
-    """ Discrete-averaging Asian option
+    """Discrete-averaging Asian option
 
-        Attributes
-        ----------
-        average_type: Enum (Arithmetic or Geometric)
-        payoff : StrikedTypePayoff
-        exercise : Exercise
-        fixing_dates : list of dates
-        running_accum: (float) Optional
-        past_fixings: (float) Optional
-        all_past_fixings: list of floats  Optional
-
-
+    Parameters
+    ----------
+    average_type: Enum (Arithmetic or Geometric)
+    payoff : StrikedTypePayoff
+    exercise : Exercise
+    fixing_dates : list of dates
+    running_accum : float, optional
+    past_fixings : float, optional
+    all_past_fixings: list of float, optional
     """
     def __init__(self,
                  AverageType average_type,
-                 StrikedTypePayoff payoff not None,  
+                 StrikedTypePayoff payoff not None,
                  Exercise exercise not None,
                  list fixing_dates not None,
                  running_accum=None,
                  past_fixings=None,
                  all_past_fixings=None,
                  ):
-        
+
         cdef vector[Real] _all_past_fixings
         # convert the list of PyQL dates into a vector of QL dates
         cdef vector[_date.Date] _fixing_dates
@@ -100,6 +99,6 @@ cdef class DiscreteAveragingAsianOption(OneAssetOption):
                                          exercise._thisptr,
                                          all_past_fixings)
             )
-           
+
         else:
             raise ValueError("running accum and past fixings or all_pf's must be non Null")

@@ -157,8 +157,9 @@ class Market:
 
 
 class FixedIncomeMarket(Market):
-    """
-    A Fixed Income Market, defined by:
+    """A Fixed Income Market
+
+    defined by:
     - a list of benchmarks instruments (deposits, FRA, swaps,
       EuroDollar futures, bonds)
     - a set of market conventions, needed to interpreted the quoted

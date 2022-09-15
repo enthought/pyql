@@ -25,11 +25,11 @@ def simulate_process(StochasticProcess process not None, int nbPaths, TimeGrid g
 
     Parameters
     ----------
-    process : 'class':`~quantlib.StochasticProcess`
+    process : StochasticProcess
         Process to simulate.
     nbPath : int
         Number of paths.
-    grid : 'class':`~quantlib.TimeGrid`
+    grid : TimeGrid
         Time grid for the simulation.
     seed : int
         Seed for the random number generator.

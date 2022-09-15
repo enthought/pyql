@@ -1,11 +1,11 @@
-"""
- Copyright (C) 2013, Enthought Inc
- Copyright (C) 2013, Patrick Henaff
+# Copyright (C) 2013, Enthought Inc
+# Copyright (C) 2013, Patrick Henaff
 
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE.  See the license for more details.
-"""
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the license for more details.
+
+""" Interest rate swap"""
 
 from quantlib.types cimport Size
 from quantlib.cashflow cimport Leg

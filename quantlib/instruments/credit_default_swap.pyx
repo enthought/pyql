@@ -83,7 +83,7 @@ cdef class CreditDefaultSwap(Instrument):
             The protection seller pays the accrued scheduled current coupon at
             the start of the contract. The rebate date is not provided
             but computed to be two days after protection start.
-        trade_date :  :class`~quantlib.time.date.Date`
+        trade_date :  :class:`~quantlib.time.date.Date`
             The contract's trade date. It will be used with the ``cash_settlement_days`` to determine
             the date on which the cash settlement amount is paid. If not given, the trade date is
             guessed from the protection start date and ``schedule`` date generation rule.
@@ -180,7 +180,7 @@ cdef class CreditDefaultSwap(Instrument):
             The protection seller pays the accrued scheduled current coupon at
             the start of the contract. The rebate date is not provided
             but computed to be two days after protection start.
-        trade_date :  :class`~quantlib.time.date.Date`
+        trade_date :  :class:`~quantlib.time.date.Date`
             The contract's trade date. It will be used with the `cash_settlement_days` to determine
             the date on which the cash settlement amount is paid. If not given, the trade date is
             guessed from the protection start date and `schedule` date generation rule.
@@ -346,6 +346,7 @@ def cds_maturity(Date trade_date, Period tenor, _schedule.Rule rule):
     Raises
     ------
     ValueError
+
         - if the `rule` is not 'CDS2015', 'CDS' or 'OldCDS'.
         - if the `rule` is 'OldCDS' and a `tenor` of 0 months is provided. This restriction can be removed if 0M tenor was available before the CDS Big Bang 2009.
         - if the `tenor` is not a multiple of 3 months. For the avoidance of doubt, a `tenor` of 0 months is supported. """
