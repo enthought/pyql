@@ -1,0 +1,46 @@
+quantlib.time.calendars.poland.Poland
+=====================================
+
+.. currentmodule:: quantlib.time.calendars.poland
+
+.. autoclass:: Poland
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Poland.__init__
+      ~Poland.add_holiday
+      ~Poland.adjust
+      ~Poland.advance
+      ~Poland.business_day_list
+      ~Poland.business_days_between
+      ~Poland.end_of_month
+      ~Poland.holiday_list
+      ~Poland.is_business_day
+      ~Poland.is_end_of_month
+      ~Poland.is_holiday
+      ~Poland.is_weekend
+      ~Poland.remove_holiday
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Poland.name
+
+   
+   

@@ -1,0 +1,34 @@
+quantlib.models.equity
+======================
+
+.. automodule:: quantlib.models.equity
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   quantlib.models.equity.bates_model
+   quantlib.models.equity.dejd
+   quantlib.models.equity.heston_model
+

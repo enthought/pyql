@@ -1,0 +1,6 @@
+quantlib.market.market.make\_eurobond\_helper
+=============================================
+
+.. currentmodule:: quantlib.market.market
+
+.. autofunction:: make_eurobond_helper

@@ -1,0 +1,6 @@
+quantlib.reference.data\_structures.riskfree\_dividend\_template
+================================================================
+
+.. currentmodule:: quantlib.reference.data_structures
+
+.. autofunction:: riskfree_dividend_template

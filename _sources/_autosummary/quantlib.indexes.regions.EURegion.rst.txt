@@ -1,0 +1,36 @@
+quantlib.indexes.regions.EURegion
+=================================
+
+.. currentmodule:: quantlib.indexes.regions
+
+.. autoclass:: EURegion
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~EURegion.__init__
+      ~EURegion.from_name
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~EURegion.code
+      ~EURegion.name
+
+   
+   

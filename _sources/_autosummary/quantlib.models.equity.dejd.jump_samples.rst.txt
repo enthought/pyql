@@ -1,0 +1,6 @@
+quantlib.models.equity.dejd.jump\_samples
+=========================================
+
+.. currentmodule:: quantlib.models.equity.dejd
+
+.. autofunction:: jump_samples

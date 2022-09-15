@@ -1,0 +1,35 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_structure.HandleSwaptionVolatilityStructure
+======================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_structure
+
+.. autoclass:: HandleSwaptionVolatilityStructure
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~HandleSwaptionVolatilityStructure.__init__
+      ~HandleSwaptionVolatilityStructure.link_to
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~HandleSwaptionVolatilityStructure.current_link
+
+   
+   

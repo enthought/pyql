@@ -1,0 +1,46 @@
+quantlib.time.calendars.weekends\_only.WeekendsOnly
+===================================================
+
+.. currentmodule:: quantlib.time.calendars.weekends_only
+
+.. autoclass:: WeekendsOnly
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~WeekendsOnly.__init__
+      ~WeekendsOnly.add_holiday
+      ~WeekendsOnly.adjust
+      ~WeekendsOnly.advance
+      ~WeekendsOnly.business_day_list
+      ~WeekendsOnly.business_days_between
+      ~WeekendsOnly.end_of_month
+      ~WeekendsOnly.holiday_list
+      ~WeekendsOnly.is_business_day
+      ~WeekendsOnly.is_end_of_month
+      ~WeekendsOnly.is_holiday
+      ~WeekendsOnly.is_weekend
+      ~WeekendsOnly.remove_holiday
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~WeekendsOnly.name
+
+   
+   

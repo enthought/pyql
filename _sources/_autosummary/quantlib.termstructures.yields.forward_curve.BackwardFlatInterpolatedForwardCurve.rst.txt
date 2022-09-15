@@ -1,0 +1,49 @@
+quantlib.termstructures.yields.forward\_curve.BackwardFlatInterpolatedForwardCurve
+==================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. autoclass:: BackwardFlatInterpolatedForwardCurve
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~BackwardFlatInterpolatedForwardCurve.__init__
+      ~BackwardFlatInterpolatedForwardCurve.discount
+      ~BackwardFlatInterpolatedForwardCurve.forward_rate
+      ~BackwardFlatInterpolatedForwardCurve.link_to
+      ~BackwardFlatInterpolatedForwardCurve.time_from_reference
+      ~BackwardFlatInterpolatedForwardCurve.zero_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~BackwardFlatInterpolatedForwardCurve.data
+      ~BackwardFlatInterpolatedForwardCurve.dates
+      ~BackwardFlatInterpolatedForwardCurve.day_counter
+      ~BackwardFlatInterpolatedForwardCurve.extrapolation
+      ~BackwardFlatInterpolatedForwardCurve.forwards
+      ~BackwardFlatInterpolatedForwardCurve.max_date
+      ~BackwardFlatInterpolatedForwardCurve.max_time
+      ~BackwardFlatInterpolatedForwardCurve.nodes
+      ~BackwardFlatInterpolatedForwardCurve.reference_date
+      ~BackwardFlatInterpolatedForwardCurve.settlement_days
+      ~BackwardFlatInterpolatedForwardCurve.times
+
+   
+   

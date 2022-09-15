@@ -1,0 +1,36 @@
+quantlib.instruments.option.EuropeanExercise
+============================================
+
+.. currentmodule:: quantlib.instruments.option
+
+.. autoclass:: EuropeanExercise
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~EuropeanExercise.__init__
+      ~EuropeanExercise.dates
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~EuropeanExercise.last_date
+      ~EuropeanExercise.type
+
+   
+   

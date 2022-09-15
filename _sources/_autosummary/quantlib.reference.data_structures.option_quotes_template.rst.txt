@@ -1,0 +1,6 @@
+quantlib.reference.data\_structures.option\_quotes\_template
+============================================================
+
+.. currentmodule:: quantlib.reference.data_structures
+
+.. autofunction:: option_quotes_template

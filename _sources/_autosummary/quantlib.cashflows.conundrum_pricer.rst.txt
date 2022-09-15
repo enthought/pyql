@@ -1,0 +1,33 @@
+quantlib.cashflows.conundrum\_pricer
+====================================
+
+.. automodule:: quantlib.cashflows.conundrum_pricer
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      AnalyticHaganPricer
+      HaganPricer
+      NumericHaganPricer
+   
+   
+
+   
+   
+   
+
+
+

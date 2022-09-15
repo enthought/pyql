@@ -1,0 +1,31 @@
+quantlib.time.daycounters.actual\_actual
+========================================
+
+.. automodule:: quantlib.time.daycounters.actual_actual
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      ActualActual
+   
+   
+
+   
+   
+   
+
+
+

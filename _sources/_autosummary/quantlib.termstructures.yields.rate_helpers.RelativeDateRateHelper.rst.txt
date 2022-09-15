@@ -1,0 +1,39 @@
+quantlib.termstructures.yields.rate\_helpers.RelativeDateRateHelper
+===================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoclass:: RelativeDateRateHelper
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~RelativeDateRateHelper.__init__
+      ~RelativeDateRateHelper.update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~RelativeDateRateHelper.earliest_date
+      ~RelativeDateRateHelper.implied_quote
+      ~RelativeDateRateHelper.latest_date
+      ~RelativeDateRateHelper.maturity_date
+      ~RelativeDateRateHelper.quote
+
+   
+   

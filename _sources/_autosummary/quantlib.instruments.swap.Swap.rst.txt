@@ -1,0 +1,46 @@
+quantlib.instruments.swap.Swap
+==============================
+
+.. currentmodule:: quantlib.instruments.swap
+
+.. autoclass:: Swap
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Swap.__init__
+      ~Swap.endDiscounts
+      ~Swap.leg
+      ~Swap.leg_BPS
+      ~Swap.leg_NPV
+      ~Swap.npvDateDiscount
+      ~Swap.set_pricing_engine
+      ~Swap.startDiscounts
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Swap.is_expired
+      ~Swap.maturity_date
+      ~Swap.net_present_value
+      ~Swap.npv
+      ~Swap.start_date
+      ~Swap.valuation_date
+
+   
+   

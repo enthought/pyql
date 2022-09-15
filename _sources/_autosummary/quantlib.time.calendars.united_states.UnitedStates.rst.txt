@@ -1,0 +1,46 @@
+quantlib.time.calendars.united\_states.UnitedStates
+===================================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. autoclass:: UnitedStates
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~UnitedStates.__init__
+      ~UnitedStates.add_holiday
+      ~UnitedStates.adjust
+      ~UnitedStates.advance
+      ~UnitedStates.business_day_list
+      ~UnitedStates.business_days_between
+      ~UnitedStates.end_of_month
+      ~UnitedStates.holiday_list
+      ~UnitedStates.is_business_day
+      ~UnitedStates.is_end_of_month
+      ~UnitedStates.is_holiday
+      ~UnitedStates.is_weekend
+      ~UnitedStates.remove_holiday
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~UnitedStates.name
+
+   
+   

@@ -1,0 +1,50 @@
+quantlib.termstructures.yields.piecewise\_yield\_curve.DiscountCubicPiecewiseYieldCurve
+=======================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_yield_curve
+
+.. autoclass:: DiscountCubicPiecewiseYieldCurve
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~DiscountCubicPiecewiseYieldCurve.__init__
+      ~DiscountCubicPiecewiseYieldCurve.discount
+      ~DiscountCubicPiecewiseYieldCurve.forward_rate
+      ~DiscountCubicPiecewiseYieldCurve.from_reference_date
+      ~DiscountCubicPiecewiseYieldCurve.link_to
+      ~DiscountCubicPiecewiseYieldCurve.time_from_reference
+      ~DiscountCubicPiecewiseYieldCurve.zero_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~DiscountCubicPiecewiseYieldCurve.data
+      ~DiscountCubicPiecewiseYieldCurve.dates
+      ~DiscountCubicPiecewiseYieldCurve.day_counter
+      ~DiscountCubicPiecewiseYieldCurve.extrapolation
+      ~DiscountCubicPiecewiseYieldCurve.max_date
+      ~DiscountCubicPiecewiseYieldCurve.max_time
+      ~DiscountCubicPiecewiseYieldCurve.nodes
+      ~DiscountCubicPiecewiseYieldCurve.reference_date
+      ~DiscountCubicPiecewiseYieldCurve.settlement_days
+      ~DiscountCubicPiecewiseYieldCurve.times
+      ~DiscountCubicPiecewiseYieldCurve.trait
+
+   
+   

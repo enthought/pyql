@@ -1,0 +1,32 @@
+quantlib.experimental.coupons.lognormal\_cmsspread\_pricer.LognormalCmsSpreadPricer
+===================================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.lognormal_cmsspread_pricer
+
+.. autoclass:: LognormalCmsSpreadPricer
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~LognormalCmsSpreadPricer.__init__
+      ~LognormalCmsSpreadPricer.caplet_price
+      ~LognormalCmsSpreadPricer.caplet_rate
+      ~LognormalCmsSpreadPricer.floorlet_price
+      ~LognormalCmsSpreadPricer.floorlet_rate
+      ~LognormalCmsSpreadPricer.swaplet_price
+      ~LognormalCmsSpreadPricer.swaplet_rate
+   
+   
+
+   
+   
+   

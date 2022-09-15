@@ -1,0 +1,6 @@
+quantlib.time.date.qldate\_from\_pydate
+=======================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autofunction:: qldate_from_pydate

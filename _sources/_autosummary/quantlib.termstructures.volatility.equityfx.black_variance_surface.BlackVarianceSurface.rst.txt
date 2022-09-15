@@ -1,0 +1,45 @@
+quantlib.termstructures.volatility.equityfx.black\_variance\_surface.BlackVarianceSurface
+=========================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_variance_surface
+
+.. autoclass:: BlackVarianceSurface
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~BlackVarianceSurface.__init__
+      ~BlackVarianceSurface.blackForwardVariance
+      ~BlackVarianceSurface.blackForwardVol
+      ~BlackVarianceSurface.blackVariance
+      ~BlackVarianceSurface.blackVol
+      ~BlackVarianceSurface.option_date_from_tenor
+      ~BlackVarianceSurface.set_interpolation
+      ~BlackVarianceSurface.time_from_reference
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~BlackVarianceSurface.calendar
+      ~BlackVarianceSurface.max_strike
+      ~BlackVarianceSurface.min_strike
+      ~BlackVarianceSurface.reference_date
+      ~BlackVarianceSurface.settlement_days
+
+   
+   

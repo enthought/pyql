@@ -1,0 +1,6 @@
+quantlib.time.date.weeks
+========================
+
+.. currentmodule:: quantlib.time.date
+
+.. autofunction:: weeks

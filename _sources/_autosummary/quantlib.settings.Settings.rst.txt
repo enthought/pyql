@@ -1,0 +1,42 @@
+quantlib.settings.Settings
+==========================
+
+.. currentmodule:: quantlib.settings
+
+.. autoclass:: Settings
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Settings.__init__
+      ~Settings.anchor_evaluation_date
+      ~Settings.instance
+      ~Settings.reset_evaluation_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Settings.enforces_todays_historic_fixings
+      ~Settings.evaluation_date
+      ~Settings.include_reference_date_events
+      ~Settings.include_todays_cashflows
+      ~Settings.observable_evaluation_date
+      ~Settings.version
+
+   
+   

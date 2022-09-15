@@ -1,0 +1,799 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Example of CVA computation &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Reference guide" href="../reference_guide.html" />
+    <link rel="prev" title="Risk Factors in USD Libor Market" href="LiborRiskFactors.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<section id="Example-of-CVA-computation">
+<h1>Example of CVA computation<a class="headerlink" href="#Example-of-CVA-computation" title="Permalink to this heading">¶</a></h1>
+<p>This example is taken from the following website: <a class="reference external" href="http://www.pricederivatives.com/en/derivatives-cva-example-monte-carlo-python/">http://www.pricederivatives.com/en/derivatives-cva-example-monte-carlo-python/</a>. We’ve taken advantage of some functionalities provided by pyql to simplify the computations.</p>
+<p>Here we’ll show an example of code for CVA calculation (credit valuation adjustment) with Python and Quantlib using a simple Monte-Carlo method for a portfolio consisting solely of a single interest rate swap. It’s easy to generalize this code to include more financial instruments.</p>
+<section id="CVA-calculation-algorithm">
+<h2>CVA calculation algorithm<a class="headerlink" href="#CVA-calculation-algorithm" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Simulate yield curve at future dates.</p></li>
+<li><p>Calculate your derivatives portfolio NPV (net present value) at each time point for each scenario.</p></li>
+<li><p>Calculate CVA as sum of Expected Exposure multiplied by probability of default at this interval</p>
+<div class="math">
+<p><img src="../_images/math/e2b262c467887255095f76156e6d373e689d853b.png" alt="CVA = (1-R) \int{DF(t) EE(t) dQ_t}"/></p>
+</div><p>where <img class="math" src="../_images/math/1ebe654cc7b8f2a0d8100aa5825cf2b9021adbbc.png" alt="R"/> is the Recovery (normally set to 40%), <img class="math" src="../_images/math/7f26a4e1a5db83318bcfce5f110c2cb60a8e5b09.png" alt="EE(t)"/> the expected exposure at time <img class="math" src="../_images/math/907a4add6d5db5b7f197f7924f1371b8ac404fe6.png" alt="t"/>, <img class="math" src="../_images/math/c7c29a689b6ef97c7cad42f406b79abb77db2cac.png" alt="dQ"/> the survival probability density, and <img class="math" src="../_images/math/abb8c85e64e9c2c7268a275824b3d9905e9c9801.png" alt="DF(t)"/> discount factor at time <img class="math" src="../_images/math/907a4add6d5db5b7f197f7924f1371b8ac404fe6.png" alt="t"/>.</p>
+</li>
+</ol>
+</section>
+<section id="Outline">
+<h2>Outline<a class="headerlink" href="#Outline" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>In this simple example, we will use the Hull White model to generate future yield curves. In practice, many banks use some yield curve evolution models based on historical simulations. In the Hull White model, the short rate <img class="math" src="../_images/math/e92d0a0db81eb0ed078e9e553863167bf026f303.png" alt="r_t"/> is distributed normally with known mean and variance.</p></li>
+<li><p>For each point of time we will generate whole yield curve based on short rate. Then we will price our interest rate swap on each of these curves.</p></li>
+<li><p>to approximate CVA we will use BASEL III formula for regulatory capital charge approximating default probability [or survival probability ] as exp(-ST/(1-R)) so we get:</p>
+<div class="math">
+<p><img src="../_images/math/bb4a3045c02da28e0190141f59c4a730cee821dd.png" alt="CVA= (1-R) \sum \frac{EE^{*}_{T_{i}}+EE^{*}_{T_{i-1}}}{2} (e^{-\frac{ST_{i-1}}{1-R}}-e^{-\frac{ST_{i}}{1-R}})^+"/></p>
+</div><p>where <img class="math" src="../_images/math/9d6e292492e8cc3fdec43a5d7de84df6f3131b2a.png" alt="EE^{*}"/> is discounted Expected exposure of portfolio.</p>
+</li>
+</ol>
+</section>
+<section id="Hull-White-model-for-future-yield-curve-simulations">
+<h2>Hull-White model for future yield curve simulations<a class="headerlink" href="#Hull-White-model-for-future-yield-curve-simulations" title="Permalink to this heading">¶</a></h2>
+<p>the model is given by dynamics:</p>
+<div class="math">
+<p><img src="../_images/math/2dfac42e3c189583d729237e37e7fbc0c4e667b7.png" alt="dr_t=(\theta_t-ar_t)dt+\sigma dW_t"/></p>
+</div><p>In the Hull White model, the short rate <img class="math" src="../_images/math/e92d0a0db81eb0ed078e9e553863167bf026f303.png" alt="r_t"/> is distributed normally with mean and variance given by</p>
+<div class="math">
+<p><img src="../_images/math/84a44b44a90b02516bb6a24f921f799139b18718.png" alt="E(r_t|r_s)=r_se^{-a(t-s)}+\gamma_t-\gamma_se^{-a(t-s)}"/></p>
+</div><div class="math">
+<p><img src="../_images/math/3438ccd5275931feee33cb9a2bd82811c7e3e246.png" alt="Var(r_t|r_s)=\frac{\sigma^2}{2a}(1-e^{-2a(t-s)})"/></p>
+</div><p>where <img class="math" src="../_images/math/2feac9d9b804a141d6b411c4fca68a41a9be6190.png" alt="\gamma_t=f_t(0)+\frac{\sigma^2}{2a}(1-e^{-at})^2"/> and <img class="math" src="../_images/math/5ebb63aa9df7c35fa6eefb720a25864179b279c9.png" alt="f_t(0)"/> is the instantaneous forward rate at time <img class="math" src="../_images/math/907a4add6d5db5b7f197f7924f1371b8ac404fe6.png" alt="t"/> as seen at time 0. The calculations will not depend on <img class="math" src="../_images/math/6c55be1010642a5e7a7d4637e9861f4afd6eee6d.png" alt="\theta_t"/>. To generate the future values of <img class="math" src="../_images/math/e92d0a0db81eb0ed078e9e553863167bf026f303.png" alt="r_t"/>, we use the <a class="reference internal" href="../_autosummary/quantlib.sim.simulate.simulate_process.html#quantlib.sim.simulate.simulate_process"><span class="std std-ref">simulate_process</span></a> function which is a convenience function provided in the simulate module of pyql. After getting a matrix of all
+<img class="math" src="../_images/math/e92d0a0db81eb0ed078e9e553863167bf026f303.png" alt="r_t"/> for all draws and time points, we will construct a yield curve for each <img class="math" src="../_images/math/e92d0a0db81eb0ed078e9e553863167bf026f303.png" alt="r_t"/> using Hull White discount factors <img class="math" src="../_images/math/adae92f7afe571cc2dca6ea156c9532bc891b9c8.png" alt="E(r_{t_i})"/> at each future date.</p>
+<div class="math">
+<p><img src="../_images/math/b2a4e2b1df177970648ee890e923bb3f66c54f3c.png" alt="P_{\rightarrow T}(0)= E( e^{-\int_0^Tr_sds})=E( E(e^{-\int_0^Tr_sds}|\mathcal{F}_{t_i}))=E(P_{\rightarrow t_i}(0)E(e^{-\int_{t_i}^Tr_sds}|\mathcal{F}_{t_i}))"/></p>
+</div><p>for each future time point <img class="math" src="../_images/math/f655bd7f2c801f6c308297962160678a2e5f6c20.png" alt="t_i"/>, <img class="math" src="../_images/math/e8dea8254118f111b5fb20895b03528c17566f06.png" alt="T"/> being the maturity.</p>
+<p>also we’ll output some generated yield curves.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">quantlib.settings</span> <span class="kn">import</span> <span class="n">Settings</span>
+<span class="kn">from</span> <span class="nn">quantlib.time.api</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Date</span><span class="p">,</span> <span class="n">Actual360</span><span class="p">,</span> <span class="n">TARGET</span><span class="p">,</span> <span class="n">NoFrequency</span><span class="p">,</span> <span class="n">Period</span><span class="p">,</span>
+                               <span class="n">Years</span><span class="p">,</span> <span class="n">Schedule</span><span class="p">,</span> <span class="n">ModifiedFollowing</span><span class="p">,</span> <span class="n">Following</span><span class="p">,</span> <span class="n">Rule</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">quantlib.termstructures.yields.api</span> <span class="kn">import</span> <span class="n">DiscountCurve</span>
+
+<span class="n">todaysDate</span> <span class="o">=</span> <span class="n">Date</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2013</span><span class="p">);</span>
+<span class="n">Settings</span><span class="p">()</span><span class="o">.</span><span class="n">evaluation_date</span> <span class="o">=</span> <span class="n">todaysDate</span><span class="p">;</span>
+<span class="n">crvTodaydates</span> <span class="o">=</span> <span class="p">[</span><span class="n">Date</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2013</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2014</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2014</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">29</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2014</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2014</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2014</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2014</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2014</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2015</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">27</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2015</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2015</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2015</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">29</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2015</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2015</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2015</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2016</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">29</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2017</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">31</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2018</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2019</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2020</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2021</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2022</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">29</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2023</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2024</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2025</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">29</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2028</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2033</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2038</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2043</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2048</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2053</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2058</span><span class="p">),</span>
+                 <span class="n">Date</span><span class="p">(</span><span class="mi">31</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2063</span><span class="p">)]</span>
+<span class="n">crvTodaydf</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="mf">0.998022</span><span class="p">,</span>
+            <span class="mf">0.99771</span><span class="p">,</span>
+            <span class="mf">0.99739</span><span class="p">,</span>
+            <span class="mf">0.997017</span><span class="p">,</span>
+            <span class="mf">0.996671</span><span class="p">,</span>
+            <span class="mf">0.996337</span><span class="p">,</span>
+            <span class="mf">0.995921</span><span class="p">,</span>
+            <span class="mf">0.995522</span><span class="p">,</span>
+            <span class="mf">0.995157</span><span class="p">,</span>
+            <span class="mf">0.994706</span><span class="p">,</span>
+            <span class="mf">0.994248</span><span class="p">,</span>
+            <span class="mf">0.993805</span><span class="p">,</span>
+            <span class="mf">0.993285</span><span class="p">,</span>
+            <span class="mf">0.989614</span><span class="p">,</span>
+            <span class="mf">0.978541</span><span class="p">,</span>
+            <span class="mf">0.961973</span><span class="p">,</span>
+            <span class="mf">0.940868</span><span class="p">,</span>
+            <span class="mf">0.916831</span><span class="p">,</span>
+            <span class="mf">0.890805</span><span class="p">,</span>
+            <span class="mf">0.863413</span><span class="p">,</span>
+            <span class="mf">0.834987</span><span class="p">,</span>
+            <span class="mf">0.807111</span><span class="p">,</span>
+            <span class="mf">0.778332</span><span class="p">,</span>
+            <span class="mf">0.750525</span><span class="p">,</span>
+            <span class="mf">0.674707</span><span class="p">,</span>
+            <span class="mf">0.575192</span><span class="p">,</span>
+            <span class="mf">0.501258</span><span class="p">,</span>
+            <span class="mf">0.44131</span><span class="p">,</span>
+            <span class="mf">0.384733</span><span class="p">,</span>
+            <span class="mf">0.340425</span><span class="p">,</span>
+            <span class="mf">0.294694</span><span class="p">,</span>
+            <span class="mf">0.260792</span>
+            <span class="p">]</span>
+
+<span class="n">crvToday</span> <span class="o">=</span> <span class="n">DiscountCurve</span><span class="p">(</span><span class="n">crvTodaydates</span><span class="p">,</span> <span class="n">crvTodaydf</span><span class="p">,</span> <span class="n">Actual360</span><span class="p">(),</span> <span class="n">TARGET</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">months</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">12</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">sPeriods</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">M&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">month</span><span class="p">)</span> <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">months</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sPeriods</span><span class="p">)</span>
+
+<span class="n">Dates</span> <span class="o">=</span> <span class="p">[</span><span class="n">todaysDate</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">todaysDate</span> <span class="o">+</span> <span class="n">Period</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sPeriods</span><span class="p">]</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Actual360</span><span class="p">()</span><span class="o">.</span><span class="n">year_fraction</span><span class="p">(</span><span class="n">todaysDate</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">Dates</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;3M&#39;, &#39;6M&#39;, &#39;9M&#39;, &#39;12M&#39;, &#39;15M&#39;, &#39;18M&#39;, &#39;21M&#39;, &#39;24M&#39;, &#39;27M&#39;, &#39;30M&#39;, &#39;33M&#39;, &#39;36M&#39;, &#39;39M&#39;, &#39;42M&#39;, &#39;45M&#39;, &#39;48M&#39;, &#39;51M&#39;, &#39;54M&#39;, &#39;57M&#39;, &#39;60M&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">15.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">quantlib.processes.api</span> <span class="kn">import</span> <span class="n">HullWhiteProcess</span>
+<span class="kn">from</span> <span class="nn">quantlib.sim.simulate</span> <span class="kn">import</span> <span class="n">simulate_process</span>
+<span class="kn">from</span> <span class="nn">quantlib.time_grid</span> <span class="kn">import</span> <span class="n">TimeGrid</span>
+
+<span class="n">Nsim</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1">#parameters calibrated with Quantlib to coterminal swaptions on 26/dec/2013</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">0.376739</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.0209835</span>
+
+<span class="n">hw</span> <span class="o">=</span> <span class="n">HullWhiteProcess</span><span class="p">(</span><span class="n">crvToday</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">TimeGrid</span><span class="o">.</span><span class="n">from_vector</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="n">rmat</span> <span class="o">=</span> <span class="n">simulate_process</span><span class="p">(</span><span class="n">hw</span><span class="p">,</span> <span class="n">Nsim</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">antithetic</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">dT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+
+<span class="c1">#check that bond prices match the original discount factors</span>
+<span class="n">bonds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">rmat</span><span class="p">)</span>
+<span class="n">bonds</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">rmat</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">*</span> <span class="n">dT</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">bonds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">bonds_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bonds</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">bonds_mean</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;simulated bond prices&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="p">[</span><span class="n">crvToday</span><span class="o">.</span><span class="n">discount</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">T</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;discount factors&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_CVA_computation_5_0.png" src="../_images/notebooks_CVA_computation_5_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "0006fdc14a97445f8960c924e58e30bd", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">quantlib.models.shortrate.onefactormodels.hullwhite</span> <span class="kn">import</span> <span class="n">HullWhite</span>
+
+<span class="n">start_date</span> <span class="o">=</span> <span class="n">Date</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2013</span><span class="p">);</span>
+<span class="n">hw_model</span> <span class="o">=</span> <span class="n">HullWhite</span><span class="p">(</span><span class="n">crvToday</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<span class="n">crvMat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="n">Nsim</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+<span class="n">crvMat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">crvToday</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)):</span>
+    <span class="n">crvDates</span> <span class="o">=</span> <span class="p">[</span><span class="n">Dates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Period</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">Years</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">21</span><span class="p">)]</span>
+    <span class="n">crv_row</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nsim</span><span class="p">):</span>
+        <span class="n">rt</span> <span class="o">=</span> <span class="n">rmat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span>
+        <span class="n">crvDiscounts</span> <span class="o">=</span> <span class="p">[</span><span class="n">hw_model</span><span class="o">.</span><span class="n">discount_bound</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">k</span><span class="p">,</span> <span class="n">rt</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">21.</span><span class="p">)]</span>
+        <span class="n">crvMat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">DiscountCurve</span><span class="p">(</span><span class="n">crvDates</span><span class="p">,</span> <span class="n">crvDiscounts</span><span class="p">,</span> <span class="n">Actual360</span><span class="p">(),</span> <span class="n">TARGET</span><span class="p">())</span>
+
+<span class="n">bondT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">rmat</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nsim</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)):</span>
+        <span class="n">bondT</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">bonds</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="n">crvMat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">discount</span><span class="p">(</span><span class="mi">19</span> <span class="o">-</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="n">bondTmean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bondT</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;bondTmean-Terminal bond</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">bondTmean</span> <span class="o">-</span> <span class="n">crvToday</span><span class="o">.</span><span class="n">discount</span><span class="p">(</span><span class="mf">19.</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+bondTmean-Terminal bond
+ [0.     0.0056 0.0053 0.0048 0.0046 0.0056 0.0058 0.0065 0.0061 0.0057
+ 0.0053 0.0056 0.0047 0.0048 0.004  0.0041 0.004  0.0036 0.0042 0.0034
+ 0.004 ]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">quantlib.compounding</span> <span class="kn">import</span> <span class="n">Continuous</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+         <span class="p">[</span><span class="n">crvMat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">forward_rate</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">compounding</span><span class="o">=</span><span class="n">Continuous</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="n">NoFrequency</span><span class="p">)</span><span class="o">.</span><span class="n">rate</span>
+          <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">10.</span><span class="p">)])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">Nsim</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="p">[</span><span class="n">crvMat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">forward_rate</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span>
+                                                  <span class="n">compounding</span><span class="o">=</span><span class="n">Continuous</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="n">NoFrequency</span><span class="p">)</span><span class="o">.</span><span class="n">rate</span>
+                         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">10.</span><span class="p">)])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;generated yield curves&#39;</span><span class="p">)</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_CVA_computation_7_0.png" src="../_images/notebooks_CVA_computation_7_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "377e248fa76942e59e5ca7c4be322f80", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">quantlib.indexes.api</span> <span class="kn">import</span> <span class="n">Euribor6M</span>
+<span class="kn">from</span> <span class="nn">quantlib.instruments.api</span> <span class="kn">import</span> <span class="n">VanillaSwap</span><span class="p">,</span> <span class="n">Receiver</span>
+<span class="kn">from</span> <span class="nn">quantlib.pricingengines.swap</span> <span class="kn">import</span> <span class="n">DiscountingSwapEngine</span>
+<span class="kn">from</span> <span class="nn">quantlib.termstructures.yields.api</span> <span class="kn">import</span> <span class="n">YieldTermStructure</span>
+
+<span class="c1">#indexes definition</span>
+<span class="n">forecast_term_structure</span> <span class="o">=</span> <span class="n">YieldTermStructure</span><span class="p">()</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">Euribor6M</span><span class="p">(</span><span class="n">forecast_term_structure</span><span class="p">)</span>
+
+<span class="n">rmean</span> <span class="o">=</span> <span class="p">[</span><span class="n">hw</span><span class="o">.</span><span class="n">expectation</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="n">hw</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">T</span><span class="p">]</span>
+
+<span class="c1"># we add a fixing every 6 months</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">Dates</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">index</span><span class="o">.</span><span class="n">add_fixing</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">fixing_date</span><span class="p">(</span><span class="n">Dates</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">rmean</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#swap 1 definition</span>
+<span class="n">maturity</span> <span class="o">=</span> <span class="n">Date</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2018</span><span class="p">)</span>
+<span class="n">fixed_schedule</span> <span class="o">=</span> <span class="n">Schedule</span><span class="o">.</span><span class="n">from_rule</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">maturity</span><span class="p">,</span> <span class="n">Period</span><span class="p">(</span><span class="s2">&quot;6M&quot;</span><span class="p">),</span> <span class="n">TARGET</span><span class="p">(),</span>
+                                    <span class="n">ModifiedFollowing</span><span class="p">,</span> <span class="n">ModifiedFollowing</span><span class="p">,</span> <span class="n">Rule</span><span class="o">.</span><span class="n">Forward</span><span class="p">,</span>
+                                    <span class="kc">False</span><span class="p">)</span>
+<span class="n">floating_schedule</span> <span class="o">=</span> <span class="n">Schedule</span><span class="o">.</span><span class="n">from_rule</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">maturity</span><span class="p">,</span> <span class="n">Period</span><span class="p">(</span><span class="s2">&quot;6M&quot;</span><span class="p">),</span>
+                                       <span class="n">TARGET</span><span class="p">(),</span> <span class="n">ModifiedFollowing</span><span class="p">,</span>
+                                       <span class="n">ModifiedFollowing</span><span class="p">,</span> <span class="n">Rule</span><span class="o">.</span><span class="n">Forward</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">swap1</span> <span class="o">=</span> <span class="n">VanillaSwap</span><span class="p">(</span><span class="n">Receiver</span><span class="p">,</span> <span class="mi">10_000_000</span><span class="p">,</span> <span class="n">fixed_schedule</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">Actual360</span><span class="p">(),</span>
+                    <span class="n">floating_schedule</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Actual360</span><span class="p">())</span>  <span class="c1">#0.01215</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npvMat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="n">Nsim</span><span class="p">))</span>
+
+<span class="n">discount_term_structure</span> <span class="o">=</span> <span class="n">YieldTermStructure</span><span class="p">()</span>
+<span class="n">swapEngine</span> <span class="o">=</span> <span class="n">DiscountingSwapEngine</span><span class="p">(</span><span class="n">discount_term_structure</span><span class="p">)</span>
+<span class="n">npvMat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="n">Nsim</span><span class="p">))</span>
+<span class="n">swap1</span><span class="o">.</span><span class="n">set_pricing_engine</span><span class="p">(</span><span class="n">swapEngine</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Dates</span><span class="p">):</span>
+    <span class="n">Settings</span><span class="p">()</span><span class="o">.</span><span class="n">evaluation_date</span> <span class="o">=</span> <span class="n">d</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nsim</span><span class="p">):</span>
+        <span class="n">crv</span> <span class="o">=</span> <span class="n">crvMat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span>
+        <span class="n">discount_term_structure</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+        <span class="n">forecast_term_structure</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">crv</span><span class="p">)</span>
+        <span class="n">npvMat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">swap1</span><span class="o">.</span><span class="n">npv</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npv</span> <span class="o">=</span> <span class="n">npvMat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1">#replace negative values with 0</span>
+<span class="n">npvMat</span><span class="p">[</span><span class="n">npvMat</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">EE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">npvMat</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">EE:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">EE</span><span class="p">)</span>
+<span class="c1">#print &#39;\nrmat:\n&#39;,rmat</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">rmean:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">rmean</span><span class="p">)</span>
+<span class="c1">#print &#39;\nrstd:\n&#39;,rstd</span>
+<span class="c1">#print &#39;\n95% are in \n&#39;,zip(rmean-2*rstd,rmean+2*rstd)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+EE:
+ [401670.1158 418836.1352 340293.5483 350128.0023 355742.385  301135.2662
+ 235679.9031 249760.1162 243312.1597 199152.445  174698.3439 144657.1733
+ 130173.2957 111075.2397  59332.7639  64612.5595  43032.7119  35243.9918
+      0.          0.          0.    ]
+
+rmean:
+ [0.0038321783708768938, 0.0038447104458097666, 0.003878829192934586, 0.004304415296142585, 0.004854534792846587, 0.005486708976510404, 0.00618266474586651, 0.007652760916036794, 0.007726527486934385, 0.011583314187371059, 0.011655179426606066, 0.011724510502370677, 0.011790125103332274, 0.01767265729120667, 0.017732265414519513, 0.01778829449949869, 0.017840190647180572, 0.0227598814403213, 0.02280548353169784, 0.022847781363155784, 0.022886514765800076]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We use 5% for the credit spread and 40% for the recovery</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">exp</span>
+<span class="n">S</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">crvToday</span><span class="o">.</span><span class="n">discount</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">EE</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">EE</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">S</span><span class="o">*</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">R</span><span class="p">))</span> <span class="o">-</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">S</span><span class="o">*</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">R</span><span class="p">)))</span>
+<span class="n">CVA</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">R</span><span class="p">)</span> <span class="o">*</span> <span class="n">r</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">npv=&quot;</span><span class="p">,</span> <span class="n">npv</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">CVA=&quot;</span><span class="p">,</span> <span class="n">CVA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+npv= 401670.1157927497
+
+CVA= 40722.15743027281
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">EE</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time in years&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Expected Exposure&#39;</span><span class="p">)</span>
+<span class="n">fig</span>
+<span class="c1">#plot(T,np.mean(rmat,axis=0))</span>
+<span class="c1">#plot(T,rmean)</span>
+<span class="c1">#plot(T,[npvMat[0,0]]*len(T))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_CVA_computation_13_0.png" src="../_images/notebooks_CVA_computation_13_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b6d7e2e772934950b2ae798e2aa737a6", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Quantlib cython wrapper</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../users_guide.html">User’s guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../users_guide.html#business-dates">Business dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users_guide.html#reference">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users_guide.html#mlab">Mlab</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../users_guide.html#notebooks">Notebooks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference_guide.html">Reference guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html#documentation">Documentation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../users_guide.html">User’s guide</a><ul>
+      <li>Previous: <a href="LiborRiskFactors.html" title="previous chapter">Risk Factors in USD Libor Market</a></li>
+      <li>Next: <a href="../reference_guide.html" title="next chapter">Reference guide</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2011, Didrik Pinte, Patrick Henaff.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/notebooks/CVA computation.ipynb.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

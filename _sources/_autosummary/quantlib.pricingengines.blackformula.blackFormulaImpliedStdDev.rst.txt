@@ -1,0 +1,6 @@
+quantlib.pricingengines.blackformula.blackFormulaImpliedStdDev
+==============================================================
+
+.. currentmodule:: quantlib.pricingengines.blackformula
+
+.. autofunction:: blackFormulaImpliedStdDev

@@ -1,0 +1,41 @@
+quantlib.termstructures.inflation\_term\_structure.YoYInflationTermStructure
+============================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation_term_structure
+
+.. autoclass:: YoYInflationTermStructure
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~YoYInflationTermStructure.__init__
+      ~YoYInflationTermStructure.link_to
+      ~YoYInflationTermStructure.yoy_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~YoYInflationTermStructure.base_date
+      ~YoYInflationTermStructure.base_rate
+      ~YoYInflationTermStructure.index_is_interpolated
+      ~YoYInflationTermStructure.max_date
+      ~YoYInflationTermStructure.observation_lag
+      ~YoYInflationTermStructure.reference_date
+
+   
+   

@@ -1,0 +1,33 @@
+quantlib.quotes
+===============
+
+.. automodule:: quantlib.quotes
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   quantlib.quotes.futuresconvadjustmentquote
+   quantlib.quotes.simplequote
+

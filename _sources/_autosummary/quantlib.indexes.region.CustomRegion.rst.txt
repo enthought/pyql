@@ -1,0 +1,36 @@
+quantlib.indexes.region.CustomRegion
+====================================
+
+.. currentmodule:: quantlib.indexes.region
+
+.. autoclass:: CustomRegion
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~CustomRegion.__init__
+      ~CustomRegion.from_name
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~CustomRegion.code
+      ~CustomRegion.name
+
+   
+   

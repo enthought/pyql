@@ -1,0 +1,6 @@
+quantlib.mlab.option\_pricing.blsimpv
+=====================================
+
+.. currentmodule:: quantlib.mlab.option_pricing
+
+.. autofunction:: blsimpv

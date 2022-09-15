@@ -1,0 +1,6 @@
+quantlib.market.conventions.swap.load
+=====================================
+
+.. currentmodule:: quantlib.market.conventions.swap
+
+.. autofunction:: load

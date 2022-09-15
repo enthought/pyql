@@ -1,0 +1,42 @@
+quantlib.termstructures.inflation.interpolated\_zero\_inflation\_curve.InterpolatedZeroInflationCurve
+=====================================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.interpolated_zero_inflation_curve
+
+.. autoclass:: InterpolatedZeroInflationCurve
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~InterpolatedZeroInflationCurve.__init__
+      ~InterpolatedZeroInflationCurve.data
+      ~InterpolatedZeroInflationCurve.link_to
+      ~InterpolatedZeroInflationCurve.zero_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~InterpolatedZeroInflationCurve.base_date
+      ~InterpolatedZeroInflationCurve.base_rate
+      ~InterpolatedZeroInflationCurve.index_is_interpolated
+      ~InterpolatedZeroInflationCurve.max_date
+      ~InterpolatedZeroInflationCurve.observation_lag
+      ~InterpolatedZeroInflationCurve.reference_date
+
+   
+   

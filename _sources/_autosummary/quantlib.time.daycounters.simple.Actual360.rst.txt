@@ -1,0 +1,37 @@
+quantlib.time.daycounters.simple.Actual360
+==========================================
+
+.. currentmodule:: quantlib.time.daycounters.simple
+
+.. autoclass:: Actual360
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Actual360.__init__
+      ~Actual360.day_count
+      ~Actual360.from_name
+      ~Actual360.year_fraction
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Actual360.name
+
+   
+   

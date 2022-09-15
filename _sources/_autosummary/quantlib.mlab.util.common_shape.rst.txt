@@ -1,0 +1,6 @@
+quantlib.mlab.util.common\_shape
+================================
+
+.. currentmodule:: quantlib.mlab.util
+
+.. autofunction:: common_shape

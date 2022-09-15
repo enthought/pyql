@@ -1,0 +1,55 @@
+quantlib.cashflows.ibor\_coupon.IborCoupon
+==========================================
+
+.. currentmodule:: quantlib.cashflows.ibor_coupon
+
+.. autoclass:: IborCoupon
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~IborCoupon.__init__
+      ~IborCoupon.accrued_amount
+      ~IborCoupon.accrued_days
+      ~IborCoupon.accrued_period
+      ~IborCoupon.has_occured
+      ~IborCoupon.set_pricer
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~IborCoupon.accrual_days
+      ~IborCoupon.accrual_end_date
+      ~IborCoupon.accrual_period
+      ~IborCoupon.accrual_start_date
+      ~IborCoupon.adjusted_fixing
+      ~IborCoupon.amount
+      ~IborCoupon.convexity_adjustment
+      ~IborCoupon.date
+      ~IborCoupon.day_counter
+      ~IborCoupon.fixing_date
+      ~IborCoupon.fixing_days
+      ~IborCoupon.index
+      ~IborCoupon.index_fixing
+      ~IborCoupon.nominal
+      ~IborCoupon.rate
+      ~IborCoupon.reference_period_end
+      ~IborCoupon.reference_period_start
+
+   
+   

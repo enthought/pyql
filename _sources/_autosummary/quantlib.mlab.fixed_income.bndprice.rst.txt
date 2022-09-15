@@ -1,0 +1,6 @@
+quantlib.mlab.fixed\_income.bndprice
+====================================
+
+.. currentmodule:: quantlib.mlab.fixed_income
+
+.. autofunction:: bndprice

@@ -1,0 +1,44 @@
+quantlib.termstructures.volatility.equityfx.black\_variance\_curve.BlackVarianceCurve
+=====================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_variance_curve
+
+.. autoclass:: BlackVarianceCurve
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~BlackVarianceCurve.__init__
+      ~BlackVarianceCurve.blackForwardVariance
+      ~BlackVarianceCurve.blackForwardVol
+      ~BlackVarianceCurve.blackVariance
+      ~BlackVarianceCurve.blackVol
+      ~BlackVarianceCurve.option_date_from_tenor
+      ~BlackVarianceCurve.time_from_reference
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~BlackVarianceCurve.calendar
+      ~BlackVarianceCurve.max_strike
+      ~BlackVarianceCurve.min_strike
+      ~BlackVarianceCurve.reference_date
+      ~BlackVarianceCurve.settlement_days
+
+   
+   

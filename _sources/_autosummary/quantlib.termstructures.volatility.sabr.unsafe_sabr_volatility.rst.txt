@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.sabr.unsafe\_sabr\_volatility
+================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.sabr
+
+.. autofunction:: unsafe_sabr_volatility

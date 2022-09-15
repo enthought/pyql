@@ -1,0 +1,46 @@
+quantlib.time.calendars.switzerland.Switzerland
+===============================================
+
+.. currentmodule:: quantlib.time.calendars.switzerland
+
+.. autoclass:: Switzerland
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Switzerland.__init__
+      ~Switzerland.add_holiday
+      ~Switzerland.adjust
+      ~Switzerland.advance
+      ~Switzerland.business_day_list
+      ~Switzerland.business_days_between
+      ~Switzerland.end_of_month
+      ~Switzerland.holiday_list
+      ~Switzerland.is_business_day
+      ~Switzerland.is_end_of_month
+      ~Switzerland.is_holiday
+      ~Switzerland.is_weekend
+      ~Switzerland.remove_holiday
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Switzerland.name
+
+   
+   

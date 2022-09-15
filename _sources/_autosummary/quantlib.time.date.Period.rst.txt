@@ -1,0 +1,37 @@
+quantlib.time.date.Period
+=========================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoclass:: Period
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Period.__init__
+      ~Period.normalize
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Period.frequency
+      ~Period.length
+      ~Period.units
+
+   
+   

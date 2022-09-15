@@ -1,0 +1,43 @@
+quantlib.termstructures.volatility.smilesection.SmileSection
+============================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.smilesection
+
+.. autoclass:: SmileSection
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~SmileSection.__init__
+      ~SmileSection.density
+      ~SmileSection.option_price
+      ~SmileSection.vega
+      ~SmileSection.volatility
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~SmileSection.day_counter
+      ~SmileSection.exercise_date
+      ~SmileSection.exercise_time
+      ~SmileSection.max_strike
+      ~SmileSection.min_strike
+      ~SmileSection.reference_date
+
+   
+   

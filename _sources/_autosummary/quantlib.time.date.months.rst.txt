@@ -1,0 +1,6 @@
+quantlib.time.date.months
+=========================
+
+.. currentmodule:: quantlib.time.date
+
+.. autofunction:: months

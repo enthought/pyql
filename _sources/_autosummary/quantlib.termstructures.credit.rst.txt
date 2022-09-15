@@ -1,0 +1,36 @@
+quantlib.termstructures.credit
+==============================
+
+.. automodule:: quantlib.termstructures.credit
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   quantlib.termstructures.credit.api
+   quantlib.termstructures.credit.default_probability_helpers
+   quantlib.termstructures.credit.flat_hazard_rate
+   quantlib.termstructures.credit.interpolated_hazardrate_curve
+   quantlib.termstructures.credit.piecewise_default_curve
+

@@ -1,0 +1,37 @@
+quantlib.time.daycounters.simple.Actual365Fixed
+===============================================
+
+.. currentmodule:: quantlib.time.daycounters.simple
+
+.. autoclass:: Actual365Fixed
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Actual365Fixed.__init__
+      ~Actual365Fixed.day_count
+      ~Actual365Fixed.from_name
+      ~Actual365Fixed.year_fraction
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Actual365Fixed.name
+
+   
+   

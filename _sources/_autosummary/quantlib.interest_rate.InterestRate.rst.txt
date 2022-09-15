@@ -1,0 +1,40 @@
+quantlib.interest\_rate.InterestRate
+====================================
+
+.. currentmodule:: quantlib.interest_rate
+
+.. autoclass:: InterestRate
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~InterestRate.__init__
+      ~InterestRate.compound_factor
+      ~InterestRate.equivalent_rate
+      ~InterestRate.implied_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~InterestRate.compounding
+      ~InterestRate.day_counter
+      ~InterestRate.frequency
+      ~InterestRate.rate
+
+   
+   

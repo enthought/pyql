@@ -1,0 +1,31 @@
+quantlib.models.equity.dejd
+===========================
+
+.. automodule:: quantlib.models.equity.dejd
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      jump_samples
+      jump_times
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,6 @@
+quantlib.mlab.util.array\_call
+==============================
+
+.. currentmodule:: quantlib.mlab.util
+
+.. autofunction:: array_call

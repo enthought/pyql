@@ -1,0 +1,27 @@
+quantlib.termstructures.yields.zero\_curve.Meta
+===============================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. autoclass:: Meta
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Meta.__init__
+      ~Meta.mro
+   
+   
+
+   
+   
+   

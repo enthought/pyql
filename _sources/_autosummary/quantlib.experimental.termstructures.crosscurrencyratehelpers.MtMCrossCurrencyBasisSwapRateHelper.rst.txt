@@ -1,0 +1,39 @@
+quantlib.experimental.termstructures.crosscurrencyratehelpers.MtMCrossCurrencyBasisSwapRateHelper
+=================================================================================================
+
+.. currentmodule:: quantlib.experimental.termstructures.crosscurrencyratehelpers
+
+.. autoclass:: MtMCrossCurrencyBasisSwapRateHelper
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~MtMCrossCurrencyBasisSwapRateHelper.__init__
+      ~MtMCrossCurrencyBasisSwapRateHelper.update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~MtMCrossCurrencyBasisSwapRateHelper.earliest_date
+      ~MtMCrossCurrencyBasisSwapRateHelper.implied_quote
+      ~MtMCrossCurrencyBasisSwapRateHelper.latest_date
+      ~MtMCrossCurrencyBasisSwapRateHelper.maturity_date
+      ~MtMCrossCurrencyBasisSwapRateHelper.quote
+
+   
+   

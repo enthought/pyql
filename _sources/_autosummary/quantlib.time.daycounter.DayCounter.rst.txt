@@ -1,0 +1,37 @@
+quantlib.time.daycounter.DayCounter
+===================================
+
+.. currentmodule:: quantlib.time.daycounter
+
+.. autoclass:: DayCounter
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~DayCounter.__init__
+      ~DayCounter.day_count
+      ~DayCounter.from_name
+      ~DayCounter.year_fraction
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~DayCounter.name
+
+   
+   

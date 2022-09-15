@@ -1,0 +1,28 @@
+quantlib.models.model.CalibratedModel
+=====================================
+
+.. currentmodule:: quantlib.models.model
+
+.. autoclass:: CalibratedModel
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~CalibratedModel.__init__
+      ~CalibratedModel.params
+      ~CalibratedModel.set_params
+   
+   
+
+   
+   
+   

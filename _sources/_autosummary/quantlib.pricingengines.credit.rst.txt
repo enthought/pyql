@@ -1,0 +1,34 @@
+quantlib.pricingengines.credit
+==============================
+
+.. automodule:: quantlib.pricingengines.credit
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   quantlib.pricingengines.credit.api
+   quantlib.pricingengines.credit.isda_cds_engine
+   quantlib.pricingengines.credit.midpoint_cds_engine
+

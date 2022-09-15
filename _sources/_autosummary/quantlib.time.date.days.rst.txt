@@ -1,0 +1,6 @@
+quantlib.time.date.days
+=======================
+
+.. currentmodule:: quantlib.time.date
+
+.. autofunction:: days

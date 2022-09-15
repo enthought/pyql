@@ -1,0 +1,44 @@
+quantlib.termstructures.yields.flat\_forward.FlatForward
+========================================================
+
+.. currentmodule:: quantlib.termstructures.yields.flat_forward
+
+.. autoclass:: FlatForward
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FlatForward.__init__
+      ~FlatForward.discount
+      ~FlatForward.forward_rate
+      ~FlatForward.link_to
+      ~FlatForward.time_from_reference
+      ~FlatForward.zero_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~FlatForward.day_counter
+      ~FlatForward.extrapolation
+      ~FlatForward.max_date
+      ~FlatForward.max_time
+      ~FlatForward.reference_date
+      ~FlatForward.settlement_days
+
+   
+   

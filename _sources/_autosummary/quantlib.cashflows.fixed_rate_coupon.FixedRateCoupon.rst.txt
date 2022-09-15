@@ -1,0 +1,49 @@
+quantlib.cashflows.fixed\_rate\_coupon.FixedRateCoupon
+======================================================
+
+.. currentmodule:: quantlib.cashflows.fixed_rate_coupon
+
+.. autoclass:: FixedRateCoupon
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FixedRateCoupon.__init__
+      ~FixedRateCoupon.accrued_amount
+      ~FixedRateCoupon.accrued_days
+      ~FixedRateCoupon.accrued_period
+      ~FixedRateCoupon.has_occured
+      ~FixedRateCoupon.interest_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~FixedRateCoupon.accrual_days
+      ~FixedRateCoupon.accrual_end_date
+      ~FixedRateCoupon.accrual_period
+      ~FixedRateCoupon.accrual_start_date
+      ~FixedRateCoupon.amount
+      ~FixedRateCoupon.date
+      ~FixedRateCoupon.day_counter
+      ~FixedRateCoupon.nominal
+      ~FixedRateCoupon.rate
+      ~FixedRateCoupon.reference_period_end
+      ~FixedRateCoupon.reference_period_start
+
+   
+   

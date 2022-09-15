@@ -1,0 +1,23 @@
+quantlib.cashflows.rateaveraging
+================================
+
+.. automodule:: quantlib.cashflows.rateaveraging
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

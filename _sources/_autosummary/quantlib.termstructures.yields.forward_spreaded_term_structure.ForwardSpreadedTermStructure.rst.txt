@@ -1,0 +1,44 @@
+quantlib.termstructures.yields.forward\_spreaded\_term\_structure.ForwardSpreadedTermStructure
+==============================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_spreaded_term_structure
+
+.. autoclass:: ForwardSpreadedTermStructure
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ForwardSpreadedTermStructure.__init__
+      ~ForwardSpreadedTermStructure.discount
+      ~ForwardSpreadedTermStructure.forward_rate
+      ~ForwardSpreadedTermStructure.link_to
+      ~ForwardSpreadedTermStructure.time_from_reference
+      ~ForwardSpreadedTermStructure.zero_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~ForwardSpreadedTermStructure.day_counter
+      ~ForwardSpreadedTermStructure.extrapolation
+      ~ForwardSpreadedTermStructure.max_date
+      ~ForwardSpreadedTermStructure.max_time
+      ~ForwardSpreadedTermStructure.reference_date
+      ~ForwardSpreadedTermStructure.settlement_days
+
+   
+   

@@ -1,0 +1,6 @@
+quantlib.util.rates.make\_rate\_helper
+======================================
+
+.. currentmodule:: quantlib.util.rates
+
+.. autofunction:: make_rate_helper

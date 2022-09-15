@@ -1,0 +1,44 @@
+quantlib.instruments.variance\_swap.VarianceSwap
+================================================
+
+.. currentmodule:: quantlib.instruments.variance_swap
+
+.. autoclass:: VarianceSwap
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~VarianceSwap.__init__
+      ~VarianceSwap.set_pricing_engine
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~VarianceSwap.is_expired
+      ~VarianceSwap.maturity_date
+      ~VarianceSwap.net_present_value
+      ~VarianceSwap.notional
+      ~VarianceSwap.npv
+      ~VarianceSwap.position
+      ~VarianceSwap.start_date
+      ~VarianceSwap.strike
+      ~VarianceSwap.valuation_date
+      ~VarianceSwap.variance
+
+   
+   

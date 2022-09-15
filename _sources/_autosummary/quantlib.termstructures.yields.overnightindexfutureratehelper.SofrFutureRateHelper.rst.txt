@@ -1,0 +1,39 @@
+quantlib.termstructures.yields.overnightindexfutureratehelper.SofrFutureRateHelper
+==================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.overnightindexfutureratehelper
+
+.. autoclass:: SofrFutureRateHelper
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~SofrFutureRateHelper.__init__
+      ~SofrFutureRateHelper.update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~SofrFutureRateHelper.earliest_date
+      ~SofrFutureRateHelper.implied_quote
+      ~SofrFutureRateHelper.latest_date
+      ~SofrFutureRateHelper.maturity_date
+      ~SofrFutureRateHelper.quote
+
+   
+   

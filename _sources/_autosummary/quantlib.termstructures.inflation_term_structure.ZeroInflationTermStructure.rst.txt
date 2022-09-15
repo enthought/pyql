@@ -1,0 +1,41 @@
+quantlib.termstructures.inflation\_term\_structure.ZeroInflationTermStructure
+=============================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation_term_structure
+
+.. autoclass:: ZeroInflationTermStructure
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ZeroInflationTermStructure.__init__
+      ~ZeroInflationTermStructure.link_to
+      ~ZeroInflationTermStructure.zero_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~ZeroInflationTermStructure.base_date
+      ~ZeroInflationTermStructure.base_rate
+      ~ZeroInflationTermStructure.index_is_interpolated
+      ~ZeroInflationTermStructure.max_date
+      ~ZeroInflationTermStructure.observation_lag
+      ~ZeroInflationTermStructure.reference_date
+
+   
+   

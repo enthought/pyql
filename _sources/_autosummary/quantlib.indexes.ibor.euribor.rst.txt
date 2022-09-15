@@ -1,0 +1,33 @@
+quantlib.indexes.ibor.euribor
+=============================
+
+.. automodule:: quantlib.indexes.ibor.euribor
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      Euribor
+      Euribor3M
+      Euribor6M
+   
+   
+
+   
+   
+   
+
+
+

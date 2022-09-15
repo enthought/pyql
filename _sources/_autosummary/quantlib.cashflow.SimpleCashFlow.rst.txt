@@ -1,0 +1,36 @@
+quantlib.cashflow.SimpleCashFlow
+================================
+
+.. currentmodule:: quantlib.cashflow
+
+.. autoclass:: SimpleCashFlow
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~SimpleCashFlow.__init__
+      ~SimpleCashFlow.has_occured
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~SimpleCashFlow.amount
+      ~SimpleCashFlow.date
+
+   
+   

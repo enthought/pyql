@@ -1,0 +1,37 @@
+quantlib.math.matrix.Matrix
+===========================
+
+.. currentmodule:: quantlib.math.matrix
+
+.. autoclass:: Matrix
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Matrix.__init__
+      ~Matrix.from_ndarray
+      ~Matrix.to_ndarray
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Matrix.columns
+      ~Matrix.rows
+
+   
+   

@@ -1,0 +1,45 @@
+quantlib.termstructures.credit.piecewise\_default\_curve.PiecewiseDefaultCurve
+==============================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.piecewise_default_curve
+
+.. autoclass:: PiecewiseDefaultCurve
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~PiecewiseDefaultCurve.__init__
+      ~PiecewiseDefaultCurve.from_reference_date
+      ~PiecewiseDefaultCurve.hazard_rate
+      ~PiecewiseDefaultCurve.survival_probability
+      ~PiecewiseDefaultCurve.time_from_reference
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~PiecewiseDefaultCurve.data
+      ~PiecewiseDefaultCurve.dates
+      ~PiecewiseDefaultCurve.day_counter
+      ~PiecewiseDefaultCurve.jump_dates
+      ~PiecewiseDefaultCurve.jump_times
+      ~PiecewiseDefaultCurve.max_date
+      ~PiecewiseDefaultCurve.reference_date
+      ~PiecewiseDefaultCurve.times
+
+   
+   

@@ -1,0 +1,50 @@
+quantlib.termstructures.yields.piecewise\_yield\_curve.ZeroYieldBackwardFlatPiecewiseYieldCurve
+===============================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_yield_curve
+
+.. autoclass:: ZeroYieldBackwardFlatPiecewiseYieldCurve
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.__init__
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.discount
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.forward_rate
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.from_reference_date
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.link_to
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.time_from_reference
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.zero_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.data
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.dates
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.day_counter
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.extrapolation
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.max_date
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.max_time
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.nodes
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.reference_date
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.settlement_days
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.times
+      ~ZeroYieldBackwardFlatPiecewiseYieldCurve.trait
+
+   
+   

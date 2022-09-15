@@ -1,0 +1,41 @@
+quantlib.termstructures.default\_term\_structure.DefaultProbabilityTermStructure
+================================================================================
+
+.. currentmodule:: quantlib.termstructures.default_term_structure
+
+.. autoclass:: DefaultProbabilityTermStructure
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~DefaultProbabilityTermStructure.__init__
+      ~DefaultProbabilityTermStructure.hazard_rate
+      ~DefaultProbabilityTermStructure.survival_probability
+      ~DefaultProbabilityTermStructure.time_from_reference
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~DefaultProbabilityTermStructure.day_counter
+      ~DefaultProbabilityTermStructure.jump_dates
+      ~DefaultProbabilityTermStructure.jump_times
+      ~DefaultProbabilityTermStructure.max_date
+      ~DefaultProbabilityTermStructure.reference_date
+
+   
+   

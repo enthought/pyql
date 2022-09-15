@@ -1,0 +1,44 @@
+quantlib.instruments.make\_ois.MakeOIS
+======================================
+
+.. currentmodule:: quantlib.instruments.make_ois
+
+.. autoclass:: MakeOIS
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~MakeOIS.__init__
+      ~MakeOIS.receive_fixed
+      ~MakeOIS.with_averaging_method
+      ~MakeOIS.with_discounting_term_structure
+      ~MakeOIS.with_effective_date
+      ~MakeOIS.with_end_of_month
+      ~MakeOIS.with_fixed_leg_day_count
+      ~MakeOIS.with_nominal
+      ~MakeOIS.with_overnight_leg_spread
+      ~MakeOIS.with_payment_adjustment
+      ~MakeOIS.with_payment_calendar
+      ~MakeOIS.with_payment_frequency
+      ~MakeOIS.with_payment_lag
+      ~MakeOIS.with_pricing_engine
+      ~MakeOIS.with_rule
+      ~MakeOIS.with_settlement_days
+      ~MakeOIS.with_telescopic_value_dates
+      ~MakeOIS.with_termination_date
+      ~MakeOIS.with_type
+   
+   
+
+   
+   
+   

@@ -1,0 +1,38 @@
+quantlib.instruments.overnightindexfuture.OvernightIndexFuture
+==============================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexfuture
+
+.. autoclass:: OvernightIndexFuture
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~OvernightIndexFuture.__init__
+      ~OvernightIndexFuture.set_pricing_engine
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~OvernightIndexFuture.is_expired
+      ~OvernightIndexFuture.net_present_value
+      ~OvernightIndexFuture.npv
+      ~OvernightIndexFuture.valuation_date
+
+   
+   

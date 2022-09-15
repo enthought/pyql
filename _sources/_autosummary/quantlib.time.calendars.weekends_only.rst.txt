@@ -1,0 +1,31 @@
+quantlib.time.calendars.weekends\_only
+======================================
+
+.. automodule:: quantlib.time.calendars.weekends_only
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      WeekendsOnly
+   
+   
+
+   
+   
+   
+
+
+

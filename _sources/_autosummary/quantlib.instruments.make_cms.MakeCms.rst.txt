@@ -1,0 +1,30 @@
+quantlib.instruments.make\_cms.MakeCms
+======================================
+
+.. currentmodule:: quantlib.instruments.make_cms
+
+.. autoclass:: MakeCms
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~MakeCms.__init__
+      ~MakeCms.with_cms_leg_tenor
+      ~MakeCms.with_discounting_term_structure
+      ~MakeCms.with_effective_date
+      ~MakeCms.with_nominal
+   
+   
+
+   
+   
+   

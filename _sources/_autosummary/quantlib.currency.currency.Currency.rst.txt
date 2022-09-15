@@ -1,0 +1,39 @@
+quantlib.currency.currency.Currency
+===================================
+
+.. currentmodule:: quantlib.currency.currency
+
+.. autoclass:: Currency
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Currency.__init__
+      ~Currency.from_name
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Currency.code
+      ~Currency.fractionSymbol
+      ~Currency.fractionsPerUnit
+      ~Currency.name
+      ~Currency.symbol
+
+   
+   

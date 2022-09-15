@@ -1,0 +1,38 @@
+quantlib.termstructures.credit.default\_probability\_helpers.CdsHelper
+======================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.default_probability_helpers
+
+.. autoclass:: CdsHelper
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~CdsHelper.__init__
+      ~CdsHelper.set_term_structure
+      ~CdsHelper.swap
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~CdsHelper.implied_quote
+      ~CdsHelper.latest_date
+      ~CdsHelper.quote
+
+   
+   

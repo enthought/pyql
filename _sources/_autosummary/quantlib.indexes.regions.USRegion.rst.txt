@@ -1,0 +1,36 @@
+quantlib.indexes.regions.USRegion
+=================================
+
+.. currentmodule:: quantlib.indexes.regions
+
+.. autoclass:: USRegion
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~USRegion.__init__
+      ~USRegion.from_name
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~USRegion.code
+      ~USRegion.name
+
+   
+   

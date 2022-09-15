@@ -1,0 +1,32 @@
+quantlib.instruments.asian\_options
+===================================
+
+.. automodule:: quantlib.instruments.asian_options
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      ContinuousAveragingAsianOption
+      DiscreteAveragingAsianOption
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,6 @@
+quantlib.cashflows.cashflows.previous\_cash\_flow\_amount
+=========================================================
+
+.. currentmodule:: quantlib.cashflows.cashflows
+
+.. autofunction:: previous_cash_flow_amount

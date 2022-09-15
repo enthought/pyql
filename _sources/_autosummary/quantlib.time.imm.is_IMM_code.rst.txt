@@ -1,0 +1,6 @@
+quantlib.time.imm.is\_IMM\_code
+===============================
+
+.. currentmodule:: quantlib.time.imm
+
+.. autofunction:: is_IMM_code

@@ -1,0 +1,27 @@
+quantlib.cashflows.overnight\_indexed\_coupon.OvernightLeg
+==========================================================
+
+.. currentmodule:: quantlib.cashflows.overnight_indexed_coupon
+
+.. autoclass:: OvernightLeg
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~OvernightLeg.__init__
+      ~OvernightLeg.items
+   
+   
+
+   
+   
+   

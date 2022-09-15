@@ -1,0 +1,43 @@
+quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite
+=============================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactormodels.hullwhite
+
+.. autoclass:: HullWhite
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~HullWhite.__init__
+      ~HullWhite.calibrate
+      ~HullWhite.convexity_bias
+      ~HullWhite.discount_bound
+      ~HullWhite.params
+      ~HullWhite.set_params
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~HullWhite.Lambda
+      ~HullWhite.a
+      ~HullWhite.b
+      ~HullWhite.dynamics
+      ~HullWhite.sigma
+
+   
+   

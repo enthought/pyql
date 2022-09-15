@@ -1,0 +1,36 @@
+quantlib.models
+===============
+
+.. automodule:: quantlib.models
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   quantlib.models.api
+   quantlib.models.calibration_helper
+   quantlib.models.equity
+   quantlib.models.model
+   quantlib.models.shortrate
+

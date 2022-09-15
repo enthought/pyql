@@ -1,0 +1,46 @@
+quantlib.time.calendars.jointcalendar.JointCalendar
+===================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. autoclass:: JointCalendar
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~JointCalendar.__init__
+      ~JointCalendar.add_holiday
+      ~JointCalendar.adjust
+      ~JointCalendar.advance
+      ~JointCalendar.business_day_list
+      ~JointCalendar.business_days_between
+      ~JointCalendar.end_of_month
+      ~JointCalendar.holiday_list
+      ~JointCalendar.is_business_day
+      ~JointCalendar.is_end_of_month
+      ~JointCalendar.is_holiday
+      ~JointCalendar.is_weekend
+      ~JointCalendar.remove_holiday
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~JointCalendar.name
+
+   
+   

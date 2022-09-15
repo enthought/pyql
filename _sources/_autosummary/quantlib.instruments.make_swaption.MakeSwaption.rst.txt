@@ -1,0 +1,33 @@
+quantlib.instruments.make\_swaption.MakeSwaption
+================================================
+
+.. currentmodule:: quantlib.instruments.make_swaption
+
+.. autoclass:: MakeSwaption
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~MakeSwaption.__init__
+      ~MakeSwaption.with_exercise_date
+      ~MakeSwaption.with_nominal
+      ~MakeSwaption.with_option_convention
+      ~MakeSwaption.with_pricing_engine
+      ~MakeSwaption.with_settlement_method
+      ~MakeSwaption.with_settlement_type
+      ~MakeSwaption.with_underlying_type
+   
+   
+
+   
+   
+   

@@ -1,0 +1,6 @@
+quantlib.time.date.mindate
+==========================
+
+.. currentmodule:: quantlib.time.date
+
+.. autofunction:: mindate

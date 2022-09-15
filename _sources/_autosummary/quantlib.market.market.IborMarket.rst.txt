@@ -1,0 +1,48 @@
+quantlib.market.market.IborMarket
+=================================
+
+.. currentmodule:: quantlib.market.market
+
+.. autoclass:: IborMarket
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~IborMarket.__init__
+      ~IborMarket.add_bond_quote
+      ~IborMarket.bootstrap_term_structure
+      ~IborMarket.create_fixed_float_swap
+      ~IborMarket.discount
+      ~IborMarket.set_bonds
+      ~IborMarket.set_quotes
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~IborMarket.calendar
+      ~IborMarket.fixed_leg_convention
+      ~IborMarket.fixed_leg_daycount
+      ~IborMarket.fixed_leg_period
+      ~IborMarket.max_date
+      ~IborMarket.name
+      ~IborMarket.reference_date
+      ~IborMarket.settlement_days
+      ~IborMarket.termstructure_daycounter
+
+   
+   

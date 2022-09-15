@@ -1,0 +1,29 @@
+quantlib.util.object\_registry.ObjectRegistry
+=============================================
+
+.. currentmodule:: quantlib.util.object_registry
+
+.. autoclass:: ObjectRegistry
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ObjectRegistry.__init__
+      ~ObjectRegistry.from_name
+      ~ObjectRegistry.help
+      ~ObjectRegistry.register
+   
+   
+
+   
+   
+   

@@ -1,0 +1,6 @@
+quantlib.time.date.is\_leap
+===========================
+
+.. currentmodule:: quantlib.time.date
+
+.. autofunction:: is_leap

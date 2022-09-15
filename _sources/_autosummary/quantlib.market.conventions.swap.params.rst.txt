@@ -1,0 +1,6 @@
+quantlib.market.conventions.swap.params
+=======================================
+
+.. currentmodule:: quantlib.market.conventions.swap
+
+.. autofunction:: params

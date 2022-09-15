@@ -1,0 +1,46 @@
+quantlib.time.calendars.target.TARGET
+=====================================
+
+.. currentmodule:: quantlib.time.calendars.target
+
+.. autoclass:: TARGET
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~TARGET.__init__
+      ~TARGET.add_holiday
+      ~TARGET.adjust
+      ~TARGET.advance
+      ~TARGET.business_day_list
+      ~TARGET.business_days_between
+      ~TARGET.end_of_month
+      ~TARGET.holiday_list
+      ~TARGET.is_business_day
+      ~TARGET.is_end_of_month
+      ~TARGET.is_holiday
+      ~TARGET.is_weekend
+      ~TARGET.remove_holiday
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~TARGET.name
+
+   
+   

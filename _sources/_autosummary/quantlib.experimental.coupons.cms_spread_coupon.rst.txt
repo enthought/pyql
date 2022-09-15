@@ -1,0 +1,33 @@
+quantlib.experimental.coupons.cms\_spread\_coupon
+=================================================
+
+.. automodule:: quantlib.experimental.coupons.cms_spread_coupon
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      CappedFlooredCmsSpreadCoupon
+      CmsSpreadCoupon
+      CmsSpreadCouponPricer
+   
+   
+
+   
+   
+   
+
+
+

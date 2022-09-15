@@ -1,0 +1,31 @@
+quantlib.indexes.inflation.australia
+====================================
+
+.. automodule:: quantlib.indexes.inflation.australia
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      AUCPI
+   
+   
+
+   
+   
+   
+
+
+

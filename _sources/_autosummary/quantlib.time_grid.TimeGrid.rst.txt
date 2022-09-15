@@ -1,0 +1,27 @@
+quantlib.time\_grid.TimeGrid
+============================
+
+.. currentmodule:: quantlib.time_grid
+
+.. autoclass:: TimeGrid
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~TimeGrid.__init__
+      ~TimeGrid.from_vector
+   
+   
+
+   
+   
+   

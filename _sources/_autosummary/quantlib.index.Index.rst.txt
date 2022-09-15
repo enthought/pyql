@@ -1,0 +1,41 @@
+quantlib.index.Index
+====================
+
+.. currentmodule:: quantlib.index
+
+.. autoclass:: Index
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Index.__init__
+      ~Index.add_fixing
+      ~Index.add_fixings
+      ~Index.clear_fixings
+      ~Index.fixing
+      ~Index.is_valid_fixing_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Index.fixing_calendar
+      ~Index.name
+      ~Index.time_series
+
+   
+   

@@ -1,0 +1,45 @@
+quantlib.models.equity.bates\_model.BatesDetJumpModel
+=====================================================
+
+.. currentmodule:: quantlib.models.equity.bates_model
+
+.. autoclass:: BatesDetJumpModel
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~BatesDetJumpModel.__init__
+      ~BatesDetJumpModel.calibrate
+      ~BatesDetJumpModel.process
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~BatesDetJumpModel.Lambda
+      ~BatesDetJumpModel.delta
+      ~BatesDetJumpModel.kappa
+      ~BatesDetJumpModel.kappaLambda
+      ~BatesDetJumpModel.nu
+      ~BatesDetJumpModel.rho
+      ~BatesDetJumpModel.sigma
+      ~BatesDetJumpModel.theta
+      ~BatesDetJumpModel.thetaLambda
+      ~BatesDetJumpModel.v0
+
+   
+   

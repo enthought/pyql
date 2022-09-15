@@ -1,0 +1,6 @@
+quantlib.time.calendar\_registry.initialize\_name\_registry
+===========================================================
+
+.. currentmodule:: quantlib.time.calendar_registry
+
+.. autofunction:: initialize_name_registry

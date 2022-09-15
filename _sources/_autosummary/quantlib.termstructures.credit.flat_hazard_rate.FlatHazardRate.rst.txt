@@ -1,0 +1,42 @@
+quantlib.termstructures.credit.flat\_hazard\_rate.FlatHazardRate
+================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.flat_hazard_rate
+
+.. autoclass:: FlatHazardRate
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FlatHazardRate.__init__
+      ~FlatHazardRate.from_reference_date
+      ~FlatHazardRate.hazard_rate
+      ~FlatHazardRate.survival_probability
+      ~FlatHazardRate.time_from_reference
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~FlatHazardRate.day_counter
+      ~FlatHazardRate.jump_dates
+      ~FlatHazardRate.jump_times
+      ~FlatHazardRate.max_date
+      ~FlatHazardRate.reference_date
+
+   
+   

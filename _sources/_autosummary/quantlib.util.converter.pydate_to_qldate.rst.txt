@@ -1,0 +1,6 @@
+quantlib.util.converter.pydate\_to\_qldate
+==========================================
+
+.. currentmodule:: quantlib.util.converter
+
+.. autofunction:: pydate_to_qldate

@@ -1,0 +1,6 @@
+quantlib.util.converter.pydate
+==============================
+
+.. currentmodule:: quantlib.util.converter
+
+.. autofunction:: pydate

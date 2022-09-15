@@ -1,0 +1,31 @@
+quantlib.time.calendars.canada
+==============================
+
+.. automodule:: quantlib.time.calendars.canada
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      Canada
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,39 @@
+quantlib.cashflows.inflation\_coupon\_pricer
+============================================
+
+.. automodule:: quantlib.cashflows.inflation_coupon_pricer
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      set_coupon_pricer
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      InflationCouponPricer
+      YoYInflationCouponPricer
+   
+   
+
+   
+   
+   
+
+
+

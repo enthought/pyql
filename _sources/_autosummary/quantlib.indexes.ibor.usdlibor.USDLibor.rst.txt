@@ -1,0 +1,55 @@
+quantlib.indexes.ibor.usdlibor.USDLibor
+=======================================
+
+.. currentmodule:: quantlib.indexes.ibor.usdlibor
+
+.. autoclass:: USDLibor
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~USDLibor.__init__
+      ~USDLibor.add_fixing
+      ~USDLibor.add_fixings
+      ~USDLibor.clear_fixings
+      ~USDLibor.fixing
+      ~USDLibor.fixing_date
+      ~USDLibor.forecast_fixing
+      ~USDLibor.from_name
+      ~USDLibor.is_valid_fixing_date
+      ~USDLibor.maturity_date
+      ~USDLibor.value_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~USDLibor.business_day_convention
+      ~USDLibor.currency
+      ~USDLibor.day_counter
+      ~USDLibor.end_of_month
+      ~USDLibor.family_name
+      ~USDLibor.fixing_calendar
+      ~USDLibor.fixing_days
+      ~USDLibor.forwarding_term_structure
+      ~USDLibor.joint_calendar
+      ~USDLibor.name
+      ~USDLibor.tenor
+      ~USDLibor.time_series
+
+   
+   

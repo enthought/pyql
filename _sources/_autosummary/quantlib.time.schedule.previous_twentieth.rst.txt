@@ -1,0 +1,6 @@
+quantlib.time.schedule.previous\_twentieth
+==========================================
+
+.. currentmodule:: quantlib.time.schedule
+
+.. autofunction:: previous_twentieth

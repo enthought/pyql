@@ -1,0 +1,33 @@
+quantlib.indexes.swap
+=====================
+
+.. automodule:: quantlib.indexes.swap
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   quantlib.indexes.swap.euribor_swap
+   quantlib.indexes.swap.usd_libor_swap
+

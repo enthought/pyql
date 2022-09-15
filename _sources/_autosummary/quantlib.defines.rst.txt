@@ -1,0 +1,23 @@
+quantlib.defines
+================
+
+.. automodule:: quantlib.defines
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

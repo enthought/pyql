@@ -1,0 +1,45 @@
+quantlib.termstructures.credit.interpolated\_hazardrate\_curve.InterpolatedHazardRateCurve
+==========================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.interpolated_hazardrate_curve
+
+.. autoclass:: InterpolatedHazardRateCurve
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~InterpolatedHazardRateCurve.__init__
+      ~InterpolatedHazardRateCurve.hazard_rate
+      ~InterpolatedHazardRateCurve.survival_probability
+      ~InterpolatedHazardRateCurve.time_from_reference
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~InterpolatedHazardRateCurve.data
+      ~InterpolatedHazardRateCurve.dates
+      ~InterpolatedHazardRateCurve.day_counter
+      ~InterpolatedHazardRateCurve.hazard_rates
+      ~InterpolatedHazardRateCurve.jump_dates
+      ~InterpolatedHazardRateCurve.jump_times
+      ~InterpolatedHazardRateCurve.max_date
+      ~InterpolatedHazardRateCurve.reference_date
+      ~InterpolatedHazardRateCurve.times
+
+   
+   

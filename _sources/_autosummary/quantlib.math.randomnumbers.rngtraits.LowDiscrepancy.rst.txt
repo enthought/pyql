@@ -1,0 +1,35 @@
+quantlib.math.randomnumbers.rngtraits.LowDiscrepancy
+====================================================
+
+.. currentmodule:: quantlib.math.randomnumbers.rngtraits
+
+.. autoclass:: LowDiscrepancy
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~LowDiscrepancy.__init__
+      ~LowDiscrepancy.last_sequence
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~LowDiscrepancy.dimension
+
+   
+   

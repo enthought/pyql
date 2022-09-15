@@ -1,0 +1,55 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_cube.SwaptionVolatilityCube
+======================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_cube
+
+.. autoclass:: SwaptionVolatilityCube
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~SwaptionVolatilityCube.__init__
+      ~SwaptionVolatilityCube.atm_strike
+      ~SwaptionVolatilityCube.atm_vol
+      ~SwaptionVolatilityCube.black_variance
+      ~SwaptionVolatilityCube.option_date_from_tenor
+      ~SwaptionVolatilityCube.shift
+      ~SwaptionVolatilityCube.short_swap_index_base
+      ~SwaptionVolatilityCube.smile_section
+      ~SwaptionVolatilityCube.swap_index_base
+      ~SwaptionVolatilityCube.time_from_reference
+      ~SwaptionVolatilityCube.volatility
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~SwaptionVolatilityCube.calendar
+      ~SwaptionVolatilityCube.option_dates
+      ~SwaptionVolatilityCube.option_tenors
+      ~SwaptionVolatilityCube.option_times
+      ~SwaptionVolatilityCube.reference_date
+      ~SwaptionVolatilityCube.settlement_days
+      ~SwaptionVolatilityCube.strike_spreads
+      ~SwaptionVolatilityCube.swap_lengths
+      ~SwaptionVolatilityCube.swap_tenors
+      ~SwaptionVolatilityCube.vega_weighted_smile_fit
+      ~SwaptionVolatilityCube.vol_spreads
+      ~SwaptionVolatilityCube.volatility_type
+
+   
+   

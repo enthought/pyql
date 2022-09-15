@@ -1,0 +1,43 @@
+quantlib.termstructures.volatility.swaption.spreaded\_swaption\_vol.SpreadedSwaptionVolatility
+==============================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.spreaded_swaption_vol
+
+.. autoclass:: SpreadedSwaptionVolatility
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~SpreadedSwaptionVolatility.__init__
+      ~SpreadedSwaptionVolatility.black_variance
+      ~SpreadedSwaptionVolatility.option_date_from_tenor
+      ~SpreadedSwaptionVolatility.shift
+      ~SpreadedSwaptionVolatility.smile_section
+      ~SpreadedSwaptionVolatility.time_from_reference
+      ~SpreadedSwaptionVolatility.volatility
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~SpreadedSwaptionVolatility.calendar
+      ~SpreadedSwaptionVolatility.reference_date
+      ~SpreadedSwaptionVolatility.settlement_days
+      ~SpreadedSwaptionVolatility.volatility_type
+
+   
+   

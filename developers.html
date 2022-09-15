@@ -1,125 +1,134 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Developer’s corner &mdash; Quantlib cython wrapper 0.1.1 documentation</title>
-    
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Quantlib cython wrapper 0.1.1 documentation" href="index.html" /> 
-  </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="index.html">Quantlib cython wrapper 0.1.1 documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Developer’s corner &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          
+
+          <div class="body" role="main">
             
-  <div class="section" id="developer-s-corner">
-<h1>Developer&#8217;s corner<a class="headerlink" href="#developer-s-corner" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="debugging-with-gdb">
-<h2>Debugging with gdb<a class="headerlink" href="#debugging-with-gdb" title="Permalink to this headline">¶</a></h2>
+  <section id="developer-s-corner">
+<h1>Developer’s corner<a class="headerlink" href="#developer-s-corner" title="Permalink to this heading">¶</a></h1>
+<section id="debugging-with-gdb">
+<h2>Debugging with gdb<a class="headerlink" href="#debugging-with-gdb" title="Permalink to this heading">¶</a></h2>
 <p>When running into segfault, the easiest way to debug things is to use gdb. Here
 is a example trying to debug a segfault while accessing the implied_quote
-propery of a SwapRateHelper</p>
-<blockquote>
-<div><p>gdb python
-(gdb) run quantlib/test/test_rate_helpers.py
-Starting program: /Library/Frameworks/Python.framework/Versions/7.0/bin/python quantlib/test/test_rate_helpers.py
-Reading symbols for shared libraries ++. done</p>
-<p>Program received signal SIGTRAP, Trace/breakpoint trap.
-0x8fe01030 in __dyld__dyld_start ()
-(gdb) continue
-...
-Reading symbols for shared libraries . done
-terminate called after throwing an instance of &#8216;QuantLib::Error&#8217;
-what():  term structure not set</p>
-<p>Program received signal SIGABRT, Aborted.
-0x915b4c5a in __kill ()</p>
-</div></blockquote>
+property of a SwapRateHelper:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gdb</span> <span class="n">python</span>
+<span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">run</span> <span class="n">quantlib</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">test_rate_helpers</span><span class="o">.</span><span class="n">py</span>
+<span class="n">Starting</span> <span class="n">program</span><span class="p">:</span> <span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">7.0</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python</span> <span class="n">quantlib</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">test_rate_helpers</span><span class="o">.</span><span class="n">py</span>
+<span class="n">Reading</span> <span class="n">symbols</span> <span class="k">for</span> <span class="n">shared</span> <span class="n">libraries</span> <span class="o">++.</span> <span class="n">done</span>
+
+<span class="n">Program</span> <span class="n">received</span> <span class="n">signal</span> <span class="n">SIGTRAP</span><span class="p">,</span> <span class="n">Trace</span><span class="o">/</span><span class="nb">breakpoint</span> <span class="n">trap</span><span class="o">.</span>
+<span class="mh">0x8fe01030</span> <span class="ow">in</span> <span class="n">__dyld__dyld_start</span> <span class="p">()</span>
+<span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="k">continue</span>
+<span class="o">...</span>
+<span class="n">Reading</span> <span class="n">symbols</span> <span class="k">for</span> <span class="n">shared</span> <span class="n">libraries</span> <span class="o">.</span> <span class="n">done</span>
+<span class="n">terminate</span> <span class="n">called</span> <span class="n">after</span> <span class="n">throwing</span> <span class="n">an</span> <span class="n">instance</span> <span class="n">of</span> <span class="s1">&#39;QuantLib::Error&#39;</span>
+<span class="n">what</span><span class="p">():</span>  <span class="n">term</span> <span class="n">structure</span> <span class="ow">not</span> <span class="nb">set</span>
+
+<span class="n">Program</span> <span class="n">received</span> <span class="n">signal</span> <span class="n">SIGABRT</span><span class="p">,</span> <span class="n">Aborted</span><span class="o">.</span>
+<span class="mh">0x915b4c5a</span> <span class="ow">in</span> <span class="n">__kill</span> <span class="p">()</span>
+</pre></div>
 </div>
-</div>
+</section>
+</section>
 
 
           </div>
+          
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Developer&#8217;s corner</a><ul>
-<li><a class="reference internal" href="#debugging-with-gdb">Debugging with gdb</a></li>
-</ul>
-</li>
+<h1 class="logo"><a href="index.html">Quantlib cython wrapper</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users_guide.html">User’s guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference_guide.html">Reference guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html#documentation">Documentation</a></li>
 </ul>
 
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/developers.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="index.html">Quantlib cython wrapper 0.1.1 documentation</a> &raquo;</li> 
-      </ul>
-    </div>
     <div class="footer">
-        &copy; Copyright 2011, Didrik Pinte, Patrick Henaff.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      &copy;2011, Didrik Pinte, Patrick Henaff.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/developers.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
+
+    
+
+    
   </body>
 </html>

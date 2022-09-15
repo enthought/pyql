@@ -1,0 +1,26 @@
+quantlib.pricingengines.vanilla.vanilla.AnalyticEuropeanEngine
+==============================================================
+
+.. currentmodule:: quantlib.pricingengines.vanilla.vanilla
+
+.. autoclass:: AnalyticEuropeanEngine
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~AnalyticEuropeanEngine.__init__
+   
+   
+
+   
+   
+   

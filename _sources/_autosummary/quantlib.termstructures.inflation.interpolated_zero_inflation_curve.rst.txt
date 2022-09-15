@@ -1,0 +1,31 @@
+quantlib.termstructures.inflation.interpolated\_zero\_inflation\_curve
+======================================================================
+
+.. automodule:: quantlib.termstructures.inflation.interpolated_zero_inflation_curve
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      InterpolatedZeroInflationCurve
+   
+   
+
+   
+   
+   
+
+
+

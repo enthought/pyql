@@ -1,0 +1,37 @@
+quantlib.time.daycounters.actual\_actual.ActualActual
+=====================================================
+
+.. currentmodule:: quantlib.time.daycounters.actual_actual
+
+.. autoclass:: ActualActual
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ActualActual.__init__
+      ~ActualActual.day_count
+      ~ActualActual.from_name
+      ~ActualActual.year_fraction
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~ActualActual.name
+
+   
+   

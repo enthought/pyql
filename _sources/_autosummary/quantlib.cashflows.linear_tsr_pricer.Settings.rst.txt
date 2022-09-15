@@ -1,0 +1,30 @@
+quantlib.cashflows.linear\_tsr\_pricer.Settings
+===============================================
+
+.. currentmodule:: quantlib.cashflows.linear_tsr_pricer
+
+.. autoclass:: Settings
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Settings.__init__
+      ~Settings.with_bs_std_devs
+      ~Settings.with_price_threshold
+      ~Settings.with_rate_bound
+      ~Settings.with_vega_ratio
+   
+   
+
+   
+   
+   

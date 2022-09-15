@@ -1,0 +1,51 @@
+quantlib.instruments.asian\_options.ContinuousAveragingAsianOption
+==================================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. autoclass:: ContinuousAveragingAsianOption
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ContinuousAveragingAsianOption.__init__
+      ~ContinuousAveragingAsianOption.set_pricing_engine
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~ContinuousAveragingAsianOption.delta
+      ~ContinuousAveragingAsianOption.delta_forward
+      ~ContinuousAveragingAsianOption.dividend_rho
+      ~ContinuousAveragingAsianOption.elasticity
+      ~ContinuousAveragingAsianOption.exercise
+      ~ContinuousAveragingAsianOption.gamma
+      ~ContinuousAveragingAsianOption.is_expired
+      ~ContinuousAveragingAsianOption.itm_cash_probability
+      ~ContinuousAveragingAsianOption.net_present_value
+      ~ContinuousAveragingAsianOption.npv
+      ~ContinuousAveragingAsianOption.payoff
+      ~ContinuousAveragingAsianOption.rho
+      ~ContinuousAveragingAsianOption.strike_sensitivity
+      ~ContinuousAveragingAsianOption.theta
+      ~ContinuousAveragingAsianOption.theta_per_day
+      ~ContinuousAveragingAsianOption.valuation_date
+      ~ContinuousAveragingAsianOption.vega
+
+   
+   

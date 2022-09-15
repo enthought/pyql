@@ -1,0 +1,40 @@
+quantlib.termstructures.yields.rate\_helpers.FraRateHelper
+==========================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoclass:: FraRateHelper
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FraRateHelper.__init__
+      ~FraRateHelper.from_index
+      ~FraRateHelper.update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~FraRateHelper.earliest_date
+      ~FraRateHelper.implied_quote
+      ~FraRateHelper.latest_date
+      ~FraRateHelper.maturity_date
+      ~FraRateHelper.quote
+
+   
+   

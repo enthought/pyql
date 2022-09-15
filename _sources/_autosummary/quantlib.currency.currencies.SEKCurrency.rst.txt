@@ -1,0 +1,39 @@
+quantlib.currency.currencies.SEKCurrency
+========================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoclass:: SEKCurrency
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~SEKCurrency.__init__
+      ~SEKCurrency.from_name
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~SEKCurrency.code
+      ~SEKCurrency.fractionSymbol
+      ~SEKCurrency.fractionsPerUnit
+      ~SEKCurrency.name
+      ~SEKCurrency.symbol
+
+   
+   

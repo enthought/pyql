@@ -1,0 +1,34 @@
+quantlib.models.equity.bates\_model
+===================================
+
+.. automodule:: quantlib.models.equity.bates_model
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      BatesDetJumpModel
+      BatesDoubleExpDetJumpModel
+      BatesDoubleExpModel
+      BatesModel
+   
+   
+
+   
+   
+   
+
+
+

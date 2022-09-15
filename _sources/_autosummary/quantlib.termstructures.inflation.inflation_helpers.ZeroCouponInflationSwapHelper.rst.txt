@@ -1,0 +1,36 @@
+quantlib.termstructures.inflation.inflation\_helpers.ZeroCouponInflationSwapHelper
+==================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.inflation_helpers
+
+.. autoclass:: ZeroCouponInflationSwapHelper
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ZeroCouponInflationSwapHelper.__init__
+      ~ZeroCouponInflationSwapHelper.set_term_structure
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~ZeroCouponInflationSwapHelper.implied_quote
+      ~ZeroCouponInflationSwapHelper.latest_date
+
+   
+   

@@ -1,0 +1,32 @@
+quantlib.indexes.swap.euribor\_swap
+===================================
+
+.. automodule:: quantlib.indexes.swap.euribor_swap
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      EuriborSwapIsdaFixA
+      EuriborSwapIsdaFixB
+   
+   
+
+   
+   
+   
+
+
+

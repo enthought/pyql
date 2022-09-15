@@ -1,0 +1,29 @@
+quantlib.termstructures.inflation.seasonality.Seasonality
+=========================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.seasonality
+
+.. autoclass:: Seasonality
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Seasonality.__init__
+      ~Seasonality.correctYoYRate
+      ~Seasonality.correctZeroRate
+      ~Seasonality.isConsistent
+   
+   
+
+   
+   
+   

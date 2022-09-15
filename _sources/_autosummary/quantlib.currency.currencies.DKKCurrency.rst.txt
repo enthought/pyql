@@ -1,0 +1,39 @@
+quantlib.currency.currencies.DKKCurrency
+========================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoclass:: DKKCurrency
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~DKKCurrency.__init__
+      ~DKKCurrency.from_name
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~DKKCurrency.code
+      ~DKKCurrency.fractionSymbol
+      ~DKKCurrency.fractionsPerUnit
+      ~DKKCurrency.name
+      ~DKKCurrency.symbol
+
+   
+   

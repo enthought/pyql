@@ -1,0 +1,39 @@
+quantlib.termstructures.yields.bond\_helpers.BondHelper
+=======================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bond_helpers
+
+.. autoclass:: BondHelper
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~BondHelper.__init__
+      ~BondHelper.update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~BondHelper.earliest_date
+      ~BondHelper.implied_quote
+      ~BondHelper.latest_date
+      ~BondHelper.maturity_date
+      ~BondHelper.quote
+
+   
+   

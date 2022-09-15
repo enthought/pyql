@@ -1,0 +1,48 @@
+quantlib.indexes.inflation.ukrpi.UKRPI
+======================================
+
+.. currentmodule:: quantlib.indexes.inflation.ukrpi
+
+.. autoclass:: UKRPI
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~UKRPI.__init__
+      ~UKRPI.add_fixing
+      ~UKRPI.add_fixings
+      ~UKRPI.clear_fixings
+      ~UKRPI.fixing
+      ~UKRPI.is_valid_fixing_date
+      ~UKRPI.zero_inflation_term_structure
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~UKRPI.availability_lag
+      ~UKRPI.currency
+      ~UKRPI.family_name
+      ~UKRPI.fixing_calendar
+      ~UKRPI.frequency
+      ~UKRPI.interpolated
+      ~UKRPI.name
+      ~UKRPI.region
+      ~UKRPI.time_series
+
+   
+   

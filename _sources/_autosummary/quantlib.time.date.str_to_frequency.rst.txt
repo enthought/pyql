@@ -1,0 +1,6 @@
+quantlib.time.date.str\_to\_frequency
+=====================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autofunction:: str_to_frequency

@@ -1,0 +1,62 @@
+quantlib.cashflows.cap\_floored\_coupon.CappedFlooredCoupon
+===========================================================
+
+.. currentmodule:: quantlib.cashflows.cap_floored_coupon
+
+.. autoclass:: CappedFlooredCoupon
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~CappedFlooredCoupon.__init__
+      ~CappedFlooredCoupon.accrued_amount
+      ~CappedFlooredCoupon.accrued_days
+      ~CappedFlooredCoupon.accrued_period
+      ~CappedFlooredCoupon.has_occured
+      ~CappedFlooredCoupon.set_pricer
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~CappedFlooredCoupon.accrual_days
+      ~CappedFlooredCoupon.accrual_end_date
+      ~CappedFlooredCoupon.accrual_period
+      ~CappedFlooredCoupon.accrual_start_date
+      ~CappedFlooredCoupon.adjusted_fixing
+      ~CappedFlooredCoupon.amount
+      ~CappedFlooredCoupon.cap
+      ~CappedFlooredCoupon.convexity_adjustment
+      ~CappedFlooredCoupon.date
+      ~CappedFlooredCoupon.day_counter
+      ~CappedFlooredCoupon.effective_cap
+      ~CappedFlooredCoupon.effective_floor
+      ~CappedFlooredCoupon.fixing_date
+      ~CappedFlooredCoupon.fixing_days
+      ~CappedFlooredCoupon.floor
+      ~CappedFlooredCoupon.index
+      ~CappedFlooredCoupon.index_fixing
+      ~CappedFlooredCoupon.is_capped
+      ~CappedFlooredCoupon.is_floored
+      ~CappedFlooredCoupon.nominal
+      ~CappedFlooredCoupon.rate
+      ~CappedFlooredCoupon.reference_period_end
+      ~CappedFlooredCoupon.reference_period_start
+      ~CappedFlooredCoupon.underlying
+
+   
+   

@@ -1,0 +1,34 @@
+quantlib.indexes.inflation.euhicp
+=================================
+
+.. automodule:: quantlib.indexes.inflation.euhicp
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      EUHICP
+      EUHICPXT
+      YYEUHICP
+      YYEUHICPXT
+   
+   
+
+   
+   
+   
+
+
+

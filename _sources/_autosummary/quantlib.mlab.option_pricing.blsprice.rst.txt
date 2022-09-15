@@ -1,0 +1,6 @@
+quantlib.mlab.option\_pricing.blsprice
+======================================
+
+.. currentmodule:: quantlib.mlab.option_pricing
+
+.. autofunction:: blsprice

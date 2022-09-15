@@ -1,0 +1,46 @@
+quantlib.time.calendars.canada.Canada
+=====================================
+
+.. currentmodule:: quantlib.time.calendars.canada
+
+.. autoclass:: Canada
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Canada.__init__
+      ~Canada.add_holiday
+      ~Canada.adjust
+      ~Canada.advance
+      ~Canada.business_day_list
+      ~Canada.business_days_between
+      ~Canada.end_of_month
+      ~Canada.holiday_list
+      ~Canada.is_business_day
+      ~Canada.is_end_of_month
+      ~Canada.is_holiday
+      ~Canada.is_weekend
+      ~Canada.remove_holiday
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Canada.name
+
+   
+   

@@ -1,0 +1,31 @@
+quantlib.pricingengines.credit.midpoint\_cds\_engine
+====================================================
+
+.. automodule:: quantlib.pricingengines.credit.midpoint_cds_engine
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      MidPointCdsEngine
+   
+   
+
+   
+   
+   
+
+
+

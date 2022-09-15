@@ -1,0 +1,6 @@
+quantlib.mlab.term\_structure.zbt\_libor\_yield
+===============================================
+
+.. currentmodule:: quantlib.mlab.term_structure
+
+.. autofunction:: zbt_libor_yield

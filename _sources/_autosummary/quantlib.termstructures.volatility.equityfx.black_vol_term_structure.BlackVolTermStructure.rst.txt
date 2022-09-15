@@ -1,0 +1,42 @@
+quantlib.termstructures.volatility.equityfx.black\_vol\_term\_structure.BlackVolTermStructure
+=============================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_vol_term_structure
+
+.. autoclass:: BlackVolTermStructure
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~BlackVolTermStructure.__init__
+      ~BlackVolTermStructure.blackForwardVariance
+      ~BlackVolTermStructure.blackForwardVol
+      ~BlackVolTermStructure.blackVariance
+      ~BlackVolTermStructure.blackVol
+      ~BlackVolTermStructure.option_date_from_tenor
+      ~BlackVolTermStructure.time_from_reference
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~BlackVolTermStructure.calendar
+      ~BlackVolTermStructure.reference_date
+      ~BlackVolTermStructure.settlement_days
+
+   
+   

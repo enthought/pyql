@@ -1,0 +1,46 @@
+quantlib.time.calendars.united\_kingdom.UnitedKingdom
+=====================================================
+
+.. currentmodule:: quantlib.time.calendars.united_kingdom
+
+.. autoclass:: UnitedKingdom
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~UnitedKingdom.__init__
+      ~UnitedKingdom.add_holiday
+      ~UnitedKingdom.adjust
+      ~UnitedKingdom.advance
+      ~UnitedKingdom.business_day_list
+      ~UnitedKingdom.business_days_between
+      ~UnitedKingdom.end_of_month
+      ~UnitedKingdom.holiday_list
+      ~UnitedKingdom.is_business_day
+      ~UnitedKingdom.is_end_of_month
+      ~UnitedKingdom.is_holiday
+      ~UnitedKingdom.is_weekend
+      ~UnitedKingdom.remove_holiday
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~UnitedKingdom.name
+
+   
+   

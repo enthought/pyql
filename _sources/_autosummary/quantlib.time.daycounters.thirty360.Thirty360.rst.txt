@@ -1,0 +1,37 @@
+quantlib.time.daycounters.thirty360.Thirty360
+=============================================
+
+.. currentmodule:: quantlib.time.daycounters.thirty360
+
+.. autoclass:: Thirty360
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Thirty360.__init__
+      ~Thirty360.day_count
+      ~Thirty360.from_name
+      ~Thirty360.year_fraction
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Thirty360.name
+
+   
+   

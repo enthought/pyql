@@ -1,0 +1,40 @@
+quantlib.instruments.option.Option
+==================================
+
+.. currentmodule:: quantlib.instruments.option
+
+.. autoclass:: Option
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Option.__init__
+      ~Option.set_pricing_engine
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Option.exercise
+      ~Option.is_expired
+      ~Option.net_present_value
+      ~Option.npv
+      ~Option.payoff
+      ~Option.valuation_date
+
+   
+   

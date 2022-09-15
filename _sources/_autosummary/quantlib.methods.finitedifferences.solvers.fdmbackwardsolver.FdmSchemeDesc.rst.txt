@@ -1,0 +1,45 @@
+quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.FdmSchemeDesc
+==========================================================================
+
+.. currentmodule:: quantlib.methods.finitedifferences.solvers.fdmbackwardsolver
+
+.. autoclass:: FdmSchemeDesc
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FdmSchemeDesc.CraigSneyd
+      ~FdmSchemeDesc.CrankNicolson
+      ~FdmSchemeDesc.Douglas
+      ~FdmSchemeDesc.ExplicitEuler
+      ~FdmSchemeDesc.Hundsdorfer
+      ~FdmSchemeDesc.ImplicitEuler
+      ~FdmSchemeDesc.MethodOfLines
+      ~FdmSchemeDesc.ModifiedCraigSneyd
+      ~FdmSchemeDesc.TrBDF2
+      ~FdmSchemeDesc.__init__
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~FdmSchemeDesc.mu
+      ~FdmSchemeDesc.theta
+      ~FdmSchemeDesc.type
+
+   
+   

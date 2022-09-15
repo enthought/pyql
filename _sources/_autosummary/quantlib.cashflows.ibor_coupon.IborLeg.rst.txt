@@ -1,0 +1,27 @@
+quantlib.cashflows.ibor\_coupon.IborLeg
+=======================================
+
+.. currentmodule:: quantlib.cashflows.ibor_coupon
+
+.. autoclass:: IborLeg
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~IborLeg.__init__
+      ~IborLeg.items
+   
+   
+
+   
+   
+   

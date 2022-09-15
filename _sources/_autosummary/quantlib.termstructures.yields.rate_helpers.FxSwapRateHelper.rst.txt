@@ -1,0 +1,47 @@
+quantlib.termstructures.yields.rate\_helpers.FxSwapRateHelper
+=============================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoclass:: FxSwapRateHelper
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FxSwapRateHelper.__init__
+      ~FxSwapRateHelper.update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~FxSwapRateHelper.adjustment_calendar
+      ~FxSwapRateHelper.business_day_convention
+      ~FxSwapRateHelper.calendar
+      ~FxSwapRateHelper.earliest_date
+      ~FxSwapRateHelper.end_of_month
+      ~FxSwapRateHelper.implied_quote
+      ~FxSwapRateHelper.is_fx_base_currency_collateral_currency
+      ~FxSwapRateHelper.latest_date
+      ~FxSwapRateHelper.maturity_date
+      ~FxSwapRateHelper.quote
+      ~FxSwapRateHelper.spot
+      ~FxSwapRateHelper.tenor
+      ~FxSwapRateHelper.trading_calendar
+
+   
+   

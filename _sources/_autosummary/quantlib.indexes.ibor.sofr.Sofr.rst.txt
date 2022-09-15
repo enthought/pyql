@@ -1,0 +1,54 @@
+quantlib.indexes.ibor.sofr.Sofr
+===============================
+
+.. currentmodule:: quantlib.indexes.ibor.sofr
+
+.. autoclass:: Sofr
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Sofr.__init__
+      ~Sofr.add_fixing
+      ~Sofr.add_fixings
+      ~Sofr.clear_fixings
+      ~Sofr.fixing
+      ~Sofr.fixing_date
+      ~Sofr.forecast_fixing
+      ~Sofr.from_name
+      ~Sofr.is_valid_fixing_date
+      ~Sofr.maturity_date
+      ~Sofr.value_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Sofr.business_day_convention
+      ~Sofr.currency
+      ~Sofr.day_counter
+      ~Sofr.end_of_month
+      ~Sofr.family_name
+      ~Sofr.fixing_calendar
+      ~Sofr.fixing_days
+      ~Sofr.forwarding_term_structure
+      ~Sofr.name
+      ~Sofr.tenor
+      ~Sofr.time_series
+
+   
+   

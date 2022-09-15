@@ -1,0 +1,32 @@
+quantlib.cashflows.coupon\_pricer.FloatingRateCouponPricer
+==========================================================
+
+.. currentmodule:: quantlib.cashflows.coupon_pricer
+
+.. autoclass:: FloatingRateCouponPricer
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FloatingRateCouponPricer.__init__
+      ~FloatingRateCouponPricer.caplet_price
+      ~FloatingRateCouponPricer.caplet_rate
+      ~FloatingRateCouponPricer.floorlet_price
+      ~FloatingRateCouponPricer.floorlet_rate
+      ~FloatingRateCouponPricer.swaplet_price
+      ~FloatingRateCouponPricer.swaplet_rate
+   
+   
+
+   
+   
+   

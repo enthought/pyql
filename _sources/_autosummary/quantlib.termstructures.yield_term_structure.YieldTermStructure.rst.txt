@@ -1,0 +1,44 @@
+quantlib.termstructures.yield\_term\_structure.YieldTermStructure
+=================================================================
+
+.. currentmodule:: quantlib.termstructures.yield_term_structure
+
+.. autoclass:: YieldTermStructure
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~YieldTermStructure.__init__
+      ~YieldTermStructure.discount
+      ~YieldTermStructure.forward_rate
+      ~YieldTermStructure.link_to
+      ~YieldTermStructure.time_from_reference
+      ~YieldTermStructure.zero_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~YieldTermStructure.day_counter
+      ~YieldTermStructure.extrapolation
+      ~YieldTermStructure.max_date
+      ~YieldTermStructure.max_time
+      ~YieldTermStructure.reference_date
+      ~YieldTermStructure.settlement_days
+
+   
+   

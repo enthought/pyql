@@ -1,0 +1,35 @@
+quantlib.quote.Quote
+====================
+
+.. currentmodule:: quantlib.quote
+
+.. autoclass:: Quote
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Quote.__init__
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Quote.is_valid
+      ~Quote.value
+
+   
+   

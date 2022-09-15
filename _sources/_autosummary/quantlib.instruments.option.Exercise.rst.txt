@@ -1,0 +1,36 @@
+quantlib.instruments.option.Exercise
+====================================
+
+.. currentmodule:: quantlib.instruments.option
+
+.. autoclass:: Exercise
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Exercise.__init__
+      ~Exercise.dates
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Exercise.last_date
+      ~Exercise.type
+
+   
+   

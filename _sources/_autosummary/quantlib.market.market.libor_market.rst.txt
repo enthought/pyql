@@ -1,0 +1,6 @@
+quantlib.market.market.libor\_market
+====================================
+
+.. currentmodule:: quantlib.market.market
+
+.. autofunction:: libor_market

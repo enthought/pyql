@@ -1,0 +1,32 @@
+quantlib.cashflows.fixed\_rate\_coupon
+======================================
+
+.. automodule:: quantlib.cashflows.fixed_rate_coupon
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      FixedRateCoupon
+      FixedRateLeg
+   
+   
+
+   
+   
+   
+
+
+

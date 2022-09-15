@@ -1,0 +1,6 @@
+quantlib.indexes.region\_registry.initialize\_region\_registry
+==============================================================
+
+.. currentmodule:: quantlib.indexes.region_registry
+
+.. autofunction:: initialize_region_registry

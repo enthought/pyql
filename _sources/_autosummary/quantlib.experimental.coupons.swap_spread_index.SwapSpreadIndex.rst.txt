@@ -1,0 +1,54 @@
+quantlib.experimental.coupons.swap\_spread\_index.SwapSpreadIndex
+=================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.swap_spread_index
+
+.. autoclass:: SwapSpreadIndex
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~SwapSpreadIndex.__init__
+      ~SwapSpreadIndex.add_fixing
+      ~SwapSpreadIndex.add_fixings
+      ~SwapSpreadIndex.clear_fixings
+      ~SwapSpreadIndex.fixing
+      ~SwapSpreadIndex.fixing_date
+      ~SwapSpreadIndex.forecast_fixing
+      ~SwapSpreadIndex.is_valid_fixing_date
+      ~SwapSpreadIndex.maturity_date
+      ~SwapSpreadIndex.value_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~SwapSpreadIndex.currency
+      ~SwapSpreadIndex.day_counter
+      ~SwapSpreadIndex.family_name
+      ~SwapSpreadIndex.fixing_calendar
+      ~SwapSpreadIndex.fixing_days
+      ~SwapSpreadIndex.gearing1
+      ~SwapSpreadIndex.gearing2
+      ~SwapSpreadIndex.name
+      ~SwapSpreadIndex.swap_index1
+      ~SwapSpreadIndex.swap_index2
+      ~SwapSpreadIndex.tenor
+      ~SwapSpreadIndex.time_series
+
+   
+   

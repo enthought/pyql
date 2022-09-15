@@ -1,0 +1,39 @@
+quantlib.termstructures.yields.rate\_helpers.DepositRateHelper
+==============================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoclass:: DepositRateHelper
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~DepositRateHelper.__init__
+      ~DepositRateHelper.update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~DepositRateHelper.earliest_date
+      ~DepositRateHelper.implied_quote
+      ~DepositRateHelper.latest_date
+      ~DepositRateHelper.maturity_date
+      ~DepositRateHelper.quote
+
+   
+   

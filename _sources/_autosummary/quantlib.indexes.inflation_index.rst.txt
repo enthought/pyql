@@ -1,0 +1,34 @@
+quantlib.indexes.inflation\_index
+=================================
+
+.. automodule:: quantlib.indexes.inflation_index
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      AUCPI
+      InflationIndex
+      YoYInflationIndex
+      ZeroInflationIndex
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,37 @@
+quantlib.models.shortrate.onefactor\_model.OneFactorAffineModel
+===============================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactor_model
+
+.. autoclass:: OneFactorAffineModel
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~OneFactorAffineModel.__init__
+      ~OneFactorAffineModel.discount_bound
+      ~OneFactorAffineModel.params
+      ~OneFactorAffineModel.set_params
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~OneFactorAffineModel.dynamics
+
+   
+   

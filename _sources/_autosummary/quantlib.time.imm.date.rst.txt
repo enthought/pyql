@@ -1,0 +1,6 @@
+quantlib.time.imm.date
+======================
+
+.. currentmodule:: quantlib.time.imm
+
+.. autofunction:: date

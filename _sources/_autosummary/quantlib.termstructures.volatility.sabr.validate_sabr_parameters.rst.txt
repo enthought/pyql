@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.sabr.validate\_sabr\_parameters
+==================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.sabr
+
+.. autofunction:: validate_sabr_parameters

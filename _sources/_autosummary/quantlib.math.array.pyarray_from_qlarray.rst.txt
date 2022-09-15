@@ -1,0 +1,6 @@
+quantlib.math.array.pyarray\_from\_qlarray
+==========================================
+
+.. currentmodule:: quantlib.math.array
+
+.. autofunction:: pyarray_from_qlarray

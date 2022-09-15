@@ -1,0 +1,27 @@
+quantlib.cashflow.Leg
+=====================
+
+.. currentmodule:: quantlib.cashflow
+
+.. autoclass:: Leg
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Leg.__init__
+      ~Leg.items
+   
+   
+
+   
+   
+   

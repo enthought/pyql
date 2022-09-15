@@ -1,0 +1,6 @@
+quantlib.models.equity.dejd.jump\_times
+=======================================
+
+.. currentmodule:: quantlib.models.equity.dejd
+
+.. autofunction:: jump_times

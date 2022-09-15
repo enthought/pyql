@@ -1,0 +1,39 @@
+quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote
+=====================================================================
+
+.. currentmodule:: quantlib.quotes.futuresconvadjustmentquote
+
+.. autoclass:: FuturesConvAdjustmentQuote
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FuturesConvAdjustmentQuote.__init__
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~FuturesConvAdjustmentQuote.futures_value
+      ~FuturesConvAdjustmentQuote.imm_date
+      ~FuturesConvAdjustmentQuote.is_valid
+      ~FuturesConvAdjustmentQuote.mean_reversion
+      ~FuturesConvAdjustmentQuote.value
+      ~FuturesConvAdjustmentQuote.volatility
+
+   
+   

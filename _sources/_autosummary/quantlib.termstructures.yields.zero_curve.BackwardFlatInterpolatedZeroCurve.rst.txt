@@ -1,0 +1,49 @@
+quantlib.termstructures.yields.zero\_curve.BackwardFlatInterpolatedZeroCurve
+============================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. autoclass:: BackwardFlatInterpolatedZeroCurve
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~BackwardFlatInterpolatedZeroCurve.__init__
+      ~BackwardFlatInterpolatedZeroCurve.discount
+      ~BackwardFlatInterpolatedZeroCurve.forward_rate
+      ~BackwardFlatInterpolatedZeroCurve.link_to
+      ~BackwardFlatInterpolatedZeroCurve.time_from_reference
+      ~BackwardFlatInterpolatedZeroCurve.zero_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~BackwardFlatInterpolatedZeroCurve.data
+      ~BackwardFlatInterpolatedZeroCurve.dates
+      ~BackwardFlatInterpolatedZeroCurve.day_counter
+      ~BackwardFlatInterpolatedZeroCurve.extrapolation
+      ~BackwardFlatInterpolatedZeroCurve.max_date
+      ~BackwardFlatInterpolatedZeroCurve.max_time
+      ~BackwardFlatInterpolatedZeroCurve.nodes
+      ~BackwardFlatInterpolatedZeroCurve.reference_date
+      ~BackwardFlatInterpolatedZeroCurve.settlement_days
+      ~BackwardFlatInterpolatedZeroCurve.times
+      ~BackwardFlatInterpolatedZeroCurve.zero_rates
+
+   
+   

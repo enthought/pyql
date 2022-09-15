@@ -1,0 +1,40 @@
+quantlib.cashflows.conundrum\_pricer.NumericHaganPricer
+=======================================================
+
+.. currentmodule:: quantlib.cashflows.conundrum_pricer
+
+.. autoclass:: NumericHaganPricer
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~NumericHaganPricer.__init__
+      ~NumericHaganPricer.caplet_price
+      ~NumericHaganPricer.caplet_rate
+      ~NumericHaganPricer.floorlet_price
+      ~NumericHaganPricer.floorlet_rate
+      ~NumericHaganPricer.swaplet_price
+      ~NumericHaganPricer.swaplet_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~NumericHaganPricer.swaption_volatility
+
+   
+   

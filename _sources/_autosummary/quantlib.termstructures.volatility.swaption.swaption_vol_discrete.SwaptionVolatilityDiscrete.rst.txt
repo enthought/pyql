@@ -1,0 +1,48 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_discrete.SwaptionVolatilityDiscrete
+==============================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_discrete
+
+.. autoclass:: SwaptionVolatilityDiscrete
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~SwaptionVolatilityDiscrete.__init__
+      ~SwaptionVolatilityDiscrete.black_variance
+      ~SwaptionVolatilityDiscrete.option_date_from_tenor
+      ~SwaptionVolatilityDiscrete.shift
+      ~SwaptionVolatilityDiscrete.smile_section
+      ~SwaptionVolatilityDiscrete.time_from_reference
+      ~SwaptionVolatilityDiscrete.volatility
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~SwaptionVolatilityDiscrete.calendar
+      ~SwaptionVolatilityDiscrete.option_dates
+      ~SwaptionVolatilityDiscrete.option_tenors
+      ~SwaptionVolatilityDiscrete.option_times
+      ~SwaptionVolatilityDiscrete.reference_date
+      ~SwaptionVolatilityDiscrete.settlement_days
+      ~SwaptionVolatilityDiscrete.swap_lengths
+      ~SwaptionVolatilityDiscrete.swap_tenors
+      ~SwaptionVolatilityDiscrete.volatility_type
+
+   
+   

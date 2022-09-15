@@ -1,0 +1,23 @@
+quantlib.termstructures.credit.api
+==================================
+
+.. automodule:: quantlib.termstructures.credit.api
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

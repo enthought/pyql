@@ -1,0 +1,6 @@
+quantlib.util.rates.make\_term\_structure
+=========================================
+
+.. currentmodule:: quantlib.util.rates
+
+.. autofunction:: make_term_structure

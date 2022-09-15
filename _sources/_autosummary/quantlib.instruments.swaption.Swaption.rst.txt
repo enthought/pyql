@@ -1,0 +1,52 @@
+quantlib.instruments.swaption.Swaption
+======================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoclass:: Swaption
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Swaption.__init__
+      ~Swaption.implied_volatility
+      ~Swaption.set_pricing_engine
+      ~Swaption.underlying_swap
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Swaption.annuity
+      ~Swaption.atm_forward
+      ~Swaption.delta
+      ~Swaption.exercise
+      ~Swaption.implied_vol
+      ~Swaption.is_expired
+      ~Swaption.net_present_value
+      ~Swaption.npv
+      ~Swaption.payoff
+      ~Swaption.settlement_method
+      ~Swaption.settlement_type
+      ~Swaption.std_dev
+      ~Swaption.time_to_expiry
+      ~Swaption.type
+      ~Swaption.valuation_date
+      ~Swaption.vega
+
+   
+   

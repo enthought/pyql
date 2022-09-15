@@ -1,0 +1,6 @@
+quantlib.time.date.today
+========================
+
+.. currentmodule:: quantlib.time.date
+
+.. autofunction:: today

@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>quantlib.time.date &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="quantlib.time.date.days" href="quantlib.time.date.days.html" />
+    <link rel="prev" title="quantlib.time.calendars.weekends_only.WeekendsOnly" href="quantlib.time.calendars.weekends_only.WeekendsOnly.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-quantlib.time.date">
+<span id="quantlib-time-date"></span><h1>quantlib.time.date<a class="headerlink" href="#module-quantlib.time.date" title="Permalink to this heading">¶</a></h1>
+<p class="rubric">Functions</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.date.days.html#quantlib.time.date.days" title="quantlib.time.date.days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">days</span></code></a>(Period p)</p></td>
+<td><p>Converts the period into days as a float.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.date.end_of_month.html#quantlib.time.date.end_of_month" title="quantlib.time.date.end_of_month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">end_of_month</span></code></a>(Date date)</p></td>
+<td><p>Last day of the month to which the given date belongs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.date.frequency_to_str.html#quantlib.time.date.frequency_to_str" title="quantlib.time.date.frequency_to_str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency_to_str</span></code></a>(Frequency f)</p></td>
+<td><p>Converts a PyQL Frequency to a human readable string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.date.is_end_of_month.html#quantlib.time.date.is_end_of_month" title="quantlib.time.date.is_end_of_month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_end_of_month</span></code></a>(Date date)</p></td>
+<td><p>Whether a date is the last day of its month.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.date.is_leap.html#quantlib.time.date.is_leap" title="quantlib.time.date.is_leap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_leap</span></code></a>(int year)</p></td>
+<td><p>Whether the given year is a leap one.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.date.local_date_time.html#quantlib.time.date.local_date_time" title="quantlib.time.date.local_date_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">local_date_time</span></code></a>()</p></td>
+<td><p>local date time, based on the time zone settings of the computer</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.date.maxdate.html#quantlib.time.date.maxdate" title="quantlib.time.date.maxdate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">maxdate</span></code></a>()</p></td>
+<td><p>Latest allowed date.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.date.mindate.html#quantlib.time.date.mindate" title="quantlib.time.date.mindate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mindate</span></code></a>()</p></td>
+<td><p>Earliest date allowed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.date.months.html#quantlib.time.date.months" title="quantlib.time.date.months"><code class="xref py py-obj docutils literal notranslate"><span class="pre">months</span></code></a>(Period p)</p></td>
+<td><p>Converts the period intho months as a float.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.date.next_weekday.html#quantlib.time.date.next_weekday" title="quantlib.time.date.next_weekday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">next_weekday</span></code></a>(Date date, int weekday)</p></td>
+<td><p>Returns the next given weekday following or equal to the given date</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.date.nth_weekday.html#quantlib.time.date.nth_weekday" title="quantlib.time.date.nth_weekday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nth_weekday</span></code></a>(int size, int weekday, ...)</p></td>
+<td><p>Return the n-th given weekday in the given month and year</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.date.pydate_from_qldate.html#quantlib.time.date.pydate_from_qldate" title="quantlib.time.date.pydate_from_qldate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pydate_from_qldate</span></code></a>(Date qdate)</p></td>
+<td><p>Converts a PyQL Date to a datetime.date object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.date.qldate_from_pydate.html#quantlib.time.date.qldate_from_pydate" title="quantlib.time.date.qldate_from_pydate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qldate_from_pydate</span></code></a>(pydate)</p></td>
+<td><p>Converts a datetime.date to a PyQL date.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.date.str_to_frequency.html#quantlib.time.date.str_to_frequency" title="quantlib.time.date.str_to_frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str_to_frequency</span></code></a>(str name)</p></td>
+<td><p>Converts a string to a PyQL Frequency.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.date.today.html#quantlib.time.date.today" title="quantlib.time.date.today"><code class="xref py py-obj docutils literal notranslate"><span class="pre">today</span></code></a>()</p></td>
+<td><p>Today's date.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.date.universal_date_time.html#quantlib.time.date.universal_date_time" title="quantlib.time.date.universal_date_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">universal_date_time</span></code></a>()</p></td>
+<td><p>UTC date time</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.date.weeks.html#quantlib.time.date.weeks" title="quantlib.time.date.weeks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weeks</span></code></a>(Period p)</p></td>
+<td><p>Converts the period into weeks as a float.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.date.years.html#quantlib.time.date.years" title="quantlib.time.date.years"><code class="xref py py-obj docutils literal notranslate"><span class="pre">years</span></code></a>(Period p)</p></td>
+<td><p>Converts the period into years as a float.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Date</span></code></a>(*args)</p></td>
+<td><p>Date class</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.date.Period.html#quantlib.time.date.Period" title="quantlib.time.date.Period"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period</span></code></a>(*args)</p></td>
+<td><p>Class providing a Period (length + time unit) class and implements a limited algebra.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.date.TimeUnit.html#quantlib.time.date.TimeUnit" title="quantlib.time.date.TimeUnit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeUnit</span></code></a>(value)</p></td>
+<td><p>An enumeration.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Quantlib cython wrapper</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../users_guide.html">User’s guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference_guide.html">Reference guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../reference_guide.html#reference-documentation-for-the-quantlib-package">Reference documentation for the <code class="xref py py-mod docutils literal notranslate"><span class="pre">quantlib</span></code> package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_guide.html#how-to-wrap-quantlib-classes-with-cython">How to wrap QuantLib classes with cython</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html#documentation">Documentation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../reference_guide.html">Reference guide</a><ul>
+  <li><a href="quantlib.html">quantlib</a><ul>
+  <li><a href="quantlib.time.html">quantlib.time</a><ul>
+      <li>Previous: <a href="quantlib.time.calendars.weekends_only.WeekendsOnly.html" title="previous chapter">quantlib.time.calendars.weekends_only.WeekendsOnly</a></li>
+      <li>Next: <a href="quantlib.time.date.days.html" title="next chapter">quantlib.time.date.days</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2011, Didrik Pinte, Patrick Henaff.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/_autosummary/quantlib.time.date.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

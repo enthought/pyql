@@ -1,0 +1,44 @@
+quantlib.termstructures.yields.implied\_term\_structure.ImpliedTermStructure
+============================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.implied_term_structure
+
+.. autoclass:: ImpliedTermStructure
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ImpliedTermStructure.__init__
+      ~ImpliedTermStructure.discount
+      ~ImpliedTermStructure.forward_rate
+      ~ImpliedTermStructure.link_to
+      ~ImpliedTermStructure.time_from_reference
+      ~ImpliedTermStructure.zero_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~ImpliedTermStructure.day_counter
+      ~ImpliedTermStructure.extrapolation
+      ~ImpliedTermStructure.max_date
+      ~ImpliedTermStructure.max_time
+      ~ImpliedTermStructure.reference_date
+      ~ImpliedTermStructure.settlement_days
+
+   
+   

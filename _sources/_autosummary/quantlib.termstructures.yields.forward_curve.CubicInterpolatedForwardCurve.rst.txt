@@ -1,0 +1,49 @@
+quantlib.termstructures.yields.forward\_curve.CubicInterpolatedForwardCurve
+===========================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. autoclass:: CubicInterpolatedForwardCurve
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~CubicInterpolatedForwardCurve.__init__
+      ~CubicInterpolatedForwardCurve.discount
+      ~CubicInterpolatedForwardCurve.forward_rate
+      ~CubicInterpolatedForwardCurve.link_to
+      ~CubicInterpolatedForwardCurve.time_from_reference
+      ~CubicInterpolatedForwardCurve.zero_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~CubicInterpolatedForwardCurve.data
+      ~CubicInterpolatedForwardCurve.dates
+      ~CubicInterpolatedForwardCurve.day_counter
+      ~CubicInterpolatedForwardCurve.extrapolation
+      ~CubicInterpolatedForwardCurve.forwards
+      ~CubicInterpolatedForwardCurve.max_date
+      ~CubicInterpolatedForwardCurve.max_time
+      ~CubicInterpolatedForwardCurve.nodes
+      ~CubicInterpolatedForwardCurve.reference_date
+      ~CubicInterpolatedForwardCurve.settlement_days
+      ~CubicInterpolatedForwardCurve.times
+
+   
+   

@@ -1,0 +1,39 @@
+quantlib.termstructures.yields.ois\_rate\_helper.OISRateHelper
+==============================================================
+
+.. currentmodule:: quantlib.termstructures.yields.ois_rate_helper
+
+.. autoclass:: OISRateHelper
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~OISRateHelper.__init__
+      ~OISRateHelper.update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~OISRateHelper.earliest_date
+      ~OISRateHelper.implied_quote
+      ~OISRateHelper.latest_date
+      ~OISRateHelper.maturity_date
+      ~OISRateHelper.quote
+
+   
+   

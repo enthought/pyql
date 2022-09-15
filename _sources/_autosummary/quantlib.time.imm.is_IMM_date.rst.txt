@@ -1,0 +1,6 @@
+quantlib.time.imm.is\_IMM\_date
+===============================
+
+.. currentmodule:: quantlib.time.imm
+
+.. autofunction:: is_IMM_date

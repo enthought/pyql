@@ -1,373 +1,351 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Getting started &mdash; Quantlib cython wrapper 0.1.1 documentation</title>
-    
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Quantlib cython wrapper 0.1.1 documentation" href="index.html" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Getting started &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Tutorial" href="tutorial.html" />
-    <link rel="prev" title="Welcome to PyQL’s documentation" href="index.html" /> 
-  </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="tutorial.html" title="Tutorial"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Welcome to PyQL’s documentation"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Quantlib cython wrapper 0.1.1 documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+    <link rel="prev" title="Welcome to PyQL’s documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          
+
+          <div class="body" role="main">
             
-  <div class="section" id="getting-started">
-<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="pyql-an-overview">
-<h2>PyQL - an overview<a class="headerlink" href="#pyql-an-overview" title="Permalink to this headline">¶</a></h2>
-<p>Why building a new set of QuantLib wrappers for Python ?</p>
+  <section id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h1>
+<section id="pyql-an-overview">
+<h2>PyQL - an overview<a class="headerlink" href="#pyql-an-overview" title="Permalink to this heading">¶</a></h2>
+<p>Why building a new set of QuantLib wrappers for Python?</p>
 <p>The SWIG wrappers provide a very good coverage of the library but have
 a number of pain points:</p>
 <ul class="simple">
-<li>Few Pythonic optimisations in the syntax: the python code for invoking QuantLib functions looks like the C++ version;</li>
-<li>No docstring or function signature are available on the Python side;</li>
-<li>The debugging is complex, and any customization of the wrapper involves complex programming;</li>
-<li>The build process is monolithic: any change to the wrapper requires the recompilation of the entire project;</li>
-<li>Complete loss of the C++ code organisation with a flat namespace in Python;</li>
-<li>SWIG typemaps development is not that fun.</li>
+<li><p>Few Pythonic optimisations in the syntax: the python code for invoking QuantLib functions looks like the C++ version;</p></li>
+<li><p>No docstring or function signature are available on the Python side;</p></li>
+<li><p>The debugging is complex, and any customization of the wrapper involves complex programming;</p></li>
+<li><p>The build process is monolithic: any change to the wrapper requires the recompilation of the entire project;</p></li>
+<li><p>Complete loss of the C++ code organisation with a flat namespace in Python;</p></li>
+<li><p>SWIG typemaps development is not that fun.</p></li>
 </ul>
 <p>For those reasons, and to have the ability to expose some of the
 QuantLib internals that could be very useful on the Python side, we
 chose another road. PyQL is build on top of Cython and creates a thin
 Pythonic layer on top of QuantLib. It allows a tight control on the
 wrapping and provides higher level Python integration.</p>
-<div class="section" id="features">
-<h3>Features:<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+<section id="features">
+<h3>Features:<a class="headerlink" href="#features" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
-<li>Integration with standard datatypes (like datetime objects) and numpy arrays;</li>
-<li>Simplifed API on the Python side (e.g. usage of Handles completely hidden from the user);</li>
-<li>Support full docstring and expose detailed function signatures to Python;</li>
-<li>Code organised in subpackages to provide a clean namespace, very close to the C++ code organisation;</li>
-<li>Easy extendibility thanks to Cython and shorter build time when adding new functionalities;</li>
-<li>Sphinx documentation.</li>
+<li><p>Integration with standard datatypes (like datetime objects) and numpy arrays;</p></li>
+<li><p>Simplifed API on the Python side (e.g. usage of Handles completely hidden from the user);</p></li>
+<li><p>Support full docstring and expose detailed function signatures to Python;</p></li>
+<li><p>Code organised in subpackages to provide a clean namespace, very close to the C++ code organisation;</p></li>
+<li><p>Easy extendibility thanks to Cython and shorter build time when adding new functionalities;</p></li>
+<li><p>Sphinx documentation.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="building-and-installing-pyql">
-<h2>Building and installing PyQL<a class="headerlink" href="#building-and-installing-pyql" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="building-and-installing-pyql">
+<h2>Building and installing PyQL<a class="headerlink" href="#building-and-installing-pyql" title="Permalink to this heading">¶</a></h2>
 <p>Prerequisites:</p>
 <ul class="simple">
-<li>Boost (version 1.55 or higher)</li>
-<li><a class="reference external" href="http://www.quantlib.org">QuantLib</a> (version 1.4 or higher)</li>
-<li><a class="reference external" href="http://www.cython.org">Cython</a> (version 0.19 or higher)</li>
+<li><p>Boost (version 1.55 or higher)</p></li>
+<li><p><a class="reference external" href="http://www.quantlib.org">QuantLib</a> (version 1.5 or higher)</p></li>
+<li><p><a class="reference external" href="http://www.cython.org">Cython</a> (version 0.19 or higher)</p></li>
 </ul>
 <p>Once the dependencies have been installed, enter the pyql root directory. Open the setup.py file
 and configure the Boost and QuantLib include and library directories, then run</p>
-<div class="highlight-python"><div class="highlight"><pre>python setup.py build
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">build</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="installation-from-source">
-<h2>Installation from source<a class="headerlink" href="#installation-from-source" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="installation-from-source">
+<h2>Installation from source<a class="headerlink" href="#installation-from-source" title="Permalink to this heading">¶</a></h2>
 <p>The following instructions explain how to build the project from source, on a Linux system.
 The instructions have been tested on Ubuntu 12.04 LTS.</p>
 <p>Prerequisites:</p>
 <ul class="simple">
-<li>python 2.7</li>
-<li>C++ development environment</li>
-<li>pandas 0.9</li>
+<li><p>python 2.7</p></li>
+<li><p>C++ development environment</p></li>
+<li><p>pandas 0.9</p></li>
 </ul>
 <ol class="arabic">
-<li><p class="first">Install Boost (taken from a nice <a class="reference external" href="https://coderwall.com/p/0atfug">post</a> by S. Zebardast)</p>
+<li><p>Install Boost (taken from a nice <a class="reference external" href="https://coderwall.com/p/0atfug">post</a> by S. Zebardast)</p>
 <ol class="loweralpha">
-<li><p class="first">Download the Boost source package</p>
-<div class="highlight-bash"><div class="highlight"><pre>wget -O boost_1_55_0.tar.gz <span class="se">\</span>
+<li><p>Download the Boost source package</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget -O boost_1_55_0.tar.gz <span class="se">\</span>
 http://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.tar.gz/download
 tar xzvf boost_1_55_0.tar.gz
 </pre></div>
 </div>
 </li>
-<li><p class="first">Make sure you have the required libraries</p>
-<div class="highlight-bash"><div class="highlight"><pre>sudo apt-get update
+<li><p>Make sure you have the required libraries</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get update
 sudo apt-get install build-essential g++ python-dev autotools-dev libicu-dev libbz2-dev
 </pre></div>
 </div>
 </li>
-</ol>
-</li>
-</ol>
-<blockquote>
-<div><ol class="loweralpha" start="3">
-<li><p class="first">Build and install</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd </span>boost_1_55_0
+<li><p>Build and install</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> boost_1_55_0
 sudo ./bootstrap.sh --prefix<span class="o">=</span>/usr/local
 sudo ./b2 install
 </pre></div>
 </div>
-</li>
-</ol>
-<blockquote>
-<div><p>If /usr/local/lib is not in your path:</p>
-<div class="highlight-bash"><div class="highlight"><pre>sudo sh -c <span class="s1">&#39;echo &quot;/usr/local/lib&quot; &gt;&gt; /etc/ld.so.conf.d/local.conf&#39;</span>
+<p>If /usr/local/lib is not in your path:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo sh -c <span class="s1">&#39;echo &quot;/usr/local/lib&quot; &gt;&gt; /etc/ld.so.conf.d/local.conf&#39;</span>
 </pre></div>
 </div>
 <p>and finally:</p>
-<div class="highlight-bash"><div class="highlight"><pre>sudo ldconfig
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ldconfig
 </pre></div>
 </div>
-</div></blockquote>
-</div></blockquote>
-<ol class="arabic" start="2">
-<li><p class="first">Install Quantlib</p>
+</li>
+</ol>
+</li>
+<li><p>Install Quantlib</p>
 <ol class="loweralpha">
-<li><p class="first">Download Quantlib 1.4 from Quantlib.org and copy to /opt</p>
-<div class="highlight-bash"><div class="highlight"><pre>wget -O QuantLib-1.4.tar.gz  <span class="se">\</span>
-http://sourceforge.net/projects/quantlib/files/QuantLib/1.4/QuantLib-1.4.tar.gz/download
-sudo cp QuantLib-1.4.tar.gz /opt
+<li><p>Download Quantlib 1.5 from Quantlib.org and copy to /opt</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget -O QuantLib-1.5.tar.gz  <span class="se">\</span>
+http://sourceforge.net/projects/quantlib/files/QuantLib/1.5/QuantLib-1.5.tar.gz/download
+sudo cp QuantLib-1.5.tar.gz /opt
 </pre></div>
 </div>
 </li>
-<li><p class="first">Extract the Quantlib folder</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd</span> /opt
-sudo tar xzvf QuantLib-1.4.tar.gz
+<li><p>Extract the Quantlib folder</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /opt
+sudo tar xzvf QuantLib-1.5.tar.gz
 </pre></div>
 </div>
 </li>
-<li><p class="first">Configure QuantLib</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nb">cd </span>QuantLib-1.4
+<li><p>Configure QuantLib</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> QuantLib-1.5
 ./configure --disable-static <span class="nv">CXXFLAGS</span><span class="o">=</span>-O2 --with-boost-include<span class="o">=</span>/usr/local/include --with-boost-lib<span class="o">=</span>/usr/local/lib
 </pre></div>
 </div>
 </li>
-<li><p class="first">Make and install</p>
-<div class="highlight-bash"><div class="highlight"><pre>make
+<li><p>Make and install</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make
 sudo make install
 </pre></div>
 </div>
 </li>
 </ol>
 </li>
-<li><p class="first">Install Cython. While you can install Cython from source, we strongly recommend to install Cython via <a class="reference external" href="https://pypi.python.org/pypi/pip">pip</a>:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install cython
+<li><p>Install Cython. While you can install Cython from source, we strongly recommend to install Cython via <a class="reference external" href="https://pypi.python.org/pypi/pip">pip</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">cython</span>
 </pre></div>
 </div>
 <p>If you do not have the required permissions to install Python packages in the system path, you can install Cython in your local user account via:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install --user cython
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">cython</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Download pyql (<a class="reference external" href="https://github.com/enthought/pyql">https://github.com/enthought/pyql</a>), then extract, build and test:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> ~/dev/pyql
-<span class="nv">$ </span>make build
-<span class="nv">$ </span>make tests
+<li><p>Download pyql (<a class="reference external" href="https://github.com/enthought/pyql">https://github.com/enthought/pyql</a>), then extract, build and test:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/dev/pyql
+$ make build
+$ make tests
 </pre></div>
 </div>
 </li>
 </ol>
-<p>If you have installed QuantLib in a directory different from <tt class="code docutils literal"><span class="pre">/opt</span></tt>, edit the <cite>setup.py</cite> file before running make and update the <tt class="code docutils literal"><span class="pre">INCLUDE_DIRS</span></tt> and <tt class="code docutils literal"><span class="pre">LIBRARY_DIRS</span></tt> to point to your installation of QuantLib.</p>
-</div>
-<div class="section" id="installation-from-source-on-windows">
-<h2>Installation from source on Windows<a class="headerlink" href="#installation-from-source-on-windows" title="Permalink to this headline">¶</a></h2>
+<p>If you have installed QuantLib in a directory different from <code class="code docutils literal notranslate"><span class="pre">/opt</span></code>, edit the <cite>setup.py</cite> file before running make and update the <code class="code docutils literal notranslate"><span class="pre">INCLUDE_DIRS</span></code> and <code class="code docutils literal notranslate"><span class="pre">LIBRARY_DIRS</span></code> to point to your installation of QuantLib.</p>
+</section>
+<section id="installation-from-source-on-windows">
+<h2>Installation from source on Windows<a class="headerlink" href="#installation-from-source-on-windows" title="Permalink to this heading">¶</a></h2>
 <p>The following instructions explain how to build the project from source, on a
 Windows system.
 The instructions have been tested on Windows 7 32bit with Visual Studio 2008.</p>
 <p>Prerequisites:</p>
 <ul class="simple">
-<li>python 2.7 (e.g. Canopy with Cython 0.20 or above)</li>
-<li>pandas 0.9</li>
+<li><p>python 2.7 (e.g. Canopy with Cython 0.20 or above)</p></li>
+<li><p>pandas 0.9</p></li>
 </ul>
 <ol class="arabic">
-<li><p class="first">Install Quantlib</p>
-<p>a. Install the latest version of Boost from sourceforge. You can get the
-binaries of 1.55 for windows 32 or 64bit depending on your target.</p>
-<ol class="loweralpha simple" start="2">
-<li>Download Quantlib 1.4 from Quantlib.org and unzip locally</li>
-<li>Extract the Quantlib folder</li>
-<li>Open the QuantLib_vc9 solution with Visual Studio</li>
-<li>Patch ql/settings.py</li>
-</ol>
-<blockquote>
-<div><p>In the ql/settings.py file, update the Settings class defintion as
+<li><p>Install Quantlib</p>
+<ol class="loweralpha">
+<li><p>Install the latest version of Boost from sourceforge. You can get the
+binaries of 1.55 for windows 32 or 64bit depending on your target.</p></li>
+<li><p>Download Quantlib 1.5 from Quantlib.org and unzip locally</p></li>
+<li><p>Extract the Quantlib folder</p></li>
+<li><p>Open the QuantLib_vc9 solution with Visual Studio</p></li>
+<li><p>Patch ql/settings.hpp.</p>
+<p>In the ql/settings.hpp file, update the Settings class defintion as
 following (line 37):</p>
-<div class="highlight-python"><div class="highlight"><pre>class __declspec(dllexport) Settings : public Singleton&lt;Settings&gt; {
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">__declspec</span><span class="p">(</span><span class="n">dllexport</span><span class="p">)</span> <span class="n">Settings</span> <span class="p">:</span> <span class="n">public</span> <span class="n">Singleton</span><span class="o">&lt;</span><span class="n">Settings</span><span class="o">&gt;</span> <span class="p">{</span>
 </pre></div>
 </div>
-</div></blockquote>
-<ol class="loweralpha simple" start="6">
-<li>In the QuantLib project properties</li>
+</li>
+<li><p>In the QuantLib project properties</p></li>
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li>Change &#8220;General&#8221; -&gt; &#8220;Configuration type&#8221; to &#8220;Dynamic Library (DLL)&#8221;</li>
-<li>Apply</li>
-<li>Add the Boost include directory to &#8220;C/C++&#8221; -&gt; &#8220;Additional Include Directories&#8221;</li>
-<li>Apply</li>
+<li><p>Change “General” -&gt; “Configuration type” to “Dynamic Library (DLL)”</p></li>
+<li><p>Apply</p></li>
+<li><p>Add the Boost include directory to “C/C++” -&gt; “Additional Include Directories”</p></li>
+<li><p>Apply</p></li>
 </ul>
 <p>Do a first build to get all the object files generated</p>
 </div></blockquote>
 <ol class="loweralpha simple" start="7">
-<li>Generate the def file:</li>
+<li><p>Generate the def file:</p></li>
 </ol>
 <blockquote>
 <div><p>In your PyQL clone, got the scripts directory, and edit the main function.
 Set <cite>input_directory</cite> to the Release directory where your object files are
 and change the <cite>output_file</cite> if appropriate (symbol_win32.def is the
-default) ! The def file is platform specific (you can&#8217;t reuse a 32bit def
+default) ! The def file is platform specific (you can’t reuse a 32bit def
 file for a 64bit linker).</p>
 <p>This will generate a def file of about 44 Mb with all the needed symbols for
 PyQL compilation.</p>
 </div></blockquote>
 <ol class="loweralpha simple" start="8">
-<li>Build the dll with the new def file</li>
+<li><p>Build the dll with the new def file</p></li>
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li>Change &#8220;Linker&#8221; -&gt; &#8220;Input&#8221; -&gt; &#8220;Module definition file&#8221; to point to
-def file you just generated.</li>
+<li><p>Change “Linker” -&gt; “Input” -&gt; “Module definition file” to point to
+def file you just generated.</p></li>
+<li><p>Apply the changes and build the project</p></li>
 </ul>
-<blockquote>
-<div><p>Apply the changes and build the project</p>
-</div></blockquote>
 </div></blockquote>
 <ol class="lowerroman simple">
-<li>Copy the QuantLib.dll to a directory which is on the PATH (or just the
-PyQL directory if you&#8217;re in development mode)</li>
+<li><p>Copy the QuantLib.dll to a directory which is on the PATH (or just the
+PyQL directory if you’re in development mode)</p></li>
 </ol>
 </li>
-<li><p class="first">Install Cython. While you can install Cython from source, we strongly
+<li><p>Install Cython. While you can install Cython from source, we strongly
 recommend to install Cython via the Canopy Package Manager, another Python
 distribution or via <a class="reference external" href="https://pypi.python.org/pypi/pip">pip</a>:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install cython
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">cython</span>
 </pre></div>
 </div>
 <p>If you do not have the required permissions to install Python packages in the system path, you can install Cython in your local user account via:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install --user cython
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">cython</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Build and test pyql</p>
+<li><p>Build and test pyql</p>
 <blockquote>
 <div><p>Edit the setup.py to make sure the INCLUDE_DIRS and LIBRARY_DIRS point to
 the correct directories.</p>
 </div></blockquote>
-<div class="highlight-bash"><div class="highlight"><pre>PS C:<span class="se">\d</span>ev<span class="se">\p</span>yql&gt; python setup.py build
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>PS C:<span class="se">\d</span>ev<span class="se">\p</span>yql&gt; python setup.py build
 PS C:<span class="se">\d</span>ev<span class="se">\p</span>yql&gt; python setup.py install
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>Development mode</p>
 <p>If you want to build the library in place and test things, you can do:</p>
-<div class="last highlight-bash"><div class="highlight"><pre>PS C:<span class="se">\d</span>ev<span class="se">\p</span>yql&gt; python setup.py build_ext --inplace
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>PS C:<span class="se">\d</span>ev<span class="se">\p</span>yql&gt; python setup.py build_ext --inplace
 PS C:<span class="se">\d</span>ev<span class="se">\p</span>yql&gt; python -m unittest discover -v
 </pre></div>
 </div>
 </div>
 </li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
+          
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Getting started</a><ul>
-<li><a class="reference internal" href="#pyql-an-overview">PyQL - an overview</a><ul>
-<li><a class="reference internal" href="#features">Features:</a></li>
+<h1 class="logo"><a href="index.html">Quantlib cython wrapper</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pyql-an-overview">PyQL - an overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-and-installing-pyql">Building and installing PyQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-from-source">Installation from source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-from-source-on-windows">Installation from source on Windows</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#building-and-installing-pyql">Building and installing PyQL</a></li>
-<li><a class="reference internal" href="#installation-from-source">Installation from source</a></li>
-<li><a class="reference internal" href="#installation-from-source-on-windows">Installation from source on Windows</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users_guide.html">User’s guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference_guide.html">Reference guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html#documentation">Documentation</a></li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Welcome to PyQL&#8217;s documentation</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="tutorial.html"
-                        title="next chapter">Tutorial</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/getting_started.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to PyQL’s documentation</a></li>
+      <li>Next: <a href="tutorial.html" title="next chapter">Tutorial</a></li>
+  </ul></li>
+</ul>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="tutorial.html" title="Tutorial"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Welcome to PyQL’s documentation"
-             >previous</a> |</li>
-        <li><a href="index.html">Quantlib cython wrapper 0.1.1 documentation</a> &raquo;</li> 
-      </ul>
-    </div>
     <div class="footer">
-        &copy; Copyright 2011, Didrik Pinte, Patrick Henaff.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      &copy;2011, Didrik Pinte, Patrick Henaff.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/getting_started.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
+
+    
+
+    
   </body>
 </html>

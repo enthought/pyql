@@ -1,0 +1,63 @@
+quantlib.instruments.overnightindexedswap.OvernightIndexedSwap
+==============================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexedswap
+
+.. autoclass:: OvernightIndexedSwap
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~OvernightIndexedSwap.__init__
+      ~OvernightIndexedSwap.endDiscounts
+      ~OvernightIndexedSwap.leg
+      ~OvernightIndexedSwap.leg_BPS
+      ~OvernightIndexedSwap.leg_NPV
+      ~OvernightIndexedSwap.npvDateDiscount
+      ~OvernightIndexedSwap.set_pricing_engine
+      ~OvernightIndexedSwap.startDiscounts
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~OvernightIndexedSwap.averaging_method
+      ~OvernightIndexedSwap.fair_rate
+      ~OvernightIndexedSwap.fair_spread
+      ~OvernightIndexedSwap.fixed_day_count
+      ~OvernightIndexedSwap.fixed_leg
+      ~OvernightIndexedSwap.fixed_leg_BPS
+      ~OvernightIndexedSwap.fixed_leg_NPV
+      ~OvernightIndexedSwap.fixed_rate
+      ~OvernightIndexedSwap.is_expired
+      ~OvernightIndexedSwap.maturity_date
+      ~OvernightIndexedSwap.net_present_value
+      ~OvernightIndexedSwap.nominal
+      ~OvernightIndexedSwap.nominals
+      ~OvernightIndexedSwap.npv
+      ~OvernightIndexedSwap.overnight_index
+      ~OvernightIndexedSwap.overnight_leg
+      ~OvernightIndexedSwap.overnight_leg_BPS
+      ~OvernightIndexedSwap.overnight_leg_NPV
+      ~OvernightIndexedSwap.payment_frequency
+      ~OvernightIndexedSwap.spread
+      ~OvernightIndexedSwap.start_date
+      ~OvernightIndexedSwap.type
+      ~OvernightIndexedSwap.valuation_date
+
+   
+   

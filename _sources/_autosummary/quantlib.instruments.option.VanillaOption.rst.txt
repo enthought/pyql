@@ -1,0 +1,52 @@
+quantlib.instruments.option.VanillaOption
+=========================================
+
+.. currentmodule:: quantlib.instruments.option
+
+.. autoclass:: VanillaOption
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~VanillaOption.__init__
+      ~VanillaOption.implied_volatility
+      ~VanillaOption.set_pricing_engine
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~VanillaOption.delta
+      ~VanillaOption.delta_forward
+      ~VanillaOption.dividend_rho
+      ~VanillaOption.elasticity
+      ~VanillaOption.exercise
+      ~VanillaOption.gamma
+      ~VanillaOption.is_expired
+      ~VanillaOption.itm_cash_probability
+      ~VanillaOption.net_present_value
+      ~VanillaOption.npv
+      ~VanillaOption.payoff
+      ~VanillaOption.rho
+      ~VanillaOption.strike_sensitivity
+      ~VanillaOption.theta
+      ~VanillaOption.theta_per_day
+      ~VanillaOption.valuation_date
+      ~VanillaOption.vega
+
+   
+   

@@ -1,264 +1,242 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>How to wrap QuantLib classes with cython &mdash; Quantlib cython wrapper 0.1.1 documentation</title>
-    
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Quantlib cython wrapper 0.1.1 documentation" href="index.html" /> 
-  </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="index.html">Quantlib cython wrapper 0.1.1 documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>How to wrap QuantLib classes with cython &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          
+
+          <div class="body" role="main">
             
-  <div class="section" id="how-to-wrap-quantlib-classes-with-cython">
-<h1>How to wrap QuantLib classes with cython<a class="headerlink" href="#how-to-wrap-quantlib-classes-with-cython" title="Permalink to this headline">¶</a></h1>
+  <section id="how-to-wrap-quantlib-classes-with-cython">
+<h1>How to wrap QuantLib classes with cython<a class="headerlink" href="#how-to-wrap-quantlib-classes-with-cython" title="Permalink to this heading">¶</a></h1>
 <p>These notes provide a step by step guide to wrapping a QuantLib (QL) class
 with cython, so that it can be invoked from python.</p>
-<p>The objective is to make available in python a set of modules that exactly mirror
-the QL class hierarchy. For example, QL provides a class
-named &#8216;&#8217;SimpleQuote&#8217;&#8216;, that represents a simple price measurement.
-The C++ class is defined as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre>class SimpleQuote : public Quote {
-  public:
-    SimpleQuote(Real value = Null&lt;Real&gt;());
-    Real value() const;
-    bool isValid() const;
-    Real setValue(Real value = Null&lt;Real&gt;());
-};
+<p>The objective is to make available in python a set of modules that
+exactly mirror the QL class hierarchy. For example, QL provides a
+class named <code class="docutils literal notranslate"><span class="pre">SimpleQuote</span></code>, that represents a simple price
+measurement. The C++ class is defined as follows:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SimpleQuote</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Quote</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">SimpleQuote</span><span class="p">(</span><span class="n">Real</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Null</span><span class="o">&lt;</span><span class="n">Real</span><span class="o">&gt;</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">Real</span><span class="w"> </span><span class="nf">value</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isValid</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Real</span><span class="w"> </span><span class="nf">setValue</span><span class="p">(</span><span class="n">Real</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Null</span><span class="o">&lt;</span><span class="n">Real</span><span class="o">&gt;</span><span class="p">());</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
 <p>After wrapping the C++ class, this class is now available in python:</p>
-<blockquote>
-<div>from quantlib.quotes import SimpleQuote
-spot = SimpleQuote(3.14)
-print(&#8216;Spot %f&#8217; % spot.value)</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">quantlib.quotes.simplequote</span> <span class="kn">import</span> <span class="n">SimpleQuote</span>
+<span class="n">spot</span> <span class="o">=</span> <span class="n">SimpleQuote</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Spot </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">spot</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>A couple of observations are worth mentioning:</p>
 <ul class="simple">
-<li>pyql preserves the module hierarchy of QuantLib:</li>
+<li><p>pyql preserves the module hierarchy of QuantLib:
+the SimpleQuote class is defined in the <code class="docutils literal notranslate"><span class="pre">quantlib/quotes/simplequote.hpp</span></code> header in C++.</p></li>
+<li><p>pyql exposes QuantLib in a pythonic fashion: instead of exposing the accessor value(),
+pyql implements the property value.</p></li>
 </ul>
-<p>the SimpleQuote class is defined in the quote module in C++.</p>
-<ul class="simple">
-<li>pyql exposes QuantLib in a pythonic fashion: instead of exposing the accessor value(),</li>
-</ul>
-<blockquote>
-<div>pyql implements the property value.</div></blockquote>
-<div class="section" id="the-interface-code">
-<h2>The Interface Code<a class="headerlink" href="#the-interface-code" title="Permalink to this headline">¶</a></h2>
-<p>To expose QL class &#8216;&#8217;foo&#8217;&#8216;, you need to create three files. For the sake of
+<section id="the-interface-code">
+<h2>The Interface Code<a class="headerlink" href="#the-interface-code" title="Permalink to this heading">¶</a></h2>
+<p>To expose QL class <code class="docutils literal notranslate"><span class="pre">foo</span></code>, you need to create three files. For the sake of
 standardization, they should be named as follows:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">_foo.pxd:</th><td class="field-body">A header file to declare the C++ class being exposed,</td>
-</tr>
-<tr class="field-even field"><th class="field-name">foo.pxd:</th><td class="field-body">A header file where the corresponding python class is declared</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">foo.pyx:</th><td class="field-body">The implementation of the corresponding python class</td>
-</tr>
-</tbody>
-</table>
-<p>The content of each file is now described in details.</p>
-</div>
-<div class="section" id="declaration-of-the-ql-classes-to-be-exposed">
-<h2>Declaration of the QL classes to be exposed<a class="headerlink" href="#declaration-of-the-ql-classes-to-be-exposed" title="Permalink to this headline">¶</a></h2>
-<p>This file contains the declaration of the
-QL class being exposed. For example, the header file &#8216;&#8217;_quotes.pxd&#8217;&#8217;
-is as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre># distutils: language = c++
-# distutils: libraries = QuantLib
-
-include &#39;types.pxi&#39;
-
-from libcpp cimport bool
-
-cdef extern from &#39;ql/quote.hpp&#39; namespace &#39;QuantLib&#39;:
-    cdef cppclass Quote:
-        Quote() except +
-        Real value() except +
-        bool isValid() except +
-
-cdef extern from &#39;ql/quotes/simplequote.hpp&#39; namespace &#39;QuantLib&#39;:
-
-    cdef cppclass SimpleQuote(Quote):
-        SimpleQuote(Real value) except +
-        Real setValue(Real value) except +
-</pre></div>
-</div>
-<p>In this file, we declare the class &#8216;&#8217;SimpleQuote&#8217;&#8217; and its parent &#8216;&#8217;Quote&#8217;&#8216;.
-The syntax is almost identical to the corresponding c++ header file. The
-types used in declaring arguments are defined in &#8216;&#8217;types.pxi&#8217;&#8216;.</p>
-<p>The clause &#8216;except +&#8217; signals that the method may throw an exception. It
-is indispensible to append this clause to every declaration. Without it, an
-exception thrown in QL will terminate the python process.</p>
-</div>
-<div class="section" id="declaration-of-the-python-class">
-<h2>Declaration of the python class<a class="headerlink" href="#declaration-of-the-python-class" title="Permalink to this headline">¶</a></h2>
-<p>The second header file declares the python classes that will be wrapping
-the QL classes. The file &#8216;&#8217;quotes.pxd&#8217;&#8217; is reproduced below:</p>
-<div class="highlight-python"><div class="highlight"><pre>cimport _quote as _qt
-from quantlib.handle cimport shared_ptr
-
-cdef class Quote:
-    cdef shared_ptr[_qt.Quote]* _thisptr
-</pre></div>
-</div>
-<dl class="docutils">
-<dt>Notice that in our header files we use &#8216;Quote&#8217; to refer the the C++ class (in file _quote.pxd)</dt>
-<dd>and to the python class (in file quote.pxd). To avoid</dd>
+<dl class="field-list simple">
+<dt class="field-odd">_foo.pxd<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A header file to declare the C++ class being exposed,</p>
+</dd>
+<dt class="field-even">foo.pxd<span class="colon">:</span></dt>
+<dd class="field-even"><p>A header file where the corresponding python class is declared</p>
+</dd>
+<dt class="field-odd">foo.pyx<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The implementation of the corresponding python class</p>
+</dd>
 </dl>
-<p>confusion we use the following convention:</p>
-<blockquote>
-<div><ul class="simple">
-<li>the C++ class is always refered to as &#8216;&#8217;_qt.Quote&#8217;&#8216;.</li>
-<li>the python class is always referd to as &#8216;&#8217;Quote&#8217;&#8216;</li>
-</ul>
-</div></blockquote>
-<p>The cython wrapper class holds a reference to the QL c++ class. As we do not
-want to do any memory handling on the Python side, we always wrap the C++
-object into a boost shared pointer that is deallocated properly when
-deallocation the Cython extension.</p>
-</div>
-<div class="section" id="implementation-of-the-python-class">
-<h2>Implementation of the python class<a class="headerlink" href="#implementation-of-the-python-class" title="Permalink to this headline">¶</a></h2>
-<p>The third file contains the implementation of the cython wrapper class. As an illustration, the implementation of the &#8216;&#8217;SingleQuote&#8217;&#8217; python class
-is reproduced below:</p>
-<div class="highlight-python"><div class="highlight"><pre>cdef class SimpleQuote(Quote):
+<p>The content of each file is now described in details.</p>
+</section>
+<section id="declaration-of-the-ql-classes-to-be-exposed">
+<h2>Declaration of the QL classes to be exposed<a class="headerlink" href="#declaration-of-the-ql-classes-to-be-exposed" title="Permalink to this heading">¶</a></h2>
+<p>This file contains the declaration of the QL
+class being exposed. For example, the header file <code class="docutils literal notranslate"><span class="pre">_simplequote.pxd</span></code> is
+as follows:</p>
+<div class="highlight-cython notranslate"><div class="highlight"><pre><span></span><span class="k">from</span> <span class="nn">quantlib.types</span> <span class="k">cimport</span> <span class="n">Real</span>
+<span class="k">from</span> <span class="nn">quantlib._quote</span> <span class="k">cimport</span> <span class="n">Quote</span>
 
-    def __init__(self, double value=0.0):
-        self._thisptr = new shared_ptr[_qt.Quote](new _qt.SimpleQuote(value))
+<span class="k">cdef</span> <span class="kr">extern</span> <span class="k">from</span> <span class="s">&#39;ql/quotes/simplequote.hpp&#39;</span> <span class="n">namespace</span> <span class="s">&#39;QuantLib&#39;</span><span class="p">:</span>
 
-def __dealloc__(self):
-    if self._thisptr is not NULL:
-        del self._thisptr # properly deallocates the shared_ptr and
-                          # probably the target object if not referenced
-
-    def __str__(self):
-        return &#39;Simple Quote: %f&#39; % self._thisptr.get().value()
-
-    property value:
-        def __get__(self):
-        if self._thisptr.get().isValid():
-            return self._thisptr.get().value()
-        else:
-            return None
-
-        def __set__(self, double value):
-        (&lt;_qt.SimpleQuote*&gt;self._thisptr.get()).setValue(value)
+   <span class="k">cdef</span> <span class="kt">cppclass</span> <span class="nf">SimpleQuote</span><span class="p">(</span><span class="n">Quote</span><span class="p">):</span>
+      <span class="n">SimpleQuote</span><span class="p">(</span><span class="n">Real</span> <span class="n">value</span><span class="p">)</span>
+      <span class="n">Real</span> <span class="n">setValue</span><span class="p">(</span><span class="n">Real</span> <span class="n">value</span><span class="p">)</span>
+      <span class="n">void</span> <span class="n">reset</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The &#8216;&#8217;__init__&#8217;&#8217; method invokes the c++ constructor, which returns a boost shared pointer.</p>
-<p>Properties are used to give a more pythonic flavor to the wrapping.
-In python, we get the value of the &#8216;&#8217;SimpleQuote&#8217;&#8217; with the syntax
-&#8216;&#8217;spot.value&#8217;&#8217; rather than &#8216;&#8217;spot.value()&#8217;&#8216;, had we exposed
-directly the C++ accessor.</p>
-<p>Remember from the previous section that &#8216;&#8217;_thisptr&#8217;&#8217; is a shared pointer
-on a &#8216;&#8217;Quote&#8217;&#8216;, which is a virtual class. The &#8216;&#8217;setValue&#8217;&#8217;
-method is defined in the &#8216;&#8217;SimpleQuote&#8217;&#8217; concrete class,
-and the shared pointer must therefore be cast
-into a &#8216;&#8217;SimpleQuote&#8217;&#8217; shared pointer in order to invoke &#8216;&#8217;setValue()&#8217;&#8216;.</p>
+<p>In this file, we declare the class <code class="docutils literal notranslate"><span class="pre">SimpleQuote</span></code> qwhich derives from <code class="docutils literal notranslate"><span class="pre">Quote</span></code>.
+The syntax is almost identical to the corresponding C++ header file. The
+types used in declaring arguments are defined in <code class="docutils literal notranslate"><span class="pre">quantlib.types</span></code>.</p>
+</section>
+<section id="declaration-of-the-python-class">
+<h2>Declaration of the python class<a class="headerlink" href="#declaration-of-the-python-class" title="Permalink to this heading">¶</a></h2>
+<p>The second header file declares the python classes that will be wrapping
+the QL classes. The file <code class="docutils literal notranslate"><span class="pre">simplequote.pxd</span></code> is reproduced below:</p>
+<div class="highlight-cython notranslate"><div class="highlight"><pre><span></span><span class="k">from</span> <span class="nn">quantlib.quote</span> <span class="k">cimport</span> <span class="n">Quote</span>
+
+<span class="k">cdef</span> <span class="k">class</span> <span class="nf">SimpleQuote</span><span class="p">(</span><span class="n">Quote</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
 </div>
-<div class="section" id="managing-c-references-using-shared-ptr">
-<h2>Managing C++ references using shared_ptr<a class="headerlink" href="#managing-c-references-using-shared-ptr" title="Permalink to this headline">¶</a></h2>
-<p>All the Cython extension references should be declared using shared_ptr. The
-__dealloc__ method should always delete the shared_ptr but never the target
-pointer!</p>
+<p>Notice that in our header files we use ‘Quote’ to refer the the C++
+class (in file _simplequote.pxd) and to the python class (in file
+quote.pxd). To avoid confusion we use the following convention:</p>
+<ul class="simple">
+<li><p>the C++ class is always referred to as <code class="docutils literal notranslate"><span class="pre">_qt.Quote</span></code>.</p></li>
+<li><p>the python class is always referred to as <code class="docutils literal notranslate"><span class="pre">Quote</span></code></p></li>
+</ul>
+<p>The cython wrapper class holds a reference to the QL C++ class. As we do not
+want to do any memory handling on the Python side, we always wrap the C++
+object into a shared pointer whose lifetime is tied to the lifetime of the
+wrapping class. That way it will get deallocated automatically when the Python
+GC runs.</p>
+</section>
+<section id="implementation-of-the-python-class">
+<h2>Implementation of the python class<a class="headerlink" href="#implementation-of-the-python-class" title="Permalink to this heading">¶</a></h2>
+<p>The third file contains the implementation of the cython wrapper
+class. As an illustration, the implementation of the <code class="docutils literal notranslate"><span class="pre">SimpleQuote</span></code>
+python class is reproduced below:</p>
+<div class="highlight-cython notranslate"><div class="highlight"><pre><span></span><span class="k">cdef</span> <span class="k">class</span> <span class="nf">SimpleQuote</span><span class="p">(</span><span class="n">Quote</span><span class="p">):</span>
+   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">double</span> <span class="n">value</span><span class="o">=</span><span class="n">QL_NULL_REAL</span><span class="p">):</span>
+      <span class="sd">&quot;&quot;&quot; Market element returning a stored value&quot;&quot;&quot;</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_thisptr</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">new</span> <span class="n">_sq</span><span class="o">.</span><span class="n">SimpleQuote</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+   <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thisptr</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thisptr</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">isValid</span><span class="p">():</span>
+         <span class="k">return</span> <span class="s">&#39;Simple Quote: </span><span class="si">%f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thisptr</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+      <span class="k">else</span><span class="p">:</span>
+         <span class="k">return</span> <span class="s">&#39;Empty Quote&#39;</span>
+
+   <span class="k">property</span> <span class="nf">value</span><span class="p">:</span>
+      <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thisptr</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+
+      <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">double</span> <span class="n">value</span><span class="p">):</span>
+         <span class="p">(</span><span class="o">&lt;</span><span class="n">_qt</span><span class="o">.</span><span class="n">SimpleQuote</span><span class="o">*&gt;</span><span class="bp">self</span><span class="o">.</span><span class="n">_thisptr</span><span class="o">.</span><span class="n">get</span><span class="p">())</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method invokes the C++ constructor, which returns a shared pointer.</p>
+<p>Properties are used to give a more pythonic flavor to the wrapping.
+In python, we get the value of the <code class="docutils literal notranslate"><span class="pre">SimpleQuote</span></code> with the syntax
+<code class="docutils literal notranslate"><span class="pre">spot.value</span></code> rather than <code class="docutils literal notranslate"><span class="pre">spot.value()</span></code>, had we exposed
+directly the C++ accessor.</p>
+<p>Remember from the previous section that <code class="docutils literal notranslate"><span class="pre">_thisptr</span></code> is a shared pointer
+on a <code class="docutils literal notranslate"><span class="pre">Quote</span></code>, which is a virtual class. The <code class="docutils literal notranslate"><span class="pre">setValue</span></code>
+method is defined in the <code class="docutils literal notranslate"><span class="pre">SimpleQuote</span></code> concrete class,
+and the shared pointer must therefore be cast
+into a <code class="docutils literal notranslate"><span class="pre">SimpleQuote</span></code> shared pointer in order to invoke <code class="docutils literal notranslate"><span class="pre">setValue()</span></code>.</p>
+</section>
+<section id="managing-c-references-using-shared-ptr">
+<h2>Managing C++ references using shared_ptr<a class="headerlink" href="#managing-c-references-using-shared-ptr" title="Permalink to this heading">¶</a></h2>
+<p>All the Cython extension references should be declared using shared_ptr.</p>
 <p>Every time a shared_ptr reference is received, never assigns the target pointer
 to a local pointer variables as it might be deallocated. Always use the copy
 constructor of the shared_ptr to get a local copy of it, stack allocated (there
-is no need to use new)</p>
-</div>
-</div>
+is no need to use new).</p>
+</section>
+</section>
 
 
           </div>
+          
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">How to wrap QuantLib classes with cython</a><ul>
-<li><a class="reference internal" href="#the-interface-code">The Interface Code</a></li>
-<li><a class="reference internal" href="#declaration-of-the-ql-classes-to-be-exposed">Declaration of the QL classes to be exposed</a></li>
-<li><a class="reference internal" href="#declaration-of-the-python-class">Declaration of the python class</a></li>
-<li><a class="reference internal" href="#implementation-of-the-python-class">Implementation of the python class</a></li>
-<li><a class="reference internal" href="#managing-c-references-using-shared-ptr">Managing C++ references using shared_ptr</a></li>
-</ul>
-</li>
+<h1 class="logo"><a href="index.html">Quantlib cython wrapper</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users_guide.html">User’s guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference_guide.html">Reference guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html#documentation">Documentation</a></li>
 </ul>
 
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/cython_wrapper.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="index.html">Quantlib cython wrapper 0.1.1 documentation</a> &raquo;</li> 
-      </ul>
-    </div>
     <div class="footer">
-        &copy; Copyright 2011, Didrik Pinte, Patrick Henaff.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      &copy;2011, Didrik Pinte, Patrick Henaff.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/cython_wrapper.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
+
+    
+
+    
   </body>
 </html>

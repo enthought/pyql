@@ -1,0 +1,27 @@
+quantlib.termstructures.vol\_term\_structure.HandleVolatilityTermStructure
+==========================================================================
+
+.. currentmodule:: quantlib.termstructures.vol_term_structure
+
+.. autoclass:: HandleVolatilityTermStructure
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~HandleVolatilityTermStructure.__init__
+      ~HandleVolatilityTermStructure.link_to
+   
+   
+
+   
+   
+   

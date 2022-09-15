@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>quantlib.market.market.IborMarket &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="quantlib.market.market.Market" href="quantlib.market.market.Market.html" />
+    <link rel="prev" title="quantlib.market.market.FixedIncomeMarket" href="quantlib.market.market.FixedIncomeMarket.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="quantlib-market-market-ibormarket">
+<h1>quantlib.market.market.IborMarket<a class="headerlink" href="#quantlib-market-market-ibormarket" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="quantlib.market.market.IborMarket">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IborMarket</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">market</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.market.market.IborMarket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="quantlib.market.market.FixedIncomeMarket.html#quantlib.market.market.FixedIncomeMarket" title="quantlib.market.market.FixedIncomeMarket"><code class="xref py py-class docutils literal notranslate"><span class="pre">FixedIncomeMarket</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.market.market.IborMarket.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">market</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.market.market.IborMarket.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.market.market.IborMarket.__init__" title="quantlib.market.market.IborMarket.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(name, market, **kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.market.market.IborMarket.add_bond_quote" title="quantlib.market.market.IborMarket.add_bond_quote"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_bond_quote</span></code></a>(clean_price, coupons, tenor, ...)</p></td>
+<td><p>Add a bond quote to the market.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bootstrap_term_structure</span></code>([interpolator])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.market.market.IborMarket.create_fixed_float_swap" title="quantlib.market.market.IborMarket.create_fixed_float_swap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_fixed_float_swap</span></code></a>(settlement_date, ...)</p></td>
+<td><p>Create a fixed-for-float swap given: - settlement date - length in years - additional arguments to modify market default parameters</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount</span></code>(date_maturity[, extrapolate])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.market.market.IborMarket.set_bonds" title="quantlib.market.market.IborMarket.set_bonds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_bonds</span></code></a>(dt_obs, quotes)</p></td>
+<td><p>Supply the market with a set of bond quotes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_quotes</span></code>(dt_obs, quotes)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">calendar</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixed_leg_convention</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixed_leg_daycount</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixed_leg_period</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_date</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_days</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">termstructure_daycounter</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.market.market.IborMarket.add_bond_quote">
+<span class="sig-name descname"><span class="pre">add_bond_quote</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clean_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coupons</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">issue_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maturity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.market.market.IborMarket.add_bond_quote" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a bond quote to the market.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>clean_price</strong> (<em>real</em>) – Clean price of the bond.</p></li>
+<li><p><strong>coupons</strong> (<em>real</em><em> or </em><em>list</em><em>(</em><em>real</em><em>)</em>) – Interest rates paid by the bond.</p></li>
+<li><p><strong>tenor</strong> (<em>str</em>) – Tenor of the bond.</p></li>
+<li><p><strong>issue_date</strong> (<em>Date instance</em>) – Issue date and maturity of the bond.</p></li>
+<li><p><strong>maturity</strong> (<em>Date instance</em>) – Issue date and maturity of the bond.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.market.market.IborMarket.create_fixed_float_swap">
+<span class="sig-name descname"><span class="pre">create_fixed_float_swap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settlement_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixed_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">floating_spread</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.market.market.IborMarket.create_fixed_float_swap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a fixed-for-float swap given:
+- settlement date
+- length in years
+- additional arguments to modify market default parameters</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.market.market.IborMarket.set_bonds">
+<span class="sig-name descname"><span class="pre">set_bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt_obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quotes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.market.market.IborMarket.set_bonds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Supply the market with a set of bond quotes.</p>
+<p>The <cite>quotes</cite> parameter must be a list of quotes of the form
+(clean_price, coupons, tenor, issue_date, maturity). For more
+information about the format of the individual fields, see
+the documentation for <a class="reference internal" href="#quantlib.market.market.IborMarket.add_bond_quote" title="quantlib.market.market.IborMarket.add_bond_quote"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_bond_quote()</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Quantlib cython wrapper</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../users_guide.html">User’s guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference_guide.html">Reference guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../reference_guide.html#reference-documentation-for-the-quantlib-package">Reference documentation for the <code class="xref py py-mod docutils literal notranslate"><span class="pre">quantlib</span></code> package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_guide.html#how-to-wrap-quantlib-classes-with-cython">How to wrap QuantLib classes with cython</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html#documentation">Documentation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../reference_guide.html">Reference guide</a><ul>
+  <li><a href="quantlib.html">quantlib</a><ul>
+  <li><a href="quantlib.market.html">quantlib.market</a><ul>
+  <li><a href="quantlib.market.market.html">quantlib.market.market</a><ul>
+      <li>Previous: <a href="quantlib.market.market.FixedIncomeMarket.html" title="previous chapter">quantlib.market.market.FixedIncomeMarket</a></li>
+      <li>Next: <a href="quantlib.market.market.Market.html" title="next chapter">quantlib.market.market.Market</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2011, Didrik Pinte, Patrick Henaff.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/_autosummary/quantlib.market.market.IborMarket.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

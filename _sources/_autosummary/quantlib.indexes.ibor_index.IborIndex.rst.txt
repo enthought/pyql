@@ -1,0 +1,54 @@
+quantlib.indexes.ibor\_index.IborIndex
+======================================
+
+.. currentmodule:: quantlib.indexes.ibor_index
+
+.. autoclass:: IborIndex
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~IborIndex.__init__
+      ~IborIndex.add_fixing
+      ~IborIndex.add_fixings
+      ~IborIndex.clear_fixings
+      ~IborIndex.fixing
+      ~IborIndex.fixing_date
+      ~IborIndex.forecast_fixing
+      ~IborIndex.from_name
+      ~IborIndex.is_valid_fixing_date
+      ~IborIndex.maturity_date
+      ~IborIndex.value_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~IborIndex.business_day_convention
+      ~IborIndex.currency
+      ~IborIndex.day_counter
+      ~IborIndex.end_of_month
+      ~IborIndex.family_name
+      ~IborIndex.fixing_calendar
+      ~IborIndex.fixing_days
+      ~IborIndex.forwarding_term_structure
+      ~IborIndex.name
+      ~IborIndex.tenor
+      ~IborIndex.time_series
+
+   
+   

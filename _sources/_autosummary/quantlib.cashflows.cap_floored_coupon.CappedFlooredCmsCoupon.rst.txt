@@ -1,0 +1,62 @@
+quantlib.cashflows.cap\_floored\_coupon.CappedFlooredCmsCoupon
+==============================================================
+
+.. currentmodule:: quantlib.cashflows.cap_floored_coupon
+
+.. autoclass:: CappedFlooredCmsCoupon
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~CappedFlooredCmsCoupon.__init__
+      ~CappedFlooredCmsCoupon.accrued_amount
+      ~CappedFlooredCmsCoupon.accrued_days
+      ~CappedFlooredCmsCoupon.accrued_period
+      ~CappedFlooredCmsCoupon.has_occured
+      ~CappedFlooredCmsCoupon.set_pricer
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~CappedFlooredCmsCoupon.accrual_days
+      ~CappedFlooredCmsCoupon.accrual_end_date
+      ~CappedFlooredCmsCoupon.accrual_period
+      ~CappedFlooredCmsCoupon.accrual_start_date
+      ~CappedFlooredCmsCoupon.adjusted_fixing
+      ~CappedFlooredCmsCoupon.amount
+      ~CappedFlooredCmsCoupon.cap
+      ~CappedFlooredCmsCoupon.convexity_adjustment
+      ~CappedFlooredCmsCoupon.date
+      ~CappedFlooredCmsCoupon.day_counter
+      ~CappedFlooredCmsCoupon.effective_cap
+      ~CappedFlooredCmsCoupon.effective_floor
+      ~CappedFlooredCmsCoupon.fixing_date
+      ~CappedFlooredCmsCoupon.fixing_days
+      ~CappedFlooredCmsCoupon.floor
+      ~CappedFlooredCmsCoupon.index
+      ~CappedFlooredCmsCoupon.index_fixing
+      ~CappedFlooredCmsCoupon.is_capped
+      ~CappedFlooredCmsCoupon.is_floored
+      ~CappedFlooredCmsCoupon.nominal
+      ~CappedFlooredCmsCoupon.rate
+      ~CappedFlooredCmsCoupon.reference_period_end
+      ~CappedFlooredCmsCoupon.reference_period_start
+      ~CappedFlooredCmsCoupon.underlying
+
+   
+   

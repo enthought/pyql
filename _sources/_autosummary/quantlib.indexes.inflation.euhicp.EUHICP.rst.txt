@@ -1,0 +1,48 @@
+quantlib.indexes.inflation.euhicp.EUHICP
+========================================
+
+.. currentmodule:: quantlib.indexes.inflation.euhicp
+
+.. autoclass:: EUHICP
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~EUHICP.__init__
+      ~EUHICP.add_fixing
+      ~EUHICP.add_fixings
+      ~EUHICP.clear_fixings
+      ~EUHICP.fixing
+      ~EUHICP.is_valid_fixing_date
+      ~EUHICP.zero_inflation_term_structure
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~EUHICP.availability_lag
+      ~EUHICP.currency
+      ~EUHICP.family_name
+      ~EUHICP.fixing_calendar
+      ~EUHICP.frequency
+      ~EUHICP.interpolated
+      ~EUHICP.name
+      ~EUHICP.region
+      ~EUHICP.time_series
+
+   
+   

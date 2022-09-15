@@ -1,0 +1,36 @@
+quantlib.quotes.simplequote.SimpleQuote
+=======================================
+
+.. currentmodule:: quantlib.quotes.simplequote
+
+.. autoclass:: SimpleQuote
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~SimpleQuote.__init__
+      ~SimpleQuote.reset
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~SimpleQuote.is_valid
+      ~SimpleQuote.value
+
+   
+   

@@ -1,0 +1,6 @@
+quantlib.currency.currency\_registry.initialize\_currency\_registry
+===================================================================
+
+.. currentmodule:: quantlib.currency.currency_registry
+
+.. autofunction:: initialize_currency_registry

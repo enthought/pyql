@@ -1,0 +1,43 @@
+quantlib.models.equity.bates\_model.BatesModel
+==============================================
+
+.. currentmodule:: quantlib.models.equity.bates_model
+
+.. autoclass:: BatesModel
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~BatesModel.__init__
+      ~BatesModel.calibrate
+      ~BatesModel.process
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~BatesModel.Lambda
+      ~BatesModel.delta
+      ~BatesModel.kappa
+      ~BatesModel.nu
+      ~BatesModel.rho
+      ~BatesModel.sigma
+      ~BatesModel.theta
+      ~BatesModel.v0
+
+   
+   

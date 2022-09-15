@@ -1,0 +1,54 @@
+quantlib.indexes.swap\_index.OvernightIndexedSwapIndex
+======================================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. autoclass:: OvernightIndexedSwapIndex
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~OvernightIndexedSwapIndex.__init__
+      ~OvernightIndexedSwapIndex.add_fixing
+      ~OvernightIndexedSwapIndex.add_fixings
+      ~OvernightIndexedSwapIndex.clear_fixings
+      ~OvernightIndexedSwapIndex.fixing
+      ~OvernightIndexedSwapIndex.fixing_date
+      ~OvernightIndexedSwapIndex.forecast_fixing
+      ~OvernightIndexedSwapIndex.is_valid_fixing_date
+      ~OvernightIndexedSwapIndex.maturity_date
+      ~OvernightIndexedSwapIndex.underlying_swap
+      ~OvernightIndexedSwapIndex.value_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~OvernightIndexedSwapIndex.currency
+      ~OvernightIndexedSwapIndex.day_counter
+      ~OvernightIndexedSwapIndex.discounting_term_structure
+      ~OvernightIndexedSwapIndex.family_name
+      ~OvernightIndexedSwapIndex.fixing_calendar
+      ~OvernightIndexedSwapIndex.fixing_days
+      ~OvernightIndexedSwapIndex.forwarding_term_structure
+      ~OvernightIndexedSwapIndex.ibor_index
+      ~OvernightIndexedSwapIndex.name
+      ~OvernightIndexedSwapIndex.tenor
+      ~OvernightIndexedSwapIndex.time_series
+
+   
+   

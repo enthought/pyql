@@ -1,0 +1,54 @@
+quantlib.indexes.swap.usd\_libor\_swap.UsdLiborSwapIsdaFixPm
+============================================================
+
+.. currentmodule:: quantlib.indexes.swap.usd_libor_swap
+
+.. autoclass:: UsdLiborSwapIsdaFixPm
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~UsdLiborSwapIsdaFixPm.__init__
+      ~UsdLiborSwapIsdaFixPm.add_fixing
+      ~UsdLiborSwapIsdaFixPm.add_fixings
+      ~UsdLiborSwapIsdaFixPm.clear_fixings
+      ~UsdLiborSwapIsdaFixPm.fixing
+      ~UsdLiborSwapIsdaFixPm.fixing_date
+      ~UsdLiborSwapIsdaFixPm.forecast_fixing
+      ~UsdLiborSwapIsdaFixPm.is_valid_fixing_date
+      ~UsdLiborSwapIsdaFixPm.maturity_date
+      ~UsdLiborSwapIsdaFixPm.underlying_swap
+      ~UsdLiborSwapIsdaFixPm.value_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~UsdLiborSwapIsdaFixPm.currency
+      ~UsdLiborSwapIsdaFixPm.day_counter
+      ~UsdLiborSwapIsdaFixPm.discounting_term_structure
+      ~UsdLiborSwapIsdaFixPm.family_name
+      ~UsdLiborSwapIsdaFixPm.fixing_calendar
+      ~UsdLiborSwapIsdaFixPm.fixing_days
+      ~UsdLiborSwapIsdaFixPm.forwarding_term_structure
+      ~UsdLiborSwapIsdaFixPm.ibor_index
+      ~UsdLiborSwapIsdaFixPm.name
+      ~UsdLiborSwapIsdaFixPm.tenor
+      ~UsdLiborSwapIsdaFixPm.time_series
+
+   
+   

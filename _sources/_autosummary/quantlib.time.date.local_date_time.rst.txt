@@ -1,0 +1,6 @@
+quantlib.time.date.local\_date\_time
+====================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autofunction:: local_date_time

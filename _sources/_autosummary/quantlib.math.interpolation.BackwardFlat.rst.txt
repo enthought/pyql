@@ -1,0 +1,26 @@
+quantlib.math.interpolation.BackwardFlat
+========================================
+
+.. currentmodule:: quantlib.math.interpolation
+
+.. autoclass:: BackwardFlat
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~BackwardFlat.__init__
+   
+   
+
+   
+   
+   

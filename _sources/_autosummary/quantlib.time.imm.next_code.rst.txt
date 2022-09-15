@@ -1,0 +1,6 @@
+quantlib.time.imm.next\_code
+============================
+
+.. currentmodule:: quantlib.time.imm
+
+.. autofunction:: next_code

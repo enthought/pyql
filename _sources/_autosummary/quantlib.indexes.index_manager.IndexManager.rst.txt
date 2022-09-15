@@ -1,0 +1,31 @@
+quantlib.indexes.index\_manager.IndexManager
+============================================
+
+.. currentmodule:: quantlib.indexes.index_manager
+
+.. autoclass:: IndexManager
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~IndexManager.__init__
+      ~IndexManager.clear_histories
+      ~IndexManager.clear_history
+      ~IndexManager.get_history
+      ~IndexManager.histories
+      ~IndexManager.set_history
+   
+   
+
+   
+   
+   

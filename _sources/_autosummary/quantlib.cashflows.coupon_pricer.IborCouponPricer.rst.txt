@@ -1,0 +1,32 @@
+quantlib.cashflows.coupon\_pricer.IborCouponPricer
+==================================================
+
+.. currentmodule:: quantlib.cashflows.coupon_pricer
+
+.. autoclass:: IborCouponPricer
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~IborCouponPricer.__init__
+      ~IborCouponPricer.caplet_price
+      ~IborCouponPricer.caplet_rate
+      ~IborCouponPricer.floorlet_price
+      ~IborCouponPricer.floorlet_rate
+      ~IborCouponPricer.swaplet_price
+      ~IborCouponPricer.swaplet_rate
+   
+   
+
+   
+   
+   

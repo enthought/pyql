@@ -1,0 +1,37 @@
+quantlib.time.daycounters.simple.Business252
+============================================
+
+.. currentmodule:: quantlib.time.daycounters.simple
+
+.. autoclass:: Business252
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Business252.__init__
+      ~Business252.day_count
+      ~Business252.from_name
+      ~Business252.year_fraction
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Business252.name
+
+   
+   

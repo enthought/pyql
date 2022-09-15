@@ -1,0 +1,6 @@
+quantlib.mlab.option\_pricing.heston\_pricer
+============================================
+
+.. currentmodule:: quantlib.mlab.option_pricing
+
+.. autofunction:: heston_pricer

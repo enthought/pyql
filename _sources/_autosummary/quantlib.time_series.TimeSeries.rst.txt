@@ -1,0 +1,35 @@
+quantlib.time\_series.TimeSeries
+================================
+
+.. currentmodule:: quantlib.time_series
+
+.. autoclass:: TimeSeries
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~TimeSeries.__init__
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~TimeSeries.first_date
+      ~TimeSeries.last_date
+
+   
+   

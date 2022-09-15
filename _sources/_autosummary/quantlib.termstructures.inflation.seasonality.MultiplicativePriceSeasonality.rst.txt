@@ -1,0 +1,41 @@
+quantlib.termstructures.inflation.seasonality.MultiplicativePriceSeasonality
+============================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.seasonality
+
+.. autoclass:: MultiplicativePriceSeasonality
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~MultiplicativePriceSeasonality.__init__
+      ~MultiplicativePriceSeasonality.correctYoYRate
+      ~MultiplicativePriceSeasonality.correctZeroRate
+      ~MultiplicativePriceSeasonality.isConsistent
+      ~MultiplicativePriceSeasonality.seasonality_factor
+      ~MultiplicativePriceSeasonality.set
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~MultiplicativePriceSeasonality.frequency
+      ~MultiplicativePriceSeasonality.seasonality_base_date
+      ~MultiplicativePriceSeasonality.seasonality_factors
+
+   
+   

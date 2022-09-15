@@ -1,0 +1,41 @@
+quantlib.termstructures.yields.rate\_helpers.FuturesRateHelper
+==============================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoclass:: FuturesRateHelper
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FuturesRateHelper.__init__
+      ~FuturesRateHelper.from_index
+      ~FuturesRateHelper.update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~FuturesRateHelper.convexity_adjustment
+      ~FuturesRateHelper.earliest_date
+      ~FuturesRateHelper.implied_quote
+      ~FuturesRateHelper.latest_date
+      ~FuturesRateHelper.maturity_date
+      ~FuturesRateHelper.quote
+
+   
+   

@@ -1,0 +1,6 @@
+quantlib.market.market.make\_rate\_helper
+=========================================
+
+.. currentmodule:: quantlib.market.market
+
+.. autofunction:: make_rate_helper

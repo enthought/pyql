@@ -1,0 +1,6 @@
+quantlib.util.rates.flat\_rate
+==============================
+
+.. currentmodule:: quantlib.util.rates
+
+.. autofunction:: flat_rate

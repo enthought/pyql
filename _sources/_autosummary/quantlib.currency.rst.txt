@@ -1,0 +1,35 @@
+quantlib.currency
+=================
+
+.. automodule:: quantlib.currency
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   quantlib.currency.api
+   quantlib.currency.currencies
+   quantlib.currency.currency
+   quantlib.currency.currency_registry
+

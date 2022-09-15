@@ -1,0 +1,56 @@
+quantlib.experimental.coupons.cms\_spread\_coupon.CmsSpreadCoupon
+=================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.cms_spread_coupon
+
+.. autoclass:: CmsSpreadCoupon
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~CmsSpreadCoupon.__init__
+      ~CmsSpreadCoupon.accrued_amount
+      ~CmsSpreadCoupon.accrued_days
+      ~CmsSpreadCoupon.accrued_period
+      ~CmsSpreadCoupon.has_occured
+      ~CmsSpreadCoupon.set_pricer
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~CmsSpreadCoupon.accrual_days
+      ~CmsSpreadCoupon.accrual_end_date
+      ~CmsSpreadCoupon.accrual_period
+      ~CmsSpreadCoupon.accrual_start_date
+      ~CmsSpreadCoupon.adjusted_fixing
+      ~CmsSpreadCoupon.amount
+      ~CmsSpreadCoupon.convexity_adjustment
+      ~CmsSpreadCoupon.date
+      ~CmsSpreadCoupon.day_counter
+      ~CmsSpreadCoupon.fixing_date
+      ~CmsSpreadCoupon.fixing_days
+      ~CmsSpreadCoupon.index
+      ~CmsSpreadCoupon.index_fixing
+      ~CmsSpreadCoupon.nominal
+      ~CmsSpreadCoupon.rate
+      ~CmsSpreadCoupon.reference_period_end
+      ~CmsSpreadCoupon.reference_period_start
+      ~CmsSpreadCoupon.swap_spread_index
+
+   
+   

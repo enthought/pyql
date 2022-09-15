@@ -1,0 +1,35 @@
+quantlib.instruments.payoffs.PlainVanillaPayoff
+===============================================
+
+.. currentmodule:: quantlib.instruments.payoffs
+
+.. autoclass:: PlainVanillaPayoff
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~PlainVanillaPayoff.__init__
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~PlainVanillaPayoff.option_type
+      ~PlainVanillaPayoff.strike
+
+   
+   

@@ -1,0 +1,6 @@
+quantlib.time.date.years
+========================
+
+.. currentmodule:: quantlib.time.date
+
+.. autofunction:: years

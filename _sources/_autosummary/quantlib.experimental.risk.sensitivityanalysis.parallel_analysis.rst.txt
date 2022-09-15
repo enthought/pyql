@@ -1,0 +1,6 @@
+quantlib.experimental.risk.sensitivityanalysis.parallel\_analysis
+=================================================================
+
+.. currentmodule:: quantlib.experimental.risk.sensitivityanalysis
+
+.. autofunction:: parallel_analysis

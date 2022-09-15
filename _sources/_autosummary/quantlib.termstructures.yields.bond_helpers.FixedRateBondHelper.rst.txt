@@ -1,0 +1,39 @@
+quantlib.termstructures.yields.bond\_helpers.FixedRateBondHelper
+================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bond_helpers
+
+.. autoclass:: FixedRateBondHelper
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FixedRateBondHelper.__init__
+      ~FixedRateBondHelper.update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~FixedRateBondHelper.earliest_date
+      ~FixedRateBondHelper.implied_quote
+      ~FixedRateBondHelper.latest_date
+      ~FixedRateBondHelper.maturity_date
+      ~FixedRateBondHelper.quote
+
+   
+   

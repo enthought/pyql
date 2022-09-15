@@ -1,0 +1,6 @@
+quantlib.time.date.maxdate
+==========================
+
+.. currentmodule:: quantlib.time.date
+
+.. autofunction:: maxdate

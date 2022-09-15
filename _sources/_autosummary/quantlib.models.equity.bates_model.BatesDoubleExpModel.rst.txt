@@ -1,0 +1,44 @@
+quantlib.models.equity.bates\_model.BatesDoubleExpModel
+=======================================================
+
+.. currentmodule:: quantlib.models.equity.bates_model
+
+.. autoclass:: BatesDoubleExpModel
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~BatesDoubleExpModel.__init__
+      ~BatesDoubleExpModel.calibrate
+      ~BatesDoubleExpModel.process
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~BatesDoubleExpModel.Lambda
+      ~BatesDoubleExpModel.kappa
+      ~BatesDoubleExpModel.nuDown
+      ~BatesDoubleExpModel.nuUp
+      ~BatesDoubleExpModel.p
+      ~BatesDoubleExpModel.rho
+      ~BatesDoubleExpModel.sigma
+      ~BatesDoubleExpModel.theta
+      ~BatesDoubleExpModel.v0
+
+   
+   

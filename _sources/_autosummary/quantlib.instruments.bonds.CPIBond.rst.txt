@@ -1,0 +1,47 @@
+quantlib.instruments.bonds.CPIBond
+==================================
+
+.. currentmodule:: quantlib.instruments.bonds
+
+.. autoclass:: CPIBond
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~CPIBond.__init__
+      ~CPIBond.accrued_amount
+      ~CPIBond.clean_yield
+      ~CPIBond.notional
+      ~CPIBond.set_pricing_engine
+      ~CPIBond.settlement_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~CPIBond.cashflows
+      ~CPIBond.clean_price
+      ~CPIBond.dirty_price
+      ~CPIBond.is_expired
+      ~CPIBond.issue_date
+      ~CPIBond.maturity_date
+      ~CPIBond.net_present_value
+      ~CPIBond.npv
+      ~CPIBond.valuation_date
+
+   
+   

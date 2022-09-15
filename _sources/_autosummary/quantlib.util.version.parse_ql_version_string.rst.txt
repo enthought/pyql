@@ -1,0 +1,6 @@
+quantlib.util.version.parse\_ql\_version\_string
+================================================
+
+.. currentmodule:: quantlib.util.version
+
+.. autofunction:: parse_ql_version_string

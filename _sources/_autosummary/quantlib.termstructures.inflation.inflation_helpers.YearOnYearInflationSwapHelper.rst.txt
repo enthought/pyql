@@ -1,0 +1,36 @@
+quantlib.termstructures.inflation.inflation\_helpers.YearOnYearInflationSwapHelper
+==================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.inflation_helpers
+
+.. autoclass:: YearOnYearInflationSwapHelper
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~YearOnYearInflationSwapHelper.__init__
+      ~YearOnYearInflationSwapHelper.set_term_structure
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~YearOnYearInflationSwapHelper.implied_quote
+      ~YearOnYearInflationSwapHelper.latest_date
+
+   
+   

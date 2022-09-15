@@ -1,0 +1,36 @@
+quantlib.indexes.regions.AustraliaRegion
+========================================
+
+.. currentmodule:: quantlib.indexes.regions
+
+.. autoclass:: AustraliaRegion
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~AustraliaRegion.__init__
+      ~AustraliaRegion.from_name
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~AustraliaRegion.code
+      ~AustraliaRegion.name
+
+   
+   

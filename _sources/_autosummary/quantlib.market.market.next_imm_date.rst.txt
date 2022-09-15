@@ -1,0 +1,6 @@
+quantlib.market.market.next\_imm\_date
+======================================
+
+.. currentmodule:: quantlib.market.market
+
+.. autofunction:: next_imm_date

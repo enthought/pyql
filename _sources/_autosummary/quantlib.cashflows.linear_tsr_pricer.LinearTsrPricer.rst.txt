@@ -1,0 +1,40 @@
+quantlib.cashflows.linear\_tsr\_pricer.LinearTsrPricer
+======================================================
+
+.. currentmodule:: quantlib.cashflows.linear_tsr_pricer
+
+.. autoclass:: LinearTsrPricer
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~LinearTsrPricer.__init__
+      ~LinearTsrPricer.caplet_price
+      ~LinearTsrPricer.caplet_rate
+      ~LinearTsrPricer.floorlet_price
+      ~LinearTsrPricer.floorlet_rate
+      ~LinearTsrPricer.swaplet_price
+      ~LinearTsrPricer.swaplet_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~LinearTsrPricer.swaption_volatility
+
+   
+   

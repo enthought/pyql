@@ -1,0 +1,42 @@
+quantlib.termstructures.inflation.piecewise\_zero\_inflation\_curve.PiecewiseZeroInflationCurve
+===============================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.piecewise_zero_inflation_curve
+
+.. autoclass:: PiecewiseZeroInflationCurve
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~PiecewiseZeroInflationCurve.__init__
+      ~PiecewiseZeroInflationCurve.data
+      ~PiecewiseZeroInflationCurve.link_to
+      ~PiecewiseZeroInflationCurve.zero_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~PiecewiseZeroInflationCurve.base_date
+      ~PiecewiseZeroInflationCurve.base_rate
+      ~PiecewiseZeroInflationCurve.index_is_interpolated
+      ~PiecewiseZeroInflationCurve.max_date
+      ~PiecewiseZeroInflationCurve.observation_lag
+      ~PiecewiseZeroInflationCurve.reference_date
+
+   
+   

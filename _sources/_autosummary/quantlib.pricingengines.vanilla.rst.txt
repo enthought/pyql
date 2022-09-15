@@ -1,0 +1,35 @@
+quantlib.pricingengines.vanilla
+===============================
+
+.. automodule:: quantlib.pricingengines.vanilla
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   quantlib.pricingengines.vanilla.fdblackscholesvanillaengine
+   quantlib.pricingengines.vanilla.mceuropeanhestonengine
+   quantlib.pricingengines.vanilla.mcvanillaengine
+   quantlib.pricingengines.vanilla.vanilla
+

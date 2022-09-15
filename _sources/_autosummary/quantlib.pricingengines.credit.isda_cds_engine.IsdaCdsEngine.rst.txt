@@ -1,0 +1,35 @@
+quantlib.pricingengines.credit.isda\_cds\_engine.IsdaCdsEngine
+==============================================================
+
+.. currentmodule:: quantlib.pricingengines.credit.isda_cds_engine
+
+.. autoclass:: IsdaCdsEngine
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~IsdaCdsEngine.__init__
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~IsdaCdsEngine.isda_credit_curve
+      ~IsdaCdsEngine.isda_rate_curve
+
+   
+   

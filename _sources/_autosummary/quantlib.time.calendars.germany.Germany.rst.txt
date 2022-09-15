@@ -1,0 +1,46 @@
+quantlib.time.calendars.germany.Germany
+=======================================
+
+.. currentmodule:: quantlib.time.calendars.germany
+
+.. autoclass:: Germany
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Germany.__init__
+      ~Germany.add_holiday
+      ~Germany.adjust
+      ~Germany.advance
+      ~Germany.business_day_list
+      ~Germany.business_days_between
+      ~Germany.end_of_month
+      ~Germany.holiday_list
+      ~Germany.is_business_day
+      ~Germany.is_end_of_month
+      ~Germany.is_holiday
+      ~Germany.is_weekend
+      ~Germany.remove_holiday
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Germany.name
+
+   
+   

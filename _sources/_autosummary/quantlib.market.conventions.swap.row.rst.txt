@@ -1,0 +1,45 @@
+quantlib.market.conventions.swap.row
+====================================
+
+.. currentmodule:: quantlib.market.conventions.swap
+
+.. autoclass:: row
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~row.__init__
+      ~row.count
+      ~row.index
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~row.calendar
+      ~row.currency
+      ~row.fixed_leg_convention
+      ~row.fixed_leg_daycount
+      ~row.fixed_leg_period
+      ~row.floating_leg_convention
+      ~row.floating_leg_daycount
+      ~row.floating_leg_period
+      ~row.floating_leg_reference
+      ~row.settlement_days
+
+   
+   

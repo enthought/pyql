@@ -1,0 +1,31 @@
+quantlib.instruments.make\_vanilla\_swap
+========================================
+
+.. automodule:: quantlib.instruments.make_vanilla_swap
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      MakeVanillaSwap
+   
+   
+
+   
+   
+   
+
+
+

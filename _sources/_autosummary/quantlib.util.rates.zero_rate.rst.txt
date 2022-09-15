@@ -1,0 +1,6 @@
+quantlib.util.rates.zero\_rate
+==============================
+
+.. currentmodule:: quantlib.util.rates
+
+.. autofunction:: zero_rate

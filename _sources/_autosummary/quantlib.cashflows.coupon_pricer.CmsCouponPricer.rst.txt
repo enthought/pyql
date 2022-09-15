@@ -1,0 +1,40 @@
+quantlib.cashflows.coupon\_pricer.CmsCouponPricer
+=================================================
+
+.. currentmodule:: quantlib.cashflows.coupon_pricer
+
+.. autoclass:: CmsCouponPricer
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~CmsCouponPricer.__init__
+      ~CmsCouponPricer.caplet_price
+      ~CmsCouponPricer.caplet_rate
+      ~CmsCouponPricer.floorlet_price
+      ~CmsCouponPricer.floorlet_rate
+      ~CmsCouponPricer.swaplet_price
+      ~CmsCouponPricer.swaplet_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~CmsCouponPricer.swaption_volatility
+
+   
+   

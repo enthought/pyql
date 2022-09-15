@@ -1,0 +1,44 @@
+quantlib.processes.bates\_process.BatesProcess
+==============================================
+
+.. currentmodule:: quantlib.processes.bates_process
+
+.. autoclass:: BatesProcess
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~BatesProcess.__init__
+      ~BatesProcess.factors
+      ~BatesProcess.size
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~BatesProcess.Lambda
+      ~BatesProcess.delta
+      ~BatesProcess.kappa
+      ~BatesProcess.nu
+      ~BatesProcess.rho
+      ~BatesProcess.s0
+      ~BatesProcess.sigma
+      ~BatesProcess.theta
+      ~BatesProcess.v0
+
+   
+   

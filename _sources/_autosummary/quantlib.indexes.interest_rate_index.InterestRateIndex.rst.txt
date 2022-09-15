@@ -1,0 +1,50 @@
+quantlib.indexes.interest\_rate\_index.InterestRateIndex
+========================================================
+
+.. currentmodule:: quantlib.indexes.interest_rate_index
+
+.. autoclass:: InterestRateIndex
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~InterestRateIndex.__init__
+      ~InterestRateIndex.add_fixing
+      ~InterestRateIndex.add_fixings
+      ~InterestRateIndex.clear_fixings
+      ~InterestRateIndex.fixing
+      ~InterestRateIndex.fixing_date
+      ~InterestRateIndex.forecast_fixing
+      ~InterestRateIndex.is_valid_fixing_date
+      ~InterestRateIndex.maturity_date
+      ~InterestRateIndex.value_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~InterestRateIndex.currency
+      ~InterestRateIndex.day_counter
+      ~InterestRateIndex.family_name
+      ~InterestRateIndex.fixing_calendar
+      ~InterestRateIndex.fixing_days
+      ~InterestRateIndex.name
+      ~InterestRateIndex.tenor
+      ~InterestRateIndex.time_series
+
+   
+   

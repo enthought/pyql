@@ -1,0 +1,26 @@
+quantlib.pricingengines.asian.analyticcontgeomavprice.AnalyticContinuousGeometricAveragePriceAsianEngine
+========================================================================================================
+
+.. currentmodule:: quantlib.pricingengines.asian.analyticcontgeomavprice
+
+.. autoclass:: AnalyticContinuousGeometricAveragePriceAsianEngine
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~AnalyticContinuousGeometricAveragePriceAsianEngine.__init__
+   
+   
+
+   
+   
+   

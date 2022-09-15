@@ -1,0 +1,32 @@
+quantlib.experimental.coupons.cms\_spread\_coupon.CmsSpreadCouponPricer
+=======================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.cms_spread_coupon
+
+.. autoclass:: CmsSpreadCouponPricer
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~CmsSpreadCouponPricer.__init__
+      ~CmsSpreadCouponPricer.caplet_price
+      ~CmsSpreadCouponPricer.caplet_rate
+      ~CmsSpreadCouponPricer.floorlet_price
+      ~CmsSpreadCouponPricer.floorlet_rate
+      ~CmsSpreadCouponPricer.swaplet_price
+      ~CmsSpreadCouponPricer.swaplet_rate
+   
+   
+
+   
+   
+   

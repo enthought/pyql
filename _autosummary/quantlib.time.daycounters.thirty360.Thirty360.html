@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>quantlib.time.daycounters.thirty360.Thirty360 &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="quantlib.time.imm" href="quantlib.time.imm.html" />
+    <link rel="prev" title="quantlib.time.daycounters.thirty360" href="quantlib.time.daycounters.thirty360.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="quantlib-time-daycounters-thirty360-thirty360">
+<h1>quantlib.time.daycounters.thirty360.Thirty360<a class="headerlink" href="#quantlib-time-daycounters-thirty360-thirty360" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="quantlib.time.daycounters.thirty360.Thirty360">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Thirty360</span></span><a class="headerlink" href="#quantlib.time.daycounters.thirty360.Thirty360" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a></p>
+<dl class="simple">
+<dt>The 30/360 day count can be calculated according to a</dt><dd><p>number of convention.</p>
+</dd>
+</dl>
+<p>US convention: if the starting date is the 31st of a month or
+the last day of February, it becomes equal to the 30th of the
+same month.  If the ending date is the 31st of a month and the
+starting date is the 30th or 31th of a month, the ending date
+becomes equal to the 30th.  If the ending date is the last of
+February and the starting date is also the last of February,
+the ending date becomes equal to the 30th.
+Also known as “30/360” or “360/360”.</p>
+<p>Bond Basis convention: if the starting date is the 31st of a
+month, it becomes equal to the 30th of the same month.
+If the ending date is the 31st of a month and the starting
+date is the 30th or 31th of a month, the ending date
+also becomes equal to the 30th of the month.
+Also known as “US (ISMA)”.</p>
+<p>European convention: starting dates or ending dates that
+occur on the 31st of a month become equal to the 30th of the
+same month.
+Also known as “30E/360”, or “Eurobond Basis”</p>
+<p>Italian convention: starting dates or ending dates that
+occur on February and are grater than 27 become equal to 30
+for computational sake.</p>
+<p>ISDA convention: starting or ending dates on the 31st of the
+month become equal to 30; starting dates or ending dates that
+occur on the last day of February also become equal to 30,
+except for the termination date.  Also known as “30E/360
+ISDA”, “30/360 ISDA”, or “30/360 German”.</p>
+<p>NASD convention: if the starting date is the 31st of a
+month, it becomes equal to the 30th of the same month.
+If the ending date is the 31st of a month and the starting
+date is earlier than the 30th of a month, the ending date
+becomes equal to the 1st of the next month, otherwise the
+ending date becomes equal to the 30th of the same month.</p>
+<p>Valid names for 30/360 daycounts are:</p>
+<ul class="simple">
+<li><p>USA</p></li>
+<li><p>BondBasis</p></li>
+<li><p>European</p></li>
+<li><p>EurobondBasis</p></li>
+<li><p>Italian</p></li>
+<li><p>German</p></li>
+<li><p>ISMA</p></li>
+<li><p>ISDA</p></li>
+<li><p>NASD</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.time.daycounters.thirty360.Thirty360.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.daycounters.thirty360.Thirty360.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.time.daycounters.thirty360.Thirty360.__init__" title="quantlib.time.daycounters.thirty360.Thirty360.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">day_count</span></code>(self, Date date1, Date date2)</p></td>
+<td><p>Returns the number of days between two dates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_name</span></code>(type cls, name)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">year_fraction</span></code>(self, Date date1, Date date2, ...)</p></td>
+<td><p>Returns the period between two dates as a fraction of year.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Quantlib cython wrapper</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../users_guide.html">User’s guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference_guide.html">Reference guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../reference_guide.html#reference-documentation-for-the-quantlib-package">Reference documentation for the <code class="xref py py-mod docutils literal notranslate"><span class="pre">quantlib</span></code> package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_guide.html#how-to-wrap-quantlib-classes-with-cython">How to wrap QuantLib classes with cython</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html#documentation">Documentation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../reference_guide.html">Reference guide</a><ul>
+  <li><a href="quantlib.html">quantlib</a><ul>
+  <li><a href="quantlib.time.html">quantlib.time</a><ul>
+  <li><a href="quantlib.time.daycounters.html">quantlib.time.daycounters</a><ul>
+  <li><a href="quantlib.time.daycounters.thirty360.html">quantlib.time.daycounters.thirty360</a><ul>
+      <li>Previous: <a href="quantlib.time.daycounters.thirty360.html" title="previous chapter">quantlib.time.daycounters.thirty360</a></li>
+      <li>Next: <a href="quantlib.time.imm.html" title="next chapter">quantlib.time.imm</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2011, Didrik Pinte, Patrick Henaff.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/_autosummary/quantlib.time.daycounters.thirty360.Thirty360.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

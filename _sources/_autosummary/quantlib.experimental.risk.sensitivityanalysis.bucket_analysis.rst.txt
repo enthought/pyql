@@ -1,0 +1,6 @@
+quantlib.experimental.risk.sensitivityanalysis.bucket\_analysis
+===============================================================
+
+.. currentmodule:: quantlib.experimental.risk.sensitivityanalysis
+
+.. autofunction:: bucket_analysis

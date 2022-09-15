@@ -1,0 +1,33 @@
+quantlib.instruments.make\_cds.MakeCreditDefaultSwap
+====================================================
+
+.. currentmodule:: quantlib.instruments.make_cds
+
+.. autoclass:: MakeCreditDefaultSwap
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~MakeCreditDefaultSwap.__init__
+      ~MakeCreditDefaultSwap.with_cash_settlement_days
+      ~MakeCreditDefaultSwap.with_date_generation_rule
+      ~MakeCreditDefaultSwap.with_last_period_daycounter
+      ~MakeCreditDefaultSwap.with_nominal
+      ~MakeCreditDefaultSwap.with_pricing_engine
+      ~MakeCreditDefaultSwap.with_side
+      ~MakeCreditDefaultSwap.with_upfront_rate
+   
+   
+
+   
+   
+   

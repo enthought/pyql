@@ -1,0 +1,55 @@
+quantlib.cashflows.overnight\_indexed\_coupon.OvernightIndexedCoupon
+====================================================================
+
+.. currentmodule:: quantlib.cashflows.overnight_indexed_coupon
+
+.. autoclass:: OvernightIndexedCoupon
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~OvernightIndexedCoupon.__init__
+      ~OvernightIndexedCoupon.accrued_amount
+      ~OvernightIndexedCoupon.accrued_days
+      ~OvernightIndexedCoupon.accrued_period
+      ~OvernightIndexedCoupon.has_occured
+      ~OvernightIndexedCoupon.set_pricer
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~OvernightIndexedCoupon.accrual_days
+      ~OvernightIndexedCoupon.accrual_end_date
+      ~OvernightIndexedCoupon.accrual_period
+      ~OvernightIndexedCoupon.accrual_start_date
+      ~OvernightIndexedCoupon.adjusted_fixing
+      ~OvernightIndexedCoupon.amount
+      ~OvernightIndexedCoupon.convexity_adjustment
+      ~OvernightIndexedCoupon.date
+      ~OvernightIndexedCoupon.day_counter
+      ~OvernightIndexedCoupon.fixing_date
+      ~OvernightIndexedCoupon.fixing_days
+      ~OvernightIndexedCoupon.index
+      ~OvernightIndexedCoupon.index_fixing
+      ~OvernightIndexedCoupon.nominal
+      ~OvernightIndexedCoupon.rate
+      ~OvernightIndexedCoupon.reference_period_end
+      ~OvernightIndexedCoupon.reference_period_start
+
+   
+   

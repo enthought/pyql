@@ -1,0 +1,6 @@
+quantlib.math.matrixutilities.pseudosqrt.pseudo\_sqrt
+=====================================================
+
+.. currentmodule:: quantlib.math.matrixutilities.pseudosqrt
+
+.. autofunction:: pseudo_sqrt

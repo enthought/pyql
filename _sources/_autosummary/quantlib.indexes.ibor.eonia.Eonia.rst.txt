@@ -1,0 +1,54 @@
+quantlib.indexes.ibor.eonia.Eonia
+=================================
+
+.. currentmodule:: quantlib.indexes.ibor.eonia
+
+.. autoclass:: Eonia
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Eonia.__init__
+      ~Eonia.add_fixing
+      ~Eonia.add_fixings
+      ~Eonia.clear_fixings
+      ~Eonia.fixing
+      ~Eonia.fixing_date
+      ~Eonia.forecast_fixing
+      ~Eonia.from_name
+      ~Eonia.is_valid_fixing_date
+      ~Eonia.maturity_date
+      ~Eonia.value_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Eonia.business_day_convention
+      ~Eonia.currency
+      ~Eonia.day_counter
+      ~Eonia.end_of_month
+      ~Eonia.family_name
+      ~Eonia.fixing_calendar
+      ~Eonia.fixing_days
+      ~Eonia.forwarding_term_structure
+      ~Eonia.name
+      ~Eonia.tenor
+      ~Eonia.time_series
+
+   
+   

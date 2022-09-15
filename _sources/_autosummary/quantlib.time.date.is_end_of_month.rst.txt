@@ -1,0 +1,6 @@
+quantlib.time.date.is\_end\_of\_month
+=====================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autofunction:: is_end_of_month

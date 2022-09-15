@@ -1,0 +1,47 @@
+quantlib.indexes.inflation\_index.InflationIndex
+================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. autoclass:: InflationIndex
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~InflationIndex.__init__
+      ~InflationIndex.add_fixing
+      ~InflationIndex.add_fixings
+      ~InflationIndex.clear_fixings
+      ~InflationIndex.fixing
+      ~InflationIndex.is_valid_fixing_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~InflationIndex.availability_lag
+      ~InflationIndex.currency
+      ~InflationIndex.family_name
+      ~InflationIndex.fixing_calendar
+      ~InflationIndex.frequency
+      ~InflationIndex.interpolated
+      ~InflationIndex.name
+      ~InflationIndex.region
+      ~InflationIndex.time_series
+
+   
+   

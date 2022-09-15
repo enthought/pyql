@@ -1,0 +1,42 @@
+quantlib.pricingengines.vanilla.vanilla
+=======================================
+
+.. automodule:: quantlib.pricingengines.vanilla.vanilla
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      AnalyticBSMHullWhiteEngine
+      AnalyticDividendEuropeanEngine
+      AnalyticEuropeanEngine
+      AnalyticHestonEngine
+      AnalyticHestonHullWhiteEngine
+      BaroneAdesiWhaleyApproximationEngine
+      BatesDetJumpEngine
+      BatesDoubleExpDetJumpEngine
+      BatesDoubleExpEngine
+      BatesEngine
+      FdHestonHullWhiteVanillaEngine
+      VanillaOptionEngine
+   
+   
+
+   
+   
+   
+
+
+

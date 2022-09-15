@@ -1,0 +1,27 @@
+quantlib.math.randomnumbers.sobol\_rsg.SobolRsg
+===============================================
+
+.. currentmodule:: quantlib.math.randomnumbers.sobol_rsg
+
+.. autoclass:: SobolRsg
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~SobolRsg.__init__
+      ~SobolRsg.skip_to
+   
+   
+
+   
+   
+   

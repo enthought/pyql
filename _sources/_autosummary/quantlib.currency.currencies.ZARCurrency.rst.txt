@@ -1,0 +1,39 @@
+quantlib.currency.currencies.ZARCurrency
+========================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoclass:: ZARCurrency
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ZARCurrency.__init__
+      ~ZARCurrency.from_name
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~ZARCurrency.code
+      ~ZARCurrency.fractionSymbol
+      ~ZARCurrency.fractionsPerUnit
+      ~ZARCurrency.name
+      ~ZARCurrency.symbol
+
+   
+   

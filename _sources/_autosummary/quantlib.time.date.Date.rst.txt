@@ -1,0 +1,47 @@
+quantlib.time.date.Date
+=======================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoclass:: Date
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Date.__init__
+      ~Date.from_datetime
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Date.day
+      ~Date.day_of_year
+      ~Date.fraction_of_day
+      ~Date.fraction_of_second
+      ~Date.hours
+      ~Date.microseconds
+      ~Date.milliseconds
+      ~Date.minutes
+      ~Date.month
+      ~Date.seconds
+      ~Date.serial
+      ~Date.weekday
+      ~Date.year
+
+   
+   

@@ -1,0 +1,54 @@
+quantlib.indexes.ibor.euribor.Euribor3M
+=======================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. autoclass:: Euribor3M
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Euribor3M.__init__
+      ~Euribor3M.add_fixing
+      ~Euribor3M.add_fixings
+      ~Euribor3M.clear_fixings
+      ~Euribor3M.fixing
+      ~Euribor3M.fixing_date
+      ~Euribor3M.forecast_fixing
+      ~Euribor3M.from_name
+      ~Euribor3M.is_valid_fixing_date
+      ~Euribor3M.maturity_date
+      ~Euribor3M.value_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Euribor3M.business_day_convention
+      ~Euribor3M.currency
+      ~Euribor3M.day_counter
+      ~Euribor3M.end_of_month
+      ~Euribor3M.family_name
+      ~Euribor3M.fixing_calendar
+      ~Euribor3M.fixing_days
+      ~Euribor3M.forwarding_term_structure
+      ~Euribor3M.name
+      ~Euribor3M.tenor
+      ~Euribor3M.time_series
+
+   
+   

@@ -1,0 +1,23 @@
+quantlib.instruments.api
+========================
+
+.. automodule:: quantlib.instruments.api
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

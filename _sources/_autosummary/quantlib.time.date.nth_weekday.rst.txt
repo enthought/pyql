@@ -1,0 +1,6 @@
+quantlib.time.date.nth\_weekday
+===============================
+
+.. currentmodule:: quantlib.time.date
+
+.. autofunction:: nth_weekday

@@ -1,0 +1,6 @@
+quantlib.util.options.options\_to\_rates
+========================================
+
+.. currentmodule:: quantlib.util.options
+
+.. autofunction:: options_to_rates

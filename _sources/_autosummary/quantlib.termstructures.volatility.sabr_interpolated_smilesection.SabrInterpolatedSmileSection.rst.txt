@@ -1,0 +1,50 @@
+quantlib.termstructures.volatility.sabr\_interpolated\_smilesection.SabrInterpolatedSmileSection
+================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.sabr_interpolated_smilesection
+
+.. autoclass:: SabrInterpolatedSmileSection
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~SabrInterpolatedSmileSection.__init__
+      ~SabrInterpolatedSmileSection.density
+      ~SabrInterpolatedSmileSection.option_price
+      ~SabrInterpolatedSmileSection.vega
+      ~SabrInterpolatedSmileSection.volatility
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~SabrInterpolatedSmileSection.alpha
+      ~SabrInterpolatedSmileSection.beta
+      ~SabrInterpolatedSmileSection.day_counter
+      ~SabrInterpolatedSmileSection.end_criteria
+      ~SabrInterpolatedSmileSection.exercise_date
+      ~SabrInterpolatedSmileSection.exercise_time
+      ~SabrInterpolatedSmileSection.max_error
+      ~SabrInterpolatedSmileSection.max_strike
+      ~SabrInterpolatedSmileSection.min_strike
+      ~SabrInterpolatedSmileSection.nu
+      ~SabrInterpolatedSmileSection.reference_date
+      ~SabrInterpolatedSmileSection.rho
+      ~SabrInterpolatedSmileSection.rms_error
+
+   
+   

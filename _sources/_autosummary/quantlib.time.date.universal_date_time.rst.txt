@@ -1,0 +1,6 @@
+quantlib.time.date.universal\_date\_time
+========================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autofunction:: universal_date_time

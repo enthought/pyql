@@ -1,0 +1,36 @@
+quantlib.indexes.regions.FranceRegion
+=====================================
+
+.. currentmodule:: quantlib.indexes.regions
+
+.. autoclass:: FranceRegion
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FranceRegion.__init__
+      ~FranceRegion.from_name
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~FranceRegion.code
+      ~FranceRegion.name
+
+   
+   

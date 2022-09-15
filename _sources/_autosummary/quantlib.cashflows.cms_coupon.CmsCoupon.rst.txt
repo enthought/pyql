@@ -1,0 +1,56 @@
+quantlib.cashflows.cms\_coupon.CmsCoupon
+========================================
+
+.. currentmodule:: quantlib.cashflows.cms_coupon
+
+.. autoclass:: CmsCoupon
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~CmsCoupon.__init__
+      ~CmsCoupon.accrued_amount
+      ~CmsCoupon.accrued_days
+      ~CmsCoupon.accrued_period
+      ~CmsCoupon.has_occured
+      ~CmsCoupon.set_pricer
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~CmsCoupon.accrual_days
+      ~CmsCoupon.accrual_end_date
+      ~CmsCoupon.accrual_period
+      ~CmsCoupon.accrual_start_date
+      ~CmsCoupon.adjusted_fixing
+      ~CmsCoupon.amount
+      ~CmsCoupon.convexity_adjustment
+      ~CmsCoupon.date
+      ~CmsCoupon.day_counter
+      ~CmsCoupon.fixing_date
+      ~CmsCoupon.fixing_days
+      ~CmsCoupon.index
+      ~CmsCoupon.index_fixing
+      ~CmsCoupon.nominal
+      ~CmsCoupon.rate
+      ~CmsCoupon.reference_period_end
+      ~CmsCoupon.reference_period_start
+      ~CmsCoupon.swap_index
+
+   
+   

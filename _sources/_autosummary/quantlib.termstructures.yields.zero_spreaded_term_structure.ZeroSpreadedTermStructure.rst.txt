@@ -1,0 +1,44 @@
+quantlib.termstructures.yields.zero\_spreaded\_term\_structure.ZeroSpreadedTermStructure
+========================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_spreaded_term_structure
+
+.. autoclass:: ZeroSpreadedTermStructure
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ZeroSpreadedTermStructure.__init__
+      ~ZeroSpreadedTermStructure.discount
+      ~ZeroSpreadedTermStructure.forward_rate
+      ~ZeroSpreadedTermStructure.link_to
+      ~ZeroSpreadedTermStructure.time_from_reference
+      ~ZeroSpreadedTermStructure.zero_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~ZeroSpreadedTermStructure.day_counter
+      ~ZeroSpreadedTermStructure.extrapolation
+      ~ZeroSpreadedTermStructure.max_date
+      ~ZeroSpreadedTermStructure.max_time
+      ~ZeroSpreadedTermStructure.reference_date
+      ~ZeroSpreadedTermStructure.settlement_days
+
+   
+   

@@ -1,0 +1,32 @@
+quantlib.cashflows.fixed\_rate\_coupon.FixedRateLeg
+===================================================
+
+.. currentmodule:: quantlib.cashflows.fixed_rate_coupon
+
+.. autoclass:: FixedRateLeg
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FixedRateLeg.__init__
+      ~FixedRateLeg.items
+      ~FixedRateLeg.with_coupon_rates
+      ~FixedRateLeg.with_last_period_day_counter
+      ~FixedRateLeg.with_notional
+      ~FixedRateLeg.with_payment_adjustment
+      ~FixedRateLeg.with_payment_calendar
+   
+   
+
+   
+   
+   

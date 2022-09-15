@@ -1,0 +1,6 @@
+quantlib.cashflows.inflation\_coupon\_pricer.set\_coupon\_pricer
+================================================================
+
+.. currentmodule:: quantlib.cashflows.inflation_coupon_pricer
+
+.. autofunction:: set_coupon_pricer

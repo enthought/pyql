@@ -1,0 +1,23 @@
+quantlib.currency.api
+=====================
+
+.. automodule:: quantlib.currency.api
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

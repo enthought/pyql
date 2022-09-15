@@ -1,0 +1,39 @@
+quantlib.termstructures.yields.rate\_helpers.RateHelper
+=======================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoclass:: RateHelper
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~RateHelper.__init__
+      ~RateHelper.update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~RateHelper.earliest_date
+      ~RateHelper.implied_quote
+      ~RateHelper.latest_date
+      ~RateHelper.maturity_date
+      ~RateHelper.quote
+
+   
+   

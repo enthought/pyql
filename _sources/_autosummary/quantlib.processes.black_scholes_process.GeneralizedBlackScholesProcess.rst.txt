@@ -1,0 +1,41 @@
+quantlib.processes.black\_scholes\_process.GeneralizedBlackScholesProcess
+=========================================================================
+
+.. currentmodule:: quantlib.processes.black_scholes_process
+
+.. autoclass:: GeneralizedBlackScholesProcess
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~GeneralizedBlackScholesProcess.__init__
+      ~GeneralizedBlackScholesProcess.diffusion
+      ~GeneralizedBlackScholesProcess.drift
+      ~GeneralizedBlackScholesProcess.expectation
+      ~GeneralizedBlackScholesProcess.factors
+      ~GeneralizedBlackScholesProcess.size
+      ~GeneralizedBlackScholesProcess.std_deviation
+      ~GeneralizedBlackScholesProcess.variance
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~GeneralizedBlackScholesProcess.x0
+
+   
+   

@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.sabr.sabr\_volatility
+========================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.sabr
+
+.. autofunction:: sabr_volatility

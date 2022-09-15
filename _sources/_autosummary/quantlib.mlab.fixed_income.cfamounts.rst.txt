@@ -1,0 +1,6 @@
+quantlib.mlab.fixed\_income.cfamounts
+=====================================
+
+.. currentmodule:: quantlib.mlab.fixed_income
+
+.. autofunction:: cfamounts

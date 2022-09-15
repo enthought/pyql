@@ -1,0 +1,32 @@
+quantlib.models.calibration\_helper.BlackCalibrationHelper
+==========================================================
+
+.. currentmodule:: quantlib.models.calibration_helper
+
+.. autoclass:: BlackCalibrationHelper
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~BlackCalibrationHelper.__init__
+      ~BlackCalibrationHelper.black_price
+      ~BlackCalibrationHelper.calibration_error
+      ~BlackCalibrationHelper.impliedVolatility
+      ~BlackCalibrationHelper.market_value
+      ~BlackCalibrationHelper.model_value
+      ~BlackCalibrationHelper.set_pricing_engine
+   
+   
+
+   
+   
+   

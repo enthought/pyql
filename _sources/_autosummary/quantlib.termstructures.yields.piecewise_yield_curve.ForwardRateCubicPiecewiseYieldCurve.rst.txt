@@ -1,0 +1,50 @@
+quantlib.termstructures.yields.piecewise\_yield\_curve.ForwardRateCubicPiecewiseYieldCurve
+==========================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_yield_curve
+
+.. autoclass:: ForwardRateCubicPiecewiseYieldCurve
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ForwardRateCubicPiecewiseYieldCurve.__init__
+      ~ForwardRateCubicPiecewiseYieldCurve.discount
+      ~ForwardRateCubicPiecewiseYieldCurve.forward_rate
+      ~ForwardRateCubicPiecewiseYieldCurve.from_reference_date
+      ~ForwardRateCubicPiecewiseYieldCurve.link_to
+      ~ForwardRateCubicPiecewiseYieldCurve.time_from_reference
+      ~ForwardRateCubicPiecewiseYieldCurve.zero_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~ForwardRateCubicPiecewiseYieldCurve.data
+      ~ForwardRateCubicPiecewiseYieldCurve.dates
+      ~ForwardRateCubicPiecewiseYieldCurve.day_counter
+      ~ForwardRateCubicPiecewiseYieldCurve.extrapolation
+      ~ForwardRateCubicPiecewiseYieldCurve.max_date
+      ~ForwardRateCubicPiecewiseYieldCurve.max_time
+      ~ForwardRateCubicPiecewiseYieldCurve.nodes
+      ~ForwardRateCubicPiecewiseYieldCurve.reference_date
+      ~ForwardRateCubicPiecewiseYieldCurve.settlement_days
+      ~ForwardRateCubicPiecewiseYieldCurve.times
+      ~ForwardRateCubicPiecewiseYieldCurve.trait
+
+   
+   

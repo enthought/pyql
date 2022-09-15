@@ -1,0 +1,55 @@
+quantlib.cashflows.floating\_rate\_coupon.FloatingRateCoupon
+============================================================
+
+.. currentmodule:: quantlib.cashflows.floating_rate_coupon
+
+.. autoclass:: FloatingRateCoupon
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FloatingRateCoupon.__init__
+      ~FloatingRateCoupon.accrued_amount
+      ~FloatingRateCoupon.accrued_days
+      ~FloatingRateCoupon.accrued_period
+      ~FloatingRateCoupon.has_occured
+      ~FloatingRateCoupon.set_pricer
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~FloatingRateCoupon.accrual_days
+      ~FloatingRateCoupon.accrual_end_date
+      ~FloatingRateCoupon.accrual_period
+      ~FloatingRateCoupon.accrual_start_date
+      ~FloatingRateCoupon.adjusted_fixing
+      ~FloatingRateCoupon.amount
+      ~FloatingRateCoupon.convexity_adjustment
+      ~FloatingRateCoupon.date
+      ~FloatingRateCoupon.day_counter
+      ~FloatingRateCoupon.fixing_date
+      ~FloatingRateCoupon.fixing_days
+      ~FloatingRateCoupon.index
+      ~FloatingRateCoupon.index_fixing
+      ~FloatingRateCoupon.nominal
+      ~FloatingRateCoupon.rate
+      ~FloatingRateCoupon.reference_period_end
+      ~FloatingRateCoupon.reference_period_start
+
+   
+   
