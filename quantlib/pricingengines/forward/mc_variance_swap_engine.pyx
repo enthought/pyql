@@ -19,10 +19,11 @@ cdef class MCVarianceSwapEngine(PricingEngine):
 
     as described in Demeterfi, Derman, Kamal & Zou,
     "A Guide to Volatility and Variance Swaps", 1999
-    TODO define tolerance of numerical integral and incorporate it
-          in errorEstimate
+    TODO define tolerance of numerical integral and incorporate it 
+    in errorEstimate
+    
     Test returned fair variances checked for consistency with
-          implied volatility curve.
+    implied volatility curve.
 
     Calculate variance via Monte Carlo
 

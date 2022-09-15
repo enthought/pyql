@@ -1,7 +1,9 @@
+"""Abstract base class for market observables"""
 from quantlib.handle cimport static_pointer_cast
 from quantlib._observable cimport Observable as QlObservable
 
 cdef class Quote(Observable):
+    """Abstract base class for market observables"""
 
     def __init__(self):
         raise ValueError(

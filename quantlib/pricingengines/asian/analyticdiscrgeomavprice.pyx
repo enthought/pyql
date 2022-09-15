@@ -8,7 +8,8 @@ cimport quantlib.processes._black_scholes_process as _bsp
 
 
 cdef class AnalyticDiscreteGeometricAveragePriceAsianEngine(PricingEngine):
-    """ Pricing engine for European discrete geometric average price Asian
+    """ Pricing engine for European discrete geometric average price Asian option
+
         This class implements a discrete geometric average price Asian
         option, with European exercise.  The formula is from "Asian
         Option", E. Levy (1997) in "Exotic Options: The State of the
