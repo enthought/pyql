@@ -8,7 +8,7 @@ from quantlib.time._date cimport Date as QlDate, Period as QlPeriod
 from quantlib.time._schedule cimport Rule
 from quantlib.pricingengines.engine cimport PricingEngine
 from . cimport _credit_default_swap as _cds
-from . cimport _instrument as _in
+from .. cimport _instrument as _in
 from .credit_default_swap cimport CreditDefaultSwap
 from ._make_cds cimport cast
 

@@ -1,4 +1,4 @@
-from .instrument cimport Instrument
+from ..instrument cimport Instrument
 
 cdef class VarianceSwap(Instrument):
     pass

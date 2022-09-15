@@ -9,7 +9,7 @@ from .option cimport Exercise
 from .swap import SwapType
 from .vanillaswap cimport VanillaSwap
 from . cimport _vanillaswap
-from . cimport _instrument
+from .. cimport _instrument
 
 cdef class Swaption(Option):
     def __init__(self, VanillaSwap swap not None, Exercise exercise not None,

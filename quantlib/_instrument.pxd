@@ -1,4 +1,4 @@
-include '../types.pxi'
+from quantlib.types cimport Real
 
 from quantlib.handle cimport shared_ptr
 from quantlib.pricingengines._pricing_engine cimport PricingEngine

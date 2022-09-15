@@ -3,7 +3,7 @@ from quantlib.types cimport Real
 from quantlib.cashflows.rateaveraging cimport RateAveraging
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.indexes._ibor_index cimport OvernightIndex
-from quantlib.instruments._instrument cimport Instrument
+from quantlib._instrument cimport Instrument
 from quantlib._quote cimport Quote
 from quantlib.time._date cimport Date
 

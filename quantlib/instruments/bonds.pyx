@@ -8,7 +8,7 @@
 include '../types.pxi'
 
 cimport quantlib.instruments._bonds as _bonds
-cimport quantlib.instruments._instrument as _instrument
+cimport quantlib._instrument as _instrument
 cimport quantlib.pricingengines._pricing_engine as _pe
 cimport quantlib.time._date as _date
 
@@ -16,7 +16,6 @@ from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 from libcpp cimport bool
 from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle, static_pointer_cast
-from quantlib.instruments.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time.businessdayconvention cimport (
     BusinessDayConvention, Following, Unadjusted )
@@ -130,7 +129,7 @@ cdef class Bond(Instrument):
 cdef class FixedRateBond(Bond):
     """ Fixed rate bond.
 
-    Support: 
+    Support:
         - simple annual compounding coupon rates
 
     Unsupported: (needs interfacing)

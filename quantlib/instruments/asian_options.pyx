@@ -11,7 +11,7 @@ from quantlib.instruments.payoffs cimport StrikedTypePayoff
 
 from .option cimport Exercise, OneAssetOption
 from . cimport _payoffs
-from ._instrument cimport Instrument as _Instrument
+from .._instrument cimport Instrument as _Instrument
 from ._asian_options cimport (
     ContinuousAveragingAsianOption as _ContinuousAveragingAsianOption,
     DiscreteAveragingAsianOption as _DiscreteAveragingAsianOption,
