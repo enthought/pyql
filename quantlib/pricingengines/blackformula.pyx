@@ -78,12 +78,13 @@ def blackFormulaImpliedStdDev(OptionType cp, Real strike,
 
 def bachelier_black_formula(OptionType option_type, Real strike, Real forward, Real stdDev,
                             Real discount=1.0):
-    """ Black style formula when forward is normal rather than
-        log-normal. This is essentially the model of Bachelier.
+    """ Black style formula when forward is normal rather than log-normal.
+
+    This is essentially the model of Bachelier.
 
 
     Parameters
-    ==========
+    ----------
 
     option_type: str or option.Call/Put
 
@@ -95,7 +96,9 @@ def bachelier_black_formula(OptionType option_type, Real strike, Real forward, R
 
     discount: float
 
+
     .. warning::
+
         Bachelier model needs absolute volatility, not
         percentage volatility. Standard deviation is
         absoluteVolatility*sqrt(timeToMaturity)
