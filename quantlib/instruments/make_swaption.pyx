@@ -7,7 +7,7 @@ from quantlib.time.date cimport Period, Date
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time._period cimport Days
 cimport quantlib.indexes._swap_index as _si
-cimport quantlib.instruments._instrument as _in
+cimport quantlib._instrument as _in
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.instruments._swaption cimport Swaption as _Swaption, Settlement
 from quantlib.instruments.swaption cimport Swaption

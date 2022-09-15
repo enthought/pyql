@@ -29,7 +29,7 @@ from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 cimport quantlib.termstructures._yield_term_structure as _yts
 
 cimport quantlib._index as _in
-cimport quantlib.instruments._instrument as _instrument
+cimport quantlib._instrument as _instrument
 from . cimport _swap_index as _si
 from . cimport _ibor_index as _ii
 

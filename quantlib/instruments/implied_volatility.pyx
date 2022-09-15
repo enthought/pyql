@@ -11,7 +11,7 @@ include '../types.pxi'
 
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr, static_pointer_cast
-from quantlib.instruments.instrument cimport Instrument
+from quantlib.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.quotes.simplequote cimport SimpleQuote
 

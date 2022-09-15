@@ -1,5 +1,5 @@
 
-from quantlib.instruments.instrument cimport Instrument
+from quantlib.instrument cimport Instrument
 
 cdef class Bond(Instrument):
     pass

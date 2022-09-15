@@ -14,12 +14,11 @@ from libcpp cimport bool
 from quantlib.handle cimport shared_ptr, optional
 
 cimport quantlib.instruments._credit_default_swap as _cds
-cimport quantlib.instruments._instrument as _instrument
+cimport quantlib._instrument as _instrument
 cimport quantlib.pricingengines._pricing_engine as _pe
 cimport quantlib.time._calendar as _calendar
 cimport quantlib.time._schedule as _schedule
 
-from quantlib.instruments.instrument cimport Instrument
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time.date cimport Date, Period

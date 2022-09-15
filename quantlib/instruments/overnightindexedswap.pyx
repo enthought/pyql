@@ -1,3 +1,4 @@
+"""Overnight index swap paying compounded overnight vs. fixed"""
 from quantlib.types cimport Real
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
@@ -15,7 +16,7 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.handle cimport make_shared, static_pointer_cast
 from .swap cimport Swap
 from .swap import SwapType as PySwapType
-from quantlib.instruments._instrument cimport Instrument
+from quantlib._instrument cimport Instrument
 cimport quantlib.indexes._ibor_index as _ii
 cimport quantlib._index as _ind
 cimport quantlib.time._daycounter as _dc
@@ -25,7 +26,7 @@ cdef inline _ois.OvernightIndexedSwap* get_OIS(OvernightIndexedSwap self):
         return <_ois.OvernightIndexedSwap*>self._thisptr.get()
 
 cdef class OvernightIndexedSwap(Swap):
-
+    """Overnight indexed swap: fix vs compounded overnight rate"""
     def __init__(self, Type swap_type, nominal, Schedule schedule,
                  Rate fixed_rate, DayCounter fixed_dc, OvernightIndex overnight_index,
                  Spread spread=0.0, Natural payment_lag=0,

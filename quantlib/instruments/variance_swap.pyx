@@ -2,8 +2,7 @@ include '../types.pxi'
 
 from quantlib.handle cimport shared_ptr
 from cython.operator cimport dereference as deref
-from .instrument cimport Instrument
-from ._instrument cimport Instrument as _Instrument
+from .._instrument cimport Instrument as _Instrument
 from quantlib.time.date cimport (Date, _pydate_from_qldate, _qldate_from_pydate)
 from quantlib.time._date cimport Date as _Date
 from libcpp cimport bool

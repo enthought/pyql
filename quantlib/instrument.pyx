@@ -1,3 +1,4 @@
+"""Abstract instrument class"""
 from cython.operator cimport dereference as deref
 from quantlib.time.date cimport date_from_qldate
 from quantlib.pricingengines.engine cimport PricingEngine
@@ -5,6 +6,11 @@ from quantlib.handle cimport static_pointer_cast
 from quantlib._observable cimport Observable as QlObservable
 
 cdef class Instrument(Observable):
+    """Abstract instrument class
+
+    This class is purely abstract and defines the interface of concrete
+    instruments which will be derived from this one.
+    """
 
     def set_pricing_engine(self, PricingEngine engine not None):
         '''Sets the pricing engine.

@@ -1,3 +1,4 @@
+"""Simple fixed-rate vs Libor swap"""
 from cython.operator cimport dereference as deref
 from quantlib.types cimport Rate, Real, Spread
 from quantlib.handle cimport optional, static_pointer_cast

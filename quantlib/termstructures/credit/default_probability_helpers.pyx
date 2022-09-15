@@ -30,7 +30,7 @@ from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTe
 from quantlib.instruments.credit_default_swap cimport CreditDefaultSwap
 cimport quantlib.instruments._credit_default_swap as _cds
 from quantlib.instruments._credit_default_swap cimport PricingModel
-cimport quantlib.instruments._instrument as _instrument
+cimport quantlib._instrument as _instrument
 from quantlib.quote cimport Quote
 
 cdef class CdsHelper:

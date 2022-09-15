@@ -5,11 +5,11 @@ from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
 from quantlib._defines cimport QL_NULL_REAL
 cimport quantlib.quotes._simplequote as _sq
 from . cimport _sensitivityanalysis as _sa
-cimport quantlib.instruments._instrument as _it
+cimport quantlib._instrument as _it
 from libcpp.vector cimport vector
 from libcpp.pair cimport pair
 from quantlib.quotes.simplequote cimport SimpleQuote
-from quantlib.instruments.instrument cimport Instrument
+from quantlib.instrument cimport Instrument
 
 cpdef enum SensitivityAnalysis:
     OneSide

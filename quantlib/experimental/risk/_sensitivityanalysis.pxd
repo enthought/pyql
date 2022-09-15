@@ -1,7 +1,7 @@
 include '../../types.pxi'
 
 from quantlib.handle cimport shared_ptr, Handle
-from quantlib.instruments._instrument cimport Instrument
+from quantlib._instrument cimport Instrument
 from quantlib.quotes._simplequote cimport SimpleQuote
 from libcpp.vector cimport vector
 from libcpp.pair cimport pair

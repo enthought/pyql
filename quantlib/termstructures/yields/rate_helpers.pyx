@@ -11,7 +11,7 @@ include '../../types.pxi'
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 
-cimport quantlib.instruments._instrument as _ins
+cimport quantlib._instrument as _ins
 from quantlib.instruments.vanillaswap cimport VanillaSwap
 cimport quantlib.instruments._vanillaswap as _vs
 

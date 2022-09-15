@@ -8,7 +8,7 @@ from quantlib.time._period cimport Days
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 cimport quantlib.indexes._swap_index as _si
 cimport quantlib.indexes._ibor_index as _ii
-cimport quantlib.instruments._instrument as _in
+cimport quantlib._instrument as _in
 cimport quantlib.instruments._swap as _swap
 
 cdef class MakeCms:

@@ -12,7 +12,7 @@ from quantlib.time._schedule cimport Rule
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.pricingengines.engine cimport PricingEngine
 cimport quantlib.indexes._ibor_index as _ii
-cimport quantlib.instruments._instrument as _in
+cimport quantlib._instrument as _in
 from quantlib.instruments.vanillaswap cimport VanillaSwap
 from quantlib.instruments._vanillaswap cimport VanillaSwap as _VanillaSwap
 

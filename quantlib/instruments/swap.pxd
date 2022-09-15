@@ -1,4 +1,4 @@
-from .instrument cimport Instrument
+from ..instrument cimport Instrument
 
 cdef extern from "ql/instruments/swap.hpp" namespace "QuantLib::Swap" nogil:
     cpdef enum SwapType "QuantLib::Swap::Type":

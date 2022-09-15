@@ -1,4 +1,4 @@
-from ._instrument cimport Instrument
+from .._instrument cimport Instrument
 from quantlib.time._date cimport Date
 from libcpp cimport bool
 
