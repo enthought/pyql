@@ -20,19 +20,19 @@ class SofrFuture(unittest.TestCase):
         """ testing bootstrap over SOFR futures..."""
 
         sofr_quotes = [
-            [Monthly, Oct, 2018, 97.8175, RateAveraging.Simple],
-            [Monthly, Nov, 2018, 97.770, RateAveraging.Simple],
-            [Monthly, Dec, 2018, 97.685, RateAveraging.Simple],
-            [Monthly, Jan, 2019, 97.595, RateAveraging.Simple],
-            [Monthly, Feb, 2019, 97.590, RateAveraging.Simple],
-            [Monthly, Mar, 2019, 97.525, RateAveraging.Simple],
-            [Quarterly, Mar, 2019, 97.440, RateAveraging.Compound],
-            [Quarterly, Jun, 2019, 97.295, RateAveraging.Compound],
-            [Quarterly, Sep, 2019, 97.220, RateAveraging.Compound],
-            [Quarterly, Dec, 2019, 97.170, RateAveraging.Compound],
-            [Quarterly, Mar, 2020, 97.160, RateAveraging.Compound],
-            [Quarterly, Jun, 2020, 97.165, RateAveraging.Compound],
-            [Quarterly, Sep, 2020, 97.175, RateAveraging.Compound],
+            [Monthly, Oct, 2018, 97.8175],
+            [Monthly, Nov, 2018, 97.770],
+            [Monthly, Dec, 2018, 97.685],
+            [Monthly, Jan, 2019, 97.595],
+            [Monthly, Feb, 2019, 97.590],
+            [Monthly, Mar, 2019, 97.525],
+            [Quarterly, Mar, 2019, 97.440],
+            [Quarterly, Jun, 2019, 97.295],
+            [Quarterly, Sep, 2019, 97.220],
+            [Quarterly, Dec, 2019, 97.170],
+            [Quarterly, Mar, 2020, 97.160],
+            [Quarterly, Jun, 2020, 97.165],
+            [Quarterly, Sep, 2020, 97.175],
         ]
         index = Sofr()
         index.add_fixing(Date(1, October, 2018), 0.0222)
@@ -55,9 +55,9 @@ class SofrFuture(unittest.TestCase):
         index.add_fixing(Date(25, October, 2018), 0.0219)
 
         helpers = []
-        for freq, month, year, price, compounding in sofr_quotes:
+        for freq, month, year, price in sofr_quotes:
             helpers.append(
-                SofrFutureRateHelper(price, month, year, freq, index, 0.0, compounding)
+                SofrFutureRateHelper(price, month, year, freq, 0.0)
             )
 
         curve = PiecewiseYieldCurve[BootstrapTrait.Discount, Linear].from_reference_date(self.today, helpers, Actual365Fixed())

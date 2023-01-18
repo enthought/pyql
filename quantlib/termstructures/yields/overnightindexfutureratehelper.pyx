@@ -29,7 +29,7 @@ cdef class OvernightIndexFutureRateHelper(RateHelper):
         )
 
 cdef class SofrFutureRateHelper(OvernightIndexFutureRateHelper):
-    def __init__(self, price, Month reference_month, Year reference_year, Frequency reference_freq, OvernightIndex overnight_index, convexity_adjustment, RateAveraging averaging_method):
+    def __init__(self, price, Month reference_month, Year reference_year, Frequency reference_freq, convexity_adjustment=0.0):
         if isinstance(price, float) and isinstance(convexity_adjustment, float):
             self._thisptr.reset(
                 new _oifrh.SofrFutureRateHelper(
@@ -37,9 +37,7 @@ cdef class SofrFutureRateHelper(OvernightIndexFutureRateHelper):
                     reference_month,
                     reference_year,
                     reference_freq,
-                    static_pointer_cast[_ii.OvernightIndex](overnight_index._thisptr),
                     <Real>convexity_adjustment,
-                    averaging_method
                 )
             )
         elif isinstance(price, Quote) and isinstance(convexity_adjustment, Quote):
@@ -49,8 +47,6 @@ cdef class SofrFutureRateHelper(OvernightIndexFutureRateHelper):
                     reference_month,
                     reference_year,
                     reference_freq,
-                    static_pointer_cast[_ii.OvernightIndex](overnight_index._thisptr),
                     (<Quote>convexity_adjustment).handle(),
-                    averaging_method
                 )
             )

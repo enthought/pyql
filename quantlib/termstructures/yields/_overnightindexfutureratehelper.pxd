@@ -24,13 +24,9 @@ cdef extern from 'ql/termstructures/yield/overnightindexfutureratehelper.hpp' na
                              Month referenceMonth,
                              Year referenceYear,
                              Frequency referenceFreq,
-                             shared_ptr[OvernightIndex]& overnightIndex,
-                             Handle[Quote]& convexityAdjustment, # = Handle<Quote>(),
-                             RateAveraging averagingMethod) # = RateAveraging::Compound)
+                             Handle[Quote]& convexityAdjustment) # = Handle<Quote>(),
         SofrFutureRateHelper(Real price,
                              Month referenceMonth,
                              Year referenceYear,
                              Frequency referenceFreq,
-                             shared_ptr[OvernightIndex]& overnightIndex,
-                             Real convexityAdjustment, # = 0,
-                             RateAveraging averagingMethod) # = RateAveraging::Compound)
+                             Real convexityAdjustment) # = 0,
