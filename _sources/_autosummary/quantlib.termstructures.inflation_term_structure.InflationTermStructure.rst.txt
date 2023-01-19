@@ -30,7 +30,6 @@ quantlib.termstructures.inflation\_term\_structure.InflationTermStructure
    
       ~InflationTermStructure.base_date
       ~InflationTermStructure.base_rate
-      ~InflationTermStructure.index_is_interpolated
       ~InflationTermStructure.max_date
       ~InflationTermStructure.observation_lag
       ~InflationTermStructure.reference_date

@@ -32,7 +32,6 @@ quantlib.termstructures.inflation\_term\_structure.YoYInflationTermStructure
    
       ~YoYInflationTermStructure.base_date
       ~YoYInflationTermStructure.base_rate
-      ~YoYInflationTermStructure.index_is_interpolated
       ~YoYInflationTermStructure.max_date
       ~YoYInflationTermStructure.observation_lag
       ~YoYInflationTermStructure.reference_date
