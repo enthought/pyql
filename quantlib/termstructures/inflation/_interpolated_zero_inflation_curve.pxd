@@ -18,7 +18,6 @@ cdef extern from 'ql/termstructures/inflation/interpolatedzeroinflationcurve.hpp
                                        const DayCounter& dayCounter,
                                        const Period& lag,
                                        Frequency frequency,
-                                       bool indexIsInterpolated,
                                        const vector[Date]& dates,
                                        vector[Rate]& rates) #should be const here
         vector[Date]& dates()

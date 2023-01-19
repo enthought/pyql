@@ -20,7 +20,7 @@ cdef class PiecewiseZeroInflationCurve(InterpolatedZeroInflationCurve):
     def __init__(self, Interpolator interpolator,
                  Date reference_date not None, Calendar calendar not None,
                  DayCounter day_counter not None, Period lag not None,
-                 Frequency frequency, bool index_is_interpolated,
+                 Frequency frequency,
                  Rate base_zero_rate,
                  list instruments, Real accuracy=1e-12):
 
@@ -38,7 +38,7 @@ cdef class PiecewiseZeroInflationCurve(InterpolatedZeroInflationCurve):
                     deref(calendar._thisptr),
                     deref(day_counter._thisptr),
                     deref(lag._thisptr),
-                    frequency, index_is_interpolated, base_zero_rate,
+                    frequency, base_zero_rate,
                     instruments_cpp,
                     accuracy))
 
@@ -49,7 +49,7 @@ cdef class PiecewiseZeroInflationCurve(InterpolatedZeroInflationCurve):
                     deref(calendar._thisptr),
                     deref(day_counter._thisptr),
                     deref(lag._thisptr),
-                    frequency, index_is_interpolated, base_zero_rate,
+                    frequency, base_zero_rate,
                     instruments_cpp,
                     accuracy))
         else:
@@ -59,6 +59,6 @@ cdef class PiecewiseZeroInflationCurve(InterpolatedZeroInflationCurve):
                     deref(calendar._thisptr),
                     deref(day_counter._thisptr),
                     deref(lag._thisptr),
-                    frequency, index_is_interpolated, base_zero_rate,
+                    frequency, base_zero_rate,
                     instruments_cpp,
                     accuracy))

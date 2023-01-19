@@ -55,10 +55,6 @@ cdef class InflationTermStructure:
         return self._thisptr.get().baseRate()
 
     @property
-    def index_is_interpolated(self):
-        return self._thisptr.get().indexIsInterpolated()
-
-    @property
     def observation_lag(self):
         return period_from_qlperiod(self._thisptr.get().observationLag())
 

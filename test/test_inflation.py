@@ -108,7 +108,7 @@ class TestCPIBond(unittest.TestCase):
         self.cpi_ts.link_to(
             PiecewiseZeroInflationCurve(Interpolator.Linear,
                                         evaluation_date, self.calendar, day_counter,
-                                        observation_lag, self.ii.frequency, self.ii.interpolated,
+                                        observation_lag, self.ii.frequency,
                                         base_zero_rate, self.helpers))
 
     def test_clean_price(self):
