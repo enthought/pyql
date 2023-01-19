@@ -10,7 +10,7 @@ class ObjectRegistry(object):
 
     def help(self):
         table = tabulate.tabulate(
-            self._lookup.items(), headers=['Name', self._name.capitalize()]
+            [[k, str(v)] for k, v in self._lookup.items()], headers=['Name', self._name.capitalize()]
         )
         help_str = "Valid names are:\n\n{0}".format(table)
         return help_str
@@ -24,5 +24,3 @@ class ObjectRegistry(object):
     def register(self, name, calendar):
         if name not in self._lookup:
             self._lookup[name] = calendar
-
-
