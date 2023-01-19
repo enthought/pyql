@@ -19,7 +19,6 @@ cdef extern from 'ql/termstructures/inflation/piecewisezeroinflationcurve.hpp' n
                                     const DayCounter& dayCounter,
                                     const Period& lag,
                                     Frequency frequency,
-                                    bool index_is_interpolated,
                                     Rate baseZeroRate,
                                     const vector[shared_ptr[ZeroInflationTraits.helper]]& instruments,
                                     Real accuracy) #= 1.0e-12,

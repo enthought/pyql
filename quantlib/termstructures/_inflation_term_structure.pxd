@@ -29,7 +29,6 @@ cdef extern from 'ql/termstructures/inflationtermstructure.hpp' namespace 'Quant
         Date& maxDate()
         Date& baseDate()
         Period observationLag()
-        bool indexIsInterpolated()
         Rate baseRate()
 
 
@@ -40,7 +39,6 @@ cdef extern from 'ql/termstructures/inflationtermstructure.hpp' namespace 'Quant
                                    Rate baseZeroRate,
                                    Period& lag,
                                    Frequency frequency,
-                                   bool indexIsInterpolated,
                                    const Handle[YieldTermStructure]& yTS,
                                    const shared_ptr[Seasonality]& seasonality # = shared_ptr<Seasonality>()
         ) except +
@@ -50,7 +48,6 @@ cdef extern from 'ql/termstructures/inflationtermstructure.hpp' namespace 'Quant
                                    Rate baseZeroRate,
                                    const Period& lag,
                                    Frequency frequency,
-                                   bool indexIsInterpolated,
                                    const Handle[YieldTermStructure]& yTS,
                                    const shared_ptr[Seasonality] &seasonality # = shared_ptr<Seasonality>())
         ) except +
@@ -60,7 +57,6 @@ cdef extern from 'ql/termstructures/inflationtermstructure.hpp' namespace 'Quant
                                    Rate baseZeroRate,
                                    const Period& lag,
                                    Frequency frequency,
-                                   bool indexIsInterpolated,
                                    const Handle[YieldTermStructure]& yTS,
                                    const shared_ptr[Seasonality] &seasonality # = boost::shared_ptr<Seasonality>()
         ) except +

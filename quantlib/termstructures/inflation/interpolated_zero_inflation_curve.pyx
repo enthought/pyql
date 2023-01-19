@@ -18,7 +18,6 @@ cdef class InterpolatedZeroInflationCurve(ZeroInflationTermStructure):
                  Date reference_date, Calendar calendar not None,
                  DayCounter day_counter not None,
                  Period lag not None, Frequency frequency,
-                 bool index_is_interpolated,
                  list dates, vector[Rate] rates):
 
         cdef vector[_date.Date] _dates
@@ -33,7 +32,6 @@ cdef class InterpolatedZeroInflationCurve(ZeroInflationTermStructure):
                     deref(reference_date._thisptr), deref(calendar._thisptr),
                     deref(day_counter._thisptr),
                     deref(lag._thisptr), frequency,
-                    index_is_interpolated,
                     _dates, rates))
 
         elif interpolator == LogLinear:
@@ -42,7 +40,6 @@ cdef class InterpolatedZeroInflationCurve(ZeroInflationTermStructure):
                     deref(reference_date._thisptr), deref(calendar._thisptr),
                     deref(day_counter._thisptr),
                     deref(lag._thisptr), frequency,
-                    index_is_interpolated,
                     _dates, rates))
 
         elif interpolator == BackwardFlat:
@@ -51,7 +48,6 @@ cdef class InterpolatedZeroInflationCurve(ZeroInflationTermStructure):
                     deref(reference_date._thisptr), deref(calendar._thisptr),
                     deref(day_counter._thisptr),
                     deref(lag._thisptr), frequency,
-                    index_is_interpolated,
                     _dates, rates))
         else:
             raise ValueError("interpolator needs to be any of Linear, LogLinear or BackwardFlat")
