@@ -1,0 +1,38 @@
+quantlib.instrument.Instrument
+==============================
+
+.. currentmodule:: quantlib.instrument
+
+.. autoclass:: Instrument
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Instrument.__init__
+      ~Instrument.set_pricing_engine
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Instrument.is_expired
+      ~Instrument.net_present_value
+      ~Instrument.npv
+      ~Instrument.valuation_date
+
+   
+   

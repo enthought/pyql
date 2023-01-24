@@ -39,6 +39,16 @@
 <dt class="sig sig-object py" id="quantlib.index.Index">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Index</span></span><a class="headerlink" href="#quantlib.index.Index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Abstract base class for indices</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>this class performs no check that the
+provided/requested fixings are for dates in the past,
+i.e. for dates less than or equal to the evaluation
+date. It is up to the client code to take care of
+possible inconsistencies due to “seeing in the
+future”</p>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.index.Index.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.index.Index.__init__" title="Permalink to this definition">¶</a></dt>
@@ -70,14 +80,14 @@
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixing_calendar</span></code></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.index.Index.fixing_calendar" title="quantlib.index.Index.fixing_calendar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixing_calendar</span></code></a></p></td>
+<td><p>the calendar defining valid fixing dates</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.index.Index.name" title="quantlib.index.Index.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></p></td>
+<td><p>the name of the index</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_series</span></code></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.index.Index.time_series" title="quantlib.index.Index.time_series"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_series</span></code></a></p></td>
+<td><p>the fixing TimeSeries</p></td>
 </tr>
 </tbody>
 </table>
@@ -101,10 +111,33 @@
 <span class="sig-name descname"><span class="pre">fixing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">fixingDate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">forecast_todays_fixing=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.index.Index.fixing" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quantlib.index.Index.fixing_calendar">
+<span class="sig-name descname"><span class="pre">fixing_calendar</span></span><a class="headerlink" href="#quantlib.index.Index.fixing_calendar" title="Permalink to this definition">¶</a></dt>
+<dd><p>the calendar defining valid fixing dates</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.index.Index.is_valid_fixing_date">
 <span class="sig-name descname"><span class="pre">is_valid_fixing_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">fixing_date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.index.Index.is_valid_fixing_date" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quantlib.index.Index.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#quantlib.index.Index.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>the name of the index</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This method is used for output and comparison
+between indexes.</p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quantlib.index.Index.time_series">
+<span class="sig-name descname"><span class="pre">time_series</span></span><a class="headerlink" href="#quantlib.index.Index.time_series" title="Permalink to this definition">¶</a></dt>
+<dd><p>the fixing TimeSeries</p>
+</dd></dl>
 
 </dd></dl>
 

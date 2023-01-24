@@ -36,6 +36,7 @@
    quantlib.experimental
    quantlib.index
    quantlib.indexes
+   quantlib.instrument
    quantlib.instruments
    quantlib.interest_rate
    quantlib.market

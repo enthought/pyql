@@ -375,7 +375,7 @@
 </li>
         <li><a href="_autosummary/quantlib.currency.currencies.INRCurrency.html#quantlib.currency.currencies.INRCurrency.__init__">(INRCurrency method)</a>
 </li>
-        <li><a href="_autosummary/quantlib.instruments.instrument.Instrument.html#quantlib.instruments.instrument.Instrument.__init__">(Instrument method)</a>
+        <li><a href="_autosummary/quantlib.instrument.Instrument.html#quantlib.instrument.Instrument.__init__">(Instrument method)</a>
 </li>
         <li><a href="_autosummary/quantlib.interest_rate.InterestRate.html#quantlib.interest_rate.InterestRate.__init__">(InterestRate method)</a>
 </li>
@@ -1272,6 +1272,8 @@
 </li>
       <li><a href="_autosummary/quantlib.index.Index.html#quantlib.index.Index.fixing">fixing() (Index method)</a>
 </li>
+      <li><a href="_autosummary/quantlib.index.Index.html#quantlib.index.Index.fixing_calendar">fixing_calendar (Index attribute)</a>
+</li>
       <li><a href="_autosummary/quantlib.indexes.interest_rate_index.InterestRateIndex.html#quantlib.indexes.interest_rate_index.InterestRateIndex.fixing_date">fixing_date() (InterestRateIndex method)</a>
 </li>
       <li><a href="_autosummary/quantlib.util.rates.flat_rate.html#quantlib.util.rates.flat_rate">flat_rate() (in module quantlib.util.rates)</a>
@@ -1524,7 +1526,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/quantlib.settings.Settings.html#quantlib.settings.Settings.instance">instance() (Settings method)</a>
 </li>
-      <li><a href="_autosummary/quantlib.instruments.instrument.Instrument.html#quantlib.instruments.instrument.Instrument">Instrument (class in quantlib.instruments.instrument)</a>
+      <li><a href="_autosummary/quantlib.instrument.Instrument.html#quantlib.instrument.Instrument">Instrument (class in quantlib.instrument)</a>
 </li>
       <li><a href="_autosummary/quantlib.cashflows.fixed_rate_coupon.FixedRateCoupon.html#quantlib.cashflows.fixed_rate_coupon.FixedRateCoupon.interest_rate">interest_rate() (FixedRateCoupon method)</a>
 </li>
@@ -1844,6 +1846,8 @@
 </li>
         <li><a href="_autosummary/quantlib.indexes.swap_index.html#module-quantlib.indexes.swap_index">quantlib.indexes.swap_index</a>
 </li>
+        <li><a href="_autosummary/quantlib.instrument.html#module-quantlib.instrument">quantlib.instrument</a>
+</li>
         <li><a href="_autosummary/quantlib.instruments.html#module-quantlib.instruments">quantlib.instruments</a>
 </li>
         <li><a href="_autosummary/quantlib.instruments.api.html#module-quantlib.instruments.api">quantlib.instruments.api</a>
@@ -1855,8 +1859,6 @@
         <li><a href="_autosummary/quantlib.instruments.credit_default_swap.html#module-quantlib.instruments.credit_default_swap">quantlib.instruments.credit_default_swap</a>
 </li>
         <li><a href="_autosummary/quantlib.instruments.implied_volatility.html#module-quantlib.instruments.implied_volatility">quantlib.instruments.implied_volatility</a>
-</li>
-        <li><a href="_autosummary/quantlib.instruments.instrument.html#module-quantlib.instruments.instrument">quantlib.instruments.instrument</a>
 </li>
         <li><a href="_autosummary/quantlib.instruments.make_cds.html#module-quantlib.instruments.make_cds">quantlib.instruments.make_cds</a>
 </li>
@@ -2241,7 +2243,9 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_autosummary/quantlib.instruments.instrument.Instrument.html#quantlib.instruments.instrument.Instrument.net_present_value">net_present_value (Instrument attribute)</a>
+      <li><a href="_autosummary/quantlib.index.Index.html#quantlib.index.Index.name">name (Index attribute)</a>
+</li>
+      <li><a href="_autosummary/quantlib.instrument.Instrument.html#quantlib.instrument.Instrument.net_present_value">net_present_value (Instrument attribute)</a>
 </li>
       <li><a href="_autosummary/quantlib.cashflows.cashflows.next_cash_flow_amount.html#quantlib.cashflows.cashflows.next_cash_flow_amount">next_cash_flow_amount() (in module quantlib.cashflows.cashflows)</a>
 </li>
@@ -2267,7 +2271,7 @@
 </li>
       <li><a href="_autosummary/quantlib.instruments.bonds.Bond.html#quantlib.instruments.bonds.Bond.notional">notional() (Bond method)</a>
 </li>
-      <li><a href="_autosummary/quantlib.instruments.instrument.Instrument.html#quantlib.instruments.instrument.Instrument.npv">npv (Instrument attribute)</a>
+      <li><a href="_autosummary/quantlib.instrument.Instrument.html#quantlib.instrument.Instrument.npv">npv (Instrument attribute)</a>
 </li>
       <li><a href="_autosummary/quantlib.instruments.swap.Swap.html#quantlib.instruments.swap.Swap.npvDateDiscount">npvDateDiscount() (Swap method)</a>
 </li>
@@ -2818,6 +2822,13 @@
 </li>
       </ul></li>
       <li>
+    quantlib.instrument
+
+      <ul>
+        <li><a href="_autosummary/quantlib.instrument.html#module-quantlib.instrument">module</a>
+</li>
+      </ul></li>
+      <li>
     quantlib.instruments
 
       <ul>
@@ -2857,13 +2868,6 @@
 
       <ul>
         <li><a href="_autosummary/quantlib.instruments.implied_volatility.html#module-quantlib.instruments.implied_volatility">module</a>
-</li>
-      </ul></li>
-      <li>
-    quantlib.instruments.instrument
-
-      <ul>
-        <li><a href="_autosummary/quantlib.instruments.instrument.html#module-quantlib.instruments.instrument">module</a>
 </li>
       </ul></li>
       <li>
@@ -4239,7 +4243,7 @@
       <li><a href="_autosummary/quantlib.models.calibration_helper.BlackCalibrationHelper.html#quantlib.models.calibration_helper.BlackCalibrationHelper.set_pricing_engine">set_pricing_engine() (BlackCalibrationHelper method)</a>
 
       <ul>
-        <li><a href="_autosummary/quantlib.instruments.instrument.Instrument.html#quantlib.instruments.instrument.Instrument.set_pricing_engine">(Instrument method)</a>
+        <li><a href="_autosummary/quantlib.instrument.Instrument.html#quantlib.instrument.Instrument.set_pricing_engine">(Instrument method)</a>
 </li>
       </ul></li>
       <li><a href="_autosummary/quantlib.termstructures.credit.default_probability_helpers.CdsHelper.html#quantlib.termstructures.credit.default_probability_helpers.CdsHelper.set_term_structure">set_term_structure() (CdsHelper method)</a>
@@ -4388,6 +4392,8 @@
         <li><a href="_autosummary/quantlib.termstructures.yield_term_structure.YieldTermStructure.html#quantlib.termstructures.yield_term_structure.YieldTermStructure.time_from_reference">(YieldTermStructure method)</a>
 </li>
       </ul></li>
+      <li><a href="_autosummary/quantlib.index.Index.html#quantlib.index.Index.time_series">time_series (Index attribute)</a>
+</li>
       <li><a href="_autosummary/quantlib.time_grid.TimeGrid.html#quantlib.time_grid.TimeGrid">TimeGrid (class in quantlib.time_grid)</a>
 </li>
       <li><a href="_autosummary/quantlib.termstructures.yields.discount_curve.BackwardFlatInterpolatedDiscountCurve.html#quantlib.termstructures.yields.discount_curve.BackwardFlatInterpolatedDiscountCurve.times">times (BackwardFlatInterpolatedDiscountCurve attribute)</a>

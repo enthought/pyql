@@ -79,15 +79,15 @@ year or a given date is the end of the month. The currently available
 functions are:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><a class="reference internal" href="_autosummary/quantlib.time.date.today.html#quantlib.time.date.today" title="quantlib.time.date.today"><code class="xref py py-func docutils literal notranslate"><span class="pre">today()</span></code></a></p></li>
-<li><p><a class="reference internal" href="_autosummary/quantlib.time.date.mindate.html#quantlib.time.date.mindate" title="quantlib.time.date.mindate"><code class="xref py py-func docutils literal notranslate"><span class="pre">mindate()</span></code></a>: earliest possible Date in QuantLib</p></li>
-<li><p><a class="reference internal" href="_autosummary/quantlib.time.date.maxdate.html#quantlib.time.date.maxdate" title="quantlib.time.date.maxdate"><code class="xref py py-func docutils literal notranslate"><span class="pre">maxdate()</span></code></a>: latest possible Date in QuantLib</p></li>
-<li><p><a class="reference internal" href="_autosummary/quantlib.time.date.is_leap.html#quantlib.time.date.is_leap" title="quantlib.time.date.is_leap"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_leap()</span></code></a>: is year a leap year?</p></li>
-<li><p><a class="reference internal" href="_autosummary/quantlib.time.date.end_of_month.html#quantlib.time.date.end_of_month" title="quantlib.time.date.end_of_month"><code class="xref py py-func docutils literal notranslate"><span class="pre">end_of_month()</span></code></a>: what is the end of the current month the date is in?</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">is_end_of_month(date)()</span></code>: is date the end of the month?</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">next_weekday(date,</span> <span class="pre">weekday)()</span></code>: on which date is the weekday following
+<li><p><a class="reference internal" href="_autosummary/quantlib.time.date.today.html#quantlib.time.date.today" title="quantlib.time.date.today"><code class="xref py py-func docutils literal notranslate"><span class="pre">today</span></code></a></p></li>
+<li><p><a class="reference internal" href="_autosummary/quantlib.time.date.mindate.html#quantlib.time.date.mindate" title="quantlib.time.date.mindate"><code class="xref py py-func docutils literal notranslate"><span class="pre">mindate</span></code></a>: earliest possible Date in QuantLib</p></li>
+<li><p><a class="reference internal" href="_autosummary/quantlib.time.date.maxdate.html#quantlib.time.date.maxdate" title="quantlib.time.date.maxdate"><code class="xref py py-func docutils literal notranslate"><span class="pre">maxdate</span></code></a>: latest possible Date in QuantLib</p></li>
+<li><p><a class="reference internal" href="_autosummary/quantlib.time.date.is_leap.html#quantlib.time.date.is_leap" title="quantlib.time.date.is_leap"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_leap</span></code></a>: is year a leap year?</p></li>
+<li><p><a class="reference internal" href="_autosummary/quantlib.time.date.end_of_month.html#quantlib.time.date.end_of_month" title="quantlib.time.date.end_of_month"><code class="xref py py-func docutils literal notranslate"><span class="pre">end_of_month</span></code></a>: what is the end of the current month the date is in?</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">is_end_of_month(date)</span></code>: is date the end of the month?</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">next_weekday(date,</span> <span class="pre">weekday)</span></code>: on which date is the weekday following
 the date? (e.g. date of the next Friday)</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">nth_weekday(n,</span> <span class="pre">weekday,</span> <span class="pre">month,</span> <span class="pre">year)()</span></code>: what is the n-th weekday in the
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">nth_weekday(n,</span> <span class="pre">weekday,</span> <span class="pre">month,</span> <span class="pre">year)</span></code>: what is the n-th weekday in the
 given year and month? (e.g. date of the 3rd Wednesday in July 2010)</p></li>
 </ul>
 </div></blockquote>
@@ -108,25 +108,25 @@ For example, the New-York Stock Exchange calendar can be initialized via:</p>
 <p>The following functions are available:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_business_day(date)()</span></code></p></li>
-<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_holiday(date)()</span></code></p></li>
-<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_weekend(week_day)()</span></code>: is the given weekday part of the weekend?</p></li>
-<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_end_of_month(date)()</span></code>: indicates, whether the given date is the last
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_business_day(date)</span></code></p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_holiday(date)</span></code></p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_weekend(week_day)</span></code>: is the given weekday part of the weekend?</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_end_of_month(date)</span></code>: indicates, whether the given date is the last
 business day in the month.</p></li>
-<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">end_of_month(date)()</span></code>: returns the last business day in the month.</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">end_of_month(date)</span></code>: returns the last business day in the month.</p></li>
 </ul>
 </div></blockquote>
 <p>The calendars are customizable, so you can add and remove holidays in your calendar:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">addHoliday(date)()</span></code></p></li>
-<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">removeHoliday(date)()</span></code>: removes a user specified holiday</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">addHoliday(date)</span></code></p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">removeHoliday(date)</span></code>: removes a user specified holiday</p></li>
 </ul>
 </div></blockquote>
 <p>Furthermore, a function is provided to return a list of holidays</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">holidayList(calendar,</span> <span class="pre">from_date,</span> <span class="pre">to_date,</span> <span class="pre">include_weekends=False)()</span></code>:
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">holidayList(calendar,</span> <span class="pre">from_date,</span> <span class="pre">to_date,</span> <span class="pre">include_weekends=False)</span></code>:
 returns a holiday list, including or excluding weekends. This function
 returns a DateList object that provides an list/iterator-like interface on
 top of the C++ QuantLib date vector.</p></li>

@@ -1,0 +1,31 @@
+quantlib.instrument
+===================
+
+.. automodule:: quantlib.instrument
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      Instrument
+   
+   
+
+   
+   
+   
+
+
+
