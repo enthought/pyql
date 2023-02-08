@@ -13,6 +13,7 @@ from quantlib.handle cimport Handle, static_pointer_cast
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
+from quantlib.quote cimport Quote
 from quantlib.quotes.simplequote cimport SimpleQuote
 from .coupon_pricer cimport FloatingRateCouponPricer
 from quantlib.instruments.bonds cimport Bond
@@ -61,7 +62,7 @@ cdef class BlackIborCouponPricer(IborCouponPricer):
     def __init__(self,
                  OptionletVolatilityStructure ovs=OptionletVolatilityStructure(),
                  TimingAdjustment timing_adjustment=Black76,
-                 SimpleQuote correlation=SimpleQuote(1.)):
+                 Quote correlation=SimpleQuote(1.)):
         cdef Handle[_ovs.OptionletVolatilityStructure] ovs_handle = \
             Handle[_ovs.OptionletVolatilityStructure](ovs._thisptr)
         self._thisptr = shared_ptr[_cp.FloatingRateCouponPricer](
