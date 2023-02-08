@@ -7,17 +7,10 @@
 
 """Vasiceck model"""
 
-
-
-include '../../../types.pxi'
-
-from cython.operator cimport dereference as deref
-
-from quantlib.models.shortrate.onefactor_model cimport OneFactorAffineModel
+from quantlib.types cimport Rate, Real
 cimport quantlib.models._model as _mo
 from . cimport _vasicek as _va
 from quantlib.handle cimport shared_ptr
-from quantlib.quote cimport Quote
 
 cdef class Vasicek(OneFactorAffineModel):
     r"""Vasicek model
@@ -41,25 +34,29 @@ cdef class Vasicek(OneFactorAffineModel):
         self._thisptr = shared_ptr[_mo.CalibratedModel](
             new _va.Vasicek(
                 r0, a, b, sigma, Lambda
-		)
+	    )
 	)
 
     def __str__(self):
         return 'Vasicek model\na: %f b: %f sigma: %f lambda: %f' % \
           (self.r0, self.a, self.b, self.sigma, self.Lambda)
 
-    property a:
-        def __get__(self):
-            return (<_va.Vasicek*> self._thisptr.get()).a()
+    @property
+    def a(self):
+        return (<_va.Vasicek*> self._thisptr.get()).a()
 
-    property b:
-        def __get__(self):
-            return (<_va.Vasicek*> self._thisptr.get()).b()
+    @property
+    def b(self):
+        return (<_va.Vasicek*> self._thisptr.get()).b()
 
-    property sigma:
-        def __get__(self):
-            return (<_va.Vasicek*> self._thisptr.get()).sigma()
+    @property
+    def sigma(self):
+        return (<_va.Vasicek*> self._thisptr.get()).sigma()
 
-    property Lambda:
-        def __get__(self):
-            return (<_va.Vasicek*> self._thisptr.get()).Lambda()
+    @property
+    def Lambda(self):
+        return (<_va.Vasicek*> self._thisptr.get()).Lambda()
+
+    @property
+    def r0(self):
+        return (<_va.Vasicek*> self._thisptr.get()).r0()
