@@ -11,6 +11,7 @@ include '../../types.pxi'
 
 from quantlib.handle cimport static_pointer_cast
 from quantlib.models.model cimport CalibratedModel
+cimport quantlib.models._model as _model
 cimport quantlib.models.shortrate._onefactor_model as _ofm
 cimport quantlib._stochastic_process as _sp
 from quantlib.stochastic_process cimport StochasticProcess1D
@@ -29,17 +30,19 @@ cdef class ShortRateDynamics:
     def short_rate(self, Time t, Real variable):
         return self._thisptr.get().shortRate(t, variable)
 
-cdef class OneFactorAffineModel(CalibratedModel):
+cdef class OneFactorModel(ShortRateModel):
+
+    @property
+    def dynamics(self):
+        cdef ShortRateDynamics dyn = ShortRateDynamics.__new__(ShortRateDynamics)
+        dyn._thisptr =  (<_ofm.OneFactorModel*>self._thisptr.get()).dynamics()
+        return dyn
+
+cdef class OneFactorAffineModel(OneFactorModel):
 
     def __init__(self):
         raise ValueError('Cannot instantiate OneFactorAffineModel')
 
     def discount_bound(self, Time now, Time maturity, Rate rate):
         return (<_ofm.OneFactorAffineModel*>self._thisptr.get()).discountBond(
-            now, maturity, rate)
-
-    @property
-    def dynamics(self):
-        cdef ShortRateDynamics dyn = ShortRateDynamics.__new__(ShortRateDynamics)
-        dyn._thisptr =  (<_ofm.OneFactorAffineModel*>self._thisptr.get()).dynamics()
-        return dyn
+        now, maturity, rate)

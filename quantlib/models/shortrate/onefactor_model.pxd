@@ -7,12 +7,15 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from quantlib.models.model cimport CalibratedModel
+from quantlib.models.model cimport ShortRateModel
 from quantlib.handle cimport shared_ptr
 from . cimport _onefactor_model as _ofm
 
 cdef class ShortRateDynamics:
     cdef shared_ptr[_ofm.OneFactorModel.ShortRateDynamics] _thisptr
 
-cdef class OneFactorAffineModel(CalibratedModel):
+cdef class OneFactorModel(ShortRateModel):
+   pass
+
+cdef class OneFactorAffineModel(OneFactorModel):
     pass
