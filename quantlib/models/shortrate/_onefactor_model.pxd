@@ -1,6 +1,6 @@
 from quantlib.types cimport DiscountFactor, Rate, Real, Time
 from quantlib.math._array cimport Array
-from quantlib.models._model cimport ShortRateModel
+from quantlib.models._model cimport ShortRateModel, AffineModel
 from quantlib.handle cimport shared_ptr
 from quantlib._stochastic_process cimport StochasticProcess1D
 
@@ -16,5 +16,3 @@ cdef extern from 'ql/models/shortrate/onefactormodel.hpp' namespace 'QuantLib' n
 
     cdef cppclass OneFactorAffineModel(OneFactorModel):
         Real discountBond(Time now, Time maturity, Rate rate)
-        Real discountBond(Time now, Time maturity, Array factors)
-        DiscountFactor discount(Time t)

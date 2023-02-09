@@ -12,5 +12,10 @@ from quantlib.handle cimport shared_ptr
 
 
 cdef class CalibratedModel:
-
     cdef shared_ptr[_mo.CalibratedModel] _thisptr
+
+cdef class AffineModel:
+    pass
+
+cdef class ShortRateModel(CalibratedModel):
+    pass
