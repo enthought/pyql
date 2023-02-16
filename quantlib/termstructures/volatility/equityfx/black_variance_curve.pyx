@@ -25,14 +25,14 @@ cdef class BlackVarianceCurve(BlackVarianceTermStructure):
 
     The calculation is performed interpolating on the variance curve.
     Linear interpolation is used as default; this can be changed
-    by the setInterpolation() method.
+    by the set_interpolation() method.
 
     For strike dependence, see BlackVarianceSurface.
 
     todo check time extrapolation
 
 
-    Attributes
+    Parameters
     ----------
     reference_date : Date
     dates : list of :obj:`Date`
@@ -49,7 +49,7 @@ cdef class BlackVarianceCurve(BlackVarianceTermStructure):
 
     def __init__(self,
                  Date reference_date,
-                 dates,
+                 list dates,
                  vector[Volatility] black_vols,
                  DayCounter day_counter,
                  bool force_monotone_variance = True,

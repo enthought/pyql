@@ -39,11 +39,11 @@ cdef class BlackVarianceSurface(BlackVarianceTermStructure):
 
     The calculation is performed interpolating on the variance surface.
     Bilinear interpolation is used as default; this can be changed by the
-    setInterpolation() method.
+    set_interpolation method.
 
     todo check time extrapolation
 
-    Attributes
+    Parameters
     ----------
     reference_date : Date
     cal : Calendar

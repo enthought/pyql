@@ -20,12 +20,13 @@ cdef class BlackConstantVol(BlackVolatilityTermStructure):
     interface for a constant Black volatility (no time/strike
     dependence)
 
-    Attributes
+    Parameters 
     ----------
     reference_date : :obj:`Date`
     calendar : :obj:`Calendar`
     volatility : float or :obj:`Quote`
     day_counter: :obj:`DayCounter`
+    settlement_days: Natural
 
     """
 
