@@ -21,8 +21,8 @@ namespace QuantLib {
             bool test(const Array& params) const {
                 const Real rho = params[3];
 
-                return (  square<Real>()(rho)
-                        + square<Real>()(equityShortRateCorr_) <= 1.0);
+                return (  squared(rho)
+                        + squared(equityShortRateCorr_) <= 1.0);
             }
           private:
             const Real equityShortRateCorr_;
@@ -39,12 +39,9 @@ namespace QuantLib {
     typedef ext::shared_ptr<Constraint> CT;
 
     CT constraint_factory(Real equityShortRateCorr) {
-        
-        CT ct;
-        ct = CT(new 
-		HestonHullWhiteCorrelationConstraint(equityShortRateCorr));
 
-	return ct;
-  };
+        CT ct = ext::make_shared<HestonHullWhiteCorrelationConstraint>(equityShortRateCorr);
+
+        return ct;
+    };
 }
-
