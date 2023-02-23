@@ -1,6 +1,9 @@
 import unittest
+
+import datetime
 from quantlib.instruments.option import (
-    EuropeanExercise, AmericanExercise, DividendVanillaOption)
+    EuropeanExercise, AmericanExercise)
+from quantlib.cashflows.dividend import DividendSchedule
 
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.instruments.option import VanillaOption, Put
@@ -79,8 +82,8 @@ class VanillaOptionTestCase(unittest.TestCase):
         self.payoff = PlainVanillaPayoff(self.option_type, self.strike)
 
         #Additional parameters for testing DividendVanillaOption
-        self.dividend_dates = []
-        self.dividends = []
+        self.dividend_dates = [datetime.date(1998, 10, 1)]
+        self.dividends = [1.0]
         self.american_time_steps = 600
         self.american_grid_points = 600
 
@@ -183,12 +186,11 @@ class VanillaOptionTestCase(unittest.TestCase):
     def test_dividend_american_option(self):
 
         american_exercise = AmericanExercise(self.maturity)
-        american_option = DividendVanillaOption(
-            self.payoff, american_exercise, self.dividend_dates, self.dividends
-        )
-
+        dividend_schedule = DividendSchedule(self.dividend_dates, self.dividends)
+        american_option = VanillaOption(self.payoff, american_exercise)
         engine = FdBlackScholesVanillaEngine(self.black_scholes_merton_process,
                                              self.american_time_steps, self.american_grid_points, scheme=FdmSchemeDesc.CrankNicolson(),
+                                             dividend_schedule=dividend_schedule
         )
 
         american_option.set_pricing_engine(engine)
@@ -199,12 +201,11 @@ class VanillaOptionTestCase(unittest.TestCase):
     def test_dividend_american_option_implied_volatility(self):
 
         american_exercise = AmericanExercise(self.maturity)
-        american_option = DividendVanillaOption(
-            self.payoff, american_exercise, self.dividend_dates, self.dividends
-        )
-
+        american_option = VanillaOption(self.payoff, american_exercise)
+        dividend_schedule = DividendSchedule(self.dividend_dates, self.dividends)
         engine = FdBlackScholesVanillaEngine(self.black_scholes_merton_process,
-            self.american_time_steps, self.american_grid_points
+                                             self.american_time_steps, self.american_grid_points,
+                                             dividend_schedule=dividend_schedule
         )
 
         american_option.set_pricing_engine(engine)
