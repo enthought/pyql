@@ -4,6 +4,7 @@ from libcpp.vector cimport vector
 from libcpp cimport bool
 
 from cython.operator cimport dereference as deref
+from quantlib.cashflows.dividend cimport DividendSchedule
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 cimport quantlib.processes._black_scholes_process as _bsp
 cimport quantlib.models.equity._bates_model as _bm
@@ -99,22 +100,40 @@ cdef class FdHestonHullWhiteVanillaEngine(PricingEngine):
             Size r_grid,
             Size damping_steps,
             bool control_variate,
-            FdmSchemeDesc desc):
+            FdmSchemeDesc desc,
+            DividendSchedule dividends=None):
 
-        self._thisptr.reset(
-            new _va.FdHestonHullWhiteVanillaEngine(
-                heston_model._thisptr,
-                static_pointer_cast[_hwp.HullWhiteProcess](hw_process._thisptr),
-                corr_equity_short_rate,
-                t_grid,
-                x_grid,
-                v_grid,
-                r_grid,
-                damping_steps,
-                control_variate,
-                deref(desc._thisptr)
+        if dividends is not None:
+            self._thisptr.reset(
+                new _va.FdHestonHullWhiteVanillaEngine(
+                    heston_model._thisptr,
+                    static_pointer_cast[_hwp.HullWhiteProcess](hw_process._thisptr),
+                    dividends.schedule,
+                    corr_equity_short_rate,
+                    t_grid,
+                    x_grid,
+                    v_grid,
+                    r_grid,
+                    damping_steps,
+                    control_variate,
+                    deref(desc._thisptr)
+                )
             )
-        )
+        else:
+            self._thisptr.reset(
+                new _va.FdHestonHullWhiteVanillaEngine(
+                    heston_model._thisptr,
+                    static_pointer_cast[_hwp.HullWhiteProcess](hw_process._thisptr),
+                    corr_equity_short_rate,
+                    t_grid,
+                    x_grid,
+                    v_grid,
+                    r_grid,
+                    damping_steps,
+                    control_variate,
+                    deref(desc._thisptr)
+                )
+            )
 
     def enable_multiple_strikes_caching(self, strikes):
         cdef vector[double] v = strikes
@@ -161,11 +180,11 @@ cdef class BatesDoubleExpDetJumpEngine(BatesDoubleExpEngine):
 
 cdef class AnalyticDividendEuropeanEngine(PricingEngine):
 
-    def __init__(self, GeneralizedBlackScholesProcess process):
+    def __init__(self, GeneralizedBlackScholesProcess process not None, DividendSchedule dividends not None):
 
         cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
             static_pointer_cast[_bsp.GeneralizedBlackScholesProcess](process._thisptr)
 
         self._thisptr.reset(
-            new _va.AnalyticDividendEuropeanEngine(process_ptr)
+            new _va.AnalyticDividendEuropeanEngine(process_ptr, dividends.schedule)
         )

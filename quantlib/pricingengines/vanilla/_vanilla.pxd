@@ -4,6 +4,7 @@ from libcpp cimport bool
 from libcpp.vector cimport vector
 
 from quantlib.handle cimport shared_ptr
+from quantlib.instruments._dividendschedule cimport DividendSchedule
 from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess
 from quantlib.models.shortrate.onefactormodels._hullwhite cimport HullWhite
 from quantlib.processes._hullwhite_process cimport HullWhiteProcess
@@ -68,7 +69,20 @@ cdef extern from 'ql/pricingengines/vanilla/fdhestonhullwhitevanillaengine.hpp' 
             Size vGrid, Size rGrid,
             Size dampingSteps,
             bool controlVariate,
-            _fdm.FdmSchemeDesc& schemeDesc)
+            _fdm.FdmSchemeDesc& schemeDesc
+        )
+
+        FdHestonHullWhiteVanillaEngine(
+            shared_ptr[HestonModel]& heston_model,
+            shared_ptr[HullWhiteProcess]& hw_process,
+            DividendSchedule dividends,
+            Real corrEquityShortRate,
+            Size tGrid, Size xGrid,
+            Size vGrid, Size rGrid,
+            Size dampingSteps,
+            bool controlVariate,
+            _fdm.FdmSchemeDesc& schemeDesc
+        )
 
         void enableMultipleStrikesCaching(vector[double]&)
 
@@ -122,6 +136,7 @@ cdef extern from 'ql/pricingengines/vanilla/analyticdividendeuropeanengine.hpp' 
 
     cdef cppclass AnalyticDividendEuropeanEngine(PricingEngine):
         AnalyticDividendEuropeanEngine(
-            shared_ptr[GeneralizedBlackScholesProcess]& process
+            shared_ptr[GeneralizedBlackScholesProcess]& process,
+            DividendSchedule dividends
         )
         void calculate()
