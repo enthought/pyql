@@ -2,6 +2,7 @@ from libcpp cimport bool
 
 from cython.operator cimport dereference as deref
 from quantlib.utilities.null cimport Null
+from quantlib.cashflows.dividend cimport DividendSchedule
 from quantlib.handle cimport static_pointer_cast, shared_ptr
 from quantlib.types cimport Size, Real
 from quantlib.pricingengines._pricing_engine cimport PricingEngine as QlPricingEngine
@@ -18,18 +19,34 @@ cdef class FdBlackScholesVanillaEngine(PricingEngine):
                  FdmSchemeDesc scheme=FdmSchemeDesc.Douglas(),
                  bool local_vol=False,
                  Real illegal_local_vol_overwrite=-Null[Real](),
-                 CashDividendModel cash_dividend_model=Spot):
+                 CashDividendModel cash_dividend_model=Spot,
+                 DividendSchedule dividend_schedule=None):
         cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
             static_pointer_cast[_bsp.GeneralizedBlackScholesProcess](process._thisptr)
-        self._thisptr.reset(
-            new _fdbs.FdBlackScholesVanillaEngine(
-                process_ptr,
-                t_grid,
-                x_grid,
-                damping_steps,
-                deref(scheme._thisptr),
-                local_vol,
-                illegal_local_vol_overwrite,
-                cash_dividend_model
+        if dividend_schedule is not None:
+            self._thisptr.reset(
+                new _fdbs.FdBlackScholesVanillaEngine(
+                    process_ptr,
+                    dividend_schedule.schedule,
+                    t_grid,
+                    x_grid,
+                    damping_steps,
+                    deref(scheme._thisptr),
+                    local_vol,
+                    illegal_local_vol_overwrite,
+                    cash_dividend_model
+                )
             )
-        )
+        else:
+            self._thisptr.reset(
+                new _fdbs.FdBlackScholesVanillaEngine(
+                    process_ptr,
+                    t_grid,
+                    x_grid,
+                    damping_steps,
+                    deref(scheme._thisptr),
+                    local_vol,
+                    illegal_local_vol_overwrite,
+                    cash_dividend_model
+                )
+            )
