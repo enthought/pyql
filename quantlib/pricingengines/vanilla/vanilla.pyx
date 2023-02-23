@@ -9,7 +9,6 @@ cimport quantlib.processes._black_scholes_process as _bsp
 cimport quantlib.models.equity._bates_model as _bm
 cimport quantlib.models.shortrate.onefactormodels._hullwhite as _hw
 from . cimport _vanilla as _va
-from .._pricing_engine cimport PricingEngine as QlPricingEngine
 from quantlib.models.equity.heston_model cimport HestonModel
 
 from quantlib.models.shortrate.onefactormodels.hullwhite cimport HullWhite
