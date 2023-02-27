@@ -10,7 +10,7 @@ from quantlib.instruments.credit_default_swap import cds_maturity
 from quantlib.instruments.make_cds import MakeCreditDefaultSwap
 from quantlib.time.api import ( TARGET, today, Years, Schedule,
     Following, Quarterly, Rule, Actual360, Period )
-from quantlib.time.schedule import CDS2015
+from quantlib.time.dategeneration import Rule
 import math
 
 
@@ -83,9 +83,9 @@ class CreditDefaultSwapTest(unittest.TestCase):
 
     def test_makecds(self):
         cds = (MakeCreditDefaultSwap(Period(5, Years), 0.01).
-               with_date_generation_rule(CDS2015)())
+               with_date_generation_rule(Rule.CDS2015)())
         self.assertEqual(cds.cash_settlement_days, 3)
-        self.assertEqual(cds.protection_end_date, cds_maturity(Settings().evaluation_date, Period(5, Years), CDS2015))
+        self.assertEqual(cds.protection_end_date, cds_maturity(Settings().evaluation_date, Period(5, Years), Rule.CDS2015))
 
 if __name__ == "__main__":
     unittest.main()

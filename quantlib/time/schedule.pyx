@@ -10,39 +10,12 @@ import numpy as np
 cimport numpy as np
 np.import_array()
 from .businessdayconvention cimport Following, BusinessDayConvention
+from .dategeneration cimport Rule
 
 from .calendar cimport Calendar
 from .date cimport date_from_qldate, Date, Period
 
 import warnings
-
-cpdef enum Rule:
-    # Backward from termination date to effective date.
-    Backward       = _schedule.Backward
-    # Forward from effective date to termination date.
-    Forward        = _schedule.Forward
-    # No intermediate dates between effective date
-    # and termination date.
-    Zero           = _schedule.Zero
-    # All dates but effective date and termination
-    # date are taken to be on the third wednesday
-    # of their month (with forward calculation.)
-    ThirdWednesday = _schedule.ThirdWednesday
-    # All dates but the effective date are taken to be the
-    # twentieth of their month (used for CDS schedules in
-    # emerging markets.)  The termination date is also modified.
-    Twentieth      = _schedule.Twentieth
-    # All dates but the effective date are taken to be the
-    # twentieth of an IMM month (used for CDS schedules.)  The
-    # termination date is also modified.
-    TwentiethIMM   = _schedule.TwentiethIMM
-    # Same as TwentiethIMM with unrestricted date ends and
-    # log/short stub coupon period (old CDS convention).
-    OldCDS         = _schedule.OldCDS
-    # Credit derivatives standard rule since 'Big Bang' changes
-    # in 2009.
-    CDS            = _schedule.CDS
-    CDS2015        = _schedule.CDS2015
 
 cdef class Schedule:
     """ Payment schedule. """
@@ -51,7 +24,7 @@ cdef class Schedule:
             Period tenor not None, Calendar calendar not None,
             BusinessDayConvention business_day_convention=Following,
             BusinessDayConvention termination_date_convention=Following,
-            Rule date_generation_rule=Forward, bool end_of_month=False,
+            Rule date_generation_rule=Rule.Forward, bool end_of_month=False,
             from_classmethod=False
            ):
 
@@ -77,7 +50,7 @@ cdef class Schedule:
             BusinessDayConvention business_day_convention=Following,
             BusinessDayConvention termination_date_convention=Following,
             Period tenor=None,
-            Rule date_generation_rule=Forward, bool end_of_month=False,
+            Rule date_generation_rule=Rule.Forward, bool end_of_month=False,
             vector[bool] is_regular=[]):
         # convert lists to vectors
         cdef vector[_date.Date] _dates = vector[_date.Date]()
@@ -108,7 +81,7 @@ cdef class Schedule:
                   Period tenor not None, Calendar calendar not None,
                   BusinessDayConvention business_day_convention=Following,
                   BusinessDayConvention termination_date_convention=Following,
-                  Rule date_generation_rule=Forward, bool end_of_month=False,
+                  Rule date_generation_rule=Rule.Forward, bool end_of_month=False,
                   Date first_date=Date(), Date next_to_lastdate=Date()):
 
         cdef Schedule instance = cls.__new__(cls)
