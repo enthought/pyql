@@ -1,14 +1,5 @@
-cimport quantlib.time._calendar as _calendar
 cimport quantlib.time.calendars._united_states as _us
 from quantlib.time.calendar cimport Calendar
-
-cpdef enum Market:
-    Settlement     = _us.Settlement # generic settlement calendar
-    NYSE           = _us.NYSE # New York stock exchange calendar
-    GovernmentBond = _us.GovernmentBond # government-bond calendar
-    NERC           = _us.NERC # off-peak days for NERC
-    LiborImpact    = _us.LiborImpact
-    FederalReserve = _us.FederalReserve
 
 cdef class UnitedStates(Calendar):
     '''United States calendars.
@@ -86,4 +77,4 @@ cdef class UnitedStates(Calendar):
     '''
 
     def __cinit__(self, Market market=Market.Settlement):
-        self._thisptr = new _us.UnitedStates(<_us.Market>market)
+        self._thisptr = new _us.UnitedStates(market)

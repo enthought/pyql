@@ -19,7 +19,7 @@ from quantlib.settings import Settings
 from quantlib.time.api import (Days, Months, Years, Period, TARGET, Actual360,
                                today, Actual365Fixed, UnitedStates, Thirty360)
 from quantlib.time.api import ModifiedFollowing
-from quantlib.time.calendars.united_states import GovernmentBond, LiborImpact
+from quantlib.time.calendars.united_states import Market
 from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure)
 from quantlib.time.api import Date, January
@@ -58,7 +58,7 @@ class TestLibor(unittest.TestCase):
         settings = Settings.instance()
 
         # Market information
-        calendar = UnitedStates(LiborImpact)
+        calendar = UnitedStates(Market.LiborImpact)
 
         # must be a business day
         eval_date = calendar.adjust(today())
@@ -135,7 +135,7 @@ class SwapIndexTestCase(unittest.TestCase):
 
         index = SwapIndex(
             'UsdLiborSwapIsdaFixAm', Period(10, Years), 2, USDCurrency(),
-            UnitedStates(GovernmentBond),
+            UnitedStates(Market.GovernmentBond),
             Period(6, Months), ModifiedFollowing,
             Thirty360(), ibor_index)
         index2 = UsdLiborSwapIsdaFixAm(Period(10, Years), term_structure)

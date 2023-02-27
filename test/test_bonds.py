@@ -5,7 +5,7 @@ from quantlib.instruments.bonds import (
 )
 from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.time.calendars.united_states import (
-    UnitedStates, GovernmentBond, Settlement
+    UnitedStates, Market
 )
 from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.time.calendars.target import TARGET
@@ -293,7 +293,7 @@ class BondTestCase(unittest.TestCase):
         engine = DiscountingBondEngine(flat_discounting_term_structure)
 
         float_bond.set_pricing_engine(engine)
-        cons_option_vol = ConstantOptionletVolatility(settlement_days, UnitedStates(Settlement), pmt_conv, 0.95, Actual365Fixed())
+        cons_option_vol = ConstantOptionletVolatility(settlement_days, UnitedStates(Market.Settlement), pmt_conv, 0.95, Actual365Fixed())
         coupon_pricer = BlackIborCouponPricer(cons_option_vol)
 
         set_coupon_pricer(float_bond.cashflows, coupon_pricer)

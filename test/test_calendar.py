@@ -4,9 +4,9 @@ from quantlib.time.businessdayconvention import (
     Following, ModifiedFollowing, ModifiedPreceding, Preceding,
 )
 from quantlib.time.calendars.target import TARGET
-from quantlib.time.calendars.united_kingdom import UnitedKingdom, EXCHANGE
-from quantlib.time.calendars.united_states import UnitedStates, NYSE
-from quantlib.time.calendars.canada import Canada, TSX
+from quantlib.time.calendars.united_kingdom import UnitedKingdom, Market as ukMarket
+from quantlib.time.calendars.united_states import UnitedStates, Market as usMarket
+from quantlib.time.calendars.canada import Canada, Market as CanMarket
 from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.time.calendars.germany import (
     Germany, Market
@@ -39,7 +39,7 @@ class TestQuantLibCalendar(unittest.TestCase):
         ukcalendar = UnitedKingdom()
         self.assertEqual('UK settlement',  ukcalendar.name)
 
-        lse_cal = UnitedKingdom(market=EXCHANGE)
+        lse_cal = UnitedKingdom(market=ukMarket.Exchange)
         self.assertEqual('London stock exchange',  lse_cal.name)
 
         null_calendar = NullCalendar()
@@ -154,7 +154,7 @@ class TestQuantLibCalendar(unittest.TestCase):
 
         self.assertTrue(uscal.is_holiday(holiday_date))
 
-        uscal = UnitedStates(market=NYSE)
+        uscal = UnitedStates(market=usMarket.NYSE)
         holiday_date = Date(5, Sep, 2011) # Labor day
 
         self.assertTrue(uscal.is_holiday(holiday_date))
@@ -166,7 +166,7 @@ class TestQuantLibCalendar(unittest.TestCase):
 
         self.assertTrue(cacal.is_holiday(holiday_date))
 
-        cacal = Canada(market=TSX)
+        cacal = Canada(market=CanMarket.TSX)
         holiday_date = Date(3, August, 2015)
 
         self.assertTrue(cacal.is_holiday(holiday_date))
