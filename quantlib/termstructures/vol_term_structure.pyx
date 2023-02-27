@@ -17,7 +17,7 @@ cdef class VolatilityTermStructure:
         elif isinstance(vol, HandleVolatilityTermStructure):
             return (<HandleVolatilityTermStructure>vol).handle
         else:
-            raise TypeError("vol needs to be either a SwaptionVolatilityStructure or a HandleSwaptionVolatilityStructure")
+            raise TypeError("vol needs to be either a VolatilityTermStructure or a HandleVolatilityTermStructure")
 
     def time_from_reference(self, Date date not None):
         return self.as_ptr().timeFromReference(date._thisptr)
