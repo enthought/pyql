@@ -5,7 +5,8 @@ from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.api import FlatForward
 from quantlib.termstructures.credit.api import FlatHazardRate
 from quantlib.pricingengines.credit.api import MidPointCdsEngine
-from quantlib.instruments.api import CreditDefaultSwap, Side
+from quantlib.instruments.api import CreditDefaultSwap
+from quantlib.default import Side
 from quantlib.instruments.credit_default_swap import cds_maturity
 from quantlib.instruments.make_cds import MakeCreditDefaultSwap
 from quantlib.time.api import ( TARGET, today, Years, Schedule,

@@ -23,7 +23,8 @@ from quantlib.time._schedule cimport DateGeneration
 from quantlib.termstructures._default_term_structure cimport DefaultProbabilityTermStructure
 from quantlib.termstructures._helpers cimport BootstrapHelper, \
                                               RelativeDateBootstrapHelper
-from quantlib.instruments._credit_default_swap cimport CreditDefaultSwap, PricingModel
+from quantlib.instruments._credit_default_swap cimport CreditDefaultSwap
+from quantlib.instruments.credit_default_swap cimport PricingModel
 
 cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namespace 'QuantLib':
 
