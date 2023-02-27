@@ -13,7 +13,7 @@ cimport quantlib.pricingengines._pricing_engine as _pe
 cimport quantlib.processes._black_scholes_process as _bsp
 
 from quantlib.handle cimport shared_ptr, static_pointer_cast
-from quantlib.instruments.payoffs cimport Payoff, PlainVanillaPayoff
+from quantlib.instruments.payoffs cimport Payoff, StrikedTypePayoff
 from quantlib.time._date cimport Date as QlDate
 from quantlib.time.date cimport Date, _pydate_from_qldate
 from quantlib.pricingengines.engine cimport PricingEngine
@@ -180,7 +180,7 @@ cdef class OneAssetOption(Option):
 
 cdef class VanillaOption(OneAssetOption):
 
-    def __init__(self, PlainVanillaPayoff payoff not None, Exercise exercise not None):
+    def __init__(self, StrikedTypePayoff payoff not None, Exercise exercise not None):
 
         self._thisptr = shared_ptr[_instrument.Instrument]( \
             new _option.VanillaOption(
@@ -201,7 +201,7 @@ cdef class VanillaOption(OneAssetOption):
 
 cdef class EuropeanOption(VanillaOption):
 
-    def __init__(self, PlainVanillaPayoff payoff not None, Exercise exercise not None):
+    def __init__(self, StrikedTypePayoff payoff not None, Exercise exercise not None):
 
         cdef shared_ptr[_payoffs.StrikedTypePayoff] payoff_ptr = \
             static_pointer_cast[_payoffs.StrikedTypePayoff](

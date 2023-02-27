@@ -9,3 +9,6 @@ cdef class StrikedTypePayoff(Payoff):
 
 cdef class PlainVanillaPayoff(StrikedTypePayoff):
     pass
+
+cdef class PercentageStrikePayoff(StrikedTypePayoff):
+    pass
