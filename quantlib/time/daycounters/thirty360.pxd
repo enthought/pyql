@@ -1,6 +1,5 @@
 cimport quantlib.time._daycounter as _daycounter
 from quantlib.time.daycounter cimport DayCounter
-from . cimport _thirty360 as _th
 
 cdef class Thirty360(DayCounter):
     pass
