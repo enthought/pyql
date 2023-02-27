@@ -3,7 +3,7 @@ import unittest
 from quantlib.instruments.api import MakeVanillaSwap, FixedRateBond
 from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.time.calendars.target import TARGET
-from quantlib.time.calendars.united_states import UnitedStates, GovernmentBond
+from quantlib.time.calendars.united_states import UnitedStates, Market
 from quantlib.instruments.option import (VanillaOption, Put,
                                          EuropeanExercise)
 from quantlib.time.date import (
@@ -108,7 +108,7 @@ class SensitivityTestCase(unittest.TestCase):
             issue_date,
             maturity_date,
             Period(Semiannual),
-            UnitedStates(market=GovernmentBond),
+            UnitedStates(market=Market.GovernmentBond),
             Unadjusted,
             Unadjusted,
             DateGeneration.Backward,

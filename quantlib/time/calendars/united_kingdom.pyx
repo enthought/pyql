@@ -1,15 +1,9 @@
-cimport quantlib.time._calendar as _calendar
 cimport quantlib.time.calendars._united_kingdom as _uk
 from quantlib.time.calendar cimport Calendar
 
-cpdef enum Market:
-    SETTLEMENT = _uk.Settlement
-    EXCHANGE   = _uk.Exchange
-    METALS     = _uk.Metals
-
 cdef class UnitedKingdom(Calendar):
     ''' United Kingdom calendars.
-    
+
     Public holidays (data from http://www.dti.gov.uk/er/bankhol.htm):
 
         Saturdays
@@ -50,8 +44,5 @@ cdef class UnitedKingdom(Calendar):
         Boxing Day, December 26th (possibly moved to Monday or Tuesday)
     '''
 
-    def __cinit__(self, market=SETTLEMENT):
-
-        self._thisptr = new _uk.UnitedKingdom(<_uk.Market>market)
-
-
+    def __cinit__(self, Market market=Market.Settlement):
+        self._thisptr = new _uk.UnitedKingdom(market)

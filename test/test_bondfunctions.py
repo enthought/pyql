@@ -6,7 +6,7 @@ from quantlib.instruments.bonds import (
 )
 from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.time.calendars.united_states import (
-    UnitedStates, GovernmentBond
+    UnitedStates, Market
 )
 from quantlib.currency.api import USDCurrency
 
@@ -85,7 +85,7 @@ class BondFunctionTestCase(unittest.TestCase):
             issue_date,
             maturity_date,
             Period(Semiannual),
-            UnitedStates(market=GovernmentBond),
+            UnitedStates(market=Market.GovernmentBond),
             Unadjusted,
             Unadjusted,
             DateGeneration.Backward,
