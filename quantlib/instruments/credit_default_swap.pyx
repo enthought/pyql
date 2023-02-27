@@ -13,6 +13,7 @@ from libcpp cimport bool
 
 from quantlib.handle cimport shared_ptr, optional
 
+from quantlib.default cimport Side
 cimport quantlib.instruments._credit_default_swap as _cds
 cimport quantlib._instrument as _instrument
 cimport quantlib.pricingengines._pricing_engine as _pe
@@ -31,14 +32,6 @@ from quantlib.cashflow cimport SimpleCashFlow
 from quantlib.cashflows.fixed_rate_coupon cimport FixedRateLeg
 from quantlib.time.date cimport _pydate_from_qldate
 from quantlib.time._date cimport Date as QlDate
-
-cpdef enum Side:
-    Buyer = _cds.Buyer
-    Seller = _cds.Seller
-
-cpdef enum PricingModel:
-    Midpoint = _cds.Midpoint
-    ISDA = _cds.ISDA
 
 cdef inline _cds.CreditDefaultSwap* _get_cds(CreditDefaultSwap cds):
     """ Utility function to extract a properly casted Bond pointer out of the
@@ -307,25 +300,25 @@ cdef class CreditDefaultSwap(Instrument):
 
     def conventional_spread(self, Real recovery, YieldTermStructure yts not None,
                             DayCounter dc=Actual365Fixed(),
-                            PricingModel model=Midpoint):
+                            PricingModel model=PricingModel.Midpoint):
 
         return _get_cds(self).conventionalSpread(recovery,
                                                  yts._thisptr,
                                                  deref(dc._thisptr),
-                                                 <_cds.PricingModel>model)
+                                                 model)
 
     def implied_hazard_rate(self, Real target_npv, YieldTermStructure yts not None,
                             DayCounter dc=Actual365Fixed(),
                             Real recovery_rate=0.4,
                             Real accuracy=1e-8,
-                            PricingModel model=Midpoint):
+                            PricingModel model=PricingModel.Midpoint):
 
         return _get_cds(self).impliedHazardRate(target_npv,
                                                 yts._thisptr,
                                                 deref(dc._thisptr),
                                                 recovery_rate,
                                                 accuracy,
-                                                <_cds.PricingModel>model)
+                                                model)
 
 
 def cds_maturity(Date trade_date, Period tenor, DateGeneration rule):

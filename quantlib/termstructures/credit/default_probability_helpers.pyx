@@ -29,7 +29,7 @@ cimport quantlib._quote as _qt
 from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
 from quantlib.instruments.credit_default_swap cimport CreditDefaultSwap
 cimport quantlib.instruments._credit_default_swap as _cds
-from quantlib.instruments._credit_default_swap cimport PricingModel
+from quantlib.instruments.credit_default_swap cimport PricingModel
 cimport quantlib._instrument as _instrument
 from quantlib.quote cimport Quote
 
@@ -137,7 +137,7 @@ cdef class SpreadCdsHelper(CdsHelper):
                     deref(start_date._thisptr),
                     deref(lastperiod._thisptr),
                     rebates_accrual,
-                    <_cds.PricingModel>model)
+                    model)
                 )
         elif isinstance(running_spread, Quote):
             self._thisptr = shared_ptr[_ci.DefaultProbabilityHelper](
@@ -152,7 +152,7 @@ cdef class SpreadCdsHelper(CdsHelper):
                     deref(start_date._thisptr),
                     deref(lastperiod._thisptr),
                     rebates_accrual,
-                    <_cds.PricingModel>model)
+                    model)
             )
         else:
             raise TypeError("running_spread needs to be a float or a Quote Handle")
@@ -186,7 +186,7 @@ cdef class UpfrontCdsHelper(CdsHelper):
                     deref(start_date._thisptr),
                     deref(lastperiod._thisptr),
                     rebates_accrual,
-                    <_cds.PricingModel>model)
+                    model)
             )
         elif isinstance(upfront, Quote):
             self._thisptr = shared_ptr[_ci.DefaultProbabilityHelper](
@@ -200,5 +200,5 @@ cdef class UpfrontCdsHelper(CdsHelper):
                     deref(start_date._thisptr),
                     deref(lastperiod._thisptr),
                     rebates_accrual,
-                    <_cds.PricingModel>model)
+                    model)
             )

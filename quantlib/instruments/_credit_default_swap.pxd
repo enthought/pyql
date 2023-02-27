@@ -9,16 +9,7 @@ from quantlib.time._calendar cimport BusinessDayConvention
 from quantlib.time._date cimport Date, Period
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._schedule cimport Schedule, DateGeneration
-
-cdef extern from 'ql/default.hpp' namespace 'QuantLib::Protection':
-    enum Side:
-        Buyer
-        Seller
-
-cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib::CreditDefaultSwap':
-    enum PricingModel:
-        Midpoint
-        ISDA
+from quantlib.default cimport Side
 
 cdef extern from 'ql/instruments/claim.hpp' namespace 'QuantLib':
 
@@ -28,6 +19,8 @@ cdef extern from 'ql/instruments/claim.hpp' namespace 'QuantLib':
 cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
 
     cdef cppclass CreditDefaultSwap(Instrument):
+        enum PricingModel:
+            pass
         CreditDefaultSwap(Side side,
                           Real notional,
                           Rate spread,
@@ -86,13 +79,13 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
         Rate conventionalSpread(Real conventionalRecovery,
                                 Handle[YieldTermStructure]& discountCurve,
                                 const DayCounter dayCounter,
-                                bool useIsdaEngine # = false
+                                CreditDefaultSwap.PricingModel model # = Midpoint
         ) except +
         Rate impliedHazardRate(Real targetNPV,
                                const Handle[YieldTermStructure]& discountCurve,
                                const DayCounter dayCounter,
                                Real recoveryRate, # = 0.4,
                                Real accuracy, # = 1.0e-8
-                               PricingModel model # = Midpoint
+                               CreditDefaultSwap.PricingModel model # = Midpoint
         ) except +
     Date cdsMaturity(const Date& tradeDate, const Period& tenor, DateGeneration rule) except +ValueError
