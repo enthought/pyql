@@ -16,7 +16,8 @@ from quantlib.time.calendars._target cimport TARGET
 from quantlib.time._schedule cimport Schedule
 from quantlib.time.dategeneration cimport DateGeneration
 from quantlib.time.date cimport date_from_qldate, Date
-from quantlib.time.daycounters._actual_actual cimport ISMA, ActualActual
+from quantlib.time.daycounters._actual_actual cimport ActualActual
+from quantlib.time.daycounters.actual_actual cimport Convention
 
 from quantlib._settings cimport Settings
 
@@ -82,7 +83,7 @@ cdef FixedRateBond* get_bond_for_evaluation_date(QlDate& in_date):
 		    face_amount,
 		    fixed_bond_schedule,
 		    coupons,
-            ActualActual(ISMA),
+            ActualActual(Convention.ISMA),
 		    Following,
             redemption,
             issue_date,
