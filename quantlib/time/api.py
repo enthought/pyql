@@ -44,4 +44,5 @@ from .date import (
 
 )
 
-from .schedule import Schedule, Rule
+from .schedule import Schedule
+from .dategeneration import Rule

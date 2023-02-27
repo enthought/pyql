@@ -14,7 +14,8 @@ from quantlib.time.api import (Months, ISDA,
                                Thirty360, ActualActual,
                                Actual365Fixed)
 from quantlib.time.daycounters.actual_actual import Bond
-from quantlib.time.schedule import Schedule, Backward
+from quantlib.time.schedule import Schedule
+from quantlib.time.dategeneration import Rule
 from quantlib.settings import Settings
 from quantlib.indexes.ibor.usdlibor import USDLibor
 from quantlib.termstructures.yields.rate_helpers import (
@@ -110,7 +111,7 @@ class SensitivityTestCase(unittest.TestCase):
             UnitedStates(market=GovernmentBond),
             Unadjusted,
             Unadjusted,
-            Backward,
+            Rule.Backward,
             False)
 
         bond = FixedRateBond(

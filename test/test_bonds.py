@@ -16,7 +16,8 @@ from quantlib.time.date import (
 )
 from quantlib.time.daycounters.simple import Actual365Fixed, Actual360
 from quantlib.time.daycounters.actual_actual import ActualActual, Bond, ISMA
-from quantlib.time.schedule import Schedule, Backward
+from quantlib.time.schedule import Schedule
+from quantlib.time.dategeneration import Rule
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure
@@ -79,7 +80,7 @@ class BondTestCase(unittest.TestCase):
             UnitedStates(market=GOVERNMENTBOND),
             Unadjusted,
             Unadjusted,
-            Backward,
+            Rule.Backward,
             False);
 
 
@@ -151,7 +152,7 @@ class BondTestCase(unittest.TestCase):
             calendar,
             ModifiedFollowing,
             ModifiedFollowing,
-            Backward
+            Rule.Backward
         )
 
         issue_date = effective_date
@@ -253,7 +254,7 @@ class BondTestCase(unittest.TestCase):
             calendar,
             ModifiedFollowing,
             ModifiedFollowing,
-            Backward
+            Rule.Backward
         )#3
 
         flat_discounting_term_structure = YieldTermStructure()

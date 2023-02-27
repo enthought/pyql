@@ -4,7 +4,8 @@ from quantlib.time.date import (
 )
 from quantlib.time.businessdayconvention import Following, Preceding
 from quantlib.time.calendars.united_kingdom import UnitedKingdom
-from quantlib.time.schedule import Schedule, Twentieth, Forward, Backward
+from quantlib.time.schedule import Schedule
+from quantlib.time.dategeneration import Rule
 
 class ScheduleTestCase(unittest.TestCase):
 
@@ -16,7 +17,7 @@ class ScheduleTestCase(unittest.TestCase):
         calendar = UnitedKingdom()
         convention = Following
         termination_convention = Following
-        rule = Forward
+        rule = Rule.Forward
 
         schedule = Schedule(
             from_date, to_date, tenor, calendar, convention, termination_convention, rule
@@ -42,7 +43,7 @@ class ScheduleMethodTestCase(unittest.TestCase):
         self.calendar = UnitedKingdom()
         self.convention = Following
         self.termination_convention = Preceding
-        self.rule = Twentieth
+        self.rule = Rule.Twentieth
 
         self.schedule = Schedule.from_rule(
             self.from_date, self.to_date, self.tenor, self.calendar,
@@ -89,7 +90,7 @@ class ScheduleMethodTestCase(unittest.TestCase):
         calendar = UnitedKingdom()
         convention = Following
         termination_convention = Following
-        rule = Forward
+        rule = Rule.Forward
 
         fwd_schedule = Schedule.from_rule(from_date, to_date,
                 tenor, calendar, convention, termination_convention, rule)
@@ -97,7 +98,7 @@ class ScheduleMethodTestCase(unittest.TestCase):
         expected_date = Date(5, Sep, 2011)
         self.assertEqual(expected_date, fwd_schedule.next_date(from_date))
 
-        rule = Backward
+        rule = Rule.Backward
 
         bwd_schedule = Schedule.from_rule(from_date, to_date,
                 tenor, calendar, convention, termination_convention, rule)
@@ -113,7 +114,7 @@ class ScheduleMethodTestCase(unittest.TestCase):
         calendar = UnitedKingdom()
         convention = Following
         termination_convention = Following
-        rule = Forward
+        rule = Rule.Forward
 
         schedule = Schedule.from_dates(dates,
                 calendar, convention, termination_convention, tenor, rule)

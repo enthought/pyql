@@ -20,7 +20,8 @@ from quantlib.time.api import (TARGET, Period, Months, Years, Days,September, IS
     ModifiedFollowing, Unadjusted, Actual360, Thirty360, ActualActual, Actual365Fixed,
     Annual, UnitedStates, Months, Actual365Fixed)
 from quantlib.time.daycounters.actual_actual import Bond, ISMA
-from quantlib.time.schedule import Schedule, Backward
+from quantlib.time.schedule import Schedule
+from quantlib.time.dategeneration import Rule
 from quantlib.settings import Settings
 from quantlib.indexes.ibor.libor import Libor
 
@@ -87,7 +88,7 @@ class BondFunctionTestCase(unittest.TestCase):
             UnitedStates(market=GovernmentBond),
             Unadjusted,
             Unadjusted,
-            Backward,
+            Rule.Backward,
             False);
 
 
