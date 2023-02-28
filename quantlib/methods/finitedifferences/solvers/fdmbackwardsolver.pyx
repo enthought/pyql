@@ -4,14 +4,6 @@ from quantlib.types cimport Real
 from quantlib.handle cimport shared_ptr
 cimport quantlib.methods.finitedifferences.solvers._fdmbackwardsolver as _fdm
 
-cpdef enum FdmSchemeType:
-    HundsdorferType = _fdm.HundsdorferType
-    DouglasType = _fdm.DouglasType
-    CraigSneydType = _fdm.CraigSneydType
-    ModifiedCraigSneydType = _fdm.ModifiedCraigSneydType
-    ImplicitEulerType = _fdm.ImplicitEulerType
-    ExplicitEulerType = _fdm.ExplicitEulerType
-
 cdef class FdmLinearOpComposite:
     pass
 
@@ -39,49 +31,50 @@ cdef class FdmSchemeDesc:
     def mu(self):
         return self._thisptr.mu
 
-    @classmethod
-    def Douglas(cls):
+    @staticmethod
+    def Douglas():
         cdef FdmSchemeDesc r = FdmSchemeDesc.__new__(FdmSchemeDesc)
         r._thisptr = new _fdm.FdmSchemeDesc(_fdm.FdmSchemeDesc.Douglas())
         return r
-    @classmethod
-    def CrankNicolson(cls):
+
+    @staticmethod
+    def CrankNicolson():
         cdef FdmSchemeDesc r = FdmSchemeDesc.__new__(FdmSchemeDesc)
         r._thisptr = new _fdm.FdmSchemeDesc(_fdm.FdmSchemeDesc.CrankNicolson())
         return r
 
-    @classmethod
-    def ImplicitEuler(cls):
+    @staticmethod
+    def ImplicitEuler():
         cdef FdmSchemeDesc r = FdmSchemeDesc.__new__(FdmSchemeDesc)
         r._thisptr = new _fdm.FdmSchemeDesc(_fdm.FdmSchemeDesc.ImplicitEuler())
         return r
 
-    @classmethod
-    def ExplicitEuler(cls):
+    @staticmethod
+    def ExplicitEuler():
         cdef FdmSchemeDesc r = FdmSchemeDesc.__new__(FdmSchemeDesc)
         r._thisptr = new _fdm.FdmSchemeDesc(_fdm.FdmSchemeDesc.ExplicitEuler())
         return r
 
-    @classmethod
-    def CraigSneyd(cls):
+    @staticmethod
+    def CraigSneyd():
         cdef FdmSchemeDesc r = FdmSchemeDesc.__new__(FdmSchemeDesc)
         r._thisptr = new _fdm.FdmSchemeDesc(_fdm.FdmSchemeDesc.CraigSneyd())
         return r
 
-    @classmethod
-    def ModifiedCraigSneyd(cls):
+    @staticmethod
+    def ModifiedCraigSneyd():
         cdef FdmSchemeDesc r = FdmSchemeDesc.__new__(FdmSchemeDesc)
         r._thisptr = new _fdm.FdmSchemeDesc(_fdm.FdmSchemeDesc.Hundsdorfer())
         return r
 
-    @classmethod
-    def Hundsdorfer(cls):
+    @staticmethod
+    def Hundsdorfer():
         cdef FdmSchemeDesc r = FdmSchemeDesc.__new__(FdmSchemeDesc)
         r._thisptr = new _fdm.FdmSchemeDesc(_fdm.FdmSchemeDesc.ModifiedHundsdorfer())
         return r
 
-    @classmethod
-    def MethodOfLines(cls, Real eps=0.001, Real relInitStepSize=0.01):
+    @staticmethod
+    def MethodOfLines(Real eps=0.001, Real relInitStepSize=0.01):
         cdef FdmSchemeDesc r = FdmSchemeDesc.__new__(FdmSchemeDesc)
         r._thisptr = new _fdm.FdmSchemeDesc(_fdm.FdmSchemeDesc.MethodOfLines(eps, relInitStepSize))
         return r
