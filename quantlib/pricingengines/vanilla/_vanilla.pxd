@@ -12,7 +12,8 @@ from quantlib.models.equity._heston_model cimport HestonModel
 from quantlib.models.equity._bates_model cimport (BatesModel, BatesDetJumpModel, BatesDoubleExpModel, BatesDoubleExpDetJumpModel)
 
 from quantlib.pricingengines._pricing_engine cimport PricingEngine
-cimport quantlib.methods.finitedifferences.solvers._fdmbackwardsolver as _fdm
+from ._analytic_heston_engine cimport AnalyticHestonEngine
+from quantlib.methods.finitedifferences.solvers._fdmbackwardsolver cimport FdmSchemeDesc
 
 cdef extern from 'ql/pricingengines/vanilla/analyticeuropeanengine.hpp' namespace 'QuantLib':
 
@@ -26,14 +27,6 @@ cdef extern from 'ql/pricingengines/vanilla/baroneadesiwhaleyengine.hpp' namespa
     cdef cppclass BaroneAdesiWhaleyApproximationEngine(PricingEngine):
         BaroneAdesiWhaleyApproximationEngine(
             shared_ptr[GeneralizedBlackScholesProcess]& process
-        )
-
-cdef extern from 'ql/pricingengines/vanilla/analytichestonengine.hpp' namespace 'QuantLib':
-
-    cdef cppclass AnalyticHestonEngine(PricingEngine):
-        AnalyticHestonEngine(
-            shared_ptr[HestonModel]& model,
-            Size integrationOrder
         )
 
 
@@ -65,7 +58,7 @@ cdef extern from 'ql/pricingengines/vanilla/fdhestonhullwhitevanillaengine.hpp' 
             Size vGrid, Size rGrid,
             Size dampingSteps,
             bool controlVariate,
-            _fdm.FdmSchemeDesc& schemeDesc
+            FdmSchemeDesc& schemeDesc
         )
 
         FdHestonHullWhiteVanillaEngine(
@@ -77,7 +70,7 @@ cdef extern from 'ql/pricingengines/vanilla/fdhestonhullwhitevanillaengine.hpp' 
             Size vGrid, Size rGrid,
             Size dampingSteps,
             bool controlVariate,
-            _fdm.FdmSchemeDesc& schemeDesc
+            FdmSchemeDesc& schemeDesc
         )
 
         void enableMultipleStrikesCaching(vector[double]&)

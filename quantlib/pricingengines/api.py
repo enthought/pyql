@@ -1,5 +1,5 @@
 from .vanilla.vanilla import VanillaOptionEngine, AnalyticEuropeanEngine
-from .vanilla.vanilla import AnalyticHestonEngine
+from .vanilla.analytic_heston_engine import AnalyticHestonEngine
 from .vanilla.vanilla import AnalyticBSMHullWhiteEngine
 from .vanilla.vanilla import AnalyticHestonHullWhiteEngine
 
