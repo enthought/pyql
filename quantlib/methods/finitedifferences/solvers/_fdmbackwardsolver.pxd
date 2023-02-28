@@ -1,17 +1,5 @@
 from quantlib.types cimport Real
 
-cdef extern from 'ql/methods/finitedifferences/solvers/fdmbackwardsolver.hpp' namespace 'QuantLib::FdmSchemeDesc':
-    cdef enum FdmSchemeType:
-        HundsdorferType
-        DouglasType
-        CraigSneydType
-        ModifiedCraigSneydType
-        ImplicitEulerType
-        ExplicitEulerType
-        MethodOfLinesType
-        TrBDF2Type
-        CrankNicolsonType
-
 cdef extern from 'ql/methods/finitedifferences/solvers/fdmbackwardsolver.hpp' namespace 'QuantLib':
    cdef cppclass FdmSchemeDesc:
        enum FdmSchemeType:
