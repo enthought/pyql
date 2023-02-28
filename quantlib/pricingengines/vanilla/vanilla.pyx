@@ -46,16 +46,6 @@ cdef class BaroneAdesiWhaleyApproximationEngine(VanillaOptionEngine):
             new _va.BaroneAdesiWhaleyApproximationEngine(process_ptr)
         )
 
-cdef class AnalyticHestonEngine(PricingEngine):
-
-    def __init__(self, HestonModel model, int integration_order=144):
-
-        self._thisptr.reset(
-            new _va.AnalyticHestonEngine(
-                model._thisptr,
-                <Size>integration_order
-            )
-        )
 
 cdef class AnalyticBSMHullWhiteEngine(PricingEngine):
 
