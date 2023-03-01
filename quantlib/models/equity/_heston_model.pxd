@@ -32,7 +32,7 @@ cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
         ) except +
 
 
-cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib':
+cdef extern from 'ql/models/equity/hestonmodel.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass HestonModel(CalibratedModel):
 
