@@ -37,7 +37,7 @@ cdef class BlackVolTermStructure(VolatilityTermStructure):
             return self.get_bvts().blackVol(<float>maturity, strike, extrapolate)
         elif isinstance(maturity, Date):
             return self.get_bvts().blackVol(
-                deref((<Date?>maturity)._thisptr),
+                deref((<Date>maturity)._thisptr),
                 strike,
                 extrapolate
             )
@@ -55,7 +55,7 @@ cdef class BlackVolTermStructure(VolatilityTermStructure):
             )
         elif isinstance(maturity, Date):
             return self.get_bvts().blackVariance(
-                deref((<Date?>maturity)._thisptr),
+                deref((<Date>maturity)._thisptr),
                 strike,
                 extrapolate
             )
@@ -74,8 +74,8 @@ cdef class BlackVolTermStructure(VolatilityTermStructure):
             )
         elif isinstance(time_1, Date) and isinstance(time_2, Date):
             return self.get_bvts().blackForwardVol(
-                deref((<Date?>time_1)._thisptr),
-                deref((<Date?>time_2)._thisptr),
+                deref((<Date>time_1)._thisptr),
+                deref((<Date>time_2)._thisptr),
                 strike,
                 extrapolate
             )
@@ -94,8 +94,8 @@ cdef class BlackVolTermStructure(VolatilityTermStructure):
             )
         elif isinstance(time_1, Date) and isinstance(time_2, Date):
             return self.get_bvts().blackForwardVariance(
-                deref((<Date?>time_1)._thisptr),
-                deref((<Date?>time_2)._thisptr),
+                deref((<Date>time_1)._thisptr),
+                deref((<Date>time_2)._thisptr),
                 strike,
                 extrapolate
             )
