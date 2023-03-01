@@ -84,13 +84,13 @@ cdef class FdHestonHullWhiteVanillaEngine(PricingEngine):
     def __init__(self, HestonModel heston_model,
             HullWhiteProcess hw_process,
             Real corr_equity_short_rate,
-            Size t_grid,
-            Size x_grid,
-            Size v_grid,
-            Size r_grid,
-            Size damping_steps,
-            bool control_variate,
-            FdmSchemeDesc desc,
+            Size t_grid=50,
+            Size x_grid=100,
+            Size v_grid=40,
+            Size r_grid=20,
+            Size damping_steps=0,
+            bool control_variate=True,
+            FdmSchemeDesc desc=FdmSchemeDesc.Hundsdorfer(),
             DividendSchedule dividends=None):
 
         if dividends is not None:
