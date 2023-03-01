@@ -14,14 +14,14 @@ from quantlib.instruments.option import VanillaOption, OptionType
 from quantlib.instruments.exercise import EuropeanExercise
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.models.equity.heston_model import HestonModel
-from quantlib.pricingengines.vanilla.vanilla import AnalyticHestonEngine
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.util.converter import pydate_to_qldate, df_to_zero_curve
 
 from quantlib.instruments.api import EuropeanOption
-from quantlib.pricingengines.api import AnalyticEuropeanEngine
+from quantlib.pricingengines.api import (AnalyticEuropeanEngine,
+                                         AnalyticHestonEngine)
 from quantlib.processes.api import BlackScholesMertonProcess
 from quantlib.termstructures.yields.api import FlatForward
 from quantlib.termstructures.volatility.api import BlackConstantVol
@@ -45,7 +45,7 @@ def heston_pricer(trade_date, options, params, rates, spot):
     process = HestonProcess(risk_free_ts, dividend_ts, spot, **params)
 
     model = HestonModel(process)
-    engine = AnalyticHestonEngine(model, 64)
+    engine = AnalyticHestonEngine(model)
 
     settlement_date = pydate_to_qldate(trade_date)
 

@@ -228,7 +228,7 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         hestonHwEngine = AnalyticHestonHullWhiteEngine(
             hestonModel, hullWhiteModel, 128)
 
-        hestonEngine = AnalyticHestonEngine(hestonModel, 144)
+        hestonEngine = AnalyticHestonEngine(hestonModel)
         option.set_pricing_engine(hestonEngine)
 
         npv_heston = option.npv
