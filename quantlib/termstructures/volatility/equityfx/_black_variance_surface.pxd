@@ -1,4 +1,4 @@
-include '../../../types.pxi'
+from quantlib.types cimport Real
 
 from libcpp.vector cimport vector
 
@@ -9,16 +9,11 @@ from quantlib.math._matrix cimport Matrix
 from ._black_vol_term_structure cimport BlackVarianceTermStructure
 
 
-cdef extern from 'ql/termstructures/volatility/equityfx/blackvariancesurface.hpp' namespace 'QuantLib::BlackVarianceSurface':
-
-    cdef enum Extrapolation:
-        ConstantExtrapolation
-        InterpolatorDefaultExtrapolation
-
 cdef extern from 'ql/termstructures/volatility/equityfx/blackvariancesurface.hpp' namespace 'QuantLib':
 
     cdef cppclass BlackVarianceSurface(BlackVarianceTermStructure):
-
+        enum Extrapolation:
+            pass
         BlackVarianceSurface(Date& referenceDate,
                              Calendar& cal,
                              vector[Date]& dates,
