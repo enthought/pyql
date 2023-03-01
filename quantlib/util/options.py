@@ -16,14 +16,13 @@ from quantlib.instruments.option import EuropeanExercise, VanillaOption
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.instruments.option import Call, Put
 from quantlib.models.equity.heston_model import HestonModel
-from quantlib.pricingengines.vanilla.vanilla import AnalyticHestonEngine
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.util.converter import pydate_to_qldate, df_to_zero_curve
 
 from quantlib.instruments.api import EuropeanOption
-from quantlib.pricingengines.api import AnalyticEuropeanEngine
+from quantlib.pricingengines.api import AnalyticEuropeanEngine, AnalyticHestonEngine
 from quantlib.processes.api import BlackScholesMertonProcess
 from quantlib.termstructures.yields.api import FlatForward
 from quantlib.termstructures.volatility.api import BlackConstantVol
