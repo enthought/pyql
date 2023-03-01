@@ -10,7 +10,7 @@ The day count can be calculated according to:
  - the AFB convention, also known as "Actual/Actual (Euro)".
 
 For more details, refer to
-http://www.isda.org/publications/pdf/Day-Count-Fracation1999.pdf
+https://www.isda.org/a/pIJEE/The-Actual-Actual-Day-Count-Fraction-1999.pdf
 '''
 
 cimport quantlib.time._daycounter as _daycounter
@@ -20,12 +20,9 @@ from quantlib.time.daycounter cimport DayCounter
 cdef class ActualActual(DayCounter):
 
     def __init__(self, Convention convention=Convention.ISDA):
-        self._thisptr = <_daycounter.DayCounter*> new \
-            _aa.ActualActual(convention)
+        """ Actual/Actual day count
 
-ActualActual.__doc__ = """ Actual/Actual day count
-
-    The day count can be calculated according to:
+        The day count can be calculated according to:
 
         - the ISDA convention, also known as "Actual/Actual (Historical)",
           "Actual/Actual", "Act/Act", and according to ISDA also "Actual/365",
@@ -35,10 +32,10 @@ ActualActual.__doc__ = """ Actual/Actual day count
         - the AFB convention, also known as "Actual/Actual (Euro)".
 
         For more details, refer to
-        http://www.isda.org/publications/pdf/Day-Count-Fracation1999.pdf
-
-        Valid names for ACT/ACT daycounters are: \n {}
-    """.format([])
+        https://www.isda.org/a/pIJEE/The-Actual-Actual-Day-Count-Fraction-1999.pdf
+        """
+        self._thisptr = <_daycounter.DayCounter*> new \
+            _aa.ActualActual(convention)
 
 cdef _daycounter.DayCounter* from_name(str convention):
 
