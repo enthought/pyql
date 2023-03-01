@@ -18,7 +18,7 @@ from quantlib.models.equity.bates_model import BatesDetJumpModel
 
 from quantlib.pricingengines.blackformula import blackFormula
 from quantlib.pricingengines.vanilla.vanilla import BatesDetJumpEngine
-from quantlib.pricingengines.vanilla.analytic_heston_engine import AnalyticHestonEngine
+from quantlib.pricingengines.vanilla.analytic_heston_engine import AnalyticHestonEngine, Integration
 from quantlib.processes.heston_process import QuadraticExponential
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
@@ -114,7 +114,7 @@ class HestonModelTestCase(unittest.TestCase):
             self.assertEqual(1.0, process.s0.value)
 
             model = HestonModel(process)
-            engine = AnalyticHestonEngine(model, 96)
+            engine = AnalyticHestonEngine(model, itg=Integration.gaussLaguerre(96))
 
             for option in options:
                 option.set_pricing_engine(engine)
@@ -209,7 +209,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         model = HestonModel(process)
 
-        engine = AnalyticHestonEngine(model, 64)
+        engine = AnalyticHestonEngine(model, itg=Integration.gaussLaguerre(64))
 
         for option in options:
             option.set_pricing_engine(engine)
@@ -257,7 +257,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         option = VanillaOption(payoff, exercise)
 
-        engine = AnalyticHestonEngine(HestonModel(process), 144)
+        engine = AnalyticHestonEngine(HestonModel(process))
 
         option.set_pricing_engine(engine)
 
@@ -388,7 +388,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         option = VanillaOption(c_payoff, exercise)
 
-        engine = AnalyticHestonEngine(model, 144)
+        engine = AnalyticHestonEngine(model)
 
         option.set_pricing_engine(engine)
 
