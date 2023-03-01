@@ -18,10 +18,6 @@ from . cimport _black_variance_surface as _bvs
 from . cimport _black_vol_term_structure as _bvts
 from ..._vol_term_structure cimport VolatilityTermStructure
 
-cpdef public enum Extrapolation:
-    ConstantExtrapolation = _bvs.ConstantExtrapolation
-    InterpolatorDefaultExtrapolation = _bvs.InterpolatorDefaultExtrapolation
-
 cdef inline _bvs.BlackVarianceSurface* get_bvs(BlackVarianceSurface bvs):
     """ Utility function to extract a properly casted BlackVarianceSurface out
     of the internal _thisptr attribute of the BlackVolTermStructure base class.
