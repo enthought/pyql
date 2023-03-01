@@ -14,12 +14,11 @@ from quantlib.models.equity.heston_model import (
 
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.processes.bates_process import BatesProcess
-from quantlib.models.equity.bates_model import (BatesDetJumpModel)
+from quantlib.models.equity.bates_model import BatesDetJumpModel
 
 from quantlib.pricingengines.blackformula import blackFormula
-from quantlib.pricingengines.vanilla.vanilla import (
-    AnalyticHestonEngine,
-    BatesDetJumpEngine)
+from quantlib.pricingengines.vanilla.vanilla import BatesDetJumpEngine
+from quantlib.pricingengines.vanilla.analytic_heston_engine import AnalyticHestonEngine
 from quantlib.processes.heston_process import QuadraticExponential
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
@@ -33,6 +32,7 @@ from quantlib.termstructures.yields.zero_curve import ZeroCurve
 
 from quantlib.pricingengines.vanilla.mceuropeanhestonengine import MCEuropeanHestonEngine
 from .utilities import flat_rate
+
 
 class HestonModelTestCase(unittest.TestCase):
     """Test cases are based on the test-suite/hestonmodel.cpp in QuantLib.
