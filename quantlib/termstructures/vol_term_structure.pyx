@@ -1,3 +1,4 @@
+from libcpp cimport bool
 from cython.operator cimport dereference as deref
 from quantlib.time.date cimport date_from_qldate
 from quantlib.time.calendar cimport Calendar
@@ -39,6 +40,13 @@ cdef class VolatilityTermStructure:
         return date_from_qldate(
             self.as_ptr().optionDateFromTenor(deref(period._thisptr)))
 
+    @property
+    def extrapolation(self):
+        return self.as_ptr().allowsExtrapolation()
+
+    @extrapolation.setter
+    def extrapolation(self, bool b):
+        self.as_ptr().enableExtrapolation(b)
 
 cdef class HandleVolatilityTermStructure:
     def __init__(self, VolatilityTermStructure structure not None, cbool register_as_observer):

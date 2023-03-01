@@ -1,4 +1,5 @@
 include '../types.pxi'
+from libcpp cimport bool
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._date cimport Date
@@ -33,3 +34,6 @@ cdef extern from 'ql/termstructures/voltermstructure.hpp' namespace 'QuantLib' n
         # the settlementDays used for reference date calculation
         Natural settlementDays() const
         Date optionDateFromTenor(const Period&) const
+        void enableExtrapolation(bool)
+        void disableExtrapolation(bool)
+        bool allowsExtrapolation() const
