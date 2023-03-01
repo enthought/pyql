@@ -61,25 +61,6 @@ cdef extern from 'ql/instruments/vanillaoption.hpp' namespace 'QuantLib':
                 Volatility maxVol
         ) except +
 
-cdef extern from 'ql/instruments/dividendvanillaoption.hpp' namespace 'QuantLib':
-
-    cdef cppclass DividendVanillaOption(OneAssetOption):
-        cppclass engine(PricingEngine):
-            pass
-        DividendVanillaOption(
-            shared_ptr[StrikedTypePayoff]& payoff,
-            shared_ptr[Exercise]& exercise,
-            vector[Date]& dividendDates,
-            vector[Real]& dividends
-        )
-        Volatility impliedVolatility(
-                Real price,
-                shared_ptr[GeneralizedBlackScholesProcess]& process,
-                Real accuracy,
-                Size maxEvaluations,
-                Volatility minVol,
-                Volatility maxVol
-        ) except +
 
 cdef extern from 'ql/instruments/europeanoption.hpp' namespace 'QuantLib':
 
@@ -88,3 +69,9 @@ cdef extern from 'ql/instruments/europeanoption.hpp' namespace 'QuantLib':
             shared_ptr[StrikedTypePayoff]& payoff,
             shared_ptr[Exercise]& exercise
         )
+
+cdef extern from 'ql/instruments/dividendvanillaoption.hpp' namespace 'QuantLib':
+
+    cdef cppclass DividendVanillaOption(OneAssetOption):
+        cppclass engine(PricingEngine):
+            pass
