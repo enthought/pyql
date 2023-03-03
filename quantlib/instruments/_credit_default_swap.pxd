@@ -8,7 +8,7 @@ from quantlib._cashflow cimport CashFlow, Leg
 from quantlib.time._calendar cimport BusinessDayConvention
 from quantlib.time._date cimport Date, Period
 from quantlib.time._daycounter cimport DayCounter
-from quantlib.time._schedule cimport Schedule, Rule
+from quantlib.time._schedule cimport Schedule, DateGeneration
 
 cdef extern from 'ql/default.hpp' namespace 'QuantLib::Protection':
     enum Side:
@@ -95,4 +95,4 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                                Real accuracy, # = 1.0e-8
                                PricingModel model # = Midpoint
         ) except +
-    Date cdsMaturity(const Date& tradeDate, const Period& tenor, Rule rule) except +ValueError
+    Date cdsMaturity(const Date& tradeDate, const Period& tenor, DateGeneration rule) except +ValueError

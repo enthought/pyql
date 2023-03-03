@@ -16,7 +16,7 @@ from quantlib.handle cimport shared_ptr, static_pointer_cast
 cimport quantlib.termstructures.credit._credit_helpers as _ci
 cimport quantlib.termstructures._yield_term_structure as _yts
 from quantlib.time._period cimport Frequency
-from quantlib.time._schedule cimport Rule
+from quantlib.time.dategeneration cimport DateGeneration
 from quantlib.time._calendar cimport BusinessDayConvention
 
 
@@ -112,7 +112,7 @@ cdef class SpreadCdsHelper(CdsHelper):
 
     def __init__(self, running_spread, Period tenor, Integer settlement_days,
                  Calendar calendar not None, int frequency,
-                 int paymentConvention, Rule date_generation_rule,
+                 int paymentConvention, DateGeneration date_generation_rule,
                  DayCounter daycounter, Real recovery_rate,
                  YieldTermStructure discount_curve=YieldTermStructure(),
                  bool settles_accrual=True,
@@ -145,7 +145,7 @@ cdef class SpreadCdsHelper(CdsHelper):
                     (<Quote>running_spread).handle(), deref(tenor._thisptr),
                     settlement_days, deref(calendar._thisptr),
                     <Frequency>frequency,
-                    <BusinessDayConvention>paymentConvention, <Rule>date_generation_rule,
+                    <BusinessDayConvention>paymentConvention, date_generation_rule,
                     deref(daycounter._thisptr),
                     recovery_rate, discount_curve._thisptr, settles_accrual,
                     pays_at_default_time,
@@ -162,7 +162,7 @@ cdef class UpfrontCdsHelper(CdsHelper):
 
     def __init__(self, upfront, Rate running_spread, Period tenor not None,
                  Integer settlement_days, Calendar calendar not None, int frequency,
-                 int paymentConvention, Rule date_generation_rule,
+                 int paymentConvention, DateGeneration rule,
                  DayCounter daycounter not None, Real recovery_rate,
                  YieldTermStructure discount_curve=YieldTermStructure(),
                  Natural upfront_settlement_days=3,
@@ -179,7 +179,7 @@ cdef class UpfrontCdsHelper(CdsHelper):
                 new _ci.UpfrontCdsHelper(
                     <Rate>upfront, running_spread, deref(tenor._thisptr.get()),
                     settlement_days, deref(calendar._thisptr), <Frequency>frequency,
-                    <BusinessDayConvention>paymentConvention, <Rule>date_generation_rule,
+                    <BusinessDayConvention>paymentConvention, rule,
                     deref(daycounter._thisptr),
                     recovery_rate, discount_curve._thisptr, upfront_settlement_days, settles_accrual,
                     pays_at_default_time,
@@ -193,7 +193,7 @@ cdef class UpfrontCdsHelper(CdsHelper):
                 new _ci.UpfrontCdsHelper(
                     (<Quote>upfront).handle(), running_spread, deref(tenor._thisptr),
                     settlement_days, deref(calendar._thisptr), <Frequency>frequency,
-                    <BusinessDayConvention>paymentConvention, date_generation_rule,
+                    <BusinessDayConvention>paymentConvention, rule,
                     deref(daycounter._thisptr),
                     recovery_rate, discount_curve._thisptr, upfront_settlement_days, settles_accrual,
                     pays_at_default_time,

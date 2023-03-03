@@ -6,7 +6,7 @@ from ._period cimport Period
 from ._date cimport Date
 from ._calendar cimport Calendar, BusinessDayConvention
 from quantlib.handle cimport optional
-from .dategeneration cimport Rule
+from .dategeneration cimport DateGeneration
 cdef extern from 'ql/time/schedule.hpp' namespace 'QuantLib':
 
     cdef cppclass Schedule:
@@ -18,7 +18,7 @@ cdef extern from 'ql/time/schedule.hpp' namespace 'QuantLib':
                  Calendar& calendar,
                  BusinessDayConvention convention,
                  BusinessDayConvention terminationDateConvention,
-                 Rule rule,
+                 DateGeneration rule,
                  bool endOfMonth,
                  Date& firstDate,
                  Date& nextToLastDate
@@ -28,7 +28,7 @@ cdef extern from 'ql/time/schedule.hpp' namespace 'QuantLib':
                  BusinessDayConvention convention,
                  optional[BusinessDayConvention] terminationDateConvention,
                  optional[Period] tenor,
-                 optional[Rule] rule,
+                 optional[DateGeneration] rule,
                  optional[bool] endOfMonth,
                  vector[bool]& isRegular
         ) except +
@@ -42,4 +42,4 @@ cdef extern from 'ql/time/schedule.hpp' namespace 'QuantLib':
         vector[Date].const_iterator begin()
         vector[Date].const_iterator end()
 
-    Date previousTwentieth(const Date& d, Rule rule)
+    Date previousTwentieth(const Date& d, DateGeneration rule)

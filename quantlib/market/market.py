@@ -13,7 +13,7 @@ from quantlib.math.interpolation import LogLinear
 from quantlib.time.api import (
     Date, Period, Years, Days, JointCalendar, UnitedStates, UnitedKingdom,
     pydate_from_qldate, qldate_from_pydate, DayCounter,
-    BusinessDayConvention, Rule, Following, calendar_from_name,
+    BusinessDayConvention, DateGeneration, Following, calendar_from_name,
     Schedule, Frequency
 
 )
@@ -121,7 +121,7 @@ def make_eurobond_helper(
         index.fixing_calendar,
         index.business_day_convention,
         index.business_day_convention,
-        Rule.Backward,  # Date generation rule
+        DateGeneration.Backward,  # Date generation rule
         index.end_of_month,
         )
 
@@ -374,13 +374,13 @@ class IborMarket(FixedIncomeMarket):
         fixed_schedule = Schedule.from_rule(settlement_date, maturity,
                                   fixed_frequency, calendar,
                                   fixed_convention, fixed_convention,
-                                  Rule.Forward, False)
+                                  DateGeneration.Forward, False)
 
         float_schedule = Schedule.from_rule(settlement_date, maturity,
                                   floating_frequency,
                                   calendar, floating_convention,
                                   floating_convention,
-                                  Rule.Forward, False)
+                                  DateGeneration.Forward, False)
 
         swap = VanillaSwap(swap_type, nominal, fixed_schedule, fixed_rate,
                            fixed_daycount, float_schedule, index,

@@ -13,7 +13,7 @@ from quantlib.termstructures.yields.api import (
 from quantlib.time.api import (
     Unadjusted, ModifiedFollowing, Date, Days, Semiannual, January, Period,
     Annual, Years, Months, Actual365Fixed, Thirty360, TARGET, Actual360,
-    Schedule, Rule
+    Schedule, DateGeneration
 )
 from quantlib.util.converter import pydate_to_qldate
 from quantlib.quotes import SimpleQuote
@@ -63,13 +63,13 @@ class TestQuantLibSwap(unittest.TestCase):
         fixedSchedule = Schedule(settlement_date, maturity,
                                  Period(fixedFrequency),
                                  calendar, fixedConvention, fixedConvention,
-                                 Rule.Forward, False)
+                                 DateGeneration.Forward, False)
 
         floatSchedule = Schedule(settlement_date, maturity,
                                  Period(floatingFrequency),
                                  calendar, floatingConvention,
                                  floatingConvention,
-                                 Rule.Forward, False)
+                                 DateGeneration.Forward, False)
         engine = DiscountingSwapEngine(termStructure,
                                        False,
                                        settlement_date, settlement_date)

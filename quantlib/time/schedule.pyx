@@ -10,7 +10,7 @@ import numpy as np
 cimport numpy as np
 np.import_array()
 from .businessdayconvention cimport Following, BusinessDayConvention
-from .dategeneration cimport Rule
+from .dategeneration cimport DateGeneration
 
 from .calendar cimport Calendar
 from .date cimport date_from_qldate, Date, Period
@@ -24,7 +24,7 @@ cdef class Schedule:
             Period tenor not None, Calendar calendar not None,
             BusinessDayConvention business_day_convention=Following,
             BusinessDayConvention termination_date_convention=Following,
-            Rule date_generation_rule=Rule.Forward, bool end_of_month=False,
+            DateGeneration date_generation_rule=DateGeneration.Forward, bool end_of_month=False,
             from_classmethod=False
            ):
 
@@ -50,7 +50,7 @@ cdef class Schedule:
             BusinessDayConvention business_day_convention=Following,
             BusinessDayConvention termination_date_convention=Following,
             Period tenor=None,
-            Rule date_generation_rule=Rule.Forward, bool end_of_month=False,
+            DateGeneration date_generation_rule=DateGeneration.Forward, bool end_of_month=False,
             vector[bool] is_regular=[]):
         # convert lists to vectors
         cdef vector[_date.Date] _dates = vector[_date.Date]()
@@ -68,7 +68,7 @@ cdef class Schedule:
             business_day_convention,
             opt_termination_convention,
             opt_tenor,
-            optional[_schedule.Rule](<_schedule.Rule>date_generation_rule),
+            optional[DateGeneration](date_generation_rule),
             optional[bool](end_of_month),
             is_regular
         )
@@ -81,7 +81,7 @@ cdef class Schedule:
                   Period tenor not None, Calendar calendar not None,
                   BusinessDayConvention business_day_convention=Following,
                   BusinessDayConvention termination_date_convention=Following,
-                  Rule date_generation_rule=Rule.Forward, bool end_of_month=False,
+                  DateGeneration date_generation_rule=DateGeneration.Forward, bool end_of_month=False,
                   Date first_date=Date(), Date next_to_lastdate=Date()):
 
         cdef Schedule instance = cls.__new__(cls)
@@ -164,6 +164,6 @@ cdef class Schedule:
         else:
             raise TypeError('index needs to be an integer or a slice')
 
-def previous_twentieth(Date d not None, Rule rule):
+def previous_twentieth(Date d not None, DateGeneration rule):
     cdef _date.Date date = _schedule.previousTwentieth(deref(d._thisptr), rule)
     return date_from_qldate(date)

@@ -13,7 +13,7 @@ from quantlib.time._schedule cimport Schedule
 from quantlib._cashflow cimport Leg
 from quantlib.indexes._ibor_index cimport IborIndex
 from quantlib.indexes._inflation_index cimport ZeroInflationIndex
-from quantlib.time._schedule cimport Rule
+from quantlib.time._schedule cimport DateGeneration
 from quantlib._compounding cimport Compounding
 
 cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib':
@@ -110,7 +110,7 @@ cdef extern from 'ql/instruments/bonds/floatingratebond.hpp' namespace 'QuantLib
                         Real redemption,
                         Date& issueDate,
                         Date& stubDate,
-                        Rule rule) except +
+                        DateGeneration rule) except +
 
 cdef extern from 'ql/cashflows/cpicoupon.hpp' namespace 'QuantLib::CPI':
     cdef enum InterpolationType:

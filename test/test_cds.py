@@ -9,8 +9,7 @@ from quantlib.instruments.api import CreditDefaultSwap, Side
 from quantlib.instruments.credit_default_swap import cds_maturity
 from quantlib.instruments.make_cds import MakeCreditDefaultSwap
 from quantlib.time.api import ( TARGET, today, Years, Schedule,
-    Following, Quarterly, Rule, Actual360, Period )
-from quantlib.time.dategeneration import Rule
+    Following, Quarterly, DateGeneration, Actual360, Period )
 import math
 
 
@@ -29,7 +28,7 @@ class CreditDefaultSwapTest(unittest.TestCase):
         maturity = calendar.advance(issue_date, 10, Years)
         self.convention = Following
         self.schedule = Schedule.from_rule(issue_date, maturity, Period("3M"), calendar,
-                                           self.convention, self.convention, Rule.TwentiethIMM)
+                                           self.convention, self.convention, DateGeneration.TwentiethIMM)
         recovery_rate = 0.4
         self.engine = MidPointCdsEngine(probability_curve, recovery_rate, discount_curve, True)
 
@@ -83,9 +82,9 @@ class CreditDefaultSwapTest(unittest.TestCase):
 
     def test_makecds(self):
         cds = (MakeCreditDefaultSwap(Period(5, Years), 0.01).
-               with_date_generation_rule(Rule.CDS2015)())
+               with_date_generation_rule(DateGeneration.CDS2015)())
         self.assertEqual(cds.cash_settlement_days, 3)
-        self.assertEqual(cds.protection_end_date, cds_maturity(Settings().evaluation_date, Period(5, Years), Rule.CDS2015))
+        self.assertEqual(cds.protection_end_date, cds_maturity(Settings().evaluation_date, Period(5, Years), DateGeneration.CDS2015))
 
 if __name__ == "__main__":
     unittest.main()

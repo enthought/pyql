@@ -17,7 +17,7 @@ cimport quantlib.instruments._credit_default_swap as _cds
 cimport quantlib._instrument as _instrument
 cimport quantlib.pricingengines._pricing_engine as _pe
 cimport quantlib.time._calendar as _calendar
-cimport quantlib.time._schedule as _schedule
+from quantlib.time.dategeneration cimport DateGeneration
 
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.pricingengines.engine cimport PricingEngine
@@ -328,14 +328,14 @@ cdef class CreditDefaultSwap(Instrument):
                                                 <_cds.PricingModel>model)
 
 
-def cds_maturity(Date trade_date, Period tenor, _schedule.Rule rule):
+def cds_maturity(Date trade_date, Period tenor, DateGeneration rule):
     """Computes a CDS maturity date.
 
     Parameters
     ----------
     trade_date : Date
     tenor : Period
-    rule : Rule
+    rule : DateGeneration
 
     Returns
     -------

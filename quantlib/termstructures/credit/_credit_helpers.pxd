@@ -18,7 +18,7 @@ from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._period cimport Period, Frequency
 from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
-from quantlib.time._schedule cimport Rule
+from quantlib.time._schedule cimport DateGeneration
 
 from quantlib.termstructures._default_term_structure cimport DefaultProbabilityTermStructure
 from quantlib.termstructures._helpers cimport BootstrapHelper, \
@@ -38,7 +38,7 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                   Calendar& calendar,
                   Frequency frequency,
                   BusinessDayConvention paymentConvention,
-                  Rule rule,
+                  DateGeneration rule,
                   DayCounter& dayCounter,
                   Real recoveryRate,
                   Handle[YieldTermStructure]& discountCurve,
@@ -57,7 +57,7 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                         const Calendar& calendar,
                         Frequency frequency,
                         BusinessDayConvention paymentConvention,
-                        Rule rule,
+                        DateGeneration rule,
                         const DayCounter& dayCounter,
                         Real recoveryRate,
                         const Handle[YieldTermStructure]& discountCurve,
@@ -74,7 +74,7 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                         const Calendar& calendar,
                         Frequency frequency,
                         BusinessDayConvention paymentConvention,
-                        Rule rule,
+                        DateGeneration rule,
                         const DayCounter& dayCounter,
                         Real recoveryRate,
                         const Handle[YieldTermStructure]& discountCurve,
@@ -93,7 +93,7 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                          const Calendar& calendar,
                          Frequency frequency,
                          BusinessDayConvention paymentConvention,
-                         Rule rule,
+                         DateGeneration rule,
                          const DayCounter& dayCounter,
                          Real recoveryRate,
                          const Handle[YieldTermStructure]& discountCurve,
@@ -112,7 +112,7 @@ cdef extern from 'ql/termstructures/credit/defaultprobabilityhelpers.hpp' namesp
                          const Calendar& calendar,
                          Frequency frequency,
                          BusinessDayConvention paymentConvention,
-                         Rule rule,
+                         DateGeneration rule,
                          const DayCounter& dayCounter,
                          Real recoveryRate,
                          const Handle[YieldTermStructure]& discountCurve,

@@ -2,7 +2,7 @@ from quantlib.types cimport Natural, Real, Rate, Spread
 from quantlib.handle cimport shared_ptr, Handle
 from libcpp cimport bool
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
-from quantlib.time._schedule cimport Rule
+from quantlib.time._schedule cimport DateGeneration
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period, Frequency
 from quantlib.time._daycounter cimport DayCounter
@@ -30,7 +30,7 @@ cdef extern from 'ql/instruments/makeois.hpp' namespace 'QuantLib':
         MakeOIS& withSettlementDays(Natural settlementDays)
         MakeOIS& withEffectiveDate(const Date&)
         MakeOIS& withTerminationDate(const Date&)
-        MakeOIS& withRule(Rule r)
+        MakeOIS& withRule(DateGeneration r)
 
         MakeOIS& withPaymentFrequency(Frequency f)
         MakeOIS& withPaymentAdjustment(BusinessDayConvention convention)

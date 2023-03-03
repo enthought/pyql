@@ -8,7 +8,7 @@ from quantlib.time.date cimport Period, Date
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time._period cimport Days
-from quantlib.time._schedule cimport Rule
+from quantlib.time.dategeneration cimport DateGeneration
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.pricingengines.engine cimport PricingEngine
 cimport quantlib.indexes._ibor_index as _ii
@@ -62,7 +62,7 @@ cdef class MakeVanillaSwap:
         self._thisptr.withTerminationDate(deref(termination_date._thisptr))
         return self
 
-    def with_rule(self, Rule rule):
+    def with_rule(self, DateGeneration rule):
         self._thisptr.withRule(rule)
         return self
 
