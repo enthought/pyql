@@ -24,7 +24,7 @@ from quantlib.time.date import (
     Date, Days, Period, Years, str_to_frequency)
 
 from quantlib.time.schedule import Schedule
-from quantlib.time.dategeneration import Rule
+from quantlib.time.dategeneration import DateGeneration
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure
@@ -119,7 +119,7 @@ def _bndprice(bond_yield, coupon_rate, pricing_date, maturity_date,
         calendar,
         ModifiedFollowing,
         ModifiedFollowing,
-        Rule.Backward
+        DateGeneration.Backward
     )
 
     issue_date = effective_date
@@ -229,7 +229,7 @@ def _cfamounts(coupon_rate, pricing_date, maturity_date,
         calendar,
         ModifiedFollowing,
         ModifiedFollowing,
-        Rule.Backward
+        DateGeneration.Backward
     )
 
     issue_date = effective_date

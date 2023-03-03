@@ -4,7 +4,7 @@ from quantlib.instruments.api import VanillaSwap, Swaption
 from quantlib.instruments.swap import SwapType
 from quantlib.time.api import (
     Date, today, Unadjusted, ModifiedFollowing, Annual, Semiannual,
-    Thirty360, Days, Years, Rule, Schedule, Actual365Fixed, Period)
+    Thirty360, Days, Years, DateGeneration, Schedule, Actual365Fixed, Period)
 from quantlib.time.daycounters.thirty360 import Convention
 from quantlib.indexes.api import Euribor6M
 from quantlib.termstructures.yields.api import YieldTermStructure
@@ -37,9 +37,9 @@ class BermudanSwaptionTest(unittest.TestCase):
         start = self.calendar.advance(self.settlement, self.start_years, Years)
         maturity = self.calendar.advance(start, self.length, Years)
         fixed_schedule = Schedule.from_rule(start, maturity, Period(self.fixed_frequency), self.calendar,
-                                            self.fixed_convention, self.fixed_convention, Rule.Forward, False)
+                                            self.fixed_convention, self.fixed_convention, DateGeneration.Forward, False)
         float_schedule = Schedule.from_rule(start, maturity, Period(self.floating_frequency), self.calendar,
-                                            self.floating_convention, self.floating_convention, Rule.Forward, False)
+                                            self.floating_convention, self.floating_convention, DateGeneration.Forward, False)
         swap = VanillaSwap(self.swap_type, self.nominal, fixed_schedule, fixed_rate, self.fixed_day_count, float_schedule, self.index, 0.0, self.index.day_counter)
         swap.set_pricing_engine(DiscountingSwapEngine(self.term_structure))
         return swap

@@ -9,7 +9,7 @@ from quantlib.time._period cimport Days, Frequency
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.time._schedule cimport Rule
+from quantlib.time.dategeneration cimport DateGeneration
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.pricingengines.engine cimport PricingEngine
 cimport quantlib.indexes._ibor_index as _ii
@@ -65,7 +65,7 @@ cdef class MakeOIS:
         self._thisptr.withTerminationDate(deref(d._thisptr))
         return self
 
-    def with_rule(self, Rule r):
+    def with_rule(self, DateGeneration r):
         self._thisptr.withRule(r)
         return self
 

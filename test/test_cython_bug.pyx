@@ -14,7 +14,7 @@ from quantlib.time.businessdayconvention cimport (
 )
 from quantlib.time.calendars._target cimport TARGET
 from quantlib.time._schedule cimport Schedule
-from quantlib.time.dategeneration cimport Rule
+from quantlib.time.dategeneration cimport DateGeneration
 from quantlib.time.date cimport date_from_qldate, Date
 from quantlib.time.daycounters._actual_actual cimport ISMA, ActualActual
 
@@ -66,7 +66,7 @@ cdef FixedRateBond* get_bond_for_evaluation_date(QlDate& in_date):
             calendar,
             ModifiedFollowing,
             ModifiedFollowing,
-            Rule.Backward,
+            DateGeneration.Backward,
             False,
             QlDate(),
             QlDate()

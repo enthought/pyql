@@ -6,7 +6,7 @@ from quantlib.time._calendar cimport Calendar
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
-from quantlib.time._schedule cimport Rule
+from quantlib.time.dategeneration cimport DateGeneration
 from ._credit_default_swap cimport Side, CreditDefaultSwap
 
 cdef extern from 'ql/instruments/makecds.hpp' namespace 'QuantLib':
@@ -28,7 +28,7 @@ cdef extern from 'ql/instruments/makecds.hpp' namespace 'QuantLib':
         MakeCreditDefaultSwap& withCouponTenor(Period)
         MakeCreditDefaultSwap& withDayCounter(DayCounter&)
         MakeCreditDefaultSwap& withLastPeriodDayCounter(DayCounter&)
-        MakeCreditDefaultSwap& withDateGenerationRule(Rule rule)
+        MakeCreditDefaultSwap& withDateGenerationRule(DateGeneration rule)
         MakeCreditDefaultSwap& withCashSettlementDays(Natural cashSettlementDays)
 
         MakeCreditDefaultSwap& withPricingEngine(const shared_ptr[PricingEngine]&)

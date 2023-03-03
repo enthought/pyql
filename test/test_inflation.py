@@ -13,7 +13,7 @@ from quantlib.indexes.inflation.australia import AUCPI
 from quantlib.time.date import Monthly, Months, Period, Date
 from quantlib.time.api import ( UnitedKingdom, ModifiedFollowing, ActualActual,
                                 Schedule, Actual365Fixed, Unadjusted )
-from quantlib.time.dategeneration import Rule
+from quantlib.time.dategeneration import DateGeneration
 from quantlib.instruments.bonds import CPIBond, InterpolationType
 from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.settings import Settings
@@ -129,7 +129,7 @@ class TestCPIBond(unittest.TestCase):
                                             Period(6, Months),
                                             fixed_calendar,
                                             Unadjusted,
-                                            Rule.Backward)
+                                            DateGeneration.Backward)
 
         cpi_bond = CPIBond(settlement_days, notional, growth_only,
                            baseCPI, contractObservationLag, fixed_index,

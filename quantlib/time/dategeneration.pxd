@@ -1,5 +1,5 @@
 cdef extern from 'ql/time/dategenerationrule.hpp' namespace 'QuantLib::DateGeneration':
-    cpdef enum class Rule:
+    cpdef enum class DateGeneration "QuantLib::DateGeneration::Rule":
         Backward # Backward from termination date to effective date.
         Forward  # Forward from effective date to termination date.
         Zero     # No intermediate dates between effective date

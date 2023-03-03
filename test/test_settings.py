@@ -2,7 +2,7 @@ import unittest
 from quantlib.instruments.bonds import FixedRateBond
 from quantlib.time.api import (
     Date, Days, August, Period, Jul, Annual, today, Years, TARGET,
-    Unadjusted, Schedule, ModifiedFollowing, Rule, ActualActual, ISMA,
+    Unadjusted, Schedule, ModifiedFollowing, DateGeneration, ActualActual, ISMA,
     Following
 )
 
@@ -75,7 +75,7 @@ class SettingsTestCase(unittest.TestCase):
             calendar,
             ModifiedFollowing,
             ModifiedFollowing,
-            Rule.Backward
+            DateGeneration.Backward
         )
 
         issue_date = effective_date
@@ -124,7 +124,7 @@ class SettingsTestCase(unittest.TestCase):
             calendar,
             ModifiedFollowing,
             ModifiedFollowing,
-            Rule.Backward
+            DateGeneration.Backward
         )
 
         issue_date = effective_date

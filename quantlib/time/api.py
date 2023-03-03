@@ -45,4 +45,4 @@ from .date import (
 )
 
 from .schedule import Schedule
-from .dategeneration import Rule
+from .dategeneration import DateGeneration
