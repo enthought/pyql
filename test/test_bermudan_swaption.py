@@ -11,7 +11,7 @@ from quantlib.termstructures.yields.api import YieldTermStructure
 from quantlib.models.api import HullWhite
 from quantlib.settings import Settings
 from quantlib.pricingengines.api import DiscountingSwapEngine, TreeSwaptionEngine
-from quantlib.instruments.option import BermudanExercise
+from quantlib.instruments.exercise import BermudanExercise
 from .utilities import flat_rate
 
 

@@ -4,8 +4,8 @@ from quantlib.instruments.api import MakeVanillaSwap, FixedRateBond
 from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.time.calendars.target import TARGET
 from quantlib.time.calendars.united_states import UnitedStates, Market
-from quantlib.instruments.option import (VanillaOption, Put,
-                                         EuropeanExercise)
+from quantlib.instruments.option import VanillaOption, OptionType
+from quantlib.instruments.exercise import EuropeanExercise
 from quantlib.time.date import (
     Date, Days, Semiannual, January,
     Period, May, Annual, Years)
@@ -158,7 +158,7 @@ class SensitivityTestCase(unittest.TestCase):
 
         settings.evaluation_date = todays_date
 
-        option_type = Put
+        option_type = OptionType.Put
         underlying = 40
         strike = 40
         dividend_yield = 0.00

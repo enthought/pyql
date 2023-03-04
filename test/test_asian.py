@@ -1,11 +1,11 @@
 from itertools import product
 
-from quantlib.instruments.option import EuropeanExercise
+from quantlib.instruments.exercise import EuropeanExercise
 
 from quantlib.instruments.payoffs import PlainVanillaPayoff
-from quantlib.instruments.option import Put, Call
+from quantlib.instruments.option import OptionType
 from quantlib.instruments.asian_options import (
-    ContinuousAveragingAsianOption, DiscreteAveragingAsianOption,  Geometric
+    ContinuousAveragingAsianOption, DiscreteAveragingAsianOption, AverageType
 )
 from quantlib.pricingengines.asian.analyticcontgeomavprice import (
     AnalyticContinuousGeometricAveragePriceAsianEngine
@@ -52,7 +52,7 @@ class AsianOptionTestCase(unittest.TestCase):
         self.settings.evaluation_date = self.today
 
         # options parameters
-        self.option_type = Put
+        self.option_type = OptionType.Put
         self.underlying = 80.0
         self.strike = 85.0
         self.dividend_yield = -0.03
@@ -100,7 +100,7 @@ class AsianOptionTestCase(unittest.TestCase):
         """
         exercise = EuropeanExercise(self.settlement_date)
 
-        option = ContinuousAveragingAsianOption(Geometric, self.payoff, exercise)
+        option = ContinuousAveragingAsianOption(AverageType.Geometric, self.payoff, exercise)
 
         engine = AnalyticContinuousGeometricAveragePriceAsianEngine(
             self.black_scholes_merton_process
@@ -111,35 +111,35 @@ class AsianOptionTestCase(unittest.TestCase):
         tolerance = 1.0e-4
 
         self.assertAlmostEqual(4.6922, option.net_present_value, delta=tolerance)
-        
+
         # trying to approximate the continuous version with the discrete version
         running_accumulator = 1.0
         past_fixings = 0
-    
+
         fixing_dates = [self.today + i for i in range(91)]
-        
+
         engine2 = AnalyticDiscreteGeometricAveragePriceAsianEngine(
             self.black_scholes_merton_process
         )
-        
+
         option2 = DiscreteAveragingAsianOption(
-            Geometric,
+            AverageType.Geometric,
             self.payoff,
             exercise,
             fixing_dates,
             past_fixings=past_fixings,
             running_accum=running_accumulator,
         )
-        
+
         option2.set_pricing_engine(engine2)
 
         tolerance = 3.0e-3
 
         self.assertAlmostEqual(4.6922, option.net_present_value, delta=tolerance)
-        
+
 
     def test_analytic_cont_geo_av_price_greeks(self):
-        
+
         tolerance = {}
         tolerance["delta"]  = 1.0e-5
         tolerance["gamma"]  = 1.0e-5
@@ -148,14 +148,14 @@ class AsianOptionTestCase(unittest.TestCase):
         tolerance["divRho"] = 1.0e-5
         tolerance["vega"]   = 1.0e-5
 
-        opt_types = [Call, Put]
+        opt_types = [OptionType.Call, OptionType.Put]
         underlyings = [100.0]
         strikes = [90.0, 100.0, 110.0]
         q_rates = [0.04, 0.05, 0.06]
         r_rates = [0.01, 0.05, 0.15]
         lengths = [1, 2]
         vols = [0.11, 0.50, 1.20]
-       
+
         spot = SimpleQuote(0.0)
         q_rate = SimpleQuote(0.0)
         r_rate = SimpleQuote(0.0)
@@ -170,20 +170,20 @@ class AsianOptionTestCase(unittest.TestCase):
         calculated = {}
         expected = {}
         for opt_type, strike, length in product(opt_types, strikes, lengths):
-            
+
             maturity = EuropeanExercise(self.today + length*Years)
 
             payoff = PlainVanillaPayoff(opt_type, strike)
 
             engine = AnalyticContinuousGeometricAveragePriceAsianEngine(process)
 
-            option = ContinuousAveragingAsianOption(Geometric, payoff, maturity)
-                
+            option = ContinuousAveragingAsianOption(AverageType.Geometric, payoff, maturity)
+
             option.set_pricing_engine(engine)
 
             for u, m, n, v in product(underlyings, q_rates, r_rates, vols):
 
-                q = m 
+                q = m
                 r = n
                 spot.value = u
                 q_rate.value = q

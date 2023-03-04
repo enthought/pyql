@@ -4,7 +4,7 @@ from datetime import date
 from quantlib.mlab.option_pricing import heston_pricer, blsprice, blsimpv
 from quantlib.mlab.fixed_income import bndprice, cfamounts
 from quantlib.mlab.term_structure import zbt_libor_yield
-from quantlib.instruments.option import Call, Put
+from quantlib.instruments.option import OptionType
 
 from quantlib.util.rates import make_rate_helper, zero_rate
 import quantlib.reference.names as nm
@@ -15,7 +15,6 @@ from quantlib.termstructures.yields.api import (
 from quantlib.math.interpolation import LogLinear
 from quantlib.time.api import ActualActual, ISDA
 from quantlib.util.converter import pydate_to_qldate
-from quantlib.quotes import SimpleQuote
 
 
 class MLabTestCase(unittest.TestCase):
@@ -59,7 +58,7 @@ class MLabTestCase(unittest.TestCase):
         """
         p = blsprice(spot=585, strike=600, risk_free_rate=.05,
                      time=1 / 4., volatility=.25,
-                     option_type=(Call, Put),
+                     option_type=(OptionType.Call, OptionType.Put),
                      dividend=0.045)
 
         self.assertAlmostEqual(p[0], 22.6716, 3)
@@ -67,7 +66,7 @@ class MLabTestCase(unittest.TestCase):
 
         v = blsimpv(p, spot=585, strike=600, risk_free_rate=.05,
                      time=1 / 4.,
-                     option_type=(Call, Put),
+                     option_type=(OptionType.Call, OptionType.Put),
                      dividend=0.045)
 
         self.assertAlmostEqual(v[0], .25, 3)
@@ -161,7 +160,7 @@ class MLabTestCase(unittest.TestCase):
         """
         c, p = blsprice(spot=50, strike=50, risk_free_rate=.1,
                   time=0.25, volatility=.3,
-                  option_type=(Call, Put), calc='delta')
+                  option_type=(OptionType.Call, OptionType.Put), calc='delta')
 
         matlab_c = 0.5955
         matlab_p = -0.4045
@@ -170,8 +169,8 @@ class MLabTestCase(unittest.TestCase):
         self.assertAlmostEqual(p, matlab_p, 3)
 
         g = blsprice(spot=50, strike=50, risk_free_rate=.12,
-                  time=0.25, volatility=.3,
-                  option_type=Call, calc='gamma')
+                     time=0.25, volatility=.3,
+                     option_type=OptionType.Call, calc='gamma')
 
         matlab_g = 0.0512
         self.assertAlmostEqual(g, matlab_g, 3)

@@ -7,8 +7,8 @@ import numpy as np
 
 from quantlib.settings import Settings
 
-from quantlib.instruments.option import (
-    EuropeanExercise, Put, Call)
+from quantlib.instruments.option import OptionType
+from quantlib.instruments.exercise import EuropeanExercise
 
 from quantlib.models.shortrate.onefactormodels.hullwhite import HullWhite
 
@@ -122,7 +122,7 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         fwd = spot.value * q_ts.discount(maturity_date) / \
             r_ts.discount(maturity_date)
 
-        payoff = PlainVanillaPayoff(Call, fwd)
+        payoff = PlainVanillaPayoff(OptionType.Call, fwd)
 
         option = VanillaOption(payoff, exercise)
 
@@ -197,7 +197,7 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         bsm_process = BlackScholesMertonProcess(
             spot, q_ts, r_ts, vol_ts)
 
-        payoff = PlainVanillaPayoff(Call, 100)
+        payoff = PlainVanillaPayoff(OptionType.Call, 100)
         exercise = EuropeanExercise(dates[1])
 
         option = VanillaOption(payoff, exercise)
@@ -308,9 +308,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         strikes = [0.25, 0.5, 0.75, 0.8, 0.9,
                    1.0, 1.1, 1.2, 1.5, 2.0, 4.0]
         maturities = [1, 2, 3, 5, 10, 15, 20, 25, 30]
-        types = [Put, Call]
 
-        for option_type in types:
+        for option_type in OptionType:
             for strike in strikes:
                 for maturity in maturities:
                     maturity_date = todays_date + Period(maturity, Years)
@@ -393,13 +392,12 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
 
         strike = 100
         maturity = 1
-        type = Call
 
         maturity_date = todays_date + Period(maturity, Years)
 
         exercise = EuropeanExercise(maturity_date)
 
-        payoff = PlainVanillaPayoff(type, strike)
+        payoff = PlainVanillaPayoff(OptionType.Call, strike)
 
         option = VanillaOption(payoff, exercise)
 

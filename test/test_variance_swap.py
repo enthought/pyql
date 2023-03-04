@@ -4,7 +4,8 @@ import unittest
 import numpy as np
 
 from quantlib.settings import Settings
-from quantlib.instruments.option import EuropeanExercise, OptionType
+from quantlib.instruments.exercise import EuropeanExercise
+from quantlib.instruments.option import OptionType
 from quantlib.instruments.variance_swap import VarianceSwap, SwapType
 from quantlib.math.matrix import Matrix
 from quantlib.pricingengines.forward.replicating_variance_swap_engine import ReplicatingVarianceSwapEngine

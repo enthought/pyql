@@ -4,7 +4,8 @@ import numpy as np
 
 import unittest
 
-from quantlib.instruments.option import EuropeanExercise, VanillaOption, Call, Put
+from quantlib.instruments.exercise import EuropeanExercise
+from quantlib.instruments.option import VanillaOption, OptionType
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.models.calibration_helper import ImpliedVolError
 from quantlib.models.equity.heston_model import (
@@ -235,7 +236,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         exercise_date = settlement_date + Period(6, Months)
 
-        payoff = PlainVanillaPayoff(Put, 30)
+        payoff = PlainVanillaPayoff(OptionType.Put, 30)
 
         exercise = EuropeanExercise(exercise_date)
 
@@ -292,7 +293,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         exercise_date = settlement_date + Period(6, Months)
 
-        payoff = PlainVanillaPayoff(Put, 1290)
+        payoff = PlainVanillaPayoff(OptionType.Put, 1290)
         exercise = EuropeanExercise(exercise_date)
         option = VanillaOption(payoff, exercise)
 
@@ -360,7 +361,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         exercise_date = settlement_date + timeToMaturity * 365
 
-        c_payoff = PlainVanillaPayoff(Call, 100)
+        c_payoff = PlainVanillaPayoff(OptionType.Call, 100)
 
         exercise = EuropeanExercise(exercise_date)
 
