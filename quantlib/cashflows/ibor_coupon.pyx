@@ -28,7 +28,20 @@ cdef class IborCoupon(FloatingRateCoupon):
                 deref(ref_period_start._thisptr), deref(ref_period_end._thisptr),
                 deref(day_counter._thisptr), is_in_arrears)
         )
+    Settings = IborCouponSettings()
 
+cdef class IborCouponSettings:
+    @staticmethod
+    def create_at_par_coupons():
+        _ic.Settings.instance().createAtParCoupons()
+
+    @staticmethod
+    def create_indexed_coupons():
+        _ic.Settings.instance().createIndexedCoupons()
+
+    @staticmethod
+    def using_at_par_coupons():
+        return _ic.Settings.instance().usingAtParCoupons()
 
 cdef class IborLeg(Leg):
     def __iter__(self):

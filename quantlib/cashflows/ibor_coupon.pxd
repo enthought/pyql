@@ -6,3 +6,6 @@ cdef class IborCoupon(FloatingRateCoupon):
 
 cdef class IborLeg(Leg):
     pass
+
+cdef class IborCouponSettings:
+    pass
