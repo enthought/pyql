@@ -2,7 +2,7 @@ include '../types.pxi'
 from cython.operator import dereference as deref
 
 # cython imports
-from . cimport _option
+from .option cimport OptionType
 
 cdef inline _payoffs.PlainVanillaPayoff* _get_payoff(PlainVanillaPayoff payoff):
     return <_payoffs.PlainVanillaPayoff*> payoff._thisptr.get()
@@ -45,7 +45,7 @@ cdef class PlainVanillaPayoff(StrikedTypePayoff):
     strike: float
     """
 
-    def __init__(self, _option.Type option_type, double strike):
+    def __init__(self, OptionType option_type, double strike):
 
         self._thisptr = shared_ptr[_payoffs.Payoff](
             new _payoffs.PlainVanillaPayoff(

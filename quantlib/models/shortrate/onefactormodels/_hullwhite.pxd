@@ -14,7 +14,7 @@ from quantlib.math._optimization cimport OptimizationMethod, EndCriteria
 from quantlib.models.shortrate.calibrationhelpers._swaption_helper cimport SwaptionHelper
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
-from quantlib.instruments._option cimport Type as OptionType
+from quantlib.instruments.option cimport OptionType
 from quantlib.models.shortrate.onefactormodels._vasicek cimport Vasicek
 
 cdef extern from 'ql/models/shortrate/onefactormodels/hullwhite.hpp' namespace 'QuantLib':

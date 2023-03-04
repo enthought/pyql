@@ -1,5 +1,5 @@
 include "../../types.pxi"
-from quantlib.instruments._option cimport Type as OptionType
+from quantlib.instruments.option cimport OptionType
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._date cimport Date
 from ._volatilitytype cimport VolatilityType

@@ -11,16 +11,12 @@ from quantlib.time._date cimport Date
 from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess
 from quantlib.pricingengines._pricing_engine cimport PricingEngine
 
-cdef extern from 'ql/option.hpp' namespace 'QuantLib::Option':
-
-    enum Type:
-        Put
-        Call
 
 cdef extern from 'ql/option.hpp' namespace 'QuantLib':
 
     cdef cppclass Option(Instrument):
-
+        enum Type:
+            pass
         shared_ptr[Payoff] payoff()
         shared_ptr[Exercise] exercise()
 

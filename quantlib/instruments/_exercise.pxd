@@ -1,19 +1,10 @@
-include '../types.pxi'
-
 from libcpp cimport bool
 from libcpp.vector cimport vector
 
 from quantlib.time._date cimport Date
+from .exercise cimport Type
 
-cdef extern from 'ql/exercise.hpp' namespace 'QuantLib::Exercise':
-
-    cdef enum Type:
-        American
-        Bermudan
-        European
-
-
-cdef extern from 'ql/exercise.hpp' namespace 'QuantLib':
+cdef extern from 'ql/exercise.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass Exercise:
         Exercise(Type type)

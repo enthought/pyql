@@ -9,21 +9,14 @@ cimport quantlib.time._date as _date
 from quantlib.time.date cimport Date
 from quantlib.instruments.payoffs cimport StrikedTypePayoff
 
-from .option cimport Exercise, OneAssetOption
+from .option cimport OneAssetOption
+from .exercise cimport Exercise
 from . cimport _payoffs
 from .._instrument cimport Instrument as _Instrument
 from ._asian_options cimport (
     ContinuousAveragingAsianOption as _ContinuousAveragingAsianOption,
     DiscreteAveragingAsianOption as _DiscreteAveragingAsianOption,
-    Type as _Type,
 )
-
-
-cpdef enum AverageType:
-    Arithmetic = _Type.Arithmetic
-    Geometric  = _Type.Geometric
-
-
 cdef class ContinuousAveragingAsianOption(OneAssetOption):
     """Continuous-averaging Asian option
 
@@ -41,7 +34,7 @@ cdef class ContinuousAveragingAsianOption(OneAssetOption):
 
         self._thisptr = shared_ptr[_Instrument](
             new _ContinuousAveragingAsianOption(
-                                        <_Type>average_type,
+                                        average_type,
                                         static_pointer_cast[_payoffs.StrikedTypePayoff](payoff._thisptr),
                                         exercise._thisptr)
         )
@@ -80,7 +73,7 @@ cdef class DiscreteAveragingAsianOption(OneAssetOption):
         if (running_accum is not None) and (past_fixings is not None):
             self._thisptr = shared_ptr[_Instrument](
                 new _DiscreteAveragingAsianOption(
-                                         <_Type>average_type,
+                                         average_type,
                                          <Real>running_accum,
                                          <Size>past_fixings,
                                          _fixing_dates,
@@ -93,7 +86,7 @@ cdef class DiscreteAveragingAsianOption(OneAssetOption):
 
             self._thisptr = shared_ptr[_Instrument](
                 new _DiscreteAveragingAsianOption(
-                                         <_Type>average_type,
+                                         average_type,
                                          _fixing_dates,
                                          static_pointer_cast[_payoffs.StrikedTypePayoff](payoff._thisptr),
                                          exercise._thisptr,

@@ -1,12 +1,11 @@
 include '../types.pxi'
 
 # Cython imports
-from cython.operator cimport dereference as deref, preincrement as preinc
 from libcpp cimport bool
-from libcpp.vector cimport vector
 
 from . cimport _option
 from . cimport _payoffs
+from .exercise cimport Exercise
 cimport quantlib._instrument as _instrument
 cimport quantlib.time._date as _date
 cimport quantlib.pricingengines._pricing_engine as _pe
@@ -14,98 +13,8 @@ cimport quantlib.processes._black_scholes_process as _bsp
 
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.instruments.payoffs cimport Payoff, StrikedTypePayoff
-from quantlib.time._date cimport Date as QlDate
-from quantlib.time.date cimport Date, _pydate_from_qldate
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
-
-cpdef enum ExerciseType:
-    American = _exercise.American
-    Bermudan  = _exercise.Bermudan
-    European = _exercise.European
-
-cpdef enum OptionType:
-    Call = _option.Type.Call
-    Put  = _option.Type.Put
-
-
-cdef class Exercise:
-
-    def __str__(self):
-        return "Exercise type: {}".format(ExerciseType(self._thisptr.get().type()).name)
-
-    @property
-    def last_date(self):
-        return _pydate_from_qldate(self._thisptr.get().lastDate())
-
-    def dates(self):
-        cdef vector[QlDate].const_iterator it = self._thisptr.get().dates().const_begin()
-        cdef list r = []
-        while it != self._thisptr.get().dates().end():
-            r.append(_pydate_from_qldate(deref(it)))
-            preinc(it)
-
-    @property
-    def type(self):
-       return ExerciseType(self._thisptr.get().type())
-
-cdef class EuropeanExercise(Exercise):
-
-    def __init__(self, Date exercise_date not None):
-        self._thisptr.reset(
-            new _exercise.EuropeanExercise(
-                deref(exercise_date._thisptr)
-            )
-        )
-
-cdef class AmericanExercise(Exercise):
-
-    def __init__(self, Date latest_exercise_date, Date earliest_exercise_date=None):
-        """ Creates an AmericanExercise.
-
-        :param latest_exercise_date: Latest exercise date for the option
-        :param earliest_exercise_date: Earliest exercise date for the option (default to None)
-
-        """
-        if earliest_exercise_date is not None:
-            self._thisptr = shared_ptr[_exercise.Exercise]( \
-                new _exercise.AmericanExercise(
-                    deref(earliest_exercise_date._thisptr),
-                    deref(latest_exercise_date._thisptr)
-                )
-            )
-        else:
-            self._thisptr = shared_ptr[_exercise.Exercise]( \
-                new _exercise.AmericanExercise(
-                    deref(latest_exercise_date._thisptr)
-                )
-            )
-
-cdef class BermudanExercise(Exercise):
-    def __init__(self, list dates, bool payoff_at_expiry=False):
-        """ Bermudan exercise
-
-        A Bermudan option can only be exercised at a set of fixed dates.
-
-        Parameters
-        ----------
-        dates : list of exercise dates
-        payoff_at_expiry : bool
-        """
-        cdef vector[_date.Date] c_dates
-        for d in dates:
-            c_dates.push_back(deref((<Date?>d)._thisptr))
-        self._thisptr.reset(
-            new _exercise.BermudanExercise(c_dates,
-                                           payoff_at_expiry)
-        )
-
-cdef inline _option.OneAssetOption* get_oneasset_option(OneAssetOption option):
-    """ Utility function to extract a properly casted OneAssetOption out of the
-    internal _thisptr attribute of the Instrument base class. """
-
-    return <_option.OneAssetOption*>option._thisptr.get()
-
 
 cdef class Option(Instrument):
     def __init__(self):
@@ -133,17 +42,20 @@ cdef class Option(Instrument):
 
 cdef class OneAssetOption(Option):
 
+    cdef inline _option.OneAssetOption* as_ptr(self) nogil:
+        return <_option.OneAssetOption*>self._thisptr.get()
+
     @property
     def delta(self):
-        return get_oneasset_option(self).delta()
+        return self.as_ptr().delta()
 
     @property
     def delta_forward(self):
-        return get_oneasset_option(self).deltaForward()
+        return self.as_ptr().deltaForward()
 
-    property elasticity:
-        def __get__(self):
-            return (<_option.OneAssetOption *> self._thisptr.get()).elasticity()
+    @property
+    def elasticity(self):
+        return self.as_ptr().elasticity()
 
     property gamma:
         def __get__(self):
