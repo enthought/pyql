@@ -1,12 +1,15 @@
-from quantlib.handle cimport shared_ptr
-cimport quantlib.instruments._exercise as _exercise
 from quantlib.instrument cimport Instrument
+from . cimport _option
 
-cdef class Exercise:
-    cdef shared_ptr[_exercise.Exercise] _thisptr
+cdef extern from 'ql/option.hpp' namespace 'QuantLib::Option':
+    cpdef enum class OptionType "QuantLib::Option::Type":
+        Put
+        Call
+
+
 
 cdef class Option(Instrument):
     pass
 
 cdef class OneAssetOption(Option):
-    pass
+    cdef inline _option.OneAssetOption* as_ptr(self) nogil

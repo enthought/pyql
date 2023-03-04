@@ -3,11 +3,9 @@ include '../types.pxi'
 from . cimport _blackformula as _bf
 cimport quantlib.instruments._option as _opt
 
-from quantlib.instruments._option cimport Type as OptionType
+from quantlib.instruments.option cimport OptionType
 
 from math import sqrt, log
-
-from quantlib.instruments.option import Call, Put
 
 def blackFormula(OptionType option_type, Real strike, Real forward, Real stdDev,
                  Real discount=1.0, Real displacement=0.0):

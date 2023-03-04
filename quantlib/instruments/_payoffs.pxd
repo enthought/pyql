@@ -1,17 +1,17 @@
-include '../types.pxi'
+from quantlib.types cimport Real
 from libcpp.string cimport string
 
-from quantlib.instruments._option cimport Type as OptionType
+from .option cimport OptionType
 
 
-cdef extern from 'ql/payoff.hpp' namespace 'QuantLib':
+cdef extern from 'ql/payoff.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass Payoff:
         string name()
         string description()
         Real operator()(Real price)
 
-cdef extern from 'ql/instruments/payoffs.hpp' namespace 'QuantLib':
+cdef extern from 'ql/instruments/payoffs.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass TypePayoff(Payoff):
         TypePayoff(OptionType type)

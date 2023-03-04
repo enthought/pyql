@@ -13,7 +13,6 @@ from quantlib.time._daycounter cimport DayCounter as QlDayCounter
 from quantlib.time._schedule cimport Schedule as QlSchedule
 from . cimport _vanillaswap
 from .swap cimport SwapType
-from .swap import SwapType as PySwapType
 from ._swap cimport Swap as QlSwap
 
 cdef inline _vanillaswap.VanillaSwap* get_vanillaswap(VanillaSwap swap):
@@ -104,7 +103,7 @@ cdef class VanillaSwap(Swap):
 
     @property
     def type(self):
-        return PySwapType(get_vanillaswap(self).type())
+        return get_vanillaswap(self).type()
 
     @property
     def fixed_rate(self):

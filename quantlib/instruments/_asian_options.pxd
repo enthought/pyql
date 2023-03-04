@@ -9,13 +9,7 @@ from quantlib.instruments._exercise cimport Exercise
 from quantlib.instruments._option cimport OneAssetOption
 from quantlib.instruments._payoffs cimport StrikedTypePayoff
 
-
-# Placeholder for enumerated averaging types
-cdef extern from 'ql/instruments/averagetype.hpp' namespace 'QuantLib::Average':
-    enum Type:
-        Arithmetic 
-        Geometric
-    
+from .asian_options cimport AverageType
 
 cdef extern from 'ql/instruments/asianoption.hpp' namespace 'QuantLib':
     # Continuous-averaging Asian option
@@ -25,19 +19,19 @@ cdef extern from 'ql/instruments/asianoption.hpp' namespace 'QuantLib':
     cdef cppclass ContinuousAveragingAsianOption(OneAssetOption):
 
         ContinuousAveragingAsianOption(
-                Type averageType,
+                AverageType averageType,
                 shared_ptr[StrikedTypePayoff]& payoff,
                 shared_ptr[Exercise]& exercise) except +
 
-       
+
     cdef cppclass DiscreteAveragingAsianOption(OneAssetOption):
         # Discrete-averaging Asian option
-        #    ingroup: instruments 
+        #    ingroup: instruments
         #    This constructor takes the running sum or product of past fixings,
         #    depending on the average type.  The fixing dates passed here can be
         #    only the future ones.
-        
-        DiscreteAveragingAsianOption(Type averageType,
+
+        DiscreteAveragingAsianOption(AverageType averageType,
                                      Real runningAccumulator,
                                      Size pastFixings,
                                      vector[Date] fixingDates,
@@ -50,8 +44,8 @@ cdef extern from 'ql/instruments/asianoption.hpp' namespace 'QuantLib':
         #    calculations, the option will compare them to the evaluation date to determine which
         #    are historic; it will then take as many values from allPastFixings as needed and ignore
         #    the others.  If not enough fixings are provided, it will raise an error.
-        
-        DiscreteAveragingAsianOption(Type averageType,
+
+        DiscreteAveragingAsianOption(AverageType averageType,
                                      vector[Date] fixingDates,
                                      shared_ptr[StrikedTypePayoff]& payoff,
                                      shared_ptr[Exercise]& exercise,

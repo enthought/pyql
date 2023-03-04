@@ -3,7 +3,7 @@ include "../../types.pxi"
 cimport quantlib.time._daycounter as _dc
 from quantlib.time.date cimport date_from_qldate
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.instruments._option cimport Type as OptionType
+from quantlib.instruments.option cimport OptionType
 
 cdef class SmileSection:
     @property

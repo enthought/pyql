@@ -10,7 +10,8 @@
 import numpy as np
 import quantlib.reference.names as nm
 
-from quantlib.instruments.option import EuropeanExercise, VanillaOption, Put, Call
+from quantlib.instruments.option import VanillaOption, OptionType
+from quantlib.instruments.exercise import EuropeanExercise
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.models.equity.heston_model import HestonModel
 from quantlib.pricingengines.vanilla.vanilla import AnalyticHestonEngine
@@ -57,7 +58,7 @@ def heston_pricer(trade_date, options, params, rates, spot):
         expiry_date = row[nm.EXPIRY_DATE]
         strike = row[nm.STRIKE]
 
-        option_type = Call if row[nm.OPTION_TYPE] == nm.CALL_OPTION else Put
+        option_type = OptionType.Call if row[nm.OPTION_TYPE] == nm.CALL_OPTION else OptionType.Put
 
         payoff = PlainVanillaPayoff(option_type, strike)
 
@@ -78,7 +79,7 @@ def heston_pricer(trade_date, options, params, rates, spot):
 
 
 def blsprice(spot, strike, risk_free_rate, time, volatility,
-             option_type=Call, dividend=0.0, calc='price'):
+             option_type=OptionType.Call, dividend=0.0, calc='price'):
 
     """
     Matlab's blsprice + greeks (delta, gamma, theta, rho, vega, lambda)
@@ -142,7 +143,7 @@ def _blsprice(spot, strike, risk_free_rate, time, volatility,
 
 
 def blsimpv(price, spot, strike, risk_free_rate, time,
-            option_type=Call, dividend=0.0):
+            option_type=OptionType.Call, dividend=0.0):
 
     args = locals()
     the_shape, shape = common_shape(args)
