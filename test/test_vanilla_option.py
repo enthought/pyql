@@ -1,12 +1,12 @@
 import unittest
 
 import datetime
-from quantlib.instruments.option import (
+from quantlib.instruments.exercise import (
     EuropeanExercise, AmericanExercise)
 from quantlib.cashflows.dividend import DividendSchedule
 
 from quantlib.instruments.payoffs import PlainVanillaPayoff
-from quantlib.instruments.option import VanillaOption, Put
+from quantlib.instruments.option import VanillaOption, OptionType
 from quantlib.pricingengines.vanilla.vanilla import (
     AnalyticEuropeanEngine, BaroneAdesiWhaleyApproximationEngine)
 from quantlib.pricingengines.vanilla.fdblackscholesvanillaengine import (
@@ -42,7 +42,7 @@ class VanillaOptionTestCase(unittest.TestCase):
         self.settings.evaluation_date = self.todays_date
 
         # options parameters
-        self.option_type = Put
+        self.option_type = OptionType.Put
         self.underlying = 36
         self.strike = 40
         self.dividend_yield = 0.00
