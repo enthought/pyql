@@ -1,0 +1,28 @@
+quantlib.models.model.ShortRateModel
+====================================
+
+.. currentmodule:: quantlib.models.model
+
+.. autoclass:: ShortRateModel
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ShortRateModel.__init__
+      ~ShortRateModel.params
+      ~ShortRateModel.set_params
+   
+   
+
+   
+   
+   

@@ -30,4 +30,5 @@ quantlib.pricingengines.swaption
 
    quantlib.pricingengines.swaption.black_swaption_engine
    quantlib.pricingengines.swaption.jamshidian_swaption_engine
+   quantlib.pricingengines.swaption.tree_swaption_engine
 

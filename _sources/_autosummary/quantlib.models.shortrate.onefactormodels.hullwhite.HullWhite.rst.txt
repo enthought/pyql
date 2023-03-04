@@ -37,6 +37,7 @@ quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite
       ~HullWhite.a
       ~HullWhite.b
       ~HullWhite.dynamics
+      ~HullWhite.r0
       ~HullWhite.sigma
 
    

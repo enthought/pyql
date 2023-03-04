@@ -20,6 +20,7 @@ quantlib.cashflows.ibor\_coupon
       :template: custom-class-template.rst
    
       IborCoupon
+      IborCouponSettings
       IborLeg
    
    

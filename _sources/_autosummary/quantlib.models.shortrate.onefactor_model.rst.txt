@@ -20,6 +20,7 @@ quantlib.models.shortrate.onefactor\_model
       :template: custom-class-template.rst
    
       OneFactorAffineModel
+      OneFactorModel
       ShortRateDynamics
    
    

@@ -19,7 +19,9 @@ quantlib.models.model
       :toctree:
       :template: custom-class-template.rst
    
+      AffineModel
       CalibratedModel
+      ShortRateModel
    
    
 

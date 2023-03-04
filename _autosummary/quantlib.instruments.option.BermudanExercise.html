@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>quantlib.pricingengines.swaption.jamshidian_swaption_engine.JamshidianSwaptionEngine &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>quantlib.instruments.option.BermudanExercise &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -15,8 +15,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.pricingengines.swaption.tree_swaption_engine" href="quantlib.pricingengines.swaption.tree_swaption_engine.html" />
-    <link rel="prev" title="quantlib.pricingengines.swaption.jamshidian_swaption_engine" href="quantlib.pricingengines.swaption.jamshidian_swaption_engine.html" />
+    <link rel="next" title="quantlib.instruments.option.DividendVanillaOption" href="quantlib.instruments.option.DividendVanillaOption.html" />
+    <link rel="prev" title="quantlib.instruments.option.AmericanExercise" href="quantlib.instruments.option.AmericanExercise.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -33,21 +33,45 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-pricingengines-swaption-jamshidian-swaption-engine-jamshidianswaptionengine">
-<h1>quantlib.pricingengines.swaption.jamshidian_swaption_engine.JamshidianSwaptionEngine<a class="headerlink" href="#quantlib-pricingengines-swaption-jamshidian-swaption-engine-jamshidianswaptionengine" title="Permalink to this heading">¶</a></h1>
+  <section id="quantlib-instruments-option-bermudanexercise">
+<h1>quantlib.instruments.option.BermudanExercise<a class="headerlink" href="#quantlib-instruments-option-bermudanexercise" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="quantlib.pricingengines.swaption.jamshidian_swaption_engine.JamshidianSwaptionEngine">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">JamshidianSwaptionEngine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">HullWhite</span> <span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">YieldTermStructure</span> <span class="pre">ts=YieldTermStructure()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.pricingengines.swaption.jamshidian_swaption_engine.JamshidianSwaptionEngine" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="quantlib.pricingengines.engine.PricingEngine.html#quantlib.pricingengines.engine.PricingEngine" title="quantlib.pricingengines.engine.PricingEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">PricingEngine</span></code></a></p>
+<dt class="sig sig-object py" id="quantlib.instruments.option.BermudanExercise">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BermudanExercise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">dates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">payoff_at_expiry=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.option.BermudanExercise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="quantlib.instruments.option.Exercise.html#quantlib.instruments.option.Exercise" title="quantlib.instruments.option.Exercise"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exercise</span></code></a></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="quantlib.pricingengines.swaption.jamshidian_swaption_engine.JamshidianSwaptionEngine.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.pricingengines.swaption.jamshidian_swaption_engine.JamshidianSwaptionEngine.__init__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="quantlib.instruments.option.BermudanExercise.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.option.BermudanExercise.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bermudan exercise</p>
+<p>A Bermudan option can only be exercised at a set of fixed dates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dates</strong> (<em>list</em><em> of </em><em>exercise dates</em>) – </p></li>
+<li><p><strong>payoff_at_expiry</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.pricingengines.swaption.jamshidian_swaption_engine.JamshidianSwaptionEngine.__init__" title="quantlib.pricingengines.swaption.jamshidian_swaption_engine.JamshidianSwaptionEngine.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.option.BermudanExercise.__init__" title="quantlib.instruments.option.BermudanExercise.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a></p></td>
+<td><p>Bermudan exercise</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dates</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">last_date</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">type</span></code></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -92,12 +116,10 @@
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="../reference_guide.html">Reference guide</a><ul>
   <li><a href="quantlib.html">quantlib</a><ul>
-  <li><a href="quantlib.pricingengines.html">quantlib.pricingengines</a><ul>
-  <li><a href="quantlib.pricingengines.swaption.html">quantlib.pricingengines.swaption</a><ul>
-  <li><a href="quantlib.pricingengines.swaption.jamshidian_swaption_engine.html">quantlib.pricingengines.swaption.jamshidian_swaption_engine</a><ul>
-      <li>Previous: <a href="quantlib.pricingengines.swaption.jamshidian_swaption_engine.html" title="previous chapter">quantlib.pricingengines.swaption.jamshidian_swaption_engine</a></li>
-      <li>Next: <a href="quantlib.pricingengines.swaption.tree_swaption_engine.html" title="next chapter">quantlib.pricingengines.swaption.tree_swaption_engine</a></li>
-  </ul></li>
+  <li><a href="quantlib.instruments.html">quantlib.instruments</a><ul>
+  <li><a href="quantlib.instruments.option.html">quantlib.instruments.option</a><ul>
+      <li>Previous: <a href="quantlib.instruments.option.AmericanExercise.html" title="previous chapter">quantlib.instruments.option.AmericanExercise</a></li>
+      <li>Next: <a href="quantlib.instruments.option.DividendVanillaOption.html" title="next chapter">quantlib.instruments.option.DividendVanillaOption</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -135,7 +157,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |
-      <a href="../_sources/_autosummary/quantlib.pricingengines.swaption.jamshidian_swaption_engine.JamshidianSwaptionEngine.rst.txt"
+      <a href="../_sources/_autosummary/quantlib.instruments.option.BermudanExercise.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

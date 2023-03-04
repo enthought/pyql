@@ -20,6 +20,7 @@ quantlib.instruments.option
       :template: custom-class-template.rst
    
       AmericanExercise
+      BermudanExercise
       DividendVanillaOption
       EuropeanExercise
       EuropeanOption

@@ -1,0 +1,36 @@
+quantlib.instruments.option.BermudanExercise
+============================================
+
+.. currentmodule:: quantlib.instruments.option
+
+.. autoclass:: BermudanExercise
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~BermudanExercise.__init__
+      ~BermudanExercise.dates
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~BermudanExercise.last_date
+      ~BermudanExercise.type
+
+   
+   

@@ -33,6 +33,7 @@ quantlib.cashflows.ibor\_coupon.IborCoupon
    .. autosummary::
 
    
+      ~IborCoupon.Settings
       ~IborCoupon.accrual_days
       ~IborCoupon.accrual_end_date
       ~IborCoupon.accrual_period

@@ -1,0 +1,36 @@
+quantlib.models.shortrate.onefactor\_model.OneFactorModel
+=========================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactor_model
+
+.. autoclass:: OneFactorModel
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~OneFactorModel.__init__
+      ~OneFactorModel.params
+      ~OneFactorModel.set_params
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~OneFactorModel.dynamics
+
+   
+   

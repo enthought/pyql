@@ -1,0 +1,29 @@
+quantlib.cashflows.ibor\_coupon.IborCouponSettings
+==================================================
+
+.. currentmodule:: quantlib.cashflows.ibor_coupon
+
+.. autoclass:: IborCouponSettings
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~IborCouponSettings.__init__
+      ~IborCouponSettings.create_at_par_coupons
+      ~IborCouponSettings.create_indexed_coupons
+      ~IborCouponSettings.using_at_par_coupons
+   
+   
+
+   
+   
+   
