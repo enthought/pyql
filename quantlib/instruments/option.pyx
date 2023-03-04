@@ -81,6 +81,25 @@ cdef class AmericanExercise(Exercise):
                 )
             )
 
+cdef class BermudanExercise(Exercise):
+    def __init__(self, list dates, bool payoff_at_expiry=False):
+        """ Bermudan exercise
+
+        A Bermudan option can only be exercised at a set of fixed dates.
+
+        Parameters
+        ----------
+        dates : list of exercise dates
+        payoff_at_expiry : bool
+        """
+        cdef vector[_date.Date] c_dates
+        for d in dates:
+            c_dates.push_back(deref((<Date?>d)._thisptr))
+        self._thisptr.reset(
+            new _exercise.BermudanExercise(c_dates,
+                                           payoff_at_expiry)
+        )
+
 cdef inline _option.OneAssetOption* get_oneasset_option(OneAssetOption option):
     """ Utility function to extract a properly casted OneAssetOption out of the
     internal _thisptr attribute of the Instrument base class. """
