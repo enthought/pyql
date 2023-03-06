@@ -20,4 +20,9 @@ Building the library
 --------------------
 
 See the [Getting started](docs/source/getting_started.rst) document for the 
-full details!
+full details.
+
+Documentation
+-------------
+Documentation is pretty rough. A current build of the documentation is rendered at 
+https://docs.enthought.com/pyql.
