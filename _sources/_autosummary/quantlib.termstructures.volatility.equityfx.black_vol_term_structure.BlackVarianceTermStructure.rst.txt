@@ -35,6 +35,7 @@ quantlib.termstructures.volatility.equityfx.black\_vol\_term\_structure.BlackVar
 
    
       ~BlackVarianceTermStructure.calendar
+      ~BlackVarianceTermStructure.extrapolation
       ~BlackVarianceTermStructure.reference_date
       ~BlackVarianceTermStructure.settlement_days
 

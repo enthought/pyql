@@ -36,6 +36,7 @@ quantlib.termstructures.volatility.swaption.swaption\_constant\_vol.ConstantSwap
 
    
       ~ConstantSwaptionVolatility.calendar
+      ~ConstantSwaptionVolatility.extrapolation
       ~ConstantSwaptionVolatility.reference_date
       ~ConstantSwaptionVolatility.settlement_days
       ~ConstantSwaptionVolatility.volatility_type

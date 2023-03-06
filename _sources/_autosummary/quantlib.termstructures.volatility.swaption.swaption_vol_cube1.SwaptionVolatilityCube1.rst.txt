@@ -39,6 +39,7 @@ quantlib.termstructures.volatility.swaption.swaption\_vol\_cube1.SwaptionVolatil
 
    
       ~SwaptionVolatilityCube1.calendar
+      ~SwaptionVolatilityCube1.extrapolation
       ~SwaptionVolatilityCube1.option_dates
       ~SwaptionVolatilityCube1.option_tenors
       ~SwaptionVolatilityCube1.option_times

@@ -36,6 +36,7 @@ quantlib.termstructures.volatility.equityfx.black\_variance\_surface.BlackVarian
 
    
       ~BlackVarianceSurface.calendar
+      ~BlackVarianceSurface.extrapolation
       ~BlackVarianceSurface.max_strike
       ~BlackVarianceSurface.min_strike
       ~BlackVarianceSurface.reference_date

@@ -35,6 +35,7 @@ quantlib.termstructures.volatility.swaption.spreaded\_swaption\_vol.SpreadedSwap
 
    
       ~SpreadedSwaptionVolatility.calendar
+      ~SpreadedSwaptionVolatility.extrapolation
       ~SpreadedSwaptionVolatility.reference_date
       ~SpreadedSwaptionVolatility.settlement_days
       ~SpreadedSwaptionVolatility.volatility_type

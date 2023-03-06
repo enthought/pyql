@@ -39,21 +39,20 @@
 <dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_variance_curve.BlackVarianceCurve">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BlackVarianceCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">reference_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">dates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector[Volatility]</span> <span class="pre">black_vols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">day_counter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">force_monotone_variance=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_curve.BlackVarianceCurve" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.termstructures.volatility.equityfx.black_vol_term_structure.BlackVarianceTermStructure.html#quantlib.termstructures.volatility.equityfx.black_vol_term_structure.BlackVarianceTermStructure" title="quantlib.termstructures.volatility.equityfx.black_vol_term_structure.BlackVarianceTermStructure"><code class="xref py py-class docutils literal notranslate"><span class="pre">BlackVarianceTermStructure</span></code></a></p>
-<p>Black volatility curve modelled as variance curve
-This class calculates time-dependent Black volatilities using
+<p>Black volatility curve modelled as variance curve</p>
+<p>This class calculates time-dependent Black volatilities using
 as input a vector of (ATM) Black volatilities observed in the
 market.</p>
 <p>The calculation is performed interpolating on the variance curve.
 Linear interpolation is used as default; this can be changed
 by the set_interpolation() method.</p>
 <p>For strike dependence, see BlackVarianceSurface.</p>
-<p>todo check time extrapolation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>reference_date</strong> (<a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><em>Date</em></a>) – </p></li>
-<li><p><strong>dates</strong> (list of <code class="xref py py-obj docutils literal notranslate"><span class="pre">Date</span></code>) – </p></li>
-<li><p><strong>black_vols</strong> (list of <code class="xref py py-obj docutils literal notranslate"><span class="pre">Volatility</span></code>) – </p></li>
+<li><p><strong>dates</strong> (<em>list</em><em> of </em><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><em>Date</em></a>) – </p></li>
+<li><p><strong>black_vols</strong> (<em>list</em><em> of </em><em>Volatility</em>) – </p></li>
 <li><p><strong>day_counter</strong> (<a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><em>DayCounter</em></a>) – </p></li>
 <li><p><strong>force_monotone_variance</strong> (<em>bool</em>) – </p></li>
 </ul>
@@ -96,16 +95,19 @@ by the set_interpolation() method.</p>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">calendar</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_strike</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">extrapolation</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">min_strike</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_strike</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">min_strike</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_days</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_days</span></code></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
