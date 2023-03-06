@@ -11,6 +11,19 @@ from quantlib.time.date cimport Date
 
 cdef class LocalVolSurface(LocalVolTermStructure):
     def __init__(self, BlackVolTermStructure black_ts, YieldTermStructure risk_free_ts, YieldTermStructure dividend_ts, Quote underlying):
+        """ Local volatility surface derived from a Black vol surface
+
+        For details about this implementation refer to [Gat]_.
+
+        Parameters
+        ----------
+        black_ts : BlackVolTermStructure
+        risk_free_ts : YieldTermStructure
+        dividend_ts : YieldTermStructure, the dividend term structure.
+        underlying : Quote, the spot underlying
+
+        .. [Gat] "Stochastic Volatility and LocalVolatility" in *Case Studies and Financial Modelling Course Notes,* Jim Gatheral, Fall Term, 2003 https://web.math.ku.dk/~rolf/teaching/ctff03/Gatheral.1.pdf
+        """
         self._thisptr.reset(
             new _lvs.LocalVolSurface(
                 Handle[_bvts.BlackVolTermStructure](static_pointer_cast[_bvts.BlackVolTermStructure](black_ts._thisptr)),
