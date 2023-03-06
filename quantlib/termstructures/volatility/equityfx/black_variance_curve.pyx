@@ -17,8 +17,8 @@ from ..._vol_term_structure cimport VolatilityTermStructure
 
 
 cdef class BlackVarianceCurve(BlackVarianceTermStructure):
-    """
-    Black volatility curve modelled as variance curve
+    """ Black volatility curve modelled as variance curve
+
     This class calculates time-dependent Black volatilities using
     as input a vector of (ATM) Black volatilities observed in the
     market.
@@ -29,14 +29,12 @@ cdef class BlackVarianceCurve(BlackVarianceTermStructure):
 
     For strike dependence, see BlackVarianceSurface.
 
-    todo check time extrapolation
-
 
     Parameters
     ----------
     reference_date : Date
-    dates : list of :obj:`Date`
-    black_vols : list of :obj:`Volatility`
+    dates : list of Date
+    black_vols : list of Volatility
     day_counter: DayCounter
     force_monotone_variance: bool
 

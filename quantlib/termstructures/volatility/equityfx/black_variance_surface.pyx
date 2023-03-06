@@ -31,8 +31,9 @@ cdef inline _bvs.BlackVarianceSurface* get_bvs(BlackVarianceSurface bvs):
 
 
 cdef class BlackVarianceSurface(BlackVarianceTermStructure):
-    """"
+    """
     Black volatility surface modelled as variance surface
+
     This class calculates time/strike dependent Black volatilities
     using as input a matrix of Black volatilities observed in the
     market.
@@ -41,13 +42,11 @@ cdef class BlackVarianceSurface(BlackVarianceTermStructure):
     Bilinear interpolation is used as default; this can be changed by the
     set_interpolation method.
 
-    todo check time extrapolation
-
     Parameters
     ----------
     reference_date : Date
     cal : Calendar
-    dates : list of `obj`:Date
+    dates : list of Date
     strikes : list of floats
     black_vol_matrix : Matrix
     dc : DayCounter
