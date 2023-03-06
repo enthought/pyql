@@ -46,88 +46,22 @@ using as input a matrix of Black volatilities observed in the
 market.</p>
 <p>The calculation is performed interpolating on the variance surface.
 Bilinear interpolation is used as default; this can be changed by the
-setInterpolation() method.</p>
+set_interpolation method.</p>
 <p>todo check time extrapolation</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.reference_date">
-<span class="sig-name descname"><span class="pre">reference_date</span></span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.reference_date" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date">Date</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reference_date</strong> (<a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><em>Date</em></a>) – </p></li>
+<li><p><strong>cal</strong> (<a class="reference internal" href="quantlib.time.calendar.Calendar.html#quantlib.time.calendar.Calendar" title="quantlib.time.calendar.Calendar"><em>Calendar</em></a>) – </p></li>
+<li><p><strong>dates</strong> (list of <cite>obj</cite>:Date) – </p></li>
+<li><p><strong>strikes</strong> (<em>list</em><em> of </em><em>floats</em>) – </p></li>
+<li><p><strong>black_vol_matrix</strong> (<a class="reference internal" href="quantlib.math.matrix.Matrix.html#quantlib.math.matrix.Matrix" title="quantlib.math.matrix.Matrix"><em>Matrix</em></a>) – </p></li>
+<li><p><strong>dc</strong> (<a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><em>DayCounter</em></a>) – </p></li>
+<li><p><strong>lower_extrap</strong> (<em>Extrapolation</em>) – </p></li>
+<li><p><strong>upper_extrap</strong> (<em>Extrapolation</em>) – </p></li>
+</ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.cal">
-<span class="sig-name descname"><span class="pre">cal</span></span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.cal" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="quantlib.time.calendar.Calendar.html#quantlib.time.calendar.Calendar" title="quantlib.time.calendar.Calendar">Calendar</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.dates">
-<span class="sig-name descname"><span class="pre">dates</span></span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.dates" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of <cite>obj</cite>:Date</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.strikes">
-<span class="sig-name descname"><span class="pre">strikes</span></span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.strikes" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of floats</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.black_vol_matrix">
-<span class="sig-name descname"><span class="pre">black_vol_matrix</span></span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.black_vol_matrix" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="quantlib.math.matrix.Matrix.html#quantlib.math.matrix.Matrix" title="quantlib.math.matrix.Matrix">Matrix</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.dc">
-<span class="sig-name descname"><span class="pre">dc</span></span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.dc" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter">DayCounter</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.lower_extrap">
-<span class="sig-name descname"><span class="pre">lower_extrap</span></span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.lower_extrap" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Extrapolation</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.upper_extrap">
-<span class="sig-name descname"><span class="pre">upper_extrap</span></span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.upper_extrap" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Extrapolation</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.__init__" title="Permalink to this definition">¶</a></dt>
@@ -174,7 +108,7 @@ setInterpolation() method.</p>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">min_strike</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.reference_date" title="quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.reference_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></a></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_days</span></code></p></td>

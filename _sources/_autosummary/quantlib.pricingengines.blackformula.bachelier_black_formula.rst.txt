@@ -1,0 +1,6 @@
+quantlib.pricingengines.blackformula.bachelier\_black\_formula
+==============================================================
+
+.. currentmodule:: quantlib.pricingengines.blackformula
+
+.. autofunction:: bachelier_black_formula

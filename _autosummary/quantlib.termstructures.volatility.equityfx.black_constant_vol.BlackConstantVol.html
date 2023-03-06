@@ -43,46 +43,17 @@
 <p>This class implements the BlackVolatilityTermStructure
 interface for a constant Black volatility (no time/strike
 dependence)</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_constant_vol.BlackConstantVol.reference_date">
-<span class="sig-name descname"><span class="pre">reference_date</span></span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_constant_vol.BlackConstantVol.reference_date" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Date</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reference_date</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Date</span></code>) – </p></li>
+<li><p><strong>calendar</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Calendar</span></code>) – </p></li>
+<li><p><strong>volatility</strong> (float or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Quote</span></code>) – </p></li>
+<li><p><strong>day_counter</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">DayCounter</span></code>) – </p></li>
+<li><p><strong>settlement_days</strong> (<em>Natural</em>) – </p></li>
+</ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_constant_vol.BlackConstantVol.calendar">
-<span class="sig-name descname"><span class="pre">calendar</span></span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_constant_vol.BlackConstantVol.calendar" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Calendar</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_constant_vol.BlackConstantVol.volatility">
-<span class="sig-name descname"><span class="pre">volatility</span></span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_constant_vol.BlackConstantVol.volatility" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float or <code class="xref py py-obj docutils literal notranslate"><span class="pre">Quote</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_constant_vol.BlackConstantVol.day_counter">
-<span class="sig-name descname"><span class="pre">day_counter</span></span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_constant_vol.BlackConstantVol.day_counter" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DayCounter</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_constant_vol.BlackConstantVol.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_constant_vol.BlackConstantVol.__init__" title="Permalink to this definition">¶</a></dt>
@@ -117,10 +88,10 @@ dependence)</p>
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.termstructures.volatility.equityfx.black_constant_vol.BlackConstantVol.calendar" title="quantlib.termstructures.volatility.equityfx.black_constant_vol.BlackConstantVol.calendar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calendar</span></code></a></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">calendar</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.termstructures.volatility.equityfx.black_constant_vol.BlackConstantVol.reference_date" title="quantlib.termstructures.volatility.equityfx.black_constant_vol.BlackConstantVol.reference_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></a></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_days</span></code></p></td>
