@@ -150,7 +150,7 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
             comp.set_pricing_engine(bsEngine)
 
             impliedVol = comp.implied_volatility(npv, bs_process,
-                                                 1e-10, 500,
+                                                 accuracy=1e-10, max_evaluations=500,
                                                  min_vol=0.1,
                                                  max_vol=0.4)
 

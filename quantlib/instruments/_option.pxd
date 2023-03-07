@@ -4,6 +4,7 @@ from libcpp cimport bool
 from libcpp.vector cimport vector
 
 from .._instrument cimport Instrument
+from ._dividendschedule cimport DividendSchedule
 from ._payoffs cimport Payoff, StrikedTypePayoff
 from ._exercise cimport Exercise
 from quantlib.handle cimport shared_ptr
@@ -55,6 +56,15 @@ cdef extern from 'ql/instruments/vanillaoption.hpp' namespace 'QuantLib':
                 Size maxEvaluations,
                 Volatility minVol,
                 Volatility maxVol
+        ) except +
+        Volatility impliedVolatility(
+                Real price,
+                shared_ptr[GeneralizedBlackScholesProcess]& process,
+                DividendSchedule dividens,
+                Real accuracy, # 1.0e-4
+                Size maxEvaluations, #100
+                Volatility minVol, # 1.0e-7
+                Volatility maxVol # 4.0
         ) except +
 
 

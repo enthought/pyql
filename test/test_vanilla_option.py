@@ -190,7 +190,7 @@ class VanillaOptionTestCase(unittest.TestCase):
         american_option = VanillaOption(self.payoff, american_exercise)
         engine = FdBlackScholesVanillaEngine(self.black_scholes_merton_process,
                                              self.american_time_steps, self.american_grid_points, scheme=FdmSchemeDesc.CrankNicolson(),
-                                             dividend_schedule=dividend_schedule
+                                             dividends=dividend_schedule
         )
 
         american_option.set_pricing_engine(engine)
@@ -205,7 +205,7 @@ class VanillaOptionTestCase(unittest.TestCase):
         dividend_schedule = DividendSchedule(self.dividend_dates, self.dividends)
         engine = FdBlackScholesVanillaEngine(self.black_scholes_merton_process,
                                              self.american_time_steps, self.american_grid_points,
-                                             dividend_schedule=dividend_schedule
+                                             dividends=dividend_schedule
         )
 
         american_option.set_pricing_engine(engine)
@@ -213,13 +213,14 @@ class VanillaOptionTestCase(unittest.TestCase):
         implied_volatility = american_option.implied_volatility(
             self.target_price,
             self.black_scholes_merton_process,
-            self.accuracy,
-            self.max_evaluations,
-            self.min_vol,
-            self.max_vol
+            accuracy=self.accuracy,
+            max_evaluations=self.max_evaluations,
+            min_vol=self.min_vol,
+            max_vol=self.max_vol
         )
 
         self.assertAlmostEqual(0.200, implied_volatility, 3)
+
 
 if __name__ == '__main__':
     unittest.main()
