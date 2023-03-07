@@ -20,14 +20,14 @@ cdef class FdBlackScholesVanillaEngine(PricingEngine):
                  bool local_vol=False,
                  Real illegal_local_vol_overwrite=-Null[Real](),
                  CashDividendModel cash_dividend_model=Spot,
-                 DividendSchedule dividend_schedule=None):
+                 DividendSchedule dividends=None):
         cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
             static_pointer_cast[_bsp.GeneralizedBlackScholesProcess](process._thisptr)
-        if dividend_schedule is not None:
+        if dividends is not None:
             self._thisptr.reset(
                 new _fdbs.FdBlackScholesVanillaEngine(
                     process_ptr,
-                    dividend_schedule.schedule,
+                    dividends.schedule,
                     t_grid,
                     x_grid,
                     damping_steps,

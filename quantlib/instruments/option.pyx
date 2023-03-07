@@ -6,6 +6,7 @@ from libcpp cimport bool
 from . cimport _option
 from . cimport _payoffs
 from .exercise cimport Exercise
+from quantlib.cashflows.dividend cimport DividendSchedule
 cimport quantlib._instrument as _instrument
 cimport quantlib.time._date as _date
 cimport quantlib.pricingengines._pricing_engine as _pe
@@ -101,15 +102,22 @@ cdef class VanillaOption(OneAssetOption):
         )
 
 
-    def implied_volatility(self, Real target_value,
-        GeneralizedBlackScholesProcess process, Real accuracy, Size max_evaluations,
-        Volatility min_vol, Volatility max_vol):
+    def implied_volatility(self, Real price,
+                           GeneralizedBlackScholesProcess process,
+                           DividendSchedule dividends=None,
+                           Real accuracy=1e-4,
+                           Size max_evaluations=100,
+                           Volatility min_vol=1e-7, Volatility max_vol=4.0):
 
         cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
             static_pointer_cast[_bsp.GeneralizedBlackScholesProcess](process._thisptr)
+        if dividends is None:
+            return (<_option.VanillaOption *>self._thisptr.get()).impliedVolatility(
+                price, process_ptr, accuracy, max_evaluations, min_vol, max_vol)
+        else:
+            return (<_option.VanillaOption *>self._thisptr.get()).impliedVolatility(
+                price, process_ptr, dividends.schedule, accuracy, max_evaluations, min_vol, max_vol)
 
-        return (<_option.VanillaOption *>self._thisptr.get()).impliedVolatility(
-            target_value, process_ptr, accuracy, max_evaluations, min_vol, max_vol)
 
 cdef class EuropeanOption(VanillaOption):
 
