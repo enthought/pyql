@@ -1,6 +1,6 @@
 from quantlib.market.conventions.swap import params as swap_params
 from quantlib.indexes.api import IborIndex
-from quantlib.instruments.swap import Payer
+from quantlib.instruments.swap import Swap
 from quantlib.instruments.vanillaswap import VanillaSwap
 from quantlib.pricingengines.swap import DiscountingSwapEngine
 from quantlib.quotes import SimpleQuote
@@ -355,7 +355,7 @@ class IborMarket(FixedIncomeMarket):
                                     self._forecast_term_structure,
                                     **kwargs)
 
-        swap_type = Payer
+        swap_type = Swap.Payer
         nominal = 100.0
         fixed_convention = \
             BusinessDayConvention[_params.fixed_leg_convention]

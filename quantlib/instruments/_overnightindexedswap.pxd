@@ -11,12 +11,10 @@ from quantlib.indexes._ibor_index cimport OvernightIndex
 from quantlib.time._period cimport Frequency
 
 from ._swap cimport Swap
+from .swap cimport Type
 
 cdef extern from 'ql/instruments/overnightindexedswap.hpp' namespace 'QuantLib':
     cdef cppclass OvernightIndexedSwap(Swap):
-        enum Type:
-            Receiver
-            Payer
         OvernightIndexedSwap(Type type,
                              Real nominal,
                              const Schedule& schedule,

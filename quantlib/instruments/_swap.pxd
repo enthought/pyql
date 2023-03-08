@@ -22,9 +22,6 @@ from quantlib._cashflow cimport Leg
 
 cdef extern from 'ql/instruments/swap.hpp' namespace 'QuantLib' nogil:
     cdef cppclass Swap(Instrument):
-        enum Type:
-            Receiver
-            Payer
         ## Swap(Leg& firstLeg,
         ##      Leg& secondLeg)
 

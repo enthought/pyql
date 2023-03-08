@@ -1,7 +1,7 @@
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from quantlib.utilities.null cimport Null
-from quantlib.instruments.swap cimport Swap, SwapType
+from quantlib.instruments.swap cimport Swap
 from quantlib.handle cimport static_pointer_cast, shared_ptr
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.time.date cimport Period, Date
@@ -15,6 +15,7 @@ cimport quantlib.indexes._ibor_index as _ii
 cimport quantlib._instrument as _in
 from quantlib.instruments.vanillaswap cimport VanillaSwap
 from quantlib.instruments._vanillaswap cimport VanillaSwap as _VanillaSwap
+from .swap cimport Type
 
 cdef class MakeVanillaSwap:
     def __init__(self, Period swap_tenor not None,
@@ -42,8 +43,8 @@ cdef class MakeVanillaSwap:
         self._thisptr.receiveFixed(flag)
         return self
 
-    def with_type(self, SwapType type):
-        self._thiptr.withType(<_VanillaSwap.Type>(type))
+    def with_type(self, Type type):
+        self._thiptr.withType(type)
         return self
 
     def with_nominal(self, Real n):

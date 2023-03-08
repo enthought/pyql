@@ -12,8 +12,8 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.time._daycounter cimport DayCounter as QlDayCounter
 from quantlib.time._schedule cimport Schedule as QlSchedule
 from . cimport _vanillaswap
-from .swap cimport SwapType
 from ._swap cimport Swap as QlSwap
+from .swap cimport Type
 
 cdef inline _vanillaswap.VanillaSwap* get_vanillaswap(VanillaSwap swap):
     """ Utility function to extract a properly casted Swap pointer out of the
@@ -26,7 +26,7 @@ cdef class VanillaSwap(Swap):
     Vanilla swap class
     """
 
-    def __init__(self, SwapType type,
+    def __init__(self, Type type,
                  Real nominal,
                  Schedule fixed_schedule not None,
                  Rate fixed_rate,
@@ -42,7 +42,7 @@ cdef class VanillaSwap(Swap):
 
         self._thisptr.reset(
             new _vanillaswap.VanillaSwap(
-                <QlSwap.Type>type,
+                type,
                 nominal,
                 deref(fixed_schedule._thisptr),
                 fixed_rate,
