@@ -6,7 +6,7 @@ from .payoffs import PlainVanillaPayoff
 from .swap import Swap
 from .vanillaswap import VanillaSwap
 from .make_vanilla_swap import MakeVanillaSwap
-from .swaption import Swaption
+from .swaption import Settlement, Swaption
 from .make_swaption import MakeSwaption
 from .overnightindexfuture import OvernightIndexFuture
 from .overnightindexedswap import OvernightIndexedSwap

@@ -1,15 +1,16 @@
 from . cimport _swaption
-from ._swaption cimport Settlement
 from .option cimport Option
 
-cpdef enum SettlementType:
-    Physical = _swaption.Physical
-    Cash = _swaption.Cash
+cdef extern from "ql/instruments/swaption.hpp" namespace "QuantLib::Settlement":
+    cpdef enum class Method "QuantLib::Settlement::Method":
+        PhysicalOTC
+        PhysicalCleared
+        CollateralizedCashPrice
+        ParYieldCurve
 
-cpdef enum SettlementMethod:
-    PhysicalOTC = _swaption.PhysicalOTC
-    CollateralizedCashPrice = _swaption.CollateralizedCashPrice
-    ParYieldCurve = _swaption.ParYieldCurve
+    cpdef enum class Type "QuantLib::Settlement::Type":
+        Physical
+        Cash
 
 cdef class Swaption(Option):
-    pass
+    cdef inline _swaption.Swaption* get_swaption(self) noexcept nogil
