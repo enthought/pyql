@@ -9,10 +9,10 @@ from quantlib.time._period cimport Days
 cimport quantlib.indexes._swap_index as _si
 cimport quantlib._instrument as _in
 from quantlib.pricingengines.engine cimport PricingEngine
-from quantlib.instruments._swaption cimport Swaption as _Swaption, Settlement
+from quantlib.instruments._swaption cimport Swaption as _Swaption, Type, Method
 from quantlib.instruments.swaption cimport Swaption
 from quantlib.instruments._vanillaswap cimport VanillaSwap
-from quantlib.instruments.swap cimport SwapType
+from quantlib.instruments.swap cimport Type as SwapType
 
 cdef class MakeSwaption:
     def __init__(self, SwapIndex swap_index,
@@ -42,11 +42,11 @@ cdef class MakeSwaption:
         instance._thisptr = static_pointer_cast[_in.Instrument](temp)
         return instance
 
-    def with_settlement_type(self, Settlement.Type delivery):
+    def with_settlement_type(self, Type delivery):
         self._thisptr.withSettlementType(delivery)
         return self
 
-    def with_settlement_method(self, Settlement.Method method):
+    def with_settlement_method(self, Method method):
         self._thisptr.withSettlementMethod(method)
         return self
 
@@ -59,7 +59,7 @@ cdef class MakeSwaption:
         return self
 
     def with_underlying_type(self, SwapType swap_type):
-        self._thisptr.withUnderlyingType(<VanillaSwap.Type>swap_type)
+        self._thisptr.withUnderlyingType(swap_type)
         return self
 
     def with_nominal(self, Real nominal):

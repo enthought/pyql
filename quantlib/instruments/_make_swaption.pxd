@@ -5,7 +5,7 @@ from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.indexes._swap_index cimport SwapIndex
-from quantlib.instruments._swaption cimport Swaption, Settlement
+from quantlib.instruments._swaption cimport Swaption, Type, Method
 from quantlib.instruments._vanillaswap cimport VanillaSwap
 from quantlib.pricingengines._pricing_engine cimport PricingEngine
 
@@ -21,8 +21,8 @@ cdef extern from 'ql/instruments/makeswaption.hpp' namespace 'QuantLib':
 
         Swaption operator()
 
-        MakeSwaption& withSettlementType(Settlement.Type delivery)
-        MakeSwaption& withSettlementMethod(Settlement.Method method)
+        MakeSwaption& withSettlementType(Type delivery)
+        MakeSwaption& withSettlementMethod(Method method)
         MakeSwaption& withOptionConvention(BusinessDayConvention bdc)
         MakeSwaption& withExerciseDate(const Date&)
         MakeSwaption& withUnderlyingType(const VanillaSwap.Type type)
