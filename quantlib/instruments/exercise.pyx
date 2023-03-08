@@ -7,6 +7,10 @@ from quantlib.time._date cimport Date as QlDate
 
 cdef class Exercise:
 
+    American = Type.American
+    Bermudan = Type.Bermudan
+    European = Type.European
+
     def __str__(self):
         return "Exercise type: {}".format(self.type.name)
 
