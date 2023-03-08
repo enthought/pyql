@@ -16,8 +16,6 @@ from quantlib.pricingengines._pricing_engine cimport PricingEngine
 cdef extern from 'ql/option.hpp' namespace 'QuantLib':
 
     cdef cppclass Option(Instrument):
-        enum Type:
-            pass
         shared_ptr[Payoff] payoff()
         shared_ptr[Exercise] exercise()
 
