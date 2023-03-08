@@ -1,7 +1,7 @@
 import unittest
 
 from quantlib.currency.api import USDCurrency
-from quantlib.instruments.swap import Payer, Receiver
+from quantlib.instruments.swap import Swap
 from quantlib.instruments.vanillaswap import VanillaSwap
 from quantlib.indexes.ibor.libor import Libor
 from quantlib.market.market import libor_market
@@ -73,7 +73,7 @@ class TestQuantLibSwap(unittest.TestCase):
         engine = DiscountingSwapEngine(termStructure,
                                        False,
                                        settlement_date, settlement_date)
-        for swap_type in [Payer, Receiver]:
+        for swap_type in [Swap.Payer, Swap.Receiver]:
             swap = VanillaSwap(swap_type, nominal, fixedSchedule, fixedRate,
                     fixedDayCount,
                     floatSchedule, index, floatingSpread,

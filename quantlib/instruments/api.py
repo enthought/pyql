@@ -3,7 +3,7 @@ from .credit_default_swap import CreditDefaultSwap, Side, PricingModel
 from .exercise import EuropeanExercise, AmericanExercise
 from .option import VanillaOption, EuropeanOption, OptionType
 from .payoffs import PlainVanillaPayoff
-from .swap import Payer, Receiver
+from .swap import Swap
 from .vanillaswap import VanillaSwap
 from .make_vanilla_swap import MakeVanillaSwap
 from .swaption import Swaption

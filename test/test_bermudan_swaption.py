@@ -1,7 +1,7 @@
 import unittest
 from quantlib.cashflows.ibor_coupon import IborCoupon
 from quantlib.instruments.api import VanillaSwap, Swaption
-from quantlib.instruments.swap import SwapType
+from quantlib.instruments.swap import Swap
 from quantlib.time.api import (
     Date, today, Unadjusted, ModifiedFollowing, Annual, Semiannual,
     Thirty360, Days, Years, DateGeneration, Schedule, Actual365Fixed, Period)
@@ -19,7 +19,7 @@ class BermudanSwaptionTest(unittest.TestCase):
     def setUp(self):
         self.start_years = 1
         self.length = 5
-        self.swap_type = SwapType.Payer
+        self.swap_type = Swap.Payer
         self.nominal = 1000
         self.settlement_days = 2
         self.fixed_convention = Unadjusted
