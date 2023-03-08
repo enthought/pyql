@@ -6,7 +6,8 @@ from libcpp.vector cimport vector
 
 from quantlib.handle cimport shared_ptr
 from quantlib.math.matrix cimport Matrix
-cimport quantlib.math._interpolations as intpl
+from quantlib.math.interpolation cimport Interpolation, Bilinear, Bicubic
+
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time._date cimport Date as _Date
 from quantlib.time.calendar cimport Calendar
@@ -89,10 +90,10 @@ cdef class BlackVarianceSurface(BlackVarianceTermStructure):
         return get_bvs(self).maxStrike()
 
     # Modifiers
-    def set_interpolation(self, Interpolator i):
-        if i == Bilinear:
-            get_bvs(self).setInterpolation[intpl.Bilinear]() # Calls the default constructor
-        elif i == Bicubic:
-            get_bvs(self).setInterpolation[intpl.Bicubic]()
+    def set_interpolation(self, Interpolation i):
+        if isinstance(i, Bicubic):
+            get_bvs(self).setInterpolation((<Bicubic>i)._thisptr) # Calls the default constructor
+        elif isinstance(i, Bilinear):
+            get_bvs(self).setInterpolation((<Bilinear>i)._thisptr)
         else:
             raise ValueError("Interpolator must be Bilinear or Bicubic")
