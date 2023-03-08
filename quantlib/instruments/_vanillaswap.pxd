@@ -19,7 +19,8 @@ from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._schedule cimport Schedule
 from quantlib._cashflow cimport Leg
-from quantlib.instruments._swap cimport Swap
+from ._swap cimport Swap
+from .swap cimport Type
 from quantlib.indexes._ibor_index cimport IborIndex
 
 cdef extern from 'ql/instruments/vanillaswap.hpp' namespace 'QuantLib':
@@ -35,7 +36,7 @@ cdef extern from 'ql/instruments/vanillaswap.hpp' namespace 'QuantLib':
                     DayCounter& floatingDayCount,
                     optional[BusinessDayConvention] paymentConvention)
 
-        Swap.Type type()
+        Type type()
         Real nominal()
 
         Schedule& fixedSchedule()

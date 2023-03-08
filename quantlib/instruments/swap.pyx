@@ -24,6 +24,8 @@ cdef class Swap(Instrument):
     """
     Base swap class
     """
+    Payer = Type.Payer
+    Receiver = Type.Receiver
 
     def __init__(self):
         raise NotImplementedError('Generic swap not yet implemented. \

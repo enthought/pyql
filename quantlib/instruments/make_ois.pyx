@@ -14,7 +14,8 @@ from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.pricingengines.engine cimport PricingEngine
 cimport quantlib.indexes._ibor_index as _ii
 from .. cimport _instrument as _in
-from .overnightindexedswap cimport OvernightIndexedSwap, Type
+from .overnightindexedswap cimport OvernightIndexedSwap
+from .swap cimport Type
 from ._overnightindexedswap cimport OvernightIndexedSwap as _OvernightIndexedSwap
 from quantlib.indexes.ibor_index cimport OvernightIndex
 
