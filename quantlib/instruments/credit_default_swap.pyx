@@ -218,7 +218,7 @@ cdef class CreditDefaultSwap(Instrument):
     @property
     def upfront(self):
         cdef optional[Rate] upf = _get_cds(self).upfront()
-        return None if not upf else upf.get()
+        return None if not upf else upf.value()
 
     @property
     def settles_accrual(self):
