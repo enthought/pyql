@@ -13,8 +13,8 @@ from quantlib.math._interpolations cimport SABRInterpolation
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
 
-cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolcube1.hpp' namespace 'QuantLib':
-    cdef cppclass SwaptionVolCube1x[Model](SwaptionVolatilityCube):
+cdef extern from 'ql/termstructures/volatility/swaption/sabrswaptionvolatilitycube.hpp' namespace 'QuantLib':
+    cdef cppclass XabrSwaptionVolatilityCube[Model](SwaptionVolatilityCube):
         cppclass Cube:
             Cube(const vector[Date]& optionDates,
                  const vector[Period]& swapTenors,
@@ -49,7 +49,7 @@ cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolcube1.hpp' na
                                     const Time swapLengths)
             void updateInterpolators()
             Matrix browse()
-        SwaptionVolCube1x(
+        XabrSwaptionVolatilityCube(
             const Handle[SwaptionVolatilityStructure]& atmVolStructure,
             const vector[Period]& optionTenors,
             const vector[Period]& swapTenors,
@@ -92,4 +92,4 @@ cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolcube1.hpp' na
         ctypedef SABRInterpolation Interpolation
         ctypedef SabrSmileSection SmileSection
 
-    ctypedef SwaptionVolCube1x[SwaptionVolCubeSabrModel] SwaptionVolCube1
+    ctypedef XabrSwaptionVolatilityCube[SwaptionVolCubeSabrModel] SabrSwaptionVolatilityCube

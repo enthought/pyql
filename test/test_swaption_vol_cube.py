@@ -6,8 +6,8 @@ from quantlib.termstructures.yields.api import FlatForward
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.volatility.swaption.swaption_vol_matrix \
     import SwaptionVolatilityMatrix
-from quantlib.termstructures.volatility.swaption.swaption_vol_cube1 \
-    import SwaptionVolCube1
+from quantlib.termstructures.volatility.swaption.sabr_swaption_volatility_cube \
+    import SabrSwaptionVolatilityCube
 from quantlib.termstructures.volatility.swaption.spreaded_swaption_vol \
     import SpreadedSwaptionVolatility
 from quantlib.indexes.api import EuriborSwapIsdaFixA
@@ -70,7 +70,7 @@ class SwaptionVolatilityCubeTestCase(unittest.TestCase):
             parameters_guess.append([SimpleQuote(0.2), SimpleQuote(0.5),
                                      SimpleQuote(0.4), SimpleQuote(0.)])
         is_parameter_fixed = [False] * 4
-        vol_cube = SwaptionVolCube1(self.atm_vol_matrix,
+        vol_cube = SabrSwaptionVolatilityCube(self.atm_vol_matrix,
                                     self.cube.option_tenors,
                                     self.cube.swap_tenors,
                                     self.cube.strike_spreads,
@@ -108,7 +108,7 @@ class SwaptionVolatilityCubeTestCase(unittest.TestCase):
                                      SimpleQuote(0.4), SimpleQuote(0.)])
         is_parameter_fixed = [False] * 4
         spread = SimpleQuote(0.0001)
-        vol_cube = SwaptionVolCube1(self.atm_vol_matrix,
+        vol_cube = SabrSwaptionVolatilityCube(self.atm_vol_matrix,
                                     self.cube.option_tenors,
                                     self.cube.swap_tenors,
                                     self.cube.strike_spreads,

@@ -11,14 +11,14 @@ from quantlib.quote cimport Quote
 from quantlib.time.date cimport Period
 from quantlib.time._period cimport Period as QlPeriod
 from .swaption_vol_structure cimport SwaptionVolatilityStructure
-from . cimport _swaption_vol_cube1 as _svc1
+from . cimport _sabr_swaption_volatility_cube as _ssvc
 cimport quantlib.indexes._swap_index as _si
 cimport quantlib._quote as _qt
 
 from . cimport _swaption_vol_structure as _svs
 from ..._vol_term_structure cimport VolatilityTermStructure
 
-cdef class SwaptionVolCube1(SwaptionVolatilityCube):
+cdef class SabrSwaptionVolatilityCube(SwaptionVolatilityCube):
 
     def __init__(self, atm_vol_structure not None,
                  list option_tenors not None,
@@ -65,7 +65,7 @@ cdef class SwaptionVolCube1(SwaptionVolatilityCube):
         for p in swap_tenors:
             swap_tenors_vec.push_back(deref(p._thisptr))
 
-        self._derived_ptr = make_shared[_svc1.SwaptionVolCube1](
+        self._derived_ptr = make_shared[_ssvc.SabrSwaptionVolatilityCube](
             SwaptionVolatilityStructure.swaption_vol_handle(atm_vol_structure),
             option_tenors_vec,
             swap_tenors_vec,
