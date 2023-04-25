@@ -4,7 +4,7 @@ from quantlib.handle cimport shared_ptr, Handle, optional
 from ._cms_spread_coupon cimport CmsSpreadCouponPricer
 from quantlib.cashflows._coupon_pricer cimport CmsCouponPricer
 from quantlib._quote cimport Quote
-from quantlib.termstructures.volatility._volatilitytype cimport VolatilityType
+from quantlib.termstructures.volatility.volatilitytype cimport VolatilityType
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 
 cdef extern from 'ql/experimental/coupons/lognormalcmsspreadpricer.hpp' namespace 'QuantLib':

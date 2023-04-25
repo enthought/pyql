@@ -11,7 +11,7 @@ include '../../../types.pxi'
 
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
-from quantlib.termstructures.volatility._volatilitytype cimport VolatilityType
+from quantlib.termstructures.volatility.volatilitytype cimport VolatilityType
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.indexes._ibor_index cimport IborIndex
 from quantlib.time._date cimport Date

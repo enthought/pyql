@@ -1,6 +1,6 @@
 from quantlib.types cimport Real, Size, Volatility
 from quantlib.pricingengines._pricing_engine cimport PricingEngine
-from quantlib.termstructures.volatility._volatilitytype cimport VolatilityType
+from quantlib.termstructures.volatility.volatilitytype cimport VolatilityType
 from quantlib.handle cimport shared_ptr, Handle
 from quantlib._quote cimport Quote
 

@@ -8,8 +8,8 @@ from quantlib.time._calendar cimport Calendar
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from ._swaption_vol_structure cimport \
         SwaptionVolatilityStructure
-from quantlib.termstructures.volatility._volatilitytype cimport (
-        VolatilityType, ShiftedLognormal)
+from ..volatilitytype cimport VolatilityType
+
 
 cdef extern from 'ql/termstructures/volatility/swaption/swaptionconstantvol.hpp' namespace 'QuantLib' nogil:
     # this should really be constructors,

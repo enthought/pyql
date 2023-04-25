@@ -9,9 +9,8 @@ from quantlib.time.calendar cimport Calendar
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.quote cimport Quote
-from ..volatilitytype cimport VolatilityType, ShiftedLognormal
+from ..volatilitytype cimport VolatilityType
 from ..._vol_term_structure cimport VolatilityTermStructure
-cimport quantlib.termstructures.volatility._volatilitytype as _voltype
 from . cimport _swaption_constant_vol as _scv
 
 cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
@@ -21,7 +20,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
                  BusinessDayConvention bdc,
                  volatility,
                  DayCounter day_counter not None,
-                 VolatilityType vol_type=ShiftedLognormal,
+                 VolatilityType vol_type=VolatilityType.ShiftedLognormal,
                  Real shift=0.):
 
         if isinstance(volatility, float):
@@ -31,7 +30,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
                 bdc,
                 <Volatility>volatility,
                 deref(day_counter._thisptr),
-                <_voltype.VolatilityType>vol_type,
+                vol_type,
                 shift
             )
         elif isinstance(volatility, Quote):
@@ -41,7 +40,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
                 bdc,
                 (<Quote>volatility).handle(),
                 deref(day_counter._thisptr),
-                <_voltype.VolatilityType>vol_type,
+                vol_type,
                 shift
             )
         else:
@@ -56,7 +55,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
                             BusinessDayConvention bdc,
                             volatility,
                             DayCounter day_counter not None,
-                            VolatilityType vol_type=ShiftedLognormal,
+                            VolatilityType vol_type=VolatilityType.ShiftedLognormal,
                             Real shift=0.):
 
         cdef ConstantSwaptionVolatility instance = cls.__new__(cls)
@@ -67,7 +66,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
                 bdc,
                 (<Volatility>volatility),
                 deref(day_counter._thisptr),
-                <_voltype.VolatilityType>vol_type,
+                vol_type,
                 shift
             )
         elif isinstance(volatility, Quote):
@@ -77,7 +76,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
                 bdc,
                 (<Quote>volatility).handle(),
                 deref(day_counter._thisptr),
-                <_voltype.VolatilityType>vol_type,
+                vol_type,
                 shift
             )
         else:
