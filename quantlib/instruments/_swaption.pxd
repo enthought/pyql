@@ -5,7 +5,7 @@ from ._option cimport Option
 from ._exercise cimport Exercise
 from .swap cimport SwapType
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
-from quantlib.termstructures.volatility._volatilitytype cimport VolatilityType
+from quantlib.termstructures.volatility.volatilitytype cimport VolatilityType
 from quantlib.handle cimport Handle, optional
 
 cdef extern from "ql/instruments/swaption.hpp" namespace "QuantLib::Settlement":

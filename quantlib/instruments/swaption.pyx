@@ -3,7 +3,6 @@ from . cimport _swaption
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.termstructures.volatility.volatilitytype cimport (
     VolatilityType, ShiftedLognormal )
-cimport quantlib.termstructures.volatility._volatilitytype as _voltype
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from .exercise cimport Exercise
 from .swap import SwapType
@@ -40,7 +39,7 @@ cdef class Swaption(Option):
             max_evaluations,
             min_vol,
             max_vol,
-            <_voltype.VolatilityType>type,
+            type,
             displacement)
 
     @property

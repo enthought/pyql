@@ -13,7 +13,6 @@ from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.math.matrix cimport Matrix
 from ..volatilitytype cimport VolatilityType, ShiftedLognormal
-cimport quantlib.termstructures.volatility._volatilitytype as _voltype
 from ..._vol_term_structure cimport VolatilityTermStructure
 
 cdef build_vols_shifts(list volatilities, list shifts,
@@ -67,7 +66,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
                 (<Matrix>volatilities)._thisptr,
                 deref(day_counter._thisptr),
                 flat_extrapolation,
-                <_voltype.VolatilityType>vol_type,
+                vol_type,
                 (<Matrix>shifts)._thisptr
             )
         elif isinstance(volatilities, list) and isinstance(shifts, list):
@@ -81,7 +80,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
                 c_vols,
                 deref(day_counter._thisptr),
                 flat_extrapolation,
-                <_voltype.VolatilityType>vol_type,
+                vol_type,
                 c_shifts
             )
         else:
@@ -125,7 +124,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
                 (<Matrix>volatilities)._thisptr,
                 deref(day_counter._thisptr),
                 flat_extrapolation,
-                <_voltype.VolatilityType>vol_type,
+                vol_type,
                 (<Matrix>shifts)._thisptr
             )
         elif isinstance(volatilities, list) and isinstance(shifts, list):
@@ -139,7 +138,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
                 c_vols,
                 deref(day_counter._thisptr),
                 flat_extrapolation,
-                <_voltype.VolatilityType>vol_type,
+                vol_type,
                 c_shifts
             )
         else:
