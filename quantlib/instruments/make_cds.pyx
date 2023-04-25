@@ -1,6 +1,7 @@
 from quantlib.types cimport Natural, Real
 
 from cython.operator cimport dereference as deref
+from quantlib.default cimport Protection
 from quantlib.handle cimport static_pointer_cast, shared_ptr
 from quantlib.time.date cimport Date, Period
 from quantlib.time.daycounter cimport DayCounter
@@ -43,7 +44,7 @@ cdef class MakeCreditDefaultSwap:
         self._thisptr.withUpfrontRate(upf)
         return self
 
-    def with_side(self, _cds.Side side):
+    def with_side(self, Protection side):
         self._thisptr.withSide(side)
         return self
 

@@ -9,7 +9,7 @@ from quantlib.time._calendar cimport BusinessDayConvention
 from quantlib.time._date cimport Date, Period
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._schedule cimport Schedule, DateGeneration
-from quantlib.default cimport Side
+from quantlib.default cimport Protection
 
 cdef extern from 'ql/instruments/claim.hpp' namespace 'QuantLib':
 
@@ -21,7 +21,7 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
     cdef cppclass CreditDefaultSwap(Instrument):
         enum PricingModel:
             pass
-        CreditDefaultSwap(Side side,
+        CreditDefaultSwap(Protection side,
                           Real notional,
                           Rate spread,
                           Schedule& schedule,
@@ -36,7 +36,7 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                           Date tradeDate, # = Date(),
                           Natural cashSettlementDays, # = 3
         )
-        CreditDefaultSwap(Side side,
+        CreditDefaultSwap(Protection side,
                           Real notional,
                           Rate upfront,
                           Rate spread,
@@ -53,7 +53,7 @@ cdef extern from 'ql/instruments/creditdefaultswap.hpp' namespace 'QuantLib':
                           Date tradeDate, # = Date(),
                           Natural cashSettlementDays, # = 3
                           ) except +
-        Side side()
+        Protection side()
         Real notional()
         Rate runningSpread()
         optional[Rate] upfront()
