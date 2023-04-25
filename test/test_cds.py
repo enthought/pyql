@@ -6,7 +6,7 @@ from quantlib.termstructures.yields.api import FlatForward
 from quantlib.termstructures.credit.api import FlatHazardRate
 from quantlib.pricingengines.credit.api import MidPointCdsEngine
 from quantlib.instruments.api import CreditDefaultSwap
-from quantlib.default import Side
+from quantlib.default import Protection
 from quantlib.instruments.credit_default_swap import cds_maturity
 from quantlib.instruments.make_cds import MakeCreditDefaultSwap
 from quantlib.time.api import ( TARGET, today, Years, Schedule,
@@ -38,12 +38,12 @@ class CreditDefaultSwapTest(unittest.TestCase):
         day_count = Actual360()
         notional = 10000
 
-        cds = CreditDefaultSwap(Side.Seller, notional, fixed_rate, self.schedule,
+        cds = CreditDefaultSwap(Protection.Seller, notional, fixed_rate, self.schedule,
                                 self.convention, day_count, True, True)
         cds.set_pricing_engine(self.engine)
 
         fair_rate = cds.fair_spread
-        fair_cds = CreditDefaultSwap(Side.Seller, notional, fair_rate, self.schedule,
+        fair_cds = CreditDefaultSwap(Protection.Seller, notional, fair_rate, self.schedule,
                                      self.convention, day_count, True, True)
         fair_cds.set_pricing_engine(self.engine)
 
@@ -55,13 +55,13 @@ class CreditDefaultSwapTest(unittest.TestCase):
         day_count = Actual360()
         notional = 10000
 
-        cds = CreditDefaultSwap.from_upfront(Side.Seller, notional, upfront, fixed_rate,
+        cds = CreditDefaultSwap.from_upfront(Protection.Seller, notional, upfront, fixed_rate,
                                              self.schedule,
                                              self.convention, day_count, True, True)
         cds.set_pricing_engine(self.engine)
 
         fair_upfront = cds.fair_upfront
-        fair_cds = CreditDefaultSwap.from_upfront(Side.Seller, notional, fair_upfront,
+        fair_cds = CreditDefaultSwap.from_upfront(Protection.Seller, notional, fair_upfront,
                                                   fixed_rate, self.schedule,
                                                   self.convention, day_count, True, True)
         fair_cds.set_pricing_engine(self.engine)
@@ -70,12 +70,12 @@ class CreditDefaultSwapTest(unittest.TestCase):
 
         # same with null upfront
         upfront = 0.
-        cds2 = CreditDefaultSwap.from_upfront(Side.Seller, notional, upfront,
+        cds2 = CreditDefaultSwap.from_upfront(Protection.Seller, notional, upfront,
                                               fixed_rate, self.schedule,
                                               self.convention, day_count, True, True)
         cds2.set_pricing_engine(self.engine)
         fair_upfront2 = cds.fair_upfront
-        fair_cds2 = CreditDefaultSwap.from_upfront(Side.Seller, notional, fair_upfront,
+        fair_cds2 = CreditDefaultSwap.from_upfront(Protection.Seller, notional, fair_upfront,
                                                    fixed_rate, self.schedule,
                                                    self.convention, day_count, True, True)
         fair_cds2.set_pricing_engine(self.engine)

@@ -1,5 +1,6 @@
 from .bonds import FixedRateBond, ZeroCouponBond, FloatingRateBond
-from .credit_default_swap import CreditDefaultSwap, Side, PricingModel
+from .credit_default_swap import CreditDefaultSwap, PricingModel
+from ..default import Protection
 from .exercise import EuropeanExercise, AmericanExercise
 from .option import VanillaOption, EuropeanOption, OptionType
 from .payoffs import PlainVanillaPayoff

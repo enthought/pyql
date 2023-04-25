@@ -13,7 +13,7 @@ from libcpp cimport bool
 
 from quantlib.handle cimport shared_ptr, optional
 
-from quantlib.default cimport Side
+from quantlib.default cimport Protection
 cimport quantlib.instruments._credit_default_swap as _cds
 cimport quantlib._instrument as _instrument
 cimport quantlib.pricingengines._pricing_engine as _pe
@@ -97,7 +97,7 @@ cdef class CreditDefaultSwap(Instrument):
 
     """
 
-    def __init__(self, Side side, double notional, double spread,
+    def __init__(self, Protection side, double notional, double spread,
                  Schedule schedule not None, BusinessDayConvention payment_convention,
                  DayCounter day_counter not None, bool settles_accrual=True,
                  bool pays_at_default_time=True,
@@ -122,7 +122,7 @@ cdef class CreditDefaultSwap(Instrument):
         )
 
     @classmethod
-    def from_upfront(cls, Side side, double notional, double upfront, double spread,
+    def from_upfront(cls, Protection side, double notional, double upfront, double spread,
                      Schedule schedule not None, BusinessDayConvention payment_convention,
                      DayCounter day_counter not None, bool settles_accrual=True,
                      bool pays_at_default_time=True, Date protection_start=Date(),
