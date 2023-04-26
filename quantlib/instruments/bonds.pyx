@@ -177,9 +177,9 @@ cdef class FixedRateBond(Bond):
                                      deref(accrual_day_counter._thisptr),
                                      payment_convention,
                                      redemption, deref(issue_date._thisptr),
-                                     deref(payment_calendar._thisptr),
+                                     payment_calendar._thisptr,
                                      deref(ex_coupon_period._thisptr),
-                                     deref(ex_coupon_calendar._thisptr),
+                                     ex_coupon_calendar._thisptr,
                                      ex_coupon_convention,
                                      ex_coupon_end_of_month)
         )
@@ -211,7 +211,7 @@ cdef class ZeroCouponBond(Bond):
 
         self._thisptr = shared_ptr[_instrument.Instrument](
                 new _bonds.ZeroCouponBond(settlement_days,
-                    deref(calendar._thisptr), face_amount,
+                    calendar._thisptr, face_amount,
                     deref(maturity_date._thisptr),
                     payment_convention, redemption,
                     deref(issue_date._thisptr)
@@ -299,7 +299,7 @@ cdef class CPIBond(Bond):
                 deref(schedule._thisptr), coupons,
                 deref(accrual_day_counter._thisptr), payment_convention,
                 deref(issue_date._thisptr),
-                deref(payment_calendar._thisptr), deref(ex_coupon_period._thisptr),
-                deref(ex_coupon_calendar._thisptr), ex_coupon_convention,
+                payment_calendar._thisptr, deref(ex_coupon_period._thisptr),
+                ex_coupon_calendar._thisptr, ex_coupon_convention,
                 ex_coupon_end_of_month)
             )

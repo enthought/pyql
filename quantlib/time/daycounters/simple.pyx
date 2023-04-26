@@ -26,12 +26,12 @@ cdef class Actual360(DayCounter):
 cdef class Business252(DayCounter):
 
     def __cinit__(self, *args, calendar=None):
-        cdef _calendar.Calendar* cl
+        cdef _calendar.Calendar cl
         if calendar is None:
-           cl = new _tg.TARGET()
+           cl = _tg.TARGET()
         else:
            cl = (<Calendar>calendar)._thisptr
-        self._thisptr = <_daycounter.DayCounter*> new _simple.Business252(deref(cl))
+        self._thisptr = <_daycounter.DayCounter*> new _simple.Business252(cl)
 
 
 cdef class OneDayCounter(DayCounter):

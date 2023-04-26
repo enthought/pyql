@@ -18,4 +18,4 @@ cdef class TARGET(Calendar):
     '''
 
     def __cinit__(self):
-        self._thisptr = new _tg.TARGET()
+        self._thisptr = _tg.TARGET()

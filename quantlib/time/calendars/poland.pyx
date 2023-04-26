@@ -7,4 +7,4 @@ cdef class Poland(Calendar):
 
     def __cinit__(self):
 
-        self._thisptr = new _poland.Poland()
+        self._thisptr = _poland.Poland()

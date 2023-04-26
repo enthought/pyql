@@ -27,14 +27,6 @@ cdef class Calendar:
     calendars will be moved to the exchange/country convention.
     '''
 
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-            self._thisptr = NULL
-
-    def __cinit__(self):
-        self._thisptr = new _calendar.Calendar()
-
     property name:
         def __get__(self):
             return self._thisptr.name().decode('utf-8')
@@ -143,9 +135,9 @@ cdef class Calendar:
         elif op == 5:
             op_str = '>='
         elif op == 2:
-            return deref(self._thisptr) == deref(cal._thisptr)
+            return self._thisptr == cal._thisptr
         elif op == 3:
-            return deref(self._thisptr) != deref(cal._thisptr)
+            return self._thisptr != cal._thisptr
         raise TypeError(op_str + " not supported between instances of 'Calendar' and 'Calendar'")
 
     def holiday_list(self, date.Date from_date not None,

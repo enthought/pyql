@@ -73,7 +73,7 @@ cdef class BlackVarianceSurface(BlackVarianceTermStructure):
         self._thisptr.reset(
                 new _bvs.BlackVarianceSurface(
                     deref(reference_date._thisptr),
-                    deref(cal._thisptr),
+                    cal._thisptr,
                     _dates,
                     strikes,
                     (black_vol_matrix)._thisptr,

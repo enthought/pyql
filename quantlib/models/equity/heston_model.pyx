@@ -53,7 +53,7 @@ cdef class HestonModelHelper(BlackCalibrationHelper):
         self._thisptr = shared_ptr[_ch.CalibrationHelper](
             new _hm.HestonModelHelper(
                 deref(maturity._thisptr),
-                deref(calendar._thisptr),
+                calendar._thisptr,
                 s0,
                 strike_price,
                 volatility.handle(),

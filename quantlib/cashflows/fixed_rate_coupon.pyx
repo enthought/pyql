@@ -54,7 +54,7 @@ cdef class FixedRateLeg(Leg):
         return self
 
     def with_payment_calendar(self, Calendar cal):
-        self.frl.withPaymentCalendar(deref(cal._thisptr))
+        self.frl.withPaymentCalendar(cal._thisptr)
         return self
 
     def with_last_period_day_counter(self, DayCounter dc):

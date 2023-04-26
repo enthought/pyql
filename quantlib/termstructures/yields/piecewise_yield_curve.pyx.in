@@ -79,7 +79,7 @@ cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
             instruments.push_back((<RateHelper?> helper)._thisptr)
 
         self._curve = new _pyc.PiecewiseYieldCurve[trait.{{T}}, intpl.{{I}}](
-            settlement_days, deref(calendar._thisptr), instruments,
+            settlement_days, calendar._thisptr, instruments,
             deref(daycounter._thisptr),
             i._thisptr,
             _pyc.PiecewiseYieldCurve[trait.{{T}}, intpl.{{I}}].bootstrap_type(accuracy)

@@ -55,12 +55,12 @@ cdef class Libor(IborIndex):
             deref(tenor._thisptr),
             <Natural> settlementDays,
             deref(currency._thisptr),
-            deref(financial_center_calendar._thisptr),
+            financial_center_calendar._thisptr,
             deref(dayCounter._thisptr),
             ts._thisptr))
 
     @property
     def joint_calendar(self):
         cdef Calendar cal = Calendar.__new__(Calendar)
-        cal._thisptr = new _calendar.Calendar((<_libor.Libor*>self._thisptr.get()).jointCalendar())
+        cal._thisptr = (<_libor.Libor*>self._thisptr.get()).jointCalendar()
         return cal

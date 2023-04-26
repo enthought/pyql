@@ -128,7 +128,7 @@ cdef class SpreadCdsHelper(CdsHelper):
             self._thisptr = shared_ptr[_ci.DefaultProbabilityHelper](
                 new _ci.SpreadCdsHelper(
                     <Rate>running_spread, deref(tenor._thisptr),
-                    settlement_days, deref(calendar._thisptr),
+                    settlement_days, calendar._thisptr,
                     <Frequency>frequency,
                     <BusinessDayConvention>paymentConvention, date_generation_rule,
                     deref(daycounter._thisptr),
@@ -143,7 +143,7 @@ cdef class SpreadCdsHelper(CdsHelper):
             self._thisptr = shared_ptr[_ci.DefaultProbabilityHelper](
                 new _ci.SpreadCdsHelper(
                     (<Quote>running_spread).handle(), deref(tenor._thisptr),
-                    settlement_days, deref(calendar._thisptr),
+                    settlement_days, calendar._thisptr,
                     <Frequency>frequency,
                     <BusinessDayConvention>paymentConvention, date_generation_rule,
                     deref(daycounter._thisptr),
@@ -178,7 +178,7 @@ cdef class UpfrontCdsHelper(CdsHelper):
             self._thisptr = shared_ptr[_ci.DefaultProbabilityHelper](
                 new _ci.UpfrontCdsHelper(
                     <Rate>upfront, running_spread, deref(tenor._thisptr.get()),
-                    settlement_days, deref(calendar._thisptr), <Frequency>frequency,
+                    settlement_days, calendar._thisptr, <Frequency>frequency,
                     <BusinessDayConvention>paymentConvention, rule,
                     deref(daycounter._thisptr),
                     recovery_rate, discount_curve._thisptr, upfront_settlement_days, settles_accrual,
@@ -192,7 +192,7 @@ cdef class UpfrontCdsHelper(CdsHelper):
             self._thisptr = shared_ptr[_ci.DefaultProbabilityHelper](
                 new _ci.UpfrontCdsHelper(
                     (<Quote>upfront).handle(), running_spread, deref(tenor._thisptr),
-                    settlement_days, deref(calendar._thisptr), <Frequency>frequency,
+                    settlement_days, calendar._thisptr, <Frequency>frequency,
                     <BusinessDayConvention>paymentConvention, rule,
                     deref(daycounter._thisptr),
                     recovery_rate, discount_curve._thisptr, upfront_settlement_days, settles_accrual,

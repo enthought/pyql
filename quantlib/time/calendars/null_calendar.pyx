@@ -11,5 +11,5 @@ cdef class NullCalendar(Calendar):
     '''
 
     def __cinit__(self):
-        self._thisptr = new _nc.NullCalendar()
+        self._thisptr = _nc.NullCalendar()
 

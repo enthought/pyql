@@ -45,4 +45,4 @@ cdef class UnitedKingdom(Calendar):
     '''
 
     def __cinit__(self, Market market=Market.Settlement):
-        self._thisptr = new _uk.UnitedKingdom(market)
+        self._thisptr = _uk.UnitedKingdom(market)

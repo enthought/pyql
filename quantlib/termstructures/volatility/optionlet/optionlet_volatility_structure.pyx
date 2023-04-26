@@ -24,7 +24,7 @@ cdef class ConstantOptionletVolatility(OptionletVolatilityStructure):
         self._thisptr = shared_ptr[_ov.OptionletVolatilityStructure](
             new _ov.ConstantOptionletVolatility(
                 settlement_days,
-                deref(calendar._thisptr),
+                calendar._thisptr,
                 bdc,
                 volatility,
                 deref(daycounter._thisptr)

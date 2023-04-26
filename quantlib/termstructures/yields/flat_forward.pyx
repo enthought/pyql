@@ -86,7 +86,7 @@ cdef class FlatForward(YieldTermStructure):
             if isinstance(forward, Quote):
                 _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
                         <ffwd.Natural>settlement_days,
-                        deref(calendar._thisptr),
+                        calendar._thisptr,
                         (<Quote>forward).handle(),
                         deref(daycounter._thisptr),
                         compounding,
@@ -95,7 +95,7 @@ cdef class FlatForward(YieldTermStructure):
             else:
                 _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
                         <ffwd.Natural>settlement_days,
-                        deref(calendar._thisptr),
+                        calendar._thisptr,
                         <Real>forward,
                         deref(daycounter._thisptr),
                         compounding,

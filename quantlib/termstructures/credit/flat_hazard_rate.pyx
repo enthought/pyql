@@ -34,14 +34,14 @@ cdef class FlatHazardRate(DefaultProbabilityTermStructure):
         if isinstance(hazard_rate, float):
             self._thisptr = shared_ptr[_dts.DefaultProbabilityTermStructure](
                 new _fhr.FlatHazardRate(settlement_days,
-                                        deref(calendar._thisptr),
+                                        calendar._thisptr,
                                         <Rate>hazard_rate,
                                         deref(day_counter._thisptr)))
         elif isinstance(hazard_rate, Quote):
             self._thisptr = shared_ptr[_dts.DefaultProbabilityTermStructure](
                 new _fhr.FlatHazardRate(
                     settlement_days,
-                    deref(calendar._thisptr),
+                    calendar._thisptr,
                     (<Quote>hazard_rate).handle(),
                     deref(day_counter._thisptr)))
         else:

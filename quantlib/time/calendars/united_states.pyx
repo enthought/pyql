@@ -77,4 +77,4 @@ cdef class UnitedStates(Calendar):
     '''
 
     def __cinit__(self, Market market=Market.Settlement):
-        self._thisptr = new _us.UnitedStates(market)
+        self._thisptr = _us.UnitedStates(market)

@@ -60,7 +60,7 @@ cdef class {{I}}InterpolatedZeroCurve(YieldTermStructure):
 
         self._curve = new _zc.InterpolatedZeroCurve[intpl.{{I}}](
                 _dates, yields, deref(day_counter._thisptr),
-                deref(cal._thisptr), i._thisptr, compounding, frequency
+                cal._thisptr, i._thisptr, compounding, frequency
             )
         self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](self._curve))
 

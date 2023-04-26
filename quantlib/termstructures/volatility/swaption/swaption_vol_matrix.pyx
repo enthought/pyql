@@ -60,7 +60,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
 
         if isinstance(volatilities, Matrix) and isinstance(shifts, Matrix):
             self._derived_ptr = make_shared[_svm.SwaptionVolatilityMatrix](
-                deref(calendar._thisptr),
+                calendar._thisptr,
                 bdc,
                 option_tenors_vec,
                 swap_tenors_vec,
@@ -74,7 +74,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
             build_vols_shifts(volatilities, shifts, c_vols, c_shifts)
 
             self._derived_ptr = make_shared[_svm.SwaptionVolatilityMatrix](
-                deref(calendar._thisptr),
+                calendar._thisptr,
                 bdc,
                 option_tenors_vec,
                 swap_tenors_vec,
@@ -118,7 +118,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
         if isinstance(volatilities, Matrix) and isinstance(shifts, Matrix):
             instance._derived_ptr = make_shared[_svm.SwaptionVolatilityMatrix](
                 deref(reference_date._thisptr),
-                deref(calendar._thisptr),
+                calendar._thisptr,
                 bdc,
                 option_tenors_vec,
                 swap_tenors_vec,
@@ -132,7 +132,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
             build_vols_shifts(volatilities, shifts, c_vols, c_shifts)
             instance._derived_ptr = make_shared[_svm.SwaptionVolatilityMatrix](
                 deref(reference_date._thisptr),
-                deref(calendar._thisptr),
+                calendar._thisptr,
                 bdc,
                 option_tenors_vec,
                 swap_tenors_vec,
