@@ -8,5 +8,4 @@ cdef class Switzerland(Calendar):
 
     def __cinit__(self):
 
-        self._thisptr = <_calendar.Calendar*> new \
-            _sw.Switzerland()
+        self._thisptr = _sw.Switzerland()

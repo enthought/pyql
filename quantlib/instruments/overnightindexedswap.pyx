@@ -41,7 +41,7 @@ cdef class OvernightIndexedSwap(Swap):
                 make_shared[_ois.OvernightIndexedSwap](
                     swap_type, <Real>nominal, deref(schedule._thisptr), fixed_rate,
                     deref(fixed_dc._thisptr), static_pointer_cast[_ii.OvernightIndex](overnight_index._thisptr),
-                    spread, payment_lag, payment_adjustment, deref(payment_calendar._thisptr),
+                    spread, payment_lag, payment_adjustment, payment_calendar._thisptr,
                     telescopic_value_dates, averaging_method
                 )
             )
@@ -52,7 +52,7 @@ cdef class OvernightIndexedSwap(Swap):
                 make_shared[_ois.OvernightIndexedSwap](
                     swap_type, nominals, deref(schedule._thisptr), fixed_rate,
                     deref(fixed_dc._thisptr), static_pointer_cast[_ii.OvernightIndex](overnight_index._thisptr),
-                    spread, payment_lag, payment_adjustment, deref(payment_calendar._thisptr),
+                    spread, payment_lag, payment_adjustment, payment_calendar._thisptr,
                     telescopic_value_dates, averaging_method
                 )
             )

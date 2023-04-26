@@ -44,21 +44,21 @@ cdef class InterpolatedHazardRateCurve(DefaultProbabilityTermStructure):
                 new _ihc.InterpolatedHazardRateCurve[intpl.Linear](
                     _dates, hazard_rates,
                     deref(day_counter._thisptr),
-                    deref(cal._thisptr))
+                    cal._thisptr)
             )
         elif interpolator == LogLinear:
             self._thisptr = shared_ptr[_dts.DefaultProbabilityTermStructure](
                 new _ihc.InterpolatedHazardRateCurve[intpl.LogLinear](
                     _dates, hazard_rates,
                     deref(day_counter._thisptr),
-                    deref(cal._thisptr))
+                    cal._thisptr)
             )
         elif interpolator == BackwardFlat:
             self._thisptr = shared_ptr[_dts.DefaultProbabilityTermStructure](
                 new _ihc.InterpolatedHazardRateCurve[intpl.BackwardFlat](
                     _dates, hazard_rates,
                     deref(day_counter._thisptr),
-                    deref(cal._thisptr))
+                    cal._thisptr)
             )
         else:
             raise ValueError("interpolator needs to be any of Linear, LogLinear or BackwardFlat")

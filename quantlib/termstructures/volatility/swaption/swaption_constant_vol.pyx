@@ -27,7 +27,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
         if isinstance(volatility, float):
             self._derived_ptr = make_shared[_scv.ConstantSwaptionVolatility](
                 settlement_days,
-                deref(calendar._thisptr),
+                calendar._thisptr,
                 bdc,
                 <Volatility>volatility,
                 deref(day_counter._thisptr),
@@ -37,7 +37,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
         elif isinstance(volatility, Quote):
             self._derived_ptr = make_shared[_scv.ConstantSwaptionVolatility](
                 settlement_days,
-                deref(calendar._thisptr),
+                calendar._thisptr,
                 bdc,
                 (<Quote>volatility).handle(),
                 deref(day_counter._thisptr),
@@ -63,7 +63,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
         if isinstance(volatility, float):
             instance._derived_ptr = make_shared[_scv.ConstantSwaptionVolatility](
                 deref(reference_date._thisptr),
-                deref(calendar._thisptr),
+                calendar._thisptr,
                 bdc,
                 (<Volatility>volatility),
                 deref(day_counter._thisptr),
@@ -73,7 +73,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
         elif isinstance(volatility, Quote):
             instance._derived_ptr = make_shared[_scv.ConstantSwaptionVolatility](
                 deref(reference_date._thisptr),
-                deref(calendar._thisptr),
+                calendar._thisptr,
                 bdc,
                 (<Quote>volatility).handle(),
                 deref(day_counter._thisptr),

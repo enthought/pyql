@@ -55,7 +55,7 @@ cdef class {{I}}InterpolatedDiscountCurve(YieldTermStructure):
 
         self._curve = new _dc.InterpolatedDiscountCurve[intpl.{{I}}](
                 _dates, dfs, deref(day_counter._thisptr),
-                deref(cal._thisptr)
+                cal._thisptr
             )
         self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](self._curve))
 

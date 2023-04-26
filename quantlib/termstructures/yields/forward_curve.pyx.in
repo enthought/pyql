@@ -47,7 +47,7 @@ cdef class {{I}}InterpolatedForwardCurve(YieldTermStructure):
 
     """
     def __init__(self, list dates, vector[Rate] forwards,
-                 DayCounter day_counter not None, Calendar cal= Calendar()):
+                 DayCounter day_counter not None, Calendar cal=Calendar()):
         # convert the list of PyQL dates into a vector of QL dates
         cdef vector[_date.Date] _dates
         for date in dates:
@@ -55,7 +55,7 @@ cdef class {{I}}InterpolatedForwardCurve(YieldTermStructure):
 
         self._curve = new _fc.InterpolatedForwardCurve[intpl.{{I}}](
                 _dates, forwards, deref(day_counter._thisptr),
-                deref(cal._thisptr)
+                cal._thisptr
             )
         self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](self._curve))
 

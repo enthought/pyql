@@ -1,4 +1,5 @@
 from cython.operator cimport dereference as deref
+cimport cython
 cimport quantlib.time.calendars._jointcalendar as _jc
 cimport quantlib.time._calendar as _cal
 from quantlib.time.calendar cimport Calendar
@@ -14,14 +15,9 @@ cdef class JointCalendar(Calendar):
     business days given by either the union or the intersection
     of the sets of business days of the given calendars.
     '''
-    
+
+    @cython.cpp_locals(True)
     def __cinit__(self, Calendar c1, Calendar c2, int jc = JOINHOLIDAYS):
-        self._thisptr = new _jc.JointCalendar(deref(c1._thisptr),
-                                  deref(c2._thisptr),
-                                  <_jc.JointCalendarRule> jc)
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-            self._thisptr = NULL
-
+        self._thisptr = _jc.JointCalendar(c1._thisptr,
+                                          c2._thisptr,
+                                          <_jc.JointCalendarRule> jc)

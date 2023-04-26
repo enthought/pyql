@@ -56,7 +56,7 @@ cdef class OISRateHelper(RelativeDateRateHelper):
                 payment_lag,
                 <_rh.BusinessDayConvention> payment_convention,
                 <Frequency> payment_frequency,
-                deref(payment_calendar._thisptr),
+                payment_calendar._thisptr,
                 deref(forward_start._thisptr),
                 overnight_spread,
                 pillar,

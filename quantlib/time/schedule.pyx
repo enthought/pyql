@@ -36,7 +36,7 @@ cdef class Schedule:
                 deref(effective_date._thisptr),
                 deref(termination_date._thisptr),
                 deref(tenor._thisptr),
-                deref(calendar._thisptr),
+                calendar._thisptr,
                 business_day_convention,
                 termination_date_convention,
                 date_generation_rule, end_of_month,
@@ -64,7 +64,7 @@ cdef class Schedule:
         cdef optional[BusinessDayConvention] opt_termination_convention = termination_date_convention
         instance._thisptr = new _schedule.Schedule(
             _dates,
-            deref(calendar._thisptr),
+            calendar._thisptr,
             business_day_convention,
             opt_termination_convention,
             opt_tenor,
@@ -89,7 +89,7 @@ cdef class Schedule:
             deref(effective_date._thisptr),
             deref(termination_date._thisptr),
             deref(tenor._thisptr),
-            deref(calendar._thisptr),
+            calendar._thisptr,
             business_day_convention,
             termination_date_convention,
             date_generation_rule, end_of_month,

@@ -32,7 +32,7 @@ cdef class IborIndex(InterestRateIndex):
                               deref(tenor._thisptr),
                               settlement_days,
                               deref(currency._thisptr),
-                              deref(fixing_calendar._thisptr),
+                              fixing_calendar._thisptr,
                               <BusinessDayConvention> convention,
                               end_of_month,
                               deref(day_counter._thisptr),
@@ -94,7 +94,7 @@ cdef class OvernightIndex(IborIndex):
             new _ib.OvernightIndex(family_name.encode('utf-8'),
                               settlement_days,
                               deref(currency._thisptr),
-                              deref(fixing_calendar._thisptr),
+                              fixing_calendar._thisptr,
                               deref(day_counter._thisptr),
                               yts._thisptr)
             )

@@ -98,7 +98,7 @@ cdef class DepositRateHelper(RelativeDateRateHelper):
                         <Rate>rate,
                         deref(tenor._thisptr),
                         <int>fixing_days,
-                        deref(calendar._thisptr),
+                        calendar._thisptr,
                         convention,
                         end_of_month,
                         deref(deposit_day_counter._thisptr)
@@ -110,7 +110,7 @@ cdef class DepositRateHelper(RelativeDateRateHelper):
                         (<Quote>rate).handle(),
                         deref(tenor._thisptr),
                         <int>fixing_days,
-                        deref(calendar._thisptr),
+                        calendar._thisptr,
                         convention,
                         end_of_month,
                         deref(deposit_day_counter._thisptr)
@@ -152,7 +152,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                 new _rh.SwapRateHelper(
                     <Rate>rate,
                     deref(tenor._thisptr),
-                    deref(calendar._thisptr),
+                    calendar._thisptr,
                     <Frequency> fixedFrequency,
                     fixedConvention,
                     deref(fixedDayCount._thisptr),
@@ -171,7 +171,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                 new _rh.SwapRateHelper(
                     (<Quote>rate).handle(),
                     deref(tenor._thisptr),
-                    deref(calendar._thisptr),
+                    calendar._thisptr,
                     <Frequency> fixedFrequency,
                     fixedConvention,
                     deref(fixedDayCount._thisptr),
@@ -262,7 +262,7 @@ cdef class FraRateHelper(RelativeDateRateHelper):
                     months_to_start,
                     months_to_end,
                     fixing_days,
-                    deref(calendar._thisptr),
+                    calendar._thisptr,
                     convention,
                     end_of_month,
                     deref(day_counter._thisptr),
@@ -278,7 +278,7 @@ cdef class FraRateHelper(RelativeDateRateHelper):
                     months_to_start,
                     months_to_end,
                     fixing_days,
-                    deref(calendar._thisptr),
+                    calendar._thisptr,
                     convention,
                     end_of_month,
                     deref(day_counter._thisptr),
@@ -340,7 +340,7 @@ cdef class FuturesRateHelper(RateHelper):
                     <Real>price,
                     deref(imm_date._thisptr),
                     length_in_months,
-                    deref(calendar._thisptr),
+                    calendar._thisptr,
                     <_rh.BusinessDayConvention> convention,
                     end_of_month,
                     deref(day_counter._thisptr),
@@ -354,7 +354,7 @@ cdef class FuturesRateHelper(RateHelper):
                     (<Quote>price).handle(),
                     deref(imm_date._thisptr),
                     length_in_months,
-                    deref(calendar._thisptr),
+                    calendar._thisptr,
                     <_rh.BusinessDayConvention> convention,
                     end_of_month,
                     deref(day_counter._thisptr),
@@ -446,12 +446,12 @@ cdef class FxSwapRateHelper(RelativeDateRateHelper):
                 spot_fx.handle(),
                 deref(tenor._thisptr),
                 fixing_days,
-                deref(calendar._thisptr),
+                calendar._thisptr,
                 <_rh.BusinessDayConvention>convention,
                 end_of_month,
                 is_fx_base_currency_collateral_currency,
                 collateral_curve._thisptr,
-                deref(trading_calendar._thisptr),
+                trading_calendar._thisptr,
             )
         )
 
@@ -471,7 +471,7 @@ cdef class FxSwapRateHelper(RelativeDateRateHelper):
     @property
     def calendar(self):
         cdef Calendar r = Calendar.__new__(Calendar)
-        r._thisptr = new _cal.Calendar(self.as_ptr().calendar())
+        r._thisptr = self.as_ptr().calendar()
         return r
 
     @property
@@ -489,11 +489,11 @@ cdef class FxSwapRateHelper(RelativeDateRateHelper):
     @property
     def trading_calendar(self):
         cdef Calendar r = Calendar.__new__(Calendar)
-        r._thisptr = new _cal.Calendar(self.as_ptr().tradingCalendar())
+        r._thisptr = self.as_ptr().tradingCalendar()
         return r
 
     @property
     def adjustment_calendar(self):
         cdef Calendar r = Calendar.__new__(Calendar)
-        r._thisptr = new _cal.Calendar(self.as_ptr().adjustmentCalendar())
+        r._thisptr = self.as_ptr().adjustmentCalendar()
         return r

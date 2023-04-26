@@ -82,7 +82,7 @@ cdef class MakeOIS:
         return self
 
     def with_payment_calendar(self, Calendar cal not None):
-        self._thisptr.withPaymentCalendar(deref(cal._thisptr))
+        self._thisptr.withPaymentCalendar(cal._thisptr)
         return self
 
     def with_end_of_month(self, bool flag=True):

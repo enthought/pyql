@@ -29,7 +29,7 @@ cdef class VolatilityTermStructure:
     @property
     def calendar(self):
         cdef Calendar instance = Calendar.__new__(Calendar)
-        instance._thisptr = new _calendar.Calendar(self.as_ptr().calendar())
+        instance._thisptr = self.as_ptr().calendar()
         return instance
 
     @property

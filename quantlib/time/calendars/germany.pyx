@@ -15,5 +15,4 @@ cdef class Germany(Calendar):
 
     def __cinit__(self, Market market=Market.Settlement):
 
-        self._thisptr = <_calendar.Calendar*> new \
-            _gm.Germany(<_gm.Market>market)
+        self._thisptr = _gm.Germany(<_gm.Market>market)

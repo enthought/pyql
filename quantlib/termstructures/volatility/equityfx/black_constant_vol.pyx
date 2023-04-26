@@ -44,7 +44,7 @@ cdef class BlackConstantVol(BlackVolatilityTermStructure):
                 self._thisptr.reset(
                     new _bcv.BlackConstantVol(
                         deref(reference_date._thisptr),
-                        deref(calendar._thisptr),
+                        calendar._thisptr,
                         (<Quote>volatility).handle(),
                         deref(daycounter._thisptr)
                     )
@@ -53,7 +53,7 @@ cdef class BlackConstantVol(BlackVolatilityTermStructure):
                 self._thisptr.reset(
                     new _bcv.BlackConstantVol(
                         deref(reference_date._thisptr),
-                        deref(calendar._thisptr),
+                        calendar._thisptr,
                         <double>volatility,
                         deref(daycounter._thisptr)
                     )
@@ -63,7 +63,7 @@ cdef class BlackConstantVol(BlackVolatilityTermStructure):
                 self._thisptr.reset(
                     new _bcv.BlackConstantVol(
                         <Natural>settlement_days,
-                        deref(calendar._thisptr),
+                        calendar._thisptr,
                         (<Quote>volatility).handle(),
                         deref(daycounter._thisptr)
                     )
@@ -72,7 +72,7 @@ cdef class BlackConstantVol(BlackVolatilityTermStructure):
                 self._thisptr.reset(
                     new _bcv.BlackConstantVol(
                         <Natural>settlement_days,
-                        deref(calendar._thisptr),
+                        calendar._thisptr,
                         <double>volatility,
                         deref(daycounter._thisptr)
                     )

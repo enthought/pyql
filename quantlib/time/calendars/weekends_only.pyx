@@ -11,4 +11,4 @@ cdef class WeekendsOnly(Calendar):
     '''
 
     def __cinit__(self):
-        self._thisptr = new _wo.WeekendsOnly()
+        self._thisptr = _wo.WeekendsOnly()

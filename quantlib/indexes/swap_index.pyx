@@ -50,7 +50,7 @@ cdef class SwapIndex(InterestRateIndex):
                 deref(tenor._thisptr),
                 <Natural> settlement_days,
                 deref(currency._thisptr),
-                deref(calendar._thisptr),
+                calendar._thisptr,
                 deref(fixed_leg_tenor._thisptr),
                 <BusinessDayConvention> fixed_leg_convention,
                 deref(fixed_leg_daycounter._thisptr),

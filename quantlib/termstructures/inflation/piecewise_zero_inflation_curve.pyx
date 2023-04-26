@@ -35,7 +35,7 @@ cdef class PiecewiseZeroInflationCurve(InterpolatedZeroInflationCurve):
             self._thisptr.reset(
                 new _pzic.PiecewiseZeroInflationCurve[intpl.Linear](
                     deref(reference_date._thisptr),
-                    deref(calendar._thisptr),
+                    calendar._thisptr,
                     deref(day_counter._thisptr),
                     deref(lag._thisptr),
                     frequency, base_zero_rate,
@@ -46,7 +46,7 @@ cdef class PiecewiseZeroInflationCurve(InterpolatedZeroInflationCurve):
             self._thisptr.reset(
                 new _pzic.PiecewiseZeroInflationCurve[intpl.LogLinear](
                     deref(reference_date._thisptr),
-                    deref(calendar._thisptr),
+                    calendar._thisptr,
                     deref(day_counter._thisptr),
                     deref(lag._thisptr),
                     frequency, base_zero_rate,
@@ -56,7 +56,7 @@ cdef class PiecewiseZeroInflationCurve(InterpolatedZeroInflationCurve):
             self._thisptr.reset(
                 new _pzic.PiecewiseZeroInflationCurve[intpl.BackwardFlat](
                     deref(reference_date._thisptr),
-                    deref(calendar._thisptr),
+                    calendar._thisptr,
                     deref(day_counter._thisptr),
                     deref(lag._thisptr),
                     frequency, base_zero_rate,

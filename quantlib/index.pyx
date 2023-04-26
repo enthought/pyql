@@ -52,7 +52,7 @@ cdef class Index:
         """the calendar defining valid fixing dates"""
         def __get__(self):
             cdef Calendar cal = Calendar.__new__(Calendar)
-            cal._thisptr = new _calendar.Calendar(self._thisptr.get().fixingCalendar())
+            cal._thisptr = self._thisptr.get().fixingCalendar()
             return cal
 
     @property
