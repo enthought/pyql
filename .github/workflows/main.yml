@@ -6,7 +6,7 @@ on: [push, pull_request]
 jobs:
   build:
     name: Build and test
-    runs-on: ubuntu-20.04 # required for latest QuantLib
+    runs-on: ubuntu-22.04 # required for latest QuantLib
     strategy:
       matrix:
         python-version: ['3.8', '3.9', '3.10']
