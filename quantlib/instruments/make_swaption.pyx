@@ -1,5 +1,5 @@
 from cython.operator cimport dereference as deref
-from quantlib._defines cimport QL_NULL_REAL
+from quantlib.utilities.null cimport Null
 from quantlib.instruments.swap cimport Swap
 from quantlib.handle cimport static_pointer_cast, shared_ptr
 from quantlib.indexes.swap_index cimport SwapIndex
@@ -17,7 +17,7 @@ from quantlib.instruments.swap cimport SwapType
 cdef class MakeSwaption:
     def __init__(self, SwapIndex swap_index,
                  option_tenor,
-                 Rate strike=QL_NULL_REAL):
+                 Rate strike=Null[Real]()):
         if isinstance(option_tenor, Date):
             self._thisptr = new _make_swaption.MakeSwaption(
                 static_pointer_cast[_si.SwapIndex](swap_index._thisptr),

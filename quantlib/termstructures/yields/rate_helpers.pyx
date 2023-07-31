@@ -32,7 +32,7 @@ from quantlib.time.date cimport Period, Date
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.indexes.swap_index cimport SwapIndex
 from ..helpers cimport Pillar
-from quantlib._defines cimport QL_NULL_INTEGER
+from quantlib.utilities.null cimport Null
 from ..yield_term_structure cimport YieldTermStructure
 
 cdef class RateHelper:
@@ -140,7 +140,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                    IborIndex iborIndex not None, Quote spread=SimpleQuote.__new__(SimpleQuote),
                    Period fwdStart=Period(0, Days),
                    YieldTermStructure discounting_curve=YieldTermStructure(),
-                   Natural settlement_days=QL_NULL_INTEGER,
+                   Natural settlement_days=Null[Integer](),
                    Pillar pillar=Pillar.LastRelevantDate,
                    Date custom_pillar_date=Date(),
                    bool end_of_month=False):

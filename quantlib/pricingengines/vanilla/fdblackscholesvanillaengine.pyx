@@ -1,7 +1,7 @@
 from libcpp cimport bool
 
 from cython.operator cimport dereference as deref
-from quantlib._defines cimport QL_NULL_REAL
+from quantlib.utilities.null cimport Null
 from quantlib.handle cimport static_pointer_cast, shared_ptr
 from quantlib.types cimport Size, Real
 from quantlib.pricingengines._pricing_engine cimport PricingEngine as QlPricingEngine
@@ -17,7 +17,7 @@ cdef class FdBlackScholesVanillaEngine(PricingEngine):
                  Size damping_steps=0,
                  FdmSchemeDesc scheme=FdmSchemeDesc.Douglas(),
                  bool local_vol=False,
-                 Real illegal_local_vol_overwrite=-QL_NULL_REAL,
+                 Real illegal_local_vol_overwrite=-Null[Real](),
                  CashDividendModel cash_dividend_model=Spot):
         cdef shared_ptr[_bsp.GeneralizedBlackScholesProcess] process_ptr = \
             static_pointer_cast[_bsp.GeneralizedBlackScholesProcess](process._thisptr)

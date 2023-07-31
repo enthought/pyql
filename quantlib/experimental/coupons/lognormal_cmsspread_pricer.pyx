@@ -7,7 +7,7 @@ from quantlib.cashflows.coupon_pricer cimport CmsCouponPricer
 from quantlib.quote cimport Quote
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.termstructures.volatility.volatilitytype cimport VolatilityType
-from quantlib._defines cimport QL_NULL_REAL
+from quantlib.utilities.null cimport Null
 cimport quantlib.cashflows._coupon_pricer as _cp
 from . cimport _lognormal_cmsspread_pricer as _lcp
 
@@ -17,8 +17,8 @@ cdef class LognormalCmsSpreadPricer(CmsSpreadCouponPricer):
                  YieldTermStructure coupon_discount_curve=YieldTermStructure(),
                  Size integration_points=16,
                  vol_type=None,
-                 Real shift1=QL_NULL_REAL,
-                 Real shift2=QL_NULL_REAL):
+                 Real shift1=Null[Real](),
+                 Real shift2=Null[Real]()):
         cdef optional[VolatilityType] vol_type_option
         if vol_type is not None:
             vol_type_option = <VolatilityType>vol_type

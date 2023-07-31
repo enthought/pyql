@@ -19,6 +19,8 @@ from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.time.date cimport Period, Date
 from quantlib.quote cimport Quote
 from quantlib.models.calibration_helper import RelativePriceError
+from quantlib.utilities.null cimport Null
+
 cimport quantlib._quote as _qt
 cimport quantlib.termstructures._yield_term_structure as _yts
 cimport quantlib.indexes._ibor_index as _ii
@@ -27,7 +29,6 @@ from . cimport _swaption_helper as _sh
 
 from quantlib.models.calibration_helper cimport BlackCalibrationHelper, CalibrationErrorType
 
-from quantlib._defines cimport QL_NULL_REAL
 
 cdef class SwaptionHelper(BlackCalibrationHelper):
 
@@ -41,7 +42,7 @@ cdef class SwaptionHelper(BlackCalibrationHelper):
                  DayCounter floating_leg_daycounter not None,
                  YieldTermStructure ts not None,
                  CalibrationErrorType error_type=RelativePriceError,
-                 Real strike=QL_NULL_REAL,
+                 Real strike=Null[Real](),
                  Real nominal=1.0,
                  VolatilityType vol_type=VolatilityType.ShiftedLognormal,
                  Real shift=0.0):

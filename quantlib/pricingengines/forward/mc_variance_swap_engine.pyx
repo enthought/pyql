@@ -1,10 +1,9 @@
-include '../../types.pxi'
-
+from quantlib.types cimport BigNatural, Integer, Real, Size
 from cython.operator cimport dereference as deref
 
 from libcpp cimport bool
 
-from quantlib._defines cimport QL_NULL_INTEGER, QL_NULL_REAL
+from quantlib.utilities.null cimport Null
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.pricingengines._pricing_engine cimport PricingEngine as _PricingEngine
@@ -42,13 +41,13 @@ cdef class MCVarianceSwapEngine(PricingEngine):
     """
     def __init__(self,
                  GeneralizedBlackScholesProcess process,
-                 Size time_steps = QL_NULL_INTEGER,
-                 Size time_steps_per_year = QL_NULL_INTEGER,
+                 Size time_steps = Null[Integer](),
+                 Size time_steps_per_year = Null[Integer](),
                  bool brownian_bridge = False,
                  bool antithetic_variate = False,
-                 Size required_samples = QL_NULL_INTEGER,
-                 Real required_tolerance = QL_NULL_REAL,
-                 Size max_samples = QL_NULL_INTEGER,
+                 Size required_samples = Null[Integer](),
+                 Real required_tolerance = Null[Real](),
+                 Size max_samples = Null[Integer](),
                  BigNatural seed = 0):
         # Cast the shared_ptr
         cdef shared_ptr[_GeneralizedBlackScholesProcess] process_ptr = \

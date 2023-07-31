@@ -2,7 +2,7 @@ include '../types.pxi'
 from libcpp cimport bool
 from cython.operator cimport dereference as deref
 
-from quantlib._defines cimport QL_NULL_REAL
+from quantlib.utilities.null cimport Null
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.cashflows.coupon_pricer cimport FloatingRateCouponPricer
 from quantlib.indexes.ibor_index cimport IborIndex
@@ -17,8 +17,8 @@ cimport quantlib.indexes._swap_index as _si
 
 cdef class CappedFlooredCoupon(FloatingRateCoupon):
     def __init__(self, FloatingRateCoupon underlying not None,
-                 Rate cap=QL_NULL_REAL,
-                 Rate floor=QL_NULL_REAL):
+                 Rate cap=Null[Real](),
+                 Rate floor=Null[Real]()):
         self._thisptr = shared_ptr[CashFlow](new _cfc.CappedFlooredCoupon(
             static_pointer_cast[_frc.FloatingRateCoupon](underlying._thisptr),
             cap,
@@ -30,25 +30,25 @@ cdef class CappedFlooredCoupon(FloatingRateCoupon):
     @property
     def cap(self):
         cdef Real temp = self.as_ptr().cap()
-        if temp != QL_NULL_REAL:
+        if temp != Null[Real]():
             return temp
 
     @property
     def floor(self):
         cdef Real temp = self.as_ptr().floor()
-        if temp != QL_NULL_REAL:
+        if temp != Null[Real]():
             return temp
 
     @property
     def effective_cap(self):
         cdef Real temp = self.as_ptr().effectiveCap()
-        if temp != QL_NULL_REAL:
+        if temp != Null[Real]():
             return temp
 
     @property
     def effective_floor(self):
         cdef Real temp = self.as_ptr().effectiveFloor()
-        if temp != QL_NULL_REAL:
+        if temp != Null[Real]():
             return temp
 
     @property
@@ -75,8 +75,8 @@ cdef class CappedFlooredIborCoupon(CappedFlooredCoupon):
                  IborIndex index not None,
                  Real gearing=1.,
                  Spread spread=0.,
-                 Rate cap=QL_NULL_REAL,
-                 Rate floor=QL_NULL_REAL,
+                 Rate cap=Null[Real](),
+                 Rate floor=Null[Real](),
                  Date ref_period_start=Date(),
                  Date ref_period_end=Date(),
                  DayCounter day_counter=DayCounter(),
@@ -106,8 +106,8 @@ cdef class CappedFlooredCmsCoupon(CappedFlooredCoupon):
                  SwapIndex index not None,
                  Real gearing=1.,
                  Spread spread=0.,
-                 Rate cap=QL_NULL_REAL,
-                 Rate floor=QL_NULL_REAL,
+                 Rate cap=Null[Real](),
+                 Rate floor=Null[Real](),
                  Date ref_period_start=Date(),
                  Date ref_period_end=Date(),
                  DayCounter day_counter=DayCounter(),

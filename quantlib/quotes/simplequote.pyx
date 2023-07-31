@@ -1,8 +1,10 @@
-from quantlib._defines cimport QL_NULL_REAL
+from quantlib.types cimport Real
+from quantlib.utilities.null cimport Null
+
 from . cimport _simplequote as _sq
 
 cdef class SimpleQuote(Quote):
-    def __init__(self, double value=QL_NULL_REAL):
+    def __init__(self, Real value=Null[Real]()):
         """ Market element returning a stored value"""
         self._thisptr.reset(new _sq.SimpleQuote(value))
 
