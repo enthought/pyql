@@ -5,5 +5,3 @@ cdef extern from 'ql/qldefines.hpp':
     cdef double QL_MAX_REAL
     cdef double QL_MIN_POSITIVE_REAL
     cdef double QL_EPSILON
-    cdef int QL_NULL_INTEGER
-    cdef double QL_NULL_REAL

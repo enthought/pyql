@@ -1,6 +1,6 @@
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
-from quantlib._defines cimport QL_NULL_REAL
+from quantlib.utilities.null cimport Null
 from quantlib.instruments.swap cimport Swap, SwapType
 from quantlib.handle cimport static_pointer_cast, shared_ptr
 from quantlib.indexes.ibor_index cimport IborIndex
@@ -19,7 +19,7 @@ from quantlib.instruments._vanillaswap cimport VanillaSwap as _VanillaSwap
 cdef class MakeVanillaSwap:
     def __init__(self, Period swap_tenor not None,
                  IborIndex ibor_index not None,
-                 Rate fixed_rate=QL_NULL_REAL,
+                 Rate fixed_rate=Null[Real](),
                  Period forward_start not None=Period(0, Days)):
         self._thisptr = new _make_vanilla_swap.MakeVanillaSwap(
             deref(swap_tenor._thisptr),

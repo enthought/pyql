@@ -3,7 +3,7 @@ from libcpp cimport bool
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.cashflows.rateaveraging cimport RateAveraging
-from quantlib._defines cimport QL_NULL_REAL
+from quantlib.utilities.null cimport Null
 from quantlib.time.date cimport Date, Period
 from quantlib.time._period cimport Days, Frequency
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
@@ -22,7 +22,7 @@ from quantlib.indexes.ibor_index cimport OvernightIndex
 cdef class MakeOIS:
     def __init__(self, Period swap_tenor not None,
                  OvernightIndex overnight_index not None,
-                 Rate fixed_rate=QL_NULL_REAL,
+                 Rate fixed_rate=Null[Real](),
                  Period forward_start not None=Period(0, Days)):
         self._thisptr = new _make_ois.MakeOIS(
             deref(swap_tenor._thisptr),

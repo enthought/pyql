@@ -6,7 +6,7 @@ from cython.operator cimport dereference as deref
 from quantlib.handle cimport Handle, make_shared, static_pointer_cast
 from quantlib.math.optimization cimport OptimizationMethod, EndCriteria
 from quantlib.indexes.swap_index cimport SwapIndex
-from quantlib._defines cimport QL_NULL_REAL
+from quantlib.utilities.null cimport Null
 from quantlib.quote cimport Quote
 from quantlib.time.date cimport Period
 from quantlib.time._period cimport Period as QlPeriod
@@ -32,9 +32,9 @@ cdef class SwaptionVolCube1(SwaptionVolatilityCube):
                  vector[bool] is_parameter_fixed,
                  bool is_atm_calibrated,
                  EndCriteria end_criteria not None=EndCriteria.__new__(EndCriteria),
-                 Real max_error_tolerance=QL_NULL_REAL,
+                 Real max_error_tolerance=Null[Real](),
                  OptimizationMethod opt_method not None=OptimizationMethod(),
-                 Real error_accept=QL_NULL_REAL,
+                 Real error_accept=Null[Real](),
                  bool use_max_error=False,
                  Size max_guesses=50,
                  bool backward_flat=False,

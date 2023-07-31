@@ -2,7 +2,7 @@ include '../../types.pxi'
 
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
-from quantlib._defines cimport QL_NULL_REAL
+from quantlib.utilities.null cimport Null
 cimport quantlib.quotes._simplequote as _sq
 from . cimport _sensitivityanalysis as _sa
 cimport quantlib._instrument as _it
@@ -18,7 +18,7 @@ cpdef enum SensitivityAnalysis:
 def parallel_analysis(list quotes not None, list instruments not None,
                       vector[Real] quantities=[],
                       Real shift=0.0001, SensitivityAnalysis type=Centered,
-                      Real reference_npv=QL_NULL_REAL):
+                      Real reference_npv=Null[Real]()):
     """
     Parallel shift PV01 sensitivity analysis for a SimpleQuote vector
 

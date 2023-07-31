@@ -2,7 +2,7 @@ include '../../types.pxi'
 from libcpp cimport bool
 from cython.operator cimport dereference as deref
 
-from quantlib._defines cimport QL_NULL_REAL
+from quantlib.utilities.null cimport Null
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
@@ -57,8 +57,8 @@ cdef class CappedFlooredCmsSpreadCoupon(CappedFlooredCoupon):
                  SwapSpreadIndex index not None,
                  Real gearing=1.,
                  Spread spread=0.,
-                 Rate cap=QL_NULL_REAL,
-                 Rate floor=QL_NULL_REAL,
+                 Rate cap=Null[Real](),
+                 Rate floor=Null[Real](),
                  Date ref_period_start=Date(),
                  Date ref_period_end=Date(),
                  DayCounter day_counter=DayCounter(),
