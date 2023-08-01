@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-20.04 # required for latest QuantLib
     strategy:
       matrix:
-        python-version: ['3.7', '3.8', '3.9']
+        python-version: ['3.8', '3.9', '3.10']
 
     steps:
       - name: install dependencies
@@ -48,7 +48,7 @@ jobs:
 
       # Publish built docs to gh-pages branch.
       - name: Checkout documentation branch
-        if: matrix.python-version == '3.9'
+        if: matrix.python-version == '3.10'
         uses: actions/checkout@v2
         with:
           ref: gh-pages
@@ -56,14 +56,14 @@ jobs:
           persist-credentials: false
 
       - name: Build docs
-        if: matrix.python-version == '3.9'
+        if: matrix.python-version == '3.10'
         run: |
           pip install sphinx nbsphinx scikit-learn ipython
           sudo apt-get install pandoc texlive texlive-latex-extra dvipng
           make docs
 
       - uses: actions/upload-artifact@v2
-        if: (matrix.python-version == '3.9') && (github.event_name == 'pull_request')
+        if: (matrix.python-version == '3.10') && (github.event_name == 'pull_request')
         with:
           name: "doc_${{ github.event.pull_request.number }}"
           path: docs/build/html
@@ -82,7 +82,7 @@ jobs:
           # that.
 
       - name: Push changes
-        if: (matrix.python-version == '3.9') && (github.event_name== 'push')
+        if: (matrix.python-version == '3.10') && (github.event_name== 'push')
         uses: ad-m/github-push-action@master
         with:
           branch: gh-pages
