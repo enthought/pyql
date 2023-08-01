@@ -1,15 +1,11 @@
 import unittest
 
-import sys
-if sys.version_info < (3, 8):
-    import pickle5 as pickle
-import pandas
+import pandas as pd
 import numpy as np
-from pandas import DataFrame
 
 import quantlib.reference.names as nm
 from quantlib.pricingengines.blackformula import blackFormulaImpliedStdDev
-
+from quantlib.instruments.option import OptionType
 
 def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
                keepOTMData=True):
@@ -51,8 +47,8 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
 
         # exclude groups with too few data points
 
-        df_call = group[group[nm.OPTION_TYPE] == nm.CALL_OPTION]
-        df_put = group[group[nm.OPTION_TYPE] == nm.PUT_OPTION]
+        df_call = group[group[nm.OPTION_TYPE] == nm.CALL_OPTION].copy()
+        df_put = group[group[nm.OPTION_TYPE] == nm.PUT_OPTION].copy()
 
         if (len(df_call) < nMin) | (len(df_put) < nMin):
             print('Skip too few data points')
@@ -60,24 +56,24 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
 
         # calculate forward, implied interest rate and implied div. yield
 
-        df_C = DataFrame((df_call['PBid'] + df_call['PAsk']) / 2,
+        df_C = pd.DataFrame((df_call['PBid'] + df_call['PAsk']) / 2,
                          columns=['PremiumC'])
         df_C.index = df_call['Strike'].values
 
-        df_P = DataFrame((df_put['PBid'] + df_put['PAsk']) / 2,
+        df_P = pd.DataFrame((df_put['PBid'] + df_put['PAsk']) / 2,
                          columns=['PremiumP'])
         df_P.index = df_put['Strike'].values
 
         # use 'inner' join because some strikes are not quoted for C and P
         df_all = df_C.join(df_P, how='inner')
-        df_all.loc[:, 'Strike'] = df_all.index
-        df_all.loc[:, 'C-P'] = df_all['PremiumC'] - df_all['PremiumP']
+        df_all['Strike'] = df_all.index
+        df_all['C-P'] = df_all['PremiumC'] - df_all['PremiumP']
 
         y = np.array(df_all['C-P'])
         x = np.array(df_all['Strike'])
         A = np.vstack((x, np.ones(x.shape))).T
 
-        b = np.linalg.lstsq(A, y)[0]
+        b = np.linalg.lstsq(A, y, rcond=None)[0]
 
         # intercept is last coef
         iRate = -np.log(-b[0]) / timeToMaturity
@@ -92,36 +88,35 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
 
         def impvol(cp, strike, premium):
             try:
-                vol = blackFormulaImpliedStdDev(cp, strike,
+                vol = blackFormulaImpliedStdDev(OptionType.Call if cp == "C" else OptionType.Put, strike,
                     forward=Fwd, blackPrice=premium, discount=discountFactor,
                     TTM=timeToMaturity)
-            except:
+            except Exception as e:
                 vol = np.nan
             return vol / np.sqrt(timeToMaturity)
 
         # implied bid/ask vol for all options
-
-        df_call.loc[:, 'IVBid'] = [impvol('C', strike, price) for strike, price
+        df_call['IVBid'] = [impvol('C', strike, price) for strike, price
                             in zip(df_call['Strike'], df_call['PBid'])]
-        df_call.loc[:, 'IVAsk'] = [impvol('C', strike, price) for strike, price
+        df_call['IVAsk'] = [impvol('C', strike, price) for strike, price
                             in zip(df_call['Strike'], df_call['PAsk'])]
 
-        df_call.loc[:, 'IVMid'] = (df_call['IVBid'] + df_call['IVAsk']) / 2
+        df_call['IVMid'] = (df_call['IVBid'] + df_call['IVAsk']) / 2
 
-        df_put.loc[:, 'IVBid'] = [impvol('P', strike, price) for strike, price
+        df_put['IVBid'] = [impvol('P', strike, price) for strike, price
                            in zip(df_put['Strike'], df_put['PBid'])]
-        df_put.loc[:, 'IVAsk'] = [impvol('P', strike, price) for strike, price
+        df_put['IVAsk'] = [impvol('P', strike, price) for strike, price
                            in zip(df_put['Strike'], df_put['PAsk'])]
 
-        df_put.loc[:, 'IVMid'] = (df_put['IVBid'] + df_put['IVAsk']) / 2
+        df_put['IVMid'] = (df_put['IVBid'] + df_put['IVAsk']) / 2
 
         # atmVol = (f_call(Fwd) + f_put(Fwd)) / 2
         atmVol = .20
         print('ATM vol: %f' % atmVol)
 
         # Quick Delta, computed with ATM vol
-        df_call.loc[:, 'QuickDelta'] = 0.5
-        df_put.loc[:, 'QuickDelta'] = 0.5
+        df_call['QuickDelta'] = 0.5
+        df_put['QuickDelta'] = 0.5
 
         # keep data within QD range
 
@@ -133,11 +128,11 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
 
         # final assembly...
 
-        df_cp = df_call.append(df_put, ignore_index=True)
-        df_cp.loc[:, nm.INTEREST_RATE] = iRate
-        df_cp.loc[:, nm.DIVIDEND_YIELD] = dRate
-        df_cp.loc[:, nm.ATMVOL] = atmVol
-        df_cp.loc[:, nm.FORWARD] = Fwd
+        df_cp = pd.concat([df_call, df_put])
+        df_cp[nm.INTEREST_RATE] = iRate
+        df_cp[nm.DIVIDEND_YIELD] = dRate
+        df_cp[nm.ATMVOL] = atmVol
+        df_cp[nm.FORWARD] = Fwd
 
         # keep only OTM data ?
         if keepOTMData:
@@ -148,7 +143,7 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
             df_final = df_cp
             isFirst = False
         else:
-            df_final = df_final.append(df_cp, ignore_index=True)
+            df_final = pd.concat([df_final, df_cp])
 
     return df_final
 
@@ -160,13 +155,8 @@ class NoteBooksTestCase(unittest.TestCase):
     """
 
     def test_option_quotes(self):
-        import sys
-        if sys.version_info < (3, 8):
-            import pickle5 as pickle
-        else:
-            import pickle
         with open('test/data/df_SPX_24jan2011.pkl', "rb") as fh:
-            option_data_frame = pickle.load(fh)
+            option_data_frame = pd.read_pickle(fh)
         df_final = Compute_IV(
             option_data_frame, tMin=0.5/12, nMin=6, QDMin=.2, QDMax=.8
         )
