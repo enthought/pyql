@@ -52,8 +52,7 @@ def heston_pricer(trade_date, options, params, rates, spot):
     settings.evaluation_date = settlement_date
 
     modeled_values = np.zeros(len(options))
-
-    for index, row in options.T.iteritems():
+    for index, row in options.iterrows():
 
         expiry_date = row[nm.EXPIRY_DATE]
         strike = row[nm.STRIKE]
