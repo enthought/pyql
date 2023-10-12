@@ -150,8 +150,8 @@ class TestQuantLibSwap(unittest.TestCase):
         p = swap.net_present_value
         print('NPV: %f' % p)
 
-        fixed_npv = swap.fixed_leg_npv
-        float_npv = swap.floating_leg_npv
+        fixed_npv = swap.fixed_leg_NPV
+        float_npv = swap.floating_leg_NPV
 
         # verify calculation by discounting both legs
         tot = 0.0
