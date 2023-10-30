@@ -19,10 +19,9 @@ from quantlib.time._daycounter cimport DayCounter
 from quantlib.currency._currency cimport Currency
 
 
-cdef extern from 'ql/indexes/interestrateindex.hpp' namespace 'QuantLib':
+cdef extern from 'ql/indexes/interestrateindex.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass InterestRateIndex(Index):
-        InterestRateIndex()
         InterestRateIndex(string& familyName,
                          Period& tenor,
                          Natural settlementDays,

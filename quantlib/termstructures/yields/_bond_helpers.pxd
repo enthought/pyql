@@ -16,11 +16,9 @@ from ._flat_forward cimport YieldTermStructure
 from ._rate_helpers cimport RateHelper
 
 
-cdef extern from 'ql/termstructures/yield/bondhelpers.hpp' namespace 'QuantLib':
+cdef extern from 'ql/termstructures/yield/bondhelpers.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass BondHelper(RateHelper):
-        # this is added because of Cython. This empty constructor does not exist
-        # and should never be used
         BondHelper(
             Handle[Quote]& cleanPrice,
             shared_ptr[Bond]& bond,
