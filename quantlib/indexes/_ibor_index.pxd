@@ -22,7 +22,7 @@ cimport quantlib.termstructures.yields._flat_forward as _ff
 from quantlib.indexes._interest_rate_index cimport InterestRateIndex
 
 
-cdef extern from 'ql/indexes/iborindex.hpp' namespace 'QuantLib':
+cdef extern from 'ql/indexes/iborindex.hpp' namespace 'QuantLib' nogil:
 
     # base class for Inter-Bank-Offered-Rate indexes (e.g. %Libor, etc.)
     cdef cppclass IborIndex(InterestRateIndex):

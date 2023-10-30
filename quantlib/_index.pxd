@@ -19,7 +19,7 @@ from quantlib.time._calendar cimport Calendar
 from quantlib.time._date cimport Date
 
 
-cdef extern from 'ql/index.hpp' namespace 'QuantLib':
+cdef extern from 'ql/index.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass Index(Observable):
         string name()

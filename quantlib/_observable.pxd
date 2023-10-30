@@ -1,5 +1,5 @@
-include 'types.pxi'
 from .handle cimport shared_ptr
+from .types cimport Size
 
 cdef extern from 'ql/patterns/observable.hpp' namespace 'QuantLib' nogil:
     cdef cppclass Observable:

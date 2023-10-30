@@ -28,7 +28,7 @@ from quantlib.instruments.futures cimport FuturesType
 
 from ..helpers cimport Pillar
 
-cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib':
+cdef extern from 'ql/termstructures/yield/ratehelpers.hpp' namespace 'QuantLib' nogil:
     ctypedef BootstrapHelper[YieldTermStructure] RateHelper
     ctypedef RelativeDateBootstrapHelper[YieldTermStructure] RelativeDateRateHelper
 

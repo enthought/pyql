@@ -13,7 +13,7 @@ from quantlib.handle cimport Handle
 from quantlib._quote cimport Quote
 from quantlib.time._date cimport Date
 
-cdef extern from 'ql/termstructures/bootstraphelper.hpp' namespace 'QuantLib':
+cdef extern from 'ql/termstructures/bootstraphelper.hpp' namespace 'QuantLib' nogil:
     cdef cppclass BootstrapHelper[T]:
         BootstrapHelper(Handle[Quote]& quote)
         BootstrapHelper(Real quote)

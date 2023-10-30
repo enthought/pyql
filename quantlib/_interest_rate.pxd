@@ -14,7 +14,7 @@ from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._period cimport Frequency
 from quantlib.compounding cimport Compounding
 
-cdef extern from 'ql/interestrate.hpp' namespace 'QuantLib':
+cdef extern from 'ql/interestrate.hpp' namespace 'QuantLib' nogil:
 
     cppclass InterestRate:
         InterestRate()

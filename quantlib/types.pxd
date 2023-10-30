@@ -7,7 +7,7 @@
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
 #
 
-cdef extern from 'ql/types.hpp' namespace 'QuantLib':
+cdef extern from 'ql/types.hpp' namespace 'QuantLib' nogil:
     ctypedef int Integer
     ctypedef long BigInteger
     ctypedef unsigned int Natural
