@@ -1,6 +1,6 @@
 include '../types.pxi'
 
-from quantlib.instruments._bonds cimport Bond
+from quantlib.instruments._bond cimport Bond
 from quantlib.handle cimport shared_ptr
 from quantlib.time._period cimport Frequency
 from quantlib.time._date cimport Date

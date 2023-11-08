@@ -4,7 +4,8 @@ from libcpp.vector cimport vector
 from quantlib.handle cimport shared_ptr, Handle
 
 from quantlib._quote cimport Quote
-from quantlib.instruments._bonds cimport Bond
+from quantlib.instruments._bond cimport Bond
+from quantlib.instruments.bond cimport Type
 from quantlib.termstructures._helpers cimport BootstrapHelper
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
@@ -18,11 +19,10 @@ cdef extern from 'ql/termstructures/yield/bondhelpers.hpp' namespace 'QuantLib':
     cdef cppclass BondHelper(RateHelper):
         # this is added because of Cython. This empty constructor does not exist
         # and should never be used
-        BondHelper()
         BondHelper(
             Handle[Quote]& cleanPrice,
-            shared_ptr[Bond]& bond
-            ) except +
+            shared_ptr[Bond]& bond,
+            Type priceType) except +
 
     cdef cppclass FixedRateBondHelper(BondHelper):
         FixedRateBondHelper(
