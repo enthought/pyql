@@ -15,7 +15,7 @@ cdef extern from 'ql/instruments/bonds/fixedratebond.hpp' namespace 'QuantLib' n
                       Real faceAmount,
                       const Schedule& schedule,
                       vector[Rate]& coupons,
-                      DayCounter& accrualDayCounter,
+                      const DayCounter& accrualDayCounter,
                       BusinessDayConvention paymentConvention,
                       Real redemption, # 100.0
                       const Date& issueDate, # Date()
@@ -24,4 +24,5 @@ cdef extern from 'ql/instruments/bonds/fixedratebond.hpp' namespace 'QuantLib' n
                       const Calendar& exCouponCalendar, # Calendar()
                       const BusinessDayConvention exCouponConvention, # Unadjusted,
                       bool exCouponEndOfMonth, # false
+                      const DayCounter& firstPeriodDayCounter, # = DayCounter()
                       ) except +

@@ -31,7 +31,8 @@ cdef class FixedRateBond(Bond):
                  Period ex_coupon_period=Period(),
                  Calendar ex_coupon_calendar=Calendar(),
                  BusinessDayConvention ex_coupon_convention=Unadjusted,
-                 bool ex_coupon_end_of_month=False):
+                 bool ex_coupon_end_of_month=False,
+                 DayCounter first_period_day_counter=DayCounter()):
         """ Fixed rate bond
 
         Parameters
@@ -67,6 +68,7 @@ cdef class FixedRateBond(Bond):
                 deref(ex_coupon_period._thisptr),
                 ex_coupon_calendar._thisptr,
                 ex_coupon_convention,
-                ex_coupon_end_of_month
+                ex_coupon_end_of_month,
+                deref(first_period_day_counter._thisptr)
             )
         )
