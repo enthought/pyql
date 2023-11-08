@@ -18,7 +18,7 @@ from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._period cimport Frequency
 cimport quantlib._quote as _qt
 from quantlib._interest_rate cimport InterestRate
-from quantlib._compounding cimport Compounding
+from quantlib.compounding cimport Compounding
 
 cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib' nogil:
 

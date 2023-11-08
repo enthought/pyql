@@ -9,7 +9,7 @@ from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.date cimport Date, date_from_qldate, Period
 
-from quantlib._compounding cimport Compounding
+from quantlib.compounding cimport Compounding
 from quantlib.time.date import Annual
 
 cimport quantlib.termstructures._yield_term_structure as _yts

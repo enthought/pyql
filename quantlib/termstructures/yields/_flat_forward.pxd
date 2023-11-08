@@ -7,8 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../../types.pxi'
-
+from quantlib.types cimport *
 from libcpp cimport bool
 from libcpp.vector cimport vector
 
@@ -18,7 +17,7 @@ from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._period cimport Frequency
 cimport quantlib._quote as _qt
-from quantlib._compounding cimport Compounding
+from quantlib.compounding cimport Compounding
 
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 

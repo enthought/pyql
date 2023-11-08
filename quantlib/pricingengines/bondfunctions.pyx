@@ -12,7 +12,7 @@ from quantlib.instruments.bonds cimport Bond
 from quantlib.time.date cimport date_from_qldate, Date
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.time.daycounter cimport DayCounter
-from quantlib._compounding cimport Compounding
+from quantlib.compounding cimport Compounding
 cimport quantlib.time._date as _dt
 
 cpdef enum DurationType:

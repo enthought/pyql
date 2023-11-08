@@ -1,6 +1,6 @@
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport Handle, make_shared, static_pointer_cast
-from quantlib._compounding cimport Compounding, Continuous
+from quantlib.compounding cimport Compounding, Continuous
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.frequency cimport Frequency, NoFrequency
 from quantlib.quote cimport Quote

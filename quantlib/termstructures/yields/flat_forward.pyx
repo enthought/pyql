@@ -14,7 +14,7 @@ from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.date cimport Date, date_from_qldate
 
-from quantlib._compounding cimport Compounding
+from quantlib.compounding cimport Compounding
 from quantlib.time.date import Annual
 
 from quantlib.handle cimport shared_ptr, RelinkableHandle, Handle
