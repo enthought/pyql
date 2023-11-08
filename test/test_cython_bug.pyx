@@ -2,7 +2,7 @@ from quantlib.types cimport Integer, Natural, Rate, Real
 from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 
-from quantlib.instruments._bonds cimport FixedRateBond
+from quantlib.instruments.bonds._fixedratebond cimport FixedRateBond
 from quantlib.time._date cimport (
     Date as QlDate, todaysDate, Jul, August, September, endOfMonth
 )
@@ -16,6 +16,7 @@ from quantlib.time.calendars._target cimport TARGET
 from quantlib.time._schedule cimport Schedule
 from quantlib.time.dategeneration cimport DateGeneration
 from quantlib.time.date cimport date_from_qldate, Date
+from quantlib.time._daycounter cimport DayCounter
 from quantlib.time.daycounters._actual_actual cimport ActualActual
 from quantlib.time.daycounters.actual_actual cimport Convention
 
@@ -92,6 +93,7 @@ cdef FixedRateBond* get_bond_for_evaluation_date(QlDate& in_date):
             Calendar(),
             Unadjusted,
             False,
+            DayCounter()
     )
 
     return bond

@@ -14,7 +14,7 @@ from quantlib.time.date import Monthly, Months, Period, Date
 from quantlib.time.api import ( UnitedKingdom, ModifiedFollowing, ActualActual,
                                 Schedule, Actual365Fixed, Unadjusted )
 from quantlib.time.dategeneration import DateGeneration
-from quantlib.instruments.bonds import CPIBond, InterpolationType
+from quantlib.instruments.bonds.cpibond import CPIBond, InterpolationType
 from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.settings import Settings
 from quantlib.termstructures.inflation_term_structure import \
