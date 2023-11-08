@@ -2,8 +2,7 @@ include '../types.pxi'
 
 from cython.operator cimport dereference as deref, preincrement as preinc
 from libcpp.vector cimport vector
-from quantlib.compounding import Compounding
-from quantlib._compounding cimport Compounding
+from quantlib.compounding cimport Compounding
 from quantlib.handle cimport shared_ptr
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.calendar cimport Calendar

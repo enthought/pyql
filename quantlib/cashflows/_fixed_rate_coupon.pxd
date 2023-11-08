@@ -6,7 +6,7 @@ from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Frequency, Period
 from quantlib.time._calendar cimport Calendar
-from quantlib._compounding cimport Compounding
+from quantlib.compounding cimport Compounding
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._schedule cimport Schedule
 from quantlib._cashflow cimport CashFlow

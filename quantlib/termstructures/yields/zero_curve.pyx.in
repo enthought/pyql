@@ -9,7 +9,7 @@ cimport quantlib.time._date as _date
 from quantlib.time.frequency cimport Frequency
 from .. cimport _yield_term_structure as _yts
 
-from quantlib._compounding cimport Compounding
+from quantlib.compounding cimport Compounding
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.calendar cimport Calendar
 from quantlib.math.interpolation cimport Linear, LogLinear, BackwardFlat, Cubic

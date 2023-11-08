@@ -13,7 +13,7 @@ from quantlib.handle cimport shared_ptr
 
 from quantlib.time.daycounter cimport DayCounter
 cimport quantlib.time._daycounter as _daycounter
-from quantlib._compounding cimport Compounding
+from quantlib.compounding cimport Compounding
 from quantlib.time.frequency cimport Frequency
 
 cdef class InterestRate:
