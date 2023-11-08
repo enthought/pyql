@@ -1,6 +1,5 @@
 include '../types.pxi'
 
-from quantlib.instruments._bonds cimport Bond as QLBond
 from quantlib.time._date cimport Day, Month, Year, Date as QLDate
 from quantlib.time._period cimport Frequency
 from quantlib.time._daycounter cimport DayCounter as _DayCounter
@@ -8,7 +7,7 @@ cimport quantlib.pricingengines._bondfunctions as _bf
 
 from quantlib.handle cimport shared_ptr, Handle
 from cython.operator cimport dereference as deref
-from quantlib.instruments.bonds cimport Bond
+from quantlib.instruments.bond cimport Bond
 from quantlib.time.date cimport date_from_qldate, Date
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.time.daycounter cimport DayCounter
@@ -22,8 +21,7 @@ cpdef enum DurationType:
 
 
 def startDate(Bond bond):
-    cdef QLBond* _bp = <QLBond*>bond._thisptr.get()
-    return date_from_qldate(_bf.startDate(deref(_bp)))
+    return date_from_qldate(_bf.startDate(deref(bond.as_ptr())))
 
 
 def duration(Bond bond not None,
@@ -33,10 +31,8 @@ def duration(Bond bond not None,
              Frequency frequency,
              DurationType type,
              Date settlementDate=Date()):
-        cdef QLBond* _bp = <QLBond*>bond._thisptr.get()
-
         return _bf.duration(
-            deref(_bp),
+            deref(bond.as_ptr()),
             yld,
             deref(dayCounter._thisptr),
             compounding,
@@ -55,10 +51,8 @@ def bond_yield(Bond bond not None,
                Size maxIterations,
                Rate guess):
 
-        cdef QLBond* _bp = <QLBond*>bond._thisptr.get()
-
         return _bf.bf_yield(
-            deref(_bp),
+            deref(bond.as_ptr()),
             cleanPrice,
             deref(dayCounter._thisptr),
             compounding,
@@ -75,10 +69,8 @@ def basisPointValue(Bond bond not None,
                     Compounding compounding,
                     Frequency frequency,
                     Date settlementDate not None):
-        cdef QLBond* _bp = <QLBond*>bond._thisptr.get()
-
         return _bf.basisPointValue(
-            deref(_bp),
+            deref(bond.as_ptr()),
             yld,
             deref(dayCounter._thisptr),
             compounding,
@@ -96,10 +88,8 @@ def zSpread(Bond bond, Real cleanPrice,
             Size maxIterations,
             Rate guess):
 
-    cdef QLBond* _bp = <QLBond*>bond._thisptr.get()
-
     return _bf.zSpread(
-        deref(_bp),
+        deref(bond.as_ptr()),
         cleanPrice,
         yts.as_shared_ptr(),
         deref(dayCounter._thisptr),

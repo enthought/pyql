@@ -2,7 +2,6 @@ include '../types.pxi'
 
 from cython.operator cimport dereference as deref
 from quantlib.cashflow cimport Leg
-cimport quantlib.instruments._bonds as _bonds
 from quantlib.termstructures.volatility.optionlet.optionlet_volatility_structure cimport OptionletVolatilityStructure
 cimport quantlib.termstructures.volatility.optionlet._optionlet_volatility_structure as _ovs
 from quantlib.termstructures.volatility.swaption.swaption_vol_structure \
@@ -16,7 +15,6 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.quote cimport Quote
 from quantlib.quotes.simplequote cimport SimpleQuote
 from .coupon_pricer cimport FloatingRateCouponPricer
-from quantlib.instruments.bonds cimport Bond
 cimport quantlib._cashflow as _cf
 
 cdef class FloatingRateCouponPricer:
