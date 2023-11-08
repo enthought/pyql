@@ -4,6 +4,7 @@ from quantlib.types cimport Natural, Rate, Real, Spread
 from quantlib.handle cimport shared_ptr
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._date cimport Date
+from quantlib.time._period cimport Period
 from quantlib.time.frequency cimport Frequency
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.dategeneration cimport DateGeneration
@@ -27,24 +28,9 @@ cdef extern from 'ql/instruments/bonds/floatingratebond.hpp' namespace 'QuantLib
                          vector[Rate]& floors, # std::vector<Rate>()
                          bool inArrears, # false
                          Real redemption, # 100.
-                         Date& issueDate # Date()
+                         Date& issueDate, # Date()
+                         const Period& exCouponPeriod, # = Period()
+                         const Calendar& exCouponCalendar, # = Calendar()
+                         BusinessDayConvention exCouponConvention, # = Unadjusted
+                         bool exCouponEndOfMoanth # = false
         ) except +
-        FloatingRateBond(Natural settlementDays,
-                        Real faceAmount,
-                        Date& startDate,
-                        Date& maturityDate,
-                        Frequency couponFrequency,
-                        Calendar& calendar,
-                        shared_ptr[IborIndex]& iborIndex,
-                        DayCounter& accrualDayCounter,
-                        BusinessDayConvention accrualConvention,
-                        BusinessDayConvention paymentConvention,
-                        Natural fixingDays,
-                        vector[Real]& gearings,
-                        vector[Spread]& spreads,
-                        vector[Rate]& caps,
-                        vector[Rate]& floors,
-                        Real redemption,
-                        Date& issueDate,
-                        Date& stubDate,
-                        DateGeneration rule) except +

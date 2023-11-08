@@ -46,18 +46,18 @@ cdef class Bond(Instrument):
 
     @property
     def start_date(self):
-        """ Bond start date. """
+        """ Bond start date"""
         return date_from_qldate(self.as_ptr().startDate())
 
 
     @property
     def maturity_date(self):
-        """ Bond maturity date. """
+        """ Bond maturity date"""
         return date_from_qldate(self.as_ptr().maturityDate())
 
     @property
     def issue_date(self):
-        """ Bond issue date. """
+        """ Bond issue date"""
         return date_from_qldate(self.as_ptr().issueDate())
 
     def settlement_date(self, Date from_date=Date()):
@@ -71,14 +71,14 @@ cdef class Bond(Instrument):
 
     @property
     def dirty_price(self):
-        """ Bond dirty price. """
+        """ Bond dirty price"""
         return self.as_ptr().dirtyPrice()
 
     def bond_yield(self, Real price, DayCounter dc not None,
                    Compounding comp, Frequency freq,
                    Date settlement_date=Date(), Real accuracy=1e-08,
                    Size max_evaluations=100, Real guess=0.5, Type price_type = Price.Clean):
-        """ Return the yield given a (clean) price and settlement date
+        """ Return the yield given a price and settlement date
 
         The default bond settlement is used if no date is given.
 
@@ -93,7 +93,7 @@ cdef class Bond(Instrument):
             )
 
     def accrued_amount(self, Date date=Date()):
-        """ Returns the bond accrued amount at the given date. """
+        """ Returns the bond accrued amount at the given date"""
         return self.as_ptr().accruedAmount(deref(date._thisptr))
 
     @property
