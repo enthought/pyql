@@ -9,3 +9,4 @@ cdef extern from 'ql/time/calendars/unitedstates.hpp' namespace \
         NERC # off-peak days for NERC
         LiborImpact # Libor impact calendar
         FederalReserve # Federal Reserve Bankwire System
+        SOFR # SOFR fixing calendar
