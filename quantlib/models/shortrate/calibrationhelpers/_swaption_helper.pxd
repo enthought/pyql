@@ -7,8 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../../../types.pxi'
-
+from quantlib.types cimport Real
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.termstructures.volatility.volatilitytype cimport VolatilityType
@@ -17,6 +16,8 @@ from quantlib.indexes._ibor_index cimport IborIndex
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
 from quantlib.models._calibration_helper cimport BlackCalibrationHelper, CalibrationErrorType
+from quantlib.instruments._swaption cimport Swaption
+from quantlib.instruments._fixedvsfloatingswap cimport FixedVsFloatingSwap
 cimport quantlib._quote as _qt
 
 cdef extern from 'ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp' namespace 'QuantLib':
@@ -37,6 +38,9 @@ cdef extern from 'ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp' nam
                        VolatilityType type, # = ShiftedLognormal,
                        Real shift # = 0.0
                        ) except +
+        shared_ptr[FixedVsFloatingSwap] underlyingSwap()
+        shared_ptr[Swaption] swaption()
+
     # this should really be a constructor but cython can't disambiguate the
     # constructors otherwise
     SwaptionHelper* SwaptionHelper_ "new QuantLib::SwaptionHelper"(
