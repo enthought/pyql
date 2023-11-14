@@ -7,8 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../../../types.pxi'
-
+from quantlib.types cimport Real
 from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
 from cython.operator cimport dereference as deref
 
@@ -16,6 +15,8 @@ from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.termstructures.volatility.volatilitytype cimport VolatilityType
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.indexes.ibor_index cimport IborIndex
+from quantlib.instruments.fixedvsfloatingswap cimport FixedVsFloatingSwap
+from quantlib.instruments.swaption cimport Swaption
 from quantlib.time.date cimport Period, Date
 from quantlib.quote cimport Quote
 from quantlib.models.calibration_helper import RelativePriceError
@@ -101,3 +102,13 @@ cdef class SwaptionHelper(BlackCalibrationHelper):
                     shift
                 )
             )
+
+    def underlying_swap(self):
+        cdef FixedVsFloatingSwap swap = FixedVsFloatingSwap.__new__(FixedVsFloatingSwap)
+        swap._thisptr = (<_sh.SwaptionHelper*>self._thisptr.get()).underlyingSwap()
+        return  swap
+
+    def underlying_swaption(self):
+        cdef Swaption swaption = Swaption.__new__(Swaption)
+        swaption._thisptr = (<_sh.SwaptionHelper*>self._thisptr.get()).swaption()
+        return swaption
