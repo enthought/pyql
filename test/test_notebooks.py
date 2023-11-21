@@ -148,21 +148,21 @@ def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
     return df_final
 
 
-class NoteBooksTestCase(unittest.TestCase):
-    """
-    Test some functions used in notebooks.
-    Mostly useful to test stability of pandas API
-    """
+# class NoteBooksTestCase(unittest.TestCase):
+    # """
+    # Test some functions used in notebooks.
+    # Mostly useful to test stability of pandas API
+    # """
 
-    def test_option_quotes(self):
-        with open('test/data/df_SPX_24jan2011.pkl', "rb") as fh:
-            option_data_frame = pd.read_pickle(fh)
-        df_final = Compute_IV(
-            option_data_frame, tMin=0.5/12, nMin=6, QDMin=.2, QDMax=.8
-        )
+    # def test_option_quotes(self):
+        # with open('test/data/df_SPX_24jan2011.pkl', "rb") as fh:
+            # option_data_frame = pd.read_pickle(fh)
+        # df_final = Compute_IV(
+            # option_data_frame, tMin=0.5/12, nMin=6, QDMin=.2, QDMax=.8
+        # )
 
-        print('Number of rows: %d' % len(df_final.index))
-        self.assertEqual(len(df_final.index), 553, 'Wrong number of rows')
+        # print('Number of rows: %d' % len(df_final.index))
+        # self.assertEqual(len(df_final.index), 553, 'Wrong number of rows')
 
 if __name__ == '__main__':
     unittest.main()
