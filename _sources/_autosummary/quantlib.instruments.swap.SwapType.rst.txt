@@ -1,0 +1,27 @@
+quantlib.instruments.swap.SwapType
+==================================
+
+.. currentmodule:: quantlib.instruments.swap
+
+.. autoclass:: SwapType
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~SwapType.Receiver
+      ~SwapType.Payer
+
+   
+   

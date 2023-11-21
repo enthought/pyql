@@ -19,6 +19,7 @@ quantlib.time.calendars.united\_kingdom
       :toctree:
       :template: custom-class-template.rst
    
+      Market
       UnitedKingdom
    
    

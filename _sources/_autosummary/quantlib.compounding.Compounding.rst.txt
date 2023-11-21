@@ -1,0 +1,30 @@
+quantlib.compounding.Compounding
+================================
+
+.. currentmodule:: quantlib.compounding
+
+.. autoclass:: Compounding
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Compounding.Simple
+      ~Compounding.Compounded
+      ~Compounding.Continuous
+      ~Compounding.SimpleThenCompounded
+      ~Compounding.CompoundedThenSimple
+
+   
+   

@@ -19,6 +19,8 @@ quantlib.instruments.swaption
       :toctree:
       :template: custom-class-template.rst
    
+      SettlementMethod
+      SettlementType
       Swaption
    
    

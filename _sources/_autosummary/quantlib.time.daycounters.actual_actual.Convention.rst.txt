@@ -1,0 +1,32 @@
+quantlib.time.daycounters.actual\_actual.Convention
+===================================================
+
+.. currentmodule:: quantlib.time.daycounters.actual_actual
+
+.. autoclass:: Convention
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Convention.ISMA
+      ~Convention.Bond
+      ~Convention.ISDA
+      ~Convention.Historical
+      ~Convention.Actual365
+      ~Convention.AFB
+      ~Convention.Euro
+
+   
+   

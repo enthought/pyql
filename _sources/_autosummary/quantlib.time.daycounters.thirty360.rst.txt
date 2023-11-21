@@ -19,6 +19,7 @@ quantlib.time.daycounters.thirty360
       :toctree:
       :template: custom-class-template.rst
    
+      Convention
       Thirty360
    
    

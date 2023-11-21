@@ -1,0 +1,29 @@
+quantlib.cashflows.conundrum\_pricer.YieldCurveModel
+====================================================
+
+.. currentmodule:: quantlib.cashflows.conundrum_pricer
+
+.. autoclass:: YieldCurveModel
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~YieldCurveModel.Standard
+      ~YieldCurveModel.ExactYield
+      ~YieldCurveModel.ParallelShifts
+      ~YieldCurveModel.NonParallelShifts
+
+   
+   

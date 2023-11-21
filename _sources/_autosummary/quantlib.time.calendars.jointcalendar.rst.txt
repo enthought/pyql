@@ -20,6 +20,7 @@ quantlib.time.calendars.jointcalendar
       :template: custom-class-template.rst
    
       JointCalendar
+      JointCalendarRule
    
    
 

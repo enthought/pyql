@@ -19,6 +19,7 @@ quantlib.math.randomnumbers.sobol\_rsg
       :toctree:
       :template: custom-class-template.rst
    
+      DirectionIntegers
       SobolRsg
    
    

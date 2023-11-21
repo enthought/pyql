@@ -1,21 +1,20 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=55d23279" />
+    <script src="../_static/documentation_options.js?v=a58bc63e"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.termstructures.credit.piecewise_default_curve" href="quantlib.termstructures.credit.piecewise_default_curve.html" />
+    <link rel="next" title="quantlib.termstructures.credit.interpolated_hazardrate_curve.Interpolator" href="quantlib.termstructures.credit.interpolated_hazardrate_curve.Interpolator.html" />
     <link rel="prev" title="quantlib.termstructures.credit.interpolated_hazardrate_curve" href="quantlib.termstructures.credit.interpolated_hazardrate_curve.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,10 +33,10 @@
           <div class="body" role="main">
             
   <section id="quantlib-termstructures-credit-interpolated-hazardrate-curve-interpolatedhazardratecurve">
-<h1>quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve<a class="headerlink" href="#quantlib-termstructures-credit-interpolated-hazardrate-curve-interpolatedhazardratecurve" title="Permalink to this heading">¶</a></h1>
+<h1>quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve<a class="headerlink" href="#quantlib-termstructures-credit-interpolated-hazardrate-curve-interpolatedhazardratecurve" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InterpolatedHazardRateCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Interpolator</span> <span class="pre">interpolator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">dates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector[Rate]</span> <span class="pre">hazard_rates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">day_counter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">cal=Calendar()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InterpolatedHazardRateCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Interpolator</span> <span class="pre">interpolator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">dates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector[Rate]</span> <span class="pre">hazard_rates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">day_counter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">cal=Calendar()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.termstructures.default_term_structure.DefaultProbabilityTermStructure.html#quantlib.termstructures.default_term_structure.DefaultProbabilityTermStructure" title="quantlib.termstructures.default_term_structure.DefaultProbabilityTermStructure"><code class="xref py py-class docutils literal notranslate"><span class="pre">DefaultProbabilityTermStructure</span></code></a></p>
 <p>DefaultProbabilityTermStructure based on interpolation of hazard rates</p>
 <dl class="field-list simple">
@@ -53,7 +52,7 @@
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve.__init__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
@@ -107,25 +106,25 @@
 </table>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve.data">
-<span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve.data" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve.data" title="Link to this definition">¶</a></dt>
 <dd><p>list of curve data</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve.dates">
-<span class="sig-name descname"><span class="pre">dates</span></span><a class="headerlink" href="#quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve.dates" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">dates</span></span><a class="headerlink" href="#quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve.dates" title="Link to this definition">¶</a></dt>
 <dd><p>list of curve dates</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve.hazard_rates">
-<span class="sig-name descname"><span class="pre">hazard_rates</span></span><a class="headerlink" href="#quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve.hazard_rates" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">hazard_rates</span></span><a class="headerlink" href="#quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve.hazard_rates" title="Link to this definition">¶</a></dt>
 <dd><p>list of curve hazard rates</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve.times">
-<span class="sig-name descname"><span class="pre">times</span></span><a class="headerlink" href="#quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve.times" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">times</span></span><a class="headerlink" href="#quantlib.termstructures.credit.interpolated_hazardrate_curve.InterpolatedHazardRateCurve.times" title="Link to this definition">¶</a></dt>
 <dd><p>list of curve times</p>
 </dd></dl>
 
@@ -173,7 +172,7 @@
   <li><a href="quantlib.termstructures.credit.html">quantlib.termstructures.credit</a><ul>
   <li><a href="quantlib.termstructures.credit.interpolated_hazardrate_curve.html">quantlib.termstructures.credit.interpolated_hazardrate_curve</a><ul>
       <li>Previous: <a href="quantlib.termstructures.credit.interpolated_hazardrate_curve.html" title="previous chapter">quantlib.termstructures.credit.interpolated_hazardrate_curve</a></li>
-      <li>Next: <a href="quantlib.termstructures.credit.piecewise_default_curve.html" title="next chapter">quantlib.termstructures.credit.piecewise_default_curve</a></li>
+      <li>Next: <a href="quantlib.termstructures.credit.interpolated_hazardrate_curve.Interpolator.html" title="next chapter">quantlib.termstructures.credit.interpolated_hazardrate_curve.Interpolator</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -208,7 +207,7 @@
       &copy;2011, Didrik Pinte, Patrick Henaff.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |

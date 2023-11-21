@@ -44,8 +44,11 @@ quantlib.time.date
       :template: custom-class-template.rst
    
       Date
+      Frequency
+      Month
       Period
       TimeUnit
+      Weekday
    
    
 

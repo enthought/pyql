@@ -20,6 +20,7 @@ quantlib.instruments.swap
       :template: custom-class-template.rst
    
       Swap
+      SwapType
    
    
 

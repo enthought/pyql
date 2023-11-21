@@ -1,0 +1,27 @@
+quantlib.pricingengines.credit.isda\_cds\_engine.AccrualBias
+============================================================
+
+.. currentmodule:: quantlib.pricingengines.credit.isda_cds_engine
+
+.. autoclass:: AccrualBias
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~AccrualBias.HalfDayBias
+      ~AccrualBias.NoBias
+
+   
+   

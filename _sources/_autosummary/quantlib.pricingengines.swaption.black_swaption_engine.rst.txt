@@ -21,6 +21,7 @@ quantlib.pricingengines.swaption.black\_swaption\_engine
    
       BachelierSwaptionEngine
       BlackSwaptionEngine
+      CashAnnuityModel
    
    
 

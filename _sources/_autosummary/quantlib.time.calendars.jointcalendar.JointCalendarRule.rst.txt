@@ -1,0 +1,27 @@
+quantlib.time.calendars.jointcalendar.JointCalendarRule
+=======================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. autoclass:: JointCalendarRule
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~JointCalendarRule.JOINHOLIDAYS
+      ~JointCalendarRule.JOINBUSINESSDAYS
+
+   
+   

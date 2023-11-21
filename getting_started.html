@@ -1,17 +1,16 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Getting started &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=55d23279" />
+    <script src="_static/documentation_options.js?v=a58bc63e"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -34,9 +33,9 @@
           <div class="body" role="main">
             
   <section id="getting-started">
-<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h1>
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h1>
 <section id="pyql-an-overview">
-<h2>PyQL - an overview<a class="headerlink" href="#pyql-an-overview" title="Permalink to this heading">¶</a></h2>
+<h2>PyQL - an overview<a class="headerlink" href="#pyql-an-overview" title="Link to this heading">¶</a></h2>
 <p>Why building a new set of QuantLib wrappers for Python?</p>
 <p>The SWIG wrappers provide a very good coverage of the library but have
 a number of pain points:</p>
@@ -54,7 +53,7 @@ chose another road. PyQL is build on top of Cython and creates a thin
 Pythonic layer on top of QuantLib. It allows a tight control on the
 wrapping and provides higher level Python integration.</p>
 <section id="features">
-<h3>Features:<a class="headerlink" href="#features" title="Permalink to this heading">¶</a></h3>
+<h3>Features:<a class="headerlink" href="#features" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Integration with standard datatypes (like datetime objects) and numpy arrays;</p></li>
 <li><p>Simplifed API on the Python side (e.g. usage of Handles completely hidden from the user);</p></li>
@@ -66,7 +65,7 @@ wrapping and provides higher level Python integration.</p>
 </section>
 </section>
 <section id="building-and-installing-pyql">
-<h2>Building and installing PyQL<a class="headerlink" href="#building-and-installing-pyql" title="Permalink to this heading">¶</a></h2>
+<h2>Building and installing PyQL<a class="headerlink" href="#building-and-installing-pyql" title="Link to this heading">¶</a></h2>
 <p>Prerequisites:</p>
 <ul class="simple">
 <li><p>Boost (version 1.55 or higher)</p></li>
@@ -80,7 +79,7 @@ and configure the Boost and QuantLib include and library directories, then run</
 </div>
 </section>
 <section id="installation-from-source">
-<h2>Installation from source<a class="headerlink" href="#installation-from-source" title="Permalink to this heading">¶</a></h2>
+<h2>Installation from source<a class="headerlink" href="#installation-from-source" title="Link to this heading">¶</a></h2>
 <p>The following instructions explain how to build the project from source, on a Linux system.
 The instructions have been tested on Ubuntu 12.04 LTS.</p>
 <p>Prerequisites:</p>
@@ -171,7 +170,7 @@ $<span class="w"> </span>make<span class="w"> </span>tests
 <p>If you have installed QuantLib in a directory different from <code class="code docutils literal notranslate"><span class="pre">/opt</span></code>, edit the <cite>setup.py</cite> file before running make and update the <code class="code docutils literal notranslate"><span class="pre">INCLUDE_DIRS</span></code> and <code class="code docutils literal notranslate"><span class="pre">LIBRARY_DIRS</span></code> to point to your installation of QuantLib.</p>
 </section>
 <section id="installation-from-source-on-windows">
-<h2>Installation from source on Windows<a class="headerlink" href="#installation-from-source-on-windows" title="Permalink to this heading">¶</a></h2>
+<h2>Installation from source on Windows<a class="headerlink" href="#installation-from-source-on-windows" title="Link to this heading">¶</a></h2>
 <p>The following instructions explain how to build the project from source, on a
 Windows system.
 The instructions have been tested on Windows 7 32bit with Visual Studio 2008.</p>
@@ -334,7 +333,7 @@ PS<span class="w"> </span>C:<span class="se">\d</span>ev<span class="se">\p</spa
       &copy;2011, Didrik Pinte, Patrick Henaff.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |

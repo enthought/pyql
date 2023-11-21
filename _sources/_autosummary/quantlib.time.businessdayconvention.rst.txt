@@ -13,6 +13,14 @@ quantlib.time.businessdayconvention
 
    
    
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      BusinessDayConvention
+   
    
 
    

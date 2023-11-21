@@ -19,6 +19,7 @@ quantlib.processes.heston\_process
       :toctree:
       :template: custom-class-template.rst
    
+      Discretization
       HestonProcess
    
    

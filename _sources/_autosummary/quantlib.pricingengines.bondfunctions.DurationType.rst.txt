@@ -1,0 +1,28 @@
+quantlib.pricingengines.bondfunctions.DurationType
+==================================================
+
+.. currentmodule:: quantlib.pricingengines.bondfunctions
+
+.. autoclass:: DurationType
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~DurationType.Simple
+      ~DurationType.Macaulay
+      ~DurationType.Modified
+
+   
+   

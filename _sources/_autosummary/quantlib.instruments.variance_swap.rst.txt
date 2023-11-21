@@ -19,6 +19,7 @@ quantlib.instruments.variance\_swap
       :toctree:
       :template: custom-class-template.rst
    
+      SwapType
       VarianceSwap
    
    

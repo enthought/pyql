@@ -1,0 +1,28 @@
+quantlib.instruments.swaption.SettlementMethod
+==============================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoclass:: SettlementMethod
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~SettlementMethod.PhysicalOTC
+      ~SettlementMethod.CollateralizedCashPrice
+      ~SettlementMethod.ParYieldCurve
+
+   
+   

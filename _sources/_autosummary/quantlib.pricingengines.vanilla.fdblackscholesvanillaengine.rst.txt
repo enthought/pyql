@@ -19,6 +19,7 @@ quantlib.pricingengines.vanilla.fdblackscholesvanillaengine
       :toctree:
       :template: custom-class-template.rst
    
+      CashDividendModel
       FdBlackScholesVanillaEngine
    
    

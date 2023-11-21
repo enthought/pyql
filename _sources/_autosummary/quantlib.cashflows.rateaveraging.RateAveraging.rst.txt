@@ -1,0 +1,27 @@
+quantlib.cashflows.rateaveraging.RateAveraging
+==============================================
+
+.. currentmodule:: quantlib.cashflows.rateaveraging
+
+.. autoclass:: RateAveraging
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~RateAveraging.Simple
+      ~RateAveraging.Compound
+
+   
+   

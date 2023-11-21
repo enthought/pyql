@@ -1,0 +1,27 @@
+quantlib.instruments.swaption.SettlementType
+============================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoclass:: SettlementType
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~SettlementType.Physical
+      ~SettlementType.Cash
+
+   
+   

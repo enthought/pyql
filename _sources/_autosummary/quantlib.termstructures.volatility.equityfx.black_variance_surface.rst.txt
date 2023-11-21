@@ -20,6 +20,8 @@ quantlib.termstructures.volatility.equityfx.black\_variance\_surface
       :template: custom-class-template.rst
    
       BlackVarianceSurface
+      Extrapolation
+      Interpolator
    
    
 

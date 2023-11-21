@@ -1,0 +1,28 @@
+quantlib.termstructures.inflation.interpolated\_zero\_inflation\_curve.Interpolator
+===================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.interpolated_zero_inflation_curve
+
+.. autoclass:: Interpolator
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Interpolator.Linear
+      ~Interpolator.LogLinear
+      ~Interpolator.BackwardFlat
+
+   
+   

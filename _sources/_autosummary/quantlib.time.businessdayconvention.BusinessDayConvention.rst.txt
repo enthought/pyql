@@ -1,0 +1,32 @@
+quantlib.time.businessdayconvention.BusinessDayConvention
+=========================================================
+
+.. currentmodule:: quantlib.time.businessdayconvention
+
+.. autoclass:: BusinessDayConvention
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~BusinessDayConvention.Following
+      ~BusinessDayConvention.ModifiedFollowing
+      ~BusinessDayConvention.Preceding
+      ~BusinessDayConvention.ModifiedPreceding
+      ~BusinessDayConvention.Unadjusted
+      ~BusinessDayConvention.HalfMonthModifiedFollowing
+      ~BusinessDayConvention.Nearest
+
+   
+   

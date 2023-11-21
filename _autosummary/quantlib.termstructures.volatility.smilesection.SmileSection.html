@@ -1,17 +1,16 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>quantlib.termstructures.volatility.smilesection.SmileSection &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=55d23279" />
+    <script src="../_static/documentation_options.js?v=a58bc63e"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -34,14 +33,14 @@
           <div class="body" role="main">
             
   <section id="quantlib-termstructures-volatility-smilesection-smilesection">
-<h1>quantlib.termstructures.volatility.smilesection.SmileSection<a class="headerlink" href="#quantlib-termstructures-volatility-smilesection-smilesection" title="Permalink to this heading">¶</a></h1>
+<h1>quantlib.termstructures.volatility.smilesection.SmileSection<a class="headerlink" href="#quantlib-termstructures-volatility-smilesection-smilesection" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.termstructures.volatility.smilesection.SmileSection">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SmileSection</span></span><a class="headerlink" href="#quantlib.termstructures.volatility.smilesection.SmileSection" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SmileSection</span></span><a class="headerlink" href="#quantlib.termstructures.volatility.smilesection.SmileSection" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.termstructures.volatility.smilesection.SmileSection.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.smilesection.SmileSection.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.smilesection.SmileSection.__init__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
@@ -89,22 +88,22 @@
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.termstructures.volatility.smilesection.SmileSection.density">
-<span class="sig-name descname"><span class="pre">density</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">strike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">discount=1.</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">gap=1e-4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.smilesection.SmileSection.density" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">density</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">strike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">discount=1.</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">gap=1e-4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.smilesection.SmileSection.density" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.termstructures.volatility.smilesection.SmileSection.option_price">
-<span class="sig-name descname"><span class="pre">option_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">strike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Type</span> <span class="pre">option_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">discount=1.</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.smilesection.SmileSection.option_price" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">option_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">strike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Type</span> <span class="pre">option_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">discount=1.</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.smilesection.SmileSection.option_price" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.termstructures.volatility.smilesection.SmileSection.vega">
-<span class="sig-name descname"><span class="pre">vega</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">strike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">discount=1.</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.smilesection.SmileSection.vega" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">vega</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">strike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">discount=1.</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.smilesection.SmileSection.vega" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.termstructures.volatility.smilesection.SmileSection.volatility">
-<span class="sig-name descname"><span class="pre">volatility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">strike</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.smilesection.SmileSection.volatility" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">volatility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">strike</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.smilesection.SmileSection.volatility" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -186,7 +185,7 @@
       &copy;2011, Didrik Pinte, Patrick Henaff.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |

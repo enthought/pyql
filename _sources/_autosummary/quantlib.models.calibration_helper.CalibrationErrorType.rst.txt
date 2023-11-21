@@ -1,0 +1,28 @@
+quantlib.models.calibration\_helper.CalibrationErrorType
+========================================================
+
+.. currentmodule:: quantlib.models.calibration_helper
+
+.. autoclass:: CalibrationErrorType
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~CalibrationErrorType.RelativePriceError
+      ~CalibrationErrorType.PriceError
+      ~CalibrationErrorType.ImpliedVolError
+
+   
+   

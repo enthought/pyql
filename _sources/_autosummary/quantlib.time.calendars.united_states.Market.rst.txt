@@ -1,0 +1,31 @@
+quantlib.time.calendars.united\_states.Market
+=============================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. autoclass:: Market
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Market.Settlement
+      ~Market.NYSE
+      ~Market.GovernmentBond
+      ~Market.NERC
+      ~Market.LiborImpact
+      ~Market.FederalReserve
+
+   
+   

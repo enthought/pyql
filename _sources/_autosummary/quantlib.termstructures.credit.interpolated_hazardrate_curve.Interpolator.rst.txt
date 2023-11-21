@@ -1,0 +1,28 @@
+quantlib.termstructures.credit.interpolated\_hazardrate\_curve.Interpolator
+===========================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.interpolated_hazardrate_curve
+
+.. autoclass:: Interpolator
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Interpolator.Linear
+      ~Interpolator.LogLinear
+      ~Interpolator.BackwardFlat
+
+   
+   

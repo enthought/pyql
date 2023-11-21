@@ -1,0 +1,27 @@
+quantlib.instruments.credit\_default\_swap.PricingModel
+=======================================================
+
+.. currentmodule:: quantlib.instruments.credit_default_swap
+
+.. autoclass:: PricingModel
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~PricingModel.Midpoint
+      ~PricingModel.ISDA
+
+   
+   

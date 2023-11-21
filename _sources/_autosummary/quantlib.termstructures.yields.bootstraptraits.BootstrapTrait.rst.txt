@@ -1,0 +1,28 @@
+quantlib.termstructures.yields.bootstraptraits.BootstrapTrait
+=============================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bootstraptraits
+
+.. autoclass:: BootstrapTrait
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~BootstrapTrait.Discount
+      ~BootstrapTrait.ZeroYield
+      ~BootstrapTrait.ForwardRate
+
+   
+   

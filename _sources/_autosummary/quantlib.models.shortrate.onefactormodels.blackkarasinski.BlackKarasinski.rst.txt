@@ -1,0 +1,36 @@
+quantlib.models.shortrate.onefactormodels.blackkarasinski.BlackKarasinski
+=========================================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactormodels.blackkarasinski
+
+.. autoclass:: BlackKarasinski
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~BlackKarasinski.__init__
+      ~BlackKarasinski.params
+      ~BlackKarasinski.set_params
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~BlackKarasinski.dynamics
+
+   
+   

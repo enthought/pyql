@@ -20,6 +20,14 @@ quantlib.math.matrixutilities.pseudosqrt
 
    
    
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      SalvagingAlgorithm
+   
    
 
    

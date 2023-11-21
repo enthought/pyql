@@ -1,0 +1,27 @@
+quantlib.instruments.overnightindexedswap.Type
+==============================================
+
+.. currentmodule:: quantlib.instruments.overnightindexedswap
+
+.. autoclass:: Type
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Type.Receiver
+      ~Type.Payer
+
+   
+   

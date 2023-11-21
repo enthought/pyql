@@ -1,21 +1,20 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>quantlib.experimental.risk.sensitivityanalysis.parallel_analysis &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=55d23279" />
+    <script src="../_static/documentation_options.js?v=a58bc63e"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.experimental.termstructures" href="quantlib.experimental.termstructures.html" />
+    <link rel="next" title="quantlib.experimental.risk.sensitivityanalysis.SensitivityAnalysis" href="quantlib.experimental.risk.sensitivityanalysis.SensitivityAnalysis.html" />
     <link rel="prev" title="quantlib.experimental.risk.sensitivityanalysis.bucket_analysis" href="quantlib.experimental.risk.sensitivityanalysis.bucket_analysis.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,10 +33,10 @@
           <div class="body" role="main">
             
   <section id="quantlib-experimental-risk-sensitivityanalysis-parallel-analysis">
-<h1>quantlib.experimental.risk.sensitivityanalysis.parallel_analysis<a class="headerlink" href="#quantlib-experimental-risk-sensitivityanalysis-parallel-analysis" title="Permalink to this heading">¶</a></h1>
+<h1>quantlib.experimental.risk.sensitivityanalysis.parallel_analysis<a class="headerlink" href="#quantlib-experimental-risk-sensitivityanalysis-parallel-analysis" title="Link to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="quantlib.experimental.risk.sensitivityanalysis.parallel_analysis">
-<span class="sig-name descname"><span class="pre">parallel_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">quotes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">instruments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector[Real]</span> <span class="pre">quantities=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">shift=0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SensitivityAnalysis</span> <span class="pre">type=Centered</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">reference_npv=QL_NULL_REAL</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.experimental.risk.sensitivityanalysis.parallel_analysis" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">parallel_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">quotes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">instruments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector[Real]</span> <span class="pre">quantities=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">shift=0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SensitivityAnalysis</span> <span class="pre">type=Centered</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">reference_npv=Null[Real]()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.experimental.risk.sensitivityanalysis.parallel_analysis" title="Link to this definition">¶</a></dt>
 <dd><p>Parallel shift PV01 sensitivity analysis for a SimpleQuote vector</p>
 <p>Returns a pair of first and second derivative values. Second derivative
 is not available if type is OneSide.</p>
@@ -50,7 +49,7 @@ vector is just one single element equal to one.</p>
 <li><p><strong>instrument</strong> (<em>list</em><em>[</em><a class="reference internal" href="quantlib.instrument.Instrument.html#quantlib.instrument.Instrument" title="quantlib.instrument.Instrument"><em>Instrument</em></a><em>]</em>) – </p></li>
 <li><p><strong>quantities</strong> (<em>list</em><em>[</em><em>Real</em><em>]</em>) – </p></li>
 <li><p><strong>shift</strong> (<em>Real</em>) – </p></li>
-<li><p><strong>type</strong> (<em>SensitivityAnalysis</em>) – </p></li>
+<li><p><strong>type</strong> (<a class="reference internal" href="quantlib.experimental.risk.sensitivityanalysis.SensitivityAnalysis.html#quantlib.experimental.risk.sensitivityanalysis.SensitivityAnalysis" title="quantlib.experimental.risk.sensitivityanalysis.SensitivityAnalysis"><em>SensitivityAnalysis</em></a>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -98,7 +97,7 @@ vector is just one single element equal to one.</p>
   <li><a href="quantlib.experimental.risk.html">quantlib.experimental.risk</a><ul>
   <li><a href="quantlib.experimental.risk.sensitivityanalysis.html">quantlib.experimental.risk.sensitivityanalysis</a><ul>
       <li>Previous: <a href="quantlib.experimental.risk.sensitivityanalysis.bucket_analysis.html" title="previous chapter">quantlib.experimental.risk.sensitivityanalysis.bucket_analysis</a></li>
-      <li>Next: <a href="quantlib.experimental.termstructures.html" title="next chapter">quantlib.experimental.termstructures</a></li>
+      <li>Next: <a href="quantlib.experimental.risk.sensitivityanalysis.SensitivityAnalysis.html" title="next chapter">quantlib.experimental.risk.sensitivityanalysis.SensitivityAnalysis</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -133,7 +132,7 @@ vector is just one single element equal to one.</p>
       &copy;2011, Didrik Pinte, Patrick Henaff.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |

@@ -20,6 +20,7 @@ quantlib.time.calendars.canada
       :template: custom-class-template.rst
    
       Canada
+      Market
    
    
 

@@ -1,0 +1,27 @@
+quantlib.termstructures.volatility.volatilitytype.VolatilityType
+================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.volatilitytype
+
+.. autoclass:: VolatilityType
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~VolatilityType.ShiftedLognormal
+      ~VolatilityType.Normal
+
+   
+   

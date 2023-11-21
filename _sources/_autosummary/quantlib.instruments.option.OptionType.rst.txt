@@ -1,0 +1,27 @@
+quantlib.instruments.option.OptionType
+======================================
+
+.. currentmodule:: quantlib.instruments.option
+
+.. autoclass:: OptionType
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~OptionType.Call
+      ~OptionType.Put
+
+   
+   

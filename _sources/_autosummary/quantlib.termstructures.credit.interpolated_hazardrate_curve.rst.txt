@@ -20,6 +20,7 @@ quantlib.termstructures.credit.interpolated\_hazardrate\_curve
       :template: custom-class-template.rst
    
       InterpolatedHazardRateCurve
+      Interpolator
    
    
 

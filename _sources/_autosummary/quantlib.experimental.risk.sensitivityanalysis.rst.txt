@@ -21,6 +21,14 @@ quantlib.experimental.risk.sensitivityanalysis
 
    
    
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      SensitivityAnalysis
+   
    
 
    

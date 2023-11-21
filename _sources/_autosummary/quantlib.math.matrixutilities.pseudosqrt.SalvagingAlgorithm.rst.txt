@@ -1,0 +1,30 @@
+quantlib.math.matrixutilities.pseudosqrt.SalvagingAlgorithm
+===========================================================
+
+.. currentmodule:: quantlib.math.matrixutilities.pseudosqrt
+
+.. autoclass:: SalvagingAlgorithm
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~SalvagingAlgorithm.Nothing
+      ~SalvagingAlgorithm.Spectral
+      ~SalvagingAlgorithm.Hypersphere
+      ~SalvagingAlgorithm.LowerDiagonal
+      ~SalvagingAlgorithm.Higham
+
+   
+   

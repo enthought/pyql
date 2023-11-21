@@ -1,0 +1,27 @@
+quantlib.time.calendars.canada.Market
+=====================================
+
+.. currentmodule:: quantlib.time.calendars.canada
+
+.. autoclass:: Market
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Market.SETTLEMENT
+      ~Market.TSX
+
+   
+   

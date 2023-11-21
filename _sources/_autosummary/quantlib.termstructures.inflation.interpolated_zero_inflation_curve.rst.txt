@@ -20,6 +20,7 @@ quantlib.termstructures.inflation.interpolated\_zero\_inflation\_curve
       :template: custom-class-template.rst
    
       InterpolatedZeroInflationCurve
+      Interpolator
    
    
 

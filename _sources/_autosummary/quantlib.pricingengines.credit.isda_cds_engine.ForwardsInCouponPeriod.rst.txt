@@ -1,0 +1,27 @@
+quantlib.pricingengines.credit.isda\_cds\_engine.ForwardsInCouponPeriod
+=======================================================================
+
+.. currentmodule:: quantlib.pricingengines.credit.isda_cds_engine
+
+.. autoclass:: ForwardsInCouponPeriod
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~ForwardsInCouponPeriod.Flat
+      ~ForwardsInCouponPeriod.Piecewise
+
+   
+   

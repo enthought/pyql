@@ -23,6 +23,7 @@ quantlib.instruments.bonds
       CPIBond
       FixedRateBond
       FloatingRateBond
+      InterpolationType
       ZeroCouponBond
    
    

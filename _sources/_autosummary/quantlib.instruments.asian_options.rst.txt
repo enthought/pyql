@@ -19,6 +19,7 @@ quantlib.instruments.asian\_options
       :toctree:
       :template: custom-class-template.rst
    
+      AverageType
       ContinuousAveragingAsianOption
       DiscreteAveragingAsianOption
    

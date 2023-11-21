@@ -20,6 +20,7 @@ quantlib.models.calibration\_helper
       :template: custom-class-template.rst
    
       BlackCalibrationHelper
+      CalibrationErrorType
    
    
 

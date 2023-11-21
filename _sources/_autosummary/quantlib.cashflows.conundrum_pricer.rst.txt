@@ -22,6 +22,7 @@ quantlib.cashflows.conundrum\_pricer
       AnalyticHaganPricer
       HaganPricer
       NumericHaganPricer
+      YieldCurveModel
    
    
 

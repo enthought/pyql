@@ -1,0 +1,27 @@
+quantlib.instruments.asian\_options.AverageType
+===============================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. autoclass:: AverageType
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~AverageType.Arithmetic
+      ~AverageType.Geometric
+
+   
+   

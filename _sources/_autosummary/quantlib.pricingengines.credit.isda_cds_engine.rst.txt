@@ -19,7 +19,10 @@ quantlib.pricingengines.credit.isda\_cds\_engine
       :toctree:
       :template: custom-class-template.rst
    
+      AccrualBias
+      ForwardsInCouponPeriod
       IsdaCdsEngine
+      NumericalFix
    
    
 

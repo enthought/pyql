@@ -27,6 +27,8 @@ quantlib.instruments.credit\_default\_swap
       :template: custom-class-template.rst
    
       CreditDefaultSwap
+      PricingModel
+      Side
    
    
 

@@ -1,0 +1,37 @@
+quantlib.time.imm.Month
+=======================
+
+.. currentmodule:: quantlib.time.imm
+
+.. autoclass:: Month
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Month.F
+      ~Month.G
+      ~Month.H
+      ~Month.J
+      ~Month.K
+      ~Month.M
+      ~Month.N
+      ~Month.Q
+      ~Month.U
+      ~Month.V
+      ~Month.X
+      ~Month.Z
+
+   
+   

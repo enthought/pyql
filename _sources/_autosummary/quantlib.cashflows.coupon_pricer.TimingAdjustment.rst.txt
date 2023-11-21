@@ -1,0 +1,27 @@
+quantlib.cashflows.coupon\_pricer.TimingAdjustment
+==================================================
+
+.. currentmodule:: quantlib.cashflows.coupon_pricer
+
+.. autoclass:: TimingAdjustment
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~TimingAdjustment.Black76
+      ~TimingAdjustment.BivariateLognormal
+
+   
+   

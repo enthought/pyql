@@ -1,21 +1,20 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=55d23279" />
+    <script src="../_static/documentation_options.js?v=a58bc63e"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.termstructures.volatility.equityfx.black_vol_term_structure" href="quantlib.termstructures.volatility.equityfx.black_vol_term_structure.html" />
+    <link rel="next" title="quantlib.termstructures.volatility.equityfx.black_variance_surface.Extrapolation" href="quantlib.termstructures.volatility.equityfx.black_variance_surface.Extrapolation.html" />
     <link rel="prev" title="quantlib.termstructures.volatility.equityfx.black_variance_surface" href="quantlib.termstructures.volatility.equityfx.black_variance_surface.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,10 +33,10 @@
           <div class="body" role="main">
             
   <section id="quantlib-termstructures-volatility-equityfx-black-variance-surface-blackvariancesurface">
-<h1>quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface<a class="headerlink" href="#quantlib-termstructures-volatility-equityfx-black-variance-surface-blackvariancesurface" title="Permalink to this heading">¶</a></h1>
+<h1>quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface<a class="headerlink" href="#quantlib-termstructures-volatility-equityfx-black-variance-surface-blackvariancesurface" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BlackVarianceSurface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">reference_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">cal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">dates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector[Real]</span> <span class="pre">strikes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Matrix</span> <span class="pre">black_vol_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Extrapolation</span> <span class="pre">lower_extrap=Extrapolation.InterpolatorDefaultExtrapolation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Extrapolation</span> <span class="pre">upper_extrap=Extrapolation.InterpolatorDefaultExtrapolation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BlackVarianceSurface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">reference_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">cal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">dates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector[Real]</span> <span class="pre">strikes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Matrix</span> <span class="pre">black_vol_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Extrapolation</span> <span class="pre">lower_extrap=Extrapolation.InterpolatorDefaultExtrapolation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Extrapolation</span> <span class="pre">upper_extrap=Extrapolation.InterpolatorDefaultExtrapolation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.termstructures.volatility.equityfx.black_vol_term_structure.BlackVarianceTermStructure.html#quantlib.termstructures.volatility.equityfx.black_vol_term_structure.BlackVarianceTermStructure" title="quantlib.termstructures.volatility.equityfx.black_vol_term_structure.BlackVarianceTermStructure"><code class="xref py py-class docutils literal notranslate"><span class="pre">BlackVarianceTermStructure</span></code></a></p>
 <p>Black volatility surface modelled as variance surface</p>
 <p>This class calculates time/strike dependent Black volatilities
@@ -55,14 +54,14 @@ set_interpolation method.</p>
 <li><p><strong>strikes</strong> (<em>list</em><em> of </em><em>floats</em>) – </p></li>
 <li><p><strong>black_vol_matrix</strong> (<a class="reference internal" href="quantlib.math.matrix.Matrix.html#quantlib.math.matrix.Matrix" title="quantlib.math.matrix.Matrix"><em>Matrix</em></a>) – </p></li>
 <li><p><strong>dc</strong> (<a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><em>DayCounter</em></a>) – </p></li>
-<li><p><strong>lower_extrap</strong> (<em>Extrapolation</em>) – </p></li>
-<li><p><strong>upper_extrap</strong> (<em>Extrapolation</em>) – </p></li>
+<li><p><strong>lower_extrap</strong> (<a class="reference internal" href="quantlib.termstructures.volatility.equityfx.black_variance_surface.Extrapolation.html#quantlib.termstructures.volatility.equityfx.black_variance_surface.Extrapolation" title="quantlib.termstructures.volatility.equityfx.black_variance_surface.Extrapolation"><em>Extrapolation</em></a>) – </p></li>
+<li><p><strong>upper_extrap</strong> (<a class="reference internal" href="quantlib.termstructures.volatility.equityfx.black_variance_surface.Extrapolation.html#quantlib.termstructures.volatility.equityfx.black_variance_surface.Extrapolation" title="quantlib.termstructures.volatility.equityfx.black_variance_surface.Extrapolation"><em>Extrapolation</em></a>) – </p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.__init__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
@@ -119,7 +118,7 @@ set_interpolation method.</p>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.set_interpolation">
-<span class="sig-name descname"><span class="pre">set_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Interpolator</span> <span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.set_interpolation" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Interpolator</span> <span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.equityfx.black_variance_surface.BlackVarianceSurface.set_interpolation" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -167,7 +166,7 @@ set_interpolation method.</p>
   <li><a href="quantlib.termstructures.volatility.equityfx.html">quantlib.termstructures.volatility.equityfx</a><ul>
   <li><a href="quantlib.termstructures.volatility.equityfx.black_variance_surface.html">quantlib.termstructures.volatility.equityfx.black_variance_surface</a><ul>
       <li>Previous: <a href="quantlib.termstructures.volatility.equityfx.black_variance_surface.html" title="previous chapter">quantlib.termstructures.volatility.equityfx.black_variance_surface</a></li>
-      <li>Next: <a href="quantlib.termstructures.volatility.equityfx.black_vol_term_structure.html" title="next chapter">quantlib.termstructures.volatility.equityfx.black_vol_term_structure</a></li>
+      <li>Next: <a href="quantlib.termstructures.volatility.equityfx.black_variance_surface.Extrapolation.html" title="next chapter">quantlib.termstructures.volatility.equityfx.black_variance_surface.Extrapolation</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -203,7 +202,7 @@ set_interpolation method.</p>
       &copy;2011, Didrik Pinte, Patrick Henaff.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |
