@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.instruments.credit_default_swap.cds_maturity &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>quantlib.time.dategeneration.DateGeneration &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=55d23279" />
     <script src="../_static/documentation_options.js?v=a58bc63e"></script>
@@ -14,8 +14,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap" href="quantlib.instruments.credit_default_swap.CreditDefaultSwap.html" />
-    <link rel="prev" title="quantlib.instruments.credit_default_swap" href="quantlib.instruments.credit_default_swap.html" />
+    <link rel="next" title="quantlib.time.daycounter" href="quantlib.time.daycounter.html" />
+    <link rel="prev" title="quantlib.time.dategeneration" href="quantlib.time.dategeneration.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -32,35 +32,53 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-instruments-credit-default-swap-cds-maturity">
-<h1>quantlib.instruments.credit_default_swap.cds_maturity<a class="headerlink" href="#quantlib-instruments-credit-default-swap-cds-maturity" title="Link to this heading">¶</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="quantlib.instruments.credit_default_swap.cds_maturity">
-<span class="sig-name descname"><span class="pre">cds_maturity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">trade_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Period</span> <span class="pre">tenor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DateGeneration</span> <span class="pre">rule</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.credit_default_swap.cds_maturity" title="Link to this definition">¶</a></dt>
-<dd><p>Computes a CDS maturity date.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>trade_date</strong> (<a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><em>Date</em></a>) – </p></li>
-<li><p><strong>tenor</strong> (<a class="reference internal" href="quantlib.time.date.Period.html#quantlib.time.date.Period" title="quantlib.time.date.Period"><em>Period</em></a>) – </p></li>
-<li><p><strong>rule</strong> (<a class="reference internal" href="quantlib.time.dategeneration.DateGeneration.html#quantlib.time.dategeneration.DateGeneration" title="quantlib.time.dategeneration.DateGeneration"><em>DateGeneration</em></a>) – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The maturity date. Returns None when a <cite>rule</cite> of CDS2015 and a <cite>tenor</cite> length of zero fail to yield a valid CDS maturity date.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>datetime.date</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – <ul class="simple">
-<li><p>if the <cite>rule</cite> is not ‘CDS2015’, ‘CDS’ or ‘OldCDS’.
-    - if the <cite>rule</cite> is ‘OldCDS’ and a <cite>tenor</cite> of 0 months is provided. This restriction can be removed if 0M tenor was available before the CDS Big Bang 2009.
-    - if the <cite>tenor</cite> is not a multiple of 3 months. For the avoidance of doubt, a <cite>tenor</cite> of 0 months is supported.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
+  <section id="quantlib-time-dategeneration-dategeneration">
+<h1>quantlib.time.dategeneration.DateGeneration<a class="headerlink" href="#quantlib-time-dategeneration-dategeneration" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="quantlib.time.dategeneration.DateGeneration">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DateGeneration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.dategeneration.DateGeneration" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.time.dategeneration.DateGeneration.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.dategeneration.DateGeneration.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Backward</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Forward</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Zero</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThirdWednesday</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThirdWednesdayInclusive</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Twentieth</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwentiethIMM</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">OldCDS</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CDS</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CDS2015</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </section>
@@ -101,10 +119,10 @@
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="../reference_guide.html">Reference guide</a><ul>
   <li><a href="quantlib.html">quantlib</a><ul>
-  <li><a href="quantlib.instruments.html">quantlib.instruments</a><ul>
-  <li><a href="quantlib.instruments.credit_default_swap.html">quantlib.instruments.credit_default_swap</a><ul>
-      <li>Previous: <a href="quantlib.instruments.credit_default_swap.html" title="previous chapter">quantlib.instruments.credit_default_swap</a></li>
-      <li>Next: <a href="quantlib.instruments.credit_default_swap.CreditDefaultSwap.html" title="next chapter">quantlib.instruments.credit_default_swap.CreditDefaultSwap</a></li>
+  <li><a href="quantlib.time.html">quantlib.time</a><ul>
+  <li><a href="quantlib.time.dategeneration.html">quantlib.time.dategeneration</a><ul>
+      <li>Previous: <a href="quantlib.time.dategeneration.html" title="previous chapter">quantlib.time.dategeneration</a></li>
+      <li>Next: <a href="quantlib.time.daycounter.html" title="next chapter">quantlib.time.daycounter</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -142,7 +160,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |
-      <a href="../_sources/_autosummary/quantlib.instruments.credit_default_swap.cds_maturity.rst.txt"
+      <a href="../_sources/_autosummary/quantlib.time.dategeneration.DateGeneration.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -26,7 +26,6 @@ quantlib.time.schedule
       :toctree:
       :template: custom-class-template.rst
    
-      Rule
       Schedule
    
    

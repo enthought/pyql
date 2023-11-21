@@ -1,0 +1,35 @@
+quantlib.time.dategeneration.DateGeneration
+===========================================
+
+.. currentmodule:: quantlib.time.dategeneration
+
+.. autoclass:: DateGeneration
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~DateGeneration.Backward
+      ~DateGeneration.Forward
+      ~DateGeneration.Zero
+      ~DateGeneration.ThirdWednesday
+      ~DateGeneration.ThirdWednesdayInclusive
+      ~DateGeneration.Twentieth
+      ~DateGeneration.TwentiethIMM
+      ~DateGeneration.OldCDS
+      ~DateGeneration.CDS
+      ~DateGeneration.CDS2015
+
+   
+   
