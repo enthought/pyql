@@ -20,9 +20,9 @@ quantlib.time.calendars.united\_kingdom.Market
    .. autosummary::
 
    
-      ~Market.SETTLEMENT
-      ~Market.EXCHANGE
-      ~Market.METALS
+      ~Market.Settlement
+      ~Market.Exchange
+      ~Market.Metals
 
    
    

@@ -20,7 +20,7 @@ quantlib.time.calendars.canada.Market
    .. autosummary::
 
    
-      ~Market.SETTLEMENT
+      ~Market.Settlement
       ~Market.TSX
 
    
