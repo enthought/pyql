@@ -154,12 +154,12 @@ class IndexManagerTestCase(unittest.TestCase):
     index.add_fixing(Date(2, 2, 2018), 1.78902)
 
     def test_index_manager_methods(self):
-        self.assertIn(self.index.name.upper(), IndexManager.histories())
-        ts = IndexManager.get_history(self.index.name.upper())
+        self.assertIn(self.index.name, IndexManager.histories())
+        ts = IndexManager.get_history(self.index.name)
         self.assertEqual(ts[Date(5, 2, 2018)], 1.79345)
         self.assertEqual(ts[Date(2, 2, 2018)], 1.78902)
         IndexManager.clear_histories()
-        self.assertFalse(IndexManager.get_history(self.index.name.upper()))
+        self.assertFalse(IndexManager.get_history(self.index.name))
 
 if __name__ == '__main__':
     unittest.main()
