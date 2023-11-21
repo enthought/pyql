@@ -87,7 +87,7 @@ def get_extra_compile_args():
         if DEBUG:
             args.append('/Z7')
     else:
-        args = []
+        args = ["-flto=auto"]
 
     return args
 
