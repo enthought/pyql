@@ -14,3 +14,6 @@ if sys.platform == 'win32':
         # If the resource couldn't be found or if pkg_resources doesn't exist set the PATH
         # to include this folder.
         os.environ["PATH"] = os.path.abspath(os.path.dirname(__file__)) + ";" + os.environ["PATH"]
+elif sys.platform == "linux":
+    import ctypes
+    sys.setdlopenflags(2 | ctypes.RTLD_GLOBAL)

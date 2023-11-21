@@ -1,7 +1,6 @@
 from setuptools import setup, find_packages, Extension
 
 from distutils import log
-from distutils.sysconfig import customize_compiler
 
 import glob
 import os
@@ -193,12 +192,6 @@ class pyql_build_ext(build_ext):
     and optionally c runtime dlls to the quantlib package.
     """
     def build_extensions(self):
-        customize_compiler(self.compiler)
-        try:
-            self.compiler.compiler_so.remove("-Wstrict-prototypes")
-        except (AttributeError, ValueError):
-            pass
-        self.compiler.compiler_so = [f for f in self.compiler.compiler_so if 'lto' not in f]
         build_ext.build_extensions(self)
 
     def run(self):
