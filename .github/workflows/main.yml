@@ -69,7 +69,7 @@ jobs:
           path: docs/build/html
 
       - name: Move docs over
-        if: (matrix.python-version == 3.9) && (github.event_name == 'push')
+        if: (matrix.python-version == '3.10') && (github.event_name == 'push')
         run: |
           ls
           cp -r docs/build/html/* gh-pages/
