@@ -1,0 +1,39 @@
+quantlib.instruments.exercise.AmericanExercise
+==============================================
+
+.. currentmodule:: quantlib.instruments.exercise
+
+.. autoclass:: AmericanExercise
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~AmericanExercise.__init__
+      ~AmericanExercise.dates
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~AmericanExercise.American
+      ~AmericanExercise.Bermudan
+      ~AmericanExercise.European
+      ~AmericanExercise.last_date
+      ~AmericanExercise.type
+
+   
+   

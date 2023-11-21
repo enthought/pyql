@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>quantlib.pricingengines.vanilla.analytic_heston_engine.Integration &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=55d23279" />
+    <script src="../_static/documentation_options.js?v=a58bc63e"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="quantlib.pricingengines.vanilla.fdblackscholesvanillaengine" href="quantlib.pricingengines.vanilla.fdblackscholesvanillaengine.html" />
+    <link rel="prev" title="quantlib.pricingengines.vanilla.analytic_heston_engine.ComplexLogFormula" href="quantlib.pricingengines.vanilla.analytic_heston_engine.ComplexLogFormula.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="quantlib-pricingengines-vanilla-analytic-heston-engine-integration">
+<h1>quantlib.pricingengines.vanilla.analytic_heston_engine.Integration<a class="headerlink" href="#quantlib-pricingengines-vanilla-analytic-heston-engine-integration" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="quantlib.pricingengines.vanilla.analytic_heston_engine.Integration">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Integration</span></span><a class="headerlink" href="#quantlib.pricingengines.vanilla.analytic_heston_engine.Integration" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.__init__" title="quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussChebyshev" title="quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussChebyshev"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gaussChebyshev</span></code></a>(Size integration_order=128)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussLaguerre" title="quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussLaguerre"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gaussLaguerre</span></code></a>(Size integration_order=128)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussLegendre" title="quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussLegendre"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gaussLegendre</span></code></a>(Size integration_order=128)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussLobatto" title="quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussLobatto"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gaussLobatto</span></code></a>(Real rel_tolerance, ...)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussChebyshev">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gaussChebyshev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">integration_order=128</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussChebyshev" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussLaguerre">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gaussLaguerre</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">integration_order=128</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussLaguerre" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussLegendre">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gaussLegendre</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">integration_order=128</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussLegendre" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussLobatto">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gaussLobatto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">rel_tolerance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">abs_tolerance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">max_evaluations=10000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.gaussLobatto" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Quantlib cython wrapper</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../users_guide.html">User’s guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference_guide.html">Reference guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../reference_guide.html#reference-documentation-for-the-quantlib-package">Reference documentation for the <code class="xref py py-mod docutils literal notranslate"><span class="pre">quantlib</span></code> package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_guide.html#how-to-wrap-quantlib-classes-with-cython">How to wrap QuantLib classes with cython</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html#documentation">Documentation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../reference_guide.html">Reference guide</a><ul>
+  <li><a href="quantlib.html">quantlib</a><ul>
+  <li><a href="quantlib.pricingengines.html">quantlib.pricingengines</a><ul>
+  <li><a href="quantlib.pricingengines.vanilla.html">quantlib.pricingengines.vanilla</a><ul>
+  <li><a href="quantlib.pricingengines.vanilla.analytic_heston_engine.html">quantlib.pricingengines.vanilla.analytic_heston_engine</a><ul>
+      <li>Previous: <a href="quantlib.pricingengines.vanilla.analytic_heston_engine.ComplexLogFormula.html" title="previous chapter">quantlib.pricingengines.vanilla.analytic_heston_engine.ComplexLogFormula</a></li>
+      <li>Next: <a href="quantlib.pricingengines.vanilla.fdblackscholesvanillaengine.html" title="next chapter">quantlib.pricingengines.vanilla.fdblackscholesvanillaengine</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2011, Didrik Pinte, Patrick Henaff.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="../_sources/_autosummary/quantlib.pricingengines.vanilla.analytic_heston_engine.Integration.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

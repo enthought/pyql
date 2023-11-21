@@ -1,0 +1,30 @@
+quantlib.pricingengines.vanilla.analytic\_heston\_engine.Integration
+====================================================================
+
+.. currentmodule:: quantlib.pricingengines.vanilla.analytic_heston_engine
+
+.. autoclass:: Integration
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Integration.__init__
+      ~Integration.gaussChebyshev
+      ~Integration.gaussLaguerre
+      ~Integration.gaussLegendre
+      ~Integration.gaussLobatto
+   
+   
+
+   
+   
+   

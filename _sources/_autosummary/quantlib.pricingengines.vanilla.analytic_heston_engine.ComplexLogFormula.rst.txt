@@ -1,0 +1,31 @@
+quantlib.pricingengines.vanilla.analytic\_heston\_engine.ComplexLogFormula
+==========================================================================
+
+.. currentmodule:: quantlib.pricingengines.vanilla.analytic_heston_engine
+
+.. autoclass:: ComplexLogFormula
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~ComplexLogFormula.Gatheral
+      ~ComplexLogFormula.BranchCorrection
+      ~ComplexLogFormula.AndersenPiterbarg
+      ~ComplexLogFormula.AndersenPiterbargOptCV
+      ~ComplexLogFormula.AsymptoticChF
+      ~ComplexLogFormula.OptimalCV
+
+   
+   

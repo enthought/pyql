@@ -1,0 +1,26 @@
+quantlib.instruments.payoffs.PercentageStrikePayoff
+===================================================
+
+.. currentmodule:: quantlib.instruments.payoffs
+
+.. autoclass:: PercentageStrikePayoff
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~PercentageStrikePayoff.__init__
+   
+   
+
+   
+   
+   

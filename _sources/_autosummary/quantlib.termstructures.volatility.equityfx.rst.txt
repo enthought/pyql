@@ -32,6 +32,7 @@ quantlib.termstructures.volatility.equityfx
    quantlib.termstructures.volatility.equityfx.black_variance_curve
    quantlib.termstructures.volatility.equityfx.black_variance_surface
    quantlib.termstructures.volatility.equityfx.black_vol_term_structure
+   quantlib.termstructures.volatility.equityfx.heston_black_vol_surface
    quantlib.termstructures.volatility.equityfx.local_vol_surface
    quantlib.termstructures.volatility.equityfx.local_vol_term_structure
 

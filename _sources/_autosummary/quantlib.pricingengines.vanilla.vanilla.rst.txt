@@ -22,7 +22,6 @@ quantlib.pricingengines.vanilla.vanilla
       AnalyticBSMHullWhiteEngine
       AnalyticDividendEuropeanEngine
       AnalyticEuropeanEngine
-      AnalyticHestonEngine
       AnalyticHestonHullWhiteEngine
       BaroneAdesiWhaleyApproximationEngine
       BatesDetJumpEngine

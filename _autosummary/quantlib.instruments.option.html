@@ -14,7 +14,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.instruments.option.AmericanExercise" href="quantlib.instruments.option.AmericanExercise.html" />
+    <link rel="next" title="quantlib.instruments.option.EuropeanOption" href="quantlib.instruments.option.EuropeanOption.html" />
     <link rel="prev" title="quantlib.instruments.make_vanilla_swap.MakeVanillaSwap" href="quantlib.instruments.make_vanilla_swap.MakeVanillaSwap.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -37,26 +37,8 @@
 <p class="rubric">Classes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.option.AmericanExercise.html#quantlib.instruments.option.AmericanExercise" title="quantlib.instruments.option.AmericanExercise"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AmericanExercise</span></code></a>(Date latest_exercise_date, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.option.EuropeanOption.html#quantlib.instruments.option.EuropeanOption" title="quantlib.instruments.option.EuropeanOption"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EuropeanOption</span></code></a>(StrikedTypePayoff payoff, ...)</p></td>
 <td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.option.BermudanExercise.html#quantlib.instruments.option.BermudanExercise" title="quantlib.instruments.option.BermudanExercise"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BermudanExercise</span></code></a>(list dates, ...)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.option.DividendVanillaOption.html#quantlib.instruments.option.DividendVanillaOption" title="quantlib.instruments.option.DividendVanillaOption"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DividendVanillaOption</span></code></a>(...)</p></td>
-<td><p>Single-asset vanilla option (no barriers) with discrete dividends.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.option.EuropeanExercise.html#quantlib.instruments.option.EuropeanExercise" title="quantlib.instruments.option.EuropeanExercise"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EuropeanExercise</span></code></a>(Date exercise_date)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.option.EuropeanOption.html#quantlib.instruments.option.EuropeanOption" title="quantlib.instruments.option.EuropeanOption"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EuropeanOption</span></code></a>(PlainVanillaPayoff payoff, ...)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.option.Exercise.html#quantlib.instruments.option.Exercise" title="quantlib.instruments.option.Exercise"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Exercise</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.option.ExerciseType.html#quantlib.instruments.option.ExerciseType" title="quantlib.instruments.option.ExerciseType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExerciseType</span></code></a>(value)</p></td>
-<td><p>An enumeration.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.option.OneAssetOption.html#quantlib.instruments.option.OneAssetOption" title="quantlib.instruments.option.OneAssetOption"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneAssetOption</span></code></a></p></td>
 <td><p></p></td>
@@ -67,7 +49,7 @@
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.option.OptionType.html#quantlib.instruments.option.OptionType" title="quantlib.instruments.option.OptionType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OptionType</span></code></a>(value)</p></td>
 <td><p>An enumeration.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.option.VanillaOption.html#quantlib.instruments.option.VanillaOption" title="quantlib.instruments.option.VanillaOption"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VanillaOption</span></code></a>(PlainVanillaPayoff payoff, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.option.VanillaOption.html#quantlib.instruments.option.VanillaOption" title="quantlib.instruments.option.VanillaOption"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VanillaOption</span></code></a>(StrikedTypePayoff payoff, ...)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -112,7 +94,7 @@
   <li><a href="quantlib.html">quantlib</a><ul>
   <li><a href="quantlib.instruments.html">quantlib.instruments</a><ul>
       <li>Previous: <a href="quantlib.instruments.make_vanilla_swap.MakeVanillaSwap.html" title="previous chapter">quantlib.instruments.make_vanilla_swap.MakeVanillaSwap</a></li>
-      <li>Next: <a href="quantlib.instruments.option.AmericanExercise.html" title="next chapter">quantlib.instruments.option.AmericanExercise</a></li>
+      <li>Next: <a href="quantlib.instruments.option.EuropeanOption.html" title="next chapter">quantlib.instruments.option.EuropeanOption</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

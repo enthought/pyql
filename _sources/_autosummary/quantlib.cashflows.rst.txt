@@ -36,6 +36,7 @@ quantlib.cashflows
    quantlib.cashflows.coupon
    quantlib.cashflows.coupon_pricer
    quantlib.cashflows.cpi_coupon_pricer
+   quantlib.cashflows.dividend
    quantlib.cashflows.fixed_rate_coupon
    quantlib.cashflows.floating_rate_coupon
    quantlib.cashflows.ibor_coupon

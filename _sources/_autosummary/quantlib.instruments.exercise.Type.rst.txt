@@ -1,0 +1,28 @@
+quantlib.instruments.exercise.Type
+==================================
+
+.. currentmodule:: quantlib.instruments.exercise
+
+.. autoclass:: Type
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Type.American
+      ~Type.Bermudan
+      ~Type.European
+
+   
+   

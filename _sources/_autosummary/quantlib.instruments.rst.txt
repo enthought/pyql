@@ -32,6 +32,7 @@ quantlib.instruments
    quantlib.instruments.asian_options
    quantlib.instruments.bonds
    quantlib.instruments.credit_default_swap
+   quantlib.instruments.exercise
    quantlib.instruments.implied_volatility
    quantlib.instruments.make_cds
    quantlib.instruments.make_cms

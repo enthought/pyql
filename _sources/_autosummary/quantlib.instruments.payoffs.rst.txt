@@ -20,6 +20,7 @@ quantlib.instruments.payoffs
       :template: custom-class-template.rst
    
       Payoff
+      PercentageStrikePayoff
       PlainVanillaPayoff
       StrikedTypePayoff
    

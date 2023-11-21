@@ -20,8 +20,8 @@ quantlib.instruments.option.OptionType
    .. autosummary::
 
    
-      ~OptionType.Call
       ~OptionType.Put
+      ~OptionType.Call
 
    
    
