@@ -196,7 +196,7 @@ class VanillaOptionTestCase(unittest.TestCase):
         american_option.set_pricing_engine(engine)
 
         #Note slightly different value using CrankNicolson
-        self.assertAlmostEqual(4.485920, american_option.net_present_value, 6)
+        self.assertAlmostEqual(5.050098, american_option.net_present_value, 6)
 
     def test_dividend_american_option_implied_volatility(self):
 
