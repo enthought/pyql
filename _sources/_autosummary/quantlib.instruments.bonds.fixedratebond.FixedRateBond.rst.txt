@@ -1,0 +1,50 @@
+quantlib.instruments.bonds.fixedratebond.FixedRateBond
+======================================================
+
+.. currentmodule:: quantlib.instruments.bonds.fixedratebond
+
+.. autoclass:: FixedRateBond
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FixedRateBond.__init__
+      ~FixedRateBond.accrued_amount
+      ~FixedRateBond.bond_yield
+      ~FixedRateBond.notional
+      ~FixedRateBond.set_pricing_engine
+      ~FixedRateBond.settlement_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~FixedRateBond.calendar
+      ~FixedRateBond.cashflows
+      ~FixedRateBond.clean_price
+      ~FixedRateBond.dirty_price
+      ~FixedRateBond.is_expired
+      ~FixedRateBond.issue_date
+      ~FixedRateBond.maturity_date
+      ~FixedRateBond.net_present_value
+      ~FixedRateBond.npv
+      ~FixedRateBond.settlement_days
+      ~FixedRateBond.start_date
+      ~FixedRateBond.valuation_date
+
+   
+   

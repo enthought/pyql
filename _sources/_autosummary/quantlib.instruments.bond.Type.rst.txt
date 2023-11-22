@@ -1,0 +1,27 @@
+quantlib.instruments.bond.Type
+==============================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoclass:: Type
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Type.Dirty
+      ~Type.Clean
+
+   
+   

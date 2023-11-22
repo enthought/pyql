@@ -21,8 +21,8 @@ quantlib.compounding.Compounding
 
    
       ~Compounding.Simple
-      ~Compounding.Compounded
       ~Compounding.Continuous
+      ~Compounding.Compounded
       ~Compounding.SimpleThenCompounded
       ~Compounding.CompoundedThenSimple
 

@@ -13,19 +13,6 @@ quantlib.instruments.bonds
 
    
    
-   .. rubric:: Classes
-
-   .. autosummary::
-      :toctree:
-      :template: custom-class-template.rst
-   
-      Bond
-      CPIBond
-      FixedRateBond
-      FloatingRateBond
-      InterpolationType
-      ZeroCouponBond
-   
    
 
    
@@ -33,4 +20,16 @@ quantlib.instruments.bonds
    
 
 
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   quantlib.instruments.bonds.cpibond
+   quantlib.instruments.bonds.fixedratebond
+   quantlib.instruments.bonds.floatingratebond
+   quantlib.instruments.bonds.zerocouponbond
 

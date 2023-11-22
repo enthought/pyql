@@ -1,0 +1,28 @@
+quantlib.instruments.bonds.cpibond.InterpolationType
+====================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. autoclass:: InterpolationType
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~InterpolationType.AsIndex
+      ~InterpolationType.Flat
+      ~InterpolationType.Linear
+
+   
+   

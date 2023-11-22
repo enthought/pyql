@@ -14,7 +14,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol" href="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.html" />
+    <link rel="next" title="quantlib.termstructures.volatility.swaption.sabr_swaption_volatility_cube" href="quantlib.termstructures.volatility.swaption.sabr_swaption_volatility_cube.html" />
     <link rel="prev" title="quantlib.termstructures.volatility.smilesection.SmileSection" href="quantlib.termstructures.volatility.smilesection.SmileSection.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -37,16 +37,16 @@
 <p class="rubric">Modules</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.html#module-quantlib.termstructures.volatility.swaption.spreaded_swaption_vol" title="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantlib.termstructures.volatility.swaption.spreaded_swaption_vol</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.volatility.swaption.sabr_swaption_volatility_cube.html#module-quantlib.termstructures.volatility.swaption.sabr_swaption_volatility_cube" title="quantlib.termstructures.volatility.swaption.sabr_swaption_volatility_cube"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantlib.termstructures.volatility.swaption.sabr_swaption_volatility_cube</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.volatility.swaption.swaption_constant_vol.html#module-quantlib.termstructures.volatility.swaption.swaption_constant_vol" title="quantlib.termstructures.volatility.swaption.swaption_constant_vol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantlib.termstructures.volatility.swaption.swaption_constant_vol</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.html#module-quantlib.termstructures.volatility.swaption.spreaded_swaption_vol" title="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantlib.termstructures.volatility.swaption.spreaded_swaption_vol</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.volatility.swaption.swaption_vol_cube.html#module-quantlib.termstructures.volatility.swaption.swaption_vol_cube" title="quantlib.termstructures.volatility.swaption.swaption_vol_cube"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantlib.termstructures.volatility.swaption.swaption_vol_cube</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.volatility.swaption.swaption_constant_vol.html#module-quantlib.termstructures.volatility.swaption.swaption_constant_vol" title="quantlib.termstructures.volatility.swaption.swaption_constant_vol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantlib.termstructures.volatility.swaption.swaption_constant_vol</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.volatility.swaption.swaption_vol_cube1.html#module-quantlib.termstructures.volatility.swaption.swaption_vol_cube1" title="quantlib.termstructures.volatility.swaption.swaption_vol_cube1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantlib.termstructures.volatility.swaption.swaption_vol_cube1</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.volatility.swaption.swaption_vol_cube.html#module-quantlib.termstructures.volatility.swaption.swaption_vol_cube" title="quantlib.termstructures.volatility.swaption.swaption_vol_cube"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantlib.termstructures.volatility.swaption.swaption_vol_cube</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.volatility.swaption.swaption_vol_discrete.html#module-quantlib.termstructures.volatility.swaption.swaption_vol_discrete" title="quantlib.termstructures.volatility.swaption.swaption_vol_discrete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantlib.termstructures.volatility.swaption.swaption_vol_discrete</span></code></a></p></td>
@@ -101,7 +101,7 @@
   <li><a href="quantlib.termstructures.html">quantlib.termstructures</a><ul>
   <li><a href="quantlib.termstructures.volatility.html">quantlib.termstructures.volatility</a><ul>
       <li>Previous: <a href="quantlib.termstructures.volatility.smilesection.SmileSection.html" title="previous chapter">quantlib.termstructures.volatility.smilesection.SmileSection</a></li>
-      <li>Next: <a href="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.html" title="next chapter">quantlib.termstructures.volatility.swaption.spreaded_swaption_vol</a></li>
+      <li>Next: <a href="quantlib.termstructures.volatility.swaption.sabr_swaption_volatility_cube.html" title="next chapter">quantlib.termstructures.volatility.swaption.sabr_swaption_volatility_cube</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

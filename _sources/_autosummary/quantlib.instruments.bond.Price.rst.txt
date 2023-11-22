@@ -1,0 +1,35 @@
+quantlib.instruments.bond.Price
+===============================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoclass:: Price
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Price.__init__
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Price.Clean
+      ~Price.Dirty
+
+   
+   

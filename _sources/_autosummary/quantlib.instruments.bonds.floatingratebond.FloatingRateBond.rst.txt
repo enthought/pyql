@@ -1,0 +1,50 @@
+quantlib.instruments.bonds.floatingratebond.FloatingRateBond
+============================================================
+
+.. currentmodule:: quantlib.instruments.bonds.floatingratebond
+
+.. autoclass:: FloatingRateBond
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FloatingRateBond.__init__
+      ~FloatingRateBond.accrued_amount
+      ~FloatingRateBond.bond_yield
+      ~FloatingRateBond.notional
+      ~FloatingRateBond.set_pricing_engine
+      ~FloatingRateBond.settlement_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~FloatingRateBond.calendar
+      ~FloatingRateBond.cashflows
+      ~FloatingRateBond.clean_price
+      ~FloatingRateBond.dirty_price
+      ~FloatingRateBond.is_expired
+      ~FloatingRateBond.issue_date
+      ~FloatingRateBond.maturity_date
+      ~FloatingRateBond.net_present_value
+      ~FloatingRateBond.npv
+      ~FloatingRateBond.settlement_days
+      ~FloatingRateBond.start_date
+      ~FloatingRateBond.valuation_date
+
+   
+   

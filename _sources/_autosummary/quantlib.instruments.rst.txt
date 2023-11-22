@@ -30,6 +30,7 @@ quantlib.instruments
 
    quantlib.instruments.api
    quantlib.instruments.asian_options
+   quantlib.instruments.bond
    quantlib.instruments.bonds
    quantlib.instruments.credit_default_swap
    quantlib.instruments.exercise
