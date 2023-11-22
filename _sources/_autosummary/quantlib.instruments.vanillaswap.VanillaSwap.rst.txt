@@ -35,6 +35,8 @@ quantlib.instruments.vanillaswap.VanillaSwap
    .. autosummary::
 
    
+      ~VanillaSwap.Payer
+      ~VanillaSwap.Receiver
       ~VanillaSwap.fair_rate
       ~VanillaSwap.fair_spread
       ~VanillaSwap.fixed_day_count

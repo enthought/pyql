@@ -30,6 +30,7 @@ quantlib.termstructures
 
    quantlib.termstructures.credit
    quantlib.termstructures.default_term_structure
+   quantlib.termstructures.helpers
    quantlib.termstructures.inflation
    quantlib.termstructures.inflation_term_structure
    quantlib.termstructures.vol_term_structure

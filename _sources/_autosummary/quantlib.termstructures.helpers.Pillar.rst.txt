@@ -1,0 +1,28 @@
+quantlib.termstructures.helpers.Pillar
+======================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. autoclass:: Pillar
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Pillar.MaturityDate
+      ~Pillar.LastRelevantDate
+      ~Pillar.CustomDate
+
+   
+   

@@ -1,0 +1,29 @@
+quantlib.instruments.swaption.Method
+====================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoclass:: Method
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Method.PhysicalOTC
+      ~Method.PhysicalCleared
+      ~Method.CollateralizedCashPrice
+      ~Method.ParYieldCurve
+
+   
+   

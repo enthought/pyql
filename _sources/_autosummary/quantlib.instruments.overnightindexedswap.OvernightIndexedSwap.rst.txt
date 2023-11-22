@@ -35,6 +35,8 @@ quantlib.instruments.overnightindexedswap.OvernightIndexedSwap
    .. autosummary::
 
    
+      ~OvernightIndexedSwap.Payer
+      ~OvernightIndexedSwap.Receiver
       ~OvernightIndexedSwap.averaging_method
       ~OvernightIndexedSwap.fair_rate
       ~OvernightIndexedSwap.fair_spread

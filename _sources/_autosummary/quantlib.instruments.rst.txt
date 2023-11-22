@@ -33,6 +33,7 @@ quantlib.instruments
    quantlib.instruments.bonds
    quantlib.instruments.credit_default_swap
    quantlib.instruments.exercise
+   quantlib.instruments.futures
    quantlib.instruments.implied_volatility
    quantlib.instruments.make_cds
    quantlib.instruments.make_cms

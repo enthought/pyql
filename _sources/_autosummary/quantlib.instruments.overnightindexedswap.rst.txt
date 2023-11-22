@@ -20,7 +20,6 @@ quantlib.instruments.overnightindexedswap
       :template: custom-class-template.rst
    
       OvernightIndexedSwap
-      Type
    
    
 

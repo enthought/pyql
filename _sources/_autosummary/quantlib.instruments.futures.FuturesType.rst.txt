@@ -1,0 +1,27 @@
+quantlib.instruments.futures.FuturesType
+========================================
+
+.. currentmodule:: quantlib.instruments.futures
+
+.. autoclass:: FuturesType
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~FuturesType.IMM
+      ~FuturesType.ASX
+
+   
+   

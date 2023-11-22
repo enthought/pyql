@@ -1,7 +1,7 @@
-quantlib.instruments.swap
-=========================
+quantlib.default
+================
 
-.. automodule:: quantlib.instruments.swap
+.. automodule:: quantlib.default
 
    
    
@@ -19,8 +19,7 @@ quantlib.instruments.swap
       :toctree:
       :template: custom-class-template.rst
    
-      Swap
-      Type
+      Protection
    
    
 

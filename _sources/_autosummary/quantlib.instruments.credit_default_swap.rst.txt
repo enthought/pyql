@@ -28,7 +28,6 @@ quantlib.instruments.credit\_default\_swap
    
       CreditDefaultSwap
       PricingModel
-      Side
    
    
 

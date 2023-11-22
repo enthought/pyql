@@ -1,7 +1,7 @@
-quantlib.instruments.swap
-=========================
+quantlib.termstructures.helpers
+===============================
 
-.. automodule:: quantlib.instruments.swap
+.. automodule:: quantlib.termstructures.helpers
 
    
    
@@ -19,8 +19,7 @@ quantlib.instruments.swap
       :toctree:
       :template: custom-class-template.rst
    
-      Swap
-      Type
+      Pillar
    
    
 

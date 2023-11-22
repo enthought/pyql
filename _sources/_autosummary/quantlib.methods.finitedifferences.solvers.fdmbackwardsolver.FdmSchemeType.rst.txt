@@ -26,6 +26,9 @@ quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.FdmSchemeType
       ~FdmSchemeType.ModifiedCraigSneydType
       ~FdmSchemeType.ImplicitEulerType
       ~FdmSchemeType.ExplicitEulerType
+      ~FdmSchemeType.MethodOfLinesType
+      ~FdmSchemeType.TrBDF2Type
+      ~FdmSchemeType.CrankNicolsonType
 
    
    
