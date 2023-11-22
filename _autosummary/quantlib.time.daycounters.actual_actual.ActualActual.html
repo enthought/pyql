@@ -36,18 +36,30 @@
 <h1>quantlib.time.daycounters.actual_actual.ActualActual<a class="headerlink" href="#quantlib-time-daycounters-actual-actual-actualactual" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.time.daycounters.actual_actual.ActualActual">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ActualActual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Convention</span> <span class="pre">convention=ISDA</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.daycounters.actual_actual.ActualActual" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ActualActual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Convention</span> <span class="pre">convention=Convention.ISDA</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.daycounters.actual_actual.ActualActual" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.time.daycounters.actual_actual.ActualActual.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.daycounters.actual_actual.ActualActual.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.daycounters.actual_actual.ActualActual.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Actual/Actual day count</p>
+<p>The day count can be calculated according to:</p>
+<ul class="simple">
+<li><p>the ISDA convention, also known as “Actual/Actual (Historical)”,
+“Actual/Actual”, “Act/Act”, and according to ISDA also “Actual/365”,
+“Act/365”, and “A/365”;</p></li>
+<li><p>the ISMA and US Treasury convention, also known as
+“Actual/Actual (Bond)”;</p></li>
+<li><p>the AFB convention, also known as “Actual/Actual (Euro)”.</p></li>
+</ul>
+<p>For more details, refer to
+<a class="reference external" href="https://www.isda.org/a/pIJEE/The-Actual-Actual-Day-Count-Fraction-1999.pdf">https://www.isda.org/a/pIJEE/The-Actual-Actual-Day-Count-Fraction-1999.pdf</a></p>
+</dd></dl>
 
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.time.daycounters.actual_actual.ActualActual.__init__" title="quantlib.time.daycounters.actual_actual.ActualActual.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.time.daycounters.actual_actual.ActualActual.__init__" title="quantlib.time.daycounters.actual_actual.ActualActual.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a></p></td>
+<td><p>Actual/Actual day count</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">day_count</span></code>(self, Date date1, Date date2)</p></td>
 <td><p>Returns the number of days between two dates.</p></td>
