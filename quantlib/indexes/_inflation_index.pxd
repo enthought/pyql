@@ -19,7 +19,7 @@ from quantlib.time._period cimport Period, Frequency
 
 cimport quantlib.termstructures._inflation_term_structure as _its
 
-cdef extern from 'ql/indexes/inflationindex.hpp' namespace 'QuantLib':
+cdef extern from 'ql/indexes/inflationindex.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass CPI:
         enum InterpolationType:
