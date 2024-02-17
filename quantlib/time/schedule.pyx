@@ -9,10 +9,11 @@ cimport cython
 import numpy as np
 cimport numpy as np
 np.import_array()
-from .businessdayconvention cimport Following, BusinessDayConvention
+from .businessdayconvention cimport Following, Unadjusted, BusinessDayConvention
 from .dategeneration cimport DateGeneration
 
 from .calendar cimport Calendar
+from .calendars.null_calendar cimport NullCalendar
 from .date cimport date_from_qldate, Date, Period
 
 import warnings
@@ -25,51 +26,57 @@ cdef class Schedule:
             BusinessDayConvention business_day_convention=Following,
             BusinessDayConvention termination_date_convention=Following,
             DateGeneration date_generation_rule=DateGeneration.Forward, bool end_of_month=False,
-            from_classmethod=False
            ):
 
-        if not from_classmethod:
-            warnings.warn("Deprecated: use class method from_rule instead",
-                DeprecationWarning)
+        warnings.warn("Deprecated: use class method from_rule instead",
+            DeprecationWarning)
 
-            self._thisptr = new _schedule.Schedule(
-                deref(effective_date._thisptr),
-                deref(termination_date._thisptr),
-                deref(tenor._thisptr),
-                calendar._thisptr,
-                business_day_convention,
-                termination_date_convention,
-                date_generation_rule, end_of_month,
-                _date.Date(), _date.Date()
-            )
-        else:
-            pass
+        self._thisptr = new _schedule.Schedule(
+            deref(effective_date._thisptr),
+            deref(termination_date._thisptr),
+            deref(tenor._thisptr),
+            calendar._thisptr,
+            business_day_convention,
+            termination_date_convention,
+            date_generation_rule, end_of_month,
+            _date.Date(), _date.Date()
+        )
 
     @classmethod
-    def from_dates(cls, dates, Calendar calendar not None,
-            BusinessDayConvention business_day_convention=Following,
-            BusinessDayConvention termination_date_convention=Following,
+    def from_dates(cls, dates, Calendar calendar=NullCalendar(),
+            BusinessDayConvention business_day_convention=Unadjusted,
+            termination_date_convention=None,
             Period tenor=None,
-            DateGeneration date_generation_rule=DateGeneration.Forward, bool end_of_month=False,
+            rule=None,
+            end_of_month=None,
             vector[bool] is_regular=[]):
         # convert lists to vectors
-        cdef vector[_date.Date] _dates = vector[_date.Date]()
+        cdef vector[_date.Date] _dates
+        cdef Date date
         for date in dates:
-            _dates.push_back(deref((<Date>date)._thisptr))
+            _dates.push_back(deref(date._thisptr))
 
-        cdef Schedule instance = cls.__new__(cls)
+        cdef Schedule instance = Schedule.__new__(Schedule)
+        cdef optional[BusinessDayConvention] opt_termination_convention
         cdef optional[_calendar.Period] opt_tenor
+        cdef optional[DateGeneration] opt_rule
+        cdef optional[bool] opt_end_of_month
         if tenor is not None:
             opt_tenor = deref(tenor._thisptr)
-        cdef optional[BusinessDayConvention] opt_termination_convention = termination_date_convention
+        if termination_date_convention is not None:
+            opt_termination_convention = <BusinessDayConvention>termination_date_convention
+        if rule is not None:
+            opt_rule = <DateGeneration>rule
+        if end_of_month is not None:
+            opt_end_of_month = <bool>end_of_month
         instance._thisptr = new _schedule.Schedule(
             _dates,
             calendar._thisptr,
             business_day_convention,
             opt_termination_convention,
             opt_tenor,
-            optional[DateGeneration](date_generation_rule),
-            optional[bool](end_of_month),
+            opt_rule,
+            opt_end_of_month,
             is_regular
         )
 
@@ -81,10 +88,10 @@ cdef class Schedule:
                   Period tenor not None, Calendar calendar not None,
                   BusinessDayConvention business_day_convention=Following,
                   BusinessDayConvention termination_date_convention=Following,
-                  DateGeneration date_generation_rule=DateGeneration.Forward, bool end_of_month=False,
+                  DateGeneration rule=DateGeneration.Forward, bool end_of_month=False,
                   Date first_date=Date(), Date next_to_lastdate=Date()):
 
-        cdef Schedule instance = cls.__new__(cls)
+        cdef Schedule instance = Schedule.__new__(Schedule)
         instance._thisptr = new _schedule.Schedule(
             deref(effective_date._thisptr),
             deref(termination_date._thisptr),
@@ -92,7 +99,7 @@ cdef class Schedule:
             calendar._thisptr,
             business_day_convention,
             termination_date_convention,
-            date_generation_rule, end_of_month,
+            rule, end_of_month,
             deref(first_date._thisptr), deref(next_to_lastdate._thisptr)
             )
         return instance
