@@ -9,13 +9,12 @@
 include '../../types.pxi'
 from cython.operator cimport dereference as deref
 
-from quantlib.time._period cimport Frequency
+from quantlib.time.frequency cimport Frequency, Annual
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.date cimport Date, date_from_qldate
 
 from quantlib.compounding cimport Compounding
-from quantlib.time.date import Annual
 
 from quantlib.handle cimport shared_ptr, RelinkableHandle, Handle
 from . cimport _flat_forward as ffwd
@@ -52,7 +51,7 @@ cdef class FlatForward(YieldTermStructure):
                  DayCounter daycounter=None,
                  int settlement_days=0, Calendar calendar=None,
                  Compounding compounding=Compounding.Continuous,
-                 frequency=Annual):
+                 Frequency frequency=Annual):
 
         #local cdef's
         cdef shared_ptr[ffwd.YieldTermStructure] _forward
@@ -70,7 +69,7 @@ cdef class FlatForward(YieldTermStructure):
                     (<Quote>forward).handle(),
                     deref(daycounter._thisptr),
                     compounding,
-                    <Frequency>frequency
+                    frequency
                 ))
             else:
                 _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
@@ -78,7 +77,7 @@ cdef class FlatForward(YieldTermStructure):
                         <ffwd.Rate>forward,
                         deref(daycounter._thisptr),
                         compounding,
-                        <Frequency>frequency
+                        frequency
                 ))
         elif settlement_days is not None and \
             calendar is not None:
@@ -90,7 +89,7 @@ cdef class FlatForward(YieldTermStructure):
                         (<Quote>forward).handle(),
                         deref(daycounter._thisptr),
                         compounding,
-                        <Frequency>frequency
+                        frequency
                 ))
             else:
                 _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
@@ -99,7 +98,7 @@ cdef class FlatForward(YieldTermStructure):
                         <Real>forward,
                         deref(daycounter._thisptr),
                         compounding,
-                        <Frequency>frequency
+                        frequency
                 ))
         else:
             raise ValueError('Invalid constructor')

@@ -1,7 +1,7 @@
 from libcpp.string cimport string
 
-cdef extern from 'ql/time/frequency.hpp' namespace "QuantLib":
-    cdef enum Frequency:
+cdef extern from 'ql/time/frequency.hpp' namespace "QuantLib" nogil:
+    cpdef enum Frequency:
         NoFrequency      = -1 # null frequency
         Once             = 0  # only once, e.g., a zero-coupon
         Annual           = 1  # once a year

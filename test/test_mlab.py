@@ -13,7 +13,7 @@ import quantlib.reference.data_structures as ds
 from quantlib.termstructures.yields.api import (
     PiecewiseYieldCurve, BootstrapTrait )
 from quantlib.math.interpolation import LogLinear
-from quantlib.time.api import ActualActual, ISDA
+from quantlib.time.api import ActualActual, ISDA, Frequency
 from quantlib.util.converter import pydate_to_qldate
 
 
@@ -117,9 +117,9 @@ class MLabTestCase(unittest.TestCase):
         (price, ac) = bndprice(bond_yield=Yield, coupon_rate=CouponRate,
                            pricing_date='18-Jan-1997',
                            maturity_date=Maturity,
-                           period='Semiannual',
+                           period=Frequency['Semiannual'],
                            basis='Actual/Actual (Bond)',
-                           compounding_frequency='Semiannual')
+                           compounding_frequency=Frequency['Semiannual'])
 
         # Matlab values
         ml_price = [104.8106, 99.9951, 95.4384]
@@ -141,7 +141,7 @@ class MLabTestCase(unittest.TestCase):
         res = cfamounts(coupon_rate=CouponRate,
                            pricing_date='29-oct-1993',
                            maturity_date=Maturity,
-                           period='Semiannual',
+                           period=Frequency['Semiannual'],
                            basis='Actual/Actual (Bond)')
 
         for cf, dt in zip(*res):

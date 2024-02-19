@@ -4,13 +4,12 @@ from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from libcpp.vector cimport vector
 
-from quantlib.time._period cimport Frequency
+from quantlib.time.frequency cimport Frequency, Annual
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.date cimport Date, date_from_qldate, Period
 
 from quantlib.compounding cimport Compounding
-from quantlib.time.date import Annual
 
 cimport quantlib.termstructures._yield_term_structure as _yts
 cimport quantlib._quote as _qt
@@ -56,7 +55,7 @@ cdef class YieldTermStructure(Observable):
                 self.as_ptr().disableExtrapolation()
 
     def zero_rate(self, d, DayCounter day_counter=None,
-                  Compounding compounding=Compounding.Continuous, int frequency=Annual,
+                  Compounding compounding=Compounding.Continuous, Frequency frequency=Annual,
                   bool extrapolate=False):
         """ Returns the implied zero-yield rate for the given date.
 

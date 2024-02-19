@@ -33,16 +33,16 @@ from .daycounters.actual_actual import (ActualActual, ISMA, ISDA, Bond,
 
 
 from .date import (
-    Date, Months, Period, today, Years, Days, Annual, Semiannual, Weeks,
-    Quarterly, Frequency,
+    Date, Months, Period, today, Years, Days, Weeks,
     January, February, March, April, May, June, July, August,
     September, November, December,
     Jan, Feb, Mar, Apr, Jun, Jul, Aug, Sep, Oct, Nov, Dec,
-    Daily, Monthly, Annual, NoFrequency, Once,
     pydate_from_qldate, qldate_from_pydate,
     local_date_time, universal_date_time
 
 )
-
+from .frequency import (
+    Frequency, Daily, Monthly, Quarterly, Semiannual, Annual, NoFrequency, Once
+)
 from .schedule import Schedule
 from .dategeneration import DateGeneration
