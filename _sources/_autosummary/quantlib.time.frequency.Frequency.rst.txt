@@ -1,0 +1,38 @@
+quantlib.time.frequency.Frequency
+=================================
+
+.. currentmodule:: quantlib.time.frequency
+
+.. autoclass:: Frequency
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Frequency.NoFrequency
+      ~Frequency.Once
+      ~Frequency.Annual
+      ~Frequency.Semiannual
+      ~Frequency.EveryFourthMonth
+      ~Frequency.Quarterly
+      ~Frequency.Bimonthly
+      ~Frequency.Monthly
+      ~Frequency.EveryFourthWeek
+      ~Frequency.Biweekly
+      ~Frequency.Weekly
+      ~Frequency.Daily
+      ~Frequency.OtherFrequency
+
+   
+   

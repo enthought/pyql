@@ -16,7 +16,6 @@ quantlib.time.date
    
       days
       end_of_month
-      frequency_to_str
       is_end_of_month
       is_leap
       local_date_time
@@ -27,7 +26,6 @@ quantlib.time.date
       nth_weekday
       pydate_from_qldate
       qldate_from_pydate
-      str_to_frequency
       today
       universal_date_time
       weeks
@@ -44,7 +42,6 @@ quantlib.time.date
       :template: custom-class-template.rst
    
       Date
-      Frequency
       Month
       Period
       TimeUnit

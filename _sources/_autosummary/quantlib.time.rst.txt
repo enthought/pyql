@@ -37,6 +37,7 @@ quantlib.time
    quantlib.time.dategeneration
    quantlib.time.daycounter
    quantlib.time.daycounters
+   quantlib.time.frequency
    quantlib.time.imm
    quantlib.time.schedule
 
