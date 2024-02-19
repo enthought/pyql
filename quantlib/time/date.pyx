@@ -62,30 +62,6 @@ cpdef enum Weekday:
     Fri = _date.Fri
     Sat = _date.Sat
 
-cpdef enum Frequency:
-    NoFrequency      = frequency.NoFrequency # null frequency
-    Once             = frequency.Once  # only once, e.g., a zero-coupon
-    Annual           = frequency.Annual  # once a year
-    Semiannual       = frequency.Semiannual  # twice a year
-    EveryFourthMonth = frequency.EveryFourthMonth  # every fourth month
-    Quarterly        = frequency.Quarterly  # every third month
-    Bimonthly        = frequency.Bimonthly  # every second month
-    Monthly          = frequency.Monthly # once a month
-    EveryFourthWeek  = frequency.EveryFourthWeek # every fourth week
-    Biweekly         = frequency.Biweekly # every second week
-    Weekly           = frequency.Weekly # once a week
-    Daily            = frequency.Daily # once a day
-    OtherFrequency   = frequency.OtherFrequency # some other unknown frequency
-
-def frequency_to_str(Frequency f):
-    """ Converts a PyQL Frequency to a human readable string. """
-    cdef frequency.stringstream ss
-    ss << <frequency.Frequency>f
-    return ss.str().decode()
-
-def str_to_frequency(str name):
-    """ Converts a string to a PyQL Frequency. """
-    return Frequency[name]
 
 class TimeUnit(IntEnum):
     Days         = _period.Days #: Days = 0
@@ -141,7 +117,7 @@ cdef class Period:
 
     property frequency:
         def __get__(self):
-            return Frequency(self._thisptr.get().frequency())
+            return self._thisptr.get().frequency()
 
     def normalize(self):
         '''Normalises the units.'''

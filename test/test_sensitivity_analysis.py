@@ -7,12 +7,12 @@ from quantlib.time.calendars.united_states import UnitedStates, Market
 from quantlib.instruments.option import VanillaOption, OptionType
 from quantlib.instruments.exercise import EuropeanExercise
 from quantlib.time.date import (
-    Date, Days, Semiannual, January,
-    Period, May, Annual, Years)
+    Date, Days, January,
+    Period, May, Years)
 from quantlib.time.api import (Months, ISDA,
                                ModifiedFollowing, Unadjusted, Actual360,
                                Thirty360, ActualActual,
-                               Actual365Fixed)
+                               Actual365Fixed, Semiannual, Annual)
 from quantlib.time.daycounters.actual_actual import Bond
 from quantlib.time.schedule import Schedule
 from quantlib.time.dategeneration import DateGeneration

@@ -10,9 +10,9 @@
 import unittest
 
 from quantlib.indexes.inflation.australia import AUCPI
-from quantlib.time.date import Monthly, Months, Period, Date
+from quantlib.time.date import Months, Period, Date
 from quantlib.time.api import ( UnitedKingdom, ModifiedFollowing, ActualActual,
-                                Schedule, Actual365Fixed, Unadjusted )
+                                Schedule, Actual365Fixed, Unadjusted, Monthly )
 from quantlib.time.dategeneration import DateGeneration
 from quantlib.instruments.bonds.cpibond import CPIBond, InterpolationType
 from quantlib.pricingengines.bond import DiscountingBondEngine

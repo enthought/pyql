@@ -10,9 +10,10 @@ from quantlib.time.calendars.united_states import (
 from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.time.calendars.target import TARGET
 from quantlib.compounding import Compounded, Continuous
+from quantlib.time.frequency import Quarterly, Semiannual, Annual
 from quantlib.time.date import (
-    Date, Days, Semiannual, January, August, Period, March, February,Oct,Nov,
-    Jul, Annual, Years, Quarterly
+    Date, Days, January, August, Period, March, February,Oct,Nov,
+    Jul, Years
 )
 from quantlib.time.daycounters.simple import Actual365Fixed, Actual360
 from quantlib.time.daycounters.actual_actual import ActualActual, Bond, ISMA

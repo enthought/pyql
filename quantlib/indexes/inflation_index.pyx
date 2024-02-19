@@ -17,7 +17,7 @@ from libcpp.string cimport string
 
 from quantlib.index cimport Index
 from quantlib.time.date cimport Period, period_from_qlperiod
-from quantlib.time._period cimport Frequency
+from quantlib.time.frequency cimport Frequency
 from quantlib.indexes.region cimport Region
 
 from quantlib.currency.currency cimport Currency

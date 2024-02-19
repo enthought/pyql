@@ -3,12 +3,40 @@ import datetime
 import unittest
 
 from quantlib.time.date import (
-    Date, Jan, Feb, Mar, Apr, May, Jun, Jul, Sep, Nov, Thursday, Friday,
+    Date,
+    Jan,
+    Feb,
+    Mar,
+    Apr,
+    May,
+    Jun,
+    Jul,
+    Sep,
+    Nov,
+    Thursday,
+    Friday,
     Period,
-    Annual, Semiannual, Bimonthly, EveryFourthMonth, Months, Years, Weeks,
-    Days, OtherFrequency, end_of_month, is_end_of_month, is_leap,
-    next_weekday, nth_weekday, today, pydate_from_qldate, qldate_from_pydate,
-    local_date_time
+    Months,
+    Years,
+    Weeks,
+    Days,
+    end_of_month,
+    is_end_of_month,
+    is_leap,
+    next_weekday,
+    nth_weekday,
+    today,
+    pydate_from_qldate,
+    qldate_from_pydate,
+    local_date_time,
+)
+from quantlib.time.frequency import (
+    Frequency,
+    Annual,
+    Semiannual,
+    EveryFourthMonth,
+    Bimonthly,
+    OtherFrequency,
 )
 
 import quantlib.time.imm as imm
@@ -16,9 +44,7 @@ from datetime import date
 
 
 class TestQuantLibDate(unittest.TestCase):
-
     def test_today(self):
-
         py_today = datetime.date.today()
 
         ql_today = today()
@@ -48,7 +74,7 @@ class TestQuantLibDate(unittest.TestCase):
             # getting an invalid day
             date2 = Date(29, Feb, 2009)
 
-        date1 = Date('2017-08-18')
+        date1 = Date("2017-08-18")
         date2 = Date(18, 8, 2017)
         self.assertEqual(date1, date2)
 
@@ -120,12 +146,12 @@ class TestQuantLibDate(unittest.TestCase):
         self.assertTrue(expected_date == date1)
 
     def test_next_weekday(self):
-        ''' Test next weekday
+        """Test next weekday
 
         The Friday following Tuesday, January 15th, 2002 was
         January 18th, 2002.
         see http://www.cpearson.com/excel/DateTimeWS.htm
-        '''
+        """
 
         date1 = Date(15, Jan, 2002)
         date2 = next_weekday(date1, Friday)
@@ -134,9 +160,9 @@ class TestQuantLibDate(unittest.TestCase):
         self.assertTrue(expected_date == date2)
 
     def test_nth_weekday(self):
-        ''' The 4th Thursday of Mar, 1998 was Mar 26th, 1998.
+        """The 4th Thursday of Mar, 1998 was Mar 26th, 1998.
         see http://www.cpearson.com/excel/DateTimeWS.htm
-        '''
+        """
 
         date1 = nth_weekday(4, Thursday, Mar, 1998)
 
@@ -281,26 +307,24 @@ class TestQuantLibPeriod(unittest.TestCase):
         self.assertTrue(expected_date == date2)
 
     def test_period_subtraction(self):
-
         period1 = Period(11, Months)
         period2 = Period(EveryFourthMonth)
 
         period3 = period1 - period2
         self.assertEqual(7, period3.length)
         self.assertEqual(Months, period3.units)
-        with self.assertRaisesRegexp(RuntimeError, 'impossible addition'):
-            period1 - Period('3W')
-        self.assertEqual(-Period('3M') + Period('6M'), Period('3M'))
+        with self.assertRaisesRegex(RuntimeError, "impossible addition"):
+            period1 - Period("3W")
+        self.assertEqual(-Period("3M") + Period("6M"), Period("3M"))
 
     def test_period_addition(self):
         period1 = Period(4, Months)
         period2 = Period(7, Months)
-        self.assertEqual(period1+period2, Period(11, Months))
-        with self.assertRaisesRegexp(RuntimeError, 'impossible addition'):
-            period1 + Period('2W')
+        self.assertEqual(period1 + period2, Period(11, Months))
+        with self.assertRaisesRegex(RuntimeError, "impossible addition"):
+            period1 + Period("2W")
 
     def test_multiplication(self):
-
         period = Period(Bimonthly)
 
         period2 = period * 10
@@ -388,17 +412,16 @@ class TestQuantLibIMM(unittest.TestCase):
         self.assertFalse(is_imm)
 
     def test_is_imm_code(self):
-
-        is_good = imm.is_IMM_code('H9')
+        is_good = imm.is_IMM_code("H9")
         self.assertTrue(is_good)
 
-        is_bad = imm.is_IMM_code('WX')
+        is_bad = imm.is_IMM_code("WX")
         self.assertFalse(is_bad)
 
     def test_imm_date(self):
-        dt = imm.date('M9')
+        dt = imm.date("M9")
         cd = imm.code(dt)
-        self.assertEqual(cd, 'M9')
+        self.assertEqual(cd, "M9")
 
     def test_next_date(self):
         dt = Date(19, Jun, 2014)
@@ -406,7 +429,7 @@ class TestQuantLibIMM(unittest.TestCase):
         # 17 sep 2014
         self.assertEqual(dt_2, date(2014, 9, 17))
 
-        dt_3 = imm.next_date('M9', True, Date(1, 6, 2019))
+        dt_3 = imm.next_date("M9", True, Date(1, 6, 2019))
         # 18 sep 2019
         self.assertEqual(dt_3, date(2019, 9, 18))
 
@@ -416,6 +439,6 @@ class TestQuantLibIMM(unittest.TestCase):
         # M4
         self.assertEqual(cd_2, "M4")
 
-        cd_3 = imm.next_code('M9', True, today())
+        cd_3 = imm.next_code("M9", True, today())
         # U9
         self.assertEqual(cd_3, "U9")

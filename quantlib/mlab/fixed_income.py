@@ -21,7 +21,7 @@ from quantlib.time.businessdayconvention import (
 from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.time.calendars.target import TARGET
 from quantlib.time.date import (
-    Date, Days, Period, Years, str_to_frequency)
+    Date, Days, Period, Years)
 
 from quantlib.time.schedule import Schedule
 from quantlib.time.dategeneration import DateGeneration
@@ -88,8 +88,6 @@ def _bndprice(bond_yield, coupon_rate, pricing_date, maturity_date,
     Clean price and accrued interest of a bond
     """
 
-    _period = str_to_frequency(period)
-
     evaluation_date = pydate_to_qldate(pricing_date)
 
     settings = Settings()
@@ -115,7 +113,7 @@ def _bndprice(bond_yield, coupon_rate, pricing_date, maturity_date,
     fixed_bond_schedule = Schedule.from_rule(
         effective_date,
         termination_date,
-        Period(_period),
+        Period(period),
         calendar,
         ModifiedFollowing,
         ModifiedFollowing,
@@ -147,7 +145,7 @@ def _bndprice(bond_yield, coupon_rate, pricing_date, maturity_date,
         calendar=NullCalendar(),
         daycounter=cnt_yield,
         compounding=Compounded,
-        frequency=_period)
+        frequency=period)
 
     discounting_term_structure.link_to(flat_term_structure)
 
@@ -201,8 +199,6 @@ def _cfamounts(coupon_rate, pricing_date, maturity_date,
     cash flow schedule
     """
 
-    _period = str_to_frequency(period)
-
     evaluation_date = pydate_to_qldate(pricing_date)
 
     settings = Settings()
@@ -225,7 +221,7 @@ def _cfamounts(coupon_rate, pricing_date, maturity_date,
     fixed_bond_schedule = Schedule.from_rule(
         effective_date,
         termination_date,
-        Period(_period),
+        Period(period),
         calendar,
         ModifiedFollowing,
         ModifiedFollowing,
