@@ -59,7 +59,7 @@ cdef class FixedRateBond(Bond):
             new _frb.FixedRateBond(
                 settlement_days,
                 face_amount,
-                deref(schedule._thisptr),
+                schedule._thisptr,
                 coupons,
                 deref(accrual_day_counter._thisptr),
                 payment_convention,

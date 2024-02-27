@@ -38,7 +38,7 @@ cdef class OvernightIndexedSwap(Swap):
         if isinstance(nominal, float):
             self._thisptr = static_pointer_cast[Instrument](
                 make_shared[_ois.OvernightIndexedSwap](
-                    swap_type, <Real>nominal, deref(schedule._thisptr), fixed_rate,
+                    swap_type, <Real>nominal, schedule._thisptr, fixed_rate,
                     deref(fixed_dc._thisptr), static_pointer_cast[_ii.OvernightIndex](overnight_index._thisptr),
                     spread, payment_lag, payment_adjustment, payment_calendar._thisptr,
                     telescopic_value_dates, averaging_method
@@ -49,7 +49,7 @@ cdef class OvernightIndexedSwap(Swap):
                 nominals.push_back(n)
             self._thisptr = static_pointer_cast[Instrument](
                 make_shared[_ois.OvernightIndexedSwap](
-                    swap_type, nominals, deref(schedule._thisptr), fixed_rate,
+                    swap_type, nominals, schedule._thisptr, fixed_rate,
                     deref(fixed_dc._thisptr), static_pointer_cast[_ii.OvernightIndex](overnight_index._thisptr),
                     spread, payment_lag, payment_adjustment, payment_calendar._thisptr,
                     telescopic_value_dates, averaging_method

@@ -38,7 +38,7 @@ cdef class FixedRateCoupon(Coupon):
 cdef class FixedRateLeg(Leg):
 
     def __init__(self, Schedule schedule):
-        self.frl = new _frc.FixedRateLeg(deref(schedule._thisptr))
+        self.frl = new _frc.FixedRateLeg(schedule._thisptr)
 
     def with_notional(self, Real notional):
         self.frl.withNotionals(notional)

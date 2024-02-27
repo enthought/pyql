@@ -69,7 +69,7 @@ cdef class FloatingRateBond(Bond):
         self._thisptr.reset(
             new _frb.FloatingRateBond(
                 settlement_days, face_amount,
-                deref(schedule._thisptr),
+                schedule._thisptr,
                 static_pointer_cast[_ii.IborIndex](ibor_index._thisptr),
                 deref(accrual_day_counter._thisptr),
                 payment_convention,

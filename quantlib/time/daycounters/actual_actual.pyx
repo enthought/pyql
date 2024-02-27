@@ -21,7 +21,7 @@ from quantlib.time.daycounter cimport DayCounter
 
 cdef class ActualActual(DayCounter):
 
-    def __init__(self, Convention convention=Convention.ISDA, Schedule schedule=Schedule.from_dates([])):
+    def __init__(self, Convention convention=Convention.ISDA, Schedule schedule=Schedule.__new__(Schedule)):
         """ Actual/Actual day count
 
         The day count can be calculated according to:
@@ -37,7 +37,7 @@ cdef class ActualActual(DayCounter):
         https://www.isda.org/a/pIJEE/The-Actual-Actual-Day-Count-Fraction-1999.pdf
         """
         self._thisptr = <_daycounter.DayCounter*> new \
-            _aa.ActualActual(convention, deref(schedule._thisptr))
+            _aa.ActualActual(convention, schedule._thisptr)
 
 cdef _daycounter.DayCounter* from_name(str convention):
 

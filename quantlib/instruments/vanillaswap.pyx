@@ -1,5 +1,6 @@
 """Simple fixed-rate vs Libor swap"""
 from cython.operator cimport dereference as deref
+from libcpp.utility cimport move
 from quantlib.types cimport Rate, Real, Spread
 from quantlib.handle cimport optional, static_pointer_cast
 from quantlib.cashflows.fixed_rate_coupon cimport FixedRateLeg
@@ -44,10 +45,10 @@ cdef class VanillaSwap(Swap):
             new _vanillaswap.VanillaSwap(
                 type,
                 nominal,
-                deref(fixed_schedule._thisptr),
+                fixed_schedule._thisptr,
                 fixed_rate,
                 deref(fixed_daycount._thisptr),
-                deref(float_schedule._thisptr),
+                float_schedule._thisptr,
                 static_pointer_cast[_ib.IborIndex](ibor_index._thisptr),
                 spread,
                 deref(floating_daycount._thisptr),
@@ -112,7 +113,7 @@ cdef class VanillaSwap(Swap):
     @property
     def fixed_schedule(self):
         cdef Schedule sched = Schedule.__new__(Schedule)
-        sched._thisptr = new QlSchedule(get_vanillaswap(self).fixedSchedule())
+        sched._thisptr = move(QlSchedule(get_vanillaswap(self).fixedSchedule()))
         return sched
 
     @property
@@ -124,7 +125,7 @@ cdef class VanillaSwap(Swap):
     @property
     def floating_schedule(self):
         cdef Schedule sched = Schedule.__new__(Schedule)
-        sched._thisptr = new QlSchedule(get_vanillaswap(self).floatingSchedule())
+        sched._thisptr = move(QlSchedule(get_vanillaswap(self).floatingSchedule()))
         return sched
 
     @property
