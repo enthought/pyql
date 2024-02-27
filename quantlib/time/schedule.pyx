@@ -1,6 +1,7 @@
 from cython.operator cimport dereference as deref, preincrement as preinc
 from libcpp cimport bool
 from libcpp.vector cimport vector
+from libcpp.utility cimport move
 from quantlib.handle cimport optional
 
 cimport quantlib.time._date as _date
@@ -31,7 +32,8 @@ cdef class Schedule:
         warnings.warn("Deprecated: use class method from_rule instead",
             DeprecationWarning)
 
-        self._thisptr = new _schedule.Schedule(
+        self._thisptr = move(
+                _schedule.Schedule(
             deref(effective_date._thisptr),
             deref(termination_date._thisptr),
             deref(tenor._thisptr),
@@ -40,6 +42,7 @@ cdef class Schedule:
             termination_date_convention,
             date_generation_rule, end_of_month,
             _date.Date(), _date.Date()
+            )
         )
 
     @classmethod
@@ -69,7 +72,7 @@ cdef class Schedule:
             opt_rule = <DateGeneration>rule
         if end_of_month is not None:
             opt_end_of_month = <bool>end_of_month
-        instance._thisptr = new _schedule.Schedule(
+        instance._thisptr = move(_schedule.Schedule(
             _dates,
             calendar._thisptr,
             business_day_convention,
@@ -78,7 +81,7 @@ cdef class Schedule:
             opt_rule,
             opt_end_of_month,
             is_regular
-        )
+        ))
 
         return instance
 
@@ -92,7 +95,7 @@ cdef class Schedule:
                   Date first_date=Date(), Date next_to_lastdate=Date()):
 
         cdef Schedule instance = Schedule.__new__(Schedule)
-        instance._thisptr = new _schedule.Schedule(
+        instance._thisptr = move(_schedule.Schedule(
             deref(effective_date._thisptr),
             deref(termination_date._thisptr),
             deref(tenor._thisptr),
@@ -101,14 +104,8 @@ cdef class Schedule:
             termination_date_convention,
             rule, end_of_month,
             deref(first_date._thisptr), deref(next_to_lastdate._thisptr)
-            )
+            ))
         return instance
-
-    def __dealloc__(self):
-        if self._thisptr is not NULL:
-            del self._thisptr
-            self._thisptr = NULL
-
 
     def dates(self):
         cdef vector[_date.Date] dates = self._thisptr.dates()

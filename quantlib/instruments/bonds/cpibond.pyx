@@ -34,7 +34,7 @@ cdef class CPIBond(Bond):
                 static_pointer_cast[_inf.ZeroInflationIndex](
                     cpi_index._thisptr),
                 observation_interpolation,
-                deref(schedule._thisptr), coupons,
+                schedule._thisptr, coupons,
                 deref(accrual_day_counter._thisptr), payment_convention,
                 deref(issue_date._thisptr),
                 payment_calendar._thisptr, deref(ex_coupon_period._thisptr),

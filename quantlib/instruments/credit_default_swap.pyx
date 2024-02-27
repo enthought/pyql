@@ -110,7 +110,7 @@ cdef class CreditDefaultSwap(Instrument):
 
         self._thisptr = shared_ptr[_instrument.Instrument](
             new _cds.CreditDefaultSwap(
-                side, notional, spread, deref(schedule._thisptr),
+                side, notional, spread, schedule._thisptr,
                 payment_convention,
                 deref(day_counter._thisptr), settles_accrual, pays_at_default_time,
                 deref(protection_start._thisptr),
@@ -183,7 +183,7 @@ cdef class CreditDefaultSwap(Instrument):
         cdef CreditDefaultSwap instance = CreditDefaultSwap.__new__(CreditDefaultSwap)
         instance._thisptr = shared_ptr[_instrument.Instrument](
             new _cds.CreditDefaultSwap(
-                side, notional, upfront, spread, deref(schedule._thisptr),
+                side, notional, upfront, spread, schedule._thisptr,
                 payment_convention,
                 deref(day_counter._thisptr), settles_accrual, pays_at_default_time,
                 deref(protection_start._thisptr),

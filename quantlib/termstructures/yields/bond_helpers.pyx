@@ -44,7 +44,7 @@ cdef class FixedRateBondHelper(BondHelper):
                 clean_price.handle(),
                 settlement_days,
                 face_amount,
-                deref(schedule._thisptr),
+                schedule._thisptr,
                 coupons,
                 deref(day_counter._thisptr),
                 payment_conv,
