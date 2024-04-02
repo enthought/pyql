@@ -46,10 +46,10 @@ def bond_yield(Bond bond not None,
                DayCounter dayCounter not None,
                Compounding compounding,
                Frequency frequency,
-               Date settlementDate not None,
-               Real accuracy,
-               Size maxIterations,
-               Rate guess):
+               Date settlementDate=Date(),
+               Real accuracy=1e-10,
+               Size maxIterations=100,
+               Rate guess=0.05):
 
         return _bf.bf_yield(
             deref(bond.as_ptr()),
@@ -68,7 +68,7 @@ def basisPointValue(Bond bond not None,
                     DayCounter dayCounter not None,
                     Compounding compounding,
                     Frequency frequency,
-                    Date settlementDate not None):
+                    Date settlementDate=Date()):
         return _bf.basisPointValue(
             deref(bond.as_ptr()),
             yld,
@@ -83,10 +83,10 @@ def zSpread(Bond bond, Real cleanPrice,
             DayCounter dayCounter not None,
             Compounding compounding,
             Frequency frequency,
-            Date settlementDate not None,
-            Real accuracy,
-            Size maxIterations,
-            Rate guess):
+            Date settlementDate=Date(),
+            Real accuracy=1e-10,
+            Size maxIterations=100,
+            Rate guess=0):
 
     return _bf.zSpread(
         deref(bond.as_ptr()),
