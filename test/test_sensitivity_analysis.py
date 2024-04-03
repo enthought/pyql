@@ -33,7 +33,7 @@ from quantlib.pricingengines.vanilla.vanilla import (
     AnalyticEuropeanEngine
 )
 from quantlib.instruments.payoffs import PlainVanillaPayoff
-import quantlib.pricingengines.bondfunctions as bf
+import quantlib.pricingengines.bond.bondfunctions as bf
 from quantlib.experimental.risk.sensitivityanalysis import (
     bucket_analysis, parallel_analysis, Centered)
 from numpy.testing import assert_allclose

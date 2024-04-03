@@ -13,11 +13,9 @@ from quantlib.handle cimport Handle, optional
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 
 cdef extern from 'ql/pricingengines/bond/discountingbondengine.hpp' namespace \
-    'QuantLib':
+    'QuantLib' nogil:
 
     cdef cppclass DiscountingBondEngine(PricingEngine):
-
-        DiscountingBondEngine()
         DiscountingBondEngine(Handle[YieldTermStructure]& discountCurve)
         DiscountingBondEngine(Handle[YieldTermStructure]& discountCurve,
                 optional[bool] includeSettlementDateFlows)

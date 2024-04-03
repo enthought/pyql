@@ -1,4 +1,4 @@
-include '../types.pxi'
+from quantlib.types cimport Rate, Real, Spread, Size, Time
 
 from quantlib.instruments._bond cimport Bond
 from quantlib.handle cimport shared_ptr
