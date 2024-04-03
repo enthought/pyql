@@ -34,7 +34,7 @@ from quantlib.termstructures.yields.api import (
 from quantlib.math.interpolation import LogLinear
 from quantlib.quotes import SimpleQuote
 
-import quantlib.pricingengines.bondfunctions as bf
+import quantlib.pricingengines.bond.bondfunctions as bf
 
 
 class BondFunctionTestCase(unittest.TestCase):

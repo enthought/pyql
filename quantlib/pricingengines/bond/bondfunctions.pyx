@@ -1,9 +1,8 @@
-include '../types.pxi'
-
+from quantlib.types cimport Rate, Real, Size
 from quantlib.time._date cimport Day, Month, Year, Date as QLDate
 from quantlib.time._period cimport Frequency
 from quantlib.time._daycounter cimport DayCounter as _DayCounter
-cimport quantlib.pricingengines._bondfunctions as _bf
+from . cimport _bondfunctions as _bf
 
 from quantlib.handle cimport shared_ptr, Handle
 from cython.operator cimport dereference as deref
