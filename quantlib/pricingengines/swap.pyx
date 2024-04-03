@@ -6,7 +6,6 @@ from quantlib.pricingengines.vanilla.vanilla cimport PricingEngine
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 
 cimport quantlib.pricingengines._swap as _swap
-cimport quantlib.pricingengines._pricing_engine as _pe
 cimport quantlib.termstructures._yield_term_structure as _yts
 from quantlib.time.date cimport Date
 

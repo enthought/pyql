@@ -57,9 +57,8 @@ cdef class IsdaCdsEngine(PricingEngine):
                                    <_ice.ForwardsInCouponPeriod>forwards_in_coupon_period)
         )
 
-    cdef _ice.IsdaCdsEngine* _get_cds_engine(self):
-        cdef _ice.IsdaCdsEngine* ref = <_ice.IsdaCdsEngine*>(self._thisptr.get())
-        return ref
+    cdef inline _ice.IsdaCdsEngine* _get_cds_engine(self) nogil:
+        return <_ice.IsdaCdsEngine*>(self._thisptr.get())
 
     @property
     def isda_rate_curve(self):

@@ -7,12 +7,9 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../types.pxi'
-
+from quantlib.types cimport Real, Size, Volatility
 from quantlib.handle cimport shared_ptr
-from cython.operator cimport dereference as deref
 
-cimport quantlib.pricingengines._pricing_engine as _pe
 from quantlib.pricingengines.engine cimport PricingEngine
 
 
