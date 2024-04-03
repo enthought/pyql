@@ -1,5 +1,4 @@
 """Abstract instrument class"""
-from cython.operator cimport dereference as deref
 from quantlib.time.date cimport date_from_qldate
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.handle cimport static_pointer_cast
