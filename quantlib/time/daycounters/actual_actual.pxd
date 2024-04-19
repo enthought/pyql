@@ -1,4 +1,3 @@
-cimport quantlib.time._daycounter as _daycounter
 from quantlib.time.daycounter cimport DayCounter
 
 
@@ -14,5 +13,3 @@ cdef extern from 'ql/time/daycounters/actualactual.hpp' namespace 'QuantLib::Act
         Actual365
         AFB
         Euro
-
-cdef _daycounter.DayCounter* from_name(str convention)

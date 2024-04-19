@@ -1,4 +1,4 @@
-cimport quantlib.time._daycounter as _daycounter
+from . cimport _daycounter
 
 cdef class DayCounter:
 

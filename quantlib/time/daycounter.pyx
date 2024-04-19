@@ -4,9 +4,6 @@ from . cimport _daycounter
 from . cimport _date
 
 from .date cimport Date
-from quantlib.time.daycounters.actual_actual cimport from_name as aa_from_name
-from quantlib.time.daycounters.thirty360 cimport from_name as th_from_name
-cimport quantlib.time.daycounters._simple as _simple
 
 cdef class DayCounter:
     '''This class provides methods for determining the length of a time
@@ -60,10 +57,8 @@ cdef class DayCounter:
 
     @classmethod
     def from_name(cls, name):
-        cdef DayCounter cnt = cls.__new__(cls)
         name, convention = _get_daycounter_type_from_name(name)
-        cnt._thisptr = daycounter_from_name(name, convention)
-        return cnt
+        return daycounter_from_name(name, convention)
 
 def _get_daycounter_type_from_name(name):
     """ Returns a tuple (counter type, convention) from the DayCounter name. """
@@ -77,37 +72,40 @@ def _get_daycounter_type_from_name(name):
         return (name, None)
 
 
-cdef _daycounter.DayCounter* daycounter_from_name(str name, str convention) except NULL:
+cdef DayCounter daycounter_from_name(str name, str convention):
     """ Returns a new DayCounter pointer.
 
     The QuantLib DayCounter don't have a copy constructor or any other easy
     way to get copy of a given DayCounter. """
 
     name_u = name.upper()
-
-    cdef _daycounter.DayCounter* cnt = NULL
+    from .daycounters.simple import Actual365Fixed, Actual360, OneDayCounter, SimpleDayCounter
+    from .daycounters.actual_actual import ActualActual, Convention as aaConvention
+    from .daycounters.thirty360 import Thirty360, Convention as thConvention
     if name_u in ['ACTUAL360', 'ACTUAL/360', 'ACT/360']:
-        if convention == 'inc':
-            cnt = new _simple.Actual360(True)
-        else:
-            cnt = new _simple.Actual360()
+        return Actual360(convention == "inc")
     elif name_u in ['ACTUAL365FIXED', 'ACTUAL/365', 'ACT/365']:
-        cnt = new _simple.Actual365Fixed()
+        return Actual365Fixed()
     elif name_u == 'BUSINESS252':
         raise ValueError(
             'Business252 from name is not supported. Requires a calendar'
         )
     elif name_u in ['1/1', 'ONEDAYCOUNTER']:
-        cnt = new _simple.OneDayCounter()
+        return OneDayCounter()
     elif name_u == 'SIMPLEDAYCOUNTER':
-        cnt = new _simple.SimpleDayCounter()
+        return SimpleDayCounter
     elif name.startswith('Actual/Actual') or name.startswith('ACT/ACT') :
-        cnt = aa_from_name(convention)
+        try:
+            return ActualActual(aaConvention[convention])
+        except KeyError as e:
+            raise ValueError(str(e))
     elif name == "30/360" or name == "30E/360":
         if convention is None:
             convention = 'BondBasis'
         convention = convention.replace(" ", "")
-        cnt = th_from_name(convention)
+        try:
+            return Thirty360(thConvention[convention])
+        except KeyError as e:
+            raise ValueError(str(e))
     else:
         raise ValueError("Unkown day counter type: {}".format(name))
-    return cnt
