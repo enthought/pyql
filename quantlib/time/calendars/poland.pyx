@@ -1,6 +1,5 @@
-from .. cimport _calendar as _calendar
 from . cimport _poland
-from .. calendar cimport Calendar
+from ..calendar cimport Calendar
 
 cdef class Poland(Calendar):
     """Poland calendars"""

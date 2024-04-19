@@ -62,9 +62,3 @@ cdef class Thirty360(DayCounter):
 
    def __cinit__(self, Convention convention=Convention.BondBasis, Date termination_date=Date()):
        self._thisptr = new _th.Thirty360(convention, deref(termination_date._thisptr))
-
-cdef _daycounter.DayCounter* from_name(str convention) except NULL:
-    try:
-        return new _th.Thirty360(Convention[convention])
-    except KeyError:
-        raise ValueError("Unknown convention: {}".format(convention))

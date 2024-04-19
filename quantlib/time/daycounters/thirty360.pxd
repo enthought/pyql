@@ -1,4 +1,3 @@
-cimport quantlib.time._daycounter as _daycounter
 from quantlib.time.daycounter cimport DayCounter
 
 cdef class Thirty360(DayCounter):
@@ -15,5 +14,3 @@ cdef extern from 'ql/time/daycounters/thirty360.hpp' namespace 'QuantLib::Thirty
          ISMA
          ISDA
          NASD
-
-cdef _daycounter.DayCounter* from_name(str convention) except NULL

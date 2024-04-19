@@ -1,5 +1,4 @@
 cimport quantlib.time.calendars._target as _tg
-from quantlib.time.calendar cimport Calendar
 
 cdef class TARGET(Calendar):
     '''TARGET calendar
