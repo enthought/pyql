@@ -6,47 +6,60 @@ from quantlib.time._period cimport Frequency
 from quantlib.time._date cimport Date
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.time._daycounter cimport DayCounter
+from quantlib.compounding cimport Compounding
+from quantlib._cashflow cimport Leg
+from quantlib.cashflows.duration cimport Duration
 
-cdef extern from 'ql/cashflows/duration.hpp' namespace 'QuantLib::Duration':
-    ctypedef enum Type:
-        Simple
-        Macaulay
-        Modified
-
-cdef extern from 'ql/pricingengines/bond/bondfunctions.hpp' namespace 'QuantLib::BondFunctions':
+cdef extern from 'ql/pricingengines/bond/bondfunctions.hpp' namespace 'QuantLib::BondFunctions' nogil:
 
     cdef Date startDate(Bond bond)
-
+    cdef Leg.const_reverse_iterator previousCashFlow(const Bond& bond,
+                                                     Date refDate) # = Date()
     cdef Time duration(Bond bond,
                     Rate yld,
                     DayCounter dayCounter,
-                    int compounding,
+                       Compounding compounding,
                     Frequency frequency,
-                    Type dur_type,
-                    Date settlementDate ) except +
+                    Duration dur_type, #Duration.Modified
+                    Date settlementDate ) except + # Date()
 
     cdef Rate bf_yield "QuantLib::BondFunctions::yield" (Bond bond,
-                    Real cleanPrice,
+                    Bond.Price Price,
                     DayCounter dayCounter,
-                    int compounding,
+                    Compounding compounding,
                     Frequency frequency,
                     Date settlementDate,
                     Real accuracy,
                     Size maxIterations,
                     Rate guess) except +
 
+    cdef Real cleanPrice(Bond bond,
+                         Rate yld,
+                         DayCounter dayCounter,
+                         Compounding compounding,
+                         Frequency frequency,
+                         Date settlementDate) except +
+
     cdef Real basisPointValue(Bond bond,
                         Rate yld,
                         DayCounter dayCounter,
-                        int compounding,
+                        Compounding compounding,
                         Frequency frequency,
                         Date settlementDate) except +
 
+    cdef Real convexity(Bond bond,
+                        Rate yld,
+                        DayCounter dayCounter,
+                        Compounding compounding,
+                        Frequency frequency,
+                        Date settlementDate) except +
+
+
     cdef Spread zSpread(Bond bond,
-                Real cleanPrice,
+                        Bond.Price Price,
                 shared_ptr[YieldTermStructure],
                 DayCounter dayCounter,
-                int compounding,
+                Compounding compounding,
                 Frequency frequency,
                 Date settlementDate,
                 Real accuracy,

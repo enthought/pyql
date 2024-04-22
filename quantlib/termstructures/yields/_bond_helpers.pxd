@@ -5,7 +5,6 @@ from quantlib.handle cimport shared_ptr, Handle
 
 from quantlib._quote cimport Quote
 from quantlib.instruments._bond cimport Bond
-from quantlib.instruments.bond cimport Type
 from quantlib.termstructures._helpers cimport BootstrapHelper
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time._calendar cimport Calendar
@@ -25,7 +24,7 @@ cdef extern from 'ql/termstructures/yield/bondhelpers.hpp' namespace 'QuantLib':
         BondHelper(
             Handle[Quote]& cleanPrice,
             shared_ptr[Bond]& bond,
-            Type priceType) except +
+            Bond.Price.Type Type) except +
 
     cdef cppclass FixedRateBondHelper(BondHelper):
         FixedRateBondHelper(
@@ -43,5 +42,5 @@ cdef extern from 'ql/termstructures/yield/bondhelpers.hpp' namespace 'QuantLib':
             Calendar& exCouponCalendar, # = Calendar()
             BusinessDayConvention exCouponConvention, # = Unadjusted
             bool exCouponEndOfMonth, # = False
-            Type priceType
+            Bond.Price.Type Type
         ) except +

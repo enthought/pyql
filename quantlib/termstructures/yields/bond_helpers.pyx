@@ -8,7 +8,7 @@ from quantlib.handle cimport shared_ptr, static_pointer_cast
 cimport quantlib.time._calendar as _calendar
 from . cimport _bond_helpers as _bh
 
-from quantlib.instruments.bond cimport Bond, Type, Clean
+from quantlib.instruments.bond cimport Bond, Type
 cimport quantlib.instruments._bond as _bond
 from quantlib.quote cimport Quote
 from quantlib.time.calendar cimport Calendar
@@ -21,7 +21,7 @@ from quantlib.termstructures.yields.rate_helpers cimport RateHelper
 
 cdef class BondHelper(RateHelper):
 
-    def __init__(self, Quote clean_price, Bond bond not None, Type price_type=Clean):
+    def __init__(self, Quote clean_price, Bond bond not None, Type price_type=Type.Clean):
 
         self._thisptr = shared_ptr[_bh.RateHelper](
             new _bh.BondHelper(
@@ -45,7 +45,7 @@ cdef class FixedRateBondHelper(BondHelper):
                  Calendar ex_coupon_calendar=Calendar(),
                  BusinessDayConvention ex_coupon_convention=Unadjusted,
                  bool ex_coupon_end_of_month=False,
-                 Type price_type=Clean):
+                 Type price_type=Type.Clean):
 
         self._thisptr.reset(
             new _bh.FixedRateBondHelper(
