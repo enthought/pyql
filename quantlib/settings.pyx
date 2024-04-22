@@ -35,8 +35,7 @@ cdef class Settings:
     property evaluation_date:
         """Property to set/get the evaluation date. """
         def __get__(self):
-            cdef QlDate evaluation_date = <QlDate>_settings.Settings.instance().evaluationDate()
-            return date_from_qldate(evaluation_date)
+            return date_from_qldate(<QlDate>_settings.Settings.instance().evaluationDate())
 
         def __set__(self, Date evaluation_date not None):
             _settings.Settings.instance().evaluationDate().assign_date(deref(evaluation_date._thisptr))
