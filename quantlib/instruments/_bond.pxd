@@ -21,6 +21,7 @@ cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib' nogil:
             enum Type:
                 Dirty
                 Clean
+            Price()
             Price(Real amount, Type type)
             Real amount()
             Type type()
@@ -48,20 +49,19 @@ cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib' nogil:
             Frequency freq,
             Real accuracy, # = 1e-8
             Size maxEvaluations, # = 100
-            Real guess, # = 0.5,
+            Real guess, # = 0.05,
             Bond.Price.Type price_type # = Bond.Price.Clean
         ) except +
 
         Rate bond_yield 'yield'(
-            Real price,
+            Bond.Price price,
             DayCounter& dc,
             Compounding comp,
             Frequency freq,
             Date settlementDate, # = Date()
             Real accuracy, # = 1e-8
             Size maxEvaluations, # = 100
-            Real guess, # = 0.5,
-            Bond.Price.Type price_type # = Bond.Price.Clean
+            Real guess, # = 0.05,
         ) except +
 
         Rate nextCouponRate(Date d) const
