@@ -1,5 +1,3 @@
-include 'types.pxi'
-
 cimport quantlib._cashflow as _cf
 
 from quantlib.handle cimport shared_ptr

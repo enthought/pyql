@@ -5,7 +5,7 @@
 # This program is distributed in the hope that it will be useful, but WITHOUT
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
-
+from quantlib.types cimport Real
 cimport quantlib._cashflow as _cf
 cimport quantlib.time._date as _date
 
@@ -89,7 +89,6 @@ cdef class Leg:
     def __init__(self, leg=[]):
         '''Takes as input a list of (amount, QL Date) tuples. '''
 
-        cdef shared_ptr[_cf.CashFlow] _thiscf
         cdef _date.Date _thisdate
 
         for amount, d in leg:
@@ -100,11 +99,7 @@ cdef class Leg:
             else:
                raise TypeError("second element needs to be a QuantLib Date or datetime.date")
 
-            _thiscf = shared_ptr[_cf.CashFlow](
-                new _cf.SimpleCashFlow(amount, _thisdate)
-            )
-
-            self._thisptr.push_back(_thiscf)
+            self._thisptr.emplace_back(new _cf.SimpleCashFlow(amount, _thisdate))
 
     def items(self):
         '''Return Leg as (amount, date) list. '''
