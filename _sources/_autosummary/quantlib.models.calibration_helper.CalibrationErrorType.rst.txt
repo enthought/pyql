@@ -11,6 +11,19 @@ quantlib.models.calibration\_helper.CalibrationErrorType
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~CalibrationErrorType.conjugate
+      ~CalibrationErrorType.bit_length
+      ~CalibrationErrorType.bit_count
+      ~CalibrationErrorType.to_bytes
+      ~CalibrationErrorType.from_bytes
+      ~CalibrationErrorType.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.models.calibration\_helper.CalibrationErrorType
    .. autosummary::
 
    
+      ~CalibrationErrorType.real
+      ~CalibrationErrorType.imag
+      ~CalibrationErrorType.numerator
+      ~CalibrationErrorType.denominator
       ~CalibrationErrorType.RelativePriceError
       ~CalibrationErrorType.PriceError
       ~CalibrationErrorType.ImpliedVolError

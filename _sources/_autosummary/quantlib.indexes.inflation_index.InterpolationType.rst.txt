@@ -11,6 +11,19 @@ quantlib.indexes.inflation\_index.InterpolationType
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~InterpolationType.conjugate
+      ~InterpolationType.bit_length
+      ~InterpolationType.bit_count
+      ~InterpolationType.to_bytes
+      ~InterpolationType.from_bytes
+      ~InterpolationType.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.indexes.inflation\_index.InterpolationType
    .. autosummary::
 
    
+      ~InterpolationType.real
+      ~InterpolationType.imag
+      ~InterpolationType.numerator
+      ~InterpolationType.denominator
       ~InterpolationType.AsIndex
       ~InterpolationType.Flat
       ~InterpolationType.Linear

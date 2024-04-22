@@ -11,6 +11,19 @@ quantlib.pricingengines.credit.isda\_cds\_engine.NumericalFix
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~NumericalFix.conjugate
+      ~NumericalFix.bit_length
+      ~NumericalFix.bit_count
+      ~NumericalFix.to_bytes
+      ~NumericalFix.from_bytes
+      ~NumericalFix.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.pricingengines.credit.isda\_cds\_engine.NumericalFix
    .. autosummary::
 
    
+      ~NumericalFix.real
+      ~NumericalFix.imag
+      ~NumericalFix.numerator
+      ~NumericalFix.denominator
       ~NumericalFix.No
       ~NumericalFix.Taylor
 

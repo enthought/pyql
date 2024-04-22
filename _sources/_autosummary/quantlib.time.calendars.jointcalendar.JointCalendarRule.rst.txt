@@ -11,6 +11,19 @@ quantlib.time.calendars.jointcalendar.JointCalendarRule
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~JointCalendarRule.conjugate
+      ~JointCalendarRule.bit_length
+      ~JointCalendarRule.bit_count
+      ~JointCalendarRule.to_bytes
+      ~JointCalendarRule.from_bytes
+      ~JointCalendarRule.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.time.calendars.jointcalendar.JointCalendarRule
    .. autosummary::
 
    
+      ~JointCalendarRule.real
+      ~JointCalendarRule.imag
+      ~JointCalendarRule.numerator
+      ~JointCalendarRule.denominator
       ~JointCalendarRule.JOINHOLIDAYS
       ~JointCalendarRule.JOINBUSINESSDAYS
 

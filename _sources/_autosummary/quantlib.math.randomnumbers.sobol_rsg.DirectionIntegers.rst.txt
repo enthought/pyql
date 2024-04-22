@@ -11,6 +11,19 @@ quantlib.math.randomnumbers.sobol\_rsg.DirectionIntegers
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~DirectionIntegers.conjugate
+      ~DirectionIntegers.bit_length
+      ~DirectionIntegers.bit_count
+      ~DirectionIntegers.to_bytes
+      ~DirectionIntegers.from_bytes
+      ~DirectionIntegers.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.math.randomnumbers.sobol\_rsg.DirectionIntegers
    .. autosummary::
 
    
+      ~DirectionIntegers.real
+      ~DirectionIntegers.imag
+      ~DirectionIntegers.numerator
+      ~DirectionIntegers.denominator
       ~DirectionIntegers.Unit
       ~DirectionIntegers.Jaeckel
       ~DirectionIntegers.SobolLevitan

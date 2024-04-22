@@ -11,6 +11,19 @@ quantlib.pricingengines.vanilla.fdblackscholesvanillaengine.CashDividendModel
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~CashDividendModel.conjugate
+      ~CashDividendModel.bit_length
+      ~CashDividendModel.bit_count
+      ~CashDividendModel.to_bytes
+      ~CashDividendModel.from_bytes
+      ~CashDividendModel.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.pricingengines.vanilla.fdblackscholesvanillaengine.CashDividendModel
    .. autosummary::
 
    
+      ~CashDividendModel.real
+      ~CashDividendModel.imag
+      ~CashDividendModel.numerator
+      ~CashDividendModel.denominator
       ~CashDividendModel.Spot
       ~CashDividendModel.Escrowed
 

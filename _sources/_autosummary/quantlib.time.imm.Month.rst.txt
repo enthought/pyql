@@ -11,6 +11,19 @@ quantlib.time.imm.Month
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Month.conjugate
+      ~Month.bit_length
+      ~Month.bit_count
+      ~Month.to_bytes
+      ~Month.from_bytes
+      ~Month.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.time.imm.Month
    .. autosummary::
 
    
+      ~Month.real
+      ~Month.imag
+      ~Month.numerator
+      ~Month.denominator
       ~Month.F
       ~Month.G
       ~Month.H

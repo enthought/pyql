@@ -11,6 +11,19 @@ quantlib.math.matrixutilities.pseudosqrt.SalvagingAlgorithm
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~SalvagingAlgorithm.conjugate
+      ~SalvagingAlgorithm.bit_length
+      ~SalvagingAlgorithm.bit_count
+      ~SalvagingAlgorithm.to_bytes
+      ~SalvagingAlgorithm.from_bytes
+      ~SalvagingAlgorithm.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.math.matrixutilities.pseudosqrt.SalvagingAlgorithm
    .. autosummary::
 
    
+      ~SalvagingAlgorithm.real
+      ~SalvagingAlgorithm.imag
+      ~SalvagingAlgorithm.numerator
+      ~SalvagingAlgorithm.denominator
       ~SalvagingAlgorithm.Nothing
       ~SalvagingAlgorithm.Spectral
       ~SalvagingAlgorithm.Hypersphere

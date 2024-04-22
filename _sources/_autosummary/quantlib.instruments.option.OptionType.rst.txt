@@ -11,6 +11,19 @@ quantlib.instruments.option.OptionType
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~OptionType.conjugate
+      ~OptionType.bit_length
+      ~OptionType.bit_count
+      ~OptionType.to_bytes
+      ~OptionType.from_bytes
+      ~OptionType.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.instruments.option.OptionType
    .. autosummary::
 
    
+      ~OptionType.real
+      ~OptionType.imag
+      ~OptionType.numerator
+      ~OptionType.denominator
       ~OptionType.Put
       ~OptionType.Call
 

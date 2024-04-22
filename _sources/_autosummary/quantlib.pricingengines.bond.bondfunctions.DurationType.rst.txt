@@ -1,0 +1,45 @@
+quantlib.pricingengines.bond.bondfunctions.DurationType
+=======================================================
+
+.. currentmodule:: quantlib.pricingengines.bond.bondfunctions
+
+.. autoclass:: DurationType
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~DurationType.conjugate
+      ~DurationType.bit_length
+      ~DurationType.bit_count
+      ~DurationType.to_bytes
+      ~DurationType.from_bytes
+      ~DurationType.as_integer_ratio
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~DurationType.real
+      ~DurationType.imag
+      ~DurationType.numerator
+      ~DurationType.denominator
+      ~DurationType.Simple
+      ~DurationType.Macaulay
+      ~DurationType.Modified
+
+   
+   

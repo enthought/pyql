@@ -11,6 +11,19 @@ quantlib.time.calendars.united\_states.Market
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Market.conjugate
+      ~Market.bit_length
+      ~Market.bit_count
+      ~Market.to_bytes
+      ~Market.from_bytes
+      ~Market.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.time.calendars.united\_states.Market
    .. autosummary::
 
    
+      ~Market.real
+      ~Market.imag
+      ~Market.numerator
+      ~Market.denominator
       ~Market.Settlement
       ~Market.NYSE
       ~Market.GovernmentBond

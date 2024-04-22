@@ -11,6 +11,19 @@ quantlib.cashflows.coupon\_pricer.TimingAdjustment
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~TimingAdjustment.conjugate
+      ~TimingAdjustment.bit_length
+      ~TimingAdjustment.bit_count
+      ~TimingAdjustment.to_bytes
+      ~TimingAdjustment.from_bytes
+      ~TimingAdjustment.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.cashflows.coupon\_pricer.TimingAdjustment
    .. autosummary::
 
    
+      ~TimingAdjustment.real
+      ~TimingAdjustment.imag
+      ~TimingAdjustment.numerator
+      ~TimingAdjustment.denominator
       ~TimingAdjustment.Black76
       ~TimingAdjustment.BivariateLognormal
 

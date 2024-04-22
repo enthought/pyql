@@ -11,6 +11,19 @@ quantlib.time.date.TimeUnit
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~TimeUnit.conjugate
+      ~TimeUnit.bit_length
+      ~TimeUnit.bit_count
+      ~TimeUnit.to_bytes
+      ~TimeUnit.from_bytes
+      ~TimeUnit.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.time.date.TimeUnit
    .. autosummary::
 
    
+      ~TimeUnit.real
+      ~TimeUnit.imag
+      ~TimeUnit.numerator
+      ~TimeUnit.denominator
       ~TimeUnit.Days
       ~TimeUnit.Weeks
       ~TimeUnit.Months

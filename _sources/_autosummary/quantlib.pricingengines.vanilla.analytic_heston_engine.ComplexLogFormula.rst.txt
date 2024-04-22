@@ -11,6 +11,19 @@ quantlib.pricingengines.vanilla.analytic\_heston\_engine.ComplexLogFormula
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ComplexLogFormula.conjugate
+      ~ComplexLogFormula.bit_length
+      ~ComplexLogFormula.bit_count
+      ~ComplexLogFormula.to_bytes
+      ~ComplexLogFormula.from_bytes
+      ~ComplexLogFormula.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.pricingengines.vanilla.analytic\_heston\_engine.ComplexLogFormula
    .. autosummary::
 
    
+      ~ComplexLogFormula.real
+      ~ComplexLogFormula.imag
+      ~ComplexLogFormula.numerator
+      ~ComplexLogFormula.denominator
       ~ComplexLogFormula.Gatheral
       ~ComplexLogFormula.BranchCorrection
       ~ComplexLogFormula.AndersenPiterbarg

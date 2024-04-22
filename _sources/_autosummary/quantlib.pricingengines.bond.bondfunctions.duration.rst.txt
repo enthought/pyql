@@ -1,0 +1,6 @@
+quantlib.pricingengines.bond.bondfunctions.duration
+===================================================
+
+.. currentmodule:: quantlib.pricingengines.bond.bondfunctions
+
+.. autofunction:: duration

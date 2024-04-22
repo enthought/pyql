@@ -11,6 +11,19 @@ quantlib.termstructures.volatility.volatilitytype.VolatilityType
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~VolatilityType.conjugate
+      ~VolatilityType.bit_length
+      ~VolatilityType.bit_count
+      ~VolatilityType.to_bytes
+      ~VolatilityType.from_bytes
+      ~VolatilityType.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.termstructures.volatility.volatilitytype.VolatilityType
    .. autosummary::
 
    
+      ~VolatilityType.real
+      ~VolatilityType.imag
+      ~VolatilityType.numerator
+      ~VolatilityType.denominator
       ~VolatilityType.ShiftedLognormal
       ~VolatilityType.Normal
 

@@ -11,6 +11,19 @@ quantlib.instruments.asian\_options.AverageType
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~AverageType.conjugate
+      ~AverageType.bit_length
+      ~AverageType.bit_count
+      ~AverageType.to_bytes
+      ~AverageType.from_bytes
+      ~AverageType.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.instruments.asian\_options.AverageType
    .. autosummary::
 
    
+      ~AverageType.real
+      ~AverageType.imag
+      ~AverageType.numerator
+      ~AverageType.denominator
       ~AverageType.Arithmetic
       ~AverageType.Geometric
 

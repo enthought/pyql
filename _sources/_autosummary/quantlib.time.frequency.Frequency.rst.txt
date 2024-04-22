@@ -11,6 +11,19 @@ quantlib.time.frequency.Frequency
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Frequency.conjugate
+      ~Frequency.bit_length
+      ~Frequency.bit_count
+      ~Frequency.to_bytes
+      ~Frequency.from_bytes
+      ~Frequency.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.time.frequency.Frequency
    .. autosummary::
 
    
+      ~Frequency.real
+      ~Frequency.imag
+      ~Frequency.numerator
+      ~Frequency.denominator
       ~Frequency.NoFrequency
       ~Frequency.Once
       ~Frequency.Annual

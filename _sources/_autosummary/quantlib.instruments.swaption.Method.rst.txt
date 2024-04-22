@@ -11,6 +11,19 @@ quantlib.instruments.swaption.Method
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Method.conjugate
+      ~Method.bit_length
+      ~Method.bit_count
+      ~Method.to_bytes
+      ~Method.from_bytes
+      ~Method.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.instruments.swaption.Method
    .. autosummary::
 
    
+      ~Method.real
+      ~Method.imag
+      ~Method.numerator
+      ~Method.denominator
       ~Method.PhysicalOTC
       ~Method.PhysicalCleared
       ~Method.CollateralizedCashPrice

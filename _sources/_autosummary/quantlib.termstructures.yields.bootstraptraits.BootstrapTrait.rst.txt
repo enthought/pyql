@@ -11,6 +11,19 @@ quantlib.termstructures.yields.bootstraptraits.BootstrapTrait
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~BootstrapTrait.conjugate
+      ~BootstrapTrait.bit_length
+      ~BootstrapTrait.bit_count
+      ~BootstrapTrait.to_bytes
+      ~BootstrapTrait.from_bytes
+      ~BootstrapTrait.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.termstructures.yields.bootstraptraits.BootstrapTrait
    .. autosummary::
 
    
+      ~BootstrapTrait.real
+      ~BootstrapTrait.imag
+      ~BootstrapTrait.numerator
+      ~BootstrapTrait.denominator
       ~BootstrapTrait.Discount
       ~BootstrapTrait.ZeroYield
       ~BootstrapTrait.ForwardRate

@@ -11,6 +11,19 @@ quantlib.pricingengines.credit.isda\_cds\_engine.ForwardsInCouponPeriod
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ForwardsInCouponPeriod.conjugate
+      ~ForwardsInCouponPeriod.bit_length
+      ~ForwardsInCouponPeriod.bit_count
+      ~ForwardsInCouponPeriod.to_bytes
+      ~ForwardsInCouponPeriod.from_bytes
+      ~ForwardsInCouponPeriod.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.pricingengines.credit.isda\_cds\_engine.ForwardsInCouponPeriod
    .. autosummary::
 
    
+      ~ForwardsInCouponPeriod.real
+      ~ForwardsInCouponPeriod.imag
+      ~ForwardsInCouponPeriod.numerator
+      ~ForwardsInCouponPeriod.denominator
       ~ForwardsInCouponPeriod.Flat
       ~ForwardsInCouponPeriod.Piecewise
 

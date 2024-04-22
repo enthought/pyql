@@ -11,6 +11,19 @@ quantlib.termstructures.volatility.equityfx.black\_variance\_surface.Extrapolati
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Extrapolation.conjugate
+      ~Extrapolation.bit_length
+      ~Extrapolation.bit_count
+      ~Extrapolation.to_bytes
+      ~Extrapolation.from_bytes
+      ~Extrapolation.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.termstructures.volatility.equityfx.black\_variance\_surface.Extrapolati
    .. autosummary::
 
    
+      ~Extrapolation.real
+      ~Extrapolation.imag
+      ~Extrapolation.numerator
+      ~Extrapolation.denominator
       ~Extrapolation.ConstantExtrapolation
       ~Extrapolation.InterpolatorDefaultExtrapolation
 

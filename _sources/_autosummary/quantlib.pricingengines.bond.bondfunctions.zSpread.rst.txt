@@ -1,0 +1,6 @@
+quantlib.pricingengines.bond.bondfunctions.zSpread
+==================================================
+
+.. currentmodule:: quantlib.pricingengines.bond.bondfunctions
+
+.. autofunction:: zSpread

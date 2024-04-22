@@ -11,6 +11,19 @@ quantlib.termstructures.volatility.equityfx.black\_variance\_surface.Interpolato
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Interpolator.conjugate
+      ~Interpolator.bit_length
+      ~Interpolator.bit_count
+      ~Interpolator.to_bytes
+      ~Interpolator.from_bytes
+      ~Interpolator.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.termstructures.volatility.equityfx.black\_variance\_surface.Interpolato
    .. autosummary::
 
    
+      ~Interpolator.real
+      ~Interpolator.imag
+      ~Interpolator.numerator
+      ~Interpolator.denominator
       ~Interpolator.Bilinear
       ~Interpolator.Bicubic
 

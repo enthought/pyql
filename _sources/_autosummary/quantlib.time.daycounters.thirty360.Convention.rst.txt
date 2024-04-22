@@ -11,6 +11,19 @@ quantlib.time.daycounters.thirty360.Convention
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Convention.conjugate
+      ~Convention.bit_length
+      ~Convention.bit_count
+      ~Convention.to_bytes
+      ~Convention.from_bytes
+      ~Convention.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.time.daycounters.thirty360.Convention
    .. autosummary::
 
    
+      ~Convention.real
+      ~Convention.imag
+      ~Convention.numerator
+      ~Convention.denominator
       ~Convention.USA
       ~Convention.BondBasis
       ~Convention.European

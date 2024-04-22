@@ -11,6 +11,19 @@ quantlib.default.Protection
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Protection.conjugate
+      ~Protection.bit_length
+      ~Protection.bit_count
+      ~Protection.to_bytes
+      ~Protection.from_bytes
+      ~Protection.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.default.Protection
    .. autosummary::
 
    
+      ~Protection.real
+      ~Protection.imag
+      ~Protection.numerator
+      ~Protection.denominator
       ~Protection.Buyer
       ~Protection.Seller
 

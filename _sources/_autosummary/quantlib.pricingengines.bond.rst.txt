@@ -13,14 +13,6 @@ quantlib.pricingengines.bond
 
    
    
-   .. rubric:: Classes
-
-   .. autosummary::
-      :toctree:
-      :template: custom-class-template.rst
-   
-      DiscountingBondEngine
-   
    
 
    
@@ -28,4 +20,14 @@ quantlib.pricingengines.bond
    
 
 
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   quantlib.pricingengines.bond.bondfunctions
+   quantlib.pricingengines.bond.discountingbondengine
 

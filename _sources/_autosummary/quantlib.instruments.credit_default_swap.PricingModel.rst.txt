@@ -11,6 +11,19 @@ quantlib.instruments.credit\_default\_swap.PricingModel
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~PricingModel.conjugate
+      ~PricingModel.bit_length
+      ~PricingModel.bit_count
+      ~PricingModel.to_bytes
+      ~PricingModel.from_bytes
+      ~PricingModel.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.instruments.credit\_default\_swap.PricingModel
    .. autosummary::
 
    
+      ~PricingModel.real
+      ~PricingModel.imag
+      ~PricingModel.numerator
+      ~PricingModel.denominator
       ~PricingModel.Midpoint
       ~PricingModel.ISDA
 

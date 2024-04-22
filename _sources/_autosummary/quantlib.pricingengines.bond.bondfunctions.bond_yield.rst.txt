@@ -1,0 +1,6 @@
+quantlib.pricingengines.bond.bondfunctions.bond\_yield
+======================================================
+
+.. currentmodule:: quantlib.pricingengines.bond.bondfunctions
+
+.. autofunction:: bond_yield

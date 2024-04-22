@@ -11,6 +11,19 @@ quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.FdmSchemeType
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FdmSchemeType.conjugate
+      ~FdmSchemeType.bit_length
+      ~FdmSchemeType.bit_count
+      ~FdmSchemeType.to_bytes
+      ~FdmSchemeType.from_bytes
+      ~FdmSchemeType.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.FdmSchemeType
    .. autosummary::
 
    
+      ~FdmSchemeType.real
+      ~FdmSchemeType.imag
+      ~FdmSchemeType.numerator
+      ~FdmSchemeType.denominator
       ~FdmSchemeType.HundsdorferType
       ~FdmSchemeType.DouglasType
       ~FdmSchemeType.CraigSneydType

@@ -11,6 +11,19 @@ quantlib.pricingengines.credit.isda\_cds\_engine.AccrualBias
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~AccrualBias.conjugate
+      ~AccrualBias.bit_length
+      ~AccrualBias.bit_count
+      ~AccrualBias.to_bytes
+      ~AccrualBias.from_bytes
+      ~AccrualBias.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.pricingengines.credit.isda\_cds\_engine.AccrualBias
    .. autosummary::
 
    
+      ~AccrualBias.real
+      ~AccrualBias.imag
+      ~AccrualBias.numerator
+      ~AccrualBias.denominator
       ~AccrualBias.HalfDayBias
       ~AccrualBias.NoBias
 

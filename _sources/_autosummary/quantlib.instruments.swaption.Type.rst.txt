@@ -11,6 +11,19 @@ quantlib.instruments.swaption.Type
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Type.conjugate
+      ~Type.bit_length
+      ~Type.bit_count
+      ~Type.to_bytes
+      ~Type.from_bytes
+      ~Type.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.instruments.swaption.Type
    .. autosummary::
 
    
+      ~Type.real
+      ~Type.imag
+      ~Type.numerator
+      ~Type.denominator
       ~Type.Physical
       ~Type.Cash
 

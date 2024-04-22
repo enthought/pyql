@@ -11,6 +11,19 @@ quantlib.processes.heston\_process.Discretization
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Discretization.conjugate
+      ~Discretization.bit_length
+      ~Discretization.bit_count
+      ~Discretization.to_bytes
+      ~Discretization.from_bytes
+      ~Discretization.as_integer_ratio
+   
    
 
    
@@ -20,6 +33,10 @@ quantlib.processes.heston\_process.Discretization
    .. autosummary::
 
    
+      ~Discretization.real
+      ~Discretization.imag
+      ~Discretization.numerator
+      ~Discretization.denominator
       ~Discretization.PartialTruncation
       ~Discretization.FullTruncation
       ~Discretization.Reflection
