@@ -17,6 +17,17 @@ cdef class Price:
     Clean = Type.Clean
     Dirty = Type.Dirty
 
+    def __init__(self, Real amount, Type type=Price.Clean):
+        self._this =_bond.Bond.Price(amount, type)
+
+    @property
+    def amount(self):
+        return self._this.amount()
+
+    @property
+    def type(self):
+        return self._this.type()
+
 cdef class Bond(Instrument):
     """ Base bond class
 
@@ -74,10 +85,10 @@ cdef class Bond(Instrument):
         """ Bond dirty price"""
         return self.as_ptr().dirtyPrice()
 
-    def bond_yield(self, Real price, DayCounter dc not None,
+    def bond_yield(self, Price price, DayCounter dc not None,
                    Compounding comp, Frequency freq,
                    Date settlement_date=Date(), Real accuracy=1e-08,
-                   Size max_evaluations=100, Real guess=0.5, Type price_type = Price.Clean):
+                   Size max_evaluations=100, Real guess=0.05):
         """ Return the yield given a price and settlement date
 
         The default bond settlement is used if no date is given.
@@ -87,9 +98,9 @@ cdef class Bond(Instrument):
 
         """
         return self.as_ptr().bond_yield(
-                price, deref(dc._thisptr), comp,
+                price._this, deref(dc._thisptr), comp,
                 freq, deref(settlement_date._thisptr),
-                accuracy, max_evaluations, guess, price_type
+                accuracy, max_evaluations, guess
             )
 
     def accrued_amount(self, Date date=Date()):

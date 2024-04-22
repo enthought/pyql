@@ -6,8 +6,8 @@ cdef extern from "ql/instruments/bond.hpp" namespace "QuantLib::Bond::Price" nog
         Dirty
         Clean
 
-cdef class BondPrice:
-    pass
+cdef class Price:
+    cdef _bond.Bond.Price _this
 
 cdef class Bond(Instrument):
     cdef inline _bond.Bond* as_ptr(self)
