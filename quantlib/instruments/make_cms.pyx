@@ -1,3 +1,4 @@
+from quantlib.types cimport Real, Spread
 from cython.operator cimport dereference as deref
 from quantlib.instruments.swap cimport Swap
 from quantlib.handle cimport static_pointer_cast, shared_ptr

@@ -1,4 +1,4 @@
-include '../types.pxi'
+from quantlib.types cimport Natural, Time
 from libcpp cimport bool
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._calendar cimport Calendar

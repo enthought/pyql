@@ -7,8 +7,7 @@
 
 """Utilities for implied-volatility calculation"""
 
-include '../types.pxi'
-
+from quantlib.types cimport Natural, Real, Volatility
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.instrument cimport Instrument

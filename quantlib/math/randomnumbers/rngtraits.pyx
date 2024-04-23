@@ -1,4 +1,4 @@
-include '../../types.pxi'
+from quantlib.types cimport BigNatural, Size
 cimport cython
 cimport numpy as np
 from cython.operator cimport dereference as deref

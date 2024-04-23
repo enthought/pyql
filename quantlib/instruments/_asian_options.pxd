@@ -1,5 +1,4 @@
-include '../types.pxi'
-
+from quantlib.types cimport Real, Size
 from libcpp.vector cimport vector
 
 from quantlib.handle cimport shared_ptr
@@ -11,7 +10,7 @@ from quantlib.instruments._payoffs cimport StrikedTypePayoff
 
 from .asian_options cimport AverageType
 
-cdef extern from 'ql/instruments/asianoption.hpp' namespace 'QuantLib':
+cdef extern from 'ql/instruments/asianoption.hpp' namespace 'QuantLib' nogil:
     # Continuous-averaging Asian option
     #    TODO add running average
     #    ingroup: instruments

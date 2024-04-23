@@ -7,8 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../types.pxi'
-
+from quantlib.types cimport Natural, Real, Volatility
 from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib.termstructures._yield_term_structure as _yts
 cimport quantlib.time._daycounter as _dc

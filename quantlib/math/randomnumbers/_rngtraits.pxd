@@ -1,5 +1,4 @@
-include '../../types.pxi'
-
+from quantlib.types cimport BigNatural, Size
 from ._inverse_cumulative_rsg cimport InverseCumulativeRsg
 from ._sobol_rsg cimport SobolRsg
 

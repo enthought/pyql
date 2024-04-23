@@ -6,7 +6,7 @@
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
 
 
-include '../../types.pxi'
+from quantlib.types cimport Natural, Rate
 from cython.operator cimport dereference as deref
 
 from quantlib.time.frequency cimport Frequency, Annual
@@ -74,7 +74,7 @@ cdef class FlatForward(YieldTermStructure):
             else:
                 _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
                         deref(reference_date._thisptr),
-                        <ffwd.Rate>forward,
+                        <Rate>forward,
                         deref(daycounter._thisptr),
                         compounding,
                         frequency
@@ -93,9 +93,9 @@ cdef class FlatForward(YieldTermStructure):
                 ))
             else:
                 _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
-                        <ffwd.Natural>settlement_days,
+                        <Natural>settlement_days,
                         calendar._thisptr,
-                        <Real>forward,
+                        <Rate>forward,
                         deref(daycounter._thisptr),
                         compounding,
                         frequency
