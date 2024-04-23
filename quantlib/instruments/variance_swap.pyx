@@ -1,10 +1,8 @@
-include '../types.pxi'
-
+from quantlib.types cimport Real
 from quantlib.handle cimport shared_ptr
 from cython.operator cimport dereference as deref
 from .._instrument cimport Instrument as _Instrument
 from quantlib.time.date cimport (Date, _pydate_from_qldate, _qldate_from_pydate)
-from quantlib.time._date cimport Date as _Date
 from libcpp cimport bool
 from ._variance_swap cimport (VarianceSwap as _VarianceSwap, Type as _Type)
 import datetime

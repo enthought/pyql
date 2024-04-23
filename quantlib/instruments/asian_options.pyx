@@ -1,6 +1,5 @@
 """ Asian option on a single asset """
-include '../types.pxi'
-
+from quantlib.types cimport Real, Size
 from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 

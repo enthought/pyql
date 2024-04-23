@@ -1,6 +1,3 @@
-include '../../types.pxi'
-
-
 from quantlib.handle cimport shared_ptr, Handle
 from quantlib._quote cimport Quote
 from ._flat_forward cimport YieldTermStructure

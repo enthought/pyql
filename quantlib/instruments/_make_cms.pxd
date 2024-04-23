@@ -1,4 +1,4 @@
-include '../types.pxi'
+from quantlib.types cimport Real, Spread
 from libcpp cimport bool
 from quantlib.handle cimport shared_ptr
 from quantlib.indexes._swap_index cimport SwapIndex

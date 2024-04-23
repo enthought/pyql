@@ -1,5 +1,3 @@
-include '../types.pxi'
-
 from . cimport _make_cms
 
 cdef class MakeCms:

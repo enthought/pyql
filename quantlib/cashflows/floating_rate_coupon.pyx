@@ -1,5 +1,4 @@
-include '../types.pxi'
-
+from quantlib.types cimport Natural, Real, Spread
 from libcpp cimport bool
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr, static_pointer_cast
