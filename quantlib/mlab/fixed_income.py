@@ -242,6 +242,4 @@ def _cfamounts(coupon_rate, pricing_date, maturity_date,
                 redemption,
                 issue_date)
 
-    res = zip(*bond.cashflows)
-
-    return(res)
+    return zip(*[(cf.amount, cf.date) for cf in bond.cashflows])

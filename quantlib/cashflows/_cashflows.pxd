@@ -1,6 +1,8 @@
 from libcpp cimport bool
+from libcpp.pair cimport pair
 from quantlib.time._date cimport Date
 from quantlib.types cimport Rate, Real
+from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from .._cashflow cimport Leg
 
 cdef extern from 'ql/cashflows/cashflows.hpp' namespace 'QuantLib':
@@ -83,3 +85,23 @@ cdef extern from 'ql/cashflows/cashflows.hpp' namespace 'QuantLib':
         # accruedAmount(const Leg& leg,
         #               bool includeSettlementDateFlows,
         #               Date settlementDate = Date());
+        @staticmethod
+        Real npv(const Leg& leg,
+                 const YieldTermStructure& discountCurve,
+                 bool includeSettlementDateFlows,
+                 Date settlementDate, # = Date(),
+                 Date npvDate) # = Date())
+
+        @staticmethod
+        Real bps(const Leg& leg,
+                 const YieldTermStructure& discountCurve,
+                 bool includeSettlementDateFlows,
+                 Date settlementDate, # = Date(),
+                 Date npvDate) # = Date())
+
+        @staticmethod
+        pair[Real, Real] npvbps(const Leg& leg,
+                                const YieldTermStructure& discountCurve,
+                                bool includeSettlementDateFlows,
+                                Date settlementDate, # = Date(),
+                                Date npvDate) #= Date())
