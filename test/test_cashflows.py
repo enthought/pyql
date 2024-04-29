@@ -23,7 +23,7 @@ class TestQuantLibDate(unittest.TestCase):
         pydate = date(2030, 7, 1)
         cf_amount = 100.0
 
-        leg = ((cf_amount, cf_date),)
+        leg = [cf.SimpleCashFlow(cf_amount, cf_date),]
 
         test_leg = cf.Leg(leg)
         self.assertEqual(len(test_leg), 1)

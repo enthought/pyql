@@ -15,7 +15,7 @@ from libcpp.vector cimport vector
 from libcpp cimport bool
 from cpython.datetime cimport date, import_datetime
 from cython.operator cimport dereference as deref, preincrement as preinc
-from quantlib.handle cimport shared_ptr, static_pointer_cast, optional
+from quantlib.handle cimport shared_ptr, optional
 
 import_datetime()
 
@@ -26,30 +26,13 @@ cdef class CashFlow:
 
     """
 
-    def __cinit__(self):
-        if __class__ == CashFlow:
-            raise ValueError(
-                'This is an abstract class.'
-            )
+    @property
+    def date(self):
+        return date_from_qldate(self._thisptr.get().date())
 
-    property date:
-        def __get__(self):
-            cdef:
-                _date.Date cf_date
-                _cf.CashFlow* cf = self._thisptr.get()
-            if cf:
-                cf_date = cf.date()
-                return date_from_qldate(cf_date)
-            else:
-                return None
-
-    property amount:
-        def __get__(self):
-            cdef _cf.CashFlow* cf = self._thisptr.get()
-            if cf:
-                return cf.amount()
-            else:
-                return None
+    @property
+    def amount(self):
+        return self._thisptr.get().amount()
 
     def has_occured(self, Date ref_date, include_ref_date=None):
         cdef _cf.CashFlow* cf = self._thisptr.get()
@@ -77,7 +60,6 @@ cdef list leg_items(const _cf.Leg& leg):
     """
     cdef list itemlist = []
     cdef vector[shared_ptr[_cf.CashFlow]].const_iterator it = leg.const_begin()
-    cdef _cf.CashFlow* _thiscf
     while it != leg.end():
         _thiscf = deref(it).get()
         itemlist.append((_thiscf.amount(),  _pydate_from_qldate(_thiscf.date())))
@@ -86,20 +68,11 @@ cdef list leg_items(const _cf.Leg& leg):
 
 cdef class Leg:
 
-    def __init__(self, leg=[]):
+    def __init__(self, cashflows: list[CashFlow]):
         '''Takes as input a list of (amount, QL Date) tuples. '''
-
-        cdef _date.Date _thisdate
-
-        for amount, d in leg:
-            if isinstance(d, Date):
-               _thisdate = deref((<Date>d)._thisptr)
-            elif isinstance(d, date):
-               _thisdate = _qldate_from_pydate(d)
-            else:
-               raise TypeError("second element needs to be a QuantLib Date or datetime.date")
-
-            self._thisptr.emplace_back(new _cf.SimpleCashFlow(amount, _thisdate))
+        cdef CashFlow cf
+        for cf in cashflows:
+            self._thisptr.push_back(cf._thisptr)
 
     def items(self):
         '''Return Leg as (amount, date) list. '''
@@ -111,16 +84,17 @@ cdef class Leg:
         return size
 
     def __iter__(self):
+        cdef CashFlow cf
         cdef vector[shared_ptr[_cf.CashFlow]].iterator it = self._thisptr.begin()
-        cdef _cf.CashFlow* _thiscf
         while it != self._thisptr.end():
-            _thiscf = deref(it).get()
-            yield (_thiscf.amount(), _pydate_from_qldate(_thiscf.date()))
+            cf = CashFlow.__new__(CashFlow)
+            cf._thisptr = deref(it)
+            yield cf
             preinc(it)
 
     def __repr__(self):
         """ Pretty print cash flow schedule. """
 
         header = "Cash Flow Schedule:\n"
-        values = ("{0!s} {1:f}".format(d, cf) for cf, d in self)
+        cdef list values = ["{0!s} {1:f}".format(d, cf) for cf, d in leg_items(self._thisptr)]
         return header + '\n'.join(values)

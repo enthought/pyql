@@ -1,5 +1,3 @@
-include '../types.pxi'
-
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
 from quantlib.time.date cimport Date, date_from_qldate
