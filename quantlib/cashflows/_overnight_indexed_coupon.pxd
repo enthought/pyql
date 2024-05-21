@@ -25,6 +25,7 @@ cdef extern from 'ql/cashflows/overnightindexedcoupon.hpp' namespace 'QuantLib':
                                RateAveraging averagingMethod) # = RateAveraging::Compound
 
         vector[Date]& fixingDates()
-        vector[Time]& dt
-        vector[Rate]& indexFixings()
+        vector[Time]& dt()
+        vector[Rate]& indexFixings() except +
         vector[Date]& valueDates()
+        RateAveraging averagingMethod()
