@@ -31,11 +31,14 @@ cdef class BlackSwaptionEngine(PricingEngine):
 
         if isinstance(vol, float):
             self._thisptr.reset(
-                new _BlackSwaptionEngine(discount_curve._thisptr,
-                                         <Volatility>vol,
-                                         deref(dc._thisptr),
-                                         displacement,
-                                         <_BlackSwaptionEngine.CashAnnuityModel>model))
+                new _BlackSwaptionEngine(
+                    discount_curve._thisptr,
+                    <Volatility>vol,
+                    deref(dc._thisptr),
+                    displacement,
+                    <_BlackSwaptionEngine.CashAnnuityModel>model,
+                )
+            )
         elif isinstance(vol, Quote):
             self._thisptr.reset(
                 new _BlackSwaptionEngine(
@@ -73,10 +76,13 @@ cdef class BachelierSwaptionEngine(PricingEngine):
 
         if isinstance(vol, float):
             self._thisptr.reset(
-                new _BachelierSwaptionEngine(discount_curve._thisptr,
-                                             <Volatility>vol,
-                                             deref(dc._thisptr),
-                                             <_BachelierSwaptionEngine.CashAnnuityModel>model))
+                new _BachelierSwaptionEngine(
+                    discount_curve._thisptr,
+                    <Volatility>vol,
+                    deref(dc._thisptr),
+                    <_BachelierSwaptionEngine.CashAnnuityModel>model,
+                )
+            )
         elif isinstance(vol, Quote):
             self._thisptr.reset(
                 new _BachelierSwaptionEngine(

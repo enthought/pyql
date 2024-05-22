@@ -61,4 +61,4 @@ cdef class Thirty360(DayCounter):
     """
 
    def __cinit__(self, Convention convention=Convention.BondBasis, Date termination_date=Date()):
-       self._thisptr = new _th.Thirty360(convention, deref(termination_date._thisptr))
+       self._thisptr = new _th.Thirty360(convention, termination_date._thisptr)

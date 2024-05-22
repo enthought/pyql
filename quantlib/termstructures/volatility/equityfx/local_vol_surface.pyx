@@ -38,6 +38,6 @@ cdef class LocalVolSurface(LocalVolTermStructure):
         if isinstance(d, float):
             return surf.localVol_(<Time>d, underlying_level, extrapolate)
         elif isinstance(d, Date):
-            return surf.localVol(deref((<Date>d)._thisptr), underlying_level, extrapolate)
+            return surf.localVol((<Date>d)._thisptr, underlying_level, extrapolate)
         else:
             raise TypeError("d needs to be either a Date or a Real")

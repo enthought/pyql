@@ -18,8 +18,8 @@ cdef class OvernightIndexFuture(Instrument):
         self._thisptr.reset(
             new _oif.OvernightIndexFuture(
                 static_pointer_cast[_ii.OvernightIndex](overnight_index._thisptr),
-                deref(value_date._thisptr),
-                deref(maturity_date._thisptr),
+                value_date._thisptr,
+                maturity_date._thisptr,
                 convexity_adjustment.handle(),
                 averaging_method
             )

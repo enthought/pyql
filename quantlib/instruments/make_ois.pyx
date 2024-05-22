@@ -59,11 +59,11 @@ cdef class MakeOIS:
         return self
 
     def with_effective_date(self, Date d):
-        self._thisptr.withEffectiveDate(deref(d._thisptr))
+        self._thisptr.withEffectiveDate(d._thisptr)
         return self
 
     def with_termination_date(self, Date d):
-        self._thisptr.withTerminationDate(deref(d._thisptr))
+        self._thisptr.withTerminationDate(d._thisptr)
         return self
 
     def with_rule(self, DateGeneration r):

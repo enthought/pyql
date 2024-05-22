@@ -69,7 +69,7 @@ cdef class SwaptionHelper(BlackCalibrationHelper):
         elif isinstance(maturity_or_exercise_date, Date) and isinstance(length_or_end_date, Period):
             self._thisptr.reset(
                 _sh.SwaptionHelper_(
-                    deref((<Date>maturity_or_exercise_date)._thisptr),
+                    (<Date>maturity_or_exercise_date)._thisptr,
                     deref((<Period>length_or_end_date)._thisptr),
                     volatility.handle(),
                     static_pointer_cast[_ii.IborIndex](index._thisptr),
@@ -87,8 +87,8 @@ cdef class SwaptionHelper(BlackCalibrationHelper):
         elif isinstance(maturity_or_exercise_date, Date) and isinstance(length_or_end_date, Date):
             self._thisptr.reset(
                 _sh.SwaptionHelper2_(
-                    deref((<Date>maturity_or_exercise_date)._thisptr),
-                    deref((<Date>length_or_end_date)._thisptr),
+                    (<Date>maturity_or_exercise_date)._thisptr,
+                    (<Date>length_or_end_date)._thisptr,
                     volatility.handle(),
                     static_pointer_cast[_ii.IborIndex](index._thisptr),
                     deref(fixed_leg_tenor._thisptr),

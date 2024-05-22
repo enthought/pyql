@@ -1,7 +1,6 @@
 include '../types.pxi'
 from libcpp cimport bool
 from cython.operator cimport dereference as deref
-
 from quantlib.utilities.null cimport Null
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.cashflows.coupon_pricer cimport FloatingRateCouponPricer
@@ -82,18 +81,18 @@ cdef class CappedFlooredIborCoupon(CappedFlooredCoupon):
                  DayCounter day_counter=DayCounter(),
                  bool is_in_arrears=False):
         self._thisptr = shared_ptr[CashFlow](new _cfc.CappedFlooredIborCoupon(
-                deref(payment_date._thisptr),
+                payment_date._thisptr,
                 nominal,
-                deref(start_date._thisptr),
-                deref(end_date._thisptr),
+                start_date._thisptr,
+                end_date._thisptr,
                 fixing_days,
                 static_pointer_cast[_ii.IborIndex](index._thisptr),
                 gearing,
                 spread,
                 cap,
                 floor,
-                deref(ref_period_start._thisptr),
-                deref(ref_period_end._thisptr),
+                ref_period_start._thisptr,
+                ref_period_end._thisptr,
                 deref(day_counter._thisptr),
                 is_in_arrears))
 
@@ -113,17 +112,17 @@ cdef class CappedFlooredCmsCoupon(CappedFlooredCoupon):
                  DayCounter day_counter=DayCounter(),
                  bool is_in_arrears=False):
         self._thisptr = shared_ptr[CashFlow](new _cfc.CappedFlooredCmsCoupon(
-                deref(payment_date._thisptr),
+                payment_date._thisptr,
                 nominal,
-                deref(start_date._thisptr),
-                deref(end_date._thisptr),
+                start_date._thisptr,
+                end_date._thisptr,
                 fixing_days,
                 static_pointer_cast[_si.SwapIndex](index._thisptr),
                 gearing,
                 spread,
                 cap,
                 floor,
-                deref(ref_period_start._thisptr),
-                deref(ref_period_end._thisptr),
+                ref_period_start._thisptr,
+                ref_period_end._thisptr,
                 deref(day_counter._thisptr),
                 is_in_arrears))

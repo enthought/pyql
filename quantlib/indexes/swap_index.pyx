@@ -62,7 +62,7 @@ cdef class SwapIndex(InterestRateIndex):
         cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
         cdef VanillaSwap swap = VanillaSwap.__new__(VanillaSwap)
         swap._thisptr = static_pointer_cast[_instrument.Instrument](
-            swap_index.underlyingSwap(deref(fixing_date._thisptr)))
+            swap_index.underlyingSwap(fixing_date._thisptr))
         return swap
 
     @property
@@ -118,5 +118,5 @@ cdef class OvernightIndexedSwapIndex(SwapIndex):
         cdef _si.OvernightIndexedSwapIndex* swap_index = <_si.OvernightIndexedSwapIndex*>self._thisptr.get()
         cdef OvernightIndexedSwap swap = OvernightIndexedSwap.__new__(OvernightIndexedSwap)
         swap._thisptr = static_pointer_cast[_instrument.Instrument](
-            <shared_ptr[_si.OvernightIndexedSwap]>swap_index.underlyingSwap(deref(fixing_date._thisptr)))
+            <shared_ptr[_si.OvernightIndexedSwap]>swap_index.underlyingSwap(fixing_date._thisptr))
         return swap

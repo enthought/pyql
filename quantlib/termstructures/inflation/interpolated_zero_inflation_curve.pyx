@@ -22,7 +22,7 @@ cdef class InterpolatedZeroInflationCurve(ZeroInflationTermStructure):
         cdef object date
 
         for date in dates:
-            _dates.push_back(deref((<Date?>date)._thisptr))
+            _dates.push_back((<Date?>date)._thisptr)
 
         self._trait = interpolator
 
@@ -30,14 +30,14 @@ cdef class InterpolatedZeroInflationCurve(ZeroInflationTermStructure):
 
             self._thisptr.reset(
                 new _izic.InterpolatedZeroInflationCurve[intpl.Linear](
-                    deref(reference_date._thisptr), _dates,
+                    reference_date._thisptr, _dates,
                     rates, frequency,
                     deref(day_counter._thisptr), seasonality._thisptr)
             )
         elif interpolator == LogLinear:
             self._thisptr.reset(
                 new _izic.InterpolatedZeroInflationCurve[intpl.LogLinear](
-                    deref(reference_date._thisptr), _dates,
+                    reference_date._thisptr, _dates,
                     rates, frequency,
                     deref(day_counter._thisptr), seasonality._thisptr)
             )
@@ -45,7 +45,7 @@ cdef class InterpolatedZeroInflationCurve(ZeroInflationTermStructure):
         elif interpolator == BackwardFlat:
             self._thisptr.reset(
                 new _izic.InterpolatedZeroInflationCurve[intpl.BackwardFlat](
-                    deref(reference_date._thisptr), _dates,
+                    reference_date._thisptr, _dates,
                     rates, frequency,
                     deref(day_counter._thisptr), seasonality._thisptr)
             )

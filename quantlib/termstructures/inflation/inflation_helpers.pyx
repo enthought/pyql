@@ -30,7 +30,7 @@ cdef class ZeroCouponInflationSwapHelper:
             new _ih.ZeroCouponInflationSwapHelper(
                 quote.handle(),
                 deref(swap_obs_lag._thisptr),
-                deref(maturity._thisptr),
+                maturity._thisptr,
                 calendar._thisptr, payment_convention,
                 deref(day_counter._thisptr),
                 static_pointer_cast[_ii.ZeroInflationIndex](zii._thisptr),
@@ -61,7 +61,7 @@ cdef class YearOnYearInflationSwapHelper:
             new _ih.YearOnYearInflationSwapHelper(
                 quote.handle(),
                 deref(swap_obs_lag._thisptr),
-                deref(maturity._thisptr),
+                maturity._thisptr,
                 calendar._thisptr, payment_convention,
                 deref(day_counter._thisptr),
                 static_pointer_cast[_ii.YoYInflationIndex](yii._thisptr),

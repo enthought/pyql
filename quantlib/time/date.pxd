@@ -16,7 +16,7 @@ cdef class Period:
     cdef shared_ptr[_period.Period] _thisptr
 
 cdef class Date:
-    cdef shared_ptr[_date.Date] _thisptr
+    cdef _date.Date _thisptr
 
 cdef Date date_from_qldate(const _date.Date& date)
 cdef Period period_from_qlperiod(const _period.Period& period)

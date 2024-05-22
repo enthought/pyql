@@ -21,7 +21,7 @@ cdef class MakeSwaption:
         if isinstance(option_tenor, Date):
             self._thisptr = new _make_swaption.MakeSwaption(
                 static_pointer_cast[_si.SwapIndex](swap_index._thisptr),
-                deref((<Date>option_tenor)._thisptr),
+                (<Date>option_tenor)._thisptr,
                 strike)
         elif isinstance(option_tenor, Period):
             self._thisptr = new _make_swaption.MakeSwaption(
@@ -55,7 +55,7 @@ cdef class MakeSwaption:
         return self
 
     def with_exercise_date(self, Date exercise_date not None):
-        self._thisptr.withExerciseDate(deref(exercise_date._thisptr))
+        self._thisptr.withExerciseDate(exercise_date._thisptr)
         return self
 
     def with_underlying_type(self, SwapType swap_type):

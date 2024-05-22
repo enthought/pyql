@@ -22,7 +22,7 @@ cdef class DiscountingSwapEngine(PricingEngine):
             new _swap.DiscountingSwapEngine(
                 discount_curve._thisptr,
                 include_settlement_date_flows_opt,
-                deref(settlement_date._thisptr),
-                deref(npv_date._thisptr)
+                settlement_date._thisptr,
+                npv_date._thisptr
             )
         )

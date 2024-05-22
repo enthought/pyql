@@ -19,7 +19,7 @@ def start_date(Bond bond):
     return date_from_qldate(_bf.startDate(deref(bond.as_ptr())))
 
 def previous_cash_flow(Bond bond, Date ref_date=Date()):
-    cdef Leg.const_reverse_iterator it  = _bf.previousCashFlow(deref(bond.as_ptr()), deref(ref_date._thisptr))
+    cdef Leg.const_reverse_iterator it  = _bf.previousCashFlow(deref(bond.as_ptr()), ref_date._thisptr)
     cdef CashFlow cf = CashFlow.__new__(CashFlow)
     while it != bond.as_ptr().cashflows().const_rbegin():
         cf._thisptr = deref(it)
@@ -41,7 +41,7 @@ def duration(Bond bond not None,
             compounding,
             frequency,
             type,
-            deref(settlement_date._thisptr))
+            settlement_date._thisptr)
 
 def convexity(Bond bond not None,
               Rate yld,
@@ -55,7 +55,7 @@ def convexity(Bond bond not None,
         deref(day_counter._thisptr),
         compounding,
         frequency,
-        deref(settlement_date._thisptr))
+        settlement_date._thisptr)
 
 def bond_yield(Bond bond not None,
                Price price,
@@ -73,7 +73,7 @@ def bond_yield(Bond bond not None,
             deref(day_counter._thisptr),
             compounding,
             frequency,
-            deref(settlement_date._thisptr),
+            settlement_date._thisptr,
             accuracy,
             max_iterations,
             guess)
@@ -89,7 +89,7 @@ def clean_price(Bond bond not None,
                           deref(day_counter._thisptr),
                           compounding,
                           frequency,
-                          deref(settlement_date._thisptr))
+                          settlement_date._thisptr)
 
 def basisPointValue(Bond bond not None,
                     Rate yld,
@@ -103,7 +103,7 @@ def basisPointValue(Bond bond not None,
             deref(day_counter._thisptr),
             compounding,
             frequency,
-            deref(settlement_date._thisptr))
+            settlement_date._thisptr)
 
 
 def zSpread(Bond bond, Price price,
@@ -123,7 +123,7 @@ def zSpread(Bond bond, Price price,
         deref(day_counter._thisptr),
         compounding,
         frequency,
-        deref(settlement_date._thisptr),
+        settlement_date._thisptr,
         accuracy,
         max_iterations,
         guess)

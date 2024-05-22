@@ -14,7 +14,7 @@ cdef class FuturesConvAdjustmentQuote(Quote):
             self._thisptr.reset(
                 new _fcaq.FuturesConvAdjustmentQuote(
                     static_pointer_cast[_ii.IborIndex](index._thisptr),
-                    deref((<Date>futures_date_or_code)._thisptr),
+                    (<Date>futures_date_or_code)._thisptr,
                     futures_quote.handle(),
                     volatility.handle(),
                     mean_reversion.handle()

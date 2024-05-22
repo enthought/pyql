@@ -1,6 +1,5 @@
 """ Asian option on a single asset """
 from quantlib.types cimport Real, Size
-from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 
 from quantlib.handle cimport shared_ptr, static_pointer_cast
@@ -67,7 +66,7 @@ cdef class DiscreteAveragingAsianOption(OneAssetOption):
         # convert the list of PyQL dates into a vector of QL dates
         cdef vector[_date.Date] _fixing_dates
         for date in fixing_dates:
-            _fixing_dates.push_back(deref((<Date?>date)._thisptr))
+            _fixing_dates.push_back((<Date?>date)._thisptr)
 
         if (running_accum is not None) and (past_fixings is not None):
             self._thisptr = shared_ptr[_Instrument](

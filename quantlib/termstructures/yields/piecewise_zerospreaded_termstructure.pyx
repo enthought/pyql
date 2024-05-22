@@ -23,7 +23,7 @@ cdef class PiecewiseZeroSpreadedTermStructure(YieldTermStructure):
             spreads_vec.push_back(s.handle())
 
         for d in dates:
-            dates_vec.push_back(deref(d._thisptr))
+            dates_vec.push_back((<Date?>d)._thisptr)
 
         self._thisptr.linkTo(static_pointer_cast[_yts.YieldTermStructure](
             make_shared[_pzt.PiecewiseZeroSpreadedTermStructure](

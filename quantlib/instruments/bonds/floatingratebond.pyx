@@ -75,7 +75,7 @@ cdef class FloatingRateBond(Bond):
                 payment_convention,
                 fixing_days, gearings, spreads, caps, floors, in_arrears,
                 redemption,
-                deref(issue_date._thisptr),
+                issue_date._thisptr,
                 deref(ex_coupon_period._thisptr),
                 ex_coupon_calendar._thisptr,
                 ex_coupon_convention,

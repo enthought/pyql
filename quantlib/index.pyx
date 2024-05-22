@@ -7,7 +7,6 @@
 """Abstract base class for indices"""
 include 'types.pxi'
 
-from cython.operator cimport dereference as deref
 from cpython.datetime cimport PyDate_Check, date_year, date_month, date_day, import_datetime
 from libcpp cimport bool
 from libcpp.vector cimport vector
@@ -64,15 +63,15 @@ cdef class Index:
 
     def is_valid_fixing_date(self, Date fixing_date not None):
         return self._thisptr.get().isValidFixingDate(
-            deref(fixing_date._thisptr))
+            fixing_date._thisptr)
 
     def fixing(self, Date fixingDate not None, bool forecast_todays_fixing=False):
         return self._thisptr.get().fixing(
-            deref(fixingDate._thisptr), forecast_todays_fixing)
+            fixingDate._thisptr, forecast_todays_fixing)
 
     def add_fixing(self, Date fixingDate not None, Real fixing, bool force_overwrite=False):
         self._thisptr.get().addFixing(
-            deref(fixingDate._thisptr), fixing, force_overwrite
+            fixingDate._thisptr, fixing, force_overwrite
         )
 
     def add_fixings(self, list dates, list values, bool force_overwrite=False):
@@ -85,7 +84,7 @@ cdef class Index:
             if PyDate_Check(d):
                 qldates.push_back(QlDate(date_day(d), <Month>date_month(d), date_year(d)))
             elif isinstance(d, Date):
-                qldates.push_back(deref((<Date>d)._thisptr))
+                qldates.push_back((<Date>d)._thisptr)
             else:
                 raise TypeError
             qlvalues.push_back(<Real?>v)

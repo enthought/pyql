@@ -34,13 +34,13 @@ cdef class DayCounter:
             Date ref_start=Date(), Date ref_end=Date()):
         ''' Returns the period between two dates as a fraction of year.'''
         return self._thisptr.yearFraction(
-            deref(date1._thisptr), deref(date2._thisptr),
-            deref(ref_start._thisptr), deref(ref_end._thisptr)
+            date1._thisptr, date2._thisptr,
+            ref_start._thisptr, ref_end._thisptr
         )
 
     def day_count(self, Date date1 not None, Date date2 not None):
         ''' Returns the number of days between two dates.'''
-        return self._thisptr.dayCount(deref(date1._thisptr), deref(date2._thisptr))
+        return self._thisptr.dayCount(date1._thisptr, date2._thisptr)
 
     def __richcmp__(self, other_counter, int val):
 

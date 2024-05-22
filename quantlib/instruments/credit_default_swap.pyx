@@ -113,11 +113,11 @@ cdef class CreditDefaultSwap(Instrument):
                 side, notional, spread, schedule._thisptr,
                 payment_convention,
                 deref(day_counter._thisptr), settles_accrual, pays_at_default_time,
-                deref(protection_start._thisptr),
+                protection_start._thisptr,
                 shared_ptr[_cds.Claim](),
                 deref(last_period_day_counter._thisptr),
                 rebates_accrual,
-                deref(trade_date._thisptr),
+                trade_date._thisptr,
                 cash_settlement_days)
         )
 
@@ -186,12 +186,12 @@ cdef class CreditDefaultSwap(Instrument):
                 side, notional, upfront, spread, schedule._thisptr,
                 payment_convention,
                 deref(day_counter._thisptr), settles_accrual, pays_at_default_time,
-                deref(protection_start._thisptr),
-                deref(upfront_date._thisptr),
+                protection_start._thisptr,
+                upfront_date._thisptr,
                 shared_ptr[_cds.Claim](),
                 deref(last_period_day_counter._thisptr),
                 rebates_accrual,
-                deref(trade_date._thisptr),
+                trade_date._thisptr,
                 cash_settlement_days)
         )
         return instance
@@ -342,7 +342,7 @@ def cds_maturity(Date trade_date, Period tenor, DateGeneration rule):
         - if the `rule` is not 'CDS2015', 'CDS' or 'OldCDS'.
         - if the `rule` is 'OldCDS' and a `tenor` of 0 months is provided. This restriction can be removed if 0M tenor was available before the CDS Big Bang 2009.
         - if the `tenor` is not a multiple of 3 months. For the avoidance of doubt, a `tenor` of 0 months is supported. """
-    cdef QlDate r = _cds.cdsMaturity(deref(trade_date._thisptr), deref(tenor._thisptr), rule)
+    cdef QlDate r = _cds.cdsMaturity(trade_date._thisptr, deref(tenor._thisptr), rule)
     if r == QlDate():
         return None
     else:

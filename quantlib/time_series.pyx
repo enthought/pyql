@@ -17,11 +17,10 @@ cdef class TimeSeries:
             vector[Real] qlvalues
             Real v
         for d, v in zip(dates, values):
-            print(d, v)
             if PyDate_Check(d):
                 qldates.push_back(QlDate(date_day(d), <Month>date_month(d), date_year(d)))
             elif isinstance(d, Date):
-                qldates.push_back(deref((<Date>d)._thisptr))
+                qldates.push_back((<Date>d)._thisptr)
             qlvalues.push_back(<Real?>v)
 
         self._thisptr = _ts.TimeSeries[Real](qldates.begin(), qldates.end(), qlvalues.begin())
@@ -48,7 +47,7 @@ cdef class TimeSeries:
         return not self._thisptr.empty()
 
     def __getitem__(self, Date date not None):
-        return self._thisptr[deref(date._thisptr)]
+        return self._thisptr[date._thisptr]
 
     def __setitem__(self, Date date, value):
-        self._thisptr[deref(date._thisptr)] = value
+        self._thisptr[date._thisptr] = value

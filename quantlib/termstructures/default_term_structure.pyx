@@ -2,7 +2,6 @@ include '../types.pxi'
 
 from libcpp cimport bool
 from libcpp.vector cimport vector
-from cython.operator cimport dereference as deref
 from quantlib.handle cimport static_pointer_cast
 from quantlib._observable cimport Observable as QlObservable
 from quantlib.time.date cimport Date, date_from_qldate
@@ -18,7 +17,7 @@ cdef class DefaultProbabilityTermStructure(Observable): #not inheriting from Ter
     def survival_probability(self, d, bool extrapolate = False):
         if isinstance(d, Date):
             return self._thisptr.get().survivalProbability(
-                deref((<Date>d)._thisptr.get()), extrapolate)
+                (<Date>d)._thisptr, extrapolate)
         elif isinstance(d, float) or isinstance(d, int):
             return self._thisptr.get().survivalProbability(<Time>d, extrapolate)
         else:
@@ -27,7 +26,7 @@ cdef class DefaultProbabilityTermStructure(Observable): #not inheriting from Ter
     def hazard_rate(self, d, bool extrapolate = False):
         if isinstance(d, Date):
             return self._thisptr.get().hazardRate(
-                deref((<Date>d)._thisptr.get()), extrapolate)
+                (<Date>d)._thisptr, extrapolate)
         elif isinstance(d, float) or isinstance(d, int):
             return self._thisptr.get().hazardRate(<Time>d, extrapolate)
         else:
@@ -47,7 +46,7 @@ cdef class DefaultProbabilityTermStructure(Observable): #not inheriting from Ter
         return l
 
     def time_from_reference(self, Date d not None):
-        return self._thisptr.get().timeFromReference(deref(d._thisptr))
+        return self._thisptr.get().timeFromReference(d._thisptr)
 
     @property
     def max_date(self):

@@ -1,6 +1,5 @@
 from quantlib.types cimport Real
 from quantlib.handle cimport shared_ptr
-from cython.operator cimport dereference as deref
 from .._instrument cimport Instrument as _Instrument
 from quantlib.time.date cimport (Date, _pydate_from_qldate, _qldate_from_pydate)
 from libcpp cimport bool
@@ -44,8 +43,8 @@ cdef class VarianceSwap(Instrument):
         self._thisptr = shared_ptr[_Instrument](new _VarianceSwap(<_Type>position,
                                                                   strike,
                                                                   notional,
-                                                                  deref(start_date._thisptr),
-                                                                  deref(maturity_date._thisptr),
+                                                                  start_date._thisptr,
+                                                                  maturity_date._thisptr,
                                                                   ))
 
     @property

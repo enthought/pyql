@@ -134,7 +134,7 @@ cdef class SpreadCdsHelper(CdsHelper):
                     deref(daycounter._thisptr),
                     recovery_rate, discount_curve._thisptr, settles_accrual,
                     pays_at_default_time,
-                    deref(start_date._thisptr),
+                    start_date._thisptr,
                     deref(lastperiod._thisptr),
                     rebates_accrual,
                     model)
@@ -149,7 +149,7 @@ cdef class SpreadCdsHelper(CdsHelper):
                     deref(daycounter._thisptr),
                     recovery_rate, discount_curve._thisptr, settles_accrual,
                     pays_at_default_time,
-                    deref(start_date._thisptr),
+                    start_date._thisptr,
                     deref(lastperiod._thisptr),
                     rebates_accrual,
                     model)
@@ -183,7 +183,7 @@ cdef class UpfrontCdsHelper(CdsHelper):
                     deref(daycounter._thisptr),
                     recovery_rate, discount_curve._thisptr, upfront_settlement_days, settles_accrual,
                     pays_at_default_time,
-                    deref(start_date._thisptr),
+                    start_date._thisptr,
                     deref(lastperiod._thisptr),
                     rebates_accrual,
                     model)
@@ -197,7 +197,7 @@ cdef class UpfrontCdsHelper(CdsHelper):
                     deref(daycounter._thisptr),
                     recovery_rate, discount_curve._thisptr, upfront_settlement_days, settles_accrual,
                     pays_at_default_time,
-                    deref(start_date._thisptr),
+                    start_date._thisptr,
                     deref(lastperiod._thisptr),
                     rebates_accrual,
                     model)

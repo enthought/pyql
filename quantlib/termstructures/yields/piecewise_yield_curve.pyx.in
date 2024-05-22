@@ -120,7 +120,7 @@ cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
 
         instance.trait = BootstrapTrait.{{T}}
         instance._curve = new _pyc.PiecewiseYieldCurve[trait.{{T}}, intpl.{{I}}](
-            deref(reference_date._thisptr), instruments, deref(daycounter._thisptr),
+            reference_date._thisptr, instruments, deref(daycounter._thisptr),
             i._thisptr,
             _pyc.PiecewiseYieldCurve[trait.{{T}}, intpl.{{I}}].bootstrap_type(accuracy)
         )

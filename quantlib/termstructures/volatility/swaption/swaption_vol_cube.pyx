@@ -14,7 +14,7 @@ cdef class SwaptionVolatilityCube(SwaptionVolatilityDiscrete):
     def atm_strike(self, option_date not None,
                    Period swap_tenor not None):
         if isinstance(option_date, Date):
-            return _get_svc(self).atmStrike(deref((<Date>option_date)._thisptr),
+            return _get_svc(self).atmStrike((<Date>option_date)._thisptr,
                                             deref(swap_tenor._thisptr))
         elif isinstance(option_date, Period):
             return _get_svc(self).atmStrike(deref((<Period>option_date)._thisptr),

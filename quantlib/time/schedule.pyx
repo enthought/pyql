@@ -34,8 +34,8 @@ cdef class Schedule:
 
         self._thisptr = move(
                 _schedule.Schedule(
-            deref(effective_date._thisptr),
-            deref(termination_date._thisptr),
+            effective_date._thisptr,
+            termination_date._thisptr,
             deref(tenor._thisptr),
             calendar._thisptr,
             business_day_convention,
@@ -57,7 +57,7 @@ cdef class Schedule:
         cdef vector[_date.Date] _dates
         cdef Date date
         for date in dates:
-            _dates.push_back(deref(date._thisptr))
+            _dates.push_back(date._thisptr)
 
         cdef Schedule instance = Schedule.__new__(Schedule)
         cdef optional[BusinessDayConvention] opt_termination_convention
@@ -96,14 +96,14 @@ cdef class Schedule:
 
         cdef Schedule instance = Schedule.__new__(Schedule)
         instance._thisptr = move(_schedule.Schedule(
-            deref(effective_date._thisptr),
-            deref(termination_date._thisptr),
+            effective_date._thisptr,
+            termination_date._thisptr,
             deref(tenor._thisptr),
             calendar._thisptr,
             business_day_convention,
             termination_date_convention,
             rule, end_of_month,
-            deref(first_date._thisptr), deref(next_to_lastdate._thisptr)
+            first_date._thisptr, next_to_lastdate._thisptr
             ))
         return instance
 
@@ -128,13 +128,13 @@ cdef class Schedule:
 
     def next_date(self, Date reference_date):
         cdef _date.Date dt = self._thisptr.nextDate(
-            deref(reference_date._thisptr)
+            reference_date._thisptr
         )
         return date_from_qldate(dt)
 
     def previous_date(self, Date reference_date):
         cdef _date.Date dt = self._thisptr.previousDate(
-            deref(reference_date._thisptr)
+            reference_date._thisptr
         )
         return date_from_qldate(dt)
 
@@ -169,5 +169,5 @@ cdef class Schedule:
             raise TypeError('index needs to be an integer or a slice')
 
 def previous_twentieth(Date d not None, DateGeneration rule):
-    cdef _date.Date date = _schedule.previousTwentieth(deref(d._thisptr), rule)
+    cdef _date.Date date = _schedule.previousTwentieth(d._thisptr, rule)
     return date_from_qldate(date)
