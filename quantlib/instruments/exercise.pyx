@@ -34,7 +34,7 @@ cdef class EuropeanExercise(Exercise):
     def __init__(self, Date exercise_date not None):
         self._thisptr.reset(
             new _exercise.EuropeanExercise(
-                deref(exercise_date._thisptr)
+                exercise_date._thisptr
             )
         )
 
@@ -50,14 +50,14 @@ cdef class AmericanExercise(Exercise):
         if earliest_exercise_date is not None:
             self._thisptr = shared_ptr[_exercise.Exercise]( \
                 new _exercise.AmericanExercise(
-                    deref(earliest_exercise_date._thisptr),
-                    deref(latest_exercise_date._thisptr)
+                    earliest_exercise_date._thisptr,
+                    latest_exercise_date._thisptr
                 )
             )
         else:
             self._thisptr = shared_ptr[_exercise.Exercise]( \
                 new _exercise.AmericanExercise(
-                    deref(latest_exercise_date._thisptr)
+                    latest_exercise_date._thisptr
                 )
             )
 
@@ -75,7 +75,7 @@ cdef class BermudanExercise(Exercise):
         """
         cdef vector[QlDate] c_dates
         for d in dates:
-            c_dates.push_back(deref((<Date?>d)._thisptr))
+            c_dates.push_back((<Date?>d)._thisptr)
         self._thisptr.reset(
             new _exercise.BermudanExercise(c_dates,
                                            payoff_at_expiry)

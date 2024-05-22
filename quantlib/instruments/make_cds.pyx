@@ -22,7 +22,7 @@ cdef class MakeCreditDefaultSwap:
                 coupon_rate)
         elif isinstance(tenor_or_term_date, Date):
             self._thisptr = new _make_cds.MakeCreditDefaultSwap(
-                deref((<Date>tenor_or_term_date)._thisptr),
+                (<Date>tenor_or_term_date)._thisptr,
                 coupon_rate)
         else:
             raise TypeError("tenor_or_term_date needs to be a Period or Date")

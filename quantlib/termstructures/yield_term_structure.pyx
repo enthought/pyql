@@ -81,7 +81,7 @@ cdef class YieldTermStructure(Observable):
             if day_counter is None:
                 raise ValueError("day_counter needs to be provided")
             ql_zero_rate = self.as_ptr().zeroRate(
-                deref((<Date>d)._thisptr), deref(day_counter._thisptr),
+                (<Date>d)._thisptr, deref(day_counter._thisptr),
                 compounding, <_ir.Frequency>frequency,
                 extrapolate)
         elif isinstance(d, (float, int)):
@@ -129,8 +129,8 @@ cdef class YieldTermStructure(Observable):
             if day_counter is None:
                 raise ValueError("day_counter can't be None")
             ql_forward_rate = self.as_ptr().forwardRate(
-                deref((<Date>d1)._thisptr),
-                deref((<Date>d2)._thisptr),
+                (<Date>d1)._thisptr,
+                (<Date>d2)._thisptr,
                 deref(day_counter._thisptr), compounding,
                 <_ir.Frequency>frequency, extrapolate)
         elif isinstance(d1, (float, int)) and isinstance(d2, (float, int)):
@@ -141,7 +141,7 @@ cdef class YieldTermStructure(Observable):
            if day_counter is None:
                raise ValueError("day_counter can't be None")
            ql_forward_rate = self.as_ptr().forwardRate(
-               deref((<Date>d1)._thisptr), deref((<Period>d2)._thisptr),
+               (<Date>d1)._thisptr, deref((<Period>d2)._thisptr),
                deref(day_counter._thisptr), compounding,
                <_ir.Frequency>frequency, extrapolate)
         else:
@@ -157,7 +157,7 @@ cdef class YieldTermStructure(Observable):
 
         if isinstance(value, Date):
             discount_value = self.as_ptr().discount(
-                deref((<Date>value)._thisptr), extrapolate)
+                (<Date>value)._thisptr, extrapolate)
         elif isinstance(value, float):
             discount_value = self.as_ptr().discount(
                 <Time>value, extrapolate)
@@ -167,7 +167,7 @@ cdef class YieldTermStructure(Observable):
         return discount_value
 
     def time_from_reference(self, Date dt):
-        cdef Time time = self.as_ptr().timeFromReference(deref(dt._thisptr))
+        cdef Time time = self.as_ptr().timeFromReference(dt._thisptr)
         return time
 
     property reference_date:

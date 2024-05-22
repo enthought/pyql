@@ -78,7 +78,7 @@ cdef class ZeroInflationTermStructure(InflationTermStructure):
 
         if isinstance(d, Date):
             return term_structure.zeroRate(
-                deref((<Date>d)._thisptr),
+                (<Date>d)._thisptr,
                 deref(inst_obs_lag._thisptr),
                 force_linear_interpolation,
                 extrapolate)
@@ -105,7 +105,7 @@ cdef class YoYInflationTermStructure(InflationTermStructure):
 
         if isinstance(d, Date):
             return term_structure.yoyRate(
-                deref((<Date>d)._thisptr),
+                (<Date>d)._thisptr,
                 deref(inst_obs_lag._thisptr),
                 force_linear_interpolation,
                 extrapolate)

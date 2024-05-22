@@ -61,7 +61,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
         cdef ConstantSwaptionVolatility instance = cls.__new__(cls)
         if isinstance(volatility, float):
             instance._derived_ptr = make_shared[_scv.ConstantSwaptionVolatility](
-                deref(reference_date._thisptr),
+                reference_date._thisptr,
                 calendar._thisptr,
                 bdc,
                 (<Volatility>volatility),
@@ -71,7 +71,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
             )
         elif isinstance(volatility, Quote):
             instance._derived_ptr = make_shared[_scv.ConstantSwaptionVolatility](
-                deref(reference_date._thisptr),
+                reference_date._thisptr,
                 calendar._thisptr,
                 bdc,
                 (<Quote>volatility).handle(),

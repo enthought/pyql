@@ -38,7 +38,7 @@ cdef class Settings:
             return date_from_qldate(<QlDate>_settings.Settings.instance().evaluationDate())
 
         def __set__(self, Date evaluation_date not None):
-            _settings.Settings.instance().evaluationDate().assign_date(deref(evaluation_date._thisptr))
+            _settings.Settings.instance().evaluationDate().assign_date(evaluation_date._thisptr)
 
     @property
     def observable_evaluation_date(self):

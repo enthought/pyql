@@ -29,7 +29,7 @@ cdef class AmortizingFloatingRateBond(Bond):
                 settlement_days,
                 notional, schedule._thisptr, static_pointer_cast[_ii.IborIndex](index._thisptr),
                 deref(accrual_day_counter._thisptr), payment_convention, fixing_days, gearings,
-                spreads, caps, floors, in_arrears, deref(issue_date._thisptr),
+                spreads, caps, floors, in_arrears, issue_date._thisptr,
                 deref(ex_coupon_period._thisptr), ex_coupon_calendar._thisptr,
                 ex_coupon_convention, ex_coupon_end_of_month,
                 redemptions,

@@ -60,7 +60,7 @@ cdef class OISRateHelper(RelativeDateRateHelper):
                 deref(forward_start._thisptr),
                 overnight_spread,
                 pillar,
-                deref(custom_pillar_date._thisptr),
+                custom_pillar_date._thisptr,
                 averaging_method,
                 end_of_month_opt,
             )
@@ -80,8 +80,8 @@ cdef class DatedOISRateHelper(RateHelper):
                  ):
         self._thisptr = shared_ptr[_rh.RateHelper](
             new _orh.DatedOISRateHelper(
-                deref(start_date._thisptr),
-                deref(end_date._thisptr),
+                start_date._thisptr,
+                end_date._thisptr,
                 fixed_rate.handle(),
                 static_pointer_cast[_ib.OvernightIndex](overnight_index._thisptr),
                 discounting_curve._thisptr,

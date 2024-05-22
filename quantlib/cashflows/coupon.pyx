@@ -44,13 +44,13 @@ cdef class Coupon(CashFlow):
         return self._get_coupon().accrualPeriod()
 
     def accrued_period(self, Date date):
-        return self._get_coupon().accruedPeriod(deref(date._thisptr))
+        return self._get_coupon().accruedPeriod(date._thisptr)
 
     def accrued_days(self, Date date):
-        return self._get_coupon().accruedDays(deref(date._thisptr))
+        return self._get_coupon().accruedDays(date._thisptr)
 
     def accrued_amount(self, Date date):
-        return self._get_coupon().accruedAmount(deref(date._thisptr))
+        return self._get_coupon().accruedAmount(date._thisptr)
 
     @property
     def rate(self):

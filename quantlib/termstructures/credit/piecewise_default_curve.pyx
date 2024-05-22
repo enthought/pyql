@@ -117,49 +117,49 @@ cdef class PiecewiseDefaultCurve(DefaultProbabilityTermStructure):
             if interpolator == Linear:
                 instance._thisptr = shared_ptr[_dts.DefaultProbabilityTermStructure](
                     new _pdc.PiecewiseDefaultCurve[_pdc.HazardRate,_pdc.Linear](
-                        deref(reference_date._thisptr), instruments,
+                        reference_date._thisptr, instruments,
                         deref(daycounter._thisptr), accuracy))
             elif interpolator == LogLinear:
                 instance._thisptr = shared_ptr[_dts.DefaultProbabilityTermStructure](
                     new _pdc.PiecewiseDefaultCurve[_pdc.HazardRate,_pdc.LogLinear](
-                        deref(reference_date._thisptr), instruments,
+                        reference_date._thisptr, instruments,
                         deref(daycounter._thisptr), accuracy))
             else:
                 instance._thisptr = shared_ptr[_dts.DefaultProbabilityTermStructure](
                     new _pdc.PiecewiseDefaultCurve[_pdc.HazardRate,_pdc.BackwardFlat](
-                        deref(reference_date._thisptr), instruments,
+                        reference_date._thisptr, instruments,
                         deref(daycounter._thisptr), accuracy))
         elif trait == DefaultDensity:
             if interpolator == Linear:
                 instance._thisptr = shared_ptr[_dts.DefaultProbabilityTermStructure](
                     new _pdc.PiecewiseDefaultCurve[_pdc.DefaultDensity,_pdc.Linear](
-                        deref(reference_date._thisptr), instruments,
+                        reference_date._thisptr, instruments,
                         deref(daycounter._thisptr), accuracy))
             elif interpolator == LogLinear:
                 instance._thisptr = shared_ptr[_dts.DefaultProbabilityTermStructure](
                      new _pdc.PiecewiseDefaultCurve[_pdc.DefaultDensity,_pdc.LogLinear](
-                        deref(reference_date._thisptr),
+                        reference_date._thisptr,
                         instruments, deref(daycounter._thisptr), accuracy))
             else:
                 instance._thisptr = shared_ptr[_dts.DefaultProbabilityTermStructure](
                     new _pdc.PiecewiseDefaultCurve[_pdc.DefaultDensity,_pdc.BackwardFlat](
-                        deref(reference_date._thisptr), instruments,
+                        reference_date._thisptr, instruments,
                         deref(daycounter._thisptr), accuracy))
         else:
             if interpolator == Linear:
                 instance._thisptr = shared_ptr[_dts.DefaultProbabilityTermStructure](
                     new _pdc.PiecewiseDefaultCurve[_pdc.SurvivalProbability,_pdc.Linear](
-                        deref(reference_date._thisptr), instruments,
+                        reference_date._thisptr, instruments,
                         deref(daycounter._thisptr), accuracy))
             elif interpolator == LogLinear:
                 instance._thisptr = shared_ptr[_dts.DefaultProbabilityTermStructure](
                     new _pdc.PiecewiseDefaultCurve[_pdc.SurvivalProbability,_pdc.LogLinear](
-                        deref(reference_date._thisptr),
+                        reference_date._thisptr,
                         instruments, deref(daycounter._thisptr), accuracy))
             else:
                 instance._thisptr = shared_ptr[_dts.DefaultProbabilityTermStructure](
                     new _pdc.PiecewiseDefaultCurve[_pdc.SurvivalProbability,_pdc.BackwardFlat](
-                        deref(reference_date._thisptr), instruments,
+                        reference_date._thisptr, instruments,
                         deref(daycounter._thisptr), accuracy))
 
         return instance

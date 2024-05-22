@@ -64,11 +64,11 @@ cdef class BlackVarianceSurface(BlackVarianceTermStructure):
 
         cdef vector[_Date] _dates
         for d in dates:
-            _dates.push_back(deref((<Date?>d)._thisptr))
+            _dates.push_back((<Date?>d)._thisptr)
 
         self._thisptr.reset(
                 new _bvs.BlackVarianceSurface(
-                    deref(reference_date._thisptr),
+                    reference_date._thisptr,
                     cal._thisptr,
                     _dates,
                     strikes,

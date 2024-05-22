@@ -22,11 +22,11 @@ cdef class OvernightIndexedCoupon(FloatingRateCoupon):
                  DayCounter day_counter=DayCounter(), bool telescopic_values= False,
                  RateAveraging averaging_method=RateAveraging.Compound):
         self._thisptr = make_shared[_oic.OvernightIndexedCoupon](
-                deref(payment_date._thisptr), nominal,
-                deref(start_date._thisptr), deref(end_date._thisptr),
+                payment_date._thisptr, nominal,
+                start_date._thisptr, end_date._thisptr,
                 static_pointer_cast[_ii.OvernightIndex](index._thisptr),
                 gearing, spread,
-                deref(ref_period_start._thisptr), deref(ref_period_end._thisptr),
+                ref_period_start._thisptr, ref_period_end._thisptr,
                 deref(day_counter._thisptr), telescopic_values, averaging_method
         )
 
@@ -38,7 +38,7 @@ cdef class OvernightIndexedCoupon(FloatingRateCoupon):
 
         while it != (<_oic.OvernightIndexedCoupon*>self._thisptr.get()).fixingDates().end():
             date = Date.__new__(Date)
-            date._thisptr.reset(new QlDate(deref(it)))
+            date._thisptr = deref(it)
             l.append(date)
             preinc(it)
         return l
@@ -52,17 +52,17 @@ cdef class OvernightIndexedCoupon(FloatingRateCoupon):
     def value_dates(self):
         cdef:
             vector[QlDate].const_iterator it = (<_oic.OvernightIndexedCoupon*>self._thisptr.get()).valueDates().const_begin()
-            QlDate d
             Date date
             list l = []
 
         while it != (<_oic.OvernightIndexedCoupon*>self._thisptr.get()).valueDates().end():
             date = Date.__new__(Date)
-            date._thisptr.reset(new QlDate(deref(it)))
+            date._thisptr = deref(it)
             l.append(date)
             preinc(it)
         return l
-
+    
+        
 cdef class OvernightLeg(Leg):
 
     def __iter__(self):

@@ -38,7 +38,7 @@ cdef class Calendar:
         '''Returns true iff the weekday is part of the
         weekend for the given market.
         '''
-        return self._thisptr.isHoliday(deref(test_date._thisptr))
+        return self._thisptr.isHoliday(test_date._thisptr)
 
     def is_weekend(self,  int week_day):
         '''Returns true iff the date is last business day for the
@@ -50,13 +50,13 @@ cdef class Calendar:
         '''Returns true iff the date is a business day for the
         given market.
         '''
-        return self._thisptr.isBusinessDay(deref(test_date._thisptr))
+        return self._thisptr.isBusinessDay(test_date._thisptr)
 
     def is_end_of_month(self, date.Date test_date not None):
         '''Is this date the last business day of the month to which the given
         date belongs
         '''
-        return self._thisptr.isBusinessDay(deref(test_date._thisptr))
+        return self._thisptr.isBusinessDay(test_date._thisptr)
 
     def business_days_between(self, date.Date date1 not None,
                               date.Date date2 not None,
@@ -64,8 +64,8 @@ cdef class Calendar:
         """ Returns the number of business days between date1 and date2. """
 
         return self._thisptr.businessDaysBetween(
-            deref(date1._thisptr),
-            deref(date2._thisptr),
+            date1._thisptr,
+            date2._thisptr,
             include_first,
             include_last
         )
@@ -76,24 +76,24 @@ cdef class Calendar:
 
         """
 
-        cdef _date.Date eom_date = self._thisptr.endOfMonth(deref(current_date._thisptr))
+        cdef _date.Date eom_date = self._thisptr.endOfMonth(current_date._thisptr)
 
         return date.date_from_qldate(eom_date)
 
     def add_holiday(self, date.Date holiday not None):
         '''Adds a date to the set of holidays for the given calendar. '''
-        self._thisptr.addHoliday(deref(holiday._thisptr))
+        self._thisptr.addHoliday(holiday._thisptr)
 
     def remove_holiday(self, date.Date holiday not None):
         '''Removes a date from the set of holidays for the given calendar.'''
-        self._thisptr.removeHoliday(deref(holiday._thisptr))
+        self._thisptr.removeHoliday(holiday._thisptr)
 
     def adjust(self, date.Date given_date not None, int convention=Following):
         '''Adjusts a non-business day to the appropriate near business day
             with respect to the given convention.
         '''
         cdef _date.Date adjusted_date = self._thisptr.adjust(
-                deref(given_date._thisptr),
+                given_date._thisptr,
                 <_calendar.BusinessDayConvention> convention)
 
         return date.date_from_qldate(adjusted_date)
@@ -111,11 +111,11 @@ cdef class Calendar:
 
         # fixme: add better checking on inputs
         if period is None and units > -1:
-            advanced_date = self._thisptr.advance(deref(given_date._thisptr),
+            advanced_date = self._thisptr.advance(given_date._thisptr,
                     step, <_period.TimeUnit>units,
                     <_calendar.BusinessDayConvention>convention, end_of_month)
         elif period is not None:
-            advanced_date = self._thisptr.advance(deref(given_date._thisptr),
+            advanced_date = self._thisptr.advance(given_date._thisptr,
                     deref(period._thisptr),
                     <_calendar.BusinessDayConvention>convention, end_of_month)
         else:
@@ -144,8 +144,8 @@ cdef class Calendar:
                      date.Date to_date not None, bool include_weekends=False):
         '''Returns the holidays between two dates. '''
         cdef vector[_date.Date] dates = self._thisptr.holidayList(
-            deref(from_date._thisptr),
-            deref(to_date._thisptr),
+            from_date._thisptr,
+            to_date._thisptr,
             include_weekends
         )
         cdef _date.Date d
@@ -158,8 +158,8 @@ cdef class Calendar:
                           date.Date to_date not None):
         '''Returns the business days between two dates. '''
         cdef vector[_date.Date] dates = self._thisptr.businessDayList(
-            deref(from_date._thisptr),
-            deref(to_date._thisptr),
+            from_date._thisptr,
+            to_date._thisptr,
         )
         cdef _date.Date d
         cdef list l = []

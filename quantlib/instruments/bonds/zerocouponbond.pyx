@@ -36,8 +36,8 @@ cdef class ZeroCouponBond(Bond):
             new _zcb.ZeroCouponBond(
                 settlement_days, calendar._thisptr,
                 face_amount,
-                deref(maturity_date._thisptr),
+                maturity_date._thisptr,
                 payment_convention, redemption,
-                deref(issue_date._thisptr)
+                issue_date._thisptr
             )
         )

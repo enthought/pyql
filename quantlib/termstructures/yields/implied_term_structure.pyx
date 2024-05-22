@@ -10,4 +10,4 @@ cdef class ImpliedTermStructure(YieldTermStructure):
                  Date reference_date not None):
 
         self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](
-            new _its.ImpliedTermStructure(h._thisptr, deref(reference_date._thisptr))))
+            new _its.ImpliedTermStructure(h._thisptr, reference_date._thisptr)))

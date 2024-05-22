@@ -162,7 +162,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                     discounting_curve._thisptr,
                     settlement_days,
                     pillar,
-                    deref(custom_pillar_date._thisptr),
+                    custom_pillar_date._thisptr,
                     end_of_month
                 )
             )
@@ -181,7 +181,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                     discounting_curve._thisptr,
                     settlement_days,
                     pillar,
-                    deref(custom_pillar_date._thisptr),
+                    custom_pillar_date._thisptr,
                     end_of_month
                 )
             )
@@ -209,7 +209,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                     deref(fwdStart._thisptr),
                     discounting_curve._thisptr,
                     pillar,
-                    deref(custom_pillar_date._thisptr),
+                    custom_pillar_date._thisptr,
                     end_of_month
                 )
             )
@@ -222,7 +222,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                     deref(fwdStart._thisptr),
                     discounting_curve._thisptr,
                     pillar,
-                    deref(custom_pillar_date._thisptr),
+                    custom_pillar_date._thisptr,
                     end_of_month
                 )
             )
@@ -267,7 +267,7 @@ cdef class FraRateHelper(RelativeDateRateHelper):
                     end_of_month,
                     deref(day_counter._thisptr),
                     pillar,
-                    deref(custom_pillar_date._thisptr),
+                    custom_pillar_date._thisptr,
                     use_indexed_coupon
                 )
                  )
@@ -283,7 +283,7 @@ cdef class FraRateHelper(RelativeDateRateHelper):
                     end_of_month,
                     deref(day_counter._thisptr),
                     pillar,
-                    deref(custom_pillar_date._thisptr),
+                    custom_pillar_date._thisptr,
                     use_indexed_coupon
                 )
             )
@@ -304,7 +304,7 @@ cdef class FraRateHelper(RelativeDateRateHelper):
                     months_to_start,
                     static_pointer_cast[_ib.IborIndex](index._thisptr),
                     pillar,
-                    deref(custom_pillar_date._thisptr),
+                    custom_pillar_date._thisptr,
                     use_indexed_coupon
                 )
             )
@@ -315,7 +315,7 @@ cdef class FraRateHelper(RelativeDateRateHelper):
                     months_to_start,
                     static_pointer_cast[_ib.IborIndex](index._thisptr),
                     pillar,
-                    deref(custom_pillar_date._thisptr),
+                    custom_pillar_date._thisptr,
                     use_indexed_coupon
                 )
             )
@@ -338,7 +338,7 @@ cdef class FuturesRateHelper(RateHelper):
             self._thisptr.reset(
                 new _rh.FuturesRateHelper(
                     <Real>price,
-                    deref(imm_date._thisptr),
+                    imm_date._thisptr,
                     length_in_months,
                     calendar._thisptr,
                     <_rh.BusinessDayConvention> convention,
@@ -352,7 +352,7 @@ cdef class FuturesRateHelper(RateHelper):
             self._thisptr.reset(
                 new _rh.FuturesRateHelper(
                     (<Quote>price).handle(),
-                    deref(imm_date._thisptr),
+                    imm_date._thisptr,
                     length_in_months,
                     calendar._thisptr,
                     <_rh.BusinessDayConvention> convention,
@@ -373,7 +373,7 @@ cdef class FuturesRateHelper(RateHelper):
         if isinstance(price, float) and isinstance(convexity_adjustment, float):
             instance._thisptr.reset(
                 new _rh.FuturesRateHelper(<Real>price,
-                                          deref(ibor_start_date._thisptr),
+                                          ibor_start_date._thisptr,
                                           static_pointer_cast[_ib.IborIndex](i._thisptr),
                                           <Rate>convexity_adjustment,
                                           future_type)
@@ -381,7 +381,7 @@ cdef class FuturesRateHelper(RateHelper):
         elif isinstance(price, Quote) and isinstance(convexity_adjustment, Quote):
             instance._thisptr.reset(
                 new _rh.FuturesRateHelper((<Quote>price).handle(),
-                                          deref(ibor_start_date._thisptr),
+                                          ibor_start_date._thisptr,
                                           static_pointer_cast[_ib.IborIndex](i._thisptr),
                                           (<Quote>convexity_adjustment).handle(),
                                           future_type)

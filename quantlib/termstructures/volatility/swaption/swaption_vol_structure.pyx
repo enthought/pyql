@@ -30,7 +30,7 @@ cdef class SwaptionVolatilityStructure(VolatilityTermStructure):
                     extrapolate)
             elif isinstance(option_date, Date):
                 return self.get_svs().volatility(
-                    deref((<Date>option_date)._thisptr),
+                    (<Date>option_date)._thisptr,
                     deref((<Period>swap_date)._thisptr),
                     strike,
                     extrapolate)
@@ -51,7 +51,7 @@ cdef class SwaptionVolatilityStructure(VolatilityTermStructure):
                     extrapolate)
             elif isinstance(option_date, Date):
                 return self.get_svs().volatility(
-                    deref((<Date>option_date)._thisptr),
+                    (<Date>option_date)._thisptr,
                     <Time>swap_date,
                     strike,
                     extrapolate)
@@ -87,7 +87,7 @@ cdef class SwaptionVolatilityStructure(VolatilityTermStructure):
                     extrapolate)
             elif isinstance(option_date, Date):
                 return self.get_svs().blackVariance(
-                    deref((<Date>option_date)._thisptr),
+                    (<Date>option_date)._thisptr,
                     deref((<Period>swap_date)._thisptr),
                     strike,
                     extrapolate)
@@ -108,7 +108,7 @@ cdef class SwaptionVolatilityStructure(VolatilityTermStructure):
                     extrapolate)
             elif isinstance(option_date, Date):
                 return self.get_svs().blackVariance(
-                    deref((<Date>option_date)._thisptr),
+                    (<Date>option_date)._thisptr,
                     <Time>swap_date,
                     strike,
                     extrapolate)
@@ -132,7 +132,7 @@ cdef class SwaptionVolatilityStructure(VolatilityTermStructure):
                     extrapolate)
             elif isinstance(option_date, Date):
                 return self.get_svs().shift(
-                    deref((<Date>option_date)._thisptr),
+                    (<Date>option_date)._thisptr,
                     deref((<Period>swap_date)._thisptr),
                     extrapolate)
             elif isinstance(option_date, float):
@@ -150,7 +150,7 @@ cdef class SwaptionVolatilityStructure(VolatilityTermStructure):
                     extrapolate)
             elif isinstance(option_date, Date):
                 return self.get_svs().shift(
-                    deref((<Date>option_date)._thisptr),
+                    (<Date>option_date)._thisptr,
                     <Time>swap_date,
                     extrapolate)
             elif isinstance(option_date, float):

@@ -1,5 +1,4 @@
-include '../types.pxi'
-
+from quantlib.types cimport Rate, Real
 from cython.operator cimport dereference as deref, preincrement as preinc
 from libcpp.vector cimport vector
 from quantlib.compounding cimport Compounding
@@ -21,13 +20,13 @@ cdef class FixedRateCoupon(Coupon):
                  Date accrual_end_date not None, Date ref_period_start=Date(),
                  Date ref_period_end=Date(), Date ex_coupon_date=Date()):
         self._thisptr = shared_ptr[_cf.CashFlow](
-            new _frc.FixedRateCoupon(deref(payment_date._thisptr), nominal,
+            new _frc.FixedRateCoupon(payment_date._thisptr, nominal,
                                      rate, deref(day_counter._thisptr),
-                                     deref(accrual_start_date._thisptr),
-                                     deref(accrual_end_date._thisptr),
-                                     deref(ref_period_start._thisptr),
-                                     deref(ref_period_end._thisptr),
-                                     deref(ex_coupon_date._thisptr))
+                                     accrual_start_date._thisptr,
+                                     accrual_end_date._thisptr,
+                                     ref_period_start._thisptr,
+                                     ref_period_end._thisptr,
+                                     ex_coupon_date._thisptr)
             )
 
     def interest_rate(self):

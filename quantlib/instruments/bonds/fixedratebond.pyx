@@ -63,7 +63,7 @@ cdef class FixedRateBond(Bond):
                 coupons,
                 deref(accrual_day_counter._thisptr),
                 payment_convention,
-                redemption, deref(issue_date._thisptr),
+                redemption, issue_date._thisptr,
                 payment_calendar._thisptr,
                 deref(ex_coupon_period._thisptr),
                 ex_coupon_calendar._thisptr,

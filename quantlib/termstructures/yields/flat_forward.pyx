@@ -65,7 +65,7 @@ cdef class FlatForward(YieldTermStructure):
         if reference_date is not None:
             if isinstance(forward, Quote):
                 _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
-                    deref(reference_date._thisptr),
+                    reference_date._thisptr,
                     (<Quote>forward).handle(),
                     deref(daycounter._thisptr),
                     compounding,
@@ -73,7 +73,7 @@ cdef class FlatForward(YieldTermStructure):
                 ))
             else:
                 _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
-                        deref(reference_date._thisptr),
+                        reference_date._thisptr,
                         <Rate>forward,
                         deref(daycounter._thisptr),
                         compounding,

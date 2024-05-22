@@ -50,7 +50,7 @@ cdef class MakeCms:
         return self
 
     def with_effective_date(self, Date effective_date not None):
-        self._thisptr.withEffectiveDate(deref(effective_date._thisptr))
+        self._thisptr.withEffectiveDate(effective_date._thisptr)
         return self
 
     def with_discounting_term_structure(self, YieldTermStructure discounting_term_structure not None):

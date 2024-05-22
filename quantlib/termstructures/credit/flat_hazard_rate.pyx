@@ -66,13 +66,13 @@ cdef class FlatHazardRate(DefaultProbabilityTermStructure):
         cdef FlatHazardRate instance = cls.__new__(cls)
         if isinstance(hazard_rate, float):
             instance._thisptr =  shared_ptr[_dts.DefaultProbabilityTermStructure](
-                new _fhr.FlatHazardRate(deref(reference_date._thisptr),
+                new _fhr.FlatHazardRate(reference_date._thisptr,
                                         <Rate>hazard_rate,
                                         deref(day_counter._thisptr)))
         elif isinstance(hazard_rate, Quote):
              instance._thisptr =  shared_ptr[_dts.DefaultProbabilityTermStructure](
                 new _fhr.FlatHazardRate(
-                    deref(reference_date._thisptr),
+                    reference_date._thisptr,
                     ((<Quote>hazard_rate).handle()),
                     deref(day_counter._thisptr)))
         else:

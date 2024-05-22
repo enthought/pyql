@@ -55,11 +55,11 @@ cdef class BlackVarianceCurve(BlackVarianceTermStructure):
 
         cdef vector[_Date] _dates
         for d in dates:
-            _dates.push_back(deref((<Date?>d)._thisptr))
+            _dates.push_back((<Date?>d)._thisptr)
 
         self._thisptr.reset(
             new _bvc.BlackVarianceCurve(
-                deref(reference_date._thisptr),
+                reference_date._thisptr,
                 _dates,
                 black_vols,
                 deref(day_counter._thisptr),

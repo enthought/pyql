@@ -40,13 +40,13 @@ cdef class CashFlow:
         if include_ref_date is not None:
             c_include_ref_date = <bool>include_ref_date
         if cf:
-            return cf.hasOccurred(deref(ref_date._thisptr), c_include_ref_date)
+            return cf.hasOccurred(ref_date._thisptr, c_include_ref_date)
 
 cdef class SimpleCashFlow(CashFlow):
 
     def __init__(self, Real amount, Date cfdate):
         self._thisptr = shared_ptr[_cf.CashFlow](
-            new _cf.SimpleCashFlow(amount, deref(cfdate._thisptr))
+            new _cf.SimpleCashFlow(amount, cfdate._thisptr)
         )
 
     def __str__(self):

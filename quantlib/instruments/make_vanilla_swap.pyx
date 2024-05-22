@@ -56,11 +56,11 @@ cdef class MakeVanillaSwap:
         return self
 
     def with_effective_date(self, Date effective_date not None):
-        self._thisptr.withEffectiveDate(deref(effective_date._thisptr))
+        self._thisptr.withEffectiveDate(effective_date._thisptr)
         return self
 
     def with_termination_date(self, Date termination_date not None):
-        self._thisptr.withTerminationDate(deref(termination_date._thisptr))
+        self._thisptr.withTerminationDate(termination_date._thisptr)
         return self
 
     def with_rule(self, DateGeneration rule):

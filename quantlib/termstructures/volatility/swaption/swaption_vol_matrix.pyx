@@ -116,7 +116,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
 
         if isinstance(volatilities, Matrix) and isinstance(shifts, Matrix):
             instance._derived_ptr = make_shared[_svm.SwaptionVolatilityMatrix](
-                deref(reference_date._thisptr),
+                reference_date._thisptr,
                 calendar._thisptr,
                 bdc,
                 option_tenors_vec,
@@ -130,7 +130,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
         elif isinstance(volatilities, list) and isinstance(shifts, list):
             build_vols_shifts(volatilities, shifts, c_vols, c_shifts)
             instance._derived_ptr = make_shared[_svm.SwaptionVolatilityMatrix](
-                deref(reference_date._thisptr),
+                reference_date._thisptr,
                 calendar._thisptr,
                 bdc,
                 option_tenors_vec,

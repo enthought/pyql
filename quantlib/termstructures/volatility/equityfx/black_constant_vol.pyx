@@ -20,7 +20,7 @@ cdef class BlackConstantVol(BlackVolatilityTermStructure):
     interface for a constant Black volatility (no time/strike
     dependence)
 
-    Parameters 
+    Parameters
     ----------
     reference_date : :obj:`Date`
     calendar : :obj:`Calendar`
@@ -43,7 +43,7 @@ cdef class BlackConstantVol(BlackVolatilityTermStructure):
             if isinstance(volatility, Quote):
                 self._thisptr.reset(
                     new _bcv.BlackConstantVol(
-                        deref(reference_date._thisptr),
+                        reference_date._thisptr,
                         calendar._thisptr,
                         (<Quote>volatility).handle(),
                         deref(daycounter._thisptr)
@@ -52,7 +52,7 @@ cdef class BlackConstantVol(BlackVolatilityTermStructure):
             elif isinstance(volatility, float):
                 self._thisptr.reset(
                     new _bcv.BlackConstantVol(
-                        deref(reference_date._thisptr),
+                        reference_date._thisptr,
                         calendar._thisptr,
                         <double>volatility,
                         deref(daycounter._thisptr)

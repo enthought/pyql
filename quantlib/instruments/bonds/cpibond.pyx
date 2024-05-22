@@ -36,7 +36,7 @@ cdef class CPIBond(Bond):
                 observation_interpolation,
                 schedule._thisptr, coupons,
                 deref(accrual_day_counter._thisptr), payment_convention,
-                deref(issue_date._thisptr),
+                issue_date._thisptr,
                 payment_calendar._thisptr, deref(ex_coupon_period._thisptr),
                 ex_coupon_calendar._thisptr, ex_coupon_convention,
                 ex_coupon_end_of_month

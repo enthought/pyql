@@ -34,7 +34,7 @@ cdef class InterpolatedHazardRateCurve(DefaultProbabilityTermStructure):
         # convert the list of PyQL dates into a vector of QL dates
         cdef vector[_date.Date] _dates
         for date in dates:
-            _dates.push_back(deref((<Date?>date)._thisptr.get()))
+            _dates.push_back((<Date?>date)._thisptr)
 
 
         self._trait = interpolator

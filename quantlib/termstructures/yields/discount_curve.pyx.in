@@ -51,7 +51,7 @@ cdef class {{I}}InterpolatedDiscountCurve(YieldTermStructure):
         # convert the list of PyQL dates into a vector of QL dates
         cdef vector[_date.Date] _dates
         for date in dates:
-            _dates.push_back(deref((<Date?>date)._thisptr))
+            _dates.push_back((<Date?>date)._thisptr)
 
         self._curve = new _dc.InterpolatedDiscountCurve[intpl.{{I}}](
                 _dates, dfs, deref(day_counter._thisptr),

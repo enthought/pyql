@@ -57,7 +57,7 @@ cdef class FixedRateBondHelper(BondHelper):
                 deref(day_counter._thisptr),
                 payment_conv,
                 redemption,
-                deref(issue_date._thisptr),
+                issue_date._thisptr,
                 payment_calendar._thisptr,
                 deref(ex_coupon_period._thisptr),
                 ex_coupon_calendar._thisptr,
