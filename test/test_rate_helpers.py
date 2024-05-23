@@ -641,7 +641,7 @@ class CrossCurrencyBasisSwapRateHelperTest(unittest.TestCase):
 
         # Trigger bootstrap
         discount_at_origin = term_structure.discount(settlement_date)
-        self.assertAlmostEquals(
+        self.assertAlmostEqual(
             first=discount_at_origin, second=1.0, delta=eps)
 
         for q, h in zip(self.cross_currency_basis_quotes, helpers):
@@ -657,7 +657,7 @@ class CrossCurrencyBasisSwapRateHelperTest(unittest.TestCase):
                                   actual_rate=actual_rate,
                                   expected_rate=expected_rate,
                                   tolerance=eps)
-            self.assertAlmostEquals(
+            self.assertAlmostEqual(
                 first=actual_rate,
                 second=expected_rate,
                 delta=eps,

@@ -35,7 +35,7 @@ class TestDayCounter(unittest.TestCase):
 
     def test_empty_daycounter(self):
         day_counter = DayCounter()
-        with self.assertRaisesRegexp(RuntimeError, r"no (day counter )?implementation provided"):
+        with self.assertRaisesRegex(RuntimeError, r"no (day counter )?implementation provided"):
             day_counter.name
 
 class TestDayCounterFromName(unittest.TestCase):

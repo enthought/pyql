@@ -80,7 +80,7 @@ class PiecewiseDefaultCurveTestCase(unittest.TestCase):
 
                 if interpolator == Interpolator.LogLinear and \
                    trait in [ProbabilityTrait.HazardRate, ProbabilityTrait.DefaultDensity]:
-                    with self.assertRaisesRegexp(RuntimeError,
+                    with self.assertRaisesRegex(RuntimeError,
                                                  'LogInterpolation primitive not implemented'):
                         curve.survival_probability(self.d)
                 else:
@@ -163,7 +163,7 @@ class InterpolatedHazardRateTestCase(unittest.TestCase):
         interpolated_curve = InterpolatedHazardRateCurve(trait, dates,
                                                          hazard_rates,
                                                          Actual365Fixed())
-        with self.assertRaisesRegexp(RuntimeError,
+        with self.assertRaisesRegex(RuntimeError,
                                      'LogInterpolation primitive not implemented'):
             hazard_rate = interpolated_curve.survival_probability(interpolation_date)
 

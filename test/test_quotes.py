@@ -16,13 +16,13 @@ class SimpleQuoteTestCase(unittest.TestCase):
     def test_empty_constructor(self):
         quote = SimpleQuote()
         self.assertFalse(quote.is_valid)
-        with self.assertRaisesRegexp(RuntimeError, 'invalid SimpleQuote'):
+        with self.assertRaisesRegex(RuntimeError, 'invalid SimpleQuote'):
             x = quote.value
         # test quote reset
         quote.value = 1.
         quote.reset()
         self.assertFalse(quote.is_valid)
-        with self.assertRaisesRegexp(RuntimeError, 'invalid SimpleQuote'):
+        with self.assertRaisesRegex(RuntimeError, 'invalid SimpleQuote'):
             x = quote.value
 
 class FuturesConvAdjustmentTestCase(unittest.TestCase):
