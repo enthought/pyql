@@ -152,15 +152,16 @@ class ForwardSpreadedTestCase(unittest.TestCase):
 
 class ImpliedTermStructureTestCase(unittest.TestCase):
     def test_implied_ts(self):
-        dates = [Date('2017-09-11'),
-                 Date('2017-12-11'),
-                 Date('2018-03-11')]
+        dates = [Date.from_string('2017-09-11'),
+                 Date.from_string('2017-12-11'),
+                 Date.from_string('2018-03-11')]
         dfs = [1.0, 0.8, 0.7]
         dc = DiscountCurve(dates, dfs, Actual365Fixed())
-        dc_implied = ImpliedTermStructure(dc, Date('2017-11-11'))
+        dc_implied = ImpliedTermStructure(dc, Date.from_string('2017-11-11'))
         for d in dates[1:]:
             self.assertEqual(dc_implied.discount(d),
-                             dc.discount(d) / dc.discount(Date('2017-11-11')))
+                             dc.discount(d) / dc.discount(Date.from_string('2017-11-11')))
+
 
 if __name__ == '__main__':
     unittest.main()
