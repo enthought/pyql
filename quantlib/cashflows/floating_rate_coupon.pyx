@@ -4,7 +4,6 @@ from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time.daycounter cimport DayCounter
-from . cimport _floating_rate_coupon as _frc
 from .coupon_pricer cimport FloatingRateCouponPricer
 cimport quantlib._cashflow as _cf
 from quantlib.indexes.interest_rate_index cimport InterestRateIndex
@@ -29,46 +28,38 @@ cdef class FloatingRateCoupon(Coupon):
                 deref(day_counter._thisptr), is_in_arrears)
         )
 
+    cdef inline _frc.FloatingRateCoupon* _get_frc(self):
+        return <_frc.FloatingRateCoupon*>self._thisptr.get()
+
     def set_pricer(self, FloatingRateCouponPricer pricer not None):
-        if type(self) is FloatingRateCoupon:
-            raise NotImplementedError("virtual method")
-        else:
-            (<_frc.FloatingRateCoupon*>self._thisptr.get()).setPricer(pricer._thisptr)
+        self._get_frc().setPricer(pricer._thisptr)
 
     @property
     def fixing_days(self):
-        return (<_frc.FloatingRateCoupon*>self._thisptr.get()).fixingDays()
+        return self._get_frc().fixingDays()
 
     @property
     def fixing_date(self):
-        if type(self) is FloatingRateCoupon:
-            raise NotImplementedError("virtual method")
-        else:
-            return date_from_qldate((<_frc.FloatingRateCoupon*>self._thisptr.get()).fixingDate())
+        return date_from_qldate(self._get_frc().fixingDate())
 
     @property
     def index(self):
         cdef InterestRateIndex r = InterestRateIndex.__new__(InterestRateIndex)
-        r._thisptr = static_pointer_cast[Index]((<_frc.FloatingRateCoupon*>self._thisptr.get()).index())
+        r._thisptr = self._get_frc().index()
         return r
 
     @property
     def index_fixing(self):
-        if type(self) is FloatingRateCoupon:
-            raise NotImplementedError("virtual method")
-        else:
-            return (<_frc.FloatingRateCoupon*>self._thisptr.get()).indexFixing()
+        return self._get_frc().indexFixing()
 
     @property
     def convexity_adjustment(self):
-        if type(self) is FloatingRateCoupon:
-            raise NotImplementedError("virtual method")
-        else:
-            return (<_frc.FloatingRateCoupon*>self._thisptr.get()).convexityAdjustment()
+        return self._get_frc().convexityAdjustment()
 
     @property
     def adjusted_fixing(self):
-        if type(self) is FloatingRateCoupon:
-            raise NotImplementedError("virtual method")
-        else:
-            return (<_frc.FloatingRateCoupon*>self._thisptr.get()).adjustedFixing()
+        return self._get_frc().adjustedFixing()
+
+    @property
+    def is_in_arrears(self):
+        return self._get_frc().isInArrears()
