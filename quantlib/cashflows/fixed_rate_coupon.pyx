@@ -72,10 +72,3 @@ cdef class FixedRateLeg(Leg):
             frc._thisptr = deref(it)
             yield frc
             preinc(it)
-
-    def __repr__(self):
-        """ Pretty print cash flow schedule. """
-
-        header = "Cash Flow Schedule:\n"
-        values = ("{0!s} {1:f}".format(frc.date, frc.amount) for frc in self)
-        return header + '\n'.join(values)
