@@ -120,13 +120,13 @@ class ScheduleMethodTestCase(unittest.TestCase):
                 calendar, convention, termination_convention, tenor, rule)
 
         expected_date = Date(3, Sep, 2011)
-        self.assert_(expected_date == schedule.next_date(Date(3, Sep, 2011)))
+        self.assertEqual(expected_date, schedule.next_date(Date(3, Sep, 2011)))
 
         expected_date = Date(5, Nov, 2011)
-        self.assert_(expected_date == schedule.next_date(Date(4, Sep, 2011)))
+        self.assertEqual(expected_date, schedule.next_date(Date(4, Sep, 2011)))
 
         expected_date = Date(15, Dec, 2011)
-        self.assert_(expected_date == schedule.next_date(Date(6, Nov, 2011)))
+        self.assertEqual(expected_date, schedule.next_date(Date(6, Nov, 2011)))
 
 if __name__ == '__main__':
     unittest.main()
