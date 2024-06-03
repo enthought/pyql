@@ -19,7 +19,7 @@ from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.settings import Settings
 from quantlib.termstructures.inflation_term_structure import \
     ZeroInflationTermStructure
-from quantlib.termstructures.yields.api import FlatForward
+from quantlib.termstructures.yields.api import FlatForward, HandleYieldTermStructure
 from quantlib.indexes.inflation.ukrpi import UKRPI
 from quantlib.indexes.inflation_index import InterpolationType
 from quantlib.termstructures.inflation.api import \
@@ -50,7 +50,7 @@ class TestCPIBond(unittest.TestCase):
                                           self.calendar,
                                           ModifiedFollowing)
         self.cpi_ts = ZeroInflationTermStructure()
-        self.yts = FlatForward(evaluation_date, 0.05, day_counter)
+        self.yts = HandleYieldTermStructure(FlatForward(evaluation_date, 0.05, day_counter))
         self.ii = UKRPI(self.cpi_ts)
         fix_data = [206.1, 207.3, 208.0, 208.9, 209.7, 210.9,
                     209.8, 211.4, 212.1, 214.0, 215.1, 216.8,

@@ -8,7 +8,7 @@ from quantlib.market.market import libor_market
 from quantlib.pricingengines.swap import DiscountingSwapEngine
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure
+    FlatForward, HandleYieldTermStructure
 )
 from quantlib.time.api import (
     Unadjusted, ModifiedFollowing, Date, Days, Semiannual, January, Period,
@@ -45,7 +45,7 @@ class TestQuantLibSwap(unittest.TestCase):
         # must be a business day
         settlement_date = calendar.adjust(settlement_date)
 
-        termStructure = YieldTermStructure(relinkable=True)
+        termStructure = HandleYieldTermStructure()
         termStructure.link_to(FlatForward(settlement_date, 0.05,
                                           Actual365Fixed()))
 

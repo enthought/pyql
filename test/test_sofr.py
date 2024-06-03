@@ -1,6 +1,6 @@
 from quantlib.cashflows.rateaveraging import RateAveraging
 from quantlib.math.interpolation import Linear
-from quantlib.termstructures.yields.api import SofrFutureRateHelper, PiecewiseYieldCurve, BootstrapTrait
+from quantlib.termstructures.yields.api import SofrFutureRateHelper, PiecewiseYieldCurve, BootstrapTrait, HandleYieldTermStructure
 from quantlib.instruments.api import OvernightIndexFuture
 from quantlib.time.date import Jan, Feb, Mar, Jun, Sep, Oct, Nov, Dec, October
 from quantlib.time.api import Date, Monthly, Quarterly, Actual365Fixed
@@ -61,7 +61,7 @@ class SofrFuture(unittest.TestCase):
             )
 
         curve = PiecewiseYieldCurve[BootstrapTrait.Discount, Linear].from_reference_date(self.today, helpers, Actual365Fixed())
-        sofr = Sofr(curve)
+        sofr = Sofr(HandleYieldTermStructure(curve))
         sf = OvernightIndexFuture(sofr, Date(20, Mar, 2019), Date(19, Jun, 2019))
         expected_price = 97.44
         tolerance = 1e-9

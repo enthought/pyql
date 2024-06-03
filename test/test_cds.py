@@ -2,8 +2,8 @@ import  unittest
 
 from quantlib.settings import Settings
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.api import FlatForward
-from quantlib.termstructures.credit.api import FlatHazardRate
+from quantlib.termstructures.yields.api import FlatForward, HandleYieldTermStructure
+from quantlib.termstructures.credit.api import FlatHazardRate, HandleDefaultProbabilityTermStructure
 from quantlib.pricingengines.credit.api import MidPointCdsEngine
 from quantlib.instruments.api import CreditDefaultSwap
 from quantlib.default import Protection
@@ -22,8 +22,8 @@ class CreditDefaultSwapTest(unittest.TestCase):
         Settings().evaluation_date = today_date
 
         hazard_rate = SimpleQuote(0.01234)
-        probability_curve = FlatHazardRate(0, calendar, hazard_rate, Actual360())
-        discount_curve = FlatForward(today_date, 0.06, Actual360())
+        probability_curve = HandleDefaultProbabilityTermStructure(FlatHazardRate(0, calendar, hazard_rate, Actual360()))
+        discount_curve = HandleYieldTermStructure(FlatForward(today_date, 0.06, Actual360()))
         issue_date  = today_date
         #calendar.advance(today_date, -1, Years)
         maturity = calendar.advance(issue_date, 10, Years)

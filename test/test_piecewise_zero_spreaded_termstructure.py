@@ -1,6 +1,6 @@
 import unittest
 from quantlib.time.api import TARGET, Date, Actual360, Days, Months, NoFrequency
-from quantlib.termstructures.yields.api import ZeroCurve, PiecewiseZeroSpreadedTermStructure
+from quantlib.termstructures.yields.api import HandleYieldTermStructure, ZeroCurve, PiecewiseZeroSpreadedTermStructure
 from quantlib.compounding import Continuous
 from quantlib.settings import Settings
 from quantlib.quotes import SimpleQuote
@@ -23,7 +23,7 @@ class TestPiecewiseZeroSpreadedTermStructure(unittest.TestCase):
                              self.calendar.advance(self.today, 15, Months)]
 
         self.spreaded_term_structure = PiecewiseZeroSpreadedTermStructure(
-            self.term_structure,
+            HandleYieldTermStructure(self.term_structure),
             self.spreads,
             self.spread_dates)
         self.spreaded_term_structure.extrapolation = True

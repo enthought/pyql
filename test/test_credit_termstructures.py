@@ -4,7 +4,7 @@ import  unittest
 
 from quantlib.settings import Settings
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.api import FlatForward
+from quantlib.termstructures.yields.api import FlatForward, HandleYieldTermStructure
 from quantlib.termstructures.credit.api import (
     SpreadCdsHelper, PiecewiseDefaultCurve, FlatHazardRate,
     InterpolatedHazardRateCurve, ProbabilityTrait, Interpolator)
@@ -23,7 +23,7 @@ def create_helper():
     Settings.instance().evaluation_date = todays_date
 
     flat_rate = SimpleQuote(0.01)
-    ts_curve = FlatForward(todays_date, flat_rate, Actual365Fixed())
+    ts_curve = HandleYieldTermStructure(FlatForward(todays_date, flat_rate, Actual365Fixed()))
 
     recovery_rate = 0.5
     quoted_spreads = 0.0150

@@ -17,6 +17,7 @@ from quantlib.instruments.implied_volatility import ImpliedVolatilityHelper
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.settings import Settings
 from quantlib.time.api import Date, TARGET, May, Actual365Fixed
+from quantlib.termstructures.yield_term_structure import HandleYieldTermStructure
 from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 from quantlib.methods.finitedifferences.solvers.fdmbackwardsolver import FdmSchemeDesc
@@ -54,15 +55,19 @@ class VanillaOptionTestCase(unittest.TestCase):
         self.underlyingH = SimpleQuote(self.underlying)
 
         # bootstrap the yield/dividend/vol curves
-        self.flat_term_structure = FlatForward(
-            reference_date=self.settlement_date,
-            forward=self.risk_free_rate,
-            daycounter=self.daycounter
+        self.flat_term_structure = HandleYieldTermStructure(
+            FlatForward(
+                reference_date=self.settlement_date,
+                forward=self.risk_free_rate,
+                daycounter=self.daycounter
+            )
         )
-        self.flat_dividend_ts = FlatForward(
-            reference_date=self.settlement_date,
-            forward=self.dividend_yield,
-            daycounter=self.daycounter
+        self.flat_dividend_ts = HandleYieldTermStructure(
+            FlatForward(
+                reference_date=self.settlement_date,
+                forward=self.dividend_yield,
+                daycounter=self.daycounter
+            )
         )
 
         self.flat_vol_ts = BlackConstantVol(

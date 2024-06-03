@@ -12,6 +12,7 @@ from quantlib.pricingengines.forward.replicating_variance_swap_engine import Rep
 from quantlib.pricingengines.forward.mc_variance_swap_engine import MCVarianceSwapEngine
 from quantlib.processes.api import BlackScholesMertonProcess
 from quantlib.quotes import SimpleQuote
+from quantlib.termstructures.yield_term_structure import HandleYieldTermStructure
 from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.termstructures.volatility.equityfx.black_variance_curve import BlackVarianceCurve
 from quantlib.termstructures.volatility.equityfx.black_variance_surface import BlackVarianceSurface
@@ -29,9 +30,13 @@ class VarianceSwapTestCase(unittest.TestCase):
         self.dc = Actual365Fixed()
         self.spot = SimpleQuote(0.0)
         self.q_rate = SimpleQuote(0.0)
-        self.q_ts = FlatForward(self.today, self.q_rate, self.dc)
+        self.q_ts = HandleYieldTermStructure(
+            FlatForward(self.today, self.q_rate, self.dc)
+        )
         self.r_rate = SimpleQuote(0.0)
-        self.r_ts = FlatForward(self.today, self.r_rate, self.dc)
+        self.r_ts = HandleYieldTermStructure(
+            FlatForward(self.today, self.r_rate, self.dc)
+        )
         self.values = {
             'type' : SwapType.Long,
             'strike' : 0.04,

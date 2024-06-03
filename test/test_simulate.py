@@ -9,7 +9,7 @@ from quantlib.settings import Settings
 from quantlib.time.api import (
     today, NullCalendar, ActualActual
 )
-from quantlib.termstructures.yields.flat_forward import FlatForward
+from quantlib.termstructures.yields.api import FlatForward, HandleYieldTermStructure
 from quantlib.quotes import SimpleQuote
 
 
@@ -33,8 +33,8 @@ class SimTestCase(unittest.TestCase):
         interest_rate = .1
         dividend_yield = .04
 
-        self.risk_free_ts = flat_rate(interest_rate, daycounter)
-        self.dividend_ts = flat_rate(dividend_yield, daycounter)
+        self.risk_free_ts = HandleYieldTermStructure(flat_rate(interest_rate, daycounter))
+        self.dividend_ts = HandleYieldTermStructure(flat_rate(dividend_yield, daycounter))
 
         s0 = SimpleQuote(32.0)
 

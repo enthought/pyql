@@ -7,7 +7,7 @@ from quantlib.settings import Settings
 from quantlib.time.api import (
     today, NullCalendar, ActualActual
 )
-from quantlib.termstructures.yields.flat_forward import FlatForward
+from quantlib.termstructures.yields.api import HandleYieldTermStructure
 from quantlib.quotes import SimpleQuote
 
 from .utilities import flat_rate
@@ -27,8 +27,8 @@ class ProcessTestCase(unittest.TestCase):
         i_rate = .1
         i_div = .04
 
-        self.risk_free_ts = flat_rate(i_rate, daycounter)
-        self.dividend_ts = flat_rate(i_div, daycounter)
+        self.risk_free_ts = HandleYieldTermStructure(flat_rate(i_rate, daycounter))
+        self.dividend_ts = HandleYieldTermStructure(flat_rate(i_div, daycounter))
 
         self.s0 = SimpleQuote(32.0)
 
@@ -70,4 +70,3 @@ class ProcessTestCase(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-

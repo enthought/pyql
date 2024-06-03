@@ -27,6 +27,7 @@ from quantlib.time.api import (
     Actual365Fixed, TARGET, Weeks, ActualActual
 )
 from quantlib.termstructures.yields.flat_forward import FlatForward
+from quantlib.termstructures.yield_term_structure import HandleYieldTermStructure
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
 
@@ -56,8 +57,8 @@ class HestonModelTestCase(unittest.TestCase):
         daycounter = Actual360()
         calendar = NullCalendar()
 
-        risk_free_ts = flat_rate(0.04, daycounter)
-        dividend_ts = flat_rate(0.50, daycounter)
+        risk_free_ts = HandleYieldTermStructure(flat_rate(0.04, daycounter))
+        dividend_ts = HandleYieldTermStructure(flat_rate(0.50, daycounter))
 
         option_maturities = [
             Period(1, Months),
@@ -79,13 +80,13 @@ class HestonModelTestCase(unittest.TestCase):
         for maturity in option_maturities:
             for moneyness in np.arange(-1.0, 2.0, 1.):
                 tau = daycounter.year_fraction(
-                    risk_free_ts.reference_date,
+                    risk_free_ts.current_link.reference_date,
                     calendar.advance(
-                        risk_free_ts.reference_date,
+                        risk_free_ts.current_link.reference_date,
                         period=maturity)
                 )
-                forward_price = s0.value * dividend_ts.discount(tau) / \
-                                risk_free_ts.discount(tau)
+                forward_price = s0.value * dividend_ts.current_link.discount(tau) / \
+                                risk_free_ts.current_link.discount(tau)
                 strike_price = forward_price * np.exp(
                     -moneyness * volatility * np.sqrt(tau)
                 )
@@ -155,9 +156,11 @@ class HestonModelTestCase(unittest.TestCase):
         dates = [settlement_date] + [settlement_date + val for val in t]
         rates = [0.0357] + r
 
-        risk_free_ts = ZeroCurve(dates, rates, daycounter)
-        dividend_ts = FlatForward(
-            settlement_date, forward=0.0, daycounter=daycounter
+        risk_free_ts = HandleYieldTermStructure(ZeroCurve(dates, rates, daycounter))
+        dividend_ts = HandleYieldTermStructure(
+            FlatForward(
+                settlement_date, forward=0.0, daycounter=daycounter
+            )
         )
 
         v = [
@@ -240,8 +243,8 @@ class HestonModelTestCase(unittest.TestCase):
 
         exercise = EuropeanExercise(exercise_date)
 
-        risk_free_ts = flat_rate(0.1, daycounter)
-        dividend_ts = flat_rate(0.04, daycounter)
+        risk_free_ts = HandleYieldTermStructure(flat_rate(0.1, daycounter))
+        dividend_ts = HandleYieldTermStructure(flat_rate(0.04, daycounter))
 
         s0 = SimpleQuote(32.0)
 
@@ -297,8 +300,8 @@ class HestonModelTestCase(unittest.TestCase):
         exercise = EuropeanExercise(exercise_date)
         option = VanillaOption(payoff, exercise)
 
-        risk_free_ts = flat_rate(0.02, daycounter)
-        dividend_ts = flat_rate(0.04, daycounter)
+        risk_free_ts = HandleYieldTermStructure(flat_rate(0.02, daycounter))
+        dividend_ts = HandleYieldTermStructure(flat_rate(0.04, daycounter))
 
         spot = 1290
 
@@ -365,8 +368,8 @@ class HestonModelTestCase(unittest.TestCase):
 
         exercise = EuropeanExercise(exercise_date)
 
-        risk_free_ts = flat_rate(0., daycounter)
-        dividend_ts = flat_rate(0., daycounter)
+        risk_free_ts = HandleYieldTermStructure(flat_rate(0., daycounter))
+        dividend_ts = HandleYieldTermStructure(flat_rate(0., daycounter))
 
         s0 = SimpleQuote(100.0)
 

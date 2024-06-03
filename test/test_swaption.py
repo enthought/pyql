@@ -6,7 +6,7 @@ from quantlib.pricingengines.api import BlackSwaptionEngine
 from quantlib.instruments.swap import Swap
 from quantlib.instruments.swaption import Settlement
 from quantlib.pricingengines.api import BlackSwaptionEngine
-from quantlib.termstructures.yields.flat_forward import FlatForward
+from quantlib.termstructures.yields.api import FlatForward, HandleYieldTermStructure
 from quantlib.time.api import (ModifiedFollowing, Period, Years,
                                Actual365Fixed, UnitedStates, Date)
 from quantlib.settings import Settings
@@ -15,9 +15,9 @@ class TestQuantLibSwaption(unittest.TestCase):
 
     def setUp(self):
         Settings().evaluation_date = Date(27, 4, 2018)
-        self.yc = FlatForward(forward=0.03, settlement_days=2,
+        self.yc = HandleYieldTermStructure(FlatForward(forward=0.03, settlement_days=2,
                               daycounter=Actual365Fixed(),
-                              calendar=UnitedStates())
+                              calendar=UnitedStates()))
         self.index = UsdLiborSwapIsdaFixAm(Period(10, Years), self.yc)
         self.factory = (MakeSwaption(self.index, Period(2, Years), strike=0.0206).
                         with_underlying_type(Swap.Receiver).

@@ -11,6 +11,7 @@ from quantlib.time.api import (Date, Years, Actual365Fixed,
                                February, NullCalendar)
 
 from quantlib.termstructures.yields.flat_forward import FlatForward
+from quantlib.termstructures.yield_term_structure import HandleYieldTermStructure
 from quantlib.indexes.ibor.euribor import Euribor6M
 from quantlib.pricingengines.swaption.jamshidian_swaption_engine import JamshidianSwaptionEngine
 from quantlib.quotes import SimpleQuote
@@ -32,7 +33,7 @@ class HullWhiteModelTestCase(unittest.TestCase):
         """
         today = Date(15, February, 2002)
         self.settings.evaluation_date = today
-        yield_ts = flat_rate(0.04875825, Actual360())
+        yield_ts = HandleYieldTermStructure(flat_rate(0.04875825, Actual360()))
 
         model = HullWhite(yield_ts, a=0.0001, sigma=.1)
 
@@ -49,11 +50,14 @@ class HullWhiteModelTestCase(unittest.TestCase):
         today = Date(15, February, 2002)
         settlement = Date(19, February, 2002)
         self.settings.evaluation_date = today
-        yield_ts = FlatForward(settlement,
-                               forward=0.04875825,
-                               settlement_days=0,
-                               calendar=NullCalendar(),
-                               daycounter=Actual365Fixed())
+        yield_ts = HandleYieldTermStructure(
+            FlatForward(settlement,
+                        forward=0.04875825,
+                        settlement_days=0,
+                        calendar=NullCalendar(),
+                        daycounter=Actual365Fixed()
+                        )
+        )
 
         model = HullWhite(yield_ts, a=0.05, sigma=.005)
 
