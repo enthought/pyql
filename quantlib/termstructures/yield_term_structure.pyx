@@ -1,4 +1,4 @@
-include '../types.pxi'
+from quantlib.types cimport Time
 from cython.operator cimport dereference as deref
 
 from libcpp cimport bool
@@ -14,45 +14,29 @@ from quantlib.compounding cimport Compounding
 cimport quantlib.termstructures._yield_term_structure as _yts
 cimport quantlib._quote as _qt
 cimport quantlib._interest_rate as _ir
-from quantlib.handle cimport Handle, shared_ptr, RelinkableHandle, static_pointer_cast
-from quantlib._observable cimport Observable as QlObservable
+from quantlib.handle cimport static_pointer_cast
 cimport quantlib.time._date as _date
 cimport quantlib.time._daycounter as _dc
 cimport quantlib.time._calendar as _cal
 from quantlib.quote cimport Quote
 from quantlib.interest_rate cimport InterestRate
 
-cdef class YieldTermStructure(Observable):
+cdef class YieldTermStructure(TermStructure):
 
-    # FIXME: the relinkable stuff is really ugly. Do we need this on the
-    # python side?
-
-    def link_to(self, YieldTermStructure structure not None, cbool register_as_observer=True):
-        self._thisptr.linkTo(structure.as_shared_ptr(), register_as_observer)
-
-    cdef inline _yts.YieldTermStructure* as_ptr(self) except NULL:
-        if self._thisptr.empty():
+    cdef inline _yts.YieldTermStructure* as_yts_ptr(self) except NULL:
+        if not self._thisptr:
             raise ValueError('Term structure not initialized')
-        return self._thisptr.currentLink().get()
-
-    cdef inline shared_ptr[_yts.YieldTermStructure] as_shared_ptr(self):
-        if self._thisptr.empty():
-            return shared_ptr[_yts.YieldTermStructure]()
-        else:
-            return self._thisptr.currentLink()
-
-    cdef shared_ptr[QlObservable] as_observable(self):
-        return static_pointer_cast[QlObservable](self.as_shared_ptr())
+        return <_yts.YieldTermStructure*>self._thisptr.get()
 
     property extrapolation:
         def __get__(self):
-            return self.as_ptr().allowsExtrapolation()
+            return self.as_yts_ptr().allowsExtrapolation()
 
         def __set__(self, bool flag):
             if flag:
-                self.as_ptr().enableExtrapolation()
+                self.as_yts_ptr().enableExtrapolation()
             else:
-                self.as_ptr().disableExtrapolation()
+                self.as_yts_ptr().disableExtrapolation()
 
     def zero_rate(self, d, DayCounter day_counter=None,
                   Compounding compounding=Compounding.Continuous, Frequency frequency=Annual,
@@ -80,12 +64,12 @@ cdef class YieldTermStructure(Observable):
         if isinstance(d, Date):
             if day_counter is None:
                 raise ValueError("day_counter needs to be provided")
-            ql_zero_rate = self.as_ptr().zeroRate(
+            ql_zero_rate = self.as_yts_ptr().zeroRate(
                 (<Date>d)._thisptr, deref(day_counter._thisptr),
                 compounding, <_ir.Frequency>frequency,
                 extrapolate)
         elif isinstance(d, (float, int)):
-            ql_zero_rate = self.as_ptr().zeroRate(
+            ql_zero_rate = self.as_yts_ptr().zeroRate(
                 <Time>d, compounding, <_ir.Frequency>frequency,
                 extrapolate)
         else:
@@ -128,19 +112,19 @@ cdef class YieldTermStructure(Observable):
         if isinstance(d1, Date) and isinstance(d2, Date):
             if day_counter is None:
                 raise ValueError("day_counter can't be None")
-            ql_forward_rate = self.as_ptr().forwardRate(
+            ql_forward_rate = self.as_yts_ptr().forwardRate(
                 (<Date>d1)._thisptr,
                 (<Date>d2)._thisptr,
                 deref(day_counter._thisptr), compounding,
                 <_ir.Frequency>frequency, extrapolate)
         elif isinstance(d1, (float, int)) and isinstance(d2, (float, int)):
-            ql_forward_rate = self.as_ptr().forwardRate(
+            ql_forward_rate = self.as_yts_ptr().forwardRate(
                 <Time>d1, <Time>d2, compounding,
                 <_ir.Frequency>frequency, extrapolate)
         elif isinstance(d1, Date) and isinstance(d2, Period):
            if day_counter is None:
                raise ValueError("day_counter can't be None")
-           ql_forward_rate = self.as_ptr().forwardRate(
+           ql_forward_rate = self.as_yts_ptr().forwardRate(
                (<Date>d1)._thisptr, deref((<Period>d2)._thisptr),
                deref(day_counter._thisptr), compounding,
                <_ir.Frequency>frequency, extrapolate)
@@ -156,42 +140,31 @@ cdef class YieldTermStructure(Observable):
         cdef double discount_value
 
         if isinstance(value, Date):
-            discount_value = self.as_ptr().discount(
+            discount_value = self.as_yts_ptr().discount(
                 (<Date>value)._thisptr, extrapolate)
         elif isinstance(value, float):
-            discount_value = self.as_ptr().discount(
+            discount_value = self.as_yts_ptr().discount(
                 <Time>value, extrapolate)
         else:
             raise ValueError('Unsupported value type')
 
         return discount_value
 
-    def time_from_reference(self, Date dt):
-        cdef Time time = self.as_ptr().timeFromReference(dt._thisptr)
-        return time
 
-    property reference_date:
-        def __get__(self):
-            cdef _yts.Date ref_date = self.as_ptr().referenceDate()
-            return date_from_qldate(ref_date)
+cdef class HandleYieldTermStructure:
+    def __init__(self, YieldTermStructure ts=None, bool register_as_observer=True):
+        if ts is not None:
+            self.handle = RelinkableHandle[_yts.YieldTermStructure](
+                static_pointer_cast[_yts.YieldTermStructure](ts._thisptr),
+                register_as_observer)
 
-    property max_date:
-        def __get__(self):
-            cdef _yts.Date max_date = self.as_ptr().maxDate()
-            return date_from_qldate(max_date)
+    @property
+    def current_link(self):
+        cdef YieldTermStructure instance = YieldTermStructure.__new__(YieldTermStructure)
+        if self.handle.empty():
+            raise ValueError("empty handle")
+        instance._thisptr = self.handle.currentLink()
+        return instance
 
-    property max_time:
-        def __get__(self):
-            cdef Time max_time = self.as_ptr().maxTime()
-            return max_time
-
-    property day_counter:
-        def __get__(self):
-            cdef DayCounter dc = DayCounter.__new__(DayCounter)
-            dc._thisptr = new _dc.DayCounter(self.as_ptr().dayCounter())
-            return dc
-
-    property settlement_days:
-        def __get__(self):
-            cdef int days = self.as_ptr().settlementDays()
-            return days
+    def link_to(self, YieldTermStructure yts, bool register_as_observer=True):
+        self.handle.linkTo(static_pointer_cast[_yts.YieldTermStructure](yts._thisptr), register_as_observer)

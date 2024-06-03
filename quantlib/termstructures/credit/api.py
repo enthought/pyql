@@ -2,3 +2,4 @@ from .default_probability_helpers import UpfrontCdsHelper, SpreadCdsHelper, CdsH
 from .piecewise_default_curve import PiecewiseDefaultCurve, ProbabilityTrait, Interpolator
 from .flat_hazard_rate import FlatHazardRate
 from .interpolated_hazardrate_curve import InterpolatedHazardRateCurve
+from ..default_term_structure import HandleDefaultProbabilityTermStructure

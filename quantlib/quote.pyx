@@ -21,7 +21,7 @@ cdef class Quote(Observable):
     def __bool__(self):
         return self._thisptr.get().isValid()
 
-    cdef shared_ptr[QlObservable] as_observable(self):
+    cdef shared_ptr[QlObservable] as_observable(self) noexcept nogil:
         return static_pointer_cast[QlObservable](self._thisptr)
 
     cdef inline Handle[_qt.Quote] handle(self):

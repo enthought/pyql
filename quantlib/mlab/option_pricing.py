@@ -23,7 +23,7 @@ from quantlib.instruments.api import EuropeanOption
 from quantlib.pricingengines.api import (AnalyticEuropeanEngine,
                                          AnalyticHestonEngine)
 from quantlib.processes.api import BlackScholesMertonProcess
-from quantlib.termstructures.yields.api import FlatForward
+from quantlib.termstructures.yields.api import FlatForward, HandleYieldTermStructure
 from quantlib.termstructures.volatility.api import BlackConstantVol
 from quantlib.time.api import today, NullCalendar, ActualActual, ISMA
 
@@ -39,8 +39,8 @@ def heston_pricer(trade_date, options, params, rates, spot):
 
     spot = SimpleQuote(spot)
 
-    risk_free_ts = df_to_zero_curve(rates[nm.INTEREST_RATE], trade_date)
-    dividend_ts = df_to_zero_curve(rates[nm.DIVIDEND_YIELD], trade_date)
+    risk_free_ts = HandleYieldTermStructure(df_to_zero_curve(rates[nm.INTEREST_RATE], trade_date))
+    dividend_ts = HandleYieldTermStructure(df_to_zero_curve(rates[nm.DIVIDEND_YIELD], trade_date))
 
     process = HestonProcess(risk_free_ts, dividend_ts, spot, **params)
 
@@ -105,8 +105,8 @@ def _blsprice(spot, strike, risk_free_rate, time, volatility,
     _spot = SimpleQuote(spot)
 
     daycounter = ActualActual(ISMA)
-    risk_free_ts = FlatForward(today(), risk_free_rate, daycounter)
-    dividend_ts = FlatForward(today(), dividend, daycounter)
+    risk_free_ts = HandleYieldTermStructure(FlatForward(today(), risk_free_rate, daycounter))
+    dividend_ts = HandleYieldTermStructure(FlatForward(today(), dividend, daycounter))
     volatility_ts = BlackConstantVol(today(), NullCalendar(),
                                      volatility, daycounter)
 
@@ -163,8 +163,8 @@ def _blsimpv(price, spot, strike, risk_free_rate, time,
 
     spot = SimpleQuote(spot)
     daycounter = ActualActual(ISMA)
-    risk_free_ts = FlatForward(today(), risk_free_rate, daycounter)
-    dividend_ts = FlatForward(today(), dividend, daycounter)
+    risk_free_ts = HandleYieldTermStructure(FlatForward(today(), risk_free_rate, daycounter))
+    dividend_ts = HandleYieldTermStructure(FlatForward(today(), dividend, daycounter))
     volatility_ts = BlackConstantVol(today(), NullCalendar(),
                                      .3, daycounter)
 

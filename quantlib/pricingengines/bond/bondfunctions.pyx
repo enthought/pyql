@@ -7,10 +7,11 @@ from quantlib.types cimport Rate, Real, Size
 from quantlib.time.frequency cimport Frequency
 from . cimport _bondfunctions as _bf
 
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport static_pointer_cast
 from cython.operator cimport dereference as deref
 from quantlib.instruments.bond cimport Bond, Price
 from quantlib.time.date cimport date_from_qldate, Date
+cimport quantlib.termstructures._yield_term_structure as _yts
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.compounding cimport Compounding
@@ -119,7 +120,7 @@ def zSpread(Bond bond, Price price,
     return _bf.zSpread(
         deref(bond.as_ptr()),
         price._this,
-        yts.as_shared_ptr(),
+        static_pointer_cast[_yts.YieldTermStructure](yts._thisptr),
         deref(day_counter._thisptr),
         compounding,
         frequency,

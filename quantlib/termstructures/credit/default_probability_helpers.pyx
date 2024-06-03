@@ -24,7 +24,7 @@ from quantlib.time.date cimport Period, date_from_qldate, Date
 cimport quantlib.time._date as _date
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
 cimport quantlib._quote as _qt
 from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
 from quantlib.instruments.credit_default_swap cimport CreditDefaultSwap
@@ -53,7 +53,7 @@ cdef class CdsHelper:
     """
 
     def set_term_structure(self, DefaultProbabilityTermStructure ts not None):
-         self._thisptr.get().setTermStructure(ts._thisptr.get())
+         self._thisptr.get().setTermStructure(ts.as_dts_ptr())
 
     @property
     def latest_date(self):
@@ -114,7 +114,7 @@ cdef class SpreadCdsHelper(CdsHelper):
                  Calendar calendar not None, int frequency,
                  int paymentConvention, DateGeneration date_generation_rule,
                  DayCounter daycounter, Real recovery_rate,
-                 YieldTermStructure discount_curve=YieldTermStructure(),
+                 HandleYieldTermStructure discount_curve=HandleYieldTermStructure(),
                  bool settles_accrual=True,
                  bool pays_at_default_time=True,
                  Date start_date=Date(),
@@ -132,7 +132,7 @@ cdef class SpreadCdsHelper(CdsHelper):
                     <Frequency>frequency,
                     <BusinessDayConvention>paymentConvention, date_generation_rule,
                     deref(daycounter._thisptr),
-                    recovery_rate, discount_curve._thisptr, settles_accrual,
+                    recovery_rate, discount_curve.handle, settles_accrual,
                     pays_at_default_time,
                     start_date._thisptr,
                     deref(lastperiod._thisptr),
@@ -147,7 +147,7 @@ cdef class SpreadCdsHelper(CdsHelper):
                     <Frequency>frequency,
                     <BusinessDayConvention>paymentConvention, date_generation_rule,
                     deref(daycounter._thisptr),
-                    recovery_rate, discount_curve._thisptr, settles_accrual,
+                    recovery_rate, discount_curve.handle, settles_accrual,
                     pays_at_default_time,
                     start_date._thisptr,
                     deref(lastperiod._thisptr),
@@ -164,7 +164,7 @@ cdef class UpfrontCdsHelper(CdsHelper):
                  Integer settlement_days, Calendar calendar not None, int frequency,
                  int paymentConvention, DateGeneration rule,
                  DayCounter daycounter not None, Real recovery_rate,
-                 YieldTermStructure discount_curve=YieldTermStructure(),
+                 HandleYieldTermStructure discount_curve=HandleYieldTermStructure(),
                  Natural upfront_settlement_days=3,
                  bool settles_accrual=True,
                  bool pays_at_default_time=True,
@@ -181,7 +181,7 @@ cdef class UpfrontCdsHelper(CdsHelper):
                     settlement_days, calendar._thisptr, <Frequency>frequency,
                     <BusinessDayConvention>paymentConvention, rule,
                     deref(daycounter._thisptr),
-                    recovery_rate, discount_curve._thisptr, upfront_settlement_days, settles_accrual,
+                    recovery_rate, discount_curve.handle, upfront_settlement_days, settles_accrual,
                     pays_at_default_time,
                     start_date._thisptr,
                     deref(lastperiod._thisptr),
@@ -195,7 +195,7 @@ cdef class UpfrontCdsHelper(CdsHelper):
                     settlement_days, calendar._thisptr, <Frequency>frequency,
                     <BusinessDayConvention>paymentConvention, rule,
                     deref(daycounter._thisptr),
-                    recovery_rate, discount_curve._thisptr, upfront_settlement_days, settles_accrual,
+                    recovery_rate, discount_curve.handle, upfront_settlement_days, settles_accrual,
                     pays_at_default_time,
                     start_date._thisptr,
                     deref(lastperiod._thisptr),

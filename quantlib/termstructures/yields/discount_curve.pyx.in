@@ -53,43 +53,47 @@ cdef class {{I}}InterpolatedDiscountCurve(YieldTermStructure):
         for date in dates:
             _dates.push_back((<Date?>date)._thisptr)
 
-        self._curve = new _dc.InterpolatedDiscountCurve[intpl.{{I}}](
+        self._thisptr.reset(
+            new _dc.InterpolatedDiscountCurve[intpl.{{I}}](
                 _dates, dfs, deref(day_counter._thisptr),
                 cal._thisptr
             )
-        self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](self._curve))
+        )
+
+    cdef inline _dc.InterpolatedDiscountCurve[intpl.{{I}}]* curve(self) noexcept nogil:
+        return <_dc.InterpolatedDiscountCurve[intpl.{{I}}]*>self._thisptr.get()
 
     @property
     def data(self):
         """list of curve data"""
-        return self._curve.data()
+        return self.curve().data()
 
     @property
     def times(self):
         """list of curve times"""
-        return self._curve.times()
+        return self.curve().times()
 
     @property
     def dates(self):
         """list of curve dates"""
         cdef list r = []
-        cdef vector[_date.Date].const_iterator it = self._curve.dates().const_begin()
+        cdef vector[_date.Date].const_iterator it = self.curve().dates().const_begin()
 
-        while it != self._curve.dates().const_end():
+        while it != self.curve().dates().const_end():
             r.append(date_from_qldate(deref(it)))
             preinc(it)
         return r
 
     @property
     def discounts(self):
-        return self._curve.discounts()
+        return self.curve().discounts()
 
     @property
     def nodes(self):
         cdef:
             list r = []
             pair[_date.Date, double] p
-            vector[pair[_date.Date, double]] v = self._curve.nodes()
+            vector[pair[_date.Date, double]] v = self.curve().nodes()
 
         for p in v:
             r.append((date_from_qldate(p.first), p.second))

@@ -4,7 +4,7 @@ from .heston_process cimport PartialTruncation
 cimport quantlib._stochastic_process as _sp
 
 cimport quantlib.termstructures._yield_term_structure as _yts
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
 
 from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib._quote as _qt
@@ -24,8 +24,8 @@ cdef class HestonProcess(StochasticProcess):
     """
 
     def __init__(self,
-       YieldTermStructure risk_free_rate_ts=YieldTermStructure(),
-       YieldTermStructure dividend_ts=YieldTermStructure(),
+       HandleYieldTermStructure risk_free_rate_ts=HandleYieldTermStructure(),
+       HandleYieldTermStructure dividend_ts=HandleYieldTermStructure(),
        Quote s0=SimpleQuote(),
        Real v0=0,
        Real kappa=0,
@@ -37,8 +37,8 @@ cdef class HestonProcess(StochasticProcess):
         #create handles
         self._thisptr = shared_ptr[_sp.StochasticProcess](
             new QlHestonProcess(
-                risk_free_rate_ts._thisptr,
-                dividend_ts._thisptr,
+                risk_free_rate_ts.handle,
+                dividend_ts.handle,
                 s0.handle(),
                 v0, kappa, theta, sigma, rho, d
             )

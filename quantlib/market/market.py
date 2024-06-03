@@ -7,7 +7,7 @@ from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.api import (
     FixedRateBondHelper, DepositRateHelper, FuturesRateHelper, SwapRateHelper,
-    PiecewiseYieldCurve, YieldTermStructure, BootstrapTrait
+    PiecewiseYieldCurve, HandleYieldTermStructure, BootstrapTrait
 )
 from quantlib.math.interpolation import LogLinear
 from quantlib.time.api import (
@@ -329,16 +329,13 @@ class IborMarket(FixedIncomeMarket):
             accuracy=tolerance
         )
         self._term_structure = ts
-        self._discount_term_structure = YieldTermStructure()
-        self._discount_term_structure.link_to(ts)
-
-        self._forecast_term_structure = YieldTermStructure()
-        self._forecast_term_structure.link_to(ts)
+        self._discount_term_structure = HandleYieldTermStructure(ts)
+        self._forecast_term_structure = HandleYieldTermStructure(ts)
 
         return ts
 
     def discount(self, date_maturity, extrapolate=True):
-        return self._discount_term_structure.discount(date_maturity)
+        return self._discount_term_structure.current_link.discount(date_maturity)
 
     def create_fixed_float_swap(self, settlement_date, length, fixed_rate,
                                 floating_spread, **kwargs):

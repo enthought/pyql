@@ -1,65 +1,49 @@
-include '../types.pxi'
-
+from quantlib.types cimport Time
 from libcpp cimport bool
 from libcpp.vector cimport vector
-from quantlib.handle cimport static_pointer_cast
-from quantlib._observable cimport Observable as QlObservable
 from quantlib.time.date cimport Date, date_from_qldate
 cimport quantlib.time._date as _date
-from quantlib.time.daycounter cimport DayCounter
-cimport quantlib.time._daycounter as _daycounter
+from quantlib.handle cimport static_pointer_cast
 
-cdef class DefaultProbabilityTermStructure(Observable): #not inheriting from TermStructure at this point
+cdef class DefaultProbabilityTermStructure(TermStructure):
 
-    cdef shared_ptr[QlObservable] as_observable(self):
-        return static_pointer_cast[QlObservable](self._thisptr)
+    cdef inline _dts.DefaultProbabilityTermStructure* as_dts_ptr(self) noexcept nogil:
+        return <_dts.DefaultProbabilityTermStructure*>self._thisptr.get()
 
     def survival_probability(self, d, bool extrapolate = False):
         if isinstance(d, Date):
-            return self._thisptr.get().survivalProbability(
+            return self.as_dts_ptr().survivalProbability(
                 (<Date>d)._thisptr, extrapolate)
         elif isinstance(d, float) or isinstance(d, int):
-            return self._thisptr.get().survivalProbability(<Time>d, extrapolate)
+            return self.as_dts_ptr().survivalProbability(<Time>d, extrapolate)
         else:
             raise ValueError('d must be a Date or a float')
 
     def hazard_rate(self, d, bool extrapolate = False):
         if isinstance(d, Date):
-            return self._thisptr.get().hazardRate(
+            return self.as_dts_ptr().hazardRate(
                 (<Date>d)._thisptr, extrapolate)
         elif isinstance(d, float) or isinstance(d, int):
-            return self._thisptr.get().hazardRate(<Time>d, extrapolate)
+            return self.as_dts_ptr().hazardRate(<Time>d, extrapolate)
         else:
             raise ValueError('d must be a Date or a float')
 
     @property
     def jump_times(self):
-        return self._thisptr.get().jumpTimes()
+        return self.as_dts_ptr().jumpTimes()
 
     @property
     def jump_dates(self):
         cdef _date.Date d
         cdef list l = []
-        cdef vector[_date.Date] jd = self._thisptr.get().jumpDates()
+        cdef vector[_date.Date] jd = self.as_dts_ptr().jumpDates()
         for d in jd:
             l.append(date_from_qldate(d))
         return l
 
-    def time_from_reference(self, Date d not None):
-        return self._thisptr.get().timeFromReference(d._thisptr)
-
-    @property
-    def max_date(self):
-        cdef _date.Date date = self._thisptr.get().maxDate()
-        return date_from_qldate(date)
-
-    @property
-    def reference_date(self):
-        cdef _date.Date date = self._thisptr.get().referenceDate()
-        return date_from_qldate(date)
-
-    @property
-    def day_counter(self):
-        cdef DayCounter dc = DayCounter()
-        dc._thisptr = new _daycounter.DayCounter(self._thisptr.get().dayCounter())
-        return dc
+cdef class HandleDefaultProbabilityTermStructure:
+    def __init__(self, DefaultProbabilityTermStructure ts=None, bool register_as_observer=False):
+        if ts is not None:
+            self.handle = RelinkableHandle[_dts.DefaultProbabilityTermStructure](
+                static_pointer_cast[_dts.DefaultProbabilityTermStructure](ts._thisptr),
+                register_as_observer)

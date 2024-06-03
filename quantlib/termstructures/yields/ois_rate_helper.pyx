@@ -10,7 +10,7 @@ from quantlib.quote cimport Quote
 from quantlib.time.date cimport Date, Period
 from quantlib.termstructures.yields.rate_helpers cimport RelativeDateRateHelper, RateHelper
 from quantlib.indexes.ibor_index cimport OvernightIndex
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
 from quantlib.time.calendar cimport Calendar
 
 from . cimport _ois_rate_helper as _orh
@@ -29,7 +29,7 @@ cdef class OISRateHelper(RelativeDateRateHelper):
                  Quote fixed_rate not None,
                  OvernightIndex overnight_index not None,
                  # exogenous discounting curve
-                 YieldTermStructure ts not None=YieldTermStructure(),
+                 HandleYieldTermStructure ts not None=HandleYieldTermStructure(),
                  bool telescopic_value_dates = False,
                  Natural payment_lag = 0,
                  BusinessDayConvention payment_convention = Following,
@@ -51,7 +51,7 @@ cdef class OISRateHelper(RelativeDateRateHelper):
                 deref(tenor._thisptr),
                 fixed_rate.handle(),
                 static_pointer_cast[_ib.OvernightIndex](overnight_index._thisptr),
-                ts._thisptr,
+                ts.handle,
                 telescopic_value_dates,
                 payment_lag,
                 <_rh.BusinessDayConvention> payment_convention,
@@ -74,7 +74,7 @@ cdef class DatedOISRateHelper(RateHelper):
                  Quote fixed_rate not None,
                  OvernightIndex overnight_index not None,
                  # exogenous discounting curve
-                 YieldTermStructure discounting_curve not None=YieldTermStructure(),
+                 HandleYieldTermStructure discounting_curve not None=HandleYieldTermStructure(),
                  bool telescopic_value_dates = False,
                  RateAveraging averaging_method=RateAveraging.Compound,
                  ):
@@ -84,7 +84,7 @@ cdef class DatedOISRateHelper(RateHelper):
                 end_date._thisptr,
                 fixed_rate.handle(),
                 static_pointer_cast[_ib.OvernightIndex](overnight_index._thisptr),
-                discounting_curve._thisptr,
+                discounting_curve.handle,
                 telescopic_value_dates,
                 averaging_method
             )

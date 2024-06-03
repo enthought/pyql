@@ -17,7 +17,7 @@ cdef class Instrument(Observable):
         '''
         self._thisptr.get().setPricingEngine(engine._thisptr)
 
-    cdef shared_ptr[QlObservable] as_observable(self):
+    cdef shared_ptr[QlObservable] as_observable(self) noexcept nogil:
         return static_pointer_cast[QlObservable](self._thisptr)
 
     property net_present_value:

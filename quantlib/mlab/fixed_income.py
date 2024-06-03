@@ -27,7 +27,7 @@ from quantlib.time.schedule import Schedule
 from quantlib.time.dategeneration import DateGeneration
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure
+    FlatForward, HandleYieldTermStructure
 )
 
 from quantlib.time.daycounter import DayCounter
@@ -135,7 +135,7 @@ def _bndprice(bond_yield, coupon_rate, pricing_date, maturity_date,
                 issue_date
     )
 
-    discounting_term_structure = YieldTermStructure(relinkable=True)
+    discounting_term_structure = HandleYieldTermStructure()
 
     cnt_yield = DayCounter.from_name('Actual/Actual (Historical)')
 

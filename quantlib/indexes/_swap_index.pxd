@@ -25,7 +25,7 @@ from quantlib.time._calendar cimport Calendar
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.cashflows.rateaveraging cimport RateAveraging
 
-cdef extern from 'ql/indexes/swapindex.hpp' namespace 'QuantLib':
+cdef extern from 'ql/indexes/swapindex.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass SwapIndex(InterestRateIndex):
         SwapIndex(string& familyName,
@@ -36,7 +36,7 @@ cdef extern from 'ql/indexes/swapindex.hpp' namespace 'QuantLib':
                   Period& fixedLegTenor,
                   BusinessDayConvention fixedLegConvention,
                   DayCounter& fixedLegDayCounter,
-                  shared_ptr[IborIndex]& iborIndex) nogil
+                  shared_ptr[IborIndex]& iborIndex)
         SwapIndex(const string& familyName,
                   const Period& tenor,
                   Natural settlementDays,
@@ -46,7 +46,7 @@ cdef extern from 'ql/indexes/swapindex.hpp' namespace 'QuantLib':
                   BusinessDayConvention fixedLegConvention,
                   const DayCounter& fixedLegDayCounter,
                   const shared_ptr[IborIndex]& iborIndex,
-                  const Handle[YieldTermStructure]& discountingTermStructure) nogil
+                  const Handle[YieldTermStructure]& discountingTermStructure)
         shared_ptr[VanillaSwap] underlyingSwap(const Date& fixingDate)
         shared_ptr[IborIndex] iborIndex()
         Handle[YieldTermStructure] forwardingTermStructure() except +
@@ -59,6 +59,6 @@ cdef extern from 'ql/indexes/swapindex.hpp' namespace 'QuantLib':
                                   Currency currency,
                                   shared_ptr[OvernightIndex]& overnightIndex,
                                   bool telescopic_value_dates, # = False
-                                  RateAveraging averaging_method) nogil # = RateAveraing.Compound
+                                  RateAveraging averaging_method) # = RateAveraing.Compound
         shared_ptr[OvernightIndex] overnight_index()
         shared_ptr[OvernightIndexedSwap] underlying_swap(const Date& fixing_date)

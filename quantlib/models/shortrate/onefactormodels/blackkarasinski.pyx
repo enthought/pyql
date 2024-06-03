@@ -4,7 +4,7 @@ from quantlib.types cimport Real
 cimport quantlib.models._model as _mo
 from . cimport _blackkarasinski as _bk
 from quantlib.handle cimport shared_ptr
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
 
 cdef class BlackKarasinski(OneFactorModel):
     r"""Standard Black-Karasinski model
@@ -18,12 +18,12 @@ cdef class BlackKarasinski(OneFactorModel):
     """
 
     def __init__(self,
-       YieldTermStructure term_structure,
+       HandleYieldTermStructure term_structure,
        Real a=0.1,
        Real sigma=0.1):
 
         self._thisptr = shared_ptr[_mo.CalibratedModel](
             new _bk.BlackKarasinski(
-                term_structure._thisptr, a, sigma
+                term_structure.handle, a, sigma
 	    )
 	)

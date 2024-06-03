@@ -18,13 +18,7 @@ from .bootstraptraits cimport BootstrapTrait
 from itertools import product
 
 
-# with cython3 and python>=3.7 we could use __class_getitem__ instead
-cdef class _Meta(type):
-    def __getitem__(cls, tuple tup):
-        T, I = tup
-        return globals()[f"{T.name}{I.__name__}PiecewiseYieldCurve"]
-
-class PiecewiseYieldCurve(metaclass=_Meta):
+class PiecewiseYieldCurve:
     """A piecewise yield curve.
 
     ``Generics`` class parametered by a couple (trait, interpolator).
@@ -40,7 +34,9 @@ class PiecewiseYieldCurve(metaclass=_Meta):
 
 
     """
-    pass
+    def __class_getitem__(cls, tuple tup):
+        T, I = tup
+        return globals()[f"{T.name}{I.__name__}PiecewiseYieldCurve"]
 
 {{py: from itertools import product}}
 {{for T, I in product(["Discount", "ZeroYield", "ForwardRate"], ["Linear", "LogLinear", "BackwardFlat", "Cubic"])}}
@@ -78,14 +74,17 @@ cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
         for helper in helpers:
             instruments.push_back((<RateHelper?> helper)._thisptr)
 
-        self._curve = new _pyc.PiecewiseYieldCurve[trait.{{T}}, intpl.{{I}}](
-            settlement_days, calendar._thisptr, instruments,
-            deref(daycounter._thisptr),
-            i._thisptr,
-            _pyc.PiecewiseYieldCurve[trait.{{T}}, intpl.{{I}}].bootstrap_type(accuracy)
+        self._thisptr.reset(
+            new _pyc.PiecewiseYieldCurve[_trait.{{T}}, intpl.{{I}}](
+                settlement_days, calendar._thisptr, instruments,
+                deref(daycounter._thisptr),
+                i._thisptr,
+                _pyc.PiecewiseYieldCurve[_trait.{{T}}, intpl.{{I}}].bootstrap_type(accuracy)
+            )
         )
-        self._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](self._curve))
 
+    cdef inline _pyc.PiecewiseYieldCurve[_trait.{{T}}, intpl.{{I}}]* curve(self) noexcept nogil:
+        return <_pyc.PiecewiseYieldCurve[_trait.{{T}}, intpl.{{I}}]*>self._thisptr.get()
 
     @classmethod
     def from_reference_date(cls, Date reference_date, list helpers,
@@ -119,31 +118,32 @@ cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
             instruments.push_back((<RateHelper?> helper)._thisptr)
 
         instance.trait = BootstrapTrait.{{T}}
-        instance._curve = new _pyc.PiecewiseYieldCurve[trait.{{T}}, intpl.{{I}}](
-            reference_date._thisptr, instruments, deref(daycounter._thisptr),
-            i._thisptr,
-            _pyc.PiecewiseYieldCurve[trait.{{T}}, intpl.{{I}}].bootstrap_type(accuracy)
+        instance._thisptr.reset(
+            new _pyc.PiecewiseYieldCurve[_trait.{{T}}, intpl.{{I}}](
+                reference_date._thisptr, instruments, deref(daycounter._thisptr),
+                i._thisptr,
+                _pyc.PiecewiseYieldCurve[_trait.{{T}}, intpl.{{I}}].bootstrap_type(accuracy)
+            )
         )
-        instance._thisptr.linkTo(shared_ptr[_yts.YieldTermStructure](instance._curve))
         return instance
 
 
     @property
     def data(self):
         """list of curve data"""
-        return self._curve.data()
+        return self.curve().data()
 
     @property
     def times(self):
         """list of curve times"""
-        return self._curve.times()
+        return self.curve().times()
 
     @property
     def dates(self):
         """list of curve dates"""
         cdef list r  = []
         cdef _date.Date qldate
-        for qldate in self._curve.dates():
+        for qldate in self.curve().dates():
             r.append(date_from_qldate(qldate))
 
         return r
@@ -153,7 +153,7 @@ cdef class {{T}}{{I}}PiecewiseYieldCurve(YieldTermStructure):
         cdef:
             list r = []
             pair[_date.Date, double] p
-            vector[pair[_date.Date, double]] v = self._curve.nodes()
+            vector[pair[_date.Date, double]] v = self.curve().nodes()
         for p in v:
             r.append((date_from_qldate(p.first), p.second))
         return r

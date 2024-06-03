@@ -19,23 +19,17 @@ from quantlib.time._period cimport Frequency
 cimport quantlib._quote as _qt
 from quantlib._interest_rate cimport InterestRate
 from quantlib.compounding cimport Compounding
+from .._termstructure cimport TermStructure
 
 cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib' nogil:
 
-    cdef cppclass YieldTermStructure:
+    cdef cppclass YieldTermStructure(TermStructure):
         YieldTermStructure(DayCounter& dc,
                            vector[Handle[_qt.Quote]]& jumps,
                            vector[Date]& jumpDates,
                            ) except +
         DiscountFactor discount(Date& d, bool extrapolate) except +
         DiscountFactor discount(Time t, bool extrapolate) except +
-        DayCounter dayCounter()
-        Time timeFromReference(Date& d)
-        Date referenceDate()
-        Date maxDate()
-        Time maxTime()
-        Calendar calendar()
-        int settlementDays()
         InterestRate zeroRate(Date& d,
                               DayCounter& resultDayCounter,
                               Compounding comp,

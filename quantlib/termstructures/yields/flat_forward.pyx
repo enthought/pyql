@@ -16,10 +16,8 @@ from quantlib.time.date cimport Date, date_from_qldate
 
 from quantlib.compounding cimport Compounding
 
-from quantlib.handle cimport shared_ptr, RelinkableHandle, Handle
 from . cimport _flat_forward as ffwd
 from quantlib.quote cimport Quote
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 
 
 cdef class FlatForward(YieldTermStructure):
@@ -49,12 +47,9 @@ cdef class FlatForward(YieldTermStructure):
 
     def __init__(self, Date reference_date=None, forward=None,
                  DayCounter daycounter=None,
-                 int settlement_days=0, Calendar calendar=None,
+                 Natural settlement_days=0, Calendar calendar=None,
                  Compounding compounding=Compounding.Continuous,
                  Frequency frequency=Annual):
-
-        #local cdef's
-        cdef shared_ptr[ffwd.YieldTermStructure] _forward
 
         if forward is None:
             raise ValueError('forward must be provided')
@@ -64,43 +59,49 @@ cdef class FlatForward(YieldTermStructure):
 
         if reference_date is not None:
             if isinstance(forward, Quote):
-                _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
-                    reference_date._thisptr,
-                    (<Quote>forward).handle(),
-                    deref(daycounter._thisptr),
-                    compounding,
-                    frequency
-                ))
+                self._thisptr.reset(
+                    new ffwd.FlatForward(
+                        reference_date._thisptr,
+                        (<Quote>forward).handle(),
+                        deref(daycounter._thisptr),
+                        compounding,
+                        frequency
+                    )
+                )
             else:
-                _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
+                self._thisptr.reset(
+                    new ffwd.FlatForward(
                         reference_date._thisptr,
                         <Rate>forward,
                         deref(daycounter._thisptr),
                         compounding,
                         frequency
-                ))
+                    )
+                )
         elif settlement_days is not None and \
             calendar is not None:
 
             if isinstance(forward, Quote):
-                _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
-                        <ffwd.Natural>settlement_days,
+                self._thisptr.reset(
+                    new ffwd.FlatForward(
+                        settlement_days,
                         calendar._thisptr,
                         (<Quote>forward).handle(),
                         deref(daycounter._thisptr),
                         compounding,
                         frequency
-                ))
+                    )
+                )
             else:
-                _forward = shared_ptr[ffwd.YieldTermStructure](new ffwd.FlatForward(
-                        <Natural>settlement_days,
+                self._thisptr.reset(
+                    new ffwd.FlatForward(
+                        settlement_days,
                         calendar._thisptr,
                         <Rate>forward,
                         deref(daycounter._thisptr),
                         compounding,
                         frequency
-                ))
+                    )
+                )
         else:
             raise ValueError('Invalid constructor')
-
-        self._thisptr.linkTo(_forward)
