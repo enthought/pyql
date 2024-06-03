@@ -22,7 +22,7 @@ from quantlib.math.optimization cimport Constraint
 from quantlib.models.shortrate.calibrationhelpers.swaption_helper cimport SwaptionHelper
 from quantlib.models.calibration_helper cimport BlackCalibrationHelper
 
-from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
 from quantlib.math.optimization cimport OptimizationMethod, EndCriteria
 
 from .vasicek cimport Vasicek
@@ -44,13 +44,13 @@ cdef class HullWhite(Vasicek):
      """
 
     def __init__(self,
-       YieldTermStructure term_structure=YieldTermStructure(),
+       HandleYieldTermStructure term_structure=HandleYieldTermStructure(),
        Real a=0,
        Real sigma=0):
 
         self._thisptr = shared_ptr[_mo.CalibratedModel](
             new _hw.HullWhite(
-                term_structure._thisptr,
+                term_structure.handle,
                 a, sigma
 	    )
 	)

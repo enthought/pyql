@@ -11,7 +11,7 @@ from .rate_helpers import (
 from .ois_rate_helper import OISRateHelper, DatedOISRateHelper
 from .overnightindexfutureratehelper import OvernightIndexFutureRateHelper, SofrFutureRateHelper
 from .discount_curve import InterpolatedDiscountCurve, DiscountCurve
-from ..yield_term_structure import YieldTermStructure
+from ..yield_term_structure import YieldTermStructure, HandleYieldTermStructure
 from .zero_curve import ZeroCurve
 from .discount_curve import DiscountCurve
 from .forward_curve import ForwardCurve

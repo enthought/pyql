@@ -9,7 +9,7 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.businessdayconvention cimport ModifiedFollowing, BusinessDayConvention
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
 cimport quantlib.termstructures._yield_term_structure as _yts
 
 cimport quantlib._index as _in
@@ -26,7 +26,7 @@ cdef class IborIndex(InterestRateIndex):
     def __init__(self, str family_name, Period tenor not None, Natural settlement_days,
                  Currency currency, Calendar fixing_calendar, int convention,
                  bool end_of_month, DayCounter day_counter not None,
-                 YieldTermStructure yts=YieldTermStructure()):
+                 HandleYieldTermStructure yts=HandleYieldTermStructure()):
         self._thisptr = shared_ptr[_in.Index](
             new _ib.IborIndex(family_name.encode('utf-8'),
                               deref(tenor._thisptr),
@@ -36,7 +36,7 @@ cdef class IborIndex(InterestRateIndex):
                               <BusinessDayConvention> convention,
                               end_of_month,
                               deref(day_counter._thisptr),
-                              yts._thisptr)
+                              yts.handle)
             )
 
     property business_day_convention:
@@ -53,14 +53,14 @@ cdef class IborIndex(InterestRateIndex):
     def forwarding_term_structure(self):
         cdef:
             _ib.IborIndex* ref = <_ib.IborIndex*>self._thisptr.get()
-            YieldTermStructure yts = YieldTermStructure.__new__(YieldTermStructure)
+            HandleYieldTermStructure yts = HandleYieldTermStructure.__new__(HandleYieldTermStructure)
             Handle[_yts.YieldTermStructure] _yts = ref.forwardingTermStructure()
         if not _yts.empty():
-            yts._thisptr.linkTo(_yts.currentLink())
+            yts.handle.linkTo(_yts.currentLink())
         return yts
 
     @staticmethod
-    def from_name(market, term_structure=YieldTermStructure(), **kwargs):
+    def from_name(market, term_structure=HandleYieldTermStructure(), **kwargs):
         """
         Create default IBOR for the market, modify attributes if provided
         """
@@ -89,12 +89,12 @@ cdef class OvernightIndex(IborIndex):
     def __init__(self, str family_name, Natural settlement_days,
                  Currency currency, Calendar fixing_calendar,
                  DayCounter day_counter not None,
-                 YieldTermStructure yts=YieldTermStructure()):
+                 HandleYieldTermStructure yts=HandleYieldTermStructure()):
         self._thisptr = shared_ptr[_in.Index](
             new _ib.OvernightIndex(family_name.encode('utf-8'),
                               settlement_days,
                               deref(currency._thisptr),
                               fixing_calendar._thisptr,
                               deref(day_counter._thisptr),
-                              yts._thisptr)
+                                   yts.handle)
             )

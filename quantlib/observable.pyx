@@ -1,7 +1,7 @@
 from ._observable cimport Observable as QlObservable
 
 cdef class Observable:
-    cdef shared_ptr[QlObservable] as_observable(self):
+    cdef shared_ptr[QlObservable] as_observable(self) noexcept nogil:
         pass
 
 cdef class Observer:

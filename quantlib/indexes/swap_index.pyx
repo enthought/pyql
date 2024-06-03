@@ -25,7 +25,7 @@ from quantlib.currency.currency cimport Currency
 from quantlib.time.date cimport Date
 from quantlib.time.calendar cimport Calendar
 from quantlib.time._calendar cimport BusinessDayConvention
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure, HandleYieldTermStructure
 cimport quantlib.termstructures._yield_term_structure as _yts
 
 cimport quantlib._index as _in
@@ -42,21 +42,38 @@ cdef class SwapIndex(InterestRateIndex):
                  Currency currency, Calendar calendar not None,
                  Period fixed_leg_tenor not None,
                  int fixed_leg_convention, DayCounter fixed_leg_daycounter not None,
-                 IborIndex ibor_index not None):
+                 IborIndex ibor_index not None,
+                 HandleYieldTermStructure discounting_term_structure=None):
 
-        self._thisptr = shared_ptr[_in.Index](
-            new _si.SwapIndex(
-                family_name,
-                deref(tenor._thisptr),
-                <Natural> settlement_days,
-                deref(currency._thisptr),
-                calendar._thisptr,
-                deref(fixed_leg_tenor._thisptr),
-                <BusinessDayConvention> fixed_leg_convention,
-                deref(fixed_leg_daycounter._thisptr),
-                static_pointer_cast[_ii.IborIndex](ibor_index._thisptr)
+        if discounting_term_structure is None:
+            self._thisptr.reset(
+                new _si.SwapIndex(
+                    family_name,
+                    deref(tenor._thisptr),
+                    settlement_days,
+                    deref(currency._thisptr),
+                    calendar._thisptr,
+                    deref(fixed_leg_tenor._thisptr),
+                    <BusinessDayConvention> fixed_leg_convention,
+                    deref(fixed_leg_daycounter._thisptr),
+                    static_pointer_cast[_ii.IborIndex](ibor_index._thisptr)
+                )
             )
-        )
+        else:
+            self._thisptr.reset(
+                new _si.SwapIndex(
+                    family_name,
+                    deref(tenor._thisptr),
+                    settlement_days,
+                    deref(currency._thisptr),
+                    calendar._thisptr,
+                    deref(fixed_leg_tenor._thisptr),
+                    <BusinessDayConvention> fixed_leg_convention,
+                    deref(fixed_leg_daycounter._thisptr),
+                    static_pointer_cast[_ii.IborIndex](ibor_index._thisptr),
+                    discounting_term_structure.handle
+                )
+            )
 
     def underlying_swap(self, Date fixing_date not None):
         cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
@@ -77,9 +94,9 @@ cdef class SwapIndex(InterestRateIndex):
         cdef YieldTermStructure yts = YieldTermStructure.__new__(YieldTermStructure)
         cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
         if not swap_index.forwardingTermStructure().empty():
-            yts._thisptr.linkTo(swap_index.
-                                forwardingTermStructure().
-                                currentLink())
+            yts._thisptr = (swap_index.
+                            forwardingTermStructure().
+                            currentLink())
             return yts
         else:
             raise RuntimeError("Cannot dereference empty handle")
@@ -89,9 +106,9 @@ cdef class SwapIndex(InterestRateIndex):
         cdef YieldTermStructure yts = YieldTermStructure.__new__(YieldTermStructure)
         cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
         if not swap_index.discountingTermStructure().empty():
-            yts._thisptr.linkTo(swap_index.
-                                discountingTermStructure().
-                                currentLink())
+            yts._thisptr = (swap_index.
+                            discountingTermStructure().
+                            currentLink())
             return yts
         else:
             raise RuntimeError("Cannot dereference empty handle")

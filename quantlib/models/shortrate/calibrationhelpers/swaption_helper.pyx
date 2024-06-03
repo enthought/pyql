@@ -11,7 +11,7 @@ from quantlib.types cimport Real
 from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
 from cython.operator cimport dereference as deref
 
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
 from quantlib.termstructures.volatility.volatilitytype cimport VolatilityType
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.indexes.ibor_index cimport IborIndex
@@ -41,7 +41,7 @@ cdef class SwaptionHelper(BlackCalibrationHelper):
                  Period fixed_leg_tenor not None,
                  DayCounter fixed_leg_daycounter not None,
                  DayCounter floating_leg_daycounter not None,
-                 YieldTermStructure ts not None,
+                 HandleYieldTermStructure ts not None,
                  CalibrationErrorType error_type=RelativePriceError,
                  Real strike=Null[Real](),
                  Real nominal=1.0,
@@ -58,7 +58,7 @@ cdef class SwaptionHelper(BlackCalibrationHelper):
                     deref(fixed_leg_tenor._thisptr),
                     deref(fixed_leg_daycounter._thisptr),
                     deref(floating_leg_daycounter._thisptr),
-                    ts._thisptr,
+                    ts.handle,
                     error_type,
                     strike,
                     nominal,
@@ -76,7 +76,7 @@ cdef class SwaptionHelper(BlackCalibrationHelper):
                     deref(fixed_leg_tenor._thisptr),
                     deref(fixed_leg_daycounter._thisptr),
                     deref(floating_leg_daycounter._thisptr),
-                    ts._thisptr,
+                    ts.handle,
                     error_type,
                     strike,
                     nominal,
@@ -94,7 +94,7 @@ cdef class SwaptionHelper(BlackCalibrationHelper):
                     deref(fixed_leg_tenor._thisptr),
                     deref(fixed_leg_daycounter._thisptr),
                     deref(floating_leg_daycounter._thisptr),
-                    ts._thisptr,
+                    ts.handle,
                     error_type,
                     strike,
                     nominal,

@@ -9,12 +9,12 @@ from . cimport _discountingbondengine as _dbe
 
 from ..engine cimport PricingEngine
 
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
 
 cdef class DiscountingBondEngine(PricingEngine):
 
-    def __init__(self, YieldTermStructure discount_curve):
+    def __init__(self, HandleYieldTermStructure discount_curve):
         """
         """
 
-        self._thisptr.reset(new _dbe.DiscountingBondEngine(discount_curve._thisptr))
+        self._thisptr.reset(new _dbe.DiscountingBondEngine(discount_curve.handle))

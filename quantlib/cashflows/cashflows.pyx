@@ -15,7 +15,7 @@ def next_cash_flow_amount(Leg leg, bool include_settlement_date_flows, Date sett
 def npv(Leg leg, YieldTermStructure discount_curve, bool include_settlement_date_flows,
         Date settlement_date=Date, Date npv_date=Date()):
     return CashFlows.npv(leg._thisptr,
-                         deref(discount_curve.as_ptr()),
+                         deref(discount_curve.as_yts_ptr()),
                          include_settlement_date_flows,
                          settlement_date._thisptr,
                          npv_date._thisptr)
@@ -23,7 +23,7 @@ def npv(Leg leg, YieldTermStructure discount_curve, bool include_settlement_date
 def bps(Leg leg, YieldTermStructure discount_curve, bool include_settlement_date_flows,
         Date settlement_date=Date, Date npv_date=Date()):
     return CashFlows.bps(leg._thisptr,
-                         deref(discount_curve.as_ptr()),
+                         deref(discount_curve.as_yts_ptr()),
                          include_settlement_date_flows,
                          settlement_date._thisptr,
                          npv_date._thisptr)
@@ -31,7 +31,7 @@ def bps(Leg leg, YieldTermStructure discount_curve, bool include_settlement_date
 def npvbps(Leg leg, YieldTermStructure discount_curve, bool include_settlement_date_flows,
         Date settlement_date=Date, Date npv_date=Date()):
     return CashFlows.npvbps(leg._thisptr,
-                            deref(discount_curve.as_ptr()),
+                            deref(discount_curve.as_yts_ptr()),
                             include_settlement_date_flows,
                             settlement_date._thisptr,
                             npv_date._thisptr)

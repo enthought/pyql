@@ -5,9 +5,7 @@
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
 """ deposit, FRA, futures and various swap rate helpers"""
-
-include '../../types.pxi'
-
+from quantlib.types cimport Integer, Natural, Real, Rate
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 
@@ -33,7 +31,7 @@ from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.indexes.swap_index cimport SwapIndex
 from ..helpers cimport Pillar
 from quantlib.utilities.null cimport Null
-from ..yield_term_structure cimport YieldTermStructure
+from ..yield_term_structure cimport HandleYieldTermStructure
 
 cdef class RateHelper:
 
@@ -97,7 +95,7 @@ cdef class DepositRateHelper(RelativeDateRateHelper):
                     new _rh.DepositRateHelper(
                         <Rate>rate,
                         deref(tenor._thisptr),
-                        <int>fixing_days,
+                        fixing_days,
                         calendar._thisptr,
                         convention,
                         end_of_month,
@@ -109,7 +107,7 @@ cdef class DepositRateHelper(RelativeDateRateHelper):
                     new _rh.DepositRateHelper(
                         (<Quote>rate).handle(),
                         deref(tenor._thisptr),
-                        <int>fixing_days,
+                        fixing_days,
                         calendar._thisptr,
                         convention,
                         end_of_month,
@@ -139,7 +137,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                    BusinessDayConvention fixedConvention, DayCounter fixedDayCount not None,
                    IborIndex iborIndex not None, Quote spread=SimpleQuote.__new__(SimpleQuote),
                    Period fwdStart=Period(0, Days),
-                   YieldTermStructure discounting_curve=YieldTermStructure(),
+                   HandleYieldTermStructure discounting_curve=HandleYieldTermStructure(),
                    Natural settlement_days=Null[Integer](),
                    Pillar pillar=Pillar.LastRelevantDate,
                    Date custom_pillar_date=Date(),
@@ -159,7 +157,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                     static_pointer_cast[_ib.IborIndex](iborIndex._thisptr),
                     spread.handle(),
                     deref(fwdStart._thisptr),
-                    discounting_curve._thisptr,
+                    discounting_curve.handle,
                     settlement_days,
                     pillar,
                     custom_pillar_date._thisptr,
@@ -178,7 +176,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                     static_pointer_cast[_ib.IborIndex](iborIndex._thisptr),
                     spread.handle(),
                     deref(fwdStart._thisptr),
-                    discounting_curve._thisptr,
+                    discounting_curve.handle,
                     settlement_days,
                     pillar,
                     custom_pillar_date._thisptr,
@@ -193,7 +191,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
     @classmethod
     def from_index(cls, rate, SwapIndex index not None, Quote spread=SimpleQuote.__new__(SimpleQuote),
                    Period fwdStart=Period(0, Days),
-                   YieldTermStructure discounting_curve=YieldTermStructure(),
+                   HandleYieldTermStructure discounting_curve=HandleYieldTermStructure(),
                    Pillar pillar=Pillar.LastRelevantDate,
                    Date custom_pillar_date=Date(),
                    bool end_of_month=False):
@@ -207,7 +205,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                     static_pointer_cast[_si.SwapIndex](index._thisptr),
                     spread.handle(),
                     deref(fwdStart._thisptr),
-                    discounting_curve._thisptr,
+                    discounting_curve.handle,
                     pillar,
                     custom_pillar_date._thisptr,
                     end_of_month
@@ -220,7 +218,7 @@ cdef class SwapRateHelper(RelativeDateRateHelper):
                     static_pointer_cast[_si.SwapIndex](index._thisptr),
                     spread.handle(),
                     deref(fwdStart._thisptr),
-                    discounting_curve._thisptr,
+                    discounting_curve.handle,
                     pillar,
                     custom_pillar_date._thisptr,
                     end_of_month
@@ -437,7 +435,7 @@ cdef class FxSwapRateHelper(RelativeDateRateHelper):
                  BusinessDayConvention convention,
                  bool end_of_month,
                  bool is_fx_base_currency_collateral_currency,
-                 YieldTermStructure collateral_curve,
+                 HandleYieldTermStructure collateral_curve,
                  Calendar trading_calendar=Calendar()):
 
         self._thisptr.reset(
@@ -450,7 +448,7 @@ cdef class FxSwapRateHelper(RelativeDateRateHelper):
                 <_rh.BusinessDayConvention>convention,
                 end_of_month,
                 is_fx_base_currency_collateral_currency,
-                collateral_curve._thisptr,
+                collateral_curve.handle,
                 trading_calendar._thisptr,
             )
         )

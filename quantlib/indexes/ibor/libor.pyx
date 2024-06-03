@@ -12,18 +12,16 @@ include '../../types.pxi'
 # Cython standard cimports
 from cython.operator cimport dereference as deref
 from cpython cimport bool
-from libcpp cimport bool as cbool
 from libcpp.string cimport string
 
 # QuantLib header cimports
-cimport quantlib.termstructures._yield_term_structure as _yts
 from . cimport _libor
 cimport quantlib._index as _in
 cimport quantlib.time._calendar as _calendar
 
 # PyQL cimport
-from quantlib.handle cimport Handle, shared_ptr
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+from quantlib.handle cimport shared_ptr
+from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
 from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Period
@@ -44,7 +42,7 @@ cdef class Libor(IborIndex):
         Currency currency not None,
         Calendar financial_center_calendar not None,
         DayCounter dayCounter not None,
-        YieldTermStructure ts not None=YieldTermStructure()):
+        HandleYieldTermStructure ts not None=HandleYieldTermStructure()):
 
         # convert the Python str to C++ string
         cdef string familyName_string = familyName.encode('utf-8')
@@ -53,11 +51,11 @@ cdef class Libor(IborIndex):
         new _libor.Libor(
             familyName_string,
             deref(tenor._thisptr),
-            <Natural> settlementDays,
+            settlementDays,
             deref(currency._thisptr),
             financial_center_calendar._thisptr,
             deref(dayCounter._thisptr),
-            ts._thisptr))
+            ts.handle))
 
     @property
     def joint_calendar(self):

@@ -10,7 +10,7 @@ from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.dategeneration cimport DateGeneration
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
 from quantlib.pricingengines.engine cimport PricingEngine
 cimport quantlib.indexes._ibor_index as _ii
 from .. cimport _instrument as _in
@@ -98,8 +98,8 @@ cdef class MakeOIS:
         self._thisptr.withOvernightLegSpread(sp)
         return self
 
-    def with_discounting_term_structure(self, YieldTermStructure ts):
-        self._thisptr.withDiscountingTermStructure(ts._thisptr)
+    def with_discounting_term_structure(self, HandleYieldTermStructure ts):
+        self._thisptr.withDiscountingTermStructure(ts.handle)
         return self
 
     def with_telescopic_value_dates(self, bool telescopic_value_dates):

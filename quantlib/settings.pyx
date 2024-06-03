@@ -25,7 +25,7 @@ __quantlib_version__ = QL_VERSION
 __quantlib_hex_version__ = QL_HEX_VERSION
 
 cdef class DateProxy(Observable):
-    cdef shared_ptr[QlObservable] as_observable(self):
+    cdef shared_ptr[QlObservable] as_observable(self) noexcept nogil:
         return _settings.Settings.instance().evaluationDate1()
 
 cdef class Settings:

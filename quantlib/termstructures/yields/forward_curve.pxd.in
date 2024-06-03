@@ -4,7 +4,6 @@ from . cimport _forward_curve as _fc
 
 {{for I in ["Linear", "LogLinear", "BackwardFlat", "Cubic"]}}
 cdef class {{I}}InterpolatedForwardCurve(YieldTermStructure):
-    cdef _fc.InterpolatedForwardCurve[intpl.{{I}}]* _curve
-
+    cdef _fc.InterpolatedForwardCurve[intpl.{{I}}]* curve(self) noexcept nogil
 
 {{endfor}}

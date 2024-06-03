@@ -1,9 +1,10 @@
 from quantlib.types cimport Natural, Real, Volatility
 from . cimport _swaption
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.handle cimport shared_ptr, static_pointer_cast, Handle
 from quantlib.termstructures.volatility.volatilitytype cimport (
     VolatilityType, ShiftedLognormal )
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures cimport _yield_term_structure as _yts
 from .exercise cimport Exercise
 from .swap cimport Type as SwapType
 from .fixedvsfloatingswap cimport FixedVsFloatingSwap
@@ -45,7 +46,11 @@ cdef class Swaption(Option):
                            Real displacement=0.):
         return self.get_swaption().impliedVolatility(
             price,
-            discount_curve._thisptr,
+            Handle[_yts.YieldTermStructure](
+                static_pointer_cast[_yts.YieldTermStructure](
+                    discount_curve._thisptr
+                )
+            ),
             guess,
             accuracy,
             max_evaluations,

@@ -1,14 +1,11 @@
-"""HUll-White stochastic process"""
-include '../types.pxi'
-
+"""Hull-White stochastic process"""
+from quantlib.types cimport Real
 from cython.operator cimport dereference as deref
 from .cimport _hullwhite_process as _hw
 cimport quantlib._stochastic_process as _sp
-cimport quantlib.termstructures._yield_term_structure as _yts
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
 
-from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
-cimport quantlib.termstructures.yields._flat_forward as _ff
+from quantlib.handle cimport shared_ptr, static_pointer_cast
 
 
 cdef class HullWhiteProcess(StochasticProcess1D):
@@ -23,13 +20,13 @@ cdef class HullWhiteProcess(StochasticProcess1D):
      """
 
     def __init__(self,
-       YieldTermStructure risk_free_rate_ts,
+       HandleYieldTermStructure risk_free_rate_ts,
        Real a,
        Real sigma):
 
         self._thisptr = shared_ptr[_sp.StochasticProcess](
             new _hw.HullWhiteProcess(
-                risk_free_rate_ts._thisptr,
+                risk_free_rate_ts.handle,
                 a, sigma))
 
     def __str__(self):
