@@ -4,7 +4,7 @@ from quantlib.indexes.api import Eonia
 from quantlib.instruments.api import MakeOIS
 from quantlib.settings import Settings
 from quantlib.time.api import Date, Days, Weeks, Months, Years, Following, Actual360
-from quantlib.termstructures.yields.api import YieldTermStructure
+from quantlib.termstructures.yields.api import HandleYieldTermStructure
 
 from .utilities import flat_rate
 import math
@@ -66,7 +66,7 @@ class TestOvernightIndexedSwap(unittest.TestCase):
         self.nominal = 100
         self.settings = Settings().__enter__()
         self.settings.evaluation_date = self.today
-        self.eonia_term_structure = YieldTermStructure()
+        self.eonia_term_structure = HandleYieldTermStructure()
         self.eonia_index = Eonia(self.eonia_term_structure)
         self.calendar = self.eonia_index.fixing_calendar
         self.settlement = self.calendar.advance(self.today, self.settlement_days, Following)

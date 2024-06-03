@@ -15,7 +15,7 @@ from quantlib.settings import Settings
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yields.flat_forward import FlatForward
+from quantlib.termstructures.yields.api import FlatForward, HandleYieldTermStructure
 
 from quantlib.models.equity.heston_model import (
     HestonModelHelper, HestonModel
@@ -58,14 +58,14 @@ class TestHHWCalibration(unittest.TestCase):
         settings = Settings()
         settings.evaluation_date = todays_date
 
-        r_ts = flat_rate(0.05, dc)
+        r_ts = HandleYieldTermStructure(flat_rate(0.05, dc))
 
         ## assuming, that the Hull-White process is already calibrated
         ## on a given set of pure interest rate calibration instruments.
 
         hw_process = HullWhiteProcess(r_ts, a=0.00883, sigma=0.00631)
 
-        q_ts = flat_rate(0.02, dc)
+        q_ts = HandleYieldTermStructure(flat_rate(0.02, dc))
         s0 = SimpleQuote(100.0)
 
         # vol surface

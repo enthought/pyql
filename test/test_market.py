@@ -30,7 +30,7 @@ class MarketTestCase(unittest.TestCase):
                   ('SWAP', '5Y', SimpleQuote(0.0443)),
                   ('SWAP', '10Y', SimpleQuote(0.05165)),
                   ('SWAP', '15Y', SimpleQuote(0.055175))]
-        
+
         m.set_quotes(eval_date, quotes)
 
         m.bootstrap_term_structure()
@@ -173,11 +173,11 @@ class MarketTestCase(unittest.TestCase):
         self.assertIsNotNone(forecast_ts)
 
         for linked_ts in [discount_ts, forecast_ts]:
-            rate = linked_ts.zero_rate(
+            rate = linked_ts.current_link.zero_rate(
                 Date(1, 1, 2005), Actual360(), Simple)
             self.assertEqual(rate.rate, zero_rate.rate)
 
-            rate = linked_ts.forward_rate(
+            rate = linked_ts.current_link.forward_rate(
                 Date(1, 1, 2005), Date(30, 1, 2005), Actual360(), Simple)
             self.assertEqual(rate.rate, forward_rate.rate)
 

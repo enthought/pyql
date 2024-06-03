@@ -17,6 +17,7 @@ from quantlib.pricingengines.asian.analyticdiscrgeomavprice import (
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.settings import Settings
 from quantlib.time.api import Date, NullCalendar, June, Actual360, Years
+from quantlib.termstructures.yield_term_structure import HandleYieldTermStructure
 from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.volatility.api import BlackConstantVol
@@ -64,16 +65,20 @@ class AsianOptionTestCase(unittest.TestCase):
         self.underlyingH = SimpleQuote(self.underlying)
 
         # bootstrap the yield/dividend/vol curves
-        self.flat_term_structure = FlatForward(
-            reference_date=self.today,
-            forward=self.risk_free_rate,
-            daycounter=self.daycounter
+        self.flat_term_structure = HandleYieldTermStructure(
+            FlatForward(
+                reference_date=self.today,
+                forward=self.risk_free_rate,
+                daycounter=self.daycounter
+            )
         )
-        self.flat_dividend_ts = FlatForward(
-            reference_date=self.today,
-            forward=self.dividend_yield,
-            daycounter=self.daycounter
-        )
+        self.flat_dividend_ts = HandleYieldTermStructure(
+            FlatForward(
+                reference_date=self.today,
+                forward=self.dividend_yield,
+                daycounter=self.daycounter
+            )
+            )
 
         self.flat_vol_ts = BlackConstantVol(
             self.today,
@@ -161,8 +166,8 @@ class AsianOptionTestCase(unittest.TestCase):
         r_rate = SimpleQuote(0.0)
         vol = SimpleQuote(0.0)
 
-        q_ts = flat_rate(q_rate, self.daycounter)
-        r_ts =  flat_rate(r_rate, self.daycounter)
+        q_ts = HandleYieldTermStructure(flat_rate(q_rate, self.daycounter), True)
+        r_ts =  HandleYieldTermStructure(flat_rate(r_rate, self.daycounter), True)
         vol_ts = BlackConstantVol(self.today, self.calendar, vol, self.daycounter)
 
         process = BlackScholesMertonProcess(spot, q_ts, r_ts, vol_ts)

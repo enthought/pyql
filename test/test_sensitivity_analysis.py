@@ -23,7 +23,7 @@ from quantlib.termstructures.yields.rate_helpers import (
 from quantlib.termstructures.yields.piecewise_yield_curve \
     import PiecewiseYieldCurve
 from quantlib.termstructures.yields.api import (
-    FlatForward, BootstrapTrait)
+    FlatForward, BootstrapTrait, HandleYieldTermStructure)
 from quantlib.math.interpolation import LogLinear
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.volatility.equityfx.black_constant_vol \
@@ -92,9 +92,11 @@ class SensitivityTestCase(unittest.TestCase):
         ts_day_counter = ActualActual(ISDA)
         tolerance = 1.0e-15
 
-        self.ts = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear](
-            self.settlement_days,
-            self.calendar, self.rate_helpers, ts_day_counter, accuracy=tolerance)
+        self.ts = HandleYieldTermStructure(
+            PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear](
+                self.settlement_days,
+                self.calendar, self.rate_helpers, ts_day_counter, accuracy=tolerance)
+            )
 
     def test_bucketanalysis_bond(self):
 
@@ -172,16 +174,16 @@ class SensitivityTestCase(unittest.TestCase):
         payoff = PlainVanillaPayoff(option_type, strike)
 
 
-        flat_term_structure = FlatForward(
+        flat_term_structure = HandleYieldTermStructure(FlatForward(
             reference_date = settlement_date,
             forward        = risk_free_rate,
             daycounter     = daycounter
-        )
-        flat_dividend_ts = FlatForward(
+        ))
+        flat_dividend_ts = HandleYieldTermStructure(FlatForward(
             reference_date = settlement_date,
             forward        = dividend_yield,
             daycounter     = daycounter
-        )
+        ))
 
         flat_vol_ts = BlackConstantVol(
             settlement_date,

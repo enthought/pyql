@@ -25,7 +25,7 @@ from quantlib.processes.api import (BlackScholesMertonProcess,
 from quantlib.models.equity.heston_model import (
     HestonModel)
 
-from quantlib.termstructures.yields.api import ZeroCurve, FlatForward
+from quantlib.termstructures.yields.api import ZeroCurve, FlatForward, HandleYieldTermStructure
 from quantlib.termstructures.volatility.api import BlackConstantVol
 
 from quantlib.pricingengines.api import (
@@ -76,8 +76,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         divRates = [0.02] + \
                    [0.02 + 0.0001 * np.exp(np.sin(i / 5.0)) for i in range(40)]
 
-        self.r_ts = ZeroCurve(dates, rates, self.daycounter)
-        self.q_ts = ZeroCurve(dates, divRates, self.daycounter)
+        self.r_ts = HandleYieldTermStructure(ZeroCurve(dates, rates, self.daycounter))
+        self.q_ts = HandleYieldTermStructure(ZeroCurve(dates, divRates, self.daycounter))
 
         self.vol_ts = BlackConstantVol(
             self.settlement_date,
@@ -108,8 +108,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
 
         spot = SimpleQuote(100)
 
-        q_ts = flat_rate(0.04, dc)
-        r_ts = flat_rate(0.0525, dc)
+        q_ts = HandleYieldTermStructure(flat_rate(0.04, dc))
+        r_ts = HandleYieldTermStructure(flat_rate(0.0525, dc))
         vol_ts = BlackConstantVol(todays_date, NullCalendar(), 0.25, dc)
 
         hullWhiteModel = HullWhite(r_ts, 0.00883, 0.00526)
@@ -119,8 +119,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
 
         exercise = EuropeanExercise(maturity_date)
 
-        fwd = spot.value * q_ts.discount(maturity_date) / \
-            r_ts.discount(maturity_date)
+        fwd = spot.value * q_ts.current_link.discount(maturity_date) / \
+            r_ts.current_link.discount(maturity_date)
 
         payoff = PlainVanillaPayoff(OptionType.Call, fwd)
 
@@ -185,8 +185,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
 
         s0 = SimpleQuote(100)
 
-        r_ts = ZeroCurve(dates, rates, dc)
-        q_ts = ZeroCurve(dates, divRates, dc)
+        r_ts = HandleYieldTermStructure(ZeroCurve(dates, rates, dc))
+        q_ts = HandleYieldTermStructure(ZeroCurve(dates, divRates, dc))
 
         vol = SimpleQuote(0.25)
         vol_ts = BlackConstantVol(
@@ -271,8 +271,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
 
         s0 = SimpleQuote(100)
 
-        r_ts = ZeroCurve(dates, rates, dc)
-        q_ts = ZeroCurve(dates, divRates, dc)
+        r_ts = HandleYieldTermStructure(ZeroCurve(dates, rates, dc))
+        q_ts = HandleYieldTermStructure(ZeroCurve(dates, divRates, dc))
 
         vol = SimpleQuote(0.25)
         vol_ts = BlackConstantVol(
@@ -317,8 +317,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
                     exercise = EuropeanExercise(maturity_date)
 
                     fwd = strike * s0.value * \
-                        q_ts.discount(maturity_date) / \
-                        r_ts.discount(maturity_date)
+                        q_ts.current_link.discount(maturity_date) / \
+                        r_ts.current_link.discount(maturity_date)
 
                     payoff = PlainVanillaPayoff(option_type, fwd)
 
@@ -358,8 +358,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         dates = [todays_date + Period(i, Years) for i in range(3)]
         rates = [0.04 for i in range(3)]
         divRates = [0.03 for i in range(3)]
-        r_ts = ZeroCurve(dates, rates, dc)
-        q_ts = ZeroCurve(dates, divRates, dc)
+        r_ts = HandleYieldTermStructure(ZeroCurve(dates, rates, dc))
+        q_ts = HandleYieldTermStructure(ZeroCurve(dates, divRates, dc))
 
         s0 = SimpleQuote(100)
 

@@ -12,6 +12,7 @@ from quantlib.termstructures.yields.api import (
     FlatForward, YieldTermStructure, ForwardSpreadedTermStructure,
     DiscountCurve, ImpliedTermStructure
 )
+from quantlib.termstructures.yield_term_structure import HandleYieldTermStructure
 from quantlib.quotes import SimpleQuote
 
 from quantlib.settings import Settings
@@ -29,14 +30,14 @@ class YieldTermStructureTestCase(unittest.TestCase):
 
     def test_default_constructor(self):
 
-        term_structure = YieldTermStructure()
+        term_structure = HandleYieldTermStructure()
 
         with self.assertRaises(ValueError):
-            term_structure.discount(Settings().evaluation_date)
+            term_structure.current_link.discount(Settings().evaluation_date)
 
     def test_relinkable_structures(self):
 
-        discounting_term_structure = YieldTermStructure()
+        discounting_term_structure = HandleYieldTermStructure()
 
         settlement_days = 3
         flat_term_structure = FlatForward(settlement_days=settlement_days,
@@ -47,7 +48,7 @@ class YieldTermStructureTestCase(unittest.TestCase):
         evaluation_date = Settings().evaluation_date +100
         self.assertEqual(
             flat_term_structure.discount(evaluation_date),
-            discounting_term_structure.discount(evaluation_date)
+            discounting_term_structure.current_link.discount(evaluation_date)
         )
 
 
@@ -58,12 +59,12 @@ class YieldTermStructureTestCase(unittest.TestCase):
 
         self.assertEqual(
             another_flat_term_structure.discount(evaluation_date),
-            discounting_term_structure.discount(evaluation_date)
+            discounting_term_structure.current_link.discount(evaluation_date)
         )
 
         self.assertNotEqual(
             flat_term_structure.discount(evaluation_date),
-            discounting_term_structure.discount(evaluation_date)
+            discounting_term_structure.current_link.discount(evaluation_date)
         )
 
 class FlatForwardTestCase(unittest.TestCase):
@@ -128,14 +129,14 @@ class ForwardSpreadedTestCase(unittest.TestCase):
         fwd_spd_dts = ForwardSpreadedTermStructure(discount_ts, SimpleQuote(discount_spd))
         fwd_spd_fts = ForwardSpreadedTermStructure(forecast_ts, SimpleQuote(forecast_spd))
 
-        df_rate = round(float(discount_ts.forward_rate(Date(1, 1, 2005), Date(30, 1, 2005), Actual360(), Simple).rate), 2)
-        dz_rate = round(float(discount_ts.zero_rate(Date(1, 1, 2005), Actual360(), Simple).rate), 2)
+        df_rate = round(float(discount_ts.current_link.forward_rate(Date(1, 1, 2005), Date(30, 1, 2005), Actual360(), Simple).rate), 2)
+        dz_rate = round(float(discount_ts.current_link.zero_rate(Date(1, 1, 2005), Actual360(), Simple).rate), 2)
 
         fdf_rate = round(float(fwd_spd_dts.forward_rate(Date(1 ,1 , 2005), Date(30 ,1 ,2005), Actual360(), Simple).rate), 2)
         fdz_rate = round(float(fwd_spd_dts.zero_rate(Date(1, 1, 2005), Actual360(), Simple).rate), 2)
 
-        ff_rate = round(float(forecast_ts.forward_rate(Date(1, 1, 2005), Date(30, 1, 2005), Actual360(), Simple).rate), 2)
-        fz_rate = round(float(forecast_ts.zero_rate(Date(1, 1, 2005), Actual360(), Simple).rate), 2)
+        ff_rate = round(float(forecast_ts.current_link.forward_rate(Date(1, 1, 2005), Date(30, 1, 2005), Actual360(), Simple).rate), 2)
+        fz_rate = round(float(forecast_ts.current_link.zero_rate(Date(1, 1, 2005), Actual360(), Simple).rate), 2)
 
         ffc_rate= round(float(fwd_spd_fts.forward_rate(Date(1, 1, 2005), Date(30, 1, 2005), Actual360(), Simple).rate), 2)
         ffz_rate= round(float(fwd_spd_fts.zero_rate(Date(1, 1, 2005), Actual360() ,Simple).rate), 2)
@@ -157,7 +158,7 @@ class ImpliedTermStructureTestCase(unittest.TestCase):
                  Date.from_string('2018-03-11')]
         dfs = [1.0, 0.8, 0.7]
         dc = DiscountCurve(dates, dfs, Actual365Fixed())
-        dc_implied = ImpliedTermStructure(dc, Date.from_string('2017-11-11'))
+        dc_implied = ImpliedTermStructure(HandleYieldTermStructure(dc), Date.from_string('2017-11-11'))
         for d in dates[1:]:
             self.assertEqual(dc_implied.discount(d),
                              dc.discount(d) / dc.discount(Date.from_string('2017-11-11')))

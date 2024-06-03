@@ -3,7 +3,7 @@ import unittest
 from quantlib.time.api import (
     Date, Period, Years, TARGET, Actual365Fixed, Following, Actual360)
 from quantlib.indexes.api import EuriborSwapIsdaFixA
-from quantlib.termstructures.yields.api import FlatForward
+from quantlib.termstructures.yields.api import FlatForward, HandleYieldTermStructure
 from quantlib.termstructures.volatility.api import (
         ConstantSwaptionVolatility, VolatilityType)
 from quantlib.experimental.coupons.lognormal_cmsspread_pricer import \
@@ -27,7 +27,7 @@ class CmsSpreadTestCase(unittest.TestCase):
     def setUp(self):
         self.ref_date = Date(23, 2, 2018)
         Settings().evaluation_date = self.ref_date
-        self.yts = FlatForward(self.ref_date, 0.02, Actual365Fixed())
+        self.yts = HandleYieldTermStructure(FlatForward(self.ref_date, 0.02, Actual365Fixed()))
         self.swLn = ConstantSwaptionVolatility.from_reference_date(
             self.ref_date, TARGET(), Following,
             0.2, Actual365Fixed(), VolatilityType.ShiftedLognormal, 0.)

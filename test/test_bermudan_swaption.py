@@ -7,7 +7,7 @@ from quantlib.time.api import (
     Thirty360, Days, Years, DateGeneration, Schedule, Actual365Fixed, Period)
 from quantlib.time.daycounters.thirty360 import Convention
 from quantlib.indexes.api import Euribor6M
-from quantlib.termstructures.yields.api import YieldTermStructure
+from quantlib.termstructures.yields.api import HandleYieldTermStructure
 from quantlib.models.api import HullWhite
 from quantlib.settings import Settings
 from quantlib.pricingengines.api import DiscountingSwapEngine, TreeSwaptionEngine
@@ -27,7 +27,7 @@ class BermudanSwaptionTest(unittest.TestCase):
         self.fixed_frequency = Annual
         self.floating_frequency = Semiannual
         self.fixed_day_count = Thirty360(Convention.BondBasis)
-        self.term_structure = YieldTermStructure()
+        self.term_structure = HandleYieldTermStructure()
         self.index = Euribor6M(self.term_structure)
         self.calendar = self.index.fixing_calendar
         self.today = self.calendar.adjust(today())

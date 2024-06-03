@@ -2,7 +2,7 @@ import unittest
 from quantlib.cashflows.api import OvernightIndexedCoupon
 from quantlib.time.date import Date, October, November, December, January, March
 from quantlib.settings import Settings
-from quantlib.termstructures.yields.api import YieldTermStructure, FlatForward
+from quantlib.termstructures.yields.api import HandleYieldTermStructure, FlatForward
 from quantlib.time.api import Actual360
 from quantlib.indexes.api import Sofr
 from .utilities import flat_rate
@@ -12,7 +12,7 @@ class TestOvernightIndexedCoupon(unittest.TestCase):
     def setUp(self):
         self.today = Date(23, November, 2021)
         Settings().evaluation_date = self.today
-        self.forecast_curve = YieldTermStructure()
+        self.forecast_curve = HandleYieldTermStructure()
         self.notional = 10_000
         self.sofr = Sofr(self.forecast_curve)
 

@@ -129,8 +129,7 @@ class BondFunctionTestCase(unittest.TestCase):
             rate_helpers.append(helper)
 
         liborIndex = Libor('USD Libor', Period(6, Months), self.settlement_days,
-                           USDCurrency(), self.calendar, Actual360(),
-                           YieldTermStructure(relinkable=False))
+                           USDCurrency(), self.calendar, Actual360())
 
         spread = SimpleQuote(0)
         fwdStart = Period(0, Days)

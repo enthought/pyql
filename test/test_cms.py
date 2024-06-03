@@ -5,6 +5,7 @@ from quantlib.time.api import (
     UnitedStates, today, Unadjusted)
 from quantlib.math.matrix import Matrix
 import numpy as np
+from quantlib.termstructures.yield_term_structure import HandleYieldTermStructure
 from quantlib.termstructures.volatility.swaption.swaption_vol_matrix \
     import SwaptionVolatilityMatrix
 from quantlib.indexes.api import EuriborSwapIsdaFixA
@@ -44,13 +45,15 @@ class CmsFairRateTestCase(unittest.TestCase):
 
         reference_date = calendar.adjust(today())
         Settings().evaluation_date = reference_date
-        self.term_structure = FlatForward(reference_date, 0.05, Actual365Fixed())
+        self.term_structure = HandleYieldTermStructure(
+            FlatForward(reference_date, 0.05, Actual365Fixed())
+        )
         self.swap_index = EuriborSwapIsdaFixA(Period(10, Years),
                                               forwarding=self.term_structure)
 
     def test_fair_rate(self):
 
-        start_date = self.term_structure.reference_date + Period(20, Years)
+        start_date = self.term_structure.current_link.reference_date + Period(20, Years)
         payment_date = start_date + Period(1, Years)
         end_date = payment_date
         nominal = 1.0

@@ -21,7 +21,7 @@ from quantlib.time.schedule import Schedule
 from quantlib.time.dategeneration import DateGeneration
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure
+    FlatForward, HandleYieldTermStructure
 )
 from quantlib.indexes.api import Libor, Euribor6M
 from quantlib.currency.api import USDCurrency
@@ -61,7 +61,7 @@ class BondTestCase(unittest.TestCase):
         coupon_rate = 0.03625
         bond_yield = 0.034921
 
-        discounting_term_structure = YieldTermStructure(relinkable=True)
+        discounting_term_structure = HandleYieldTermStructure()
         flat_term_structure = FlatForward(
             reference_date = settlement_date,
             forward        = bond_yield,
@@ -168,7 +168,7 @@ class BondTestCase(unittest.TestCase):
             issue_date
         )
 
-        discounting_term_structure = YieldTermStructure()
+        discounting_term_structure = HandleYieldTermStructure()
         flat_term_structure = FlatForward(
             settlement_days = 1,
             forward         = 0.044,
@@ -210,7 +210,7 @@ class BondTestCase(unittest.TestCase):
             100.0, todays_date
         )
 
-        discounting_term_structure = YieldTermStructure(relinkable=True)
+        discounting_term_structure = HandleYieldTermStructure()
         flat_term_structure = FlatForward(
             settlement_days = 1,
             forward         = 0.044,
@@ -258,8 +258,8 @@ class BondTestCase(unittest.TestCase):
             DateGeneration.Backward
         )#3
 
-        flat_discounting_term_structure = YieldTermStructure()
-        forecastTermStructure = YieldTermStructure()
+        flat_discounting_term_structure = HandleYieldTermStructure()
+        forecastTermStructure = HandleYieldTermStructure()
 
 
         dc = Actual360()

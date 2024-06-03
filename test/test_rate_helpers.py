@@ -10,7 +10,7 @@ from quantlib.termstructures.yields.rate_helpers import (
     DepositRateHelper, FraRateHelper, FuturesRateHelper, SwapRateHelper, FxSwapRateHelper
 )
 from quantlib.termstructures.yields.ois_rate_helper import OISRateHelper
-from quantlib.termstructures.yields.api import YieldTermStructure, PiecewiseYieldCurve, FlatForward
+from quantlib.termstructures.yields.api import HandleYieldTermStructure, PiecewiseYieldCurve, FlatForward
 from quantlib.math.interpolation import BackwardFlat, LogLinear
 from quantlib.termstructures.yields.bootstraptraits import Discount, ForwardRate
 from quantlib.time.api import (
@@ -243,7 +243,7 @@ class FxSwapRateHelperTest(unittest.TestCase):
         # for_maturity, unit)
         deposits = {(0, 1, Days): todays_Eonia_quote}
 
-        discounting_yts_handle = YieldTermStructure()
+        discounting_yts_handle = HandleYieldTermStructure()
         on_index = Eonia(discounting_yts_handle)
         on_index.add_fixing(todaysDate, todays_Eonia_quote / 100.0)
 
@@ -310,7 +310,7 @@ class FxSwapRateHelperTest(unittest.TestCase):
                 RelinkableYieldTermStructureHandle
                 list of FxSwapRateHelper
         """
-        todaysDate = base_ccy_yts.reference_date
+        todaysDate = base_ccy_yts.current_link.reference_date
         # I am not sure if that is required, but I guss it is worth setting
         # up just in case somewhere another thread updates this setting.
         Settings.instance().evaluation_date = todaysDate
@@ -351,7 +351,7 @@ class FxSwapRateHelperTest(unittest.TestCase):
             e.g. Date(26, 8, 2016)
         """
         self.today = quote_date
-        self.eur_ois_curve = self.build_eur_curve(self.today)
+        self.eur_ois_curve = HandleYieldTermStructure(self.build_eur_curve(self.today))
         self.pln_eur_implied_curve, self.eur_pln_fx_swap_helpers = self.build_pln_fx_swap_curve(self.eur_ois_curve, self.fx_swap_quotes, self.fx_spot_quote_EURPLN)
 
     def testQuote(self):
@@ -385,14 +385,14 @@ class FxSwapRateHelperTest(unittest.TestCase):
         # here while retrieving values from fx_swap_quotes dictionary
         original_quotes = list(self.fx_swap_quotes.values())
         spot_date = Date(30, 8, 2016)
-        spot_df = self.eur_ois_curve.discount(
+        spot_df = self.eur_ois_curve.current_link.discount(
             spot_date) / self.pln_eur_implied_curve.discount(spot_date)
 
         for original_quote, maturity in zip(original_quotes, self.maturities):
             original_forward = self.fx_spot_quote_EURPLN + original_quote
             curve_impl_forward = (
                     self.fx_spot_quote_EURPLN
-                    * self.eur_ois_curve.discount(maturity)
+                    * self.eur_ois_curve.current_link.discount(maturity)
                     / self.pln_eur_implied_curve.discount(maturity)
                     / spot_df
             )
@@ -442,7 +442,7 @@ class FxSwapRateHelperTest(unittest.TestCase):
 
         # empty RelinkableYieldTermStructureHandle is sufficient for testing
         # dates
-        base_ccy_yts = YieldTermStructure()
+        base_ccy_yts = HandleYieldTermStructure()
 
         us_calendar = UnitedStates()
 
@@ -506,7 +506,7 @@ class FxSwapRateHelperTest(unittest.TestCase):
 
         # empty RelinkableYieldTermStructureHandle is sufficient for testing
         # dates
-        base_ccy_yts = YieldTermStructure()
+        base_ccy_yts = HandleYieldTermStructure()
 
         # In EURUSD, there must be two days to spot date in Target calendar
         # and one day in US, therefore it is sufficient to pass only Target
@@ -545,7 +545,7 @@ class FxSwapRateHelperTest(unittest.TestCase):
 
         # empty RelinkableYieldTermStructureHandle is sufficient for testing
         # dates
-        base_ccy_yts = YieldTermStructure()
+        base_ccy_yts = HandleYieldTermStructure()
 
         # In EURUSD, there must be two days to spot date in Target calendar
         # and one day in US, therefore it is sufficient to pass only Target
@@ -583,12 +583,12 @@ class CrossCurrencyBasisSwapRateHelperTest(unittest.TestCase):
         self.calendar = TARGET()
         self.day_count = Actual365Fixed()
         self.end_of_month = False
-        base_ccy_idx_handle = flat_rate(0.007)
-        quoted_ccy_idx_handle = flat_rate(0.015)
+        base_ccy_idx_handle = HandleYieldTermStructure(flat_rate(0.007))
+        quoted_ccy_idx_handle = HandleYieldTermStructure(flat_rate(0.015))
         self.base_ccy_idx = Euribor3M(base_ccy_idx_handle)
         self.quote_ccy_idx = USDLibor(
             Period(3, Months), quoted_ccy_idx_handle)
-        self.collateral_ccy_handle = flat_rate(0.009)
+        self.collateral_ccy_handle = HandleYieldTermStructure(flat_rate(0.009))
         # Cross currency basis swaps data source:
         #   N. Moreni, A. Pallavicini (2015)
         #   FX Modelling in Collateralized Markets: foreign measures, basis curves
