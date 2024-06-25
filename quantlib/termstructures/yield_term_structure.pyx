@@ -168,3 +168,6 @@ cdef class HandleYieldTermStructure:
 
     def link_to(self, YieldTermStructure yts, bool register_as_observer=True):
         self.handle.linkTo(static_pointer_cast[_yts.YieldTermStructure](yts._thisptr), register_as_observer)
+
+    def __bool__(self):
+        return not self.handle.empty()
