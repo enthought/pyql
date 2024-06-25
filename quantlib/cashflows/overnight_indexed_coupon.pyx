@@ -1,4 +1,4 @@
-from quantlib.types cimport Real, Spread
+from quantlib.types cimport Natural, Real, Spread
 
 from libcpp cimport bool
 from libcpp.vector cimport vector
@@ -8,6 +8,7 @@ from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time._date cimport Date as QlDate
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.indexes.ibor_index cimport OvernightIndex
+from quantlib.utilities.null cimport Null
 cimport quantlib.indexes._ibor_index as _ii
 cimport quantlib._cashflow as _cf
 from .rateaveraging cimport RateAveraging
@@ -20,14 +21,18 @@ cdef class OvernightIndexedCoupon(FloatingRateCoupon):
                  OvernightIndex index not None, Real gearing=1., Spread spread=0.,
                  Date ref_period_start=Date(), Date ref_period_end=Date(),
                  DayCounter day_counter=DayCounter(), bool telescopic_values= False,
-                 RateAveraging averaging_method=RateAveraging.Compound):
+                 RateAveraging averaging_method=RateAveraging.Compound,
+                 Natural lookback_days=Null[Natural](),
+                 Natural lockout_days=0,
+                 bool apply_observation_shift=False):
         self._thisptr = make_shared[_oic.OvernightIndexedCoupon](
                 payment_date._thisptr, nominal,
                 start_date._thisptr, end_date._thisptr,
                 static_pointer_cast[_ii.OvernightIndex](index._thisptr),
                 gearing, spread,
                 ref_period_start._thisptr, ref_period_end._thisptr,
-                deref(day_counter._thisptr), telescopic_values, averaging_method
+                deref(day_counter._thisptr), telescopic_values, averaging_method,
+            lookback_days, lockout_days, apply_observation_shift
         )
 
     def fixing_dates(self):
@@ -61,8 +66,19 @@ cdef class OvernightIndexedCoupon(FloatingRateCoupon):
             l.append(date)
             preinc(it)
         return l
-    
-        
+
+    @property
+    def lockout_days(self):
+        return (<_oic.OvernightIndexedCoupon*>self._thisptr.get()).lockoutDays()
+
+    @property
+    def averaging_method(self):
+        return (<_oic.OvernightIndexedCoupon*>self._thisptr.get()).averagingMethod()
+
+    @property
+    def apply_observation_shift(self):
+        return (<_oic.OvernightIndexedCoupon*>self._thisptr.get()).applyObservationShift()
+
 cdef class OvernightLeg(Leg):
 
     def __iter__(self):

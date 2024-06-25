@@ -49,5 +49,8 @@ cdef extern from 'ql/instruments/makeois.hpp' namespace 'QuantLib':
         MakeOIS &withTelescopicValueDates(bool telescopicValueDates)
 
         MakeOIS& withAveragingMethod(RateAveraging averagingMethod)
+        MakeOIS& withLookbackDays(Natural lookbackDays)
+        MakeOIS& withLockoutDays(Natural lockoutDays)
+        MakeOIS& withObservationShift(bool ObservationShift)
 
         MakeOIS& withPricingEngine(shared_ptr[PricingEngine]& engine)
