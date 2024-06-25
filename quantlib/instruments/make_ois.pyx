@@ -110,6 +110,18 @@ cdef class MakeOIS:
         self._thisptr.withAveragingMethod(averagingMethod)
         return self
 
+    def with_lookback_days(self, Natural lookback_days):
+        self._thisptr.withLookbackDays(lookback_days)
+        return self
+
+    def with_lockout_days(self, Natural lockout_days):
+        self._thisptr.withLockoutDays(lockout_days)
+        return self
+
+    def with_apply_observation_shift(self, bool observation_shift):
+        self._thisptr.withObservationShift(observation_shift)
+        return self
+
     def with_pricing_engine(self, PricingEngine engine):
         self._thisptr.withPricingEngine(engine._thisptr)
         return self

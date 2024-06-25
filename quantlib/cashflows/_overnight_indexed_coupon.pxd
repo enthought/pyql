@@ -1,4 +1,4 @@
-from quantlib.types cimport Rate, Real, Spread, Time
+from quantlib.types cimport Natural, Rate, Real, Spread, Time
 
 from libcpp cimport bool
 from libcpp.vector cimport vector
@@ -22,10 +22,15 @@ cdef extern from 'ql/cashflows/overnightindexedcoupon.hpp' namespace 'QuantLib':
                                const Date& refPeriodEnd, #= Date(),
                                const DayCounter& dayCounter, #= DayCounter(),
                                bool telescopicValueDates, #=False,
-                               RateAveraging averagingMethod) # = RateAveraging::Compound
+                               RateAveraging averagingMethod, # = RateAveraging::Compound
+                               Natural lookback_days,
+                               Natural lockout_days,
+                               bool apply_observation_shift)
 
         vector[Date]& fixingDates()
         vector[Time]& dt()
         vector[Rate]& indexFixings() except +
         vector[Date]& valueDates()
         RateAveraging averagingMethod()
+        Natural lockoutDays()
+        bool applyObservationShift()
