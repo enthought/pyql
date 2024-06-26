@@ -9,15 +9,12 @@ cdef inline _payoffs.PlainVanillaPayoff* _get_payoff(PlainVanillaPayoff payoff):
 
 cdef class Payoff:
 
-    def __repr__(self):
-        if self._thisptr:
-            return self._thisptr.get().description().decode('utf-8')
-        else:
-            raise ValueError("Abstract Payoff")
 
     def __str__(self):
         if self._thisptr:
-            return self._thisptr.get().name().decode('utf-8')
+            return self._thisptr.get().description().decode('utf-8')
+        else:
+            raise ValueError("empty payoff")
 
     def __call__(self, Real price):
         return deref(self._thisptr)(price)

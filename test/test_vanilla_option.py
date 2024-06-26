@@ -103,7 +103,7 @@ class VanillaOptionTestCase(unittest.TestCase):
         quote_str = str(self.underlyingH)
         self.assertEqual('Simple Quote: 36.000000', quote_str)
 
-        payoff_str = repr(self.payoff)
+        payoff_str = str(self.payoff)
         self.assertEqual('Vanilla Put, 40 strike', payoff_str)
 
         exercise = EuropeanExercise(self.maturity)
@@ -113,8 +113,8 @@ class VanillaOptionTestCase(unittest.TestCase):
         option = VanillaOption(self.payoff, exercise)
         self.assertEqual('Exercise type: European', str(option.exercise))
         vanilla_str = str(option)
-        self.assertEqual('VanillaOption Exercise type: European ' +
-                         'Vanilla', vanilla_str)
+        self.assertEqual(" ".join(["VanillaOption", str(option.exercise), str(option.payoff)]),
+                         vanilla_str)
 
     def test_european_vanilla_option_usage(self):
 
