@@ -9,7 +9,7 @@ from quantlib.cashflows._coupon cimport Coupon
 from ._coupon_pricer cimport FloatingRateCouponPricer
 from quantlib.indexes._interest_rate_index cimport InterestRateIndex
 
-cdef extern from 'ql/cashflows/floatingratecoupon.hpp' namespace 'QuantLib':
+cdef extern from 'ql/cashflows/floatingratecoupon.hpp' namespace 'QuantLib' nogil:
     cdef cppclass FloatingRateCoupon(Coupon):
         FloatingRateCoupon(const Date& paymentDate,
                            Real nominal,
