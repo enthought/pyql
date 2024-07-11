@@ -5,7 +5,7 @@ from quantlib.time._daycounter cimport DayCounter
 from quantlib._cashflow cimport CashFlow
 from quantlib._interest_rate cimport InterestRate
 
-cdef extern from 'ql/cashflows/coupon.hpp' namespace 'QuantLib':
+cdef extern from 'ql/cashflows/coupon.hpp' namespace 'QuantLib' nogil:
     cdef cppclass Coupon(CashFlow):
         Coupon(const Date& paymentDate,
                Real nominal,
