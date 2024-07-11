@@ -22,6 +22,8 @@ cdef extern from 'ql/option.hpp' namespace 'QuantLib':
 cdef extern from 'ql/instruments/oneassetoption.hpp' namespace 'QuantLib':
 
     cdef cppclass OneAssetOption(Option):
+        cppclass engine(PricingEngine):
+            pass
         OneAssetOption(
             shared_ptr[StrikedTypePayoff]& payoff,
             shared_ptr[Exercise]& exercise
@@ -73,9 +75,3 @@ cdef extern from 'ql/instruments/europeanoption.hpp' namespace 'QuantLib':
             shared_ptr[StrikedTypePayoff]& payoff,
             shared_ptr[Exercise]& exercise
         )
-
-cdef extern from 'ql/instruments/dividendvanillaoption.hpp' namespace 'QuantLib':
-
-    cdef cppclass DividendVanillaOption(OneAssetOption):
-        cppclass engine(PricingEngine):
-            pass

@@ -1,7 +1,7 @@
 from libcpp cimport bool
 from quantlib.handle cimport shared_ptr
 from quantlib.types cimport Size, Real
-from quantlib.instruments._option cimport DividendVanillaOption
+from quantlib.instruments._option cimport VanillaOption
 from quantlib.instruments._dividendschedule cimport DividendSchedule
 from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess
 from quantlib.methods.finitedifferences.solvers._fdmbackwardsolver cimport FdmSchemeDesc
@@ -13,7 +13,7 @@ cdef extern from 'ql/pricingengines/vanilla/fdblackscholesvanillaengine.hpp' nam
 
 cdef extern from 'ql/pricingengines/vanilla/fdblackscholesvanillaengine.hpp' namespace 'QuantLib':
 
-    cdef cppclass FdBlackScholesVanillaEngine(DividendVanillaOption.engine):
+    cdef cppclass FdBlackScholesVanillaEngine(VanillaOption.engine):
         enum CashDividendModel:
             pass
 
