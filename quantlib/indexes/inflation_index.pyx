@@ -16,7 +16,7 @@ from libcpp cimport bool
 from libcpp.string cimport string
 
 from quantlib.index cimport Index
-from quantlib.time.date cimport Period, period_from_qlperiod
+from quantlib.time.date cimport Period, period_from_qlperiod, date_from_qldate
 from quantlib.time.frequency cimport Frequency
 from quantlib.indexes.region cimport Region
 
@@ -96,6 +96,13 @@ cdef class ZeroInflationIndex(InflationIndex):
         r._thisptr = static_pointer_cast[_its.InflationTermStructure](
             (<_ii.ZeroInflationIndex*>(self._thisptr.get())).
             zeroInflationTermStructure().currentLink())
+
+    @property
+    def last_fixing_date(self):
+        return date_from_qldate(
+            (<_ii.ZeroInflationIndex*>(self._thisptr.get())).lastFixingDate()
+        )
+
 
 cdef class YoYInflationIndex(ZeroInflationIndex):
     def __init__(self, family_name, Region region, bool revised,
