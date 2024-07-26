@@ -7,9 +7,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../../types.pxi'
-
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.types cimport Rate
+from quantlib.handle cimport shared_ptr
 from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 
@@ -29,11 +28,6 @@ cimport quantlib.termstructures._inflation_term_structure as _if
 cimport quantlib._interest_rate as _ir
 
 cdef class Seasonality:
-
-    def __init__(self):
-        raise ValueError(
-            'This is an abstract class: use MultiplicativePriceSeasonality instead.'
-        )
 
     def correctZeroRate(self,
 		    Date d,

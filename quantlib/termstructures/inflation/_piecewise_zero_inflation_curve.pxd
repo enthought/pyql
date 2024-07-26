@@ -1,24 +1,19 @@
-include '../../types.pxi'
-
-from libcpp cimport bool
+from quantlib.types cimport Real
 from libcpp.vector cimport vector
-from quantlib.handle cimport shared_ptr, Handle
-from quantlib.time._date cimport Date, Period
+from quantlib.handle cimport shared_ptr
+from quantlib.time._date cimport Date
 from quantlib.time._period cimport Frequency
-from quantlib.time._calendar cimport Calendar
 from quantlib.time._daycounter cimport DayCounter
-from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
-from quantlib.termstructures.inflation._interpolated_zero_inflation_curve cimport \
-    InterpolatedZeroInflationCurve
-from quantlib.termstructures.inflation.inflation_traits cimport ZeroInflationTraits
+from ._interpolated_zero_inflation_curve cimport InterpolatedZeroInflationCurve
+from ._seasonality cimport Seasonality
+from .inflation_traits cimport ZeroInflationTraits
 
-cdef extern from 'ql/termstructures/inflation/piecewisezeroinflationcurve.hpp' namespace 'QuantLib':
+cdef extern from 'ql/termstructures/inflation/piecewisezeroinflationcurve.hpp' namespace 'QuantLib' nogil:
     cdef cppclass PiecewiseZeroInflationCurve[T](InterpolatedZeroInflationCurve[T]):
         PiecewiseZeroInflationCurve(const Date& referenceDate,
-                                    const Calendar& calendar,
-                                    const DayCounter& dayCounter,
-                                    const Period& lag,
+                                    Date baseDate,
                                     Frequency frequency,
-                                    Rate baseZeroRate,
+                                    const DayCounter& dayCounter,
                                     const vector[shared_ptr[ZeroInflationTraits.helper]]& instruments,
+                                    shared_ptr[Seasonality] seasonality,
                                     Real accuracy) #= 1.0e-12,

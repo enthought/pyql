@@ -1,30 +1,28 @@
-include '../../types.pxi'
-
-from libcpp cimport bool
+from quantlib.types cimport Real
 from libcpp.vector cimport vector
 from cython.operator cimport dereference as deref
 from quantlib.handle cimport shared_ptr
 
-from quantlib.time.calendar cimport Calendar
 from quantlib.time._period cimport Frequency
-from quantlib.time.date cimport Date, Period
+from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
-from quantlib.termstructures.inflation.inflation_helpers cimport ZeroCouponInflationSwapHelper
-from quantlib.termstructures.inflation.inflation_traits cimport ZeroInflationTraits
+from .inflation_helpers cimport ZeroCouponInflationSwapHelper
+from .inflation_traits cimport ZeroInflationTraits
 cimport quantlib.math._interpolations as intpl
 cimport quantlib.termstructures._inflation_term_structure as _its
 cimport quantlib.termstructures.inflation._piecewise_zero_inflation_curve as _pzic
+from .seasonality cimport Seasonality
 
 cdef class PiecewiseZeroInflationCurve(InterpolatedZeroInflationCurve):
     def __init__(self, Interpolator interpolator,
-                 Date reference_date not None, Calendar calendar not None,
-                 DayCounter day_counter not None, Period lag not None,
+                 Date reference_date not None, Date base_date,
                  Frequency frequency,
-                 Rate base_zero_rate,
-                 list instruments, Real accuracy=1e-12):
+                 DayCounter day_counter not None,
+                 list instruments, Seasonality seasonality=Seasonality(),
+                 Real accuracy=1e-12):
 
         cdef vector[shared_ptr[ZeroInflationTraits.helper]] instruments_cpp
+        cdef object i
 
         for i in instruments:
             instruments_cpp.push_back((<ZeroCouponInflationSwapHelper?>i)._thisptr)
@@ -35,30 +33,37 @@ cdef class PiecewiseZeroInflationCurve(InterpolatedZeroInflationCurve):
             self._thisptr.reset(
                 new _pzic.PiecewiseZeroInflationCurve[intpl.Linear](
                     deref(reference_date._thisptr),
-                    calendar._thisptr,
+                    deref(base_date._thisptr),
+                    frequency,
                     deref(day_counter._thisptr),
-                    deref(lag._thisptr),
-                    frequency, base_zero_rate,
                     instruments_cpp,
-                    accuracy))
+                    seasonality._thisptr,
+                    accuracy
+                )
+            )
+
 
         elif interpolator == Interpolator.LogLinear:
             self._thisptr.reset(
                 new _pzic.PiecewiseZeroInflationCurve[intpl.LogLinear](
-                    deref(reference_date._thisptr),
-                    calendar._thisptr,
+                                        deref(reference_date._thisptr),
+                    deref(base_date._thisptr),
+                    frequency,
                     deref(day_counter._thisptr),
-                    deref(lag._thisptr),
-                    frequency, base_zero_rate,
                     instruments_cpp,
-                    accuracy))
+                    seasonality._thisptr,
+                    accuracy
+                )
+            )
         else:
             self._thisptr.reset(
                 new _pzic.PiecewiseZeroInflationCurve[intpl.BackwardFlat](
                     deref(reference_date._thisptr),
-                    calendar._thisptr,
+                    deref(base_date._thisptr),
+                    frequency,
                     deref(day_counter._thisptr),
-                    deref(lag._thisptr),
-                    frequency, base_zero_rate,
                     instruments_cpp,
-                    accuracy))
+                    seasonality._thisptr,
+                    accuracy
+                )
+            )
