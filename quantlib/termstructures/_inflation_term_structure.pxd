@@ -20,7 +20,7 @@ from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.termstructures.inflation._seasonality cimport Seasonality
 
 
-cdef extern from 'ql/termstructures/inflationtermstructure.hpp' namespace 'QuantLib':
+cdef extern from 'ql/termstructures/inflationtermstructure.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass InflationTermStructure:
 

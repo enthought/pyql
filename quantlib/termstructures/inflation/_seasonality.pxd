@@ -7,17 +7,17 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../../types.pxi'
+from quantlib.types cimport Rate
 
 from libcpp cimport bool
 from libcpp.vector cimport vector
 
 from quantlib.time._date cimport Date
-from quantlib.time._period cimport Period, Frequency
+from quantlib.time._period cimport Frequency
 
-from quantlib.termstructures._inflation_term_structure cimport InflationTermStructure
+from .._inflation_term_structure cimport InflationTermStructure
 
-cdef extern from 'ql/indexes/iborindex.hpp' namespace 'QuantLib':
+cdef extern from 'ql/termstructures/inflation/seasonality.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass Seasonality:
         Seasonality()
@@ -28,7 +28,7 @@ cdef extern from 'ql/indexes/iborindex.hpp' namespace 'QuantLib':
                             Rate r,
                             InflationTermStructure& iTS)
         bool isConsistent(InflationTermStructure& iTS)
-        
+
     cdef cppclass MultiplicativePriceSeasonality(Seasonality):
         MultiplicativePriceSeasonality()
         MultiplicativePriceSeasonality(Date& seasonalityBaseDate,
@@ -41,12 +41,8 @@ cdef extern from 'ql/indexes/iborindex.hpp' namespace 'QuantLib':
 
         # inspectors
         Date seasonalityBaseDate()
-        Frequency frequency() 
+        Frequency frequency()
         vector[Rate] seasonalityFactors()
         Rate seasonalityFactor(Date &d)
 
         bool isConsistent(InflationTermStructure& iTS)
-        
-
-        
-

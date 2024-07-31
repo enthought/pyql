@@ -16,7 +16,7 @@ from libcpp cimport bool
 from libcpp.string cimport string
 
 from quantlib.index cimport Index
-from quantlib.time.date cimport Period, period_from_qlperiod
+from quantlib.time.date cimport Period, period_from_qlperiod, date_from_qldate
 from quantlib.time.frequency cimport Frequency
 from quantlib.indexes.region cimport Region
 
@@ -62,11 +62,6 @@ cdef class InflationIndex(Index):
             return c
 
     @property
-    def interpolated(self):
-         cdef _ii.InflationIndex* ref = <_ii.InflationIndex*>self._thisptr.get()
-         return ref.interpolated()
-
-    @property
     def region(self):
         cdef _ii.InflationIndex* ref = <_ii.InflationIndex*>self._thisptr.get()
         cdef Region region = Region.__new__(Region)
@@ -77,7 +72,6 @@ cdef class ZeroInflationIndex(InflationIndex):
     def __init__(self, str family_name,
                  Region region,
                  bool revised,
-                 bool interpolated,
                  Frequency frequency,
                  Period availabilityLag,
                  Currency currency,
@@ -91,7 +85,6 @@ cdef class ZeroInflationIndex(InflationIndex):
                 c_family_name,
                 deref(region._thisptr),
                 revised,
-                interpolated,
                 frequency,
                 deref(availabilityLag._thisptr),
                 deref(currency._thisptr),
@@ -104,9 +97,16 @@ cdef class ZeroInflationIndex(InflationIndex):
             (<_ii.ZeroInflationIndex*>(self._thisptr.get())).
             zeroInflationTermStructure().currentLink())
 
+    @property
+    def last_fixing_date(self):
+        return date_from_qldate(
+            (<_ii.ZeroInflationIndex*>(self._thisptr.get())).lastFixingDate()
+        )
+
+
 cdef class YoYInflationIndex(ZeroInflationIndex):
     def __init__(self, family_name, Region region, bool revised,
-                 bool interpolated, bool ratio, Frequency frequency,
+                 bool ratio, Frequency frequency,
                  Period availability_lag, Currency currency,
                  YoYInflationTermStructure ts=YoYInflationTermStructure()):
 
@@ -115,6 +115,6 @@ cdef class YoYInflationIndex(ZeroInflationIndex):
         self._thisptr = shared_ptr[_in.Index](
             new _ii.YoYInflationIndex(
                 c_family_name, deref(region._thisptr), revised,
-                interpolated, ratio, frequency,
+                ratio, frequency,
                 deref(availability_lag._thisptr),
                 deref(currency._thisptr), ts._handle))

@@ -42,10 +42,10 @@ class TestQuantLibSwaption(unittest.TestCase):
         swaption = self.factory()
         pe = BlackSwaptionEngine(self.yc, 0.3)
         swaption.set_pricing_engine(pe)
-        self.assertAlmostEqual(swaption.npv, 0.008429678)
+        self.assertAlmostEqual(swaption.npv, 0.008420333)
         self.assertAlmostEqual(swaption.atm_forward, 0.030234093)
-        self.assertAlmostEqual(swaption.vega, 0.07405690295)
-        self.assertAlmostEqual(swaption.annuity, 8.08710479)
+        self.assertAlmostEqual(swaption.vega, 0.0739748)
+        self.assertAlmostEqual(swaption.annuity, 8.0781391)
 
 if __name__ == '__main__':
     unittest.main()
