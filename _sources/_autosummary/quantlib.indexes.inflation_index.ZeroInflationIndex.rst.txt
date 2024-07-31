@@ -39,7 +39,7 @@ quantlib.indexes.inflation\_index.ZeroInflationIndex
       ~ZeroInflationIndex.family_name
       ~ZeroInflationIndex.fixing_calendar
       ~ZeroInflationIndex.frequency
-      ~ZeroInflationIndex.interpolated
+      ~ZeroInflationIndex.last_fixing_date
       ~ZeroInflationIndex.name
       ~ZeroInflationIndex.region
       ~ZeroInflationIndex.time_series

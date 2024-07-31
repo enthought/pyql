@@ -23,6 +23,7 @@ quantlib.experimental.risk.sensitivityanalysis.SensitivityAnalysis
       ~SensitivityAnalysis.to_bytes
       ~SensitivityAnalysis.from_bytes
       ~SensitivityAnalysis.as_integer_ratio
+      ~SensitivityAnalysis.__init__
    
    
 

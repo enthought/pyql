@@ -23,6 +23,7 @@ quantlib.time.frequency.Frequency
       ~Frequency.to_bytes
       ~Frequency.from_bytes
       ~Frequency.as_integer_ratio
+      ~Frequency.__init__
    
    
 

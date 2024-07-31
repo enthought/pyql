@@ -28,7 +28,7 @@ quantlib.time.daycounters
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.time.daycounters.actual_actual
-   quantlib.time.daycounters.simple
-   quantlib.time.daycounters.thirty360
+   actual_actual
+   simple
+   thirty360
 

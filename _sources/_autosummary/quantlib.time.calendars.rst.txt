@@ -28,15 +28,15 @@ quantlib.time.calendars
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.time.calendars.canada
-   quantlib.time.calendars.germany
-   quantlib.time.calendars.japan
-   quantlib.time.calendars.jointcalendar
-   quantlib.time.calendars.null_calendar
-   quantlib.time.calendars.poland
-   quantlib.time.calendars.switzerland
-   quantlib.time.calendars.target
-   quantlib.time.calendars.united_kingdom
-   quantlib.time.calendars.united_states
-   quantlib.time.calendars.weekends_only
+   canada
+   germany
+   japan
+   jointcalendar
+   null_calendar
+   poland
+   switzerland
+   target
+   united_kingdom
+   united_states
+   weekends_only
 

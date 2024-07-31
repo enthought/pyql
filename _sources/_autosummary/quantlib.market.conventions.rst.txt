@@ -28,5 +28,5 @@ quantlib.market.conventions
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.market.conventions.swap
+   swap
 

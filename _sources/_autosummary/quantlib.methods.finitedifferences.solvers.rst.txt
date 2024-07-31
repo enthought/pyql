@@ -28,5 +28,5 @@ quantlib.methods.finitedifferences.solvers
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.methods.finitedifferences.solvers.fdmbackwardsolver
+   fdmbackwardsolver
 

@@ -28,5 +28,5 @@ quantlib.experimental.risk
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.experimental.risk.sensitivityanalysis
+   sensitivityanalysis
 

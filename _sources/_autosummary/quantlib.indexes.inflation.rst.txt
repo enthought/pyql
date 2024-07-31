@@ -28,7 +28,7 @@ quantlib.indexes.inflation
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.indexes.inflation.australia
-   quantlib.indexes.inflation.euhicp
-   quantlib.indexes.inflation.ukrpi
+   aucpi
+   euhicp
+   ukrpi
 

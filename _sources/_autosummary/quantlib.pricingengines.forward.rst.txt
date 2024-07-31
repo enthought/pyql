@@ -28,6 +28,6 @@ quantlib.pricingengines.forward
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.pricingengines.forward.mc_variance_swap_engine
-   quantlib.pricingengines.forward.replicating_variance_swap_engine
+   mc_variance_swap_engine
+   replicating_variance_swap_engine
 

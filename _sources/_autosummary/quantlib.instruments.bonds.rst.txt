@@ -28,8 +28,8 @@ quantlib.instruments.bonds
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.instruments.bonds.cpibond
-   quantlib.instruments.bonds.fixedratebond
-   quantlib.instruments.bonds.floatingratebond
-   quantlib.instruments.bonds.zerocouponbond
+   cpibond
+   fixedratebond
+   floatingratebond
+   zerocouponbond
 

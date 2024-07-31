@@ -23,6 +23,7 @@ quantlib.models.calibration\_helper.CalibrationErrorType
       ~CalibrationErrorType.to_bytes
       ~CalibrationErrorType.from_bytes
       ~CalibrationErrorType.as_integer_ratio
+      ~CalibrationErrorType.__init__
    
    
 

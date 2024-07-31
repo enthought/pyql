@@ -23,6 +23,7 @@ quantlib.termstructures.credit.interpolated\_hazardrate\_curve.Interpolator
       ~Interpolator.to_bytes
       ~Interpolator.from_bytes
       ~Interpolator.as_integer_ratio
+      ~Interpolator.__init__
    
    
 

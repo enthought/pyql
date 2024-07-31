@@ -23,6 +23,7 @@ quantlib.termstructures.helpers.Pillar
       ~Pillar.to_bytes
       ~Pillar.from_bytes
       ~Pillar.as_integer_ratio
+      ~Pillar.__init__
    
    
 

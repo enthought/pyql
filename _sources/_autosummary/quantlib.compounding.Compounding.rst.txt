@@ -23,6 +23,7 @@ quantlib.compounding.Compounding
       ~Compounding.to_bytes
       ~Compounding.from_bytes
       ~Compounding.as_integer_ratio
+      ~Compounding.__init__
    
    
 

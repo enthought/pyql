@@ -23,6 +23,7 @@ quantlib.termstructures.volatility.volatilitytype.VolatilityType
       ~VolatilityType.to_bytes
       ~VolatilityType.from_bytes
       ~VolatilityType.as_integer_ratio
+      ~VolatilityType.__init__
    
    
 

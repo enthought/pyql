@@ -23,6 +23,7 @@ quantlib.termstructures.volatility.equityfx.black\_variance\_surface.Extrapolati
       ~Extrapolation.to_bytes
       ~Extrapolation.from_bytes
       ~Extrapolation.as_integer_ratio
+      ~Extrapolation.__init__
    
    
 

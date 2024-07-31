@@ -28,5 +28,5 @@ quantlib.methods.finitedifferences
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.methods.finitedifferences.solvers
+   solvers
 

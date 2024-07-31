@@ -23,6 +23,7 @@ quantlib.instruments.variance\_swap.SwapType
       ~SwapType.to_bytes
       ~SwapType.from_bytes
       ~SwapType.as_integer_ratio
+      ~SwapType.__init__
    
    
 

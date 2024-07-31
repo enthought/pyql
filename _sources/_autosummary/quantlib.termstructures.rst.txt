@@ -28,13 +28,13 @@ quantlib.termstructures
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.termstructures.credit
-   quantlib.termstructures.default_term_structure
-   quantlib.termstructures.helpers
-   quantlib.termstructures.inflation
-   quantlib.termstructures.inflation_term_structure
-   quantlib.termstructures.vol_term_structure
-   quantlib.termstructures.volatility
-   quantlib.termstructures.yield_term_structure
-   quantlib.termstructures.yields
+   credit
+   default_term_structure
+   helpers
+   inflation
+   inflation_term_structure
+   vol_term_structure
+   volatility
+   yield_term_structure
+   yields
 

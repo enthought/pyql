@@ -28,5 +28,5 @@ quantlib.math.matrixutilities
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.math.matrixutilities.pseudosqrt
+   pseudosqrt
 

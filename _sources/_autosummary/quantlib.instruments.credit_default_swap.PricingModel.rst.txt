@@ -23,6 +23,7 @@ quantlib.instruments.credit\_default\_swap.PricingModel
       ~PricingModel.to_bytes
       ~PricingModel.from_bytes
       ~PricingModel.as_integer_ratio
+      ~PricingModel.__init__
    
    
 

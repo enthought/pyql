@@ -28,9 +28,9 @@ quantlib.indexes.ibor
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.indexes.ibor.eonia
-   quantlib.indexes.ibor.euribor
-   quantlib.indexes.ibor.libor
-   quantlib.indexes.ibor.sofr
-   quantlib.indexes.ibor.usdlibor
+   eonia
+   euribor
+   libor
+   sofr
+   usdlibor
 

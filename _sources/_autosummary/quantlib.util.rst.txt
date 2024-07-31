@@ -28,9 +28,9 @@ quantlib.util
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.util.converter
-   quantlib.util.object_registry
-   quantlib.util.options
-   quantlib.util.rates
-   quantlib.util.version
+   converter
+   object_registry
+   options
+   rates
+   version
 

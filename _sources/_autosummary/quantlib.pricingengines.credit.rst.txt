@@ -28,7 +28,7 @@ quantlib.pricingengines.credit
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.pricingengines.credit.api
-   quantlib.pricingengines.credit.isda_cds_engine
-   quantlib.pricingengines.credit.midpoint_cds_engine
+   api
+   isda_cds_engine
+   midpoint_cds_engine
 

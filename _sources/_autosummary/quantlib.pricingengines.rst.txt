@@ -28,14 +28,14 @@ quantlib.pricingengines
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.pricingengines.api
-   quantlib.pricingengines.asian
-   quantlib.pricingengines.blackformula
-   quantlib.pricingengines.bond
-   quantlib.pricingengines.credit
-   quantlib.pricingengines.engine
-   quantlib.pricingengines.forward
-   quantlib.pricingengines.swap
-   quantlib.pricingengines.swaption
-   quantlib.pricingengines.vanilla
+   api
+   asian
+   blackformula
+   bond
+   credit
+   engine
+   forward
+   swap
+   swaption
+   vanilla
 

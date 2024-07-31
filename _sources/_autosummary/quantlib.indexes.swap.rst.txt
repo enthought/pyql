@@ -28,6 +28,6 @@ quantlib.indexes.swap
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.indexes.swap.euribor_swap
-   quantlib.indexes.swap.usd_libor_swap
+   euribor_swap
+   usd_libor_swap
 

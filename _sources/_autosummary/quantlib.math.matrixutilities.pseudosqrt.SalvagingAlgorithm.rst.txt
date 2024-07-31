@@ -23,6 +23,7 @@ quantlib.math.matrixutilities.pseudosqrt.SalvagingAlgorithm
       ~SalvagingAlgorithm.to_bytes
       ~SalvagingAlgorithm.from_bytes
       ~SalvagingAlgorithm.as_integer_ratio
+      ~SalvagingAlgorithm.__init__
    
    
 

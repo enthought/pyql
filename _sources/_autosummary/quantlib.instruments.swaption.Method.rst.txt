@@ -23,6 +23,7 @@ quantlib.instruments.swaption.Method
       ~Method.to_bytes
       ~Method.from_bytes
       ~Method.as_integer_ratio
+      ~Method.__init__
    
    
 

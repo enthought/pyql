@@ -28,6 +28,6 @@ quantlib.pricingengines.asian
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.pricingengines.asian.analyticcontgeomavprice
-   quantlib.pricingengines.asian.analyticdiscrgeomavprice
+   analyticcontgeomavprice
+   analyticdiscrgeomavprice
 

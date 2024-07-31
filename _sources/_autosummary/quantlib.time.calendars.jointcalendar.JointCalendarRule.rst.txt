@@ -23,6 +23,7 @@ quantlib.time.calendars.jointcalendar.JointCalendarRule
       ~JointCalendarRule.to_bytes
       ~JointCalendarRule.from_bytes
       ~JointCalendarRule.as_integer_ratio
+      ~JointCalendarRule.__init__
    
    
 

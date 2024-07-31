@@ -39,7 +39,7 @@ quantlib.indexes.inflation.euhicp.YYEUHICP
       ~YYEUHICP.family_name
       ~YYEUHICP.fixing_calendar
       ~YYEUHICP.frequency
-      ~YYEUHICP.interpolated
+      ~YYEUHICP.last_fixing_date
       ~YYEUHICP.name
       ~YYEUHICP.region
       ~YYEUHICP.time_series

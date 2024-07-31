@@ -28,11 +28,11 @@ quantlib.math
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.math.array
-   quantlib.math.hestonhwcorrelationconstraint
-   quantlib.math.interpolation
-   quantlib.math.matrix
-   quantlib.math.matrixutilities
-   quantlib.math.optimization
-   quantlib.math.randomnumbers
+   array
+   hestonhwcorrelationconstraint
+   interpolation
+   matrix
+   matrixutilities
+   optimization
+   randomnumbers
 

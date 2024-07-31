@@ -23,6 +23,7 @@ quantlib.instruments.asian\_options.AverageType
       ~AverageType.to_bytes
       ~AverageType.from_bytes
       ~AverageType.as_integer_ratio
+      ~AverageType.__init__
    
    
 

@@ -28,6 +28,6 @@ quantlib.quotes
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.quotes.futuresconvadjustmentquote
-   quantlib.quotes.simplequote
+   futuresconvadjustmentquote
+   simplequote
 

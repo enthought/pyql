@@ -28,8 +28,8 @@ quantlib.currency
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.currency.api
-   quantlib.currency.currencies
-   quantlib.currency.currency
-   quantlib.currency.currency_registry
+   api
+   currencies
+   currency
+   currency_registry
 

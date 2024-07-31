@@ -28,5 +28,5 @@ quantlib.sim
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.sim.simulate
+   simulate
 

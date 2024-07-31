@@ -39,7 +39,7 @@ quantlib.indexes.inflation\_index.YoYInflationIndex
       ~YoYInflationIndex.family_name
       ~YoYInflationIndex.fixing_calendar
       ~YoYInflationIndex.frequency
-      ~YoYInflationIndex.interpolated
+      ~YoYInflationIndex.last_fixing_date
       ~YoYInflationIndex.name
       ~YoYInflationIndex.region
       ~YoYInflationIndex.time_series

@@ -28,16 +28,16 @@ quantlib.indexes
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.indexes.api
-   quantlib.indexes.ibor
-   quantlib.indexes.ibor_index
-   quantlib.indexes.index_manager
-   quantlib.indexes.inflation
-   quantlib.indexes.inflation_index
-   quantlib.indexes.interest_rate_index
-   quantlib.indexes.region
-   quantlib.indexes.region_registry
-   quantlib.indexes.regions
-   quantlib.indexes.swap
-   quantlib.indexes.swap_index
+   api
+   ibor
+   ibor_index
+   index_manager
+   inflation
+   inflation_index
+   interest_rate_index
+   region
+   region_registry
+   regions
+   swap
+   swap_index
 

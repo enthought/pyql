@@ -28,7 +28,7 @@ quantlib.experimental.coupons
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.experimental.coupons.cms_spread_coupon
-   quantlib.experimental.coupons.lognormal_cmsspread_pricer
-   quantlib.experimental.coupons.swap_spread_index
+   cms_spread_coupon
+   lognormal_cmsspread_pricer
+   swap_spread_index
 

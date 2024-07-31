@@ -23,6 +23,7 @@ quantlib.instruments.futures.FuturesType
       ~FuturesType.to_bytes
       ~FuturesType.from_bytes
       ~FuturesType.as_integer_ratio
+      ~FuturesType.__init__
    
    
 

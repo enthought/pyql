@@ -23,6 +23,7 @@ quantlib.time.imm.Month
       ~Month.to_bytes
       ~Month.from_bytes
       ~Month.as_integer_ratio
+      ~Month.__init__
    
    
 

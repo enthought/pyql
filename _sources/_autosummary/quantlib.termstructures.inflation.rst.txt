@@ -28,9 +28,9 @@ quantlib.termstructures.inflation
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.termstructures.inflation.api
-   quantlib.termstructures.inflation.inflation_helpers
-   quantlib.termstructures.inflation.interpolated_zero_inflation_curve
-   quantlib.termstructures.inflation.piecewise_zero_inflation_curve
-   quantlib.termstructures.inflation.seasonality
+   api
+   inflation_helpers
+   interpolated_zero_inflation_curve
+   piecewise_zero_inflation_curve
+   seasonality
 

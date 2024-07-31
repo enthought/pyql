@@ -23,6 +23,7 @@ quantlib.instruments.bond.Type
       ~Type.to_bytes
       ~Type.from_bytes
       ~Type.as_integer_ratio
+      ~Type.__init__
    
    
 

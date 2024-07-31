@@ -28,7 +28,7 @@ quantlib.models.shortrate.onefactormodels
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.models.shortrate.onefactormodels.blackkarasinski
-   quantlib.models.shortrate.onefactormodels.hullwhite
-   quantlib.models.shortrate.onefactormodels.vasicek
+   blackkarasinski
+   hullwhite
+   vasicek
 

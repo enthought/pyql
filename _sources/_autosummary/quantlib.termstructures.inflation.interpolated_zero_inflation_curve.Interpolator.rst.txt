@@ -23,6 +23,7 @@ quantlib.termstructures.inflation.interpolated\_zero\_inflation\_curve.Interpola
       ~Interpolator.to_bytes
       ~Interpolator.from_bytes
       ~Interpolator.as_integer_ratio
+      ~Interpolator.__init__
    
    
 

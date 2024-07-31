@@ -23,6 +23,7 @@ quantlib.time.date.TimeUnit
       ~TimeUnit.to_bytes
       ~TimeUnit.from_bytes
       ~TimeUnit.as_integer_ratio
+      ~TimeUnit.__init__
    
    
 

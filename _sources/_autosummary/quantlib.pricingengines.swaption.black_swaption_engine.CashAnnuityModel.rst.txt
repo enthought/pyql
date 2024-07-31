@@ -23,6 +23,7 @@ quantlib.pricingengines.swaption.black\_swaption\_engine.CashAnnuityModel
       ~CashAnnuityModel.to_bytes
       ~CashAnnuityModel.from_bytes
       ~CashAnnuityModel.as_integer_ratio
+      ~CashAnnuityModel.__init__
    
    
 

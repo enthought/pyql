@@ -28,16 +28,16 @@ quantlib.time
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.time.api
-   quantlib.time.businessdayconvention
-   quantlib.time.calendar
-   quantlib.time.calendar_registry
-   quantlib.time.calendars
-   quantlib.time.date
-   quantlib.time.dategeneration
-   quantlib.time.daycounter
-   quantlib.time.daycounters
-   quantlib.time.frequency
-   quantlib.time.imm
-   quantlib.time.schedule
+   api
+   businessdayconvention
+   calendar
+   calendar_registry
+   calendars
+   date
+   dategeneration
+   daycounter
+   daycounters
+   frequency
+   imm
+   schedule
 

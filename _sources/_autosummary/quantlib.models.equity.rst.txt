@@ -28,7 +28,7 @@ quantlib.models.equity
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.models.equity.bates_model
-   quantlib.models.equity.dejd
-   quantlib.models.equity.heston_model
+   bates_model
+   dejd
+   heston_model
 

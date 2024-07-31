@@ -23,6 +23,7 @@ quantlib.indexes.inflation\_index.InterpolationType
       ~InterpolationType.to_bytes
       ~InterpolationType.from_bytes
       ~InterpolationType.as_integer_ratio
+      ~InterpolationType.__init__
    
    
 

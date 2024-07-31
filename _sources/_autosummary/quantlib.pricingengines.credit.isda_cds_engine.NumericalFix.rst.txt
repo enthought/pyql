@@ -23,6 +23,7 @@ quantlib.pricingengines.credit.isda\_cds\_engine.NumericalFix
       ~NumericalFix.to_bytes
       ~NumericalFix.from_bytes
       ~NumericalFix.as_integer_ratio
+      ~NumericalFix.__init__
    
    
 

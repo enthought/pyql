@@ -28,25 +28,25 @@ quantlib.instruments
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.instruments.api
-   quantlib.instruments.asian_options
-   quantlib.instruments.bond
-   quantlib.instruments.bonds
-   quantlib.instruments.credit_default_swap
-   quantlib.instruments.exercise
-   quantlib.instruments.futures
-   quantlib.instruments.implied_volatility
-   quantlib.instruments.make_cds
-   quantlib.instruments.make_cms
-   quantlib.instruments.make_ois
-   quantlib.instruments.make_swaption
-   quantlib.instruments.make_vanilla_swap
-   quantlib.instruments.option
-   quantlib.instruments.overnightindexedswap
-   quantlib.instruments.overnightindexfuture
-   quantlib.instruments.payoffs
-   quantlib.instruments.swap
-   quantlib.instruments.swaption
-   quantlib.instruments.vanillaswap
-   quantlib.instruments.variance_swap
+   api
+   asian_options
+   bond
+   bonds
+   credit_default_swap
+   exercise
+   futures
+   implied_volatility
+   make_cds
+   make_cms
+   make_ois
+   make_swaption
+   make_vanilla_swap
+   option
+   overnightindexedswap
+   overnightindexfuture
+   payoffs
+   swap
+   swaption
+   vanillaswap
+   variance_swap
 

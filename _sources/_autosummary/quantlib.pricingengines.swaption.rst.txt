@@ -28,7 +28,7 @@ quantlib.pricingengines.swaption
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.pricingengines.swaption.black_swaption_engine
-   quantlib.pricingengines.swaption.jamshidian_swaption_engine
-   quantlib.pricingengines.swaption.tree_swaption_engine
+   black_swaption_engine
+   jamshidian_swaption_engine
+   tree_swaption_engine
 

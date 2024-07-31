@@ -28,9 +28,9 @@ quantlib.pricingengines.vanilla
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.pricingengines.vanilla.analytic_heston_engine
-   quantlib.pricingengines.vanilla.fdblackscholesvanillaengine
-   quantlib.pricingengines.vanilla.mceuropeanhestonengine
-   quantlib.pricingengines.vanilla.mcvanillaengine
-   quantlib.pricingengines.vanilla.vanilla
+   analytic_heston_engine
+   fdblackscholesvanillaengine
+   mceuropeanhestonengine
+   mcvanillaengine
+   vanilla
 

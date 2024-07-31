@@ -28,11 +28,11 @@ quantlib.termstructures.volatility.equityfx
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.termstructures.volatility.equityfx.black_constant_vol
-   quantlib.termstructures.volatility.equityfx.black_variance_curve
-   quantlib.termstructures.volatility.equityfx.black_variance_surface
-   quantlib.termstructures.volatility.equityfx.black_vol_term_structure
-   quantlib.termstructures.volatility.equityfx.heston_black_vol_surface
-   quantlib.termstructures.volatility.equityfx.local_vol_surface
-   quantlib.termstructures.volatility.equityfx.local_vol_term_structure
+   black_constant_vol
+   black_variance_curve
+   black_variance_surface
+   black_vol_term_structure
+   heston_black_vol_surface
+   local_vol_surface
+   local_vol_term_structure
 

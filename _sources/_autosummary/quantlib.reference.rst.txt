@@ -28,6 +28,6 @@ quantlib.reference
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.reference.data_structures
-   quantlib.reference.names
+   data_structures
+   names
 

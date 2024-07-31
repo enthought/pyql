@@ -28,6 +28,6 @@ quantlib.methods
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.methods.finitedifferences
-   quantlib.methods.montecarlo
+   finitedifferences
+   montecarlo
 

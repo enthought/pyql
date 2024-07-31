@@ -23,6 +23,7 @@ quantlib.termstructures.yields.bootstraptraits.BootstrapTrait
       ~BootstrapTrait.to_bytes
       ~BootstrapTrait.from_bytes
       ~BootstrapTrait.as_integer_ratio
+      ~BootstrapTrait.__init__
    
    
 

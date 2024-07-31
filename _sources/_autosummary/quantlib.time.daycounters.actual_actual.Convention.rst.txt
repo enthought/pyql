@@ -23,6 +23,7 @@ quantlib.time.daycounters.actual\_actual.Convention
       ~Convention.to_bytes
       ~Convention.from_bytes
       ~Convention.as_integer_ratio
+      ~Convention.__init__
    
    
 

@@ -23,6 +23,7 @@ quantlib.pricingengines.vanilla.fdblackscholesvanillaengine.CashDividendModel
       ~CashDividendModel.to_bytes
       ~CashDividendModel.from_bytes
       ~CashDividendModel.as_integer_ratio
+      ~CashDividendModel.__init__
    
    
 

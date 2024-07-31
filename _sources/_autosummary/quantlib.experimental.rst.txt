@@ -28,7 +28,7 @@ quantlib.experimental
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.experimental.coupons
-   quantlib.experimental.risk
-   quantlib.experimental.termstructures
+   coupons
+   risk
+   termstructures
 

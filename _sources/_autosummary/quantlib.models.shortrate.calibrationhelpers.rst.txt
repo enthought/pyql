@@ -28,5 +28,5 @@ quantlib.models.shortrate.calibrationhelpers
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.models.shortrate.calibrationhelpers.swaption_helper
+   swaption_helper
 

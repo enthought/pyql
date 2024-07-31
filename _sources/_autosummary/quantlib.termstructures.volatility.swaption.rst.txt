@@ -28,11 +28,11 @@ quantlib.termstructures.volatility.swaption
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.termstructures.volatility.swaption.sabr_swaption_volatility_cube
-   quantlib.termstructures.volatility.swaption.spreaded_swaption_vol
-   quantlib.termstructures.volatility.swaption.swaption_constant_vol
-   quantlib.termstructures.volatility.swaption.swaption_vol_cube
-   quantlib.termstructures.volatility.swaption.swaption_vol_discrete
-   quantlib.termstructures.volatility.swaption.swaption_vol_matrix
-   quantlib.termstructures.volatility.swaption.swaption_vol_structure
+   sabr_swaption_volatility_cube
+   spreaded_swaption_vol
+   swaption_constant_vol
+   swaption_vol_cube
+   swaption_vol_discrete
+   swaption_vol_matrix
+   swaption_vol_structure
 

@@ -23,6 +23,7 @@ quantlib.math.randomnumbers.sobol\_rsg.DirectionIntegers
       ~DirectionIntegers.to_bytes
       ~DirectionIntegers.from_bytes
       ~DirectionIntegers.as_integer_ratio
+      ~DirectionIntegers.__init__
    
    
 

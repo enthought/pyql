@@ -28,6 +28,6 @@ quantlib.pricingengines.bond
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.pricingengines.bond.bondfunctions
-   quantlib.pricingengines.bond.discountingbondengine
+   bondfunctions
+   discountingbondengine
 

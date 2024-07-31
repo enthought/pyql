@@ -28,6 +28,6 @@ quantlib.market
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.market.conventions
-   quantlib.market.market
+   conventions
+   market
 

@@ -23,6 +23,7 @@ quantlib.pricingengines.credit.isda\_cds\_engine.ForwardsInCouponPeriod
       ~ForwardsInCouponPeriod.to_bytes
       ~ForwardsInCouponPeriod.from_bytes
       ~ForwardsInCouponPeriod.as_integer_ratio
+      ~ForwardsInCouponPeriod.__init__
    
    
 

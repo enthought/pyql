@@ -23,6 +23,7 @@ quantlib.time.date.Weekday
       ~Weekday.to_bytes
       ~Weekday.from_bytes
       ~Weekday.as_integer_ratio
+      ~Weekday.__init__
    
    
 

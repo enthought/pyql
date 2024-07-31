@@ -23,6 +23,7 @@ quantlib.instruments.option.OptionType
       ~OptionType.to_bytes
       ~OptionType.from_bytes
       ~OptionType.as_integer_ratio
+      ~OptionType.__init__
    
    
 

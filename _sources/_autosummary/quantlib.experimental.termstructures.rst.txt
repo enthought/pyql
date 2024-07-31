@@ -28,5 +28,5 @@ quantlib.experimental.termstructures
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.experimental.termstructures.crosscurrencyratehelpers
+   crosscurrencyratehelpers
 

@@ -39,7 +39,7 @@ quantlib.indexes.inflation.ukrpi.UKRPI
       ~UKRPI.family_name
       ~UKRPI.fixing_calendar
       ~UKRPI.frequency
-      ~UKRPI.interpolated
+      ~UKRPI.last_fixing_date
       ~UKRPI.name
       ~UKRPI.region
       ~UKRPI.time_series

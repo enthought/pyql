@@ -38,7 +38,6 @@ quantlib.indexes.inflation\_index.InflationIndex
       ~InflationIndex.family_name
       ~InflationIndex.fixing_calendar
       ~InflationIndex.frequency
-      ~InflationIndex.interpolated
       ~InflationIndex.name
       ~InflationIndex.region
       ~InflationIndex.time_series

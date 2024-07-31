@@ -23,6 +23,7 @@ quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.FdmSchemeType
       ~FdmSchemeType.to_bytes
       ~FdmSchemeType.from_bytes
       ~FdmSchemeType.as_integer_ratio
+      ~FdmSchemeType.__init__
    
    
 

@@ -23,6 +23,7 @@ quantlib.pricingengines.bond.bondfunctions.DurationType
       ~DurationType.to_bytes
       ~DurationType.from_bytes
       ~DurationType.as_integer_ratio
+      ~DurationType.__init__
    
    
 

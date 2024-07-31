@@ -23,6 +23,7 @@ quantlib.cashflows.conundrum\_pricer.YieldCurveModel
       ~YieldCurveModel.to_bytes
       ~YieldCurveModel.from_bytes
       ~YieldCurveModel.as_integer_ratio
+      ~YieldCurveModel.__init__
    
    
 

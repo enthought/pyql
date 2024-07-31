@@ -39,7 +39,7 @@ quantlib.indexes.inflation\_index.AUCPI
       ~AUCPI.family_name
       ~AUCPI.fixing_calendar
       ~AUCPI.frequency
-      ~AUCPI.interpolated
+      ~AUCPI.last_fixing_date
       ~AUCPI.name
       ~AUCPI.region
       ~AUCPI.time_series

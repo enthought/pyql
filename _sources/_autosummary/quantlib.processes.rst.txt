@@ -28,9 +28,9 @@ quantlib.processes
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.processes.api
-   quantlib.processes.bates_process
-   quantlib.processes.black_scholes_process
-   quantlib.processes.heston_process
-   quantlib.processes.hullwhite_process
+   api
+   bates_process
+   black_scholes_process
+   heston_process
+   hullwhite_process
 

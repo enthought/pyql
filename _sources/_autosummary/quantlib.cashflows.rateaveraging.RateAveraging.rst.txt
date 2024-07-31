@@ -23,6 +23,7 @@ quantlib.cashflows.rateaveraging.RateAveraging
       ~RateAveraging.to_bytes
       ~RateAveraging.from_bytes
       ~RateAveraging.as_integer_ratio
+      ~RateAveraging.__init__
    
    
 

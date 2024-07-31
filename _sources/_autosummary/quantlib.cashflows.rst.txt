@@ -28,20 +28,20 @@ quantlib.cashflows
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.cashflows.api
-   quantlib.cashflows.cap_floored_coupon
-   quantlib.cashflows.cashflows
-   quantlib.cashflows.cms_coupon
-   quantlib.cashflows.conundrum_pricer
-   quantlib.cashflows.coupon
-   quantlib.cashflows.coupon_pricer
-   quantlib.cashflows.cpi_coupon_pricer
-   quantlib.cashflows.dividend
-   quantlib.cashflows.fixed_rate_coupon
-   quantlib.cashflows.floating_rate_coupon
-   quantlib.cashflows.ibor_coupon
-   quantlib.cashflows.inflation_coupon_pricer
-   quantlib.cashflows.linear_tsr_pricer
-   quantlib.cashflows.overnight_indexed_coupon
-   quantlib.cashflows.rateaveraging
+   api
+   cap_floored_coupon
+   cashflows
+   cms_coupon
+   conundrum_pricer
+   coupon
+   coupon_pricer
+   cpi_coupon_pricer
+   dividend
+   fixed_rate_coupon
+   floating_rate_coupon
+   ibor_coupon
+   inflation_coupon_pricer
+   linear_tsr_pricer
+   overnight_indexed_coupon
+   rateaveraging
 

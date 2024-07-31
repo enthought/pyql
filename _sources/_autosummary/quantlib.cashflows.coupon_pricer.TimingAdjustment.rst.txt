@@ -23,6 +23,7 @@ quantlib.cashflows.coupon\_pricer.TimingAdjustment
       ~TimingAdjustment.to_bytes
       ~TimingAdjustment.from_bytes
       ~TimingAdjustment.as_integer_ratio
+      ~TimingAdjustment.__init__
    
    
 

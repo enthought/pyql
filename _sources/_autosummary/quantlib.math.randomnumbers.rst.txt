@@ -28,6 +28,6 @@ quantlib.math.randomnumbers
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.math.randomnumbers.rngtraits
-   quantlib.math.randomnumbers.sobol_rsg
+   rngtraits
+   sobol_rsg
 

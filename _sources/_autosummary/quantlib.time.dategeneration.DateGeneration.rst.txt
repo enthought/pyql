@@ -23,6 +23,7 @@ quantlib.time.dategeneration.DateGeneration
       ~DateGeneration.to_bytes
       ~DateGeneration.from_bytes
       ~DateGeneration.as_integer_ratio
+      ~DateGeneration.__init__
    
    
 

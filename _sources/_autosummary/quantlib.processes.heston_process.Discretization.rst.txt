@@ -23,6 +23,7 @@ quantlib.processes.heston\_process.Discretization
       ~Discretization.to_bytes
       ~Discretization.from_bytes
       ~Discretization.as_integer_ratio
+      ~Discretization.__init__
    
    
 

@@ -28,5 +28,5 @@ quantlib.termstructures.volatility.optionlet
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.termstructures.volatility.optionlet.optionlet_volatility_structure
+   optionlet_volatility_structure
 

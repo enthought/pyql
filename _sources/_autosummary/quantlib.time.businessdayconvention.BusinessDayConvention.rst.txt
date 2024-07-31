@@ -23,6 +23,7 @@ quantlib.time.businessdayconvention.BusinessDayConvention
       ~BusinessDayConvention.to_bytes
       ~BusinessDayConvention.from_bytes
       ~BusinessDayConvention.as_integer_ratio
+      ~BusinessDayConvention.__init__
    
    
 

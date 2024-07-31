@@ -23,6 +23,7 @@ quantlib.time.calendars.canada.Market
       ~Market.to_bytes
       ~Market.from_bytes
       ~Market.as_integer_ratio
+      ~Market.__init__
    
    
 

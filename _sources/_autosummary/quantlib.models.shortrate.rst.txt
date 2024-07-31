@@ -28,7 +28,7 @@ quantlib.models.shortrate
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.models.shortrate.calibrationhelpers
-   quantlib.models.shortrate.onefactor_model
-   quantlib.models.shortrate.onefactormodels
+   calibrationhelpers
+   onefactor_model
+   onefactormodels
 

@@ -28,12 +28,12 @@ quantlib.termstructures.volatility
    :template: custom-module-template.rst
    :recursive:
 
-   quantlib.termstructures.volatility.api
-   quantlib.termstructures.volatility.equityfx
-   quantlib.termstructures.volatility.optionlet
-   quantlib.termstructures.volatility.sabr
-   quantlib.termstructures.volatility.sabr_interpolated_smilesection
-   quantlib.termstructures.volatility.smilesection
-   quantlib.termstructures.volatility.swaption
-   quantlib.termstructures.volatility.volatilitytype
+   api
+   equityfx
+   optionlet
+   sabr
+   sabr_interpolated_smilesection
+   smilesection
+   swaption
+   volatilitytype
 

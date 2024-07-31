@@ -23,6 +23,7 @@ quantlib.instruments.bonds.cpibond.InterpolationType
       ~InterpolationType.to_bytes
       ~InterpolationType.from_bytes
       ~InterpolationType.as_integer_ratio
+      ~InterpolationType.__init__
    
    
 

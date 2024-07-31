@@ -23,6 +23,7 @@ quantlib.default.Protection
       ~Protection.to_bytes
       ~Protection.from_bytes
       ~Protection.as_integer_ratio
+      ~Protection.__init__
    
    
 
