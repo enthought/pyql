@@ -22,7 +22,7 @@ quantlib.instruments.vanillaswap.VanillaSwap
       ~VanillaSwap.leg
       ~VanillaSwap.leg_BPS
       ~VanillaSwap.leg_NPV
-      ~VanillaSwap.npvDateDiscount
+      ~VanillaSwap.npv_date_discount
       ~VanillaSwap.set_pricing_engine
       ~VanillaSwap.startDiscounts
    
@@ -41,21 +41,21 @@ quantlib.instruments.vanillaswap.VanillaSwap
       ~VanillaSwap.fair_spread
       ~VanillaSwap.fixed_day_count
       ~VanillaSwap.fixed_leg
-      ~VanillaSwap.fixed_leg_bps
-      ~VanillaSwap.fixed_leg_npv
+      ~VanillaSwap.fixed_leg_BPS
+      ~VanillaSwap.fixed_leg_NPV
       ~VanillaSwap.fixed_rate
       ~VanillaSwap.fixed_schedule
       ~VanillaSwap.floating_day_count
       ~VanillaSwap.floating_leg
-      ~VanillaSwap.floating_leg_bps
-      ~VanillaSwap.floating_leg_npv
+      ~VanillaSwap.floating_leg_BPS
+      ~VanillaSwap.floating_leg_NPV
       ~VanillaSwap.floating_schedule
       ~VanillaSwap.is_expired
       ~VanillaSwap.maturity_date
       ~VanillaSwap.net_present_value
       ~VanillaSwap.nominal
+      ~VanillaSwap.nominals
       ~VanillaSwap.npv
-      ~VanillaSwap.npv_date_discount
       ~VanillaSwap.spread
       ~VanillaSwap.start_date
       ~VanillaSwap.type

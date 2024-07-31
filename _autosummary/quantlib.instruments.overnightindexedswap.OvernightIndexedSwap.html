@@ -39,7 +39,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.instruments.overnightindexedswap.OvernightIndexedSwap">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OvernightIndexedSwap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Type</span> <span class="pre">swap_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nominal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Schedule</span> <span class="pre">schedule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">fixed_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">fixed_dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">OvernightIndex</span> <span class="pre">overnight_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Spread</span> <span class="pre">spread=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">payment_lag=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BusinessDayConvention</span> <span class="pre">payment_adjustment=Following</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">payment_calendar=Calendar()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">telescopic_value_dates=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RateAveraging</span> <span class="pre">averaging_method=RateAveraging.Compound</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.overnightindexedswap.OvernightIndexedSwap" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="quantlib.instruments.swap.Swap.html#quantlib.instruments.swap.Swap" title="quantlib.instruments.swap.Swap"><code class="xref py py-class docutils literal notranslate"><span class="pre">Swap</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.html#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap" title="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap"><code class="xref py py-class docutils literal notranslate"><span class="pre">FixedVsFloatingSwap</span></code></a></p>
 <p>Overnight indexed swap: fix vs compounded overnight rate</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.instruments.overnightindexedswap.OvernightIndexedSwap.__init__">
@@ -64,7 +64,7 @@
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">leg_NPV</span></code>(self, Size j)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">npvDateDiscount</span></code>(self)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv_date_discount</span></code>(self)</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code>(self, PricingEngine engine)</p></td>
@@ -106,6 +106,24 @@
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixed_rate</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixed_schedule</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">floating_day_count</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">floating_leg</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">floating_leg_BPS</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">floating_leg_NPV</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">floating_schedule</span></code></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_expired</span></code></p></td>

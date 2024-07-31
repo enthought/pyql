@@ -1,0 +1,65 @@
+quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap
+============================================================
+
+.. currentmodule:: quantlib.instruments.fixedvsfloatingswap
+
+.. autoclass:: FixedVsFloatingSwap
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~FixedVsFloatingSwap.__init__
+      ~FixedVsFloatingSwap.endDiscounts
+      ~FixedVsFloatingSwap.leg
+      ~FixedVsFloatingSwap.leg_BPS
+      ~FixedVsFloatingSwap.leg_NPV
+      ~FixedVsFloatingSwap.npv_date_discount
+      ~FixedVsFloatingSwap.set_pricing_engine
+      ~FixedVsFloatingSwap.startDiscounts
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~FixedVsFloatingSwap.Payer
+      ~FixedVsFloatingSwap.Receiver
+      ~FixedVsFloatingSwap.fair_rate
+      ~FixedVsFloatingSwap.fair_spread
+      ~FixedVsFloatingSwap.fixed_day_count
+      ~FixedVsFloatingSwap.fixed_leg
+      ~FixedVsFloatingSwap.fixed_leg_BPS
+      ~FixedVsFloatingSwap.fixed_leg_NPV
+      ~FixedVsFloatingSwap.fixed_rate
+      ~FixedVsFloatingSwap.fixed_schedule
+      ~FixedVsFloatingSwap.floating_day_count
+      ~FixedVsFloatingSwap.floating_leg
+      ~FixedVsFloatingSwap.floating_leg_BPS
+      ~FixedVsFloatingSwap.floating_leg_NPV
+      ~FixedVsFloatingSwap.floating_schedule
+      ~FixedVsFloatingSwap.is_expired
+      ~FixedVsFloatingSwap.maturity_date
+      ~FixedVsFloatingSwap.net_present_value
+      ~FixedVsFloatingSwap.nominal
+      ~FixedVsFloatingSwap.nominals
+      ~FixedVsFloatingSwap.npv
+      ~FixedVsFloatingSwap.spread
+      ~FixedVsFloatingSwap.start_date
+      ~FixedVsFloatingSwap.type
+      ~FixedVsFloatingSwap.valuation_date
+
+   
+   

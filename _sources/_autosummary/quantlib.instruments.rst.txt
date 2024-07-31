@@ -34,6 +34,7 @@ quantlib.instruments
    bonds
    credit_default_swap
    exercise
+   fixedvsfloatingswap
    futures
    implied_volatility
    make_cds

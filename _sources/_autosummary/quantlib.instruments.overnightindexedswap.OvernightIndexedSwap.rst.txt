@@ -22,7 +22,7 @@ quantlib.instruments.overnightindexedswap.OvernightIndexedSwap
       ~OvernightIndexedSwap.leg
       ~OvernightIndexedSwap.leg_BPS
       ~OvernightIndexedSwap.leg_NPV
-      ~OvernightIndexedSwap.npvDateDiscount
+      ~OvernightIndexedSwap.npv_date_discount
       ~OvernightIndexedSwap.set_pricing_engine
       ~OvernightIndexedSwap.startDiscounts
    
@@ -45,6 +45,12 @@ quantlib.instruments.overnightindexedswap.OvernightIndexedSwap
       ~OvernightIndexedSwap.fixed_leg_BPS
       ~OvernightIndexedSwap.fixed_leg_NPV
       ~OvernightIndexedSwap.fixed_rate
+      ~OvernightIndexedSwap.fixed_schedule
+      ~OvernightIndexedSwap.floating_day_count
+      ~OvernightIndexedSwap.floating_leg
+      ~OvernightIndexedSwap.floating_leg_BPS
+      ~OvernightIndexedSwap.floating_leg_NPV
+      ~OvernightIndexedSwap.floating_schedule
       ~OvernightIndexedSwap.is_expired
       ~OvernightIndexedSwap.maturity_date
       ~OvernightIndexedSwap.net_present_value

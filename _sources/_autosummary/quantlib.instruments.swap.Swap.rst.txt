@@ -22,7 +22,7 @@ quantlib.instruments.swap.Swap
       ~Swap.leg
       ~Swap.leg_BPS
       ~Swap.leg_NPV
-      ~Swap.npvDateDiscount
+      ~Swap.npv_date_discount
       ~Swap.set_pricing_engine
       ~Swap.startDiscounts
    
