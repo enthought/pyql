@@ -1,0 +1,50 @@
+quantlib.instruments.bonds.amortizingfloatingratebond.AmortizingFloatingRateBond
+================================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.amortizingfloatingratebond
+
+.. autoclass:: AmortizingFloatingRateBond
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~AmortizingFloatingRateBond.__init__
+      ~AmortizingFloatingRateBond.accrued_amount
+      ~AmortizingFloatingRateBond.bond_yield
+      ~AmortizingFloatingRateBond.notional
+      ~AmortizingFloatingRateBond.set_pricing_engine
+      ~AmortizingFloatingRateBond.settlement_date
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~AmortizingFloatingRateBond.calendar
+      ~AmortizingFloatingRateBond.cashflows
+      ~AmortizingFloatingRateBond.clean_price
+      ~AmortizingFloatingRateBond.dirty_price
+      ~AmortizingFloatingRateBond.is_expired
+      ~AmortizingFloatingRateBond.issue_date
+      ~AmortizingFloatingRateBond.maturity_date
+      ~AmortizingFloatingRateBond.net_present_value
+      ~AmortizingFloatingRateBond.npv
+      ~AmortizingFloatingRateBond.settlement_days
+      ~AmortizingFloatingRateBond.start_date
+      ~AmortizingFloatingRateBond.valuation_date
+
+   
+   
