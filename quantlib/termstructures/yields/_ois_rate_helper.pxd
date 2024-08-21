@@ -1,9 +1,10 @@
-from quantlib.types cimport Natural, Spread
+from quantlib.types cimport Integer, Natural, Spread
 
 from libcpp cimport bool
 
 from quantlib._quote cimport Quote
 from quantlib.cashflows.rateaveraging cimport RateAveraging
+from quantlib.cashflows._coupon_pricer cimport FloatingRateCouponPricer
 from quantlib.handle cimport shared_ptr, Handle, optional
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period, Frequency
@@ -24,7 +25,7 @@ cdef extern from 'ql/termstructures/yield/oisratehelper.hpp' namespace 'QuantLib
                       # exogenous discounting curve
                       Handle[YieldTermStructure]& discountingCurve, # = Handle<YieldTermStructure>()
                       bool telescopicValueDates, # False)
-                      Natural paymentLag, # = 0
+                      Integer paymentLag, # = 0
                       BusinessDayConvention paymentConvention, # = Following
                       Frequency paymentFrequency, #  = Annual
                       Calendar& paymentCalendar, # = Calendar()
@@ -34,6 +35,12 @@ cdef extern from 'ql/termstructures/yield/oisratehelper.hpp' namespace 'QuantLib
                       Date customPillarDate, # = Date(),
                       RateAveraging averagingMethod,# = RateAveraging::Compound,
                       optional[bool] endOfMonth, # = boost::none
+                      optional[Frequency] fixedPaymentFrequency, # = ext::nullopt,
+                      Calendar fixedCalendar, # = Calendar(),
+                      Natural lookbackDays, # = Null<Natural>(),
+                      Natural lockoutDays, # = 0,
+                      bool applyObservationShift,# = false,
+                      #shared_ptr[FloatingRateCouponPricer] pricer
         ) except + # = 0.0
 
     cdef cppclass DatedOISRateHelper(RateHelper):
