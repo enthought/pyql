@@ -1,5 +1,4 @@
-include '../types.pxi'
-
+from quantlib.types cimport Rate
 from cython.operator cimport dereference as deref
 from quantlib.cashflow cimport Leg
 from quantlib.termstructures.volatility.optionlet.optionlet_volatility_structure cimport OptionletVolatilityStructure
@@ -15,14 +14,18 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.quote cimport Quote
 from quantlib.quotes.simplequote cimport SimpleQuote
 from .coupon_pricer cimport FloatingRateCouponPricer
+from .floating_rate_coupon cimport FloatingRateCoupon
+from . cimport _floating_rate_coupon as _frc
 cimport quantlib._cashflow as _cf
 
 cdef class FloatingRateCouponPricer:
 
-    def __init__(self):
-        raise ValueError(
-            'CouponPricer cannot be directly instantiated!'
-        )
+    def __cinit__(self):
+        if type(self) in (FloatingRateCouponPricer, IborCouponPricer):
+            raise ValueError(f"'{type(self).__name__}' cannot be directly instantiated!")
+
+    def initialize(self, FloatingRateCoupon coupon not None):
+        self._thisptr.get().initialize(deref(<_frc.FloatingRateCoupon*>coupon._thisptr.get()))
 
     def swaplet_price(self):
         return self._thisptr.get().swapletPrice()
@@ -41,14 +44,6 @@ cdef class FloatingRateCouponPricer:
 
     def floorlet_rate(self, Rate effective_floor):
         return self._thisptr.get().floorletRate(effective_floor)
-
-
-cdef class IborCouponPricer(FloatingRateCouponPricer):
-
-    def __init__(self):
-        raise ValueError(
-            'IborCouponPricer cannot be directly instantiated!'
-        )
 
 
 cpdef enum TimingAdjustment:
