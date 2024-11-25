@@ -1,4 +1,4 @@
-include '../types.pxi'
+from quantlib.types cimport Rate, Real
 
 from quantlib.handle cimport shared_ptr, Handle
 from quantlib.termstructures.volatility.optionlet._optionlet_volatility_structure cimport OptionletVolatilityStructure
@@ -7,7 +7,7 @@ from quantlib._cashflow cimport Leg
 from quantlib.cashflows._floating_rate_coupon cimport FloatingRateCoupon
 from quantlib._quote cimport Quote
 
-cdef extern from 'ql/cashflows/couponpricer.hpp' namespace 'QuantLib':
+cdef extern from 'ql/cashflows/couponpricer.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass FloatingRateCouponPricer:
         FloatingRateCouponPricer() except +
