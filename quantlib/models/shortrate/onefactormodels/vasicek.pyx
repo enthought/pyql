@@ -38,8 +38,8 @@ cdef class Vasicek(OneFactorAffineModel):
 	)
 
     def __str__(self):
-        return 'Vasicek model\na: %f b: %f sigma: %f lambda: %f' % \
-          (self.r0, self.a, self.b, self.sigma, self.Lambda)
+        return ("Vasicek model\n"
+                f"r0: {self.r0}\ta: {self.a}\tb: {self.b}\tsigma: {self.sigma}\tlambda: {self.Lambda}")
 
     @property
     def a(self):
