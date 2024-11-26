@@ -1,5 +1,8 @@
 from quantlib.stochastic_process cimport StochasticProcess1D
-from quantlib.handle cimport Handle, shared_ptr
+from .forwardmeasureprocess cimport ForwardMeasureProcess1D
 
 cdef class HullWhiteProcess(StochasticProcess1D):
+    pass
+
+cdef class ForwardHullWhiteProcess(ForwardMeasureProcess1D):
     pass

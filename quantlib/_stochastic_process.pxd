@@ -5,17 +5,15 @@
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
 
-include 'types.pxi'
+from quantlib.types cimport Real, Size, Time
 
-cdef extern from 'ql/stochasticprocess.hpp' namespace 'QuantLib':
+cdef extern from 'ql/stochasticprocess.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass StochasticProcess:
-        StochasticProcess()
         Size size()
         Size factors()
 
-    cdef cppclass StochasticProcess1D(StochasticProcess):
-        StochasticProcess1D()
+    cdef cppclass StochasticProcess1D(StochasticProcess) nogil:
         Real x0()
         Real drift(Time t, Real x)
         Real diffusion(Time t, Real x)
