@@ -2,7 +2,8 @@ from libcpp cimport bool
 from libcpp.vector cimport vector
 from quantlib.types cimport DiscountFactor, Real, Size, Time
 
-from quantlib.handle cimport shared_ptr
+from quantlib.handle cimport shared_ptr, Handle
+from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.instruments.option cimport OptionType
 from quantlib._numericalmethod cimport Lattice
 from quantlib._time_grid cimport TimeGrid
@@ -10,7 +11,7 @@ from quantlib.math._optimization cimport Constraint, EndCriteria, OptimizationMe
 from quantlib.math._array cimport Array
 from ._calibration_helper cimport CalibrationHelper
 
-cdef extern from 'ql/models/model.hpp' namespace 'QuantLib':
+cdef extern from 'ql/models/model.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass CalibratedModel:
         void calibrate(
@@ -23,6 +24,10 @@ cdef extern from 'ql/models/model.hpp' namespace 'QuantLib':
             )
         Array& params()
         void setParams(Array& params)
+
+    cdef cppclass TermStructureConsistentModel:
+        TermStructureConsistentModel(Handle[YieldTermStructure] termstructure)
+        const Handle[YieldTermStructure] termStructure() const
 
     cdef cppclass AffineModel:
         DiscountFactor discount(Time t)

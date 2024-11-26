@@ -14,5 +14,5 @@ cdef extern from 'ql/models/shortrate/onefactormodel.hpp' namespace 'QuantLib' n
             shared_ptr[StochasticProcess1D]& process()
         shared_ptr[ShortRateDynamics] dynamics()
 
-    cdef cppclass OneFactorAffineModel(OneFactorModel):
+    cdef cppclass OneFactorAffineModel(OneFactorModel, AffineModel):
         Real discountBond(Time now, Time maturity, Rate rate)

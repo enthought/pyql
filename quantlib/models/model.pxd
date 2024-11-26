@@ -17,5 +17,8 @@ cdef class CalibratedModel:
 cdef class AffineModel:
     pass
 
+cdef class TermStructureConsistentModel:
+    pass
+
 cdef class ShortRateModel(CalibratedModel):
     pass
