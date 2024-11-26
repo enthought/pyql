@@ -43,10 +43,7 @@ cdef class HullWhite(Vasicek):
 
      """
 
-    def __init__(self,
-       HandleYieldTermStructure term_structure=HandleYieldTermStructure(),
-       Real a=0,
-       Real sigma=0):
+    def __init__(self, HandleYieldTermStructure term_structure, Real a=0.1, Real sigma=0.01):
 
         self._thisptr = shared_ptr[_mo.CalibratedModel](
             new _hw.HullWhite(
