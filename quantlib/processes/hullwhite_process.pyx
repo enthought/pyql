@@ -37,3 +37,21 @@ cdef class HullWhiteProcess(StochasticProcess1D):
     @property
     def sigma(self):
         return (<_hw.HullWhiteProcess*>self._thisptr.get()).sigma()
+
+
+cdef class HullWhiteForwardProcess(ForwardMeasureProcess1D):
+    def __init__(self,
+                 HandleYieldTermStructure h,
+                 Real a,
+                 Real sigma):
+        self._thisptr.reset(
+            new _hw.HullWhiteForwardProcess(h.handle, a, sigma)
+        )
+
+    @property
+    def a(self):
+        return (<_hw.HullWhiteForwardProcess*>self._thisptr.get()).a()
+
+    @property
+    def sigma(self):
+        return (<_hw.HullWhiteForwardProcess*>self._thisptr.get()).sigma()
