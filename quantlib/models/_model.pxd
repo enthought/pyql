@@ -33,7 +33,7 @@ cdef extern from 'ql/models/model.hpp' namespace 'QuantLib' nogil:
         DiscountFactor discount(Time t)
         Real discountBond(Time now, Time maturity, Array factors)
         Real discountBondOption(OptionType type, Real strike, Time maturity, Time bondMaturity)
-        Real discountBondOption(OptionType type, Real strike, Time maturity, Time bondStart, Time bondMaturity)
+        #Real discountBondOption(OptionType type, Real strike, Time maturity, Time bondStart, Time bondMaturity)
 
     cdef cppclass ShortRateModel(CalibratedModel):
         ShortRateModel(Size nArguments)

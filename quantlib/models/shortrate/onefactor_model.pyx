@@ -1,17 +1,15 @@
-"""
- Copyright (C) 2015, Enthought Inc
- Copyright (C) 2015, Patrick Henaff
+#
+# Copyright (C) 2015, Enthought Inc
+# Copyright (C) 2015, Patrick Henaff
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the license for more details.
 
- This program is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- FOR A PARTICULAR PURPOSE.  See the license for more details.
-"""
-
-include '../../types.pxi'
+from quantlib.types cimport Rate, Real, Time
 
 from quantlib.handle cimport static_pointer_cast
-from quantlib.models.model cimport CalibratedModel
-cimport quantlib.models._model as _model
+from quantlib.instruments.option cimport OptionType
 cimport quantlib.models.shortrate._onefactor_model as _ofm
 cimport quantlib._stochastic_process as _sp
 from quantlib.stochastic_process cimport StochasticProcess1D
@@ -43,6 +41,10 @@ cdef class OneFactorAffineModel(OneFactorModel):
     def __init__(self):
         raise ValueError('Cannot instantiate OneFactorAffineModel')
 
-    def discount_bound(self, Time now, Time maturity, Rate rate):
+    def discount_bond(self, Time now, Time maturity, Rate rate):
         return (<_ofm.OneFactorAffineModel*>self._thisptr.get()).discountBond(
         now, maturity, rate)
+
+    def discount_bond_option(self, OptionType option_type, Real strike, Time maturity, Time bond_maturity):
+        return (<_ofm.OneFactorAffineModel*>self._thisptr.get()).discountBondOption(
+            option_type, strike, maturity, bond_maturity)
