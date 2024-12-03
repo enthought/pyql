@@ -1,4 +1,4 @@
-include 'types.pxi'
+from quantlib.types cimport Size, Time
 from libcpp.vector cimport vector
 from . cimport _time_grid as _tg
 

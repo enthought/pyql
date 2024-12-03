@@ -1,4 +1,4 @@
-include '../../types.pxi'
+from quantlib.types cimport Real, Size
 from quantlib.methods.montecarlo._sample cimport Sample
 from libcpp.vector cimport vector
 
