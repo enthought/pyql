@@ -39,7 +39,7 @@ class LowDiscrepancyTestCase(unittest.TestCase):
         samples = 100000
         X = np.empty((samples, self.g.dimension))
         for i in range(samples):
-            X[i] = next(self.g)
+            _, X[i] = next(self.g)
         C = np.cov(X.T)
         self.assertAlmostEqual(np.linalg.norm(X.mean(axis=0)), 0., 3)
         self.assertAlmostEqual(np.linalg.norm(C - np.eye(10)), 0., 2)
