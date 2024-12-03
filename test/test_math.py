@@ -10,7 +10,7 @@ class TestMath(unittest.TestCase):
         x = Array(10, v)
 
         self.assertEqual(x[4], v)
-        self.assertEqual(x.size, 10)
+        self.assertEqual(len(x), 10)
 
     def test_array_2(self):
         v = 3.14
