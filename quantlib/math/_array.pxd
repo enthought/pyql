@@ -17,3 +17,4 @@ cdef extern from 'ql/math/array.hpp' namespace 'QuantLib':
         Real& at(Size i) except +IndexError
         Size size()
         Real& operator[](Size)
+        const Real* begin()
