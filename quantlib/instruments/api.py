@@ -16,3 +16,4 @@ from .make_swaption import MakeSwaption
 from .overnightindexfuture import OvernightIndexFuture
 from .overnightindexedswap import OvernightIndexedSwap
 from .make_ois import MakeOIS
+from .zerocouponswap import ZeroCouponSwap
