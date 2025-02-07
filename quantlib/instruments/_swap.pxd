@@ -7,8 +7,7 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../types.pxi'
-
+from quantlib.types cimport DiscountFactor, Real, Size
 from libcpp.vector cimport vector
 from libcpp cimport bool
 
@@ -22,11 +21,11 @@ from quantlib._cashflow cimport Leg
 
 cdef extern from 'ql/instruments/swap.hpp' namespace 'QuantLib' nogil:
     cdef cppclass Swap(Instrument):
-        ## Swap(Leg& firstLeg,
-        ##      Leg& secondLeg)
+        Swap(Leg& firstLeg,
+             Leg& secondLeg)
 
-        ## Swap(vector[Leg]& legs,
-        ##      vector[bool]& payer)
+        Swap(vector[Leg]& legs,
+             vector[bool]& payer)
         bool isExpired()
         Size numberOfLegs()
         Date startDate()

@@ -27,35 +27,11 @@ cdef class Swap(Instrument):
     Payer = Type.Payer
     Receiver = Type.Receiver
 
-    def __init__(self):
-        raise NotImplementedError('Generic swap not yet implemented. \
-        Please use child classes.')
+    def __init__(self, Leg first_leg, Leg second_leg):
+        """ The cash flows belonging to the first leg are paid;
+        the ones belonging to the second leg are received"""
 
-    ## def __init__(self, Leg firstLeg,
-    ##              Leg secondLeg):
-
-    ##     cdef _cf.Leg* leg1 = firstLeg._thisptr.get()
-    ##     cdef _cf.Leg* leg2 = secondLeg._thisptr.get()
-
-    ##     self._thisptr = new shared_ptr[_instrument.Instrument](\
-    ##        new _swap.Swap(deref(leg1),
-    ##                       deref(leg2)))
-
-
-    ## def __init__(self, vector[Leg] legs,
-    ##          vector[bool] payer):
-
-    ##     cdef vector[_cf.Leg]* _legs = new vector[_cf.Leg](len(legs))
-    ##     for l in legs:
-    ##         _legs.push_back(l)
-
-    ##     cdef vector[bool]* _payer = new vector[bool](len(payer))
-    ##     for p in payer:
-    ##         _payer.push_back(p)
-
-    ##     self._thisptr = new shared_ptr[_instrument.Instrument](\
-    ##         new _swap.Swap(_legs, payer)
-    ##         )
+        self._thisptr.reset(new _swap.Swap(first_leg._thisptr, second_leg._thisptr))
 
     property start_date:
         def __get__(self):
