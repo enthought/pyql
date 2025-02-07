@@ -6,7 +6,7 @@ from quantlib.time._date cimport Date
 from libcpp.string cimport string
 from libcpp cimport bool
 
-cdef extern from 'ql/instrument.hpp' namespace 'QuantLib':
+cdef extern from 'ql/instrument.hpp' namespace 'QuantLib' nogil:
     cdef cppclass Instrument:
         Instrument()
         bool isExpired()
