@@ -1,6 +1,7 @@
 from quantlib.types cimport Rate, Real
 from cython.operator cimport dereference as deref, preincrement as preinc
 from libcpp.vector cimport vector
+from libcpp.utility cimport move
 from quantlib.compounding cimport Compounding
 from quantlib.handle cimport shared_ptr
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
@@ -11,6 +12,7 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.schedule cimport Schedule
 cimport quantlib._cashflow as _cf
 from quantlib.interest_rate cimport InterestRate
+from .._cashflow cimport Leg as QlLeg
 cimport quantlib._interest_rate as _ir
 
 cdef class FixedRateCoupon(Coupon):
@@ -60,7 +62,7 @@ cdef class FixedRateLeg(Leg):
         return self
 
     def __call__(self):
-        self._thisptr = _frc.to_leg(deref(self.frl))
+        self._thisptr = move[QlLeg](_frc.to_leg(deref(self.frl)))
         return self
 
     def __iter__(self):
