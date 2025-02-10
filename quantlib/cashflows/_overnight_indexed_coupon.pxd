@@ -12,6 +12,7 @@ from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.indexes._ibor_index cimport OvernightIndex
 from ._floating_rate_coupon cimport FloatingRateCoupon
 from .rateaveraging cimport RateAveraging
+from .._cashflow cimport Leg
 
 cdef extern from 'ql/cashflows/overnightindexedcoupon.hpp' namespace 'QuantLib' nogil:
     cdef cppclass OvernightIndexedCoupon(FloatingRateCoupon):
@@ -50,3 +51,11 @@ cdef extern from 'ql/cashflows/overnightindexedcoupon.hpp' namespace 'QuantLib' 
         OvernightLeg& withObservationShift(bool)
         OvernightLeg& withLookbackDays(Natural)
         OvernightLeg& withLockoutDays(Natural)
+        Leg operator() const
+
+cdef extern from 'ql/cashflows/overnightindexedcoupon.hpp':
+    # this allows to declare the cast operator as raising exceptions
+    """
+    #define to_leg(x) static_cast<QuantLib::Leg>(x)
+    """
+    cdef Leg to_leg(OvernightLeg) except +

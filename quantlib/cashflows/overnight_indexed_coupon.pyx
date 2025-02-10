@@ -2,6 +2,7 @@ from quantlib.types cimport Integer, Natural, Real, Spread
 
 from libcpp cimport bool
 from libcpp.vector cimport vector
+from libcpp.utility cimport move
 from cython.operator cimport dereference as deref, preincrement as preinc
 from quantlib.handle cimport make_shared, shared_ptr, static_pointer_cast
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
@@ -140,5 +141,5 @@ cdef class OvernightLeg(Leg):
         return self
 
     def __call__(self):
-        self._thisptr = <QlLeg>deref(self.leg)
+        self._thisptr = move[QlLeg](_oic.to_leg(deref(self.leg)))
         return self
