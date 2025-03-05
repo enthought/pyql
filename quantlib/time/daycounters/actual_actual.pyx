@@ -17,6 +17,12 @@ from . cimport _actual_actual as _aa
 from quantlib.time.schedule cimport Schedule
 
 cdef class ActualActual(DayCounter):
+    ISMA = Convention.ISMA
+    Bond = Convention.Bond
+    ISDA = Convention.ISDA
+    Historical = Convention.Historical
+    AFB = Convention.AFB
+    Euro = Convention.Euro
 
     def __init__(self, Convention convention=Convention.ISDA, Schedule schedule=Schedule.__new__(Schedule)):
         """ Actual/Actual day count
