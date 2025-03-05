@@ -1,3 +1,4 @@
+from .assetswap import AssetSwap
 from .bonds import FixedRateBond, ZeroCouponBond, FloatingRateBond
 from .bondforward import BondForward
 from .credit_default_swap import CreditDefaultSwap, PricingModel
