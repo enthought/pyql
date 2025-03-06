@@ -11,9 +11,11 @@ from quantlib.types cimport Size
 from quantlib.cashflow cimport Leg
 cimport quantlib.time._date as _date
 from quantlib.time.date cimport date_from_qldate
+from quantlib._cashflow cimport Leg as QlLeg
+
 from . cimport _swap
 
-cdef inline _swap.Swap* get_swap(Swap swap):
+cdef inline _swap.Swap* get_swap(Swap swap) noexcept:
     """ Utility function to extract a properly casted Swap pointer out of the
     internal _thisptr attribute of the Instrument base class. """
 
@@ -60,10 +62,18 @@ cdef class Swap(Instrument):
 
     def leg(self, int i):
         cdef Leg leg = Leg.__new__(Leg)
-        leg._thisptr = get_swap(self).leg(i)
+        cdef _swap.Swap* swap = <_swap.Swap*>self._thisptr.get()
+        if 0 <= i < swap.numberOfLegs():
+            leg._thisptr = swap.legs()[i]
+        else:
+            raise IndexError(f"leg #{i} doesn't exist")
         return leg
 
     def __getitem__(self, int i):
         cdef Leg leg = Leg.__new__(Leg)
-        leg._thisptr = get_swap(self).leg(i)
+        cdef _swap.Swap* swap = <_swap.Swap*>self._thisptr.get()
+        if 0 <= i < swap.numberOfLegs():
+            leg._thisptr = swap.legs()[i]
+        else:
+            raise IndexError(f"leg #{i} doesn't exist")
         return leg
