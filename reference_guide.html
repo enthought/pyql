@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Reference guide &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=c058f7c8" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=fc5e2428" />
     <script src="_static/documentation_options.js?v=a58bc63e"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -68,7 +68,7 @@ measurement. The C++ class is defined as follows:</p>
 </pre></div>
 </div>
 <p>After wrapping the C++ class, this class is now available in python:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">quantlib.quotes.simplequote</span> <span class="kn">import</span> <span class="n">SimpleQuote</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">quantlib.quotes.simplequote</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleQuote</span>
 <span class="n">spot</span> <span class="o">=</span> <span class="n">SimpleQuote</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Spot </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">spot</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
@@ -102,12 +102,12 @@ standardization, they should be named as follows:</p>
 <p>This file contains the declaration of the QL
 class being exposed. For example, the header file <code class="docutils literal notranslate"><span class="pre">_simplequote.pxd</span></code> is
 as follows:</p>
-<div class="highlight-cython notranslate"><div class="highlight"><pre><span></span><span class="k">from</span> <span class="nn">quantlib.types</span> <span class="k">cimport</span> <span class="n">Real</span>
-<span class="k">from</span> <span class="nn">quantlib._quote</span> <span class="k">cimport</span> <span class="n">Quote</span>
+<div class="highlight-cython notranslate"><div class="highlight"><pre><span></span><span class="k">from</span><span class="w"> </span><span class="nn">quantlib.types</span><span class="w"> </span><span class="k">cimport</span> <span class="n">Real</span>
+<span class="k">from</span><span class="w"> </span><span class="nn">quantlib._quote</span><span class="w"> </span><span class="k">cimport</span> <span class="n">Quote</span>
 
-<span class="k">cdef</span> <span class="kr">extern</span> <span class="k">from</span> <span class="s">&#39;ql/quotes/simplequote.hpp&#39;</span> <span class="n">namespace</span> <span class="s">&#39;QuantLib&#39;</span><span class="p">:</span>
+<span class="k">cdef</span><span class="w"> </span><span class="kr">extern</span> <span class="k">from</span> <span class="s">&#39;ql/quotes/simplequote.hpp&#39;</span> <span class="n">namespace</span> <span class="s">&#39;QuantLib&#39;</span><span class="p">:</span>
 
-   <span class="k">cdef</span> <span class="kt">cppclass</span> <span class="nf">SimpleQuote</span><span class="p">(</span><span class="n">Quote</span><span class="p">):</span>
+   <span class="k">cdef</span><span class="w"> </span><span class="kt">cppclass</span> <span class="nf">SimpleQuote</span><span class="p">(</span><span class="n">Quote</span><span class="p">):</span>
       <span class="n">SimpleQuote</span><span class="p">(</span><span class="n">Real</span> <span class="n">value</span><span class="p">)</span>
       <span class="n">Real</span> <span class="n">setValue</span><span class="p">(</span><span class="n">Real</span> <span class="n">value</span><span class="p">)</span>
       <span class="n">void</span> <span class="n">reset</span><span class="p">()</span>
@@ -121,9 +121,9 @@ types used in declaring arguments are defined in <code class="docutils literal n
 <h3>Declaration of the python class<a class="headerlink" href="#declaration-of-the-python-class" title="Link to this heading">¶</a></h3>
 <p>The second header file declares the python classes that will be wrapping
 the QL classes. The file <code class="docutils literal notranslate"><span class="pre">simplequote.pxd</span></code> is reproduced below:</p>
-<div class="highlight-cython notranslate"><div class="highlight"><pre><span></span><span class="k">from</span> <span class="nn">quantlib.quote</span> <span class="k">cimport</span> <span class="n">Quote</span>
+<div class="highlight-cython notranslate"><div class="highlight"><pre><span></span><span class="k">from</span><span class="w"> </span><span class="nn">quantlib.quote</span><span class="w"> </span><span class="k">cimport</span> <span class="n">Quote</span>
 
-<span class="k">cdef</span> <span class="k">class</span> <span class="nf">SimpleQuote</span><span class="p">(</span><span class="n">Quote</span><span class="p">):</span>
+<span class="k">cdef</span><span class="w"> </span><span class="k">class</span> <span class="nf">SimpleQuote</span><span class="p">(</span><span class="n">Quote</span><span class="p">):</span>
     <span class="k">pass</span>
 </pre></div>
 </div>
@@ -145,22 +145,22 @@ GC runs.</p>
 <p>The third file contains the implementation of the cython wrapper
 class. As an illustration, the implementation of the <code class="docutils literal notranslate"><span class="pre">SimpleQuote</span></code>
 python class is reproduced below:</p>
-<div class="highlight-cython notranslate"><div class="highlight"><pre><span></span><span class="k">cdef</span> <span class="k">class</span> <span class="nf">SimpleQuote</span><span class="p">(</span><span class="n">Quote</span><span class="p">):</span>
-   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">double</span> <span class="n">value</span><span class="o">=</span><span class="n">QL_NULL_REAL</span><span class="p">):</span>
+<div class="highlight-cython notranslate"><div class="highlight"><pre><span></span><span class="k">cdef</span><span class="w"> </span><span class="k">class</span> <span class="nf">SimpleQuote</span><span class="p">(</span><span class="n">Quote</span><span class="p">):</span>
+   <span class="k">def</span><span class="w"> </span><span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">double</span> <span class="n">value</span><span class="o">=</span><span class="n">QL_NULL_REAL</span><span class="p">):</span>
 <span class="w">      </span><span class="sd">&quot;&quot;&quot; Market element returning a stored value&quot;&quot;&quot;</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">_thisptr</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">new</span> <span class="n">_sq</span><span class="o">.</span><span class="n">SimpleQuote</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
 
-   <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+   <span class="k">def</span><span class="w"> </span><span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
       <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thisptr</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thisptr</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">isValid</span><span class="p">():</span>
          <span class="k">return</span> <span class="s">&#39;Simple Quote: </span><span class="si">%f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thisptr</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
       <span class="k">else</span><span class="p">:</span>
          <span class="k">return</span> <span class="s">&#39;Empty Quote&#39;</span>
 
-   <span class="k">property</span> <span class="nf">value</span><span class="p">:</span>
-      <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+   <span class="k">property</span><span class="w"> </span><span class="nf">value</span><span class="p">:</span>
+      <span class="k">def</span><span class="w"> </span><span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
          <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thisptr</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
 
-      <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">double</span> <span class="n">value</span><span class="p">):</span>
+      <span class="k">def</span><span class="w"> </span><span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">double</span> <span class="n">value</span><span class="p">):</span>
          <span class="p">(</span><span class="o">&lt;</span><span class="n">_qt</span><span class="o">.</span><span class="n">SimpleQuote</span><span class="o">*&gt;</span><span class="bp">self</span><span class="o">.</span><span class="n">_thisptr</span><span class="o">.</span><span class="n">get</span><span class="p">())</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -251,7 +251,7 @@ is no need to use new).</p>
       &#169;2011, Didrik Pinte, Patrick Henaff.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.0.2</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
