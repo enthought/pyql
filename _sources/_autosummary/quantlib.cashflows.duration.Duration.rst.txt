@@ -1,0 +1,46 @@
+quantlib.cashflows.duration.Duration
+====================================
+
+.. currentmodule:: quantlib.cashflows.duration
+
+.. autoclass:: Duration
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Duration.conjugate
+      ~Duration.bit_length
+      ~Duration.bit_count
+      ~Duration.to_bytes
+      ~Duration.from_bytes
+      ~Duration.as_integer_ratio
+      ~Duration.__init__
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Duration.real
+      ~Duration.imag
+      ~Duration.numerator
+      ~Duration.denominator
+      ~Duration.Simple
+      ~Duration.Macaulay
+      ~Duration.Modified
+
+   
+   

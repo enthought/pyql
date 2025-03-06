@@ -1,0 +1,6 @@
+quantlib.pricingengines.bond.bondfunctions.clean\_price
+=======================================================
+
+.. currentmodule:: quantlib.pricingengines.bond.bondfunctions
+
+.. autofunction:: clean_price

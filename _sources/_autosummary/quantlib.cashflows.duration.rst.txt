@@ -1,7 +1,7 @@
-quantlib.instruments.bond
-=========================
+quantlib.cashflows.duration
+===========================
 
-.. automodule:: quantlib.instruments.bond
+.. automodule:: quantlib.cashflows.duration
 
    
    
@@ -19,9 +19,7 @@ quantlib.instruments.bond
       :toctree:
       :template: custom-class-template.rst
    
-      Bond
-      Price
-      Type
+      Duration
    
    
 

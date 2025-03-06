@@ -30,6 +30,8 @@ quantlib.instruments.bond.Price
    
       ~Price.Clean
       ~Price.Dirty
+      ~Price.amount
+      ~Price.type
 
    
    

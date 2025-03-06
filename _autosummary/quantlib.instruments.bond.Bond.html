@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.instruments.bond.BondPrice" href="quantlib.instruments.bond.BondPrice.html" />
+    <link rel="next" title="quantlib.instruments.bond.Price" href="quantlib.instruments.bond.Price.html" />
     <link rel="prev" title="quantlib.instruments.bond" href="quantlib.instruments.bond.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -62,7 +62,7 @@ one single redemption, it must be the last cash flow,</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.bond.Bond.accrued_amount" title="quantlib.instruments.bond.Bond.accrued_amount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">accrued_amount</span></code></a>(self, Date date=Date)</p></td>
 <td><p>Returns the bond accrued amount at the given date</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.bond.Bond.bond_yield" title="quantlib.instruments.bond.Bond.bond_yield"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bond_yield</span></code></a>(self, Real price, DayCounter dc, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.bond.Bond.bond_yield" title="quantlib.instruments.bond.Bond.bond_yield"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bond_yield</span></code></a>(self, Price price, DayCounter dc, ...)</p></td>
 <td><p>Return the yield given a price and settlement date</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.bond.Bond.notional" title="quantlib.instruments.bond.Bond.notional"><code class="xref py py-obj docutils literal notranslate"><span class="pre">notional</span></code></a>(self, Date date=Date)</p></td>
@@ -125,7 +125,7 @@ one single redemption, it must be the last cash flow,</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.instruments.bond.Bond.bond_yield">
-<span class="sig-name descname"><span class="pre">bond_yield</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">comp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequency</span> <span class="pre">freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">settlement_date=Date()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">accuracy=1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">max_evaluations=100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">guess=0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Type</span> <span class="pre">price_type=Price.Clean</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.bond.Bond.bond_yield" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">bond_yield</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Price</span> <span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">comp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequency</span> <span class="pre">freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">settlement_date=Date()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">accuracy=1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">max_evaluations=100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">guess=0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.bond.Bond.bond_yield" title="Link to this definition">¶</a></dt>
 <dd><p>Return the yield given a price and settlement date</p>
 <p>The default bond settlement is used if no date is given.</p>
 <p>This method is the original Bond.yield method in C++.
@@ -222,7 +222,7 @@ Python does not allow us to use the yield statement as a method name.</p>
   <li><a href="quantlib.instruments.html">quantlib.instruments</a><ul>
   <li><a href="quantlib.instruments.bond.html">quantlib.instruments.bond</a><ul>
       <li>Previous: <a href="quantlib.instruments.bond.html" title="previous chapter">quantlib.instruments.bond</a></li>
-      <li>Next: <a href="quantlib.instruments.bond.BondPrice.html" title="next chapter">quantlib.instruments.bond.BondPrice</a></li>
+      <li>Next: <a href="quantlib.instruments.bond.Price.html" title="next chapter">quantlib.instruments.bond.Price</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

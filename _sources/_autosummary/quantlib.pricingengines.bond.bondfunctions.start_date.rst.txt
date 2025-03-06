@@ -1,0 +1,6 @@
+quantlib.pricingengines.bond.bondfunctions.start\_date
+======================================================
+
+.. currentmodule:: quantlib.pricingengines.bond.bondfunctions
+
+.. autofunction:: start_date

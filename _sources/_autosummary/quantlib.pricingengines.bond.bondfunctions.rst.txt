@@ -16,21 +16,16 @@ quantlib.pricingengines.bond.bondfunctions
    
       basisPointValue
       bond_yield
+      clean_price
+      convexity
       duration
-      startDate
+      previous_cash_flow
+      start_date
       zSpread
    
    
 
    
-   
-   .. rubric:: Classes
-
-   .. autosummary::
-      :toctree:
-      :template: custom-class-template.rst
-   
-      DurationType
    
    
 

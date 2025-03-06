@@ -1,0 +1,6 @@
+quantlib.pricingengines.bond.bondfunctions.convexity
+====================================================
+
+.. currentmodule:: quantlib.pricingengines.bond.bondfunctions
+
+.. autofunction:: convexity

@@ -1,0 +1,6 @@
+quantlib.pricingengines.bond.bondfunctions.previous\_cash\_flow
+===============================================================
+
+.. currentmodule:: quantlib.pricingengines.bond.bondfunctions
+
+.. autofunction:: previous_cash_flow
