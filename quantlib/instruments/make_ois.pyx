@@ -74,6 +74,14 @@ cdef class MakeOIS:
         self._thisptr.withPaymentFrequency(f)
         return self
 
+    def with_fixed_leg_payment_frequency(self, Frequency f):
+        self._thisptr.withFixedLegPaymentFrequency(f)
+        return self
+
+    def with_overnight_leg_payment_frequency(self, Frequency f):
+        self._thisptr.withOvernightLegPaymentFrequency(f)
+        return self
+
     def with_payment_adjustment(self, BusinessDayConvention convention):
         self._thisptr.withPaymentAdjustment(convention)
         return self
