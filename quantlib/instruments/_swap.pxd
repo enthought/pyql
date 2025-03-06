@@ -36,3 +36,4 @@ cdef extern from 'ql/instruments/swap.hpp' namespace 'QuantLib' nogil:
         DiscountFactor endDiscounts(Size j) except +
         DiscountFactor npvDateDiscount() except +
         Leg& leg(Size j) except +
+        const vector[Leg]& legs()
