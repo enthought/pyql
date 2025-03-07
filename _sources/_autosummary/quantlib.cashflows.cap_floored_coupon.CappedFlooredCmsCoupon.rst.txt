@@ -52,6 +52,7 @@ quantlib.cashflows.cap\_floored\_coupon.CappedFlooredCmsCoupon
       ~CappedFlooredCmsCoupon.index_fixing
       ~CappedFlooredCmsCoupon.is_capped
       ~CappedFlooredCmsCoupon.is_floored
+      ~CappedFlooredCmsCoupon.is_in_arrears
       ~CappedFlooredCmsCoupon.nominal
       ~CappedFlooredCmsCoupon.rate
       ~CappedFlooredCmsCoupon.reference_period_end

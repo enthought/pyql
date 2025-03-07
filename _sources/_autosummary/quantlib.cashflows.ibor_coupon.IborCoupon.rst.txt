@@ -47,6 +47,7 @@ quantlib.cashflows.ibor\_coupon.IborCoupon
       ~IborCoupon.fixing_days
       ~IborCoupon.index
       ~IborCoupon.index_fixing
+      ~IborCoupon.is_in_arrears
       ~IborCoupon.nominal
       ~IborCoupon.rate
       ~IborCoupon.reference_period_end

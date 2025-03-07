@@ -60,10 +60,22 @@
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">accrued_period</span></code>(self, Date date)</p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.dt" title="quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.dt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dt</span></code></a>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.fixing_dates" title="quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.fixing_dates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixing_dates</span></code></a>(self)</p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_occured</span></code>(self, Date ref_date[, ...])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricer</span></code>(self, FloatingRateCouponPricer pricer)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.index_fixings" title="quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.index_fixings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index_fixings</span></code></a>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricer</span></code>(self, FloatingRateCouponPricer pricer)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.value_dates" title="quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.value_dates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">value_dates</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -110,20 +122,43 @@
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">index_fixing</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">nominal</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_in_arrears</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rate</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">nominal</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_period_end</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rate</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_period_start</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_period_end</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_period_start</span></code></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.dt">
+<span class="sig-name descname"><span class="pre">dt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.dt" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.fixing_dates">
+<span class="sig-name descname"><span class="pre">fixing_dates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.fixing_dates" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.index_fixings">
+<span class="sig-name descname"><span class="pre">index_fixings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.index_fixings" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.value_dates">
+<span class="sig-name descname"><span class="pre">value_dates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.value_dates" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </section>

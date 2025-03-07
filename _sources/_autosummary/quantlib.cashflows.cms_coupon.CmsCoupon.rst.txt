@@ -46,6 +46,7 @@ quantlib.cashflows.cms\_coupon.CmsCoupon
       ~CmsCoupon.fixing_days
       ~CmsCoupon.index
       ~CmsCoupon.index_fixing
+      ~CmsCoupon.is_in_arrears
       ~CmsCoupon.nominal
       ~CmsCoupon.rate
       ~CmsCoupon.reference_period_end

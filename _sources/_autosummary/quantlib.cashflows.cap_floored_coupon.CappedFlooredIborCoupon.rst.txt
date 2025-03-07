@@ -52,6 +52,7 @@ quantlib.cashflows.cap\_floored\_coupon.CappedFlooredIborCoupon
       ~CappedFlooredIborCoupon.index_fixing
       ~CappedFlooredIborCoupon.is_capped
       ~CappedFlooredIborCoupon.is_floored
+      ~CappedFlooredIborCoupon.is_in_arrears
       ~CappedFlooredIborCoupon.nominal
       ~CappedFlooredIborCoupon.rate
       ~CappedFlooredIborCoupon.reference_period_end

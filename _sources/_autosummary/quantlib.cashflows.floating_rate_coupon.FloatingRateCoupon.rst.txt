@@ -46,6 +46,7 @@ quantlib.cashflows.floating\_rate\_coupon.FloatingRateCoupon
       ~FloatingRateCoupon.fixing_days
       ~FloatingRateCoupon.index
       ~FloatingRateCoupon.index_fixing
+      ~FloatingRateCoupon.is_in_arrears
       ~FloatingRateCoupon.nominal
       ~FloatingRateCoupon.rate
       ~FloatingRateCoupon.reference_period_end

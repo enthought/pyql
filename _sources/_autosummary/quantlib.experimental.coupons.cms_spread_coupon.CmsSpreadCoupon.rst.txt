@@ -46,6 +46,7 @@ quantlib.experimental.coupons.cms\_spread\_coupon.CmsSpreadCoupon
       ~CmsSpreadCoupon.fixing_days
       ~CmsSpreadCoupon.index
       ~CmsSpreadCoupon.index_fixing
+      ~CmsSpreadCoupon.is_in_arrears
       ~CmsSpreadCoupon.nominal
       ~CmsSpreadCoupon.rate
       ~CmsSpreadCoupon.reference_period_end

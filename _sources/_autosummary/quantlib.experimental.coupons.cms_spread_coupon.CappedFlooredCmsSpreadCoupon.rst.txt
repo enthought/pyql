@@ -52,6 +52,7 @@ quantlib.experimental.coupons.cms\_spread\_coupon.CappedFlooredCmsSpreadCoupon
       ~CappedFlooredCmsSpreadCoupon.index_fixing
       ~CappedFlooredCmsSpreadCoupon.is_capped
       ~CappedFlooredCmsSpreadCoupon.is_floored
+      ~CappedFlooredCmsSpreadCoupon.is_in_arrears
       ~CappedFlooredCmsSpreadCoupon.nominal
       ~CappedFlooredCmsSpreadCoupon.rate
       ~CappedFlooredCmsSpreadCoupon.reference_period_end
