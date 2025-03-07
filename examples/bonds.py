@@ -3,31 +3,29 @@
 This example is based on the QuantLib Excel bond demo.
 
 """
-from __future__ import print_function
-
 from quantlib.instruments.bonds import FixedRateBond
 from quantlib.time.api import (
-    TARGET, Unadjusted, ModifiedFollowing, Following, NullCalendar
+    Date, Period, Annual, TARGET, Unadjusted, ModifiedFollowing, Following, NullCalendar, Years,
+    DateGeneration
 )
 from quantlib.compounding import Continuous
 from quantlib.pricingengines.bond import DiscountingBondEngine
-from quantlib.time.date import Date, August, Period, Jul, Annual, Years
 from quantlib.time.daycounters.simple import Actual365Fixed
 from quantlib.time.daycounters.actual_actual import ActualActual, ISMA
-from quantlib.time.schedule import Schedule, Backward
+from quantlib.time.schedule import Schedule
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure
+    FlatForward, HandleYieldTermStructure
 )
 
-todays_date = Date(25, August, 2011)
+todays_date = Date(25, 8, 2011)
 
 
 settings = Settings.instance()
 settings.evaluation_date = todays_date
 
 calendar = TARGET()
-effective_date = Date(10, Jul, 2006)
+effective_date = Date(10, 7, 2006)
 termination_date = calendar.advance(
     effective_date, 10, Years, convention=Unadjusted
 )
@@ -45,7 +43,7 @@ fixed_bond_schedule = Schedule.from_rule(
     calendar,
     ModifiedFollowing,
     ModifiedFollowing,
-    Backward
+    DateGeneration.Backward
 )
 
 issue_date = effective_date
@@ -60,7 +58,7 @@ bond = FixedRateBond(
     issue_date
 )
 
-discounting_term_structure = YieldTermStructure(relinkable=True)
+discounting_term_structure = HandleYieldTermStructure()
 flat_term_structure = FlatForward(
     settlement_days = 1,
     forward         = 0.044,
@@ -76,6 +74,4 @@ bond.set_pricing_engine(pricing_engine)
 print('Settlement date: ', bond.settlement_date())
 print('Maturity date:', bond.maturity_date)
 print('Accrued amount: ', bond.accrued_amount(bond.settlement_date()))
-print('Clean price:', bond.clean_price)
-
-
+print('Clean price:', bond.clean_price())
