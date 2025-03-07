@@ -38,7 +38,7 @@
 <h1>quantlib.time.date.Date<a class="headerlink" href="#quantlib-time-date-date" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.time.date.Date">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.date.Date" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">day=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">month=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hours=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minutes=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Millisecond</span> <span class="pre">millisec=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Microsecond</span> <span class="pre">microsec=0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.date.Date" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Date class</p>
 <p>It provides methods to inspect dates as well as methods and
@@ -57,6 +57,12 @@ dates, and calculating their difference).</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#quantlib.time.date.Date.from_datetime" title="quantlib.time.date.Date.from_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_datetime</span></code></a>(cls, dt)</p></td>
 <td><p>Returns a QuantLib Date object from a Python datetime.date</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.time.date.Date.from_serial" title="quantlib.time.date.Date.from_serial"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_serial</span></code></a>(cls, serial_type serial)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.time.date.Date.from_string" title="quantlib.time.date.Date.from_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_string</span></code></a>(cls, str s, str fmt=None)</p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -109,6 +115,16 @@ dates, and calculating their difference).</p>
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.date.Date.from_datetime" title="Link to this definition">¶</a></dt>
 <dd><p>Returns a QuantLib Date object from a Python datetime.date</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.time.date.Date.from_serial">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_serial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serial_type</span> <span class="pre">serial</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.date.Date.from_serial" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.time.date.Date.from_string">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str</span> <span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str</span> <span class="pre">fmt=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.date.Date.from_string" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

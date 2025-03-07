@@ -19,6 +19,8 @@ quantlib.time.date.Date
    
       ~Date.__init__
       ~Date.from_datetime
+      ~Date.from_serial
+      ~Date.from_string
    
    
 
