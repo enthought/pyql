@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="quantlib.termstructures.yields" href="quantlib.termstructures.yields.html" />
-    <link rel="prev" title="quantlib.termstructures.yield_term_structure" href="quantlib.termstructures.yield_term_structure.html" />
+    <link rel="prev" title="quantlib.termstructures.yield_term_structure.HandleYieldTermStructure" href="quantlib.termstructures.yield_term_structure.HandleYieldTermStructure.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -39,16 +39,16 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.termstructures.yield_term_structure.YieldTermStructure">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">YieldTermStructure</span></span><a class="headerlink" href="#quantlib.termstructures.yield_term_structure.YieldTermStructure" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="quantlib.observable.Observable.html#quantlib.observable.Observable" title="quantlib.observable.Observable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Observable</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="quantlib.termstructure.TermStructure.html#quantlib.termstructure.TermStructure" title="quantlib.termstructure.TermStructure"><code class="xref py py-class docutils literal notranslate"><span class="pre">TermStructure</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.termstructures.yield_term_structure.YieldTermStructure.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yield_term_structure.YieldTermStructure.__init__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yield_term_structure.YieldTermStructure.__init__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.termstructures.yield_term_structure.YieldTermStructure.__init__" title="quantlib.termstructures.yield_term_structure.YieldTermStructure.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.termstructures.yield_term_structure.YieldTermStructure.__init__" title="quantlib.termstructures.yield_term_structure.YieldTermStructure.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#quantlib.termstructures.yield_term_structure.YieldTermStructure.discount" title="quantlib.termstructures.yield_term_structure.YieldTermStructure.discount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount</span></code></a>(self, value, bool extrapolate=False)</p></td>
@@ -57,13 +57,10 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.termstructures.yield_term_structure.YieldTermStructure.forward_rate" title="quantlib.termstructures.yield_term_structure.YieldTermStructure.forward_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_rate</span></code></a>(self, d1, d2, ...)</p></td>
 <td><p>Returns the forward interest rate between two dates or times.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.termstructures.yield_term_structure.YieldTermStructure.link_to" title="quantlib.termstructures.yield_term_structure.YieldTermStructure.link_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">link_to</span></code></a>(self, YieldTermStructure structure, ...)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code>(self, Date dt)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.termstructures.yield_term_structure.YieldTermStructure.time_from_reference" title="quantlib.termstructures.yield_term_structure.YieldTermStructure.time_from_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code></a>(self, Date dt)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.termstructures.yield_term_structure.YieldTermStructure.zero_rate" title="quantlib.termstructures.yield_term_structure.YieldTermStructure.zero_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_rate</span></code></a>(self, d, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.termstructures.yield_term_structure.YieldTermStructure.zero_rate" title="quantlib.termstructures.yield_term_structure.YieldTermStructure.zero_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_rate</span></code></a>(self, d, ...)</p></td>
 <td><p>Returns the implied zero-yield rate for the given date.</p></td>
 </tr>
 </tbody>
@@ -116,16 +113,6 @@ forward rate is returned.</p>
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.termstructures.yield_term_structure.YieldTermStructure.link_to">
-<span class="sig-name descname"><span class="pre">link_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">YieldTermStructure</span> <span class="pre">structure</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">register_as_observer=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yield_term_structure.YieldTermStructure.link_to" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.termstructures.yield_term_structure.YieldTermStructure.time_from_reference">
-<span class="sig-name descname"><span class="pre">time_from_reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yield_term_structure.YieldTermStructure.time_from_reference" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.termstructures.yield_term_structure.YieldTermStructure.zero_rate">
@@ -187,7 +174,7 @@ forward rate is returned.</p>
   <li><a href="quantlib.html">quantlib</a><ul>
   <li><a href="quantlib.termstructures.html">quantlib.termstructures</a><ul>
   <li><a href="quantlib.termstructures.yield_term_structure.html">quantlib.termstructures.yield_term_structure</a><ul>
-      <li>Previous: <a href="quantlib.termstructures.yield_term_structure.html" title="previous chapter">quantlib.termstructures.yield_term_structure</a></li>
+      <li>Previous: <a href="quantlib.termstructures.yield_term_structure.HandleYieldTermStructure.html" title="previous chapter">quantlib.termstructures.yield_term_structure.HandleYieldTermStructure</a></li>
       <li>Next: <a href="quantlib.termstructures.yields.html" title="next chapter">quantlib.termstructures.yields</a></li>
   </ul></li>
   </ul></li>

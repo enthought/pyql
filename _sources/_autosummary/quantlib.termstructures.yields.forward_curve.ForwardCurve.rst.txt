@@ -20,7 +20,6 @@ quantlib.termstructures.yields.forward\_curve.ForwardCurve
       ~ForwardCurve.__init__
       ~ForwardCurve.discount
       ~ForwardCurve.forward_rate
-      ~ForwardCurve.link_to
       ~ForwardCurve.time_from_reference
       ~ForwardCurve.zero_rate
    

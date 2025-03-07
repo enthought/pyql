@@ -35,7 +35,9 @@ quantlib.termstructures.default\_term\_structure.DefaultProbabilityTermStructure
       ~DefaultProbabilityTermStructure.jump_dates
       ~DefaultProbabilityTermStructure.jump_times
       ~DefaultProbabilityTermStructure.max_date
+      ~DefaultProbabilityTermStructure.max_time
       ~DefaultProbabilityTermStructure.reference_date
+      ~DefaultProbabilityTermStructure.settlement_days
 
    
    

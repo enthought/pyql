@@ -38,7 +38,9 @@ quantlib.termstructures.credit.piecewise\_default\_curve.PiecewiseDefaultCurve
       ~PiecewiseDefaultCurve.jump_dates
       ~PiecewiseDefaultCurve.jump_times
       ~PiecewiseDefaultCurve.max_date
+      ~PiecewiseDefaultCurve.max_time
       ~PiecewiseDefaultCurve.reference_date
+      ~PiecewiseDefaultCurve.settlement_days
       ~PiecewiseDefaultCurve.times
 
    

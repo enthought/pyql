@@ -20,7 +20,6 @@ quantlib.termstructures.yields.zero\_curve.LogLinearInterpolatedZeroCurve
       ~LogLinearInterpolatedZeroCurve.__init__
       ~LogLinearInterpolatedZeroCurve.discount
       ~LogLinearInterpolatedZeroCurve.forward_rate
-      ~LogLinearInterpolatedZeroCurve.link_to
       ~LogLinearInterpolatedZeroCurve.time_from_reference
       ~LogLinearInterpolatedZeroCurve.zero_rate
    

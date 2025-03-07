@@ -20,7 +20,6 @@ quantlib.termstructures.yields.zero\_curve.CubicInterpolatedZeroCurve
       ~CubicInterpolatedZeroCurve.__init__
       ~CubicInterpolatedZeroCurve.discount
       ~CubicInterpolatedZeroCurve.forward_rate
-      ~CubicInterpolatedZeroCurve.link_to
       ~CubicInterpolatedZeroCurve.time_from_reference
       ~CubicInterpolatedZeroCurve.zero_rate
    

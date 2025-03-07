@@ -20,6 +20,7 @@ quantlib.termstructures.default\_term\_structure
       :template: custom-class-template.rst
    
       DefaultProbabilityTermStructure
+      HandleDefaultProbabilityTermStructure
    
    
 

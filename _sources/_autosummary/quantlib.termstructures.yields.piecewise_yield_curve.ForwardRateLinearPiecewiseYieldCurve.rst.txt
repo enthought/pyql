@@ -21,7 +21,6 @@ quantlib.termstructures.yields.piecewise\_yield\_curve.ForwardRateLinearPiecewis
       ~ForwardRateLinearPiecewiseYieldCurve.discount
       ~ForwardRateLinearPiecewiseYieldCurve.forward_rate
       ~ForwardRateLinearPiecewiseYieldCurve.from_reference_date
-      ~ForwardRateLinearPiecewiseYieldCurve.link_to
       ~ForwardRateLinearPiecewiseYieldCurve.time_from_reference
       ~ForwardRateLinearPiecewiseYieldCurve.zero_rate
    

@@ -20,7 +20,6 @@ quantlib.termstructures.yield\_term\_structure.YieldTermStructure
       ~YieldTermStructure.__init__
       ~YieldTermStructure.discount
       ~YieldTermStructure.forward_rate
-      ~YieldTermStructure.link_to
       ~YieldTermStructure.time_from_reference
       ~YieldTermStructure.zero_rate
    

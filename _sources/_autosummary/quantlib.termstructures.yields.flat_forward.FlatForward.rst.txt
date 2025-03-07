@@ -20,7 +20,6 @@ quantlib.termstructures.yields.flat\_forward.FlatForward
       ~FlatForward.__init__
       ~FlatForward.discount
       ~FlatForward.forward_rate
-      ~FlatForward.link_to
       ~FlatForward.time_from_reference
       ~FlatForward.zero_rate
    

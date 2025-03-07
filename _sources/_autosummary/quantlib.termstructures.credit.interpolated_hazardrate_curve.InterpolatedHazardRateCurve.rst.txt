@@ -38,7 +38,9 @@ quantlib.termstructures.credit.interpolated\_hazardrate\_curve.InterpolatedHazar
       ~InterpolatedHazardRateCurve.jump_dates
       ~InterpolatedHazardRateCurve.jump_times
       ~InterpolatedHazardRateCurve.max_date
+      ~InterpolatedHazardRateCurve.max_time
       ~InterpolatedHazardRateCurve.reference_date
+      ~InterpolatedHazardRateCurve.settlement_days
       ~InterpolatedHazardRateCurve.times
 
    

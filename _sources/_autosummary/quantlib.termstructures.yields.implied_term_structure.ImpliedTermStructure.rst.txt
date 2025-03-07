@@ -20,7 +20,6 @@ quantlib.termstructures.yields.implied\_term\_structure.ImpliedTermStructure
       ~ImpliedTermStructure.__init__
       ~ImpliedTermStructure.discount
       ~ImpliedTermStructure.forward_rate
-      ~ImpliedTermStructure.link_to
       ~ImpliedTermStructure.time_from_reference
       ~ImpliedTermStructure.zero_rate
    

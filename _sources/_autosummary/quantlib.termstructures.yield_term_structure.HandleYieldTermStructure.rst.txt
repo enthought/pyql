@@ -1,0 +1,35 @@
+quantlib.termstructures.yield\_term\_structure.HandleYieldTermStructure
+=======================================================================
+
+.. currentmodule:: quantlib.termstructures.yield_term_structure
+
+.. autoclass:: HandleYieldTermStructure
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~HandleYieldTermStructure.__init__
+      ~HandleYieldTermStructure.link_to
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~HandleYieldTermStructure.current_link
+
+   
+   

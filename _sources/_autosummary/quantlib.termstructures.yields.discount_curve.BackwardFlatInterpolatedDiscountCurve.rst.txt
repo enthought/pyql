@@ -20,7 +20,6 @@ quantlib.termstructures.yields.discount\_curve.BackwardFlatInterpolatedDiscountC
       ~BackwardFlatInterpolatedDiscountCurve.__init__
       ~BackwardFlatInterpolatedDiscountCurve.discount
       ~BackwardFlatInterpolatedDiscountCurve.forward_rate
-      ~BackwardFlatInterpolatedDiscountCurve.link_to
       ~BackwardFlatInterpolatedDiscountCurve.time_from_reference
       ~BackwardFlatInterpolatedDiscountCurve.zero_rate
    

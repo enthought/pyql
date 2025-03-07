@@ -20,7 +20,6 @@ quantlib.termstructures.yields.zero\_curve.ZeroCurve
       ~ZeroCurve.__init__
       ~ZeroCurve.discount
       ~ZeroCurve.forward_rate
-      ~ZeroCurve.link_to
       ~ZeroCurve.time_from_reference
       ~ZeroCurve.zero_rate
    

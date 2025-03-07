@@ -20,7 +20,6 @@ quantlib.termstructures.yields.forward\_spreaded\_term\_structure.ForwardSpreade
       ~ForwardSpreadedTermStructure.__init__
       ~ForwardSpreadedTermStructure.discount
       ~ForwardSpreadedTermStructure.forward_rate
-      ~ForwardSpreadedTermStructure.link_to
       ~ForwardSpreadedTermStructure.time_from_reference
       ~ForwardSpreadedTermStructure.zero_rate
    

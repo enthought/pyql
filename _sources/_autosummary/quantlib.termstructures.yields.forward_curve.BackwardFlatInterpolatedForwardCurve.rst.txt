@@ -20,7 +20,6 @@ quantlib.termstructures.yields.forward\_curve.BackwardFlatInterpolatedForwardCur
       ~BackwardFlatInterpolatedForwardCurve.__init__
       ~BackwardFlatInterpolatedForwardCurve.discount
       ~BackwardFlatInterpolatedForwardCurve.forward_rate
-      ~BackwardFlatInterpolatedForwardCurve.link_to
       ~BackwardFlatInterpolatedForwardCurve.time_from_reference
       ~BackwardFlatInterpolatedForwardCurve.zero_rate
    

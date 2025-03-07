@@ -54,6 +54,7 @@
    settings
    sim
    stochastic_process
+   termstructure
    termstructures
    time
    time_grid

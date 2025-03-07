@@ -20,7 +20,6 @@ quantlib.termstructures.yields.piecewise\_zerospreaded\_termstructure.PiecewiseZ
       ~PiecewiseZeroSpreadedTermStructure.__init__
       ~PiecewiseZeroSpreadedTermStructure.discount
       ~PiecewiseZeroSpreadedTermStructure.forward_rate
-      ~PiecewiseZeroSpreadedTermStructure.link_to
       ~PiecewiseZeroSpreadedTermStructure.time_from_reference
       ~PiecewiseZeroSpreadedTermStructure.zero_rate
    

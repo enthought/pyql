@@ -1,0 +1,39 @@
+quantlib.termstructure.TermStructure
+====================================
+
+.. currentmodule:: quantlib.termstructure
+
+.. autoclass:: TermStructure
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~TermStructure.__init__
+      ~TermStructure.time_from_reference
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~TermStructure.day_counter
+      ~TermStructure.max_date
+      ~TermStructure.max_time
+      ~TermStructure.reference_date
+      ~TermStructure.settlement_days
+
+   
+   

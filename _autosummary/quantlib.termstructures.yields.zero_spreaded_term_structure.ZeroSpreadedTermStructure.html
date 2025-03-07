@@ -38,7 +38,7 @@
 <h1>quantlib.termstructures.yields.zero_spreaded_term_structure.ZeroSpreadedTermStructure<a class="headerlink" href="#quantlib-termstructures-yields-zero-spreaded-term-structure-zerospreadedtermstructure" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.termstructures.yields.zero_spreaded_term_structure.ZeroSpreadedTermStructure">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ZeroSpreadedTermStructure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">YieldTermStructure</span> <span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Quote</span> <span class="pre">spread</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">comp=Continuous</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequency</span> <span class="pre">freq=NoFrequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">dc=DayCounter()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yields.zero_spreaded_term_structure.ZeroSpreadedTermStructure" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ZeroSpreadedTermStructure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">HandleYieldTermStructure</span> <span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Quote</span> <span class="pre">spread</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">comp=Continuous</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequency</span> <span class="pre">freq=NoFrequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">dc=DayCounter()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yields.zero_spreaded_term_structure.ZeroSpreadedTermStructure" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.termstructures.yield_term_structure.YieldTermStructure.html#quantlib.termstructures.yield_term_structure.YieldTermStructure" title="quantlib.termstructures.yield_term_structure.YieldTermStructure"><code class="xref py py-class docutils literal notranslate"><span class="pre">YieldTermStructure</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.termstructures.yields.zero_spreaded_term_structure.ZeroSpreadedTermStructure.__init__">
@@ -57,13 +57,10 @@
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_rate</span></code>(self, d1, d2, ...)</p></td>
 <td><p>Returns the forward interest rate between two dates or times.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">link_to</span></code>(self, YieldTermStructure structure, ...)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code>(self, Date dt)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code>(self, Date dt)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_rate</span></code>(self, d, ...)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_rate</span></code>(self, d, ...)</p></td>
 <td><p>Returns the implied zero-yield rate for the given date.</p></td>
 </tr>
 </tbody>

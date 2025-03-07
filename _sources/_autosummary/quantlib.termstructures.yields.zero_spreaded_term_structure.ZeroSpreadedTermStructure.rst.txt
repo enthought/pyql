@@ -20,7 +20,6 @@ quantlib.termstructures.yields.zero\_spreaded\_term\_structure.ZeroSpreadedTermS
       ~ZeroSpreadedTermStructure.__init__
       ~ZeroSpreadedTermStructure.discount
       ~ZeroSpreadedTermStructure.forward_rate
-      ~ZeroSpreadedTermStructure.link_to
       ~ZeroSpreadedTermStructure.time_from_reference
       ~ZeroSpreadedTermStructure.zero_rate
    

@@ -38,7 +38,7 @@
 <h1>quantlib.termstructures.yields.flat_forward.FlatForward<a class="headerlink" href="#quantlib-termstructures-yields-flat-forward-flatforward" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.termstructures.yields.flat_forward.FlatForward">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FlatForward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">reference_date=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">daycounter=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">settlement_days=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">calendar=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">compounding=Compounding.Continuous</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequency</span> <span class="pre">frequency=Annual</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yields.flat_forward.FlatForward" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FlatForward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">reference_date=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">daycounter=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">settlement_days=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">calendar=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">compounding=Compounding.Continuous</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequency</span> <span class="pre">frequency=Annual</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yields.flat_forward.FlatForward" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.termstructures.yield_term_structure.YieldTermStructure.html#quantlib.termstructures.yield_term_structure.YieldTermStructure" title="quantlib.termstructures.yield_term_structure.YieldTermStructure"><code class="xref py py-class docutils literal notranslate"><span class="pre">YieldTermStructure</span></code></a></p>
 <p>Flat intereste-rate curve</p>
 <dl class="field-list simple">
@@ -73,13 +73,10 @@ this parameter is not used.</p></li>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_rate</span></code>(self, d1, d2, ...)</p></td>
 <td><p>Returns the forward interest rate between two dates or times.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">link_to</span></code>(self, YieldTermStructure structure, ...)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code>(self, Date dt)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code>(self, Date dt)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_rate</span></code>(self, d, ...)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_rate</span></code>(self, d, ...)</p></td>
 <td><p>Returns the implied zero-yield rate for the given date.</p></td>
 </tr>
 </tbody>
