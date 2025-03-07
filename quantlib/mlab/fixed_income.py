@@ -153,7 +153,7 @@ def _bndprice(bond_yield, coupon_rate, pricing_date, maturity_date,
 
     bond.set_pricing_engine(engine)
 
-    price = bond.clean_price
+    price = bond.clean_price()
     ac = bond.accrued_amount(pydate_to_qldate(settlement_date))
 
     return (price, ac)

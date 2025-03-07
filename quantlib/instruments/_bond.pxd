@@ -43,6 +43,12 @@ cdef extern from 'ql/instruments/bond.hpp' namespace 'QuantLib' nogil:
         Real dirtyPrice() except +
         Real settlementValue() except +
 
+        Rate cleanPrice(Rate y,
+                        DayCounter& dc,
+                        Compounding comp,
+                        Frequency freq,
+                        Date settlementDate)
+
         Rate bond_yield 'yield'(
             DayCounter& dc,
             Compounding comp,

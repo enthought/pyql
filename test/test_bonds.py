@@ -104,7 +104,7 @@ class BondTestCase(unittest.TestCase):
         self.assertTrue(settings.evaluation_date, bond.valuation_date)
 
         # the following assertion fails but must be verified
-        self.assertAlmostEqual(101.1, bond.clean_price, 1)
+        self.assertAlmostEqual(101.1, bond.clean_price(), 1)
         self.assertAlmostEqual(101.1, bond.net_present_value, 1)
         self.assertAlmostEqual(101.1, bond.dirty_price)
         self.assertAlmostEqual(0.009851, bond.accrued_amount())
@@ -117,7 +117,7 @@ class BondTestCase(unittest.TestCase):
         print('Coupon rate: {:.4%}'.format(coupon_rate))
         print('Yield: {:.4%}'.format(bond_yield))
         print('Net present value: {:.4f}'.format(bond.net_present_value))
-        print('Clean price: {:.4f}'.format(bond.clean_price))
+        print('Clean price: {:.4f}'.format(bond.clean_price()))
         print('Dirty price: {:.4f}'.format(bond.dirty_price))
         print('Accrued coupon: {:.6f}'.format(bond.accrued_amount()))
         print('Accrued coupon: {:.6f}'.format(
@@ -192,7 +192,7 @@ class BondTestCase(unittest.TestCase):
         self.assertAlmostEqual(
             0.6849, bond.accrued_amount(bond.settlement_date()), 4
         )
-        self.assertAlmostEqual(102.1154, bond.clean_price, 4)
+        self.assertAlmostEqual(102.1154, bond.clean_price(), 4)
 
 
     def test_excel_example_with_zero_coupon_bond(self):
@@ -228,7 +228,7 @@ class BondTestCase(unittest.TestCase):
             calendar.advance(todays_date, 3, Days), bond.settlement_date()
         )
         self.assertEqual(0., bond.accrued_amount(bond.settlement_date()))
-        self.assertAlmostEqual(57.6915, bond.clean_price, 4)
+        self.assertAlmostEqual(57.6915, bond.clean_price(), 4)
     def test_excel_example_with_floating_rate_bond(self):
 
         todays_date = Date(25, August, 2011)
