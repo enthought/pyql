@@ -1,19 +1,18 @@
 from tabulate import tabulate
 from quantlib.time.api import (TARGET, Date, Weeks, Days, Months, Years,
-                               Actual360, Actual365Fixed, Following, Annual, Unadjusted, Thirty360, Schedule, ModifiedFollowing, Semiannual, Period)
-from quantlib.time.schedule import Forward
+                               Actual360, Actual365Fixed, Following, Annual, Unadjusted, Thirty360, Schedule, ModifiedFollowing, Semiannual, Period, DateGeneration)
 from quantlib.time.daycounters.thirty360 import European
 from quantlib.settings import Settings
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.rate_helpers import DepositRateHelper, FraRateHelper, SwapRateHelper
-from quantlib.termstructures.yields.ois_rate_helper import OISRateHelper, DatedOISRateHelper
+from quantlib.termstructures.yields.ois_rate_helper import OISRateHelper
 from quantlib.termstructures.yields.piecewise_yield_curve import PiecewiseYieldCurve
 from quantlib.termstructures.yields.bootstraptraits import Discount
-from quantlib.termstructures.yields.api import YieldTermStructure
+from quantlib.termstructures.yields.api import HandleYieldTermStructure
 from quantlib.math.interpolation import Cubic
 from quantlib.indexes.ibor.eonia import Eonia
 from quantlib.indexes.api import Euribor6M
-from quantlib.instruments.swap import SwapType
+from quantlib.instruments.swap import Swap
 from quantlib.instruments.vanillaswap import VanillaSwap
 from quantlib.pricingengines.swap import DiscountingSwapEngine
 
@@ -107,19 +106,19 @@ ois1M = OISRateHelper(
 
 
 # Dated OIS
-oisDated1 = DatedOISRateHelper(
+oisDated1 = OISRateHelper.from_dates(
         Date(16, 1, 2013), Date(13, 2, 2013),
         oisDated1Rate, eonia)
-oisDated2 = DatedOISRateHelper(
+oisDated2 = OISRateHelper.from_dates(
     Date(13, 2, 2013), Date(13, 3, 2013),
     oisDated2Rate, eonia)
-oisDated3 = DatedOISRateHelper(
+oisDated3 = OISRateHelper.from_dates(
     Date(13, 3, 2013), Date(10, 4, 2013),
     oisDated3Rate, eonia)
-oisDated4 = DatedOISRateHelper(
+oisDated4 = OISRateHelper.from_dates(
     Date(10, 4, 2013), Date(8, 5, 2013),
     oisDated4Rate, eonia)
-oisDated5 = DatedOISRateHelper(
+oisDated5 = OISRateHelper.from_dates(
     Date(8, 5, 2013), Date(12, 6, 2013),
     oisDated5Rate, eonia)
 
@@ -166,9 +165,9 @@ eonia_term_structure.extrapolation = True
 
 # Term structures that will be used for pricing:
 # the one used for discounting cash flows
-discountingTermStructure = YieldTermStructure()
+discountingTermStructure = HandleYieldTermStructure()
 # the one used for forward rate forecasting
-forecastingTermStructure = YieldTermStructure()
+forecastingTermStructure = HandleYieldTermStructure()
 
 discountingTermStructure.link_to(eonia_term_structure)
 
@@ -248,19 +247,19 @@ euriborIndex = Euribor6M(forecastingTermStructure)
 spread = 0.0
 
 lengthInYears = 5
-swapType = SwapType.Payer
+swapType = Swap.Payer
 
 maturity = settlement_date + lengthInYears*Years;
 fixedSchedule = Schedule.from_rule(settlement_date, maturity,
                                    Period(fixedLegFrequency),
                                    calendar, fixedLegConvention,
                                    fixedLegConvention,
-                                   Forward, False)
+                                   DateGeneration.Forward, False)
 floatSchedule = Schedule.from_rule(settlement_date, maturity,
                                    Period(floatingLegFrequency),
                                    calendar, floatingLegConvention,
                                    floatingLegConvention,
-                                   Forward, False)
+                                   DateGeneration.Forward, False)
 spot5YearSwap = VanillaSwap(swapType, nominal,
                             fixedSchedule, fixedRate, fixedLegDayCounter,
                             floatSchedule, euriborIndex, spread,
@@ -272,12 +271,12 @@ fwdFixedSchedule = Schedule.from_rule(fwdStart, fwdMaturity,
                                       Period(fixedLegFrequency),
                                       calendar, fixedLegConvention,
                                       fixedLegConvention,
-                                      Forward, False)
+                                      DateGeneration.Forward, False)
 fwdFloatSchedule = Schedule.from_rule(fwdStart, fwdMaturity,
                                       Period(floatingLegFrequency),
                                       calendar, floatingLegConvention,
                                       floatingLegConvention,
-                                      Forward, False)
+                                      DateGeneration.Forward, False)
 oneYearForward5YearSwap = VanillaSwap(swapType, nominal,
                                       fwdFixedSchedule, fixedRate, fixedLegDayCounter,
                                       fwdFloatSchedule, euriborIndex, spread,

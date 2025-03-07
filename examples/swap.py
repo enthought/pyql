@@ -2,22 +2,21 @@
 
 Warning: this is work in progress and currently not working.
 """
-from __future__ import print_function
 from quantlib.indexes.api import Euribor6M
-from quantlib.instruments.swap import VanillaSwap, Payer
+from quantlib.math.interpolation import LogLinear
+from quantlib.instruments.api import VanillaSwap
 from quantlib.pricingengines.swap import DiscountingSwapEngine
 from quantlib.settings import Settings
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.api import DepositRateHelper, FraRateHelper
 from quantlib.termstructures.yields.api import FuturesRateHelper, SwapRateHelper
-from quantlib.termstructures.yields.api import YieldTermStructure
+from quantlib.termstructures.yields.api import HandleYieldTermStructure
 from quantlib.termstructures.yields.api import (
-    PiecewiseYieldCurve, BootstrapTrait, Interpolator )
+    PiecewiseYieldCurve, BootstrapTrait )
 from quantlib.time.api import Actual360, Date, November, TARGET, Weeks, Annual
 from quantlib.time.api import Months, Years, Period, ModifiedFollowing
 from quantlib.time.api import Unadjusted, Thirty360, Semiannual, Schedule
-from quantlib.time.api import ActualActual, ISDA
-from quantlib.time.schedule import Forward
+from quantlib.time.api import ActualActual, ISDA, DateGeneration
 # global data
 calendar = TARGET()
 todaysDate = Date(6,November,2001);
@@ -103,30 +102,30 @@ swapHelpers = [ SwapRateHelper.from_tenor(swaps[(n,unit)],
                                fixedLegDayCounter, Euribor6M())
                 for n, unit in swaps.keys() ]
 
-### Curve building 
+### Curve building
 
 ts_daycounter = ActualActual(ISDA)
 
 # term-structure construction
 helpers = depositHelpers + swapHelpers
-depoSwapCurve = PiecewiseYieldCurve.from_reference_date(
-    BootstrapTrait.Discount, Interpolator.LogLinear, settlementDate, helpers, ts_daycounter
+depoSwapCurve = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(
+    settlementDate, helpers, ts_daycounter
 )
 
 helpers = depositHelpers[:2] + futuresHelpers + swapHelpers[1:]
-depoFuturesSwapCurve = PiecewiseYieldCurve.from_reference_date(
-    BootstrapTrait.Discount, Interpolator.LogLinear,settlementDate, helpers, ts_daycounter
+depoFuturesSwapCurve = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(
+    settlementDate, helpers, ts_daycounter
 )
 
 helpers = depositHelpers[:3] + fraHelpers + swapHelpers
-depoFraSwapCurve = PiecewiseYieldCurve.from_reference_date(
-    BootstrapTrait.Discount, Interpolator.LogLinear, settlementDate, helpers, ts_daycounter
+depoFraSwapCurve = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(
+    settlementDate, helpers, ts_daycounter
 )
 
 
 # Term structures that will be used for pricing:
-discountTermStructure = YieldTermStructure()
-forecastTermStructure = YieldTermStructure()
+discountTermStructure = HandleYieldTermStructure()
+forecastTermStructure = HandleYieldTermStructure()
 
 ### SWAPS TO BE PRICED
 
@@ -151,14 +150,14 @@ floatingLegDayCounter = index.day_counter
 fixedSchedule = Schedule.from_rule(settlementDate, maturity,
                          fixedLegTenor, calendar,
                          fixedLegAdjustment, fixedLegAdjustment,
-                         Forward, False)
+                         DateGeneration.Forward, False)
 floatingSchedule = Schedule.from_rule(settlementDate, maturity,
                             floatingLegTenor, calendar,
                             floatingLegAdjustment, floatingLegAdjustment,
-                            Forward, False)
+                            DateGeneration.Forward, False)
 swapEngine = DiscountingSwapEngine(discountTermStructure)
 
-spot = VanillaSwap(Payer, nominal,
+spot = VanillaSwap(VanillaSwap.Payer, nominal,
                    fixedSchedule, fixedRate, fixedLegDayCounter,
                    floatingSchedule, index, spread,
                    floatingLegDayCounter)
@@ -169,13 +168,13 @@ forwardEnd = calendar.advance(forwardStart,length,Years)
 fixedSchedule = Schedule.from_rule(forwardStart, forwardEnd,
                          fixedLegTenor, calendar,
                          fixedLegAdjustment, fixedLegAdjustment,
-                         Forward, False)
+                         DateGeneration.Forward, False)
 floatingSchedule = Schedule.from_rule(forwardStart, forwardEnd,
                             floatingLegTenor, calendar,
                             floatingLegAdjustment, floatingLegAdjustment,
-                            Forward, False)
+                            DateGeneration.Forward, False)
 
-forward = VanillaSwap(Payer, nominal,
+forward = VanillaSwap(VanillaSwap.Payer, nominal,
                       fixedSchedule, fixedRate, fixedLegDayCounter,
                       floatingSchedule, index, spread,
                       floatingLegDayCounter)

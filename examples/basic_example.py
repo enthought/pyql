@@ -1,15 +1,15 @@
-""" Simple example pricing a European option 
+""" Simple example pricing a European option
 using a Black&Scholes Merton process."""
 from __future__ import print_function
 
-from quantlib.instruments.api import (EuropeanExercise, PlainVanillaPayoff, Put,
+from quantlib.instruments.api import (EuropeanExercise, PlainVanillaPayoff, OptionType,
                                       VanillaOption)
 from quantlib.pricingengines.api import AnalyticEuropeanEngine
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.time.api import TARGET, Actual365Fixed, today
-from quantlib.termstructures.yields.api import FlatForward
+from quantlib.termstructures.yields.api import FlatForward, HandleYieldTermStructure
 from quantlib.termstructures.volatility.api import BlackConstantVol
 
 
@@ -24,7 +24,7 @@ settlement_date = todays_date + 2
 settings.evaluation_date = todays_date
 
 # options parameters
-option_type = Put
+option_type = OptionType.Put
 underlying = 36
 strike = 40
 dividend_yield = 0.00
@@ -36,16 +36,23 @@ daycounter = Actual365Fixed()
 underlyingH = SimpleQuote(underlying)
 
 # bootstrap the yield/dividend/vol curves
-flat_term_structure = FlatForward(
-    reference_date=settlement_date,
-    forward=risk_free_rate,
-    daycounter=daycounter
+flat_term_structure = HandleYieldTermStructure()
+flat_dividend_ts = HandleYieldTermStructure()
+
+flat_term_structure.link_to(
+    FlatForward(
+        reference_date=settlement_date,
+        forward=risk_free_rate,
+        daycounter=daycounter
+    )
 )
 
-flat_dividend_ts = FlatForward(
-    reference_date=settlement_date,
-    forward=dividend_yield,
-    daycounter=daycounter
+flat_dividend_ts.link_to(
+    FlatForward(
+        reference_date=settlement_date,
+        forward=dividend_yield,
+        daycounter=daycounter
+    )
 )
 
 flat_vol_ts = BlackConstantVol(

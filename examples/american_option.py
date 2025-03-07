@@ -6,20 +6,18 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
-from __future__ import print_function
-
-from quantlib.instruments.api import AmericanExercise, VanillaOption, Put
+from quantlib.instruments.api import AmericanExercise, VanillaOption, OptionType
 from quantlib.instruments.payoffs import PlainVanillaPayoff
 from quantlib.pricingengines.api import BaroneAdesiWhaleyApproximationEngine
-from quantlib.pricingengines.api import FDAmericanEngine
+from quantlib.pricingengines.api import FdBlackScholesVanillaEngine
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.time.api import Actual365Fixed, Date, May, TARGET
-from quantlib.termstructures.volatility.equityfx.black_vol_term_structure \
-    import BlackConstantVol
-from quantlib.termstructures.yields.api import FlatForward
-
+from quantlib.termstructures.volatility.api import BlackConstantVol
+from quantlib.termstructures.yields.api import HandleYieldTermStructure, FlatForward
+from quantlib.methods.finitedifferences.solvers.fdmbackwardsolver \
+    import FdmSchemeDesc
 
 def main():
     # global data
@@ -27,10 +25,13 @@ def main():
     Settings.instance().evaluation_date = todays_date
     settlement_date = Date(17, May, 1998)
 
-    risk_free_rate = FlatForward(
-        reference_date=settlement_date,
-        forward=0.06,
-        daycounter=Actual365Fixed()
+    risk_free_rate = HandleYieldTermStructure()
+    risk_free_rate.link_to(
+        FlatForward(
+            reference_date=settlement_date,
+            forward=0.06,
+            daycounter=Actual365Fixed()
+        )
     )
 
     # option parameters
@@ -38,16 +39,19 @@ def main():
         earliest_exercise_date=settlement_date,
         latest_exercise_date=Date(17, May, 1999)
     )
-    payoff = PlainVanillaPayoff(Put, 40.0)
+    payoff = PlainVanillaPayoff(OptionType.Put, 40.0)
 
     # market data
     underlying = SimpleQuote(36.0)
     volatility = BlackConstantVol(todays_date, TARGET(), 0.20,
                                   Actual365Fixed())
-    dividend_yield = FlatForward(
-        reference_date=settlement_date,
-        forward=0.00,
-        daycounter=Actual365Fixed()
+    dividend_yield = HandleYieldTermStructure()
+    dividend_yield.link_to(
+        FlatForward(
+            reference_date=settlement_date,
+            forward=0.00,
+            daycounter=Actual365Fixed()
+        )
     )
 
     # report
@@ -91,8 +95,10 @@ def main():
     time_steps = 801
     grid_points = 800
 
-    option.set_pricing_engine(FDAmericanEngine('CrankNicolson',
-                                               process, time_steps, grid_points))
+    option.set_pricing_engine(
+        FdBlackScholesVanillaEngine(
+            process, time_steps, grid_points, scheme=FdmSchemeDesc.CrankNicolson())
+    )
     report('finite differences', option.net_present_value)
 
     print('This is work in progress.')
