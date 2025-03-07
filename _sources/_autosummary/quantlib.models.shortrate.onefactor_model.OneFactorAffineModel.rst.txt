@@ -18,7 +18,8 @@ quantlib.models.shortrate.onefactor\_model.OneFactorAffineModel
 
    
       ~OneFactorAffineModel.__init__
-      ~OneFactorAffineModel.discount_bound
+      ~OneFactorAffineModel.discount_bond
+      ~OneFactorAffineModel.discount_bond_option
       ~OneFactorAffineModel.params
       ~OneFactorAffineModel.set_params
    

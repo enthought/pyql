@@ -29,6 +29,8 @@ quantlib.models.shortrate.onefactormodels
    :recursive:
 
    blackkarasinski
+   gaussian1dmodel
+   gsr
    hullwhite
    vasicek
 

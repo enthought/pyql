@@ -31,4 +31,6 @@ quantlib.models.shortrate
    calibrationhelpers
    onefactor_model
    onefactormodels
+   twofactor_model
+   twofactormodels
 

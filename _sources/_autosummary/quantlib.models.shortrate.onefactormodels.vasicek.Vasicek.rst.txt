@@ -18,7 +18,8 @@ quantlib.models.shortrate.onefactormodels.vasicek.Vasicek
 
    
       ~Vasicek.__init__
-      ~Vasicek.discount_bound
+      ~Vasicek.discount_bond
+      ~Vasicek.discount_bond_option
       ~Vasicek.params
       ~Vasicek.set_params
    

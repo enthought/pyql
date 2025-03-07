@@ -20,7 +20,8 @@ quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite
       ~HullWhite.__init__
       ~HullWhite.calibrate
       ~HullWhite.convexity_bias
-      ~HullWhite.discount_bound
+      ~HullWhite.discount_bond
+      ~HullWhite.discount_bond_option
       ~HullWhite.params
       ~HullWhite.set_params
    

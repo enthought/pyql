@@ -29,6 +29,9 @@ quantlib.pricingengines.swaption
    :recursive:
 
    black_swaption_engine
+   fdg2_swaption_engine
+   fdhullwhite_swaption_engine
+   g2_swaption_engine
    jamshidian_swaption_engine
    tree_swaption_engine
 

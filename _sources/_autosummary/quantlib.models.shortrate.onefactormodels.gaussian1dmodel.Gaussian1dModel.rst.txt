@@ -1,0 +1,26 @@
+quantlib.models.shortrate.onefactormodels.gaussian1dmodel.Gaussian1dModel
+=========================================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactormodels.gaussian1dmodel
+
+.. autoclass:: Gaussian1dModel
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Gaussian1dModel.__init__
+   
+   
+
+   
+   
+   

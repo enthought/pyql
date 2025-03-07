@@ -1,0 +1,35 @@
+quantlib.models.shortrate.twofactor\_model.ShortRateDynamics
+============================================================
+
+.. currentmodule:: quantlib.models.shortrate.twofactor_model
+
+.. autoclass:: ShortRateDynamics
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ShortRateDynamics.__init__
+      ~ShortRateDynamics.short_rate
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~ShortRateDynamics.process_x
+
+   
+   

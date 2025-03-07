@@ -22,6 +22,7 @@ quantlib.models.model
       AffineModel
       CalibratedModel
       ShortRateModel
+      TermStructureConsistentModel
    
    
 

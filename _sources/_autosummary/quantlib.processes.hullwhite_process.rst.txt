@@ -19,6 +19,8 @@ quantlib.processes.hullwhite\_process
       :toctree:
       :template: custom-class-template.rst
    
+      ForwardHullWhiteProcess
+      HullWhiteForwardProcess
       HullWhiteProcess
    
    

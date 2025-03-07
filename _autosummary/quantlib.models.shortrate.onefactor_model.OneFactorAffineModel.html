@@ -51,13 +51,16 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.__init__" title="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bound" title="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bound"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount_bound</span></code></a>(self, Time now, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond" title="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount_bond</span></code></a>(self, Time now, Time maturity, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">params</span></code>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond_option" title="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond_option"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount_bond_option</span></code></a>(self, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(self, Array params)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">params</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(self, Array params)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -71,8 +74,13 @@
 </tbody>
 </table>
 <dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bound">
-<span class="sig-name descname"><span class="pre">discount_bound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Time</span> <span class="pre">now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Time</span> <span class="pre">maturity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bound" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond">
+<span class="sig-name descname"><span class="pre">discount_bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Time</span> <span class="pre">now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Time</span> <span class="pre">maturity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond_option">
+<span class="sig-name descname"><span class="pre">discount_bond_option</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">OptionType</span> <span class="pre">option_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">strike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Time</span> <span class="pre">maturity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Time</span> <span class="pre">bond_maturity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond_option" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

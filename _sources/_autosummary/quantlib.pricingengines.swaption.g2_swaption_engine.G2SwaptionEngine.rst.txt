@@ -1,0 +1,26 @@
+quantlib.pricingengines.swaption.g2\_swaption\_engine.G2SwaptionEngine
+======================================================================
+
+.. currentmodule:: quantlib.pricingengines.swaption.g2_swaption_engine
+
+.. autoclass:: G2SwaptionEngine
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~G2SwaptionEngine.__init__
+   
+   
+
+   
+   
+   

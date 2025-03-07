@@ -1,0 +1,36 @@
+quantlib.models.shortrate.twofactormodels.g2.G2
+===============================================
+
+.. currentmodule:: quantlib.models.shortrate.twofactormodels.g2
+
+.. autoclass:: G2
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~G2.__init__
+      ~G2.params
+      ~G2.set_params
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~G2.dynamics
+
+   
+   

@@ -31,6 +31,7 @@ quantlib.processes
    api
    bates_process
    black_scholes_process
+   forwardmeasureprocess
    heston_process
    hullwhite_process
 
