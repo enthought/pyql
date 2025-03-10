@@ -22,6 +22,7 @@ from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.volatility.api import BlackConstantVol
 
+import contextlib
 import unittest
 
 from .utilities import flat_rate
@@ -42,9 +43,11 @@ class AsianOptionTestCase(unittest.TestCase):
     """
 
     def setUp(self):
-
         self.settings = Settings()
-
+        stack = contextlib.ExitStack()
+        self.settings = stack.enter_context(Settings())
+        self.addCleanup(stack.close)
+            
         self.calendar = NullCalendar()
 
         self.today = Date(6, June, 2021)
@@ -96,10 +99,9 @@ class AsianOptionTestCase(unittest.TestCase):
 
         self.payoff = PlainVanillaPayoff(self.option_type, self.strike)
 
-
     def test_analytic_cont_geom_av_price(self):
         """
-        "Testing analytic continuous geometric average-price Asians...")
+        Testing analytic continuous geometric average-price Asians
 
         data from "Option Pricing Formulas", Haug, pag.96-97
         """
