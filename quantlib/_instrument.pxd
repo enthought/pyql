@@ -11,6 +11,7 @@ cdef extern from 'ql/instrument.hpp' namespace 'QuantLib':
         Instrument()
         bool isExpired()
         Real NPV() except +
+        Real errorEstimate() except +
         Date& valuationDate() except +
         void setPricingEngine(shared_ptr[PricingEngine]&)
         T result[T](const string& tag)

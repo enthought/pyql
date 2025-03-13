@@ -25,6 +25,11 @@ cdef class Instrument(Observable):
         def __get__(self):
             return self._thisptr.get().NPV()
 
+    @property
+    def error_estimate(self) -> Real:
+        """error estimate on the NPV when available"""
+        return self._thisptr.get().errorEstimate()
+
     property npv:
         """ Shortcut to the net_present_value property. """
         def __get__(self):
