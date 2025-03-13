@@ -1,6 +1,3 @@
-from __future__ import division
-from __future__ import print_function
-
 import unittest
 
 import numpy as np
@@ -15,12 +12,14 @@ from quantlib.models.shortrate.onefactormodels.hullwhite import HullWhite
 from quantlib.instruments.vanillaoption import VanillaOption
 
 from quantlib.time.api import (today, Years, Actual365Fixed,
-                               Period, May, Date,
+                               Period, May, Date, Actual360,
                                NullCalendar)
 
 from quantlib.processes.api import (BlackScholesMertonProcess,
                                     HestonProcess,
-                                    HullWhiteProcess)
+                                    HullWhiteProcess,
+                                    HullWhiteForwardProcess,
+                                    HybridHestonHullWhiteProcess)
 
 from quantlib.models.equity.heston_model import (
     HestonModel)
@@ -33,7 +32,8 @@ from quantlib.pricingengines.api import (
     AnalyticBSMHullWhiteEngine,
     AnalyticHestonEngine,
     AnalyticHestonHullWhiteEngine,
-    FdHestonHullWhiteVanillaEngine)
+    FdHestonHullWhiteVanillaEngine,
+    MCHestonHullWhiteEngine)
 
 from quantlib.quotes import SimpleQuote
 
@@ -43,6 +43,7 @@ from quantlib.methods.finitedifferences.solvers.fdmbackwardsolver import FdmSche
 
 from .utilities import flat_rate
 
+from math import sin, exp
 
 class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
 
@@ -95,8 +96,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         self.dates = dates
 
     def test_bsm_hw(self):
-        print("Testing European option pricing for a BSM process" +
-              " with one-factor Hull-White model...")
+        """Testing European option pricing for a BSM process
+        with one-factor Hull-White model"""
 
         dc = Actual365Fixed()
         todays_date = today()
@@ -247,12 +248,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         self.assertAlmostEqual(npv_bsm, npv_hestonhw, delta=tol)
 
     def test_compare_BsmHW_HestonHW(self):
-        """
-        From Quantlib test suite
-        """
-
-        print("Comparing European option pricing for a BSM " +
-              "process with one-factor Hull-White model...")
+        """Comparing European option pricing for a BSM
+        process with one-factor Hull-White model"""
 
         dc = Actual365Fixed()
 
@@ -355,8 +352,8 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         # constant yield and div curves
 
         dates = [todays_date + Period(i, Years) for i in range(3)]
-        rates = [0.04 for i in range(3)]
-        divRates = [0.03 for i in range(3)]
+        rates = [0.04] * 3
+        divRates = [0.03] * 3
         r_ts = HandleYieldTermStructure(ZeroCurve(dates, rates, dc))
         q_ts = HandleYieldTermStructure(ZeroCurve(dates, divRates, dc))
 
@@ -420,3 +417,50 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         expected_price = [11.38, ] * 4 + [12.79, ] * 4 + [14.06, ] * 4
 
         np.testing.assert_almost_equal(calc_price, expected_price, 2)
+
+    def test_mc_vanilla_pricing(self):
+        """Testing Monte-Carlo vanilla option pricing"""
+        dc = Actual360()
+        todays_date = today()
+        settings = Settings()
+        settings.evaluation_date = todays_date
+        dates = [todays_date + Period(i, Years) for i in range(41)]
+        rates = [0.03 + 0.0003 * exp(sin(i / 4.0)) for i in range(41)]
+        div_rates = [0.02 + 0.0001 * exp(sin(i / 5.0)) for i in range(41)]
+        maturity = todays_date + Period(20, Years)
+
+        s0 = SimpleQuote(100)
+        r_ts = HandleYieldTermStructure(ZeroCurve(dates, rates, dc))
+        q_ts = HandleYieldTermStructure(ZeroCurve(dates, div_rates, dc))
+        vol = SimpleQuote(0.25)
+        vol_ts = BlackConstantVol(todays_date, NullCalendar(), vol, dc)
+        bsm_process= BlackScholesMertonProcess(s0, q_ts, r_ts, vol_ts)
+        heston_process = HestonProcess(r_ts, q_ts, s0, 0.0625, 0.5, 0.0625, 1e-5, 0.3)
+        hw_process = HullWhiteForwardProcess(r_ts, 0.01, 0.01)
+        hw_process.forward_measure_time = dc.year_fraction(todays_date, maturity)
+
+        tol = 0.05
+        corr = [-0.9, -0.5, 0.0, 0.5, 0.9]
+        strike = [100.0]
+        exercise = EuropeanExercise(maturity)
+        for rho in corr:
+            for s in strike:
+                joint_process = HybridHestonHullWhiteProcess(heston_process, hw_process, rho)
+                payoff = PlainVanillaPayoff(OptionType.Put, s)
+                option_heston_hw = VanillaOption(payoff, exercise)
+                engine = MCHestonHullWhiteEngine(joint_process,
+                                                 time_steps=1,
+                                                 required_tolerance=tol,
+                                                 seed=42)
+                option_heston_hw.set_pricing_engine(engine)
+                hw_model = HullWhite(r_ts, hw_process.a, hw_process.sigma)
+                option_BsmHW = VanillaOption(payoff, exercise)
+                option_BsmHW.set_pricing_engine(AnalyticBSMHullWhiteEngine(rho, bsm_process, hw_model))
+                calculated = option_heston_hw.npv
+                error = option_heston_hw.error_estimate
+                expected = option_BsmHW.npv
+                print(abs(calculated - expected), error)
+                if rho == 0:
+                    self.assertTrue(abs(calculated - expected) < tol)
+                else:
+                    self.assertTrue(abs(calculated - expected) < 1.2 * error)
