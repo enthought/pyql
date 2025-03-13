@@ -4,5 +4,5 @@ from .forwardmeasureprocess cimport ForwardMeasureProcess1D
 cdef class HullWhiteProcess(StochasticProcess1D):
     pass
 
-cdef class ForwardHullWhiteProcess(ForwardMeasureProcess1D):
+cdef class HullWhiteForwardProcess(ForwardMeasureProcess1D):
     pass
