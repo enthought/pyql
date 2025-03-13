@@ -9,7 +9,7 @@ from .vanilla.vanilla import BatesDoubleExpEngine, BatesDoubleExpDetJumpEngine
 from .vanilla.vanilla import AnalyticDividendEuropeanEngine
 from .vanilla.vanilla import FdHestonHullWhiteVanillaEngine
 from .vanilla.fdblackscholesvanillaengine import FdBlackScholesVanillaEngine
-
+from .vanilla.mchestonhullwhiteengine import MCHestonHullWhiteEngine
 from .swaption.jamshidian_swaption_engine import JamshidianSwaptionEngine
 from .swaption.black_swaption_engine import (
         BlackSwaptionEngine, BachelierSwaptionEngine)
