@@ -1,5 +1,4 @@
-include '../types.pxi'
-
+from quantlib.types cimport Real
 from .heston_process cimport PartialTruncation
 cimport quantlib._stochastic_process as _sp
 

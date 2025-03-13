@@ -7,14 +7,13 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../types.pxi'
-
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
+from quantlib.types cimport Real, Size
 cimport quantlib._quote as _qt
 from quantlib._stochastic_process cimport StochasticProcess
 
-cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib':
+cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass HestonProcess(StochasticProcess):
         HestonProcess() # fake empty constructor for Cython
@@ -62,4 +61,3 @@ cdef extern from 'ql/processes/batesprocess.hpp' namespace 'QuantLib':
         Real Lambda 'lambda'() except +
         Real nu() except +
         Real delta() except +
-
