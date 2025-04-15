@@ -12,9 +12,10 @@ import quantlib.reference.names as nm
 import quantlib.reference.data_structures as ds
 from pandas import DataFrame
 
-from quantlib.instruments.option import EuropeanExercise, VanillaOption
+from quantlib.instruments.option import VanillaOption
+from quantlib.instruments.exercise import EuropeanExercise
 from quantlib.instruments.payoffs import PlainVanillaPayoff
-from quantlib.instruments.option import Call, Put
+from quantlib.instruments.option import OptionType
 from quantlib.models.equity.heston_model import HestonModel
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.quotes import SimpleQuote
@@ -141,7 +142,7 @@ def heston_pricer(trade_date, options, params, rates, spot):
         expiry_date = row[nm.EXPIRY_DATE]
         strike = row[nm.STRIKE]
 
-        option_type = Call if row[nm.OPTION_TYPE] == nm.CALL_OPTION else Put
+        option_type = OptionType.Call if row[nm.OPTION_TYPE] == nm.CALL_OPTION else OptionType.Put
 
         payoff = PlainVanillaPayoff(option_type, strike)
 
