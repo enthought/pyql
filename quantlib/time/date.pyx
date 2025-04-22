@@ -1,3 +1,4 @@
+# cython: c_string_type=unicode, c_string_encoding=utf8
 # Cython imports
 from cython.operator cimport dereference as deref
 from cpython.datetime cimport date, date_new, datetime_new, datetime, import_datetime, date_year, date_month, date_day, datetime_year, datetime_month, datetime_day, datetime_hour, datetime_minute, datetime_second, datetime_microsecond, PyDate_Check, PyDateTime_Check
@@ -20,7 +21,6 @@ globals().update(getattr(Weekday, "__members__"))
 globals().update(getattr(Month, "__members__"))
 # Python imports
 import_datetime()
-import six
 
 class TimeUnit(IntEnum):
     Days         = _period.Days #: Days = 0
@@ -50,17 +50,16 @@ cdef class Period:
 
     '''
     def __init__(self, *args):
-        cdef int tu
+        cdef string tenor
         if len(args) == 1:
-            tenor = args[0]
-            if(isinstance(tenor, six.string_types)):
-                self._thisptr.reset(new QlPeriod(parse(tenor.encode('utf-8'))))
+            if isinstance(args[0], str):
+                tenor = <string>args[0]
+                self._thisptr.reset(new QlPeriod(parse(tenor)))
             else:
                 self._thisptr.reset(new QlPeriod(<_period.Frequency>args[0]))
         elif len(args) == 2:
-            tu = <int>args[1]
-            self._thisptr.reset(new QlPeriod(<Integer> args[0],
-                                             <_period.TimeUnit>tu))
+            self._thisptr.reset(new QlPeriod(<Integer>args[0],
+                                             <_period.TimeUnit><int>args[1]))
         elif len(args) == 0:
             self._thisptr.reset(new QlPeriod())
         else:
@@ -84,17 +83,17 @@ cdef class Period:
 
     def __sub__(self, value):
         cdef QlPeriod outp
-        outp = deref((<Period?>self)._thisptr) - deref((<Period?>value)._thisptr)
+        outp = deref(self._thisptr) - deref((<Period?>value)._thisptr)
         return period_from_qlperiod(outp)
 
     def __neg__(self):
         cdef QlPeriod outp
-        outp = unary_minus(deref((<Period>self)._thisptr))
+        outp = unary_minus(deref(self._thisptr))
         return period_from_qlperiod(outp)
 
     def __add__(self, value):
         cdef QlPeriod outp
-        outp = deref( (<Period?>self)._thisptr) + \
+        outp = deref(self._thisptr) + \
                 deref( (<Period?>value)._thisptr)
         return period_from_qlperiod(outp)
 
@@ -145,7 +144,7 @@ cdef class Period:
             return NotImplemented
 
     def __richcmp__(self, value, int t):
-        cdef QlPeriod p1 = deref((<Period?>self)._thisptr)
+        cdef QlPeriod p1 = deref(self._thisptr)
         cdef QlPeriod p2 = deref((<Period?>value)._thisptr)
 
         if t==0:
@@ -164,12 +163,12 @@ cdef class Period:
     def __str__(self):
         cdef _period.stringstream ss
         ss << _period.long_period(deref(self._thisptr))
-        return ss.str().decode()
+        return ss.str()
 
     def __repr__(self):
         cdef _period.stringstream ss
-        ss << string(b"Period('") << _period.short_period(deref(self._thisptr)) << string(b"')")
-        return ss.str().decode()
+        ss << <string>b"Period('" << _period.short_period(deref(self._thisptr)) << <string>b"')"
+        return ss.str()
 
     def __float__(self):
         """ Converts the period to a year fraction.
@@ -290,17 +289,17 @@ cdef class Date:
     def __str__(self):
         cdef _date.stringstream ss
         ss <<  _date.short_date(self._thisptr)
-        return ss.str().decode()
+        return ss.str()
 
     def __repr__(self):
         cdef _date.stringstream ss
-        ss << string(b"Date('") << _date.iso_datetime(self._thisptr) << string(b"')")
-        return ss.str().decode()
+        ss << <string>b"Date(" << _date.iso_datetime(self._thisptr) << <string>b")"
+        return ss.str()
 
-    def __format__(self, str fmt):
+    def __format__(self, str fmt=""):
         cdef _date.stringstream ss
-        ss << _date.formatted_date(self._thisptr, fmt.encode())
-        return ss.str().decode()
+        ss << _date.formatted_date(self._thisptr, fmt)
+        return ss.str()
 
     def __hash__(self):
         # Returns a hash based on the serial
@@ -397,9 +396,9 @@ cdef class Date:
     def from_string(cls, str s, str fmt=None):
         cdef Date instance = Date.__new__(Date)
         if fmt is None:
-            instance._thisptr = _date.parseISO(s.encode())
+            instance._thisptr = _date.parseISO(s)
         else:
-            instance._thisptr = _date.parseFormatted(s.encode(), fmt.encode())
+            instance._thisptr = _date.parseFormatted(s, fmt)
         return instance
 
 def today():
