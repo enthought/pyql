@@ -16,3 +16,4 @@ from .swaption.black_swaption_engine import (
 from .swaption.tree_swaption_engine import TreeSwaptionEngine
 from .swaption.fdhullwhite_swaption_engine import FdHullWhiteSwaptionEngine
 from .swap import DiscountingSwapEngine
+from .bond.discountingbondengine import DiscountingBondEngine
