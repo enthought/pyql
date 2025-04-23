@@ -29,4 +29,4 @@ cdef extern from 'ql/instruments/swaption.hpp' namespace 'QuantLib':
                                      VolatilityType type,# = ShiftedLognormal,
                                      Real displacement)# = 0.0)
         SwapType type() const
-        const shared_ptr[FixedVsFloatingSwap]& underlyingSwap()
+        const shared_ptr[FixedVsFloatingSwap]& underlying()
