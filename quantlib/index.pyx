@@ -5,8 +5,7 @@
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
 """Abstract base class for indices"""
-include 'types.pxi'
-
+from quantlib.types cimport Real
 from cpython.datetime cimport PyDate_Check, date_year, date_month, date_day, import_datetime
 from libcpp cimport bool
 from libcpp.vector cimport vector
@@ -92,3 +91,6 @@ cdef class Index:
 
     def clear_fixings(self):
         self._thisptr.get().clearFixings()
+
+    def has_historical_fixing(self, Date d):
+        return self._thisptr.get().hasHistoricalFixing(d._thisptr)
