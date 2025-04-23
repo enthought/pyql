@@ -30,3 +30,4 @@ cdef extern from 'ql/index.hpp' namespace 'QuantLib' nogil:
         void addFixings(vector[Date].iterator dBegin, vector[Date].iterator dEnd, vector[Real].iterator vBegin, bool forceOverwrite) except +
         TimeSeries[Real] timeSeries()
         void clearFixings()
+        bool hasHistoricalFixing(const Date& fixingDate)
