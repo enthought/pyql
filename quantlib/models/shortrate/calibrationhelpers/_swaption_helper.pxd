@@ -38,7 +38,7 @@ cdef extern from 'ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp' nam
                        VolatilityType type, # = ShiftedLognormal,
                        Real shift # = 0.0
                        ) except +
-        shared_ptr[FixedVsFloatingSwap] underlyingSwap()
+        shared_ptr[FixedVsFloatingSwap] underlying()
         shared_ptr[Swaption] swaption()
 
     # this should really be a constructor but cython can't disambiguate the

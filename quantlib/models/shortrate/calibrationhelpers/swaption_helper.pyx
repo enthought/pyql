@@ -103,9 +103,9 @@ cdef class SwaptionHelper(BlackCalibrationHelper):
                 )
             )
 
-    def underlying_swap(self):
+    def underlying(self):
         cdef FixedVsFloatingSwap swap = FixedVsFloatingSwap.__new__(FixedVsFloatingSwap)
-        swap._thisptr = (<_sh.SwaptionHelper*>self._thisptr.get()).underlyingSwap()
+        swap._thisptr = (<_sh.SwaptionHelper*>self._thisptr.get()).underlying()
         return  swap
 
     def underlying_swaption(self):

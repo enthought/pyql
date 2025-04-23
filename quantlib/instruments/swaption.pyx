@@ -71,9 +71,9 @@ cdef class Swaption(Option):
     def type(self):
         return <SwapType>(self.get_swaption().type())
 
-    def underlying_swap(self):
+    def underlying(self):
         cdef FixedVsFloatingSwap instance = FixedVsFloatingSwap.__new__(FixedVsFloatingSwap)
-        cdef shared_ptr[_fixedvsfloatingswap.FixedVsFloatingSwap] swap = self.get_swaption().underlyingSwap()
+        cdef shared_ptr[_fixedvsfloatingswap.FixedVsFloatingSwap] swap = self.get_swaption().underlying()
         instance._thisptr = static_pointer_cast[_instrument.Instrument](swap)
         return instance
 
