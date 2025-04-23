@@ -6,13 +6,10 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
-from __future__ import print_function
-
 import locale
 import re
 import datetime
 
-import six
 from quantlib.time.api import Date, Actual365Fixed
 import quantlib.time.date as dt
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
@@ -119,7 +116,7 @@ def pydate_to_qldate(date):
 
     if isinstance(date, Date):
         return date
-    if isinstance(date, six.string_types):
+    if isinstance(date, str):
         yy, mm, dd = _parsedate(date)
         return Date(dd, mm, yy)
     else:

@@ -1,5 +1,3 @@
-from __future__ import division
-from __future__ import print_function
 # -*- coding: utf-8 -*-
 # <nbformat>3</nbformat>
 
@@ -22,7 +20,6 @@ import numpy as np
 import pandas
 from pandas import DataFrame
 import datetime
-from six.moves import input
 
 from quantlib.models.equity.heston_model import (
     HestonModelHelper, HestonModel)
