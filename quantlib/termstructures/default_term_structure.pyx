@@ -47,3 +47,17 @@ cdef class HandleDefaultProbabilityTermStructure:
             self.handle = RelinkableHandle[_dts.DefaultProbabilityTermStructure](
                 static_pointer_cast[_dts.DefaultProbabilityTermStructure](ts._thisptr),
                 register_as_observer)
+
+    @property
+    def current_link(self):
+        cdef DefaultProbabilityTermStructure instance = DefaultProbabilityTermStructure.__new__(DefaultProbabilityTermStructure)
+        if self.handle.empty():
+            raise ValueError("empty handle")
+        instance._thisptr = self.handle.currentLink()
+        return instance
+
+    def link_to(self, DefaultProbabilityTermStructure ts, bool register_as_observer=True):
+        self.handle.linkTo(
+                static_pointer_cast[_dts.DefaultProbabilityTermStructure](ts._thisptr),
+                register_as_observer
+        )
