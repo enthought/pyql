@@ -42,15 +42,40 @@ cdef extern from 'ql/termstructures/yield/oisratehelper.hpp' namespace 'QuantLib
                       bool applyObservationShift,# = false,
                       #shared_ptr[FloatingRateCouponPricer] pricer
         ) except + # = 0.0
-
-    cdef cppclass DatedOISRateHelper(RateHelper):
-        DatedOISRateHelper(
-            Date& startDate,
-            Date& endDate,
+cdef extern from 'ql/termstructures/yield/oisratehelper.hpp' namespace 'QuantLib':
+        OISRateHelper* OISRateHelper_ "new QuantLib::OISRateHelper" (
+            Date startDate,
+            Date endDate,
             Handle[Quote]& fixedRate,
             shared_ptr[OvernightIndex]& overnightIndex,
             # exogenous discounting curve
-            Handle[YieldTermStructure] discountingCurve,# = Handle<YieldTermStructure>(),
-            bool telescopicValueDates, #= false,
-            RateAveraging averagingMethod #= RateAveraging::Compound)
-        ) except +
+            Handle[YieldTermStructure]& discountingCurve, # = Handle<YieldTermStructure>()
+            bool telescopicValueDates, # False)
+            Integer paymentLag, # = 0
+            BusinessDayConvention paymentConvention, # = Following
+            Frequency paymentFrequency, #  = Annual
+            Calendar& paymentCalendar, # = Calendar()
+            Spread overnightSpread,
+            Pillar pillar, # = Pillar::LastRelevantDate,
+            Date customPillarDate, # = Date(),
+            RateAveraging averagingMethod,# = RateAveraging::Compound,
+            optional[bool] endOfMonth, # = boost::none
+            optional[Frequency] fixedPaymentFrequency, # = ext::nullopt,
+            Calendar fixedCalendar, # = Calendar(),
+            Natural lookbackDays, # = Null<Natural>(),
+            Natural lockoutDays, # = 0,
+            bool applyObservationShift,# = false,
+            #shared_ptr[FloatingRateCouponPricer] pricer
+        ) except + # = 0.0
+
+    # cdef cppclass DatedOISRateHelper(RateHelper):
+    #     DatedOISRateHelper(
+    #         Date& startDate,
+    #         Date& endDate,
+    #         Handle[Quote]& fixedRate,
+    #         shared_ptr[OvernightIndex]& overnightIndex,
+    #         # exogenous discounting curve
+    #         Handle[YieldTermStructure] discountingCurve,# = Handle<YieldTermStructure>(),
+    #         bool telescopicValueDates, #= false,
+    #         RateAveraging averagingMethod #= RateAveraging::Compound)
+    #     ) except +
