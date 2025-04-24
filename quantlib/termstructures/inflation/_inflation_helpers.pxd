@@ -1,6 +1,3 @@
-
-include '../../types.pxi'
-
 from quantlib._quote cimport Quote
 from quantlib.handle cimport shared_ptr, Handle
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
@@ -17,7 +14,7 @@ from quantlib.termstructures.inflation.inflation_traits cimport (
 cimport quantlib.termstructures._inflation_term_structure as _its
 cimport quantlib.termstructures._yield_term_structure as _yts
 
-cdef extern from 'ql/termstructures/inflation/inflationhelpers.hpp' namespace 'QuantLib':
+cdef extern from 'ql/termstructures/inflation/inflationhelpers.hpp' namespace 'QuantLib' nogil:
     cdef cppclass ZeroCouponInflationSwapHelper(ZeroInflationTraits.helper):
         ZeroCouponInflationSwapHelper(
             const Handle[Quote]& quote,
@@ -40,4 +37,5 @@ cdef extern from 'ql/termstructures/inflation/inflationhelpers.hpp' namespace 'Q
             BusinessDayConvention payment_convention,
             const DayCounter& day_counter,
             const shared_ptr[YoYInflationIndex]& yii,
+            CPI.InterpolationType interpolation,
             const Handle[_yts.YieldTermStructure]& nominal_term_structure) except +

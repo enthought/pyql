@@ -28,7 +28,6 @@ cdef extern from 'ql/termstructures/inflationtermstructure.hpp' namespace 'Quant
         Date& referenceDate()
         Date& maxDate()
         Date& baseDate()
-        Period observationLag()
         Rate baseRate()
 
 

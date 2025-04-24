@@ -7,7 +7,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../types.pxi'
 from libcpp cimport bool
 from libcpp.string cimport string
 
@@ -58,7 +57,6 @@ cdef extern from 'ql/indexes/inflationindex.hpp' namespace 'QuantLib' nogil:
         YoYInflationIndex(const string& familyName,
                           const Region& region,
                           bool revised,
-                          bool ratio, # is this one a genuine index or a ratio?
                           Frequency frequency,
                           const Period& availabilityLag,
                           const Currency& currency,

@@ -56,6 +56,7 @@ cdef class YearOnYearInflationSwapHelper:
                   BusinessDayConvention payment_convention,
                   DayCounter day_counter not None,
                   YoYInflationIndex yii not None,
+                  InterpolationType interpolation,
                   HandleYieldTermStructure nominal_term_structure not None):
         self._thisptr = shared_ptr[YoYInflationTraits.helper](
             new _ih.YearOnYearInflationSwapHelper(
@@ -65,6 +66,7 @@ cdef class YearOnYearInflationSwapHelper:
                 calendar._thisptr, payment_convention,
                 deref(day_counter._thisptr),
                 static_pointer_cast[_ii.YoYInflationIndex](yii._thisptr),
+                <CPI.InterpolationType>interpolation,
                 nominal_term_structure.handle)
             )
 
