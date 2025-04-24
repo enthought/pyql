@@ -54,10 +54,6 @@ cdef class InflationTermStructure:
     def base_rate(self):
         return self._thisptr.get().baseRate()
 
-    @property
-    def observation_lag(self):
-        return period_from_qlperiod(self._thisptr.get().observationLag())
-
 cdef class ZeroInflationTermStructure(InflationTermStructure):
 
     def __cinit__(self):

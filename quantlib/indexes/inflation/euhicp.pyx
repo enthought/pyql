@@ -13,9 +13,9 @@ cdef class EUHICPXT(ZeroInflationIndex):
         self._thisptr.reset(new _euhicp.EUHICPXT(ts._handle))
 
 cdef class YYEUHICP(YoYInflationIndex):
-    def __init__(self, bool interpolated, YoYInflationTermStructure ts=YoYInflationTermStructure()):
-        self._thisptr.reset(new _euhicp.YYEUHICP(interpolated, ts._handle))
+    def __init__(self, YoYInflationTermStructure ts=YoYInflationTermStructure()):
+        self._thisptr.reset(new _euhicp.YYEUHICP(ts._handle))
 
 cdef class YYEUHICPXT(YoYInflationIndex):
-    def __init__(self, bool interpolated, YoYInflationTermStructure ts=YoYInflationTermStructure()):
-        self._thisptr.reset(new _euhicp.YYEUHICPXT(interpolated, ts._handle))
+    def __init__(self, YoYInflationTermStructure ts=YoYInflationTermStructure()):
+        self._thisptr.reset(new _euhicp.YYEUHICPXT(ts._handle))

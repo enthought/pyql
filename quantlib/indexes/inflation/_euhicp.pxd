@@ -11,9 +11,7 @@ cdef extern from 'ql/indexes/inflation/euhicp.hpp' namespace 'QuantLib' nogil:
         EUHICPXT(const Handle[ZeroInflationTermStructure]& ts)
 
     cdef cppclass YYEUHICP(YoYInflationIndex):
-        YYEUHICP(bool interpolated,
-                 const Handle[YoYInflationTermStructure]& ts)
+        YYEUHICP(const Handle[YoYInflationTermStructure]& ts)
 
     cdef cppclass YYEUHICPXT(YoYInflationIndex):
-        YYEUHICPXT(bool interpolated,
-                   const Handle[YoYInflationTermStructure]& ts)
+        YYEUHICPXT(const Handle[YoYInflationTermStructure]& ts)

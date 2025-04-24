@@ -106,7 +106,7 @@ cdef class ZeroInflationIndex(InflationIndex):
 
 cdef class YoYInflationIndex(ZeroInflationIndex):
     def __init__(self, family_name, Region region, bool revised,
-                 bool ratio, Frequency frequency,
+                 Frequency frequency,
                  Period availability_lag, Currency currency,
                  YoYInflationTermStructure ts=YoYInflationTermStructure()):
 
@@ -115,6 +115,6 @@ cdef class YoYInflationIndex(ZeroInflationIndex):
         self._thisptr = shared_ptr[_in.Index](
             new _ii.YoYInflationIndex(
                 c_family_name, deref(region._thisptr), revised,
-                ratio, frequency,
+                frequency,
                 deref(availability_lag._thisptr),
                 deref(currency._thisptr), ts._handle))
