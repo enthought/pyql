@@ -4,7 +4,7 @@ from libcpp.string cimport string
 
 from .frequency cimport Frequency
 
-cdef extern from 'ql/time/timeunit.hpp' namespace "QuantLib":
+cdef extern from 'ql/time/timeunit.hpp' namespace "QuantLib" nogil:
     cdef enum TimeUnit:
         Days
         Weeks
@@ -16,7 +16,7 @@ cdef extern from 'ql/time/timeunit.hpp' namespace "QuantLib":
         Milliseconds
         Microseconds
 
-cdef extern from 'ql/time/period.hpp' namespace "QuantLib":
+cdef extern from 'ql/time/period.hpp' namespace "QuantLib" nogil:
 
     cdef cppclass Period:
 
@@ -52,20 +52,20 @@ cdef extern from 'ql/time/period.hpp' namespace "QuantLib":
     Real weeks(const Period& p) except +
     Real days(const Period& p) except +
 
-cdef extern from 'ql/utilities/dataparsers.hpp' namespace "QuantLib::PeriodParser":
+cdef extern from 'ql/utilities/dataparsers.hpp' namespace "QuantLib::PeriodParser" nogil:
     Period parse(string& str) except +
 
-cdef extern from "ql/time/period.hpp" namespace "QuantLib::detail":
+cdef extern from "ql/time/period.hpp" namespace "QuantLib::detail" nogil:
     cdef cppclass long_period_holder:
         pass
     cdef cppclass short_period_holder:
         pass
 
-cdef extern from "ql/time/period.hpp" namespace "QuantLib::io":
+cdef extern from "ql/time/period.hpp" namespace "QuantLib::io" nogil:
     cdef short_period_holder short_period(const Period&)
     cdef long_period_holder long_period(const Period&)
 
-cdef extern from "<sstream>" namespace "std":
+cdef extern from "<sstream>" namespace "std" nogil:
     cdef cppclass stringstream:
         stringstream& operator<<(long_period_holder)
         stringstream& operator<<(short_period_holder)
