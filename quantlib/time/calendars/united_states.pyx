@@ -76,5 +76,13 @@ cdef class UnitedStates(Calendar):
      * Christmas, December 25th (moved to Monday if Sunday)
     '''
 
+    Settlement = Market.Settlement # generic settlement calendar
+    NYSE = Market.NYSE # New York stock exchange calendar
+    GovernmentBond = Market.GovernmentBond # government-bond calendar
+    NERC = Market.NERC # off-peak days for NERC
+    LiborImpact = Market.LiborImpact # Libor impact
+    FederalReserve = Market.FederalReserve # Federal Reserve Bankwire System
+    SOFR = Market.SOFR # SOFR fixing calendar
+
     def __cinit__(self, Market market=Market.Settlement):
         self._thisptr = _us.UnitedStates(market)
