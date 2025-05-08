@@ -15,6 +15,17 @@ cdef extern from 'ql/pricingengines/bond/bondfunctions.hpp' namespace 'QuantLib:
     cdef Date startDate(Bond bond)
     cdef Leg.const_reverse_iterator previousCashFlow(const Bond& bond,
                                                      Date refDate) # = Date()
+    cdef Leg.const_iterator nextCashFlow(const Bond& bond,
+                                         Date refDate) # = Date()
+
+    cdef Date previousCashFlowDate(const Bond& bond,
+                                   Date refDate)
+    cdef Date nextCashFlowDate(const Bond& bond,
+                               Date refDate)
+    cdef Real previousCashFlowAmount(const Bond& bond,
+                                     Date refDate)
+    cdef Real nextCashFlowAmount(const Bond& bond,
+                                 Date refDate)
     cdef Time duration(Bond bond,
                     Rate yld,
                     DayCounter dayCounter,
