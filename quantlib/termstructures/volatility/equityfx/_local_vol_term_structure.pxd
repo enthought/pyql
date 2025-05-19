@@ -32,7 +32,7 @@ cdef extern from 'ql/termstructures/volatility/equityfx/localvoltermstructure.hp
 
         Volatility localVol(const Date& d,
                             Real underlyingLevel,
-                            bool extrapolate = false) const
+                            bool extrapolate) const # = false) const
         Volatility localVol(Time t,
                             Real underlyingLevel,
-                            bool extrapolate = false) const
+                            bool extrapolate) # = false) const

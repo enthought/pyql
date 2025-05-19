@@ -25,9 +25,3 @@ cdef extern from 'ql/termstructures/volatility/equityfx/localvolsurface.hpp' nam
                         Handle[YieldTermStructure] riskFreeTS,
                         Handle[YieldTermStructure] dividendTS,
                         Real underlying)
-        Volatility localVol(const Date& d,
-                            Real underlyingLevel,
-                            bool extrapolate) const # = false
-        Volatility localVol_ "localVol" (Time t,
-                             Real underlyingLevel,
-                             bool extrapolate) const # = false
