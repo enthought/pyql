@@ -36,7 +36,7 @@ cdef class LocalVolSurface(LocalVolTermStructure):
     def localVol(self, d, Real underlying_level, bool extrapolate=False):
         cdef _lvs.LocalVolSurface* surf = <_lvs.LocalVolSurface*>self._thisptr.get()
         if isinstance(d, float):
-            return surf.localVol_(<Time>d, underlying_level, extrapolate)
+            return surf.localVol(<Time>d, underlying_level, extrapolate)
         elif isinstance(d, Date):
             return surf.localVol((<Date>d)._thisptr, underlying_level, extrapolate)
         else:
