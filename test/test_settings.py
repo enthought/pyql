@@ -2,7 +2,7 @@ import unittest
 from quantlib.instruments.bonds import FixedRateBond
 from quantlib.time.api import (
     Date, Days, August, Period, Jul, Annual, today, Years, TARGET,
-    Unadjusted, Schedule, ModifiedFollowing, DateGeneration, ActualActual, ISMA,
+    Unadjusted, Schedule, ModifiedFollowing, DateGeneration, ActualActual,
     Following
 )
 
@@ -85,7 +85,7 @@ class SettingsTestCase(unittest.TestCase):
 		    face_amount,
 		    fixed_bond_schedule,
 		    [coupon_rate],
-            ActualActual(ISMA),
+            ActualActual(ActualActual.ISMA),
 		    Following,
             redemption,
             issue_date
@@ -134,7 +134,7 @@ class SettingsTestCase(unittest.TestCase):
 		    face_amount,
 		    fixed_bond_schedule,
 		    [coupon_rate],
-            ActualActual(ISMA),
+            ActualActual(ActualActual.ISMA),
 		    Following,
             redemption,
             issue_date

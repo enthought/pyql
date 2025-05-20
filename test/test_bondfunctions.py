@@ -14,10 +14,9 @@ from quantlib.instruments.bond import Price
 from quantlib.time.date import (
     Date, Days, Years, January, August, Period, April
 )
-from quantlib.time.api import (TARGET, Months, ISDA,
+from quantlib.time.api import (TARGET, Months,
     ModifiedFollowing, Unadjusted, Actual360, Thirty360, ActualActual, Actual365Fixed,
     Annual, Months, Actual365Fixed, Annual, Semiannual)
-from quantlib.time.daycounters.actual_actual import Bond
 from quantlib.time.schedule import Schedule
 from quantlib.time.dategeneration import DateGeneration
 from quantlib.settings import Settings
@@ -89,7 +88,7 @@ class BondFunctionTestCase(unittest.TestCase):
 	    face_amount,
 	    fixed_bond_schedule,
 	    [coupon_rate],
-            ActualActual(Bond),
+            ActualActual(ActualActual.Bond),
 	    Unadjusted,
             redemption,
             issue_date
@@ -143,25 +142,25 @@ class BondFunctionTestCase(unittest.TestCase):
 
             rate_helpers.append(helper)
 
-        ts_day_counter = ActualActual(ISDA)
+        ts_day_counter = ActualActual(ActualActual.ISDA)
         tolerance = 1.0e-15
 
         ts = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(
             self.settlement_date, rate_helpers,
             ts_day_counter, accuracy=tolerance)
 
-        pyc_zspd=bf.zSpread(self.bond, Price(102.0), ts, ActualActual(ISDA),
+        pyc_zspd=bf.zSpread(self.bond, Price(102.0), ts, ActualActual(ActualActual.ISDA),
         Compounded, Semiannual, Date(1, April, 2015), 1e-6, 100, 0.05)
 
-        pyc_zspd_disco=bf.zSpread(self.bond, Price(95.0), ts, ActualActual(ISDA),
+        pyc_zspd_disco=bf.zSpread(self.bond, Price(95.0), ts, ActualActual(ActualActual.ISDA),
         Compounded, Semiannual, self.settlement_date, 1e-6, 100, 0.05)
 
 
-        yld  = bf.bond_yield(self.bond, Price(102.0), ActualActual(ISDA), Compounded, Semiannual, self.settlement_date, 1e-6, 100, 0.05)
-        dur  = bf.duration(self.bond, yld, ActualActual(ISDA), Compounded, Semiannual, settlement_date=self.settlement_date)
+        yld  = bf.bond_yield(self.bond, Price(102.0), ActualActual(ActualActual.ISDA), Compounded, Semiannual, self.settlement_date, 1e-6, 100, 0.05)
+        dur  = bf.duration(self.bond, yld, ActualActual(ActualActual.ISDA), Compounded, Semiannual, settlement_date=self.settlement_date)
 
-        yld_disco  = bf.bond_yield(self.bond, Price(95.0), ActualActual(ISDA), Compounded, Semiannual, self.settlement_date, 1e-6, 100, 0.05)
-        dur_disco  = bf.duration(self.bond, yld_disco, ActualActual(ISDA), Compounded, Semiannual, settlement_date=self.settlement_date)
+        yld_disco  = bf.bond_yield(self.bond, Price(95.0), ActualActual(ActualActual.ISDA), Compounded, Semiannual, self.settlement_date, 1e-6, 100, 0.05)
+        dur_disco  = bf.duration(self.bond, yld_disco, ActualActual(ActualActual.ISDA), Compounded, Semiannual, settlement_date=self.settlement_date)
 
         self.assertAlmostEqual(zspd, 0.001281, 6)
         self.assertAlmostEqual(pyc_zspd, -0.0264, 4)

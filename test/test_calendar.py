@@ -16,7 +16,7 @@ from quantlib.time.date import (
     Date, May, March, June, Jan, August, Months,November, Period, Days,
     Apr, Jul, Sep, Oct, Dec, Nov)
 from quantlib.time.calendars.jointcalendar import (
-    JointCalendar, JOINHOLIDAYS, JOINBUSINESSDAYS
+    JointCalendar, JointCalendarRule
 )
 from quantlib.util.version import QUANTLIB_VERSION
 
@@ -71,12 +71,12 @@ class TestQuantLibCalendar(unittest.TestCase):
         bank_holiday_date = Date(3, May, 2010) #Early May Bank Holiday
         thanksgiving_holiday_date = Date(22, Nov, 2012)
 
-        jtcal = JointCalendar(ukcal, uscal, JOINHOLIDAYS)
+        jtcal = JointCalendar(ukcal, uscal, JointCalendarRule.JoinHolidays)
 
         self.assertFalse(jtcal.is_business_day(bank_holiday_date))
         self.assertFalse(jtcal.is_business_day(thanksgiving_holiday_date))
 
-        jtcal = JointCalendar(ukcal, uscal, JOINBUSINESSDAYS)
+        jtcal = JointCalendar(ukcal, uscal, JointCalendarRule.JoinBusinessDays)
 
         self.assertTrue(jtcal.is_business_day(bank_holiday_date))
         self.assertTrue(jtcal.is_business_day(thanksgiving_holiday_date))

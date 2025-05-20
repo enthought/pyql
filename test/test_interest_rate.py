@@ -4,7 +4,7 @@ from quantlib.interest_rate import InterestRate
 
 from quantlib.compounding import Continuous, Compounded
 from quantlib.time.api import Actual360, Monthly, NoFrequency, Once, Thirty360
-from quantlib.time.daycounters.thirty360 import Thirty360, Italian
+from quantlib.time.daycounters.thirty360 import Thirty360
 
 class InterestRateTestCase(unittest.TestCase):
 
@@ -55,7 +55,7 @@ class InterestRateTestCase(unittest.TestCase):
 
     def test_create_intereste_rate_with_daycounter_convention(self):
         rate = 0.05
-        counter = Thirty360(Italian)
+        counter = Thirty360(Thirty360.Italian)
         compounding = Compounded
         frequency = Monthly
         interest_rate = InterestRate(rate, counter, compounding, frequency)

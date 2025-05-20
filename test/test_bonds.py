@@ -16,7 +16,7 @@ from quantlib.time.date import (
     Jul, Years
 )
 from quantlib.time.daycounters.simple import Actual365Fixed, Actual360
-from quantlib.time.daycounters.actual_actual import ActualActual, Bond, ISMA
+from quantlib.time.daycounters.actual_actual import ActualActual
 from quantlib.time.schedule import Schedule
 from quantlib.time.dategeneration import DateGeneration
 from quantlib.settings import Settings
@@ -90,7 +90,7 @@ class BondTestCase(unittest.TestCase):
 		    face_amount,
 		    fixed_bond_schedule,
 		    [coupon_rate],
-            ActualActual(Bond),
+            ActualActual(ActualActual.Bond),
 		    Unadjusted,
             redemption,
             issue_date
@@ -162,7 +162,7 @@ class BondTestCase(unittest.TestCase):
 		    face_amount,
 		    fixed_bond_schedule,
 		    [coupon_rate],
-            ActualActual(ISMA),
+            ActualActual(ActualActual.ISMA),
 		    Following,
             redemption,
             issue_date
