@@ -6,12 +6,10 @@ from quantlib.time.daycounters.simple import (
     Actual360, SimpleDayCounter
 )
 
-from quantlib.time.daycounters.actual_actual import (
-    ActualActual, ISDA, ISMA, AFB
-)
+from quantlib.time.daycounters.actual_actual import ActualActual
 
 from quantlib.time.daycounters.thirty360 import (
-        Thirty360, Convention, EurobondBasis
+        Thirty360, Convention
 )
 from quantlib.time.date import (
     Date, November, May, February, July, January, Period,
@@ -87,7 +85,7 @@ class TestActualActual(unittest.TestCase):
 
     def test_first_example_isda(self):
 
-        day_counter = ActualActual(ISDA)
+        day_counter = ActualActual(ActualActual.ISDA)
 
         self.assertAlmostEqual(
             0.497724380567,
@@ -95,7 +93,7 @@ class TestActualActual(unittest.TestCase):
         )
 
     def test_first_example_isma(self):
-        day_counter = ActualActual(ISMA)
+        day_counter = ActualActual(ActualActual.ISMA)
 
         self.assertAlmostEqual(
             0.5,
@@ -104,7 +102,7 @@ class TestActualActual(unittest.TestCase):
         )
 
     def test_first_example_afb(self):
-        day_counter = ActualActual(AFB)
+        day_counter = ActualActual(ActualActual.AFB)
 
         self.assertAlmostEqual(
             0.497267759563,
@@ -113,7 +111,7 @@ class TestActualActual(unittest.TestCase):
 
 
     def test_short_calculation_first_period_isda(self):
-        day_counter = ActualActual(ISDA)
+        day_counter = ActualActual(ActualActual.ISDA)
         from_date = Date(1, February, 1999)
         to_date = Date(1, July, 1999)
 
@@ -125,7 +123,7 @@ class TestActualActual(unittest.TestCase):
         )
 
     def test_short_calculation_first_period_isma(self):
-        day_counter = ActualActual(ISMA)
+        day_counter = ActualActual(ActualActual.ISMA)
         from_date = Date(1, February, 1999)
         to_date = Date(1, July, 1999)
         ref_start = Date(1,July,1998)
@@ -138,7 +136,7 @@ class TestActualActual(unittest.TestCase):
         )
 
     def test_short_calculation_first_period_afb(self):
-        day_counter = ActualActual(AFB)
+        day_counter = ActualActual(ActualActual.AFB)
         from_date = Date(1, February, 1999)
         to_date = Date(1, July, 1999)
 
@@ -150,7 +148,7 @@ class TestActualActual(unittest.TestCase):
         )
 
     def test_short_calculation_second_period_isda(self):
-        day_counter = ActualActual(ISDA)
+        day_counter = ActualActual(ActualActual.ISDA)
         from_date = Date(1, July, 1999)
         to_date = Date(1, July, 2000)
 
@@ -162,7 +160,7 @@ class TestActualActual(unittest.TestCase):
         )
 
     def test_short_calculation_second_period_isma(self):
-        day_counter = ActualActual(ISMA)
+        day_counter = ActualActual(ActualActual.ISMA)
         from_date = Date(1, July, 1999)
         to_date = Date(1, July, 2000)
         ref_start = Date(1, July, 1999)
@@ -178,7 +176,7 @@ class TestActualActual(unittest.TestCase):
 
 
     def test_short_calculation_second_period_afb(self):
-        day_counter = ActualActual(AFB)
+        day_counter = ActualActual(ActualActual.AFB)
         from_date = Date(1, July, 1999)
         to_date = Date(1, July, 2000)
 
@@ -207,7 +205,7 @@ class TestActualActual(unittest.TestCase):
 
     def test_thirty360(self):
 
-        day_counter = Thirty360(EurobondBasis)
+        day_counter = Thirty360(Thirty360.EurobondBasis)
         from_date = Date(1, July, 1999)
         to_date = Date(1, July, 2000)
 
@@ -221,12 +219,12 @@ class TestActualActual(unittest.TestCase):
 
     def test_equality_method(self):
 
-        day_counter = Thirty360(EurobondBasis)
+        day_counter = Thirty360(Thirty360.EurobondBasis)
 
         a = Thirty360()
         self.assertNotEqual(day_counter, a)
         self.assertNotEqual(day_counter, Thirty360())
-        self.assertEqual(day_counter, Thirty360(EurobondBasis))
+        self.assertEqual(day_counter, Thirty360(Thirty360.EurobondBasis))
 
     def test_thirty360_from_name(self):
         for c in Convention:

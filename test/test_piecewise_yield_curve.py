@@ -19,7 +19,7 @@ from quantlib.termstructures.yields.piecewise_yield_curve import (
     PiecewiseYieldCurve
 )
 from quantlib.time.api import Date, TARGET, Period, Months, Years, Days
-from quantlib.time.api import September, ISDA, today, Mar
+from quantlib.time.api import September, today, Mar
 from quantlib.time.api import ModifiedFollowing, Unadjusted, Actual360
 from quantlib.time.api import Thirty360, ActualActual, Actual365Fixed
 from quantlib.time.api import Annual, UnitedStates
@@ -67,7 +67,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
             rate_helpers.append(helper)
 
 
-        ts_day_counter = ActualActual(ISDA)
+        ts_day_counter = ActualActual(ActualActual.ISDA)
 
         tolerance = 1.0e-15
 
@@ -107,7 +107,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
             quote, Period(month, Months), fixing_days, calendar, convention, end_of_month,
             deposit_day_counter) for quote, month in zip(quotes, tenors)]
 
-        ts_day_counter = ActualActual(ISDA)
+        ts_day_counter = ActualActual(ActualActual.ISDA)
 
         tolerance = 1.0e-15
 
@@ -148,7 +148,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
             quote, Period(month, Months), fixing_days, calendar, convention, end_of_month,
             deposit_day_counter) for quote, month in zip(quotes, tenors)]
 
-        ts_day_counter = ActualActual(ISDA)
+        ts_day_counter = ActualActual(ActualActual.ISDA)
 
         tolerance = 1.0e-15
 
@@ -182,7 +182,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
             quote, Period(month, Months), fixing_days, calendar, convention, end_of_month,
             deposit_day_counter) for quote, month in zip(quotes, tenors)]
 
-        ts_day_counter = ActualActual(ISDA)
+        ts_day_counter = ActualActual(ActualActual.ISDA)
 
         tolerance = 1.0e-15
 
@@ -309,7 +309,7 @@ class PiecewiseYieldCurveTestCase(unittest.TestCase):
 
             rate_helpers.append(helper)
 
-        ts_day_counter = ActualActual(ISDA)
+        ts_day_counter = ActualActual(ActualActual.ISDA)
         tolerance = 1.0e-15
 
         ts = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(

@@ -14,7 +14,7 @@ from quantlib.math.interpolation import LogLinear
 from quantlib.time.api import (
     Period, Months, Date, Days, TARGET, ModifiedFollowing,
     Years, Actual360, Semiannual,
-    Thirty360, ActualActual, ISDA
+    Thirty360, ActualActual
 )
 
 from datetime import date
@@ -92,7 +92,7 @@ class ZeroCouponTestCase(unittest.TestCase):
 
         print('dt Obs: %s\ndt Eval: %s\ndt Settle: %s' %
               (dtObs, eval_date, settlement_date))
-        ts_day_counter = ActualActual(ISDA)
+        ts_day_counter = ActualActual(ActualActual.ISDA)
         tolerance = 1.0e-2
 
         ts = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(
@@ -125,7 +125,7 @@ class ZeroCouponTestCase(unittest.TestCase):
         # must be a business day
         settlement_date = calendar.adjust(settlement_date)
 
-        ts_day_counter = ActualActual(ISDA)
+        ts_day_counter = ActualActual(ActualActual.ISDA)
         tolerance = 1.0e-2
 
         ts = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(

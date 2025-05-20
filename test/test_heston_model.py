@@ -19,7 +19,6 @@ from quantlib.models.equity.bates_model import BatesDetJumpModel
 from quantlib.pricingengines.blackformula import blackFormula
 from quantlib.pricingengines.vanilla.vanilla import BatesDetJumpEngine
 from quantlib.pricingengines.vanilla.analytic_heston_engine import AnalyticHestonEngine, Integration
-from quantlib.processes.heston_process import QuadraticExponential
 from quantlib.math.optimization import LevenbergMarquardt, EndCriteria
 from quantlib.settings import Settings
 from quantlib.time.api import (
@@ -385,7 +384,7 @@ class HestonModelTestCase(unittest.TestCase):
 
         process = HestonProcess(
             risk_free_ts, dividend_ts, s0, v0, kappa, theta,
-            sigma, rho, QuadraticExponential)
+            sigma, rho, HestonProcess.QuadraticExponential)
 
         model = HestonModel(process)
 
