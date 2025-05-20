@@ -19,15 +19,7 @@ cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib' nogil:
         HestonProcess() # fake empty constructor for Cython
         # fixme: implement the discrization version of the constructor
         enum Discretization:
-            PartialTruncation
-            FullTruncation
-            Reflection
-            NonCentralChiSquareVariance
-            QuadraticExponential
-            QuadraticExponentialMartingale
-            BroadieKayaExactSchemeLobatto
-            BroadieKayaExactSchemeLaguerre
-            BroadieKayaExactSchemeTrapezoidal
+            pass
         HestonProcess(
             Handle[YieldTermStructure]& riskFreeRate,
             Handle[YieldTermStructure]& dividendYield,
@@ -47,7 +39,7 @@ cdef extern from 'ql/processes/hestonprocess.hpp' namespace 'QuantLib' nogil:
         Handle[YieldTermStructure] riskeFreeRate()
 
 
-cdef extern from 'ql/processes/batesprocess.hpp' namespace 'QuantLib':
+cdef extern from 'ql/processes/batesprocess.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass BatesProcess(HestonProcess):
         BatesProcess(

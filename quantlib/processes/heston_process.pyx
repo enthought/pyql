@@ -16,11 +16,20 @@ cdef class HestonProcess(StochasticProcess):
 
     .. math::
 
-        dS_t =& (r-d) S_t dt + \sqrt{V_t} S_t dW^s_t \\
+        dS_t =& (r-d) S_t dt + \sqrt{V_t} S_t dW/^s_t \\
         dV_t =& \kappa (\theta - V_t) dt + \varepsilon \sqrt{V_t} dW^\upsilon_t \\
         dW^s_t dW^\upsilon_t =& \rho dt
 
     """
+    PartialTruncation = Discretization.PartialTruncation
+    FullTruncation = Discretization.FullTruncation
+    Reflection = Discretization.Reflection
+    NonCentralChiSquareVariance = Discretization.NonCentralChiSquareVariance
+    QuadraticExponential = Discretization.QuadraticExponential
+    QuadraticExponentialMartingale = Discretization.QuadraticExponentialMartingale
+    BroadieKayaExactSchemeLobatto = Discretization.BroadieKayaExactSchemeLobatto
+    BroadieKayaExactSchemeLaguerre = Discretization.BroadieKayaExactSchemeLaguerre
+    BroadieKayaExactSchemeTrapezoidal = Discretization.BroadieKayaExactSchemeTrapezoidal
 
     def __init__(self,
        HandleYieldTermStructure risk_free_rate_ts=HandleYieldTermStructure(),
