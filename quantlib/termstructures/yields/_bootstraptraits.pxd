@@ -1,4 +1,4 @@
-cdef extern from 'ql/termstructures/yield/bootstraptraits.hpp' namespace 'QuantLib':
+cdef extern from 'ql/termstructures/yield/bootstraptraits.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass Discount:
         pass

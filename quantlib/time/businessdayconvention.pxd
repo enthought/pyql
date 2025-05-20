@@ -1,4 +1,4 @@
-cdef extern from "ql/time/businessdayconvention.hpp" namespace "QuantLib":
+cdef extern from "ql/time/businessdayconvention.hpp" namespace "QuantLib" nogil:
     cpdef enum BusinessDayConvention:
         Following
         ModifiedFollowing
