@@ -59,6 +59,15 @@ cdef class Thirty360(DayCounter):
    * ISDA
    * NASD
     """
+   USA = Convention.USA
+   BondBasis = Convention.BondBasis
+   European = Convention.European
+   EurobondBasis = Convention.EurobondBasis
+   Italian = Convention.Italian
+   German = Convention.German
+   ISMA = Convention.ISMA
+   ISDA = Convention.ISDA
+   NASD = Convention.NASD
 
    def __cinit__(self, Convention convention=Convention.BondBasis, Date termination_date=Date()):
        self._thisptr = new _th.Thirty360(convention, termination_date._thisptr)

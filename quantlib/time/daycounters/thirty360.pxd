@@ -3,7 +3,7 @@ from quantlib.time.daycounter cimport DayCounter
 cdef class Thirty360(DayCounter):
     pass
 
-cdef extern from 'ql/time/daycounters/thirty360.hpp' namespace 'QuantLib::Thirty360':
+cdef extern from 'ql/time/daycounters/thirty360.hpp' namespace 'QuantLib::Thirty360' nogil:
     cpdef enum Convention:
          USA
          BondBasis
