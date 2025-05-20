@@ -1,7 +1,7 @@
 from quantlib.time.calendars.null_calendar import NullCalendar
 from quantlib.time.calendars.weekends_only import WeekendsOnly
-import quantlib.time.calendars.germany as ger
-import quantlib.time.calendars.united_states as us
+from quantlib.time.calendars.germany import Germany
+from quantlib.time.calendars.united_states import UnitedStates
 import quantlib.time.calendars.united_kingdom as uk
 import quantlib.time.calendars.japan as jp
 import quantlib.time.calendars.switzerland as sw
@@ -14,18 +14,18 @@ ISO_3166_CALENDARS = {
     'TARGET': TARGET(),
     'NULL': NullCalendar(),
     'WO': WeekendsOnly(),
-    'DEU': ger.Germany(),
-    'EUREX': ger.Germany(ger.Eurex),
-    'FSE': ger.Germany(ger.FrankfurtStockExchange),
-    'EUWAX': ger.Germany(ger.Euwax),
-    'XETRA': ger.Germany(ger.Xetra),
+    'DEU': Germany(),
+    'EUREX': Germany(Germany.Eurex),
+    'FSE': Germany(Germany.FrankfurtStockExchange),
+    'EUWAX': Germany(Germany.Euwax),
+    'XETRA': Germany(Germany.Xetra),
     'GBR': uk.UnitedKingdom(),
     'LSE': uk.UnitedKingdom(uk.Market.Exchange),
     'LME': uk.UnitedKingdom(uk.Market.Metals),
-    'USA': us.UnitedStates(),
-    'USA-GVT-BONDS': us.UnitedStates(us.Market.GovernmentBond),
-    'NYSE': us.UnitedStates(us.Market.NYSE),
-    'NERC': us.UnitedStates(us.Market.NERC),
+    'USA': UnitedStates(),
+    'USA-GVT-BONDS': UnitedStates(UnitedStates.GovernmentBond),
+    'NYSE': UnitedStates(UnitedStates.NYSE),
+    'NERC': UnitedStates(UnitedStates.NERC),
     'JPN': jp.Japan(),
     'CHE': sw.Switzerland(),
     'CAN': ca.Canada(),
