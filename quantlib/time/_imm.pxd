@@ -12,7 +12,7 @@ from libcpp.string cimport string
 from ._date cimport Date
 
 
-cdef extern from 'ql/time/imm.hpp' namespace "QuantLib::IMM":
+cdef extern from 'ql/time/imm.hpp' namespace "QuantLib::IMM" nogil:
 
     # Main cycle of the International %Money Market (a.k.a. %IMM) months
     cdef enum Month:
@@ -54,7 +54,7 @@ cdef extern from 'ql/time/imm.hpp' namespace "QuantLib::IMM":
     #    International Money Market section of the Chicago Mercantile
     #    Exchange.
 
-    cdef Date nextDate(Date& d, bool mainCycle) except +ValueError
+    cdef Date nextDate(Date& d, bool mainCycle)
 
     # next IMM date following the given IMM code
     # returns the 1st delivery date for next contract listed in the
@@ -63,14 +63,14 @@ cdef extern from 'ql/time/imm.hpp' namespace "QuantLib::IMM":
 
     cdef Date nextDate(string& immCode,
                        bool mainCycle,
-                       Date& referenceDate) except +ValueError
+                       Date& referenceDate) except +
 
     # next IMM code following the given date
     # returns the IMM code for next contract listed in the
     #    International Money Market section of the Chicago Mercantile
     #    Exchange.
 
-    cdef string nextCode(Date& d, bool mainCycle) except +ValueError
+    cdef string nextCode(Date& d, bool mainCycle)
 
     # next IMM code following the given code
     # returns the IMM code for next contract listed in the
@@ -79,4 +79,4 @@ cdef extern from 'ql/time/imm.hpp' namespace "QuantLib::IMM":
 
     cdef string nextCode(string& immCode,
                          bool mainCycle,
-                         Date& referenceDate) except +ValueError
+                         Date& referenceDate) except +
