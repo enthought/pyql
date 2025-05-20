@@ -3,7 +3,7 @@ from libcpp.string cimport string
 from quantlib.time._calendar cimport Calendar
 
 
-cdef extern from 'ql/time/calendars/jointcalendar.hpp' namespace 'QuantLib':
+cdef extern from 'ql/time/calendars/jointcalendar.hpp' namespace 'QuantLib' nogil:
 
     cdef enum JointCalendarRule:
         JoinHolidays    # A date is a holiday for the joint calendar
@@ -11,7 +11,7 @@ cdef extern from 'ql/time/calendars/jointcalendar.hpp' namespace 'QuantLib':
         JoinBusinessDays # A date is a business day for the joint calendar
                          # if it is a business day for any of the given calendars
 
-cdef extern from 'ql/time/calendars/jointcalendar.hpp' namespace 'QuantLib':
+cdef extern from 'ql/time/calendars/jointcalendar.hpp' namespace 'QuantLib' nogil:
     cdef cppclass JointCalendar(Calendar):
             JointCalendar(Calendar& c1,
                           Calendar& c2,
