@@ -6,7 +6,6 @@
  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
-from __future__ import division
 
 # Utility functions for handling interest rates
 # ---------------------------------------------
@@ -26,7 +25,7 @@ from quantlib.termstructures.yields.api import (
 from quantlib.math.interpolation import LogLinear
 from quantlib.time.api import (
     TARGET, Period, Months, Years, Days, ModifiedFollowing, Unadjusted,
-    Actual360, Thirty360, Annual, ActualActual, ISDA, JointCalendar,
+    Actual360, Thirty360, Annual, ActualActual, JointCalendar,
     UnitedStates, UnitedKingdom, NullCalendar, Date
 )
 from quantlib.util.converter import pydate_to_qldate, qldate_to_pydate
@@ -122,7 +121,7 @@ def make_term_structure(rates, dt_obs):
         h = make_rate_helper(label, r, settlement_date)
         rate_helpers.append(h)
 
-    ts_day_counter = ActualActual(ISDA)
+    ts_day_counter = ActualActual(ActualActual.ISDA)
     tolerance = 1.0e-15
     ts = PiecewiseYieldCurve[BootstrapTrait.Discount, LogLinear].from_reference_date(
         settlement_date, rate_helpers, ts_day_counter, accuracy=tolerance

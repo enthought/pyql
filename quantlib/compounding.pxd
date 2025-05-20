@@ -1,4 +1,4 @@
-cdef extern from "ql/compounding.hpp" namespace "QuantLib":
+cdef extern from "ql/compounding.hpp" namespace "QuantLib" nogil:
     cpdef enum Compounding:
         Simple = 0
         Continuous = 1

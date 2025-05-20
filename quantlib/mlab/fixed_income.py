@@ -12,10 +12,10 @@ from quantlib.instruments.bonds import (
     FixedRateBond
 )
 
-from quantlib.compounding import Compounded
+from quantlib.compounding import Compounding
 
 from quantlib.pricingengines.bond import DiscountingBondEngine
-from quantlib.time.businessdayconvention import (
+from quantlib.time.api import (
     Unadjusted, ModifiedFollowing, Following)
 
 from quantlib.time.calendars.null_calendar import NullCalendar
@@ -144,7 +144,7 @@ def _bndprice(bond_yield, coupon_rate, pricing_date, maturity_date,
         forward=bond_yield,
         calendar=NullCalendar(),
         daycounter=cnt_yield,
-        compounding=Compounded,
+        compounding=Compounding.Compounded,
         frequency=period)
 
     discounting_term_structure.link_to(flat_term_structure)

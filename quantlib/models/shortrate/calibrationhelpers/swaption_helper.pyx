@@ -19,7 +19,6 @@ from quantlib.instruments.fixedvsfloatingswap cimport FixedVsFloatingSwap
 from quantlib.instruments.swaption cimport Swaption
 from quantlib.time.date cimport Period, Date
 from quantlib.quote cimport Quote
-from quantlib.models.calibration_helper import RelativePriceError
 from quantlib.utilities.null cimport Null
 
 cimport quantlib._quote as _qt
@@ -42,7 +41,7 @@ cdef class SwaptionHelper(BlackCalibrationHelper):
                  DayCounter fixed_leg_daycounter not None,
                  DayCounter floating_leg_daycounter not None,
                  HandleYieldTermStructure ts not None,
-                 CalibrationErrorType error_type=RelativePriceError,
+                 CalibrationErrorType error_type=CalibrationErrorType.RelativePriceError,
                  Real strike=Null[Real](),
                  Real nominal=1.0,
                  VolatilityType vol_type=VolatilityType.ShiftedLognormal,
