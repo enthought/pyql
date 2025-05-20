@@ -4,10 +4,6 @@ cimport quantlib.time.calendars._jointcalendar as _jc
 cimport quantlib.time._calendar as _cal
 from quantlib.time.calendar cimport Calendar
 
-cpdef enum JointCalendarRule:
-    JOINHOLIDAYS = _jc.JoinHolidays
-    JOINBUSINESSDAYS = _jc.JoinBusinessDays
-
 cdef class JointCalendar(Calendar):
     '''
     Joint calendar
@@ -17,7 +13,7 @@ cdef class JointCalendar(Calendar):
     '''
 
     @cython.cpp_locals(True)
-    def __cinit__(self, Calendar c1, Calendar c2, int jc = JOINHOLIDAYS):
+    def __cinit__(self, Calendar c1, Calendar c2, JointCalendarRule jc = JointCalendarRule.JoinHolidays):
         self._thisptr = _jc.JointCalendar(c1._thisptr,
                                           c2._thisptr,
-                                          <_jc.JointCalendarRule> jc)
+                                          jc)
