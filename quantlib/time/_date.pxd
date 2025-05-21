@@ -1,6 +1,6 @@
 from quantlib.types cimport *
 
-cdef extern from 'ql/time/date.hpp' namespace 'QuantLib':
+cdef extern from 'ql/time/date.hpp' namespace 'QuantLib' nogil:
     ctypedef int Year
     ctypedef int Day
     ctypedef int Hour
@@ -18,25 +18,12 @@ cdef extern from "ostream" namespace "std":
     cdef cppclass ostream:
         pass
 
-cdef extern from 'ql/time/weekday.hpp' namespace "QuantLib":
+cdef extern from 'ql/time/weekday.hpp' namespace "QuantLib" nogil:
 
     cdef enum Weekday:
-        Sunday    = 1
-        Monday    = 2
-        Tuesday   = 3
-        Wednesday = 4
-        Thursday  = 5
-        Friday    = 6
-        Saturday  = 7
-        Sun = 1
-        Mon = 2
-        Tue = 3
-        Wed = 4
-        Thu = 5
-        Fri = 6
-        Sat = 7
+        pass
 
-cdef extern from "ql/time/date.hpp" namespace "QuantLib::Date":
+cdef extern from "ql/time/date.hpp" namespace "QuantLib::Date" nogil:
     ctypedef int_fast32_t serial_type
     cdef Date todaysDate()
     cdef Date minDate()
@@ -50,35 +37,14 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib::Date":
     cdef Date localDateTime()
     cdef Date universalDateTime()
 
-cdef extern from "ql/time/date.hpp" namespace "QuantLib":
+
+cdef extern from "ql/time/date.hpp" namespace "QuantLib" nogil:
 
     cdef enum Month:
-        January   = 1
-        February  = 2
-        March     = 3
-        April     = 4
-        May       = 5
-        June      = 6
-        July      = 7
-        August    = 8
-        September = 9
-        October   = 10
-        November  = 11
-        December  = 12
-        Jan = 1
-        Feb = 2
-        Mar = 3
-        Apr = 4
-        Jun = 6
-        Jul = 7
-        Aug = 8
-        Sep = 9
-        Oct = 10
-        Nov = 11
-        Dec = 12
+        pass
 
     cdef cppclass Date:
-        Date() except +
+        Date()
         Date(serial_type serialnumber) except +
         Date(const Date&)
         Date(Day d, Month m, Year y) except +
@@ -134,13 +100,13 @@ cdef extern from "ql/time/date.hpp" namespace "QuantLib::detail":
     cdef cppclass formatted_date_holder:
         pass
 
-cdef extern from "ql/time/date.hpp" namespace "QuantLib::io":
+cdef extern from "ql/time/date.hpp" namespace "QuantLib::io" nogil:
     cdef short_date_holder short_date(const Date&)
     cdef iso_date_holder iso_date(const Date&)
     cdef iso_datetime_holder iso_datetime(const Date&)
     cdef formatted_date_holder formatted_date(const Date&, const string& fmt)
 
-cdef extern from "<sstream>" namespace "std":
+cdef extern from "<sstream>" namespace "std" nogil:
     cdef cppclass stringstream:
         stringstream& operator<<(iso_date_holder)
         stringstream& operator<<(short_date_holder)
@@ -149,6 +115,6 @@ cdef extern from "<sstream>" namespace "std":
         stringstream& operator<<(formatted_date_holder)
         string str()
 
-cdef extern from 'ql/utilities/dataparsers.hpp' namespace "QuantLib::DateParser":
+cdef extern from 'ql/utilities/dataparsers.hpp' namespace "QuantLib::DateParser" nogil:
     Date parseISO(const string& str) except +
     Date parseFormatted(const string&, const string&) except +
