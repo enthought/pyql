@@ -11,57 +11,16 @@ from . cimport frequency
 
 from ._date cimport (
     Date as QlDate, todaysDate, nextWeekday, endOfMonth, isEndOfMonth,
-    minDate, maxDate, Year, Day, Month as QlMonth, Hour, Minute, Second, Millisecond,
+    minDate, maxDate, Year, Day, Hour, Minute, Second, Millisecond,
     Microsecond, isLeap, Size, nthWeekday, serial_type, Integer
 )
 from ._period cimport Period as QlPeriod, parse, unary_minus
 from enum import IntEnum
-
+globals().update(getattr(Weekday, "__members__"))
+globals().update(getattr(Month, "__members__"))
 # Python imports
 import_datetime()
 import six
-
-cpdef enum Month:
-    January   = _date.January
-    February  = _date.February
-    March     = _date.March
-    April     = _date.April
-    May       = _date.May
-    June      = _date.June
-    July      = _date.July
-    August    = _date.August
-    September = _date.September
-    October   = _date.October
-    November  = _date.November
-    December  = _date.December
-    Jan = _date.Jan
-    Feb = _date.Feb
-    Mar = _date.Mar
-    Apr = _date.Apr
-    Jun = _date.Jun
-    Jul = _date.Jul
-    Aug = _date.Aug
-    Sep = _date.Sep
-    Oct = _date.Oct
-    Nov = _date.Nov
-    Dec = _date.Dec
-
-cpdef enum Weekday:
-    Sunday   = _date.Sunday
-    Monday   = _date.Monday
-    Tuesday  = _date.Tuesday
-    Wednesday = _date.Wednesday
-    Thursday = _date.Thursday
-    Friday   = _date.Friday
-    Saturday = _date.Saturday
-    Sun = _date.Sun
-    Mon = _date.Mon
-    Tue = _date.Tue
-    Wed = _date.Wed
-    Thu = _date.Thu
-    Fri = _date.Fri
-    Sat = _date.Sat
-
 
 class TimeUnit(IntEnum):
     Days         = _period.Days #: Days = 0
@@ -270,9 +229,9 @@ cdef class Date:
             if day is None and month is None and year is None:
                 self._thisptr = QlDate()
             elif day is not None and month is not None and year is not None:
-                self._thisptr = QlDate(<Day>day, <QlMonth>month, <Year>year)
+                self._thisptr = QlDate(<Day>day, <Month>month, <Year>year)
         elif hours is not None and minutes is not None and seconds is not None:
-            self._thisptr = QlDate(<Day>day, <QlMonth>month, <Year>year, <Hour>hours, <Minute>minutes, <Second>seconds, millisec, microsec)
+            self._thisptr = QlDate(<Day>day, <Month>month, <Year>year, <Hour>hours, <Minute>minutes, <Second>seconds, millisec, microsec)
         else:
             raise ValueError("Invalid constructor")
 
