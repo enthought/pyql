@@ -3,7 +3,7 @@ from . cimport _europeanoption as _eo
 from ..payoffs cimport StrikedTypePayoff
 from ..exercise cimport Exercise
 from .. cimport _payoffs
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 
 cdef class EuropeanOption(VanillaOption):
     """European option on a single asset"""

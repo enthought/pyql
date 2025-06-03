@@ -1,4 +1,4 @@
-from quantlib.handle cimport shared_ptr, make_shared
+from quantlib.ext cimport shared_ptr, make_shared
 
 from . cimport _optimization as _opt
 from quantlib.math.array cimport Array

@@ -2,7 +2,8 @@ include '../../types.pxi'
 
 from libcpp.vector cimport vector
 
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib._handle cimport Handle
+from quantlib.ext cimport shared_ptr
 
 from quantlib.processes._heston_process cimport HestonProcess
 from quantlib.pricingengines._pricing_engine cimport PricingEngine

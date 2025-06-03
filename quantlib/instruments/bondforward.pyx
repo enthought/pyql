@@ -4,7 +4,7 @@ from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.types cimport Natural, Real
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from quantlib.position cimport Position
 from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
 from . cimport _bondforward as _bf

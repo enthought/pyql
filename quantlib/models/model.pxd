@@ -8,7 +8,7 @@
 """
 
 from . cimport _model as _mo
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 
 
 cdef class CalibratedModel:

@@ -9,7 +9,8 @@
 from libcpp cimport bool
 
 from quantlib.pricingengines._pricing_engine cimport PricingEngine
-from quantlib.handle cimport Handle, optional
+from quantlib.handle cimport Handle
+from quantlib.ext cimport optional
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 
 cdef extern from 'ql/pricingengines/bond/discountingbondengine.hpp' namespace \

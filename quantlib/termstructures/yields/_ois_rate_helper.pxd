@@ -5,7 +5,8 @@ from libcpp cimport bool
 from quantlib._quote cimport Quote
 from quantlib.cashflows.rateaveraging cimport RateAveraging
 from quantlib.cashflows._coupon_pricer cimport FloatingRateCouponPricer
-from quantlib.handle cimport shared_ptr, Handle, optional
+from quantlib.ext cimport shared_ptr, optional
+from quantlib.handle cimport Handle
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period, Frequency
 from quantlib.termstructures.helpers cimport Pillar

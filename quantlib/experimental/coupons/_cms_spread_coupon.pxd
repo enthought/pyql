@@ -1,7 +1,8 @@
 include '../../types.pxi'
 from libcpp cimport bool
 from libcpp.string cimport string
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.ext cimport shared_ptr
+from quantlib.handle cimport Handle
 from quantlib.cashflows._floating_rate_coupon cimport FloatingRateCoupon
 from quantlib.cashflows._coupon_pricer cimport FloatingRateCouponPricer
 from quantlib.cashflows._cap_floored_coupon cimport CappedFlooredCoupon

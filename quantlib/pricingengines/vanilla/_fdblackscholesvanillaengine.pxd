@@ -1,5 +1,5 @@
 from libcpp cimport bool
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.types cimport Size, Real
 from quantlib.instruments._vanillaoption cimport VanillaOption
 from quantlib.instruments._dividendschedule cimport DividendSchedule

@@ -8,7 +8,7 @@
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 
-from quantlib.handle cimport optional
+from quantlib.ext cimport optional
 from . cimport _midpoint_cds_engine as _mce
 
 from quantlib.pricingengines.engine cimport PricingEngine

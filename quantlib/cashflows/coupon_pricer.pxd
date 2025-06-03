@@ -1,4 +1,4 @@
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from . cimport _coupon_pricer as _cp
 
 cdef class FloatingRateCouponPricer:

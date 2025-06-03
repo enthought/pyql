@@ -1,13 +1,13 @@
 include '../types.pxi'
-from quantlib.handle cimport shared_ptr, optional
-from ._fixedvsfloatingswap cimport FixedVsFloatingSwap 
+from quantlib.ext cimport shared_ptr, optional
+from ._fixedvsfloatingswap cimport FixedVsFloatingSwap
 from ._overnightindexedswap cimport OvernightIndexedSwap
 from .._option cimport Option
 from .._exercise cimport Exercise
 from .swap cimport Type as SwapType
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.termstructures.volatility.volatilitytype cimport VolatilityType
-from quantlib.handle cimport Handle, optional
+from quantlib.handle cimport Handle
 from .swaption cimport Type, Method
 
 cdef extern from 'ql/instruments/swaption.hpp' namespace 'QuantLib':

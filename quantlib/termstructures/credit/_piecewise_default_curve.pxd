@@ -11,7 +11,7 @@ include '../../types.pxi'
 
 from libcpp.vector cimport vector
 
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.termstructures.credit._credit_helpers cimport DefaultProbabilityHelper
 from quantlib.termstructures._default_term_structure cimport DefaultProbabilityTermStructure
 from quantlib.time._date cimport Date

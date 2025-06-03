@@ -6,7 +6,7 @@
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
 
 from quantlib.types cimport Real, Size, Volatility
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 
 from quantlib.pricingengines.engine cimport PricingEngine
 globals().update(getattr(CalibrationErrorType, "__members__"))

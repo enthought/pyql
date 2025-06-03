@@ -9,8 +9,8 @@
 
 include '../types.pxi'
 
-from quantlib.handle cimport Handle, shared_ptr
-from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
+from quantlib.handle cimport Handle
+from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 cimport quantlib._quote as _qt
 from quantlib._stochastic_process cimport StochasticProcess1D
 from quantlib.termstructures.volatility.equityfx._black_vol_term_structure cimport BlackVolTermStructure

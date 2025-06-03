@@ -5,7 +5,7 @@ from .._payoffs cimport StrikedTypePayoff
 from .._exercise cimport Exercise
 
 from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 
 cdef extern from 'ql/instruments/vanillaoption.hpp' namespace 'QuantLib' nogil:
 

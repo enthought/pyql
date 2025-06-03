@@ -4,7 +4,7 @@ from libcpp.vector cimport vector
 from ._period cimport Period
 from ._date cimport Date
 from ._calendar cimport Calendar, BusinessDayConvention
-from quantlib.handle cimport optional
+from quantlib.ext cimport optional
 from .dategeneration cimport DateGeneration
 cdef extern from 'ql/time/schedule.hpp' namespace 'QuantLib' nogil:
 

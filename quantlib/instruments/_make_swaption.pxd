@@ -1,6 +1,6 @@
 include '../types.pxi'
 
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
 from quantlib.time.businessdayconvention cimport BusinessDayConvention

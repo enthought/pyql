@@ -18,7 +18,7 @@ cimport quantlib._stochastic_process as _sp
 cimport quantlib.termstructures.yields._flat_forward as _ffwd
 cimport quantlib.pricingengines._pricing_engine as _pe
 
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 from quantlib.math.optimization cimport (Constraint,OptimizationMethod,
                                          EndCriteria)
 

@@ -1,7 +1,7 @@
 from quantlib.types cimport Natural, Real, Spread
 from libcpp cimport bool
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time.daycounter cimport DayCounter
 from .coupon_pricer cimport FloatingRateCouponPricer

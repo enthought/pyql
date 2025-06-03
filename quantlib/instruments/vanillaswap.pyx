@@ -1,7 +1,7 @@
 """Simple fixed-rate vs Libor swap"""
 from cython.operator cimport dereference as deref
 from quantlib.types cimport Rate, Real, Spread
-from quantlib.handle cimport optional, static_pointer_cast
+from quantlib.ext cimport optional, static_pointer_cast
 from quantlib.indexes.ibor_index cimport IborIndex
 cimport quantlib.indexes._ibor_index as _ib
 from quantlib.time.businessdayconvention cimport BusinessDayConvention

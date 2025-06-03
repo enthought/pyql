@@ -7,7 +7,7 @@
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
 
 from quantlib.models.model cimport ShortRateModel
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from . cimport _onefactor_model as _ofm
 
 cdef class ShortRateDynamics:

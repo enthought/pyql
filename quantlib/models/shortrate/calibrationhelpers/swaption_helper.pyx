@@ -6,7 +6,7 @@
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
 
 from quantlib.types cimport Real
-from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 from cython.operator cimport dereference as deref
 
 from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure

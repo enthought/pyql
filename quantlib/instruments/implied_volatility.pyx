@@ -9,7 +9,7 @@
 
 from quantlib.types cimport Natural, Real, Volatility
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 from quantlib.instrument cimport Instrument
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.quotes.simplequote cimport SimpleQuote

@@ -1,7 +1,7 @@
 from quantlib.types cimport Real, Spread
 from cython.operator cimport dereference as deref
 from quantlib.instruments.swap cimport Swap
-from quantlib.handle cimport static_pointer_cast, shared_ptr
+from quantlib.ext cimport static_pointer_cast, shared_ptr
 from quantlib.indexes.swap_index cimport SwapIndex
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.time.date cimport Period, Date

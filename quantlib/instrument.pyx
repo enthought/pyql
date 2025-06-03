@@ -1,7 +1,7 @@
 """Abstract instrument class"""
 from quantlib.time.date cimport date_from_qldate
 from quantlib.pricingengines.engine cimport PricingEngine
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from quantlib._observable cimport Observable as QlObservable
 
 cdef class Instrument(Observable):

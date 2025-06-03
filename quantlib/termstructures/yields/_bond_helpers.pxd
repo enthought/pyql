@@ -1,8 +1,8 @@
 from quantlib.types cimport Natural, Rate, Real
 from libcpp cimport bool
 from libcpp.vector cimport vector
-from quantlib.handle cimport shared_ptr, Handle
-
+from quantlib.ext cimport shared_ptr
+from quantlib.handle cimport Handle
 from quantlib._quote cimport Quote
 from quantlib.instruments._bond cimport Bond
 from quantlib.termstructures._helpers cimport BootstrapHelper

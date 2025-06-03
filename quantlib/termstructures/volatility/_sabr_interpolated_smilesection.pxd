@@ -1,7 +1,8 @@
 include "../../types.pxi"
 from ._smilesection cimport SmileSection
 from quantlib._quote cimport Quote
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib._handle cimport Handle
+from quantlib.ext cimport shared_ptr
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._date cimport Date
 from quantlib.math._optimization cimport EndCriteria, OptimizationMethod

@@ -8,7 +8,7 @@
 """
 
 from . cimport _calibration_helper as _ch
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 
 cpdef enum CalibrationErrorType:
     RelativePriceError = _ch.RelativePriceError

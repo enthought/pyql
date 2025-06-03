@@ -4,7 +4,6 @@ from cython.operator cimport dereference as deref
 
 from libcpp.vector cimport vector
 
-from quantlib.handle cimport shared_ptr
 from quantlib.math.matrix cimport Matrix
 from quantlib.math.interpolation cimport Interpolation, Bilinear, Bicubic
 

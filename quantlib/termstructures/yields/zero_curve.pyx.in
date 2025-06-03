@@ -2,7 +2,7 @@ from libcpp.vector cimport vector
 from libcpp.pair cimport pair
 from quantlib.types cimport Rate
 from cython.operator cimport dereference as deref, preincrement as preinc
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 
 from quantlib.time.date cimport Date, date_from_qldate
 cimport quantlib.time._date as _date

@@ -1,6 +1,7 @@
 include '../../types.pxi'
 from libcpp.string cimport string
-from quantlib.handle cimport shared_ptr, Handle, optional
+from quantlib.handle cimport Handle
+from quantlib.ext cimport optional, shared_ptr
 from ._cms_spread_coupon cimport CmsSpreadCouponPricer
 from quantlib.cashflows._coupon_pricer cimport CmsCouponPricer
 from quantlib._quote cimport Quote

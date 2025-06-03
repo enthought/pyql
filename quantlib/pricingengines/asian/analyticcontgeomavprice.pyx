@@ -1,4 +1,4 @@
-from quantlib.handle cimport static_pointer_cast, shared_ptr
+from quantlib.ext cimport static_pointer_cast, shared_ptr
 cimport quantlib.pricingengines.asian._analyticcontgeomavprice as _acgap
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 cimport quantlib.processes._black_scholes_process as _bsp

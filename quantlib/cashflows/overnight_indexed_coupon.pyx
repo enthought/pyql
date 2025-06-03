@@ -4,7 +4,7 @@ from libcpp cimport bool
 from libcpp.vector cimport vector
 from libcpp.utility cimport move
 from cython.operator cimport dereference as deref, preincrement as preinc
-from quantlib.handle cimport make_shared, shared_ptr, static_pointer_cast
+from quantlib.ext cimport make_shared, shared_ptr, static_pointer_cast
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time._date cimport Date as QlDate

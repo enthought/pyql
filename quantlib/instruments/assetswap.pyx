@@ -1,7 +1,7 @@
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from quantlib.types cimport Real, Spread
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.indexes cimport _ibor_index as _ib
 from quantlib.time.schedule cimport Schedule

@@ -1,7 +1,8 @@
 from libcpp cimport bool
 from quantlib.time._date cimport Date
 from quantlib.types cimport Rate, Real, SizeTime
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib._handle cimport Handle
+from quantlib.ext cimport shared_ptr
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.option cimport OptionType
 from ..._model cimport TermStructureConsistentModel

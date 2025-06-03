@@ -1,5 +1,6 @@
 from quantlib._quote cimport Quote
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.ext cimport shared_ptr
+from quantlib.handle cimport Handle
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter

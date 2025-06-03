@@ -1,4 +1,4 @@
-from quantlib.handle cimport Handle
+from quantlib._handle cimport Handle
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.indexes._ibor_index cimport OvernightIndex
 

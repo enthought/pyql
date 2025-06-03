@@ -1,6 +1,6 @@
 from cython.operator cimport dereference as deref
 from quantlib.types cimport Real, Size
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from quantlib.methods.finitedifferences.solvers.fdmbackwardsolver cimport FdmSchemeDesc
 from quantlib.models.shortrate.onefactormodels.hullwhite cimport HullWhite
 from quantlib.pricingengines.engine cimport PricingEngine

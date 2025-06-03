@@ -3,7 +3,7 @@ from libcpp cimport bool
 from libcpp.vector cimport vector
 from quantlib.time.date cimport Date, date_from_qldate
 cimport quantlib.time._date as _date
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 
 cdef class DefaultProbabilityTermStructure(TermStructure):
 

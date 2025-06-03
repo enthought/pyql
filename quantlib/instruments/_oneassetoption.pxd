@@ -1,6 +1,6 @@
 from quantlib.types cimport Real
 from .._option cimport Option
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from .._exercise cimport Exercise
 from .._payoffs cimport StrikedTypePayoff
 from quantlib.pricingengines._pricing_engine cimport PricingEngine

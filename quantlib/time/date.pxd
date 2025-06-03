@@ -10,7 +10,7 @@ from libcpp cimport bool
 from ._date cimport Date as QlDate
 
 cimport quantlib.time._period as _period
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 
 cdef extern from 'ql/time/weekday.hpp' namespace "QuantLib" nogil:
 

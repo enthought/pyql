@@ -5,7 +5,8 @@ from libcpp.vector cimport vector
 from libcpp cimport bool
 
 from . cimport _smilesection as _ss
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.ext cimport shared_ptr
+from quantlib.handle cimport Handle
 from quantlib.quote cimport Quote
 cimport quantlib._quote as _qt
 from quantlib.math.optimization cimport EndCriteria, OptimizationMethod

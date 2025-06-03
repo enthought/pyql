@@ -1,6 +1,6 @@
 from quantlib.types cimport Real
 from libcpp.vector cimport vector
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Frequency
 from quantlib.time._daycounter cimport DayCounter

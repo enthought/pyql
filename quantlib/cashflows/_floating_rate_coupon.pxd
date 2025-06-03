@@ -1,6 +1,6 @@
 from quantlib.types cimport Natural, Rate, Real, Spread
 from libcpp cimport bool
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib._cashflow cimport CashFlow

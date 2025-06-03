@@ -1,7 +1,7 @@
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from libcpp.vector cimport vector
-from quantlib.handle cimport optional
+from quantlib.ext cimport optional
 
 from quantlib.pricingengines.engine cimport PricingEngine
 

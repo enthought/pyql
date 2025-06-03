@@ -13,7 +13,7 @@ from libcpp.string cimport string
 from quantlib._index cimport Index
 from quantlib.currency._currency cimport Currency
 from quantlib.indexes._region cimport Region
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib._handle cimport Handle
 from quantlib.time._period cimport Period, Frequency
 from quantlib.time._date cimport Date
 

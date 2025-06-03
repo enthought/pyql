@@ -1,4 +1,4 @@
-from quantlib.handle cimport Handle
+from quantlib._handle cimport Handle
 cimport quantlib.termstructures._yield_term_structure as _yts
 from quantlib.indexes.ibor._libor cimport Libor
 from quantlib.time._period cimport Period

@@ -1,4 +1,4 @@
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time._date cimport Date as QlDate
 from quantlib.time.daycounter cimport DayCounter

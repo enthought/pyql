@@ -1,6 +1,6 @@
 from quantlib.types cimport Real
 
-from quantlib.handle cimport shared_ptr
+from .ext cimport shared_ptr
 from quantlib.pricingengines._pricing_engine cimport PricingEngine
 from quantlib.time._date cimport Date
 from libcpp.string cimport string

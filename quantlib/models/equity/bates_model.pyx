@@ -23,7 +23,7 @@ from . cimport _bates_model as _bm
 from . cimport _heston_model as _hm
 cimport quantlib.processes._heston_process as _hp
 cimport quantlib._stochastic_process as _sp
-from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 from quantlib.processes.heston_process cimport HestonProcess
 from quantlib.processes.bates_process cimport BatesProcess
 from .heston_model cimport HestonModel

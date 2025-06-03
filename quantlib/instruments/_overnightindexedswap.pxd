@@ -3,7 +3,7 @@ from quantlib.types cimport Integer, Natural, Rate, Real, Spread
 from quantlib.cashflows.rateaveraging cimport RateAveraging
 from libcpp cimport bool
 from libcpp.vector cimport vector
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib._cashflow cimport Leg
 from quantlib.time._calendar cimport BusinessDayConvention, Calendar
 from quantlib.time._schedule cimport Schedule

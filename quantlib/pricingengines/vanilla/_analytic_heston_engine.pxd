@@ -1,5 +1,5 @@
 from quantlib.types cimport Real, Size
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.models.equity._heston_model cimport HestonModel
 from quantlib.pricingengines._pricing_engine cimport PricingEngine
 

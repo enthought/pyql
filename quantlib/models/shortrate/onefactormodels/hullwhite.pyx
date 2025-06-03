@@ -13,7 +13,7 @@ from cython.operator cimport dereference as deref
 from . cimport _hullwhite as _hw
 from . cimport _vasicek as _va
 
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 cimport quantlib.termstructures.yields._flat_forward as _ff
 cimport quantlib.models._calibration_helper as _ch
 cimport quantlib.models._model as _mo

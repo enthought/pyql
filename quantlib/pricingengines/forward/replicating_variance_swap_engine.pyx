@@ -1,7 +1,7 @@
 include '../../types.pxi'
 
 from libcpp.vector cimport vector
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess as _GeneralizedBlackScholesProcess
 from quantlib.pricingengines._pricing_engine cimport PricingEngine as _PricingEngine

@@ -1,7 +1,7 @@
 from quantlib.types cimport Rate, Real, Spread, Size, Time
 
 from quantlib.instruments._bond cimport Bond
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.time._period cimport Frequency
 from quantlib.time._date cimport Date
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure

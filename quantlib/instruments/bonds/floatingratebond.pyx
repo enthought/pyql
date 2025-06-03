@@ -2,7 +2,7 @@ from quantlib.types cimport Natural, Rate, Real, Spread
 from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 from libcpp cimport bool
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from quantlib.indexes.ibor_index cimport IborIndex
 cimport quantlib.indexes._ibor_index as _ii
 from quantlib.time.businessdayconvention cimport BusinessDayConvention, Following, Unadjusted

@@ -2,7 +2,7 @@ from quantlib.types cimport Natural, Real, Volatility
 from libcpp cimport bool
 from libcpp.vector cimport vector
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport make_shared
+from quantlib.ext cimport make_shared
 
 from quantlib.time.date cimport Date
 from quantlib.time.calendar cimport Calendar
@@ -24,7 +24,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
                  Real shift=0.):
 
         if isinstance(volatility, float):
-            self._derived_ptr = make_shared[_scv.ConstantSwaptionVolatility](
+            self._thisptr = make_shared[_scv.ConstantSwaptionVolatility](
                 settlement_days,
                 calendar._thisptr,
                 bdc,
@@ -34,7 +34,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
                 shift
             )
         elif isinstance(volatility, Quote):
-            self._derived_ptr = make_shared[_scv.ConstantSwaptionVolatility](
+            self._thisptr = make_shared[_scv.ConstantSwaptionVolatility](
                 settlement_days,
                 calendar._thisptr,
                 bdc,
@@ -45,7 +45,6 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
             )
         else:
             raise TypeError
-        self._thisptr = self._derived_ptr
 
 
 
@@ -60,7 +59,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
 
         cdef ConstantSwaptionVolatility instance = cls.__new__(cls)
         if isinstance(volatility, float):
-            instance._derived_ptr = make_shared[_scv.ConstantSwaptionVolatility](
+            instance._thisptr = make_shared[_scv.ConstantSwaptionVolatility](
                 reference_date._thisptr,
                 calendar._thisptr,
                 bdc,
@@ -70,7 +69,7 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
                 shift
             )
         elif isinstance(volatility, Quote):
-            instance._derived_ptr = make_shared[_scv.ConstantSwaptionVolatility](
+            instance._thisptr = make_shared[_scv.ConstantSwaptionVolatility](
                 reference_date._thisptr,
                 calendar._thisptr,
                 bdc,
@@ -81,5 +80,4 @@ cdef class ConstantSwaptionVolatility(SwaptionVolatilityStructure):
             )
         else:
             raise TypeError
-        instance._thisptr = instance._derived_ptr
         return instance

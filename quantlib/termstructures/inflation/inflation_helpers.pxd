@@ -1,4 +1,4 @@
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.termstructures.inflation.inflation_traits cimport (
     ZeroInflationTraits, YoYInflationTraits )
 

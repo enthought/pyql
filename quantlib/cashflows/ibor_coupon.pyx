@@ -2,7 +2,7 @@ include '../types.pxi'
 
 from libcpp cimport bool
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
 cimport quantlib.cashflows._ibor_coupon as _ic

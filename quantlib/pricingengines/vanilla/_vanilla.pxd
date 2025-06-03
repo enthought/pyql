@@ -3,7 +3,7 @@ include '../../types.pxi'
 from libcpp cimport bool
 from libcpp.vector cimport vector
 
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.instruments._dividendschedule cimport DividendSchedule
 from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess
 from quantlib.models.shortrate.onefactormodels._hullwhite cimport HullWhite

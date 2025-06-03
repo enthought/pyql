@@ -2,7 +2,7 @@ from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from quantlib.utilities.null cimport Null
 from quantlib.instruments.swap cimport Swap
-from quantlib.handle cimport static_pointer_cast, shared_ptr
+from quantlib.ext cimport static_pointer_cast, shared_ptr
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.time.date cimport Period, Date
 from quantlib.time.businessdayconvention cimport BusinessDayConvention

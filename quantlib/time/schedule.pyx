@@ -2,7 +2,7 @@ from cython.operator cimport dereference as deref, preincrement as preinc
 from libcpp cimport bool
 from libcpp.vector cimport vector
 from libcpp.utility cimport move
-from quantlib.handle cimport optional
+from quantlib.ext cimport optional
 
 cimport quantlib.time._date as _date
 cimport quantlib.time._calendar as _calendar

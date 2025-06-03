@@ -4,7 +4,7 @@ from cython.operator cimport dereference as deref
 from libcpp cimport bool
 
 from quantlib.utilities.null cimport Null
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.pricingengines._pricing_engine cimport PricingEngine as _PricingEngine
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
@@ -18,9 +18,9 @@ cdef class MCVarianceSwapEngine(PricingEngine):
 
     as described in Demeterfi, Derman, Kamal & Zou,
     "A Guide to Volatility and Variance Swaps", 1999
-    TODO define tolerance of numerical integral and incorporate it 
+    TODO define tolerance of numerical integral and incorporate it
     in errorEstimate
-    
+
     Test returned fair variances checked for consistency with
     implied volatility curve.
 

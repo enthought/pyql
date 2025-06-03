@@ -8,7 +8,7 @@ from libcpp.string cimport string
 
 from . cimport _piecewise_default_curve as _pdc
 
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.time.date cimport Date, date_from_qldate
 cimport quantlib.time._date as _date
 from quantlib.time.daycounter cimport DayCounter

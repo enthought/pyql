@@ -2,7 +2,8 @@ include '../../types.pxi'
 from libcpp cimport bool
 from libcpp.vector cimport vector
 
-from quantlib.handle cimport Handle, optional, shared_ptr
+from quantlib.ext cimport optional, shared_ptr
+from quantlib.handle cimport Handle
 from quantlib.termstructures._default_term_structure cimport DefaultProbabilityTermStructure
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.pricingengines._pricing_engine cimport PricingEngine

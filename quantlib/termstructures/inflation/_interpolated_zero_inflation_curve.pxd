@@ -9,7 +9,7 @@ from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._period cimport Frequency, Period
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib.ext cimport shared_ptr
 from ._seasonality cimport Seasonality
 
 cdef extern from 'ql/termstructures/inflation/interpolatedzeroinflationcurve.hpp' namespace 'QuantLib' nogil:

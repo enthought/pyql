@@ -14,7 +14,7 @@ cimport quantlib._stochastic_process as _sp
 from ._heston_process cimport BatesProcess as QlBatesProcess
 from .heston_process cimport HestonProcess, Discretization, FullTruncation
 
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.quote cimport Quote
 from quantlib.quotes.simplequote cimport SimpleQuote
 from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure

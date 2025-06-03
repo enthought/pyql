@@ -1,7 +1,8 @@
 from quantlib.types cimport Real
 from quantlib.cashflows.rateaveraging cimport RateAveraging
 from ._rate_helpers cimport RateHelper
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib._handle cimport Handle
+from quantlib.ext cimport shared_ptr
 from quantlib.indexes._ibor_index cimport OvernightIndex
 from quantlib.time._date cimport Date, Month, Year
 from quantlib.time.frequency cimport Frequency

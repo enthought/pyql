@@ -1,9 +1,9 @@
 from cython.operator cimport dereference as deref
 
 from libcpp cimport bool
-from quantlib.handle cimport shared_ptr, optional
+from quantlib.ext cimport optional
 from quantlib.pricingengines.vanilla.vanilla cimport PricingEngine
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 
 cimport quantlib.pricingengines._swap as _swap
 cimport quantlib.termstructures._yield_term_structure as _yts

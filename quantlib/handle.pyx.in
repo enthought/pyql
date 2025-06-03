@@ -1,0 +1,25 @@
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.volatility.optionlet.optionlet_volatility_structure cimport OptionletVolatilityStructure
+
+{{for T in ("YieldTermStructure", "VolatilityTermStructure")}}
+cdef class Handle{{T}}:
+def __init__(self, {{T}} t=None, bool register_as_observer=True):
+        if t is not None:
+            self.handle = RelinkableHandle[Ql{{T}}](
+                static_pointer_cast[Ql{{T}}](t._thisptr),
+                register_as_observer)
+
+    @property
+    def current_link(self):
+        cdef  instance = {{T}}.__new__({{T}})
+        if self.handle.empty():
+            raise ValueError("empty handle")
+        instance._thisptr = self.handle.currentLink()
+        return instance
+
+    def link_to(self, {{T}} t, bool register_as_observer=True):
+        self.handle.linkTo(static_pointer_cast[Ql{{T}}](t._thisptr), register_as_observer)
+
+    def __bool__(self):
+        return not self.handle.empty()
+{{endfor}}

@@ -13,7 +13,8 @@ cimport quantlib._instrument as _ins
 from quantlib.instruments.vanillaswap cimport VanillaSwap
 cimport quantlib.instruments._vanillaswap as _vs
 
-from quantlib.handle cimport shared_ptr, Handle, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
+from quantlib.handle cimport HandleYieldTermStructure
 cimport quantlib.indexes._ibor_index as _ib
 cimport quantlib.indexes._swap_index as _si
 from quantlib.instruments.futures cimport FuturesType

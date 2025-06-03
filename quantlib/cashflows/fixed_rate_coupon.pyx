@@ -3,7 +3,7 @@ from cython.operator cimport dereference as deref, preincrement as preinc
 from libcpp.vector cimport vector
 from libcpp.utility cimport move
 from quantlib.compounding cimport Compounding
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date

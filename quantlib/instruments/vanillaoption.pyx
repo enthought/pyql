@@ -1,5 +1,5 @@
 """Vanilla option on a single asset"""
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 from quantlib.types cimport Real, Size, Volatility
 from quantlib.processes.black_scholes_process cimport GeneralizedBlackScholesProcess
 from quantlib.processes cimport _black_scholes_process as _bsp

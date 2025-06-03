@@ -1,5 +1,6 @@
 cimport quantlib._quote as _qt
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib._handle cimport Handle
+from quantlib.ext cimport shared_ptr
 from quantlib.observable cimport Observable
 
 cdef class Quote(Observable):

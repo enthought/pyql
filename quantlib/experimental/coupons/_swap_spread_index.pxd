@@ -1,6 +1,6 @@
 include '../../types.pxi'
 from libcpp.string cimport string
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.indexes._interest_rate_index cimport InterestRateIndex
 from quantlib.indexes._swap_index cimport SwapIndex
 

@@ -7,7 +7,7 @@
 
 from . cimport _heston_model as _hm
 
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.models.calibration_helper cimport BlackCalibrationHelper
 
 

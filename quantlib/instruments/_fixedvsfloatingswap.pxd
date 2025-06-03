@@ -1,7 +1,7 @@
 from libcpp.vector cimport vector
 
 from quantlib.types cimport Natural, Rate, Real, Spread
-from quantlib.handle cimport shared_ptr, optional
+from quantlib.ext cimport shared_ptr, optional
 from quantlib.time._calendar cimport BusinessDayConvention, Calendar
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
