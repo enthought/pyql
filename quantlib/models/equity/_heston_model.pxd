@@ -17,7 +17,7 @@ cimport quantlib._quote as _qt
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._period cimport Period
 
-cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib':
+cdef extern from 'ql/models/equity/hestonmodelhelper.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass HestonModelHelper(BlackCalibrationHelper):
 

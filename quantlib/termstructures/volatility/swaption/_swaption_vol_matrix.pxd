@@ -13,7 +13,7 @@ from ._swaption_vol_structure cimport SwaptionVolatilityStructure
 from ..volatilitytype cimport VolatilityType
 from quantlib.math._matrix cimport Matrix
 
-cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolmatrix.hpp' namespace 'QuantLib':
+cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolmatrix.hpp' namespace 'QuantLib' nogil:
     cdef cppclass SwaptionVolatilityMatrix(SwaptionVolatilityStructure):
         # floating reference date, floating market data
         SwaptionVolatilityMatrix(

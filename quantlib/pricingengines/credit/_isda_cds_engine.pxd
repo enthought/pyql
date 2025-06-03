@@ -10,7 +10,7 @@ from quantlib.pricingengines._pricing_engine cimport PricingEngine
 from quantlib.termstructures.credit._credit_helpers cimport DefaultProbabilityHelper, CdsHelper
 from quantlib.termstructures.yields._rate_helpers cimport RateHelper
 
-cdef extern from 'ql/pricingengines/credit/isdacdsengine.hpp' namespace 'QuantLib':
+cdef extern from 'ql/pricingengines/credit/isdacdsengine.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass IsdaCdsEngine(PricingEngine):
         IsdaCdsEngine(

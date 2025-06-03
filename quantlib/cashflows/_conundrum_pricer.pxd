@@ -12,7 +12,7 @@ cdef extern from 'ql/cashflows/conundrumpricer.hpp' namespace 'QuantLib::GFuncti
         ParallelShifts
         NonParallelShifts
 
-cdef extern from 'ql/cashflows/conundrumpricer.hpp' namespace 'QuantLib':
+cdef extern from 'ql/cashflows/conundrumpricer.hpp' namespace 'QuantLib' nogil:
     cdef cppclass HaganPricer(CmsCouponPricer):
         pass
 

@@ -6,7 +6,7 @@ from quantlib.ext cimport shared_ptr
 from quantlib.pricingengines._pricing_engine cimport PricingEngine
 from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess
 
-cdef extern from 'ql/pricingengines/forward/replicatingvarianceswapengine.hpp' namespace 'QuantLib':
+cdef extern from 'ql/pricingengines/forward/replicatingvarianceswapengine.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass ReplicatingVarianceSwapEngine(PricingEngine):
 

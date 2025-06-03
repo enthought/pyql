@@ -39,7 +39,7 @@ cdef extern from 'ql/math/optimization/endcriteria.hpp' namespace 'QuantLib':
         )
 
 
-cdef extern from 'ql/math/optimization/constraint.hpp' namespace 'QuantLib':
+cdef extern from 'ql/math/optimization/constraint.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass Constraint:
         Constraint()

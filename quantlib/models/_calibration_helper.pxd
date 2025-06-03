@@ -5,7 +5,7 @@ from quantlib.handle cimport Handle
 from quantlib.ext cimport shared_ptr
 from quantlib._quote cimport Quote
 
-cdef extern from 'ql/models/calibrationhelper.hpp' namespace 'QuantLib':
+cdef extern from 'ql/models/calibrationhelper.hpp' namespace 'QuantLib' nogil:
     cdef cppclass CalibrationHelper:
         pass
 

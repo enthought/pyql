@@ -14,7 +14,7 @@ from quantlib.time.dategeneration cimport DateGeneration
 from quantlib.handle cimport Handle
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 
-cdef extern from 'ql/instruments/makecms.hpp' namespace 'QuantLib':
+cdef extern from 'ql/instruments/makecms.hpp' namespace 'QuantLib' nogil:
     cdef cppclass MakeCms:
         MakeCms(const Period& swapTenor,
                 const shared_ptr[SwapIndex]& swapIndex,

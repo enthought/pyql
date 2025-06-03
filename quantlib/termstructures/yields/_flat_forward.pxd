@@ -21,7 +21,7 @@ from quantlib.compounding cimport Compounding
 
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 
-cdef extern from 'ql/termstructures/yield/flatforward.hpp' namespace 'QuantLib':
+cdef extern from 'ql/termstructures/yield/flatforward.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass FlatForward(YieldTermStructure):
 

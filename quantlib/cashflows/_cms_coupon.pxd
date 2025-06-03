@@ -7,7 +7,7 @@ from quantlib.time._daycounter cimport DayCounter
 from quantlib.indexes._swap_index cimport SwapIndex
 from ._floating_rate_coupon cimport FloatingRateCoupon
 
-cdef extern from 'ql/cashflows/cmscoupon.hpp' namespace 'QuantLib':
+cdef extern from 'ql/cashflows/cmscoupon.hpp' namespace 'QuantLib' nogil:
     cdef cppclass CmsCoupon(FloatingRateCoupon):
         CmsCoupon(const Date& paymentDate,
                   Real nominal,

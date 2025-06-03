@@ -15,7 +15,7 @@ cimport quantlib._quote as _qt
 from quantlib._stochastic_process cimport StochasticProcess1D
 from quantlib.termstructures.volatility.equityfx._black_vol_term_structure cimport BlackVolTermStructure
 
-cdef extern from 'ql/processes/blackscholesprocess.hpp' namespace 'QuantLib':
+cdef extern from 'ql/processes/blackscholesprocess.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass GeneralizedBlackScholesProcess(StochasticProcess1D):
         GeneralizedBlackScholesProcess()
