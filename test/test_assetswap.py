@@ -3,13 +3,13 @@ import unittest
 from quantlib.time.api import Date, Period, Annual, TARGET, Unadjusted, Schedule, DateGeneration, Actual365Fixed, Semiannual, ActualActual, Following
 from quantlib.instruments.api import FixedRateBond, AssetSwap
 from quantlib.pricingengines.api import DiscountingBondEngine, DiscountingSwapEngine
-from quantlib.termstructures.yields.api import HandleYieldTermStructure
+from quantlib.termstructures.yields.api import RelinkableHandleYieldTermStructure
 from quantlib.indexes.api import Euribor
 from .utilities import flat_rate
 
 class TestMarketASWSpread(unittest.TestCase):
     def setUp(self):
-        self.term_structure = HandleYieldTermStructure()
+        self.term_structure = RelinkableHandleYieldTermStructure()
         self.today = Date(24, 4, 2007)
         self.ibor_index = Euribor(Period(Semiannual), self.term_structure)
         self.term_structure.link_to(flat_rate(0.05, Actual365Fixed(), self.today))

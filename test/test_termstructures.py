@@ -9,10 +9,10 @@
 
 import unittest
 from quantlib.termstructures.yields.api import (
-    FlatForward, YieldTermStructure, ForwardSpreadedTermStructure,
+    FlatForward, HandleYieldTermStructure, RelinkableHandleYieldTermStructure,
+    ForwardSpreadedTermStructure,
     DiscountCurve, ImpliedTermStructure
 )
-from quantlib.termstructures.yield_term_structure import HandleYieldTermStructure
 from quantlib.quotes import SimpleQuote
 
 from quantlib.settings import Settings
@@ -37,14 +37,13 @@ class YieldTermStructureTestCase(unittest.TestCase):
 
     def test_relinkable_structures(self):
 
-        discounting_term_structure = HandleYieldTermStructure()
+
 
         settlement_days = 3
         flat_term_structure = FlatForward(settlement_days=settlement_days,
             forward=0.044, calendar=NullCalendar(), daycounter=Actual360())
-
+        discounting_term_structure = RelinkableHandleYieldTermStructure()
         discounting_term_structure.link_to(flat_term_structure)
-
         evaluation_date = Settings().evaluation_date +100
         self.assertEqual(
             flat_term_structure.discount(evaluation_date),
@@ -125,7 +124,6 @@ class ForwardSpreadedTestCase(unittest.TestCase):
         forecast_ts = m._forecast_term_structure
         discount_spd = 0.05
         forecast_spd = 0.08
-
         fwd_spd_dts = ForwardSpreadedTermStructure(discount_ts, SimpleQuote(discount_spd))
         fwd_spd_fts = ForwardSpreadedTermStructure(forecast_ts, SimpleQuote(forecast_spd))
 

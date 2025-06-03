@@ -21,8 +21,10 @@ from quantlib.time.schedule import Schedule
 from quantlib.time.dategeneration import DateGeneration
 from quantlib.settings import Settings
 from quantlib.termstructures.yields.api import (
-    FlatForward, HandleYieldTermStructure
+    FlatForward, RelinkableHandleYieldTermStructure
 )
+from quantlib.handle import RelinkableHandleOptionletVolatilityStructure
+
 from quantlib.indexes.api import Libor, Euribor6M
 from quantlib.currency.api import USDCurrency
 from quantlib.time.api import Months, Unadjusted, Following, ModifiedFollowing
@@ -61,7 +63,7 @@ class BondTestCase(unittest.TestCase):
         coupon_rate = 0.03625
         bond_yield = 0.034921
 
-        discounting_term_structure = HandleYieldTermStructure()
+        discounting_term_structure = RelinkableHandleYieldTermStructure()
         flat_term_structure = FlatForward(
             reference_date = settlement_date,
             forward        = bond_yield,
@@ -78,7 +80,7 @@ class BondTestCase(unittest.TestCase):
             issue_date,
             maturity_date,
             Period(Semiannual),
-            UnitedStates(market=GOVERNMENTBOND),
+            UnitedStates(market=UnitedStates.GovernmentBond),
             Unadjusted,
             Unadjusted,
             DateGeneration.Backward,
@@ -168,7 +170,7 @@ class BondTestCase(unittest.TestCase):
             issue_date
         )
 
-        discounting_term_structure = HandleYieldTermStructure()
+        discounting_term_structure = RelinkableHandleYieldTermStructure()
         flat_term_structure = FlatForward(
             settlement_days = 1,
             forward         = 0.044,
@@ -210,7 +212,7 @@ class BondTestCase(unittest.TestCase):
             100.0, todays_date
         )
 
-        discounting_term_structure = HandleYieldTermStructure()
+        discounting_term_structure = RelinkableHandleYieldTermStructure()
         flat_term_structure = FlatForward(
             settlement_days = 1,
             forward         = 0.044,
@@ -229,6 +231,7 @@ class BondTestCase(unittest.TestCase):
         )
         self.assertEqual(0., bond.accrued_amount(bond.settlement_date()))
         self.assertAlmostEqual(57.6915, bond.clean_price(), 4)
+
     def test_excel_example_with_floating_rate_bond(self):
 
         todays_date = Date(25, August, 2011)
@@ -258,8 +261,8 @@ class BondTestCase(unittest.TestCase):
             DateGeneration.Backward
         )#3
 
-        flat_discounting_term_structure = HandleYieldTermStructure()
-        forecastTermStructure = HandleYieldTermStructure()
+        flat_discounting_term_structure = RelinkableHandleYieldTermStructure()
+        forecastTermStructure = RelinkableHandleYieldTermStructure()
 
 
         dc = Actual360()
@@ -295,7 +298,9 @@ class BondTestCase(unittest.TestCase):
 
         float_bond.set_pricing_engine(engine)
         cons_option_vol = ConstantOptionletVolatility(settlement_days, UnitedStates(Market.Settlement), pmt_conv, 0.95, Actual365Fixed())
-        coupon_pricer = BlackIborCouponPricer(cons_option_vol)
+        coupon_pricer = BlackIborCouponPricer(
+            RelinkableHandleOptionletVolatilityStructure(cons_option_vol)
+        )
 
         set_coupon_pricer(float_bond.cashflows, coupon_pricer)
 

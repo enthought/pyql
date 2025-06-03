@@ -1,5 +1,3 @@
-from __future__ import division
-from __future__ import print_function
 import numpy as np
 
 import unittest
@@ -26,7 +24,7 @@ from quantlib.time.api import (
     Actual365Fixed, TARGET, Weeks, ActualActual
 )
 from quantlib.termstructures.yields.flat_forward import FlatForward
-from quantlib.termstructures.yield_term_structure import HandleYieldTermStructure
+from quantlib.handle import HandleYieldTermStructure
 from quantlib.quotes import SimpleQuote
 from quantlib.termstructures.yields.zero_curve import ZeroCurve
 

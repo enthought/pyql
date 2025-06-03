@@ -12,7 +12,7 @@ from quantlib.pricingengines.forward.replicating_variance_swap_engine import Rep
 from quantlib.pricingengines.forward.mc_variance_swap_engine import MCVarianceSwapEngine
 from quantlib.processes.api import BlackScholesMertonProcess
 from quantlib.quotes import SimpleQuote
-from quantlib.termstructures.yield_term_structure import HandleYieldTermStructure
+from quantlib.handle import HandleYieldTermStructure, HandleBlackVolTermStructure
 from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.termstructures.volatility.equityfx.black_variance_curve import BlackVarianceCurve
 from quantlib.termstructures.volatility.equityfx.black_variance_surface import BlackVarianceSurface
@@ -113,8 +113,10 @@ class VarianceSwapTestCase(unittest.TestCase):
 
         vols_mat = Matrix.from_ndarray(vols)
 
-        vol_ts = BlackVarianceSurface(self.today, NullCalendar(), dates, strikes,
-                                      vols_mat, self.dc)
+        vol_ts = HandleBlackVolTermStructure(
+            BlackVarianceSurface(self.today, NullCalendar(), dates, strikes,
+                                 vols_mat, self.dc)
+        )
 
 
         stoch_process = BlackScholesMertonProcess(self.spot, self.q_ts, self.r_ts,
@@ -160,7 +162,9 @@ class VarianceSwapTestCase(unittest.TestCase):
         # is unreliable. Result should be v*v for arbitrary t1 and v1
         # (as long as 0<=t1<t and 0<=v1<v)
 
-        vol_ts = BlackVarianceCurve(self.today, dates, vols, self.dc, True)
+        vol_ts = HandleBlackVolTermStructure(
+            BlackVarianceCurve(self.today, dates, vols, self.dc, True)
+        )
 
         stoch_process = BlackScholesMertonProcess(self.spot, self.q_ts,
                                                   self.r_ts, vol_ts)

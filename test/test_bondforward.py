@@ -2,7 +2,7 @@ import unittest
 from quantlib.settings import Settings
 from quantlib.time.api import ActualActual, Annual, Date, DateGeneration, Period, Schedule, Following, TARGET, Actual365Fixed
 from quantlib.instruments.api import BondForward, FixedRateBond
-from quantlib.termstructures.yield_term_structure import HandleYieldTermStructure
+from quantlib.handle import HandleYieldTermStructure
 from quantlib.pricingengines.api import DiscountingBondEngine
 from quantlib.position import Position
 from .utilities import flat_rate

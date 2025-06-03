@@ -25,7 +25,7 @@ from quantlib.models.equity.heston_model import (
     HestonModel)
 
 from quantlib.termstructures.yields.api import ZeroCurve, FlatForward, HandleYieldTermStructure
-from quantlib.termstructures.volatility.api import BlackConstantVol
+from quantlib.termstructures.volatility.api import BlackConstantVol, HandleBlackVolTermStructure
 
 from quantlib.pricingengines.api import (
     AnalyticEuropeanEngine,
@@ -79,11 +79,13 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         self.r_ts = HandleYieldTermStructure(ZeroCurve(dates, rates, self.daycounter))
         self.q_ts = HandleYieldTermStructure(ZeroCurve(dates, divRates, self.daycounter))
 
-        self.vol_ts = BlackConstantVol(
-            self.settlement_date,
-            self.calendar,
-            self.volatility,
-            self.daycounter
+        self.vol_ts = HandleBlackVolTermStructure(
+            BlackConstantVol(
+                self.settlement_date,
+                self.calendar,
+                self.volatility,
+                self.daycounter
+            )
         )
 
         self.black_scholes_merton_process = BlackScholesMertonProcess(
@@ -110,7 +112,9 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
 
         q_ts = HandleYieldTermStructure(flat_rate(0.04, dc))
         r_ts = HandleYieldTermStructure(flat_rate(0.0525, dc))
-        vol_ts = BlackConstantVol(todays_date, NullCalendar(), 0.25, dc)
+        vol_ts = HandleBlackVolTermStructure(
+            BlackConstantVol(todays_date, NullCalendar(), 0.25, dc)
+        )
 
         hullWhiteModel = HullWhite(r_ts, 0.00883, 0.00526)
 
@@ -139,8 +143,10 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
             option.set_pricing_engine(bsm_hw_engine)
             npv = option.npv
 
-            compVolTS = BlackConstantVol(todays_date, NullCalendar(),
-                                         v, dc)
+            compVolTS = HandleBlackVolTermStructure(
+                BlackConstantVol(todays_date, NullCalendar(),
+                                 v, dc)
+            )
 
             bs_process = BlackScholesMertonProcess(spot, q_ts,
                                                    r_ts, compVolTS)
@@ -189,11 +195,12 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         q_ts = HandleYieldTermStructure(ZeroCurve(dates, divRates, dc))
 
         vol = SimpleQuote(0.25)
-        vol_ts = BlackConstantVol(
-            todays_date,
-            NullCalendar(),
-            vol.value, dc)
-
+        vol_ts = HandleBlackVolTermStructure(
+            BlackConstantVol(
+                todays_date,
+                NullCalendar(),
+                vol.value, dc)
+        )
         bsm_process = BlackScholesMertonProcess(
             spot, q_ts, r_ts, vol_ts)
 
@@ -271,10 +278,12 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         q_ts = HandleYieldTermStructure(ZeroCurve(dates, divRates, dc))
 
         vol = SimpleQuote(0.25)
-        vol_ts = BlackConstantVol(
-            todays_date,
-            NullCalendar(),
-            vol.value, dc)
+        vol_ts = HandleBlackVolTermStructure(
+            BlackConstantVol(
+                todays_date,
+                NullCalendar(),
+                vol.value, dc)
+        )
 
         bsm_process = BlackScholesMertonProcess(
             spot, q_ts, r_ts, vol_ts)
@@ -433,7 +442,9 @@ class HybridHestonHullWhiteProcessTestCase(unittest.TestCase):
         r_ts = HandleYieldTermStructure(ZeroCurve(dates, rates, dc))
         q_ts = HandleYieldTermStructure(ZeroCurve(dates, div_rates, dc))
         vol = SimpleQuote(0.25)
-        vol_ts = BlackConstantVol(todays_date, NullCalendar(), vol, dc)
+        vol_ts = HandleBlackVolTermStructure(
+            BlackConstantVol(todays_date, NullCalendar(), vol, dc)
+        )
         bsm_process= BlackScholesMertonProcess(s0, q_ts, r_ts, vol_ts)
         heston_process = HestonProcess(r_ts, q_ts, s0, 0.0625, 0.5, 0.0625, 1e-5, 0.3)
         hw_process = HullWhiteForwardProcess(r_ts, 0.01, 0.01)

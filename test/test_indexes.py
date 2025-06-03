@@ -69,9 +69,9 @@ class TestLibor(unittest.TestCase):
         # must be a business day
         settlement_date = calendar.adjust(settlement_date)
 
-        term_structure = HandleYieldTermStructure()
-        term_structure.link_to(FlatForward(settlement_date, 0.05,
-                                           Actual365Fixed()))
+        term_structure = HandleYieldTermStructure(
+            FlatForward(settlement_date, 0.05, Actual365Fixed())
+        )
 
         index = Libor('USDLibor', Period(6, Months), settlement_days,
                       USDCurrency(), calendar, Actual360(),
@@ -89,9 +89,9 @@ class TestEuribor(unittest.TestCase):
     def test_creation(self):
 
         settlement_date = Date(1, January, 2014)
-        term_structure = HandleYieldTermStructure()
-        term_structure.link_to(FlatForward(settlement_date, 0.05,
-                                           Actual365Fixed()))
+        term_structure = HandleYieldTermStructure(
+            FlatForward(settlement_date, 0.05, Actual365Fixed())
+        )
         # Makes sure the constructor does not segfault anymore ;-)
         index = Euribor6M(term_structure)
 
@@ -108,9 +108,9 @@ class TestUSDLibor(unittest.TestCase):
     def test_creation(self):
 
         settlement_date = Date(1, January, 2014)
-        term_structure = HandleYieldTermStructure()
-        term_structure.link_to(FlatForward(settlement_date, 0.05,
-                                           Actual365Fixed()))
+        term_structure = HandleYieldTermStructure(
+            FlatForward(settlement_date, 0.05, Actual365Fixed())
+        )
         index = USDLibor(Period(3, Months), term_structure)
 
         self.assertEqual(index.name, 'USDLibor3M Actual/360')
@@ -125,11 +125,12 @@ class SwapIndexTestCase(unittest.TestCase):
 
     def test_create_swap_index(self):
 
-        term_structure = HandleYieldTermStructure()
-        term_structure.link_to(FlatForward(forward=0.05,
-                                           daycounter=Actual365Fixed(),
-                                           settlement_days=2,
-                                           calendar=UnitedStates()))
+        term_structure = HandleYieldTermStructure(
+            FlatForward(forward=0.05,
+                        daycounter=Actual365Fixed(),
+                        settlement_days=2,
+                        calendar=UnitedStates())
+        )
 
         ibor_index = USDLibor(Period(3, Months), term_structure)
 
@@ -146,9 +147,13 @@ class SwapIndexTestCase(unittest.TestCase):
 
 class IndexManagerTestCase(unittest.TestCase):
     settlement_date = Date(1, January, 2014)
-    term_structure = HandleYieldTermStructure()
-    term_structure.link_to(FlatForward(settlement_date, 0.05,
-                                       Actual365Fixed()))
+    term_structure = HandleYieldTermStructure(
+        FlatForward(
+            settlement_date,
+            0.05,
+            Actual365Fixed()
+        )
+    )
     index = USDLibor(Period(3, Months), term_structure)
     index.add_fixing(Date(5, 2, 2018), 1.79345)
     index.add_fixing(Date(2, 2, 2018), 1.78902)

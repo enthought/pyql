@@ -45,9 +45,10 @@ class TestQuantLibSwap(unittest.TestCase):
         # must be a business day
         settlement_date = calendar.adjust(settlement_date)
 
-        termStructure = HandleYieldTermStructure()
-        termStructure.link_to(FlatForward(settlement_date, 0.05,
-                                          Actual365Fixed()))
+        termStructure = HandleYieldTermStructure(
+            FlatForward(settlement_date, 0.05,
+                        Actual365Fixed())
+        )
 
         index = Libor('USD Libor', Period(6, Months), settlement_days,
                       USDCurrency(), calendar, Actual360(),
