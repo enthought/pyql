@@ -17,7 +17,7 @@ from quantlib.instruments.implied_volatility import ImpliedVolatilityHelper
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.settings import Settings
 from quantlib.time.api import Date, TARGET, May, Actual365Fixed
-from quantlib.termstructures.yield_term_structure import HandleYieldTermStructure
+from quantlib.handle import HandleYieldTermStructure, HandleBlackVolTermStructure
 from quantlib.termstructures.yields.flat_forward import FlatForward
 from quantlib.quotes import SimpleQuote
 from quantlib.methods.finitedifferences.solvers.fdmbackwardsolver import FdmSchemeDesc
@@ -70,11 +70,13 @@ class VanillaOptionTestCase(unittest.TestCase):
             )
         )
 
-        self.flat_vol_ts = BlackConstantVol(
-            self.settlement_date,
-            self.calendar,
-            self.volatility,
-            self.daycounter
+        self.flat_vol_ts = HandleBlackVolTermStructure(
+            BlackConstantVol(
+                self.settlement_date,
+                self.calendar,
+                self.volatility,
+                self.daycounter
+            )
         )
 
         self.black_scholes_merton_process = BlackScholesMertonProcess(

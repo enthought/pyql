@@ -5,7 +5,7 @@ from quantlib.time.api import (
     UnitedStates, today, Unadjusted)
 from quantlib.math.matrix import Matrix
 import numpy as np
-from quantlib.termstructures.yield_term_structure import HandleYieldTermStructure
+from quantlib.handle import HandleYieldTermStructure, HandleSwaptionVolatilityStructure
 from quantlib.termstructures.volatility.swaption.swaption_vol_matrix \
     import SwaptionVolatilityMatrix
 from quantlib.indexes.api import EuriborSwapIsdaFixA
@@ -36,12 +36,15 @@ class CmsFairRateTestCase(unittest.TestCase):
         M = Matrix.from_ndarray(m)
 
         calendar = UnitedStates()
-        self.atm_vol = SwaptionVolatilityMatrix(calendar,
-                                                Following,
-                                                atm_option_tenors,
-                                                atm_swap_tenors,
-                                                M,
-                                                Actual365Fixed())
+        self.atm_vol = HandleSwaptionVolatilityStructure(
+            SwaptionVolatilityMatrix(calendar,
+                                     Following,
+                                     atm_option_tenors,
+                                     atm_swap_tenors,
+                                     M,
+                                     Actual365Fixed()
+                                     )
+            )
 
         reference_date = calendar.adjust(today())
         Settings().evaluation_date = reference_date

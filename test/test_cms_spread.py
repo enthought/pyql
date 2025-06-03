@@ -5,7 +5,7 @@ from quantlib.time.api import (
 from quantlib.indexes.api import EuriborSwapIsdaFixA
 from quantlib.termstructures.yields.api import FlatForward, HandleYieldTermStructure
 from quantlib.termstructures.volatility.api import (
-        ConstantSwaptionVolatility, VolatilityType)
+        ConstantSwaptionVolatility, VolatilityType, HandleSwaptionVolatilityStructure)
 from quantlib.experimental.coupons.lognormal_cmsspread_pricer import \
         LognormalCmsSpreadPricer
 from quantlib.experimental.coupons.swap_spread_index import SwapSpreadIndex
@@ -28,15 +28,21 @@ class CmsSpreadTestCase(unittest.TestCase):
         self.ref_date = Date(23, 2, 2018)
         Settings().evaluation_date = self.ref_date
         self.yts = HandleYieldTermStructure(FlatForward(self.ref_date, 0.02, Actual365Fixed()))
-        self.swLn = ConstantSwaptionVolatility.from_reference_date(
-            self.ref_date, TARGET(), Following,
-            0.2, Actual365Fixed(), VolatilityType.ShiftedLognormal, 0.)
-        self.swSLn = ConstantSwaptionVolatility.from_reference_date(
-            self.ref_date, TARGET(), Following,
-            0.1, Actual365Fixed(), VolatilityType.ShiftedLognormal, 0.01)
-        self.swN = ConstantSwaptionVolatility.from_reference_date(
-            self.ref_date, TARGET(), Following,
-            0.075, Actual365Fixed(), VolatilityType.Normal, 0.01)
+        self.swLn = HandleSwaptionVolatilityStructure(
+            ConstantSwaptionVolatility.from_reference_date(
+                self.ref_date, TARGET(), Following,
+                0.2, Actual365Fixed(), VolatilityType.ShiftedLognormal, 0.)
+        )
+        self.swSLn = HandleSwaptionVolatilityStructure(
+            ConstantSwaptionVolatility.from_reference_date(
+                self.ref_date, TARGET(), Following,
+                0.1, Actual365Fixed(), VolatilityType.ShiftedLognormal, 0.01)
+        )
+        self.swN = HandleSwaptionVolatilityStructure(
+            ConstantSwaptionVolatility.from_reference_date(
+                self.ref_date, TARGET(), Following,
+                0.075, Actual365Fixed(), VolatilityType.Normal, 0.01)
+        )
         reversion = SimpleQuote(0.01)
         self.cms_pricer_ln = LinearTsrPricer(self.swLn, reversion, self.yts)
         self.cms_pricer_sln = LinearTsrPricer(self.swSLn, reversion, self.yts)
@@ -145,12 +151,13 @@ class CmsSpreadTestCase(unittest.TestCase):
 
     @staticmethod
     def mc_reference_value(cpn1, cpn2, vol, correlation):
+        vol = vol.current_link
         samples = 1000000
         Cov = Matrix(2, 2)
         Cov[0,0] = vol.black_variance(cpn1.fixing_date, cpn1.index.tenor,
-                                      cpn1.index_fixing)
+                                                   cpn1.index_fixing)
         Cov[1,1] = vol.black_variance(cpn1.fixing_date, cpn1.index.tenor,
-                                      cpn1.index_fixing)
+                                                   cpn1.index_fixing)
         Cov[0,1] = Cov[1,0] = sqrt(Cov[0,0] * Cov[1,1]) * correlation
         C = pseudo_sqrt(Cov).to_ndarray()
         atm_rate = np.array([cpn1.index_fixing,
