@@ -6,7 +6,7 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.types cimport Natural, Real
 from quantlib.ext cimport static_pointer_cast
 from quantlib.position cimport Position
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 from . cimport _bondforward as _bf
 from . cimport _bond
 from .bond cimport Bond
@@ -53,7 +53,7 @@ cdef class BondForward(Forward):
         self._thisptr.reset(
             new _bf.BondForward(value_date._thisptr, maturity_date._thisptr, position_type, strike,
                                 settlement_days, deref(day_counter._thisptr), calendar._thisptr, convention,
-                                static_pointer_cast[_bond.Bond](bond._thisptr), discount_curve.handle, income_discount_curve.handle)
+                                static_pointer_cast[_bond.Bond](bond._thisptr), discount_curve.handle(), income_discount_curve.handle())
             )
 
     @property

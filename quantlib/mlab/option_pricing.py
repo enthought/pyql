@@ -25,7 +25,7 @@ from quantlib.pricingengines.api import (AnalyticEuropeanEngine,
                                          AnalyticHestonEngine)
 from quantlib.processes.api import BlackScholesMertonProcess
 from quantlib.termstructures.yields.api import FlatForward, HandleYieldTermStructure
-from quantlib.termstructures.volatility.api import BlackConstantVol
+from quantlib.termstructures.volatility.api import BlackConstantVol, HandleBlackVolTermStructure
 from quantlib.time.api import today, NullCalendar, ActualActual
 
 from quantlib.time.date import (Period, Days)
@@ -108,8 +108,10 @@ def _blsprice(spot, strike, risk_free_rate, time, volatility,
     daycounter = ActualActual(ActualActual.ISMA)
     risk_free_ts = HandleYieldTermStructure(FlatForward(today(), risk_free_rate, daycounter))
     dividend_ts = HandleYieldTermStructure(FlatForward(today(), dividend, daycounter))
-    volatility_ts = BlackConstantVol(today(), NullCalendar(),
-                                     volatility, daycounter)
+    volatility_ts = HandleBlackVolTermStructure(
+        BlackConstantVol(today(), NullCalendar(),
+                         volatility, daycounter)
+    )
 
     process = BlackScholesMertonProcess(_spot, dividend_ts,
                                         risk_free_ts, volatility_ts)
@@ -166,8 +168,9 @@ def _blsimpv(price, spot, strike, risk_free_rate, time,
     daycounter = ActualActual(ActualActual.ISMA)
     risk_free_ts = HandleYieldTermStructure(FlatForward(today(), risk_free_rate, daycounter))
     dividend_ts = HandleYieldTermStructure(FlatForward(today(), dividend, daycounter))
-    volatility_ts = BlackConstantVol(today(), NullCalendar(),
-                                     .3, daycounter)
+    volatility_ts = HandleBlackVolTermStructure(
+        BlackConstantVol(today(), NullCalendar(), .3, daycounter)
+    )
 
     process = BlackScholesMertonProcess(spot, dividend_ts,
                                         risk_free_ts, volatility_ts)

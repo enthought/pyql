@@ -17,7 +17,7 @@ from .heston_process cimport HestonProcess, Discretization, FullTruncation
 from quantlib.ext cimport shared_ptr
 from quantlib.quote cimport Quote
 from quantlib.quotes.simplequote cimport SimpleQuote
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 
 cdef class BatesProcess(HestonProcess):
 
@@ -37,8 +37,8 @@ cdef class BatesProcess(HestonProcess):
 
         self._thisptr = shared_ptr[_sp.StochasticProcess](
             new QlBatesProcess(
-                risk_free_rate_ts.handle,
-                dividend_ts.handle,
+                risk_free_rate_ts.handle(),
+                dividend_ts.handle(),
                 s0.handle(),
                 v0, kappa, theta, sigma, rho,
                 lambda_, nu, delta, d))

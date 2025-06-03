@@ -1,16 +1,15 @@
 from quantlib.types cimport Real
-from quantlib.handle cimport shared_ptr
 from .._instrument cimport Instrument as _Instrument
-from quantlib.time.date cimport (Date, _pydate_from_qldate, _qldate_from_pydate)
+from quantlib.time.date cimport Date, _pydate_from_qldate, _qldate_from_pydate
 from libcpp cimport bool
-from ._variance_swap cimport (VarianceSwap as _VarianceSwap, Type as _Type)
+from ._variance_swap cimport VarianceSwap as _VarianceSwap, Type as _Type
 import datetime
 
 cpdef public enum SwapType:
     Long = _Type.Long
     Short = _Type.Short
 
-cdef inline _VarianceSwap* get_varianceswap(VarianceSwap swap):
+cdef inline _VarianceSwap* get_varianceswap(VarianceSwap swap) noexcept nogil:
     """
     Utility function to extract a properly casted Swap pointer out of the
     internal _thisptr attribute of the Instrument base class.
@@ -40,12 +39,15 @@ cdef class VarianceSwap(Instrument):
                  Date start_date,
                  Date maturity_date):
 
-        self._thisptr = shared_ptr[_Instrument](new _VarianceSwap(<_Type>position,
-                                                                  strike,
-                                                                  notional,
-                                                                  start_date._thisptr,
-                                                                  maturity_date._thisptr,
-                                                                  ))
+        self._thisptr.reset(
+            new _VarianceSwap(
+                <_Type>position,
+                strike,
+                notional,
+                start_date._thisptr,
+                maturity_date._thisptr,
+            )
+        )
 
     @property
     def strike(self):

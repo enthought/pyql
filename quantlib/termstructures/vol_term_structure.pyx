@@ -10,15 +10,6 @@ cdef class VolatilityTermStructure:
     cdef inline _vts.VolatilityTermStructure* as_ptr(self) nogil:
         return self._thisptr.get()
 
-    @staticmethod
-    cdef Handle[_vts.VolatilityTermStructure] handle(vol):
-        if isinstance(vol, VolatilityTermStructure):
-            return Handle[_vts.VolatilityTermStructure]((<VolatilityTermStructure>vol)._thisptr, False)
-        elif isinstance(vol, HandleVolatilityTermStructure):
-            return (<HandleVolatilityTermStructure>vol).handle
-        else:
-            raise TypeError("vol needs to be either a VolatilityTermStructure or a HandleVolatilityTermStructure")
-
     def time_from_reference(self, Date date not None):
         return self.as_ptr().timeFromReference(date._thisptr)
 
@@ -47,10 +38,3 @@ cdef class VolatilityTermStructure:
     @extrapolation.setter
     def extrapolation(self, bool b):
         self.as_ptr().enableExtrapolation(b)
-
-cdef class HandleVolatilityTermStructure:
-    def __init__(self, VolatilityTermStructure structure not None, cbool register_as_observer):
-        self.handle = RelinkableHandle[_vts.VolatilityTermStructure](structure._thisptr, register_as_observer)
-
-    def link_to(self, VolatilityTermStructure structure not None, cbool register_as_observer=True):
-        self.handle.linkTo(structure._thisptr, register_as_observer)

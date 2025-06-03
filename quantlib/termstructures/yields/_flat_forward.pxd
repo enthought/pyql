@@ -52,14 +52,14 @@ cdef extern from 'ql/termstructures/yield/flatforward.hpp' namespace 'QuantLib' 
                     Handle[_qt.Quote]& forward,
                     DayCounter& dayCounter,
         ) except +
-        
+
         FlatForward(Natural settlementDays,
                     Calendar& calendar,
                     Handle[_qt.Quote]& forward,
                     DayCounter& dayCounter,
                     Compounding compounding,
         ) except +
-        
+
         FlatForward(Natural settlementDays,
                     Calendar& calendar,
                     Handle[_qt.Quote]& forward,
@@ -67,7 +67,7 @@ cdef extern from 'ql/termstructures/yield/flatforward.hpp' namespace 'QuantLib' 
                     Compounding compounding,
                     Frequency frequency
         ) except +
-        
+
         # from date and forward
         FlatForward(Date& referenceDate,
                     Handle[_qt.Quote]& forward,

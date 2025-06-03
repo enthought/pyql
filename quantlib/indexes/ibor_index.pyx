@@ -9,7 +9,7 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.businessdayconvention cimport ModifiedFollowing, BusinessDayConvention
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport Handle, HandleYieldTermStructure
 cimport quantlib.termstructures._yield_term_structure as _yts
 
 cimport quantlib._index as _in
@@ -36,7 +36,7 @@ cdef class IborIndex(InterestRateIndex):
                               <BusinessDayConvention> convention,
                               end_of_month,
                               deref(day_counter._thisptr),
-                              yts.handle)
+                              yts.handle())
             )
 
     property business_day_convention:
@@ -54,9 +54,7 @@ cdef class IborIndex(InterestRateIndex):
         cdef:
             _ib.IborIndex* ref = <_ib.IborIndex*>self._thisptr.get()
             HandleYieldTermStructure yts = HandleYieldTermStructure.__new__(HandleYieldTermStructure)
-            Handle[_yts.YieldTermStructure] _yts = ref.forwardingTermStructure()
-        if not _yts.empty():
-            yts.handle.linkTo(_yts.currentLink())
+        yts._handle = new Handle[_yts.YieldTermStructure](ref.forwardingTermStructure())
         return yts
 
     @staticmethod
@@ -96,5 +94,5 @@ cdef class OvernightIndex(IborIndex):
                               deref(currency._thisptr),
                               fixing_calendar._thisptr,
                               deref(day_counter._thisptr),
-                                   yts.handle)
+                                   yts.handle())
             )

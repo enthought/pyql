@@ -8,7 +8,7 @@ from quantlib.time._date cimport Date as QlDate
 from quantlib.time.date cimport Date
 from quantlib.quote cimport Quote
 cimport quantlib._quote as _qt
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 from . cimport _piecewise_zerospreaded_termstructure as _pzt
 
 cdef class PiecewiseZeroSpreadedTermStructure(YieldTermStructure):
@@ -27,7 +27,7 @@ cdef class PiecewiseZeroSpreadedTermStructure(YieldTermStructure):
 
         self._thisptr.reset(
             new _pzt.PiecewiseZeroSpreadedTermStructure(
-                h.handle,
+                h.handle(),
                 spreads_vec,
                 dates_vec,
                 comp,

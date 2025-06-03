@@ -6,7 +6,7 @@ from quantlib.indexes.swap_index cimport SwapIndex
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.time.date cimport Period, Date
 from quantlib.time._period cimport Days
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 cimport quantlib.indexes._swap_index as _si
 cimport quantlib.indexes._ibor_index as _ii
 cimport quantlib._instrument as _in
@@ -55,7 +55,7 @@ cdef class MakeCms:
 
     def with_discounting_term_structure(self, HandleYieldTermStructure discounting_term_structure not None):
         self._thisptr.withDiscountingTermStructure(
-            discounting_term_structure.handle)
+            discounting_term_structure.handle())
         return self
 
     def with_cms_leg_tenor(self, Period t not None):

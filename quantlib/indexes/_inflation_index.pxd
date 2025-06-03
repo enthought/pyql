@@ -62,3 +62,4 @@ cdef extern from 'ql/indexes/inflationindex.hpp' namespace 'QuantLib' nogil:
                           const Currency& currency,
                           const Handle[_its.YoYInflationTermStructure]& ts # = Handle<YoYInflationTermStructure>());
         ) except +
+        Handle[_its.YoYInflationTermStructure] yoyInflationTermStructure()

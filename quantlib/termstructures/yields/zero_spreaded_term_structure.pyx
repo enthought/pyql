@@ -1,6 +1,6 @@
 from cython.operator cimport dereference as deref
 from quantlib.compounding cimport Compounding
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.frequency cimport Frequency, NoFrequency
 from quantlib.quote cimport Quote
@@ -13,7 +13,7 @@ cdef class ZeroSpreadedTermStructure(YieldTermStructure):
 
         self._thisptr.reset(
             new _zsts.ZeroSpreadedTermStructure(
-                h.handle,
+                h.handle(),
                 spread.handle(),
                 comp,
                 freq,

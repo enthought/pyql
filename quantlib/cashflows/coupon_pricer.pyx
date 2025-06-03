@@ -1,13 +1,10 @@
+from libcpp cimport bool
 from quantlib.types cimport Rate
 from cython.operator cimport dereference as deref
 from quantlib.cashflow cimport Leg
-from quantlib.termstructures.volatility.optionlet.optionlet_volatility_structure cimport OptionletVolatilityStructure
-cimport quantlib.termstructures.volatility.optionlet._optionlet_volatility_structure as _ovs
-from quantlib.termstructures.volatility.swaption.swaption_vol_structure \
-    cimport  SwaptionVolatilityStructure
-from quantlib.termstructures._vol_term_structure cimport VolatilityTermStructure
 cimport quantlib.termstructures.volatility.swaption._swaption_vol_structure  as _svs
-from quantlib.handle cimport Handle, static_pointer_cast
+from quantlib.ext cimport static_pointer_cast, optional
+from quantlib.handle cimport Handle, HandleSwaptionVolatilityStructure, HandleOptionletVolatilityStructure
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
@@ -53,16 +50,19 @@ cpdef enum TimingAdjustment:
 cdef class BlackIborCouponPricer(IborCouponPricer):
 
     def __init__(self,
-                 OptionletVolatilityStructure ovs=OptionletVolatilityStructure(),
+                 HandleOptionletVolatilityStructure ovs=HandleOptionletVolatilityStructure(),
                  TimingAdjustment timing_adjustment=Black76,
-                 Quote correlation=SimpleQuote(1.)):
-        cdef Handle[_ovs.OptionletVolatilityStructure] ovs_handle = \
-            Handle[_ovs.OptionletVolatilityStructure](ovs._thisptr)
-        self._thisptr = shared_ptr[_cp.FloatingRateCouponPricer](
+                 Quote correlation=SimpleQuote(1.),
+                 use_indexed_coupon=None):
+        cdef optional[bool] indexed_coupon
+        if use_indexed_coupon is not None:
+            indexed_coupon = <bool>use_indexed_coupon
+        self._thisptr.reset(
             new _cp.BlackIborCouponPricer(
-                ovs_handle,
+                ovs.handle(),
                 timing_adjustment,
-                correlation.handle()
+                correlation.handle(),
+                indexed_coupon,
             )
         )
 
@@ -80,14 +80,14 @@ cdef class CmsCouponPricer(FloatingRateCouponPricer):
 
     @property
     def swaption_volatility(self):
-        cdef Handle[_svs.SwaptionVolatilityStructure] vol_handle = \
-        (<_cp.CmsCouponPricer*>self._thisptr.get()).swaptionVolatility()
-        cdef SwaptionVolatilityStructure instance = (SwaptionVolatilityStructure.
-                                                     __new__(SwaptionVolatilityStructure))
-        if not vol_handle.empty():
-            instance._thisptr = vol_handle.currentLink()
+        cdef HandleSwaptionVolatilityStructure instance = (
+            HandleSwaptionVolatilityStructure.__new__(HandleSwaptionVolatilityStructure)
+        )
+        instance._handle = new Handle[_svs.SwaptionVolatilityStructure](
+            (<_cp.CmsCouponPricer*>self._thisptr.get()).swaptionVolatility()
+        )
         return instance
 
     @swaption_volatility.setter
-    def swaption_volatility(self, v not None):
-        (<_cp.CmsCouponPricer*>self._thisptr.get()).setSwaptionVolatility(SwaptionVolatilityStructure.swaption_vol_handle(v))
+    def swaption_volatility(self, HandleSwaptionVolatilityStructure v not None):
+        (<_cp.CmsCouponPricer*>self._thisptr.get()).setSwaptionVolatility(v.handle())

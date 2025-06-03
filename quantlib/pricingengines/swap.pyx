@@ -20,7 +20,7 @@ cdef class DiscountingSwapEngine(PricingEngine):
             include_settlement_date_flows_opt = <bool>include_settlement_date_flows
         self._thisptr.reset(
             new _swap.DiscountingSwapEngine(
-                discount_curve.handle,
+                discount_curve.handle(),
                 include_settlement_date_flows_opt,
                 settlement_date._thisptr,
                 npv_date._thisptr

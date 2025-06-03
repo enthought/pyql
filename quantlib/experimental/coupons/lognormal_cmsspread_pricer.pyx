@@ -5,7 +5,7 @@ from quantlib.ext cimport optional, shared_ptr, static_pointer_cast
 from .cms_spread_coupon cimport CmsSpreadCouponPricer
 from quantlib.cashflows.coupon_pricer cimport CmsCouponPricer
 from quantlib.quote cimport Quote
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 from quantlib.termstructures.volatility.volatilitytype cimport VolatilityType
 from quantlib.utilities.null cimport Null
 cimport quantlib.cashflows._coupon_pricer as _cp
@@ -27,7 +27,7 @@ cdef class LognormalCmsSpreadPricer(CmsSpreadCouponPricer):
             new _lcp.LognormalCmsSpreadPricer(
                 static_pointer_cast[_cp.CmsCouponPricer](cms_pricer._thisptr),
                 correlation.handle(),
-                coupon_discount_curve.handle,
+                coupon_discount_curve.handle(),
                 integration_points,
                 vol_type_option,
                 shift1,

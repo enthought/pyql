@@ -25,7 +25,7 @@ from quantlib.currency.currency cimport Currency
 from quantlib.time.date cimport Date
 from quantlib.time.calendar cimport Calendar
 from quantlib.time._calendar cimport BusinessDayConvention
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure, HandleYieldTermStructure
+from quantlib.handle cimport  Handle, HandleYieldTermStructure
 cimport quantlib.termstructures._yield_term_structure as _yts
 
 cimport quantlib._index as _in
@@ -71,7 +71,7 @@ cdef class SwapIndex(InterestRateIndex):
                     <BusinessDayConvention> fixed_leg_convention,
                     deref(fixed_leg_daycounter._thisptr),
                     static_pointer_cast[_ii.IborIndex](ibor_index._thisptr),
-                    discounting_term_structure.handle
+                    discounting_term_structure.handle()
                 )
             )
 
@@ -91,27 +91,21 @@ cdef class SwapIndex(InterestRateIndex):
 
     @property
     def forwarding_term_structure(self):
-        cdef YieldTermStructure yts = YieldTermStructure.__new__(YieldTermStructure)
+        cdef HandleYieldTermStructure h = HandleYieldTermStructure.__new__(HandleYieldTermStructure)
         cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
-        if not swap_index.forwardingTermStructure().empty():
-            yts._thisptr = (swap_index.
-                            forwardingTermStructure().
-                            currentLink())
-            return yts
-        else:
-            raise RuntimeError("Cannot dereference empty handle")
+        h._handle = new Handle[_yts.YieldTermStructure](
+            swap_index.forwardingTermStructure()
+            )
+        return h
 
     @property
     def discounting_term_structure(self):
-        cdef YieldTermStructure yts = YieldTermStructure.__new__(YieldTermStructure)
+        cdef HandleYieldTermStructure h = HandleYieldTermStructure.__new__(HandleYieldTermStructure)
         cdef _si.SwapIndex* swap_index = <_si.SwapIndex*>self._thisptr.get()
-        if not swap_index.discountingTermStructure().empty():
-            yts._thisptr = (swap_index.
-                            discountingTermStructure().
-                            currentLink())
-            return yts
-        else:
-            raise RuntimeError("Cannot dereference empty handle")
+        h._handle = new Handle[_yts.YieldTermStructure](
+            swap_index.discountingTermStructure()
+        )
+        return h
 
 
 cdef class OvernightIndexedSwapIndex(SwapIndex):

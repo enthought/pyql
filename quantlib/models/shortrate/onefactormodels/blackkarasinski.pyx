@@ -24,6 +24,6 @@ cdef class BlackKarasinski(OneFactorModel):
 
         self._thisptr = shared_ptr[_mo.CalibratedModel](
             new _bk.BlackKarasinski(
-                term_structure.handle, a, sigma
+                term_structure.handle(), a, sigma
 	    )
 	)

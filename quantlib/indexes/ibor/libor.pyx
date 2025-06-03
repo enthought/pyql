@@ -18,8 +18,7 @@ cimport quantlib._index as _in
 cimport quantlib.time._calendar as _calendar
 
 # PyQL cimport
-from quantlib.handle cimport shared_ptr
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 from quantlib.currency.currency cimport Currency
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Period
@@ -45,15 +44,16 @@ cdef class Libor(IborIndex):
         # convert the Python str to C++ string
         cdef string familyName_string = familyName.encode('utf-8')
 
-        self._thisptr = shared_ptr[_in.Index](
-        new _libor.Libor(
-            familyName_string,
-            deref(tenor._thisptr),
-            settlementDays,
-            deref(currency._thisptr),
-            financial_center_calendar._thisptr,
-            deref(dayCounter._thisptr),
-            ts.handle))
+        self._thisptr.reset(
+            new _libor.Libor(
+                familyName_string,
+                deref(tenor._thisptr),
+                settlementDays,
+                deref(currency._thisptr),
+                financial_center_calendar._thisptr,
+                deref(dayCounter._thisptr),
+                ts.handle())
+        )
 
     @property
     def joint_calendar(self):

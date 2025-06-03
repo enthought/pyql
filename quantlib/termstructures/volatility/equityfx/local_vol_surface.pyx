@@ -2,15 +2,13 @@ from libcpp cimport bool
 from quantlib.types cimport Real, Time
 from cython.operator cimport dereference as deref
 from . cimport _local_vol_surface as _lvs
-from .black_vol_term_structure cimport BlackVolTermStructure
-from . cimport _black_vol_term_structure as _bvts
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure, HandleBlackVolTermStructure
 from quantlib.quote cimport Quote
 from quantlib.ext cimport static_pointer_cast
 from quantlib.time.date cimport Date
 
 cdef class LocalVolSurface(LocalVolTermStructure):
-    def __init__(self, BlackVolTermStructure black_ts, HandleYieldTermStructure risk_free_ts, HandleYieldTermStructure dividend_ts, Quote underlying):
+    def __init__(self, HandleBlackVolTermStructure black_ts, HandleYieldTermStructure risk_free_ts, HandleYieldTermStructure dividend_ts, Quote underlying):
         """ Local volatility surface derived from a Black vol surface
 
         Parameters
@@ -34,9 +32,9 @@ cdef class LocalVolSurface(LocalVolTermStructure):
         """
         self._thisptr.reset(
             new _lvs.LocalVolSurface(
-                Handle[_bvts.BlackVolTermStructure](static_pointer_cast[_bvts.BlackVolTermStructure](black_ts._thisptr)),
-                risk_free_ts.handle,
-                dividend_ts.handle,
+                black_ts.handle(),
+                risk_free_ts.handle(),
+                dividend_ts.handle(),
                 underlying.handle()
             )
         )

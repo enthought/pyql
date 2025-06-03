@@ -11,10 +11,11 @@ from quantlib.types cimport Probability, Rate, Time
 from libcpp cimport bool
 from libcpp.vector cimport vector
 from quantlib.time._date cimport Date
+from .._termstructure cimport TermStructure
 
 cdef extern from 'ql/termstructures/defaulttermstructure.hpp' namespace 'QuantLib' nogil:
 
-    cdef cppclass DefaultProbabilityTermStructure:
+    cdef cppclass DefaultProbabilityTermStructure(TermStructure):
         DefaultProbabilityTermStructure()
 
         Probability survivalProbability(const Date& d, bool extrapolate) except + # = false

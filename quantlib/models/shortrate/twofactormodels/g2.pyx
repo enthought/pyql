@@ -1,5 +1,5 @@
 from quantlib.types cimport Real
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 from . cimport _g2
 
 cdef class G2(TwoFactorModel):
@@ -10,4 +10,4 @@ cdef class G2(TwoFactorModel):
                Real b=0.1,
                Real eta=0.01,
                Real rho=-0.75):
-        self._thisptr.reset(new _g2.G2(h.handle, a, sigma, b, eta, rho))
+        self._thisptr.reset(new _g2.G2(h.handle(), a, sigma, b, eta, rho))

@@ -22,7 +22,7 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.time._period cimport Frequency, Days
 from quantlib.time.calendar cimport Calendar
 
-from quantlib.termstructures.yields.flat_forward cimport YieldTermStructure
+from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 
 cimport quantlib.termstructures.yields._flat_forward as _ff
 cimport quantlib._interest_rate as _ir
@@ -56,15 +56,6 @@ cdef class InflationTermStructure:
 
 cdef class ZeroInflationTermStructure(InflationTermStructure):
 
-    def __cinit__(self):
-        self._handle = RelinkableHandle[_if.ZeroInflationTermStructure](
-            static_pointer_cast[_if.ZeroInflationTermStructure](self._thisptr))
-
-    def link_to(self, ZeroInflationTermStructure structure):
-        self._thisptr = structure._thisptr
-        self._handle.linkTo(static_pointer_cast[_if.ZeroInflationTermStructure](
-            structure._thisptr))
-
     def zero_rate(self, d, Period inst_obs_lag=Period(-1, Days),
                   bool force_linear_interpolation=False, bool extrapolate=False):
 
@@ -82,15 +73,6 @@ cdef class ZeroInflationTermStructure(InflationTermStructure):
             return term_structure.zeroRate(<Time?>d, extrapolate)
 
 cdef class YoYInflationTermStructure(InflationTermStructure):
-
-    def __cinit__(self):
-        self._handle = RelinkableHandle[_if.YoYInflationTermStructure](
-            static_pointer_cast[_if.YoYInflationTermStructure](self._thisptr))
-
-    def link_to(self, YoYInflationTermStructure structure):
-        self._thisptr = structure._thisptr
-        self._handle.linkTo(static_pointer_cast[_if.YoYInflationTermStructure](
-            structure._thisptr))
 
     def yoy_rate(self, d, Period inst_obs_lag=Period(-1, Days),
                  bool force_linear_interpolation=False,
