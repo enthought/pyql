@@ -12,7 +12,7 @@ from quantlib.indexes.inflation_index cimport (
 cimport quantlib.indexes._inflation_index as _ii
 from quantlib.indexes._inflation_index cimport CPI
 from quantlib.indexes.inflation_index cimport InterpolationType
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 from quantlib.termstructures.inflation_term_structure cimport (
     ZeroInflationTermStructure, YoYInflationTermStructure)
 cimport quantlib.termstructures._inflation_term_structure as _its
@@ -35,7 +35,7 @@ cdef class ZeroCouponInflationSwapHelper:
                 deref(day_counter._thisptr),
                 static_pointer_cast[_ii.ZeroInflationIndex](zii._thisptr),
                 <CPI.InterpolationType>observation_interpolation,
-                nominal_term_structure.handle)
+                nominal_term_structure.handle())
             )
 
     def set_term_structure(self, ZeroInflationTermStructure ts):
@@ -67,7 +67,7 @@ cdef class YearOnYearInflationSwapHelper:
                 deref(day_counter._thisptr),
                 static_pointer_cast[_ii.YoYInflationIndex](yii._thisptr),
                 <CPI.InterpolationType>interpolation,
-                nominal_term_structure.handle)
+                nominal_term_structure.handle())
             )
 
     def set_term_structure(self, YoYInflationTermStructure ts):

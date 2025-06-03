@@ -18,17 +18,18 @@ from quantlib.time.frequency cimport Frequency
 from quantlib.indexes.region cimport Region
 
 from quantlib.currency.currency cimport Currency
-from quantlib.termstructures.inflation_term_structure cimport \
-    ZeroInflationTermStructure, YoYInflationTermStructure
+from quantlib.handle cimport (
+    Handle, HandleZeroInflationTermStructure, HandleYoYInflationTermStructure
+)
 
 cimport quantlib._index as _in
 cimport quantlib.indexes._inflation_index as _ii
-cimport quantlib.termstructures._inflation_term_structure as _its
 cimport quantlib._interest_rate as _ir
 
 cimport quantlib.time._period as _pe
 cimport quantlib.currency._currency as _cu
 cimport quantlib.indexes._region as _region
+from quantlib.termstructures._inflation_term_structure cimport ZeroInflationTermStructure, YoYInflationTermStructure
 
 cdef class InflationIndex(Index):
 
@@ -72,12 +73,12 @@ cdef class ZeroInflationIndex(InflationIndex):
                  Frequency frequency,
                  Period availabilityLag,
                  Currency currency,
-                 ZeroInflationTermStructure ts=ZeroInflationTermStructure()):
+                 HandleZeroInflationTermStructure ts=HandleZeroInflationTermStructure()):
 
         # convert the Python str to C++ string
         cdef string c_family_name = family_name.encode('utf-8')
 
-        self._thisptr = shared_ptr[_in.Index](
+        self._thisptr.reset(
             new _ii.ZeroInflationIndex(
                 c_family_name,
                 deref(region._thisptr),
@@ -85,14 +86,17 @@ cdef class ZeroInflationIndex(InflationIndex):
                 frequency,
                 deref(availabilityLag._thisptr),
                 deref(currency._thisptr),
-                ts._handle))
+                ts.handle())
+        )
 
+    @property
     def zero_inflation_term_structure(self):
-        cdef ZeroInflationTermStructure r = \
-                ZeroInflationTermStructure.__new__(ZeroInflationTermStructure)
-        r._thisptr = static_pointer_cast[_its.InflationTermStructure](
-            (<_ii.ZeroInflationIndex*>(self._thisptr.get())).
-            zeroInflationTermStructure().currentLink())
+        cdef HandleZeroInflationTermStructure r = \
+            HandleZeroInflationTermStructure.__new__(HandleZeroInflationTermStructure)
+        r._handle = new Handle[ZeroInflationTermStructure](
+            (<_ii.ZeroInflationIndex*>(self._thisptr.get())).zeroInflationTermStructure()
+        )
+        return r
 
     @property
     def last_fixing_date(self):
@@ -105,13 +109,23 @@ cdef class YoYInflationIndex(ZeroInflationIndex):
     def __init__(self, family_name, Region region, bool revised,
                  Frequency frequency,
                  Period availability_lag, Currency currency,
-                 YoYInflationTermStructure ts=YoYInflationTermStructure()):
+                 HandleYoYInflationTermStructure ts=HandleYoYInflationTermStructure()):
 
         cdef string c_family_name = family_name.encode('utf-8')
 
-        self._thisptr = shared_ptr[_in.Index](
+        self._thisptr.reset(
             new _ii.YoYInflationIndex(
                 c_family_name, deref(region._thisptr), revised,
                 frequency,
                 deref(availability_lag._thisptr),
-                deref(currency._thisptr), ts._handle))
+                deref(currency._thisptr), ts.handle())
+        )
+
+    @property
+    def yoy_inflation_term_structure(self):
+        cdef HandleYoYInflationTermStructure r = \
+            HandleYoYInflationTermStructure.__new__(HandleYoYInflationTermStructure)
+        r._handle = new Handle[YoYInflationTermStructure](
+            (<_ii.YoYInflationIndex*>(self._thisptr.get())).yoyInflationTermStructure()
+        )
+        return r

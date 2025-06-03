@@ -1,7 +1,7 @@
 """Hull-White stochastic process"""
 from quantlib.types cimport Real
 from .cimport _hullwhite_process as _hw
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 
 
 cdef class HullWhiteProcess(StochasticProcess1D):
@@ -22,7 +22,7 @@ cdef class HullWhiteProcess(StochasticProcess1D):
 
         self._thisptr.reset(
             new _hw.HullWhiteProcess(
-                risk_free_rate_ts.handle,
+                risk_free_rate_ts.handle(),
                 a, sigma)
         )
 
@@ -45,7 +45,7 @@ cdef class HullWhiteForwardProcess(ForwardMeasureProcess1D):
                  Real a,
                  Real sigma):
         self._thisptr.reset(
-            new _hw.HullWhiteForwardProcess(h.handle, a, sigma)
+            new _hw.HullWhiteForwardProcess(h.handle(), a, sigma)
         )
 
     @property

@@ -23,10 +23,10 @@ from .._termstructure cimport TermStructure
 cdef extern from 'ql/termstructures/yieldtermstructure.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass YieldTermStructure(TermStructure):
-        YieldTermStructure(DayCounter& dc,
-                           vector[Handle[_qt.Quote]]& jumps,
-                           vector[Date]& jumpDates,
-                           ) except +
+        # YieldTermStructure(DayCounter& dc,
+                           # vector[Handle[_qt.Quote]]& jumps,
+                           # vector[Date]& jumpDates,
+                           # ) except +
         DiscountFactor discount(Date& d, bool extrapolate) except +
         DiscountFactor discount(Time t, bool extrapolate) except +
         InterestRate zeroRate(Date& d,

@@ -20,7 +20,7 @@ cimport quantlib.pricingengines._pricing_engine as _pe
 cimport quantlib.time._calendar as _calendar
 from quantlib.time.dategeneration cimport DateGeneration
 
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 from quantlib.pricingengines.engine cimport PricingEngine
 from quantlib.time.date cimport Date, Period
 from quantlib.time.daycounter cimport DayCounter
@@ -303,7 +303,7 @@ cdef class CreditDefaultSwap(Instrument):
                             PricingModel model=PricingModel.Midpoint):
 
         return _get_cds(self).conventionalSpread(recovery,
-                                                 yts.handle,
+                                                 yts.handle(),
                                                  deref(dc._thisptr),
                                                  model)
 
@@ -314,7 +314,7 @@ cdef class CreditDefaultSwap(Instrument):
                             PricingModel model=PricingModel.Midpoint):
 
         return _get_cds(self).impliedHazardRate(target_npv,
-                                                yts.handle,
+                                                yts.handle(),
                                                 deref(dc._thisptr),
                                                 recovery_rate,
                                                 accuracy,

@@ -9,7 +9,7 @@ from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time._period cimport Days
 from quantlib.time.dategeneration cimport DateGeneration
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 from quantlib.pricingengines.engine cimport PricingEngine
 cimport quantlib.indexes._ibor_index as _ii
 cimport quantlib._instrument as _in
@@ -88,7 +88,7 @@ cdef class MakeVanillaSwap:
         return self
 
     def with_discounting_term_structure(self, HandleYieldTermStructure yts not None):
-        self._thisptr.withDiscountingTermStructure(yts.handle)
+        self._thisptr.withDiscountingTermStructure(yts.handle())
         return self
 
     def with_pricing_engine(self, PricingEngine engine not None):

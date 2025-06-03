@@ -1,26 +1,25 @@
 include '../types.pxi'
 
 from . cimport _coupon_pricer as _cp
-cimport quantlib.termstructures.volatility.swaption._swaption_vol_structure as _svs
 from quantlib.termstructures.volatility.swaption.swaption_vol_structure \
     cimport SwaptionVolatilityStructure
-from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure, HandleSwaptionVolatilityStructure
 from quantlib.quote cimport Quote
 
 cdef class LinearTsrPricer(CmsCouponPricer):
-    def __init__(self, swaption_vol not None,
+    def __init__(self, HandleSwaptionVolatilityStructure swaption_vol not None,
                  Quote mean_reversion not None,
                  HandleYieldTermStructure coupon_discount_curve=HandleYieldTermStructure(),
                  Settings settings=Settings()):
 
-        self._thisptr = shared_ptr[_cp.FloatingRateCouponPricer](
-                new QlLinearTsrPricer(
-            SwaptionVolatilityStructure.swaption_vol_handle(swaption_vol),
-            mean_reversion.handle(),
-            coupon_discount_curve.handle,
-            settings._thisptr
-        ))
+        self._thisptr.reset(
+            new QlLinearTsrPricer(
+                swaption_vol.handle(),
+                mean_reversion.handle(),
+                coupon_discount_curve.handle(),
+                settings._thisptr
+            )
+        )
 
 cdef class Settings:
     def with_rate_bound(self, Real lower_rate_bound=0.0001,

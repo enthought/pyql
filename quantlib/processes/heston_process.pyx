@@ -3,9 +3,8 @@ from .heston_process cimport PartialTruncation
 cimport quantlib._stochastic_process as _sp
 
 cimport quantlib.termstructures._yield_term_structure as _yts
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport Handle, HandleYieldTermStructure
 
-from quantlib.handle cimport Handle, shared_ptr
 cimport quantlib._quote as _qt
 from quantlib.quote cimport Quote
 from quantlib.quotes.simplequote cimport SimpleQuote
@@ -43,10 +42,10 @@ cdef class HestonProcess(StochasticProcess):
        Discretization d=PartialTruncation):
 
         #create handles
-        self._thisptr = shared_ptr[_sp.StochasticProcess](
+        self._thisptr.reset(
             new QlHestonProcess(
-                risk_free_rate_ts.handle,
-                dividend_ts.handle,
+                risk_free_rate_ts.handle(),
+                dividend_ts.handle(),
                 s0.handle(),
                 v0, kappa, theta, sigma, rho, d
             )

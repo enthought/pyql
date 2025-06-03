@@ -12,7 +12,6 @@ from quantlib.quote cimport Quote
 from quantlib.time.date cimport Date, Period
 from quantlib.termstructures.yields.rate_helpers cimport RelativeDateRateHelper, RateHelper
 from quantlib.indexes.ibor_index cimport OvernightIndex
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
 from quantlib.time.calendar cimport Calendar
 from quantlib.utilities.null cimport Null
 
@@ -64,7 +63,7 @@ cdef class OISRateHelper(RelativeDateRateHelper):
                 deref(tenor._thisptr),
                 fixed_rate.handle(),
                 static_pointer_cast[_ib.OvernightIndex](overnight_index._thisptr),
-                discounting_curve.handle,
+                discounting_curve.handle(),
                 telescopic_value_dates,
                 payment_lag,
                 <_rh.BusinessDayConvention> payment_convention,
@@ -120,7 +119,7 @@ cdef class OISRateHelper(RelativeDateRateHelper):
                 end_date._thisptr,
                 fixed_rate.handle(),
                 static_pointer_cast[_ib.OvernightIndex](overnight_index._thisptr),
-                discounting_curve.handle,
+                discounting_curve.handle(),
                 telescopic_value_dates,
                 payment_lag,
                 <_rh.BusinessDayConvention> payment_convention,

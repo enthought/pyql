@@ -1,5 +1,5 @@
 cimport quantlib.termstructures.yields._implied_term_structure as _its
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 from quantlib.time.date cimport Date
 
 cdef class ImpliedTermStructure(YieldTermStructure):
@@ -7,5 +7,5 @@ cdef class ImpliedTermStructure(YieldTermStructure):
                  Date reference_date not None):
 
         self._thisptr.reset(
-            new _its.ImpliedTermStructure(h.handle, reference_date._thisptr)
+            new _its.ImpliedTermStructure(h.handle(), reference_date._thisptr)
         )

@@ -14,7 +14,6 @@ from quantlib.compounding cimport Compounding
 cimport quantlib.termstructures._yield_term_structure as _yts
 cimport quantlib._quote as _qt
 cimport quantlib._interest_rate as _ir
-from quantlib.handle cimport static_pointer_cast
 cimport quantlib.time._date as _date
 cimport quantlib.time._daycounter as _dc
 cimport quantlib.time._calendar as _cal
@@ -150,24 +149,3 @@ cdef class YieldTermStructure(TermStructure):
 
         return discount_value
 
-
-cdef class HandleYieldTermStructure:
-    def __init__(self, YieldTermStructure ts=None, bool register_as_observer=True):
-        if ts is not None:
-            self.handle = RelinkableHandle[_yts.YieldTermStructure](
-                static_pointer_cast[_yts.YieldTermStructure](ts._thisptr),
-                register_as_observer)
-
-    @property
-    def current_link(self):
-        cdef YieldTermStructure instance = YieldTermStructure.__new__(YieldTermStructure)
-        if self.handle.empty():
-            raise ValueError("empty handle")
-        instance._thisptr = self.handle.currentLink()
-        return instance
-
-    def link_to(self, YieldTermStructure yts, bool register_as_observer=True):
-        self.handle.linkTo(static_pointer_cast[_yts.YieldTermStructure](yts._thisptr), register_as_observer)
-
-    def __bool__(self):
-        return not self.handle.empty()

@@ -8,7 +8,7 @@ from quantlib.time.calendar cimport Calendar
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.indexes cimport _ibor_index as _ii
 from quantlib.quote cimport Quote
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 from . cimport _crosscurrencyratehelpers as _ccyrh
 
 cdef class ConstNotionalCrossCurrencyBasisSwapRateHelper(RelativeDateRateHelper):
@@ -50,7 +50,7 @@ cdef class ConstNotionalCrossCurrencyBasisSwapRateHelper(RelativeDateRateHelper)
                 end_of_month,
                 static_pointer_cast[_ii.IborIndex](base_currency_index._thisptr),
                 static_pointer_cast[_ii.IborIndex](quote_currency_index._thisptr),
-                collateral_curve.handle,
+                collateral_curve.handle(),
                 is_fx_base_currency_collateral_currency,
                 is_basis_on_fx_base_currency_leg
             )
@@ -85,7 +85,7 @@ cdef class MtMCrossCurrencyBasisSwapRateHelper(RelativeDateRateHelper):
                  end_of_month,
                  static_pointer_cast[_ii.IborIndex](base_currency_index._thisptr),
                  static_pointer_cast[_ii.IborIndex](quote_currency_index._thisptr),
-                 collateral_curve.handle,
+                 collateral_curve.handle(),
                  is_fx_base_currency_collateral_currency,
                  is_basis_on_fx_base_currency_leg,
                  is_fx_base_currency_leg_resettable,
