@@ -6,6 +6,7 @@ import glob
 import os
 import platform
 import sys
+from pathlib import Path
 
 from Cython.Distutils import build_ext
 from Cython.Build import cythonize
@@ -115,14 +116,19 @@ CYTHON_DIRECTIVES = {"embedsignature": True,
                      "auto_pickle": False}
 
 def render_templates():
-    for basename in ["piecewise_yield_curve", "discount_curve", "forward_curve", "zero_curve"]:
-        for ext in ("pxd", "pyx"):
-            fname = f"quantlib/termstructures/yields/{basename}.{ext}.in"
-            output = fname[:-3]
-            if not os.path.exists(output) or (os.stat(output).st_mtime < os.stat(fname).st_mtime):
-                template = Template.from_filename(fname, encoding="utf-8")
-                with open(output, "wt") as f:
-                    f.write(template.substitute())
+    paths = [
+        (Path("quantlib/termstructures/yields"), ["piecewise_yield_curve", "discount_curve", "forward_curve", "zero_curve"]),
+        (Path("quantlib"), ["handle"]),
+    ]
+    for p, names in paths:
+        for basename in names:
+            for ext in (".pxd", ".pyx"):
+                output = (p / basename).with_suffix(ext)
+                fname = output.with_suffix(f"{ext}.in")
+                if not output.exists() or (output.stat().st_mtime < fname.stat().st_mtime):
+                    template = Template.from_filename(fname, encoding="utf-8")
+                    with output.open("wt") as f:
+                        f.write(template.substitute())
 
 def collect_extensions():
     """ Collect all the directories with Cython extensions and return the list

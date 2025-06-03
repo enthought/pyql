@@ -1,25 +1,49 @@
+cimport cython
+from libcpp cimport bool
+from .ext cimport static_pointer_cast
+from ._handle cimport RelinkableHandle
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
+from quantlib.termstructures.vol_term_structure cimport VolatilityTermStructure
 from quantlib.termstructures.volatility.optionlet.optionlet_volatility_structure cimport OptionletVolatilityStructure
+from quantlib.termstructures.volatility.equityfx.black_vol_term_structure cimport BlackVolTermStructure
+from quantlib.termstructures.volatility.swaption.swaption_vol_structure cimport SwaptionVolatilityStructure
+from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
+from quantlib.termstructures.inflation_term_structure cimport ZeroInflationTermStructure, YoYInflationTermStructure
 
-{{for T in ("YieldTermStructure", "VolatilityTermStructure")}}
+{{for T in ("YieldTermStructure", "VolatilityTermStructure", "OptionletVolatilityStructure", "BlackVolTermStructure", "DefaultProbabilityTermStructure", "ZeroInflationTermStructure", "YoYInflationTermStructure", "SwaptionVolatilityStructure")}}
 cdef class Handle{{T}}:
-def __init__(self, {{T}} t=None, bool register_as_observer=True):
+    def __init__(self, {{T}} t=None, bool register_as_observer=True):
         if t is not None:
-            self.handle = RelinkableHandle[Ql{{T}}](
+            self._handle = new Handle[Ql{{T}}](
                 static_pointer_cast[Ql{{T}}](t._thisptr),
                 register_as_observer)
+        else:
+            self._handle = new Handle[Ql{{T}}]()
 
     @property
     def current_link(self):
-        cdef  instance = {{T}}.__new__({{T}})
-        if self.handle.empty():
+        cdef {{T}} instance = {{T}}.__new__({{T}})
+        if self._handle.empty():
             raise ValueError("empty handle")
-        instance._thisptr = self.handle.currentLink()
+        instance._thisptr = self._handle.currentLink()
         return instance
 
-    def link_to(self, {{T}} t, bool register_as_observer=True):
-        self.handle.linkTo(static_pointer_cast[Ql{{T}}](t._thisptr), register_as_observer)
-
     def __bool__(self):
-        return not self.handle.empty()
+        return not self._handle.empty()
+
+    def __dealloc__(self):
+        del self._handle
+
+@cython.final
+cdef class RelinkableHandle{{T}}:
+    def __init__(self, {{T}} t=None, bool register_as_observer=True):
+        if t is not None:
+            self._handle = new RelinkableHandle[Ql{{T}}](
+                static_pointer_cast[Ql{{T}}](t._thisptr),
+                register_as_observer)
+        else:
+            self._handle = new RelinkableHandle[Ql{{T}}]()
+
+    def link_to(self, {{T}} t, bool register_as_observer=True):
+        (<RelinkableHandle[Ql{{T}}]*>self._handle).linkTo(static_pointer_cast[Ql{{T}}](t._thisptr), register_as_observer)
 {{endfor}}

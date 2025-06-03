@@ -1,24 +1,21 @@
-from libcpp cimport bool
-cdef extern from 'ql/handle.hpp' namespace 'QuantLib' nogil:
-    cdef cppclass Handle[T]:
-        Handle()
-        Handle(shared_ptr[T]&)
-        Handle(shared_ptr[T]&, bool registerAsObserver)
-        shared_ptr[T]& currentLink()
-        bool empty()
-
-    cdef cppclass RelinkableHandle[T](Handle):
-        RelinkableHandle()
-        RelinkableHandle(T*)
-        RelinkableHandle(shared_ptr[T]&)
-        RelinkableHandle(shared_ptr[T]&, bool registerAsObserver)
-        void linkTo(shared_ptr[T]&)
-        void linkTo(shared_ptr[T]&, bool registerAsObserver)
-
+from cython.operator cimport dereference as deref
+from ._handle cimport Handle
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure as QlYieldTermStructure
+from quantlib.termstructures._vol_term_structure cimport VolatilityTermStructure as QlVolatilityTermStructure
 from quantlib.termstructures.volatility.optionlet._optionlet_volatility_structure cimport OptionletVolatilityStructure as QlOptionletVolatilityStructure
+from quantlib.termstructures.volatility.equityfx._black_vol_term_structure cimport BlackVolTermStructure as QlBlackVolTermStructure
+from quantlib.termstructures.volatility.swaption._swaption_vol_structure cimport SwaptionVolatilityStructure as QlSwaptionVolatilityStructure
+from quantlib.termstructures._default_term_structure cimport DefaultProbabilityTermStructure as QlDefaultProbabilityTermStructure
+from quantlib.termstructures._inflation_term_structure cimport ZeroInflationTermStructure as QlZeroInflationTermStructure, YoYInflationTermStructure as QlYoYInflationTermStructure
 
-{{for T in ("YieldTermStructure", "OptionletVolatilityStructure")}}
+
+{{for T in ("YieldTermStructure", "VolatilityTermStructure", "OptionletVolatilityStructure", "BlackVolTermStructure", "DefaultProbabilityTermStructure", "ZeroInflationTermStructure", "YoYInflationTermStructure", "SwaptionVolatilityStructure")}}
 cdef class Handle{{T}}:
-    cdef RelinkableHandler[{{T}}] handle
+    cdef Handle[Ql{{T}}]* _handle
+
+    cdef inline Handle[Ql{{T}}] handle(self) noexcept nogil:
+        return deref(self._handle)
+
+cdef class RelinkableHandle{{T}}(Handle{{T}}):
+    pass
 {{endfor}}
