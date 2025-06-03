@@ -9,7 +9,7 @@ from quantlib._interest_rate cimport InterestRate
 from quantlib.cashflows._floating_rate_coupon cimport FloatingRateCoupon
 from quantlib.indexes._ibor_index cimport IborIndex
 
-cdef extern from 'ql/cashflows/iborcoupon.hpp' namespace 'QuantLib':
+cdef extern from 'ql/cashflows/iborcoupon.hpp' namespace 'QuantLib' nogil:
     cdef cppclass IborCoupon(FloatingRateCoupon):
         IborCoupon(const Date& paymentDate,
                    Real nominal,

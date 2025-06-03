@@ -8,7 +8,7 @@ from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.termstructures.volatility.swaption._swaption_vol_structure \
     cimport SwaptionVolatilityStructure
 
-cdef extern from 'ql/termstructures/volatility/swaption/swaptionvoldiscrete.hpp' namespace 'QuantLib':
+cdef extern from 'ql/termstructures/volatility/swaption/swaptionvoldiscrete.hpp' namespace 'QuantLib' nogil:
     cdef cppclass SwaptionVolatilityDiscrete(SwaptionVolatilityStructure):
         # floating reference date, floating market data
         SwaptionVolatilityDiscrete(

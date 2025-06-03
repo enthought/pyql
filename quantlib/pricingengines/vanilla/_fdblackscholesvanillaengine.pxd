@@ -11,7 +11,7 @@ cdef extern from 'ql/pricingengines/vanilla/fdblackscholesvanillaengine.hpp' nam
         Spot
         Escrowed
 
-cdef extern from 'ql/pricingengines/vanilla/fdblackscholesvanillaengine.hpp' namespace 'QuantLib':
+cdef extern from 'ql/pricingengines/vanilla/fdblackscholesvanillaengine.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass FdBlackScholesVanillaEngine(VanillaOption.engine):
         enum CashDividendModel:

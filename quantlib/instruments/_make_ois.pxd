@@ -14,7 +14,7 @@ from quantlib.indexes._ibor_index cimport OvernightIndex
 from quantlib.cashflows.rateaveraging cimport RateAveraging
 from ._overnightindexedswap cimport OvernightIndexedSwap
 
-cdef extern from 'ql/instruments/makeois.hpp' namespace 'QuantLib':
+cdef extern from 'ql/instruments/makeois.hpp' namespace 'QuantLib' nogil:
     cdef cppclass MakeOIS:
         MakeOIS(const Period& swapTenor,
                 const shared_ptr[OvernightIndex]& overnightIndex,

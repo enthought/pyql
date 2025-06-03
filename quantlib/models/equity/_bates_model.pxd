@@ -4,7 +4,7 @@ from quantlib.ext cimport shared_ptr
 from quantlib.models.equity._heston_model cimport HestonModel
 cimport quantlib.processes._heston_process as _hp
 
-cdef extern from 'ql/models/equity/batesmodel.hpp' namespace 'QuantLib':
+cdef extern from 'ql/models/equity/batesmodel.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass BatesModel(HestonModel):
 

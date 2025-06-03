@@ -11,7 +11,7 @@ from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib._quote cimport Quote
 
-cdef extern from 'ql/experimental/coupons/cmsspreadcoupon.hpp' namespace 'QuantLib':
+cdef extern from 'ql/experimental/coupons/cmsspreadcoupon.hpp' namespace 'QuantLib' nogil:
     cdef cppclass CmsSpreadCoupon(FloatingRateCoupon):
         CmsSpreadCoupon(const Date& paymentDate,
                         Real nominal,

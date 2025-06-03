@@ -5,7 +5,7 @@ from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 
 
-cdef extern from 'ql/termstructures/yield/forwardspreadedtermstructure.hpp' namespace 'QuantLib':
+cdef extern from 'ql/termstructures/yield/forwardspreadedtermstructure.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass ForwardSpreadedTermStructure(YieldTermStructure):
 

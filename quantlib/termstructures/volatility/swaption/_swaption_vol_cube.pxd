@@ -10,7 +10,7 @@ from quantlib.indexes._swap_index cimport SwapIndex
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
 
-cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolcube.hpp' namespace 'QuantLib':
+cdef extern from 'ql/termstructures/volatility/swaption/swaptionvolcube.hpp' namespace 'QuantLib' nogil:
     cdef cppclass SwaptionVolatilityCube(SwaptionVolatilityDiscrete):
         SwaptionVolatilityCube(
             const Handle[SwaptionVolatilityStructure]& atmVolStructure,

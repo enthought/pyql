@@ -14,7 +14,7 @@ from quantlib.math._interpolations cimport SABRInterpolation
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
 
-cdef extern from 'ql/termstructures/volatility/swaption/sabrswaptionvolatilitycube.hpp' namespace 'QuantLib':
+cdef extern from 'ql/termstructures/volatility/swaption/sabrswaptionvolatilitycube.hpp' namespace 'QuantLib' nogil:
     cdef cppclass XabrSwaptionVolatilityCube[Model](SwaptionVolatilityCube):
         cppclass Cube:
             Cube(const vector[Date]& optionDates,

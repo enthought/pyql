@@ -5,7 +5,7 @@ from ._date cimport Date, serial_type
 from ._calendar cimport Calendar
 
 
-cdef extern from 'ql/time/daycounter.hpp' namespace 'QuantLib':
+cdef extern from 'ql/time/daycounter.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass DayCounter:
         DayCounter() nogil
