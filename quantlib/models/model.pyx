@@ -7,7 +7,7 @@
 
 include '../types.pxi'
 
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from cython.operator cimport dereference as deref
 from quantlib.math.array cimport Array
 cimport quantlib.math._array as _arr

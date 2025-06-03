@@ -1,7 +1,7 @@
 from quantlib.types cimport Real
 from libcpp.vector cimport vector
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 
 from quantlib.time._period cimport Frequency
 from quantlib.time.date cimport Date

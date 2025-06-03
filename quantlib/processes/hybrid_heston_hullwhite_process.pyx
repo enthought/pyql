@@ -1,5 +1,5 @@
 from quantlib.types cimport Real
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from .hullwhite_process cimport HullWhiteForwardProcess
 from .heston_process cimport HestonProcess
 from . cimport _hullwhite_process as _hw

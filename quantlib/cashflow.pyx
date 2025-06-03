@@ -15,7 +15,7 @@ from libcpp.vector cimport vector
 from libcpp cimport bool
 from cpython.datetime cimport date, import_datetime
 from cython.operator cimport dereference as deref, preincrement as preinc
-from quantlib.handle cimport shared_ptr, optional
+from quantlib.ext cimport shared_ptr, optional
 
 import_datetime()
 

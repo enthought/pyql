@@ -1,5 +1,5 @@
 from quantlib.types cimport Real, Size
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.pricingengines._pricing_engine cimport PricingEngine
 from quantlib.models.shortrate.onefactormodels._hullwhite cimport HullWhite
 from quantlib.methods.finitedifferences.solvers._fdmbackwardsolver cimport FdmSchemeDesc

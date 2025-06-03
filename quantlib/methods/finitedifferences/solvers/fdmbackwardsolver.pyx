@@ -1,7 +1,6 @@
 cimport cython
 from quantlib.types cimport Real
 
-from quantlib.handle cimport shared_ptr
 cimport quantlib.methods.finitedifferences.solvers._fdmbackwardsolver as _fdm
 
 cdef class FdmLinearOpComposite:

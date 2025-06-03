@@ -7,7 +7,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib._handle cimport Handle
+from quantlib.ext cimport shared_ptr
 from quantlib.termstructures.yields._flat_forward cimport YieldTermStructure
 from quantlib.types cimport Real, Size
 cimport quantlib._quote as _qt

@@ -1,6 +1,6 @@
 from quantlib.types cimport Integer, Natural, Rate, Real, Spread
 from libcpp cimport bool
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.indexes._ibor_index cimport IborIndex
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time._calendar cimport Calendar

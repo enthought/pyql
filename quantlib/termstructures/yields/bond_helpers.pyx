@@ -3,7 +3,7 @@ from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from libcpp.vector cimport vector
 
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 
 cimport quantlib.time._calendar as _calendar
 from . cimport _bond_helpers as _bh

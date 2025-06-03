@@ -1,6 +1,6 @@
 from quantlib.types cimport Real
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from quantlib.cashflows.rateaveraging cimport RateAveraging
 from quantlib.time.frequency cimport Frequency
 from quantlib.quote cimport Quote

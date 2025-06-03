@@ -1,7 +1,7 @@
 from ._instrument cimport Instrument
 from ._exercise cimport Exercise
 from ._payoffs cimport Payoff
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 
 
 cdef extern from 'ql/option.hpp' namespace 'QuantLib' nogil:

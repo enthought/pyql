@@ -18,7 +18,7 @@ from quantlib.indexes.interest_rate_index cimport InterestRateIndex
 from quantlib.instruments.vanillaswap cimport VanillaSwap
 from quantlib.instruments.overnightindexedswap cimport OvernightIndexedSwap
 from quantlib.indexes.ibor_index cimport IborIndex, OvernightIndex
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.currency.currency cimport Currency

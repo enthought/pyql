@@ -1,6 +1,6 @@
 from quantlib.types cimport Natural, Real, Volatility
 from . cimport _swaption
-from quantlib.handle cimport shared_ptr, static_pointer_cast, Handle
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 from quantlib.termstructures.volatility.volatilitytype cimport (
     VolatilityType, ShiftedLognormal )
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure

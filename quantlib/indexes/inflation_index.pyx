@@ -8,7 +8,6 @@
 include '../types.pxi'
 
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
 
 from libcpp cimport bool
 from libcpp.string cimport string

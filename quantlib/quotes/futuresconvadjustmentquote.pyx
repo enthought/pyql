@@ -1,6 +1,6 @@
 from libcpp.string cimport string
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from quantlib.time.date cimport Date, _pydate_from_qldate
 from quantlib.indexes.ibor_index cimport IborIndex
 cimport quantlib.indexes._ibor_index as _ii

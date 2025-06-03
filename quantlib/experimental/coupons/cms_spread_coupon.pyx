@@ -3,7 +3,7 @@ from libcpp cimport bool
 from cython.operator cimport dereference as deref
 
 from quantlib.utilities.null cimport Null
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
 from .swap_spread_index cimport SwapSpreadIndex

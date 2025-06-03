@@ -1,5 +1,5 @@
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from . cimport _overnightindexfuture as _oif
 from quantlib.cashflows.rateaveraging cimport RateAveraging
 from quantlib.indexes.ibor_index cimport OvernightIndex

@@ -7,7 +7,8 @@ from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from ._bond cimport Bond
 from ._forward cimport Forward
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.ext cimport shared_ptr
+from quantlib.handle cimport Handle
 from quantlib.position cimport Position
 
 cdef extern from "ql/instruments/bondforward.hpp" namespace "QuantLib" nogil:

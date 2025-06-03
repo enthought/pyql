@@ -1,6 +1,6 @@
 from quantlib.types cimport Real, Time
 
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from . cimport _twofactor_model as _tfm
 cimport quantlib._stochastic_process as _sp
 from quantlib.stochastic_process cimport StochasticProcess1D

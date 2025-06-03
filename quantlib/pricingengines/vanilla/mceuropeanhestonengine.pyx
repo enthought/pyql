@@ -1,7 +1,7 @@
 from quantlib.types cimport BigNatural, Integer, Real, Size
 from libcpp cimport bool
 from quantlib._defines cimport QL_MAX_INTEGER
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from quantlib.utilities.null cimport Null
 from quantlib.processes.heston_process cimport HestonProcess
 cimport quantlib.processes._heston_process as _hp

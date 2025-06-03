@@ -11,7 +11,7 @@ include '../../types.pxi'
 from cython.operator cimport dereference as deref
 from libcpp cimport bool
 
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 
 cimport quantlib.termstructures.credit._credit_helpers as _ci
 cimport quantlib.termstructures._yield_term_structure as _yts
@@ -24,7 +24,7 @@ from quantlib.time.date cimport Period, date_from_qldate, Date
 cimport quantlib.time._date as _date
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.handle cimport HandleYieldTermStructure
 cimport quantlib._quote as _qt
 from quantlib.termstructures.default_term_structure cimport DefaultProbabilityTermStructure
 from quantlib.instruments.credit_default_swap cimport CreditDefaultSwap

@@ -7,11 +7,10 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-include '../types.pxi'
-
+from quantlib.types cimport Real
 cimport quantlib.math._optimization as _opt
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 
-cdef extern from "constraint_support_code.hpp" namespace "QuantLib":
-    cdef shared_ptr[_opt.Constraint] constraint_factory(Real x) except +
-
+cdef extern from "constraint_support_code.hpp" namespace "QuantLib" nogil:
+    cdef cppclass HestonHullWhiteCorrelationConstraint(_opt.Constraint):
+        HestonHullWhiteCorrelationConstraint(double)

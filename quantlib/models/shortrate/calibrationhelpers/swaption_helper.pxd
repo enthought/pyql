@@ -7,7 +7,6 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 
-from quantlib.handle cimport shared_ptr
 from quantlib.models.calibration_helper cimport BlackCalibrationHelper
 
 cdef class SwaptionHelper(BlackCalibrationHelper):

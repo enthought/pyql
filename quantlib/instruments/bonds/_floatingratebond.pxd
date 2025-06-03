@@ -1,7 +1,7 @@
 from .._bond cimport Bond
 from quantlib.indexes._ibor_index cimport IborIndex
 from quantlib.types cimport Natural, Rate, Real, Spread
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.time._calendar cimport Calendar
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period

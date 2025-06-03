@@ -1,4 +1,4 @@
-from quantlib.handle cimport Handle, shared_ptr, static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from quantlib.types cimport Size
 cimport quantlib.models._model as _mo
 from quantlib.models.model cimport ShortRateModel

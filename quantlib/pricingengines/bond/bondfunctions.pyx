@@ -7,7 +7,7 @@ from quantlib.types cimport Rate, Real, Size
 from quantlib.time.frequency cimport Frequency
 from . cimport _bondfunctions as _bf
 
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from cython.operator cimport dereference as deref
 from quantlib.instruments.bond cimport Bond, Price
 from quantlib.time.date cimport date_from_qldate, Date

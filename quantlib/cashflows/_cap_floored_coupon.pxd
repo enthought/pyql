@@ -1,6 +1,6 @@
 include '../types.pxi'
 from libcpp cimport bool
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.indexes._ibor_index cimport IborIndex
 from quantlib.indexes._swap_index cimport SwapIndex
 from quantlib.time._date cimport Date

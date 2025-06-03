@@ -2,7 +2,8 @@ include '../../../types.pxi'
 from libcpp cimport bool
 from libcpp.vector cimport vector
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport make_shared, Handle
+from quantlib.ext cimport make_shared
+from quantlib.handle cimport Handle
 
 from quantlib._quote cimport Quote as QlQuote
 from quantlib.quote cimport Quote
@@ -58,7 +59,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
             shifts = Matrix.__new__(Matrix)
 
         if isinstance(volatilities, Matrix) and isinstance(shifts, Matrix):
-            self._derived_ptr = make_shared[_svm.SwaptionVolatilityMatrix](
+            self._thisptr = make_shared[_svm.SwaptionVolatilityMatrix](
                 calendar._thisptr,
                 bdc,
                 option_tenors_vec,
@@ -72,7 +73,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
         elif isinstance(volatilities, list) and isinstance(shifts, list):
             build_vols_shifts(volatilities, shifts, c_vols, c_shifts)
 
-            self._derived_ptr = make_shared[_svm.SwaptionVolatilityMatrix](
+            self._thisptr = make_shared[_svm.SwaptionVolatilityMatrix](
                 calendar._thisptr,
                 bdc,
                 option_tenors_vec,
@@ -86,7 +87,6 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
         else:
             raise TypeError("volatilities and shifts need to be both either Matrices, "
                             "or lists of lists")
-        self._thisptr = self._derived_ptr
 
     @classmethod
     def from_reference_date(cls, Date reference_date not None,
@@ -115,7 +115,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
             shifts = Matrix.__new__(Matrix)
 
         if isinstance(volatilities, Matrix) and isinstance(shifts, Matrix):
-            instance._derived_ptr = make_shared[_svm.SwaptionVolatilityMatrix](
+            instance._thisptr = make_shared[_svm.SwaptionVolatilityMatrix](
                 reference_date._thisptr,
                 calendar._thisptr,
                 bdc,
@@ -129,7 +129,7 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
             )
         elif isinstance(volatilities, list) and isinstance(shifts, list):
             build_vols_shifts(volatilities, shifts, c_vols, c_shifts)
-            instance._derived_ptr = make_shared[_svm.SwaptionVolatilityMatrix](
+            instance._thisptr = make_shared[_svm.SwaptionVolatilityMatrix](
                 reference_date._thisptr,
                 calendar._thisptr,
                 bdc,
@@ -144,5 +144,4 @@ cdef class SwaptionVolatilityMatrix(SwaptionVolatilityDiscrete):
         else:
             raise TypeError("volatilities and shifts need to be both either Matrices, "
                             "or lists of lists")
-        instance._thisptr = instance._derived_ptr
         return instance

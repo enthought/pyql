@@ -5,7 +5,7 @@ from libcpp cimport bool
 
 from cython.operator cimport dereference as deref
 from quantlib.instruments.dividendschedule cimport DividendSchedule
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 cimport quantlib.processes._black_scholes_process as _bsp
 cimport quantlib.models.equity._bates_model as _bm
 cimport quantlib.models.shortrate.onefactormodels._hullwhite as _hw

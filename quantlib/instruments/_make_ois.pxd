@@ -1,5 +1,6 @@
 from quantlib.types cimport Natural, Real, Rate, Spread
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.ext cimport shared_ptr
+from quantlib.handle cimport Handle
 from libcpp cimport bool
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time._schedule cimport DateGeneration

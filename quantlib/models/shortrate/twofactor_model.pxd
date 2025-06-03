@@ -1,5 +1,5 @@
 from quantlib.models.model cimport ShortRateModel
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from . cimport _twofactor_model as _tfm
 
 cdef class ShortRateDynamics:

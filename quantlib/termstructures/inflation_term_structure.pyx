@@ -14,7 +14,7 @@ from quantlib.time.date cimport Date, Period, date_from_qldate, period_from_qlpe
 
 from libcpp.vector cimport vector
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 
 cimport quantlib.time._daycounter as _dc
 from quantlib.time.daycounter cimport DayCounter

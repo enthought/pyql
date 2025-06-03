@@ -1,7 +1,7 @@
 from cython.operator cimport dereference as deref
 from quantlib.utilities.null cimport Null
 from quantlib.instruments.swap cimport Swap
-from quantlib.handle cimport static_pointer_cast, shared_ptr
+from quantlib.ext cimport static_pointer_cast, shared_ptr
 from quantlib.indexes.swap_index cimport SwapIndex
 from quantlib.time.date cimport Period, Date
 from quantlib.time.businessdayconvention cimport BusinessDayConvention

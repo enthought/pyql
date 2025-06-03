@@ -3,8 +3,8 @@
 from quantlib.types cimport Real
 cimport quantlib.models._model as _mo
 from . cimport _blackkarasinski as _bk
-from quantlib.handle cimport shared_ptr
-from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
+from quantlib.ext cimport shared_ptr
+from quantlib.handle cimport HandleYieldTermStructure
 
 cdef class BlackKarasinski(OneFactorModel):
     r"""Standard Black-Karasinski model

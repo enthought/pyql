@@ -1,7 +1,7 @@
 include '../types.pxi'
 
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from libcpp cimport bool
 
 cimport quantlib._stochastic_process as _sp

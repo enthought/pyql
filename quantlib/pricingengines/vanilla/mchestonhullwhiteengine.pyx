@@ -1,6 +1,6 @@
 from quantlib.types cimport BigNatural, Integer, Real, Size
 from libcpp cimport bool
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from quantlib.utilities.null cimport Null
 from quantlib.processes.hybrid_heston_hullwhite_process cimport HybridHestonHullWhiteProcess
 cimport quantlib.processes._hybrid_heston_hullwhite_process as _hhwp

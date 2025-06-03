@@ -1,6 +1,6 @@
 include '../../types.pxi'
 
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.models.equity._heston_model cimport HestonModel
 cimport quantlib.processes._heston_process as _hp
 

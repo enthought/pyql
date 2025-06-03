@@ -10,7 +10,7 @@
 from quantlib.types cimport Rate, Real
 cimport quantlib.models._model as _mo
 from . cimport _vasicek as _va
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 
 cdef class Vasicek(OneFactorAffineModel):
     r"""Vasicek model

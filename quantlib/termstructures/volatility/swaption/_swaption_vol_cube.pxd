@@ -3,7 +3,8 @@ from libcpp.vector cimport vector
 from libcpp cimport bool
 from ._swaption_vol_discrete cimport SwaptionVolatilityDiscrete
 from ._swaption_vol_structure cimport SwaptionVolatilityStructure
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib._handle cimport Handle
+from quantlib.ext cimport shared_ptr
 from quantlib._quote cimport Quote
 from quantlib.indexes._swap_index cimport SwapIndex
 from quantlib.time._date cimport Date

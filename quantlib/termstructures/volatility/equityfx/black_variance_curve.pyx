@@ -4,7 +4,7 @@ from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from libcpp.vector cimport vector
 
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time._date cimport Date as _Date
 from quantlib.time.daycounter cimport DayCounter

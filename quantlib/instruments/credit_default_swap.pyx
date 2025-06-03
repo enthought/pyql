@@ -11,7 +11,7 @@ from cython.operator cimport dereference as deref
 
 from libcpp cimport bool
 
-from quantlib.handle cimport shared_ptr, optional
+from quantlib.ext cimport shared_ptr, optional
 
 from quantlib.default cimport Protection
 cimport quantlib.instruments._credit_default_swap as _cds

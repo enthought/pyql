@@ -2,7 +2,7 @@ from cython.operator cimport dereference as deref
 from libcpp cimport bool
 from libcpp.vector cimport vector
 
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 cimport quantlib.indexes._ibor_index as _ii
 from quantlib.indexes.ibor_index cimport IborIndex
 from quantlib.types cimport Natural, Integer, Real, Rate, Spread

@@ -6,7 +6,7 @@ from .black_vol_term_structure cimport BlackVolTermStructure
 from . cimport _black_vol_term_structure as _bvts
 from quantlib.termstructures.yield_term_structure cimport HandleYieldTermStructure
 from quantlib.quote cimport Quote
-from quantlib.handle cimport static_pointer_cast, Handle
+from quantlib.ext cimport static_pointer_cast
 from quantlib.time.date cimport Date
 
 cdef class LocalVolSurface(LocalVolTermStructure):

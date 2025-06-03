@@ -1,4 +1,4 @@
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 cimport quantlib._stochastic_process as _sp
 
 cdef class StochasticProcess:

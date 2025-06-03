@@ -1,6 +1,6 @@
 from libcpp.vector cimport vector
 from cython.operator cimport dereference as deref
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 
 include '../../types.pxi'
 

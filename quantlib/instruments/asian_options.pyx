@@ -2,7 +2,7 @@
 from quantlib.types cimport Real, Size
 from libcpp.vector cimport vector
 
-from quantlib.handle cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast
 cimport quantlib.time._date as _date
 from quantlib.time.date cimport Date
 from quantlib.payoffs cimport StrikedTypePayoff

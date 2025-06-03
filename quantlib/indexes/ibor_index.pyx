@@ -3,7 +3,7 @@ from cython.operator cimport dereference as deref
 from libcpp.string cimport string
 from libcpp cimport bool
 
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.ext cimport shared_ptr
 from quantlib.time.date cimport Period
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.currency.currency cimport Currency

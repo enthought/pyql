@@ -4,7 +4,8 @@ from libcpp cimport bool
 from ._swaption_vol_structure cimport SwaptionVolatilityStructure
 from ._swaption_vol_cube cimport SwaptionVolatilityCube
 from .._sabr_smile_section cimport SabrSmileSection
-from quantlib.handle cimport Handle, shared_ptr
+from quantlib._handle cimport Handle
+from quantlib.ext cimport shared_ptr
 from quantlib._quote cimport Quote
 from quantlib.indexes._swap_index cimport SwapIndex
 from quantlib.math._optimization cimport EndCriteria, OptimizationMethod

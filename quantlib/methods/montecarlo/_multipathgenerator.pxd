@@ -1,5 +1,5 @@
 from libcpp cimport bool
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 
 from quantlib._time_grid cimport TimeGrid
 from libcpp.vector cimport vector

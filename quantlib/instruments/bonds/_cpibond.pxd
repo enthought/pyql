@@ -9,7 +9,7 @@ from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._period cimport Period
 from quantlib.time._schedule cimport Schedule
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.indexes._inflation_index cimport ZeroInflationIndex
 
 from .cpibond cimport InterpolationType

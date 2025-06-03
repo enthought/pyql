@@ -2,7 +2,7 @@ from quantlib.types cimport Natural, Real
 
 from cython.operator cimport dereference as deref
 from quantlib.default cimport Protection
-from quantlib.handle cimport static_pointer_cast, shared_ptr
+from quantlib.ext cimport static_pointer_cast, shared_ptr
 from quantlib.time.date cimport Date, Period
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time._date cimport Date as QlDate, Period as QlPeriod

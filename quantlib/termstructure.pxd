@@ -1,6 +1,6 @@
 from . cimport _termstructure as _ts
 from quantlib.observable cimport Observable
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib._observable cimport Observable as QlObservable
 
 cdef class TermStructure(Observable):

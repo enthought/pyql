@@ -1,5 +1,5 @@
 from quantlib.types cimport Real, Natural
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from quantlib.time.date cimport Date
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.businessdayconvention cimport BusinessDayConvention, Following

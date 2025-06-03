@@ -1,7 +1,7 @@
 from quantlib.types cimport Real, Size
 from libcpp.vector cimport vector
 
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.time._date cimport Date
 
 from quantlib._exercise cimport Exercise

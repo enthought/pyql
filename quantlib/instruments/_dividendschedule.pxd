@@ -1,5 +1,5 @@
 from libcpp.vector cimport vector
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.cashflows._dividend cimport Dividend
 
 cdef extern from 'ql/instruments/dividendschedule.hpp' namespace 'QuantLib' nogil:

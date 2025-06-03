@@ -12,7 +12,7 @@ from quantlib.time.businessdayconvention cimport BusinessDayConvention, Followin
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.schedule cimport Schedule
-from quantlib.handle cimport make_shared, static_pointer_cast
+from quantlib.ext cimport make_shared, static_pointer_cast
 from quantlib.utilities.null cimport Null
 from .swap cimport Type
 from . cimport _overnightindexedswap as _ois

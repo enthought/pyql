@@ -1,5 +1,5 @@
 from libcpp cimport bool as cbool
-from quantlib.handle cimport Handle, RelinkableHandle, shared_ptr
+from quantlib.ext cimport shared_ptr
 from . cimport _vol_term_structure as _vts
 
 cdef class VolatilityTermStructure:

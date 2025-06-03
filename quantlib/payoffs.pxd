@@ -1,4 +1,4 @@
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from . cimport _payoffs
 
 cdef class Payoff:

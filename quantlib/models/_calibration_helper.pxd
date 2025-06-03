@@ -1,7 +1,8 @@
 from quantlib.types cimport Real, Size, Volatility
 from quantlib.pricingengines._pricing_engine cimport PricingEngine
 from quantlib.termstructures.volatility.volatilitytype cimport VolatilityType
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.handle cimport Handle
+from quantlib.ext cimport shared_ptr
 from quantlib._quote cimport Quote
 
 cdef extern from 'ql/models/calibrationhelper.hpp' namespace 'QuantLib':

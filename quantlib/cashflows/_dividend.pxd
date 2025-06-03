@@ -1,5 +1,5 @@
 from libcpp.vector cimport vector
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from quantlib.types cimport Real
 from quantlib.time._date cimport Date
 

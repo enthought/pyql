@@ -1,4 +1,4 @@
-from quantlib.handle cimport shared_ptr
+from quantlib.ext cimport shared_ptr
 from . cimport _exercise
 
 cdef extern from 'ql/exercise.hpp' namespace 'QuantLib::Exercise' nogil:

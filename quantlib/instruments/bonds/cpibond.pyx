@@ -4,7 +4,7 @@ from libcpp cimport bool
 from libcpp.vector cimport vector
 from . cimport _cpibond
 
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 cimport quantlib.indexes._inflation_index as _inf
 from quantlib.indexes.inflation_index cimport ZeroInflationIndex
 from quantlib.time.businessdayconvention cimport BusinessDayConvention, Following, Unadjusted

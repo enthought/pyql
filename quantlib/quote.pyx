@@ -1,5 +1,5 @@
 """Abstract base class for market observables"""
-from quantlib.handle cimport static_pointer_cast
+from quantlib.ext cimport static_pointer_cast
 from quantlib._observable cimport Observable as QlObservable
 
 cdef class Quote(Observable):

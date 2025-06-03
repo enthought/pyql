@@ -1,4 +1,5 @@
-from quantlib.handle cimport shared_ptr, Handle
+from quantlib.handle cimport Handle
+from quantlib.ext cimport shared_ptr
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from quantlib.pricingengines._pricing_engine cimport PricingEngine
 cimport quantlib.models.shortrate._onefactor_model as _ofm
