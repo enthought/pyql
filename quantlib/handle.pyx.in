@@ -46,4 +46,9 @@ cdef class RelinkableHandle{{T}}:
 
     def link_to(self, {{T}} t, bool register_as_observer=True):
         (<RelinkableHandle[Ql{{T}}]*>self._handle).linkTo(static_pointer_cast[Ql{{T}}](t._thisptr), register_as_observer)
+
+    def reset(self):
+        (<RelinkableHandle[Ql{{T}}]*>self._handle).reset()
+
+
 {{endfor}}

@@ -14,3 +14,4 @@ cdef extern from 'ql/handle.hpp' namespace 'QuantLib' nogil:
         RelinkableHandle()
         RelinkableHandle(shared_ptr[T]&, bool registerAsObserver)
         void linkTo(shared_ptr[T]&, bool registerAsObserver)
+        void reset()
