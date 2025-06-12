@@ -1,5 +1,5 @@
 from libcpp.vector cimport vector
-from quantlib.handle cimport Handle
+from quantlib._handle cimport Handle
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib.time.frequency cimport Frequency
@@ -9,7 +9,7 @@ from quantlib._quote cimport Quote
 from quantlib.math._interpolations cimport Linear
 from quantlib.compounding cimport Compounding
 
-cdef extern from 'ql/termstructures/yield/piecewisezerospreadedtermstructure.hpp' namespace 'QuantLib':
+cdef extern from 'ql/termstructures/yield/piecewisezerospreadedtermstructure.hpp' namespace 'QuantLib' nogil:
     cdef cppclass InterpolatedPiecewiseZeroSpreadedTermStructure[I](YieldTermStructure):
         InterpolatedPiecewiseZeroSpreadedTermStructure(
             const Handle[YieldTermStructure]&,
