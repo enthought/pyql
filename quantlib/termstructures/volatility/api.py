@@ -4,4 +4,6 @@ from .equityfx.black_variance_surface import BlackVarianceSurface
 from .volatilitytype import VolatilityType
 from .swaption.swaption_vol_matrix import SwaptionVolatilityMatrix
 from .swaption.swaption_constant_vol import ConstantSwaptionVolatility
-from quantlib.handle import HandleSwaptionVolatilityStructure, HandleBlackVolTermStructure, HandleOptionletVolatilityStructure
+from quantlib.handle import (
+    HandleSwaptionVolatilityStructure, HandleBlackVolTermStructure, HandleOptionletVolatilityStructure,
+    RelinkableHandleSwaptionVolatilityStructure, RelinkableHandleBlackVolTermStructure, RelinkableHandleOptionletVolatilityStructure)
