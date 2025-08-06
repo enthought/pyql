@@ -10,6 +10,7 @@
 from .ibor.libor import Libor
 from .ibor.euribor import Euribor, Euribor3M, Euribor6M
 from .ibor.eonia import Eonia
+from .ibor.fedfunds import FedFunds
 from .ibor.sofr import Sofr
 from .ibor.usdlibor import USDLibor
 from .ibor_index import IborIndex
