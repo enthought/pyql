@@ -4,7 +4,7 @@ from libcpp cimport bool
 from libcpp.vector cimport vector
 from libcpp.utility cimport move
 from cython.operator cimport dereference as deref, preincrement as preinc
-from quantlib.ext cimport make_shared, shared_ptr, static_pointer_cast
+from quantlib.ext cimport make_shared, shared_ptr, static_pointer_cast, dynamic_pointer_cast
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time._date cimport Date as QlDate
@@ -18,6 +18,7 @@ cimport quantlib._cashflow as _cf
 from .rateaveraging cimport RateAveraging
 from . cimport _overnight_indexed_coupon as _oic
 from .._cashflow cimport Leg as QlLeg
+from ..cashflow cimport CashFlow
 
 cdef class OvernightIndexedCoupon(FloatingRateCoupon):
 
@@ -83,6 +84,15 @@ cdef class OvernightIndexedCoupon(FloatingRateCoupon):
     @property
     def apply_observation_shift(self):
         return (<_oic.OvernightIndexedCoupon*>self._thisptr.get()).applyObservationShift()
+
+def as_overnight_indexed_coupon(CashFlow cf):
+    cdef OvernightIndexedCoupon coupon = OvernightIndexedCoupon.__new__(OvernightIndexedCoupon)
+    coupon._thisptr = dynamic_pointer_cast[_oic.OvernightIndexedCoupon](cf._thisptr)
+    if not coupon._thisptr:
+        return None
+    else:
+        return coupon
+
 
 cdef class OvernightLeg(Leg):
 

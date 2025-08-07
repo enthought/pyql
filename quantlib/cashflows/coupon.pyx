@@ -61,3 +61,8 @@ cdef class Coupon(CashFlow):
         cdef DayCounter dc = DayCounter.__new__(DayCounter)
         dc._thisptr = new _dc.DayCounter(self._get_coupon().dayCounter())
         return dc
+
+def as_coupon(CashFlow cf):
+    cdef Coupon coupon = Coupon.__new__(Coupon)
+    coupon._thisptr = cf._thisptr
+    return coupon

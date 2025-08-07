@@ -1,11 +1,12 @@
 from quantlib.types cimport Natural, Real, Spread
 from libcpp cimport bool
 from cython.operator cimport dereference as deref
-from quantlib.ext cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast, dynamic_pointer_cast
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time.daycounter cimport DayCounter
 from .coupon_pricer cimport FloatingRateCouponPricer
 cimport quantlib._cashflow as _cf
+from ..cashflow cimport CashFlow
 from quantlib.indexes.interest_rate_index cimport InterestRateIndex
 cimport quantlib.indexes._interest_rate_index as _iri
 from quantlib._index cimport Index
@@ -63,3 +64,11 @@ cdef class FloatingRateCoupon(Coupon):
     @property
     def is_in_arrears(self):
         return self._get_frc().isInArrears()
+
+def as_floating_rate_coupon(CashFlow cf):
+    cdef FloatingRateCoupon coupon = FloatingRateCoupon.__new__(FloatingRateCoupon)
+    coupon._thisptr = dynamic_pointer_cast[_frc.FloatingRateCoupon](cf._thisptr)
+    if not coupon._thisptr:
+        return None
+    else:
+        return coupon

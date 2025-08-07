@@ -3,7 +3,7 @@ from cython.operator cimport dereference as deref, preincrement as preinc
 from libcpp.vector cimport vector
 from libcpp.utility cimport move
 from quantlib.compounding cimport Compounding
-from quantlib.ext cimport shared_ptr
+from quantlib.ext cimport shared_ptr, dynamic_pointer_cast
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.date cimport Date
@@ -12,6 +12,7 @@ from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.schedule cimport Schedule
 cimport quantlib._cashflow as _cf
 from quantlib.interest_rate cimport InterestRate
+from ..cashflow cimport CashFlow
 from .._cashflow cimport Leg as QlLeg
 cimport quantlib._interest_rate as _ir
 
@@ -35,6 +36,15 @@ cdef class FixedRateCoupon(Coupon):
         cdef InterestRate ir = InterestRate.__new__(InterestRate)
         ir._thisptr = (<_frc.FixedRateCoupon*>self._thisptr.get()).interestRate()
         return ir
+
+def as_fixed_rate_coupon(CashFlow cf):
+    cdef FixedRateCoupon coupon = FixedRateCoupon.__new__(FixedRateCoupon)
+    coupon._thisptr = dynamic_pointer_cast[_frc.FixedRateCoupon](cf._thisptr)
+    if not coupon._thisptr:
+        return None
+    else:
+        return coupon
+
 
 cdef class FixedRateLeg(Leg):
 

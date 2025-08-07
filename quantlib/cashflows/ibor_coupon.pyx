@@ -2,11 +2,12 @@ include '../types.pxi'
 
 from libcpp cimport bool
 from cython.operator cimport dereference as deref
-from quantlib.ext cimport shared_ptr, static_pointer_cast
+from quantlib.ext cimport shared_ptr, static_pointer_cast, dynamic_pointer_cast
 from quantlib.time.date cimport Date
 from quantlib.time.daycounter cimport DayCounter
 cimport quantlib.cashflows._ibor_coupon as _ic
-cimport quantlib._cashflow as _cf
+from ..cashflow cimport CashFlow
+from .. cimport _cashflow as _cf
 cimport quantlib.indexes._ibor_index as _ii
 from quantlib.indexes.ibor_index cimport IborIndex
 
@@ -18,7 +19,7 @@ cdef class IborCoupon(FloatingRateCoupon):
                  Spread spread=0.,
                  Date ref_period_start=Date(), Date ref_period_end=Date(),
                  DayCounter day_counter=DayCounter(), bool is_in_arrears=False):
-        self._thisptr = shared_ptr[_cf.CashFlow](
+        self._thisptr.reset(
             new _ic.IborCoupon(
                 payment_date._thisptr, nominal,
                 start_date._thisptr, end_date._thisptr,
@@ -26,9 +27,18 @@ cdef class IborCoupon(FloatingRateCoupon):
                 static_pointer_cast[_ii.IborIndex](index._thisptr),
                 gearing, spread,
                 ref_period_start._thisptr, ref_period_end._thisptr,
-                deref(day_counter._thisptr), is_in_arrears)
+                deref(day_counter._thisptr), is_in_arrears
+            )
         )
     Settings = IborCouponSettings()
+
+def as_ibor_coupon(CashFlow cf):
+    cdef IborCoupon coupon = IborCoupon.__new__(IborCoupon)
+    coupon._thisptr = dynamic_pointer_cast[_ic.IborCoupon](cf._thisptr)
+    if not coupon._thisptr:
+        return None
+    else:
+        return coupon
 
 cdef class IborCouponSettings:
     @staticmethod
