@@ -2,6 +2,7 @@ from quantlib.types cimport Natural, Real, Spread
 from libcpp cimport bool
 from cython.operator cimport dereference as deref
 from quantlib.ext cimport shared_ptr, static_pointer_cast, dynamic_pointer_cast
+from quantlib.handle cimport HandleYieldTermStructure
 from quantlib.time.date cimport Date, date_from_qldate
 from quantlib.time.daycounter cimport DayCounter
 from .coupon_pricer cimport FloatingRateCouponPricer
@@ -72,6 +73,9 @@ cdef class FloatingRateCoupon(Coupon):
     @property
     def is_in_arrears(self):
         return self._get_frc().isInArrears()
+
+    def price(self, HandleYieldTermStructure discountingCurve):
+        return self._get_frc().price(discountingCurve.handle())
 
 def as_floating_rate_coupon(CashFlow cf):
     cdef FloatingRateCoupon coupon = FloatingRateCoupon.__new__(FloatingRateCoupon)

@@ -1,11 +1,13 @@
 from quantlib.types cimport Natural, Rate, Real, Spread
 from libcpp cimport bool
 from quantlib.ext cimport shared_ptr
+from quantlib.handle cimport Handle
 from quantlib.time._date cimport Date
 from quantlib.time._daycounter cimport DayCounter
 from quantlib._cashflow cimport CashFlow
 from quantlib._interest_rate cimport InterestRate
 from quantlib.cashflows._coupon cimport Coupon
+from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
 from ._coupon_pricer cimport FloatingRateCouponPricer
 from quantlib.indexes._interest_rate_index cimport InterestRateIndex
 
@@ -29,6 +31,7 @@ cdef extern from 'ql/cashflows/floatingratecoupon.hpp' namespace 'QuantLib' nogi
         Date fixingDate()
         Real gearing()
         Spread spread()
+        Real price(Handle[YieldTermStructure])
         Rate indexFixing()
         Rate convexityAdjustment() except +
         Rate adjustedFixing() except +
