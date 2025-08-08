@@ -40,6 +40,14 @@ cdef class FloatingRateCoupon(Coupon):
         return self._get_frc().fixingDays()
 
     @property
+    def gearing(self):
+        return self._get_frc().gearing()
+
+    @property
+    def spread(self):
+        return self._get_frc().spread()
+
+    @property
     def fixing_date(self):
         return date_from_qldate(self._get_frc().fixingDate())
 
