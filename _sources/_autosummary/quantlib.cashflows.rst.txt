@@ -44,5 +44,6 @@ quantlib.cashflows
    inflation_coupon_pricer
    linear_tsr_pricer
    overnight_indexed_coupon
+   overnight_indexed_coupon_pricer
    rateaveraging
 

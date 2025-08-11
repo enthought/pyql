@@ -25,6 +25,7 @@ quantlib.indexes.ibor.libor.Libor
       ~Libor.fixing_date
       ~Libor.forecast_fixing
       ~Libor.from_name
+      ~Libor.has_historical_fixing
       ~Libor.is_valid_fixing_date
       ~Libor.maturity_date
       ~Libor.value_date

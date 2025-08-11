@@ -1,0 +1,45 @@
+quantlib.position.Position
+==========================
+
+.. currentmodule:: quantlib.position
+
+.. autoclass:: Position
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Position.conjugate
+      ~Position.bit_length
+      ~Position.bit_count
+      ~Position.to_bytes
+      ~Position.from_bytes
+      ~Position.as_integer_ratio
+      ~Position.__init__
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Position.real
+      ~Position.imag
+      ~Position.numerator
+      ~Position.denominator
+      ~Position.Long
+      ~Position.Short
+
+   
+   

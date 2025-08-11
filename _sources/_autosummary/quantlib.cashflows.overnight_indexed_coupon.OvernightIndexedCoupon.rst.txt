@@ -43,6 +43,8 @@ quantlib.cashflows.overnight\_indexed\_coupon.OvernightIndexedCoupon
       ~OvernightIndexedCoupon.accrual_start_date
       ~OvernightIndexedCoupon.adjusted_fixing
       ~OvernightIndexedCoupon.amount
+      ~OvernightIndexedCoupon.apply_observation_shift
+      ~OvernightIndexedCoupon.averaging_method
       ~OvernightIndexedCoupon.convexity_adjustment
       ~OvernightIndexedCoupon.date
       ~OvernightIndexedCoupon.day_counter
@@ -51,6 +53,7 @@ quantlib.cashflows.overnight\_indexed\_coupon.OvernightIndexedCoupon
       ~OvernightIndexedCoupon.index
       ~OvernightIndexedCoupon.index_fixing
       ~OvernightIndexedCoupon.is_in_arrears
+      ~OvernightIndexedCoupon.lockout_days
       ~OvernightIndexedCoupon.nominal
       ~OvernightIndexedCoupon.rate
       ~OvernightIndexedCoupon.reference_period_end

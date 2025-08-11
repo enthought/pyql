@@ -24,7 +24,7 @@ quantlib.models.shortrate.calibrationhelpers.swaption\_helper.SwaptionHelper
       ~SwaptionHelper.market_value
       ~SwaptionHelper.model_value
       ~SwaptionHelper.set_pricing_engine
-      ~SwaptionHelper.underlying_swap
+      ~SwaptionHelper.underlying
       ~SwaptionHelper.underlying_swaption
    
    

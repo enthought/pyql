@@ -34,7 +34,6 @@ quantlib.termstructures.inflation.interpolated\_zero\_inflation\_curve.Interpola
       ~InterpolatedZeroInflationCurve.base_date
       ~InterpolatedZeroInflationCurve.base_rate
       ~InterpolatedZeroInflationCurve.max_date
-      ~InterpolatedZeroInflationCurve.observation_lag
       ~InterpolatedZeroInflationCurve.reference_date
 
    

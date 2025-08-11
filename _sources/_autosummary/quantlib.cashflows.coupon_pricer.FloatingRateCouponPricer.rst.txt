@@ -22,6 +22,7 @@ quantlib.cashflows.coupon\_pricer.FloatingRateCouponPricer
       ~FloatingRateCouponPricer.caplet_rate
       ~FloatingRateCouponPricer.floorlet_price
       ~FloatingRateCouponPricer.floorlet_rate
+      ~FloatingRateCouponPricer.initialize
       ~FloatingRateCouponPricer.swaplet_price
       ~FloatingRateCouponPricer.swaplet_rate
    

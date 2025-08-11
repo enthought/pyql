@@ -22,6 +22,7 @@ quantlib.experimental.coupons.lognormal\_cmsspread\_pricer.LognormalCmsSpreadPri
       ~LognormalCmsSpreadPricer.caplet_rate
       ~LognormalCmsSpreadPricer.floorlet_price
       ~LognormalCmsSpreadPricer.floorlet_rate
+      ~LognormalCmsSpreadPricer.initialize
       ~LognormalCmsSpreadPricer.swaplet_price
       ~LognormalCmsSpreadPricer.swaplet_rate
    

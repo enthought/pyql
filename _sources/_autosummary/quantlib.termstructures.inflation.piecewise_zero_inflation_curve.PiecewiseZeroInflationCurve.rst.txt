@@ -34,7 +34,6 @@ quantlib.termstructures.inflation.piecewise\_zero\_inflation\_curve.PiecewiseZer
       ~PiecewiseZeroInflationCurve.base_date
       ~PiecewiseZeroInflationCurve.base_rate
       ~PiecewiseZeroInflationCurve.max_date
-      ~PiecewiseZeroInflationCurve.observation_lag
       ~PiecewiseZeroInflationCurve.reference_date
 
    

@@ -46,6 +46,7 @@
    mlab
    models
    observable
+   position
    pricingengines
    processes
    quote

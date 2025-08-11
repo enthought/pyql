@@ -38,7 +38,7 @@
 <h1>quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon<a class="headerlink" href="#quantlib-cashflows-overnight-indexed-coupon-overnightindexedcoupon" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OvernightIndexedCoupon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">payment_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">nominal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">OvernightIndex</span> <span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">gearing=1.</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Spread</span> <span class="pre">spread=0.</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">ref_period_start=Date()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">ref_period_end=Date()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">day_counter=DayCounter()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">telescopic_values=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RateAveraging</span> <span class="pre">averaging_method=RateAveraging.Compound</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OvernightIndexedCoupon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">payment_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">nominal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">OvernightIndex</span> <span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">gearing=1.</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Spread</span> <span class="pre">spread=0.</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">ref_period_start=Date()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">ref_period_end=Date()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">day_counter=DayCounter()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">telescopic_values=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RateAveraging</span> <span class="pre">averaging_method=RateAveraging.Compound</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">lookback_days=Null[Natural]()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">lockout_days=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">apply_observation_shift=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.cashflows.floating_rate_coupon.FloatingRateCoupon.html#quantlib.cashflows.floating_rate_coupon.FloatingRateCoupon" title="quantlib.cashflows.floating_rate_coupon.FloatingRateCoupon"><code class="xref py py-class docutils literal notranslate"><span class="pre">FloatingRateCoupon</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.__init__">
@@ -101,6 +101,12 @@
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">amount</span></code></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_observation_shift</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">averaging_method</span></code></p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">convexity_adjustment</span></code></p></td>
 <td><p></p></td>
 </tr>
@@ -125,16 +131,19 @@
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_in_arrears</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">nominal</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">lockout_days</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rate</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">nominal</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_period_end</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rate</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_period_start</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_period_end</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_period_start</span></code></p></td>
 <td><p></p></td>
 </tr>
 </tbody>

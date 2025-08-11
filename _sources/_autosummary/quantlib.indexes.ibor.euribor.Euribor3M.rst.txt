@@ -25,6 +25,7 @@ quantlib.indexes.ibor.euribor.Euribor3M
       ~Euribor3M.fixing_date
       ~Euribor3M.forecast_fixing
       ~Euribor3M.from_name
+      ~Euribor3M.has_historical_fixing
       ~Euribor3M.is_valid_fixing_date
       ~Euribor3M.maturity_date
       ~Euribor3M.value_date

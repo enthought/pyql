@@ -19,11 +19,14 @@ quantlib.instruments.make\_ois.MakeOIS
    
       ~MakeOIS.__init__
       ~MakeOIS.receive_fixed
+      ~MakeOIS.with_apply_observation_shift
       ~MakeOIS.with_averaging_method
       ~MakeOIS.with_discounting_term_structure
       ~MakeOIS.with_effective_date
       ~MakeOIS.with_end_of_month
       ~MakeOIS.with_fixed_leg_day_count
+      ~MakeOIS.with_lockout_days
+      ~MakeOIS.with_lookback_days
       ~MakeOIS.with_nominal
       ~MakeOIS.with_overnight_leg_spread
       ~MakeOIS.with_payment_adjustment

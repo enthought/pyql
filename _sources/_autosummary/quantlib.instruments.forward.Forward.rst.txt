@@ -1,0 +1,42 @@
+quantlib.instruments.forward.Forward
+====================================
+
+.. currentmodule:: quantlib.instruments.forward
+
+.. autoclass:: Forward
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~Forward.__init__
+      ~Forward.implied_yield
+      ~Forward.set_pricing_engine
+      ~Forward.spot_income
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~Forward.forward_value
+      ~Forward.is_expired
+      ~Forward.net_present_value
+      ~Forward.npv
+      ~Forward.spot_value
+      ~Forward.valuation_date
+
+   
+   

@@ -22,6 +22,7 @@ quantlib.index.Index
       ~Index.add_fixings
       ~Index.clear_fixings
       ~Index.fixing
+      ~Index.has_historical_fixing
       ~Index.is_valid_fixing_date
    
    

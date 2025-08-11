@@ -14,7 +14,10 @@ quantlib.cashflows.cashflows
    .. autosummary::
       :toctree:
    
+      bps
       next_cash_flow_amount
+      npv
+      npvbps
       previous_cash_flow_amount
    
    

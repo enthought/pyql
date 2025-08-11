@@ -25,6 +25,7 @@ quantlib.indexes.ibor.usdlibor.USDLibor
       ~USDLibor.fixing_date
       ~USDLibor.forecast_fixing
       ~USDLibor.from_name
+      ~USDLibor.has_historical_fixing
       ~USDLibor.is_valid_fixing_date
       ~USDLibor.maturity_date
       ~USDLibor.value_date

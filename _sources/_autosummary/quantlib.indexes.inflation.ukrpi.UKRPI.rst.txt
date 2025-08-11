@@ -22,6 +22,7 @@ quantlib.indexes.inflation.ukrpi.UKRPI
       ~UKRPI.add_fixings
       ~UKRPI.clear_fixings
       ~UKRPI.fixing
+      ~UKRPI.has_historical_fixing
       ~UKRPI.is_valid_fixing_date
       ~UKRPI.zero_inflation_term_structure
    

@@ -44,6 +44,7 @@ quantlib.time.calendars.united\_states.Market
       ~Market.NERC
       ~Market.LiborImpact
       ~Market.FederalReserve
+      ~Market.SOFR
 
    
    

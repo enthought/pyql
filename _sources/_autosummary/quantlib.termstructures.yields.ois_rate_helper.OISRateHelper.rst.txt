@@ -18,6 +18,7 @@ quantlib.termstructures.yields.ois\_rate\_helper.OISRateHelper
 
    
       ~OISRateHelper.__init__
+      ~OISRateHelper.from_dates
       ~OISRateHelper.update
    
    

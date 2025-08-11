@@ -24,6 +24,7 @@ quantlib.indexes.interest\_rate\_index.InterestRateIndex
       ~InterestRateIndex.fixing
       ~InterestRateIndex.fixing_date
       ~InterestRateIndex.forecast_fixing
+      ~InterestRateIndex.has_historical_fixing
       ~InterestRateIndex.is_valid_fixing_date
       ~InterestRateIndex.maturity_date
       ~InterestRateIndex.value_date

@@ -40,6 +40,13 @@ quantlib.time.calendars.united\_states.UnitedStates
    .. autosummary::
 
    
+      ~UnitedStates.FederalReserve
+      ~UnitedStates.GovernmentBond
+      ~UnitedStates.LiborImpact
+      ~UnitedStates.NERC
+      ~UnitedStates.NYSE
+      ~UnitedStates.SOFR
+      ~UnitedStates.Settlement
       ~UnitedStates.name
 
    

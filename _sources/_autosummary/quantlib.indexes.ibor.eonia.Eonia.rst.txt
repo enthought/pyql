@@ -25,6 +25,7 @@ quantlib.indexes.ibor.eonia.Eonia
       ~Eonia.fixing_date
       ~Eonia.forecast_fixing
       ~Eonia.from_name
+      ~Eonia.has_historical_fixing
       ~Eonia.is_valid_fixing_date
       ~Eonia.maturity_date
       ~Eonia.value_date

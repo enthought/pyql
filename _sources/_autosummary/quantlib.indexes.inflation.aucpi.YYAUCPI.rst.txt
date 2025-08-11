@@ -22,6 +22,7 @@ quantlib.indexes.inflation.aucpi.YYAUCPI
       ~YYAUCPI.add_fixings
       ~YYAUCPI.clear_fixings
       ~YYAUCPI.fixing
+      ~YYAUCPI.has_historical_fixing
       ~YYAUCPI.is_valid_fixing_date
       ~YYAUCPI.zero_inflation_term_structure
    

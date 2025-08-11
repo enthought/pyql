@@ -25,6 +25,7 @@ quantlib.indexes.ibor.sofr.Sofr
       ~Sofr.fixing_date
       ~Sofr.forecast_fixing
       ~Sofr.from_name
+      ~Sofr.has_historical_fixing
       ~Sofr.is_valid_fixing_date
       ~Sofr.maturity_date
       ~Sofr.value_date

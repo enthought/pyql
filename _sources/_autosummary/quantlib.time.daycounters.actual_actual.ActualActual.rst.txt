@@ -31,6 +31,12 @@ quantlib.time.daycounters.actual\_actual.ActualActual
    .. autosummary::
 
    
+      ~ActualActual.AFB
+      ~ActualActual.Bond
+      ~ActualActual.Euro
+      ~ActualActual.Historical
+      ~ActualActual.ISDA
+      ~ActualActual.ISMA
       ~ActualActual.name
 
    

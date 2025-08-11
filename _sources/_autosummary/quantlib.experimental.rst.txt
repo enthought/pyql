@@ -29,6 +29,5 @@ quantlib.experimental
    :recursive:
 
    coupons
-   risk
    termstructures
 

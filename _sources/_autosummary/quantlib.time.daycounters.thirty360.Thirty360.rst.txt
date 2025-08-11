@@ -31,6 +31,15 @@ quantlib.time.daycounters.thirty360.Thirty360
    .. autosummary::
 
    
+      ~Thirty360.BondBasis
+      ~Thirty360.EurobondBasis
+      ~Thirty360.European
+      ~Thirty360.German
+      ~Thirty360.ISDA
+      ~Thirty360.ISMA
+      ~Thirty360.Italian
+      ~Thirty360.NASD
+      ~Thirty360.USA
       ~Thirty360.name
 
    

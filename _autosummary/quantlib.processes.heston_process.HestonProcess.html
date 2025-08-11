@@ -42,7 +42,7 @@
 <dd><p>Bases: <a class="reference internal" href="quantlib.stochastic_process.StochasticProcess.html#quantlib.stochastic_process.StochasticProcess" title="quantlib.stochastic_process.StochasticProcess"><code class="xref py py-class docutils literal notranslate"><span class="pre">StochasticProcess</span></code></a></p>
 <p>Heston process: a diffusion process with mean-reverting stochastic variance.</p>
 <div class="math">
-<p><img src="../_images/math/f62202371a9223560a54958eaa5c5e87e0bd1ddf.png" alt="dS_t =&amp; (r-d) S_t dt + \sqrt{V_t} S_t dW^s_t \\
+<p><img src="../_images/math/55ca34f89073b1f2ead3a7e2c1e98192a16b3274.png" alt="dS_t =&amp; (r-d) S_t dt + \sqrt{V_t} S_t dW/^s_t \\
 dV_t =&amp; \kappa (\theta - V_t) dt + \varepsilon \sqrt{V_t} dW^\upsilon_t \\
 dW^s_t dW^\upsilon_t =&amp; \rho dt"/></p>
 </div><dl class="py method">
@@ -67,22 +67,49 @@ dW^s_t dW^\upsilon_t =&amp; \rho dt"/></p>
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BroadieKayaExactSchemeLaguerre</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rho</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BroadieKayaExactSchemeLobatto</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">s0</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BroadieKayaExactSchemeTrapezoidal</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sigma</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">FullTruncation</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">theta</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">NonCentralChiSquareVariance</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">v0</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PartialTruncation</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">QuadraticExponential</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">QuadraticExponentialMartingale</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reflection</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rho</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">s0</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sigma</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">theta</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">v0</span></code></p></td>
 <td><p></p></td>
 </tr>
 </tbody>

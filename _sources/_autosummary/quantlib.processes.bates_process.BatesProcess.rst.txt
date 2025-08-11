@@ -30,7 +30,16 @@ quantlib.processes.bates\_process.BatesProcess
    .. autosummary::
 
    
+      ~BatesProcess.BroadieKayaExactSchemeLaguerre
+      ~BatesProcess.BroadieKayaExactSchemeLobatto
+      ~BatesProcess.BroadieKayaExactSchemeTrapezoidal
+      ~BatesProcess.FullTruncation
       ~BatesProcess.Lambda
+      ~BatesProcess.NonCentralChiSquareVariance
+      ~BatesProcess.PartialTruncation
+      ~BatesProcess.QuadraticExponential
+      ~BatesProcess.QuadraticExponentialMartingale
+      ~BatesProcess.Reflection
       ~BatesProcess.delta
       ~BatesProcess.kappa
       ~BatesProcess.nu

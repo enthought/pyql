@@ -22,6 +22,7 @@ quantlib.cashflows.coupon\_pricer.BlackIborCouponPricer
       ~BlackIborCouponPricer.caplet_rate
       ~BlackIborCouponPricer.floorlet_price
       ~BlackIborCouponPricer.floorlet_rate
+      ~BlackIborCouponPricer.initialize
       ~BlackIborCouponPricer.swaplet_price
       ~BlackIborCouponPricer.swaplet_rate
    

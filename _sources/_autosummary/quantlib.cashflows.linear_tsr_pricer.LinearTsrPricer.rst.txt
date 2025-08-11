@@ -22,6 +22,7 @@ quantlib.cashflows.linear\_tsr\_pricer.LinearTsrPricer
       ~LinearTsrPricer.caplet_rate
       ~LinearTsrPricer.floorlet_price
       ~LinearTsrPricer.floorlet_rate
+      ~LinearTsrPricer.initialize
       ~LinearTsrPricer.swaplet_price
       ~LinearTsrPricer.swaplet_rate
    

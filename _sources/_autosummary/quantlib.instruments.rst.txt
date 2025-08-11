@@ -31,10 +31,12 @@ quantlib.instruments
    api
    asian_options
    bond
+   bondforward
    bonds
    credit_default_swap
    exercise
    fixedvsfloatingswap
+   forward
    futures
    implied_volatility
    make_cds

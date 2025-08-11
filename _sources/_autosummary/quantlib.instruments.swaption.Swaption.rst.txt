@@ -20,7 +20,7 @@ quantlib.instruments.swaption.Swaption
       ~Swaption.__init__
       ~Swaption.implied_volatility
       ~Swaption.set_pricing_engine
-      ~Swaption.underlying_swap
+      ~Swaption.underlying
    
    
 

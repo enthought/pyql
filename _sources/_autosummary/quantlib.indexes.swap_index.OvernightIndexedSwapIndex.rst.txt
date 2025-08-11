@@ -24,6 +24,7 @@ quantlib.indexes.swap\_index.OvernightIndexedSwapIndex
       ~OvernightIndexedSwapIndex.fixing
       ~OvernightIndexedSwapIndex.fixing_date
       ~OvernightIndexedSwapIndex.forecast_fixing
+      ~OvernightIndexedSwapIndex.has_historical_fixing
       ~OvernightIndexedSwapIndex.is_valid_fixing_date
       ~OvernightIndexedSwapIndex.maturity_date
       ~OvernightIndexedSwapIndex.underlying_swap

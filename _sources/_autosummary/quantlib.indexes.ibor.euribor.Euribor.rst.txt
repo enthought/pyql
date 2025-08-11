@@ -25,6 +25,7 @@ quantlib.indexes.ibor.euribor.Euribor
       ~Euribor.fixing_date
       ~Euribor.forecast_fixing
       ~Euribor.from_name
+      ~Euribor.has_historical_fixing
       ~Euribor.is_valid_fixing_date
       ~Euribor.maturity_date
       ~Euribor.value_date

@@ -1,0 +1,6 @@
+quantlib.cashflows.cashflows.bps
+================================
+
+.. currentmodule:: quantlib.cashflows.cashflows
+
+.. autofunction:: bps

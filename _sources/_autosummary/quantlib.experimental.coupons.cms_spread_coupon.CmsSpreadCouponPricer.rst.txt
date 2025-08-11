@@ -22,6 +22,7 @@ quantlib.experimental.coupons.cms\_spread\_coupon.CmsSpreadCouponPricer
       ~CmsSpreadCouponPricer.caplet_rate
       ~CmsSpreadCouponPricer.floorlet_price
       ~CmsSpreadCouponPricer.floorlet_rate
+      ~CmsSpreadCouponPricer.initialize
       ~CmsSpreadCouponPricer.swaplet_price
       ~CmsSpreadCouponPricer.swaplet_rate
    

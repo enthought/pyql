@@ -24,6 +24,7 @@ quantlib.indexes.swap.euribor\_swap.EuriborSwapIsdaFixA
       ~EuriborSwapIsdaFixA.fixing
       ~EuriborSwapIsdaFixA.fixing_date
       ~EuriborSwapIsdaFixA.forecast_fixing
+      ~EuriborSwapIsdaFixA.has_historical_fixing
       ~EuriborSwapIsdaFixA.is_valid_fixing_date
       ~EuriborSwapIsdaFixA.maturity_date
       ~EuriborSwapIsdaFixA.underlying_swap

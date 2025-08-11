@@ -1,0 +1,33 @@
+quantlib.cashflows.overnight\_indexed\_coupon\_pricer.ArithmeticAveragedOvernightIndexedCouponPricer
+====================================================================================================
+
+.. currentmodule:: quantlib.cashflows.overnight_indexed_coupon_pricer
+
+.. autoclass:: ArithmeticAveragedOvernightIndexedCouponPricer
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~ArithmeticAveragedOvernightIndexedCouponPricer.__init__
+      ~ArithmeticAveragedOvernightIndexedCouponPricer.caplet_price
+      ~ArithmeticAveragedOvernightIndexedCouponPricer.caplet_rate
+      ~ArithmeticAveragedOvernightIndexedCouponPricer.floorlet_price
+      ~ArithmeticAveragedOvernightIndexedCouponPricer.floorlet_rate
+      ~ArithmeticAveragedOvernightIndexedCouponPricer.initialize
+      ~ArithmeticAveragedOvernightIndexedCouponPricer.swaplet_price
+      ~ArithmeticAveragedOvernightIndexedCouponPricer.swaplet_rate
+   
+   
+
+   
+   
+   

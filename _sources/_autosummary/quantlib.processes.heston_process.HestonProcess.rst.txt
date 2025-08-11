@@ -30,6 +30,15 @@ quantlib.processes.heston\_process.HestonProcess
    .. autosummary::
 
    
+      ~HestonProcess.BroadieKayaExactSchemeLaguerre
+      ~HestonProcess.BroadieKayaExactSchemeLobatto
+      ~HestonProcess.BroadieKayaExactSchemeTrapezoidal
+      ~HestonProcess.FullTruncation
+      ~HestonProcess.NonCentralChiSquareVariance
+      ~HestonProcess.PartialTruncation
+      ~HestonProcess.QuadraticExponential
+      ~HestonProcess.QuadraticExponentialMartingale
+      ~HestonProcess.Reflection
       ~HestonProcess.kappa
       ~HestonProcess.rho
       ~HestonProcess.s0

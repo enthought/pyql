@@ -38,8 +38,8 @@ quantlib.time.calendars.jointcalendar.JointCalendarRule
       ~JointCalendarRule.imag
       ~JointCalendarRule.numerator
       ~JointCalendarRule.denominator
-      ~JointCalendarRule.JOINHOLIDAYS
-      ~JointCalendarRule.JOINBUSINESSDAYS
+      ~JointCalendarRule.JoinHolidays
+      ~JointCalendarRule.JoinBusinessDays
 
    
    

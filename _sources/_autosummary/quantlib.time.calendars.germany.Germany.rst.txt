@@ -40,6 +40,11 @@ quantlib.time.calendars.germany.Germany
    .. autosummary::
 
    
+      ~Germany.Eurex
+      ~Germany.Euwax
+      ~Germany.FrankfurtStockExchange
+      ~Germany.Settlement
+      ~Germany.Xetra
       ~Germany.name
 
    

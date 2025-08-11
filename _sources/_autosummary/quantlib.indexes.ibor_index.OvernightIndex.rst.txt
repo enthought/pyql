@@ -25,6 +25,7 @@ quantlib.indexes.ibor\_index.OvernightIndex
       ~OvernightIndex.fixing_date
       ~OvernightIndex.forecast_fixing
       ~OvernightIndex.from_name
+      ~OvernightIndex.has_historical_fixing
       ~OvernightIndex.is_valid_fixing_date
       ~OvernightIndex.maturity_date
       ~OvernightIndex.value_date

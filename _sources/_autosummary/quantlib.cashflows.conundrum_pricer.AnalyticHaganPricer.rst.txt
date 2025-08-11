@@ -22,6 +22,7 @@ quantlib.cashflows.conundrum\_pricer.AnalyticHaganPricer
       ~AnalyticHaganPricer.caplet_rate
       ~AnalyticHaganPricer.floorlet_price
       ~AnalyticHaganPricer.floorlet_rate
+      ~AnalyticHaganPricer.initialize
       ~AnalyticHaganPricer.swaplet_price
       ~AnalyticHaganPricer.swaplet_rate
    

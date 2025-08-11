@@ -24,6 +24,7 @@ quantlib.indexes.swap.usd\_libor\_swap.UsdLiborSwapIsdaFixPm
       ~UsdLiborSwapIsdaFixPm.fixing
       ~UsdLiborSwapIsdaFixPm.fixing_date
       ~UsdLiborSwapIsdaFixPm.forecast_fixing
+      ~UsdLiborSwapIsdaFixPm.has_historical_fixing
       ~UsdLiborSwapIsdaFixPm.is_valid_fixing_date
       ~UsdLiborSwapIsdaFixPm.maturity_date
       ~UsdLiborSwapIsdaFixPm.underlying_swap

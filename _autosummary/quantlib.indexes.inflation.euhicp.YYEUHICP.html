@@ -38,7 +38,7 @@
 <h1>quantlib.indexes.inflation.euhicp.YYEUHICP<a class="headerlink" href="#quantlib-indexes-inflation-euhicp-yyeuhicp" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.indexes.inflation.euhicp.YYEUHICP">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">YYEUHICP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">interpolated</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">YoYInflationTermStructure</span> <span class="pre">ts=YoYInflationTermStructure()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.indexes.inflation.euhicp.YYEUHICP" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">YYEUHICP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">YoYInflationTermStructure</span> <span class="pre">ts=YoYInflationTermStructure()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.indexes.inflation.euhicp.YYEUHICP" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.indexes.inflation_index.YoYInflationIndex.html#quantlib.indexes.inflation_index.YoYInflationIndex" title="quantlib.indexes.inflation_index.YoYInflationIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">YoYInflationIndex</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.indexes.inflation.euhicp.YYEUHICP.__init__">
@@ -63,10 +63,13 @@
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixing</span></code>(self, Date fixingDate, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_fixing_date</span></code>(self, Date fixing_date)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_historical_fixing</span></code>(self, Date d)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_inflation_term_structure</span></code>(self)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_fixing_date</span></code>(self, Date fixing_date)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_inflation_term_structure</span></code>(self)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>

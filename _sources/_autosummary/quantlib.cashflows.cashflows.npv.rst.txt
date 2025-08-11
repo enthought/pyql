@@ -1,0 +1,6 @@
+quantlib.cashflows.cashflows.npv
+================================
+
+.. currentmodule:: quantlib.cashflows.cashflows
+
+.. autofunction:: npv

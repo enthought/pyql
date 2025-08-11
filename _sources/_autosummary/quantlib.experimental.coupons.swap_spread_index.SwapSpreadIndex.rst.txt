@@ -24,6 +24,7 @@ quantlib.experimental.coupons.swap\_spread\_index.SwapSpreadIndex
       ~SwapSpreadIndex.fixing
       ~SwapSpreadIndex.fixing_date
       ~SwapSpreadIndex.forecast_fixing
+      ~SwapSpreadIndex.has_historical_fixing
       ~SwapSpreadIndex.is_valid_fixing_date
       ~SwapSpreadIndex.maturity_date
       ~SwapSpreadIndex.value_date

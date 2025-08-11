@@ -22,6 +22,7 @@ quantlib.cashflows.coupon\_pricer.CmsCouponPricer
       ~CmsCouponPricer.caplet_rate
       ~CmsCouponPricer.floorlet_price
       ~CmsCouponPricer.floorlet_rate
+      ~CmsCouponPricer.initialize
       ~CmsCouponPricer.swaplet_price
       ~CmsCouponPricer.swaplet_rate
    
