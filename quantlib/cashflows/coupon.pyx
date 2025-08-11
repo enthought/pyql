@@ -8,7 +8,7 @@ cimport quantlib._cashflow as _cf
 
 cdef class Coupon(CashFlow):
 
-    cdef inline _coupon.Coupon* _get_coupon(self):
+    cdef inline _coupon.Coupon* _get_coupon(self) noexcept:
         return <_coupon.Coupon*>self._thisptr.get()
 
     @property
