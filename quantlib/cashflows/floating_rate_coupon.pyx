@@ -30,7 +30,7 @@ cdef class FloatingRateCoupon(Coupon):
                 deref(day_counter._thisptr), is_in_arrears)
         )
 
-    cdef inline _frc.FloatingRateCoupon* _get_frc(self):
+    cdef inline _frc.FloatingRateCoupon* _get_frc(self) noexcept:
         return <_frc.FloatingRateCoupon*>self._thisptr.get()
 
     def set_pricer(self, FloatingRateCouponPricer pricer not None):
