@@ -142,11 +142,6 @@ def collect_extensions():
         'libraries':[QL_LIBRARY]
     }
 
-    test_extension = Extension('test.test_cython_bug',
-        ['test/test_cython_bug.pyx'],
-        **kwargs
-    )
-
     multipath_extension = Extension(
         name='quantlib.sim.simulate',
         sources=[
@@ -168,7 +163,6 @@ def collect_extensions():
     manual_extensions = [
         multipath_extension,
         hestonhw_constraint_extension,
-        test_extension,
     ]
 
     # remove  all the manual extensions from the collected ones
