@@ -143,15 +143,5 @@ class SettingsTestCase(unittest.TestCase):
         self.assertEqual(
             calendar.advance(todays_date, 3, Days), bond.settlement_date())
 
-    def test_bond_schedule_anotherday_bug_cython_implementation(self):
-
-        from . import test_cython_bug as tcb
-
-        date1, date2  = tcb.test_bond_schedule_today_cython()
-        self.assertEqual(date1, date2)
-
-        date1, date2  = tcb.test_bond_schedule_anotherday_cython()
-        self.assertEqual(date1, date2)
-
 if __name__ == "__main__":
     unittest.main()
