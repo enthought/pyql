@@ -74,15 +74,37 @@ cdef class UnitedStates(Calendar):
      * Labor Day, first Monday in September
      * Thanksgiving Day, fourth Thursday in November
      * Christmas, December 25th (moved to Monday if Sunday)
+
+    Parameters
+    ----------
+    market: Market, default Market.Settlement
+
+    Attributes
+    ----------
+    Settlement
+        generic settlement calendar
+    NYSE
+        New York stock exchange calendar
+    GovernmentBond
+        government-bond calendar
+    NERC
+        off-peak days for NERC
+    LiborImpact
+        Libor impact
+    FederalReserve
+        Federal Reserve Bankwire System
+    SOFR
+        SOFR fixing calendar
+
     '''
 
-    Settlement = Market.Settlement # generic settlement calendar
-    NYSE = Market.NYSE # New York stock exchange calendar
-    GovernmentBond = Market.GovernmentBond # government-bond calendar
-    NERC = Market.NERC # off-peak days for NERC
-    LiborImpact = Market.LiborImpact # Libor impact
-    FederalReserve = Market.FederalReserve # Federal Reserve Bankwire System
-    SOFR = Market.SOFR # SOFR fixing calendar
+    Settlement = Market.Settlement
+    NYSE = Market.NYSE
+    GovernmentBond = Market.GovernmentBond
+    NERC = Market.NERC
+    LiborImpact = Market.LiborImpact
+    FederalReserve = Market.FederalReserve
+    SOFR = Market.SOFR
 
     def __cinit__(self, Market market=Market.Settlement):
         self._thisptr = _us.UnitedStates(market)

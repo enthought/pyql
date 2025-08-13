@@ -27,9 +27,10 @@ cdef class Calendar:
     calendars will be moved to the exchange/country convention.
     '''
 
-    property name:
-        def __get__(self):
-            return self._thisptr.name().decode('utf-8')
+    @property
+    def name(self):
+        """name of the calendar"""
+        return self._thisptr.name().decode('utf-8')
 
     def __str__(self):
         return self.name
