@@ -1,8 +1,7 @@
-cimport quantlib.termstructures._inflation_term_structure as _its
-from quantlib.ext cimport shared_ptr
+from ..termstructure cimport TermStructure
 
-cdef class InflationTermStructure:
-    cdef shared_ptr[_its.InflationTermStructure] _thisptr
+cdef class InflationTermStructure(TermStructure):
+    pass
 
 cdef class ZeroInflationTermStructure(InflationTermStructure):
     pass

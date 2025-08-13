@@ -5,9 +5,10 @@ from quantlib.time._calendar cimport Calendar
 from quantlib.time._date cimport Date
 from quantlib.time._period cimport Period
 from quantlib.time.businessdayconvention cimport BusinessDayConvention
+from .._termstructure cimport TermStructure
 
 cdef extern from 'ql/termstructures/voltermstructure.hpp' namespace 'QuantLib' nogil:
-    cdef cppclass VolatilityTermStructure:
+    cdef cppclass VolatilityTermStructure(TermStructure):
         VolatilityTermStructure(BusinessDayConvention bdc,
                                 const DayCounter& dc) # = DayCounter()
         #initialize with a fixed reference date
