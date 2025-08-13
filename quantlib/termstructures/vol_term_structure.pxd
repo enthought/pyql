@@ -1,7 +1,5 @@
-from libcpp cimport bool as cbool
-from quantlib.ext cimport shared_ptr
+from ..termstructure cimport TermStructure
 from . cimport _vol_term_structure as _vts
 
-cdef class VolatilityTermStructure:
-    cdef shared_ptr[_vts.VolatilityTermStructure] _thisptr
-    cdef _vts.VolatilityTermStructure* as_ptr(self) nogil
+cdef class VolatilityTermStructure(TermStructure):
+    cdef _vts.VolatilityTermStructure* as_vol_ts(self) noexcept nogil

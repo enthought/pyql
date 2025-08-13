@@ -14,45 +14,23 @@ from quantlib.time.date cimport Date, Period, date_from_qldate, period_from_qlpe
 
 from libcpp.vector cimport vector
 from cython.operator cimport dereference as deref
-from quantlib.ext cimport static_pointer_cast
 
-cimport quantlib.time._daycounter as _dc
-from quantlib.time.daycounter cimport DayCounter
+from quantlib.time._period cimport Days
 
-from quantlib.time._period cimport Frequency, Days
-from quantlib.time.calendar cimport Calendar
-
-from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
-
-cimport quantlib.termstructures.yields._flat_forward as _ff
-cimport quantlib._interest_rate as _ir
 cimport quantlib.termstructures._inflation_term_structure as _if
-cimport quantlib.termstructures.inflation._seasonality as _se
 
-from quantlib.termstructures.inflation.seasonality cimport Seasonality
-
-cdef class InflationTermStructure:
+cdef class InflationTermStructure(TermStructure):
     """Abstract Base Class.
     """
 
-    property max_date:
-        def __get__(self):
-            cdef _date.Date max_date = self._thisptr.get().maxDate()
-            return date_from_qldate(max_date)
-
-    @property
-    def reference_date(self):
-        cdef _date.Date reference_date = self._thisptr.get().referenceDate()
-        return date_from_qldate(reference_date)
-
     @property
     def base_date(self):
-        cdef _date.Date base_date = self._thisptr.get().baseDate()
+        cdef _date.Date base_date = (<_if.InflationTermStructure*>self._thisptr.get()).baseDate()
         return date_from_qldate(base_date)
 
     @property
     def base_rate(self):
-        return self._thisptr.get().baseRate()
+        return (<_if.InflationTermStructure*>self._thisptr.get()).baseRate()
 
 cdef class ZeroInflationTermStructure(InflationTermStructure):
 
