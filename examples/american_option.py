@@ -7,15 +7,15 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 """
 from quantlib.instruments.api import AmericanExercise, VanillaOption, OptionType
-from quantlib.instruments.payoffs import PlainVanillaPayoff
+from quantlib.payoffs import PlainVanillaPayoff
 from quantlib.pricingengines.api import BaroneAdesiWhaleyApproximationEngine
 from quantlib.pricingengines.api import FdBlackScholesVanillaEngine
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.time.api import Actual365Fixed, Date, May, TARGET
-from quantlib.termstructures.volatility.api import BlackConstantVol
-from quantlib.termstructures.yields.api import HandleYieldTermStructure, FlatForward
+from quantlib.termstructures.volatility.api import BlackConstantVol, HandleBlackVolTermStructure
+from quantlib.termstructures.yields.api import RelinkableHandleYieldTermStructure, FlatForward
 from quantlib.methods.finitedifferences.solvers.fdmbackwardsolver \
     import FdmSchemeDesc
 
@@ -25,7 +25,7 @@ def main():
     Settings.instance().evaluation_date = todays_date
     settlement_date = Date(17, May, 1998)
 
-    risk_free_rate = HandleYieldTermStructure()
+    risk_free_rate = RelinkableHandleYieldTermStructure()
     risk_free_rate.link_to(
         FlatForward(
             reference_date=settlement_date,
@@ -43,9 +43,11 @@ def main():
 
     # market data
     underlying = SimpleQuote(36.0)
-    volatility = BlackConstantVol(todays_date, TARGET(), 0.20,
+    volatility = HandleBlackVolTermStructure(
+            BlackConstantVol(todays_date, TARGET(), 0.20,
                                   Actual365Fixed())
-    dividend_yield = HandleYieldTermStructure()
+            )
+    dividend_yield = RelinkableHandleYieldTermStructure()
     dividend_yield.link_to(
         FlatForward(
             reference_date=settlement_date,

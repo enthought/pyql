@@ -44,7 +44,7 @@ from quantlib.time.calendars.united_states import UnitedStates
 from quantlib.termstructures.yields.api import (
     PiecewiseYieldCurve, DepositRateHelper, BootstrapTrait, HandleYieldTermStructure
 )
-from quantlib.termstructures.volatility.api import BlackConstantVol
+from quantlib.termstructures.volatility.api import BlackConstantVol, HandleBlackVolTermStructure
 from quantlib.termstructures.yields.api import SwapRateHelper
 
 def dividendOption():
@@ -169,7 +169,7 @@ def dividendOption():
 
     print('Creating process')
 
-    bsProcess = BlackScholesProcess(underlying_priceH, HandleYieldTermStructure(riskFreeTS), flatVolTS)
+    bsProcess = BlackScholesProcess(underlying_priceH, HandleYieldTermStructure(riskFreeTS), HandleBlackVolTermStructure(flatVolTS))
 
 
     # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
