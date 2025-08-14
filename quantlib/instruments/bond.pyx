@@ -109,7 +109,7 @@ cdef class Bond(Instrument):
 
     @property
     def cashflows(self):
-        """ cash flow stream as a Leg """
+        """ cash flow stream as a :class:`~quantlib.cashflow.Leg`."""
         cdef Leg leg = Leg.__new__(Leg)
         leg._thisptr = self.as_ptr().cashflows()
         return leg

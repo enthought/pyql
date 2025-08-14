@@ -31,9 +31,16 @@ cdef class Instrument(Observable):
             return self._thisptr.get().NPV()
 
     @property
-    def is_expired(self):
+    def is_expired(self) -> bool:
+        """whether the instrument might ave value greater than zero."""
         return self._thisptr.get().isExpired()
 
     @property
     def valuation_date(self):
+        """the date the net present value refers to.
+
+        Returns
+        -------
+        valuation_date: :class:`~quantlib.time.date.Date`
+        """
         return date_from_qldate(self._thisptr.get().valuationDate())
