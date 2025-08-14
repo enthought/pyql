@@ -3,7 +3,7 @@ from quantlib.time._date cimport Date
 from quantlib.types cimport Rate, Real, SizeTime
 from quantlib.handle cimport Handle, shared_ptr
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
-from quantlib.instruments.option cimport OptionType
+from quantlib.option cimport OptionType
 from ..._model cimport TermStructureConsistentModel
 
 cdef extern from 'ql/models/shortrate/onefactormodels/gaussian1dmodel.hpp' namespace 'QuantLib' nogil:

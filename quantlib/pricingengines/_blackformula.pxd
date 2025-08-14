@@ -1,5 +1,5 @@
 include '../types.pxi'
-from quantlib.instruments.option cimport OptionType
+from quantlib.option cimport OptionType
 
 cdef extern from 'ql/pricingengines/blackformula.hpp' namespace 'QuantLib':
 

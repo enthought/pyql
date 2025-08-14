@@ -2,7 +2,7 @@ from libcpp cimport bool
 
 from cython.operator cimport dereference as deref
 from quantlib.utilities.null cimport Null
-from quantlib.cashflows.dividend cimport DividendSchedule
+from quantlib.instruments.dividendschedule cimport DividendSchedule
 from quantlib.handle cimport static_pointer_cast, shared_ptr
 from quantlib.types cimport Size, Real
 from quantlib.pricingengines._pricing_engine cimport PricingEngine as QlPricingEngine

@@ -10,9 +10,10 @@
 import numpy as np
 import quantlib.reference.names as nm
 
-from quantlib.instruments.option import VanillaOption, OptionType
-from quantlib.instruments.exercise import EuropeanExercise
-from quantlib.instruments.payoffs import PlainVanillaPayoff
+from quantlib.option import OptionType
+from quantlib.instruments.vanillaoption import VanillaOption
+from quantlib.exercise import EuropeanExercise
+from quantlib.payoffs import PlainVanillaPayoff
 from quantlib.models.equity.heston_model import HestonModel
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.quotes import SimpleQuote

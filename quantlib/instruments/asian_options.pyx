@@ -5,11 +5,11 @@ from libcpp.vector cimport vector
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 cimport quantlib.time._date as _date
 from quantlib.time.date cimport Date
-from quantlib.instruments.payoffs cimport StrikedTypePayoff
+from quantlib.payoffs cimport StrikedTypePayoff
 
-from .option cimport OneAssetOption
-from .exercise cimport Exercise
-from . cimport _payoffs
+from .oneassetoption cimport OneAssetOption
+from ..exercise cimport Exercise
+from .. cimport _payoffs
 from .._instrument cimport Instrument as _Instrument
 from ._asian_options cimport (
     ContinuousAveragingAsianOption as _ContinuousAveragingAsianOption,

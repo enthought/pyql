@@ -1,4 +1,4 @@
-from quantlib.instruments.option cimport OneAssetOption
+from .oneassetoption cimport OneAssetOption
 
 cdef extern from 'ql/instruments/averagetype.hpp' namespace 'QuantLib::Average':
     cpdef enum class AverageType "QuantLib::Average::Type":

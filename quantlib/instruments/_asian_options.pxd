@@ -4,9 +4,9 @@ from libcpp.vector cimport vector
 from quantlib.handle cimport shared_ptr
 from quantlib.time._date cimport Date
 
-from quantlib.instruments._exercise cimport Exercise
-from quantlib.instruments._option cimport OneAssetOption
-from quantlib.instruments._payoffs cimport StrikedTypePayoff
+from quantlib._exercise cimport Exercise
+from ._oneassetoption cimport OneAssetOption
+from quantlib._payoffs cimport StrikedTypePayoff
 
 from .asian_options cimport AverageType
 

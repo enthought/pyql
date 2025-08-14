@@ -4,7 +4,7 @@ from libcpp.vector cimport vector
 from libcpp cimport bool
 
 from cython.operator cimport dereference as deref
-from quantlib.cashflows.dividend cimport DividendSchedule
+from quantlib.instruments.dividendschedule cimport DividendSchedule
 from quantlib.handle cimport shared_ptr, static_pointer_cast
 cimport quantlib.processes._black_scholes_process as _bsp
 cimport quantlib.models.equity._bates_model as _bm

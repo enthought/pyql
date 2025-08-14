@@ -8,7 +8,7 @@
 from quantlib.types cimport Rate, Real, Time
 from quantlib.handle cimport Handle
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
-from quantlib.instruments.option cimport OptionType
+from quantlib.option cimport OptionType
 from ._vasicek cimport Vasicek
 from ..._model cimport TermStructureConsistentModel
 

@@ -12,10 +12,10 @@ import quantlib.reference.names as nm
 import quantlib.reference.data_structures as ds
 from pandas import DataFrame
 
-from quantlib.instruments.option import VanillaOption
-from quantlib.instruments.exercise import EuropeanExercise
-from quantlib.instruments.payoffs import PlainVanillaPayoff
-from quantlib.instruments.option import OptionType
+from quantlib.instruments.vanillaoption import VanillaOption
+from quantlib.exercise import EuropeanExercise
+from quantlib.payoffs import PlainVanillaPayoff
+from quantlib.option import OptionType
 from quantlib.models.equity.heston_model import HestonModel
 from quantlib.processes.heston_process import HestonProcess
 from quantlib.quotes import SimpleQuote

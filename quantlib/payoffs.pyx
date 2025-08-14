@@ -1,4 +1,4 @@
-include '../types.pxi'
+include 'types.pxi'
 from cython.operator import dereference as deref
 
 # cython imports
@@ -28,7 +28,6 @@ cdef class StrikedTypePayoff(Payoff):
 
 
 cdef class PlainVanillaPayoff(StrikedTypePayoff):
-
     """ Plain vanilla payoff.
 
     Parameters
@@ -39,10 +38,6 @@ cdef class PlainVanillaPayoff(StrikedTypePayoff):
     strike: double
         The strike value
 
-    Properties
-    ----------
-    option_type: Call or Put
-    strike: float
     """
 
     def __init__(self, OptionType option_type, double strike):
