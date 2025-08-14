@@ -1,3 +1,4 @@
+""" European option on a single asset """
 from . cimport _europeanoption as _eo
 from ..payoffs cimport StrikedTypePayoff
 from ..exercise cimport Exercise
