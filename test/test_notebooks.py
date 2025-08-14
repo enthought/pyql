@@ -5,7 +5,7 @@ import numpy as np
 
 import quantlib.reference.names as nm
 from quantlib.pricingengines.blackformula import blackFormulaImpliedStdDev
-from quantlib.instruments.option import OptionType
+from quantlib.option import OptionType
 
 def Compute_IV(optionDataFrame, tMin=0, nMin=0, QDMin=0, QDMax=1,
                keepOTMData=True):

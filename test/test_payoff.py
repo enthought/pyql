@@ -1,7 +1,7 @@
 import unittest
 
-from quantlib.instruments.payoffs import PlainVanillaPayoff
-from quantlib.instruments.option import OptionType
+from quantlib.payoffs import PlainVanillaPayoff
+from quantlib.option import OptionType
 
 class PayoffTestCase(unittest.TestCase):
 

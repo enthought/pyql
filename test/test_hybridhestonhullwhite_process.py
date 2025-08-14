@@ -7,12 +7,12 @@ import numpy as np
 
 from quantlib.settings import Settings
 
-from quantlib.instruments.option import OptionType
-from quantlib.instruments.exercise import EuropeanExercise
+from quantlib.option import OptionType
+from quantlib.exercise import EuropeanExercise
 
 from quantlib.models.shortrate.onefactormodels.hullwhite import HullWhite
 
-from quantlib.instruments.option import VanillaOption
+from quantlib.instruments.vanillaoption import VanillaOption
 
 from quantlib.time.api import (today, Years, Actual365Fixed,
                                Period, May, Date,
@@ -37,8 +37,7 @@ from quantlib.pricingengines.api import (
 
 from quantlib.quotes import SimpleQuote
 
-from quantlib.instruments.payoffs import (
-    PlainVanillaPayoff)
+from quantlib.payoffs import PlainVanillaPayoff
 
 from quantlib.methods.finitedifferences.solvers.fdmbackwardsolver import FdmSchemeDesc
 

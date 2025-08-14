@@ -22,13 +22,14 @@ NPV of the American Option without dividend:                    17.9647
 """
 from quantlib.settings import Settings
 from quantlib.compounding import Simple
-from quantlib.cashflows.dividend import DividendSchedule
+from quantlib.instruments.dividendschedule import DividendSchedule
 from quantlib.currency.api import USDCurrency
 from quantlib.indexes.api import Libor
 from quantlib.indexes.swap_index import SwapIndex
-from quantlib.instruments.exercise import EuropeanExercise, AmericanExercise
-from quantlib.instruments.option import VanillaOption, VanillaOption, OptionType
-from quantlib.instruments.payoffs import PlainVanillaPayoff
+from quantlib.exercise import EuropeanExercise, AmericanExercise
+from quantlib.instruments.vanillaoption import VanillaOption
+from quantlib.option import OptionType
+from quantlib.payoffs import PlainVanillaPayoff
 from quantlib.math.interpolation import Linear
 from quantlib.pricingengines.api import AnalyticDividendEuropeanEngine
 from quantlib.pricingengines.api import FdBlackScholesVanillaEngine
