@@ -1,7 +1,7 @@
 from libcpp cimport bool
 from quantlib.handle cimport shared_ptr
 from quantlib.types cimport Size, Real
-from quantlib.instruments._option cimport VanillaOption
+from quantlib.instruments._vanillaoption cimport VanillaOption
 from quantlib.instruments._dividendschedule cimport DividendSchedule
 from quantlib.processes._black_scholes_process cimport GeneralizedBlackScholesProcess
 from quantlib.methods.finitedifferences.solvers._fdmbackwardsolver cimport FdmSchemeDesc

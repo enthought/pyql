@@ -5,7 +5,7 @@ from quantlib.termstructures.volatility.volatilitytype cimport (
     VolatilityType, ShiftedLognormal )
 from quantlib.termstructures.yield_term_structure cimport YieldTermStructure
 from quantlib.termstructures cimport _yield_term_structure as _yts
-from .exercise cimport Exercise
+from ..exercise cimport Exercise
 from .swap cimport Type as SwapType
 from .fixedvsfloatingswap cimport FixedVsFloatingSwap
 from . cimport _fixedvsfloatingswap

@@ -1,5 +1,5 @@
 from . cimport _swaption
-from .option cimport Option
+from ..option cimport Option
 
 cdef extern from "ql/instruments/swaption.hpp" namespace "QuantLib::Settlement":
     cpdef enum class Method "QuantLib::Settlement::Method":

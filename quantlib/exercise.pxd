@@ -1,5 +1,5 @@
 from quantlib.handle cimport shared_ptr
-cimport quantlib.instruments._exercise as _exercise
+from . cimport _exercise
 
 cdef extern from 'ql/exercise.hpp' namespace 'QuantLib::Exercise' nogil:
     cpdef enum class Type:

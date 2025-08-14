@@ -4,7 +4,7 @@ from quantlib.types cimport DiscountFactor, Real, Size, Time
 
 from quantlib.handle cimport shared_ptr, Handle
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
-from quantlib.instruments.option cimport OptionType
+from quantlib.option cimport OptionType
 from quantlib._numericalmethod cimport Lattice
 from quantlib._time_grid cimport TimeGrid
 from quantlib.math._optimization cimport Constraint, EndCriteria, OptimizationMethod

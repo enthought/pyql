@@ -1,7 +1,7 @@
 from quantlib.time.date cimport _qldate_from_pydate, _pydate_from_qldate
 from quantlib.time._date cimport Date
 from quantlib.types cimport Real
-from ._dividend cimport DividendVector, Dividend
+from quantlib.cashflows._dividend cimport DividendVector, Dividend
 
 cdef class DividendSchedule:
     def __init__(self, list dividend_dates, vector[Real] dividends):
