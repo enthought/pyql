@@ -9,7 +9,7 @@ from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.time.api import TARGET, Actual365Fixed, today
-from quantlib.termstructures.yields.api import FlatForward, HandleYieldTermStructure
+from quantlib.termstructures.yields.api import FlatForward, RelinkableHandleYieldTermStructure
 from quantlib.termstructures.volatility.api import BlackConstantVol
 
 
@@ -36,8 +36,8 @@ daycounter = Actual365Fixed()
 underlyingH = SimpleQuote(underlying)
 
 # bootstrap the yield/dividend/vol curves
-flat_term_structure = HandleYieldTermStructure()
-flat_dividend_ts = HandleYieldTermStructure()
+flat_term_structure = RelinkableHandleYieldTermStructure()
+flat_dividend_ts = RelinkableHandleYieldTermStructure()
 
 flat_term_structure.link_to(
     FlatForward(

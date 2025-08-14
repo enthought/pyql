@@ -13,9 +13,8 @@ from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings
 from quantlib.time.api import TARGET, Actual365Fixed, today, Date as QlDate
-from quantlib.termstructures.yields.api import FlatForward
-from quantlib.termstructures.volatility.equityfx.black_vol_term_structure \
-    import BlackConstantVol
+from quantlib.termstructures.yields.api import FlatForward, HandleYieldTermStructure
+from quantlib.termstructures.volatility.api import BlackConstantVol
 
 
 settings = Settings.instance()
@@ -32,7 +31,7 @@ settings.evaluation_date = todays_date
 class OptionValuation(HasTraits):
 
     # options parameters
-    option_type = Enum(Put, Call)
+    option_type = Enum(OptionType.Put, OptionType.Call)
     underlying = Float(36)
     strike = Float(40)
     dividend_yield = Range(0.0, 0.5)
@@ -50,12 +49,6 @@ class OptionValuation(HasTraits):
 
     ### Traits view   ##########################################################
 
-    traits_view = View(
-        Item('option_type', editor=EnumEditor(values={Put:'Put', Call:'Call'})),
-        'underlying', 'strike', 'dividend_yield', 'risk_free_rate',
-        'volatility', 'maturity',
-        HGroup( Item('option_npv', label='Option value'))
-    )
 
     ### Private protocol   #####################################################
 
@@ -73,16 +66,20 @@ class OptionValuation(HasTraits):
         underlyingH = SimpleQuote(self.underlying)
 
         # bootstrap the yield/dividend/vol curves
-        flat_term_structure = FlatForward(
-            reference_date = settlement_date,
-            forward = self.risk_free_rate,
-            daycounter = self.daycounter
+        flat_term_structure = HandleYieldTermStructure(
+            FlatForward(
+                reference_date = settlement_date,
+                forward = self.risk_free_rate,
+                daycounter = self.daycounter
+            )
         )
 
-        flat_dividend_ts = FlatForward(
-            reference_date = settlement_date,
-            forward = self.dividend_yield,
-            daycounter = self.daycounter
+        flat_dividend_ts = HandleYieldTermStructure(
+            FlatForward(
+                reference_date = settlement_date,
+                forward = self.dividend_yield,
+                daycounter = self.daycounter
+            )
         )
 
         flat_vol_ts = BlackConstantVol(
@@ -105,10 +102,17 @@ class OptionValuation(HasTraits):
 
         return european_option.net_present_value
 
+traits_view = View(
+    Item('option_type', editor=EnumEditor(values={OptionType.Put:'Put', OptionType.Call:'Call'})),
+    'underlying', 'strike', 'dividend_yield', 'risk_free_rate',
+    'volatility', 'maturity',
+    HGroup( Item('option_npv', label='Option value'))
+)
+
 if __name__ == '__main__':
 
     model = OptionValuation()
-    model.configure_traits()
+    model.configure_traits(view=traits_view)
 
 
 ### EOF #######################################################################
