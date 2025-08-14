@@ -6,6 +6,15 @@ from quantlib.time.date cimport Date, _pydate_from_qldate
 from quantlib.time._date cimport Date as QlDate
 
 cdef class Exercise:
+    """Base exercise class
+
+    Attributes
+    ----------
+    American
+    Bermudan
+    European
+    """
+
 
     American = Type.American
     Bermudan = Type.Bermudan
@@ -19,6 +28,7 @@ cdef class Exercise:
         return _pydate_from_qldate(self._thisptr.get().lastDate())
 
     def dates(self):
+        """ all exercise dates"""
         cdef vector[QlDate].const_iterator it = self._thisptr.get().dates().const_begin()
         cdef list r = []
         while it != self._thisptr.get().dates().end():
@@ -30,6 +40,10 @@ cdef class Exercise:
        return self._thisptr.get().type()
 
 cdef class EuropeanExercise(Exercise):
+    """European exercise
+
+    A European option can only be exercised at one (expiry) date.
+    """
 
     def __init__(self, Date exercise_date not None):
         self._thisptr.reset(
@@ -39,14 +53,21 @@ cdef class EuropeanExercise(Exercise):
         )
 
 cdef class AmericanExercise(Exercise):
+    """American exercise
+
+    An American option can be exercised at any time between to
+    predefined dates; the first date might be amitted, in which
+    case the option can be exercied at any time before the expiry.
+
+    Parameters
+    ----------
+    latest_exercise_date : :class:`~quantlib.time.date.Date`
+       Latest exercise date for the option
+    earliest_exercise_date : :class:`~quantlib.time.date.Date` | None
+       Earliest exercise date for the option
+    """
 
     def __init__(self, Date latest_exercise_date, Date earliest_exercise_date=None):
-        """ Creates an AmericanExercise.
-
-        :param latest_exercise_date: Latest exercise date for the option
-        :param earliest_exercise_date: Earliest exercise date for the option (default to None)
-
-        """
         if earliest_exercise_date is not None:
             self._thisptr = shared_ptr[_exercise.Exercise]( \
                 new _exercise.AmericanExercise(
@@ -63,16 +84,17 @@ cdef class AmericanExercise(Exercise):
 
 
 cdef class BermudanExercise(Exercise):
+    """ Bermudan exercise
+
+    A Bermudan option can only be exercised at a set of fixed dates.
+
+    Parameters
+    ----------
+    dates : list of exercise dates
+    payoff_at_expiry : bool
+    """
+
     def __init__(self, list dates, bool payoff_at_expiry=False):
-        """ Bermudan exercise
-
-        A Bermudan option can only be exercised at a set of fixed dates.
-
-        Parameters
-        ----------
-        dates : list of exercise dates
-        payoff_at_expiry : bool
-        """
         cdef vector[QlDate] c_dates
         for d in dates:
             c_dates.push_back((<Date?>d)._thisptr)

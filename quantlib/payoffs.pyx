@@ -33,8 +33,8 @@ cdef class PlainVanillaPayoff(StrikedTypePayoff):
     Parameters
     ----------
 
-    option_type: int
-        The type of option, can be either Call or Put
+    option_type: :class:`~quantlib.option.OptionType`
+        The type of option, can be either `Call` or `Put`
     strike: double
         The strike value
 

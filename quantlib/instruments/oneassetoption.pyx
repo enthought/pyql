@@ -1,5 +1,6 @@
+"""Option on a single asset"""
 cdef class OneAssetOption(Option):
-
+    """Base class for option on a single asset"""
     cdef inline _oa.OneAssetOption* as_ptr(self) noexcept nogil:
         return <_oa.OneAssetOption*>self._thisptr.get()
 

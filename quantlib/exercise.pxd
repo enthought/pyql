@@ -3,6 +3,14 @@ from . cimport _exercise
 
 cdef extern from 'ql/exercise.hpp' namespace 'QuantLib::Exercise' nogil:
     cpdef enum class Type:
+        """Exercise types
+
+        Attributes
+        ----------
+        American
+        Bermudan
+        European
+        """
         American
         Bermudan
         European
