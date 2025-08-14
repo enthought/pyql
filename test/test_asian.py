@@ -1,9 +1,9 @@
 from itertools import product
 
-from quantlib.instruments.exercise import EuropeanExercise
+from quantlib.exercise import EuropeanExercise
 
-from quantlib.instruments.payoffs import PlainVanillaPayoff
-from quantlib.instruments.option import OptionType
+from quantlib.payoffs import PlainVanillaPayoff
+from quantlib.option import OptionType
 from quantlib.instruments.asian_options import (
     ContinuousAveragingAsianOption, DiscreteAveragingAsianOption, AverageType
 )

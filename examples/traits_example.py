@@ -4,10 +4,11 @@ import datetime
 from traits.api import HasTraits, Enum, Float, Date, Property, Range
 from traitsui.api import View, Item, HGroup, EnumEditor
 
-from quantlib.instruments.option import Put, Call, EuropeanExercise
-from quantlib.instruments.payoffs import PlainVanillaPayoff
-from quantlib.instruments.option import VanillaOption
-from quantlib.pricingengines.vanilla import AnalyticEuropeanEngine
+from quantlib.option import OptionType
+from quantlib.exercise import EuropeanExercise
+from quantlib.payoffs import PlainVanillaPayoff
+from quantlib.instruments.vanillaoption import VanillaOption
+from quantlib.pricingengines.api import AnalyticEuropeanEngine
 from quantlib.processes.black_scholes_process import BlackScholesMertonProcess
 from quantlib.quotes import SimpleQuote
 from quantlib.settings import Settings

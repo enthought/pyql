@@ -4,7 +4,7 @@ from datetime import date
 from quantlib.mlab.option_pricing import heston_pricer, blsprice, blsimpv
 from quantlib.mlab.fixed_income import bndprice, cfamounts
 from quantlib.mlab.term_structure import zbt_libor_yield
-from quantlib.instruments.option import OptionType
+from quantlib.option import OptionType
 
 from quantlib.util.rates import make_rate_helper, zero_rate
 import quantlib.reference.names as nm
