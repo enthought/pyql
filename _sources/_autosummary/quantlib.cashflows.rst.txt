@@ -36,7 +36,6 @@ quantlib.cashflows
    coupon
    coupon_pricer
    cpi_coupon_pricer
-   dividend
    duration
    fixed_rate_coupon
    floating_rate_coupon

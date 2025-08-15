@@ -34,7 +34,8 @@ quantlib.instruments
    bondforward
    bonds
    credit_default_swap
-   exercise
+   dividendschedule
+   europeanoption
    fixedvsfloatingswap
    forward
    futures
@@ -44,12 +45,12 @@ quantlib.instruments
    make_ois
    make_swaption
    make_vanilla_swap
-   option
+   oneassetoption
    overnightindexedswap
    overnightindexfuture
-   payoffs
    swap
    swaption
+   vanillaoption
    vanillaswap
    variance_swap
 

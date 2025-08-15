@@ -1,0 +1,53 @@
+quantlib.instruments.oneassetoption.OneAssetOption
+==================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoclass:: OneAssetOption
+   :members:
+   :show-inheritance:
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+
+
+   
+      ~OneAssetOption.__init__
+      ~OneAssetOption.set_pricing_engine
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+
+   
+      ~OneAssetOption.Call
+      ~OneAssetOption.Put
+      ~OneAssetOption.delta
+      ~OneAssetOption.delta_forward
+      ~OneAssetOption.dividend_rho
+      ~OneAssetOption.elasticity
+      ~OneAssetOption.exercise
+      ~OneAssetOption.gamma
+      ~OneAssetOption.is_expired
+      ~OneAssetOption.itm_cash_probability
+      ~OneAssetOption.net_present_value
+      ~OneAssetOption.npv
+      ~OneAssetOption.payoff
+      ~OneAssetOption.rho
+      ~OneAssetOption.strike_sensitivity
+      ~OneAssetOption.theta
+      ~OneAssetOption.theta_per_day
+      ~OneAssetOption.valuation_date
+      ~OneAssetOption.vega
+
+   
+   

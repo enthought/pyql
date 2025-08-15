@@ -29,6 +29,8 @@ quantlib.instruments.asian\_options.ContinuousAveragingAsianOption
    .. autosummary::
 
    
+      ~ContinuousAveragingAsianOption.Call
+      ~ContinuousAveragingAsianOption.Put
       ~ContinuousAveragingAsianOption.delta
       ~ContinuousAveragingAsianOption.delta_forward
       ~ContinuousAveragingAsianOption.dividend_rho

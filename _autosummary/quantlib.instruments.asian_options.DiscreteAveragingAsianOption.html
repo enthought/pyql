@@ -39,14 +39,14 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.instruments.asian_options.DiscreteAveragingAsianOption">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DiscreteAveragingAsianOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">AverageType</span> <span class="pre">average_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">StrikedTypePayoff</span> <span class="pre">payoff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Exercise</span> <span class="pre">exercise</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">fixing_dates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">running_accum=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">past_fixings=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_past_fixings=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.asian_options.DiscreteAveragingAsianOption" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="quantlib.instruments.option.OneAssetOption.html#quantlib.instruments.option.OneAssetOption" title="quantlib.instruments.option.OneAssetOption"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneAssetOption</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="quantlib.instruments.oneassetoption.OneAssetOption.html#quantlib.instruments.oneassetoption.OneAssetOption" title="quantlib.instruments.oneassetoption.OneAssetOption"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneAssetOption</span></code></a></p>
 <p>Discrete-averaging Asian option</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>average_type</strong> (<em>Enum</em><em> (</em><em>Arithmetic</em><em> or </em><em>Geometric</em><em>)</em>)</p></li>
-<li><p><strong>payoff</strong> (<a class="reference internal" href="quantlib.instruments.payoffs.StrikedTypePayoff.html#quantlib.instruments.payoffs.StrikedTypePayoff" title="quantlib.instruments.payoffs.StrikedTypePayoff"><em>StrikedTypePayoff</em></a>)</p></li>
-<li><p><strong>exercise</strong> (<a class="reference internal" href="quantlib.instruments.exercise.Exercise.html#quantlib.instruments.exercise.Exercise" title="quantlib.instruments.exercise.Exercise"><em>Exercise</em></a>)</p></li>
+<li><p><strong>payoff</strong> (<a class="reference internal" href="quantlib.payoffs.StrikedTypePayoff.html#quantlib.payoffs.StrikedTypePayoff" title="quantlib.payoffs.StrikedTypePayoff"><em>StrikedTypePayoff</em></a>)</p></li>
+<li><p><strong>exercise</strong> (<a class="reference internal" href="quantlib.exercise.Exercise.html#quantlib.exercise.Exercise" title="quantlib.exercise.Exercise"><em>Exercise</em></a>)</p></li>
 <li><p><strong>fixing_dates</strong> (<em>list</em><em> of </em><em>dates</em>)</p></li>
 <li><p><strong>running_accum</strong> (<em>float</em><em>, </em><em>optional</em>)</p></li>
 <li><p><strong>past_fixings</strong> (<em>float</em><em>, </em><em>optional</em>)</p></li>
@@ -73,6 +73,12 @@
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Call</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Put</span></code></p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delta</span></code></p></td>
 <td><p></p></td>
 </tr>
@@ -86,7 +92,7 @@
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exercise</span></code></p></td>
-<td><p></p></td>
+<td><p>Exercise</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma</span></code></p></td>
 <td><p></p></td>
@@ -104,7 +110,7 @@
 <td><p>Shortcut to the net_present_value property.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">payoff</span></code></p></td>
-<td><p></p></td>
+<td><p>Payoff</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rho</span></code></p></td>
 <td><p></p></td>

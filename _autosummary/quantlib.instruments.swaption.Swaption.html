@@ -39,7 +39,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.instruments.swaption.Swaption">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Swaption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FixedVsFloatingSwap</span> <span class="pre">swap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Exercise</span> <span class="pre">exercise</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Type</span> <span class="pre">delivery=Settlement.Physical</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Method</span> <span class="pre">settlement_method=Settlement.PhysicalOTC</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.swaption.Swaption" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="quantlib.instruments.option.Option.html#quantlib.instruments.option.Option" title="quantlib.instruments.option.Option"><code class="xref py py-class docutils literal notranslate"><span class="pre">Option</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="quantlib.option.Option.html#quantlib.option.Option" title="quantlib.option.Option"><code class="xref py py-class docutils literal notranslate"><span class="pre">Option</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.instruments.swaption.Swaption.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.swaption.Swaption.__init__" title="Link to this definition">¶</a></dt>
@@ -65,6 +65,12 @@
 <p class="rubric">Attributes</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Call</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Put</span></code></p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">annuity</span></code></p></td>
 <td><p></p></td>
 </tr>
@@ -75,7 +81,7 @@
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exercise</span></code></p></td>
-<td><p></p></td>
+<td><p>Exercise</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">implied_vol</span></code></p></td>
 <td><p></p></td>
@@ -90,7 +96,7 @@
 <td><p>Shortcut to the net_present_value property.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">payoff</span></code></p></td>
-<td><p></p></td>
+<td><p>Payoff</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_method</span></code></p></td>
 <td><p></p></td>

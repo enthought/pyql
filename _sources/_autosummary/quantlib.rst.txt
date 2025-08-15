@@ -34,6 +34,7 @@
    currency
    default
    defines
+   exercise
    experimental
    index
    indexes
@@ -46,6 +47,8 @@
    mlab
    models
    observable
+   option
+   payoffs
    position
    pricingengines
    processes

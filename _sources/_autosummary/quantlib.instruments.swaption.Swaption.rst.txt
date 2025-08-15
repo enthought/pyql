@@ -31,6 +31,8 @@ quantlib.instruments.swaption.Swaption
    .. autosummary::
 
    
+      ~Swaption.Call
+      ~Swaption.Put
       ~Swaption.annuity
       ~Swaption.atm_forward
       ~Swaption.delta

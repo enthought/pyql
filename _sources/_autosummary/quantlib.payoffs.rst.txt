@@ -1,0 +1,34 @@
+quantlib.payoffs
+================
+
+.. automodule:: quantlib.payoffs
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      Payoff
+      PercentageStrikePayoff
+      PlainVanillaPayoff
+      StrikedTypePayoff
+   
+   
+
+   
+   
+   
+
+
+

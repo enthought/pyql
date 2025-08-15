@@ -40,6 +40,28 @@
 <dt class="sig sig-object py" id="quantlib.instruments.futures.FuturesType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FuturesType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.futures.FuturesType" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntFlag</span></code></p>
+<p>Futures types enumeration</p>
+<p>These conventions specify the kind of futures types</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quantlib.instruments.futures.FuturesType.IMM">
+<span class="sig-name descname"><span class="pre">IMM</span></span><a class="headerlink" href="#quantlib.instruments.futures.FuturesType.IMM" title="Link to this definition">¶</a></dt>
+<dd><p>Chicago Mercantile International Money Market, i.e
+third Wednesday of March, June, September, December</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quantlib.instruments.futures.FuturesType.ASX">
+<span class="sig-name descname"><span class="pre">ASX</span></span><a class="headerlink" href="#quantlib.instruments.futures.FuturesType.ASX" title="Link to this definition">¶</a></dt>
+<dd><p>Australian Security Exchange, i.e. second Friday
+of March, June, September, December</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="quantlib.instruments.futures.FuturesType.Custom">
+<span class="sig-name descname"><span class="pre">Custom</span></span><a class="headerlink" href="#quantlib.instruments.futures.FuturesType.Custom" title="Link to this definition">¶</a></dt>
+<dd><p>Other rules</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.instruments.futures.FuturesType.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.futures.FuturesType.__init__" title="Link to this definition">¶</a></dt>
@@ -86,10 +108,13 @@
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">denominator</span></code></p></td>
 <td><p>the denominator of a rational number in lowest terms</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">IMM</span></code></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.futures.FuturesType.IMM" title="quantlib.instruments.futures.FuturesType.IMM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IMM</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ASX</span></code></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.futures.FuturesType.ASX" title="quantlib.instruments.futures.FuturesType.ASX"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ASX</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.futures.FuturesType.Custom" title="quantlib.instruments.futures.FuturesType.Custom"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Custom</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
