@@ -4,28 +4,10 @@ quantlib.instruments.forward
 .. automodule:: quantlib.instruments.forward
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       Forward
    
-   
-
-   
-   
-   
-
-
-

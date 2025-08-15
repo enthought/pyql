@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.discount\_curve.DiscountCurve.reference\_date
+============================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.discount_curve
+
+.. autoattribute:: DiscountCurve.reference_date

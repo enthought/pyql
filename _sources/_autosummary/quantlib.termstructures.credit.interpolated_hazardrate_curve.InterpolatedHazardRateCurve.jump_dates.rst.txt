@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.interpolated\_hazardrate\_curve.InterpolatedHazardRateCurve.jump\_dates
+======================================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.interpolated_hazardrate_curve
+
+.. autoattribute:: InterpolatedHazardRateCurve.jump_dates

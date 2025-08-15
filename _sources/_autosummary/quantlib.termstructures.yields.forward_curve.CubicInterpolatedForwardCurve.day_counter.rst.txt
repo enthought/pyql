@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.CubicInterpolatedForwardCurve.day\_counter
+========================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. autoattribute:: CubicInterpolatedForwardCurve.day_counter

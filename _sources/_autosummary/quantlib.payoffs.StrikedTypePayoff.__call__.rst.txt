@@ -1,0 +1,6 @@
+quantlib.payoffs.StrikedTypePayoff.\_\_call\_\_
+===============================================
+
+.. currentmodule:: quantlib.payoffs
+
+.. automethod:: StrikedTypePayoff.__call__

@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.implied\_volatility
+==========================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. automethod:: Swaption.implied_volatility

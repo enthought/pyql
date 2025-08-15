@@ -1,37 +1,36 @@
-quantlib.time.daycounters.simple.Actual360
+.. raw:: html
+
+   <div class="prename">quantlib.time.daycounters.simple.</div>
+   <div class="empty"></div>
+
+Actual360
 ==========================================
 
 .. currentmodule:: quantlib.time.daycounters.simple
 
 .. autoclass:: Actual360
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Actual360.day_count
+         Actual360.from_name
+         Actual360.year_fraction
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Actual360.__init__
-      ~Actual360.day_count
-      ~Actual360.from_name
-      ~Actual360.year_fraction
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Actual360.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Actual360.name
+  
+  

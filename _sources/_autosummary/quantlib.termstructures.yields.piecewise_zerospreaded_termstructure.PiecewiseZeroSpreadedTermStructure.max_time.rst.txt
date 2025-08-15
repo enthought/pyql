@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.piecewise\_zerospreaded\_termstructure.PiecewiseZeroSpreadedTermStructure.max\_time
+==================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_zerospreaded_termstructure
+
+.. autoattribute:: PiecewiseZeroSpreadedTermStructure.max_time

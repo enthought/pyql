@@ -1,42 +1,41 @@
-quantlib.instruments.forward.Forward
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.forward.</div>
+   <div class="empty"></div>
+
+Forward
 ====================================
 
 .. currentmodule:: quantlib.instruments.forward
 
 .. autoclass:: Forward
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Forward.implied_yield
+         Forward.set_pricing_engine
+         Forward.spot_income
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Forward.__init__
-      ~Forward.implied_yield
-      ~Forward.set_pricing_engine
-      ~Forward.spot_income
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Forward.forward_value
-      ~Forward.is_expired
-      ~Forward.net_present_value
-      ~Forward.npv
-      ~Forward.spot_value
-      ~Forward.valuation_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Forward.forward_value
+         Forward.is_expired
+         Forward.net_present_value
+         Forward.npv
+         Forward.spot_value
+         Forward.valuation_date
+  
+  

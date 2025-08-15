@@ -1,0 +1,6 @@
+quantlib.market.market.FixedIncomeMarket.name
+=============================================
+
+.. currentmodule:: quantlib.market.market
+
+.. autoproperty:: FixedIncomeMarket.name

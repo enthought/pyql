@@ -1,0 +1,6 @@
+quantlib.currency.currencies.EURCurrency.from\_name
+===================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. automethod:: EURCurrency.from_name

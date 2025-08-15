@@ -1,0 +1,6 @@
+quantlib.cashflows.duration.Duration.real
+=========================================
+
+.. currentmodule:: quantlib.cashflows.duration
+
+.. autoattribute:: Duration.real

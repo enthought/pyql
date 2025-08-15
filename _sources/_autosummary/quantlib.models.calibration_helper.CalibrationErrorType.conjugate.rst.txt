@@ -1,0 +1,6 @@
+quantlib.models.calibration\_helper.CalibrationErrorType.conjugate
+==================================================================
+
+.. currentmodule:: quantlib.models.calibration_helper
+
+.. automethod:: CalibrationErrorType.conjugate

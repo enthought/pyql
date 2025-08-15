@@ -4,28 +4,10 @@ quantlib.cashflows.rateaveraging
 .. automodule:: quantlib.cashflows.rateaveraging
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       RateAveraging
    
-   
-
-   
-   
-   
-
-
-

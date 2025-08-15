@@ -1,0 +1,6 @@
+quantlib.time.daycounters.simple.Actual365Fixed.name
+====================================================
+
+.. currentmodule:: quantlib.time.daycounters.simple
+
+.. autoattribute:: Actual365Fixed.name

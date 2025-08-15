@@ -1,39 +1,38 @@
-quantlib.termstructures.volatility.equityfx.local\_vol\_term\_structure.LocalVolTermStructure
-=============================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.volatility.equityfx.local_vol_term_structure.</div>
+   <div class="empty"></div>
+
+LocalVolTermStructure
+==========================================================================================
 
 .. currentmodule:: quantlib.termstructures.volatility.equityfx.local_vol_term_structure
 
 .. autoclass:: LocalVolTermStructure
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LocalVolTermStructure.option_date_from_tenor
+         LocalVolTermStructure.time_from_reference
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~LocalVolTermStructure.__init__
-      ~LocalVolTermStructure.option_date_from_tenor
-      ~LocalVolTermStructure.time_from_reference
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~LocalVolTermStructure.calendar
-      ~LocalVolTermStructure.extrapolation
-      ~LocalVolTermStructure.reference_date
-      ~LocalVolTermStructure.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LocalVolTermStructure.calendar
+         LocalVolTermStructure.extrapolation
+         LocalVolTermStructure.reference_date
+         LocalVolTermStructure.settlement_days
+  
+  

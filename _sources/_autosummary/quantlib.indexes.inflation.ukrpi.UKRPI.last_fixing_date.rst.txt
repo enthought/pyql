@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.ukrpi.UKRPI.last\_fixing\_date
+=========================================================
+
+.. currentmodule:: quantlib.indexes.inflation.ukrpi
+
+.. autoattribute:: UKRPI.last_fixing_date

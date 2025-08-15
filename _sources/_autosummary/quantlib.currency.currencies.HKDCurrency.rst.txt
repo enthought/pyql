@@ -1,39 +1,38 @@
-quantlib.currency.currencies.HKDCurrency
+.. raw:: html
+
+   <div class="prename">quantlib.currency.currencies.</div>
+   <div class="empty"></div>
+
+HKDCurrency
 ========================================
 
 .. currentmodule:: quantlib.currency.currencies
 
 .. autoclass:: HKDCurrency
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HKDCurrency.from_name
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~HKDCurrency.__init__
-      ~HKDCurrency.from_name
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~HKDCurrency.code
-      ~HKDCurrency.fractionSymbol
-      ~HKDCurrency.fractionsPerUnit
-      ~HKDCurrency.name
-      ~HKDCurrency.symbol
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HKDCurrency.code
+         HKDCurrency.fractionSymbol
+         HKDCurrency.fractionsPerUnit
+         HKDCurrency.name
+         HKDCurrency.symbol
+  
+  

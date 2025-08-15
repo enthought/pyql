@@ -1,0 +1,6 @@
+quantlib.time.daycounters.simple.Business252.name
+=================================================
+
+.. currentmodule:: quantlib.time.daycounters.simple
+
+.. autoattribute:: Business252.name

@@ -4,28 +4,10 @@ quantlib.termstructures.yields.zero\_spreaded\_term\_structure
 .. automodule:: quantlib.termstructures.yields.zero_spreaded_term_structure
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       ZeroSpreadedTermStructure
    
-   
-
-   
-   
-   
-
-
-

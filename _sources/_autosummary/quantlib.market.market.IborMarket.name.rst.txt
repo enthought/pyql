@@ -1,0 +1,6 @@
+quantlib.market.market.IborMarket.name
+======================================
+
+.. currentmodule:: quantlib.market.market
+
+.. autoproperty:: IborMarket.name

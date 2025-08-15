@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_matrix.SwaptionVolatilityMatrix.calendar
+===================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_matrix
+
+.. autoattribute:: SwaptionVolatilityMatrix.calendar

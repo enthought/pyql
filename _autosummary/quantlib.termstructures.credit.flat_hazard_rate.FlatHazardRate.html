@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>FlatHazardRate &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.termstructures.credit.interpolated_hazardrate_curve" href="quantlib.termstructures.credit.interpolated_hazardrate_curve.html" />
+    <link rel="next" title="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.from_reference_date" href="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.from_reference_date.html" />
     <link rel="prev" title="quantlib.termstructures.credit.flat_hazard_rate" href="quantlib.termstructures.credit.flat_hazard_rate.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,8 +34,9 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-termstructures-credit-flat-hazard-rate-flathazardrate">
-<h1>quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate<a class="headerlink" href="#quantlib-termstructures-credit-flat-hazard-rate-flathazardrate" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.termstructures.credit.flat_hazard_rate.</div>
+<div class="empty"></div><section id="flathazardrate">
+<h1>FlatHazardRate<a class="headerlink" href="#flathazardrate" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FlatHazardRate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">settlement_days</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">calendar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hazard_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">day_counter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate" title="Link to this definition">¶</a></dt>
@@ -43,80 +44,46 @@
 <p>Flat hazard rate curve</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>settlement_days</strong> (<em>int</em>) – number of days from evaluation date</p></li>
-<li><p><strong>calendar</strong> (<a class="reference internal" href="quantlib.time.calendar.Calendar.html#quantlib.time.calendar.Calendar" title="quantlib.time.calendar.Calendar"><code class="xref py py-class docutils literal notranslate"><span class="pre">Calendar</span></code></a>) – calendar used to compute the reference date</p></li>
-<li><p><strong>hazard_rate</strong> (float or <a class="reference internal" href="quantlib.quote.Quote.html#quantlib.quote.Quote" title="quantlib.quote.Quote"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quote</span></code></a>) – the flat hazard rate</p></li>
-<li><p><strong>day_counter</strong> (<a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a>) – DayCounter for the curve</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>settlement_days</strong><span class="classifier">int</span></dt><dd><p>number of days from evaluation date</p>
+</dd>
+<dt><strong>calendar: :class:`~quantlib.time.calendar.Calendar`</strong></dt><dd><p>calendar used to compute the reference date</p>
+</dd>
+<dt><strong>hazard_rate: float or :class:`~quantlib.quote.Quote`</strong></dt><dd><p>the flat hazard rate</p>
+</dd>
+<dt><strong>day_counter: :class:`~quantlib.time.daycounter.DayCounter`</strong></dt><dd><p>DayCounter for the curve</p>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>day_counter</strong></dt><dd></dd>
+<dt><strong>jump_dates</strong></dt><dd></dd>
+<dt><strong>jump_times</strong></dt><dd></dd>
+<dt><strong>max_date</strong></dt><dd></dd>
+<dt><strong>max_time</strong></dt><dd></dd>
+<dt><strong>reference_date</strong></dt><dd></dd>
+<dt><strong>settlement_days</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.__init__" title="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.from_reference_date" title="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.from_reference_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_reference_date</span></code></a>(cls, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.from_reference_date.html#quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.from_reference_date" title="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.from_reference_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_reference_date</span></code></a>(cls, ...)</p></td>
 <td><p>Alternative constructor for FlatHazardRate</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">hazard_rate</span></code>(self, d, bool extrapolate=False)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.hazard_rate.html#quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.hazard_rate" title="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.hazard_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hazard_rate</span></code></a>(self, d, bool extrapolate=False)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">survival_probability</span></code>(self, d, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.survival_probability.html#quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.survival_probability" title="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.survival_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">survival_probability</span></code></a>(self, d, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code>(self, Date dt)</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">day_counter</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">jump_dates</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">jump_times</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_time</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_days</span></code></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.time_from_reference.html#quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.time_from_reference" title="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.time_from_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code></a>(self, Date dt)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.from_reference_date">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_reference_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">reference_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hazard_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">day_counter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.from_reference_date" title="Link to this definition">¶</a></dt>
-<dd><p>Alternative constructor for FlatHazardRate</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>reference_date</strong> (<a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a>) – reference date for the curve</p></li>
-<li><p><strong>hazard_rate</strong> (float or <a class="reference internal" href="quantlib.quote.Quote.html#quantlib.quote.Quote" title="quantlib.quote.Quote"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quote</span></code></a>) – the flat hazard rate</p></li>
-<li><p><strong>day_counter</strong> (<a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a>) – DayCounter for the curve</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -161,7 +128,7 @@
   <li><a href="quantlib.termstructures.credit.html">quantlib.termstructures.credit</a><ul>
   <li><a href="quantlib.termstructures.credit.flat_hazard_rate.html">quantlib.termstructures.credit.flat_hazard_rate</a><ul>
       <li>Previous: <a href="quantlib.termstructures.credit.flat_hazard_rate.html" title="previous chapter">quantlib.termstructures.credit.flat_hazard_rate</a></li>
-      <li>Next: <a href="quantlib.termstructures.credit.interpolated_hazardrate_curve.html" title="next chapter">quantlib.termstructures.credit.interpolated_hazardrate_curve</a></li>
+      <li>Next: <a href="quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.from_reference_date.html" title="next chapter">quantlib.termstructures.credit.flat_hazard_rate.FlatHazardRate.from_reference_date</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

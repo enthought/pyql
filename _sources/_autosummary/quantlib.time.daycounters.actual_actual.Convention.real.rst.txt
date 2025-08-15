@@ -1,0 +1,6 @@
+quantlib.time.daycounters.actual\_actual.Convention.real
+========================================================
+
+.. currentmodule:: quantlib.time.daycounters.actual_actual
+
+.. autoattribute:: Convention.real

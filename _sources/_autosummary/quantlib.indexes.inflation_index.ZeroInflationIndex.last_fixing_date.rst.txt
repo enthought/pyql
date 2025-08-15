@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.ZeroInflationIndex.last\_fixing\_date
+=======================================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. autoattribute:: ZeroInflationIndex.last_fixing_date

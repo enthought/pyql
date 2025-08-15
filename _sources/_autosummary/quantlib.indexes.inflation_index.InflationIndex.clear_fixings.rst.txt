@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.InflationIndex.clear\_fixings
+===============================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. automethod:: InflationIndex.clear_fixings

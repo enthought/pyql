@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bootstraptraits.BootstrapTrait.as\_integer\_ratio
+================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bootstraptraits
+
+.. automethod:: BootstrapTrait.as_integer_ratio

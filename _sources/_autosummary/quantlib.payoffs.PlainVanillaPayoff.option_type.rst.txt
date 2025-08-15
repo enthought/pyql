@@ -1,0 +1,6 @@
+quantlib.payoffs.PlainVanillaPayoff.option\_type
+================================================
+
+.. currentmodule:: quantlib.payoffs
+
+.. autoattribute:: PlainVanillaPayoff.option_type

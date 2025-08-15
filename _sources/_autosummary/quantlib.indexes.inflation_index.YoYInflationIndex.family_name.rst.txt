@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.YoYInflationIndex.family\_name
+================================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. autoattribute:: YoYInflationIndex.family_name

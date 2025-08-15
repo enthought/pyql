@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.interpolated\_zero\_inflation\_curve.Interpolator.from\_bytes
+===============================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.interpolated_zero_inflation_curve
+
+.. automethod:: Interpolator.from_bytes

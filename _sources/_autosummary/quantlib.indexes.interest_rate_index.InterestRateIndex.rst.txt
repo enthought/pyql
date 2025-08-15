@@ -1,51 +1,50 @@
-quantlib.indexes.interest\_rate\_index.InterestRateIndex
-========================================================
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.interest_rate_index.</div>
+   <div class="empty"></div>
+
+InterestRateIndex
+======================================================
 
 .. currentmodule:: quantlib.indexes.interest_rate_index
 
 .. autoclass:: InterestRateIndex
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         InterestRateIndex.add_fixing
+         InterestRateIndex.add_fixings
+         InterestRateIndex.clear_fixings
+         InterestRateIndex.fixing
+         InterestRateIndex.fixing_date
+         InterestRateIndex.forecast_fixing
+         InterestRateIndex.has_historical_fixing
+         InterestRateIndex.is_valid_fixing_date
+         InterestRateIndex.maturity_date
+         InterestRateIndex.value_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~InterestRateIndex.__init__
-      ~InterestRateIndex.add_fixing
-      ~InterestRateIndex.add_fixings
-      ~InterestRateIndex.clear_fixings
-      ~InterestRateIndex.fixing
-      ~InterestRateIndex.fixing_date
-      ~InterestRateIndex.forecast_fixing
-      ~InterestRateIndex.has_historical_fixing
-      ~InterestRateIndex.is_valid_fixing_date
-      ~InterestRateIndex.maturity_date
-      ~InterestRateIndex.value_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~InterestRateIndex.currency
-      ~InterestRateIndex.day_counter
-      ~InterestRateIndex.family_name
-      ~InterestRateIndex.fixing_calendar
-      ~InterestRateIndex.fixing_days
-      ~InterestRateIndex.name
-      ~InterestRateIndex.tenor
-      ~InterestRateIndex.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         InterestRateIndex.currency
+         InterestRateIndex.day_counter
+         InterestRateIndex.family_name
+         InterestRateIndex.fixing_calendar
+         InterestRateIndex.fixing_days
+         InterestRateIndex.name
+         InterestRateIndex.tenor
+         InterestRateIndex.time_series
+  
+  

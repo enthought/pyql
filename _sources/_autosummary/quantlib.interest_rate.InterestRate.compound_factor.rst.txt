@@ -1,0 +1,6 @@
+quantlib.interest\_rate.InterestRate.compound\_factor
+=====================================================
+
+.. currentmodule:: quantlib.interest_rate
+
+.. automethod:: InterestRate.compound_factor

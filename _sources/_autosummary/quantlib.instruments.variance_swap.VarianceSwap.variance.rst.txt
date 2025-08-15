@@ -1,0 +1,6 @@
+quantlib.instruments.variance\_swap.VarianceSwap.variance
+=========================================================
+
+.. currentmodule:: quantlib.instruments.variance_swap
+
+.. autoattribute:: VarianceSwap.variance

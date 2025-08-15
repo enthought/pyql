@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_curve.ZeroCurve.reference\_date
+====================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. autoattribute:: ZeroCurve.reference_date

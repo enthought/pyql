@@ -1,0 +1,6 @@
+quantlib.cashflows.coupon\_pricer.TimingAdjustment.BivariateLognormal
+=====================================================================
+
+.. currentmodule:: quantlib.cashflows.coupon_pricer
+
+.. autoattribute:: TimingAdjustment.BivariateLognormal

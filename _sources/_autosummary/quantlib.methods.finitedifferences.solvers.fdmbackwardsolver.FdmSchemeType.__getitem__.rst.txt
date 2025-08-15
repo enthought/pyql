@@ -1,0 +1,6 @@
+quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.FdmSchemeType.\_\_getitem\_\_
+==========================================================================================
+
+.. currentmodule:: quantlib.methods.finitedifferences.solvers.fdmbackwardsolver
+
+.. automethod:: FdmSchemeType.__getitem__

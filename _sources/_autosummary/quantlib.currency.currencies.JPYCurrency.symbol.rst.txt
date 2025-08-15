@@ -1,0 +1,6 @@
+quantlib.currency.currencies.JPYCurrency.symbol
+===============================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: JPYCurrency.symbol

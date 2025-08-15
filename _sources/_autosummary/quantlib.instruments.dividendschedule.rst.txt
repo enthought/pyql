@@ -4,28 +4,10 @@ quantlib.instruments.dividendschedule
 .. automodule:: quantlib.instruments.dividendschedule
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       DividendSchedule
    
-   
-
-   
-   
-   
-
-
-

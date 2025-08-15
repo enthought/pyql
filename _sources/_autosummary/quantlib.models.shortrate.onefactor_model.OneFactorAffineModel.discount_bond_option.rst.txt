@@ -1,0 +1,6 @@
+quantlib.models.shortrate.onefactor\_model.OneFactorAffineModel.discount\_bond\_option
+======================================================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactor_model
+
+.. automethod:: OneFactorAffineModel.discount_bond_option

@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_states.UnitedStates.SOFR
+========================================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. autoattribute:: UnitedStates.SOFR

@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.settlement\_method
+=========================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Swaption.settlement_method

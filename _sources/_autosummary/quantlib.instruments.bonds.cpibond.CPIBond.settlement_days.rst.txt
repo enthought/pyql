@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.CPIBond.settlement\_days
+===========================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. autoattribute:: CPIBond.settlement_days

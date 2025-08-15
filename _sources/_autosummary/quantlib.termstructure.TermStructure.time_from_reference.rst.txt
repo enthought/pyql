@@ -1,0 +1,6 @@
+quantlib.termstructure.TermStructure.time\_from\_reference
+==========================================================
+
+.. currentmodule:: quantlib.termstructure
+
+.. automethod:: TermStructure.time_from_reference

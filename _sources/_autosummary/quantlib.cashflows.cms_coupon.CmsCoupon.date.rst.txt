@@ -1,0 +1,6 @@
+quantlib.cashflows.cms\_coupon.CmsCoupon.date
+=============================================
+
+.. currentmodule:: quantlib.cashflows.cms_coupon
+
+.. autoattribute:: CmsCoupon.date

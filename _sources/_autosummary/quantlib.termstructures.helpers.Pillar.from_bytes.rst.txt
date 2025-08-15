@@ -1,0 +1,6 @@
+quantlib.termstructures.helpers.Pillar.from\_bytes
+==================================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. automethod:: Pillar.from_bytes

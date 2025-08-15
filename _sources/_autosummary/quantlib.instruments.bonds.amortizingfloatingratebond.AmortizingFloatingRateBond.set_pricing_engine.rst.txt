@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.amortizingfloatingratebond.AmortizingFloatingRateBond.set\_pricing\_engine
+=====================================================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.amortizingfloatingratebond
+
+.. automethod:: AmortizingFloatingRateBond.set_pricing_engine

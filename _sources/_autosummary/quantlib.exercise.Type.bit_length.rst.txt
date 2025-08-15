@@ -1,0 +1,6 @@
+quantlib.exercise.Type.bit\_length
+==================================
+
+.. currentmodule:: quantlib.exercise
+
+.. automethod:: Type.bit_length

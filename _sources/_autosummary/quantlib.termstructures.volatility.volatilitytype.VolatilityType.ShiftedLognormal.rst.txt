@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.volatilitytype.VolatilityType.ShiftedLognormal
+=================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.volatilitytype
+
+.. autoattribute:: VolatilityType.ShiftedLognormal

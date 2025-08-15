@@ -1,0 +1,6 @@
+quantlib.processes.hullwhite\_process.HullWhiteProcess.std\_deviation
+=====================================================================
+
+.. currentmodule:: quantlib.processes.hullwhite_process
+
+.. automethod:: HullWhiteProcess.std_deviation

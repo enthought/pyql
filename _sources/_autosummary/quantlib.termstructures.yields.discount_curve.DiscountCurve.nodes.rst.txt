@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.discount\_curve.DiscountCurve.nodes
+==================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.discount_curve
+
+.. autoattribute:: DiscountCurve.nodes

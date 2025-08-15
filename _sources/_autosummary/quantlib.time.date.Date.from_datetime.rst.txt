@@ -1,0 +1,6 @@
+quantlib.time.date.Date.from\_datetime
+======================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: Date.from_datetime

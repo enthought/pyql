@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.ForwardCurve.day\_counter
+=======================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. autoattribute:: ForwardCurve.day_counter

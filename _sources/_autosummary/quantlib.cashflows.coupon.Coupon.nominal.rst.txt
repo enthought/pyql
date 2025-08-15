@@ -1,0 +1,6 @@
+quantlib.cashflows.coupon.Coupon.nominal
+========================================
+
+.. currentmodule:: quantlib.cashflows.coupon
+
+.. autoattribute:: Coupon.nominal

@@ -1,0 +1,6 @@
+quantlib.time.frequency.Frequency.\_\_mul\_\_
+=============================================
+
+.. currentmodule:: quantlib.time.frequency
+
+.. automethod:: Frequency.__mul__

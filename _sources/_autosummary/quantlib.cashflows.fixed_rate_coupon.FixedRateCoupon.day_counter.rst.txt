@@ -1,0 +1,6 @@
+quantlib.cashflows.fixed\_rate\_coupon.FixedRateCoupon.day\_counter
+===================================================================
+
+.. currentmodule:: quantlib.cashflows.fixed_rate_coupon
+
+.. autoattribute:: FixedRateCoupon.day_counter

@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.InterpolationType.\_\_getitem\_\_
+===================================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. automethod:: InterpolationType.__getitem__

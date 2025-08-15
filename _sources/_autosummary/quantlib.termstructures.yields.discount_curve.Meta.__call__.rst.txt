@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.discount\_curve.Meta.\_\_call\_\_
+================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.discount_curve
+
+.. automethod:: Meta.__call__

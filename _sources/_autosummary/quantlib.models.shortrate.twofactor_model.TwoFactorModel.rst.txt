@@ -1,36 +1,35 @@
-quantlib.models.shortrate.twofactor\_model.TwoFactorModel
-=========================================================
+.. raw:: html
+
+   <div class="prename">quantlib.models.shortrate.twofactor_model.</div>
+   <div class="empty"></div>
+
+TwoFactorModel
+========================================================
 
 .. currentmodule:: quantlib.models.shortrate.twofactor_model
 
 .. autoclass:: TwoFactorModel
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         TwoFactorModel.params
+         TwoFactorModel.set_params
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~TwoFactorModel.__init__
-      ~TwoFactorModel.params
-      ~TwoFactorModel.set_params
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~TwoFactorModel.dynamics
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         TwoFactorModel.dynamics
+  
+  

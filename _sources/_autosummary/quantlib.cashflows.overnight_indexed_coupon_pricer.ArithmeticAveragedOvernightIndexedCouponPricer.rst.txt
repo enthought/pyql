@@ -1,33 +1,34 @@
-quantlib.cashflows.overnight\_indexed\_coupon\_pricer.ArithmeticAveragedOvernightIndexedCouponPricer
-====================================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.overnight_indexed_coupon_pricer.</div>
+   <div class="empty"></div>
+
+ArithmeticAveragedOvernightIndexedCouponPricer
+=================================================================================================
 
 .. currentmodule:: quantlib.cashflows.overnight_indexed_coupon_pricer
 
 .. autoclass:: ArithmeticAveragedOvernightIndexedCouponPricer
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ArithmeticAveragedOvernightIndexedCouponPricer.caplet_price
+         ArithmeticAveragedOvernightIndexedCouponPricer.caplet_rate
+         ArithmeticAveragedOvernightIndexedCouponPricer.floorlet_price
+         ArithmeticAveragedOvernightIndexedCouponPricer.floorlet_rate
+         ArithmeticAveragedOvernightIndexedCouponPricer.initialize
+         ArithmeticAveragedOvernightIndexedCouponPricer.swaplet_price
+         ArithmeticAveragedOvernightIndexedCouponPricer.swaplet_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ArithmeticAveragedOvernightIndexedCouponPricer.__init__
-      ~ArithmeticAveragedOvernightIndexedCouponPricer.caplet_price
-      ~ArithmeticAveragedOvernightIndexedCouponPricer.caplet_rate
-      ~ArithmeticAveragedOvernightIndexedCouponPricer.floorlet_price
-      ~ArithmeticAveragedOvernightIndexedCouponPricer.floorlet_rate
-      ~ArithmeticAveragedOvernightIndexedCouponPricer.initialize
-      ~ArithmeticAveragedOvernightIndexedCouponPricer.swaplet_price
-      ~ArithmeticAveragedOvernightIndexedCouponPricer.swaplet_rate
-   
-   
-
-   
-   
-   
+  
+  
+  

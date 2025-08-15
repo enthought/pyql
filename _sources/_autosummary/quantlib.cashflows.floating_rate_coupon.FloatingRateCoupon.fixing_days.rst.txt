@@ -1,0 +1,6 @@
+quantlib.cashflows.floating\_rate\_coupon.FloatingRateCoupon.fixing\_days
+=========================================================================
+
+.. currentmodule:: quantlib.cashflows.floating_rate_coupon
+
+.. autoattribute:: FloatingRateCoupon.fixing_days

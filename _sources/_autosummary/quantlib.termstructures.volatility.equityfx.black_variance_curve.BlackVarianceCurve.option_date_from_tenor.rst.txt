@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.black\_variance\_curve.BlackVarianceCurve.option\_date\_from\_tenor
+===============================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_variance_curve
+
+.. automethod:: BlackVarianceCurve.option_date_from_tenor

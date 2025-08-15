@@ -1,0 +1,6 @@
+quantlib.instruments.credit\_default\_swap.CreditDefaultSwap.pays\_at\_default\_time
+====================================================================================
+
+.. currentmodule:: quantlib.instruments.credit_default_swap
+
+.. autoattribute:: CreditDefaultSwap.pays_at_default_time

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_spreaded\_term\_structure.ForwardSpreadedTermStructure.time\_from\_reference
+====================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_spreaded_term_structure
+
+.. automethod:: ForwardSpreadedTermStructure.time_from_reference

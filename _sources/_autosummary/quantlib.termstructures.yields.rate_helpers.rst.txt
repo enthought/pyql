@@ -4,20 +4,10 @@ quantlib.termstructures.yields.rate\_helpers
 .. automodule:: quantlib.termstructures.yields.rate_helpers
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       DepositRateHelper
       FraRateHelper
@@ -27,11 +17,3 @@ quantlib.termstructures.yields.rate\_helpers
       RelativeDateRateHelper
       SwapRateHelper
    
-   
-
-   
-   
-   
-
-
-

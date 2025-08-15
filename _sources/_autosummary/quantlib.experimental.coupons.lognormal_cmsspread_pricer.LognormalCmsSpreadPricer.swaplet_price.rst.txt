@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.lognormal\_cmsspread\_pricer.LognormalCmsSpreadPricer.swaplet\_price
+==================================================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.lognormal_cmsspread_pricer
+
+.. automethod:: LognormalCmsSpreadPricer.swaplet_price

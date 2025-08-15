@@ -1,0 +1,6 @@
+quantlib.instruments.swap.Swap.valuation\_date
+==============================================
+
+.. currentmodule:: quantlib.instruments.swap
+
+.. autoattribute:: Swap.valuation_date

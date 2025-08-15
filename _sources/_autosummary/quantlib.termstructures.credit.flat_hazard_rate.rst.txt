@@ -4,28 +4,10 @@ quantlib.termstructures.credit.flat\_hazard\_rate
 .. automodule:: quantlib.termstructures.credit.flat_hazard_rate
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       FlatHazardRate
    
-   
-
-   
-   
-   
-
-
-

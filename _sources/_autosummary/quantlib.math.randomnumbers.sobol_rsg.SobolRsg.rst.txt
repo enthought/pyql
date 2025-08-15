@@ -1,27 +1,28 @@
-quantlib.math.randomnumbers.sobol\_rsg.SobolRsg
-===============================================
+.. raw:: html
+
+   <div class="prename">quantlib.math.randomnumbers.sobol_rsg.</div>
+   <div class="empty"></div>
+
+SobolRsg
+==============================================
 
 .. currentmodule:: quantlib.math.randomnumbers.sobol_rsg
 
 .. autoclass:: SobolRsg
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SobolRsg.skip_to
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~SobolRsg.__init__
-      ~SobolRsg.skip_to
-   
-   
-
-   
-   
-   
+  
+  
+  

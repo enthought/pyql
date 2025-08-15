@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_cube.SwaptionVolatilityCube.swap\_tenors
+===================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_cube
+
+.. autoattribute:: SwaptionVolatilityCube.swap_tenors

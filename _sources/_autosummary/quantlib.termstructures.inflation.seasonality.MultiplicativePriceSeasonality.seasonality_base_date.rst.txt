@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.seasonality.MultiplicativePriceSeasonality.seasonality\_base\_date
+====================================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.seasonality
+
+.. autoattribute:: MultiplicativePriceSeasonality.seasonality_base_date

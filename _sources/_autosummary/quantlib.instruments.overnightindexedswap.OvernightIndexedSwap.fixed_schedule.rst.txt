@@ -1,0 +1,6 @@
+quantlib.instruments.overnightindexedswap.OvernightIndexedSwap.fixed\_schedule
+==============================================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexedswap
+
+.. autoattribute:: OvernightIndexedSwap.fixed_schedule

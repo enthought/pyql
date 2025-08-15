@@ -1,0 +1,6 @@
+quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.nominal
+====================================================================
+
+.. currentmodule:: quantlib.instruments.fixedvsfloatingswap
+
+.. autoattribute:: FixedVsFloatingSwap.nominal

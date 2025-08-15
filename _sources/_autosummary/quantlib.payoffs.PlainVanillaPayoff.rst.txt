@@ -1,35 +1,36 @@
-quantlib.payoffs.PlainVanillaPayoff
+.. raw:: html
+
+   <div class="prename">quantlib.payoffs.</div>
+   <div class="empty"></div>
+
+PlainVanillaPayoff
 ===================================
 
 .. currentmodule:: quantlib.payoffs
 
 .. autoclass:: PlainVanillaPayoff
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         PlainVanillaPayoff.__call__
+      
+         PlainVanillaPayoff.__call__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~PlainVanillaPayoff.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~PlainVanillaPayoff.option_type
-      ~PlainVanillaPayoff.strike
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         PlainVanillaPayoff.option_type
+         PlainVanillaPayoff.strike
+  
+  

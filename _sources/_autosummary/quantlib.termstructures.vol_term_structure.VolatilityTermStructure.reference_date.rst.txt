@@ -1,0 +1,6 @@
+quantlib.termstructures.vol\_term\_structure.VolatilityTermStructure.reference\_date
+====================================================================================
+
+.. currentmodule:: quantlib.termstructures.vol_term_structure
+
+.. autoattribute:: VolatilityTermStructure.reference_date

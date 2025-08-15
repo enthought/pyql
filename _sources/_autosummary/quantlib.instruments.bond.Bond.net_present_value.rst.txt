@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Bond.net\_present\_value
+==================================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoattribute:: Bond.net_present_value

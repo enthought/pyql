@@ -1,0 +1,6 @@
+quantlib.instruments.overnightindexedswap.OvernightIndexedSwap.leg\_BPS
+=======================================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexedswap
+
+.. automethod:: OvernightIndexedSwap.leg_BPS

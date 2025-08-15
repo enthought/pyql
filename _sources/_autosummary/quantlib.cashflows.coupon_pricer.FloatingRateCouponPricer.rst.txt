@@ -1,33 +1,34 @@
-quantlib.cashflows.coupon\_pricer.FloatingRateCouponPricer
-==========================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.coupon_pricer.</div>
+   <div class="empty"></div>
+
+FloatingRateCouponPricer
+=========================================================
 
 .. currentmodule:: quantlib.cashflows.coupon_pricer
 
 .. autoclass:: FloatingRateCouponPricer
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FloatingRateCouponPricer.caplet_price
+         FloatingRateCouponPricer.caplet_rate
+         FloatingRateCouponPricer.floorlet_price
+         FloatingRateCouponPricer.floorlet_rate
+         FloatingRateCouponPricer.initialize
+         FloatingRateCouponPricer.swaplet_price
+         FloatingRateCouponPricer.swaplet_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FloatingRateCouponPricer.__init__
-      ~FloatingRateCouponPricer.caplet_price
-      ~FloatingRateCouponPricer.caplet_rate
-      ~FloatingRateCouponPricer.floorlet_price
-      ~FloatingRateCouponPricer.floorlet_rate
-      ~FloatingRateCouponPricer.initialize
-      ~FloatingRateCouponPricer.swaplet_price
-      ~FloatingRateCouponPricer.swaplet_rate
-   
-   
-
-   
-   
-   
+  
+  
+  

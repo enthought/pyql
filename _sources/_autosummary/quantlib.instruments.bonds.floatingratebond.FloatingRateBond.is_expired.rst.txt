@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.floatingratebond.FloatingRateBond.is\_expired
+========================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.floatingratebond
+
+.. autoattribute:: FloatingRateBond.is_expired

@@ -1,0 +1,6 @@
+quantlib.math.optimization.Constraint.test
+==========================================
+
+.. currentmodule:: quantlib.math.optimization
+
+.. automethod:: Constraint.test

@@ -1,0 +1,6 @@
+quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.params
+====================================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactormodels.hullwhite
+
+.. automethod:: HullWhite.params

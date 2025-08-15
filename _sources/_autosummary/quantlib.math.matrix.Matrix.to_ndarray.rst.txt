@@ -1,0 +1,6 @@
+quantlib.math.matrix.Matrix.to\_ndarray
+=======================================
+
+.. currentmodule:: quantlib.math.matrix
+
+.. automethod:: Matrix.to_ndarray

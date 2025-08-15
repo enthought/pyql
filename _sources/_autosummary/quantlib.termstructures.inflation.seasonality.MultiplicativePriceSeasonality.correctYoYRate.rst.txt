@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.seasonality.MultiplicativePriceSeasonality.correctYoYRate
+===========================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.seasonality
+
+.. automethod:: MultiplicativePriceSeasonality.correctYoYRate

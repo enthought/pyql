@@ -1,49 +1,48 @@
-quantlib.indexes.inflation.aucpi.AUCPI
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.inflation.aucpi.</div>
+   <div class="empty"></div>
+
+AUCPI
 ======================================
 
 .. currentmodule:: quantlib.indexes.inflation.aucpi
 
 .. autoclass:: AUCPI
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         AUCPI.add_fixing
+         AUCPI.add_fixings
+         AUCPI.clear_fixings
+         AUCPI.fixing
+         AUCPI.has_historical_fixing
+         AUCPI.is_valid_fixing_date
+         AUCPI.zero_inflation_term_structure
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~AUCPI.__init__
-      ~AUCPI.add_fixing
-      ~AUCPI.add_fixings
-      ~AUCPI.clear_fixings
-      ~AUCPI.fixing
-      ~AUCPI.has_historical_fixing
-      ~AUCPI.is_valid_fixing_date
-      ~AUCPI.zero_inflation_term_structure
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~AUCPI.availability_lag
-      ~AUCPI.currency
-      ~AUCPI.family_name
-      ~AUCPI.fixing_calendar
-      ~AUCPI.frequency
-      ~AUCPI.last_fixing_date
-      ~AUCPI.name
-      ~AUCPI.region
-      ~AUCPI.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         AUCPI.availability_lag
+         AUCPI.currency
+         AUCPI.family_name
+         AUCPI.fixing_calendar
+         AUCPI.frequency
+         AUCPI.last_fixing_date
+         AUCPI.name
+         AUCPI.region
+         AUCPI.time_series
+  
+  

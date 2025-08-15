@@ -1,0 +1,6 @@
+quantlib.util.object\_registry.ObjectRegistry.help
+==================================================
+
+.. currentmodule:: quantlib.util.object_registry
+
+.. automethod:: ObjectRegistry.help

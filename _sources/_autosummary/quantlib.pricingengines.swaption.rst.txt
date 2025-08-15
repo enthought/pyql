@@ -4,28 +4,10 @@ quantlib.pricingengines.swaption
 .. automodule:: quantlib.pricingengines.swaption
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    black_swaption_engine
@@ -34,4 +16,3 @@ quantlib.pricingengines.swaption
    g2_swaption_engine
    jamshidian_swaption_engine
    tree_swaption_engine
-

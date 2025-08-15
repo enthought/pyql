@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bond\_helpers.FixedRateBondHelper.latest\_date
+=============================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bond_helpers
+
+.. autoattribute:: FixedRateBondHelper.latest_date

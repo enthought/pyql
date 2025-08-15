@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.smilesection.SmileSection.density
+====================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.smilesection
+
+.. automethod:: SmileSection.density

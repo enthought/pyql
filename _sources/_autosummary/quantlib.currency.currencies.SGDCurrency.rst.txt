@@ -1,39 +1,38 @@
-quantlib.currency.currencies.SGDCurrency
+.. raw:: html
+
+   <div class="prename">quantlib.currency.currencies.</div>
+   <div class="empty"></div>
+
+SGDCurrency
 ========================================
 
 .. currentmodule:: quantlib.currency.currencies
 
 .. autoclass:: SGDCurrency
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SGDCurrency.from_name
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~SGDCurrency.__init__
-      ~SGDCurrency.from_name
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~SGDCurrency.code
-      ~SGDCurrency.fractionSymbol
-      ~SGDCurrency.fractionsPerUnit
-      ~SGDCurrency.name
-      ~SGDCurrency.symbol
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SGDCurrency.code
+         SGDCurrency.fractionSymbol
+         SGDCurrency.fractionsPerUnit
+         SGDCurrency.name
+         SGDCurrency.symbol
+  
+  

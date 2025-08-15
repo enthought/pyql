@@ -1,0 +1,6 @@
+quantlib.currency.currencies.AUDCurrency.fractionsPerUnit
+=========================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: AUDCurrency.fractionsPerUnit

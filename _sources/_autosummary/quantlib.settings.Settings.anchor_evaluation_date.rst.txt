@@ -1,0 +1,6 @@
+quantlib.settings.Settings.anchor\_evaluation\_date
+===================================================
+
+.. currentmodule:: quantlib.settings
+
+.. automethod:: Settings.anchor_evaluation_date

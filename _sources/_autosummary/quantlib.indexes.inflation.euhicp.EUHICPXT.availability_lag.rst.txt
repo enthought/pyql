@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.euhicp.EUHICPXT.availability\_lag
+============================================================
+
+.. currentmodule:: quantlib.indexes.inflation.euhicp
+
+.. autoattribute:: EUHICPXT.availability_lag

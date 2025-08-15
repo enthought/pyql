@@ -1,0 +1,6 @@
+quantlib.compounding.Compounding.as\_integer\_ratio
+===================================================
+
+.. currentmodule:: quantlib.compounding
+
+.. automethod:: Compounding.as_integer_ratio

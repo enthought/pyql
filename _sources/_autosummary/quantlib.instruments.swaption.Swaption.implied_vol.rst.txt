@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.implied\_vol
+===================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Swaption.implied_vol

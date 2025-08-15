@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.CPIBond.accrued\_amount
+==========================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. automethod:: CPIBond.accrued_amount

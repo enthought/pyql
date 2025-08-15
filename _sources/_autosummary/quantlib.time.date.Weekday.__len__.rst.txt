@@ -1,0 +1,6 @@
+quantlib.time.date.Weekday.\_\_len\_\_
+======================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: Weekday.__len__

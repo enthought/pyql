@@ -4,28 +4,10 @@
 .. automodule:: quantlib
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    cashflow
@@ -64,4 +46,3 @@
    time_grid
    time_series
    util
-

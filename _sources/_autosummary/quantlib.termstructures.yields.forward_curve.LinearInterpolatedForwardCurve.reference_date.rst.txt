@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.LinearInterpolatedForwardCurve.reference\_date
+============================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. autoattribute:: LinearInterpolatedForwardCurve.reference_date

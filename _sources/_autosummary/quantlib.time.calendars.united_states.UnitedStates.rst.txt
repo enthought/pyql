@@ -1,53 +1,52 @@
-quantlib.time.calendars.united\_states.UnitedStates
-===================================================
+.. raw:: html
+
+   <div class="prename">quantlib.time.calendars.united_states.</div>
+   <div class="empty"></div>
+
+UnitedStates
+==================================================
 
 .. currentmodule:: quantlib.time.calendars.united_states
 
 .. autoclass:: UnitedStates
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         UnitedStates.add_holiday
+         UnitedStates.adjust
+         UnitedStates.advance
+         UnitedStates.business_day_list
+         UnitedStates.business_days_between
+         UnitedStates.end_of_month
+         UnitedStates.holiday_list
+         UnitedStates.is_business_day
+         UnitedStates.is_end_of_month
+         UnitedStates.is_holiday
+         UnitedStates.is_weekend
+         UnitedStates.remove_holiday
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~UnitedStates.__init__
-      ~UnitedStates.add_holiday
-      ~UnitedStates.adjust
-      ~UnitedStates.advance
-      ~UnitedStates.business_day_list
-      ~UnitedStates.business_days_between
-      ~UnitedStates.end_of_month
-      ~UnitedStates.holiday_list
-      ~UnitedStates.is_business_day
-      ~UnitedStates.is_end_of_month
-      ~UnitedStates.is_holiday
-      ~UnitedStates.is_weekend
-      ~UnitedStates.remove_holiday
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~UnitedStates.FederalReserve
-      ~UnitedStates.GovernmentBond
-      ~UnitedStates.LiborImpact
-      ~UnitedStates.NERC
-      ~UnitedStates.NYSE
-      ~UnitedStates.SOFR
-      ~UnitedStates.Settlement
-      ~UnitedStates.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         UnitedStates.FederalReserve
+         UnitedStates.GovernmentBond
+         UnitedStates.LiborImpact
+         UnitedStates.NERC
+         UnitedStates.NYSE
+         UnitedStates.SOFR
+         UnitedStates.Settlement
+         UnitedStates.name
+  
+  

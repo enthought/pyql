@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_cube.SwaptionVolatilityCube.short\_swap\_index\_base
+===============================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_cube
+
+.. automethod:: SwaptionVolatilityCube.short_swap_index_base

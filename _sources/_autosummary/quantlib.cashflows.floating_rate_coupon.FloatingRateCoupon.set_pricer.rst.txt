@@ -1,0 +1,6 @@
+quantlib.cashflows.floating\_rate\_coupon.FloatingRateCoupon.set\_pricer
+========================================================================
+
+.. currentmodule:: quantlib.cashflows.floating_rate_coupon
+
+.. automethod:: FloatingRateCoupon.set_pricer

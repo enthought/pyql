@@ -1,50 +1,49 @@
-quantlib.instruments.bonds.zerocouponbond.ZeroCouponBond
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.bonds.zerocouponbond.</div>
+   <div class="empty"></div>
+
+ZeroCouponBond
 ========================================================
 
 .. currentmodule:: quantlib.instruments.bonds.zerocouponbond
 
 .. autoclass:: ZeroCouponBond
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZeroCouponBond.accrued_amount
+         ZeroCouponBond.bond_yield
+         ZeroCouponBond.notional
+         ZeroCouponBond.set_pricing_engine
+         ZeroCouponBond.settlement_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ZeroCouponBond.__init__
-      ~ZeroCouponBond.accrued_amount
-      ~ZeroCouponBond.bond_yield
-      ~ZeroCouponBond.notional
-      ~ZeroCouponBond.set_pricing_engine
-      ~ZeroCouponBond.settlement_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ZeroCouponBond.calendar
-      ~ZeroCouponBond.cashflows
-      ~ZeroCouponBond.clean_price
-      ~ZeroCouponBond.dirty_price
-      ~ZeroCouponBond.is_expired
-      ~ZeroCouponBond.issue_date
-      ~ZeroCouponBond.maturity_date
-      ~ZeroCouponBond.net_present_value
-      ~ZeroCouponBond.npv
-      ~ZeroCouponBond.settlement_days
-      ~ZeroCouponBond.start_date
-      ~ZeroCouponBond.valuation_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZeroCouponBond.calendar
+         ZeroCouponBond.cashflows
+         ZeroCouponBond.clean_price
+         ZeroCouponBond.dirty_price
+         ZeroCouponBond.is_expired
+         ZeroCouponBond.issue_date
+         ZeroCouponBond.maturity_date
+         ZeroCouponBond.net_present_value
+         ZeroCouponBond.npv
+         ZeroCouponBond.settlement_days
+         ZeroCouponBond.start_date
+         ZeroCouponBond.valuation_date
+  
+  

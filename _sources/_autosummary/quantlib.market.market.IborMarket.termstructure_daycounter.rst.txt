@@ -1,0 +1,6 @@
+quantlib.market.market.IborMarket.termstructure\_daycounter
+===========================================================
+
+.. currentmodule:: quantlib.market.market
+
+.. autoproperty:: IborMarket.termstructure_daycounter

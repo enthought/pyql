@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.ois\_rate\_helper.OISRateHelper.maturity\_date
+=============================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.ois_rate_helper
+
+.. autoattribute:: OISRateHelper.maturity_date

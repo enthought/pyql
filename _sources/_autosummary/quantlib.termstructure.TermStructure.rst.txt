@@ -1,39 +1,38 @@
-quantlib.termstructure.TermStructure
+.. raw:: html
+
+   <div class="prename">quantlib.termstructure.</div>
+   <div class="empty"></div>
+
+TermStructure
 ====================================
 
 .. currentmodule:: quantlib.termstructure
 
 .. autoclass:: TermStructure
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         TermStructure.time_from_reference
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~TermStructure.__init__
-      ~TermStructure.time_from_reference
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~TermStructure.day_counter
-      ~TermStructure.max_date
-      ~TermStructure.max_time
-      ~TermStructure.reference_date
-      ~TermStructure.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         TermStructure.day_counter
+         TermStructure.max_date
+         TermStructure.max_time
+         TermStructure.reference_date
+         TermStructure.settlement_days
+  
+  

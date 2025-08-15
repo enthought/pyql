@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.volatilitytype.VolatilityType.conjugate
+==========================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.volatilitytype
+
+.. automethod:: VolatilityType.conjugate

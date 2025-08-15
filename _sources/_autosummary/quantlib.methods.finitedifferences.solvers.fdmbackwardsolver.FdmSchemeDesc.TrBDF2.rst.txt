@@ -1,0 +1,6 @@
+quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.FdmSchemeDesc.TrBDF2
+=================================================================================
+
+.. currentmodule:: quantlib.methods.finitedifferences.solvers.fdmbackwardsolver
+
+.. automethod:: FdmSchemeDesc.TrBDF2

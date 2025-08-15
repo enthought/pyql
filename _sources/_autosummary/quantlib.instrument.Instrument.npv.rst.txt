@@ -1,0 +1,6 @@
+quantlib.instrument.Instrument.npv
+==================================
+
+.. currentmodule:: quantlib.instrument
+
+.. autoattribute:: Instrument.npv

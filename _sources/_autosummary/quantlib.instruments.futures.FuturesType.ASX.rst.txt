@@ -1,0 +1,6 @@
+quantlib.instruments.futures.FuturesType.ASX
+============================================
+
+.. currentmodule:: quantlib.instruments.futures
+
+.. autoattribute:: FuturesType.ASX

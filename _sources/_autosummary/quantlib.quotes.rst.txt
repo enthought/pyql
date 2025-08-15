@@ -4,30 +4,11 @@ quantlib.quotes
 .. automodule:: quantlib.quotes
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    futuresconvadjustmentquote
    simplequote
-

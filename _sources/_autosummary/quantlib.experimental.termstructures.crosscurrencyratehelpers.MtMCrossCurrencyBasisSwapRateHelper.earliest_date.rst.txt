@@ -1,0 +1,6 @@
+quantlib.experimental.termstructures.crosscurrencyratehelpers.MtMCrossCurrencyBasisSwapRateHelper.earliest\_date
+================================================================================================================
+
+.. currentmodule:: quantlib.experimental.termstructures.crosscurrencyratehelpers
+
+.. autoattribute:: MtMCrossCurrencyBasisSwapRateHelper.earliest_date

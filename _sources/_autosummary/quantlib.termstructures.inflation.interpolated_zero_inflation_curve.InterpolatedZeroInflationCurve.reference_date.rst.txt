@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.interpolated\_zero\_inflation\_curve.InterpolatedZeroInflationCurve.reference\_date
+=====================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.interpolated_zero_inflation_curve
+
+.. autoattribute:: InterpolatedZeroInflationCurve.reference_date

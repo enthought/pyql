@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_states.UnitedStates.add\_holiday
+================================================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. automethod:: UnitedStates.add_holiday

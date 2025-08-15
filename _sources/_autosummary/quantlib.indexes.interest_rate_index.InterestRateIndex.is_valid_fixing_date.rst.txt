@@ -1,0 +1,6 @@
+quantlib.indexes.interest\_rate\_index.InterestRateIndex.is\_valid\_fixing\_date
+================================================================================
+
+.. currentmodule:: quantlib.indexes.interest_rate_index
+
+.. automethod:: InterestRateIndex.is_valid_fixing_date

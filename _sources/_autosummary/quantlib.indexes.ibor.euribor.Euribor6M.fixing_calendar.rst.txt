@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.euribor.Euribor6M.fixing\_calendar
+========================================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. autoattribute:: Euribor6M.fixing_calendar

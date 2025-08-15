@@ -1,0 +1,6 @@
+quantlib.time.imm.Month.X
+=========================
+
+.. currentmodule:: quantlib.time.imm
+
+.. autoattribute:: Month.X

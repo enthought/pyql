@@ -1,0 +1,6 @@
+quantlib.cashflows.cap\_floored\_coupon.CappedFlooredCmsCoupon.underlying
+=========================================================================
+
+.. currentmodule:: quantlib.cashflows.cap_floored_coupon
+
+.. autoattribute:: CappedFlooredCmsCoupon.underlying

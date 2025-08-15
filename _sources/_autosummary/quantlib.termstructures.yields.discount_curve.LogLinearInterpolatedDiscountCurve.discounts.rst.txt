@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.discount\_curve.LogLinearInterpolatedDiscountCurve.discounts
+===========================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.discount_curve
+
+.. autoattribute:: LogLinearInterpolatedDiscountCurve.discounts

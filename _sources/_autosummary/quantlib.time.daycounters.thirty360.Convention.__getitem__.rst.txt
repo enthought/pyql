@@ -1,0 +1,6 @@
+quantlib.time.daycounters.thirty360.Convention.\_\_getitem\_\_
+==============================================================
+
+.. currentmodule:: quantlib.time.daycounters.thirty360
+
+.. automethod:: Convention.__getitem__

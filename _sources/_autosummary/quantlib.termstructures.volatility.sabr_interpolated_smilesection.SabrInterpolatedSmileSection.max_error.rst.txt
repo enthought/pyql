@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.sabr\_interpolated\_smilesection.SabrInterpolatedSmileSection.max\_error
+===========================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.sabr_interpolated_smilesection
+
+.. autoattribute:: SabrInterpolatedSmileSection.max_error

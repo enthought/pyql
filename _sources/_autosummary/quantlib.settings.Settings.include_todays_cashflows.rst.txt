@@ -1,0 +1,6 @@
+quantlib.settings.Settings.include\_todays\_cashflows
+=====================================================
+
+.. currentmodule:: quantlib.settings
+
+.. autoattribute:: Settings.include_todays_cashflows

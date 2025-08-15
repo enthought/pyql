@@ -1,0 +1,6 @@
+quantlib.instruments.forward.Forward.spot\_income
+=================================================
+
+.. currentmodule:: quantlib.instruments.forward
+
+.. automethod:: Forward.spot_income

@@ -4,28 +4,10 @@ quantlib.indexes.inflation.ukrpi
 .. automodule:: quantlib.indexes.inflation.ukrpi
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       UKRPI
    
-   
-
-   
-   
-   
-
-
-

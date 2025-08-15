@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.indexes.inflation.euhicp.EUHICPXT &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>EUHICPXT &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,8 +15,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.indexes.inflation.euhicp.YYEUHICP" href="quantlib.indexes.inflation.euhicp.YYEUHICP.html" />
-    <link rel="prev" title="quantlib.indexes.inflation.euhicp.EUHICP" href="quantlib.indexes.inflation.euhicp.EUHICP.html" />
+    <link rel="next" title="quantlib.indexes.inflation.euhicp.EUHICPXT.add_fixing" href="quantlib.indexes.inflation.euhicp.EUHICPXT.add_fixing.html" />
+    <link rel="prev" title="quantlib.indexes.inflation.euhicp.EUHICP.zero_inflation_term_structure" href="quantlib.indexes.inflation.euhicp.EUHICP.zero_inflation_term_structure.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,75 +34,54 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-indexes-inflation-euhicp-euhicpxt">
-<h1>quantlib.indexes.inflation.euhicp.EUHICPXT<a class="headerlink" href="#quantlib-indexes-inflation-euhicp-euhicpxt" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.indexes.inflation.euhicp.</div>
+<div class="empty"></div><section id="euhicpxt">
+<h1>EUHICPXT<a class="headerlink" href="#euhicpxt" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.indexes.inflation.euhicp.EUHICPXT">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EUHICPXT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ZeroInflationTermStructure</span> <span class="pre">ts=ZeroInflationTermStructure()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.indexes.inflation.euhicp.EUHICPXT" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.indexes.inflation_index.ZeroInflationIndex.html#quantlib.indexes.inflation_index.ZeroInflationIndex" title="quantlib.indexes.inflation_index.ZeroInflationIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">ZeroInflationIndex</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.indexes.inflation.euhicp.EUHICPXT.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.indexes.inflation.euhicp.EUHICPXT.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>availability_lag</strong></dt><dd></dd>
+<dt><strong>currency</strong></dt><dd></dd>
+<dt><strong>family_name</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.indexes.inflation.euhicp.EUHICPXT.fixing_calendar.html#quantlib.indexes.inflation.euhicp.EUHICPXT.fixing_calendar" title="quantlib.indexes.inflation.euhicp.EUHICPXT.fixing_calendar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixing_calendar</span></code></a></dt><dd><p>the calendar defining valid fixing dates</p>
+</dd>
+<dt><strong>frequency</strong></dt><dd></dd>
+<dt><strong>last_fixing_date</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.indexes.inflation.euhicp.EUHICPXT.name.html#quantlib.indexes.inflation.euhicp.EUHICPXT.name" title="quantlib.indexes.inflation.euhicp.EUHICPXT.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></dt><dd><p>the name of the index</p>
+</dd>
+<dt><strong>region</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.indexes.inflation.euhicp.EUHICPXT.time_series.html#quantlib.indexes.inflation.euhicp.EUHICPXT.time_series" title="quantlib.indexes.inflation.euhicp.EUHICPXT.time_series"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_series</span></code></a></dt><dd><p>the fixing TimeSeries</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.indexes.inflation.euhicp.EUHICPXT.__init__" title="quantlib.indexes.inflation.euhicp.EUHICPXT.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.indexes.inflation.euhicp.EUHICPXT.add_fixing.html#quantlib.indexes.inflation.euhicp.EUHICPXT.add_fixing" title="quantlib.indexes.inflation.euhicp.EUHICPXT.add_fixing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_fixing</span></code></a>(self, Date fixingDate, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_fixing</span></code>(self, Date fixingDate, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.indexes.inflation.euhicp.EUHICPXT.add_fixings.html#quantlib.indexes.inflation.euhicp.EUHICPXT.add_fixings" title="quantlib.indexes.inflation.euhicp.EUHICPXT.add_fixings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_fixings</span></code></a>(self, list dates, list values, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_fixings</span></code>(self, list dates, list values, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.indexes.inflation.euhicp.EUHICPXT.clear_fixings.html#quantlib.indexes.inflation.euhicp.EUHICPXT.clear_fixings" title="quantlib.indexes.inflation.euhicp.EUHICPXT.clear_fixings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_fixings</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_fixings</span></code>(self)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.indexes.inflation.euhicp.EUHICPXT.fixing.html#quantlib.indexes.inflation.euhicp.EUHICPXT.fixing" title="quantlib.indexes.inflation.euhicp.EUHICPXT.fixing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixing</span></code></a>(self, Date fixingDate, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixing</span></code>(self, Date fixingDate, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.indexes.inflation.euhicp.EUHICPXT.has_historical_fixing.html#quantlib.indexes.inflation.euhicp.EUHICPXT.has_historical_fixing" title="quantlib.indexes.inflation.euhicp.EUHICPXT.has_historical_fixing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_historical_fixing</span></code></a>(self, Date d)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_historical_fixing</span></code>(self, Date d)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.indexes.inflation.euhicp.EUHICPXT.is_valid_fixing_date.html#quantlib.indexes.inflation.euhicp.EUHICPXT.is_valid_fixing_date" title="quantlib.indexes.inflation.euhicp.EUHICPXT.is_valid_fixing_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_fixing_date</span></code></a>(self, Date fixing_date)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_fixing_date</span></code>(self, Date fixing_date)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.indexes.inflation.euhicp.EUHICPXT.zero_inflation_term_structure.html#quantlib.indexes.inflation.euhicp.EUHICPXT.zero_inflation_term_structure" title="quantlib.indexes.inflation.euhicp.EUHICPXT.zero_inflation_term_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_inflation_term_structure</span></code></a>(self)</p></td>
 <td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_inflation_term_structure</span></code>(self)</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">availability_lag</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">currency</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">family_name</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixing_calendar</span></code></p></td>
-<td><p>the calendar defining valid fixing dates</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">last_fixing_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></p></td>
-<td><p>the name of the index</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">region</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_series</span></code></p></td>
-<td><p>the fixing TimeSeries</p></td>
 </tr>
 </tbody>
 </table>
@@ -149,8 +128,8 @@
   <li><a href="quantlib.indexes.html">quantlib.indexes</a><ul>
   <li><a href="quantlib.indexes.inflation.html">quantlib.indexes.inflation</a><ul>
   <li><a href="quantlib.indexes.inflation.euhicp.html">quantlib.indexes.inflation.euhicp</a><ul>
-      <li>Previous: <a href="quantlib.indexes.inflation.euhicp.EUHICP.html" title="previous chapter">quantlib.indexes.inflation.euhicp.EUHICP</a></li>
-      <li>Next: <a href="quantlib.indexes.inflation.euhicp.YYEUHICP.html" title="next chapter">quantlib.indexes.inflation.euhicp.YYEUHICP</a></li>
+      <li>Previous: <a href="quantlib.indexes.inflation.euhicp.EUHICP.zero_inflation_term_structure.html" title="previous chapter">quantlib.indexes.inflation.euhicp.EUHICP.zero_inflation_term_structure</a></li>
+      <li>Next: <a href="quantlib.indexes.inflation.euhicp.EUHICPXT.add_fixing.html" title="next chapter">quantlib.indexes.inflation.euhicp.EUHICPXT.add_fixing</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

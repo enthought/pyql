@@ -1,43 +1,42 @@
-quantlib.termstructures.yield\_term\_structure.YieldTermStructure
-=================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yield_term_structure.</div>
+   <div class="empty"></div>
+
+YieldTermStructure
+===============================================================
 
 .. currentmodule:: quantlib.termstructures.yield_term_structure
 
 .. autoclass:: YieldTermStructure
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YieldTermStructure.discount
+         YieldTermStructure.forward_rate
+         YieldTermStructure.time_from_reference
+         YieldTermStructure.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~YieldTermStructure.__init__
-      ~YieldTermStructure.discount
-      ~YieldTermStructure.forward_rate
-      ~YieldTermStructure.time_from_reference
-      ~YieldTermStructure.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~YieldTermStructure.day_counter
-      ~YieldTermStructure.extrapolation
-      ~YieldTermStructure.max_date
-      ~YieldTermStructure.max_time
-      ~YieldTermStructure.reference_date
-      ~YieldTermStructure.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YieldTermStructure.day_counter
+         YieldTermStructure.extrapolation
+         YieldTermStructure.max_date
+         YieldTermStructure.max_time
+         YieldTermStructure.reference_date
+         YieldTermStructure.settlement_days
+  
+  

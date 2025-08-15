@@ -4,28 +4,10 @@ quantlib.termstructures.volatility.equityfx
 .. automodule:: quantlib.termstructures.volatility.equityfx
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    black_constant_vol
@@ -35,4 +17,3 @@ quantlib.termstructures.volatility.equityfx
    heston_black_vol_surface
    local_vol_surface
    local_vol_term_structure
-

@@ -1,0 +1,6 @@
+quantlib.market.conventions.swap.row.fixed\_leg\_convention
+===========================================================
+
+.. currentmodule:: quantlib.market.conventions.swap
+
+.. autoattribute:: row.fixed_leg_convention

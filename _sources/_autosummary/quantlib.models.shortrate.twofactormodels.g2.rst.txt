@@ -4,28 +4,10 @@ quantlib.models.shortrate.twofactormodels.g2
 .. automodule:: quantlib.models.shortrate.twofactormodels.g2
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       G2
    
-   
-
-   
-   
-   
-
-
-

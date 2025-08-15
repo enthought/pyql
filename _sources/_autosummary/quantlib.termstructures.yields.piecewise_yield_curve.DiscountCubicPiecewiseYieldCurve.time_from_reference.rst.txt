@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.piecewise\_yield\_curve.DiscountCubicPiecewiseYieldCurve.time\_from\_reference
+=============================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_yield_curve
+
+.. automethod:: DiscountCubicPiecewiseYieldCurve.time_from_reference

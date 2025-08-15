@@ -1,41 +1,40 @@
-quantlib.stochastic\_process.StochasticProcess1D
-================================================
+.. raw:: html
+
+   <div class="prename">quantlib.stochastic_process.</div>
+   <div class="empty"></div>
+
+StochasticProcess1D
+===============================================
 
 .. currentmodule:: quantlib.stochastic_process
 
 .. autoclass:: StochasticProcess1D
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         StochasticProcess1D.diffusion
+         StochasticProcess1D.drift
+         StochasticProcess1D.expectation
+         StochasticProcess1D.factors
+         StochasticProcess1D.size
+         StochasticProcess1D.std_deviation
+         StochasticProcess1D.variance
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~StochasticProcess1D.__init__
-      ~StochasticProcess1D.diffusion
-      ~StochasticProcess1D.drift
-      ~StochasticProcess1D.expectation
-      ~StochasticProcess1D.factors
-      ~StochasticProcess1D.size
-      ~StochasticProcess1D.std_deviation
-      ~StochasticProcess1D.variance
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~StochasticProcess1D.x0
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         StochasticProcess1D.x0
+  
+  

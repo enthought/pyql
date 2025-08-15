@@ -1,0 +1,6 @@
+quantlib.instruments.asian\_options.ContinuousAveragingAsianOption.is\_expired
+==============================================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. autoattribute:: ContinuousAveragingAsianOption.is_expired

@@ -1,0 +1,6 @@
+quantlib.position.Position.Long
+===============================
+
+.. currentmodule:: quantlib.position
+
+.. autoattribute:: Position.Long

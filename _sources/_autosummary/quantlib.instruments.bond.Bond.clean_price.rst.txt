@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Bond.clean\_price
+===========================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoattribute:: Bond.clean_price

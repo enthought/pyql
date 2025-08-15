@@ -1,0 +1,6 @@
+quantlib.indexes.swap.euribor\_swap.EuriborSwapIsdaFixA.has\_historical\_fixing
+===============================================================================
+
+.. currentmodule:: quantlib.indexes.swap.euribor_swap
+
+.. automethod:: EuriborSwapIsdaFixA.has_historical_fixing

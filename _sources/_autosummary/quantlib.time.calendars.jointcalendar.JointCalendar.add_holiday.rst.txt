@@ -1,0 +1,6 @@
+quantlib.time.calendars.jointcalendar.JointCalendar.add\_holiday
+================================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. automethod:: JointCalendar.add_holiday

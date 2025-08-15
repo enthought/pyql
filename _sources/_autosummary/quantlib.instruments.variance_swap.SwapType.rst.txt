@@ -1,45 +1,52 @@
-quantlib.instruments.variance\_swap.SwapType
-============================================
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.variance_swap.</div>
+   <div class="empty"></div>
+
+SwapType
+===========================================
 
 .. currentmodule:: quantlib.instruments.variance_swap
 
 .. autoclass:: SwapType
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SwapType.__mul__
+         SwapType.__pow__
+         SwapType.conjugate
+         SwapType.bit_length
+         SwapType.bit_count
+         SwapType.to_bytes
+         SwapType.from_bytes
+         SwapType.as_integer_ratio
+         SwapType.__len__
+         SwapType.__getitem__
+      
+         SwapType.__len__
+         SwapType.__getitem__
+         SwapType.__mul__
+         SwapType.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~SwapType.conjugate
-      ~SwapType.bit_length
-      ~SwapType.bit_count
-      ~SwapType.to_bytes
-      ~SwapType.from_bytes
-      ~SwapType.as_integer_ratio
-      ~SwapType.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~SwapType.real
-      ~SwapType.imag
-      ~SwapType.numerator
-      ~SwapType.denominator
-      ~SwapType.Long
-      ~SwapType.Short
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SwapType.real
+         SwapType.imag
+         SwapType.numerator
+         SwapType.denominator
+         SwapType.Long
+         SwapType.Short
+  
+  

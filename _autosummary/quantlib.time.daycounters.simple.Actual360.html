@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.time.daycounters.simple.Actual360 &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>Actual360 &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.time.daycounters.simple.Actual365Fixed" href="quantlib.time.daycounters.simple.Actual365Fixed.html" />
+    <link rel="next" title="quantlib.time.daycounters.simple.Actual360.day_count" href="quantlib.time.daycounters.simple.Actual360.day_count.html" />
     <link rel="prev" title="quantlib.time.daycounters.simple" href="quantlib.time.daycounters.simple.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,39 +34,31 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-time-daycounters-simple-actual360">
-<h1>quantlib.time.daycounters.simple.Actual360<a class="headerlink" href="#quantlib-time-daycounters-simple-actual360" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.time.daycounters.simple.</div>
+<div class="empty"></div><section id="actual360">
+<h1>Actual360<a class="headerlink" href="#actual360" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.time.daycounters.simple.Actual360">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Actual360</span></span><a class="headerlink" href="#quantlib.time.daycounters.simple.Actual360" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.time.daycounters.simple.Actual360.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.daycounters.simple.Actual360.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.time.daycounters.simple.Actual360.__init__" title="quantlib.time.daycounters.simple.Actual360.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">day_count</span></code>(self, Date date1, Date date2)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.daycounters.simple.Actual360.day_count.html#quantlib.time.daycounters.simple.Actual360.day_count" title="quantlib.time.daycounters.simple.Actual360.day_count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">day_count</span></code></a>(self, Date date1, Date date2)</p></td>
 <td><p>Returns the number of days between two dates.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_name</span></code>(cls, name)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.daycounters.simple.Actual360.from_name.html#quantlib.time.daycounters.simple.Actual360.from_name" title="quantlib.time.daycounters.simple.Actual360.from_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_name</span></code></a>(cls, name)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">year_fraction</span></code>(self, Date date1, Date date2, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.daycounters.simple.Actual360.year_fraction.html#quantlib.time.daycounters.simple.Actual360.year_fraction" title="quantlib.time.daycounters.simple.Actual360.year_fraction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">year_fraction</span></code></a>(self, Date date1, Date date2, ...)</p></td>
 <td><p>Returns the period between two dates as a fraction of year.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></p></td>
-<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -114,7 +106,7 @@
   <li><a href="quantlib.time.daycounters.html">quantlib.time.daycounters</a><ul>
   <li><a href="quantlib.time.daycounters.simple.html">quantlib.time.daycounters.simple</a><ul>
       <li>Previous: <a href="quantlib.time.daycounters.simple.html" title="previous chapter">quantlib.time.daycounters.simple</a></li>
-      <li>Next: <a href="quantlib.time.daycounters.simple.Actual365Fixed.html" title="next chapter">quantlib.time.daycounters.simple.Actual365Fixed</a></li>
+      <li>Next: <a href="quantlib.time.daycounters.simple.Actual360.day_count.html" title="next chapter">quantlib.time.daycounters.simple.Actual360.day_count</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

@@ -1,0 +1,6 @@
+quantlib.time.schedule.Schedule.dates
+=====================================
+
+.. currentmodule:: quantlib.time.schedule
+
+.. automethod:: Schedule.dates

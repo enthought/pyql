@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bootstraptraits.BootstrapTrait.ForwardRate
+=========================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bootstraptraits
+
+.. autoattribute:: BootstrapTrait.ForwardRate

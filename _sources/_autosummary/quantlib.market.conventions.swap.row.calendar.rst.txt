@@ -1,0 +1,6 @@
+quantlib.market.conventions.swap.row.calendar
+=============================================
+
+.. currentmodule:: quantlib.market.conventions.swap
+
+.. autoattribute:: row.calendar

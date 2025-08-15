@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.eonia.Eonia.name
+======================================
+
+.. currentmodule:: quantlib.indexes.ibor.eonia
+
+.. autoattribute:: Eonia.name

@@ -1,0 +1,6 @@
+quantlib.instruments.forward.Forward.is\_expired
+================================================
+
+.. currentmodule:: quantlib.instruments.forward
+
+.. autoattribute:: Forward.is_expired

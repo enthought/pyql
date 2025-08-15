@@ -1,54 +1,53 @@
-quantlib.instruments.swaption.Swaption
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.swaption.</div>
+   <div class="empty"></div>
+
+Swaption
 ======================================
 
 .. currentmodule:: quantlib.instruments.swaption
 
 .. autoclass:: Swaption
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Swaption.implied_volatility
+         Swaption.set_pricing_engine
+         Swaption.underlying
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Swaption.__init__
-      ~Swaption.implied_volatility
-      ~Swaption.set_pricing_engine
-      ~Swaption.underlying
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Swaption.Call
-      ~Swaption.Put
-      ~Swaption.annuity
-      ~Swaption.atm_forward
-      ~Swaption.delta
-      ~Swaption.exercise
-      ~Swaption.implied_vol
-      ~Swaption.is_expired
-      ~Swaption.net_present_value
-      ~Swaption.npv
-      ~Swaption.payoff
-      ~Swaption.settlement_method
-      ~Swaption.settlement_type
-      ~Swaption.std_dev
-      ~Swaption.time_to_expiry
-      ~Swaption.type
-      ~Swaption.valuation_date
-      ~Swaption.vega
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Swaption.Call
+         Swaption.Put
+         Swaption.annuity
+         Swaption.atm_forward
+         Swaption.delta
+         Swaption.exercise
+         Swaption.implied_vol
+         Swaption.is_expired
+         Swaption.net_present_value
+         Swaption.npv
+         Swaption.payoff
+         Swaption.settlement_method
+         Swaption.settlement_type
+         Swaption.std_dev
+         Swaption.time_to_expiry
+         Swaption.type
+         Swaption.valuation_date
+         Swaption.vega
+  
+  

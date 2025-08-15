@@ -1,56 +1,55 @@
-quantlib.indexes.ibor.usdlibor.USDLibor
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.ibor.usdlibor.</div>
+   <div class="empty"></div>
+
+USDLibor
 =======================================
 
 .. currentmodule:: quantlib.indexes.ibor.usdlibor
 
 .. autoclass:: USDLibor
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         USDLibor.add_fixing
+         USDLibor.add_fixings
+         USDLibor.clear_fixings
+         USDLibor.fixing
+         USDLibor.fixing_date
+         USDLibor.forecast_fixing
+         USDLibor.from_name
+         USDLibor.has_historical_fixing
+         USDLibor.is_valid_fixing_date
+         USDLibor.maturity_date
+         USDLibor.value_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~USDLibor.__init__
-      ~USDLibor.add_fixing
-      ~USDLibor.add_fixings
-      ~USDLibor.clear_fixings
-      ~USDLibor.fixing
-      ~USDLibor.fixing_date
-      ~USDLibor.forecast_fixing
-      ~USDLibor.from_name
-      ~USDLibor.has_historical_fixing
-      ~USDLibor.is_valid_fixing_date
-      ~USDLibor.maturity_date
-      ~USDLibor.value_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~USDLibor.business_day_convention
-      ~USDLibor.currency
-      ~USDLibor.day_counter
-      ~USDLibor.end_of_month
-      ~USDLibor.family_name
-      ~USDLibor.fixing_calendar
-      ~USDLibor.fixing_days
-      ~USDLibor.forwarding_term_structure
-      ~USDLibor.joint_calendar
-      ~USDLibor.name
-      ~USDLibor.tenor
-      ~USDLibor.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         USDLibor.business_day_convention
+         USDLibor.currency
+         USDLibor.day_counter
+         USDLibor.end_of_month
+         USDLibor.family_name
+         USDLibor.fixing_calendar
+         USDLibor.fixing_days
+         USDLibor.forwarding_term_structure
+         USDLibor.joint_calendar
+         USDLibor.name
+         USDLibor.tenor
+         USDLibor.time_series
+  
+  

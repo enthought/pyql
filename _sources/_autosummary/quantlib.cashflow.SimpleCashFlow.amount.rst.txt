@@ -1,0 +1,6 @@
+quantlib.cashflow.SimpleCashFlow.amount
+=======================================
+
+.. currentmodule:: quantlib.cashflow
+
+.. autoattribute:: SimpleCashFlow.amount

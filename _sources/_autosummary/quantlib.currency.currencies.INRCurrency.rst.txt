@@ -1,39 +1,38 @@
-quantlib.currency.currencies.INRCurrency
+.. raw:: html
+
+   <div class="prename">quantlib.currency.currencies.</div>
+   <div class="empty"></div>
+
+INRCurrency
 ========================================
 
 .. currentmodule:: quantlib.currency.currencies
 
 .. autoclass:: INRCurrency
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         INRCurrency.from_name
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~INRCurrency.__init__
-      ~INRCurrency.from_name
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~INRCurrency.code
-      ~INRCurrency.fractionSymbol
-      ~INRCurrency.fractionsPerUnit
-      ~INRCurrency.name
-      ~INRCurrency.symbol
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         INRCurrency.code
+         INRCurrency.fractionSymbol
+         INRCurrency.fractionsPerUnit
+         INRCurrency.name
+         INRCurrency.symbol
+  
+  

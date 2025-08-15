@@ -4,28 +4,10 @@ quantlib.instruments.make\_cds
 .. automodule:: quantlib.instruments.make_cds
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       MakeCreditDefaultSwap
    
-   
-
-   
-   
-   
-
-
-

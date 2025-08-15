@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.YoYInflationIndex.time\_series
+================================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. autoattribute:: YoYInflationIndex.time_series

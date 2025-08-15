@@ -1,0 +1,6 @@
+quantlib.time.imm.Month.to\_bytes
+=================================
+
+.. currentmodule:: quantlib.time.imm
+
+.. automethod:: Month.to_bytes

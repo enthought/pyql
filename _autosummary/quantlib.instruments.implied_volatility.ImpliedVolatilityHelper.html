@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.instruments.implied_volatility.ImpliedVolatilityHelper &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>ImpliedVolatilityHelper &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.instruments.make_cds" href="quantlib.instruments.make_cds.html" />
+    <link rel="next" title="quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.calculate" href="quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.calculate.html" />
     <link rel="prev" title="quantlib.instruments.implied_volatility" href="quantlib.instruments.implied_volatility.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,41 +34,24 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-instruments-implied-volatility-impliedvolatilityhelper">
-<h1>quantlib.instruments.implied_volatility.ImpliedVolatilityHelper<a class="headerlink" href="#quantlib-instruments-implied-volatility-impliedvolatilityhelper" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.instruments.implied_volatility.</div>
+<div class="empty"></div><section id="impliedvolatilityhelper">
+<h1>ImpliedVolatilityHelper<a class="headerlink" href="#impliedvolatilityhelper" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.instruments.implied_volatility.ImpliedVolatilityHelper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ImpliedVolatilityHelper</span></span><a class="headerlink" href="#quantlib.instruments.implied_volatility.ImpliedVolatilityHelper" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.__init__" title="quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.calculate.html#quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.calculate" title="quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.calculate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate</span></code></a>(self, Instrument instrument, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.calculate" title="quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.calculate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate</span></code></a>(self, Instrument instrument, ...)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.clone" title="quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.clone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clone</span></code></a>(self, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.clone.html#quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.clone" title="quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.clone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clone</span></code></a>(self, ...)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.calculate">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Instrument</span> <span class="pre">instrument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PricingEngine</span> <span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SimpleQuote</span> <span class="pre">volatility</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">target_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">accuracy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">max_evaluations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Volatility</span> <span class="pre">min_vol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Volatility</span> <span class="pre">max_vol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.calculate" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.clone">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GeneralizedBlackScholesProcess</span> <span class="pre">process</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SimpleQuote</span> <span class="pre">quote</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.clone" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </section>
@@ -112,7 +95,7 @@
   <li><a href="quantlib.instruments.html">quantlib.instruments</a><ul>
   <li><a href="quantlib.instruments.implied_volatility.html">quantlib.instruments.implied_volatility</a><ul>
       <li>Previous: <a href="quantlib.instruments.implied_volatility.html" title="previous chapter">quantlib.instruments.implied_volatility</a></li>
-      <li>Next: <a href="quantlib.instruments.make_cds.html" title="next chapter">quantlib.instruments.make_cds</a></li>
+      <li>Next: <a href="quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.calculate.html" title="next chapter">quantlib.instruments.implied_volatility.ImpliedVolatilityHelper.calculate</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

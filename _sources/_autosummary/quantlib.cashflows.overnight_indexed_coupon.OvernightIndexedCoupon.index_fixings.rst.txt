@@ -1,0 +1,6 @@
+quantlib.cashflows.overnight\_indexed\_coupon.OvernightIndexedCoupon.index\_fixings
+===================================================================================
+
+.. currentmodule:: quantlib.cashflows.overnight_indexed_coupon
+
+.. automethod:: OvernightIndexedCoupon.index_fixings

@@ -1,50 +1,57 @@
-quantlib.time.businessdayconvention.BusinessDayConvention
+.. raw:: html
+
+   <div class="prename">quantlib.time.businessdayconvention.</div>
+   <div class="empty"></div>
+
+BusinessDayConvention
 =========================================================
 
 .. currentmodule:: quantlib.time.businessdayconvention
 
 .. autoclass:: BusinessDayConvention
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BusinessDayConvention.__mul__
+         BusinessDayConvention.__pow__
+         BusinessDayConvention.conjugate
+         BusinessDayConvention.bit_length
+         BusinessDayConvention.bit_count
+         BusinessDayConvention.to_bytes
+         BusinessDayConvention.from_bytes
+         BusinessDayConvention.as_integer_ratio
+         BusinessDayConvention.__len__
+         BusinessDayConvention.__getitem__
+      
+         BusinessDayConvention.__len__
+         BusinessDayConvention.__getitem__
+         BusinessDayConvention.__mul__
+         BusinessDayConvention.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BusinessDayConvention.conjugate
-      ~BusinessDayConvention.bit_length
-      ~BusinessDayConvention.bit_count
-      ~BusinessDayConvention.to_bytes
-      ~BusinessDayConvention.from_bytes
-      ~BusinessDayConvention.as_integer_ratio
-      ~BusinessDayConvention.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~BusinessDayConvention.real
-      ~BusinessDayConvention.imag
-      ~BusinessDayConvention.numerator
-      ~BusinessDayConvention.denominator
-      ~BusinessDayConvention.Following
-      ~BusinessDayConvention.ModifiedFollowing
-      ~BusinessDayConvention.Preceding
-      ~BusinessDayConvention.ModifiedPreceding
-      ~BusinessDayConvention.Unadjusted
-      ~BusinessDayConvention.HalfMonthModifiedFollowing
-      ~BusinessDayConvention.Nearest
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BusinessDayConvention.real
+         BusinessDayConvention.imag
+         BusinessDayConvention.numerator
+         BusinessDayConvention.denominator
+         BusinessDayConvention.Following
+         BusinessDayConvention.ModifiedFollowing
+         BusinessDayConvention.Preceding
+         BusinessDayConvention.ModifiedPreceding
+         BusinessDayConvention.Unadjusted
+         BusinessDayConvention.HalfMonthModifiedFollowing
+         BusinessDayConvention.Nearest
+  
+  

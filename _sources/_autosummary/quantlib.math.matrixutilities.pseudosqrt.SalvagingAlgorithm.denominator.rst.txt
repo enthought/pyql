@@ -1,0 +1,6 @@
+quantlib.math.matrixutilities.pseudosqrt.SalvagingAlgorithm.denominator
+=======================================================================
+
+.. currentmodule:: quantlib.math.matrixutilities.pseudosqrt
+
+.. autoattribute:: SalvagingAlgorithm.denominator

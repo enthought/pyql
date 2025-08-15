@@ -1,0 +1,6 @@
+quantlib.math.matrixutilities.pseudosqrt.SalvagingAlgorithm.as\_integer\_ratio
+==============================================================================
+
+.. currentmodule:: quantlib.math.matrixutilities.pseudosqrt
+
+.. automethod:: SalvagingAlgorithm.as_integer_ratio

@@ -1,0 +1,6 @@
+quantlib.cashflows.cap\_floored\_coupon.CappedFlooredIborCoupon.adjusted\_fixing
+================================================================================
+
+.. currentmodule:: quantlib.cashflows.cap_floored_coupon
+
+.. autoattribute:: CappedFlooredIborCoupon.adjusted_fixing

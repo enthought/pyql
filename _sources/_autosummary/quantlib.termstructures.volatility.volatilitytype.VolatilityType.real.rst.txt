@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.volatilitytype.VolatilityType.real
+=====================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.volatilitytype
+
+.. autoattribute:: VolatilityType.real

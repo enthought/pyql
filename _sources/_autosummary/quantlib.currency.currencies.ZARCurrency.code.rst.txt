@@ -1,0 +1,6 @@
+quantlib.currency.currencies.ZARCurrency.code
+=============================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: ZARCurrency.code

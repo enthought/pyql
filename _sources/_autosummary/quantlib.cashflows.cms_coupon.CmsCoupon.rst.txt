@@ -1,57 +1,56 @@
-quantlib.cashflows.cms\_coupon.CmsCoupon
-========================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.cms_coupon.</div>
+   <div class="empty"></div>
+
+CmsCoupon
+=======================================
 
 .. currentmodule:: quantlib.cashflows.cms_coupon
 
 .. autoclass:: CmsCoupon
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CmsCoupon.accrued_amount
+         CmsCoupon.accrued_days
+         CmsCoupon.accrued_period
+         CmsCoupon.has_occured
+         CmsCoupon.set_pricer
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~CmsCoupon.__init__
-      ~CmsCoupon.accrued_amount
-      ~CmsCoupon.accrued_days
-      ~CmsCoupon.accrued_period
-      ~CmsCoupon.has_occured
-      ~CmsCoupon.set_pricer
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~CmsCoupon.accrual_days
-      ~CmsCoupon.accrual_end_date
-      ~CmsCoupon.accrual_period
-      ~CmsCoupon.accrual_start_date
-      ~CmsCoupon.adjusted_fixing
-      ~CmsCoupon.amount
-      ~CmsCoupon.convexity_adjustment
-      ~CmsCoupon.date
-      ~CmsCoupon.day_counter
-      ~CmsCoupon.fixing_date
-      ~CmsCoupon.fixing_days
-      ~CmsCoupon.index
-      ~CmsCoupon.index_fixing
-      ~CmsCoupon.is_in_arrears
-      ~CmsCoupon.nominal
-      ~CmsCoupon.rate
-      ~CmsCoupon.reference_period_end
-      ~CmsCoupon.reference_period_start
-      ~CmsCoupon.swap_index
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CmsCoupon.accrual_days
+         CmsCoupon.accrual_end_date
+         CmsCoupon.accrual_period
+         CmsCoupon.accrual_start_date
+         CmsCoupon.adjusted_fixing
+         CmsCoupon.amount
+         CmsCoupon.convexity_adjustment
+         CmsCoupon.date
+         CmsCoupon.day_counter
+         CmsCoupon.fixing_date
+         CmsCoupon.fixing_days
+         CmsCoupon.index
+         CmsCoupon.index_fixing
+         CmsCoupon.is_in_arrears
+         CmsCoupon.nominal
+         CmsCoupon.rate
+         CmsCoupon.reference_period_end
+         CmsCoupon.reference_period_start
+         CmsCoupon.swap_index
+  
+  

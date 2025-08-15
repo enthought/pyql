@@ -1,0 +1,6 @@
+quantlib.time.daycounters.thirty360.Thirty360.German
+====================================================
+
+.. currentmodule:: quantlib.time.daycounters.thirty360
+
+.. autoattribute:: Thirty360.German

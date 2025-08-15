@@ -1,0 +1,6 @@
+quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.FdmSchemeType.\_\_len\_\_
+======================================================================================
+
+.. currentmodule:: quantlib.methods.finitedifferences.solvers.fdmbackwardsolver
+
+.. automethod:: FdmSchemeType.__len__

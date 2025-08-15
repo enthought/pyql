@@ -1,0 +1,6 @@
+quantlib.time.calendars.poland.Poland.add\_holiday
+==================================================
+
+.. currentmodule:: quantlib.time.calendars.poland
+
+.. automethod:: Poland.add_holiday

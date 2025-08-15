@@ -1,0 +1,6 @@
+quantlib.cashflows.cap\_floored\_coupon.CappedFlooredCmsCoupon.set\_pricer
+==========================================================================
+
+.. currentmodule:: quantlib.cashflows.cap_floored_coupon
+
+.. automethod:: CappedFlooredCmsCoupon.set_pricer

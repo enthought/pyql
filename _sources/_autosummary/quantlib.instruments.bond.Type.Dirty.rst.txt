@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Type.Dirty
+====================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoattribute:: Type.Dirty

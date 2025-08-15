@@ -1,0 +1,6 @@
+quantlib.settings.Settings.reset\_evaluation\_date
+==================================================
+
+.. currentmodule:: quantlib.settings
+
+.. automethod:: Settings.reset_evaluation_date

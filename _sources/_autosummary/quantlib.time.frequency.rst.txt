@@ -4,28 +4,10 @@ quantlib.time.frequency
 .. automodule:: quantlib.time.frequency
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       Frequency
    
-   
-
-   
-   
-   
-
-
-

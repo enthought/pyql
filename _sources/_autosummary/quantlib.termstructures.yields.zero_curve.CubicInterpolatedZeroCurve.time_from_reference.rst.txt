@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_curve.CubicInterpolatedZeroCurve.time\_from\_reference
+===========================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. automethod:: CubicInterpolatedZeroCurve.time_from_reference

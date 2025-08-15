@@ -1,46 +1,53 @@
-quantlib.indexes.inflation\_index.InterpolationType
-===================================================
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.inflation_index.</div>
+   <div class="empty"></div>
+
+InterpolationType
+==================================================
 
 .. currentmodule:: quantlib.indexes.inflation_index
 
 .. autoclass:: InterpolationType
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         InterpolationType.__mul__
+         InterpolationType.__pow__
+         InterpolationType.conjugate
+         InterpolationType.bit_length
+         InterpolationType.bit_count
+         InterpolationType.to_bytes
+         InterpolationType.from_bytes
+         InterpolationType.as_integer_ratio
+         InterpolationType.__len__
+         InterpolationType.__getitem__
+      
+         InterpolationType.__len__
+         InterpolationType.__getitem__
+         InterpolationType.__mul__
+         InterpolationType.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~InterpolationType.conjugate
-      ~InterpolationType.bit_length
-      ~InterpolationType.bit_count
-      ~InterpolationType.to_bytes
-      ~InterpolationType.from_bytes
-      ~InterpolationType.as_integer_ratio
-      ~InterpolationType.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~InterpolationType.real
-      ~InterpolationType.imag
-      ~InterpolationType.numerator
-      ~InterpolationType.denominator
-      ~InterpolationType.AsIndex
-      ~InterpolationType.Flat
-      ~InterpolationType.Linear
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         InterpolationType.real
+         InterpolationType.imag
+         InterpolationType.numerator
+         InterpolationType.denominator
+         InterpolationType.AsIndex
+         InterpolationType.Flat
+         InterpolationType.Linear
+  
+  

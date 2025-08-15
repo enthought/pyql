@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.net\_present\_value
+======================================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.net_present_value

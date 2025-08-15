@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.termstructures.yields.flat_forward.FlatForward &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>FlatForward &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.termstructures.yields.forward_curve" href="quantlib.termstructures.yields.forward_curve.html" />
+    <link rel="next" title="quantlib.termstructures.yields.flat_forward.FlatForward.discount" href="quantlib.termstructures.yields.flat_forward.FlatForward.discount.html" />
     <link rel="prev" title="quantlib.termstructures.yields.flat_forward" href="quantlib.termstructures.yields.flat_forward.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,8 +34,9 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-termstructures-yields-flat-forward-flatforward">
-<h1>quantlib.termstructures.yields.flat_forward.FlatForward<a class="headerlink" href="#quantlib-termstructures-yields-flat-forward-flatforward" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.termstructures.yields.flat_forward.</div>
+<div class="empty"></div><section id="flatforward">
+<h1>FlatForward<a class="headerlink" href="#flatforward" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.termstructures.yields.flat_forward.FlatForward">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FlatForward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">reference_date=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">daycounter=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">settlement_days=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">calendar=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">compounding=Compounding.Continuous</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequency</span> <span class="pre">frequency=Annual</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yields.flat_forward.FlatForward" title="Link to this definition">¶</a></dt>
@@ -43,64 +44,50 @@
 <p>Flat intereste-rate curve</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>refererence_date</strong> (<a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><em>quantlib.time.date.Date</em></a><em> or </em><em>None</em>) – Reference date used by the curve. If None, the user must provide the
-settlement days.</p></li>
-<li><p><strong>forward</strong> (<a class="reference internal" href="quantlib.quote.Quote.html#quantlib.quote.Quote" title="quantlib.quote.Quote"><em>quantlib.quote.Quote</em></a><em> or </em><em>float</em>) – The forward value used by the curve.</p></li>
-<li><p><strong>daycounter</strong> (<a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><em>quantlib.time.daycounter.DayCounter</em></a>) – The day counter used by the curve.</p></li>
-<li><p><strong>settlement_days</strong> (<em>int</em>) – The settlement days used by this curve. If a reference date is given,
-this parameter is not used.</p></li>
-<li><p><strong>calendar</strong> (<a class="reference internal" href="quantlib.time.calendar.Calendar.html#quantlib.time.calendar.Calendar" title="quantlib.time.calendar.Calendar"><em>quantlib.time.calendar.Calendar</em></a>) – The calendar used by the curve if created with the settlement days.</p></li>
-<li><p><strong>compounding</strong> (<em>int</em><em> (</em><em>default: Continuous</em><em>)</em>) – The type of compounding used by this curve.</p></li>
-<li><p><strong>frequency</strong> (<em>int</em><em> (</em><em>default: Annual</em><em>)</em>) – The frequency used by this curve.</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>refererence_date: quantlib.time.date.Date or None</strong></dt><dd><p>Reference date used by the curve. If None, the user must provide the
+settlement days.</p>
+</dd>
+<dt><strong>forward: quantlib.quote.Quote or float</strong></dt><dd><p>The forward value used by the curve.</p>
+</dd>
+<dt><strong>daycounter: quantlib.time.daycounter.DayCounter</strong></dt><dd><p>The day counter used by the curve.</p>
+</dd>
+<dt><strong>settlement_days: int</strong></dt><dd><p>The settlement days used by this curve. If a reference date is given,
+this parameter is not used.</p>
+</dd>
+<dt><strong>calendar: quantlib.time.calendar.Calendar</strong></dt><dd><p>The calendar used by the curve if created with the settlement days.</p>
+</dd>
+<dt><strong>compounding: int (default: Continuous)</strong></dt><dd><p>The type of compounding used by this curve.</p>
+</dd>
+<dt><strong>frequency: int (default: Annual)</strong></dt><dd><p>The frequency used by this curve.</p>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.termstructures.yields.flat_forward.FlatForward.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yields.flat_forward.FlatForward.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>day_counter</strong></dt><dd></dd>
+<dt><strong>extrapolation</strong></dt><dd></dd>
+<dt><strong>max_date</strong></dt><dd></dd>
+<dt><strong>max_time</strong></dt><dd></dd>
+<dt><strong>reference_date</strong></dt><dd></dd>
+<dt><strong>settlement_days</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.termstructures.yields.flat_forward.FlatForward.__init__" title="quantlib.termstructures.yields.flat_forward.FlatForward.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.yields.flat_forward.FlatForward.discount.html#quantlib.termstructures.yields.flat_forward.FlatForward.discount" title="quantlib.termstructures.yields.flat_forward.FlatForward.discount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount</span></code></a>(self, value, bool extrapolate=False)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount</span></code>(self, value, bool extrapolate=False)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_rate</span></code>(self, d1, d2, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.yields.flat_forward.FlatForward.forward_rate.html#quantlib.termstructures.yields.flat_forward.FlatForward.forward_rate" title="quantlib.termstructures.yields.flat_forward.FlatForward.forward_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_rate</span></code></a>(self, d1, d2, ...)</p></td>
 <td><p>Returns the forward interest rate between two dates or times.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code>(self, Date dt)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.yields.flat_forward.FlatForward.time_from_reference.html#quantlib.termstructures.yields.flat_forward.FlatForward.time_from_reference" title="quantlib.termstructures.yields.flat_forward.FlatForward.time_from_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code></a>(self, Date dt)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_rate</span></code>(self, d, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.yields.flat_forward.FlatForward.zero_rate.html#quantlib.termstructures.yields.flat_forward.FlatForward.zero_rate" title="quantlib.termstructures.yields.flat_forward.FlatForward.zero_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_rate</span></code></a>(self, d, ...)</p></td>
 <td><p>Returns the implied zero-yield rate for the given date.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">day_counter</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">extrapolation</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_time</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_days</span></code></p></td>
-<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -148,7 +135,7 @@ this parameter is not used.</p></li>
   <li><a href="quantlib.termstructures.yields.html">quantlib.termstructures.yields</a><ul>
   <li><a href="quantlib.termstructures.yields.flat_forward.html">quantlib.termstructures.yields.flat_forward</a><ul>
       <li>Previous: <a href="quantlib.termstructures.yields.flat_forward.html" title="previous chapter">quantlib.termstructures.yields.flat_forward</a></li>
-      <li>Next: <a href="quantlib.termstructures.yields.forward_curve.html" title="next chapter">quantlib.termstructures.yields.forward_curve</a></li>
+      <li>Next: <a href="quantlib.termstructures.yields.flat_forward.FlatForward.discount.html" title="next chapter">quantlib.termstructures.yields.flat_forward.FlatForward.discount</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

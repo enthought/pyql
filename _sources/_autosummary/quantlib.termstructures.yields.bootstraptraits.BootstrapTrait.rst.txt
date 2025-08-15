@@ -1,46 +1,53 @@
-quantlib.termstructures.yields.bootstraptraits.BootstrapTrait
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.bootstraptraits.</div>
+   <div class="empty"></div>
+
+BootstrapTrait
 =============================================================
 
 .. currentmodule:: quantlib.termstructures.yields.bootstraptraits
 
 .. autoclass:: BootstrapTrait
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BootstrapTrait.__mul__
+         BootstrapTrait.__pow__
+         BootstrapTrait.conjugate
+         BootstrapTrait.bit_length
+         BootstrapTrait.bit_count
+         BootstrapTrait.to_bytes
+         BootstrapTrait.from_bytes
+         BootstrapTrait.as_integer_ratio
+         BootstrapTrait.__len__
+         BootstrapTrait.__getitem__
+      
+         BootstrapTrait.__len__
+         BootstrapTrait.__getitem__
+         BootstrapTrait.__mul__
+         BootstrapTrait.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BootstrapTrait.conjugate
-      ~BootstrapTrait.bit_length
-      ~BootstrapTrait.bit_count
-      ~BootstrapTrait.to_bytes
-      ~BootstrapTrait.from_bytes
-      ~BootstrapTrait.as_integer_ratio
-      ~BootstrapTrait.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~BootstrapTrait.real
-      ~BootstrapTrait.imag
-      ~BootstrapTrait.numerator
-      ~BootstrapTrait.denominator
-      ~BootstrapTrait.Discount
-      ~BootstrapTrait.ZeroYield
-      ~BootstrapTrait.ForwardRate
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BootstrapTrait.real
+         BootstrapTrait.imag
+         BootstrapTrait.numerator
+         BootstrapTrait.denominator
+         BootstrapTrait.Discount
+         BootstrapTrait.ZeroYield
+         BootstrapTrait.ForwardRate
+  
+  

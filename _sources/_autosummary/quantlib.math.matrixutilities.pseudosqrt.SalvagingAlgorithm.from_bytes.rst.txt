@@ -1,0 +1,6 @@
+quantlib.math.matrixutilities.pseudosqrt.SalvagingAlgorithm.from\_bytes
+=======================================================================
+
+.. currentmodule:: quantlib.math.matrixutilities.pseudosqrt
+
+.. automethod:: SalvagingAlgorithm.from_bytes

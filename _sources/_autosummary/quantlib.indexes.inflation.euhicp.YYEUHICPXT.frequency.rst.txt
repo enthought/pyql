@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.euhicp.YYEUHICPXT.frequency
+======================================================
+
+.. currentmodule:: quantlib.indexes.inflation.euhicp
+
+.. autoattribute:: YYEUHICPXT.frequency

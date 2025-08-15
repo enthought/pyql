@@ -1,0 +1,6 @@
+quantlib.processes.heston\_process.HestonProcess.sigma
+======================================================
+
+.. currentmodule:: quantlib.processes.heston_process
+
+.. autoattribute:: HestonProcess.sigma

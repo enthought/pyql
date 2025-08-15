@@ -1,39 +1,38 @@
-quantlib.termstructures.yields.bond\_helpers.FixedRateBondHelper
-================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.bond_helpers.</div>
+   <div class="empty"></div>
+
+FixedRateBondHelper
+===============================================================
 
 .. currentmodule:: quantlib.termstructures.yields.bond_helpers
 
 .. autoclass:: FixedRateBondHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FixedRateBondHelper.update
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FixedRateBondHelper.__init__
-      ~FixedRateBondHelper.update
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~FixedRateBondHelper.earliest_date
-      ~FixedRateBondHelper.implied_quote
-      ~FixedRateBondHelper.latest_date
-      ~FixedRateBondHelper.maturity_date
-      ~FixedRateBondHelper.quote
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FixedRateBondHelper.earliest_date
+         FixedRateBondHelper.implied_quote
+         FixedRateBondHelper.latest_date
+         FixedRateBondHelper.maturity_date
+         FixedRateBondHelper.quote
+  
+  

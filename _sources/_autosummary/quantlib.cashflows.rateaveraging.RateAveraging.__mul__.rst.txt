@@ -1,0 +1,6 @@
+quantlib.cashflows.rateaveraging.RateAveraging.\_\_mul\_\_
+==========================================================
+
+.. currentmodule:: quantlib.cashflows.rateaveraging
+
+.. automethod:: RateAveraging.__mul__

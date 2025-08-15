@@ -1,0 +1,6 @@
+quantlib.option.Option.npv
+==========================
+
+.. currentmodule:: quantlib.option
+
+.. autoattribute:: Option.npv

@@ -1,0 +1,6 @@
+quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.net\_present\_value
+================================================================================
+
+.. currentmodule:: quantlib.instruments.fixedvsfloatingswap
+
+.. autoattribute:: FixedVsFloatingSwap.net_present_value

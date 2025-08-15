@@ -1,0 +1,6 @@
+quantlib.currency.currencies.SEKCurrency.symbol
+===============================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: SEKCurrency.symbol

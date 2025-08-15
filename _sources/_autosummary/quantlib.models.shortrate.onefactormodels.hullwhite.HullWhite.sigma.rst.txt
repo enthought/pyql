@@ -1,0 +1,6 @@
+quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.sigma
+===================================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactormodels.hullwhite
+
+.. autoattribute:: HullWhite.sigma

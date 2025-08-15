@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.smilesection.SmileSection.reference\_date
+============================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.smilesection
+
+.. autoattribute:: SmileSection.reference_date

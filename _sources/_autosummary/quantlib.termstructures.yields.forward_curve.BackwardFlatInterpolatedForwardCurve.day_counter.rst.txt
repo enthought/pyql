@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.BackwardFlatInterpolatedForwardCurve.day\_counter
+===============================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. autoattribute:: BackwardFlatInterpolatedForwardCurve.day_counter

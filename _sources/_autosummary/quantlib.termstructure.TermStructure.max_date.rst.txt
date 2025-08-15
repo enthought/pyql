@@ -1,0 +1,6 @@
+quantlib.termstructure.TermStructure.max\_date
+==============================================
+
+.. currentmodule:: quantlib.termstructure
+
+.. autoattribute:: TermStructure.max_date

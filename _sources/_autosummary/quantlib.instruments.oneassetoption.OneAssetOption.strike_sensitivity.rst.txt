@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.strike\_sensitivity
+======================================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.strike_sensitivity

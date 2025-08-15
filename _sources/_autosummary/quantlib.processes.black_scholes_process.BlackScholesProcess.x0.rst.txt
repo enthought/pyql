@@ -1,0 +1,6 @@
+quantlib.processes.black\_scholes\_process.BlackScholesProcess.x0
+=================================================================
+
+.. currentmodule:: quantlib.processes.black_scholes_process
+
+.. autoattribute:: BlackScholesProcess.x0

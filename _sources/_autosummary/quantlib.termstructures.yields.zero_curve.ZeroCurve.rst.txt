@@ -1,48 +1,47 @@
-quantlib.termstructures.yields.zero\_curve.ZeroCurve
-====================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.zero_curve.</div>
+   <div class="empty"></div>
+
+ZeroCurve
+===================================================
 
 .. currentmodule:: quantlib.termstructures.yields.zero_curve
 
 .. autoclass:: ZeroCurve
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZeroCurve.discount
+         ZeroCurve.forward_rate
+         ZeroCurve.time_from_reference
+         ZeroCurve.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ZeroCurve.__init__
-      ~ZeroCurve.discount
-      ~ZeroCurve.forward_rate
-      ~ZeroCurve.time_from_reference
-      ~ZeroCurve.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ZeroCurve.data
-      ~ZeroCurve.dates
-      ~ZeroCurve.day_counter
-      ~ZeroCurve.extrapolation
-      ~ZeroCurve.max_date
-      ~ZeroCurve.max_time
-      ~ZeroCurve.nodes
-      ~ZeroCurve.reference_date
-      ~ZeroCurve.settlement_days
-      ~ZeroCurve.times
-      ~ZeroCurve.zero_rates
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZeroCurve.data
+         ZeroCurve.dates
+         ZeroCurve.day_counter
+         ZeroCurve.extrapolation
+         ZeroCurve.max_date
+         ZeroCurve.max_time
+         ZeroCurve.nodes
+         ZeroCurve.reference_date
+         ZeroCurve.settlement_days
+         ZeroCurve.times
+         ZeroCurve.zero_rates
+  
+  

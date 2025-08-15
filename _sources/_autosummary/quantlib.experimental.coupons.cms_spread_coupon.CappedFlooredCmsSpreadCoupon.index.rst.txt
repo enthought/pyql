@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.cms\_spread\_coupon.CappedFlooredCmsSpreadCoupon.index
+====================================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.cms_spread_coupon
+
+.. autoattribute:: CappedFlooredCmsSpreadCoupon.index

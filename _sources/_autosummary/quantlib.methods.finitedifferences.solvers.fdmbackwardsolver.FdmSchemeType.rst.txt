@@ -1,52 +1,59 @@
-quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.FdmSchemeType
+.. raw:: html
+
+   <div class="prename">quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.</div>
+   <div class="empty"></div>
+
+FdmSchemeType
 ==========================================================================
 
 .. currentmodule:: quantlib.methods.finitedifferences.solvers.fdmbackwardsolver
 
 .. autoclass:: FdmSchemeType
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FdmSchemeType.__mul__
+         FdmSchemeType.__pow__
+         FdmSchemeType.conjugate
+         FdmSchemeType.bit_length
+         FdmSchemeType.bit_count
+         FdmSchemeType.to_bytes
+         FdmSchemeType.from_bytes
+         FdmSchemeType.as_integer_ratio
+         FdmSchemeType.__len__
+         FdmSchemeType.__getitem__
+      
+         FdmSchemeType.__len__
+         FdmSchemeType.__getitem__
+         FdmSchemeType.__mul__
+         FdmSchemeType.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FdmSchemeType.conjugate
-      ~FdmSchemeType.bit_length
-      ~FdmSchemeType.bit_count
-      ~FdmSchemeType.to_bytes
-      ~FdmSchemeType.from_bytes
-      ~FdmSchemeType.as_integer_ratio
-      ~FdmSchemeType.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~FdmSchemeType.real
-      ~FdmSchemeType.imag
-      ~FdmSchemeType.numerator
-      ~FdmSchemeType.denominator
-      ~FdmSchemeType.HundsdorferType
-      ~FdmSchemeType.DouglasType
-      ~FdmSchemeType.CraigSneydType
-      ~FdmSchemeType.ModifiedCraigSneydType
-      ~FdmSchemeType.ImplicitEulerType
-      ~FdmSchemeType.ExplicitEulerType
-      ~FdmSchemeType.MethodOfLinesType
-      ~FdmSchemeType.TrBDF2Type
-      ~FdmSchemeType.CrankNicolsonType
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FdmSchemeType.real
+         FdmSchemeType.imag
+         FdmSchemeType.numerator
+         FdmSchemeType.denominator
+         FdmSchemeType.HundsdorferType
+         FdmSchemeType.DouglasType
+         FdmSchemeType.CraigSneydType
+         FdmSchemeType.ModifiedCraigSneydType
+         FdmSchemeType.ImplicitEulerType
+         FdmSchemeType.ExplicitEulerType
+         FdmSchemeType.MethodOfLinesType
+         FdmSchemeType.TrBDF2Type
+         FdmSchemeType.CrankNicolsonType
+  
+  

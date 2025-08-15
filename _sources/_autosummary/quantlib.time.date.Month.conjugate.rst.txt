@@ -1,0 +1,6 @@
+quantlib.time.date.Month.conjugate
+==================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: Month.conjugate

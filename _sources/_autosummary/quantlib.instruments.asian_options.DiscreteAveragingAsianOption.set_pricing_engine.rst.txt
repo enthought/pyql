@@ -1,0 +1,6 @@
+quantlib.instruments.asian\_options.DiscreteAveragingAsianOption.set\_pricing\_engine
+=====================================================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. automethod:: DiscreteAveragingAsianOption.set_pricing_engine

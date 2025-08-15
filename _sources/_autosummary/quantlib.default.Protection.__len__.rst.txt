@@ -1,0 +1,6 @@
+quantlib.default.Protection.\_\_len\_\_
+=======================================
+
+.. currentmodule:: quantlib.default
+
+.. automethod:: Protection.__len__

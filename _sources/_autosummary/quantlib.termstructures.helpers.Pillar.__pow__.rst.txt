@@ -1,0 +1,6 @@
+quantlib.termstructures.helpers.Pillar.\_\_pow\_\_
+==================================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. automethod:: Pillar.__pow__

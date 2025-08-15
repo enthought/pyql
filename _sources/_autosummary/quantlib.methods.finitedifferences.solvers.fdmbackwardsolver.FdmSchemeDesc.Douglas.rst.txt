@@ -1,0 +1,6 @@
+quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.FdmSchemeDesc.Douglas
+==================================================================================
+
+.. currentmodule:: quantlib.methods.finitedifferences.solvers.fdmbackwardsolver
+
+.. automethod:: FdmSchemeDesc.Douglas

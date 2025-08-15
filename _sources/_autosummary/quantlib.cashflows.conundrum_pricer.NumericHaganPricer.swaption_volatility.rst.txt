@@ -1,0 +1,6 @@
+quantlib.cashflows.conundrum\_pricer.NumericHaganPricer.swaption\_volatility
+============================================================================
+
+.. currentmodule:: quantlib.cashflows.conundrum_pricer
+
+.. autoattribute:: NumericHaganPricer.swaption_volatility

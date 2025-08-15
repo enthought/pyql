@@ -1,36 +1,35 @@
-quantlib.termstructures.inflation.inflation\_helpers.YearOnYearInflationSwapHelper
-==================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.inflation.inflation_helpers.</div>
+   <div class="empty"></div>
+
+YearOnYearInflationSwapHelper
+=================================================================================
 
 .. currentmodule:: quantlib.termstructures.inflation.inflation_helpers
 
 .. autoclass:: YearOnYearInflationSwapHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YearOnYearInflationSwapHelper.set_term_structure
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~YearOnYearInflationSwapHelper.__init__
-      ~YearOnYearInflationSwapHelper.set_term_structure
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~YearOnYearInflationSwapHelper.implied_quote
-      ~YearOnYearInflationSwapHelper.latest_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YearOnYearInflationSwapHelper.implied_quote
+         YearOnYearInflationSwapHelper.latest_date
+  
+  

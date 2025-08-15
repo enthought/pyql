@@ -1,0 +1,6 @@
+quantlib.time.daycounters.thirty360.Thirty360.day\_count
+========================================================
+
+.. currentmodule:: quantlib.time.daycounters.thirty360
+
+.. automethod:: Thirty360.day_count

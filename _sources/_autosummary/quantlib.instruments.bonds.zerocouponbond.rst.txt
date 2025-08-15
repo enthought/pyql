@@ -4,28 +4,10 @@ quantlib.instruments.bonds.zerocouponbond
 .. automodule:: quantlib.instruments.bonds.zerocouponbond
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       ZeroCouponBond
    
-   
-
-   
-   
-   
-
-
-

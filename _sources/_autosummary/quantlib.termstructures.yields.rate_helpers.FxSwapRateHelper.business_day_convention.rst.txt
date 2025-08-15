@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.rate\_helpers.FxSwapRateHelper.business\_day\_convention
+=======================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoattribute:: FxSwapRateHelper.business_day_convention

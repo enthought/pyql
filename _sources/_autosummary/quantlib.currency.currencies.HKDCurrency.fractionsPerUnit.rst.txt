@@ -1,0 +1,6 @@
+quantlib.currency.currencies.HKDCurrency.fractionsPerUnit
+=========================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: HKDCurrency.fractionsPerUnit

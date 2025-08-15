@@ -1,0 +1,6 @@
+quantlib.time.calendars.canada.Market.from\_bytes
+=================================================
+
+.. currentmodule:: quantlib.time.calendars.canada
+
+.. automethod:: Market.from_bytes

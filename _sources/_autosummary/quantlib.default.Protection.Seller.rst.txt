@@ -1,0 +1,6 @@
+quantlib.default.Protection.Seller
+==================================
+
+.. currentmodule:: quantlib.default
+
+.. autoattribute:: Protection.Seller

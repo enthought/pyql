@@ -1,0 +1,6 @@
+quantlib.models.calibration\_helper.CalibrationErrorType.ImpliedVolError
+========================================================================
+
+.. currentmodule:: quantlib.models.calibration_helper
+
+.. autoattribute:: CalibrationErrorType.ImpliedVolError

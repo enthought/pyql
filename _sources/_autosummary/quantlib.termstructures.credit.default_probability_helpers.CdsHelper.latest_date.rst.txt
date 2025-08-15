@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.default\_probability\_helpers.CdsHelper.latest\_date
+===================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.default_probability_helpers
+
+.. autoattribute:: CdsHelper.latest_date

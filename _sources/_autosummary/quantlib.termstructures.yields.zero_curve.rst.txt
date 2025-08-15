@@ -4,20 +4,10 @@ quantlib.termstructures.yields.zero\_curve
 .. automodule:: quantlib.termstructures.yields.zero_curve
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       BackwardFlatInterpolatedZeroCurve
       CubicInterpolatedZeroCurve
@@ -27,11 +17,3 @@ quantlib.termstructures.yields.zero\_curve
       Meta
       ZeroCurve
    
-   
-
-   
-   
-   
-
-
-

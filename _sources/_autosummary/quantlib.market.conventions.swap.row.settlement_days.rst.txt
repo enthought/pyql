@@ -1,0 +1,6 @@
+quantlib.market.conventions.swap.row.settlement\_days
+=====================================================
+
+.. currentmodule:: quantlib.market.conventions.swap
+
+.. autoattribute:: row.settlement_days

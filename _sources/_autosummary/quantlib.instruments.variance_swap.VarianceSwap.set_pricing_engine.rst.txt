@@ -1,0 +1,6 @@
+quantlib.instruments.variance\_swap.VarianceSwap.set\_pricing\_engine
+=====================================================================
+
+.. currentmodule:: quantlib.instruments.variance_swap
+
+.. automethod:: VarianceSwap.set_pricing_engine

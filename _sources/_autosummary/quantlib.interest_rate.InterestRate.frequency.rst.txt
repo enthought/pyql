@@ -1,0 +1,6 @@
+quantlib.interest\_rate.InterestRate.frequency
+==============================================
+
+.. currentmodule:: quantlib.interest_rate
+
+.. autoattribute:: InterestRate.frequency

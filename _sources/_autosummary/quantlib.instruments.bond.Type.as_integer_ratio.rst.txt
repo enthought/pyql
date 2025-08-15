@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Type.as\_integer\_ratio
+=================================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. automethod:: Type.as_integer_ratio

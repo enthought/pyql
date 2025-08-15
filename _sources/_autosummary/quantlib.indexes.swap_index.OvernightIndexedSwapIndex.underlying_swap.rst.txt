@@ -1,0 +1,6 @@
+quantlib.indexes.swap\_index.OvernightIndexedSwapIndex.underlying\_swap
+=======================================================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. automethod:: OvernightIndexedSwapIndex.underlying_swap

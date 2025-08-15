@@ -1,0 +1,6 @@
+quantlib.instruments.overnightindexedswap.OvernightIndexedSwap.fair\_spread
+===========================================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexedswap
+
+.. autoattribute:: OvernightIndexedSwap.fair_spread

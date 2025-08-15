@@ -1,0 +1,6 @@
+quantlib.indexes.swap.usd\_libor\_swap.UsdLiborSwapIsdaFixAm.is\_valid\_fixing\_date
+====================================================================================
+
+.. currentmodule:: quantlib.indexes.swap.usd_libor_swap
+
+.. automethod:: UsdLiborSwapIsdaFixAm.is_valid_fixing_date

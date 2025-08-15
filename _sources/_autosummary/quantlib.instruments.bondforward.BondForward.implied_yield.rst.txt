@@ -1,0 +1,6 @@
+quantlib.instruments.bondforward.BondForward.implied\_yield
+===========================================================
+
+.. currentmodule:: quantlib.instruments.bondforward
+
+.. automethod:: BondForward.implied_yield

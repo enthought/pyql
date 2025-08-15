@@ -4,28 +4,10 @@ quantlib.models.shortrate.onefactormodels
 .. automodule:: quantlib.models.shortrate.onefactormodels
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    blackkarasinski
@@ -33,4 +15,3 @@ quantlib.models.shortrate.onefactormodels
    gsr
    hullwhite
    vasicek
-

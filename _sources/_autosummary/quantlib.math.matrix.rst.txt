@@ -4,28 +4,10 @@ quantlib.math.matrix
 .. automodule:: quantlib.math.matrix
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       Matrix
    
-   
-
-   
-   
-   
-
-
-

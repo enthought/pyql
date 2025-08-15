@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.euribor.Euribor6M.end\_of\_month
+======================================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. autoattribute:: Euribor6M.end_of_month

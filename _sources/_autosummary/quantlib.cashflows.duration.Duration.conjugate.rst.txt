@@ -1,0 +1,6 @@
+quantlib.cashflows.duration.Duration.conjugate
+==============================================
+
+.. currentmodule:: quantlib.cashflows.duration
+
+.. automethod:: Duration.conjugate

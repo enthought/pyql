@@ -1,48 +1,47 @@
-quantlib.termstructures.yields.zero\_curve.LinearInterpolatedZeroCurve
-======================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.zero_curve.</div>
+   <div class="empty"></div>
+
+LinearInterpolatedZeroCurve
+=====================================================================
 
 .. currentmodule:: quantlib.termstructures.yields.zero_curve
 
 .. autoclass:: LinearInterpolatedZeroCurve
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LinearInterpolatedZeroCurve.discount
+         LinearInterpolatedZeroCurve.forward_rate
+         LinearInterpolatedZeroCurve.time_from_reference
+         LinearInterpolatedZeroCurve.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~LinearInterpolatedZeroCurve.__init__
-      ~LinearInterpolatedZeroCurve.discount
-      ~LinearInterpolatedZeroCurve.forward_rate
-      ~LinearInterpolatedZeroCurve.time_from_reference
-      ~LinearInterpolatedZeroCurve.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~LinearInterpolatedZeroCurve.data
-      ~LinearInterpolatedZeroCurve.dates
-      ~LinearInterpolatedZeroCurve.day_counter
-      ~LinearInterpolatedZeroCurve.extrapolation
-      ~LinearInterpolatedZeroCurve.max_date
-      ~LinearInterpolatedZeroCurve.max_time
-      ~LinearInterpolatedZeroCurve.nodes
-      ~LinearInterpolatedZeroCurve.reference_date
-      ~LinearInterpolatedZeroCurve.settlement_days
-      ~LinearInterpolatedZeroCurve.times
-      ~LinearInterpolatedZeroCurve.zero_rates
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LinearInterpolatedZeroCurve.data
+         LinearInterpolatedZeroCurve.dates
+         LinearInterpolatedZeroCurve.day_counter
+         LinearInterpolatedZeroCurve.extrapolation
+         LinearInterpolatedZeroCurve.max_date
+         LinearInterpolatedZeroCurve.max_time
+         LinearInterpolatedZeroCurve.nodes
+         LinearInterpolatedZeroCurve.reference_date
+         LinearInterpolatedZeroCurve.settlement_days
+         LinearInterpolatedZeroCurve.times
+         LinearInterpolatedZeroCurve.zero_rates
+  
+  

@@ -1,0 +1,6 @@
+quantlib.instruments.bondforward.BondForward.clean\_forward\_price
+==================================================================
+
+.. currentmodule:: quantlib.instruments.bondforward
+
+.. autoattribute:: BondForward.clean_forward_price

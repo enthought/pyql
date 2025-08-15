@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.exercise
+===========================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.exercise

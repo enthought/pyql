@@ -1,45 +1,52 @@
-quantlib.pricingengines.swaption.black\_swaption\_engine.CashAnnuityModel
-=========================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.pricingengines.swaption.black_swaption_engine.</div>
+   <div class="empty"></div>
+
+CashAnnuityModel
+=======================================================================
 
 .. currentmodule:: quantlib.pricingengines.swaption.black_swaption_engine
 
 .. autoclass:: CashAnnuityModel
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CashAnnuityModel.__mul__
+         CashAnnuityModel.__pow__
+         CashAnnuityModel.conjugate
+         CashAnnuityModel.bit_length
+         CashAnnuityModel.bit_count
+         CashAnnuityModel.to_bytes
+         CashAnnuityModel.from_bytes
+         CashAnnuityModel.as_integer_ratio
+         CashAnnuityModel.__len__
+         CashAnnuityModel.__getitem__
+      
+         CashAnnuityModel.__len__
+         CashAnnuityModel.__getitem__
+         CashAnnuityModel.__mul__
+         CashAnnuityModel.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~CashAnnuityModel.conjugate
-      ~CashAnnuityModel.bit_length
-      ~CashAnnuityModel.bit_count
-      ~CashAnnuityModel.to_bytes
-      ~CashAnnuityModel.from_bytes
-      ~CashAnnuityModel.as_integer_ratio
-      ~CashAnnuityModel.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~CashAnnuityModel.real
-      ~CashAnnuityModel.imag
-      ~CashAnnuityModel.numerator
-      ~CashAnnuityModel.denominator
-      ~CashAnnuityModel.SwapRate
-      ~CashAnnuityModel.DiscountCurve
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CashAnnuityModel.real
+         CashAnnuityModel.imag
+         CashAnnuityModel.numerator
+         CashAnnuityModel.denominator
+         CashAnnuityModel.SwapRate
+         CashAnnuityModel.DiscountCurve
+  
+  

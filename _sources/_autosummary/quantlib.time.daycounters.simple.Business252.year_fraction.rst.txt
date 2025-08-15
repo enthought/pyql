@@ -1,0 +1,6 @@
+quantlib.time.daycounters.simple.Business252.year\_fraction
+===========================================================
+
+.. currentmodule:: quantlib.time.daycounters.simple
+
+.. automethod:: Business252.year_fraction

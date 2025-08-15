@@ -1,0 +1,6 @@
+quantlib.time.daycounters.simple.Actual365Fixed.day\_count
+==========================================================
+
+.. currentmodule:: quantlib.time.daycounters.simple
+
+.. automethod:: Actual365Fixed.day_count

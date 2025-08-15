@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.aucpi.YYAUCPI.add\_fixings
+=====================================================
+
+.. currentmodule:: quantlib.indexes.inflation.aucpi
+
+.. automethod:: YYAUCPI.add_fixings

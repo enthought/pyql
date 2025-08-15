@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Method.bit\_count
+===============================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. automethod:: Method.bit_count

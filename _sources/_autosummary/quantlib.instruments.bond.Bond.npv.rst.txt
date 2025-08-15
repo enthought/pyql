@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Bond.npv
+==================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoattribute:: Bond.npv

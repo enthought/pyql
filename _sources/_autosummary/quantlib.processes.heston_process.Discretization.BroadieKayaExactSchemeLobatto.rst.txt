@@ -1,0 +1,6 @@
+quantlib.processes.heston\_process.Discretization.BroadieKayaExactSchemeLobatto
+===============================================================================
+
+.. currentmodule:: quantlib.processes.heston_process
+
+.. autoattribute:: Discretization.BroadieKayaExactSchemeLobatto

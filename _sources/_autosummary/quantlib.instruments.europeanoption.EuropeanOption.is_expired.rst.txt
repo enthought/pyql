@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.is\_expired
+==============================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. autoattribute:: EuropeanOption.is_expired

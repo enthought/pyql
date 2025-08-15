@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.implied\_term\_structure.ImpliedTermStructure.discount
+=====================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.implied_term_structure
+
+.. automethod:: ImpliedTermStructure.discount

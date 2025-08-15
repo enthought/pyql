@@ -1,39 +1,38 @@
-quantlib.experimental.termstructures.crosscurrencyratehelpers.ConstNotionalCrossCurrencyBasisSwapRateHelper
+.. raw:: html
+
+   <div class="prename">quantlib.experimental.termstructures.crosscurrencyratehelpers.</div>
+   <div class="empty"></div>
+
+ConstNotionalCrossCurrencyBasisSwapRateHelper
 ===========================================================================================================
 
 .. currentmodule:: quantlib.experimental.termstructures.crosscurrencyratehelpers
 
 .. autoclass:: ConstNotionalCrossCurrencyBasisSwapRateHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ConstNotionalCrossCurrencyBasisSwapRateHelper.update
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ConstNotionalCrossCurrencyBasisSwapRateHelper.__init__
-      ~ConstNotionalCrossCurrencyBasisSwapRateHelper.update
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ConstNotionalCrossCurrencyBasisSwapRateHelper.earliest_date
-      ~ConstNotionalCrossCurrencyBasisSwapRateHelper.implied_quote
-      ~ConstNotionalCrossCurrencyBasisSwapRateHelper.latest_date
-      ~ConstNotionalCrossCurrencyBasisSwapRateHelper.maturity_date
-      ~ConstNotionalCrossCurrencyBasisSwapRateHelper.quote
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ConstNotionalCrossCurrencyBasisSwapRateHelper.earliest_date
+         ConstNotionalCrossCurrencyBasisSwapRateHelper.implied_quote
+         ConstNotionalCrossCurrencyBasisSwapRateHelper.latest_date
+         ConstNotionalCrossCurrencyBasisSwapRateHelper.maturity_date
+         ConstNotionalCrossCurrencyBasisSwapRateHelper.quote
+  
+  

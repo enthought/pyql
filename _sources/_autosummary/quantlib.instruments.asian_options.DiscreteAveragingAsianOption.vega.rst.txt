@@ -1,0 +1,6 @@
+quantlib.instruments.asian\_options.DiscreteAveragingAsianOption.vega
+=====================================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. autoattribute:: DiscreteAveragingAsianOption.vega

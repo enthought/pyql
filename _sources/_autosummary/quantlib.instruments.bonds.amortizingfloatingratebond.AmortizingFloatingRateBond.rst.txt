@@ -1,50 +1,49 @@
-quantlib.instruments.bonds.amortizingfloatingratebond.AmortizingFloatingRateBond
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.bonds.amortizingfloatingratebond.</div>
+   <div class="empty"></div>
+
+AmortizingFloatingRateBond
 ================================================================================
 
 .. currentmodule:: quantlib.instruments.bonds.amortizingfloatingratebond
 
 .. autoclass:: AmortizingFloatingRateBond
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         AmortizingFloatingRateBond.accrued_amount
+         AmortizingFloatingRateBond.bond_yield
+         AmortizingFloatingRateBond.notional
+         AmortizingFloatingRateBond.set_pricing_engine
+         AmortizingFloatingRateBond.settlement_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~AmortizingFloatingRateBond.__init__
-      ~AmortizingFloatingRateBond.accrued_amount
-      ~AmortizingFloatingRateBond.bond_yield
-      ~AmortizingFloatingRateBond.notional
-      ~AmortizingFloatingRateBond.set_pricing_engine
-      ~AmortizingFloatingRateBond.settlement_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~AmortizingFloatingRateBond.calendar
-      ~AmortizingFloatingRateBond.cashflows
-      ~AmortizingFloatingRateBond.clean_price
-      ~AmortizingFloatingRateBond.dirty_price
-      ~AmortizingFloatingRateBond.is_expired
-      ~AmortizingFloatingRateBond.issue_date
-      ~AmortizingFloatingRateBond.maturity_date
-      ~AmortizingFloatingRateBond.net_present_value
-      ~AmortizingFloatingRateBond.npv
-      ~AmortizingFloatingRateBond.settlement_days
-      ~AmortizingFloatingRateBond.start_date
-      ~AmortizingFloatingRateBond.valuation_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         AmortizingFloatingRateBond.calendar
+         AmortizingFloatingRateBond.cashflows
+         AmortizingFloatingRateBond.clean_price
+         AmortizingFloatingRateBond.dirty_price
+         AmortizingFloatingRateBond.is_expired
+         AmortizingFloatingRateBond.issue_date
+         AmortizingFloatingRateBond.maturity_date
+         AmortizingFloatingRateBond.net_present_value
+         AmortizingFloatingRateBond.npv
+         AmortizingFloatingRateBond.settlement_days
+         AmortizingFloatingRateBond.start_date
+         AmortizingFloatingRateBond.valuation_date
+  
+  

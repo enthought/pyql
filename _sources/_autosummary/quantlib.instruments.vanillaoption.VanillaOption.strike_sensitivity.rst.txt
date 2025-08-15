@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.strike\_sensitivity
+====================================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.strike_sensitivity

@@ -4,30 +4,11 @@ quantlib.methods
 .. automodule:: quantlib.methods
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    finitedifferences
    montecarlo
-

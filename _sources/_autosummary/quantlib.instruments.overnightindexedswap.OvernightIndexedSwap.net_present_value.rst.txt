@@ -1,0 +1,6 @@
+quantlib.instruments.overnightindexedswap.OvernightIndexedSwap.net\_present\_value
+==================================================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexedswap
+
+.. autoattribute:: OvernightIndexedSwap.net_present_value

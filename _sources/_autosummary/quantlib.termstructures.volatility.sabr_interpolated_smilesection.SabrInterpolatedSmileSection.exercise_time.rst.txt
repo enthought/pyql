@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.sabr\_interpolated\_smilesection.SabrInterpolatedSmileSection.exercise\_time
+===============================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.sabr_interpolated_smilesection
+
+.. autoattribute:: SabrInterpolatedSmileSection.exercise_time

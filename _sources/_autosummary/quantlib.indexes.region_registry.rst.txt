@@ -4,27 +4,9 @@ quantlib.indexes.region\_registry
 .. automodule:: quantlib.indexes.region_registry
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
    
       initialize_region_registry
    
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-

@@ -1,0 +1,6 @@
+quantlib.currency.currencies.JPYCurrency.from\_name
+===================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. automethod:: JPYCurrency.from_name

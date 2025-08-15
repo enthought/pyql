@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.models.calibration_helper.BlackCalibrationHelper &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>BlackCalibrationHelper &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.models.calibration_helper.CalibrationErrorType" href="quantlib.models.calibration_helper.CalibrationErrorType.html" />
+    <link rel="next" title="quantlib.models.calibration_helper.BlackCalibrationHelper.black_price" href="quantlib.models.calibration_helper.BlackCalibrationHelper.black_price.html" />
     <link rel="prev" title="quantlib.models.calibration_helper" href="quantlib.models.calibration_helper.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,73 +34,36 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-models-calibration-helper-blackcalibrationhelper">
-<h1>quantlib.models.calibration_helper.BlackCalibrationHelper<a class="headerlink" href="#quantlib-models-calibration-helper-blackcalibrationhelper" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.models.calibration_helper.</div>
+<div class="empty"></div><section id="blackcalibrationhelper">
+<h1>BlackCalibrationHelper<a class="headerlink" href="#blackcalibrationhelper" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.models.calibration_helper.BlackCalibrationHelper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BlackCalibrationHelper</span></span><a class="headerlink" href="#quantlib.models.calibration_helper.BlackCalibrationHelper" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.calibration_helper.BlackCalibrationHelper.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.calibration_helper.BlackCalibrationHelper.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.models.calibration_helper.BlackCalibrationHelper.__init__" title="quantlib.models.calibration_helper.BlackCalibrationHelper.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.calibration_helper.BlackCalibrationHelper.black_price.html#quantlib.models.calibration_helper.BlackCalibrationHelper.black_price" title="quantlib.models.calibration_helper.BlackCalibrationHelper.black_price"><code class="xref py py-obj docutils literal notranslate"><span class="pre">black_price</span></code></a>(self, double volatility)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.models.calibration_helper.BlackCalibrationHelper.black_price" title="quantlib.models.calibration_helper.BlackCalibrationHelper.black_price"><code class="xref py py-obj docutils literal notranslate"><span class="pre">black_price</span></code></a>(self, double volatility)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.calibration_helper.BlackCalibrationHelper.calibration_error.html#quantlib.models.calibration_helper.BlackCalibrationHelper.calibration_error" title="quantlib.models.calibration_helper.BlackCalibrationHelper.calibration_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibration_error</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.models.calibration_helper.BlackCalibrationHelper.calibration_error" title="quantlib.models.calibration_helper.BlackCalibrationHelper.calibration_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibration_error</span></code></a>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.calibration_helper.BlackCalibrationHelper.impliedVolatility.html#quantlib.models.calibration_helper.BlackCalibrationHelper.impliedVolatility" title="quantlib.models.calibration_helper.BlackCalibrationHelper.impliedVolatility"><code class="xref py py-obj docutils literal notranslate"><span class="pre">impliedVolatility</span></code></a>(self, Real targetValue, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.models.calibration_helper.BlackCalibrationHelper.impliedVolatility" title="quantlib.models.calibration_helper.BlackCalibrationHelper.impliedVolatility"><code class="xref py py-obj docutils literal notranslate"><span class="pre">impliedVolatility</span></code></a>(self, Real targetValue, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.calibration_helper.BlackCalibrationHelper.market_value.html#quantlib.models.calibration_helper.BlackCalibrationHelper.market_value" title="quantlib.models.calibration_helper.BlackCalibrationHelper.market_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">market_value</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.models.calibration_helper.BlackCalibrationHelper.market_value" title="quantlib.models.calibration_helper.BlackCalibrationHelper.market_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">market_value</span></code></a>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.calibration_helper.BlackCalibrationHelper.model_value.html#quantlib.models.calibration_helper.BlackCalibrationHelper.model_value" title="quantlib.models.calibration_helper.BlackCalibrationHelper.model_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_value</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.models.calibration_helper.BlackCalibrationHelper.model_value" title="quantlib.models.calibration_helper.BlackCalibrationHelper.model_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_value</span></code></a>(self)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.models.calibration_helper.BlackCalibrationHelper.set_pricing_engine" title="quantlib.models.calibration_helper.BlackCalibrationHelper.set_pricing_engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code></a>(self, PricingEngine engine)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.calibration_helper.BlackCalibrationHelper.set_pricing_engine.html#quantlib.models.calibration_helper.BlackCalibrationHelper.set_pricing_engine" title="quantlib.models.calibration_helper.BlackCalibrationHelper.set_pricing_engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code></a>(self, PricingEngine engine)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.calibration_helper.BlackCalibrationHelper.black_price">
-<span class="sig-name descname"><span class="pre">black_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">volatility</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.calibration_helper.BlackCalibrationHelper.black_price" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.calibration_helper.BlackCalibrationHelper.calibration_error">
-<span class="sig-name descname"><span class="pre">calibration_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.calibration_helper.BlackCalibrationHelper.calibration_error" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.calibration_helper.BlackCalibrationHelper.impliedVolatility">
-<span class="sig-name descname"><span class="pre">impliedVolatility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">targetValue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">accuracy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">maxEvaluations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Volatility</span> <span class="pre">minVol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Volatility</span> <span class="pre">maxVol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.calibration_helper.BlackCalibrationHelper.impliedVolatility" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.calibration_helper.BlackCalibrationHelper.market_value">
-<span class="sig-name descname"><span class="pre">market_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.calibration_helper.BlackCalibrationHelper.market_value" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.calibration_helper.BlackCalibrationHelper.model_value">
-<span class="sig-name descname"><span class="pre">model_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.calibration_helper.BlackCalibrationHelper.model_value" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.calibration_helper.BlackCalibrationHelper.set_pricing_engine">
-<span class="sig-name descname"><span class="pre">set_pricing_engine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PricingEngine</span> <span class="pre">engine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.calibration_helper.BlackCalibrationHelper.set_pricing_engine" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </section>
@@ -144,7 +107,7 @@
   <li><a href="quantlib.models.html">quantlib.models</a><ul>
   <li><a href="quantlib.models.calibration_helper.html">quantlib.models.calibration_helper</a><ul>
       <li>Previous: <a href="quantlib.models.calibration_helper.html" title="previous chapter">quantlib.models.calibration_helper</a></li>
-      <li>Next: <a href="quantlib.models.calibration_helper.CalibrationErrorType.html" title="next chapter">quantlib.models.calibration_helper.CalibrationErrorType</a></li>
+      <li>Next: <a href="quantlib.models.calibration_helper.BlackCalibrationHelper.black_price.html" title="next chapter">quantlib.models.calibration_helper.BlackCalibrationHelper.black_price</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

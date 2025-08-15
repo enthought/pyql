@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.libor.Libor.fixing\_date
+==============================================
+
+.. currentmodule:: quantlib.indexes.ibor.libor
+
+.. automethod:: Libor.fixing_date

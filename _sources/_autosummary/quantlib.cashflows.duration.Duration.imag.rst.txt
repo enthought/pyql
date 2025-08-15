@@ -1,0 +1,6 @@
+quantlib.cashflows.duration.Duration.imag
+=========================================
+
+.. currentmodule:: quantlib.cashflows.duration
+
+.. autoattribute:: Duration.imag

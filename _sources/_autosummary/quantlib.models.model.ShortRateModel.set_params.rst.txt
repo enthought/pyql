@@ -1,0 +1,6 @@
+quantlib.models.model.ShortRateModel.set\_params
+================================================
+
+.. currentmodule:: quantlib.models.model
+
+.. automethod:: ShortRateModel.set_params

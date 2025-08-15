@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.volatilitytype.VolatilityType.to\_bytes
+==========================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.volatilitytype
+
+.. automethod:: VolatilityType.to_bytes

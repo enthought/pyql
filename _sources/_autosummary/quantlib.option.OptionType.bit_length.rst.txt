@@ -1,0 +1,6 @@
+quantlib.option.OptionType.bit\_length
+======================================
+
+.. currentmodule:: quantlib.option
+
+.. automethod:: OptionType.bit_length

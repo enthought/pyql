@@ -1,38 +1,37 @@
-quantlib.termstructures.credit.default\_probability\_helpers.UpfrontCdsHelper
-=============================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.credit.default_probability_helpers.</div>
+   <div class="empty"></div>
+
+UpfrontCdsHelper
+===========================================================================
 
 .. currentmodule:: quantlib.termstructures.credit.default_probability_helpers
 
 .. autoclass:: UpfrontCdsHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         UpfrontCdsHelper.set_term_structure
+         UpfrontCdsHelper.swap
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~UpfrontCdsHelper.__init__
-      ~UpfrontCdsHelper.set_term_structure
-      ~UpfrontCdsHelper.swap
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~UpfrontCdsHelper.implied_quote
-      ~UpfrontCdsHelper.latest_date
-      ~UpfrontCdsHelper.quote
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         UpfrontCdsHelper.implied_quote
+         UpfrontCdsHelper.latest_date
+         UpfrontCdsHelper.quote
+  
+  

@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.swap\_spread\_index.SwapSpreadIndex.is\_valid\_fixing\_date
+=========================================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.swap_spread_index
+
+.. automethod:: SwapSpreadIndex.is_valid_fixing_date

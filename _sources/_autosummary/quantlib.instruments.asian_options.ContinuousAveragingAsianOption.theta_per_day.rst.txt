@@ -1,0 +1,6 @@
+quantlib.instruments.asian\_options.ContinuousAveragingAsianOption.theta\_per\_day
+==================================================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. autoattribute:: ContinuousAveragingAsianOption.theta_per_day

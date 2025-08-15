@@ -1,0 +1,6 @@
+quantlib.instruments.credit\_default\_swap.CreditDefaultSwap.is\_expired
+========================================================================
+
+.. currentmodule:: quantlib.instruments.credit_default_swap
+
+.. autoattribute:: CreditDefaultSwap.is_expired

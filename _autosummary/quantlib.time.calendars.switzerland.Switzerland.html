@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.time.calendars.switzerland.Switzerland &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>Switzerland &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.time.calendars.target" href="quantlib.time.calendars.target.html" />
+    <link rel="next" title="quantlib.time.calendars.switzerland.Switzerland.add_holiday" href="quantlib.time.calendars.switzerland.Switzerland.add_holiday.html" />
     <link rel="prev" title="quantlib.time.calendars.switzerland" href="quantlib.time.calendars.switzerland.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,67 +34,60 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-time-calendars-switzerland-switzerland">
-<h1>quantlib.time.calendars.switzerland.Switzerland<a class="headerlink" href="#quantlib-time-calendars-switzerland-switzerland" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.time.calendars.switzerland.</div>
+<div class="empty"></div><section id="switzerland">
+<h1>Switzerland<a class="headerlink" href="#switzerland" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.time.calendars.switzerland.Switzerland">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Switzerland</span></span><a class="headerlink" href="#quantlib.time.calendars.switzerland.Switzerland" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.time.calendar.Calendar.html#quantlib.time.calendar.Calendar" title="quantlib.time.calendar.Calendar"><code class="xref py py-class docutils literal notranslate"><span class="pre">Calendar</span></code></a></p>
 <p>Swiss calendars.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.time.calendars.switzerland.Switzerland.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.calendars.switzerland.Switzerland.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.name.html#quantlib.time.calendars.switzerland.Switzerland.name" title="quantlib.time.calendars.switzerland.Switzerland.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></dt><dd><p>name of the calendar</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.time.calendars.switzerland.Switzerland.__init__" title="quantlib.time.calendars.switzerland.Switzerland.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_holiday</span></code>(self, Date holiday)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.add_holiday.html#quantlib.time.calendars.switzerland.Switzerland.add_holiday" title="quantlib.time.calendars.switzerland.Switzerland.add_holiday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_holiday</span></code></a>(self, Date holiday)</p></td>
 <td><p>Adds a date to the set of holidays for the given calendar.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjust</span></code>(self, Date given_date, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.adjust.html#quantlib.time.calendars.switzerland.Switzerland.adjust" title="quantlib.time.calendars.switzerland.Switzerland.adjust"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjust</span></code></a>(self, Date given_date, ...)</p></td>
 <td><p>Adjusts a non-business day to the appropriate near business day with respect to the given convention.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">advance</span></code>(self, Date given_date, int step=0, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.advance.html#quantlib.time.calendars.switzerland.Switzerland.advance" title="quantlib.time.calendars.switzerland.Switzerland.advance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">advance</span></code></a>(self, Date given_date, int step=0, ...)</p></td>
 <td><p>Advances the given date of the given number of business days, or period and returns the result.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">business_day_list</span></code>(self, Date from_date, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.business_day_list.html#quantlib.time.calendars.switzerland.Switzerland.business_day_list" title="quantlib.time.calendars.switzerland.Switzerland.business_day_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">business_day_list</span></code></a>(self, Date from_date, ...)</p></td>
 <td><p>Returns the business days between two dates.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">business_days_between</span></code>(self, Date date1, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.business_days_between.html#quantlib.time.calendars.switzerland.Switzerland.business_days_between" title="quantlib.time.calendars.switzerland.Switzerland.business_days_between"><code class="xref py py-obj docutils literal notranslate"><span class="pre">business_days_between</span></code></a>(self, Date date1, ...)</p></td>
 <td><p>Returns the number of business days between date1 and date2.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">end_of_month</span></code>(self, Date current_date)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.end_of_month.html#quantlib.time.calendars.switzerland.Switzerland.end_of_month" title="quantlib.time.calendars.switzerland.Switzerland.end_of_month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">end_of_month</span></code></a>(self, Date current_date)</p></td>
 <td><p>Returns the ending date for the month that contains the given date.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">holiday_list</span></code>(self, Date from_date, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.holiday_list.html#quantlib.time.calendars.switzerland.Switzerland.holiday_list" title="quantlib.time.calendars.switzerland.Switzerland.holiday_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">holiday_list</span></code></a>(self, Date from_date, ...)</p></td>
 <td><p>Returns the holidays between two dates.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_business_day</span></code>(self, Date test_date)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.is_business_day.html#quantlib.time.calendars.switzerland.Switzerland.is_business_day" title="quantlib.time.calendars.switzerland.Switzerland.is_business_day"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_business_day</span></code></a>(self, Date test_date)</p></td>
 <td><p>Returns true iff the date is a business day for the given market.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_end_of_month</span></code>(self, Date test_date)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.is_end_of_month.html#quantlib.time.calendars.switzerland.Switzerland.is_end_of_month" title="quantlib.time.calendars.switzerland.Switzerland.is_end_of_month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_end_of_month</span></code></a>(self, Date test_date)</p></td>
 <td><p>Is this date the last business day of the month to which the given date belongs</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_holiday</span></code>(self, Date test_date)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.is_holiday.html#quantlib.time.calendars.switzerland.Switzerland.is_holiday" title="quantlib.time.calendars.switzerland.Switzerland.is_holiday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_holiday</span></code></a>(self, Date test_date)</p></td>
 <td><p>Returns true iff the weekday is part of the weekend for the given market.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_weekend</span></code>(self, int week_day)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.is_weekend.html#quantlib.time.calendars.switzerland.Switzerland.is_weekend" title="quantlib.time.calendars.switzerland.Switzerland.is_weekend"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_weekend</span></code></a>(self, int week_day)</p></td>
 <td><p>Returns true iff the date is last business day for the month in given market.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_holiday</span></code>(self, Date holiday)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.remove_holiday.html#quantlib.time.calendars.switzerland.Switzerland.remove_holiday" title="quantlib.time.calendars.switzerland.Switzerland.remove_holiday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_holiday</span></code></a>(self, Date holiday)</p></td>
 <td><p>Removes a date from the set of holidays for the given calendar.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></p></td>
-<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -142,7 +135,7 @@
   <li><a href="quantlib.time.calendars.html">quantlib.time.calendars</a><ul>
   <li><a href="quantlib.time.calendars.switzerland.html">quantlib.time.calendars.switzerland</a><ul>
       <li>Previous: <a href="quantlib.time.calendars.switzerland.html" title="previous chapter">quantlib.time.calendars.switzerland</a></li>
-      <li>Next: <a href="quantlib.time.calendars.target.html" title="next chapter">quantlib.time.calendars.target</a></li>
+      <li>Next: <a href="quantlib.time.calendars.switzerland.Switzerland.add_holiday.html" title="next chapter">quantlib.time.calendars.switzerland.Switzerland.add_holiday</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

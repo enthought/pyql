@@ -1,0 +1,6 @@
+quantlib.models.equity.heston\_model.HestonModelHelper.black\_price
+===================================================================
+
+.. currentmodule:: quantlib.models.equity.heston_model
+
+.. automethod:: HestonModelHelper.black_price

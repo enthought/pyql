@@ -1,0 +1,6 @@
+quantlib.models.calibration\_helper.CalibrationErrorType.\_\_mul\_\_
+====================================================================
+
+.. currentmodule:: quantlib.models.calibration_helper
+
+.. automethod:: CalibrationErrorType.__mul__

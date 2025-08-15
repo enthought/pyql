@@ -1,41 +1,40 @@
-quantlib.cashflows.conundrum\_pricer.HaganPricer
-================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.conundrum_pricer.</div>
+   <div class="empty"></div>
+
+HaganPricer
+===============================================
 
 .. currentmodule:: quantlib.cashflows.conundrum_pricer
 
 .. autoclass:: HaganPricer
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HaganPricer.caplet_price
+         HaganPricer.caplet_rate
+         HaganPricer.floorlet_price
+         HaganPricer.floorlet_rate
+         HaganPricer.initialize
+         HaganPricer.swaplet_price
+         HaganPricer.swaplet_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~HaganPricer.__init__
-      ~HaganPricer.caplet_price
-      ~HaganPricer.caplet_rate
-      ~HaganPricer.floorlet_price
-      ~HaganPricer.floorlet_rate
-      ~HaganPricer.initialize
-      ~HaganPricer.swaplet_price
-      ~HaganPricer.swaplet_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~HaganPricer.swaption_volatility
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HaganPricer.swaption_volatility
+  
+  

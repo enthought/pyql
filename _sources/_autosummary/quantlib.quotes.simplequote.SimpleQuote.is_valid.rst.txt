@@ -1,0 +1,6 @@
+quantlib.quotes.simplequote.SimpleQuote.is\_valid
+=================================================
+
+.. currentmodule:: quantlib.quotes.simplequote
+
+.. autoattribute:: SimpleQuote.is_valid

@@ -1,0 +1,6 @@
+quantlib.time.businessdayconvention.BusinessDayConvention.to\_bytes
+===================================================================
+
+.. currentmodule:: quantlib.time.businessdayconvention
+
+.. automethod:: BusinessDayConvention.to_bytes

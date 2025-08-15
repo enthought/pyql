@@ -1,0 +1,6 @@
+quantlib.instruments.overnightindexedswap.OvernightIndexedSwap.floating\_leg
+============================================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexedswap
+
+.. autoattribute:: OvernightIndexedSwap.floating_leg

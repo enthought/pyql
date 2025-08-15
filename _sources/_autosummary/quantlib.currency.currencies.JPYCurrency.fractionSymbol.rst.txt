@@ -1,0 +1,6 @@
+quantlib.currency.currencies.JPYCurrency.fractionSymbol
+=======================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: JPYCurrency.fractionSymbol

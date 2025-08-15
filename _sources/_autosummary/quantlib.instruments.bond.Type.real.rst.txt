@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Type.real
+===================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoattribute:: Type.real

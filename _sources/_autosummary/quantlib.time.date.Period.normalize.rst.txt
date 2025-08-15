@@ -1,0 +1,6 @@
+quantlib.time.date.Period.normalize
+===================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: Period.normalize

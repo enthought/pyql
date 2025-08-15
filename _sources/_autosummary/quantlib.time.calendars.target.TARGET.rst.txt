@@ -1,46 +1,45 @@
-quantlib.time.calendars.target.TARGET
+.. raw:: html
+
+   <div class="prename">quantlib.time.calendars.target.</div>
+   <div class="empty"></div>
+
+TARGET
 =====================================
 
 .. currentmodule:: quantlib.time.calendars.target
 
 .. autoclass:: TARGET
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         TARGET.add_holiday
+         TARGET.adjust
+         TARGET.advance
+         TARGET.business_day_list
+         TARGET.business_days_between
+         TARGET.end_of_month
+         TARGET.holiday_list
+         TARGET.is_business_day
+         TARGET.is_end_of_month
+         TARGET.is_holiday
+         TARGET.is_weekend
+         TARGET.remove_holiday
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~TARGET.__init__
-      ~TARGET.add_holiday
-      ~TARGET.adjust
-      ~TARGET.advance
-      ~TARGET.business_day_list
-      ~TARGET.business_days_between
-      ~TARGET.end_of_month
-      ~TARGET.holiday_list
-      ~TARGET.is_business_day
-      ~TARGET.is_end_of_month
-      ~TARGET.is_holiday
-      ~TARGET.is_weekend
-      ~TARGET.remove_holiday
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~TARGET.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         TARGET.name
+  
+  

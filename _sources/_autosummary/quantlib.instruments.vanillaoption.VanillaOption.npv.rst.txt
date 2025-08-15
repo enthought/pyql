@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.npv
+====================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.npv

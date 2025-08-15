@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.eonia.Eonia.fixing\_days
+==============================================
+
+.. currentmodule:: quantlib.indexes.ibor.eonia
+
+.. autoattribute:: Eonia.fixing_days

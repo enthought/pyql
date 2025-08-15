@@ -1,0 +1,6 @@
+quantlib.models.equity.bates\_model.BatesModel.v0
+=================================================
+
+.. currentmodule:: quantlib.models.equity.bates_model
+
+.. autoattribute:: BatesModel.v0

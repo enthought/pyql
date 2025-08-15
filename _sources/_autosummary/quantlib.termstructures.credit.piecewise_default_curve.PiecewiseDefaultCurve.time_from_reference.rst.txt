@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.piecewise\_default\_curve.PiecewiseDefaultCurve.time\_from\_reference
+====================================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.piecewise_default_curve
+
+.. automethod:: PiecewiseDefaultCurve.time_from_reference

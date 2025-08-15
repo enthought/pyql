@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.libor.Libor.value\_date
+=============================================
+
+.. currentmodule:: quantlib.indexes.ibor.libor
+
+.. automethod:: Libor.value_date

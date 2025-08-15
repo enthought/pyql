@@ -1,0 +1,6 @@
+quantlib.time.calendars.jointcalendar.JointCalendar.business\_days\_between
+===========================================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. automethod:: JointCalendar.business_days_between

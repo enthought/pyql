@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_kingdom.Market.as\_integer\_ratio
+=================================================================
+
+.. currentmodule:: quantlib.time.calendars.united_kingdom
+
+.. automethod:: Market.as_integer_ratio

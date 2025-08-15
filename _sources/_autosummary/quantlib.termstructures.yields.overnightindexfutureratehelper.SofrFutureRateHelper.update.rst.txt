@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.overnightindexfutureratehelper.SofrFutureRateHelper.update
+=========================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.overnightindexfutureratehelper
+
+.. automethod:: SofrFutureRateHelper.update

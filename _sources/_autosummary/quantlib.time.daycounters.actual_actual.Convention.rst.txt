@@ -1,50 +1,57 @@
-quantlib.time.daycounters.actual\_actual.Convention
-===================================================
+.. raw:: html
+
+   <div class="prename">quantlib.time.daycounters.actual_actual.</div>
+   <div class="empty"></div>
+
+Convention
+==================================================
 
 .. currentmodule:: quantlib.time.daycounters.actual_actual
 
 .. autoclass:: Convention
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Convention.__mul__
+         Convention.__pow__
+         Convention.conjugate
+         Convention.bit_length
+         Convention.bit_count
+         Convention.to_bytes
+         Convention.from_bytes
+         Convention.as_integer_ratio
+         Convention.__len__
+         Convention.__getitem__
+      
+         Convention.__len__
+         Convention.__getitem__
+         Convention.__mul__
+         Convention.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Convention.conjugate
-      ~Convention.bit_length
-      ~Convention.bit_count
-      ~Convention.to_bytes
-      ~Convention.from_bytes
-      ~Convention.as_integer_ratio
-      ~Convention.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Convention.real
-      ~Convention.imag
-      ~Convention.numerator
-      ~Convention.denominator
-      ~Convention.ISMA
-      ~Convention.Bond
-      ~Convention.ISDA
-      ~Convention.Historical
-      ~Convention.Actual365
-      ~Convention.AFB
-      ~Convention.Euro
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Convention.real
+         Convention.imag
+         Convention.numerator
+         Convention.denominator
+         Convention.ISMA
+         Convention.Bond
+         Convention.ISDA
+         Convention.Historical
+         Convention.Actual365
+         Convention.AFB
+         Convention.Euro
+  
+  

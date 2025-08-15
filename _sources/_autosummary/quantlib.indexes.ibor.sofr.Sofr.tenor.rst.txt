@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.sofr.Sofr.tenor
+=====================================
+
+.. currentmodule:: quantlib.indexes.ibor.sofr
+
+.. autoattribute:: Sofr.tenor

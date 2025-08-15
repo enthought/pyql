@@ -1,47 +1,46 @@
-quantlib.termstructures.yields.rate\_helpers.FxSwapRateHelper
-=============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.rate_helpers.</div>
+   <div class="empty"></div>
+
+FxSwapRateHelper
+============================================================
 
 .. currentmodule:: quantlib.termstructures.yields.rate_helpers
 
 .. autoclass:: FxSwapRateHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FxSwapRateHelper.update
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FxSwapRateHelper.__init__
-      ~FxSwapRateHelper.update
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~FxSwapRateHelper.adjustment_calendar
-      ~FxSwapRateHelper.business_day_convention
-      ~FxSwapRateHelper.calendar
-      ~FxSwapRateHelper.earliest_date
-      ~FxSwapRateHelper.end_of_month
-      ~FxSwapRateHelper.implied_quote
-      ~FxSwapRateHelper.is_fx_base_currency_collateral_currency
-      ~FxSwapRateHelper.latest_date
-      ~FxSwapRateHelper.maturity_date
-      ~FxSwapRateHelper.quote
-      ~FxSwapRateHelper.spot
-      ~FxSwapRateHelper.tenor
-      ~FxSwapRateHelper.trading_calendar
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FxSwapRateHelper.adjustment_calendar
+         FxSwapRateHelper.business_day_convention
+         FxSwapRateHelper.calendar
+         FxSwapRateHelper.earliest_date
+         FxSwapRateHelper.end_of_month
+         FxSwapRateHelper.implied_quote
+         FxSwapRateHelper.is_fx_base_currency_collateral_currency
+         FxSwapRateHelper.latest_date
+         FxSwapRateHelper.maturity_date
+         FxSwapRateHelper.quote
+         FxSwapRateHelper.spot
+         FxSwapRateHelper.tenor
+         FxSwapRateHelper.trading_calendar
+  
+  

@@ -1,0 +1,6 @@
+quantlib.time.daycounters.thirty360.Convention.denominator
+==========================================================
+
+.. currentmodule:: quantlib.time.daycounters.thirty360
+
+.. autoattribute:: Convention.denominator

@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.InterpolationType.bit\_length
+================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. automethod:: InterpolationType.bit_length

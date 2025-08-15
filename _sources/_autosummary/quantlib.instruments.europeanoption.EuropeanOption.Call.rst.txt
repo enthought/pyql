@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.Call
+=======================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. autoattribute:: EuropeanOption.Call

@@ -1,0 +1,6 @@
+quantlib.time.daycounters.actual\_actual.Convention.bit\_count
+==============================================================
+
+.. currentmodule:: quantlib.time.daycounters.actual_actual
+
+.. automethod:: Convention.bit_count

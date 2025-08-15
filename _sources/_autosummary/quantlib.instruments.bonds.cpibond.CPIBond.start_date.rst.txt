@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.CPIBond.start\_date
+======================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. autoattribute:: CPIBond.start_date

@@ -1,0 +1,6 @@
+quantlib.index.Index.clear\_fixings
+===================================
+
+.. currentmodule:: quantlib.index
+
+.. automethod:: Index.clear_fixings

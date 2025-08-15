@@ -1,0 +1,6 @@
+quantlib.models.calibration\_helper.CalibrationErrorType.bit\_length
+====================================================================
+
+.. currentmodule:: quantlib.models.calibration_helper
+
+.. automethod:: CalibrationErrorType.bit_length

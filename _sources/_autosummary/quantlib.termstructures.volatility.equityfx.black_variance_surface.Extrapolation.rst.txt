@@ -1,45 +1,52 @@
-quantlib.termstructures.volatility.equityfx.black\_variance\_surface.Extrapolation
-==================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.volatility.equityfx.black_variance_surface.</div>
+   <div class="empty"></div>
+
+Extrapolation
+================================================================================
 
 .. currentmodule:: quantlib.termstructures.volatility.equityfx.black_variance_surface
 
 .. autoclass:: Extrapolation
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Extrapolation.__mul__
+         Extrapolation.__pow__
+         Extrapolation.conjugate
+         Extrapolation.bit_length
+         Extrapolation.bit_count
+         Extrapolation.to_bytes
+         Extrapolation.from_bytes
+         Extrapolation.as_integer_ratio
+         Extrapolation.__len__
+         Extrapolation.__getitem__
+      
+         Extrapolation.__len__
+         Extrapolation.__getitem__
+         Extrapolation.__mul__
+         Extrapolation.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Extrapolation.conjugate
-      ~Extrapolation.bit_length
-      ~Extrapolation.bit_count
-      ~Extrapolation.to_bytes
-      ~Extrapolation.from_bytes
-      ~Extrapolation.as_integer_ratio
-      ~Extrapolation.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Extrapolation.real
-      ~Extrapolation.imag
-      ~Extrapolation.numerator
-      ~Extrapolation.denominator
-      ~Extrapolation.ConstantExtrapolation
-      ~Extrapolation.InterpolatorDefaultExtrapolation
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Extrapolation.real
+         Extrapolation.imag
+         Extrapolation.numerator
+         Extrapolation.denominator
+         Extrapolation.ConstantExtrapolation
+         Extrapolation.InterpolatorDefaultExtrapolation
+  
+  

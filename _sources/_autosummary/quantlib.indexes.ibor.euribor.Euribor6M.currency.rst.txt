@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.euribor.Euribor6M.currency
+================================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. autoattribute:: Euribor6M.currency

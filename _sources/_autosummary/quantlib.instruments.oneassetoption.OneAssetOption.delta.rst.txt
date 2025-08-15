@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.delta
+========================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.delta

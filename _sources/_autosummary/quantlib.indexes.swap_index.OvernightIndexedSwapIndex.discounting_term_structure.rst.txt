@@ -1,0 +1,6 @@
+quantlib.indexes.swap\_index.OvernightIndexedSwapIndex.discounting\_term\_structure
+===================================================================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. autoattribute:: OvernightIndexedSwapIndex.discounting_term_structure

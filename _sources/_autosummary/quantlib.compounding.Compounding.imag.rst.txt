@@ -1,0 +1,6 @@
+quantlib.compounding.Compounding.imag
+=====================================
+
+.. currentmodule:: quantlib.compounding
+
+.. autoattribute:: Compounding.imag

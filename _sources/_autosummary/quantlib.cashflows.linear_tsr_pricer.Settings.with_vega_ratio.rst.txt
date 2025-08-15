@@ -1,0 +1,6 @@
+quantlib.cashflows.linear\_tsr\_pricer.Settings.with\_vega\_ratio
+=================================================================
+
+.. currentmodule:: quantlib.cashflows.linear_tsr_pricer
+
+.. automethod:: Settings.with_vega_ratio

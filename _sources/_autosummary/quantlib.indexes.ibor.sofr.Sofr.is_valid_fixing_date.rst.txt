@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.sofr.Sofr.is\_valid\_fixing\_date
+=======================================================
+
+.. currentmodule:: quantlib.indexes.ibor.sofr
+
+.. automethod:: Sofr.is_valid_fixing_date

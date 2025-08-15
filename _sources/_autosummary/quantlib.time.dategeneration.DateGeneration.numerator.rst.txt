@@ -1,0 +1,6 @@
+quantlib.time.dategeneration.DateGeneration.numerator
+=====================================================
+
+.. currentmodule:: quantlib.time.dategeneration
+
+.. autoattribute:: DateGeneration.numerator

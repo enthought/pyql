@@ -1,0 +1,6 @@
+quantlib.instruments.overnightindexedswap.OvernightIndexedSwap.floating\_day\_count
+===================================================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexedswap
+
+.. autoattribute:: OvernightIndexedSwap.floating_day_count

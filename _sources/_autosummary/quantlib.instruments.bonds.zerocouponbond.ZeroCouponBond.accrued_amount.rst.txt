@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.zerocouponbond.ZeroCouponBond.accrued\_amount
+========================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.zerocouponbond
+
+.. automethod:: ZeroCouponBond.accrued_amount

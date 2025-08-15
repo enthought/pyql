@@ -4,20 +4,10 @@ quantlib.pricingengines.vanilla.vanilla
 .. automodule:: quantlib.pricingengines.vanilla.vanilla
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       AnalyticBSMHullWhiteEngine
       AnalyticDividendEuropeanEngine
@@ -31,11 +21,3 @@ quantlib.pricingengines.vanilla.vanilla
       FdHestonHullWhiteVanillaEngine
       VanillaOptionEngine
    
-   
-
-   
-   
-   
-
-
-

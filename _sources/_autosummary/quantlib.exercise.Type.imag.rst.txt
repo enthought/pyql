@@ -1,0 +1,6 @@
+quantlib.exercise.Type.imag
+===========================
+
+.. currentmodule:: quantlib.exercise
+
+.. autoattribute:: Type.imag

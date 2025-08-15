@@ -1,46 +1,45 @@
-quantlib.models.equity.bates\_model.BatesDoubleExpDetJumpModel
-==============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.models.equity.bates_model.</div>
+   <div class="empty"></div>
+
+BatesDoubleExpDetJumpModel
+=============================================================
 
 .. currentmodule:: quantlib.models.equity.bates_model
 
 .. autoclass:: BatesDoubleExpDetJumpModel
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BatesDoubleExpDetJumpModel.calibrate
+         BatesDoubleExpDetJumpModel.process
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BatesDoubleExpDetJumpModel.__init__
-      ~BatesDoubleExpDetJumpModel.calibrate
-      ~BatesDoubleExpDetJumpModel.process
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~BatesDoubleExpDetJumpModel.Lambda
-      ~BatesDoubleExpDetJumpModel.kappa
-      ~BatesDoubleExpDetJumpModel.kappaLambda
-      ~BatesDoubleExpDetJumpModel.nuDown
-      ~BatesDoubleExpDetJumpModel.nuUp
-      ~BatesDoubleExpDetJumpModel.p
-      ~BatesDoubleExpDetJumpModel.rho
-      ~BatesDoubleExpDetJumpModel.sigma
-      ~BatesDoubleExpDetJumpModel.theta
-      ~BatesDoubleExpDetJumpModel.thetaLambda
-      ~BatesDoubleExpDetJumpModel.v0
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BatesDoubleExpDetJumpModel.Lambda
+         BatesDoubleExpDetJumpModel.kappa
+         BatesDoubleExpDetJumpModel.kappaLambda
+         BatesDoubleExpDetJumpModel.nuDown
+         BatesDoubleExpDetJumpModel.nuUp
+         BatesDoubleExpDetJumpModel.p
+         BatesDoubleExpDetJumpModel.rho
+         BatesDoubleExpDetJumpModel.sigma
+         BatesDoubleExpDetJumpModel.theta
+         BatesDoubleExpDetJumpModel.thetaLambda
+         BatesDoubleExpDetJumpModel.v0
+  
+  

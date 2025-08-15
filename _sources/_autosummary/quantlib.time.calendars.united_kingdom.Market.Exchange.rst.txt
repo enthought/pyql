@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_kingdom.Market.Exchange
+=======================================================
+
+.. currentmodule:: quantlib.time.calendars.united_kingdom
+
+.. autoattribute:: Market.Exchange

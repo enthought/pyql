@@ -1,44 +1,43 @@
-quantlib.processes.hullwhite\_process.HullWhiteForwardProcess
-=============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.processes.hullwhite_process.</div>
+   <div class="empty"></div>
+
+HullWhiteForwardProcess
+============================================================
 
 .. currentmodule:: quantlib.processes.hullwhite_process
 
 .. autoclass:: HullWhiteForwardProcess
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HullWhiteForwardProcess.diffusion
+         HullWhiteForwardProcess.drift
+         HullWhiteForwardProcess.expectation
+         HullWhiteForwardProcess.factors
+         HullWhiteForwardProcess.size
+         HullWhiteForwardProcess.std_deviation
+         HullWhiteForwardProcess.variance
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~HullWhiteForwardProcess.__init__
-      ~HullWhiteForwardProcess.diffusion
-      ~HullWhiteForwardProcess.drift
-      ~HullWhiteForwardProcess.expectation
-      ~HullWhiteForwardProcess.factors
-      ~HullWhiteForwardProcess.size
-      ~HullWhiteForwardProcess.std_deviation
-      ~HullWhiteForwardProcess.variance
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~HullWhiteForwardProcess.a
-      ~HullWhiteForwardProcess.forward_measure_time
-      ~HullWhiteForwardProcess.sigma
-      ~HullWhiteForwardProcess.x0
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HullWhiteForwardProcess.a
+         HullWhiteForwardProcess.forward_measure_time
+         HullWhiteForwardProcess.sigma
+         HullWhiteForwardProcess.x0
+  
+  

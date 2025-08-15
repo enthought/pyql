@@ -1,0 +1,6 @@
+quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.valuation\_date
+============================================================================
+
+.. currentmodule:: quantlib.instruments.fixedvsfloatingswap
+
+.. autoattribute:: FixedVsFloatingSwap.valuation_date

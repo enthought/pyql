@@ -1,0 +1,6 @@
+quantlib.pricingengines.credit.isda\_cds\_engine.AccrualBias.bit\_count
+=======================================================================
+
+.. currentmodule:: quantlib.pricingengines.credit.isda_cds_engine
+
+.. automethod:: AccrualBias.bit_count

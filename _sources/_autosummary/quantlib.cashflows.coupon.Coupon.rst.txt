@@ -1,48 +1,47 @@
-quantlib.cashflows.coupon.Coupon
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.coupon.</div>
+   <div class="empty"></div>
+
+Coupon
 ================================
 
 .. currentmodule:: quantlib.cashflows.coupon
 
 .. autoclass:: Coupon
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Coupon.accrued_amount
+         Coupon.accrued_days
+         Coupon.accrued_period
+         Coupon.has_occured
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Coupon.__init__
-      ~Coupon.accrued_amount
-      ~Coupon.accrued_days
-      ~Coupon.accrued_period
-      ~Coupon.has_occured
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Coupon.accrual_days
-      ~Coupon.accrual_end_date
-      ~Coupon.accrual_period
-      ~Coupon.accrual_start_date
-      ~Coupon.amount
-      ~Coupon.date
-      ~Coupon.day_counter
-      ~Coupon.nominal
-      ~Coupon.rate
-      ~Coupon.reference_period_end
-      ~Coupon.reference_period_start
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Coupon.accrual_days
+         Coupon.accrual_end_date
+         Coupon.accrual_period
+         Coupon.accrual_start_date
+         Coupon.amount
+         Coupon.date
+         Coupon.day_counter
+         Coupon.nominal
+         Coupon.rate
+         Coupon.reference_period_end
+         Coupon.reference_period_start
+  
+  

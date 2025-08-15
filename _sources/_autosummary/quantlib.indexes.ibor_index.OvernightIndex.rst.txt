@@ -1,55 +1,54 @@
-quantlib.indexes.ibor\_index.OvernightIndex
-===========================================
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.ibor_index.</div>
+   <div class="empty"></div>
+
+OvernightIndex
+==========================================
 
 .. currentmodule:: quantlib.indexes.ibor_index
 
 .. autoclass:: OvernightIndex
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OvernightIndex.add_fixing
+         OvernightIndex.add_fixings
+         OvernightIndex.clear_fixings
+         OvernightIndex.fixing
+         OvernightIndex.fixing_date
+         OvernightIndex.forecast_fixing
+         OvernightIndex.from_name
+         OvernightIndex.has_historical_fixing
+         OvernightIndex.is_valid_fixing_date
+         OvernightIndex.maturity_date
+         OvernightIndex.value_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~OvernightIndex.__init__
-      ~OvernightIndex.add_fixing
-      ~OvernightIndex.add_fixings
-      ~OvernightIndex.clear_fixings
-      ~OvernightIndex.fixing
-      ~OvernightIndex.fixing_date
-      ~OvernightIndex.forecast_fixing
-      ~OvernightIndex.from_name
-      ~OvernightIndex.has_historical_fixing
-      ~OvernightIndex.is_valid_fixing_date
-      ~OvernightIndex.maturity_date
-      ~OvernightIndex.value_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~OvernightIndex.business_day_convention
-      ~OvernightIndex.currency
-      ~OvernightIndex.day_counter
-      ~OvernightIndex.end_of_month
-      ~OvernightIndex.family_name
-      ~OvernightIndex.fixing_calendar
-      ~OvernightIndex.fixing_days
-      ~OvernightIndex.forwarding_term_structure
-      ~OvernightIndex.name
-      ~OvernightIndex.tenor
-      ~OvernightIndex.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OvernightIndex.business_day_convention
+         OvernightIndex.currency
+         OvernightIndex.day_counter
+         OvernightIndex.end_of_month
+         OvernightIndex.family_name
+         OvernightIndex.fixing_calendar
+         OvernightIndex.fixing_days
+         OvernightIndex.forwarding_term_structure
+         OvernightIndex.name
+         OvernightIndex.tenor
+         OvernightIndex.time_series
+  
+  

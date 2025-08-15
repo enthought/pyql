@@ -1,0 +1,6 @@
+quantlib.option.OptionType.as\_integer\_ratio
+=============================================
+
+.. currentmodule:: quantlib.option
+
+.. automethod:: OptionType.as_integer_ratio

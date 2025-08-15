@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Bond.cashflows
+========================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoattribute:: Bond.cashflows

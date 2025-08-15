@@ -1,44 +1,43 @@
-quantlib.instruments.bondforward.BondForward
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.bondforward.</div>
+   <div class="empty"></div>
+
+BondForward
 ============================================
 
 .. currentmodule:: quantlib.instruments.bondforward
 
 .. autoclass:: BondForward
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BondForward.implied_yield
+         BondForward.set_pricing_engine
+         BondForward.spot_income
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BondForward.__init__
-      ~BondForward.implied_yield
-      ~BondForward.set_pricing_engine
-      ~BondForward.spot_income
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~BondForward.clean_forward_price
-      ~BondForward.forward_price
-      ~BondForward.forward_value
-      ~BondForward.is_expired
-      ~BondForward.net_present_value
-      ~BondForward.npv
-      ~BondForward.spot_value
-      ~BondForward.valuation_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BondForward.clean_forward_price
+         BondForward.forward_price
+         BondForward.forward_value
+         BondForward.is_expired
+         BondForward.net_present_value
+         BondForward.npv
+         BondForward.spot_value
+         BondForward.valuation_date
+  
+  

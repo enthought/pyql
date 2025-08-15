@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.libor.Libor.tenor
+=======================================
+
+.. currentmodule:: quantlib.indexes.ibor.libor
+
+.. autoattribute:: Libor.tenor

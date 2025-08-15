@@ -1,43 +1,42 @@
-quantlib.termstructures.yields.flat\_forward.FlatForward
-========================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.flat_forward.</div>
+   <div class="empty"></div>
+
+FlatForward
+=======================================================
 
 .. currentmodule:: quantlib.termstructures.yields.flat_forward
 
 .. autoclass:: FlatForward
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FlatForward.discount
+         FlatForward.forward_rate
+         FlatForward.time_from_reference
+         FlatForward.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FlatForward.__init__
-      ~FlatForward.discount
-      ~FlatForward.forward_rate
-      ~FlatForward.time_from_reference
-      ~FlatForward.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~FlatForward.day_counter
-      ~FlatForward.extrapolation
-      ~FlatForward.max_date
-      ~FlatForward.max_time
-      ~FlatForward.reference_date
-      ~FlatForward.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FlatForward.day_counter
+         FlatForward.extrapolation
+         FlatForward.max_date
+         FlatForward.max_time
+         FlatForward.reference_date
+         FlatForward.settlement_days
+  
+  

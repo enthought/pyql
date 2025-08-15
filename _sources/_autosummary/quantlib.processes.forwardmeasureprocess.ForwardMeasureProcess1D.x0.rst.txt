@@ -1,0 +1,6 @@
+quantlib.processes.forwardmeasureprocess.ForwardMeasureProcess1D.x0
+===================================================================
+
+.. currentmodule:: quantlib.processes.forwardmeasureprocess
+
+.. autoattribute:: ForwardMeasureProcess1D.x0

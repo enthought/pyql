@@ -1,0 +1,6 @@
+quantlib.math.matrixutilities.pseudosqrt.SalvagingAlgorithm.Higham
+==================================================================
+
+.. currentmodule:: quantlib.math.matrixutilities.pseudosqrt
+
+.. autoattribute:: SalvagingAlgorithm.Higham

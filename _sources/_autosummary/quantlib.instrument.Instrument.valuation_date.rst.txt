@@ -1,0 +1,6 @@
+quantlib.instrument.Instrument.valuation\_date
+==============================================
+
+.. currentmodule:: quantlib.instrument
+
+.. autoattribute:: Instrument.valuation_date

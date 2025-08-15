@@ -1,0 +1,6 @@
+quantlib.cashflows.ibor\_coupon.IborCoupon.fixing\_days
+=======================================================
+
+.. currentmodule:: quantlib.cashflows.ibor_coupon
+
+.. autoattribute:: IborCoupon.fixing_days

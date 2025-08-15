@@ -1,0 +1,6 @@
+quantlib.math.randomnumbers.sobol\_rsg.DirectionIntegers.as\_integer\_ratio
+===========================================================================
+
+.. currentmodule:: quantlib.math.randomnumbers.sobol_rsg
+
+.. automethod:: DirectionIntegers.as_integer_ratio

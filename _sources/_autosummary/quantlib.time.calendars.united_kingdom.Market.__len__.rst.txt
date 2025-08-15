@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_kingdom.Market.\_\_len\_\_
+==========================================================
+
+.. currentmodule:: quantlib.time.calendars.united_kingdom
+
+.. automethod:: Market.__len__

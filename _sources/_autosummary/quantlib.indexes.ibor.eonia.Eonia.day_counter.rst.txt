@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.eonia.Eonia.day\_counter
+==============================================
+
+.. currentmodule:: quantlib.indexes.ibor.eonia
+
+.. autoattribute:: Eonia.day_counter

@@ -1,0 +1,6 @@
+quantlib.instruments.asian\_options.AverageType.\_\_getitem\_\_
+===============================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. automethod:: AverageType.__getitem__

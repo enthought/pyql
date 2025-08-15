@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_cube.SwaptionVolatilityCube.option\_dates
+====================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_cube
+
+.. autoattribute:: SwaptionVolatilityCube.option_dates

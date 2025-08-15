@@ -1,0 +1,6 @@
+quantlib.termstructures.helpers.Pillar.real
+===========================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. autoattribute:: Pillar.real

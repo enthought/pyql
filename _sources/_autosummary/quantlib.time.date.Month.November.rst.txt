@@ -1,0 +1,6 @@
+quantlib.time.date.Month.November
+=================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: Month.November

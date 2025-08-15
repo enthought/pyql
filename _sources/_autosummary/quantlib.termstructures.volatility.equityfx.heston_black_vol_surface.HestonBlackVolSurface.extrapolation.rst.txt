@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.heston\_black\_vol\_surface.HestonBlackVolSurface.extrapolation
+===========================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.heston_black_vol_surface
+
+.. autoattribute:: HestonBlackVolSurface.extrapolation

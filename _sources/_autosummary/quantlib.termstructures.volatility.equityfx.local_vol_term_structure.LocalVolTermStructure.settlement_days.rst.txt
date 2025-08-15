@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.local\_vol\_term\_structure.LocalVolTermStructure.settlement\_days
+==============================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.local_vol_term_structure
+
+.. autoattribute:: LocalVolTermStructure.settlement_days

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.rate\_helpers.FuturesRateHelper.convexity\_adjustment
+====================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoattribute:: FuturesRateHelper.convexity_adjustment

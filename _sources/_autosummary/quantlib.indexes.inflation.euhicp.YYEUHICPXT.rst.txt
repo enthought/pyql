@@ -1,49 +1,48 @@
-quantlib.indexes.inflation.euhicp.YYEUHICPXT
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.inflation.euhicp.</div>
+   <div class="empty"></div>
+
+YYEUHICPXT
 ============================================
 
 .. currentmodule:: quantlib.indexes.inflation.euhicp
 
 .. autoclass:: YYEUHICPXT
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YYEUHICPXT.add_fixing
+         YYEUHICPXT.add_fixings
+         YYEUHICPXT.clear_fixings
+         YYEUHICPXT.fixing
+         YYEUHICPXT.has_historical_fixing
+         YYEUHICPXT.is_valid_fixing_date
+         YYEUHICPXT.zero_inflation_term_structure
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~YYEUHICPXT.__init__
-      ~YYEUHICPXT.add_fixing
-      ~YYEUHICPXT.add_fixings
-      ~YYEUHICPXT.clear_fixings
-      ~YYEUHICPXT.fixing
-      ~YYEUHICPXT.has_historical_fixing
-      ~YYEUHICPXT.is_valid_fixing_date
-      ~YYEUHICPXT.zero_inflation_term_structure
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~YYEUHICPXT.availability_lag
-      ~YYEUHICPXT.currency
-      ~YYEUHICPXT.family_name
-      ~YYEUHICPXT.fixing_calendar
-      ~YYEUHICPXT.frequency
-      ~YYEUHICPXT.last_fixing_date
-      ~YYEUHICPXT.name
-      ~YYEUHICPXT.region
-      ~YYEUHICPXT.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YYEUHICPXT.availability_lag
+         YYEUHICPXT.currency
+         YYEUHICPXT.family_name
+         YYEUHICPXT.fixing_calendar
+         YYEUHICPXT.frequency
+         YYEUHICPXT.last_fixing_date
+         YYEUHICPXT.name
+         YYEUHICPXT.region
+         YYEUHICPXT.time_series
+  
+  

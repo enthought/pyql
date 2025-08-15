@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.fixedratebond.FixedRateBond.is\_expired
+==================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.fixedratebond
+
+.. autoattribute:: FixedRateBond.is_expired

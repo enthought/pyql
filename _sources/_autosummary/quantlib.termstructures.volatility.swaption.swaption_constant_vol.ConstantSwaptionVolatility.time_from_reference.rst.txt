@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.swaption\_constant\_vol.ConstantSwaptionVolatility.time\_from\_reference
+====================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_constant_vol
+
+.. automethod:: ConstantSwaptionVolatility.time_from_reference

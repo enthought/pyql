@@ -1,0 +1,6 @@
+quantlib.indexes.swap.usd\_libor\_swap.UsdLiborSwapIsdaFixPm.fixing\_calendar
+=============================================================================
+
+.. currentmodule:: quantlib.indexes.swap.usd_libor_swap
+
+.. autoattribute:: UsdLiborSwapIsdaFixPm.fixing_calendar

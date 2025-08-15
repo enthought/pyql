@@ -1,0 +1,6 @@
+quantlib.models.shortrate.twofactor\_model.ShortRateDynamics.process\_x
+=======================================================================
+
+.. currentmodule:: quantlib.models.shortrate.twofactor_model
+
+.. autoattribute:: ShortRateDynamics.process_x

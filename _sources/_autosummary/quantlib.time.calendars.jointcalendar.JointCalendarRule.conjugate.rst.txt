@@ -1,0 +1,6 @@
+quantlib.time.calendars.jointcalendar.JointCalendarRule.conjugate
+=================================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. automethod:: JointCalendarRule.conjugate

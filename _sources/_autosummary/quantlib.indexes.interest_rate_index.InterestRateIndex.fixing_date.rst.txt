@@ -1,0 +1,6 @@
+quantlib.indexes.interest\_rate\_index.InterestRateIndex.fixing\_date
+=====================================================================
+
+.. currentmodule:: quantlib.indexes.interest_rate_index
+
+.. automethod:: InterestRateIndex.fixing_date

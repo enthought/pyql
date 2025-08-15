@@ -1,56 +1,63 @@
-quantlib.time.frequency.Frequency
+.. raw:: html
+
+   <div class="prename">quantlib.time.frequency.</div>
+   <div class="empty"></div>
+
+Frequency
 =================================
 
 .. currentmodule:: quantlib.time.frequency
 
 .. autoclass:: Frequency
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Frequency.__mul__
+         Frequency.__pow__
+         Frequency.conjugate
+         Frequency.bit_length
+         Frequency.bit_count
+         Frequency.to_bytes
+         Frequency.from_bytes
+         Frequency.as_integer_ratio
+         Frequency.__len__
+         Frequency.__getitem__
+      
+         Frequency.__len__
+         Frequency.__getitem__
+         Frequency.__mul__
+         Frequency.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Frequency.conjugate
-      ~Frequency.bit_length
-      ~Frequency.bit_count
-      ~Frequency.to_bytes
-      ~Frequency.from_bytes
-      ~Frequency.as_integer_ratio
-      ~Frequency.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Frequency.real
-      ~Frequency.imag
-      ~Frequency.numerator
-      ~Frequency.denominator
-      ~Frequency.NoFrequency
-      ~Frequency.Once
-      ~Frequency.Annual
-      ~Frequency.Semiannual
-      ~Frequency.EveryFourthMonth
-      ~Frequency.Quarterly
-      ~Frequency.Bimonthly
-      ~Frequency.Monthly
-      ~Frequency.EveryFourthWeek
-      ~Frequency.Biweekly
-      ~Frequency.Weekly
-      ~Frequency.Daily
-      ~Frequency.OtherFrequency
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Frequency.real
+         Frequency.imag
+         Frequency.numerator
+         Frequency.denominator
+         Frequency.NoFrequency
+         Frequency.Once
+         Frequency.Annual
+         Frequency.Semiannual
+         Frequency.EveryFourthMonth
+         Frequency.Quarterly
+         Frequency.Bimonthly
+         Frequency.Monthly
+         Frequency.EveryFourthWeek
+         Frequency.Biweekly
+         Frequency.Weekly
+         Frequency.Daily
+         Frequency.OtherFrequency
+  
+  

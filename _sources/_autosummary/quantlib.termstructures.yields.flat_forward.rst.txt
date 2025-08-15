@@ -4,28 +4,10 @@ quantlib.termstructures.yields.flat\_forward
 .. automodule:: quantlib.termstructures.yields.flat_forward
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       FlatForward
    
-   
-
-   
-   
-   
-
-
-

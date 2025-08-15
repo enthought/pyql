@@ -1,32 +1,33 @@
-quantlib.models.calibration\_helper.BlackCalibrationHelper
-==========================================================
+.. raw:: html
+
+   <div class="prename">quantlib.models.calibration_helper.</div>
+   <div class="empty"></div>
+
+BlackCalibrationHelper
+=========================================================
 
 .. currentmodule:: quantlib.models.calibration_helper
 
 .. autoclass:: BlackCalibrationHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BlackCalibrationHelper.black_price
+         BlackCalibrationHelper.calibration_error
+         BlackCalibrationHelper.impliedVolatility
+         BlackCalibrationHelper.market_value
+         BlackCalibrationHelper.model_value
+         BlackCalibrationHelper.set_pricing_engine
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BlackCalibrationHelper.__init__
-      ~BlackCalibrationHelper.black_price
-      ~BlackCalibrationHelper.calibration_error
-      ~BlackCalibrationHelper.impliedVolatility
-      ~BlackCalibrationHelper.market_value
-      ~BlackCalibrationHelper.model_value
-      ~BlackCalibrationHelper.set_pricing_engine
-   
-   
-
-   
-   
-   
+  
+  
+  

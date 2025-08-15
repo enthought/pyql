@@ -4,28 +4,10 @@ quantlib.time
 .. automodule:: quantlib.time
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    api
@@ -40,4 +22,3 @@ quantlib.time
    frequency
    imm
    schedule
-

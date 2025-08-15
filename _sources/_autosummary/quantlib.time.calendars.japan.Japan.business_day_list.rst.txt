@@ -1,0 +1,6 @@
+quantlib.time.calendars.japan.Japan.business\_day\_list
+=======================================================
+
+.. currentmodule:: quantlib.time.calendars.japan
+
+.. automethod:: Japan.business_day_list

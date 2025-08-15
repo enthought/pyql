@@ -1,27 +1,29 @@
-quantlib.cashflow.Leg
+.. raw:: html
+
+   <div class="prename">quantlib.cashflow.</div>
+   <div class="empty"></div>
+
+Leg
 =====================
 
 .. currentmodule:: quantlib.cashflow
 
 .. autoclass:: Leg
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Leg.__len__
+         Leg.items
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Leg.__init__
-      ~Leg.items
-   
-   
-
-   
-   
-   
+  
+  
+  

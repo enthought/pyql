@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.ukrpi.UKRPI.fixing\_calendar
+=======================================================
+
+.. currentmodule:: quantlib.indexes.inflation.ukrpi
+
+.. autoattribute:: UKRPI.fixing_calendar

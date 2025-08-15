@@ -1,0 +1,6 @@
+quantlib.cashflows.cms\_coupon.CmsCoupon.swap\_index
+====================================================
+
+.. currentmodule:: quantlib.cashflows.cms_coupon
+
+.. autoattribute:: CmsCoupon.swap_index

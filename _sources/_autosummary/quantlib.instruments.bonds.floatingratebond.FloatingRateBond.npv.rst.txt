@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.floatingratebond.FloatingRateBond.npv
+================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.floatingratebond
+
+.. autoattribute:: FloatingRateBond.npv

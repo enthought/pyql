@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.InflationIndex.fixing\_calendar
+=================================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. autoattribute:: InflationIndex.fixing_calendar

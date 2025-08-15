@@ -1,0 +1,6 @@
+quantlib.position.Position.numerator
+====================================
+
+.. currentmodule:: quantlib.position
+
+.. autoattribute:: Position.numerator

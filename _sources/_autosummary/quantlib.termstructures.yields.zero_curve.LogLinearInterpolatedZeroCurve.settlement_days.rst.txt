@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_curve.LogLinearInterpolatedZeroCurve.settlement\_days
+==========================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. autoattribute:: LogLinearInterpolatedZeroCurve.settlement_days

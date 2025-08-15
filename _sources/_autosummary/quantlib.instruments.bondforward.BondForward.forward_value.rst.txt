@@ -1,0 +1,6 @@
+quantlib.instruments.bondforward.BondForward.forward\_value
+===========================================================
+
+.. currentmodule:: quantlib.instruments.bondforward
+
+.. autoattribute:: BondForward.forward_value

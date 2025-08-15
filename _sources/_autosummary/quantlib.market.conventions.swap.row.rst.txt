@@ -1,45 +1,50 @@
-quantlib.market.conventions.swap.row
+.. raw:: html
+
+   <div class="prename">quantlib.market.conventions.swap.</div>
+   <div class="empty"></div>
+
+row
 ====================================
 
 .. currentmodule:: quantlib.market.conventions.swap
 
 .. autoclass:: row
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         row.__getitem__
+         row.__len__
+         row.__mul__
+         row.count
+         row.index
+      
+         row.__len__
+         row.__getitem__
+         row.__mul__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~row.__init__
-      ~row.count
-      ~row.index
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~row.calendar
-      ~row.currency
-      ~row.fixed_leg_convention
-      ~row.fixed_leg_daycount
-      ~row.fixed_leg_period
-      ~row.floating_leg_convention
-      ~row.floating_leg_daycount
-      ~row.floating_leg_period
-      ~row.floating_leg_reference
-      ~row.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         row.calendar
+         row.currency
+         row.fixed_leg_convention
+         row.fixed_leg_daycount
+         row.fixed_leg_period
+         row.floating_leg_convention
+         row.floating_leg_daycount
+         row.floating_leg_period
+         row.floating_leg_reference
+         row.settlement_days
+  
+  

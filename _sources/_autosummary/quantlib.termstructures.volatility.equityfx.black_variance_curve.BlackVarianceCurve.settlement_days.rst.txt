@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.black\_variance\_curve.BlackVarianceCurve.settlement\_days
+======================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_variance_curve
+
+.. autoattribute:: BlackVarianceCurve.settlement_days

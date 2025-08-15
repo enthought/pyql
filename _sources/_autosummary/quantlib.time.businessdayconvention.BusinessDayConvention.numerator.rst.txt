@@ -1,0 +1,6 @@
+quantlib.time.businessdayconvention.BusinessDayConvention.numerator
+===================================================================
+
+.. currentmodule:: quantlib.time.businessdayconvention
+
+.. autoattribute:: BusinessDayConvention.numerator

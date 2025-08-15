@@ -1,0 +1,6 @@
+quantlib.cashflows.duration.Duration.denominator
+================================================
+
+.. currentmodule:: quantlib.cashflows.duration
+
+.. autoattribute:: Duration.denominator

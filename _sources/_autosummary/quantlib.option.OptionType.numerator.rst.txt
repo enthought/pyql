@@ -1,0 +1,6 @@
+quantlib.option.OptionType.numerator
+====================================
+
+.. currentmodule:: quantlib.option
+
+.. autoattribute:: OptionType.numerator

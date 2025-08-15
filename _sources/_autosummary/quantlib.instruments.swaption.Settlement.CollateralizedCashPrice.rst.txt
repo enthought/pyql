@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Settlement.CollateralizedCashPrice
+================================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Settlement.CollateralizedCashPrice

@@ -1,0 +1,6 @@
+quantlib.models.equity.bates\_model.BatesDetJumpModel.sigma
+===========================================================
+
+.. currentmodule:: quantlib.models.equity.bates_model
+
+.. autoattribute:: BatesDetJumpModel.sigma

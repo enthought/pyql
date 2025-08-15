@@ -1,0 +1,6 @@
+quantlib.processes.bates\_process.BatesProcess.delta
+====================================================
+
+.. currentmodule:: quantlib.processes.bates_process
+
+.. autoattribute:: BatesProcess.delta

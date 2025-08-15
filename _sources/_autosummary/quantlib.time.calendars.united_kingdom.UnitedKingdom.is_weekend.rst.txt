@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_kingdom.UnitedKingdom.is\_weekend
+=================================================================
+
+.. currentmodule:: quantlib.time.calendars.united_kingdom
+
+.. automethod:: UnitedKingdom.is_weekend

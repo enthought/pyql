@@ -1,41 +1,40 @@
-quantlib.cashflows.linear\_tsr\_pricer.LinearTsrPricer
-======================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.linear_tsr_pricer.</div>
+   <div class="empty"></div>
+
+LinearTsrPricer
+====================================================
 
 .. currentmodule:: quantlib.cashflows.linear_tsr_pricer
 
 .. autoclass:: LinearTsrPricer
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LinearTsrPricer.caplet_price
+         LinearTsrPricer.caplet_rate
+         LinearTsrPricer.floorlet_price
+         LinearTsrPricer.floorlet_rate
+         LinearTsrPricer.initialize
+         LinearTsrPricer.swaplet_price
+         LinearTsrPricer.swaplet_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~LinearTsrPricer.__init__
-      ~LinearTsrPricer.caplet_price
-      ~LinearTsrPricer.caplet_rate
-      ~LinearTsrPricer.floorlet_price
-      ~LinearTsrPricer.floorlet_rate
-      ~LinearTsrPricer.initialize
-      ~LinearTsrPricer.swaplet_price
-      ~LinearTsrPricer.swaplet_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~LinearTsrPricer.swaption_volatility
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LinearTsrPricer.swaption_volatility
+  
+  

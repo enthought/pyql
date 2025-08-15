@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.inflation\_helpers.YearOnYearInflationSwapHelper.set\_term\_structure
+=======================================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.inflation_helpers
+
+.. automethod:: YearOnYearInflationSwapHelper.set_term_structure

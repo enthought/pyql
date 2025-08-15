@@ -1,0 +1,6 @@
+quantlib.indexes.swap.euribor\_swap.EuriborSwapIsdaFixB.forecast\_fixing
+========================================================================
+
+.. currentmodule:: quantlib.indexes.swap.euribor_swap
+
+.. automethod:: EuriborSwapIsdaFixB.forecast_fixing

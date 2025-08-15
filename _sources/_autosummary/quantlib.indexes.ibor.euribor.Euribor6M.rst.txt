@@ -1,55 +1,54 @@
-quantlib.indexes.ibor.euribor.Euribor6M
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.ibor.euribor.</div>
+   <div class="empty"></div>
+
+Euribor6M
 =======================================
 
 .. currentmodule:: quantlib.indexes.ibor.euribor
 
 .. autoclass:: Euribor6M
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Euribor6M.add_fixing
+         Euribor6M.add_fixings
+         Euribor6M.clear_fixings
+         Euribor6M.fixing
+         Euribor6M.fixing_date
+         Euribor6M.forecast_fixing
+         Euribor6M.from_name
+         Euribor6M.has_historical_fixing
+         Euribor6M.is_valid_fixing_date
+         Euribor6M.maturity_date
+         Euribor6M.value_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Euribor6M.__init__
-      ~Euribor6M.add_fixing
-      ~Euribor6M.add_fixings
-      ~Euribor6M.clear_fixings
-      ~Euribor6M.fixing
-      ~Euribor6M.fixing_date
-      ~Euribor6M.forecast_fixing
-      ~Euribor6M.from_name
-      ~Euribor6M.has_historical_fixing
-      ~Euribor6M.is_valid_fixing_date
-      ~Euribor6M.maturity_date
-      ~Euribor6M.value_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Euribor6M.business_day_convention
-      ~Euribor6M.currency
-      ~Euribor6M.day_counter
-      ~Euribor6M.end_of_month
-      ~Euribor6M.family_name
-      ~Euribor6M.fixing_calendar
-      ~Euribor6M.fixing_days
-      ~Euribor6M.forwarding_term_structure
-      ~Euribor6M.name
-      ~Euribor6M.tenor
-      ~Euribor6M.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Euribor6M.business_day_convention
+         Euribor6M.currency
+         Euribor6M.day_counter
+         Euribor6M.end_of_month
+         Euribor6M.family_name
+         Euribor6M.fixing_calendar
+         Euribor6M.fixing_days
+         Euribor6M.forwarding_term_structure
+         Euribor6M.name
+         Euribor6M.tenor
+         Euribor6M.time_series
+  
+  

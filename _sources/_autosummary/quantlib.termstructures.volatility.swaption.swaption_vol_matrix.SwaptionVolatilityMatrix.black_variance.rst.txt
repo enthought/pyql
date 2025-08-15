@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_matrix.SwaptionVolatilityMatrix.black\_variance
+==========================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_matrix
+
+.. automethod:: SwaptionVolatilityMatrix.black_variance

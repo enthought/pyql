@@ -1,0 +1,6 @@
+quantlib.observable.Observer.register\_with
+===========================================
+
+.. currentmodule:: quantlib.observable
+
+.. automethod:: Observer.register_with

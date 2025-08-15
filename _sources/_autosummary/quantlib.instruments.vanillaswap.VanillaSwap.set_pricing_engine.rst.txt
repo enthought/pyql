@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaswap.VanillaSwap.set\_pricing\_engine
+=================================================================
+
+.. currentmodule:: quantlib.instruments.vanillaswap
+
+.. automethod:: VanillaSwap.set_pricing_engine

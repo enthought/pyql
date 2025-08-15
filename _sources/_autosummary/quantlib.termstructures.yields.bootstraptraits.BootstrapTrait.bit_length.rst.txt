@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bootstraptraits.BootstrapTrait.bit\_length
+=========================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bootstraptraits
+
+.. automethod:: BootstrapTrait.bit_length

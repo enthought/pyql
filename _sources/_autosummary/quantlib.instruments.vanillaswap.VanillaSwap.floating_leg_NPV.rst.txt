@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaswap.VanillaSwap.floating\_leg\_NPV
+===============================================================
+
+.. currentmodule:: quantlib.instruments.vanillaswap
+
+.. autoattribute:: VanillaSwap.floating_leg_NPV

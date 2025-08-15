@@ -1,0 +1,6 @@
+quantlib.cashflows.rateaveraging.RateAveraging.bit\_count
+=========================================================
+
+.. currentmodule:: quantlib.cashflows.rateaveraging
+
+.. automethod:: RateAveraging.bit_count

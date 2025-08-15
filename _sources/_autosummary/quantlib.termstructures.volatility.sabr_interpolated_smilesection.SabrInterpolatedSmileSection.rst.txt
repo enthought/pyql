@@ -1,50 +1,49 @@
-quantlib.termstructures.volatility.sabr\_interpolated\_smilesection.SabrInterpolatedSmileSection
-================================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.volatility.sabr_interpolated_smilesection.</div>
+   <div class="empty"></div>
+
+SabrInterpolatedSmileSection
+==============================================================================================
 
 .. currentmodule:: quantlib.termstructures.volatility.sabr_interpolated_smilesection
 
 .. autoclass:: SabrInterpolatedSmileSection
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SabrInterpolatedSmileSection.density
+         SabrInterpolatedSmileSection.option_price
+         SabrInterpolatedSmileSection.vega
+         SabrInterpolatedSmileSection.volatility
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~SabrInterpolatedSmileSection.__init__
-      ~SabrInterpolatedSmileSection.density
-      ~SabrInterpolatedSmileSection.option_price
-      ~SabrInterpolatedSmileSection.vega
-      ~SabrInterpolatedSmileSection.volatility
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~SabrInterpolatedSmileSection.alpha
-      ~SabrInterpolatedSmileSection.beta
-      ~SabrInterpolatedSmileSection.day_counter
-      ~SabrInterpolatedSmileSection.end_criteria
-      ~SabrInterpolatedSmileSection.exercise_date
-      ~SabrInterpolatedSmileSection.exercise_time
-      ~SabrInterpolatedSmileSection.max_error
-      ~SabrInterpolatedSmileSection.max_strike
-      ~SabrInterpolatedSmileSection.min_strike
-      ~SabrInterpolatedSmileSection.nu
-      ~SabrInterpolatedSmileSection.reference_date
-      ~SabrInterpolatedSmileSection.rho
-      ~SabrInterpolatedSmileSection.rms_error
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SabrInterpolatedSmileSection.alpha
+         SabrInterpolatedSmileSection.beta
+         SabrInterpolatedSmileSection.day_counter
+         SabrInterpolatedSmileSection.end_criteria
+         SabrInterpolatedSmileSection.exercise_date
+         SabrInterpolatedSmileSection.exercise_time
+         SabrInterpolatedSmileSection.max_error
+         SabrInterpolatedSmileSection.max_strike
+         SabrInterpolatedSmileSection.min_strike
+         SabrInterpolatedSmileSection.nu
+         SabrInterpolatedSmileSection.reference_date
+         SabrInterpolatedSmileSection.rho
+         SabrInterpolatedSmileSection.rms_error
+  
+  

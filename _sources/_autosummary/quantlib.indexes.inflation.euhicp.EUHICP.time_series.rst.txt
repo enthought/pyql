@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.euhicp.EUHICP.time\_series
+=====================================================
+
+.. currentmodule:: quantlib.indexes.inflation.euhicp
+
+.. autoattribute:: EUHICP.time_series

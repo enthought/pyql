@@ -1,0 +1,6 @@
+quantlib.instruments.asian\_options.ContinuousAveragingAsianOption.net\_present\_value
+======================================================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. autoattribute:: ContinuousAveragingAsianOption.net_present_value

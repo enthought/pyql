@@ -1,47 +1,46 @@
-quantlib.termstructures.credit.piecewise\_default\_curve.PiecewiseDefaultCurve
-==============================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.credit.piecewise_default_curve.</div>
+   <div class="empty"></div>
+
+PiecewiseDefaultCurve
+============================================================================
 
 .. currentmodule:: quantlib.termstructures.credit.piecewise_default_curve
 
 .. autoclass:: PiecewiseDefaultCurve
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         PiecewiseDefaultCurve.from_reference_date
+         PiecewiseDefaultCurve.hazard_rate
+         PiecewiseDefaultCurve.survival_probability
+         PiecewiseDefaultCurve.time_from_reference
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~PiecewiseDefaultCurve.__init__
-      ~PiecewiseDefaultCurve.from_reference_date
-      ~PiecewiseDefaultCurve.hazard_rate
-      ~PiecewiseDefaultCurve.survival_probability
-      ~PiecewiseDefaultCurve.time_from_reference
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~PiecewiseDefaultCurve.data
-      ~PiecewiseDefaultCurve.dates
-      ~PiecewiseDefaultCurve.day_counter
-      ~PiecewiseDefaultCurve.jump_dates
-      ~PiecewiseDefaultCurve.jump_times
-      ~PiecewiseDefaultCurve.max_date
-      ~PiecewiseDefaultCurve.max_time
-      ~PiecewiseDefaultCurve.reference_date
-      ~PiecewiseDefaultCurve.settlement_days
-      ~PiecewiseDefaultCurve.times
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         PiecewiseDefaultCurve.data
+         PiecewiseDefaultCurve.dates
+         PiecewiseDefaultCurve.day_counter
+         PiecewiseDefaultCurve.jump_dates
+         PiecewiseDefaultCurve.jump_times
+         PiecewiseDefaultCurve.max_date
+         PiecewiseDefaultCurve.max_time
+         PiecewiseDefaultCurve.reference_date
+         PiecewiseDefaultCurve.settlement_days
+         PiecewiseDefaultCurve.times
+  
+  

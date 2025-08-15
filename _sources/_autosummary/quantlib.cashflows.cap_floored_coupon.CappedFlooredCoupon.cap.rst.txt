@@ -1,0 +1,6 @@
+quantlib.cashflows.cap\_floored\_coupon.CappedFlooredCoupon.cap
+===============================================================
+
+.. currentmodule:: quantlib.cashflows.cap_floored_coupon
+
+.. autoattribute:: CappedFlooredCoupon.cap

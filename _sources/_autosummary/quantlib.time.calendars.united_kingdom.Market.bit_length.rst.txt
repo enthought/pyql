@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_kingdom.Market.bit\_length
+==========================================================
+
+.. currentmodule:: quantlib.time.calendars.united_kingdom
+
+.. automethod:: Market.bit_length

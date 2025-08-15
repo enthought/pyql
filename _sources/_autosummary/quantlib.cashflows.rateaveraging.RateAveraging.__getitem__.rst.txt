@@ -1,0 +1,6 @@
+quantlib.cashflows.rateaveraging.RateAveraging.\_\_getitem\_\_
+==============================================================
+
+.. currentmodule:: quantlib.cashflows.rateaveraging
+
+.. automethod:: RateAveraging.__getitem__

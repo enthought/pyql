@@ -1,0 +1,6 @@
+quantlib.instruments.forward.Forward.forward\_value
+===================================================
+
+.. currentmodule:: quantlib.instruments.forward
+
+.. autoattribute:: Forward.forward_value

@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.vega
+=======================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.vega

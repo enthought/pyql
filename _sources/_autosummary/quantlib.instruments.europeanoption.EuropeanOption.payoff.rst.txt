@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.payoff
+=========================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. autoattribute:: EuropeanOption.payoff

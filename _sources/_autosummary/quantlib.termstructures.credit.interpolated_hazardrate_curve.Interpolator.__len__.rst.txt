@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.interpolated\_hazardrate\_curve.Interpolator.\_\_len\_\_
+=======================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.interpolated_hazardrate_curve
+
+.. automethod:: Interpolator.__len__

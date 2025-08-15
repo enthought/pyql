@@ -1,0 +1,6 @@
+quantlib.pricingengines.vanilla.fdblackscholesvanillaengine.CashDividendModel.from\_bytes
+=========================================================================================
+
+.. currentmodule:: quantlib.pricingengines.vanilla.fdblackscholesvanillaengine
+
+.. automethod:: CashDividendModel.from_bytes

@@ -1,0 +1,6 @@
+quantlib.cashflow.Leg.\_\_len\_\_
+=================================
+
+.. currentmodule:: quantlib.cashflow
+
+.. automethod:: Leg.__len__

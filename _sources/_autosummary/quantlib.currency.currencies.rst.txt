@@ -4,20 +4,10 @@ quantlib.currency.currencies
 .. automodule:: quantlib.currency.currencies
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       AUDCurrency
       CHFCurrency
@@ -35,11 +25,3 @@ quantlib.currency.currencies
       USDCurrency
       ZARCurrency
    
-   
-
-   
-   
-   
-
-
-

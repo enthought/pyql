@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.CPIBond.notional
+===================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. automethod:: CPIBond.notional

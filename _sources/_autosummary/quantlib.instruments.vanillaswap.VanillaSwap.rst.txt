@@ -1,65 +1,66 @@
-quantlib.instruments.vanillaswap.VanillaSwap
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.vanillaswap.</div>
+   <div class="empty"></div>
+
+VanillaSwap
 ============================================
 
 .. currentmodule:: quantlib.instruments.vanillaswap
 
 .. autoclass:: VanillaSwap
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         VanillaSwap.__getitem__
+         VanillaSwap.endDiscounts
+         VanillaSwap.leg
+         VanillaSwap.leg_BPS
+         VanillaSwap.leg_NPV
+         VanillaSwap.npv_date_discount
+         VanillaSwap.set_pricing_engine
+         VanillaSwap.startDiscounts
+      
+         VanillaSwap.__getitem__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~VanillaSwap.__init__
-      ~VanillaSwap.endDiscounts
-      ~VanillaSwap.leg
-      ~VanillaSwap.leg_BPS
-      ~VanillaSwap.leg_NPV
-      ~VanillaSwap.npv_date_discount
-      ~VanillaSwap.set_pricing_engine
-      ~VanillaSwap.startDiscounts
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~VanillaSwap.Payer
-      ~VanillaSwap.Receiver
-      ~VanillaSwap.fair_rate
-      ~VanillaSwap.fair_spread
-      ~VanillaSwap.fixed_day_count
-      ~VanillaSwap.fixed_leg
-      ~VanillaSwap.fixed_leg_BPS
-      ~VanillaSwap.fixed_leg_NPV
-      ~VanillaSwap.fixed_rate
-      ~VanillaSwap.fixed_schedule
-      ~VanillaSwap.floating_day_count
-      ~VanillaSwap.floating_leg
-      ~VanillaSwap.floating_leg_BPS
-      ~VanillaSwap.floating_leg_NPV
-      ~VanillaSwap.floating_schedule
-      ~VanillaSwap.is_expired
-      ~VanillaSwap.maturity_date
-      ~VanillaSwap.net_present_value
-      ~VanillaSwap.nominal
-      ~VanillaSwap.nominals
-      ~VanillaSwap.npv
-      ~VanillaSwap.spread
-      ~VanillaSwap.start_date
-      ~VanillaSwap.type
-      ~VanillaSwap.valuation_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         VanillaSwap.Payer
+         VanillaSwap.Receiver
+         VanillaSwap.fair_rate
+         VanillaSwap.fair_spread
+         VanillaSwap.fixed_day_count
+         VanillaSwap.fixed_leg
+         VanillaSwap.fixed_leg_BPS
+         VanillaSwap.fixed_leg_NPV
+         VanillaSwap.fixed_rate
+         VanillaSwap.fixed_schedule
+         VanillaSwap.floating_day_count
+         VanillaSwap.floating_leg
+         VanillaSwap.floating_leg_BPS
+         VanillaSwap.floating_leg_NPV
+         VanillaSwap.floating_schedule
+         VanillaSwap.is_expired
+         VanillaSwap.maturity_date
+         VanillaSwap.net_present_value
+         VanillaSwap.nominal
+         VanillaSwap.nominals
+         VanillaSwap.npv
+         VanillaSwap.spread
+         VanillaSwap.start_date
+         VanillaSwap.type
+         VanillaSwap.valuation_date
+  
+  

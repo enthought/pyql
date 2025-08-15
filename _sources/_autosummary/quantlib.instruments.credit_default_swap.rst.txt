@@ -4,36 +4,17 @@ quantlib.instruments.credit\_default\_swap
 .. automodule:: quantlib.instruments.credit_default_swap
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
    
       cds_maturity
-   
-   
-
-   
    
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       CreditDefaultSwap
       PricingModel
    
-   
-
-   
-   
-   
-
-
-

@@ -1,0 +1,6 @@
+quantlib.processes.hullwhite\_process.HullWhiteForwardProcess.size
+==================================================================
+
+.. currentmodule:: quantlib.processes.hullwhite_process
+
+.. automethod:: HullWhiteForwardProcess.size

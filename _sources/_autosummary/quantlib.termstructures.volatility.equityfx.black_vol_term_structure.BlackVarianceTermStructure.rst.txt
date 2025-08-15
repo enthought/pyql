@@ -1,43 +1,42 @@
-quantlib.termstructures.volatility.equityfx.black\_vol\_term\_structure.BlackVarianceTermStructure
-==================================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.volatility.equityfx.black_vol_term_structure.</div>
+   <div class="empty"></div>
+
+BlackVarianceTermStructure
+===============================================================================================
 
 .. currentmodule:: quantlib.termstructures.volatility.equityfx.black_vol_term_structure
 
 .. autoclass:: BlackVarianceTermStructure
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BlackVarianceTermStructure.blackForwardVariance
+         BlackVarianceTermStructure.blackForwardVol
+         BlackVarianceTermStructure.blackVariance
+         BlackVarianceTermStructure.blackVol
+         BlackVarianceTermStructure.option_date_from_tenor
+         BlackVarianceTermStructure.time_from_reference
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BlackVarianceTermStructure.__init__
-      ~BlackVarianceTermStructure.blackForwardVariance
-      ~BlackVarianceTermStructure.blackForwardVol
-      ~BlackVarianceTermStructure.blackVariance
-      ~BlackVarianceTermStructure.blackVol
-      ~BlackVarianceTermStructure.option_date_from_tenor
-      ~BlackVarianceTermStructure.time_from_reference
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~BlackVarianceTermStructure.calendar
-      ~BlackVarianceTermStructure.extrapolation
-      ~BlackVarianceTermStructure.reference_date
-      ~BlackVarianceTermStructure.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BlackVarianceTermStructure.calendar
+         BlackVarianceTermStructure.extrapolation
+         BlackVarianceTermStructure.reference_date
+         BlackVarianceTermStructure.settlement_days
+  
+  

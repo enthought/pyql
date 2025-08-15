@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.fixedratebond.FixedRateBond.set\_pricing\_engine
+===========================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.fixedratebond
+
+.. automethod:: FixedRateBond.set_pricing_engine

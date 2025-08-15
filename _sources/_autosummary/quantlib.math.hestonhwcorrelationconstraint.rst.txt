@@ -4,28 +4,10 @@ quantlib.math.hestonhwcorrelationconstraint
 .. automodule:: quantlib.math.hestonhwcorrelationconstraint
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       HestonHullWhiteCorrelationConstraint
    
-   
-
-   
-   
-   
-
-
-

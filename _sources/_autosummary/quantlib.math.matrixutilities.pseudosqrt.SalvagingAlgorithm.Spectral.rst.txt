@@ -1,0 +1,6 @@
+quantlib.math.matrixutilities.pseudosqrt.SalvagingAlgorithm.Spectral
+====================================================================
+
+.. currentmodule:: quantlib.math.matrixutilities.pseudosqrt
+
+.. autoattribute:: SalvagingAlgorithm.Spectral

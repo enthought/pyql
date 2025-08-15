@@ -1,0 +1,6 @@
+quantlib.option.Option.payoff
+=============================
+
+.. currentmodule:: quantlib.option
+
+.. autoattribute:: Option.payoff

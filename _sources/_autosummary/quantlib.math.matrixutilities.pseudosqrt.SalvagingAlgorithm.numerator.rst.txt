@@ -1,0 +1,6 @@
+quantlib.math.matrixutilities.pseudosqrt.SalvagingAlgorithm.numerator
+=====================================================================
+
+.. currentmodule:: quantlib.math.matrixutilities.pseudosqrt
+
+.. autoattribute:: SalvagingAlgorithm.numerator

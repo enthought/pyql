@@ -4,40 +4,21 @@ quantlib.market.market
 .. automodule:: quantlib.market.market
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
    
       libor_market
       make_eurobond_helper
       make_rate_helper
       next_imm_date
    
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       FixedIncomeMarket
       IborMarket
       Market
    
-   
-
-   
-   
-   
-
-
-

@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.cms\_spread\_coupon.CappedFlooredCmsSpreadCoupon.is\_in\_arrears
+==============================================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.cms_spread_coupon
+
+.. autoattribute:: CappedFlooredCmsSpreadCoupon.is_in_arrears

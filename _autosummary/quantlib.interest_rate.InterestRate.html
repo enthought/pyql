@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.interest_rate.InterestRate &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>InterestRate &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.market" href="quantlib.market.html" />
+    <link rel="next" title="quantlib.interest_rate.InterestRate.compound_factor" href="quantlib.interest_rate.InterestRate.compound_factor.html" />
     <link rel="prev" title="quantlib.interest_rate" href="quantlib.interest_rate.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,8 +34,9 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-interest-rate-interestrate">
-<h1>quantlib.interest_rate.InterestRate<a class="headerlink" href="#quantlib-interest-rate-interestrate" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.interest_rate.</div>
+<div class="empty"></div><section id="interestrate">
+<h1>InterestRate<a class="headerlink" href="#interestrate" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.interest_rate.InterestRate">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InterestRate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">compounding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">frequency</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.interest_rate.InterestRate" title="Link to this definition">¶</a></dt>
@@ -44,69 +45,31 @@
 <p>It manages day-counting conventions, compounding conventions,
 conversion between different conventions, discount/compound factor
 calculations, and implied/equivalent rate calculations.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.interest_rate.InterestRate.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.interest_rate.InterestRate.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>compounding</strong></dt><dd></dd>
+<dt><strong>day_counter</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.interest_rate.InterestRate.frequency.html#quantlib.interest_rate.InterestRate.frequency" title="quantlib.interest_rate.InterestRate.frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency</span></code></a></dt><dd><p>Returns the frequency used for computation.</p>
+</dd>
+<dt><strong>rate</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.interest_rate.InterestRate.__init__" title="quantlib.interest_rate.InterestRate.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.interest_rate.InterestRate.compound_factor.html#quantlib.interest_rate.InterestRate.compound_factor" title="quantlib.interest_rate.InterestRate.compound_factor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compound_factor</span></code></a>(self, Time t)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.interest_rate.InterestRate.compound_factor" title="quantlib.interest_rate.InterestRate.compound_factor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compound_factor</span></code></a>(self, Time t)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.interest_rate.InterestRate.equivalent_rate.html#quantlib.interest_rate.InterestRate.equivalent_rate" title="quantlib.interest_rate.InterestRate.equivalent_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equivalent_rate</span></code></a>(self, Compounding comp, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.interest_rate.InterestRate.equivalent_rate" title="quantlib.interest_rate.InterestRate.equivalent_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equivalent_rate</span></code></a>(self, Compounding comp, ...)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.interest_rate.InterestRate.implied_rate" title="quantlib.interest_rate.InterestRate.implied_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">implied_rate</span></code></a>(self, Real compound, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.interest_rate.InterestRate.implied_rate.html#quantlib.interest_rate.InterestRate.implied_rate" title="quantlib.interest_rate.InterestRate.implied_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">implied_rate</span></code></a>(self, Real compound, ...)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">compounding</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">day_counter</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.interest_rate.InterestRate.frequency" title="quantlib.interest_rate.InterestRate.frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency</span></code></a></p></td>
-<td><p>Returns the frequency used for computation.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rate</span></code></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.interest_rate.InterestRate.compound_factor">
-<span class="sig-name descname"><span class="pre">compound_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Time</span> <span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.interest_rate.InterestRate.compound_factor" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.interest_rate.InterestRate.equivalent_rate">
-<span class="sig-name descname"><span class="pre">equivalent_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">comp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequency</span> <span class="pre">freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Time</span> <span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.interest_rate.InterestRate.equivalent_rate" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.interest_rate.InterestRate.frequency">
-<span class="sig-name descname"><span class="pre">frequency</span></span><a class="headerlink" href="#quantlib.interest_rate.InterestRate.frequency" title="Link to this definition">¶</a></dt>
-<dd><p>Returns the frequency used for computation.</p>
-<p>If the Frequency does not make sense, it returns NoFrequency.
-Frequency only make sense when compounding is Compounded or
-SimpleThenCompounded.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.interest_rate.InterestRate.implied_rate">
-<span class="sig-name descname"><span class="pre">implied_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">compound</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">result_dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">comp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequency</span> <span class="pre">freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Time</span> <span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.interest_rate.InterestRate.implied_rate" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </section>
@@ -149,7 +112,7 @@ SimpleThenCompounded.</p>
   <li><a href="quantlib.html">quantlib</a><ul>
   <li><a href="quantlib.interest_rate.html">quantlib.interest_rate</a><ul>
       <li>Previous: <a href="quantlib.interest_rate.html" title="previous chapter">quantlib.interest_rate</a></li>
-      <li>Next: <a href="quantlib.market.html" title="next chapter">quantlib.market</a></li>
+      <li>Next: <a href="quantlib.interest_rate.InterestRate.compound_factor.html" title="next chapter">quantlib.interest_rate.InterestRate.compound_factor</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

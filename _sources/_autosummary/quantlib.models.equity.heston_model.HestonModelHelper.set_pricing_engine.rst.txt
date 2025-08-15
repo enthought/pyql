@@ -1,0 +1,6 @@
+quantlib.models.equity.heston\_model.HestonModelHelper.set\_pricing\_engine
+===========================================================================
+
+.. currentmodule:: quantlib.models.equity.heston_model
+
+.. automethod:: HestonModelHelper.set_pricing_engine

@@ -1,0 +1,6 @@
+quantlib.pricingengines.vanilla.analytic\_heston\_engine.Integration.gaussLegendre
+==================================================================================
+
+.. currentmodule:: quantlib.pricingengines.vanilla.analytic_heston_engine
+
+.. automethod:: Integration.gaussLegendre

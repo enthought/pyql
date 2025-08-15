@@ -1,0 +1,6 @@
+quantlib.termstructures.helpers.Pillar.CustomDate
+=================================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. autoattribute:: Pillar.CustomDate

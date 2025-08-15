@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.interpolated\_hazardrate\_curve.InterpolatedHazardRateCurve.time\_from\_reference
+================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.interpolated_hazardrate_curve
+
+.. automethod:: InterpolatedHazardRateCurve.time_from_reference

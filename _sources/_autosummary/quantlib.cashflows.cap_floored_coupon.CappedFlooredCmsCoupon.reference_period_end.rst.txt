@@ -1,0 +1,6 @@
+quantlib.cashflows.cap\_floored\_coupon.CappedFlooredCmsCoupon.reference\_period\_end
+=====================================================================================
+
+.. currentmodule:: quantlib.cashflows.cap_floored_coupon
+
+.. autoattribute:: CappedFlooredCmsCoupon.reference_period_end

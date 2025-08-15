@@ -1,48 +1,47 @@
-quantlib.termstructures.yields.discount\_curve.LogLinearInterpolatedDiscountCurve
-=================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.discount_curve.</div>
+   <div class="empty"></div>
+
+LogLinearInterpolatedDiscountCurve
+================================================================================
 
 .. currentmodule:: quantlib.termstructures.yields.discount_curve
 
 .. autoclass:: LogLinearInterpolatedDiscountCurve
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LogLinearInterpolatedDiscountCurve.discount
+         LogLinearInterpolatedDiscountCurve.forward_rate
+         LogLinearInterpolatedDiscountCurve.time_from_reference
+         LogLinearInterpolatedDiscountCurve.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~LogLinearInterpolatedDiscountCurve.__init__
-      ~LogLinearInterpolatedDiscountCurve.discount
-      ~LogLinearInterpolatedDiscountCurve.forward_rate
-      ~LogLinearInterpolatedDiscountCurve.time_from_reference
-      ~LogLinearInterpolatedDiscountCurve.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~LogLinearInterpolatedDiscountCurve.data
-      ~LogLinearInterpolatedDiscountCurve.dates
-      ~LogLinearInterpolatedDiscountCurve.day_counter
-      ~LogLinearInterpolatedDiscountCurve.discounts
-      ~LogLinearInterpolatedDiscountCurve.extrapolation
-      ~LogLinearInterpolatedDiscountCurve.max_date
-      ~LogLinearInterpolatedDiscountCurve.max_time
-      ~LogLinearInterpolatedDiscountCurve.nodes
-      ~LogLinearInterpolatedDiscountCurve.reference_date
-      ~LogLinearInterpolatedDiscountCurve.settlement_days
-      ~LogLinearInterpolatedDiscountCurve.times
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LogLinearInterpolatedDiscountCurve.data
+         LogLinearInterpolatedDiscountCurve.dates
+         LogLinearInterpolatedDiscountCurve.day_counter
+         LogLinearInterpolatedDiscountCurve.discounts
+         LogLinearInterpolatedDiscountCurve.extrapolation
+         LogLinearInterpolatedDiscountCurve.max_date
+         LogLinearInterpolatedDiscountCurve.max_time
+         LogLinearInterpolatedDiscountCurve.nodes
+         LogLinearInterpolatedDiscountCurve.reference_date
+         LogLinearInterpolatedDiscountCurve.settlement_days
+         LogLinearInterpolatedDiscountCurve.times
+  
+  

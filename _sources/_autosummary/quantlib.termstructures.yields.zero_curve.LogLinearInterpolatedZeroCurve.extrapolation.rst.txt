@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_curve.LogLinearInterpolatedZeroCurve.extrapolation
+=======================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. autoattribute:: LogLinearInterpolatedZeroCurve.extrapolation

@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Settlement.ParYieldCurve
+======================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Settlement.ParYieldCurve

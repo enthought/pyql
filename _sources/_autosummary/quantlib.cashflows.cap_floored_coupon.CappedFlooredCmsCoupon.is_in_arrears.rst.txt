@@ -1,0 +1,6 @@
+quantlib.cashflows.cap\_floored\_coupon.CappedFlooredCmsCoupon.is\_in\_arrears
+==============================================================================
+
+.. currentmodule:: quantlib.cashflows.cap_floored_coupon
+
+.. autoattribute:: CappedFlooredCmsCoupon.is_in_arrears

@@ -1,26 +1,27 @@
-quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.FdmStepConditionComposite
+.. raw:: html
+
+   <div class="prename">quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.</div>
+   <div class="empty"></div>
+
+FdmStepConditionComposite
 ======================================================================================
 
 .. currentmodule:: quantlib.methods.finitedifferences.solvers.fdmbackwardsolver
 
 .. autoclass:: FdmStepConditionComposite
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FdmStepConditionComposite.__init__
-   
-   
-
-   
-   
-   
+  
+  
+  

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.ois\_rate\_helper.OISRateHelper.update
+=====================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.ois_rate_helper
+
+.. automethod:: OISRateHelper.update

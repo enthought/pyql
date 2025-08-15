@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.net\_present\_value
+====================================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.net_present_value

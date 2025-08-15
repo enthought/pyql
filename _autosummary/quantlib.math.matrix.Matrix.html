@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.math.matrix.Matrix &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>Matrix &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.math.matrixutilities" href="quantlib.math.matrixutilities.html" />
+    <link rel="next" title="quantlib.math.matrix.Matrix.from_ndarray" href="quantlib.math.matrix.Matrix.from_ndarray.html" />
     <link rel="prev" title="quantlib.math.matrix" href="quantlib.math.matrix.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,52 +34,32 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-math-matrix-matrix">
-<h1>quantlib.math.matrix.Matrix<a class="headerlink" href="#quantlib-math-matrix-matrix" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.math.matrix.</div>
+<div class="empty"></div><section id="matrix">
+<h1>Matrix<a class="headerlink" href="#matrix" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.math.matrix.Matrix">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">columns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.math.matrix.Matrix" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.math.matrix.Matrix.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.math.matrix.Matrix.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>columns</strong></dt><dd></dd>
+<dt><strong>rows</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.math.matrix.Matrix.__init__" title="quantlib.math.matrix.Matrix.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.math.matrix.Matrix.from_ndarray.html#quantlib.math.matrix.Matrix.from_ndarray" title="quantlib.math.matrix.Matrix.from_ndarray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_ndarray</span></code></a>(cls, double[, )</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.math.matrix.Matrix.from_ndarray" title="quantlib.math.matrix.Matrix.from_ndarray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_ndarray</span></code></a>(cls, double[, )</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.math.matrix.Matrix.to_ndarray" title="quantlib.math.matrix.Matrix.to_ndarray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_ndarray</span></code></a>(self)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.math.matrix.Matrix.to_ndarray.html#quantlib.math.matrix.Matrix.to_ndarray" title="quantlib.math.matrix.Matrix.to_ndarray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_ndarray</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">columns</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rows</span></code></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.math.matrix.Matrix.from_ndarray">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_ndarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double[:</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">::1]</span> <span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.math.matrix.Matrix.from_ndarray" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.math.matrix.Matrix.to_ndarray">
-<span class="sig-name descname"><span class="pre">to_ndarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.math.matrix.Matrix.to_ndarray" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </section>
@@ -123,7 +103,7 @@
   <li><a href="quantlib.math.html">quantlib.math</a><ul>
   <li><a href="quantlib.math.matrix.html">quantlib.math.matrix</a><ul>
       <li>Previous: <a href="quantlib.math.matrix.html" title="previous chapter">quantlib.math.matrix</a></li>
-      <li>Next: <a href="quantlib.math.matrixutilities.html" title="next chapter">quantlib.math.matrixutilities</a></li>
+      <li>Next: <a href="quantlib.math.matrix.Matrix.from_ndarray.html" title="next chapter">quantlib.math.matrix.Matrix.from_ndarray</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

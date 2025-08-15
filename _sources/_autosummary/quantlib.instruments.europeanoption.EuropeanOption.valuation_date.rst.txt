@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.valuation\_date
+==================================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. autoattribute:: EuropeanOption.valuation_date

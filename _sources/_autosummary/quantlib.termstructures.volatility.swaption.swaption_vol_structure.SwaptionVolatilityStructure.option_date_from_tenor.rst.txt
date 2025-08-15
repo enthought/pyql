@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_structure.SwaptionVolatilityStructure.option\_date\_from\_tenor
+==========================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_structure
+
+.. automethod:: SwaptionVolatilityStructure.option_date_from_tenor

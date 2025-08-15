@@ -1,0 +1,6 @@
+quantlib.cashflows.ibor\_coupon.IborCoupon.convexity\_adjustment
+================================================================
+
+.. currentmodule:: quantlib.cashflows.ibor_coupon
+
+.. autoattribute:: IborCoupon.convexity_adjustment

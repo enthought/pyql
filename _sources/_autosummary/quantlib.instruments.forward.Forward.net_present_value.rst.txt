@@ -1,0 +1,6 @@
+quantlib.instruments.forward.Forward.net\_present\_value
+========================================================
+
+.. currentmodule:: quantlib.instruments.forward
+
+.. autoattribute:: Forward.net_present_value

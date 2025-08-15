@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.CubicInterpolatedForwardCurve.max\_time
+=====================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. autoattribute:: CubicInterpolatedForwardCurve.max_time

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.BackwardFlatInterpolatedForwardCurve.zero\_rate
+=============================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. automethod:: BackwardFlatInterpolatedForwardCurve.zero_rate

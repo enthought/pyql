@@ -4,29 +4,10 @@ quantlib.methods.finitedifferences.solvers
 .. automodule:: quantlib.methods.finitedifferences.solvers
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    fdmbackwardsolver
-

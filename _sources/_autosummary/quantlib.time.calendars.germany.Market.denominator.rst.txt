@@ -1,0 +1,6 @@
+quantlib.time.calendars.germany.Market.denominator
+==================================================
+
+.. currentmodule:: quantlib.time.calendars.germany
+
+.. autoattribute:: Market.denominator

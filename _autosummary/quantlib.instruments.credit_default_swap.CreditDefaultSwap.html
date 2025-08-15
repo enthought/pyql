@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.instruments.credit_default_swap.CreditDefaultSwap &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>CreditDefaultSwap &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,8 +15,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.instruments.credit_default_swap.PricingModel" href="quantlib.instruments.credit_default_swap.PricingModel.html" />
-    <link rel="prev" title="quantlib.instruments.credit_default_swap.cds_maturity" href="quantlib.instruments.credit_default_swap.cds_maturity.html" />
+    <link rel="next" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.conventional_spread" href="quantlib.instruments.credit_default_swap.CreditDefaultSwap.conventional_spread.html" />
+    <link rel="prev" title="quantlib.instruments.credit_default_swap" href="quantlib.instruments.credit_default_swap.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,43 +34,109 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-instruments-credit-default-swap-creditdefaultswap">
-<h1>quantlib.instruments.credit_default_swap.CreditDefaultSwap<a class="headerlink" href="#quantlib-instruments-credit-default-swap-creditdefaultswap" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.instruments.credit_default_swap.</div>
+<div class="empty"></div><section id="creditdefaultswap">
+<h1>CreditDefaultSwap<a class="headerlink" href="#creditdefaultswap" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.instruments.credit_default_swap.CreditDefaultSwap">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CreditDefaultSwap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Protection</span> <span class="pre">side</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">notional</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">spread</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Schedule</span> <span class="pre">schedule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BusinessDayConvention</span> <span class="pre">payment_convention</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">day_counter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">settles_accrual=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">pays_at_default_time=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">protection_start=Date()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">last_period_day_counter=Actual360(True)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">rebates_accrual=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">trade_date=Date()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">cash_settlement_days=3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.credit_default_swap.CreditDefaultSwap" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.instrument.Instrument.html#quantlib.instrument.Instrument" title="quantlib.instrument.Instrument"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instrument</span></code></a></p>
 <p>Credit default swap as running-spread only</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>side</strong> (<em>int</em><em> or </em><em>{BUYER</em><em>, </em><em>SELLER}</em>) – Whether the protection is bought or sold.</p></li>
-<li><p><strong>notional</strong> (<em>float</em>) – Notional value</p></li>
-<li><p><strong>spread</strong> (<em>float</em>) – Running spread in fractional units.</p></li>
-<li><p><strong>schedule</strong> (<a class="reference internal" href="quantlib.time.schedule.Schedule.html#quantlib.time.schedule.Schedule" title="quantlib.time.schedule.Schedule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Schedule</span></code></a>) – Coupon schedule.</p></li>
-<li><p><strong>payment_convention</strong> (<em>int</em>) – Business-day convention for
-payment-date adjustment.</p></li>
-<li><p><strong>day_counter</strong> (<a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a>) – Day-count convention for accrual.</p></li>
-<li><p><strong>settles_accrual</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether or not the accrued coupon is
-due in the event of a default.</p></li>
-<li><p><strong>pays_at_default_time</strong> (<em>bool</em><em>, </em><em>optional</em>) – If set to True, any payments
+<dd class="field-odd"><dl>
+<dt><strong>side</strong><span class="classifier">int or {BUYER, SELLER}</span></dt><dd><p>Whether the protection is bought or sold.</p>
+</dd>
+<dt><strong>notional</strong><span class="classifier">float</span></dt><dd><p>Notional value</p>
+</dd>
+<dt><strong>spread</strong><span class="classifier">float</span></dt><dd><p>Running spread in fractional units.</p>
+</dd>
+<dt><strong>schedule</strong><span class="classifier"><a class="reference internal" href="quantlib.time.schedule.Schedule.html#quantlib.time.schedule.Schedule" title="quantlib.time.schedule.Schedule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Schedule</span></code></a></span></dt><dd><p>Coupon schedule.</p>
+</dd>
+<dt><strong>payment_convention</strong><span class="classifier">int</span></dt><dd><p>Business-day convention for
+payment-date adjustment.</p>
+</dd>
+<dt><strong>day_counter</strong><span class="classifier"><a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a></span></dt><dd><p>Day-count convention for accrual.</p>
+</dd>
+<dt><strong>settles_accrual</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether or not the accrued coupon is
+due in the event of a default.</p>
+</dd>
+<dt><strong>pays_at_default_time</strong><span class="classifier">bool, optional</span></dt><dd><p>If set to True, any payments
 triggered by a default event are
 due at default time. If set to
 False, they are due at the end of
-the accrual period.</p></li>
-<li><p><strong>protection_start</strong> (<a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a>, optional) – The first date where a default
-event will trigger the contract.</p></li>
-<li><p><strong>last_period_day_counter</strong> (<a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a>, optional) – Day-count convention for accrual in last period</p></li>
-<li><p><strong>rebates_accrual</strong> (<em>bool</em><em>, </em><em>optional</em>) – The protection seller pays the accrued scheduled current coupon at
+the accrual period.</p>
+</dd>
+<dt><strong>protection_start</strong><span class="classifier"><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a>, optional</span></dt><dd><p>The first date where a default
+event will trigger the contract.</p>
+</dd>
+<dt><strong>last_period_day_counter</strong><span class="classifier"><a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a>, optional</span></dt><dd><p>Day-count convention for accrual in last period</p>
+</dd>
+<dt><strong>rebates_accrual</strong><span class="classifier">bool, optional</span></dt><dd><p>The protection seller pays the accrued scheduled current coupon at
 the start of the contract. The rebate date is not provided
-but computed to be two days after protection start.</p></li>
-<li><p><strong>trade_date</strong> (<a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a>) – The contract’s trade date. It will be used with the <code class="docutils literal notranslate"><span class="pre">cash_settlement_days</span></code> to determine
+but computed to be two days after protection start.</p>
+</dd>
+<dt><strong>trade_date</strong><span class="classifier"><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a></span></dt><dd><p>The contract’s trade date. It will be used with the <code class="docutils literal notranslate"><span class="pre">cash_settlement_days</span></code> to determine
 the date on which the cash settlement amount is paid. If not given, the trade date is
-guessed from the protection start date and <code class="docutils literal notranslate"><span class="pre">schedule</span></code> date generation rule.</p></li>
-<li><p><strong>cash_settlement_days</strong> (<em>int</em>) – The number of business days from <code class="docutils literal notranslate"><span class="pre">trade_date</span></code> to cash settlement date.</p></li>
-</ul>
+guessed from the protection start date and <code class="docutils literal notranslate"><span class="pre">schedule</span></code> date generation rule.</p>
+</dd>
+<dt><strong>cash_settlement_days</strong><span class="classifier">int</span></dt><dd><p>The number of business days from <code class="docutils literal notranslate"><span class="pre">trade_date</span></code> to cash settlement date.</p>
 </dd>
 </dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>accrual</strong></dt><dd></dd>
+<dt><strong>accrual_rebate_npv</strong></dt><dd></dd>
+<dt><strong>cash_settlement_days</strong></dt><dd></dd>
+<dt><strong>coupon_leg_bps</strong></dt><dd></dd>
+<dt><strong>coupon_leg_npv</strong></dt><dd></dd>
+<dt><strong>coupons</strong></dt><dd></dd>
+<dt><strong>default_leg_npv</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.credit_default_swap.CreditDefaultSwap.fair_spread.html#quantlib.instruments.credit_default_swap.CreditDefaultSwap.fair_spread" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.fair_spread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fair_spread</span></code></a></dt><dd><p>Returns the running spread that, given the quoted recovery rate, will make the running-only CDS have an NPV of 0.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.credit_default_swap.CreditDefaultSwap.fair_upfront.html#quantlib.instruments.credit_default_swap.CreditDefaultSwap.fair_upfront" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.fair_upfront"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fair_upfront</span></code></a></dt><dd><p>Returns the upfront spread that, given the running spread and the quoted recovery rate, will make the instrument have an NPV of 0.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.credit_default_swap.CreditDefaultSwap.is_expired.html#quantlib.instruments.credit_default_swap.CreditDefaultSwap.is_expired" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.is_expired"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_expired</span></code></a></dt><dd><p>Instrument.is_expired: bool</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.credit_default_swap.CreditDefaultSwap.net_present_value.html#quantlib.instruments.credit_default_swap.CreditDefaultSwap.net_present_value" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.net_present_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">net_present_value</span></code></a></dt><dd><p>Instrument net present value.</p>
+</dd>
+<dt><strong>notional</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.credit_default_swap.CreditDefaultSwap.npv.html#quantlib.instruments.credit_default_swap.CreditDefaultSwap.npv" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.npv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv</span></code></a></dt><dd><p>Shortcut to the net_present_value property.</p>
+</dd>
+<dt><strong>pays_at_default_time</strong></dt><dd></dd>
+<dt><strong>protection_end_date</strong></dt><dd></dd>
+<dt><strong>protection_start_date</strong></dt><dd></dd>
+<dt><strong>rebates_accrual</strong></dt><dd></dd>
+<dt><strong>running_spread</strong></dt><dd></dd>
+<dt><strong>settles_accrual</strong></dt><dd></dd>
+<dt><strong>side</strong></dt><dd></dd>
+<dt><strong>trade_date</strong></dt><dd></dd>
+<dt><strong>upfront</strong></dt><dd></dd>
+<dt><strong>upfront_bps</strong></dt><dd></dd>
+<dt><strong>upfront_npv</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.credit_default_swap.CreditDefaultSwap.valuation_date.html#quantlib.instruments.credit_default_swap.CreditDefaultSwap.valuation_date" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.valuation_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">valuation_date</span></code></a></dt><dd><p>the date the net present value refers to.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.credit_default_swap.CreditDefaultSwap.conventional_spread.html#quantlib.instruments.credit_default_swap.CreditDefaultSwap.conventional_spread" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.conventional_spread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conventional_spread</span></code></a>(self, Real recovery, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.credit_default_swap.CreditDefaultSwap.from_upfront.html#quantlib.instruments.credit_default_swap.CreditDefaultSwap.from_upfront" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.from_upfront"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_upfront</span></code></a>(cls, Protection side, ...)</p></td>
+<td><p>Credit default swap quoted as upfront and running spread</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.credit_default_swap.CreditDefaultSwap.implied_hazard_rate.html#quantlib.instruments.credit_default_swap.CreditDefaultSwap.implied_hazard_rate" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.implied_hazard_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">implied_hazard_rate</span></code></a>(self, Real target_npv, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.credit_default_swap.CreditDefaultSwap.set_pricing_engine.html#quantlib.instruments.credit_default_swap.CreditDefaultSwap.set_pricing_engine" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.set_pricing_engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code></a>(self, PricingEngine engine)</p></td>
+<td><p>Sets the pricing engine.</p></td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Notes</p>
 <p>This instrument currently assumes that the issuer did
 not default until today’s date.</p>
@@ -82,180 +148,6 @@ settlement date of the swap might be included in the
 NPV and therefore affect the fair-spread
 calculation. This might not be what you want.</p>
 </div>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.credit_default_swap.CreditDefaultSwap.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.credit_default_swap.CreditDefaultSwap.__init__" title="Link to this definition">¶</a></dt>
-<dd><p>Credit default swap as running-spread only</p>
-</dd></dl>
-
-<p class="rubric">Methods</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.credit_default_swap.CreditDefaultSwap.__init__" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a></p></td>
-<td><p>Credit default swap as running-spread only</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.credit_default_swap.CreditDefaultSwap.conventional_spread" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.conventional_spread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conventional_spread</span></code></a>(self, Real recovery, ...)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.credit_default_swap.CreditDefaultSwap.from_upfront" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.from_upfront"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_upfront</span></code></a>(cls, Protection side, ...)</p></td>
-<td><p>Credit default swap quoted as upfront and running spread</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.credit_default_swap.CreditDefaultSwap.implied_hazard_rate" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.implied_hazard_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">implied_hazard_rate</span></code></a>(self, Real target_npv, ...)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code>(self, PricingEngine engine)</p></td>
-<td><p>Sets the pricing engine.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">accrual</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">accrual_rebate_npv</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cash_settlement_days</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">coupon_leg_bps</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">coupon_leg_npv</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">coupons</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_leg_npv</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.credit_default_swap.CreditDefaultSwap.fair_spread" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.fair_spread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fair_spread</span></code></a></p></td>
-<td><p>Returns the running spread that, given the quoted recovery rate, will make the running-only CDS have an NPV of 0.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.credit_default_swap.CreditDefaultSwap.fair_upfront" title="quantlib.instruments.credit_default_swap.CreditDefaultSwap.fair_upfront"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fair_upfront</span></code></a></p></td>
-<td><p>Returns the upfront spread that, given the running spread and the quoted recovery rate, will make the instrument have an NPV of 0.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_expired</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">net_present_value</span></code></p></td>
-<td><p>Instrument net present value.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">notional</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv</span></code></p></td>
-<td><p>Shortcut to the net_present_value property.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pays_at_default_time</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">protection_end_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">protection_start_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rebates_accrual</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">running_spread</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">settles_accrual</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">side</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">trade_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">upfront</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">upfront_bps</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">upfront_npv</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valuation_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.credit_default_swap.CreditDefaultSwap.conventional_spread">
-<span class="sig-name descname"><span class="pre">conventional_spread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">recovery</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">HandleYieldTermStructure</span> <span class="pre">yts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">dc=Actual365Fixed()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PricingModel</span> <span class="pre">model=PricingModel.Midpoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.credit_default_swap.CreditDefaultSwap.conventional_spread" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.instruments.credit_default_swap.CreditDefaultSwap.fair_spread">
-<span class="sig-name descname"><span class="pre">fair_spread</span></span><a class="headerlink" href="#quantlib.instruments.credit_default_swap.CreditDefaultSwap.fair_spread" title="Link to this definition">¶</a></dt>
-<dd><p>Returns the running spread that, given the quoted recovery
-rate, will make the running-only CDS have an NPV of 0.</p>
-<p class="rubric">Notes</p>
-<p>This calculation does not take any upfront into account, even if
-one was given.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.instruments.credit_default_swap.CreditDefaultSwap.fair_upfront">
-<span class="sig-name descname"><span class="pre">fair_upfront</span></span><a class="headerlink" href="#quantlib.instruments.credit_default_swap.CreditDefaultSwap.fair_upfront" title="Link to this definition">¶</a></dt>
-<dd><p>Returns the upfront spread that, given the running spread
-and the quoted recovery rate, will make the instrument
-have an NPV of 0.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.credit_default_swap.CreditDefaultSwap.from_upfront">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_upfront</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Protection</span> <span class="pre">side</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">notional</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">upfront</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">spread</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Schedule</span> <span class="pre">schedule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BusinessDayConvention</span> <span class="pre">payment_convention</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">day_counter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">settles_accrual=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">pays_at_default_time=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">protection_start=Date()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">upfront_date=Date()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">last_period_day_counter=Actual360(True)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">rebates_accrual=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">trade_date=Date()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">cash_settlement_days=3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.credit_default_swap.CreditDefaultSwap.from_upfront" title="Link to this definition">¶</a></dt>
-<dd><p>Credit default swap quoted as upfront and running spread</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>side</strong> (<em>int</em><em> or </em><em>{BUYER</em><em>, </em><em>SELLER}</em>) – Whether the protection is bought or sold.</p></li>
-<li><p><strong>notional</strong> (<em>float</em>) – Notional value</p></li>
-<li><p><strong>upront</strong> (<em>float</em>) – Upfront payment in fractional units.</p></li>
-<li><p><strong>spread</strong> (<em>float</em>) – Running spread in fractional units.</p></li>
-<li><p><strong>schedule</strong> (<a class="reference internal" href="quantlib.time.schedule.Schedule.html#quantlib.time.schedule.Schedule" title="quantlib.time.schedule.Schedule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Schedule</span></code></a>) – Coupon schedule.</p></li>
-<li><p><strong>payment_convention</strong> (<em>int</em>) – Business-day convention for
-payment-date adjustment.</p></li>
-<li><p><strong>day_counter</strong> (<a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a>) – Day-count convention for accrual.</p></li>
-<li><p><strong>settles_accrual</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether or not the accrued coupon is
-due in the event of a default.</p></li>
-<li><p><strong>pays_at_default_time</strong> (<em>bool</em><em>, </em><em>optional</em>) – If set to True, any payments
-triggered by a default event are
-due at default time. If set to
-False, they are due at the end of
-the accrual period.</p></li>
-<li><p><strong>protection_start</strong> (<a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a>, optional) – The first date where a default
-event will trigger the contract.</p></li>
-<li><p><strong>upfront_date</strong> (<a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a>, optional) – Settlement date for the upfront and accrual
-rebate (if any) payments.
-Typically T+3, this is also the default value.</p></li>
-<li><p><strong>last_period_day_counter</strong> (<a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a>, optional) – Day-count convention for accrual in last period</p></li>
-<li><p><strong>rebates_accrual</strong> (<em>bool</em><em>, </em><em>optional</em>) – The protection seller pays the accrued scheduled current coupon at
-the start of the contract. The rebate date is not provided
-but computed to be two days after protection start.</p></li>
-<li><p><strong>trade_date</strong> (<a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a>) – The contract’s trade date. It will be used with the <cite>cash_settlement_days</cite> to determine
-the date on which the cash settlement amount is paid. If not given, the trade date is
-guessed from the protection start date and <cite>schedule</cite> date generation rule.</p></li>
-<li><p><strong>cash_settlement_days</strong> (<em>int</em>) – The number of business days from <cite>trade_date</cite> to cash settlement date.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.credit_default_swap.CreditDefaultSwap.implied_hazard_rate">
-<span class="sig-name descname"><span class="pre">implied_hazard_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">target_npv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">HandleYieldTermStructure</span> <span class="pre">yts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">dc=Actual365Fixed()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">recovery_rate=0.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">accuracy=1e-8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PricingModel</span> <span class="pre">model=PricingModel.Midpoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.credit_default_swap.CreditDefaultSwap.implied_hazard_rate" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </section>
@@ -298,8 +190,8 @@ guessed from the protection start date and <cite>schedule</cite> date generation
   <li><a href="quantlib.html">quantlib</a><ul>
   <li><a href="quantlib.instruments.html">quantlib.instruments</a><ul>
   <li><a href="quantlib.instruments.credit_default_swap.html">quantlib.instruments.credit_default_swap</a><ul>
-      <li>Previous: <a href="quantlib.instruments.credit_default_swap.cds_maturity.html" title="previous chapter">quantlib.instruments.credit_default_swap.cds_maturity</a></li>
-      <li>Next: <a href="quantlib.instruments.credit_default_swap.PricingModel.html" title="next chapter">quantlib.instruments.credit_default_swap.PricingModel</a></li>
+      <li>Previous: <a href="quantlib.instruments.credit_default_swap.html" title="previous chapter">quantlib.instruments.credit_default_swap</a></li>
+      <li>Next: <a href="quantlib.instruments.credit_default_swap.CreditDefaultSwap.conventional_spread.html" title="next chapter">quantlib.instruments.credit_default_swap.CreditDefaultSwap.conventional_spread</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

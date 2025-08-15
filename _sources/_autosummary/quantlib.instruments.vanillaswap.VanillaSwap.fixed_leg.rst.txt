@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaswap.VanillaSwap.fixed\_leg
+=======================================================
+
+.. currentmodule:: quantlib.instruments.vanillaswap
+
+.. autoattribute:: VanillaSwap.fixed_leg

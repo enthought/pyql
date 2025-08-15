@@ -1,0 +1,6 @@
+quantlib.instruments.swap.Swap.Receiver
+=======================================
+
+.. currentmodule:: quantlib.instruments.swap
+
+.. autoattribute:: Swap.Receiver

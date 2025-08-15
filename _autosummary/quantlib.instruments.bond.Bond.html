@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.instruments.bond.Bond &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>Bond &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.instruments.bond.Price" href="quantlib.instruments.bond.Price.html" />
+    <link rel="next" title="quantlib.instruments.bond.Bond.accrued_amount" href="quantlib.instruments.bond.Bond.accrued_amount.html" />
     <link rel="prev" title="quantlib.instruments.bond" href="quantlib.instruments.bond.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,8 +34,9 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-instruments-bond-bond">
-<h1>quantlib.instruments.bond.Bond<a class="headerlink" href="#quantlib-instruments-bond-bond" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.instruments.bond.</div>
+<div class="empty"></div><section id="bond">
+<h1>Bond<a class="headerlink" href="#bond" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.instruments.bond.Bond">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Bond</span></span><a class="headerlink" href="#quantlib.instruments.bond.Bond" title="Link to this definition">¶</a></dt>
@@ -48,137 +49,54 @@ sorted by date, the redemption(s) being after any
 cash flow at the same date. In particular, if there’s
 one single redemption, it must be the last cash flow,</p>
 </div>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.bond.Bond.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.bond.Bond.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>calendar</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.bond.Bond.cashflows.html#quantlib.instruments.bond.Bond.cashflows" title="quantlib.instruments.bond.Bond.cashflows"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cashflows</span></code></a></dt><dd><p>cash flow stream as a <a class="reference internal" href="quantlib.cashflow.Leg.html#quantlib.cashflow.Leg" title="quantlib.cashflow.Leg"><code class="xref py py-class docutils literal notranslate"><span class="pre">Leg</span></code></a>.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.bond.Bond.clean_price.html#quantlib.instruments.bond.Bond.clean_price" title="quantlib.instruments.bond.Bond.clean_price"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clean_price</span></code></a></dt><dd><p>Bond clean price.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.bond.Bond.dirty_price.html#quantlib.instruments.bond.Bond.dirty_price" title="quantlib.instruments.bond.Bond.dirty_price"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dirty_price</span></code></a></dt><dd><p>Bond dirty price</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.bond.Bond.is_expired.html#quantlib.instruments.bond.Bond.is_expired" title="quantlib.instruments.bond.Bond.is_expired"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_expired</span></code></a></dt><dd><p>Instrument.is_expired: bool</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.bond.Bond.issue_date.html#quantlib.instruments.bond.Bond.issue_date" title="quantlib.instruments.bond.Bond.issue_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">issue_date</span></code></a></dt><dd><p>Bond issue date</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.bond.Bond.maturity_date.html#quantlib.instruments.bond.Bond.maturity_date" title="quantlib.instruments.bond.Bond.maturity_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">maturity_date</span></code></a></dt><dd><p>Bond maturity date</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.bond.Bond.net_present_value.html#quantlib.instruments.bond.Bond.net_present_value" title="quantlib.instruments.bond.Bond.net_present_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">net_present_value</span></code></a></dt><dd><p>Instrument net present value.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.bond.Bond.npv.html#quantlib.instruments.bond.Bond.npv" title="quantlib.instruments.bond.Bond.npv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv</span></code></a></dt><dd><p>Shortcut to the net_present_value property.</p>
+</dd>
+<dt><strong>settlement_days</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.bond.Bond.start_date.html#quantlib.instruments.bond.Bond.start_date" title="quantlib.instruments.bond.Bond.start_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_date</span></code></a></dt><dd><p>Bond start date</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.bond.Bond.valuation_date.html#quantlib.instruments.bond.Bond.valuation_date" title="quantlib.instruments.bond.Bond.valuation_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">valuation_date</span></code></a></dt><dd><p>the date the net present value refers to.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.bond.Bond.__init__" title="quantlib.instruments.bond.Bond.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.bond.Bond.accrued_amount" title="quantlib.instruments.bond.Bond.accrued_amount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">accrued_amount</span></code></a>(self, Date date=Date)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.bond.Bond.accrued_amount.html#quantlib.instruments.bond.Bond.accrued_amount" title="quantlib.instruments.bond.Bond.accrued_amount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">accrued_amount</span></code></a>(self, Date date=Date)</p></td>
 <td><p>Returns the bond accrued amount at the given date</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.bond.Bond.bond_yield" title="quantlib.instruments.bond.Bond.bond_yield"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bond_yield</span></code></a>(self, Price price, DayCounter dc, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.bond.Bond.bond_yield.html#quantlib.instruments.bond.Bond.bond_yield" title="quantlib.instruments.bond.Bond.bond_yield"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bond_yield</span></code></a>(self, Price price, DayCounter dc, ...)</p></td>
 <td><p>Return the yield given a price and settlement date</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.bond.Bond.notional" title="quantlib.instruments.bond.Bond.notional"><code class="xref py py-obj docutils literal notranslate"><span class="pre">notional</span></code></a>(self, Date date=Date)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.bond.Bond.notional.html#quantlib.instruments.bond.Bond.notional" title="quantlib.instruments.bond.Bond.notional"><code class="xref py py-obj docutils literal notranslate"><span class="pre">notional</span></code></a>(self, Date date=Date)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code>(self, PricingEngine engine)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.bond.Bond.set_pricing_engine.html#quantlib.instruments.bond.Bond.set_pricing_engine" title="quantlib.instruments.bond.Bond.set_pricing_engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code></a>(self, PricingEngine engine)</p></td>
 <td><p>Sets the pricing engine.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.bond.Bond.settlement_date" title="quantlib.instruments.bond.Bond.settlement_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_date</span></code></a>(self, Date from_date=Date)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.bond.Bond.settlement_date.html#quantlib.instruments.bond.Bond.settlement_date" title="quantlib.instruments.bond.Bond.settlement_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_date</span></code></a>(self, Date from_date=Date)</p></td>
 <td><p>Returns the bond settlement date after the given date.</p></td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">calendar</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.bond.Bond.cashflows" title="quantlib.instruments.bond.Bond.cashflows"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cashflows</span></code></a></p></td>
-<td><p>cash flow stream as a Leg</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.bond.Bond.clean_price" title="quantlib.instruments.bond.Bond.clean_price"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clean_price</span></code></a></p></td>
-<td><p>Bond clean price.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.bond.Bond.dirty_price" title="quantlib.instruments.bond.Bond.dirty_price"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dirty_price</span></code></a></p></td>
-<td><p>Bond dirty price</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_expired</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.bond.Bond.issue_date" title="quantlib.instruments.bond.Bond.issue_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">issue_date</span></code></a></p></td>
-<td><p>Bond issue date</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.bond.Bond.maturity_date" title="quantlib.instruments.bond.Bond.maturity_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">maturity_date</span></code></a></p></td>
-<td><p>Bond maturity date</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">net_present_value</span></code></p></td>
-<td><p>Instrument net present value.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv</span></code></p></td>
-<td><p>Shortcut to the net_present_value property.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_days</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.bond.Bond.start_date" title="quantlib.instruments.bond.Bond.start_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_date</span></code></a></p></td>
-<td><p>Bond start date</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valuation_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.bond.Bond.accrued_amount">
-<span class="sig-name descname"><span class="pre">accrued_amount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">date=Date()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.bond.Bond.accrued_amount" title="Link to this definition">¶</a></dt>
-<dd><p>Returns the bond accrued amount at the given date</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.bond.Bond.bond_yield">
-<span class="sig-name descname"><span class="pre">bond_yield</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Price</span> <span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">comp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequency</span> <span class="pre">freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">settlement_date=Date()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">accuracy=1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">max_evaluations=100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">guess=0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.bond.Bond.bond_yield" title="Link to this definition">¶</a></dt>
-<dd><p>Return the yield given a price and settlement date</p>
-<p>The default bond settlement is used if no date is given.</p>
-<p>This method is the original Bond.yield method in C++.
-Python does not allow us to use the yield statement as a method name.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.instruments.bond.Bond.cashflows">
-<span class="sig-name descname"><span class="pre">cashflows</span></span><a class="headerlink" href="#quantlib.instruments.bond.Bond.cashflows" title="Link to this definition">¶</a></dt>
-<dd><p>cash flow stream as a Leg</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.instruments.bond.Bond.clean_price">
-<span class="sig-name descname"><span class="pre">clean_price</span></span><a class="headerlink" href="#quantlib.instruments.bond.Bond.clean_price" title="Link to this definition">¶</a></dt>
-<dd><p>Bond clean price.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.instruments.bond.Bond.dirty_price">
-<span class="sig-name descname"><span class="pre">dirty_price</span></span><a class="headerlink" href="#quantlib.instruments.bond.Bond.dirty_price" title="Link to this definition">¶</a></dt>
-<dd><p>Bond dirty price</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.instruments.bond.Bond.issue_date">
-<span class="sig-name descname"><span class="pre">issue_date</span></span><a class="headerlink" href="#quantlib.instruments.bond.Bond.issue_date" title="Link to this definition">¶</a></dt>
-<dd><p>Bond issue date</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.instruments.bond.Bond.maturity_date">
-<span class="sig-name descname"><span class="pre">maturity_date</span></span><a class="headerlink" href="#quantlib.instruments.bond.Bond.maturity_date" title="Link to this definition">¶</a></dt>
-<dd><p>Bond maturity date</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.bond.Bond.notional">
-<span class="sig-name descname"><span class="pre">notional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">date=Date()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.bond.Bond.notional" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.bond.Bond.settlement_date">
-<span class="sig-name descname"><span class="pre">settlement_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">from_date=Date()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.bond.Bond.settlement_date" title="Link to this definition">¶</a></dt>
-<dd><p>Returns the bond settlement date after the given date.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.instruments.bond.Bond.start_date">
-<span class="sig-name descname"><span class="pre">start_date</span></span><a class="headerlink" href="#quantlib.instruments.bond.Bond.start_date" title="Link to this definition">¶</a></dt>
-<dd><p>Bond start date</p>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -222,7 +140,7 @@ Python does not allow us to use the yield statement as a method name.</p>
   <li><a href="quantlib.instruments.html">quantlib.instruments</a><ul>
   <li><a href="quantlib.instruments.bond.html">quantlib.instruments.bond</a><ul>
       <li>Previous: <a href="quantlib.instruments.bond.html" title="previous chapter">quantlib.instruments.bond</a></li>
-      <li>Next: <a href="quantlib.instruments.bond.Price.html" title="next chapter">quantlib.instruments.bond.Price</a></li>
+      <li>Next: <a href="quantlib.instruments.bond.Bond.accrued_amount.html" title="next chapter">quantlib.instruments.bond.Bond.accrued_amount</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

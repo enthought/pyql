@@ -1,63 +1,62 @@
-quantlib.cashflows.cap\_floored\_coupon.CappedFlooredIborCoupon
-===============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.cap_floored_coupon.</div>
+   <div class="empty"></div>
+
+CappedFlooredIborCoupon
+=============================================================
 
 .. currentmodule:: quantlib.cashflows.cap_floored_coupon
 
 .. autoclass:: CappedFlooredIborCoupon
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CappedFlooredIborCoupon.accrued_amount
+         CappedFlooredIborCoupon.accrued_days
+         CappedFlooredIborCoupon.accrued_period
+         CappedFlooredIborCoupon.has_occured
+         CappedFlooredIborCoupon.set_pricer
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~CappedFlooredIborCoupon.__init__
-      ~CappedFlooredIborCoupon.accrued_amount
-      ~CappedFlooredIborCoupon.accrued_days
-      ~CappedFlooredIborCoupon.accrued_period
-      ~CappedFlooredIborCoupon.has_occured
-      ~CappedFlooredIborCoupon.set_pricer
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~CappedFlooredIborCoupon.accrual_days
-      ~CappedFlooredIborCoupon.accrual_end_date
-      ~CappedFlooredIborCoupon.accrual_period
-      ~CappedFlooredIborCoupon.accrual_start_date
-      ~CappedFlooredIborCoupon.adjusted_fixing
-      ~CappedFlooredIborCoupon.amount
-      ~CappedFlooredIborCoupon.cap
-      ~CappedFlooredIborCoupon.convexity_adjustment
-      ~CappedFlooredIborCoupon.date
-      ~CappedFlooredIborCoupon.day_counter
-      ~CappedFlooredIborCoupon.effective_cap
-      ~CappedFlooredIborCoupon.effective_floor
-      ~CappedFlooredIborCoupon.fixing_date
-      ~CappedFlooredIborCoupon.fixing_days
-      ~CappedFlooredIborCoupon.floor
-      ~CappedFlooredIborCoupon.index
-      ~CappedFlooredIborCoupon.index_fixing
-      ~CappedFlooredIborCoupon.is_capped
-      ~CappedFlooredIborCoupon.is_floored
-      ~CappedFlooredIborCoupon.is_in_arrears
-      ~CappedFlooredIborCoupon.nominal
-      ~CappedFlooredIborCoupon.rate
-      ~CappedFlooredIborCoupon.reference_period_end
-      ~CappedFlooredIborCoupon.reference_period_start
-      ~CappedFlooredIborCoupon.underlying
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CappedFlooredIborCoupon.accrual_days
+         CappedFlooredIborCoupon.accrual_end_date
+         CappedFlooredIborCoupon.accrual_period
+         CappedFlooredIborCoupon.accrual_start_date
+         CappedFlooredIborCoupon.adjusted_fixing
+         CappedFlooredIborCoupon.amount
+         CappedFlooredIborCoupon.cap
+         CappedFlooredIborCoupon.convexity_adjustment
+         CappedFlooredIborCoupon.date
+         CappedFlooredIborCoupon.day_counter
+         CappedFlooredIborCoupon.effective_cap
+         CappedFlooredIborCoupon.effective_floor
+         CappedFlooredIborCoupon.fixing_date
+         CappedFlooredIborCoupon.fixing_days
+         CappedFlooredIborCoupon.floor
+         CappedFlooredIborCoupon.index
+         CappedFlooredIborCoupon.index_fixing
+         CappedFlooredIborCoupon.is_capped
+         CappedFlooredIborCoupon.is_floored
+         CappedFlooredIborCoupon.is_in_arrears
+         CappedFlooredIborCoupon.nominal
+         CappedFlooredIborCoupon.rate
+         CappedFlooredIborCoupon.reference_period_end
+         CappedFlooredIborCoupon.reference_period_start
+         CappedFlooredIborCoupon.underlying
+  
+  

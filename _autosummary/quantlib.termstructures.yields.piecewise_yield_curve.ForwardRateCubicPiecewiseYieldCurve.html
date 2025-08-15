@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>ForwardRateCubicPiecewiseYieldCurve &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,8 +15,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateLinearPiecewiseYieldCurve" href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateLinearPiecewiseYieldCurve.html" />
-    <link rel="prev" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateBackwardFlatPiecewiseYieldCurve" href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateBackwardFlatPiecewiseYieldCurve.html" />
+    <link rel="next" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.discount" href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.discount.html" />
+    <link rel="prev" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateBackwardFlatPiecewiseYieldCurve.zero_rate" href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateBackwardFlatPiecewiseYieldCurve.zero_rate.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,126 +34,53 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-termstructures-yields-piecewise-yield-curve-forwardratecubicpiecewiseyieldcurve">
-<h1>quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve<a class="headerlink" href="#quantlib-termstructures-yields-piecewise-yield-curve-forwardratecubicpiecewiseyieldcurve" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.termstructures.yields.piecewise_yield_curve.</div>
+<div class="empty"></div><section id="forwardratecubicpiecewiseyieldcurve">
+<h1>ForwardRateCubicPiecewiseYieldCurve<a class="headerlink" href="#forwardratecubicpiecewiseyieldcurve" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ForwardRateCubicPiecewiseYieldCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">settlement_days</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">calendar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">helpers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">daycounter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cubic</span> <span class="pre">i=Cubic()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">accuracy=1e-12</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.termstructures.yield_term_structure.YieldTermStructure.html#quantlib.termstructures.yield_term_structure.YieldTermStructure" title="quantlib.termstructures.yield_term_structure.YieldTermStructure"><code class="xref py py-class docutils literal notranslate"><span class="pre">YieldTermStructure</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.__init__" title="Link to this definition">¶</a></dt>
-<dd><p>Floating yield curve</p>
-<p>updating evaluation_date in Settings will change the reference_date.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>settlement_days</strong> (<em>int</em>) – The settlement date</p></li>
-<li><p><strong>calendar</strong> (<a class="reference internal" href="quantlib.time.calendar.Calendar.html#quantlib.time.calendar.Calendar" title="quantlib.time.calendar.Calendar"><em>quantlib.time.calendar.Calendar</em></a>) – curve’s calendar</p></li>
-<li><p><strong>helpers</strong> (<em>list</em><em> of </em><em>quantlib.termstructures.rate_helpers.RateHelper</em>) – a list of rate helpers used to create the curve</p></li>
-<li><p><strong>day_counter</strong> (<em>quantlib.time.day_counter.DayCounter</em>) – the day counter used by this curve</p></li>
-<li><p><strong>accuracy</strong> (<em>double</em><em> (</em><em>default 1e-12</em><em>)</em>) – the tolerance</p></li>
-</ul>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.data.html#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.data" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data</span></code></a></dt><dd><p>list of curve data</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.dates.html#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.dates" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.dates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dates</span></code></a></dt><dd><p>list of curve dates</p>
+</dd>
+<dt><strong>day_counter</strong></dt><dd></dd>
+<dt><strong>extrapolation</strong></dt><dd></dd>
+<dt><strong>max_date</strong></dt><dd></dd>
+<dt><strong>max_time</strong></dt><dd></dd>
+<dt><strong>nodes</strong></dt><dd></dd>
+<dt><strong>reference_date</strong></dt><dd></dd>
+<dt><strong>settlement_days</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.times.html#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.times" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.times"><code class="xref py py-obj docutils literal notranslate"><span class="pre">times</span></code></a></dt><dd><p>list of curve times</p>
+</dd>
+<dt><strong>trait</strong></dt><dd></dd>
+</dl>
 </dd>
 </dl>
-</dd></dl>
-
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.__init__" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a></p></td>
-<td><p>Floating yield curve</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount</span></code>(self, value, bool extrapolate=False)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.discount.html#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.discount" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.discount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount</span></code></a>(self, value, bool extrapolate=False)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_rate</span></code>(self, d1, d2, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.forward_rate.html#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.forward_rate" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.forward_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_rate</span></code></a>(self, d1, d2, ...)</p></td>
 <td><p>Returns the forward interest rate between two dates or times.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.from_reference_date" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.from_reference_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_reference_date</span></code></a>(cls, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.from_reference_date.html#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.from_reference_date" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.from_reference_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_reference_date</span></code></a>(cls, ...)</p></td>
 <td><p>Fixed <cite>reference_date</cite> yield curve</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code>(self, Date dt)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.time_from_reference.html#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.time_from_reference" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.time_from_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code></a>(self, Date dt)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_rate</span></code>(self, d, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.zero_rate.html#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.zero_rate" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.zero_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_rate</span></code></a>(self, d, ...)</p></td>
 <td><p>Returns the implied zero-yield rate for the given date.</p></td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.data" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data</span></code></a></p></td>
-<td><p>list of curve data</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.dates" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.dates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dates</span></code></a></p></td>
-<td><p>list of curve dates</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">day_counter</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">extrapolation</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_time</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">nodes</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_days</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.times" title="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.times"><code class="xref py py-obj docutils literal notranslate"><span class="pre">times</span></code></a></p></td>
-<td><p>list of curve times</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">trait</span></code></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.data">
-<span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.data" title="Link to this definition">¶</a></dt>
-<dd><p>list of curve data</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.dates">
-<span class="sig-name descname"><span class="pre">dates</span></span><a class="headerlink" href="#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.dates" title="Link to this definition">¶</a></dt>
-<dd><p>list of curve dates</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.from_reference_date">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_reference_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">reference_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">helpers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">daycounter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cubic</span> <span class="pre">i=Cubic()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">accuracy=1e-12</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.from_reference_date" title="Link to this definition">¶</a></dt>
-<dd><p>Fixed <cite>reference_date</cite> yield curve</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>reference_date</strong> (<a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><em>quantlib.time.date.Date</em></a>) – The curve’s reference date</p></li>
-<li><p><strong>calendar</strong> (<a class="reference internal" href="quantlib.time.calendar.Calendar.html#quantlib.time.calendar.Calendar" title="quantlib.time.calendar.Calendar"><em>quantlib.time.calendar.Calendar</em></a>) – curve’s calendar</p></li>
-<li><p><strong>helpers</strong> (<em>list</em><em> of </em><em>quantlib.termstructures.rate_helpers.RateHelper</em>) – a list of rate helpers used to create the curve</p></li>
-<li><p><strong>day_counter</strong> (<em>quantlib.time.day_counter.DayCounter</em>) – the day counter used by this curve</p></li>
-<li><p><strong>accuracy</strong> (<em>double</em><em> (</em><em>default 1e-12</em><em>)</em>) – the tolerance</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.times">
-<span class="sig-name descname"><span class="pre">times</span></span><a class="headerlink" href="#quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.times" title="Link to this definition">¶</a></dt>
-<dd><p>list of curve times</p>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -197,8 +124,8 @@
   <li><a href="quantlib.termstructures.html">quantlib.termstructures</a><ul>
   <li><a href="quantlib.termstructures.yields.html">quantlib.termstructures.yields</a><ul>
   <li><a href="quantlib.termstructures.yields.piecewise_yield_curve.html">quantlib.termstructures.yields.piecewise_yield_curve</a><ul>
-      <li>Previous: <a href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateBackwardFlatPiecewiseYieldCurve.html" title="previous chapter">quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateBackwardFlatPiecewiseYieldCurve</a></li>
-      <li>Next: <a href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateLinearPiecewiseYieldCurve.html" title="next chapter">quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateLinearPiecewiseYieldCurve</a></li>
+      <li>Previous: <a href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateBackwardFlatPiecewiseYieldCurve.zero_rate.html" title="previous chapter">quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateBackwardFlatPiecewiseYieldCurve.zero_rate</a></li>
+      <li>Next: <a href="quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.discount.html" title="next chapter">quantlib.termstructures.yields.piecewise_yield_curve.ForwardRateCubicPiecewiseYieldCurve.discount</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

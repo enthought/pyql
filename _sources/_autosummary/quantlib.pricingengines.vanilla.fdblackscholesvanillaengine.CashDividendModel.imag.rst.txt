@@ -1,0 +1,6 @@
+quantlib.pricingengines.vanilla.fdblackscholesvanillaengine.CashDividendModel.imag
+==================================================================================
+
+.. currentmodule:: quantlib.pricingengines.vanilla.fdblackscholesvanillaengine
+
+.. autoattribute:: CashDividendModel.imag

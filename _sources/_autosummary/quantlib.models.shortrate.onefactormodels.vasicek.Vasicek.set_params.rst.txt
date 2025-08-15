@@ -1,0 +1,6 @@
+quantlib.models.shortrate.onefactormodels.vasicek.Vasicek.set\_params
+=====================================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactormodels.vasicek
+
+.. automethod:: Vasicek.set_params

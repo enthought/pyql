@@ -1,0 +1,6 @@
+quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote.imm\_date
+===============================================================================
+
+.. currentmodule:: quantlib.quotes.futuresconvadjustmentquote
+
+.. autoattribute:: FuturesConvAdjustmentQuote.imm_date

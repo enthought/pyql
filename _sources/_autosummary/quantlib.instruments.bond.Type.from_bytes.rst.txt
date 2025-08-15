@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Type.from\_bytes
+==========================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. automethod:: Type.from_bytes

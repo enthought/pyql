@@ -1,0 +1,6 @@
+quantlib.default.Protection.numerator
+=====================================
+
+.. currentmodule:: quantlib.default
+
+.. autoattribute:: Protection.numerator

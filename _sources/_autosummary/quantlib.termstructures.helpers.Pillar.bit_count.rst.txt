@@ -1,0 +1,6 @@
+quantlib.termstructures.helpers.Pillar.bit\_count
+=================================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. automethod:: Pillar.bit_count

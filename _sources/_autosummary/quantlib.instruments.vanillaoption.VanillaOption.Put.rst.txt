@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.Put
+====================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.Put

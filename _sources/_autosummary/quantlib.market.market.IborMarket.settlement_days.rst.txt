@@ -1,0 +1,6 @@
+quantlib.market.market.IborMarket.settlement\_days
+==================================================
+
+.. currentmodule:: quantlib.market.market
+
+.. autoproperty:: IborMarket.settlement_days

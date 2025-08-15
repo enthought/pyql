@@ -4,31 +4,12 @@ quantlib.pricingengines.credit
 .. automodule:: quantlib.pricingengines.credit
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    api
    isda_cds_engine
    midpoint_cds_engine
-

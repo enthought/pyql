@@ -1,0 +1,6 @@
+quantlib.instruments.make\_swaption.MakeSwaption.\_\_call\_\_
+=============================================================
+
+.. currentmodule:: quantlib.instruments.make_swaption
+
+.. automethod:: MakeSwaption.__call__

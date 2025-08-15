@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.fixedratebond.FixedRateBond.issue\_date
+==================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.fixedratebond
+
+.. autoattribute:: FixedRateBond.issue_date

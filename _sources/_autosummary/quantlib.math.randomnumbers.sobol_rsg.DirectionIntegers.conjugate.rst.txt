@@ -1,0 +1,6 @@
+quantlib.math.randomnumbers.sobol\_rsg.DirectionIntegers.conjugate
+==================================================================
+
+.. currentmodule:: quantlib.math.randomnumbers.sobol_rsg
+
+.. automethod:: DirectionIntegers.conjugate

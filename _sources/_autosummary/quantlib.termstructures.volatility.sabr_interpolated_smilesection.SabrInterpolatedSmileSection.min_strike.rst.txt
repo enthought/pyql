@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.sabr\_interpolated\_smilesection.SabrInterpolatedSmileSection.min\_strike
+============================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.sabr_interpolated_smilesection
+
+.. autoattribute:: SabrInterpolatedSmileSection.min_strike

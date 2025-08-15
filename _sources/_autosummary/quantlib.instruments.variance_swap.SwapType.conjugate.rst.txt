@@ -1,0 +1,6 @@
+quantlib.instruments.variance\_swap.SwapType.conjugate
+======================================================
+
+.. currentmodule:: quantlib.instruments.variance_swap
+
+.. automethod:: SwapType.conjugate

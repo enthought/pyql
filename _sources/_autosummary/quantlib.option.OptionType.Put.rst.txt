@@ -1,0 +1,6 @@
+quantlib.option.OptionType.Put
+==============================
+
+.. currentmodule:: quantlib.option
+
+.. autoattribute:: OptionType.Put

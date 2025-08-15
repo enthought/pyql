@@ -1,46 +1,45 @@
-quantlib.time.calendars.null\_calendar.NullCalendar
-===================================================
+.. raw:: html
+
+   <div class="prename">quantlib.time.calendars.null_calendar.</div>
+   <div class="empty"></div>
+
+NullCalendar
+==================================================
 
 .. currentmodule:: quantlib.time.calendars.null_calendar
 
 .. autoclass:: NullCalendar
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         NullCalendar.add_holiday
+         NullCalendar.adjust
+         NullCalendar.advance
+         NullCalendar.business_day_list
+         NullCalendar.business_days_between
+         NullCalendar.end_of_month
+         NullCalendar.holiday_list
+         NullCalendar.is_business_day
+         NullCalendar.is_end_of_month
+         NullCalendar.is_holiday
+         NullCalendar.is_weekend
+         NullCalendar.remove_holiday
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~NullCalendar.__init__
-      ~NullCalendar.add_holiday
-      ~NullCalendar.adjust
-      ~NullCalendar.advance
-      ~NullCalendar.business_day_list
-      ~NullCalendar.business_days_between
-      ~NullCalendar.end_of_month
-      ~NullCalendar.holiday_list
-      ~NullCalendar.is_business_day
-      ~NullCalendar.is_end_of_month
-      ~NullCalendar.is_holiday
-      ~NullCalendar.is_weekend
-      ~NullCalendar.remove_holiday
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~NullCalendar.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         NullCalendar.name
+  
+  

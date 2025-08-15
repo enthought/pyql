@@ -1,0 +1,6 @@
+quantlib.instruments.make\_cms.MakeCms.with\_nominal
+====================================================
+
+.. currentmodule:: quantlib.instruments.make_cms
+
+.. automethod:: MakeCms.with_nominal

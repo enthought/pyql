@@ -1,0 +1,6 @@
+quantlib.models.equity.heston\_model.HestonModel.sigma
+======================================================
+
+.. currentmodule:: quantlib.models.equity.heston_model
+
+.. autoattribute:: HestonModel.sigma

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bond\_helpers.FixedRateBondHelper.earliest\_date
+===============================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bond_helpers
+
+.. autoattribute:: FixedRateBondHelper.earliest_date

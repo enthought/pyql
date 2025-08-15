@@ -1,0 +1,6 @@
+quantlib.processes.forwardmeasureprocess.ForwardMeasureProcess1D.variance
+=========================================================================
+
+.. currentmodule:: quantlib.processes.forwardmeasureprocess
+
+.. automethod:: ForwardMeasureProcess1D.variance

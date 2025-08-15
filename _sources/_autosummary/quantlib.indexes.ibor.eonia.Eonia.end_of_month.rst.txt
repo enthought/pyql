@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.eonia.Eonia.end\_of\_month
+================================================
+
+.. currentmodule:: quantlib.indexes.ibor.eonia
+
+.. autoattribute:: Eonia.end_of_month

@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.cms\_spread\_coupon.CappedFlooredCmsSpreadCoupon.accrued\_days
+============================================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.cms_spread_coupon
+
+.. automethod:: CappedFlooredCmsSpreadCoupon.accrued_days

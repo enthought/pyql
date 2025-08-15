@@ -1,0 +1,6 @@
+quantlib.instruments.forward.Forward.set\_pricing\_engine
+=========================================================
+
+.. currentmodule:: quantlib.instruments.forward
+
+.. automethod:: Forward.set_pricing_engine

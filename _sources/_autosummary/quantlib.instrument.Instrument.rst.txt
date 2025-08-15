@@ -1,38 +1,37 @@
-quantlib.instrument.Instrument
+.. raw:: html
+
+   <div class="prename">quantlib.instrument.</div>
+   <div class="empty"></div>
+
+Instrument
 ==============================
 
 .. currentmodule:: quantlib.instrument
 
 .. autoclass:: Instrument
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Instrument.set_pricing_engine
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Instrument.__init__
-      ~Instrument.set_pricing_engine
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Instrument.is_expired
-      ~Instrument.net_present_value
-      ~Instrument.npv
-      ~Instrument.valuation_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Instrument.is_expired
+         Instrument.net_present_value
+         Instrument.npv
+         Instrument.valuation_date
+  
+  

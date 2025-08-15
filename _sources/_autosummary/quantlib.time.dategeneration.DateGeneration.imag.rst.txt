@@ -1,0 +1,6 @@
+quantlib.time.dategeneration.DateGeneration.imag
+================================================
+
+.. currentmodule:: quantlib.time.dategeneration
+
+.. autoattribute:: DateGeneration.imag

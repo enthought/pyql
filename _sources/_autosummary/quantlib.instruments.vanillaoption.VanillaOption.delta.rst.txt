@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.delta
+======================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.delta

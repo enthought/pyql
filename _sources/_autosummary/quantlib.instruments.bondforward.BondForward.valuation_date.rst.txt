@@ -1,0 +1,6 @@
+quantlib.instruments.bondforward.BondForward.valuation\_date
+============================================================
+
+.. currentmodule:: quantlib.instruments.bondforward
+
+.. autoattribute:: BondForward.valuation_date

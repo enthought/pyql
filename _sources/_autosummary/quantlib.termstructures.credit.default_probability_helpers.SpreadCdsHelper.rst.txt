@@ -1,38 +1,37 @@
-quantlib.termstructures.credit.default\_probability\_helpers.SpreadCdsHelper
-============================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.credit.default_probability_helpers.</div>
+   <div class="empty"></div>
+
+SpreadCdsHelper
+==========================================================================
 
 .. currentmodule:: quantlib.termstructures.credit.default_probability_helpers
 
 .. autoclass:: SpreadCdsHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SpreadCdsHelper.set_term_structure
+         SpreadCdsHelper.swap
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~SpreadCdsHelper.__init__
-      ~SpreadCdsHelper.set_term_structure
-      ~SpreadCdsHelper.swap
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~SpreadCdsHelper.implied_quote
-      ~SpreadCdsHelper.latest_date
-      ~SpreadCdsHelper.quote
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SpreadCdsHelper.implied_quote
+         SpreadCdsHelper.latest_date
+         SpreadCdsHelper.quote
+  
+  

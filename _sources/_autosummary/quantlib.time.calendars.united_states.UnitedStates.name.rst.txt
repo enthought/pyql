@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_states.UnitedStates.name
+========================================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. autoattribute:: UnitedStates.name

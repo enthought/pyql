@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.eonia.Eonia.tenor
+=======================================
+
+.. currentmodule:: quantlib.indexes.ibor.eonia
+
+.. autoattribute:: Eonia.tenor

@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_matrix.SwaptionVolatilityMatrix.time\_from\_reference
+================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_matrix
+
+.. automethod:: SwaptionVolatilityMatrix.time_from_reference

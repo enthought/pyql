@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.Put
+======================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. autoattribute:: EuropeanOption.Put

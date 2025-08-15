@@ -1,46 +1,53 @@
-quantlib.instruments.futures.FuturesType
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.futures.</div>
+   <div class="empty"></div>
+
+FuturesType
 ========================================
 
 .. currentmodule:: quantlib.instruments.futures
 
 .. autoclass:: FuturesType
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FuturesType.__mul__
+         FuturesType.__pow__
+         FuturesType.conjugate
+         FuturesType.bit_length
+         FuturesType.bit_count
+         FuturesType.to_bytes
+         FuturesType.from_bytes
+         FuturesType.as_integer_ratio
+         FuturesType.__len__
+         FuturesType.__getitem__
+      
+         FuturesType.__len__
+         FuturesType.__getitem__
+         FuturesType.__mul__
+         FuturesType.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FuturesType.conjugate
-      ~FuturesType.bit_length
-      ~FuturesType.bit_count
-      ~FuturesType.to_bytes
-      ~FuturesType.from_bytes
-      ~FuturesType.as_integer_ratio
-      ~FuturesType.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~FuturesType.real
-      ~FuturesType.imag
-      ~FuturesType.numerator
-      ~FuturesType.denominator
-      ~FuturesType.IMM
-      ~FuturesType.ASX
-      ~FuturesType.Custom
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FuturesType.real
+         FuturesType.imag
+         FuturesType.numerator
+         FuturesType.denominator
+         FuturesType.IMM
+         FuturesType.ASX
+         FuturesType.Custom
+  
+  

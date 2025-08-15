@@ -1,0 +1,6 @@
+quantlib.time.schedule.Schedule.from\_dates
+===========================================
+
+.. currentmodule:: quantlib.time.schedule
+
+.. automethod:: Schedule.from_dates

@@ -1,0 +1,6 @@
+quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.FdmSchemeType.\_\_pow\_\_
+======================================================================================
+
+.. currentmodule:: quantlib.methods.finitedifferences.solvers.fdmbackwardsolver
+
+.. automethod:: FdmSchemeType.__pow__

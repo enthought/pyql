@@ -1,0 +1,6 @@
+quantlib.processes.forwardmeasureprocess.ForwardMeasureProcess.forward\_measure\_time
+=====================================================================================
+
+.. currentmodule:: quantlib.processes.forwardmeasureprocess
+
+.. autoattribute:: ForwardMeasureProcess.forward_measure_time

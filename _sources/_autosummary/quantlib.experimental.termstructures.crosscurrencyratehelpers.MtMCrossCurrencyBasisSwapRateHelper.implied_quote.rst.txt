@@ -1,0 +1,6 @@
+quantlib.experimental.termstructures.crosscurrencyratehelpers.MtMCrossCurrencyBasisSwapRateHelper.implied\_quote
+================================================================================================================
+
+.. currentmodule:: quantlib.experimental.termstructures.crosscurrencyratehelpers
+
+.. autoattribute:: MtMCrossCurrencyBasisSwapRateHelper.implied_quote

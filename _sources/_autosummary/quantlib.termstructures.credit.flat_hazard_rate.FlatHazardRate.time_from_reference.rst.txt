@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.flat\_hazard\_rate.FlatHazardRate.time\_from\_reference
+======================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.flat_hazard_rate
+
+.. automethod:: FlatHazardRate.time_from_reference

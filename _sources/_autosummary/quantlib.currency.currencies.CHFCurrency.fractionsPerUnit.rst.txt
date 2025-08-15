@@ -1,0 +1,6 @@
+quantlib.currency.currencies.CHFCurrency.fractionsPerUnit
+=========================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: CHFCurrency.fractionsPerUnit

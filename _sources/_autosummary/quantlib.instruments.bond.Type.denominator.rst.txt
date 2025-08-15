@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Type.denominator
+==========================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoattribute:: Type.denominator

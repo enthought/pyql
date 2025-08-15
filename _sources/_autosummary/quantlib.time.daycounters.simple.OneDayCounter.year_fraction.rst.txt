@@ -1,0 +1,6 @@
+quantlib.time.daycounters.simple.OneDayCounter.year\_fraction
+=============================================================
+
+.. currentmodule:: quantlib.time.daycounters.simple
+
+.. automethod:: OneDayCounter.year_fraction

@@ -1,0 +1,6 @@
+quantlib.time.dategeneration.DateGeneration.ThirdWednesday
+==========================================================
+
+.. currentmodule:: quantlib.time.dategeneration
+
+.. autoattribute:: DateGeneration.ThirdWednesday

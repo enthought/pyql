@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.piecewise\_default\_curve.PiecewiseDefaultCurve.max\_date
+========================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.piecewise_default_curve
+
+.. autoattribute:: PiecewiseDefaultCurve.max_date

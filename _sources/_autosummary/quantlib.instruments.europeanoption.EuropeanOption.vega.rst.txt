@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.vega
+=======================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. autoattribute:: EuropeanOption.vega

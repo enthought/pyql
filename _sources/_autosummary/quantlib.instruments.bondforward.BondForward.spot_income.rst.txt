@@ -1,0 +1,6 @@
+quantlib.instruments.bondforward.BondForward.spot\_income
+=========================================================
+
+.. currentmodule:: quantlib.instruments.bondforward
+
+.. automethod:: BondForward.spot_income

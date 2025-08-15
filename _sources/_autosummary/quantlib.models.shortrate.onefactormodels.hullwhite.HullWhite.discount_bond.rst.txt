@@ -1,0 +1,6 @@
+quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.discount\_bond
+============================================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactormodels.hullwhite
+
+.. automethod:: HullWhite.discount_bond

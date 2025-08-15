@@ -1,0 +1,6 @@
+quantlib.indexes.regions.EURegion.name
+======================================
+
+.. currentmodule:: quantlib.indexes.regions
+
+.. autoattribute:: EURegion.name

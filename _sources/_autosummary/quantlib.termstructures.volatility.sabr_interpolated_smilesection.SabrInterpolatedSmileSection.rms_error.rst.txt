@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.sabr\_interpolated\_smilesection.SabrInterpolatedSmileSection.rms\_error
+===========================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.sabr_interpolated_smilesection
+
+.. autoattribute:: SabrInterpolatedSmileSection.rms_error

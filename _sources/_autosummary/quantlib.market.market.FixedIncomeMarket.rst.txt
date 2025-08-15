@@ -1,34 +1,33 @@
-quantlib.market.market.FixedIncomeMarket
+.. raw:: html
+
+   <div class="prename">quantlib.market.market.</div>
+   <div class="empty"></div>
+
+FixedIncomeMarket
 ========================================
 
 .. currentmodule:: quantlib.market.market
 
 .. autoclass:: FixedIncomeMarket
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FixedIncomeMarket.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~FixedIncomeMarket.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FixedIncomeMarket.name
+  
+  

@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.YoYInflationIndex.is\_valid\_fixing\_date
+===========================================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. automethod:: YoYInflationIndex.is_valid_fixing_date

@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Method.real
+=========================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Method.real

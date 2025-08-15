@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.sofr.Sofr.time\_series
+============================================
+
+.. currentmodule:: quantlib.indexes.ibor.sofr
+
+.. autoattribute:: Sofr.time_series

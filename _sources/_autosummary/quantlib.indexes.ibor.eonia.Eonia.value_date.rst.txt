@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.eonia.Eonia.value\_date
+=============================================
+
+.. currentmodule:: quantlib.indexes.ibor.eonia
+
+.. automethod:: Eonia.value_date

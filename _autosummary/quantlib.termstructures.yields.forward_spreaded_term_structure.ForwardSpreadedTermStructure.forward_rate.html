@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.forward_rate &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
+    <script src="../_static/documentation_options.js?v=a58bc63e"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.time_from_reference" href="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.time_from_reference.html" />
+    <link rel="prev" title="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.discount" href="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.discount.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="quantlib-termstructures-yields-forward-spreaded-term-structure-forwardspreadedtermstructure-forward-rate">
+<h1>quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.forward_rate<a class="headerlink" href="#quantlib-termstructures-yields-forward-spreaded-term-structure-forwardspreadedtermstructure-forward-rate" title="Link to this heading">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.forward_rate">
+<span class="sig-prename descclassname"><span class="pre">ForwardSpreadedTermStructure.</span></span><span class="sig-name descname"><span class="pre">forward_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">day_counter=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">compounding=Compounding.Continuous</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">frequency=Annual</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">extrapolate=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.forward_rate" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the forward interest rate between two dates or times.</p>
+<p>In the former case, times are calculated as fractions of year from the
+reference date. If both dates (times) are equal the instantaneous
+forward rate is returned.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>d1</strong><span class="classifier"><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a> or Time.</span></dt><dd><p>The start date or time used to calculate the forward rate.</p>
+</dd>
+<dt><strong>d2</strong><span class="classifier"><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a> or Time or <a class="reference internal" href="quantlib.time.date.Period.html#quantlib.time.date.Period" title="quantlib.time.date.Period"><code class="xref py py-class docutils literal notranslate"><span class="pre">Period</span></code></a></span></dt><dd><p>The end date, time or period used to calculate the forward rate.</p>
+</dd>
+<dt><strong>day_counter</strong><span class="classifier"><a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a></span></dt><dd><p>The day counter used to compute the time.</p>
+</dd>
+<dt><strong>compounding</strong><span class="classifier">int</span></dt><dd><p>The compounding as defined in quantlib.compounding</p>
+</dd>
+<dt><strong>frequency</strong><span class="classifier">int</span></dt><dd><p>A frequency as defined in <a class="reference internal" href="quantlib.time.date.html#module-quantlib.time.date" title="quantlib.time.date"><code class="xref py py-mod docutils literal notranslate"><span class="pre">quantlib.time.date</span></code></a></p>
+</dd>
+<dt><strong>extrapolate</strong><span class="classifier">bool, optional</span></dt><dd><p>Default to False</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Quantlib cython wrapper</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../users_guide.html">User’s guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference_guide.html">Reference guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../reference_guide.html#reference-documentation-for-the-quantlib-package">Reference documentation for the <code class="xref py py-mod docutils literal notranslate"><span class="pre">quantlib</span></code> package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_guide.html#how-to-wrap-quantlib-classes-with-cython">How to wrap QuantLib classes with cython</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html#documentation">Documentation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../reference_guide.html">Reference guide</a><ul>
+  <li><a href="quantlib.html">quantlib</a><ul>
+  <li><a href="quantlib.termstructures.html">quantlib.termstructures</a><ul>
+  <li><a href="quantlib.termstructures.yields.html">quantlib.termstructures.yields</a><ul>
+  <li><a href="quantlib.termstructures.yields.forward_spreaded_term_structure.html">quantlib.termstructures.yields.forward_spreaded_term_structure</a><ul>
+  <li><a href="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.html">ForwardSpreadedTermStructure</a><ul>
+      <li>Previous: <a href="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.discount.html" title="previous chapter">quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.discount</a></li>
+      <li>Next: <a href="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.time_from_reference.html" title="next chapter">quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.time_from_reference</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2011, Didrik Pinte, Patrick Henaff.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/_autosummary/quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.forward_rate.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

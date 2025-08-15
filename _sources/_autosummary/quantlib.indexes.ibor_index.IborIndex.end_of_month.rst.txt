@@ -1,0 +1,6 @@
+quantlib.indexes.ibor\_index.IborIndex.end\_of\_month
+=====================================================
+
+.. currentmodule:: quantlib.indexes.ibor_index
+
+.. autoattribute:: IborIndex.end_of_month

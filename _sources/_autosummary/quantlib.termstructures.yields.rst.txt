@@ -4,28 +4,10 @@ quantlib.termstructures.yields
 .. automodule:: quantlib.termstructures.yields
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    api
@@ -43,4 +25,3 @@ quantlib.termstructures.yields
    rate_helpers
    zero_curve
    zero_spreaded_term_structure
-

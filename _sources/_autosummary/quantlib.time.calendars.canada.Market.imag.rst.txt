@@ -1,0 +1,6 @@
+quantlib.time.calendars.canada.Market.imag
+==========================================
+
+.. currentmodule:: quantlib.time.calendars.canada
+
+.. autoattribute:: Market.imag

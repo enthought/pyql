@@ -1,0 +1,6 @@
+quantlib.instruments.asian\_options.ContinuousAveragingAsianOption.itm\_cash\_probability
+=========================================================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. autoattribute:: ContinuousAveragingAsianOption.itm_cash_probability

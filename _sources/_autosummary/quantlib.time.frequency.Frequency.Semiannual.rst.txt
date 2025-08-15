@@ -1,0 +1,6 @@
+quantlib.time.frequency.Frequency.Semiannual
+============================================
+
+.. currentmodule:: quantlib.time.frequency
+
+.. autoattribute:: Frequency.Semiannual

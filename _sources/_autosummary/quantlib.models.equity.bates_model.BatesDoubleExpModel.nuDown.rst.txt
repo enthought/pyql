@@ -1,0 +1,6 @@
+quantlib.models.equity.bates\_model.BatesDoubleExpModel.nuDown
+==============================================================
+
+.. currentmodule:: quantlib.models.equity.bates_model
+
+.. autoattribute:: BatesDoubleExpModel.nuDown

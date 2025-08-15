@@ -1,48 +1,47 @@
-quantlib.termstructures.yields.discount\_curve.DiscountCurve
-============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.discount_curve.</div>
+   <div class="empty"></div>
+
+DiscountCurve
+===========================================================
 
 .. currentmodule:: quantlib.termstructures.yields.discount_curve
 
 .. autoclass:: DiscountCurve
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         DiscountCurve.discount
+         DiscountCurve.forward_rate
+         DiscountCurve.time_from_reference
+         DiscountCurve.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~DiscountCurve.__init__
-      ~DiscountCurve.discount
-      ~DiscountCurve.forward_rate
-      ~DiscountCurve.time_from_reference
-      ~DiscountCurve.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~DiscountCurve.data
-      ~DiscountCurve.dates
-      ~DiscountCurve.day_counter
-      ~DiscountCurve.discounts
-      ~DiscountCurve.extrapolation
-      ~DiscountCurve.max_date
-      ~DiscountCurve.max_time
-      ~DiscountCurve.nodes
-      ~DiscountCurve.reference_date
-      ~DiscountCurve.settlement_days
-      ~DiscountCurve.times
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         DiscountCurve.data
+         DiscountCurve.dates
+         DiscountCurve.day_counter
+         DiscountCurve.discounts
+         DiscountCurve.extrapolation
+         DiscountCurve.max_date
+         DiscountCurve.max_time
+         DiscountCurve.nodes
+         DiscountCurve.reference_date
+         DiscountCurve.settlement_days
+         DiscountCurve.times
+  
+  

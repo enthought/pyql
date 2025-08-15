@@ -1,0 +1,6 @@
+quantlib.exercise.Type.as\_integer\_ratio
+=========================================
+
+.. currentmodule:: quantlib.exercise
+
+.. automethod:: Type.as_integer_ratio

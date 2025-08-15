@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Method.PhysicalOTC
+================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Method.PhysicalOTC

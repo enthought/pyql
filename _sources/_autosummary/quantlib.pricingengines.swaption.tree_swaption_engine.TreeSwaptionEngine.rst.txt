@@ -1,26 +1,27 @@
-quantlib.pricingengines.swaption.tree\_swaption\_engine.TreeSwaptionEngine
-==========================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.pricingengines.swaption.tree_swaption_engine.</div>
+   <div class="empty"></div>
+
+TreeSwaptionEngine
+========================================================================
 
 .. currentmodule:: quantlib.pricingengines.swaption.tree_swaption_engine
 
 .. autoclass:: TreeSwaptionEngine
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~TreeSwaptionEngine.__init__
-   
-   
-
-   
-   
-   
+  
+  
+  

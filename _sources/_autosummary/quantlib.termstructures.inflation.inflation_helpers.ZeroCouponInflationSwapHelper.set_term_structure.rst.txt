@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.inflation\_helpers.ZeroCouponInflationSwapHelper.set\_term\_structure
+=======================================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.inflation_helpers
+
+.. automethod:: ZeroCouponInflationSwapHelper.set_term_structure

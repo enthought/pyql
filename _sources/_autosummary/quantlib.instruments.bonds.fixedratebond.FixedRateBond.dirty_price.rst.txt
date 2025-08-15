@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.fixedratebond.FixedRateBond.dirty\_price
+===================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.fixedratebond
+
+.. autoattribute:: FixedRateBond.dirty_price

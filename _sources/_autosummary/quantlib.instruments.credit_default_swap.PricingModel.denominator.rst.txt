@@ -1,0 +1,6 @@
+quantlib.instruments.credit\_default\_swap.PricingModel.denominator
+===================================================================
+
+.. currentmodule:: quantlib.instruments.credit_default_swap
+
+.. autoattribute:: PricingModel.denominator

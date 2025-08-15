@@ -1,0 +1,6 @@
+quantlib.math.randomnumbers.sobol\_rsg.DirectionIntegers.Kuo2
+=============================================================
+
+.. currentmodule:: quantlib.math.randomnumbers.sobol_rsg
+
+.. autoattribute:: DirectionIntegers.Kuo2

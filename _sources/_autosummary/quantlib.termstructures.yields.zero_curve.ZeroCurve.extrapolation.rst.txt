@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_curve.ZeroCurve.extrapolation
+==================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. autoattribute:: ZeroCurve.extrapolation

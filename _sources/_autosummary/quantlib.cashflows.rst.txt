@@ -4,28 +4,10 @@ quantlib.cashflows
 .. automodule:: quantlib.cashflows
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    api
@@ -45,4 +27,3 @@ quantlib.cashflows
    overnight_indexed_coupon
    overnight_indexed_coupon_pricer
    rateaveraging
-

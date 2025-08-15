@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.volatilitytype.VolatilityType.imag
+=====================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.volatilitytype
+
+.. autoattribute:: VolatilityType.imag

@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.annuity
+==============================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Swaption.annuity

@@ -1,0 +1,6 @@
+quantlib.pricingengines.credit.isda\_cds\_engine.ForwardsInCouponPeriod.as\_integer\_ratio
+==========================================================================================
+
+.. currentmodule:: quantlib.pricingengines.credit.isda_cds_engine
+
+.. automethod:: ForwardsInCouponPeriod.as_integer_ratio

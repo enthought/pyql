@@ -4,29 +4,11 @@ quantlib.models.shortrate.twofactor\_model
 .. automodule:: quantlib.models.shortrate.twofactor_model
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       ShortRateDynamics
       TwoFactorModel
    
-   
-
-   
-   
-   
-
-
-

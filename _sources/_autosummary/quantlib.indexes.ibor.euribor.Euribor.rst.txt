@@ -1,55 +1,54 @@
-quantlib.indexes.ibor.euribor.Euribor
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.ibor.euribor.</div>
+   <div class="empty"></div>
+
+Euribor
 =====================================
 
 .. currentmodule:: quantlib.indexes.ibor.euribor
 
 .. autoclass:: Euribor
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Euribor.add_fixing
+         Euribor.add_fixings
+         Euribor.clear_fixings
+         Euribor.fixing
+         Euribor.fixing_date
+         Euribor.forecast_fixing
+         Euribor.from_name
+         Euribor.has_historical_fixing
+         Euribor.is_valid_fixing_date
+         Euribor.maturity_date
+         Euribor.value_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Euribor.__init__
-      ~Euribor.add_fixing
-      ~Euribor.add_fixings
-      ~Euribor.clear_fixings
-      ~Euribor.fixing
-      ~Euribor.fixing_date
-      ~Euribor.forecast_fixing
-      ~Euribor.from_name
-      ~Euribor.has_historical_fixing
-      ~Euribor.is_valid_fixing_date
-      ~Euribor.maturity_date
-      ~Euribor.value_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Euribor.business_day_convention
-      ~Euribor.currency
-      ~Euribor.day_counter
-      ~Euribor.end_of_month
-      ~Euribor.family_name
-      ~Euribor.fixing_calendar
-      ~Euribor.fixing_days
-      ~Euribor.forwarding_term_structure
-      ~Euribor.name
-      ~Euribor.tenor
-      ~Euribor.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Euribor.business_day_convention
+         Euribor.currency
+         Euribor.day_counter
+         Euribor.end_of_month
+         Euribor.family_name
+         Euribor.fixing_calendar
+         Euribor.fixing_days
+         Euribor.forwarding_term_structure
+         Euribor.name
+         Euribor.tenor
+         Euribor.time_series
+  
+  

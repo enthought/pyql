@@ -1,0 +1,6 @@
+quantlib.processes.heston\_process.Discretization.PartialTruncation
+===================================================================
+
+.. currentmodule:: quantlib.processes.heston_process
+
+.. autoattribute:: Discretization.PartialTruncation

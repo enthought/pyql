@@ -1,0 +1,6 @@
+quantlib.cashflows.floating\_rate\_coupon.FloatingRateCoupon.accrued\_days
+==========================================================================
+
+.. currentmodule:: quantlib.cashflows.floating_rate_coupon
+
+.. automethod:: FloatingRateCoupon.accrued_days

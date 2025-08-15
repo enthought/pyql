@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_kingdom.UnitedKingdom.add\_holiday
+==================================================================
+
+.. currentmodule:: quantlib.time.calendars.united_kingdom
+
+.. automethod:: UnitedKingdom.add_holiday

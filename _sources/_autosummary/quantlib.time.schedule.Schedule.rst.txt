@@ -1,34 +1,37 @@
-quantlib.time.schedule.Schedule
+.. raw:: html
+
+   <div class="prename">quantlib.time.schedule.</div>
+   <div class="empty"></div>
+
+Schedule
 ===============================
 
 .. currentmodule:: quantlib.time.schedule
 
 .. autoclass:: Schedule
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Schedule.__getitem__
+         Schedule.__len__
+         Schedule.at
+         Schedule.dates
+         Schedule.from_dates
+         Schedule.from_rule
+         Schedule.next_date
+         Schedule.previous_date
+         Schedule.size
+         Schedule.to_npdates
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Schedule.__init__
-      ~Schedule.at
-      ~Schedule.dates
-      ~Schedule.from_dates
-      ~Schedule.from_rule
-      ~Schedule.next_date
-      ~Schedule.previous_date
-      ~Schedule.size
-      ~Schedule.to_npdates
-   
-   
-
-   
-   
-   
+  
+  
+  

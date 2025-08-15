@@ -1,0 +1,6 @@
+quantlib.time.calendars.germany.Market.to\_bytes
+================================================
+
+.. currentmodule:: quantlib.time.calendars.germany
+
+.. automethod:: Market.to_bytes

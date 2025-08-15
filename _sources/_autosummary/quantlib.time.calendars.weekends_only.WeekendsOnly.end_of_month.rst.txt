@@ -1,0 +1,6 @@
+quantlib.time.calendars.weekends\_only.WeekendsOnly.end\_of\_month
+==================================================================
+
+.. currentmodule:: quantlib.time.calendars.weekends_only
+
+.. automethod:: WeekendsOnly.end_of_month

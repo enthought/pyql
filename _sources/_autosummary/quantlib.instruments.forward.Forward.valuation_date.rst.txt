@@ -1,0 +1,6 @@
+quantlib.instruments.forward.Forward.valuation\_date
+====================================================
+
+.. currentmodule:: quantlib.instruments.forward
+
+.. autoattribute:: Forward.valuation_date

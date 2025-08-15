@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>UpfrontCdsHelper &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,8 +15,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.termstructures.credit.flat_hazard_rate" href="quantlib.termstructures.credit.flat_hazard_rate.html" />
-    <link rel="prev" title="quantlib.termstructures.credit.default_probability_helpers.SpreadCdsHelper" href="quantlib.termstructures.credit.default_probability_helpers.SpreadCdsHelper.html" />
+    <link rel="next" title="quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper.set_term_structure" href="quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper.set_term_structure.html" />
+    <link rel="prev" title="quantlib.termstructures.credit.default_probability_helpers.SpreadCdsHelper.swap" href="quantlib.termstructures.credit.default_probability_helpers.SpreadCdsHelper.swap.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,42 +34,30 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-termstructures-credit-default-probability-helpers-upfrontcdshelper">
-<h1>quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper<a class="headerlink" href="#quantlib-termstructures-credit-default-probability-helpers-upfrontcdshelper" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.termstructures.credit.default_probability_helpers.</div>
+<div class="empty"></div><section id="upfrontcdshelper">
+<h1>UpfrontCdsHelper<a class="headerlink" href="#upfrontcdshelper" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UpfrontCdsHelper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">upfront</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">running_spread</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Period</span> <span class="pre">tenor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Integer</span> <span class="pre">settlement_days</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">calendar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">paymentConvention</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DateGeneration</span> <span class="pre">rule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">daycounter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">recovery_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">HandleYieldTermStructure</span> <span class="pre">discount_curve=HandleYieldTermStructure()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">upfront_settlement_days=3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">settles_accrual=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">pays_at_default_time=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">start_date=Date()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">lastperiod=DayCounter()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">rebates_accrual=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PricingModel</span> <span class="pre">model=PricingModel.ISDA</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.termstructures.credit.default_probability_helpers.CdsHelper.html#quantlib.termstructures.credit.default_probability_helpers.CdsHelper" title="quantlib.termstructures.credit.default_probability_helpers.CdsHelper"><code class="xref py py-class docutils literal notranslate"><span class="pre">CdsHelper</span></code></a></p>
 <p>Upfront+running-quoted CDS hazard rate bootstrap helper.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>implied_quote</strong></dt><dd></dd>
+<dt><strong>latest_date</strong></dt><dd></dd>
+<dt><strong>quote</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper.__init__" title="quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper.set_term_structure.html#quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper.set_term_structure" title="quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper.set_term_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_term_structure</span></code></a>(self, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_term_structure</span></code>(self, ...)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">swap</span></code>(self)</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">implied_quote</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">latest_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">quote</span></code></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper.swap.html#quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper.swap" title="quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper.swap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">swap</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -117,8 +105,8 @@
   <li><a href="quantlib.termstructures.html">quantlib.termstructures</a><ul>
   <li><a href="quantlib.termstructures.credit.html">quantlib.termstructures.credit</a><ul>
   <li><a href="quantlib.termstructures.credit.default_probability_helpers.html">quantlib.termstructures.credit.default_probability_helpers</a><ul>
-      <li>Previous: <a href="quantlib.termstructures.credit.default_probability_helpers.SpreadCdsHelper.html" title="previous chapter">quantlib.termstructures.credit.default_probability_helpers.SpreadCdsHelper</a></li>
-      <li>Next: <a href="quantlib.termstructures.credit.flat_hazard_rate.html" title="next chapter">quantlib.termstructures.credit.flat_hazard_rate</a></li>
+      <li>Previous: <a href="quantlib.termstructures.credit.default_probability_helpers.SpreadCdsHelper.swap.html" title="previous chapter">quantlib.termstructures.credit.default_probability_helpers.SpreadCdsHelper.swap</a></li>
+      <li>Next: <a href="quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper.set_term_structure.html" title="next chapter">quantlib.termstructures.credit.default_probability_helpers.UpfrontCdsHelper.set_term_structure</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.fixedratebond.FixedRateBond.accrued\_amount
+======================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.fixedratebond
+
+.. automethod:: FixedRateBond.accrued_amount

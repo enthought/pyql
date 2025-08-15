@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Type.imag
+===================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoattribute:: Type.imag

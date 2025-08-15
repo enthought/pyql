@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.black\_variance\_curve.BlackVarianceCurve.blackVariance
+===================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_variance_curve
+
+.. automethod:: BlackVarianceCurve.blackVariance

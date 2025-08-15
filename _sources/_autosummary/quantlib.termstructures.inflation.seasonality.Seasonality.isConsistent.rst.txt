@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.seasonality.Seasonality.isConsistent
+======================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.seasonality
+
+.. automethod:: Seasonality.isConsistent

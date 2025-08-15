@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.euhicp.YYEUHICPXT.family\_name
+=========================================================
+
+.. currentmodule:: quantlib.indexes.inflation.euhicp
+
+.. autoattribute:: YYEUHICPXT.family_name

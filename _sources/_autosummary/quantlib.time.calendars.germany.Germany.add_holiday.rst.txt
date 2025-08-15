@@ -1,0 +1,6 @@
+quantlib.time.calendars.germany.Germany.add\_holiday
+====================================================
+
+.. currentmodule:: quantlib.time.calendars.germany
+
+.. automethod:: Germany.add_holiday

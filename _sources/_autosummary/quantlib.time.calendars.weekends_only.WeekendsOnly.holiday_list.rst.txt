@@ -1,0 +1,6 @@
+quantlib.time.calendars.weekends\_only.WeekendsOnly.holiday\_list
+=================================================================
+
+.. currentmodule:: quantlib.time.calendars.weekends_only
+
+.. automethod:: WeekendsOnly.holiday_list

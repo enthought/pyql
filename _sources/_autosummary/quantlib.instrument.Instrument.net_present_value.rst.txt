@@ -1,0 +1,6 @@
+quantlib.instrument.Instrument.net\_present\_value
+==================================================
+
+.. currentmodule:: quantlib.instrument
+
+.. autoattribute:: Instrument.net_present_value

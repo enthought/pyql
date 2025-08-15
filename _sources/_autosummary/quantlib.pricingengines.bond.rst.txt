@@ -4,30 +4,11 @@ quantlib.pricingengines.bond
 .. automodule:: quantlib.pricingengines.bond
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    bondfunctions
    discountingbondengine
-

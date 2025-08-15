@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.heston\_black\_vol\_surface.HestonBlackVolSurface.settlement\_days
+==============================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.heston_black_vol_surface
+
+.. autoattribute:: HestonBlackVolSurface.settlement_days

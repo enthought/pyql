@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.sofr.Sofr.clear\_fixings
+==============================================
+
+.. currentmodule:: quantlib.indexes.ibor.sofr
+
+.. automethod:: Sofr.clear_fixings

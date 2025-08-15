@@ -1,26 +1,27 @@
-quantlib.math.optimization.EndCriteria
+.. raw:: html
+
+   <div class="prename">quantlib.math.optimization.</div>
+   <div class="empty"></div>
+
+EndCriteria
 ======================================
 
 .. currentmodule:: quantlib.math.optimization
 
 .. autoclass:: EndCriteria
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~EndCriteria.__init__
-   
-   
-
-   
-   
-   
+  
+  
+  

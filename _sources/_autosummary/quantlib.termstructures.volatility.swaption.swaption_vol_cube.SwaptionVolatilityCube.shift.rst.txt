@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_cube.SwaptionVolatilityCube.shift
+============================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_cube
+
+.. automethod:: SwaptionVolatilityCube.shift

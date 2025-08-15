@@ -1,0 +1,6 @@
+quantlib.cashflows.linear\_tsr\_pricer.LinearTsrPricer.initialize
+=================================================================
+
+.. currentmodule:: quantlib.cashflows.linear_tsr_pricer
+
+.. automethod:: LinearTsrPricer.initialize

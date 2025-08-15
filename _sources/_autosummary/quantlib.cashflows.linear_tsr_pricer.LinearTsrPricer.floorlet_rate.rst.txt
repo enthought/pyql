@@ -1,0 +1,6 @@
+quantlib.cashflows.linear\_tsr\_pricer.LinearTsrPricer.floorlet\_rate
+=====================================================================
+
+.. currentmodule:: quantlib.cashflows.linear_tsr_pricer
+
+.. automethod:: LinearTsrPricer.floorlet_rate

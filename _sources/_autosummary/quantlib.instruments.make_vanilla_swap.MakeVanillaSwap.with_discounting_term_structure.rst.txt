@@ -1,0 +1,6 @@
+quantlib.instruments.make\_vanilla\_swap.MakeVanillaSwap.with\_discounting\_term\_structure
+===========================================================================================
+
+.. currentmodule:: quantlib.instruments.make_vanilla_swap
+
+.. automethod:: MakeVanillaSwap.with_discounting_term_structure

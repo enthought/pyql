@@ -1,0 +1,6 @@
+quantlib.indexes.swap.euribor\_swap.EuriborSwapIsdaFixA.discounting\_term\_structure
+====================================================================================
+
+.. currentmodule:: quantlib.indexes.swap.euribor_swap
+
+.. autoattribute:: EuriborSwapIsdaFixA.discounting_term_structure

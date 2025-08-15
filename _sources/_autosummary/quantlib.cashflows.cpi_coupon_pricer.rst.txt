@@ -4,28 +4,10 @@ quantlib.cashflows.cpi\_coupon\_pricer
 .. automodule:: quantlib.cashflows.cpi_coupon_pricer
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       CPICouponPricer
    
-   
-
-   
-   
-   
-
-
-

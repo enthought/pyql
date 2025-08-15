@@ -1,0 +1,6 @@
+quantlib.time.calendar.Calendar.advance
+=======================================
+
+.. currentmodule:: quantlib.time.calendar
+
+.. automethod:: Calendar.advance

@@ -1,0 +1,6 @@
+quantlib.time\_series.TimeSeries.\_\_getitem\_\_
+================================================
+
+.. currentmodule:: quantlib.time_series
+
+.. automethod:: TimeSeries.__getitem__

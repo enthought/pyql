@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.default\_probability\_helpers.SpreadCdsHelper.implied\_quote
+===========================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.default_probability_helpers
+
+.. autoattribute:: SpreadCdsHelper.implied_quote

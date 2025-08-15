@@ -1,0 +1,6 @@
+quantlib.time.calendars.jointcalendar.JointCalendarRule.as\_integer\_ratio
+==========================================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. automethod:: JointCalendarRule.as_integer_ratio

@@ -1,0 +1,6 @@
+quantlib.cashflows.cms\_coupon.CmsCoupon.convexity\_adjustment
+==============================================================
+
+.. currentmodule:: quantlib.cashflows.cms_coupon
+
+.. autoattribute:: CmsCoupon.convexity_adjustment

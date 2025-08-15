@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaswap.VanillaSwap.leg
+================================================
+
+.. currentmodule:: quantlib.instruments.vanillaswap
+
+.. automethod:: VanillaSwap.leg

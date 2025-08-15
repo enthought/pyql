@@ -1,0 +1,6 @@
+quantlib.math.matrixutilities.pseudosqrt.SalvagingAlgorithm.conjugate
+=====================================================================
+
+.. currentmodule:: quantlib.math.matrixutilities.pseudosqrt
+
+.. automethod:: SalvagingAlgorithm.conjugate

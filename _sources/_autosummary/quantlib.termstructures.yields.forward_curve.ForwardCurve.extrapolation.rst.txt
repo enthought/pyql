@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.ForwardCurve.extrapolation
+========================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. autoattribute:: ForwardCurve.extrapolation

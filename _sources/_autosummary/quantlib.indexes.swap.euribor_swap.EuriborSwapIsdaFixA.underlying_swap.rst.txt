@@ -1,0 +1,6 @@
+quantlib.indexes.swap.euribor\_swap.EuriborSwapIsdaFixA.underlying\_swap
+========================================================================
+
+.. currentmodule:: quantlib.indexes.swap.euribor_swap
+
+.. automethod:: EuriborSwapIsdaFixA.underlying_swap

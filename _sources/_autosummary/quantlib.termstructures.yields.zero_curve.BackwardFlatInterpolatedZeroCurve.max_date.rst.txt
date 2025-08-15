@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_curve.BackwardFlatInterpolatedZeroCurve.max\_date
+======================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. autoattribute:: BackwardFlatInterpolatedZeroCurve.max_date

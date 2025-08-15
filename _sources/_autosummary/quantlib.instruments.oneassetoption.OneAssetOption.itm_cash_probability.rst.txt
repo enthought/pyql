@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.itm\_cash\_probability
+=========================================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.itm_cash_probability

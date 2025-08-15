@@ -1,0 +1,6 @@
+quantlib.settings.Settings.instance
+===================================
+
+.. currentmodule:: quantlib.settings
+
+.. automethod:: Settings.instance

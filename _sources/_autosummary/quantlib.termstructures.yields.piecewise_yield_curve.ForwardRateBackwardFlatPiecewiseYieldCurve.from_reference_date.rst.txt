@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.piecewise\_yield\_curve.ForwardRateBackwardFlatPiecewiseYieldCurve.from\_reference\_date
+=======================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_yield_curve
+
+.. automethod:: ForwardRateBackwardFlatPiecewiseYieldCurve.from_reference_date

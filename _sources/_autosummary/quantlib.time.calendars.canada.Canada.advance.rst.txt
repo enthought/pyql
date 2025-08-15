@@ -1,0 +1,6 @@
+quantlib.time.calendars.canada.Canada.advance
+=============================================
+
+.. currentmodule:: quantlib.time.calendars.canada
+
+.. automethod:: Canada.advance

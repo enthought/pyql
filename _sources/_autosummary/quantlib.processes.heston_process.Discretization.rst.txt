@@ -1,52 +1,59 @@
-quantlib.processes.heston\_process.Discretization
-=================================================
+.. raw:: html
+
+   <div class="prename">quantlib.processes.heston_process.</div>
+   <div class="empty"></div>
+
+Discretization
+================================================
 
 .. currentmodule:: quantlib.processes.heston_process
 
 .. autoclass:: Discretization
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Discretization.__mul__
+         Discretization.__pow__
+         Discretization.conjugate
+         Discretization.bit_length
+         Discretization.bit_count
+         Discretization.to_bytes
+         Discretization.from_bytes
+         Discretization.as_integer_ratio
+         Discretization.__len__
+         Discretization.__getitem__
+      
+         Discretization.__len__
+         Discretization.__getitem__
+         Discretization.__mul__
+         Discretization.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Discretization.conjugate
-      ~Discretization.bit_length
-      ~Discretization.bit_count
-      ~Discretization.to_bytes
-      ~Discretization.from_bytes
-      ~Discretization.as_integer_ratio
-      ~Discretization.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Discretization.real
-      ~Discretization.imag
-      ~Discretization.numerator
-      ~Discretization.denominator
-      ~Discretization.PartialTruncation
-      ~Discretization.FullTruncation
-      ~Discretization.Reflection
-      ~Discretization.NonCentralChiSquareVariance
-      ~Discretization.QuadraticExponential
-      ~Discretization.QuadraticExponentialMartingale
-      ~Discretization.BroadieKayaExactSchemeLobatto
-      ~Discretization.BroadieKayaExactSchemeLaguerre
-      ~Discretization.BroadieKayaExactSchemeTrapezoidal
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Discretization.real
+         Discretization.imag
+         Discretization.numerator
+         Discretization.denominator
+         Discretization.PartialTruncation
+         Discretization.FullTruncation
+         Discretization.Reflection
+         Discretization.NonCentralChiSquareVariance
+         Discretization.QuadraticExponential
+         Discretization.QuadraticExponentialMartingale
+         Discretization.BroadieKayaExactSchemeLobatto
+         Discretization.BroadieKayaExactSchemeLaguerre
+         Discretization.BroadieKayaExactSchemeTrapezoidal
+  
+  

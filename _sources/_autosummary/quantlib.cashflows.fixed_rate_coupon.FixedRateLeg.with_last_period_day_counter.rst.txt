@@ -1,0 +1,6 @@
+quantlib.cashflows.fixed\_rate\_coupon.FixedRateLeg.with\_last\_period\_day\_counter
+====================================================================================
+
+.. currentmodule:: quantlib.cashflows.fixed_rate_coupon
+
+.. automethod:: FixedRateLeg.with_last_period_day_counter

@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_states.UnitedStates.business\_days\_between
+===========================================================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. automethod:: UnitedStates.business_days_between

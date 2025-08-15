@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.floatingratebond.FloatingRateBond.issue\_date
+========================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.floatingratebond
+
+.. autoattribute:: FloatingRateBond.issue_date

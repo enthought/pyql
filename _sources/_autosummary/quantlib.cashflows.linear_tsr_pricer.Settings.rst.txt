@@ -1,30 +1,31 @@
-quantlib.cashflows.linear\_tsr\_pricer.Settings
-===============================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.linear_tsr_pricer.</div>
+   <div class="empty"></div>
+
+Settings
+=============================================
 
 .. currentmodule:: quantlib.cashflows.linear_tsr_pricer
 
 .. autoclass:: Settings
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Settings.with_bs_std_devs
+         Settings.with_price_threshold
+         Settings.with_rate_bound
+         Settings.with_vega_ratio
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Settings.__init__
-      ~Settings.with_bs_std_devs
-      ~Settings.with_price_threshold
-      ~Settings.with_rate_bound
-      ~Settings.with_vega_ratio
-   
-   
-
-   
-   
-   
+  
+  
+  

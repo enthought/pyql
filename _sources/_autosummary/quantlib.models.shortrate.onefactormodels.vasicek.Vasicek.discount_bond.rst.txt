@@ -1,0 +1,6 @@
+quantlib.models.shortrate.onefactormodels.vasicek.Vasicek.discount\_bond
+========================================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactormodels.vasicek
+
+.. automethod:: Vasicek.discount_bond

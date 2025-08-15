@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.floatingratebond.FloatingRateBond.clean\_price
+=========================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.floatingratebond
+
+.. autoattribute:: FloatingRateBond.clean_price

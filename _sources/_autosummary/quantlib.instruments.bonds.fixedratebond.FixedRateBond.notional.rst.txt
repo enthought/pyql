@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.fixedratebond.FixedRateBond.notional
+===============================================================
+
+.. currentmodule:: quantlib.instruments.bonds.fixedratebond
+
+.. automethod:: FixedRateBond.notional

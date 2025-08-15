@@ -1,45 +1,52 @@
-quantlib.instruments.credit\_default\_swap.PricingModel
-=======================================================
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.credit_default_swap.</div>
+   <div class="empty"></div>
+
+PricingModel
+=====================================================
 
 .. currentmodule:: quantlib.instruments.credit_default_swap
 
 .. autoclass:: PricingModel
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         PricingModel.__mul__
+         PricingModel.__pow__
+         PricingModel.conjugate
+         PricingModel.bit_length
+         PricingModel.bit_count
+         PricingModel.to_bytes
+         PricingModel.from_bytes
+         PricingModel.as_integer_ratio
+         PricingModel.__getitem__
+         PricingModel.__len__
+      
+         PricingModel.__len__
+         PricingModel.__getitem__
+         PricingModel.__mul__
+         PricingModel.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~PricingModel.conjugate
-      ~PricingModel.bit_length
-      ~PricingModel.bit_count
-      ~PricingModel.to_bytes
-      ~PricingModel.from_bytes
-      ~PricingModel.as_integer_ratio
-      ~PricingModel.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~PricingModel.real
-      ~PricingModel.imag
-      ~PricingModel.numerator
-      ~PricingModel.denominator
-      ~PricingModel.Midpoint
-      ~PricingModel.ISDA
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         PricingModel.real
+         PricingModel.imag
+         PricingModel.numerator
+         PricingModel.denominator
+         PricingModel.Midpoint
+         PricingModel.ISDA
+  
+  

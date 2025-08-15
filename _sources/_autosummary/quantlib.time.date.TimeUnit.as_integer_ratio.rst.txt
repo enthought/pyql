@@ -1,0 +1,6 @@
+quantlib.time.date.TimeUnit.as\_integer\_ratio
+==============================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: TimeUnit.as_integer_ratio

@@ -1,0 +1,6 @@
+quantlib.time.daycounters.thirty360.Convention.ISMA
+===================================================
+
+.. currentmodule:: quantlib.time.daycounters.thirty360
+
+.. autoattribute:: Convention.ISMA

@@ -1,0 +1,6 @@
+quantlib.instruments.variance\_swap.SwapType.from\_bytes
+========================================================
+
+.. currentmodule:: quantlib.instruments.variance_swap
+
+.. automethod:: SwapType.from_bytes

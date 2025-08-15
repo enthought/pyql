@@ -1,0 +1,6 @@
+quantlib.currency.currencies.NZDCurrency.symbol
+===============================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: NZDCurrency.symbol

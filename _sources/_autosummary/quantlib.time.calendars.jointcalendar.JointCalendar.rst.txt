@@ -1,46 +1,45 @@
-quantlib.time.calendars.jointcalendar.JointCalendar
+.. raw:: html
+
+   <div class="prename">quantlib.time.calendars.jointcalendar.</div>
+   <div class="empty"></div>
+
+JointCalendar
 ===================================================
 
 .. currentmodule:: quantlib.time.calendars.jointcalendar
 
 .. autoclass:: JointCalendar
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         JointCalendar.add_holiday
+         JointCalendar.adjust
+         JointCalendar.advance
+         JointCalendar.business_day_list
+         JointCalendar.business_days_between
+         JointCalendar.end_of_month
+         JointCalendar.holiday_list
+         JointCalendar.is_business_day
+         JointCalendar.is_end_of_month
+         JointCalendar.is_holiday
+         JointCalendar.is_weekend
+         JointCalendar.remove_holiday
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~JointCalendar.__init__
-      ~JointCalendar.add_holiday
-      ~JointCalendar.adjust
-      ~JointCalendar.advance
-      ~JointCalendar.business_day_list
-      ~JointCalendar.business_days_between
-      ~JointCalendar.end_of_month
-      ~JointCalendar.holiday_list
-      ~JointCalendar.is_business_day
-      ~JointCalendar.is_end_of_month
-      ~JointCalendar.is_holiday
-      ~JointCalendar.is_weekend
-      ~JointCalendar.remove_holiday
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~JointCalendar.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         JointCalendar.name
+  
+  

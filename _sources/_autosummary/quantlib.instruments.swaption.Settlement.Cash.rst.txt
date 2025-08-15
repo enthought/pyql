@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Settlement.Cash
+=============================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Settlement.Cash

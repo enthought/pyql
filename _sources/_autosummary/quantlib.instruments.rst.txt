@@ -4,28 +4,10 @@ quantlib.instruments
 .. automodule:: quantlib.instruments
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    api
@@ -53,4 +35,3 @@ quantlib.instruments
    vanillaoption
    vanillaswap
    variance_swap
-

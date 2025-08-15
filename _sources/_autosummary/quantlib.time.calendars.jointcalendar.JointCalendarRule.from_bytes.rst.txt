@@ -1,0 +1,6 @@
+quantlib.time.calendars.jointcalendar.JointCalendarRule.from\_bytes
+===================================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. automethod:: JointCalendarRule.from_bytes

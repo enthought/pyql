@@ -4,31 +4,12 @@ quantlib.models.equity
 .. automodule:: quantlib.models.equity
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    bates_model
    dejd
    heston_model
-

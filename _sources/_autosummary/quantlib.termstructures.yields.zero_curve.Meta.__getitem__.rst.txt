@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_curve.Meta.\_\_getitem\_\_
+===============================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. automethod:: Meta.__getitem__

@@ -1,46 +1,53 @@
-quantlib.exercise.Type
+.. raw:: html
+
+   <div class="prename">quantlib.exercise.</div>
+   <div class="empty"></div>
+
+Type
 ======================
 
 .. currentmodule:: quantlib.exercise
 
 .. autoclass:: Type
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Type.__mul__
+         Type.__pow__
+         Type.conjugate
+         Type.bit_length
+         Type.bit_count
+         Type.to_bytes
+         Type.from_bytes
+         Type.as_integer_ratio
+         Type.__getitem__
+         Type.__len__
+      
+         Type.__len__
+         Type.__getitem__
+         Type.__mul__
+         Type.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Type.conjugate
-      ~Type.bit_length
-      ~Type.bit_count
-      ~Type.to_bytes
-      ~Type.from_bytes
-      ~Type.as_integer_ratio
-      ~Type.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Type.real
-      ~Type.imag
-      ~Type.numerator
-      ~Type.denominator
-      ~Type.American
-      ~Type.Bermudan
-      ~Type.European
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Type.real
+         Type.imag
+         Type.numerator
+         Type.denominator
+         Type.American
+         Type.Bermudan
+         Type.European
+  
+  

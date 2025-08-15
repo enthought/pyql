@@ -1,0 +1,6 @@
+quantlib.pricingengines.credit.isda\_cds\_engine.AccrualBias.\_\_pow\_\_
+========================================================================
+
+.. currentmodule:: quantlib.pricingengines.credit.isda_cds_engine
+
+.. automethod:: AccrualBias.__pow__

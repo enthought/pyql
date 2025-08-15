@@ -1,0 +1,6 @@
+quantlib.instruments.overnightindexfuture.OvernightIndexFuture.is\_expired
+==========================================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexfuture
+
+.. autoattribute:: OvernightIndexFuture.is_expired

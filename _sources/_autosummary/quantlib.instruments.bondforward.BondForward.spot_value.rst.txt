@@ -1,0 +1,6 @@
+quantlib.instruments.bondforward.BondForward.spot\_value
+========================================================
+
+.. currentmodule:: quantlib.instruments.bondforward
+
+.. autoattribute:: BondForward.spot_value

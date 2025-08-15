@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.libor.Libor.add\_fixings
+==============================================
+
+.. currentmodule:: quantlib.indexes.ibor.libor
+
+.. automethod:: Libor.add_fixings

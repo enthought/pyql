@@ -4,30 +4,12 @@ quantlib.pricingengines.swaption.black\_swaption\_engine
 .. automodule:: quantlib.pricingengines.swaption.black_swaption_engine
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       BachelierSwaptionEngine
       BlackSwaptionEngine
       CashAnnuityModel
    
-   
-
-   
-   
-   
-
-
-

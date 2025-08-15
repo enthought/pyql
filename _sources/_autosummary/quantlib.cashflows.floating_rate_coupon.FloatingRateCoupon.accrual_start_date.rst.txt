@@ -1,0 +1,6 @@
+quantlib.cashflows.floating\_rate\_coupon.FloatingRateCoupon.accrual\_start\_date
+=================================================================================
+
+.. currentmodule:: quantlib.cashflows.floating_rate_coupon
+
+.. autoattribute:: FloatingRateCoupon.accrual_start_date

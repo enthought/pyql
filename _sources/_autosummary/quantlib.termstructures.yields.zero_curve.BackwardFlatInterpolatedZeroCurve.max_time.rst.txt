@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_curve.BackwardFlatInterpolatedZeroCurve.max\_time
+======================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. autoattribute:: BackwardFlatInterpolatedZeroCurve.max_time

@@ -1,35 +1,34 @@
-quantlib.quote.Quote
+.. raw:: html
+
+   <div class="prename">quantlib.quote.</div>
+   <div class="empty"></div>
+
+Quote
 ====================
 
 .. currentmodule:: quantlib.quote
 
 .. autoclass:: Quote
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Quote.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Quote.is_valid
-      ~Quote.value
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Quote.is_valid
+         Quote.value
+  
+  

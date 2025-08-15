@@ -1,0 +1,6 @@
+quantlib.instruments.overnightindexfuture.OvernightIndexFuture.net\_present\_value
+==================================================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexfuture
+
+.. autoattribute:: OvernightIndexFuture.net_present_value

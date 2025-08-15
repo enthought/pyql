@@ -1,0 +1,6 @@
+quantlib.indexes.swap\_index.SwapIndex.ibor\_index
+==================================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. autoattribute:: SwapIndex.ibor_index

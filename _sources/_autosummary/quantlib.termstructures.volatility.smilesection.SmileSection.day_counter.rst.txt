@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.smilesection.SmileSection.day\_counter
+=========================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.smilesection
+
+.. autoattribute:: SmileSection.day_counter

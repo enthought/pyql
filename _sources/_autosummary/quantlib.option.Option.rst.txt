@@ -1,42 +1,41 @@
-quantlib.option.Option
+.. raw:: html
+
+   <div class="prename">quantlib.option.</div>
+   <div class="empty"></div>
+
+Option
 ======================
 
 .. currentmodule:: quantlib.option
 
 .. autoclass:: Option
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Option.set_pricing_engine
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Option.__init__
-      ~Option.set_pricing_engine
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Option.Call
-      ~Option.Put
-      ~Option.exercise
-      ~Option.is_expired
-      ~Option.net_present_value
-      ~Option.npv
-      ~Option.payoff
-      ~Option.valuation_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Option.Call
+         Option.Put
+         Option.exercise
+         Option.is_expired
+         Option.net_present_value
+         Option.npv
+         Option.payoff
+         Option.valuation_date
+  
+  

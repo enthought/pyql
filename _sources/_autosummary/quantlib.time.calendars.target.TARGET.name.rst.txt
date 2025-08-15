@@ -1,0 +1,6 @@
+quantlib.time.calendars.target.TARGET.name
+==========================================
+
+.. currentmodule:: quantlib.time.calendars.target
+
+.. autoattribute:: TARGET.name

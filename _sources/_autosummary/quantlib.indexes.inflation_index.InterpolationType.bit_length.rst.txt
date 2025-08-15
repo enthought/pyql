@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.InterpolationType.bit\_length
+===============================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. automethod:: InterpolationType.bit_length

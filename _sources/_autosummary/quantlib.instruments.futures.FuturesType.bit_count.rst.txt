@@ -1,0 +1,6 @@
+quantlib.instruments.futures.FuturesType.bit\_count
+===================================================
+
+.. currentmodule:: quantlib.instruments.futures
+
+.. automethod:: FuturesType.bit_count

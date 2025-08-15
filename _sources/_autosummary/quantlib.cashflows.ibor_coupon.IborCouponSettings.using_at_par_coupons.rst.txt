@@ -1,0 +1,6 @@
+quantlib.cashflows.ibor\_coupon.IborCouponSettings.using\_at\_par\_coupons
+==========================================================================
+
+.. currentmodule:: quantlib.cashflows.ibor_coupon
+
+.. automethod:: IborCouponSettings.using_at_par_coupons

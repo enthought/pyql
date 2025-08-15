@@ -1,0 +1,6 @@
+quantlib.instruments.make\_ois.MakeOIS.with\_discounting\_term\_structure
+=========================================================================
+
+.. currentmodule:: quantlib.instruments.make_ois
+
+.. automethod:: MakeOIS.with_discounting_term_structure

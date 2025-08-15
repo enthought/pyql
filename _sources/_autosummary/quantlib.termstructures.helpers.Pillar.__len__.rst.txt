@@ -1,0 +1,6 @@
+quantlib.termstructures.helpers.Pillar.\_\_len\_\_
+==================================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. automethod:: Pillar.__len__

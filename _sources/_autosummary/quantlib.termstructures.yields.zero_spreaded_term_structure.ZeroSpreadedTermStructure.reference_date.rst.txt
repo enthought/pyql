@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_spreaded\_term\_structure.ZeroSpreadedTermStructure.reference\_date
+========================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_spreaded_term_structure
+
+.. autoattribute:: ZeroSpreadedTermStructure.reference_date

@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.flat\_hazard\_rate.FlatHazardRate.reference\_date
+================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.flat_hazard_rate
+
+.. autoattribute:: FlatHazardRate.reference_date

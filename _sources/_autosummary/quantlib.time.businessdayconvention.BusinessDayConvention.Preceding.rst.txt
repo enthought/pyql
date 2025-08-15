@@ -1,0 +1,6 @@
+quantlib.time.businessdayconvention.BusinessDayConvention.Preceding
+===================================================================
+
+.. currentmodule:: quantlib.time.businessdayconvention
+
+.. autoattribute:: BusinessDayConvention.Preceding

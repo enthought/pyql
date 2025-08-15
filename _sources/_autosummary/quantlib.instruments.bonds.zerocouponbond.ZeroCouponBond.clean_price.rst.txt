@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.zerocouponbond.ZeroCouponBond.clean\_price
+=====================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.zerocouponbond
+
+.. autoattribute:: ZeroCouponBond.clean_price

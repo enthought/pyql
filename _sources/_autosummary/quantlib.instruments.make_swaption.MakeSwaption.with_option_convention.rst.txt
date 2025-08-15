@@ -1,0 +1,6 @@
+quantlib.instruments.make\_swaption.MakeSwaption.with\_option\_convention
+=========================================================================
+
+.. currentmodule:: quantlib.instruments.make_swaption
+
+.. automethod:: MakeSwaption.with_option_convention

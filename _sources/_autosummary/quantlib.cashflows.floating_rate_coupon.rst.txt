@@ -4,28 +4,10 @@ quantlib.cashflows.floating\_rate\_coupon
 .. automodule:: quantlib.cashflows.floating_rate_coupon
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       FloatingRateCoupon
    
-   
-
-   
-   
-   
-
-
-

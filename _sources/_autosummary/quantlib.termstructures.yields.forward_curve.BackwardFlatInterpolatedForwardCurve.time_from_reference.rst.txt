@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.BackwardFlatInterpolatedForwardCurve.time\_from\_reference
+========================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. automethod:: BackwardFlatInterpolatedForwardCurve.time_from_reference

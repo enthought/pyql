@@ -1,0 +1,6 @@
+quantlib.models.shortrate.twofactor\_model.ShortRateDynamics.short\_rate
+========================================================================
+
+.. currentmodule:: quantlib.models.shortrate.twofactor_model
+
+.. automethod:: ShortRateDynamics.short_rate

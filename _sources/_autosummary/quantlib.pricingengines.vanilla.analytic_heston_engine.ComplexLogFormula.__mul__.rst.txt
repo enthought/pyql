@@ -1,0 +1,6 @@
+quantlib.pricingengines.vanilla.analytic\_heston\_engine.ComplexLogFormula.\_\_mul\_\_
+======================================================================================
+
+.. currentmodule:: quantlib.pricingengines.vanilla.analytic_heston_engine
+
+.. automethod:: ComplexLogFormula.__mul__

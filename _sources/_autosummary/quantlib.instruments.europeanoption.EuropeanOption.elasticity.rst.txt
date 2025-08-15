@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.elasticity
+=============================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. autoattribute:: EuropeanOption.elasticity

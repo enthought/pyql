@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.black\_variance\_surface.Interpolator.as\_integer\_ratio
+====================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_variance_surface
+
+.. automethod:: Interpolator.as_integer_ratio

@@ -4,28 +4,10 @@ quantlib.util.options
 .. automodule:: quantlib.util.options
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
    
       heston_pricer
       options_to_rates
    
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-

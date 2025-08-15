@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.volatilitytype.VolatilityType.\_\_pow\_\_
+============================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.volatilitytype
+
+.. automethod:: VolatilityType.__pow__

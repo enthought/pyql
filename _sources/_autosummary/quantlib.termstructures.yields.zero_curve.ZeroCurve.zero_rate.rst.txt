@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_curve.ZeroCurve.zero\_rate
+===============================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. automethod:: ZeroCurve.zero_rate

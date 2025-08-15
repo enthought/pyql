@@ -4,30 +4,11 @@ quantlib.pricingengines.forward
 .. automodule:: quantlib.pricingengines.forward
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    mc_variance_swap_engine
    replicating_variance_swap_engine
-

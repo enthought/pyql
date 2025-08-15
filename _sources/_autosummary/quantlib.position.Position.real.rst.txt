@@ -1,0 +1,6 @@
+quantlib.position.Position.real
+===============================
+
+.. currentmodule:: quantlib.position
+
+.. autoattribute:: Position.real

@@ -1,36 +1,35 @@
-quantlib.termstructures.inflation.inflation\_helpers.ZeroCouponInflationSwapHelper
-==================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.inflation.inflation_helpers.</div>
+   <div class="empty"></div>
+
+ZeroCouponInflationSwapHelper
+=================================================================================
 
 .. currentmodule:: quantlib.termstructures.inflation.inflation_helpers
 
 .. autoclass:: ZeroCouponInflationSwapHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZeroCouponInflationSwapHelper.set_term_structure
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ZeroCouponInflationSwapHelper.__init__
-      ~ZeroCouponInflationSwapHelper.set_term_structure
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ZeroCouponInflationSwapHelper.implied_quote
-      ~ZeroCouponInflationSwapHelper.latest_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZeroCouponInflationSwapHelper.implied_quote
+         ZeroCouponInflationSwapHelper.latest_date
+  
+  

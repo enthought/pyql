@@ -8,7 +8,6 @@ are completely hidden being the Python layers (for example ``std::shared_ptr`` a
 
 .. autosummary::
    :toctree: _autosummary
-   :template: custom-module-template.rst
    :recursive:
 
    quantlib

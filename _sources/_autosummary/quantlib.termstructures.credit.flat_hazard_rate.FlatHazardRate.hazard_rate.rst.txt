@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.flat\_hazard\_rate.FlatHazardRate.hazard\_rate
+=============================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.flat_hazard_rate
+
+.. automethod:: FlatHazardRate.hazard_rate

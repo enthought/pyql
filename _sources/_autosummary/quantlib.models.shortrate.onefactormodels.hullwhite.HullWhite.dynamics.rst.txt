@@ -1,0 +1,6 @@
+quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.dynamics
+======================================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactormodels.hullwhite
+
+.. autoattribute:: HullWhite.dynamics

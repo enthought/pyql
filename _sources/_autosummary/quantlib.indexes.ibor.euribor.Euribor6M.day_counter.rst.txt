@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.euribor.Euribor6M.day\_counter
+====================================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. autoattribute:: Euribor6M.day_counter

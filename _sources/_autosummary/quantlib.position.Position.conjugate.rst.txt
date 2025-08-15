@@ -1,0 +1,6 @@
+quantlib.position.Position.conjugate
+====================================
+
+.. currentmodule:: quantlib.position
+
+.. automethod:: Position.conjugate

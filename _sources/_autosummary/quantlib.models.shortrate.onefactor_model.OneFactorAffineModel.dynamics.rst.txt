@@ -1,0 +1,6 @@
+quantlib.models.shortrate.onefactor\_model.OneFactorAffineModel.dynamics
+========================================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactor_model
+
+.. autoattribute:: OneFactorAffineModel.dynamics

@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_states.Market.Settlement
+========================================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. autoattribute:: Market.Settlement

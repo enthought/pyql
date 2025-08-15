@@ -1,0 +1,6 @@
+quantlib.termstructures.vol\_term\_structure.VolatilityTermStructure.time\_from\_reference
+==========================================================================================
+
+.. currentmodule:: quantlib.termstructures.vol_term_structure
+
+.. automethod:: VolatilityTermStructure.time_from_reference

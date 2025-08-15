@@ -1,0 +1,6 @@
+quantlib.instruments.credit\_default\_swap.CreditDefaultSwap.trade\_date
+========================================================================
+
+.. currentmodule:: quantlib.instruments.credit_default_swap
+
+.. autoattribute:: CreditDefaultSwap.trade_date

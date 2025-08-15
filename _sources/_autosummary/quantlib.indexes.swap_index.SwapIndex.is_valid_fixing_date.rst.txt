@@ -1,0 +1,6 @@
+quantlib.indexes.swap\_index.SwapIndex.is\_valid\_fixing\_date
+==============================================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. automethod:: SwapIndex.is_valid_fixing_date

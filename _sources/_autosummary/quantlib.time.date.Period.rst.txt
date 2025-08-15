@@ -1,37 +1,37 @@
-quantlib.time.date.Period
+.. raw:: html
+
+   <div class="prename">quantlib.time.date.</div>
+   <div class="empty"></div>
+
+Period
 =========================
 
 .. currentmodule:: quantlib.time.date
 
 .. autoclass:: Period
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Period.__mul__
+         Period.normalize
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Period.__init__
-      ~Period.normalize
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Period.frequency
-      ~Period.length
-      ~Period.units
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Period.frequency
+         Period.length
+         Period.units
+  
+  

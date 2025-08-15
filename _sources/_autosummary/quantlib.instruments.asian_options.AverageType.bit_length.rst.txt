@@ -1,0 +1,6 @@
+quantlib.instruments.asian\_options.AverageType.bit\_length
+===========================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. automethod:: AverageType.bit_length

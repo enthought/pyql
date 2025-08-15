@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.discount\_curve.BackwardFlatInterpolatedDiscountCurve.settlement\_days
+=====================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.discount_curve
+
+.. autoattribute:: BackwardFlatInterpolatedDiscountCurve.settlement_days

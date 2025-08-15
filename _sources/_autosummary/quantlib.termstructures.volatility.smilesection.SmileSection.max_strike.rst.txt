@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.smilesection.SmileSection.max\_strike
+========================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.smilesection
+
+.. autoattribute:: SmileSection.max_strike

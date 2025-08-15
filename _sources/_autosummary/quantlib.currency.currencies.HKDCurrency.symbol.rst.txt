@@ -1,0 +1,6 @@
+quantlib.currency.currencies.HKDCurrency.symbol
+===============================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: HKDCurrency.symbol

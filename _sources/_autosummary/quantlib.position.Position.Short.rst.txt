@@ -1,0 +1,6 @@
+quantlib.position.Position.Short
+================================
+
+.. currentmodule:: quantlib.position
+
+.. autoattribute:: Position.Short

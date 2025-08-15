@@ -1,0 +1,6 @@
+quantlib.time.calendars.canada.Market.real
+==========================================
+
+.. currentmodule:: quantlib.time.calendars.canada
+
+.. autoattribute:: Market.real

@@ -4,15 +4,9 @@ quantlib.pricingengines.bond.bondfunctions
 .. automodule:: quantlib.pricingengines.bond.bondfunctions
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
    
       basisPointValue
       bond_yield
@@ -23,15 +17,3 @@ quantlib.pricingengines.bond.bondfunctions
       start_date
       zSpread
    
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-

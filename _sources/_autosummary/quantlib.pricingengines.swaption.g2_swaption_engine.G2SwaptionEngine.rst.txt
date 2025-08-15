@@ -1,26 +1,27 @@
-quantlib.pricingengines.swaption.g2\_swaption\_engine.G2SwaptionEngine
-======================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.pricingengines.swaption.g2_swaption_engine.</div>
+   <div class="empty"></div>
+
+G2SwaptionEngine
+====================================================================
 
 .. currentmodule:: quantlib.pricingengines.swaption.g2_swaption_engine
 
 .. autoclass:: G2SwaptionEngine
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~G2SwaptionEngine.__init__
-   
-   
-
-   
-   
-   
+  
+  
+  

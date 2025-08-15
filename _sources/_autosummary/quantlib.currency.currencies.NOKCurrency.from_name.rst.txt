@@ -1,0 +1,6 @@
+quantlib.currency.currencies.NOKCurrency.from\_name
+===================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. automethod:: NOKCurrency.from_name

@@ -1,0 +1,6 @@
+quantlib.instruments.swap.Swap.net\_present\_value
+==================================================
+
+.. currentmodule:: quantlib.instruments.swap
+
+.. autoattribute:: Swap.net_present_value

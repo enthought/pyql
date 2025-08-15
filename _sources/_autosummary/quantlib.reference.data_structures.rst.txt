@@ -4,28 +4,10 @@ quantlib.reference.data\_structures
 .. automodule:: quantlib.reference.data_structures
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
    
       option_quotes_template
       riskfree_dividend_template
    
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-

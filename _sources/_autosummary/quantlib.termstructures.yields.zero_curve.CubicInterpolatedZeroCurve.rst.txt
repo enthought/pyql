@@ -1,48 +1,47 @@
-quantlib.termstructures.yields.zero\_curve.CubicInterpolatedZeroCurve
-=====================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.zero_curve.</div>
+   <div class="empty"></div>
+
+CubicInterpolatedZeroCurve
+====================================================================
 
 .. currentmodule:: quantlib.termstructures.yields.zero_curve
 
 .. autoclass:: CubicInterpolatedZeroCurve
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CubicInterpolatedZeroCurve.discount
+         CubicInterpolatedZeroCurve.forward_rate
+         CubicInterpolatedZeroCurve.time_from_reference
+         CubicInterpolatedZeroCurve.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~CubicInterpolatedZeroCurve.__init__
-      ~CubicInterpolatedZeroCurve.discount
-      ~CubicInterpolatedZeroCurve.forward_rate
-      ~CubicInterpolatedZeroCurve.time_from_reference
-      ~CubicInterpolatedZeroCurve.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~CubicInterpolatedZeroCurve.data
-      ~CubicInterpolatedZeroCurve.dates
-      ~CubicInterpolatedZeroCurve.day_counter
-      ~CubicInterpolatedZeroCurve.extrapolation
-      ~CubicInterpolatedZeroCurve.max_date
-      ~CubicInterpolatedZeroCurve.max_time
-      ~CubicInterpolatedZeroCurve.nodes
-      ~CubicInterpolatedZeroCurve.reference_date
-      ~CubicInterpolatedZeroCurve.settlement_days
-      ~CubicInterpolatedZeroCurve.times
-      ~CubicInterpolatedZeroCurve.zero_rates
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CubicInterpolatedZeroCurve.data
+         CubicInterpolatedZeroCurve.dates
+         CubicInterpolatedZeroCurve.day_counter
+         CubicInterpolatedZeroCurve.extrapolation
+         CubicInterpolatedZeroCurve.max_date
+         CubicInterpolatedZeroCurve.max_time
+         CubicInterpolatedZeroCurve.nodes
+         CubicInterpolatedZeroCurve.reference_date
+         CubicInterpolatedZeroCurve.settlement_days
+         CubicInterpolatedZeroCurve.times
+         CubicInterpolatedZeroCurve.zero_rates
+  
+  

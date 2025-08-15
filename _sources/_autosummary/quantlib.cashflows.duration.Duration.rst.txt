@@ -1,46 +1,53 @@
-quantlib.cashflows.duration.Duration
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.duration.</div>
+   <div class="empty"></div>
+
+Duration
 ====================================
 
 .. currentmodule:: quantlib.cashflows.duration
 
 .. autoclass:: Duration
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Duration.__mul__
+         Duration.__pow__
+         Duration.conjugate
+         Duration.bit_length
+         Duration.bit_count
+         Duration.to_bytes
+         Duration.from_bytes
+         Duration.as_integer_ratio
+         Duration.__len__
+         Duration.__getitem__
+      
+         Duration.__len__
+         Duration.__getitem__
+         Duration.__mul__
+         Duration.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Duration.conjugate
-      ~Duration.bit_length
-      ~Duration.bit_count
-      ~Duration.to_bytes
-      ~Duration.from_bytes
-      ~Duration.as_integer_ratio
-      ~Duration.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Duration.real
-      ~Duration.imag
-      ~Duration.numerator
-      ~Duration.denominator
-      ~Duration.Simple
-      ~Duration.Macaulay
-      ~Duration.Modified
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Duration.real
+         Duration.imag
+         Duration.numerator
+         Duration.denominator
+         Duration.Simple
+         Duration.Macaulay
+         Duration.Modified
+  
+  

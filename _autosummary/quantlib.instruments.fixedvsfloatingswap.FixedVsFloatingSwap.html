@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>FixedVsFloatingSwap &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.instruments.forward" href="quantlib.instruments.forward.html" />
+    <link rel="next" title="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.endDiscounts" href="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.endDiscounts.html" />
     <link rel="prev" title="quantlib.instruments.fixedvsfloatingswap" href="quantlib.instruments.fixedvsfloatingswap.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,122 +34,68 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-instruments-fixedvsfloatingswap-fixedvsfloatingswap">
-<h1>quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap<a class="headerlink" href="#quantlib-instruments-fixedvsfloatingswap-fixedvsfloatingswap" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.instruments.fixedvsfloatingswap.</div>
+<div class="empty"></div><section id="fixedvsfloatingswap">
+<h1>FixedVsFloatingSwap<a class="headerlink" href="#fixedvsfloatingswap" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FixedVsFloatingSwap</span></span><a class="headerlink" href="#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.instruments.swap.Swap.html#quantlib.instruments.swap.Swap" title="quantlib.instruments.swap.Swap"><code class="xref py py-class docutils literal notranslate"><span class="pre">Swap</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fair_rate</strong></dt><dd></dd>
+<dt><strong>fair_spread</strong></dt><dd></dd>
+<dt><strong>fixed_day_count</strong></dt><dd></dd>
+<dt><strong>fixed_leg</strong></dt><dd></dd>
+<dt><strong>fixed_leg_BPS</strong></dt><dd></dd>
+<dt><strong>fixed_leg_NPV</strong></dt><dd></dd>
+<dt><strong>fixed_rate</strong></dt><dd></dd>
+<dt><strong>fixed_schedule</strong></dt><dd></dd>
+<dt><strong>floating_day_count</strong></dt><dd></dd>
+<dt><strong>floating_leg</strong></dt><dd></dd>
+<dt><strong>floating_leg_BPS</strong></dt><dd></dd>
+<dt><strong>floating_leg_NPV</strong></dt><dd></dd>
+<dt><strong>floating_schedule</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.is_expired.html#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.is_expired" title="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.is_expired"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_expired</span></code></a></dt><dd><p>Instrument.is_expired: bool</p>
+</dd>
+<dt><strong>maturity_date</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.net_present_value.html#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.net_present_value" title="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.net_present_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">net_present_value</span></code></a></dt><dd><p>Instrument net present value.</p>
+</dd>
+<dt><strong>nominal</strong></dt><dd></dd>
+<dt><strong>nominals</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.npv.html#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.npv" title="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.npv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv</span></code></a></dt><dd><p>Shortcut to the net_present_value property.</p>
+</dd>
+<dt><strong>spread</strong></dt><dd></dd>
+<dt><strong>start_date</strong></dt><dd></dd>
+<dt><strong>type</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.valuation_date.html#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.valuation_date" title="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.valuation_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">valuation_date</span></code></a></dt><dd><p>the date the net present value refers to.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.__init__" title="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.endDiscounts.html#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.endDiscounts" title="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.endDiscounts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">endDiscounts</span></code></a>(self, Size j)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">endDiscounts</span></code>(self, Size j)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.leg.html#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.leg" title="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.leg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">leg</span></code></a>(self, int i)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">leg</span></code>(self, int i)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.leg_BPS.html#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.leg_BPS" title="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.leg_BPS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">leg_BPS</span></code></a>(self, Size j)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">leg_BPS</span></code>(self, Size j)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.leg_NPV.html#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.leg_NPV" title="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.leg_NPV"><code class="xref py py-obj docutils literal notranslate"><span class="pre">leg_NPV</span></code></a>(self, Size j)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">leg_NPV</span></code>(self, Size j)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.npv_date_discount.html#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.npv_date_discount" title="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.npv_date_discount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv_date_discount</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv_date_discount</span></code>(self)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code>(self, PricingEngine engine)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.set_pricing_engine.html#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.set_pricing_engine" title="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.set_pricing_engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code></a>(self, PricingEngine engine)</p></td>
 <td><p>Sets the pricing engine.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">startDiscounts</span></code>(self, Size j)</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Payer</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Receiver</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fair_rate</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fair_spread</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixed_day_count</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixed_leg</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixed_leg_BPS</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixed_leg_NPV</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixed_rate</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixed_schedule</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">floating_day_count</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">floating_leg</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">floating_leg_BPS</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">floating_leg_NPV</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">floating_schedule</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_expired</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">maturity_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">net_present_value</span></code></p></td>
-<td><p>Instrument net present value.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">nominal</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">nominals</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv</span></code></p></td>
-<td><p>Shortcut to the net_present_value property.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">spread</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">type</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valuation_date</span></code></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.startDiscounts.html#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.startDiscounts" title="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.startDiscounts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">startDiscounts</span></code></a>(self, Size j)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -197,7 +143,7 @@
   <li><a href="quantlib.instruments.html">quantlib.instruments</a><ul>
   <li><a href="quantlib.instruments.fixedvsfloatingswap.html">quantlib.instruments.fixedvsfloatingswap</a><ul>
       <li>Previous: <a href="quantlib.instruments.fixedvsfloatingswap.html" title="previous chapter">quantlib.instruments.fixedvsfloatingswap</a></li>
-      <li>Next: <a href="quantlib.instruments.forward.html" title="next chapter">quantlib.instruments.forward</a></li>
+      <li>Next: <a href="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.endDiscounts.html" title="next chapter">quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.endDiscounts</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

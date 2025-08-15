@@ -1,43 +1,42 @@
-quantlib.time.daycounters.actual\_actual.ActualActual
-=====================================================
+.. raw:: html
+
+   <div class="prename">quantlib.time.daycounters.actual_actual.</div>
+   <div class="empty"></div>
+
+ActualActual
+====================================================
 
 .. currentmodule:: quantlib.time.daycounters.actual_actual
 
 .. autoclass:: ActualActual
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ActualActual.day_count
+         ActualActual.from_name
+         ActualActual.year_fraction
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ActualActual.__init__
-      ~ActualActual.day_count
-      ~ActualActual.from_name
-      ~ActualActual.year_fraction
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ActualActual.AFB
-      ~ActualActual.Bond
-      ~ActualActual.Euro
-      ~ActualActual.Historical
-      ~ActualActual.ISDA
-      ~ActualActual.ISMA
-      ~ActualActual.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ActualActual.AFB
+         ActualActual.Bond
+         ActualActual.Euro
+         ActualActual.Historical
+         ActualActual.ISDA
+         ActualActual.ISMA
+         ActualActual.name
+  
+  

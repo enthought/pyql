@@ -1,0 +1,6 @@
+quantlib.instruments.make\_ois.MakeOIS.with\_payment\_calendar
+==============================================================
+
+.. currentmodule:: quantlib.instruments.make_ois
+
+.. automethod:: MakeOIS.with_payment_calendar

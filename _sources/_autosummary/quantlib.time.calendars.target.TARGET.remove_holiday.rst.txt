@@ -1,0 +1,6 @@
+quantlib.time.calendars.target.TARGET.remove\_holiday
+=====================================================
+
+.. currentmodule:: quantlib.time.calendars.target
+
+.. automethod:: TARGET.remove_holiday

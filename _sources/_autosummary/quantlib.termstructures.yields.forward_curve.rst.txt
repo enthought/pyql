@@ -4,20 +4,10 @@ quantlib.termstructures.yields.forward\_curve
 .. automodule:: quantlib.termstructures.yields.forward_curve
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       BackwardFlatInterpolatedForwardCurve
       CubicInterpolatedForwardCurve
@@ -27,11 +17,3 @@ quantlib.termstructures.yields.forward\_curve
       LogLinearInterpolatedForwardCurve
       Meta
    
-   
-
-   
-   
-   
-
-
-

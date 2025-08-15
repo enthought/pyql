@@ -1,0 +1,6 @@
+quantlib.pricingengines.swaption.black\_swaption\_engine.CashAnnuityModel.\_\_getitem\_\_
+=========================================================================================
+
+.. currentmodule:: quantlib.pricingengines.swaption.black_swaption_engine
+
+.. automethod:: CashAnnuityModel.__getitem__

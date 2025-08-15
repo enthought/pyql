@@ -1,45 +1,44 @@
-quantlib.termstructures.volatility.equityfx.black\_variance\_curve.BlackVarianceCurve
-=====================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.volatility.equityfx.black_variance_curve.</div>
+   <div class="empty"></div>
+
+BlackVarianceCurve
+===================================================================================
 
 .. currentmodule:: quantlib.termstructures.volatility.equityfx.black_variance_curve
 
 .. autoclass:: BlackVarianceCurve
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BlackVarianceCurve.blackForwardVariance
+         BlackVarianceCurve.blackForwardVol
+         BlackVarianceCurve.blackVariance
+         BlackVarianceCurve.blackVol
+         BlackVarianceCurve.option_date_from_tenor
+         BlackVarianceCurve.time_from_reference
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BlackVarianceCurve.__init__
-      ~BlackVarianceCurve.blackForwardVariance
-      ~BlackVarianceCurve.blackForwardVol
-      ~BlackVarianceCurve.blackVariance
-      ~BlackVarianceCurve.blackVol
-      ~BlackVarianceCurve.option_date_from_tenor
-      ~BlackVarianceCurve.time_from_reference
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~BlackVarianceCurve.calendar
-      ~BlackVarianceCurve.extrapolation
-      ~BlackVarianceCurve.max_strike
-      ~BlackVarianceCurve.min_strike
-      ~BlackVarianceCurve.reference_date
-      ~BlackVarianceCurve.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BlackVarianceCurve.calendar
+         BlackVarianceCurve.extrapolation
+         BlackVarianceCurve.max_strike
+         BlackVarianceCurve.min_strike
+         BlackVarianceCurve.reference_date
+         BlackVarianceCurve.settlement_days
+  
+  

@@ -4,31 +4,12 @@ quantlib.time.daycounters
 .. automodule:: quantlib.time.daycounters
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    actual_actual
    simple
    thirty360
-

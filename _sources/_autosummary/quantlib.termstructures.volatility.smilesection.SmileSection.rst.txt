@@ -1,43 +1,42 @@
-quantlib.termstructures.volatility.smilesection.SmileSection
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.volatility.smilesection.</div>
+   <div class="empty"></div>
+
+SmileSection
 ============================================================
 
 .. currentmodule:: quantlib.termstructures.volatility.smilesection
 
 .. autoclass:: SmileSection
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SmileSection.density
+         SmileSection.option_price
+         SmileSection.vega
+         SmileSection.volatility
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~SmileSection.__init__
-      ~SmileSection.density
-      ~SmileSection.option_price
-      ~SmileSection.vega
-      ~SmileSection.volatility
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~SmileSection.day_counter
-      ~SmileSection.exercise_date
-      ~SmileSection.exercise_time
-      ~SmileSection.max_strike
-      ~SmileSection.min_strike
-      ~SmileSection.reference_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SmileSection.day_counter
+         SmileSection.exercise_date
+         SmileSection.exercise_time
+         SmileSection.max_strike
+         SmileSection.min_strike
+         SmileSection.reference_date
+  
+  

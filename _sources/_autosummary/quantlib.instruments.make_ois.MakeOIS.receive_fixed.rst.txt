@@ -1,0 +1,6 @@
+quantlib.instruments.make\_ois.MakeOIS.receive\_fixed
+=====================================================
+
+.. currentmodule:: quantlib.instruments.make_ois
+
+.. automethod:: MakeOIS.receive_fixed

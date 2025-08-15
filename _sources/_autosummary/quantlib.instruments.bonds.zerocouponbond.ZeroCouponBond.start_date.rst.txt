@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.zerocouponbond.ZeroCouponBond.start\_date
+====================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.zerocouponbond
+
+.. autoattribute:: ZeroCouponBond.start_date

@@ -1,0 +1,6 @@
+quantlib.time.calendars.poland.Poland.advance
+=============================================
+
+.. currentmodule:: quantlib.time.calendars.poland
+
+.. automethod:: Poland.advance

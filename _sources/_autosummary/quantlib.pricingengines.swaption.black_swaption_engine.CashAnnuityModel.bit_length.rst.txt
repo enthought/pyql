@@ -1,0 +1,6 @@
+quantlib.pricingengines.swaption.black\_swaption\_engine.CashAnnuityModel.bit\_length
+=====================================================================================
+
+.. currentmodule:: quantlib.pricingengines.swaption.black_swaption_engine
+
+.. automethod:: CashAnnuityModel.bit_length

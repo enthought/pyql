@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaswap.VanillaSwap.floating\_day\_count
+=================================================================
+
+.. currentmodule:: quantlib.instruments.vanillaswap
+
+.. autoattribute:: VanillaSwap.floating_day_count

@@ -4,29 +4,11 @@ quantlib.indexes.swap\_index
 .. automodule:: quantlib.indexes.swap_index
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       OvernightIndexedSwapIndex
       SwapIndex
    
-   
-
-   
-   
-   
-
-
-

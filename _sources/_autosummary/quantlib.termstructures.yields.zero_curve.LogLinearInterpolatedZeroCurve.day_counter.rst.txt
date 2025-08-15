@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_curve.LogLinearInterpolatedZeroCurve.day\_counter
+======================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. autoattribute:: LogLinearInterpolatedZeroCurve.day_counter

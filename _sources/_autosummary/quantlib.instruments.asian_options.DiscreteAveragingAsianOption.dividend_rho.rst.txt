@@ -1,0 +1,6 @@
+quantlib.instruments.asian\_options.DiscreteAveragingAsianOption.dividend\_rho
+==============================================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. autoattribute:: DiscreteAveragingAsianOption.dividend_rho

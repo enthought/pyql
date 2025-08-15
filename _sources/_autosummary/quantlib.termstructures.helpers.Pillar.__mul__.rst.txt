@@ -1,0 +1,6 @@
+quantlib.termstructures.helpers.Pillar.\_\_mul\_\_
+==================================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. automethod:: Pillar.__mul__

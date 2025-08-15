@@ -1,0 +1,6 @@
+quantlib.option.OptionType.from\_bytes
+======================================
+
+.. currentmodule:: quantlib.option
+
+.. automethod:: OptionType.from_bytes

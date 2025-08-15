@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_cube.SwaptionVolatilityCube.vega\_weighted\_smile\_fit
+=================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_cube
+
+.. autoattribute:: SwaptionVolatilityCube.vega_weighted_smile_fit

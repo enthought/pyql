@@ -1,0 +1,6 @@
+quantlib.time.daycounters.actual\_actual.ActualActual.name
+==========================================================
+
+.. currentmodule:: quantlib.time.daycounters.actual_actual
+
+.. autoattribute:: ActualActual.name

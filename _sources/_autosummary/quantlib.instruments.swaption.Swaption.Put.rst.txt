@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.Put
+==========================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Swaption.Put

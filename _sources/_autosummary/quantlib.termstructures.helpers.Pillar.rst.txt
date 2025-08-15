@@ -1,46 +1,53 @@
-quantlib.termstructures.helpers.Pillar
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.helpers.</div>
+   <div class="empty"></div>
+
+Pillar
 ======================================
 
 .. currentmodule:: quantlib.termstructures.helpers
 
 .. autoclass:: Pillar
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Pillar.__mul__
+         Pillar.__pow__
+         Pillar.conjugate
+         Pillar.bit_length
+         Pillar.bit_count
+         Pillar.to_bytes
+         Pillar.from_bytes
+         Pillar.as_integer_ratio
+         Pillar.__len__
+         Pillar.__getitem__
+      
+         Pillar.__len__
+         Pillar.__getitem__
+         Pillar.__mul__
+         Pillar.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Pillar.conjugate
-      ~Pillar.bit_length
-      ~Pillar.bit_count
-      ~Pillar.to_bytes
-      ~Pillar.from_bytes
-      ~Pillar.as_integer_ratio
-      ~Pillar.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Pillar.real
-      ~Pillar.imag
-      ~Pillar.numerator
-      ~Pillar.denominator
-      ~Pillar.MaturityDate
-      ~Pillar.LastRelevantDate
-      ~Pillar.CustomDate
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Pillar.real
+         Pillar.imag
+         Pillar.numerator
+         Pillar.denominator
+         Pillar.MaturityDate
+         Pillar.LastRelevantDate
+         Pillar.CustomDate
+  
+  

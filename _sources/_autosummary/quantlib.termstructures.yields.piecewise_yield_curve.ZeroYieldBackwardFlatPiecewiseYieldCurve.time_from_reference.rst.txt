@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.piecewise\_yield\_curve.ZeroYieldBackwardFlatPiecewiseYieldCurve.time\_from\_reference
+=====================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_yield_curve
+
+.. automethod:: ZeroYieldBackwardFlatPiecewiseYieldCurve.time_from_reference

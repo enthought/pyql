@@ -1,48 +1,47 @@
-quantlib.termstructures.yields.forward\_curve.BackwardFlatInterpolatedForwardCurve
-==================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.forward_curve.</div>
+   <div class="empty"></div>
+
+BackwardFlatInterpolatedForwardCurve
+=================================================================================
 
 .. currentmodule:: quantlib.termstructures.yields.forward_curve
 
 .. autoclass:: BackwardFlatInterpolatedForwardCurve
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BackwardFlatInterpolatedForwardCurve.discount
+         BackwardFlatInterpolatedForwardCurve.forward_rate
+         BackwardFlatInterpolatedForwardCurve.time_from_reference
+         BackwardFlatInterpolatedForwardCurve.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BackwardFlatInterpolatedForwardCurve.__init__
-      ~BackwardFlatInterpolatedForwardCurve.discount
-      ~BackwardFlatInterpolatedForwardCurve.forward_rate
-      ~BackwardFlatInterpolatedForwardCurve.time_from_reference
-      ~BackwardFlatInterpolatedForwardCurve.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~BackwardFlatInterpolatedForwardCurve.data
-      ~BackwardFlatInterpolatedForwardCurve.dates
-      ~BackwardFlatInterpolatedForwardCurve.day_counter
-      ~BackwardFlatInterpolatedForwardCurve.extrapolation
-      ~BackwardFlatInterpolatedForwardCurve.forwards
-      ~BackwardFlatInterpolatedForwardCurve.max_date
-      ~BackwardFlatInterpolatedForwardCurve.max_time
-      ~BackwardFlatInterpolatedForwardCurve.nodes
-      ~BackwardFlatInterpolatedForwardCurve.reference_date
-      ~BackwardFlatInterpolatedForwardCurve.settlement_days
-      ~BackwardFlatInterpolatedForwardCurve.times
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BackwardFlatInterpolatedForwardCurve.data
+         BackwardFlatInterpolatedForwardCurve.dates
+         BackwardFlatInterpolatedForwardCurve.day_counter
+         BackwardFlatInterpolatedForwardCurve.extrapolation
+         BackwardFlatInterpolatedForwardCurve.forwards
+         BackwardFlatInterpolatedForwardCurve.max_date
+         BackwardFlatInterpolatedForwardCurve.max_time
+         BackwardFlatInterpolatedForwardCurve.nodes
+         BackwardFlatInterpolatedForwardCurve.reference_date
+         BackwardFlatInterpolatedForwardCurve.settlement_days
+         BackwardFlatInterpolatedForwardCurve.times
+  
+  

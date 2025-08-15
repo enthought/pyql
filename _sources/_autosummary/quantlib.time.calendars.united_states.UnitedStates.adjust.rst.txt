@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_states.UnitedStates.adjust
+==========================================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. automethod:: UnitedStates.adjust

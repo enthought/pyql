@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.inflation\_helpers.ZeroCouponInflationSwapHelper.implied\_quote
+=================================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.inflation_helpers
+
+.. autoattribute:: ZeroCouponInflationSwapHelper.implied_quote

@@ -1,0 +1,6 @@
+quantlib.quote.Quote.value
+==========================
+
+.. currentmodule:: quantlib.quote
+
+.. autoattribute:: Quote.value

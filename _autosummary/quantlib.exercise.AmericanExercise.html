@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.exercise.AmericanExercise &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>AmericanExercise &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.exercise.BermudanExercise" href="quantlib.exercise.BermudanExercise.html" />
+    <link rel="next" title="quantlib.exercise.AmericanExercise.dates" href="quantlib.exercise.AmericanExercise.dates.html" />
     <link rel="prev" title="quantlib.exercise" href="quantlib.exercise.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,8 +34,9 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-exercise-americanexercise">
-<h1>quantlib.exercise.AmericanExercise<a class="headerlink" href="#quantlib-exercise-americanexercise" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.exercise.</div>
+<div class="empty"></div><section id="americanexercise">
+<h1>AmericanExercise<a class="headerlink" href="#americanexercise" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.exercise.AmericanExercise">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AmericanExercise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">latest_exercise_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">earliest_exercise_date=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.exercise.AmericanExercise" title="Link to this definition">¶</a></dt>
@@ -44,47 +45,27 @@
 <p>An American option can be exercised at any time between to
 predefined dates; the first date might be amitted, in which
 case the option can be exercied at any time before the expiry.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>latest_exercise_date</strong> (<a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a>) – Latest exercise date for the option</p></li>
-<li><p><strong>earliest_exercise_date</strong> (<a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a> | None) – Earliest exercise date for the option</p></li>
-</ul>
+<dd class="field-odd"><dl>
+<dt><strong>latest_exercise_date</strong><span class="classifier"><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a></span></dt><dd><p>Latest exercise date for the option</p>
+</dd>
+<dt><strong>earliest_exercise_date</strong><span class="classifier"><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a> | None</span></dt><dd><p>Earliest exercise date for the option</p>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.exercise.AmericanExercise.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.exercise.AmericanExercise.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>last_date</strong></dt><dd></dd>
+<dt><strong>type</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.exercise.AmericanExercise.__init__" title="quantlib.exercise.AmericanExercise.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dates</span></code>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.exercise.AmericanExercise.dates.html#quantlib.exercise.AmericanExercise.dates" title="quantlib.exercise.AmericanExercise.dates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dates</span></code></a>(self)</p></td>
 <td><p>all exercise dates</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">American</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bermudan</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">European</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">last_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">type</span></code></p></td>
-<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -130,7 +111,7 @@ case the option can be exercied at any time before the expiry.</p>
   <li><a href="quantlib.html">quantlib</a><ul>
   <li><a href="quantlib.exercise.html">quantlib.exercise</a><ul>
       <li>Previous: <a href="quantlib.exercise.html" title="previous chapter">quantlib.exercise</a></li>
-      <li>Next: <a href="quantlib.exercise.BermudanExercise.html" title="next chapter">quantlib.exercise.BermudanExercise</a></li>
+      <li>Next: <a href="quantlib.exercise.AmericanExercise.dates.html" title="next chapter">quantlib.exercise.AmericanExercise.dates</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

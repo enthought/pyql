@@ -1,0 +1,6 @@
+quantlib.cashflows.cms\_coupon.CmsCoupon.accrual\_start\_date
+=============================================================
+
+.. currentmodule:: quantlib.cashflows.cms_coupon
+
+.. autoattribute:: CmsCoupon.accrual_start_date

@@ -1,0 +1,6 @@
+quantlib.instruments.asian\_options.DiscreteAveragingAsianOption.strike\_sensitivity
+====================================================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. autoattribute:: DiscreteAveragingAsianOption.strike_sensitivity

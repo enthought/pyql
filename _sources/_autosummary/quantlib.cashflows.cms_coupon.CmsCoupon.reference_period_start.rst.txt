@@ -1,0 +1,6 @@
+quantlib.cashflows.cms\_coupon.CmsCoupon.reference\_period\_start
+=================================================================
+
+.. currentmodule:: quantlib.cashflows.cms_coupon
+
+.. autoattribute:: CmsCoupon.reference_period_start

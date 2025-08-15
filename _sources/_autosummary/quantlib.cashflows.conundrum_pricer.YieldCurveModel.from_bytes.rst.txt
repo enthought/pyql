@@ -1,0 +1,6 @@
+quantlib.cashflows.conundrum\_pricer.YieldCurveModel.from\_bytes
+================================================================
+
+.. currentmodule:: quantlib.cashflows.conundrum_pricer
+
+.. automethod:: YieldCurveModel.from_bytes

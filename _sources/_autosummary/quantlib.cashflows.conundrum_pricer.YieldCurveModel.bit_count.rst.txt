@@ -1,0 +1,6 @@
+quantlib.cashflows.conundrum\_pricer.YieldCurveModel.bit\_count
+===============================================================
+
+.. currentmodule:: quantlib.cashflows.conundrum_pricer
+
+.. automethod:: YieldCurveModel.bit_count

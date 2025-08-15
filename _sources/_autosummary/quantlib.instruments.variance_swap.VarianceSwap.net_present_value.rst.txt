@@ -1,0 +1,6 @@
+quantlib.instruments.variance\_swap.VarianceSwap.net\_present\_value
+====================================================================
+
+.. currentmodule:: quantlib.instruments.variance_swap
+
+.. autoattribute:: VarianceSwap.net_present_value

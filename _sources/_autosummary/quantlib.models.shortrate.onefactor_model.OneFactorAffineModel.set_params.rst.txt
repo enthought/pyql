@@ -1,0 +1,6 @@
+quantlib.models.shortrate.onefactor\_model.OneFactorAffineModel.set\_params
+===========================================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactor_model
+
+.. automethod:: OneFactorAffineModel.set_params

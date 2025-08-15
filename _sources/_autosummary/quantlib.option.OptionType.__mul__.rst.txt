@@ -1,0 +1,6 @@
+quantlib.option.OptionType.\_\_mul\_\_
+======================================
+
+.. currentmodule:: quantlib.option
+
+.. automethod:: OptionType.__mul__

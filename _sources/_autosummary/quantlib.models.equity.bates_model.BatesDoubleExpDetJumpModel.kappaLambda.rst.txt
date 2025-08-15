@@ -1,0 +1,6 @@
+quantlib.models.equity.bates\_model.BatesDoubleExpDetJumpModel.kappaLambda
+==========================================================================
+
+.. currentmodule:: quantlib.models.equity.bates_model
+
+.. autoattribute:: BatesDoubleExpDetJumpModel.kappaLambda

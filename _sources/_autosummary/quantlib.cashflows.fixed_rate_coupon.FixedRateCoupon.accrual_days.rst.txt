@@ -1,0 +1,6 @@
+quantlib.cashflows.fixed\_rate\_coupon.FixedRateCoupon.accrual\_days
+====================================================================
+
+.. currentmodule:: quantlib.cashflows.fixed_rate_coupon
+
+.. autoattribute:: FixedRateCoupon.accrual_days

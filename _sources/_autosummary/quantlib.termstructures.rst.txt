@@ -4,28 +4,10 @@ quantlib.termstructures
 .. automodule:: quantlib.termstructures
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    credit
@@ -37,4 +19,3 @@ quantlib.termstructures
    volatility
    yield_term_structure
    yields
-

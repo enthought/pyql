@@ -1,36 +1,35 @@
-quantlib.models.shortrate.twofactormodels.g2.G2
+.. raw:: html
+
+   <div class="prename">quantlib.models.shortrate.twofactormodels.g2.</div>
+   <div class="empty"></div>
+
+G2
 ===============================================
 
 .. currentmodule:: quantlib.models.shortrate.twofactormodels.g2
 
 .. autoclass:: G2
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         G2.params
+         G2.set_params
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~G2.__init__
-      ~G2.params
-      ~G2.set_params
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~G2.dynamics
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         G2.dynamics
+  
+  

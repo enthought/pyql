@@ -1,0 +1,6 @@
+quantlib.indexes.swap.usd\_libor\_swap.UsdLiborSwapIsdaFixPm.clear\_fixings
+===========================================================================
+
+.. currentmodule:: quantlib.indexes.swap.usd_libor_swap
+
+.. automethod:: UsdLiborSwapIsdaFixPm.clear_fixings

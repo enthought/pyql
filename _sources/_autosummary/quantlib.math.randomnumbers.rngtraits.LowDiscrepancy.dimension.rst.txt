@@ -1,0 +1,6 @@
+quantlib.math.randomnumbers.rngtraits.LowDiscrepancy.dimension
+==============================================================
+
+.. currentmodule:: quantlib.math.randomnumbers.rngtraits
+
+.. autoattribute:: LowDiscrepancy.dimension

@@ -1,0 +1,6 @@
+quantlib.instruments.swap.Type.Payer
+====================================
+
+.. currentmodule:: quantlib.instruments.swap
+
+.. autoattribute:: Type.Payer

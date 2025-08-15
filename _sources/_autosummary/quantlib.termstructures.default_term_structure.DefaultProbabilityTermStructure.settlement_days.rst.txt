@@ -1,0 +1,6 @@
+quantlib.termstructures.default\_term\_structure.DefaultProbabilityTermStructure.settlement\_days
+=================================================================================================
+
+.. currentmodule:: quantlib.termstructures.default_term_structure
+
+.. autoattribute:: DefaultProbabilityTermStructure.settlement_days

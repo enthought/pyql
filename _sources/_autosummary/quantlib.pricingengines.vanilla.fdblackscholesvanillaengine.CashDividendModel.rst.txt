@@ -1,45 +1,52 @@
-quantlib.pricingengines.vanilla.fdblackscholesvanillaengine.CashDividendModel
+.. raw:: html
+
+   <div class="prename">quantlib.pricingengines.vanilla.fdblackscholesvanillaengine.</div>
+   <div class="empty"></div>
+
+CashDividendModel
 =============================================================================
 
 .. currentmodule:: quantlib.pricingengines.vanilla.fdblackscholesvanillaengine
 
 .. autoclass:: CashDividendModel
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CashDividendModel.__mul__
+         CashDividendModel.__pow__
+         CashDividendModel.conjugate
+         CashDividendModel.bit_length
+         CashDividendModel.bit_count
+         CashDividendModel.to_bytes
+         CashDividendModel.from_bytes
+         CashDividendModel.as_integer_ratio
+         CashDividendModel.__len__
+         CashDividendModel.__getitem__
+      
+         CashDividendModel.__len__
+         CashDividendModel.__getitem__
+         CashDividendModel.__mul__
+         CashDividendModel.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~CashDividendModel.conjugate
-      ~CashDividendModel.bit_length
-      ~CashDividendModel.bit_count
-      ~CashDividendModel.to_bytes
-      ~CashDividendModel.from_bytes
-      ~CashDividendModel.as_integer_ratio
-      ~CashDividendModel.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~CashDividendModel.real
-      ~CashDividendModel.imag
-      ~CashDividendModel.numerator
-      ~CashDividendModel.denominator
-      ~CashDividendModel.Spot
-      ~CashDividendModel.Escrowed
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CashDividendModel.real
+         CashDividendModel.imag
+         CashDividendModel.numerator
+         CashDividendModel.denominator
+         CashDividendModel.Spot
+         CashDividendModel.Escrowed
+  
+  

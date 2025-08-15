@@ -1,0 +1,6 @@
+quantlib.time.schedule.Schedule.previous\_date
+==============================================
+
+.. currentmodule:: quantlib.time.schedule
+
+.. automethod:: Schedule.previous_date

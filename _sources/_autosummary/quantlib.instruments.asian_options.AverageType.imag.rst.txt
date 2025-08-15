@@ -1,0 +1,6 @@
+quantlib.instruments.asian\_options.AverageType.imag
+====================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. autoattribute:: AverageType.imag

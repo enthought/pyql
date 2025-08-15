@@ -1,0 +1,6 @@
+quantlib.instruments.variance\_swap.SwapType.bit\_count
+=======================================================
+
+.. currentmodule:: quantlib.instruments.variance_swap
+
+.. automethod:: SwapType.bit_count

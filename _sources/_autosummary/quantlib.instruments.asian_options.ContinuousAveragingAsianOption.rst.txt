@@ -1,53 +1,52 @@
-quantlib.instruments.asian\_options.ContinuousAveragingAsianOption
-==================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.asian_options.</div>
+   <div class="empty"></div>
+
+ContinuousAveragingAsianOption
+=================================================================
 
 .. currentmodule:: quantlib.instruments.asian_options
 
 .. autoclass:: ContinuousAveragingAsianOption
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ContinuousAveragingAsianOption.set_pricing_engine
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ContinuousAveragingAsianOption.__init__
-      ~ContinuousAveragingAsianOption.set_pricing_engine
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ContinuousAveragingAsianOption.Call
-      ~ContinuousAveragingAsianOption.Put
-      ~ContinuousAveragingAsianOption.delta
-      ~ContinuousAveragingAsianOption.delta_forward
-      ~ContinuousAveragingAsianOption.dividend_rho
-      ~ContinuousAveragingAsianOption.elasticity
-      ~ContinuousAveragingAsianOption.exercise
-      ~ContinuousAveragingAsianOption.gamma
-      ~ContinuousAveragingAsianOption.is_expired
-      ~ContinuousAveragingAsianOption.itm_cash_probability
-      ~ContinuousAveragingAsianOption.net_present_value
-      ~ContinuousAveragingAsianOption.npv
-      ~ContinuousAveragingAsianOption.payoff
-      ~ContinuousAveragingAsianOption.rho
-      ~ContinuousAveragingAsianOption.strike_sensitivity
-      ~ContinuousAveragingAsianOption.theta
-      ~ContinuousAveragingAsianOption.theta_per_day
-      ~ContinuousAveragingAsianOption.valuation_date
-      ~ContinuousAveragingAsianOption.vega
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ContinuousAveragingAsianOption.Call
+         ContinuousAveragingAsianOption.Put
+         ContinuousAveragingAsianOption.delta
+         ContinuousAveragingAsianOption.delta_forward
+         ContinuousAveragingAsianOption.dividend_rho
+         ContinuousAveragingAsianOption.elasticity
+         ContinuousAveragingAsianOption.exercise
+         ContinuousAveragingAsianOption.gamma
+         ContinuousAveragingAsianOption.is_expired
+         ContinuousAveragingAsianOption.itm_cash_probability
+         ContinuousAveragingAsianOption.net_present_value
+         ContinuousAveragingAsianOption.npv
+         ContinuousAveragingAsianOption.payoff
+         ContinuousAveragingAsianOption.rho
+         ContinuousAveragingAsianOption.strike_sensitivity
+         ContinuousAveragingAsianOption.theta
+         ContinuousAveragingAsianOption.theta_per_day
+         ContinuousAveragingAsianOption.valuation_date
+         ContinuousAveragingAsianOption.vega
+  
+  

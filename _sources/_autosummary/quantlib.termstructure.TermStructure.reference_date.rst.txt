@@ -1,0 +1,6 @@
+quantlib.termstructure.TermStructure.reference\_date
+====================================================
+
+.. currentmodule:: quantlib.termstructure
+
+.. autoattribute:: TermStructure.reference_date

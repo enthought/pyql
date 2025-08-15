@@ -1,0 +1,6 @@
+quantlib.indexes.index\_manager.IndexManager.histories
+======================================================
+
+.. currentmodule:: quantlib.indexes.index_manager
+
+.. automethod:: IndexManager.histories

@@ -1,0 +1,6 @@
+quantlib.time.calendars.jointcalendar.JointCalendarRule.imag
+============================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. autoattribute:: JointCalendarRule.imag

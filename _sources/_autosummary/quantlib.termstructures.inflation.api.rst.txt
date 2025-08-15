@@ -4,20 +4,3 @@ quantlib.termstructures.inflation.api
 .. automodule:: quantlib.termstructures.inflation.api
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-

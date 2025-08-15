@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.piecewise\_zerospreaded\_termstructure.PiecewiseZeroSpreadedTermStructure.zero\_rate
+===================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_zerospreaded_termstructure
+
+.. automethod:: PiecewiseZeroSpreadedTermStructure.zero_rate

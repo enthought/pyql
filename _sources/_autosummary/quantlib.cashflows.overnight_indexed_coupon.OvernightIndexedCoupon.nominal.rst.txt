@@ -1,0 +1,6 @@
+quantlib.cashflows.overnight\_indexed\_coupon.OvernightIndexedCoupon.nominal
+============================================================================
+
+.. currentmodule:: quantlib.cashflows.overnight_indexed_coupon
+
+.. autoattribute:: OvernightIndexedCoupon.nominal

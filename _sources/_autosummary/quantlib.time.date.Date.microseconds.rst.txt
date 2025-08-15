@@ -1,0 +1,6 @@
+quantlib.time.date.Date.microseconds
+====================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: Date.microseconds

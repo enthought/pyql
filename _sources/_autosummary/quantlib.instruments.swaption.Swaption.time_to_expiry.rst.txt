@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.time\_to\_expiry
+=======================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Swaption.time_to_expiry

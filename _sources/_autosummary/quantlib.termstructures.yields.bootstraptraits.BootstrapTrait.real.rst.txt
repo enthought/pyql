@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bootstraptraits.BootstrapTrait.real
+==================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bootstraptraits
+
+.. autoattribute:: BootstrapTrait.real

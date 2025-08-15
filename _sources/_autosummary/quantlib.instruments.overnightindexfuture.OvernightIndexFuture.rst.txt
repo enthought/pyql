@@ -1,38 +1,37 @@
-quantlib.instruments.overnightindexfuture.OvernightIndexFuture
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.overnightindexfuture.</div>
+   <div class="empty"></div>
+
+OvernightIndexFuture
 ==============================================================
 
 .. currentmodule:: quantlib.instruments.overnightindexfuture
 
 .. autoclass:: OvernightIndexFuture
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OvernightIndexFuture.set_pricing_engine
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~OvernightIndexFuture.__init__
-      ~OvernightIndexFuture.set_pricing_engine
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~OvernightIndexFuture.is_expired
-      ~OvernightIndexFuture.net_present_value
-      ~OvernightIndexFuture.npv
-      ~OvernightIndexFuture.valuation_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OvernightIndexFuture.is_expired
+         OvernightIndexFuture.net_present_value
+         OvernightIndexFuture.npv
+         OvernightIndexFuture.valuation_date
+  
+  

@@ -1,0 +1,6 @@
+quantlib.models.shortrate.twofactormodels.g2.G2.dynamics
+========================================================
+
+.. currentmodule:: quantlib.models.shortrate.twofactormodels.g2
+
+.. autoattribute:: G2.dynamics

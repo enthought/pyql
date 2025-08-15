@@ -1,0 +1,6 @@
+quantlib.time.frequency.Frequency.imag
+======================================
+
+.. currentmodule:: quantlib.time.frequency
+
+.. autoattribute:: Frequency.imag

@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_states.UnitedStates.GovernmentBond
+==================================================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. autoattribute:: UnitedStates.GovernmentBond

@@ -4,20 +4,3 @@ quantlib.time.api
 .. automodule:: quantlib.time.api
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-

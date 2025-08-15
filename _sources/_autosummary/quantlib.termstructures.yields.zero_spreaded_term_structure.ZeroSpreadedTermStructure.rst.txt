@@ -1,43 +1,42 @@
-quantlib.termstructures.yields.zero\_spreaded\_term\_structure.ZeroSpreadedTermStructure
-========================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.zero_spreaded_term_structure.</div>
+   <div class="empty"></div>
+
+ZeroSpreadedTermStructure
+=====================================================================================
 
 .. currentmodule:: quantlib.termstructures.yields.zero_spreaded_term_structure
 
 .. autoclass:: ZeroSpreadedTermStructure
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZeroSpreadedTermStructure.discount
+         ZeroSpreadedTermStructure.forward_rate
+         ZeroSpreadedTermStructure.time_from_reference
+         ZeroSpreadedTermStructure.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ZeroSpreadedTermStructure.__init__
-      ~ZeroSpreadedTermStructure.discount
-      ~ZeroSpreadedTermStructure.forward_rate
-      ~ZeroSpreadedTermStructure.time_from_reference
-      ~ZeroSpreadedTermStructure.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ZeroSpreadedTermStructure.day_counter
-      ~ZeroSpreadedTermStructure.extrapolation
-      ~ZeroSpreadedTermStructure.max_date
-      ~ZeroSpreadedTermStructure.max_time
-      ~ZeroSpreadedTermStructure.reference_date
-      ~ZeroSpreadedTermStructure.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZeroSpreadedTermStructure.day_counter
+         ZeroSpreadedTermStructure.extrapolation
+         ZeroSpreadedTermStructure.max_date
+         ZeroSpreadedTermStructure.max_time
+         ZeroSpreadedTermStructure.reference_date
+         ZeroSpreadedTermStructure.settlement_days
+  
+  

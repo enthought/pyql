@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.ukrpi.UKRPI.has\_historical\_fixing
+==============================================================
+
+.. currentmodule:: quantlib.indexes.inflation.ukrpi
+
+.. automethod:: UKRPI.has_historical_fixing

@@ -1,0 +1,6 @@
+quantlib.time.date.Date.fraction\_of\_day
+=========================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: Date.fraction_of_day

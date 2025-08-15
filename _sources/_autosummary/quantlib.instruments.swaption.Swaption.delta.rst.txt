@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.delta
+============================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Swaption.delta

@@ -1,0 +1,6 @@
+quantlib.time.frequency.Frequency.as\_integer\_ratio
+====================================================
+
+.. currentmodule:: quantlib.time.frequency
+
+.. automethod:: Frequency.as_integer_ratio

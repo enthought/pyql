@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.type
+===========================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Swaption.type

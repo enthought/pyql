@@ -1,0 +1,6 @@
+quantlib.instruments.forward.Forward.spot\_value
+================================================
+
+.. currentmodule:: quantlib.instruments.forward
+
+.. autoattribute:: Forward.spot_value

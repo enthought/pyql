@@ -1,36 +1,35 @@
-quantlib.indexes.regions.UKRegion
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.regions.</div>
+   <div class="empty"></div>
+
+UKRegion
 =================================
 
 .. currentmodule:: quantlib.indexes.regions
 
 .. autoclass:: UKRegion
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         UKRegion.from_name
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~UKRegion.__init__
-      ~UKRegion.from_name
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~UKRegion.code
-      ~UKRegion.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         UKRegion.code
+         UKRegion.name
+  
+  

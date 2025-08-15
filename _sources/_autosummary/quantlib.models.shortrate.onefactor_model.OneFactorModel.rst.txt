@@ -1,36 +1,35 @@
-quantlib.models.shortrate.onefactor\_model.OneFactorModel
-=========================================================
+.. raw:: html
+
+   <div class="prename">quantlib.models.shortrate.onefactor_model.</div>
+   <div class="empty"></div>
+
+OneFactorModel
+========================================================
 
 .. currentmodule:: quantlib.models.shortrate.onefactor_model
 
 .. autoclass:: OneFactorModel
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OneFactorModel.params
+         OneFactorModel.set_params
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~OneFactorModel.__init__
-      ~OneFactorModel.params
-      ~OneFactorModel.set_params
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~OneFactorModel.dynamics
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OneFactorModel.dynamics
+  
+  

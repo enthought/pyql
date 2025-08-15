@@ -1,0 +1,6 @@
+quantlib.time.calendars.germany.Germany.FrankfurtStockExchange
+==============================================================
+
+.. currentmodule:: quantlib.time.calendars.germany
+
+.. autoattribute:: Germany.FrankfurtStockExchange

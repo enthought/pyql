@@ -1,0 +1,6 @@
+quantlib.models.equity.heston\_model.HestonModel.theta
+======================================================
+
+.. currentmodule:: quantlib.models.equity.heston_model
+
+.. autoattribute:: HestonModel.theta

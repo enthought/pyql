@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.black\_variance\_surface.Extrapolation.from\_bytes
+==============================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_variance_surface
+
+.. automethod:: Extrapolation.from_bytes

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.models.equity.heston_model.HestonModelHelper &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>HestonModelHelper &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,8 +15,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.models.model" href="quantlib.models.model.html" />
-    <link rel="prev" title="quantlib.models.equity.heston_model.HestonModel" href="quantlib.models.equity.heston_model.HestonModel.html" />
+    <link rel="next" title="quantlib.models.equity.heston_model.HestonModelHelper.black_price" href="quantlib.models.equity.heston_model.HestonModelHelper.black_price.html" />
+    <link rel="prev" title="quantlib.models.equity.heston_model.HestonModel.process" href="quantlib.models.equity.heston_model.HestonModel.process.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,39 +34,32 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-models-equity-heston-model-hestonmodelhelper">
-<h1>quantlib.models.equity.heston_model.HestonModelHelper<a class="headerlink" href="#quantlib-models-equity-heston-model-hestonmodelhelper" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.models.equity.heston_model.</div>
+<div class="empty"></div><section id="hestonmodelhelper">
+<h1>HestonModelHelper<a class="headerlink" href="#hestonmodelhelper" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.models.equity.heston_model.HestonModelHelper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">HestonModelHelper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Period</span> <span class="pre">maturity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">calendar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">s0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">strike_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Quote</span> <span class="pre">volatility</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">HandleYieldTermStructure</span> <span class="pre">risk_free_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">HandleYieldTermStructure</span> <span class="pre">dividend_yield</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CalibrationErrorType</span> <span class="pre">error_type=_ch.RelativePriceError</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.equity.heston_model.HestonModelHelper" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.models.calibration_helper.BlackCalibrationHelper.html#quantlib.models.calibration_helper.BlackCalibrationHelper" title="quantlib.models.calibration_helper.BlackCalibrationHelper"><code class="xref py py-class docutils literal notranslate"><span class="pre">BlackCalibrationHelper</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.equity.heston_model.HestonModelHelper.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.equity.heston_model.HestonModelHelper.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.models.equity.heston_model.HestonModelHelper.__init__" title="quantlib.models.equity.heston_model.HestonModelHelper.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.equity.heston_model.HestonModelHelper.black_price.html#quantlib.models.equity.heston_model.HestonModelHelper.black_price" title="quantlib.models.equity.heston_model.HestonModelHelper.black_price"><code class="xref py py-obj docutils literal notranslate"><span class="pre">black_price</span></code></a>(self, double volatility)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">black_price</span></code>(self, double volatility)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.equity.heston_model.HestonModelHelper.calibration_error.html#quantlib.models.equity.heston_model.HestonModelHelper.calibration_error" title="quantlib.models.equity.heston_model.HestonModelHelper.calibration_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibration_error</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibration_error</span></code>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.equity.heston_model.HestonModelHelper.impliedVolatility.html#quantlib.models.equity.heston_model.HestonModelHelper.impliedVolatility" title="quantlib.models.equity.heston_model.HestonModelHelper.impliedVolatility"><code class="xref py py-obj docutils literal notranslate"><span class="pre">impliedVolatility</span></code></a>(self, Real targetValue, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">impliedVolatility</span></code>(self, Real targetValue, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.equity.heston_model.HestonModelHelper.market_value.html#quantlib.models.equity.heston_model.HestonModelHelper.market_value" title="quantlib.models.equity.heston_model.HestonModelHelper.market_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">market_value</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">market_value</span></code>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.equity.heston_model.HestonModelHelper.model_value.html#quantlib.models.equity.heston_model.HestonModelHelper.model_value" title="quantlib.models.equity.heston_model.HestonModelHelper.model_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_value</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_value</span></code>(self)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code>(self, PricingEngine engine)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.equity.heston_model.HestonModelHelper.set_pricing_engine.html#quantlib.models.equity.heston_model.HestonModelHelper.set_pricing_engine" title="quantlib.models.equity.heston_model.HestonModelHelper.set_pricing_engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code></a>(self, PricingEngine engine)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -114,8 +107,8 @@
   <li><a href="quantlib.models.html">quantlib.models</a><ul>
   <li><a href="quantlib.models.equity.html">quantlib.models.equity</a><ul>
   <li><a href="quantlib.models.equity.heston_model.html">quantlib.models.equity.heston_model</a><ul>
-      <li>Previous: <a href="quantlib.models.equity.heston_model.HestonModel.html" title="previous chapter">quantlib.models.equity.heston_model.HestonModel</a></li>
-      <li>Next: <a href="quantlib.models.model.html" title="next chapter">quantlib.models.model</a></li>
+      <li>Previous: <a href="quantlib.models.equity.heston_model.HestonModel.process.html" title="previous chapter">quantlib.models.equity.heston_model.HestonModel.process</a></li>
+      <li>Next: <a href="quantlib.models.equity.heston_model.HestonModelHelper.black_price.html" title="next chapter">quantlib.models.equity.heston_model.HestonModelHelper.black_price</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

@@ -1,45 +1,52 @@
-quantlib.pricingengines.credit.isda\_cds\_engine.NumericalFix
-=============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.pricingengines.credit.isda_cds_engine.</div>
+   <div class="empty"></div>
+
+NumericalFix
+===========================================================
 
 .. currentmodule:: quantlib.pricingengines.credit.isda_cds_engine
 
 .. autoclass:: NumericalFix
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         NumericalFix.__mul__
+         NumericalFix.__pow__
+         NumericalFix.conjugate
+         NumericalFix.bit_length
+         NumericalFix.bit_count
+         NumericalFix.to_bytes
+         NumericalFix.from_bytes
+         NumericalFix.as_integer_ratio
+         NumericalFix.__len__
+         NumericalFix.__getitem__
+      
+         NumericalFix.__len__
+         NumericalFix.__getitem__
+         NumericalFix.__mul__
+         NumericalFix.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~NumericalFix.conjugate
-      ~NumericalFix.bit_length
-      ~NumericalFix.bit_count
-      ~NumericalFix.to_bytes
-      ~NumericalFix.from_bytes
-      ~NumericalFix.as_integer_ratio
-      ~NumericalFix.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~NumericalFix.real
-      ~NumericalFix.imag
-      ~NumericalFix.numerator
-      ~NumericalFix.denominator
-      ~NumericalFix.No
-      ~NumericalFix.Taylor
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         NumericalFix.real
+         NumericalFix.imag
+         NumericalFix.numerator
+         NumericalFix.denominator
+         NumericalFix.No
+         NumericalFix.Taylor
+  
+  

@@ -1,0 +1,6 @@
+quantlib.currency.currencies.SGDCurrency.code
+=============================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: SGDCurrency.code

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.models.shortrate.onefactor_model.OneFactorAffineModel &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>OneFactorAffineModel &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.models.shortrate.onefactor_model.OneFactorModel" href="quantlib.models.shortrate.onefactor_model.OneFactorModel.html" />
+    <link rel="next" title="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond" href="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond.html" />
     <link rel="prev" title="quantlib.models.shortrate.onefactor_model" href="quantlib.models.shortrate.onefactor_model.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,55 +34,37 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-models-shortrate-onefactor-model-onefactoraffinemodel">
-<h1>quantlib.models.shortrate.onefactor_model.OneFactorAffineModel<a class="headerlink" href="#quantlib-models-shortrate-onefactor-model-onefactoraffinemodel" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.models.shortrate.onefactor_model.</div>
+<div class="empty"></div><section id="onefactoraffinemodel">
+<h1>OneFactorAffineModel<a class="headerlink" href="#onefactoraffinemodel" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OneFactorAffineModel</span></span><a class="headerlink" href="#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.models.shortrate.onefactor_model.OneFactorModel.html#quantlib.models.shortrate.onefactor_model.OneFactorModel" title="quantlib.models.shortrate.onefactor_model.OneFactorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneFactorModel</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>dynamics</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.__init__" title="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond.html#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond" title="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount_bond</span></code></a>(self, Time now, Time maturity, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond" title="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount_bond</span></code></a>(self, Time now, Time maturity, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond_option.html#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond_option" title="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond_option"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount_bond_option</span></code></a>(self, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond_option" title="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond_option"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount_bond_option</span></code></a>(self, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.params.html#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.params" title="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">params</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">params</span></code>(self)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(self, Array params)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.set_params.html#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.set_params" title="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(self, Array params)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dynamics</span></code></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond">
-<span class="sig-name descname"><span class="pre">discount_bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Time</span> <span class="pre">now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Time</span> <span class="pre">maturity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond_option">
-<span class="sig-name descname"><span class="pre">discount_bond_option</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">OptionType</span> <span class="pre">option_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">strike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Time</span> <span class="pre">maturity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Time</span> <span class="pre">bond_maturity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond_option" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </section>
@@ -127,7 +109,7 @@
   <li><a href="quantlib.models.shortrate.html">quantlib.models.shortrate</a><ul>
   <li><a href="quantlib.models.shortrate.onefactor_model.html">quantlib.models.shortrate.onefactor_model</a><ul>
       <li>Previous: <a href="quantlib.models.shortrate.onefactor_model.html" title="previous chapter">quantlib.models.shortrate.onefactor_model</a></li>
-      <li>Next: <a href="quantlib.models.shortrate.onefactor_model.OneFactorModel.html" title="next chapter">quantlib.models.shortrate.onefactor_model.OneFactorModel</a></li>
+      <li>Next: <a href="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond.html" title="next chapter">quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.discount_bond</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

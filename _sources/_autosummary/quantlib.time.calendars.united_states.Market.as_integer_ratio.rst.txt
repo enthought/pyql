@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_states.Market.as\_integer\_ratio
+================================================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. automethod:: Market.as_integer_ratio

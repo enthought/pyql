@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.local\_vol\_surface.LocalVolSurface.time\_from\_reference
+=====================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.local_vol_surface
+
+.. automethod:: LocalVolSurface.time_from_reference

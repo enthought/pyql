@@ -1,0 +1,6 @@
+quantlib.instruments.futures.FuturesType.to\_bytes
+==================================================
+
+.. currentmodule:: quantlib.instruments.futures
+
+.. automethod:: FuturesType.to_bytes

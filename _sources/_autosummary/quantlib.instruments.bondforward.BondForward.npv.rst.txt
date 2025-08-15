@@ -1,0 +1,6 @@
+quantlib.instruments.bondforward.BondForward.npv
+================================================
+
+.. currentmodule:: quantlib.instruments.bondforward
+
+.. autoattribute:: BondForward.npv

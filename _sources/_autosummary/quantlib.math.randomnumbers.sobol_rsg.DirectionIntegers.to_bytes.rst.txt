@@ -1,0 +1,6 @@
+quantlib.math.randomnumbers.sobol\_rsg.DirectionIntegers.to\_bytes
+==================================================================
+
+.. currentmodule:: quantlib.math.randomnumbers.sobol_rsg
+
+.. automethod:: DirectionIntegers.to_bytes

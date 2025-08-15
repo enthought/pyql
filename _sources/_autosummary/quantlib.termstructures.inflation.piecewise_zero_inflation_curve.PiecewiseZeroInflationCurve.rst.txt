@@ -1,40 +1,39 @@
-quantlib.termstructures.inflation.piecewise\_zero\_inflation\_curve.PiecewiseZeroInflationCurve
-===============================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.inflation.piecewise_zero_inflation_curve.</div>
+   <div class="empty"></div>
+
+PiecewiseZeroInflationCurve
+============================================================================================
 
 .. currentmodule:: quantlib.termstructures.inflation.piecewise_zero_inflation_curve
 
 .. autoclass:: PiecewiseZeroInflationCurve
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         PiecewiseZeroInflationCurve.data
+         PiecewiseZeroInflationCurve.link_to
+         PiecewiseZeroInflationCurve.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~PiecewiseZeroInflationCurve.__init__
-      ~PiecewiseZeroInflationCurve.data
-      ~PiecewiseZeroInflationCurve.link_to
-      ~PiecewiseZeroInflationCurve.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~PiecewiseZeroInflationCurve.base_date
-      ~PiecewiseZeroInflationCurve.base_rate
-      ~PiecewiseZeroInflationCurve.max_date
-      ~PiecewiseZeroInflationCurve.reference_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         PiecewiseZeroInflationCurve.base_date
+         PiecewiseZeroInflationCurve.base_rate
+         PiecewiseZeroInflationCurve.max_date
+         PiecewiseZeroInflationCurve.reference_date
+  
+  

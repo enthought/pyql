@@ -1,46 +1,45 @@
-quantlib.time.calendars.weekends\_only.WeekendsOnly
-===================================================
+.. raw:: html
+
+   <div class="prename">quantlib.time.calendars.weekends_only.</div>
+   <div class="empty"></div>
+
+WeekendsOnly
+==================================================
 
 .. currentmodule:: quantlib.time.calendars.weekends_only
 
 .. autoclass:: WeekendsOnly
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         WeekendsOnly.add_holiday
+         WeekendsOnly.adjust
+         WeekendsOnly.advance
+         WeekendsOnly.business_day_list
+         WeekendsOnly.business_days_between
+         WeekendsOnly.end_of_month
+         WeekendsOnly.holiday_list
+         WeekendsOnly.is_business_day
+         WeekendsOnly.is_end_of_month
+         WeekendsOnly.is_holiday
+         WeekendsOnly.is_weekend
+         WeekendsOnly.remove_holiday
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~WeekendsOnly.__init__
-      ~WeekendsOnly.add_holiday
-      ~WeekendsOnly.adjust
-      ~WeekendsOnly.advance
-      ~WeekendsOnly.business_day_list
-      ~WeekendsOnly.business_days_between
-      ~WeekendsOnly.end_of_month
-      ~WeekendsOnly.holiday_list
-      ~WeekendsOnly.is_business_day
-      ~WeekendsOnly.is_end_of_month
-      ~WeekendsOnly.is_holiday
-      ~WeekendsOnly.is_weekend
-      ~WeekendsOnly.remove_holiday
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~WeekendsOnly.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         WeekendsOnly.name
+  
+  

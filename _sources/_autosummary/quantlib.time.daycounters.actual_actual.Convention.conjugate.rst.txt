@@ -1,0 +1,6 @@
+quantlib.time.daycounters.actual\_actual.Convention.conjugate
+=============================================================
+
+.. currentmodule:: quantlib.time.daycounters.actual_actual
+
+.. automethod:: Convention.conjugate

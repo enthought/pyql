@@ -1,0 +1,6 @@
+quantlib.indexes.swap\_index.OvernightIndexedSwapIndex.forwarding\_term\_structure
+==================================================================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. autoattribute:: OvernightIndexedSwapIndex.forwarding_term_structure

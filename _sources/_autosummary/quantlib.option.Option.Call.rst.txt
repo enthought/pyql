@@ -1,0 +1,6 @@
+quantlib.option.Option.Call
+===========================
+
+.. currentmodule:: quantlib.option
+
+.. autoattribute:: Option.Call

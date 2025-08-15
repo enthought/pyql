@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.aucpi.YYAUCPI.time\_series
+=====================================================
+
+.. currentmodule:: quantlib.indexes.inflation.aucpi
+
+.. autoattribute:: YYAUCPI.time_series

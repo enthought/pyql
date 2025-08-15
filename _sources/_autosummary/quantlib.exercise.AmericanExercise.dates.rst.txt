@@ -1,0 +1,6 @@
+quantlib.exercise.AmericanExercise.dates
+========================================
+
+.. currentmodule:: quantlib.exercise
+
+.. automethod:: AmericanExercise.dates

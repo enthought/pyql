@@ -1,0 +1,6 @@
+quantlib.time.calendars.poland.Poland.end\_of\_month
+====================================================
+
+.. currentmodule:: quantlib.time.calendars.poland
+
+.. automethod:: Poland.end_of_month

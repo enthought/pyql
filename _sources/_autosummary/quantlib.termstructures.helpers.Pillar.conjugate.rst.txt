@@ -1,0 +1,6 @@
+quantlib.termstructures.helpers.Pillar.conjugate
+================================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. automethod:: Pillar.conjugate

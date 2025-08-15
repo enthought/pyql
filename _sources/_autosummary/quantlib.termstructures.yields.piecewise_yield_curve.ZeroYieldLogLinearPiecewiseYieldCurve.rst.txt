@@ -1,49 +1,48 @@
-quantlib.termstructures.yields.piecewise\_yield\_curve.ZeroYieldLogLinearPiecewiseYieldCurve
-============================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.piecewise_yield_curve.</div>
+   <div class="empty"></div>
+
+ZeroYieldLogLinearPiecewiseYieldCurve
+==========================================================================================
 
 .. currentmodule:: quantlib.termstructures.yields.piecewise_yield_curve
 
 .. autoclass:: ZeroYieldLogLinearPiecewiseYieldCurve
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZeroYieldLogLinearPiecewiseYieldCurve.discount
+         ZeroYieldLogLinearPiecewiseYieldCurve.forward_rate
+         ZeroYieldLogLinearPiecewiseYieldCurve.from_reference_date
+         ZeroYieldLogLinearPiecewiseYieldCurve.time_from_reference
+         ZeroYieldLogLinearPiecewiseYieldCurve.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.__init__
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.discount
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.forward_rate
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.from_reference_date
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.time_from_reference
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.data
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.dates
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.day_counter
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.extrapolation
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.max_date
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.max_time
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.nodes
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.reference_date
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.settlement_days
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.times
-      ~ZeroYieldLogLinearPiecewiseYieldCurve.trait
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZeroYieldLogLinearPiecewiseYieldCurve.data
+         ZeroYieldLogLinearPiecewiseYieldCurve.dates
+         ZeroYieldLogLinearPiecewiseYieldCurve.day_counter
+         ZeroYieldLogLinearPiecewiseYieldCurve.extrapolation
+         ZeroYieldLogLinearPiecewiseYieldCurve.max_date
+         ZeroYieldLogLinearPiecewiseYieldCurve.max_time
+         ZeroYieldLogLinearPiecewiseYieldCurve.nodes
+         ZeroYieldLogLinearPiecewiseYieldCurve.reference_date
+         ZeroYieldLogLinearPiecewiseYieldCurve.settlement_days
+         ZeroYieldLogLinearPiecewiseYieldCurve.times
+         ZeroYieldLogLinearPiecewiseYieldCurve.trait
+  
+  

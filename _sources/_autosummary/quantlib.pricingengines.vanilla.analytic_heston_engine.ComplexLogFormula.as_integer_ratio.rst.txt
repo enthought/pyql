@@ -1,0 +1,6 @@
+quantlib.pricingengines.vanilla.analytic\_heston\_engine.ComplexLogFormula.as\_integer\_ratio
+=============================================================================================
+
+.. currentmodule:: quantlib.pricingengines.vanilla.analytic_heston_engine
+
+.. automethod:: ComplexLogFormula.as_integer_ratio

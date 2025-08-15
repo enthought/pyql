@@ -1,0 +1,6 @@
+quantlib.default.Protection.real
+================================
+
+.. currentmodule:: quantlib.default
+
+.. autoattribute:: Protection.real

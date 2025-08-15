@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.dividend\_rho
+================================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. autoattribute:: EuropeanOption.dividend_rho

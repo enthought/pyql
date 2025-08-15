@@ -1,0 +1,6 @@
+quantlib.indexes.interest\_rate\_index.InterestRateIndex.time\_series
+=====================================================================
+
+.. currentmodule:: quantlib.indexes.interest_rate_index
+
+.. autoattribute:: InterestRateIndex.time_series

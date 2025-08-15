@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_spreaded\_term\_structure.ZeroSpreadedTermStructure.day\_counter
+=====================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_spreaded_term_structure
+
+.. autoattribute:: ZeroSpreadedTermStructure.day_counter

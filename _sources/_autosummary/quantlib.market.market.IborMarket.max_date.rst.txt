@@ -1,0 +1,6 @@
+quantlib.market.market.IborMarket.max\_date
+===========================================
+
+.. currentmodule:: quantlib.market.market
+
+.. autoproperty:: IborMarket.max_date

@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation\_term\_structure.ZeroInflationTermStructure.zero\_rate
+========================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation_term_structure
+
+.. automethod:: ZeroInflationTermStructure.zero_rate

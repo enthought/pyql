@@ -1,0 +1,6 @@
+quantlib.models.shortrate.onefactormodels.vasicek.Vasicek.a
+===========================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactormodels.vasicek
+
+.. autoattribute:: Vasicek.a

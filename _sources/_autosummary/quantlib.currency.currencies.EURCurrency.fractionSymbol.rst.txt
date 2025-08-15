@@ -1,0 +1,6 @@
+quantlib.currency.currencies.EURCurrency.fractionSymbol
+=======================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: EURCurrency.fractionSymbol

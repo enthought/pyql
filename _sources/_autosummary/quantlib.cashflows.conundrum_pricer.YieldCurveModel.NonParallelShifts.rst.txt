@@ -1,0 +1,6 @@
+quantlib.cashflows.conundrum\_pricer.YieldCurveModel.NonParallelShifts
+======================================================================
+
+.. currentmodule:: quantlib.cashflows.conundrum_pricer
+
+.. autoattribute:: YieldCurveModel.NonParallelShifts

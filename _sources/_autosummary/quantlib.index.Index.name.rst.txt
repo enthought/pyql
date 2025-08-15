@@ -1,0 +1,6 @@
+quantlib.index.Index.name
+=========================
+
+.. currentmodule:: quantlib.index
+
+.. autoattribute:: Index.name

@@ -1,46 +1,45 @@
-quantlib.time.calendars.japan.Japan
+.. raw:: html
+
+   <div class="prename">quantlib.time.calendars.japan.</div>
+   <div class="empty"></div>
+
+Japan
 ===================================
 
 .. currentmodule:: quantlib.time.calendars.japan
 
 .. autoclass:: Japan
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Japan.add_holiday
+         Japan.adjust
+         Japan.advance
+         Japan.business_day_list
+         Japan.business_days_between
+         Japan.end_of_month
+         Japan.holiday_list
+         Japan.is_business_day
+         Japan.is_end_of_month
+         Japan.is_holiday
+         Japan.is_weekend
+         Japan.remove_holiday
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Japan.__init__
-      ~Japan.add_holiday
-      ~Japan.adjust
-      ~Japan.advance
-      ~Japan.business_day_list
-      ~Japan.business_days_between
-      ~Japan.end_of_month
-      ~Japan.holiday_list
-      ~Japan.is_business_day
-      ~Japan.is_end_of_month
-      ~Japan.is_holiday
-      ~Japan.is_weekend
-      ~Japan.remove_holiday
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Japan.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Japan.name
+  
+  

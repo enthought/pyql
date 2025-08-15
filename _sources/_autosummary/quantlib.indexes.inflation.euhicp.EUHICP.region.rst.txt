@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.euhicp.EUHICP.region
+===============================================
+
+.. currentmodule:: quantlib.indexes.inflation.euhicp
+
+.. autoattribute:: EUHICP.region

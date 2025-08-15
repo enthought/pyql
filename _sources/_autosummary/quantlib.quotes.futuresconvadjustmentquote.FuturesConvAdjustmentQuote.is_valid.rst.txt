@@ -1,0 +1,6 @@
+quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote.is\_valid
+===============================================================================
+
+.. currentmodule:: quantlib.quotes.futuresconvadjustmentquote
+
+.. autoattribute:: FuturesConvAdjustmentQuote.is_valid

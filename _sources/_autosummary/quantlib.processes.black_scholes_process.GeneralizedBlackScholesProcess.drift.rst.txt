@@ -1,0 +1,6 @@
+quantlib.processes.black\_scholes\_process.GeneralizedBlackScholesProcess.drift
+===============================================================================
+
+.. currentmodule:: quantlib.processes.black_scholes_process
+
+.. automethod:: GeneralizedBlackScholesProcess.drift

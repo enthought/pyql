@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.usdlibor.USDLibor.family\_name
+====================================================
+
+.. currentmodule:: quantlib.indexes.ibor.usdlibor
+
+.. autoattribute:: USDLibor.family_name

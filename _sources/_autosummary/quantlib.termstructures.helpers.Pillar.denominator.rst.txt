@@ -1,0 +1,6 @@
+quantlib.termstructures.helpers.Pillar.denominator
+==================================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. autoattribute:: Pillar.denominator

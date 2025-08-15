@@ -4,28 +4,10 @@ quantlib.termstructures.volatility.equityfx.local\_vol\_surface
 .. automodule:: quantlib.termstructures.volatility.equityfx.local_vol_surface
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       LocalVolSurface
    
-   
-
-   
-   
-   
-
-
-

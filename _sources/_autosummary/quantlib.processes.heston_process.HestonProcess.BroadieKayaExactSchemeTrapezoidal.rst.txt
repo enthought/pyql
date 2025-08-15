@@ -1,0 +1,6 @@
+quantlib.processes.heston\_process.HestonProcess.BroadieKayaExactSchemeTrapezoidal
+==================================================================================
+
+.. currentmodule:: quantlib.processes.heston_process
+
+.. autoattribute:: HestonProcess.BroadieKayaExactSchemeTrapezoidal

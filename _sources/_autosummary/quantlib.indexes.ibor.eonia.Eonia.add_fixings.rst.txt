@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.eonia.Eonia.add\_fixings
+==============================================
+
+.. currentmodule:: quantlib.indexes.ibor.eonia
+
+.. automethod:: Eonia.add_fixings

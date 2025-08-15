@@ -1,26 +1,27 @@
-quantlib.pricingengines.credit.midpoint\_cds\_engine.MidPointCdsEngine
-======================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.pricingengines.credit.midpoint_cds_engine.</div>
+   <div class="empty"></div>
+
+MidPointCdsEngine
+====================================================================
 
 .. currentmodule:: quantlib.pricingengines.credit.midpoint_cds_engine
 
 .. autoclass:: MidPointCdsEngine
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~MidPointCdsEngine.__init__
-   
-   
-
-   
-   
-   
+  
+  
+  

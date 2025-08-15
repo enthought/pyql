@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Settlement.Physical
+=================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Settlement.Physical

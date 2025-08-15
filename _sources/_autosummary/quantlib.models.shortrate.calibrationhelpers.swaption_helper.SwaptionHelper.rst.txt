@@ -1,34 +1,35 @@
-quantlib.models.shortrate.calibrationhelpers.swaption\_helper.SwaptionHelper
-============================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.models.shortrate.calibrationhelpers.swaption_helper.</div>
+   <div class="empty"></div>
+
+SwaptionHelper
+===========================================================================
 
 .. currentmodule:: quantlib.models.shortrate.calibrationhelpers.swaption_helper
 
 .. autoclass:: SwaptionHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SwaptionHelper.black_price
+         SwaptionHelper.calibration_error
+         SwaptionHelper.impliedVolatility
+         SwaptionHelper.market_value
+         SwaptionHelper.model_value
+         SwaptionHelper.set_pricing_engine
+         SwaptionHelper.underlying
+         SwaptionHelper.underlying_swaption
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~SwaptionHelper.__init__
-      ~SwaptionHelper.black_price
-      ~SwaptionHelper.calibration_error
-      ~SwaptionHelper.impliedVolatility
-      ~SwaptionHelper.market_value
-      ~SwaptionHelper.model_value
-      ~SwaptionHelper.set_pricing_engine
-      ~SwaptionHelper.underlying
-      ~SwaptionHelper.underlying_swaption
-   
-   
-
-   
-   
-   
+  
+  
+  

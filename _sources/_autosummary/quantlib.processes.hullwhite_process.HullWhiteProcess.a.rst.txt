@@ -1,0 +1,6 @@
+quantlib.processes.hullwhite\_process.HullWhiteProcess.a
+========================================================
+
+.. currentmodule:: quantlib.processes.hullwhite_process
+
+.. autoattribute:: HullWhiteProcess.a

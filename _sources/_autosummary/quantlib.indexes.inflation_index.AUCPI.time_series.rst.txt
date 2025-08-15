@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.AUCPI.time\_series
+====================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. autoattribute:: AUCPI.time_series

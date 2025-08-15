@@ -1,41 +1,40 @@
-quantlib.cashflows.coupon\_pricer.CmsCouponPricer
-=================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.coupon_pricer.</div>
+   <div class="empty"></div>
+
+CmsCouponPricer
+================================================
 
 .. currentmodule:: quantlib.cashflows.coupon_pricer
 
 .. autoclass:: CmsCouponPricer
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CmsCouponPricer.caplet_price
+         CmsCouponPricer.caplet_rate
+         CmsCouponPricer.floorlet_price
+         CmsCouponPricer.floorlet_rate
+         CmsCouponPricer.initialize
+         CmsCouponPricer.swaplet_price
+         CmsCouponPricer.swaplet_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~CmsCouponPricer.__init__
-      ~CmsCouponPricer.caplet_price
-      ~CmsCouponPricer.caplet_rate
-      ~CmsCouponPricer.floorlet_price
-      ~CmsCouponPricer.floorlet_rate
-      ~CmsCouponPricer.initialize
-      ~CmsCouponPricer.swaplet_price
-      ~CmsCouponPricer.swaplet_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~CmsCouponPricer.swaption_volatility
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CmsCouponPricer.swaption_volatility
+  
+  

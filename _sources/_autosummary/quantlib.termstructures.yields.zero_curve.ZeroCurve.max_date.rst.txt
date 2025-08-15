@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_curve.ZeroCurve.max\_date
+==============================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. autoattribute:: ZeroCurve.max_date

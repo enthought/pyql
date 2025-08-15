@@ -1,0 +1,6 @@
+quantlib.instruments.swap.Swap.leg\_BPS
+=======================================
+
+.. currentmodule:: quantlib.instruments.swap
+
+.. automethod:: Swap.leg_BPS

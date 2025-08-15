@@ -1,0 +1,6 @@
+quantlib.time.calendars.null\_calendar.NullCalendar.adjust
+==========================================================
+
+.. currentmodule:: quantlib.time.calendars.null_calendar
+
+.. automethod:: NullCalendar.adjust

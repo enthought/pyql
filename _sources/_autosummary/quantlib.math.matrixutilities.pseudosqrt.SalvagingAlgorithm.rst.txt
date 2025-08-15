@@ -1,48 +1,55 @@
-quantlib.math.matrixutilities.pseudosqrt.SalvagingAlgorithm
+.. raw:: html
+
+   <div class="prename">quantlib.math.matrixutilities.pseudosqrt.</div>
+   <div class="empty"></div>
+
+SalvagingAlgorithm
 ===========================================================
 
 .. currentmodule:: quantlib.math.matrixutilities.pseudosqrt
 
 .. autoclass:: SalvagingAlgorithm
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SalvagingAlgorithm.__mul__
+         SalvagingAlgorithm.__pow__
+         SalvagingAlgorithm.conjugate
+         SalvagingAlgorithm.bit_length
+         SalvagingAlgorithm.bit_count
+         SalvagingAlgorithm.to_bytes
+         SalvagingAlgorithm.from_bytes
+         SalvagingAlgorithm.as_integer_ratio
+         SalvagingAlgorithm.__len__
+         SalvagingAlgorithm.__getitem__
+      
+         SalvagingAlgorithm.__len__
+         SalvagingAlgorithm.__getitem__
+         SalvagingAlgorithm.__mul__
+         SalvagingAlgorithm.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~SalvagingAlgorithm.conjugate
-      ~SalvagingAlgorithm.bit_length
-      ~SalvagingAlgorithm.bit_count
-      ~SalvagingAlgorithm.to_bytes
-      ~SalvagingAlgorithm.from_bytes
-      ~SalvagingAlgorithm.as_integer_ratio
-      ~SalvagingAlgorithm.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~SalvagingAlgorithm.real
-      ~SalvagingAlgorithm.imag
-      ~SalvagingAlgorithm.numerator
-      ~SalvagingAlgorithm.denominator
-      ~SalvagingAlgorithm.Nothing
-      ~SalvagingAlgorithm.Spectral
-      ~SalvagingAlgorithm.Hypersphere
-      ~SalvagingAlgorithm.LowerDiagonal
-      ~SalvagingAlgorithm.Higham
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SalvagingAlgorithm.real
+         SalvagingAlgorithm.imag
+         SalvagingAlgorithm.numerator
+         SalvagingAlgorithm.denominator
+         SalvagingAlgorithm.Nothing
+         SalvagingAlgorithm.Spectral
+         SalvagingAlgorithm.Hypersphere
+         SalvagingAlgorithm.LowerDiagonal
+         SalvagingAlgorithm.Higham
+  
+  

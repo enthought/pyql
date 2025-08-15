@@ -1,39 +1,38 @@
-quantlib.termstructures.yields.bond\_helpers.BondHelper
-=======================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.bond_helpers.</div>
+   <div class="empty"></div>
+
+BondHelper
+======================================================
 
 .. currentmodule:: quantlib.termstructures.yields.bond_helpers
 
 .. autoclass:: BondHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BondHelper.update
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BondHelper.__init__
-      ~BondHelper.update
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~BondHelper.earliest_date
-      ~BondHelper.implied_quote
-      ~BondHelper.latest_date
-      ~BondHelper.maturity_date
-      ~BondHelper.quote
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BondHelper.earliest_date
+         BondHelper.implied_quote
+         BondHelper.latest_date
+         BondHelper.maturity_date
+         BondHelper.quote
+  
+  

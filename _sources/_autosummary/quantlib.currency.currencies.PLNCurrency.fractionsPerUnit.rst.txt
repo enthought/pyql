@@ -1,0 +1,6 @@
+quantlib.currency.currencies.PLNCurrency.fractionsPerUnit
+=========================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: PLNCurrency.fractionsPerUnit

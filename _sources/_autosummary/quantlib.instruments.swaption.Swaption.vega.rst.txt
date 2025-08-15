@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.vega
+===========================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Swaption.vega

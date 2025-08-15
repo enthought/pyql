@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.InterpolationType.Linear
+===========================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. autoattribute:: InterpolationType.Linear

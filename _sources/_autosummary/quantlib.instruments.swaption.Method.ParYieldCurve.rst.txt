@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Method.ParYieldCurve
+==================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Method.ParYieldCurve

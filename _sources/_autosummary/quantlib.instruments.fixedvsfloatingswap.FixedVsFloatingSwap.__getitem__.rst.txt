@@ -1,0 +1,6 @@
+quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.\_\_getitem\_\_
+============================================================================
+
+.. currentmodule:: quantlib.instruments.fixedvsfloatingswap
+
+.. automethod:: FixedVsFloatingSwap.__getitem__

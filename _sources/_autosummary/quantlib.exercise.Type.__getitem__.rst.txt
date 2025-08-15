@@ -1,0 +1,6 @@
+quantlib.exercise.Type.\_\_getitem\_\_
+======================================
+
+.. currentmodule:: quantlib.exercise
+
+.. automethod:: Type.__getitem__

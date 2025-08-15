@@ -1,0 +1,6 @@
+quantlib.processes.hullwhite\_process.HullWhiteProcess.expectation
+==================================================================
+
+.. currentmodule:: quantlib.processes.hullwhite_process
+
+.. automethod:: HullWhiteProcess.expectation

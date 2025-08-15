@@ -1,0 +1,6 @@
+quantlib.time.date.Weekday.Saturday
+===================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: Weekday.Saturday

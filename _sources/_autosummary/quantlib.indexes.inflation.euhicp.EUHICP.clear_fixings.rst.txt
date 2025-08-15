@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.euhicp.EUHICP.clear\_fixings
+=======================================================
+
+.. currentmodule:: quantlib.indexes.inflation.euhicp
+
+.. automethod:: EUHICP.clear_fixings

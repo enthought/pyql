@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.Call
+=====================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.Call

@@ -1,53 +1,60 @@
-quantlib.time.dategeneration.DateGeneration
+.. raw:: html
+
+   <div class="prename">quantlib.time.dategeneration.</div>
+   <div class="empty"></div>
+
+DateGeneration
 ===========================================
 
 .. currentmodule:: quantlib.time.dategeneration
 
 .. autoclass:: DateGeneration
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         DateGeneration.__mul__
+         DateGeneration.__pow__
+         DateGeneration.conjugate
+         DateGeneration.bit_length
+         DateGeneration.bit_count
+         DateGeneration.to_bytes
+         DateGeneration.from_bytes
+         DateGeneration.as_integer_ratio
+         DateGeneration.__getitem__
+         DateGeneration.__len__
+      
+         DateGeneration.__mul__
+         DateGeneration.__len__
+         DateGeneration.__getitem__
+         DateGeneration.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~DateGeneration.conjugate
-      ~DateGeneration.bit_length
-      ~DateGeneration.bit_count
-      ~DateGeneration.to_bytes
-      ~DateGeneration.from_bytes
-      ~DateGeneration.as_integer_ratio
-      ~DateGeneration.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~DateGeneration.real
-      ~DateGeneration.imag
-      ~DateGeneration.numerator
-      ~DateGeneration.denominator
-      ~DateGeneration.Backward
-      ~DateGeneration.Forward
-      ~DateGeneration.Zero
-      ~DateGeneration.ThirdWednesday
-      ~DateGeneration.ThirdWednesdayInclusive
-      ~DateGeneration.Twentieth
-      ~DateGeneration.TwentiethIMM
-      ~DateGeneration.OldCDS
-      ~DateGeneration.CDS
-      ~DateGeneration.CDS2015
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         DateGeneration.real
+         DateGeneration.imag
+         DateGeneration.numerator
+         DateGeneration.denominator
+         DateGeneration.Backward
+         DateGeneration.Forward
+         DateGeneration.Zero
+         DateGeneration.ThirdWednesday
+         DateGeneration.ThirdWednesdayInclusive
+         DateGeneration.Twentieth
+         DateGeneration.TwentiethIMM
+         DateGeneration.OldCDS
+         DateGeneration.CDS
+         DateGeneration.CDS2015
+  
+  

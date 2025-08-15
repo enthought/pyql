@@ -1,0 +1,6 @@
+quantlib.indexes.swap\_index.SwapIndex.clear\_fixings
+=====================================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. automethod:: SwapIndex.clear_fixings

@@ -4,30 +4,12 @@ quantlib.processes.hullwhite\_process
 .. automodule:: quantlib.processes.hullwhite_process
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       ForwardHullWhiteProcess
       HullWhiteForwardProcess
       HullWhiteProcess
    
-   
-
-   
-   
-   
-
-
-

@@ -1,0 +1,6 @@
+quantlib.math.randomnumbers.sobol\_rsg.DirectionIntegers.bit\_count
+===================================================================
+
+.. currentmodule:: quantlib.math.randomnumbers.sobol_rsg
+
+.. automethod:: DirectionIntegers.bit_count

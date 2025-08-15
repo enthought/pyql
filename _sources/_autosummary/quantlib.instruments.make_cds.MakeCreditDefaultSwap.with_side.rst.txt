@@ -1,0 +1,6 @@
+quantlib.instruments.make\_cds.MakeCreditDefaultSwap.with\_side
+===============================================================
+
+.. currentmodule:: quantlib.instruments.make_cds
+
+.. automethod:: MakeCreditDefaultSwap.with_side

@@ -1,0 +1,6 @@
+quantlib.termstructures.helpers.Pillar.imag
+===========================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. autoattribute:: Pillar.imag

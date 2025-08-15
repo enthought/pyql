@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.euhicp.EUHICP.last\_fixing\_date
+===========================================================
+
+.. currentmodule:: quantlib.indexes.inflation.euhicp
+
+.. autoattribute:: EUHICP.last_fixing_date

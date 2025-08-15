@@ -1,0 +1,6 @@
+quantlib.cashflows.cms\_coupon.CmsCoupon.has\_occured
+=====================================================
+
+.. currentmodule:: quantlib.cashflows.cms_coupon
+
+.. automethod:: CmsCoupon.has_occured

@@ -1,0 +1,6 @@
+quantlib.math.randomnumbers.sobol\_rsg.DirectionIntegers.real
+=============================================================
+
+.. currentmodule:: quantlib.math.randomnumbers.sobol_rsg
+
+.. autoattribute:: DirectionIntegers.real

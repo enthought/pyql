@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaswap.VanillaSwap.is\_expired
+========================================================
+
+.. currentmodule:: quantlib.instruments.vanillaswap
+
+.. autoattribute:: VanillaSwap.is_expired

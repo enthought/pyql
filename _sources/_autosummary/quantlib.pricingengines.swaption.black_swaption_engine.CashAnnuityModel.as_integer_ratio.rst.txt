@@ -1,0 +1,6 @@
+quantlib.pricingengines.swaption.black\_swaption\_engine.CashAnnuityModel.as\_integer\_ratio
+============================================================================================
+
+.. currentmodule:: quantlib.pricingengines.swaption.black_swaption_engine
+
+.. automethod:: CashAnnuityModel.as_integer_ratio

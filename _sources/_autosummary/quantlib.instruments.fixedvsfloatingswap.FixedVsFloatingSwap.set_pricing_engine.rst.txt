@@ -1,0 +1,6 @@
+quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.set\_pricing\_engine
+=================================================================================
+
+.. currentmodule:: quantlib.instruments.fixedvsfloatingswap
+
+.. automethod:: FixedVsFloatingSwap.set_pricing_engine

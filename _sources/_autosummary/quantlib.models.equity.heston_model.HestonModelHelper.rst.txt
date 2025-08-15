@@ -1,32 +1,33 @@
-quantlib.models.equity.heston\_model.HestonModelHelper
-======================================================
+.. raw:: html
+
+   <div class="prename">quantlib.models.equity.heston_model.</div>
+   <div class="empty"></div>
+
+HestonModelHelper
+=====================================================
 
 .. currentmodule:: quantlib.models.equity.heston_model
 
 .. autoclass:: HestonModelHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HestonModelHelper.black_price
+         HestonModelHelper.calibration_error
+         HestonModelHelper.impliedVolatility
+         HestonModelHelper.market_value
+         HestonModelHelper.model_value
+         HestonModelHelper.set_pricing_engine
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~HestonModelHelper.__init__
-      ~HestonModelHelper.black_price
-      ~HestonModelHelper.calibration_error
-      ~HestonModelHelper.impliedVolatility
-      ~HestonModelHelper.market_value
-      ~HestonModelHelper.model_value
-      ~HestonModelHelper.set_pricing_engine
-   
-   
-
-   
-   
-   
+  
+  
+  

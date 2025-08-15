@@ -1,0 +1,6 @@
+quantlib.models.shortrate.twofactor\_model.TwoFactorModel.set\_params
+=====================================================================
+
+.. currentmodule:: quantlib.models.shortrate.twofactor_model
+
+.. automethod:: TwoFactorModel.set_params

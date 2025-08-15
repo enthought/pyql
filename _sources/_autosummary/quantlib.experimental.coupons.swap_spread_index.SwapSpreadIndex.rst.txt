@@ -1,55 +1,54 @@
-quantlib.experimental.coupons.swap\_spread\_index.SwapSpreadIndex
-=================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.experimental.coupons.swap_spread_index.</div>
+   <div class="empty"></div>
+
+SwapSpreadIndex
+===============================================================
 
 .. currentmodule:: quantlib.experimental.coupons.swap_spread_index
 
 .. autoclass:: SwapSpreadIndex
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SwapSpreadIndex.add_fixing
+         SwapSpreadIndex.add_fixings
+         SwapSpreadIndex.clear_fixings
+         SwapSpreadIndex.fixing
+         SwapSpreadIndex.fixing_date
+         SwapSpreadIndex.forecast_fixing
+         SwapSpreadIndex.has_historical_fixing
+         SwapSpreadIndex.is_valid_fixing_date
+         SwapSpreadIndex.maturity_date
+         SwapSpreadIndex.value_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~SwapSpreadIndex.__init__
-      ~SwapSpreadIndex.add_fixing
-      ~SwapSpreadIndex.add_fixings
-      ~SwapSpreadIndex.clear_fixings
-      ~SwapSpreadIndex.fixing
-      ~SwapSpreadIndex.fixing_date
-      ~SwapSpreadIndex.forecast_fixing
-      ~SwapSpreadIndex.has_historical_fixing
-      ~SwapSpreadIndex.is_valid_fixing_date
-      ~SwapSpreadIndex.maturity_date
-      ~SwapSpreadIndex.value_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~SwapSpreadIndex.currency
-      ~SwapSpreadIndex.day_counter
-      ~SwapSpreadIndex.family_name
-      ~SwapSpreadIndex.fixing_calendar
-      ~SwapSpreadIndex.fixing_days
-      ~SwapSpreadIndex.gearing1
-      ~SwapSpreadIndex.gearing2
-      ~SwapSpreadIndex.name
-      ~SwapSpreadIndex.swap_index1
-      ~SwapSpreadIndex.swap_index2
-      ~SwapSpreadIndex.tenor
-      ~SwapSpreadIndex.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SwapSpreadIndex.currency
+         SwapSpreadIndex.day_counter
+         SwapSpreadIndex.family_name
+         SwapSpreadIndex.fixing_calendar
+         SwapSpreadIndex.fixing_days
+         SwapSpreadIndex.gearing1
+         SwapSpreadIndex.gearing2
+         SwapSpreadIndex.name
+         SwapSpreadIndex.swap_index1
+         SwapSpreadIndex.swap_index2
+         SwapSpreadIndex.tenor
+         SwapSpreadIndex.time_series
+  
+  

@@ -1,0 +1,6 @@
+quantlib.time.daycounters.thirty360.Thirty360.year\_fraction
+============================================================
+
+.. currentmodule:: quantlib.time.daycounters.thirty360
+
+.. automethod:: Thirty360.year_fraction

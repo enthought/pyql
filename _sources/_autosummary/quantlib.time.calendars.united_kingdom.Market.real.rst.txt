@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_kingdom.Market.real
+===================================================
+
+.. currentmodule:: quantlib.time.calendars.united_kingdom
+
+.. autoattribute:: Market.real

@@ -1,47 +1,54 @@
-quantlib.cashflows.conundrum\_pricer.YieldCurveModel
-====================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.conundrum_pricer.</div>
+   <div class="empty"></div>
+
+YieldCurveModel
+===================================================
 
 .. currentmodule:: quantlib.cashflows.conundrum_pricer
 
 .. autoclass:: YieldCurveModel
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YieldCurveModel.__mul__
+         YieldCurveModel.__pow__
+         YieldCurveModel.conjugate
+         YieldCurveModel.bit_length
+         YieldCurveModel.bit_count
+         YieldCurveModel.to_bytes
+         YieldCurveModel.from_bytes
+         YieldCurveModel.as_integer_ratio
+         YieldCurveModel.__len__
+         YieldCurveModel.__getitem__
+      
+         YieldCurveModel.__len__
+         YieldCurveModel.__getitem__
+         YieldCurveModel.__mul__
+         YieldCurveModel.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~YieldCurveModel.conjugate
-      ~YieldCurveModel.bit_length
-      ~YieldCurveModel.bit_count
-      ~YieldCurveModel.to_bytes
-      ~YieldCurveModel.from_bytes
-      ~YieldCurveModel.as_integer_ratio
-      ~YieldCurveModel.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~YieldCurveModel.real
-      ~YieldCurveModel.imag
-      ~YieldCurveModel.numerator
-      ~YieldCurveModel.denominator
-      ~YieldCurveModel.Standard
-      ~YieldCurveModel.ExactYield
-      ~YieldCurveModel.ParallelShifts
-      ~YieldCurveModel.NonParallelShifts
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YieldCurveModel.real
+         YieldCurveModel.imag
+         YieldCurveModel.numerator
+         YieldCurveModel.denominator
+         YieldCurveModel.Standard
+         YieldCurveModel.ExactYield
+         YieldCurveModel.ParallelShifts
+         YieldCurveModel.NonParallelShifts
+  
+  

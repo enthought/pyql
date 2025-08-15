@@ -1,0 +1,6 @@
+quantlib.instruments.implied\_volatility.ImpliedVolatilityHelper.calculate
+==========================================================================
+
+.. currentmodule:: quantlib.instruments.implied_volatility
+
+.. automethod:: ImpliedVolatilityHelper.calculate

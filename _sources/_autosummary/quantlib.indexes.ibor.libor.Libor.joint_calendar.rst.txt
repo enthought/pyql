@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.libor.Libor.joint\_calendar
+=================================================
+
+.. currentmodule:: quantlib.indexes.ibor.libor
+
+.. autoattribute:: Libor.joint_calendar

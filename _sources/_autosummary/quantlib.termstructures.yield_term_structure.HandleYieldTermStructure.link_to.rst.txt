@@ -1,0 +1,6 @@
+quantlib.termstructures.yield\_term\_structure.HandleYieldTermStructure.link\_to
+================================================================================
+
+.. currentmodule:: quantlib.termstructures.yield_term_structure
+
+.. automethod:: HandleYieldTermStructure.link_to

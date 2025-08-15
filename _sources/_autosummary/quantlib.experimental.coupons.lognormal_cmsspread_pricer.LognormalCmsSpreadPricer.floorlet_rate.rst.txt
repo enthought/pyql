@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.lognormal\_cmsspread\_pricer.LognormalCmsSpreadPricer.floorlet\_rate
+==================================================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.lognormal_cmsspread_pricer
+
+.. automethod:: LognormalCmsSpreadPricer.floorlet_rate

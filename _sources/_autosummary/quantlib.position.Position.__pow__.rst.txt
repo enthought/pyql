@@ -1,0 +1,6 @@
+quantlib.position.Position.\_\_pow\_\_
+======================================
+
+.. currentmodule:: quantlib.position
+
+.. automethod:: Position.__pow__

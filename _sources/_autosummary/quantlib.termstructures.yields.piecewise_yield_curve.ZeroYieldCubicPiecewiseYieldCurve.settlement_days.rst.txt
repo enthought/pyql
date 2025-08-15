@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.piecewise\_yield\_curve.ZeroYieldCubicPiecewiseYieldCurve.settlement\_days
+=========================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_yield_curve
+
+.. autoattribute:: ZeroYieldCubicPiecewiseYieldCurve.settlement_days

@@ -1,45 +1,52 @@
-quantlib.pricingengines.credit.isda\_cds\_engine.AccrualBias
-============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.pricingengines.credit.isda_cds_engine.</div>
+   <div class="empty"></div>
+
+AccrualBias
+==========================================================
 
 .. currentmodule:: quantlib.pricingengines.credit.isda_cds_engine
 
 .. autoclass:: AccrualBias
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         AccrualBias.__mul__
+         AccrualBias.__pow__
+         AccrualBias.conjugate
+         AccrualBias.bit_length
+         AccrualBias.bit_count
+         AccrualBias.to_bytes
+         AccrualBias.from_bytes
+         AccrualBias.as_integer_ratio
+         AccrualBias.__len__
+         AccrualBias.__getitem__
+      
+         AccrualBias.__len__
+         AccrualBias.__getitem__
+         AccrualBias.__mul__
+         AccrualBias.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~AccrualBias.conjugate
-      ~AccrualBias.bit_length
-      ~AccrualBias.bit_count
-      ~AccrualBias.to_bytes
-      ~AccrualBias.from_bytes
-      ~AccrualBias.as_integer_ratio
-      ~AccrualBias.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~AccrualBias.real
-      ~AccrualBias.imag
-      ~AccrualBias.numerator
-      ~AccrualBias.denominator
-      ~AccrualBias.HalfDayBias
-      ~AccrualBias.NoBias
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         AccrualBias.real
+         AccrualBias.imag
+         AccrualBias.numerator
+         AccrualBias.denominator
+         AccrualBias.HalfDayBias
+         AccrualBias.NoBias
+  
+  

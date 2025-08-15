@@ -1,48 +1,55 @@
-quantlib.compounding.Compounding
+.. raw:: html
+
+   <div class="prename">quantlib.compounding.</div>
+   <div class="empty"></div>
+
+Compounding
 ================================
 
 .. currentmodule:: quantlib.compounding
 
 .. autoclass:: Compounding
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Compounding.__mul__
+         Compounding.__pow__
+         Compounding.conjugate
+         Compounding.bit_length
+         Compounding.bit_count
+         Compounding.to_bytes
+         Compounding.from_bytes
+         Compounding.as_integer_ratio
+         Compounding.__len__
+         Compounding.__getitem__
+      
+         Compounding.__len__
+         Compounding.__getitem__
+         Compounding.__mul__
+         Compounding.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Compounding.conjugate
-      ~Compounding.bit_length
-      ~Compounding.bit_count
-      ~Compounding.to_bytes
-      ~Compounding.from_bytes
-      ~Compounding.as_integer_ratio
-      ~Compounding.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Compounding.real
-      ~Compounding.imag
-      ~Compounding.numerator
-      ~Compounding.denominator
-      ~Compounding.Simple
-      ~Compounding.Continuous
-      ~Compounding.Compounded
-      ~Compounding.SimpleThenCompounded
-      ~Compounding.CompoundedThenSimple
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Compounding.real
+         Compounding.imag
+         Compounding.numerator
+         Compounding.denominator
+         Compounding.Simple
+         Compounding.Continuous
+         Compounding.Compounded
+         Compounding.SimpleThenCompounded
+         Compounding.CompoundedThenSimple
+  
+  

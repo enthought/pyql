@@ -1,0 +1,6 @@
+quantlib.time.dategeneration.DateGeneration.Zero
+================================================
+
+.. currentmodule:: quantlib.time.dategeneration
+
+.. autoattribute:: DateGeneration.Zero

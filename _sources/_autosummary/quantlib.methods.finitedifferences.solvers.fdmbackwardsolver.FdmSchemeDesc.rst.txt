@@ -1,45 +1,44 @@
-quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.FdmSchemeDesc
+.. raw:: html
+
+   <div class="prename">quantlib.methods.finitedifferences.solvers.fdmbackwardsolver.</div>
+   <div class="empty"></div>
+
+FdmSchemeDesc
 ==========================================================================
 
 .. currentmodule:: quantlib.methods.finitedifferences.solvers.fdmbackwardsolver
 
 .. autoclass:: FdmSchemeDesc
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FdmSchemeDesc.CraigSneyd
+         FdmSchemeDesc.CrankNicolson
+         FdmSchemeDesc.Douglas
+         FdmSchemeDesc.ExplicitEuler
+         FdmSchemeDesc.Hundsdorfer
+         FdmSchemeDesc.ImplicitEuler
+         FdmSchemeDesc.MethodOfLines
+         FdmSchemeDesc.ModifiedCraigSneyd
+         FdmSchemeDesc.TrBDF2
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FdmSchemeDesc.CraigSneyd
-      ~FdmSchemeDesc.CrankNicolson
-      ~FdmSchemeDesc.Douglas
-      ~FdmSchemeDesc.ExplicitEuler
-      ~FdmSchemeDesc.Hundsdorfer
-      ~FdmSchemeDesc.ImplicitEuler
-      ~FdmSchemeDesc.MethodOfLines
-      ~FdmSchemeDesc.ModifiedCraigSneyd
-      ~FdmSchemeDesc.TrBDF2
-      ~FdmSchemeDesc.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~FdmSchemeDesc.mu
-      ~FdmSchemeDesc.theta
-      ~FdmSchemeDesc.type
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FdmSchemeDesc.mu
+         FdmSchemeDesc.theta
+         FdmSchemeDesc.type
+  
+  

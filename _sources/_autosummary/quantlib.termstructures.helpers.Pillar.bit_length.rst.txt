@@ -1,0 +1,6 @@
+quantlib.termstructures.helpers.Pillar.bit\_length
+==================================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. automethod:: Pillar.bit_length

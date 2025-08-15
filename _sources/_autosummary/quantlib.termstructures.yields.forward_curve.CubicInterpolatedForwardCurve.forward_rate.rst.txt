@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.CubicInterpolatedForwardCurve.forward\_rate
+=========================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. automethod:: CubicInterpolatedForwardCurve.forward_rate

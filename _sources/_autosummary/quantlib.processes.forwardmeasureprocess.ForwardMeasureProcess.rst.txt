@@ -1,36 +1,35 @@
-quantlib.processes.forwardmeasureprocess.ForwardMeasureProcess
+.. raw:: html
+
+   <div class="prename">quantlib.processes.forwardmeasureprocess.</div>
+   <div class="empty"></div>
+
+ForwardMeasureProcess
 ==============================================================
 
 .. currentmodule:: quantlib.processes.forwardmeasureprocess
 
 .. autoclass:: ForwardMeasureProcess
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ForwardMeasureProcess.factors
+         ForwardMeasureProcess.size
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ForwardMeasureProcess.__init__
-      ~ForwardMeasureProcess.factors
-      ~ForwardMeasureProcess.size
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ForwardMeasureProcess.forward_measure_time
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ForwardMeasureProcess.forward_measure_time
+  
+  

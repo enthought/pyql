@@ -1,0 +1,6 @@
+quantlib.exercise.Type.\_\_mul\_\_
+==================================
+
+.. currentmodule:: quantlib.exercise
+
+.. automethod:: Type.__mul__

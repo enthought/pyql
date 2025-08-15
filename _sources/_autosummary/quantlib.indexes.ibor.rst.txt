@@ -4,28 +4,10 @@ quantlib.indexes.ibor
 .. automodule:: quantlib.indexes.ibor
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    eonia
@@ -33,4 +15,3 @@ quantlib.indexes.ibor
    libor
    sofr
    usdlibor
-

@@ -4,29 +4,11 @@ quantlib.experimental.termstructures.crosscurrencyratehelpers
 .. automodule:: quantlib.experimental.termstructures.crosscurrencyratehelpers
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       ConstNotionalCrossCurrencyBasisSwapRateHelper
       MtMCrossCurrencyBasisSwapRateHelper
    
-   
-
-   
-   
-   
-
-
-

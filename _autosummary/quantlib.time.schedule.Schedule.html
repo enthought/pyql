@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.time.schedule.Schedule &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>Schedule &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,8 +15,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.time_grid" href="quantlib.time_grid.html" />
-    <link rel="prev" title="quantlib.time.schedule.previous_twentieth" href="quantlib.time.schedule.previous_twentieth.html" />
+    <link rel="next" title="quantlib.time.schedule.Schedule.at" href="quantlib.time.schedule.Schedule.at.html" />
+    <link rel="prev" title="quantlib.time.schedule" href="quantlib.time.schedule.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,90 +34,43 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-time-schedule-schedule">
-<h1>quantlib.time.schedule.Schedule<a class="headerlink" href="#quantlib-time-schedule-schedule" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.time.schedule.</div>
+<div class="empty"></div><section id="schedule">
+<h1>Schedule<a class="headerlink" href="#schedule" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.time.schedule.Schedule">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">effective_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">termination_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Period</span> <span class="pre">tenor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">calendar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BusinessDayConvention</span> <span class="pre">business_day_convention=Following</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BusinessDayConvention</span> <span class="pre">termination_date_convention=Following</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DateGeneration</span> <span class="pre">date_generation_rule=DateGeneration.Forward</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">end_of_month=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.schedule.Schedule" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Payment schedule.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.time.schedule.Schedule.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.schedule.Schedule.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.time.schedule.Schedule.__init__" title="quantlib.time.schedule.Schedule.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.schedule.Schedule.at.html#quantlib.time.schedule.Schedule.at" title="quantlib.time.schedule.Schedule.at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">at</span></code></a>(self, int index)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.time.schedule.Schedule.at" title="quantlib.time.schedule.Schedule.at"><code class="xref py py-obj docutils literal notranslate"><span class="pre">at</span></code></a>(self, int index)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.schedule.Schedule.dates.html#quantlib.time.schedule.Schedule.dates" title="quantlib.time.schedule.Schedule.dates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dates</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.time.schedule.Schedule.dates" title="quantlib.time.schedule.Schedule.dates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dates</span></code></a>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.schedule.Schedule.from_dates.html#quantlib.time.schedule.Schedule.from_dates" title="quantlib.time.schedule.Schedule.from_dates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_dates</span></code></a>(cls, dates, ...[, ...])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.time.schedule.Schedule.from_dates" title="quantlib.time.schedule.Schedule.from_dates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_dates</span></code></a>(cls, dates, ...[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.schedule.Schedule.from_rule.html#quantlib.time.schedule.Schedule.from_rule" title="quantlib.time.schedule.Schedule.from_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_rule</span></code></a>(cls, Date effective_date, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.time.schedule.Schedule.from_rule" title="quantlib.time.schedule.Schedule.from_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_rule</span></code></a>(cls, Date effective_date, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.schedule.Schedule.next_date.html#quantlib.time.schedule.Schedule.next_date" title="quantlib.time.schedule.Schedule.next_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">next_date</span></code></a>(self, Date reference_date)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.time.schedule.Schedule.next_date" title="quantlib.time.schedule.Schedule.next_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">next_date</span></code></a>(self, Date reference_date)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.schedule.Schedule.previous_date.html#quantlib.time.schedule.Schedule.previous_date" title="quantlib.time.schedule.Schedule.previous_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">previous_date</span></code></a>(self, Date reference_date)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.time.schedule.Schedule.previous_date" title="quantlib.time.schedule.Schedule.previous_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">previous_date</span></code></a>(self, Date reference_date)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.schedule.Schedule.size.html#quantlib.time.schedule.Schedule.size" title="quantlib.time.schedule.Schedule.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.time.schedule.Schedule.size" title="quantlib.time.schedule.Schedule.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code></a>(self)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.time.schedule.Schedule.to_npdates" title="quantlib.time.schedule.Schedule.to_npdates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_npdates</span></code></a>(self)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.schedule.Schedule.to_npdates.html#quantlib.time.schedule.Schedule.to_npdates" title="quantlib.time.schedule.Schedule.to_npdates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_npdates</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.time.schedule.Schedule.at">
-<span class="sig-name descname"><span class="pre">at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.schedule.Schedule.at" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.time.schedule.Schedule.dates">
-<span class="sig-name descname"><span class="pre">dates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.schedule.Schedule.dates" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.time.schedule.Schedule.from_dates">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">calendar=NullCalendar()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BusinessDayConvention</span> <span class="pre">business_day_convention=Unadjusted</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">termination_date_convention=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Period</span> <span class="pre">tenor=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_of_month=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector[bool]</span> <span class="pre">is_regular=[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.schedule.Schedule.from_dates" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.time.schedule.Schedule.from_rule">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">effective_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">termination_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Period</span> <span class="pre">tenor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">calendar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BusinessDayConvention</span> <span class="pre">business_day_convention=Following</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BusinessDayConvention</span> <span class="pre">termination_date_convention=Following</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DateGeneration</span> <span class="pre">rule=DateGeneration.Forward</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">end_of_month=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">first_date=Date()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">next_to_lastdate=Date()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.schedule.Schedule.from_rule" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.time.schedule.Schedule.next_date">
-<span class="sig-name descname"><span class="pre">next_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">reference_date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.schedule.Schedule.next_date" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.time.schedule.Schedule.previous_date">
-<span class="sig-name descname"><span class="pre">previous_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">reference_date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.schedule.Schedule.previous_date" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.time.schedule.Schedule.size">
-<span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.schedule.Schedule.size" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.time.schedule.Schedule.to_npdates">
-<span class="sig-name descname"><span class="pre">to_npdates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.schedule.Schedule.to_npdates" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </section>
@@ -160,8 +113,8 @@
   <li><a href="quantlib.html">quantlib</a><ul>
   <li><a href="quantlib.time.html">quantlib.time</a><ul>
   <li><a href="quantlib.time.schedule.html">quantlib.time.schedule</a><ul>
-      <li>Previous: <a href="quantlib.time.schedule.previous_twentieth.html" title="previous chapter">quantlib.time.schedule.previous_twentieth</a></li>
-      <li>Next: <a href="quantlib.time_grid.html" title="next chapter">quantlib.time_grid</a></li>
+      <li>Previous: <a href="quantlib.time.schedule.html" title="previous chapter">quantlib.time.schedule</a></li>
+      <li>Next: <a href="quantlib.time.schedule.Schedule.at.html" title="next chapter">quantlib.time.schedule.Schedule.at</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

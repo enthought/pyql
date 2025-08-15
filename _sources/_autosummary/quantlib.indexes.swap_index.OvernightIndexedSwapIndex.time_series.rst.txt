@@ -1,0 +1,6 @@
+quantlib.indexes.swap\_index.OvernightIndexedSwapIndex.time\_series
+===================================================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. autoattribute:: OvernightIndexedSwapIndex.time_series

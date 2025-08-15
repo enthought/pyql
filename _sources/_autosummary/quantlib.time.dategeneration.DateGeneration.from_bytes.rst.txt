@@ -1,0 +1,6 @@
+quantlib.time.dategeneration.DateGeneration.from\_bytes
+=======================================================
+
+.. currentmodule:: quantlib.time.dategeneration
+
+.. automethod:: DateGeneration.from_bytes

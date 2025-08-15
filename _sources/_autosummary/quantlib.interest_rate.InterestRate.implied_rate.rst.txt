@@ -1,0 +1,6 @@
+quantlib.interest\_rate.InterestRate.implied\_rate
+==================================================
+
+.. currentmodule:: quantlib.interest_rate
+
+.. automethod:: InterestRate.implied_rate

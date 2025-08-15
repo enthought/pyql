@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.floatingratebond.FloatingRateBond.notional
+=====================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.floatingratebond
+
+.. automethod:: FloatingRateBond.notional

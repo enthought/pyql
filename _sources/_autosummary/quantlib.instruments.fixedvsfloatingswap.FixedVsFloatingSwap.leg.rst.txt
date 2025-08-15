@@ -1,0 +1,6 @@
+quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.leg
+================================================================
+
+.. currentmodule:: quantlib.instruments.fixedvsfloatingswap
+
+.. automethod:: FixedVsFloatingSwap.leg

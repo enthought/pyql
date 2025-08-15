@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_kingdom.Market.Metals
+=====================================================
+
+.. currentmodule:: quantlib.time.calendars.united_kingdom
+
+.. autoattribute:: Market.Metals

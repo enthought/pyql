@@ -1,0 +1,6 @@
+quantlib.time.calendars.poland.Poland.adjust
+============================================
+
+.. currentmodule:: quantlib.time.calendars.poland
+
+.. automethod:: Poland.adjust

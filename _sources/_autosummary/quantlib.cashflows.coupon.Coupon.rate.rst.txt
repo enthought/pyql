@@ -1,0 +1,6 @@
+quantlib.cashflows.coupon.Coupon.rate
+=====================================
+
+.. currentmodule:: quantlib.cashflows.coupon
+
+.. autoattribute:: Coupon.rate

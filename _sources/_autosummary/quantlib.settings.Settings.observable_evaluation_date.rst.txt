@@ -1,0 +1,6 @@
+quantlib.settings.Settings.observable\_evaluation\_date
+=======================================================
+
+.. currentmodule:: quantlib.settings
+
+.. autoattribute:: Settings.observable_evaluation_date

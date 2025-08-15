@@ -1,0 +1,6 @@
+quantlib.market.conventions.swap.row.\_\_len\_\_
+================================================
+
+.. currentmodule:: quantlib.market.conventions.swap
+
+.. automethod:: row.__len__

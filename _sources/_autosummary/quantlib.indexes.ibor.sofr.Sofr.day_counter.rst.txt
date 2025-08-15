@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.sofr.Sofr.day\_counter
+============================================
+
+.. currentmodule:: quantlib.indexes.ibor.sofr
+
+.. autoattribute:: Sofr.day_counter

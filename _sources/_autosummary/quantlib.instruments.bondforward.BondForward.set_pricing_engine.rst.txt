@@ -1,0 +1,6 @@
+quantlib.instruments.bondforward.BondForward.set\_pricing\_engine
+=================================================================
+
+.. currentmodule:: quantlib.instruments.bondforward
+
+.. automethod:: BondForward.set_pricing_engine

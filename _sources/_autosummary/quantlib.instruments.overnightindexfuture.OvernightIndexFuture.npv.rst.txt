@@ -1,0 +1,6 @@
+quantlib.instruments.overnightindexfuture.OvernightIndexFuture.npv
+==================================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexfuture
+
+.. autoattribute:: OvernightIndexFuture.npv

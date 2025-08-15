@@ -1,0 +1,6 @@
+quantlib.math.matrixutilities.pseudosqrt.SalvagingAlgorithm.\_\_pow\_\_
+=======================================================================
+
+.. currentmodule:: quantlib.math.matrixutilities.pseudosqrt
+
+.. automethod:: SalvagingAlgorithm.__pow__

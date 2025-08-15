@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.Call
+===========================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Swaption.Call

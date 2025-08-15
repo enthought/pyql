@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.ukrpi.UKRPI.region
+=============================================
+
+.. currentmodule:: quantlib.indexes.inflation.ukrpi
+
+.. autoattribute:: UKRPI.region

@@ -1,0 +1,6 @@
+quantlib.time.calendars.canada.Market.bit\_count
+================================================
+
+.. currentmodule:: quantlib.time.calendars.canada
+
+.. automethod:: Market.bit_count

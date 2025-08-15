@@ -1,0 +1,6 @@
+quantlib.time.date.TimeUnit.Hours
+=================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: TimeUnit.Hours

@@ -1,0 +1,6 @@
+quantlib.indexes.swap\_index.OvernightIndexedSwapIndex.currency
+===============================================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. autoattribute:: OvernightIndexedSwapIndex.currency

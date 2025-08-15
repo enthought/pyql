@@ -4,15 +4,9 @@ quantlib.termstructures.volatility.sabr
 .. automodule:: quantlib.termstructures.volatility.sabr
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
    
       sabr_volatility
       shifted_sabr_volatility
@@ -20,15 +14,3 @@ quantlib.termstructures.volatility.sabr
       unsafe_shifted_sabr_volatility
       validate_sabr_parameters
    
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-

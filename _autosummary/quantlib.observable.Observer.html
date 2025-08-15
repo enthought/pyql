@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.observable.Observer &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>Observer &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,8 +15,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.option" href="quantlib.option.html" />
-    <link rel="prev" title="quantlib.observable.Observable" href="quantlib.observable.Observable.html" />
+    <link rel="next" title="quantlib.observable.Observer.register_with" href="quantlib.observable.Observer.register_with.html" />
+    <link rel="prev" title="Observable" href="quantlib.observable.Observable.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,41 +34,24 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-observable-observer">
-<h1>quantlib.observable.Observer<a class="headerlink" href="#quantlib-observable-observer" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.observable.</div>
+<div class="empty"></div><section id="observer">
+<h1>Observer<a class="headerlink" href="#observer" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.observable.Observer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Observer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.observable.Observer" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.observable.Observer.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.observable.Observer.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.observable.Observer.__init__" title="quantlib.observable.Observer.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.observable.Observer.register_with.html#quantlib.observable.Observer.register_with" title="quantlib.observable.Observer.register_with"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_with</span></code></a>(self, Observable obj)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.observable.Observer.register_with" title="quantlib.observable.Observer.register_with"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_with</span></code></a>(self, Observable obj)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.observable.Observer.unregister_with" title="quantlib.observable.Observer.unregister_with"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unregister_with</span></code></a>(self, Observable obj)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.observable.Observer.unregister_with.html#quantlib.observable.Observer.unregister_with" title="quantlib.observable.Observer.unregister_with"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unregister_with</span></code></a>(self, Observable obj)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.observable.Observer.register_with">
-<span class="sig-name descname"><span class="pre">register_with</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Observable</span> <span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.observable.Observer.register_with" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.observable.Observer.unregister_with">
-<span class="sig-name descname"><span class="pre">unregister_with</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Observable</span> <span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.observable.Observer.unregister_with" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </section>
@@ -110,8 +93,8 @@
   <li><a href="../reference_guide.html">Reference guide</a><ul>
   <li><a href="quantlib.html">quantlib</a><ul>
   <li><a href="quantlib.observable.html">quantlib.observable</a><ul>
-      <li>Previous: <a href="quantlib.observable.Observable.html" title="previous chapter">quantlib.observable.Observable</a></li>
-      <li>Next: <a href="quantlib.option.html" title="next chapter">quantlib.option</a></li>
+      <li>Previous: <a href="quantlib.observable.Observable.html" title="previous chapter">Observable</a></li>
+      <li>Next: <a href="quantlib.observable.Observer.register_with.html" title="next chapter">quantlib.observable.Observer.register_with</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

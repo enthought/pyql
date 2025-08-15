@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.ForwardCurve.time\_from\_reference
+================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. automethod:: ForwardCurve.time_from_reference

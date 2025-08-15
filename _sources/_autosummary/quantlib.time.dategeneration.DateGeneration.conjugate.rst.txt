@@ -1,0 +1,6 @@
+quantlib.time.dategeneration.DateGeneration.conjugate
+=====================================================
+
+.. currentmodule:: quantlib.time.dategeneration
+
+.. automethod:: DateGeneration.conjugate

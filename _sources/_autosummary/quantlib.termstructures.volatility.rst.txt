@@ -4,28 +4,10 @@ quantlib.termstructures.volatility
 .. automodule:: quantlib.termstructures.volatility
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    api
@@ -36,4 +18,3 @@ quantlib.termstructures.volatility
    smilesection
    swaption
    volatilitytype
-

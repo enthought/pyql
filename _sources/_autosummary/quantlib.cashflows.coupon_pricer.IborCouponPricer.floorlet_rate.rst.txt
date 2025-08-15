@@ -1,0 +1,6 @@
+quantlib.cashflows.coupon\_pricer.IborCouponPricer.floorlet\_rate
+=================================================================
+
+.. currentmodule:: quantlib.cashflows.coupon_pricer
+
+.. automethod:: IborCouponPricer.floorlet_rate

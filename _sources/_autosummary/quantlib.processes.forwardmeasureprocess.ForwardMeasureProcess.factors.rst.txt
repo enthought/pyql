@@ -1,0 +1,6 @@
+quantlib.processes.forwardmeasureprocess.ForwardMeasureProcess.factors
+======================================================================
+
+.. currentmodule:: quantlib.processes.forwardmeasureprocess
+
+.. automethod:: ForwardMeasureProcess.factors

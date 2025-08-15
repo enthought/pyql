@@ -1,0 +1,6 @@
+quantlib.models.shortrate.calibrationhelpers.swaption\_helper.SwaptionHelper.calibration\_error
+===============================================================================================
+
+.. currentmodule:: quantlib.models.shortrate.calibrationhelpers.swaption_helper
+
+.. automethod:: SwaptionHelper.calibration_error

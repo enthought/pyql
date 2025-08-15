@@ -1,55 +1,54 @@
-quantlib.indexes.swap.euribor\_swap.EuriborSwapIsdaFixB
-=======================================================
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.swap.euribor_swap.</div>
+   <div class="empty"></div>
+
+EuriborSwapIsdaFixB
+======================================================
 
 .. currentmodule:: quantlib.indexes.swap.euribor_swap
 
 .. autoclass:: EuriborSwapIsdaFixB
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         EuriborSwapIsdaFixB.add_fixing
+         EuriborSwapIsdaFixB.add_fixings
+         EuriborSwapIsdaFixB.clear_fixings
+         EuriborSwapIsdaFixB.fixing
+         EuriborSwapIsdaFixB.fixing_date
+         EuriborSwapIsdaFixB.forecast_fixing
+         EuriborSwapIsdaFixB.has_historical_fixing
+         EuriborSwapIsdaFixB.is_valid_fixing_date
+         EuriborSwapIsdaFixB.maturity_date
+         EuriborSwapIsdaFixB.underlying_swap
+         EuriborSwapIsdaFixB.value_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~EuriborSwapIsdaFixB.__init__
-      ~EuriborSwapIsdaFixB.add_fixing
-      ~EuriborSwapIsdaFixB.add_fixings
-      ~EuriborSwapIsdaFixB.clear_fixings
-      ~EuriborSwapIsdaFixB.fixing
-      ~EuriborSwapIsdaFixB.fixing_date
-      ~EuriborSwapIsdaFixB.forecast_fixing
-      ~EuriborSwapIsdaFixB.has_historical_fixing
-      ~EuriborSwapIsdaFixB.is_valid_fixing_date
-      ~EuriborSwapIsdaFixB.maturity_date
-      ~EuriborSwapIsdaFixB.underlying_swap
-      ~EuriborSwapIsdaFixB.value_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~EuriborSwapIsdaFixB.currency
-      ~EuriborSwapIsdaFixB.day_counter
-      ~EuriborSwapIsdaFixB.discounting_term_structure
-      ~EuriborSwapIsdaFixB.family_name
-      ~EuriborSwapIsdaFixB.fixing_calendar
-      ~EuriborSwapIsdaFixB.fixing_days
-      ~EuriborSwapIsdaFixB.forwarding_term_structure
-      ~EuriborSwapIsdaFixB.ibor_index
-      ~EuriborSwapIsdaFixB.name
-      ~EuriborSwapIsdaFixB.tenor
-      ~EuriborSwapIsdaFixB.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         EuriborSwapIsdaFixB.currency
+         EuriborSwapIsdaFixB.day_counter
+         EuriborSwapIsdaFixB.discounting_term_structure
+         EuriborSwapIsdaFixB.family_name
+         EuriborSwapIsdaFixB.fixing_calendar
+         EuriborSwapIsdaFixB.fixing_days
+         EuriborSwapIsdaFixB.forwarding_term_structure
+         EuriborSwapIsdaFixB.ibor_index
+         EuriborSwapIsdaFixB.name
+         EuriborSwapIsdaFixB.tenor
+         EuriborSwapIsdaFixB.time_series
+  
+  

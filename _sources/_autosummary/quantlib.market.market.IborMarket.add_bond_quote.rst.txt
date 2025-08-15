@@ -1,0 +1,6 @@
+quantlib.market.market.IborMarket.add\_bond\_quote
+==================================================
+
+.. currentmodule:: quantlib.market.market
+
+.. automethod:: IborMarket.add_bond_quote

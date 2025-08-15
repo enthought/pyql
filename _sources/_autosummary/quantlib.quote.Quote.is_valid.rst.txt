@@ -1,0 +1,6 @@
+quantlib.quote.Quote.is\_valid
+==============================
+
+.. currentmodule:: quantlib.quote
+
+.. autoattribute:: Quote.is_valid

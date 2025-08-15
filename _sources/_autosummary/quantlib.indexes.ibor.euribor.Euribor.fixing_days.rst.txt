@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.euribor.Euribor.fixing\_days
+==================================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. autoattribute:: Euribor.fixing_days

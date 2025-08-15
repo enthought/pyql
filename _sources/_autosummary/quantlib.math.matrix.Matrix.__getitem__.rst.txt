@@ -1,0 +1,6 @@
+quantlib.math.matrix.Matrix.\_\_getitem\_\_
+===========================================
+
+.. currentmodule:: quantlib.math.matrix
+
+.. automethod:: Matrix.__getitem__

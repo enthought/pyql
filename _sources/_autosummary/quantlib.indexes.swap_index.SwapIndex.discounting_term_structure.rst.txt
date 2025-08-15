@@ -1,0 +1,6 @@
+quantlib.indexes.swap\_index.SwapIndex.discounting\_term\_structure
+===================================================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. autoattribute:: SwapIndex.discounting_term_structure

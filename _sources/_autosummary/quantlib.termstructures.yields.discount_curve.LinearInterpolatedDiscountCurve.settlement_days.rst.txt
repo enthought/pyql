@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.discount\_curve.LinearInterpolatedDiscountCurve.settlement\_days
+===============================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.discount_curve
+
+.. autoattribute:: LinearInterpolatedDiscountCurve.settlement_days

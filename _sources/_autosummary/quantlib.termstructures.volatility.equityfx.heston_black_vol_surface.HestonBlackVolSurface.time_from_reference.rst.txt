@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.heston\_black\_vol\_surface.HestonBlackVolSurface.time\_from\_reference
+===================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.heston_black_vol_surface
+
+.. automethod:: HestonBlackVolSurface.time_from_reference

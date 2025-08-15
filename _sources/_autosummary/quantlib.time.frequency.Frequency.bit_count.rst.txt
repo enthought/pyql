@@ -1,0 +1,6 @@
+quantlib.time.frequency.Frequency.bit\_count
+============================================
+
+.. currentmodule:: quantlib.time.frequency
+
+.. automethod:: Frequency.bit_count

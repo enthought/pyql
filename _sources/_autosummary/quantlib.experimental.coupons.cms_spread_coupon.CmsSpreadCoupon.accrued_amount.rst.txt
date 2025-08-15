@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.cms\_spread\_coupon.CmsSpreadCoupon.accrued\_amount
+=================================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.cms_spread_coupon
+
+.. automethod:: CmsSpreadCoupon.accrued_amount

@@ -1,0 +1,6 @@
+quantlib.payoffs.PercentageStrikePayoff.\_\_call\_\_
+====================================================
+
+.. currentmodule:: quantlib.payoffs
+
+.. automethod:: PercentageStrikePayoff.__call__

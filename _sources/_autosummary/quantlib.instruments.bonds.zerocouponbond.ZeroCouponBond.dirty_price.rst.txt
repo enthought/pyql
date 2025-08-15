@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.zerocouponbond.ZeroCouponBond.dirty\_price
+=====================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.zerocouponbond
+
+.. autoattribute:: ZeroCouponBond.dirty_price

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.LinearInterpolatedForwardCurve.max\_time
+======================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. autoattribute:: LinearInterpolatedForwardCurve.max_time

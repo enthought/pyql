@@ -1,0 +1,6 @@
+quantlib.instruments.overnightindexedswap.OvernightIndexedSwap.leg\_NPV
+=======================================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexedswap
+
+.. automethod:: OvernightIndexedSwap.leg_NPV

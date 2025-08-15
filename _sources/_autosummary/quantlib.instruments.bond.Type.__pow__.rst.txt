@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Type.\_\_pow\_\_
+==========================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. automethod:: Type.__pow__

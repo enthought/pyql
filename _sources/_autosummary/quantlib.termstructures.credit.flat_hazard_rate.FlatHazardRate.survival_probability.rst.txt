@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.flat\_hazard\_rate.FlatHazardRate.survival\_probability
+======================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.flat_hazard_rate
+
+.. automethod:: FlatHazardRate.survival_probability

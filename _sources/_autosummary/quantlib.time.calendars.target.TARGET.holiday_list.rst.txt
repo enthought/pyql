@@ -1,0 +1,6 @@
+quantlib.time.calendars.target.TARGET.holiday\_list
+===================================================
+
+.. currentmodule:: quantlib.time.calendars.target
+
+.. automethod:: TARGET.holiday_list

@@ -1,0 +1,6 @@
+quantlib.pricingengines.vanilla.fdblackscholesvanillaengine.CashDividendModel.\_\_pow\_\_
+=========================================================================================
+
+.. currentmodule:: quantlib.pricingengines.vanilla.fdblackscholesvanillaengine
+
+.. automethod:: CashDividendModel.__pow__

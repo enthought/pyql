@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.strike\_sensitivity
+======================================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. autoattribute:: EuropeanOption.strike_sensitivity

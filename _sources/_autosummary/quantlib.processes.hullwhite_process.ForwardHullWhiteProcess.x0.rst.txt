@@ -1,0 +1,6 @@
+quantlib.processes.hullwhite\_process.ForwardHullWhiteProcess.x0
+================================================================
+
+.. currentmodule:: quantlib.processes.hullwhite_process
+
+.. autoattribute:: ForwardHullWhiteProcess.x0

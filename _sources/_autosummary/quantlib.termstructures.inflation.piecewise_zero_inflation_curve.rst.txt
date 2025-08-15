@@ -4,28 +4,10 @@ quantlib.termstructures.inflation.piecewise\_zero\_inflation\_curve
 .. automodule:: quantlib.termstructures.inflation.piecewise_zero_inflation_curve
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       PiecewiseZeroInflationCurve
    
-   
-
-   
-   
-   
-
-
-

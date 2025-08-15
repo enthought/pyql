@@ -1,0 +1,6 @@
+quantlib.instruments.futures.FuturesType.IMM
+============================================
+
+.. currentmodule:: quantlib.instruments.futures
+
+.. autoattribute:: FuturesType.IMM

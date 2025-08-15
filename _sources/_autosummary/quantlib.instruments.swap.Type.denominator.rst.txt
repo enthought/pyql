@@ -1,0 +1,6 @@
+quantlib.instruments.swap.Type.denominator
+==========================================
+
+.. currentmodule:: quantlib.instruments.swap
+
+.. autoattribute:: Type.denominator

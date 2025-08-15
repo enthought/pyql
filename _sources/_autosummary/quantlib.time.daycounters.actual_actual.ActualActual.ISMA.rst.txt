@@ -1,0 +1,6 @@
+quantlib.time.daycounters.actual\_actual.ActualActual.ISMA
+==========================================================
+
+.. currentmodule:: quantlib.time.daycounters.actual_actual
+
+.. autoattribute:: ActualActual.ISMA

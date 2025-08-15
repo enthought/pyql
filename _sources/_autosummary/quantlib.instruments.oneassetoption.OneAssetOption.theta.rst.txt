@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.theta
+========================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.theta

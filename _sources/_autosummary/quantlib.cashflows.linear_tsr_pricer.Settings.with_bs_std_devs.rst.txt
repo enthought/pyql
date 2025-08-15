@@ -1,0 +1,6 @@
+quantlib.cashflows.linear\_tsr\_pricer.Settings.with\_bs\_std\_devs
+===================================================================
+
+.. currentmodule:: quantlib.cashflows.linear_tsr_pricer
+
+.. automethod:: Settings.with_bs_std_devs

@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.smilesection.SmileSection.option\_price
+==========================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.smilesection
+
+.. automethod:: SmileSection.option_price

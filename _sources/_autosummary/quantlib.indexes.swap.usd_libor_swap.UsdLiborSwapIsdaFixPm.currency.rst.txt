@@ -1,0 +1,6 @@
+quantlib.indexes.swap.usd\_libor\_swap.UsdLiborSwapIsdaFixPm.currency
+=====================================================================
+
+.. currentmodule:: quantlib.indexes.swap.usd_libor_swap
+
+.. autoattribute:: UsdLiborSwapIsdaFixPm.currency

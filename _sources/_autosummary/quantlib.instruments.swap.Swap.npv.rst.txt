@@ -1,0 +1,6 @@
+quantlib.instruments.swap.Swap.npv
+==================================
+
+.. currentmodule:: quantlib.instruments.swap
+
+.. autoattribute:: Swap.npv

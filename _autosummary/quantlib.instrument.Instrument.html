@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.instrument.Instrument &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>Instrument &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.instruments" href="quantlib.instruments.html" />
+    <link rel="next" title="quantlib.instrument.Instrument.set_pricing_engine" href="quantlib.instrument.Instrument.set_pricing_engine.html" />
     <link rel="prev" title="quantlib.instrument" href="quantlib.instrument.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,8 +34,9 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-instrument-instrument">
-<h1>quantlib.instrument.Instrument<a class="headerlink" href="#quantlib-instrument-instrument" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.instrument.</div>
+<div class="empty"></div><section id="instrument">
+<h1>Instrument<a class="headerlink" href="#instrument" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.instrument.Instrument">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Instrument</span></span><a class="headerlink" href="#quantlib.instrument.Instrument" title="Link to this definition">¶</a></dt>
@@ -43,57 +44,28 @@
 <p>Abstract instrument class</p>
 <p>This class is purely abstract and defines the interface of concrete
 instruments which will be derived from this one.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instrument.Instrument.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instrument.Instrument.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference internal" href="quantlib.instrument.Instrument.is_expired.html#quantlib.instrument.Instrument.is_expired" title="quantlib.instrument.Instrument.is_expired"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_expired</span></code></a></dt><dd><p>Instrument.is_expired: bool</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instrument.Instrument.net_present_value.html#quantlib.instrument.Instrument.net_present_value" title="quantlib.instrument.Instrument.net_present_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">net_present_value</span></code></a></dt><dd><p>Instrument net present value.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instrument.Instrument.npv.html#quantlib.instrument.Instrument.npv" title="quantlib.instrument.Instrument.npv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv</span></code></a></dt><dd><p>Shortcut to the net_present_value property.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instrument.Instrument.valuation_date.html#quantlib.instrument.Instrument.valuation_date" title="quantlib.instrument.Instrument.valuation_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">valuation_date</span></code></a></dt><dd><p>the date the net present value refers to.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instrument.Instrument.__init__" title="quantlib.instrument.Instrument.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instrument.Instrument.set_pricing_engine" title="quantlib.instrument.Instrument.set_pricing_engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code></a>(self, PricingEngine engine)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instrument.Instrument.set_pricing_engine.html#quantlib.instrument.Instrument.set_pricing_engine" title="quantlib.instrument.Instrument.set_pricing_engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code></a>(self, PricingEngine engine)</p></td>
 <td><p>Sets the pricing engine.</p></td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_expired</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instrument.Instrument.net_present_value" title="quantlib.instrument.Instrument.net_present_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">net_present_value</span></code></a></p></td>
-<td><p>Instrument net present value.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instrument.Instrument.npv" title="quantlib.instrument.Instrument.npv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv</span></code></a></p></td>
-<td><p>Shortcut to the net_present_value property.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valuation_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.instrument.Instrument.net_present_value">
-<span class="sig-name descname"><span class="pre">net_present_value</span></span><a class="headerlink" href="#quantlib.instrument.Instrument.net_present_value" title="Link to this definition">¶</a></dt>
-<dd><p>Instrument net present value.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="quantlib.instrument.Instrument.npv">
-<span class="sig-name descname"><span class="pre">npv</span></span><a class="headerlink" href="#quantlib.instrument.Instrument.npv" title="Link to this definition">¶</a></dt>
-<dd><p>Shortcut to the net_present_value property.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instrument.Instrument.set_pricing_engine">
-<span class="sig-name descname"><span class="pre">set_pricing_engine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PricingEngine</span> <span class="pre">engine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instrument.Instrument.set_pricing_engine" title="Link to this definition">¶</a></dt>
-<dd><p>Sets the pricing engine.</p>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -136,7 +108,7 @@ instruments which will be derived from this one.</p>
   <li><a href="quantlib.html">quantlib</a><ul>
   <li><a href="quantlib.instrument.html">quantlib.instrument</a><ul>
       <li>Previous: <a href="quantlib.instrument.html" title="previous chapter">quantlib.instrument</a></li>
-      <li>Next: <a href="quantlib.instruments.html" title="next chapter">quantlib.instruments</a></li>
+      <li>Next: <a href="quantlib.instrument.Instrument.set_pricing_engine.html" title="next chapter">quantlib.instrument.Instrument.set_pricing_engine</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

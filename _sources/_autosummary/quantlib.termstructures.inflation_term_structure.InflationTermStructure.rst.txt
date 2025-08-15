@@ -1,37 +1,36 @@
-quantlib.termstructures.inflation\_term\_structure.InflationTermStructure
-=========================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.inflation_term_structure.</div>
+   <div class="empty"></div>
+
+InflationTermStructure
+=======================================================================
 
 .. currentmodule:: quantlib.termstructures.inflation_term_structure
 
 .. autoclass:: InflationTermStructure
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~InflationTermStructure.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~InflationTermStructure.base_date
-      ~InflationTermStructure.base_rate
-      ~InflationTermStructure.max_date
-      ~InflationTermStructure.reference_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         InflationTermStructure.base_date
+         InflationTermStructure.base_rate
+         InflationTermStructure.max_date
+         InflationTermStructure.reference_date
+  
+  

@@ -4,30 +4,12 @@ quantlib.termstructures.inflation\_term\_structure
 .. automodule:: quantlib.termstructures.inflation_term_structure
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       InflationTermStructure
       YoYInflationTermStructure
       ZeroInflationTermStructure
    
-   
-
-   
-   
-   
-
-
-

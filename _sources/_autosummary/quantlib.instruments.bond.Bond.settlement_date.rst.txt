@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Bond.settlement\_date
+===============================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. automethod:: Bond.settlement_date

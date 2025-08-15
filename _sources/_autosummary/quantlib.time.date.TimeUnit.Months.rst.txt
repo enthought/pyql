@@ -1,0 +1,6 @@
+quantlib.time.date.TimeUnit.Months
+==================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: TimeUnit.Months

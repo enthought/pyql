@@ -1,0 +1,6 @@
+quantlib.time.date.TimeUnit.Weeks
+=================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: TimeUnit.Weeks

@@ -1,36 +1,35 @@
-quantlib.indexes.region.Region
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.region.</div>
+   <div class="empty"></div>
+
+Region
 ==============================
 
 .. currentmodule:: quantlib.indexes.region
 
 .. autoclass:: Region
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Region.from_name
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Region.__init__
-      ~Region.from_name
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Region.code
-      ~Region.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Region.code
+         Region.name
+  
+  

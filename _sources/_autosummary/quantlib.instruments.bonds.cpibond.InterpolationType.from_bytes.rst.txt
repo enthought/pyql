@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.InterpolationType.from\_bytes
+================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. automethod:: InterpolationType.from_bytes

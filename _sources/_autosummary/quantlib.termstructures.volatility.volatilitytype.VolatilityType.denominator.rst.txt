@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.volatilitytype.VolatilityType.denominator
+============================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.volatilitytype
+
+.. autoattribute:: VolatilityType.denominator

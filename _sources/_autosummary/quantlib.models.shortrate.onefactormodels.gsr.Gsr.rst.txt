@@ -1,26 +1,27 @@
-quantlib.models.shortrate.onefactormodels.gsr.Gsr
+.. raw:: html
+
+   <div class="prename">quantlib.models.shortrate.onefactormodels.gsr.</div>
+   <div class="empty"></div>
+
+Gsr
 =================================================
 
 .. currentmodule:: quantlib.models.shortrate.onefactormodels.gsr
 
 .. autoclass:: Gsr
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Gsr.__init__
-   
-   
-
-   
-   
-   
+  
+  
+  

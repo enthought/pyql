@@ -1,63 +1,62 @@
-quantlib.experimental.coupons.cms\_spread\_coupon.CappedFlooredCmsSpreadCoupon
-==============================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.experimental.coupons.cms_spread_coupon.</div>
+   <div class="empty"></div>
+
+CappedFlooredCmsSpreadCoupon
+============================================================================
 
 .. currentmodule:: quantlib.experimental.coupons.cms_spread_coupon
 
 .. autoclass:: CappedFlooredCmsSpreadCoupon
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CappedFlooredCmsSpreadCoupon.accrued_amount
+         CappedFlooredCmsSpreadCoupon.accrued_days
+         CappedFlooredCmsSpreadCoupon.accrued_period
+         CappedFlooredCmsSpreadCoupon.has_occured
+         CappedFlooredCmsSpreadCoupon.set_pricer
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~CappedFlooredCmsSpreadCoupon.__init__
-      ~CappedFlooredCmsSpreadCoupon.accrued_amount
-      ~CappedFlooredCmsSpreadCoupon.accrued_days
-      ~CappedFlooredCmsSpreadCoupon.accrued_period
-      ~CappedFlooredCmsSpreadCoupon.has_occured
-      ~CappedFlooredCmsSpreadCoupon.set_pricer
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~CappedFlooredCmsSpreadCoupon.accrual_days
-      ~CappedFlooredCmsSpreadCoupon.accrual_end_date
-      ~CappedFlooredCmsSpreadCoupon.accrual_period
-      ~CappedFlooredCmsSpreadCoupon.accrual_start_date
-      ~CappedFlooredCmsSpreadCoupon.adjusted_fixing
-      ~CappedFlooredCmsSpreadCoupon.amount
-      ~CappedFlooredCmsSpreadCoupon.cap
-      ~CappedFlooredCmsSpreadCoupon.convexity_adjustment
-      ~CappedFlooredCmsSpreadCoupon.date
-      ~CappedFlooredCmsSpreadCoupon.day_counter
-      ~CappedFlooredCmsSpreadCoupon.effective_cap
-      ~CappedFlooredCmsSpreadCoupon.effective_floor
-      ~CappedFlooredCmsSpreadCoupon.fixing_date
-      ~CappedFlooredCmsSpreadCoupon.fixing_days
-      ~CappedFlooredCmsSpreadCoupon.floor
-      ~CappedFlooredCmsSpreadCoupon.index
-      ~CappedFlooredCmsSpreadCoupon.index_fixing
-      ~CappedFlooredCmsSpreadCoupon.is_capped
-      ~CappedFlooredCmsSpreadCoupon.is_floored
-      ~CappedFlooredCmsSpreadCoupon.is_in_arrears
-      ~CappedFlooredCmsSpreadCoupon.nominal
-      ~CappedFlooredCmsSpreadCoupon.rate
-      ~CappedFlooredCmsSpreadCoupon.reference_period_end
-      ~CappedFlooredCmsSpreadCoupon.reference_period_start
-      ~CappedFlooredCmsSpreadCoupon.underlying
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CappedFlooredCmsSpreadCoupon.accrual_days
+         CappedFlooredCmsSpreadCoupon.accrual_end_date
+         CappedFlooredCmsSpreadCoupon.accrual_period
+         CappedFlooredCmsSpreadCoupon.accrual_start_date
+         CappedFlooredCmsSpreadCoupon.adjusted_fixing
+         CappedFlooredCmsSpreadCoupon.amount
+         CappedFlooredCmsSpreadCoupon.cap
+         CappedFlooredCmsSpreadCoupon.convexity_adjustment
+         CappedFlooredCmsSpreadCoupon.date
+         CappedFlooredCmsSpreadCoupon.day_counter
+         CappedFlooredCmsSpreadCoupon.effective_cap
+         CappedFlooredCmsSpreadCoupon.effective_floor
+         CappedFlooredCmsSpreadCoupon.fixing_date
+         CappedFlooredCmsSpreadCoupon.fixing_days
+         CappedFlooredCmsSpreadCoupon.floor
+         CappedFlooredCmsSpreadCoupon.index
+         CappedFlooredCmsSpreadCoupon.index_fixing
+         CappedFlooredCmsSpreadCoupon.is_capped
+         CappedFlooredCmsSpreadCoupon.is_floored
+         CappedFlooredCmsSpreadCoupon.is_in_arrears
+         CappedFlooredCmsSpreadCoupon.nominal
+         CappedFlooredCmsSpreadCoupon.rate
+         CappedFlooredCmsSpreadCoupon.reference_period_end
+         CappedFlooredCmsSpreadCoupon.reference_period_start
+         CappedFlooredCmsSpreadCoupon.underlying
+  
+  

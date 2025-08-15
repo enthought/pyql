@@ -1,0 +1,6 @@
+quantlib.interest\_rate.InterestRate.day\_counter
+=================================================
+
+.. currentmodule:: quantlib.interest_rate
+
+.. autoattribute:: InterestRate.day_counter

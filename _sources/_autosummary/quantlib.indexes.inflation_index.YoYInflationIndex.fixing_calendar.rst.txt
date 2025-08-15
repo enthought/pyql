@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.YoYInflationIndex.fixing\_calendar
+====================================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. autoattribute:: YoYInflationIndex.fixing_calendar

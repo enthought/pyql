@@ -1,0 +1,6 @@
+quantlib.cashflows.coupon.Coupon.reference\_period\_end
+=======================================================
+
+.. currentmodule:: quantlib.cashflows.coupon
+
+.. autoattribute:: Coupon.reference_period_end

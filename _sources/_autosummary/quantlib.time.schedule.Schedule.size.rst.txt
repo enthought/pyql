@@ -1,0 +1,6 @@
+quantlib.time.schedule.Schedule.size
+====================================
+
+.. currentmodule:: quantlib.time.schedule
+
+.. automethod:: Schedule.size

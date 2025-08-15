@@ -1,0 +1,6 @@
+quantlib.math.randomnumbers.rngtraits.LowDiscrepancy.last\_sequence
+===================================================================
+
+.. currentmodule:: quantlib.math.randomnumbers.rngtraits
+
+.. automethod:: LowDiscrepancy.last_sequence

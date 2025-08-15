@@ -1,0 +1,6 @@
+quantlib.time.calendars.target.TARGET.is\_end\_of\_month
+========================================================
+
+.. currentmodule:: quantlib.time.calendars.target
+
+.. automethod:: TARGET.is_end_of_month

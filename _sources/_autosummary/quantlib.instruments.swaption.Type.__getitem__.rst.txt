@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Type.\_\_getitem\_\_
+==================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. automethod:: Type.__getitem__

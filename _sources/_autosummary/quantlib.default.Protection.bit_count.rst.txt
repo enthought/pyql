@@ -1,0 +1,6 @@
+quantlib.default.Protection.bit\_count
+======================================
+
+.. currentmodule:: quantlib.default
+
+.. automethod:: Protection.bit_count

@@ -1,0 +1,6 @@
+quantlib.time.date.Month.\_\_getitem\_\_
+========================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: Month.__getitem__

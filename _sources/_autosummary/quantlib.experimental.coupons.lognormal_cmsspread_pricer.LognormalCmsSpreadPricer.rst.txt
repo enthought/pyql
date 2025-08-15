@@ -1,33 +1,34 @@
-quantlib.experimental.coupons.lognormal\_cmsspread\_pricer.LognormalCmsSpreadPricer
-===================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.experimental.coupons.lognormal_cmsspread_pricer.</div>
+   <div class="empty"></div>
+
+LognormalCmsSpreadPricer
+=================================================================================
 
 .. currentmodule:: quantlib.experimental.coupons.lognormal_cmsspread_pricer
 
 .. autoclass:: LognormalCmsSpreadPricer
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LognormalCmsSpreadPricer.caplet_price
+         LognormalCmsSpreadPricer.caplet_rate
+         LognormalCmsSpreadPricer.floorlet_price
+         LognormalCmsSpreadPricer.floorlet_rate
+         LognormalCmsSpreadPricer.initialize
+         LognormalCmsSpreadPricer.swaplet_price
+         LognormalCmsSpreadPricer.swaplet_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~LognormalCmsSpreadPricer.__init__
-      ~LognormalCmsSpreadPricer.caplet_price
-      ~LognormalCmsSpreadPricer.caplet_rate
-      ~LognormalCmsSpreadPricer.floorlet_price
-      ~LognormalCmsSpreadPricer.floorlet_rate
-      ~LognormalCmsSpreadPricer.initialize
-      ~LognormalCmsSpreadPricer.swaplet_price
-      ~LognormalCmsSpreadPricer.swaplet_rate
-   
-   
-
-   
-   
-   
+  
+  
+  

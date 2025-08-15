@@ -1,0 +1,6 @@
+quantlib.market.market.IborMarket.bootstrap\_term\_structure
+============================================================
+
+.. currentmodule:: quantlib.market.market
+
+.. automethod:: IborMarket.bootstrap_term_structure

@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Type.from\_bytes
+==============================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. automethod:: Type.from_bytes

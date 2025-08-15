@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.cms\_spread\_coupon.CmsSpreadCoupon.reference\_period\_start
+==========================================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.cms_spread_coupon
+
+.. autoattribute:: CmsSpreadCoupon.reference_period_start

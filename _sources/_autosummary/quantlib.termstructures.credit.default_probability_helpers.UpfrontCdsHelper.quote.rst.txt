@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.default\_probability\_helpers.UpfrontCdsHelper.quote
+===================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.default_probability_helpers
+
+.. autoattribute:: UpfrontCdsHelper.quote

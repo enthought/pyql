@@ -1,0 +1,6 @@
+quantlib.instruments.make\_vanilla\_swap.MakeVanillaSwap.with\_effective\_date
+==============================================================================
+
+.. currentmodule:: quantlib.instruments.make_vanilla_swap
+
+.. automethod:: MakeVanillaSwap.with_effective_date

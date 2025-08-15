@@ -1,0 +1,6 @@
+quantlib.time.calendars.japan.Japan.holiday\_list
+=================================================
+
+.. currentmodule:: quantlib.time.calendars.japan
+
+.. automethod:: Japan.holiday_list

@@ -1,0 +1,6 @@
+quantlib.cashflows.overnight\_indexed\_coupon\_pricer.ArithmeticAveragedOvernightIndexedCouponPricer.swaplet\_rate
+==================================================================================================================
+
+.. currentmodule:: quantlib.cashflows.overnight_indexed_coupon_pricer
+
+.. automethod:: ArithmeticAveragedOvernightIndexedCouponPricer.swaplet_rate

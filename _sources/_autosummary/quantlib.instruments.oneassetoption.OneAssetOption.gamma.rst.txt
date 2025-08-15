@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.gamma
+========================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.gamma

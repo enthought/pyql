@@ -1,0 +1,6 @@
+quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.endDiscounts
+=========================================================================
+
+.. currentmodule:: quantlib.instruments.fixedvsfloatingswap
+
+.. automethod:: FixedVsFloatingSwap.endDiscounts

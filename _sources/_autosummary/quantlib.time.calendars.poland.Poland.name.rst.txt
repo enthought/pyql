@@ -1,0 +1,6 @@
+quantlib.time.calendars.poland.Poland.name
+==========================================
+
+.. currentmodule:: quantlib.time.calendars.poland
+
+.. autoattribute:: Poland.name

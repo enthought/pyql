@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_curve.LogLinearInterpolatedZeroCurve.max\_date
+===================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. autoattribute:: LogLinearInterpolatedZeroCurve.max_date

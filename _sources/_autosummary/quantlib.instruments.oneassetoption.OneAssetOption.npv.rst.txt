@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.npv
+======================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.npv

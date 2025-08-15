@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.libor.Libor.forecast\_fixing
+==================================================
+
+.. currentmodule:: quantlib.indexes.ibor.libor
+
+.. automethod:: Libor.forecast_fixing

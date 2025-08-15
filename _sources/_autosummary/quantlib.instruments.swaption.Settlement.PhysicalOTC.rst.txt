@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Settlement.PhysicalOTC
+====================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Settlement.PhysicalOTC

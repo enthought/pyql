@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.euhicp.YYEUHICP.fixing\_calendar
+===========================================================
+
+.. currentmodule:: quantlib.indexes.inflation.euhicp
+
+.. autoattribute:: YYEUHICP.fixing_calendar

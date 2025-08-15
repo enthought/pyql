@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.implied\_volatility
+====================================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. automethod:: VanillaOption.implied_volatility

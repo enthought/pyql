@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.ukrpi.UKRPI.add\_fixings
+===================================================
+
+.. currentmodule:: quantlib.indexes.inflation.ukrpi
+
+.. automethod:: UKRPI.add_fixings

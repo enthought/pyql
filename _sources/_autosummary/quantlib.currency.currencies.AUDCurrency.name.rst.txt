@@ -1,0 +1,6 @@
+quantlib.currency.currencies.AUDCurrency.name
+=============================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: AUDCurrency.name

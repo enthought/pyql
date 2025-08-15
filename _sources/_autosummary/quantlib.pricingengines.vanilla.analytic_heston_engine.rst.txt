@@ -4,30 +4,12 @@ quantlib.pricingengines.vanilla.analytic\_heston\_engine
 .. automodule:: quantlib.pricingengines.vanilla.analytic_heston_engine
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       AnalyticHestonEngine
       ComplexLogFormula
       Integration
    
-   
-
-   
-   
-   
-
-
-

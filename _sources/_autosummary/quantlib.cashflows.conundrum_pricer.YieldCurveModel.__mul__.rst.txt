@@ -1,0 +1,6 @@
+quantlib.cashflows.conundrum\_pricer.YieldCurveModel.\_\_mul\_\_
+================================================================
+
+.. currentmodule:: quantlib.cashflows.conundrum_pricer
+
+.. automethod:: YieldCurveModel.__mul__

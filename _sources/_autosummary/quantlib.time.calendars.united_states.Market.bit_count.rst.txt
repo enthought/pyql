@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_states.Market.bit\_count
+========================================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. automethod:: Market.bit_count

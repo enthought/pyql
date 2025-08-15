@@ -1,46 +1,45 @@
-quantlib.termstructures.volatility.equityfx.black\_variance\_surface.BlackVarianceSurface
-=========================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.volatility.equityfx.black_variance_surface.</div>
+   <div class="empty"></div>
+
+BlackVarianceSurface
+=======================================================================================
 
 .. currentmodule:: quantlib.termstructures.volatility.equityfx.black_variance_surface
 
 .. autoclass:: BlackVarianceSurface
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BlackVarianceSurface.blackForwardVariance
+         BlackVarianceSurface.blackForwardVol
+         BlackVarianceSurface.blackVariance
+         BlackVarianceSurface.blackVol
+         BlackVarianceSurface.option_date_from_tenor
+         BlackVarianceSurface.set_interpolation
+         BlackVarianceSurface.time_from_reference
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BlackVarianceSurface.__init__
-      ~BlackVarianceSurface.blackForwardVariance
-      ~BlackVarianceSurface.blackForwardVol
-      ~BlackVarianceSurface.blackVariance
-      ~BlackVarianceSurface.blackVol
-      ~BlackVarianceSurface.option_date_from_tenor
-      ~BlackVarianceSurface.set_interpolation
-      ~BlackVarianceSurface.time_from_reference
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~BlackVarianceSurface.calendar
-      ~BlackVarianceSurface.extrapolation
-      ~BlackVarianceSurface.max_strike
-      ~BlackVarianceSurface.min_strike
-      ~BlackVarianceSurface.reference_date
-      ~BlackVarianceSurface.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BlackVarianceSurface.calendar
+         BlackVarianceSurface.extrapolation
+         BlackVarianceSurface.max_strike
+         BlackVarianceSurface.min_strike
+         BlackVarianceSurface.reference_date
+         BlackVarianceSurface.settlement_days
+  
+  

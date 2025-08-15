@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.cms\_spread\_coupon.CmsSpreadCouponPricer.caplet\_price
+=====================================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.cms_spread_coupon
+
+.. automethod:: CmsSpreadCouponPricer.caplet_price

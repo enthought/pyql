@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.piecewise\_yield\_curve.ForwardRateCubicPiecewiseYieldCurve.zero\_rate
+=====================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_yield_curve
+
+.. automethod:: ForwardRateCubicPiecewiseYieldCurve.zero_rate

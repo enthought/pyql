@@ -1,27 +1,31 @@
-quantlib.termstructures.yields.forward\_curve.Meta
-==================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.forward_curve.</div>
+   <div class="empty"></div>
+
+Meta
+=================================================
 
 .. currentmodule:: quantlib.termstructures.yields.forward_curve
 
 .. autoclass:: Meta
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Meta.__call__
+         Meta.__getitem__
+         Meta.mro
+      
+         Meta.__call__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Meta.__init__
-      ~Meta.mro
-   
-   
-
-   
-   
-   
+  
+  
+  

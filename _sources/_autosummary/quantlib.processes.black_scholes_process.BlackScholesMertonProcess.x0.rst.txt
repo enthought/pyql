@@ -1,0 +1,6 @@
+quantlib.processes.black\_scholes\_process.BlackScholesMertonProcess.x0
+=======================================================================
+
+.. currentmodule:: quantlib.processes.black_scholes_process
+
+.. autoattribute:: BlackScholesMertonProcess.x0

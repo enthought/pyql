@@ -4,29 +4,11 @@ quantlib.cashflows.linear\_tsr\_pricer
 .. automodule:: quantlib.cashflows.linear_tsr_pricer
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       LinearTsrPricer
       Settings
    
-   
-
-   
-   
-   
-
-
-

@@ -1,49 +1,48 @@
-quantlib.indexes.inflation\_index.ZeroInflationIndex
-====================================================
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.inflation_index.</div>
+   <div class="empty"></div>
+
+ZeroInflationIndex
+===================================================
 
 .. currentmodule:: quantlib.indexes.inflation_index
 
 .. autoclass:: ZeroInflationIndex
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZeroInflationIndex.add_fixing
+         ZeroInflationIndex.add_fixings
+         ZeroInflationIndex.clear_fixings
+         ZeroInflationIndex.fixing
+         ZeroInflationIndex.has_historical_fixing
+         ZeroInflationIndex.is_valid_fixing_date
+         ZeroInflationIndex.zero_inflation_term_structure
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ZeroInflationIndex.__init__
-      ~ZeroInflationIndex.add_fixing
-      ~ZeroInflationIndex.add_fixings
-      ~ZeroInflationIndex.clear_fixings
-      ~ZeroInflationIndex.fixing
-      ~ZeroInflationIndex.has_historical_fixing
-      ~ZeroInflationIndex.is_valid_fixing_date
-      ~ZeroInflationIndex.zero_inflation_term_structure
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ZeroInflationIndex.availability_lag
-      ~ZeroInflationIndex.currency
-      ~ZeroInflationIndex.family_name
-      ~ZeroInflationIndex.fixing_calendar
-      ~ZeroInflationIndex.frequency
-      ~ZeroInflationIndex.last_fixing_date
-      ~ZeroInflationIndex.name
-      ~ZeroInflationIndex.region
-      ~ZeroInflationIndex.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZeroInflationIndex.availability_lag
+         ZeroInflationIndex.currency
+         ZeroInflationIndex.family_name
+         ZeroInflationIndex.fixing_calendar
+         ZeroInflationIndex.frequency
+         ZeroInflationIndex.last_fixing_date
+         ZeroInflationIndex.name
+         ZeroInflationIndex.region
+         ZeroInflationIndex.time_series
+  
+  

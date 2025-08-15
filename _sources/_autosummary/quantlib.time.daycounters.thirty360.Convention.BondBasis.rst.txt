@@ -1,0 +1,6 @@
+quantlib.time.daycounters.thirty360.Convention.BondBasis
+========================================================
+
+.. currentmodule:: quantlib.time.daycounters.thirty360
+
+.. autoattribute:: Convention.BondBasis

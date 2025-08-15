@@ -1,0 +1,6 @@
+quantlib.cashflows.rateaveraging.RateAveraging.denominator
+==========================================================
+
+.. currentmodule:: quantlib.cashflows.rateaveraging
+
+.. autoattribute:: RateAveraging.denominator

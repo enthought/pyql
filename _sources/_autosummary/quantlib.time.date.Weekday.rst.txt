@@ -1,57 +1,64 @@
-quantlib.time.date.Weekday
+.. raw:: html
+
+   <div class="prename">quantlib.time.date.</div>
+   <div class="empty"></div>
+
+Weekday
 ==========================
 
 .. currentmodule:: quantlib.time.date
 
 .. autoclass:: Weekday
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Weekday.__mul__
+         Weekday.__pow__
+         Weekday.conjugate
+         Weekday.bit_length
+         Weekday.bit_count
+         Weekday.to_bytes
+         Weekday.from_bytes
+         Weekday.as_integer_ratio
+         Weekday.__len__
+         Weekday.__getitem__
+      
+         Weekday.__len__
+         Weekday.__getitem__
+         Weekday.__mul__
+         Weekday.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Weekday.conjugate
-      ~Weekday.bit_length
-      ~Weekday.bit_count
-      ~Weekday.to_bytes
-      ~Weekday.from_bytes
-      ~Weekday.as_integer_ratio
-      ~Weekday.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Weekday.real
-      ~Weekday.imag
-      ~Weekday.numerator
-      ~Weekday.denominator
-      ~Weekday.Sunday
-      ~Weekday.Monday
-      ~Weekday.Tuesday
-      ~Weekday.Wednesday
-      ~Weekday.Thursday
-      ~Weekday.Friday
-      ~Weekday.Saturday
-      ~Weekday.Sun
-      ~Weekday.Mon
-      ~Weekday.Tue
-      ~Weekday.Wed
-      ~Weekday.Thu
-      ~Weekday.Fri
-      ~Weekday.Sat
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Weekday.real
+         Weekday.imag
+         Weekday.numerator
+         Weekday.denominator
+         Weekday.Sunday
+         Weekday.Monday
+         Weekday.Tuesday
+         Weekday.Wednesday
+         Weekday.Thursday
+         Weekday.Friday
+         Weekday.Saturday
+         Weekday.Sun
+         Weekday.Mon
+         Weekday.Tue
+         Weekday.Wed
+         Weekday.Thu
+         Weekday.Fri
+         Weekday.Sat
+  
+  

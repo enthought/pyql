@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.itm\_cash\_probability
+=========================================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. autoattribute:: EuropeanOption.itm_cash_probability

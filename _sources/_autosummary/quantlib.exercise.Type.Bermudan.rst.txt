@@ -1,0 +1,6 @@
+quantlib.exercise.Type.Bermudan
+===============================
+
+.. currentmodule:: quantlib.exercise
+
+.. autoattribute:: Type.Bermudan

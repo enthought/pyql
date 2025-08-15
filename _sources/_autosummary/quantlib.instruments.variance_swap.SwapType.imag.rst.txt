@@ -1,0 +1,6 @@
+quantlib.instruments.variance\_swap.SwapType.imag
+=================================================
+
+.. currentmodule:: quantlib.instruments.variance_swap
+
+.. autoattribute:: SwapType.imag

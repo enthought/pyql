@@ -1,56 +1,55 @@
-quantlib.cashflows.floating\_rate\_coupon.FloatingRateCoupon
-============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.floating_rate_coupon.</div>
+   <div class="empty"></div>
+
+FloatingRateCoupon
+==========================================================
 
 .. currentmodule:: quantlib.cashflows.floating_rate_coupon
 
 .. autoclass:: FloatingRateCoupon
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FloatingRateCoupon.accrued_amount
+         FloatingRateCoupon.accrued_days
+         FloatingRateCoupon.accrued_period
+         FloatingRateCoupon.has_occured
+         FloatingRateCoupon.set_pricer
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FloatingRateCoupon.__init__
-      ~FloatingRateCoupon.accrued_amount
-      ~FloatingRateCoupon.accrued_days
-      ~FloatingRateCoupon.accrued_period
-      ~FloatingRateCoupon.has_occured
-      ~FloatingRateCoupon.set_pricer
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~FloatingRateCoupon.accrual_days
-      ~FloatingRateCoupon.accrual_end_date
-      ~FloatingRateCoupon.accrual_period
-      ~FloatingRateCoupon.accrual_start_date
-      ~FloatingRateCoupon.adjusted_fixing
-      ~FloatingRateCoupon.amount
-      ~FloatingRateCoupon.convexity_adjustment
-      ~FloatingRateCoupon.date
-      ~FloatingRateCoupon.day_counter
-      ~FloatingRateCoupon.fixing_date
-      ~FloatingRateCoupon.fixing_days
-      ~FloatingRateCoupon.index
-      ~FloatingRateCoupon.index_fixing
-      ~FloatingRateCoupon.is_in_arrears
-      ~FloatingRateCoupon.nominal
-      ~FloatingRateCoupon.rate
-      ~FloatingRateCoupon.reference_period_end
-      ~FloatingRateCoupon.reference_period_start
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FloatingRateCoupon.accrual_days
+         FloatingRateCoupon.accrual_end_date
+         FloatingRateCoupon.accrual_period
+         FloatingRateCoupon.accrual_start_date
+         FloatingRateCoupon.adjusted_fixing
+         FloatingRateCoupon.amount
+         FloatingRateCoupon.convexity_adjustment
+         FloatingRateCoupon.date
+         FloatingRateCoupon.day_counter
+         FloatingRateCoupon.fixing_date
+         FloatingRateCoupon.fixing_days
+         FloatingRateCoupon.index
+         FloatingRateCoupon.index_fixing
+         FloatingRateCoupon.is_in_arrears
+         FloatingRateCoupon.nominal
+         FloatingRateCoupon.rate
+         FloatingRateCoupon.reference_period_end
+         FloatingRateCoupon.reference_period_start
+  
+  

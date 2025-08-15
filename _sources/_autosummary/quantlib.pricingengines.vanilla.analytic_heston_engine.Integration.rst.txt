@@ -1,30 +1,31 @@
-quantlib.pricingengines.vanilla.analytic\_heston\_engine.Integration
-====================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.pricingengines.vanilla.analytic_heston_engine.</div>
+   <div class="empty"></div>
+
+Integration
+==================================================================
 
 .. currentmodule:: quantlib.pricingengines.vanilla.analytic_heston_engine
 
 .. autoclass:: Integration
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Integration.gaussChebyshev
+         Integration.gaussLaguerre
+         Integration.gaussLegendre
+         Integration.gaussLobatto
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Integration.__init__
-      ~Integration.gaussChebyshev
-      ~Integration.gaussLaguerre
-      ~Integration.gaussLegendre
-      ~Integration.gaussLobatto
-   
-   
-
-   
-   
-   
+  
+  
+  

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.discount\_curve.CubicInterpolatedDiscountCurve.day\_counter
+==========================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.discount_curve
+
+.. autoattribute:: CubicInterpolatedDiscountCurve.day_counter

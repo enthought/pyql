@@ -1,0 +1,6 @@
+quantlib.cashflows.fixed\_rate\_coupon.FixedRateLeg.with\_notional
+==================================================================
+
+.. currentmodule:: quantlib.cashflows.fixed_rate_coupon
+
+.. automethod:: FixedRateLeg.with_notional

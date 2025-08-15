@@ -4,30 +4,11 @@ quantlib.pricingengines.asian
 .. automodule:: quantlib.pricingengines.asian
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    analyticcontgeomavprice
    analyticdiscrgeomavprice
-

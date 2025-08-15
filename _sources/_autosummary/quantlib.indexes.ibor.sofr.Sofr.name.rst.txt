@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.sofr.Sofr.name
+====================================
+
+.. currentmodule:: quantlib.indexes.ibor.sofr
+
+.. autoattribute:: Sofr.name

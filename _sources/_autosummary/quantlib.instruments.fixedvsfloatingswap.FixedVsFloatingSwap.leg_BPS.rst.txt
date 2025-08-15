@@ -1,0 +1,6 @@
+quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.leg\_BPS
+=====================================================================
+
+.. currentmodule:: quantlib.instruments.fixedvsfloatingswap
+
+.. automethod:: FixedVsFloatingSwap.leg_BPS

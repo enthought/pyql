@@ -4,28 +4,10 @@ quantlib.models.shortrate.onefactormodels.gaussian1dmodel
 .. automodule:: quantlib.models.shortrate.onefactormodels.gaussian1dmodel
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       Gaussian1dModel
    
-   
-
-   
-   
-   
-
-
-

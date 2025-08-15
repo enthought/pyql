@@ -1,0 +1,6 @@
+quantlib.time.frequency.Frequency.to\_bytes
+===========================================
+
+.. currentmodule:: quantlib.time.frequency
+
+.. automethod:: Frequency.to_bytes

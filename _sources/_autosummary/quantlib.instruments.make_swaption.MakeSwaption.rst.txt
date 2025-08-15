@@ -1,33 +1,35 @@
-quantlib.instruments.make\_swaption.MakeSwaption
-================================================
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.make_swaption.</div>
+   <div class="empty"></div>
+
+MakeSwaption
+===============================================
 
 .. currentmodule:: quantlib.instruments.make_swaption
 
 .. autoclass:: MakeSwaption
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         MakeSwaption.__call__
+         MakeSwaption.with_exercise_date
+         MakeSwaption.with_nominal
+         MakeSwaption.with_option_convention
+         MakeSwaption.with_pricing_engine
+         MakeSwaption.with_settlement_method
+         MakeSwaption.with_settlement_type
+         MakeSwaption.with_underlying_type
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~MakeSwaption.__init__
-      ~MakeSwaption.with_exercise_date
-      ~MakeSwaption.with_nominal
-      ~MakeSwaption.with_option_convention
-      ~MakeSwaption.with_pricing_engine
-      ~MakeSwaption.with_settlement_method
-      ~MakeSwaption.with_settlement_type
-      ~MakeSwaption.with_underlying_type
-   
-   
-
-   
-   
-   
+  
+  
+  

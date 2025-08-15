@@ -1,0 +1,6 @@
+quantlib.instruments.futures.FuturesType.imag
+=============================================
+
+.. currentmodule:: quantlib.instruments.futures
+
+.. autoattribute:: FuturesType.imag

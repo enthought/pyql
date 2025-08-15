@@ -1,48 +1,47 @@
-quantlib.market.market.IborMarket
+.. raw:: html
+
+   <div class="prename">quantlib.market.market.</div>
+   <div class="empty"></div>
+
+IborMarket
 =================================
 
 .. currentmodule:: quantlib.market.market
 
 .. autoclass:: IborMarket
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         IborMarket.add_bond_quote
+         IborMarket.bootstrap_term_structure
+         IborMarket.create_fixed_float_swap
+         IborMarket.discount
+         IborMarket.set_bonds
+         IborMarket.set_quotes
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~IborMarket.__init__
-      ~IborMarket.add_bond_quote
-      ~IborMarket.bootstrap_term_structure
-      ~IborMarket.create_fixed_float_swap
-      ~IborMarket.discount
-      ~IborMarket.set_bonds
-      ~IborMarket.set_quotes
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~IborMarket.calendar
-      ~IborMarket.fixed_leg_convention
-      ~IborMarket.fixed_leg_daycount
-      ~IborMarket.fixed_leg_period
-      ~IborMarket.max_date
-      ~IborMarket.name
-      ~IborMarket.reference_date
-      ~IborMarket.settlement_days
-      ~IborMarket.termstructure_daycounter
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         IborMarket.calendar
+         IborMarket.fixed_leg_convention
+         IborMarket.fixed_leg_daycount
+         IborMarket.fixed_leg_period
+         IborMarket.max_date
+         IborMarket.name
+         IborMarket.reference_date
+         IborMarket.settlement_days
+         IborMarket.termstructure_daycounter
+  
+  

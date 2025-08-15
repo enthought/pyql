@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.flat\_forward.FlatForward.max\_time
+==================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.flat_forward
+
+.. autoattribute:: FlatForward.max_time

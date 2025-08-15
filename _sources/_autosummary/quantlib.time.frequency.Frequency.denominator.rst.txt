@@ -1,0 +1,6 @@
+quantlib.time.frequency.Frequency.denominator
+=============================================
+
+.. currentmodule:: quantlib.time.frequency
+
+.. autoattribute:: Frequency.denominator

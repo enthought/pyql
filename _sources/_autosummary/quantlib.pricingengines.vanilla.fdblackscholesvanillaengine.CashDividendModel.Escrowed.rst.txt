@@ -1,0 +1,6 @@
+quantlib.pricingengines.vanilla.fdblackscholesvanillaengine.CashDividendModel.Escrowed
+======================================================================================
+
+.. currentmodule:: quantlib.pricingengines.vanilla.fdblackscholesvanillaengine
+
+.. autoattribute:: CashDividendModel.Escrowed

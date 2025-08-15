@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.euribor.Euribor3M.business\_day\_convention
+=================================================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. autoattribute:: Euribor3M.business_day_convention

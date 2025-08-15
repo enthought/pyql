@@ -4,28 +4,10 @@ quantlib.pricingengines.vanilla
 .. automodule:: quantlib.pricingengines.vanilla
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    analytic_heston_engine
@@ -33,4 +15,3 @@ quantlib.pricingengines.vanilla
    mceuropeanhestonengine
    mcvanillaengine
    vanilla
-

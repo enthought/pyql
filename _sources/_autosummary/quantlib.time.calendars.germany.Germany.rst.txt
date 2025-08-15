@@ -1,51 +1,50 @@
-quantlib.time.calendars.germany.Germany
+.. raw:: html
+
+   <div class="prename">quantlib.time.calendars.germany.</div>
+   <div class="empty"></div>
+
+Germany
 =======================================
 
 .. currentmodule:: quantlib.time.calendars.germany
 
 .. autoclass:: Germany
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Germany.add_holiday
+         Germany.adjust
+         Germany.advance
+         Germany.business_day_list
+         Germany.business_days_between
+         Germany.end_of_month
+         Germany.holiday_list
+         Germany.is_business_day
+         Germany.is_end_of_month
+         Germany.is_holiday
+         Germany.is_weekend
+         Germany.remove_holiday
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Germany.__init__
-      ~Germany.add_holiday
-      ~Germany.adjust
-      ~Germany.advance
-      ~Germany.business_day_list
-      ~Germany.business_days_between
-      ~Germany.end_of_month
-      ~Germany.holiday_list
-      ~Germany.is_business_day
-      ~Germany.is_end_of_month
-      ~Germany.is_holiday
-      ~Germany.is_weekend
-      ~Germany.remove_holiday
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Germany.Eurex
-      ~Germany.Euwax
-      ~Germany.FrankfurtStockExchange
-      ~Germany.Settlement
-      ~Germany.Xetra
-      ~Germany.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Germany.Eurex
+         Germany.Euwax
+         Germany.FrankfurtStockExchange
+         Germany.Settlement
+         Germany.Xetra
+         Germany.name
+  
+  

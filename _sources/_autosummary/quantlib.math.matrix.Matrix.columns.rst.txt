@@ -1,0 +1,6 @@
+quantlib.math.matrix.Matrix.columns
+===================================
+
+.. currentmodule:: quantlib.math.matrix
+
+.. autoattribute:: Matrix.columns

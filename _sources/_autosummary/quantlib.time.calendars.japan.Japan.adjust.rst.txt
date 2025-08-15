@@ -1,0 +1,6 @@
+quantlib.time.calendars.japan.Japan.adjust
+==========================================
+
+.. currentmodule:: quantlib.time.calendars.japan
+
+.. automethod:: Japan.adjust

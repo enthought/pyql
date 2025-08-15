@@ -1,0 +1,6 @@
+quantlib.instrument.Instrument.is\_expired
+==========================================
+
+.. currentmodule:: quantlib.instrument
+
+.. autoattribute:: Instrument.is_expired

@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.smilesection.SmileSection.exercise\_time
+===========================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.smilesection
+
+.. autoattribute:: SmileSection.exercise_time

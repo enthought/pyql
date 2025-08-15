@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.euhicp.YYEUHICP.has\_historical\_fixing
+==================================================================
+
+.. currentmodule:: quantlib.indexes.inflation.euhicp
+
+.. automethod:: YYEUHICP.has_historical_fixing

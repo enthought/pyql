@@ -1,0 +1,6 @@
+quantlib.time.calendars.switzerland.Switzerland.end\_of\_month
+==============================================================
+
+.. currentmodule:: quantlib.time.calendars.switzerland
+
+.. automethod:: Switzerland.end_of_month

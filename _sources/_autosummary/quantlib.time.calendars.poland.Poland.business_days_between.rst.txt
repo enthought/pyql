@@ -1,0 +1,6 @@
+quantlib.time.calendars.poland.Poland.business\_days\_between
+=============================================================
+
+.. currentmodule:: quantlib.time.calendars.poland
+
+.. automethod:: Poland.business_days_between

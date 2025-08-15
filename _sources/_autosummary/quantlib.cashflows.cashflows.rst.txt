@@ -4,15 +4,9 @@ quantlib.cashflows.cashflows
 .. automodule:: quantlib.cashflows.cashflows
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
    
       bps
       next_cash_flow_amount
@@ -20,15 +14,3 @@ quantlib.cashflows.cashflows
       npvbps
       previous_cash_flow_amount
    
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-

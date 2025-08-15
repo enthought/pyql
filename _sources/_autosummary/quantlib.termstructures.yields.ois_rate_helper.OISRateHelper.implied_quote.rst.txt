@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.ois\_rate\_helper.OISRateHelper.implied\_quote
+=============================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.ois_rate_helper
+
+.. autoattribute:: OISRateHelper.implied_quote

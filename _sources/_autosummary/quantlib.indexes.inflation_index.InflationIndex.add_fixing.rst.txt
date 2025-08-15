@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.InflationIndex.add\_fixing
+============================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. automethod:: InflationIndex.add_fixing

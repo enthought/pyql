@@ -1,0 +1,6 @@
+quantlib.instruments.make\_vanilla\_swap.MakeVanillaSwap.receive\_fixed
+=======================================================================
+
+.. currentmodule:: quantlib.instruments.make_vanilla_swap
+
+.. automethod:: MakeVanillaSwap.receive_fixed

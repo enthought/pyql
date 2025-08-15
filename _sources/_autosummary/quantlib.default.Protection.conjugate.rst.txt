@@ -1,0 +1,6 @@
+quantlib.default.Protection.conjugate
+=====================================
+
+.. currentmodule:: quantlib.default
+
+.. automethod:: Protection.conjugate

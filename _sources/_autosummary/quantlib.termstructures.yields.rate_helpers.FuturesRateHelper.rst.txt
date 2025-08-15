@@ -1,41 +1,40 @@
-quantlib.termstructures.yields.rate\_helpers.FuturesRateHelper
-==============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.rate_helpers.</div>
+   <div class="empty"></div>
+
+FuturesRateHelper
+=============================================================
 
 .. currentmodule:: quantlib.termstructures.yields.rate_helpers
 
 .. autoclass:: FuturesRateHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FuturesRateHelper.from_index
+         FuturesRateHelper.update
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FuturesRateHelper.__init__
-      ~FuturesRateHelper.from_index
-      ~FuturesRateHelper.update
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~FuturesRateHelper.convexity_adjustment
-      ~FuturesRateHelper.earliest_date
-      ~FuturesRateHelper.implied_quote
-      ~FuturesRateHelper.latest_date
-      ~FuturesRateHelper.maturity_date
-      ~FuturesRateHelper.quote
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FuturesRateHelper.convexity_adjustment
+         FuturesRateHelper.earliest_date
+         FuturesRateHelper.implied_quote
+         FuturesRateHelper.latest_date
+         FuturesRateHelper.maturity_date
+         FuturesRateHelper.quote
+  
+  

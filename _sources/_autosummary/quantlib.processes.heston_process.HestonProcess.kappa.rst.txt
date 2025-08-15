@@ -1,0 +1,6 @@
+quantlib.processes.heston\_process.HestonProcess.kappa
+======================================================
+
+.. currentmodule:: quantlib.processes.heston_process
+
+.. autoattribute:: HestonProcess.kappa

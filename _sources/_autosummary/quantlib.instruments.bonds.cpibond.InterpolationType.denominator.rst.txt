@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.InterpolationType.denominator
+================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. autoattribute:: InterpolationType.denominator

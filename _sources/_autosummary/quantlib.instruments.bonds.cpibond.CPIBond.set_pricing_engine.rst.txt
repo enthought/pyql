@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.CPIBond.set\_pricing\_engine
+===============================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. automethod:: CPIBond.set_pricing_engine

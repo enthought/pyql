@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.delta\_forward
+=================================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.delta_forward

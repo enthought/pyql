@@ -1,0 +1,6 @@
+quantlib.processes.hullwhite\_process.ForwardHullWhiteProcess.drift
+===================================================================
+
+.. currentmodule:: quantlib.processes.hullwhite_process
+
+.. automethod:: ForwardHullWhiteProcess.drift

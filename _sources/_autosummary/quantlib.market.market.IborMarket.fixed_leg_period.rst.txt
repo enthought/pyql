@@ -1,0 +1,6 @@
+quantlib.market.market.IborMarket.fixed\_leg\_period
+====================================================
+
+.. currentmodule:: quantlib.market.market
+
+.. autoproperty:: IborMarket.fixed_leg_period

@@ -1,0 +1,6 @@
+quantlib.models.calibration\_helper.BlackCalibrationHelper.model\_value
+=======================================================================
+
+.. currentmodule:: quantlib.models.calibration_helper
+
+.. automethod:: BlackCalibrationHelper.model_value

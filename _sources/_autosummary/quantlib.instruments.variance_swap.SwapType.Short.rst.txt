@@ -1,0 +1,6 @@
+quantlib.instruments.variance\_swap.SwapType.Short
+==================================================
+
+.. currentmodule:: quantlib.instruments.variance_swap
+
+.. autoattribute:: SwapType.Short

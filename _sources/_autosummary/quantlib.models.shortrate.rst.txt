@@ -4,28 +4,10 @@ quantlib.models.shortrate
 .. automodule:: quantlib.models.shortrate
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    calibrationhelpers
@@ -33,4 +15,3 @@ quantlib.models.shortrate
    onefactormodels
    twofactor_model
    twofactormodels
-

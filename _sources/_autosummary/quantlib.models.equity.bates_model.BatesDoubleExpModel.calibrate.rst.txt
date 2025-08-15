@@ -1,0 +1,6 @@
+quantlib.models.equity.bates\_model.BatesDoubleExpModel.calibrate
+=================================================================
+
+.. currentmodule:: quantlib.models.equity.bates_model
+
+.. automethod:: BatesDoubleExpModel.calibrate

@@ -1,0 +1,6 @@
+quantlib.termstructures.default\_term\_structure.DefaultProbabilityTermStructure.jump\_dates
+============================================================================================
+
+.. currentmodule:: quantlib.termstructures.default_term_structure
+
+.. autoattribute:: DefaultProbabilityTermStructure.jump_dates

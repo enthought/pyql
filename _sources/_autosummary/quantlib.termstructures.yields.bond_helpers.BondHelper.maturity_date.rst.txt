@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bond\_helpers.BondHelper.maturity\_date
+======================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bond_helpers
+
+.. autoattribute:: BondHelper.maturity_date

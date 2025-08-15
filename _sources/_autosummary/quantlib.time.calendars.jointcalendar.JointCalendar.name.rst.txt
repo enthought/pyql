@@ -1,0 +1,6 @@
+quantlib.time.calendars.jointcalendar.JointCalendar.name
+========================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. autoattribute:: JointCalendar.name

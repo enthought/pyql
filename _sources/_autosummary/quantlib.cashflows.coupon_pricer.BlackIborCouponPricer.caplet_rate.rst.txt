@@ -1,0 +1,6 @@
+quantlib.cashflows.coupon\_pricer.BlackIborCouponPricer.caplet\_rate
+====================================================================
+
+.. currentmodule:: quantlib.cashflows.coupon_pricer
+
+.. automethod:: BlackIborCouponPricer.caplet_rate

@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.euribor.Euribor6M.clear\_fixings
+======================================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. automethod:: Euribor6M.clear_fixings

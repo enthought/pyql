@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bootstraptraits.BootstrapTrait.to\_bytes
+=======================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bootstraptraits
+
+.. automethod:: BootstrapTrait.to_bytes

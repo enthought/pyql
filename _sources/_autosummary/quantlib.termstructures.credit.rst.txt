@@ -4,28 +4,10 @@ quantlib.termstructures.credit
 .. automodule:: quantlib.termstructures.credit
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    api
@@ -33,4 +15,3 @@ quantlib.termstructures.credit
    flat_hazard_rate
    interpolated_hazardrate_curve
    piecewise_default_curve
-

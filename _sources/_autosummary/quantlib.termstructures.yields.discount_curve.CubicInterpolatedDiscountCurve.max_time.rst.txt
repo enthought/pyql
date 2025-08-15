@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.discount\_curve.CubicInterpolatedDiscountCurve.max\_time
+=======================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.discount_curve
+
+.. autoattribute:: CubicInterpolatedDiscountCurve.max_time

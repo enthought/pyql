@@ -1,0 +1,6 @@
+quantlib.position.Position.to\_bytes
+====================================
+
+.. currentmodule:: quantlib.position
+
+.. automethod:: Position.to_bytes

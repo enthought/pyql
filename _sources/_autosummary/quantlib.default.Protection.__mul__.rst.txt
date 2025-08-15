@@ -1,0 +1,6 @@
+quantlib.default.Protection.\_\_mul\_\_
+=======================================
+
+.. currentmodule:: quantlib.default
+
+.. automethod:: Protection.__mul__

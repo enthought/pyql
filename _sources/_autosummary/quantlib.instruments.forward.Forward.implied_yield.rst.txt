@@ -1,0 +1,6 @@
+quantlib.instruments.forward.Forward.implied\_yield
+===================================================
+
+.. currentmodule:: quantlib.instruments.forward
+
+.. automethod:: Forward.implied_yield

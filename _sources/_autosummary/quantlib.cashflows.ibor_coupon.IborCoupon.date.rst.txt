@@ -1,0 +1,6 @@
+quantlib.cashflows.ibor\_coupon.IborCoupon.date
+===============================================
+
+.. currentmodule:: quantlib.cashflows.ibor_coupon
+
+.. autoattribute:: IborCoupon.date

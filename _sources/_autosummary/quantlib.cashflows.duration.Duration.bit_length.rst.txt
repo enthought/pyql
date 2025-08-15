@@ -1,0 +1,6 @@
+quantlib.cashflows.duration.Duration.bit\_length
+================================================
+
+.. currentmodule:: quantlib.cashflows.duration
+
+.. automethod:: Duration.bit_length

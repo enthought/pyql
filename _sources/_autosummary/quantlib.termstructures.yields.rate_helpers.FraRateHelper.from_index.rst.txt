@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.rate\_helpers.FraRateHelper.from\_index
+======================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. automethod:: FraRateHelper.from_index

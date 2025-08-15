@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.CPIBond.npv
+==============================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. autoattribute:: CPIBond.npv

@@ -1,0 +1,6 @@
+quantlib.time.dategeneration.DateGeneration.real
+================================================
+
+.. currentmodule:: quantlib.time.dategeneration
+
+.. autoattribute:: DateGeneration.real

@@ -1,41 +1,40 @@
-quantlib.processes.black\_scholes\_process.BlackScholesProcess
-==============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.processes.black_scholes_process.</div>
+   <div class="empty"></div>
+
+BlackScholesProcess
+============================================================
 
 .. currentmodule:: quantlib.processes.black_scholes_process
 
 .. autoclass:: BlackScholesProcess
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BlackScholesProcess.diffusion
+         BlackScholesProcess.drift
+         BlackScholesProcess.expectation
+         BlackScholesProcess.factors
+         BlackScholesProcess.size
+         BlackScholesProcess.std_deviation
+         BlackScholesProcess.variance
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BlackScholesProcess.__init__
-      ~BlackScholesProcess.diffusion
-      ~BlackScholesProcess.drift
-      ~BlackScholesProcess.expectation
-      ~BlackScholesProcess.factors
-      ~BlackScholesProcess.size
-      ~BlackScholesProcess.std_deviation
-      ~BlackScholesProcess.variance
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~BlackScholesProcess.x0
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BlackScholesProcess.x0
+  
+  

@@ -1,0 +1,6 @@
+quantlib.termstructures.helpers.Pillar.as\_integer\_ratio
+=========================================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. automethod:: Pillar.as_integer_ratio

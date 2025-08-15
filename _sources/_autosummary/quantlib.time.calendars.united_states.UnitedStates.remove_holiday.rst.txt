@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_states.UnitedStates.remove\_holiday
+===================================================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. automethod:: UnitedStates.remove_holiday

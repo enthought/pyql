@@ -1,0 +1,6 @@
+quantlib.processes.bates\_process.BatesProcess.factors
+======================================================
+
+.. currentmodule:: quantlib.processes.bates_process
+
+.. automethod:: BatesProcess.factors

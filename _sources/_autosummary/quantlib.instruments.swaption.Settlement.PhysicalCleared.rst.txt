@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Settlement.PhysicalCleared
+========================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Settlement.PhysicalCleared

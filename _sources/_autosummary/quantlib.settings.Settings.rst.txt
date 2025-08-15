@@ -1,42 +1,41 @@
-quantlib.settings.Settings
+.. raw:: html
+
+   <div class="prename">quantlib.settings.</div>
+   <div class="empty"></div>
+
+Settings
 ==========================
 
 .. currentmodule:: quantlib.settings
 
 .. autoclass:: Settings
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Settings.anchor_evaluation_date
+         Settings.instance
+         Settings.reset_evaluation_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Settings.__init__
-      ~Settings.anchor_evaluation_date
-      ~Settings.instance
-      ~Settings.reset_evaluation_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Settings.enforces_todays_historic_fixings
-      ~Settings.evaluation_date
-      ~Settings.include_reference_date_events
-      ~Settings.include_todays_cashflows
-      ~Settings.observable_evaluation_date
-      ~Settings.version
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Settings.enforces_todays_historic_fixings
+         Settings.evaluation_date
+         Settings.include_reference_date_events
+         Settings.include_todays_cashflows
+         Settings.observable_evaluation_date
+         Settings.version
+  
+  

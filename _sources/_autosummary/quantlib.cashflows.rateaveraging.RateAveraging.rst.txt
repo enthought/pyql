@@ -1,45 +1,52 @@
-quantlib.cashflows.rateaveraging.RateAveraging
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.rateaveraging.</div>
+   <div class="empty"></div>
+
+RateAveraging
 ==============================================
 
 .. currentmodule:: quantlib.cashflows.rateaveraging
 
 .. autoclass:: RateAveraging
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         RateAveraging.__mul__
+         RateAveraging.__pow__
+         RateAveraging.conjugate
+         RateAveraging.bit_length
+         RateAveraging.bit_count
+         RateAveraging.to_bytes
+         RateAveraging.from_bytes
+         RateAveraging.as_integer_ratio
+         RateAveraging.__len__
+         RateAveraging.__getitem__
+      
+         RateAveraging.__len__
+         RateAveraging.__getitem__
+         RateAveraging.__mul__
+         RateAveraging.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~RateAveraging.conjugate
-      ~RateAveraging.bit_length
-      ~RateAveraging.bit_count
-      ~RateAveraging.to_bytes
-      ~RateAveraging.from_bytes
-      ~RateAveraging.as_integer_ratio
-      ~RateAveraging.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~RateAveraging.real
-      ~RateAveraging.imag
-      ~RateAveraging.numerator
-      ~RateAveraging.denominator
-      ~RateAveraging.Simple
-      ~RateAveraging.Compound
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         RateAveraging.real
+         RateAveraging.imag
+         RateAveraging.numerator
+         RateAveraging.denominator
+         RateAveraging.Simple
+         RateAveraging.Compound
+  
+  

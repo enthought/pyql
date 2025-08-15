@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.InflationIndex.availability\_lag
+==================================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. autoattribute:: InflationIndex.availability_lag

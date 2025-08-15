@@ -1,0 +1,6 @@
+quantlib.instruments.futures.FuturesType.numerator
+==================================================
+
+.. currentmodule:: quantlib.instruments.futures
+
+.. autoattribute:: FuturesType.numerator

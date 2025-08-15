@@ -1,0 +1,6 @@
+quantlib.time.imm.Month.as\_integer\_ratio
+==========================================
+
+.. currentmodule:: quantlib.time.imm
+
+.. automethod:: Month.as_integer_ratio

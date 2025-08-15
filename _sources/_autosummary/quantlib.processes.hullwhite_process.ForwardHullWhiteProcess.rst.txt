@@ -1,42 +1,41 @@
-quantlib.processes.hullwhite\_process.ForwardHullWhiteProcess
-=============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.processes.hullwhite_process.</div>
+   <div class="empty"></div>
+
+ForwardHullWhiteProcess
+============================================================
 
 .. currentmodule:: quantlib.processes.hullwhite_process
 
 .. autoclass:: ForwardHullWhiteProcess
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ForwardHullWhiteProcess.diffusion
+         ForwardHullWhiteProcess.drift
+         ForwardHullWhiteProcess.expectation
+         ForwardHullWhiteProcess.factors
+         ForwardHullWhiteProcess.size
+         ForwardHullWhiteProcess.std_deviation
+         ForwardHullWhiteProcess.variance
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ForwardHullWhiteProcess.__init__
-      ~ForwardHullWhiteProcess.diffusion
-      ~ForwardHullWhiteProcess.drift
-      ~ForwardHullWhiteProcess.expectation
-      ~ForwardHullWhiteProcess.factors
-      ~ForwardHullWhiteProcess.size
-      ~ForwardHullWhiteProcess.std_deviation
-      ~ForwardHullWhiteProcess.variance
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ForwardHullWhiteProcess.forward_measure_time
-      ~ForwardHullWhiteProcess.x0
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ForwardHullWhiteProcess.forward_measure_time
+         ForwardHullWhiteProcess.x0
+  
+  

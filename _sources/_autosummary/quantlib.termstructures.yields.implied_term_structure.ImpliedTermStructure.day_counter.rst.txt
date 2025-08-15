@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.implied\_term\_structure.ImpliedTermStructure.day\_counter
+=========================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.implied_term_structure
+
+.. autoattribute:: ImpliedTermStructure.day_counter

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>SwaptionHelper &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.models.shortrate.onefactor_model" href="quantlib.models.shortrate.onefactor_model.html" />
+    <link rel="next" title="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.black_price" href="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.black_price.html" />
     <link rel="prev" title="quantlib.models.shortrate.calibrationhelpers.swaption_helper" href="quantlib.models.shortrate.calibrationhelpers.swaption_helper.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,59 +34,42 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-models-shortrate-calibrationhelpers-swaption-helper-swaptionhelper">
-<h1>quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper<a class="headerlink" href="#quantlib-models-shortrate-calibrationhelpers-swaption-helper-swaptionhelper" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.models.shortrate.calibrationhelpers.swaption_helper.</div>
+<div class="empty"></div><section id="swaptionhelper">
+<h1>SwaptionHelper<a class="headerlink" href="#swaptionhelper" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SwaptionHelper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maturity_or_exercise_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_or_end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Quote</span> <span class="pre">volatility</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">IborIndex</span> <span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Period</span> <span class="pre">fixed_leg_tenor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">fixed_leg_daycounter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">floating_leg_daycounter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">HandleYieldTermStructure</span> <span class="pre">ts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CalibrationErrorType</span> <span class="pre">error_type=CalibrationErrorType.RelativePriceError</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">strike=Null[Real]()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">nominal=1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">VolatilityType</span> <span class="pre">vol_type=VolatilityType.ShiftedLognormal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">shift=0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.models.calibration_helper.BlackCalibrationHelper.html#quantlib.models.calibration_helper.BlackCalibrationHelper" title="quantlib.models.calibration_helper.BlackCalibrationHelper"><code class="xref py py-class docutils literal notranslate"><span class="pre">BlackCalibrationHelper</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.__init__" title="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.black_price.html#quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.black_price" title="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.black_price"><code class="xref py py-obj docutils literal notranslate"><span class="pre">black_price</span></code></a>(self, double volatility)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">black_price</span></code>(self, double volatility)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.calibration_error.html#quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.calibration_error" title="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.calibration_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibration_error</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibration_error</span></code>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.impliedVolatility.html#quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.impliedVolatility" title="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.impliedVolatility"><code class="xref py py-obj docutils literal notranslate"><span class="pre">impliedVolatility</span></code></a>(self, Real targetValue, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">impliedVolatility</span></code>(self, Real targetValue, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.market_value.html#quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.market_value" title="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.market_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">market_value</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">market_value</span></code>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.model_value.html#quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.model_value" title="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.model_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_value</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_value</span></code>(self)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.set_pricing_engine.html#quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.set_pricing_engine" title="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.set_pricing_engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code></a>(self, PricingEngine engine)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code>(self, PricingEngine engine)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.underlying.html#quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.underlying" title="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.underlying"><code class="xref py py-obj docutils literal notranslate"><span class="pre">underlying</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.underlying" title="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.underlying"><code class="xref py py-obj docutils literal notranslate"><span class="pre">underlying</span></code></a>(self)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.underlying_swaption" title="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.underlying_swaption"><code class="xref py py-obj docutils literal notranslate"><span class="pre">underlying_swaption</span></code></a>(self)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.underlying_swaption.html#quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.underlying_swaption" title="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.underlying_swaption"><code class="xref py py-obj docutils literal notranslate"><span class="pre">underlying_swaption</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.underlying">
-<span class="sig-name descname"><span class="pre">underlying</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.underlying" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.underlying_swaption">
-<span class="sig-name descname"><span class="pre">underlying_swaption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.underlying_swaption" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </section>
@@ -132,7 +115,7 @@
   <li><a href="quantlib.models.shortrate.calibrationhelpers.html">quantlib.models.shortrate.calibrationhelpers</a><ul>
   <li><a href="quantlib.models.shortrate.calibrationhelpers.swaption_helper.html">quantlib.models.shortrate.calibrationhelpers.swaption_helper</a><ul>
       <li>Previous: <a href="quantlib.models.shortrate.calibrationhelpers.swaption_helper.html" title="previous chapter">quantlib.models.shortrate.calibrationhelpers.swaption_helper</a></li>
-      <li>Next: <a href="quantlib.models.shortrate.onefactor_model.html" title="next chapter">quantlib.models.shortrate.onefactor_model</a></li>
+      <li>Next: <a href="quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.black_price.html" title="next chapter">quantlib.models.shortrate.calibrationhelpers.swaption_helper.SwaptionHelper.black_price</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

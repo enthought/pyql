@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.rate\_helpers.FxSwapRateHelper.is\_fx\_base\_currency\_collateral\_currency
+==========================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoattribute:: FxSwapRateHelper.is_fx_base_currency_collateral_currency

@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_structure.HandleSwaptionVolatilityStructure.link\_to
+===============================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_structure
+
+.. automethod:: HandleSwaptionVolatilityStructure.link_to

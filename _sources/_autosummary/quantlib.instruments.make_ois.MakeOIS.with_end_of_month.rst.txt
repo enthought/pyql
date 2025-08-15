@@ -1,0 +1,6 @@
+quantlib.instruments.make\_ois.MakeOIS.with\_end\_of\_month
+===========================================================
+
+.. currentmodule:: quantlib.instruments.make_ois
+
+.. automethod:: MakeOIS.with_end_of_month

@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_kingdom.UnitedKingdom.end\_of\_month
+====================================================================
+
+.. currentmodule:: quantlib.time.calendars.united_kingdom
+
+.. automethod:: UnitedKingdom.end_of_month

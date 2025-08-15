@@ -4,28 +4,10 @@ quantlib.time.calendars.switzerland
 .. automodule:: quantlib.time.calendars.switzerland
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       Switzerland
    
-   
-
-   
-   
-   
-
-
-

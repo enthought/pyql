@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.euhicp.YYEUHICP.is\_valid\_fixing\_date
+==================================================================
+
+.. currentmodule:: quantlib.indexes.inflation.euhicp
+
+.. automethod:: YYEUHICP.is_valid_fixing_date

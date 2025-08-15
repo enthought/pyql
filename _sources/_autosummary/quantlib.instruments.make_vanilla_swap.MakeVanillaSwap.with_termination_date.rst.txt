@@ -1,0 +1,6 @@
+quantlib.instruments.make\_vanilla\_swap.MakeVanillaSwap.with\_termination\_date
+================================================================================
+
+.. currentmodule:: quantlib.instruments.make_vanilla_swap
+
+.. automethod:: MakeVanillaSwap.with_termination_date

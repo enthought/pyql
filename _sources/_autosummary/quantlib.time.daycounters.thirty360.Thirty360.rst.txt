@@ -1,46 +1,45 @@
-quantlib.time.daycounters.thirty360.Thirty360
+.. raw:: html
+
+   <div class="prename">quantlib.time.daycounters.thirty360.</div>
+   <div class="empty"></div>
+
+Thirty360
 =============================================
 
 .. currentmodule:: quantlib.time.daycounters.thirty360
 
 .. autoclass:: Thirty360
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Thirty360.day_count
+         Thirty360.from_name
+         Thirty360.year_fraction
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Thirty360.__init__
-      ~Thirty360.day_count
-      ~Thirty360.from_name
-      ~Thirty360.year_fraction
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Thirty360.BondBasis
-      ~Thirty360.EurobondBasis
-      ~Thirty360.European
-      ~Thirty360.German
-      ~Thirty360.ISDA
-      ~Thirty360.ISMA
-      ~Thirty360.Italian
-      ~Thirty360.NASD
-      ~Thirty360.USA
-      ~Thirty360.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Thirty360.BondBasis
+         Thirty360.EurobondBasis
+         Thirty360.European
+         Thirty360.German
+         Thirty360.ISDA
+         Thirty360.ISMA
+         Thirty360.Italian
+         Thirty360.NASD
+         Thirty360.USA
+         Thirty360.name
+  
+  

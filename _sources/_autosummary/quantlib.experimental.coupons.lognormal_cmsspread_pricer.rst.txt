@@ -4,28 +4,10 @@ quantlib.experimental.coupons.lognormal\_cmsspread\_pricer
 .. automodule:: quantlib.experimental.coupons.lognormal_cmsspread_pricer
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       LognormalCmsSpreadPricer
    
-   
-
-   
-   
-   
-
-
-

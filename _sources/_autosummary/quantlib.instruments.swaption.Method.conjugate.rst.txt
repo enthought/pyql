@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Method.conjugate
+==============================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. automethod:: Method.conjugate

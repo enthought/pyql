@@ -1,62 +1,61 @@
-quantlib.instruments.credit\_default\_swap.CreditDefaultSwap
-============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.credit_default_swap.</div>
+   <div class="empty"></div>
+
+CreditDefaultSwap
+==========================================================
 
 .. currentmodule:: quantlib.instruments.credit_default_swap
 
 .. autoclass:: CreditDefaultSwap
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CreditDefaultSwap.conventional_spread
+         CreditDefaultSwap.from_upfront
+         CreditDefaultSwap.implied_hazard_rate
+         CreditDefaultSwap.set_pricing_engine
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~CreditDefaultSwap.__init__
-      ~CreditDefaultSwap.conventional_spread
-      ~CreditDefaultSwap.from_upfront
-      ~CreditDefaultSwap.implied_hazard_rate
-      ~CreditDefaultSwap.set_pricing_engine
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~CreditDefaultSwap.accrual
-      ~CreditDefaultSwap.accrual_rebate_npv
-      ~CreditDefaultSwap.cash_settlement_days
-      ~CreditDefaultSwap.coupon_leg_bps
-      ~CreditDefaultSwap.coupon_leg_npv
-      ~CreditDefaultSwap.coupons
-      ~CreditDefaultSwap.default_leg_npv
-      ~CreditDefaultSwap.fair_spread
-      ~CreditDefaultSwap.fair_upfront
-      ~CreditDefaultSwap.is_expired
-      ~CreditDefaultSwap.net_present_value
-      ~CreditDefaultSwap.notional
-      ~CreditDefaultSwap.npv
-      ~CreditDefaultSwap.pays_at_default_time
-      ~CreditDefaultSwap.protection_end_date
-      ~CreditDefaultSwap.protection_start_date
-      ~CreditDefaultSwap.rebates_accrual
-      ~CreditDefaultSwap.running_spread
-      ~CreditDefaultSwap.settles_accrual
-      ~CreditDefaultSwap.side
-      ~CreditDefaultSwap.trade_date
-      ~CreditDefaultSwap.upfront
-      ~CreditDefaultSwap.upfront_bps
-      ~CreditDefaultSwap.upfront_npv
-      ~CreditDefaultSwap.valuation_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CreditDefaultSwap.accrual
+         CreditDefaultSwap.accrual_rebate_npv
+         CreditDefaultSwap.cash_settlement_days
+         CreditDefaultSwap.coupon_leg_bps
+         CreditDefaultSwap.coupon_leg_npv
+         CreditDefaultSwap.coupons
+         CreditDefaultSwap.default_leg_npv
+         CreditDefaultSwap.fair_spread
+         CreditDefaultSwap.fair_upfront
+         CreditDefaultSwap.is_expired
+         CreditDefaultSwap.net_present_value
+         CreditDefaultSwap.notional
+         CreditDefaultSwap.npv
+         CreditDefaultSwap.pays_at_default_time
+         CreditDefaultSwap.protection_end_date
+         CreditDefaultSwap.protection_start_date
+         CreditDefaultSwap.rebates_accrual
+         CreditDefaultSwap.running_spread
+         CreditDefaultSwap.settles_accrual
+         CreditDefaultSwap.side
+         CreditDefaultSwap.trade_date
+         CreditDefaultSwap.upfront
+         CreditDefaultSwap.upfront_bps
+         CreditDefaultSwap.upfront_npv
+         CreditDefaultSwap.valuation_date
+  
+  

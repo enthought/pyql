@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.rate\_helpers.RateHelper.implied\_quote
+======================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoattribute:: RateHelper.implied_quote

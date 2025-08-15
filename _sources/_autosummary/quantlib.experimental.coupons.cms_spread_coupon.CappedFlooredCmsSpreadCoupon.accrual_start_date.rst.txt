@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.cms\_spread\_coupon.CappedFlooredCmsSpreadCoupon.accrual\_start\_date
+===================================================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.cms_spread_coupon
+
+.. autoattribute:: CappedFlooredCmsSpreadCoupon.accrual_start_date

@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.black\_variance\_surface.Extrapolation.InterpolatorDefaultExtrapolation
+===================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_variance_surface
+
+.. autoattribute:: Extrapolation.InterpolatorDefaultExtrapolation

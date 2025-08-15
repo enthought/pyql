@@ -1,0 +1,6 @@
+quantlib.processes.forwardmeasureprocess.ForwardMeasureProcess.size
+===================================================================
+
+.. currentmodule:: quantlib.processes.forwardmeasureprocess
+
+.. automethod:: ForwardMeasureProcess.size

@@ -1,0 +1,6 @@
+quantlib.index.Index.fixing\_calendar
+=====================================
+
+.. currentmodule:: quantlib.index
+
+.. autoattribute:: Index.fixing_calendar

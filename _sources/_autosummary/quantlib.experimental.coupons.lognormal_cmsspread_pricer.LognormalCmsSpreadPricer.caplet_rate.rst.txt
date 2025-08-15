@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.lognormal\_cmsspread\_pricer.LognormalCmsSpreadPricer.caplet\_rate
+================================================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.lognormal_cmsspread_pricer
+
+.. automethod:: LognormalCmsSpreadPricer.caplet_rate

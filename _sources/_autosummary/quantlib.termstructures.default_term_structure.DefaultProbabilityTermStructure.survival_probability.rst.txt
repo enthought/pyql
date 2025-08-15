@@ -1,0 +1,6 @@
+quantlib.termstructures.default\_term\_structure.DefaultProbabilityTermStructure.survival\_probability
+======================================================================================================
+
+.. currentmodule:: quantlib.termstructures.default_term_structure
+
+.. automethod:: DefaultProbabilityTermStructure.survival_probability

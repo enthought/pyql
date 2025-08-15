@@ -1,0 +1,6 @@
+quantlib.time.schedule.Schedule.from\_rule
+==========================================
+
+.. currentmodule:: quantlib.time.schedule
+
+.. automethod:: Schedule.from_rule

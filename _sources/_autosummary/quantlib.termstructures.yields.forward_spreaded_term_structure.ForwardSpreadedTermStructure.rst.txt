@@ -1,43 +1,42 @@
-quantlib.termstructures.yields.forward\_spreaded\_term\_structure.ForwardSpreadedTermStructure
-==============================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.forward_spreaded_term_structure.</div>
+   <div class="empty"></div>
+
+ForwardSpreadedTermStructure
+===========================================================================================
 
 .. currentmodule:: quantlib.termstructures.yields.forward_spreaded_term_structure
 
 .. autoclass:: ForwardSpreadedTermStructure
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ForwardSpreadedTermStructure.discount
+         ForwardSpreadedTermStructure.forward_rate
+         ForwardSpreadedTermStructure.time_from_reference
+         ForwardSpreadedTermStructure.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ForwardSpreadedTermStructure.__init__
-      ~ForwardSpreadedTermStructure.discount
-      ~ForwardSpreadedTermStructure.forward_rate
-      ~ForwardSpreadedTermStructure.time_from_reference
-      ~ForwardSpreadedTermStructure.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ForwardSpreadedTermStructure.day_counter
-      ~ForwardSpreadedTermStructure.extrapolation
-      ~ForwardSpreadedTermStructure.max_date
-      ~ForwardSpreadedTermStructure.max_time
-      ~ForwardSpreadedTermStructure.reference_date
-      ~ForwardSpreadedTermStructure.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ForwardSpreadedTermStructure.day_counter
+         ForwardSpreadedTermStructure.extrapolation
+         ForwardSpreadedTermStructure.max_date
+         ForwardSpreadedTermStructure.max_time
+         ForwardSpreadedTermStructure.reference_date
+         ForwardSpreadedTermStructure.settlement_days
+  
+  

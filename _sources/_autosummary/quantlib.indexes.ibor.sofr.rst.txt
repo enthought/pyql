@@ -4,28 +4,10 @@ quantlib.indexes.ibor.sofr
 .. automodule:: quantlib.indexes.ibor.sofr
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       Sofr
    
-   
-
-   
-   
-   
-
-
-

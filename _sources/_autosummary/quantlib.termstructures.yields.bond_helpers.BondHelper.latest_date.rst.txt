@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bond\_helpers.BondHelper.latest\_date
+====================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bond_helpers
+
+.. autoattribute:: BondHelper.latest_date

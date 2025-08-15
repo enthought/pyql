@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.local\_vol\_term\_structure.LocalVolTermStructure.reference\_date
+=============================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.local_vol_term_structure
+
+.. autoattribute:: LocalVolTermStructure.reference_date

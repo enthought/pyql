@@ -1,0 +1,6 @@
+quantlib.market.market.IborMarket.reference\_date
+=================================================
+
+.. currentmodule:: quantlib.market.market
+
+.. autoproperty:: IborMarket.reference_date

@@ -1,0 +1,6 @@
+quantlib.settings.Settings.enforces\_todays\_historic\_fixings
+==============================================================
+
+.. currentmodule:: quantlib.settings
+
+.. autoattribute:: Settings.enforces_todays_historic_fixings

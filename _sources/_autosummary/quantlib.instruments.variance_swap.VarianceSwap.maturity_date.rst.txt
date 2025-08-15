@@ -1,0 +1,6 @@
+quantlib.instruments.variance\_swap.VarianceSwap.maturity\_date
+===============================================================
+
+.. currentmodule:: quantlib.instruments.variance_swap
+
+.. autoattribute:: VarianceSwap.maturity_date

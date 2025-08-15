@@ -1,39 +1,38 @@
-quantlib.termstructures.yields.rate\_helpers.DepositRateHelper
-==============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.rate_helpers.</div>
+   <div class="empty"></div>
+
+DepositRateHelper
+=============================================================
 
 .. currentmodule:: quantlib.termstructures.yields.rate_helpers
 
 .. autoclass:: DepositRateHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         DepositRateHelper.update
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~DepositRateHelper.__init__
-      ~DepositRateHelper.update
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~DepositRateHelper.earliest_date
-      ~DepositRateHelper.implied_quote
-      ~DepositRateHelper.latest_date
-      ~DepositRateHelper.maturity_date
-      ~DepositRateHelper.quote
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         DepositRateHelper.earliest_date
+         DepositRateHelper.implied_quote
+         DepositRateHelper.latest_date
+         DepositRateHelper.maturity_date
+         DepositRateHelper.quote
+  
+  

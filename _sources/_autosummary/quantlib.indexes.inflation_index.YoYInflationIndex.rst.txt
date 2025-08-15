@@ -1,49 +1,48 @@
-quantlib.indexes.inflation\_index.YoYInflationIndex
-===================================================
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.inflation_index.</div>
+   <div class="empty"></div>
+
+YoYInflationIndex
+==================================================
 
 .. currentmodule:: quantlib.indexes.inflation_index
 
 .. autoclass:: YoYInflationIndex
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YoYInflationIndex.add_fixing
+         YoYInflationIndex.add_fixings
+         YoYInflationIndex.clear_fixings
+         YoYInflationIndex.fixing
+         YoYInflationIndex.has_historical_fixing
+         YoYInflationIndex.is_valid_fixing_date
+         YoYInflationIndex.zero_inflation_term_structure
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~YoYInflationIndex.__init__
-      ~YoYInflationIndex.add_fixing
-      ~YoYInflationIndex.add_fixings
-      ~YoYInflationIndex.clear_fixings
-      ~YoYInflationIndex.fixing
-      ~YoYInflationIndex.has_historical_fixing
-      ~YoYInflationIndex.is_valid_fixing_date
-      ~YoYInflationIndex.zero_inflation_term_structure
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~YoYInflationIndex.availability_lag
-      ~YoYInflationIndex.currency
-      ~YoYInflationIndex.family_name
-      ~YoYInflationIndex.fixing_calendar
-      ~YoYInflationIndex.frequency
-      ~YoYInflationIndex.last_fixing_date
-      ~YoYInflationIndex.name
-      ~YoYInflationIndex.region
-      ~YoYInflationIndex.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YoYInflationIndex.availability_lag
+         YoYInflationIndex.currency
+         YoYInflationIndex.family_name
+         YoYInflationIndex.fixing_calendar
+         YoYInflationIndex.frequency
+         YoYInflationIndex.last_fixing_date
+         YoYInflationIndex.name
+         YoYInflationIndex.region
+         YoYInflationIndex.time_series
+  
+  

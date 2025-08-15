@@ -4,28 +4,10 @@ quantlib.pricingengines.swaption.jamshidian\_swaption\_engine
 .. automodule:: quantlib.pricingengines.swaption.jamshidian_swaption_engine
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       JamshidianSwaptionEngine
    
-   
-
-   
-   
-   
-
-
-

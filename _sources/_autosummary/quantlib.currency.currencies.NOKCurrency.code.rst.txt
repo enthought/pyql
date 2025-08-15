@@ -1,0 +1,6 @@
+quantlib.currency.currencies.NOKCurrency.code
+=============================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: NOKCurrency.code

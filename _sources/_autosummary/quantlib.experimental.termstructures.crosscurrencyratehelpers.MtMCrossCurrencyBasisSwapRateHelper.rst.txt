@@ -1,39 +1,38 @@
-quantlib.experimental.termstructures.crosscurrencyratehelpers.MtMCrossCurrencyBasisSwapRateHelper
+.. raw:: html
+
+   <div class="prename">quantlib.experimental.termstructures.crosscurrencyratehelpers.</div>
+   <div class="empty"></div>
+
+MtMCrossCurrencyBasisSwapRateHelper
 =================================================================================================
 
 .. currentmodule:: quantlib.experimental.termstructures.crosscurrencyratehelpers
 
 .. autoclass:: MtMCrossCurrencyBasisSwapRateHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         MtMCrossCurrencyBasisSwapRateHelper.update
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~MtMCrossCurrencyBasisSwapRateHelper.__init__
-      ~MtMCrossCurrencyBasisSwapRateHelper.update
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~MtMCrossCurrencyBasisSwapRateHelper.earliest_date
-      ~MtMCrossCurrencyBasisSwapRateHelper.implied_quote
-      ~MtMCrossCurrencyBasisSwapRateHelper.latest_date
-      ~MtMCrossCurrencyBasisSwapRateHelper.maturity_date
-      ~MtMCrossCurrencyBasisSwapRateHelper.quote
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         MtMCrossCurrencyBasisSwapRateHelper.earliest_date
+         MtMCrossCurrencyBasisSwapRateHelper.implied_quote
+         MtMCrossCurrencyBasisSwapRateHelper.latest_date
+         MtMCrossCurrencyBasisSwapRateHelper.maturity_date
+         MtMCrossCurrencyBasisSwapRateHelper.quote
+  
+  

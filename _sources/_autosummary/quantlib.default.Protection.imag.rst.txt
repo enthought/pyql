@@ -1,0 +1,6 @@
+quantlib.default.Protection.imag
+================================
+
+.. currentmodule:: quantlib.default
+
+.. autoattribute:: Protection.imag

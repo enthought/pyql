@@ -1,0 +1,6 @@
+quantlib.time.calendars.germany.Market.Eurex
+============================================
+
+.. currentmodule:: quantlib.time.calendars.germany
+
+.. autoattribute:: Market.Eurex

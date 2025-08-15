@@ -1,0 +1,6 @@
+quantlib.instruments.overnightindexedswap.OvernightIndexedSwap.startDiscounts
+=============================================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexedswap
+
+.. automethod:: OvernightIndexedSwap.startDiscounts

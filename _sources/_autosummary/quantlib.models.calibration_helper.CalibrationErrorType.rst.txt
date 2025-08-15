@@ -1,46 +1,53 @@
-quantlib.models.calibration\_helper.CalibrationErrorType
-========================================================
+.. raw:: html
+
+   <div class="prename">quantlib.models.calibration_helper.</div>
+   <div class="empty"></div>
+
+CalibrationErrorType
+=======================================================
 
 .. currentmodule:: quantlib.models.calibration_helper
 
 .. autoclass:: CalibrationErrorType
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CalibrationErrorType.__mul__
+         CalibrationErrorType.__pow__
+         CalibrationErrorType.conjugate
+         CalibrationErrorType.bit_length
+         CalibrationErrorType.bit_count
+         CalibrationErrorType.to_bytes
+         CalibrationErrorType.from_bytes
+         CalibrationErrorType.as_integer_ratio
+         CalibrationErrorType.__len__
+         CalibrationErrorType.__getitem__
+      
+         CalibrationErrorType.__len__
+         CalibrationErrorType.__getitem__
+         CalibrationErrorType.__mul__
+         CalibrationErrorType.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~CalibrationErrorType.conjugate
-      ~CalibrationErrorType.bit_length
-      ~CalibrationErrorType.bit_count
-      ~CalibrationErrorType.to_bytes
-      ~CalibrationErrorType.from_bytes
-      ~CalibrationErrorType.as_integer_ratio
-      ~CalibrationErrorType.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~CalibrationErrorType.real
-      ~CalibrationErrorType.imag
-      ~CalibrationErrorType.numerator
-      ~CalibrationErrorType.denominator
-      ~CalibrationErrorType.RelativePriceError
-      ~CalibrationErrorType.PriceError
-      ~CalibrationErrorType.ImpliedVolError
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CalibrationErrorType.real
+         CalibrationErrorType.imag
+         CalibrationErrorType.numerator
+         CalibrationErrorType.denominator
+         CalibrationErrorType.RelativePriceError
+         CalibrationErrorType.PriceError
+         CalibrationErrorType.ImpliedVolError
+  
+  

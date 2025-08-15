@@ -1,50 +1,49 @@
-quantlib.instruments.bonds.cpibond.CPIBond
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.bonds.cpibond.</div>
+   <div class="empty"></div>
+
+CPIBond
 ==========================================
 
 .. currentmodule:: quantlib.instruments.bonds.cpibond
 
 .. autoclass:: CPIBond
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CPIBond.accrued_amount
+         CPIBond.bond_yield
+         CPIBond.notional
+         CPIBond.set_pricing_engine
+         CPIBond.settlement_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~CPIBond.__init__
-      ~CPIBond.accrued_amount
-      ~CPIBond.bond_yield
-      ~CPIBond.notional
-      ~CPIBond.set_pricing_engine
-      ~CPIBond.settlement_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~CPIBond.calendar
-      ~CPIBond.cashflows
-      ~CPIBond.clean_price
-      ~CPIBond.dirty_price
-      ~CPIBond.is_expired
-      ~CPIBond.issue_date
-      ~CPIBond.maturity_date
-      ~CPIBond.net_present_value
-      ~CPIBond.npv
-      ~CPIBond.settlement_days
-      ~CPIBond.start_date
-      ~CPIBond.valuation_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CPIBond.calendar
+         CPIBond.cashflows
+         CPIBond.clean_price
+         CPIBond.dirty_price
+         CPIBond.is_expired
+         CPIBond.issue_date
+         CPIBond.maturity_date
+         CPIBond.net_present_value
+         CPIBond.npv
+         CPIBond.settlement_days
+         CPIBond.start_date
+         CPIBond.valuation_date
+  
+  

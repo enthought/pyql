@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.sofr.Sofr.fixing\_days
+============================================
+
+.. currentmodule:: quantlib.indexes.ibor.sofr
+
+.. autoattribute:: Sofr.fixing_days

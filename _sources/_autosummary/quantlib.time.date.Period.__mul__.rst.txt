@@ -1,0 +1,6 @@
+quantlib.time.date.Period.\_\_mul\_\_
+=====================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: Period.__mul__

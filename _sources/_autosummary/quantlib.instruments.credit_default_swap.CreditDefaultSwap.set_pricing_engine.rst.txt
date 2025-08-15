@@ -1,0 +1,6 @@
+quantlib.instruments.credit\_default\_swap.CreditDefaultSwap.set\_pricing\_engine
+=================================================================================
+
+.. currentmodule:: quantlib.instruments.credit_default_swap
+
+.. automethod:: CreditDefaultSwap.set_pricing_engine

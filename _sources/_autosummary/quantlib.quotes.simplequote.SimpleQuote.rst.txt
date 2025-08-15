@@ -1,36 +1,35 @@
-quantlib.quotes.simplequote.SimpleQuote
+.. raw:: html
+
+   <div class="prename">quantlib.quotes.simplequote.</div>
+   <div class="empty"></div>
+
+SimpleQuote
 =======================================
 
 .. currentmodule:: quantlib.quotes.simplequote
 
 .. autoclass:: SimpleQuote
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SimpleQuote.reset
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~SimpleQuote.__init__
-      ~SimpleQuote.reset
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~SimpleQuote.is_valid
-      ~SimpleQuote.value
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SimpleQuote.is_valid
+         SimpleQuote.value
+  
+  

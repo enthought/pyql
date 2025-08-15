@@ -1,40 +1,39 @@
-quantlib.models.equity.heston\_model.HestonModel
-================================================
+.. raw:: html
+
+   <div class="prename">quantlib.models.equity.heston_model.</div>
+   <div class="empty"></div>
+
+HestonModel
+===============================================
 
 .. currentmodule:: quantlib.models.equity.heston_model
 
 .. autoclass:: HestonModel
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HestonModel.calibrate
+         HestonModel.process
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~HestonModel.__init__
-      ~HestonModel.calibrate
-      ~HestonModel.process
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~HestonModel.kappa
-      ~HestonModel.rho
-      ~HestonModel.sigma
-      ~HestonModel.theta
-      ~HestonModel.v0
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HestonModel.kappa
+         HestonModel.rho
+         HestonModel.sigma
+         HestonModel.theta
+         HestonModel.v0
+  
+  

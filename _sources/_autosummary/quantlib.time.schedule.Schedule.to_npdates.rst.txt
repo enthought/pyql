@@ -1,0 +1,6 @@
+quantlib.time.schedule.Schedule.to\_npdates
+===========================================
+
+.. currentmodule:: quantlib.time.schedule
+
+.. automethod:: Schedule.to_npdates

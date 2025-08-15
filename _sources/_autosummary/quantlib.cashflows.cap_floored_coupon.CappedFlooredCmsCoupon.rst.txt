@@ -1,63 +1,62 @@
-quantlib.cashflows.cap\_floored\_coupon.CappedFlooredCmsCoupon
-==============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.cap_floored_coupon.</div>
+   <div class="empty"></div>
+
+CappedFlooredCmsCoupon
+============================================================
 
 .. currentmodule:: quantlib.cashflows.cap_floored_coupon
 
 .. autoclass:: CappedFlooredCmsCoupon
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CappedFlooredCmsCoupon.accrued_amount
+         CappedFlooredCmsCoupon.accrued_days
+         CappedFlooredCmsCoupon.accrued_period
+         CappedFlooredCmsCoupon.has_occured
+         CappedFlooredCmsCoupon.set_pricer
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~CappedFlooredCmsCoupon.__init__
-      ~CappedFlooredCmsCoupon.accrued_amount
-      ~CappedFlooredCmsCoupon.accrued_days
-      ~CappedFlooredCmsCoupon.accrued_period
-      ~CappedFlooredCmsCoupon.has_occured
-      ~CappedFlooredCmsCoupon.set_pricer
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~CappedFlooredCmsCoupon.accrual_days
-      ~CappedFlooredCmsCoupon.accrual_end_date
-      ~CappedFlooredCmsCoupon.accrual_period
-      ~CappedFlooredCmsCoupon.accrual_start_date
-      ~CappedFlooredCmsCoupon.adjusted_fixing
-      ~CappedFlooredCmsCoupon.amount
-      ~CappedFlooredCmsCoupon.cap
-      ~CappedFlooredCmsCoupon.convexity_adjustment
-      ~CappedFlooredCmsCoupon.date
-      ~CappedFlooredCmsCoupon.day_counter
-      ~CappedFlooredCmsCoupon.effective_cap
-      ~CappedFlooredCmsCoupon.effective_floor
-      ~CappedFlooredCmsCoupon.fixing_date
-      ~CappedFlooredCmsCoupon.fixing_days
-      ~CappedFlooredCmsCoupon.floor
-      ~CappedFlooredCmsCoupon.index
-      ~CappedFlooredCmsCoupon.index_fixing
-      ~CappedFlooredCmsCoupon.is_capped
-      ~CappedFlooredCmsCoupon.is_floored
-      ~CappedFlooredCmsCoupon.is_in_arrears
-      ~CappedFlooredCmsCoupon.nominal
-      ~CappedFlooredCmsCoupon.rate
-      ~CappedFlooredCmsCoupon.reference_period_end
-      ~CappedFlooredCmsCoupon.reference_period_start
-      ~CappedFlooredCmsCoupon.underlying
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CappedFlooredCmsCoupon.accrual_days
+         CappedFlooredCmsCoupon.accrual_end_date
+         CappedFlooredCmsCoupon.accrual_period
+         CappedFlooredCmsCoupon.accrual_start_date
+         CappedFlooredCmsCoupon.adjusted_fixing
+         CappedFlooredCmsCoupon.amount
+         CappedFlooredCmsCoupon.cap
+         CappedFlooredCmsCoupon.convexity_adjustment
+         CappedFlooredCmsCoupon.date
+         CappedFlooredCmsCoupon.day_counter
+         CappedFlooredCmsCoupon.effective_cap
+         CappedFlooredCmsCoupon.effective_floor
+         CappedFlooredCmsCoupon.fixing_date
+         CappedFlooredCmsCoupon.fixing_days
+         CappedFlooredCmsCoupon.floor
+         CappedFlooredCmsCoupon.index
+         CappedFlooredCmsCoupon.index_fixing
+         CappedFlooredCmsCoupon.is_capped
+         CappedFlooredCmsCoupon.is_floored
+         CappedFlooredCmsCoupon.is_in_arrears
+         CappedFlooredCmsCoupon.nominal
+         CappedFlooredCmsCoupon.rate
+         CappedFlooredCmsCoupon.reference_period_end
+         CappedFlooredCmsCoupon.reference_period_start
+         CappedFlooredCmsCoupon.underlying
+  
+  

@@ -1,0 +1,6 @@
+quantlib.models.model.CalibratedModel.params
+============================================
+
+.. currentmodule:: quantlib.models.model
+
+.. automethod:: CalibratedModel.params

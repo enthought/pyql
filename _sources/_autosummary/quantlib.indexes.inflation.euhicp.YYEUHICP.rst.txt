@@ -1,49 +1,48 @@
-quantlib.indexes.inflation.euhicp.YYEUHICP
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.inflation.euhicp.</div>
+   <div class="empty"></div>
+
+YYEUHICP
 ==========================================
 
 .. currentmodule:: quantlib.indexes.inflation.euhicp
 
 .. autoclass:: YYEUHICP
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YYEUHICP.add_fixing
+         YYEUHICP.add_fixings
+         YYEUHICP.clear_fixings
+         YYEUHICP.fixing
+         YYEUHICP.has_historical_fixing
+         YYEUHICP.is_valid_fixing_date
+         YYEUHICP.zero_inflation_term_structure
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~YYEUHICP.__init__
-      ~YYEUHICP.add_fixing
-      ~YYEUHICP.add_fixings
-      ~YYEUHICP.clear_fixings
-      ~YYEUHICP.fixing
-      ~YYEUHICP.has_historical_fixing
-      ~YYEUHICP.is_valid_fixing_date
-      ~YYEUHICP.zero_inflation_term_structure
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~YYEUHICP.availability_lag
-      ~YYEUHICP.currency
-      ~YYEUHICP.family_name
-      ~YYEUHICP.fixing_calendar
-      ~YYEUHICP.frequency
-      ~YYEUHICP.last_fixing_date
-      ~YYEUHICP.name
-      ~YYEUHICP.region
-      ~YYEUHICP.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YYEUHICP.availability_lag
+         YYEUHICP.currency
+         YYEUHICP.family_name
+         YYEUHICP.fixing_calendar
+         YYEUHICP.frequency
+         YYEUHICP.last_fixing_date
+         YYEUHICP.name
+         YYEUHICP.region
+         YYEUHICP.time_series
+  
+  

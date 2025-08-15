@@ -1,0 +1,6 @@
+quantlib.time\_series.TimeSeries.first\_date
+============================================
+
+.. currentmodule:: quantlib.time_series
+
+.. autoattribute:: TimeSeries.first_date

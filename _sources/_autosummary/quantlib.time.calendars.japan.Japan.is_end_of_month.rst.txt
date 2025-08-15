@@ -1,0 +1,6 @@
+quantlib.time.calendars.japan.Japan.is\_end\_of\_month
+======================================================
+
+.. currentmodule:: quantlib.time.calendars.japan
+
+.. automethod:: Japan.is_end_of_month

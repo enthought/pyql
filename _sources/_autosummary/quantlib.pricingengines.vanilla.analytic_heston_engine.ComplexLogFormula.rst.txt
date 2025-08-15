@@ -1,49 +1,56 @@
-quantlib.pricingengines.vanilla.analytic\_heston\_engine.ComplexLogFormula
-==========================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.pricingengines.vanilla.analytic_heston_engine.</div>
+   <div class="empty"></div>
+
+ComplexLogFormula
+========================================================================
 
 .. currentmodule:: quantlib.pricingengines.vanilla.analytic_heston_engine
 
 .. autoclass:: ComplexLogFormula
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ComplexLogFormula.__mul__
+         ComplexLogFormula.__pow__
+         ComplexLogFormula.conjugate
+         ComplexLogFormula.bit_length
+         ComplexLogFormula.bit_count
+         ComplexLogFormula.to_bytes
+         ComplexLogFormula.from_bytes
+         ComplexLogFormula.as_integer_ratio
+         ComplexLogFormula.__len__
+         ComplexLogFormula.__getitem__
+      
+         ComplexLogFormula.__len__
+         ComplexLogFormula.__getitem__
+         ComplexLogFormula.__mul__
+         ComplexLogFormula.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ComplexLogFormula.conjugate
-      ~ComplexLogFormula.bit_length
-      ~ComplexLogFormula.bit_count
-      ~ComplexLogFormula.to_bytes
-      ~ComplexLogFormula.from_bytes
-      ~ComplexLogFormula.as_integer_ratio
-      ~ComplexLogFormula.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ComplexLogFormula.real
-      ~ComplexLogFormula.imag
-      ~ComplexLogFormula.numerator
-      ~ComplexLogFormula.denominator
-      ~ComplexLogFormula.Gatheral
-      ~ComplexLogFormula.BranchCorrection
-      ~ComplexLogFormula.AndersenPiterbarg
-      ~ComplexLogFormula.AndersenPiterbargOptCV
-      ~ComplexLogFormula.AsymptoticChF
-      ~ComplexLogFormula.OptimalCV
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ComplexLogFormula.real
+         ComplexLogFormula.imag
+         ComplexLogFormula.numerator
+         ComplexLogFormula.denominator
+         ComplexLogFormula.Gatheral
+         ComplexLogFormula.BranchCorrection
+         ComplexLogFormula.AndersenPiterbarg
+         ComplexLogFormula.AndersenPiterbargOptCV
+         ComplexLogFormula.AsymptoticChF
+         ComplexLogFormula.OptimalCV
+  
+  

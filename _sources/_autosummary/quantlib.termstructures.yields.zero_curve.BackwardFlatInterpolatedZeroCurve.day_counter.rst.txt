@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_curve.BackwardFlatInterpolatedZeroCurve.day\_counter
+=========================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. autoattribute:: BackwardFlatInterpolatedZeroCurve.day_counter

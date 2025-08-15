@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.euhicp.YYEUHICPXT.add\_fixing
+========================================================
+
+.. currentmodule:: quantlib.indexes.inflation.euhicp
+
+.. automethod:: YYEUHICPXT.add_fixing

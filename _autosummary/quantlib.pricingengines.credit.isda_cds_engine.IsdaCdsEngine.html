@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.pricingengines.credit.isda_cds_engine.IsdaCdsEngine &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>IsdaCdsEngine &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,8 +15,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.pricingengines.credit.isda_cds_engine.NumericalFix" href="quantlib.pricingengines.credit.isda_cds_engine.NumericalFix.html" />
-    <link rel="prev" title="quantlib.pricingengines.credit.isda_cds_engine.ForwardsInCouponPeriod" href="quantlib.pricingengines.credit.isda_cds_engine.ForwardsInCouponPeriod.html" />
+    <link rel="next" title="NumericalFix" href="quantlib.pricingengines.credit.isda_cds_engine.NumericalFix.html" />
+    <link rel="prev" title="quantlib.pricingengines.credit.isda_cds_engine.ForwardsInCouponPeriod.to_bytes" href="quantlib.pricingengines.credit.isda_cds_engine.ForwardsInCouponPeriod.to_bytes.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,38 +34,21 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-pricingengines-credit-isda-cds-engine-isdacdsengine">
-<h1>quantlib.pricingengines.credit.isda_cds_engine.IsdaCdsEngine<a class="headerlink" href="#quantlib-pricingengines-credit-isda-cds-engine-isdacdsengine" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.pricingengines.credit.isda_cds_engine.</div>
+<div class="empty"></div><section id="isdacdsengine">
+<h1>IsdaCdsEngine<a class="headerlink" href="#isdacdsengine" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.pricingengines.credit.isda_cds_engine.IsdaCdsEngine">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IsdaCdsEngine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">HandleDefaultProbabilityTermStructure</span> <span class="pre">ts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">recovery_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">HandleYieldTermStructure</span> <span class="pre">discount_curve</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_settlement_date_flows=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">NumericalFix</span> <span class="pre">numerical_fix=NumericalFix.Taylor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AccrualBias</span> <span class="pre">accrual_bias=AccrualBias.HalfDayBias</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ForwardsInCouponPeriod</span> <span class="pre">forwards_in_coupon_period=ForwardsInCouponPeriod.Piecewise</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.pricingengines.credit.isda_cds_engine.IsdaCdsEngine" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.pricingengines.engine.PricingEngine.html#quantlib.pricingengines.engine.PricingEngine" title="quantlib.pricingengines.engine.PricingEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">PricingEngine</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.pricingengines.credit.isda_cds_engine.IsdaCdsEngine.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.pricingengines.credit.isda_cds_engine.IsdaCdsEngine.__init__" title="Link to this definition">¶</a></dt>
-<dd><p>constructor where client code is responsible for providing a default curve
-and an interest curve compliant with the ISDA specifications.</p>
-</dd></dl>
-
-<p class="rubric">Methods</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.pricingengines.credit.isda_cds_engine.IsdaCdsEngine.__init__" title="quantlib.pricingengines.credit.isda_cds_engine.IsdaCdsEngine.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a></p></td>
-<td><p>constructor where client code is responsible for providing a default curve and an interest curve compliant with the ISDA specifications.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">isda_credit_curve</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">isda_rate_curve</span></code></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>isda_credit_curve</strong></dt><dd></dd>
+<dt><strong>isda_rate_curve</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -109,8 +92,8 @@ and an interest curve compliant with the ISDA specifications.</p>
   <li><a href="quantlib.pricingengines.html">quantlib.pricingengines</a><ul>
   <li><a href="quantlib.pricingengines.credit.html">quantlib.pricingengines.credit</a><ul>
   <li><a href="quantlib.pricingengines.credit.isda_cds_engine.html">quantlib.pricingengines.credit.isda_cds_engine</a><ul>
-      <li>Previous: <a href="quantlib.pricingengines.credit.isda_cds_engine.ForwardsInCouponPeriod.html" title="previous chapter">quantlib.pricingengines.credit.isda_cds_engine.ForwardsInCouponPeriod</a></li>
-      <li>Next: <a href="quantlib.pricingengines.credit.isda_cds_engine.NumericalFix.html" title="next chapter">quantlib.pricingengines.credit.isda_cds_engine.NumericalFix</a></li>
+      <li>Previous: <a href="quantlib.pricingengines.credit.isda_cds_engine.ForwardsInCouponPeriod.to_bytes.html" title="previous chapter">quantlib.pricingengines.credit.isda_cds_engine.ForwardsInCouponPeriod.to_bytes</a></li>
+      <li>Next: <a href="quantlib.pricingengines.credit.isda_cds_engine.NumericalFix.html" title="next chapter">NumericalFix</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

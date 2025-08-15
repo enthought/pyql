@@ -1,43 +1,42 @@
-quantlib.termstructures.volatility.equityfx.heston\_black\_vol\_surface.HestonBlackVolSurface
-=============================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.volatility.equityfx.heston_black_vol_surface.</div>
+   <div class="empty"></div>
+
+HestonBlackVolSurface
+==========================================================================================
 
 .. currentmodule:: quantlib.termstructures.volatility.equityfx.heston_black_vol_surface
 
 .. autoclass:: HestonBlackVolSurface
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HestonBlackVolSurface.blackForwardVariance
+         HestonBlackVolSurface.blackForwardVol
+         HestonBlackVolSurface.blackVariance
+         HestonBlackVolSurface.blackVol
+         HestonBlackVolSurface.option_date_from_tenor
+         HestonBlackVolSurface.time_from_reference
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~HestonBlackVolSurface.__init__
-      ~HestonBlackVolSurface.blackForwardVariance
-      ~HestonBlackVolSurface.blackForwardVol
-      ~HestonBlackVolSurface.blackVariance
-      ~HestonBlackVolSurface.blackVol
-      ~HestonBlackVolSurface.option_date_from_tenor
-      ~HestonBlackVolSurface.time_from_reference
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~HestonBlackVolSurface.calendar
-      ~HestonBlackVolSurface.extrapolation
-      ~HestonBlackVolSurface.reference_date
-      ~HestonBlackVolSurface.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HestonBlackVolSurface.calendar
+         HestonBlackVolSurface.extrapolation
+         HestonBlackVolSurface.reference_date
+         HestonBlackVolSurface.settlement_days
+  
+  

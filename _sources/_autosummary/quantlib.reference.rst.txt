@@ -4,30 +4,11 @@ quantlib.reference
 .. automodule:: quantlib.reference
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    data_structures
    names
-

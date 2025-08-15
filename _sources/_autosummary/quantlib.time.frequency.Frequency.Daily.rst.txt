@@ -1,0 +1,6 @@
+quantlib.time.frequency.Frequency.Daily
+=======================================
+
+.. currentmodule:: quantlib.time.frequency
+
+.. autoattribute:: Frequency.Daily

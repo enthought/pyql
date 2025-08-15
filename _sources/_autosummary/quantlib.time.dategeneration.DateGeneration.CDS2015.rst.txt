@@ -1,0 +1,6 @@
+quantlib.time.dategeneration.DateGeneration.CDS2015
+===================================================
+
+.. currentmodule:: quantlib.time.dategeneration
+
+.. autoattribute:: DateGeneration.CDS2015

@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.usdlibor.USDLibor.add\_fixing
+===================================================
+
+.. currentmodule:: quantlib.indexes.ibor.usdlibor
+
+.. automethod:: USDLibor.add_fixing

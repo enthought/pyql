@@ -1,0 +1,6 @@
+quantlib.time.date.Month.\_\_pow\_\_
+====================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: Month.__pow__

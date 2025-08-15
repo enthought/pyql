@@ -1,0 +1,6 @@
+quantlib.observable.Observer.unregister\_with
+=============================================
+
+.. currentmodule:: quantlib.observable
+
+.. automethod:: Observer.unregister_with

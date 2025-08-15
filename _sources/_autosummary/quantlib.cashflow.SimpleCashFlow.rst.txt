@@ -1,36 +1,35 @@
-quantlib.cashflow.SimpleCashFlow
+.. raw:: html
+
+   <div class="prename">quantlib.cashflow.</div>
+   <div class="empty"></div>
+
+SimpleCashFlow
 ================================
 
 .. currentmodule:: quantlib.cashflow
 
 .. autoclass:: SimpleCashFlow
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SimpleCashFlow.has_occured
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~SimpleCashFlow.__init__
-      ~SimpleCashFlow.has_occured
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~SimpleCashFlow.amount
-      ~SimpleCashFlow.date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SimpleCashFlow.amount
+         SimpleCashFlow.date
+  
+  

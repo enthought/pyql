@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.YoYInflationIndex.has\_historical\_fixing
+===========================================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. automethod:: YoYInflationIndex.has_historical_fixing

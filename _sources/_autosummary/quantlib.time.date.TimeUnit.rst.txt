@@ -1,52 +1,58 @@
-quantlib.time.date.TimeUnit
+.. raw:: html
+
+   <div class="prename">quantlib.time.date.</div>
+   <div class="empty"></div>
+
+TimeUnit
 ===========================
 
 .. currentmodule:: quantlib.time.date
 
 .. autoclass:: TimeUnit
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         TimeUnit.__mul__
+         TimeUnit.__pow__
+         TimeUnit.conjugate
+         TimeUnit.bit_length
+         TimeUnit.bit_count
+         TimeUnit.to_bytes
+         TimeUnit.from_bytes
+         TimeUnit.as_integer_ratio
+         TimeUnit.__getitem__
+         TimeUnit.__len__
+      
+         TimeUnit.__len__
+         TimeUnit.__getitem__
+         TimeUnit.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~TimeUnit.conjugate
-      ~TimeUnit.bit_length
-      ~TimeUnit.bit_count
-      ~TimeUnit.to_bytes
-      ~TimeUnit.from_bytes
-      ~TimeUnit.as_integer_ratio
-      ~TimeUnit.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~TimeUnit.real
-      ~TimeUnit.imag
-      ~TimeUnit.numerator
-      ~TimeUnit.denominator
-      ~TimeUnit.Days
-      ~TimeUnit.Weeks
-      ~TimeUnit.Months
-      ~TimeUnit.Years
-      ~TimeUnit.Hours
-      ~TimeUnit.Minutes
-      ~TimeUnit.Seconds
-      ~TimeUnit.Milliseconds
-      ~TimeUnit.Microseconds
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         TimeUnit.real
+         TimeUnit.imag
+         TimeUnit.numerator
+         TimeUnit.denominator
+         TimeUnit.Days
+         TimeUnit.Weeks
+         TimeUnit.Months
+         TimeUnit.Years
+         TimeUnit.Hours
+         TimeUnit.Minutes
+         TimeUnit.Seconds
+         TimeUnit.Milliseconds
+         TimeUnit.Microseconds
+  
+  

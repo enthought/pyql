@@ -1,0 +1,6 @@
+quantlib.time.calendars.canada.Canada.adjust
+============================================
+
+.. currentmodule:: quantlib.time.calendars.canada
+
+.. automethod:: Canada.adjust

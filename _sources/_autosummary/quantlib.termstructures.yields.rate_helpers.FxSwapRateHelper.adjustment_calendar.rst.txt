@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.rate\_helpers.FxSwapRateHelper.adjustment\_calendar
+==================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoattribute:: FxSwapRateHelper.adjustment_calendar

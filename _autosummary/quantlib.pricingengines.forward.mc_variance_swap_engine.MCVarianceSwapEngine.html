@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.pricingengines.forward.mc_variance_swap_engine.MCVarianceSwapEngine &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>MCVarianceSwapEngine &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -34,8 +34,9 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-pricingengines-forward-mc-variance-swap-engine-mcvarianceswapengine">
-<h1>quantlib.pricingengines.forward.mc_variance_swap_engine.MCVarianceSwapEngine<a class="headerlink" href="#quantlib-pricingengines-forward-mc-variance-swap-engine-mcvarianceswapengine" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.pricingengines.forward.mc_variance_swap_engine.</div>
+<div class="empty"></div><section id="mcvarianceswapengine">
+<h1>MCVarianceSwapEngine<a class="headerlink" href="#mcvarianceswapengine" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.pricingengines.forward.mc_variance_swap_engine.MCVarianceSwapEngine">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MCVarianceSwapEngine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">GeneralizedBlackScholesProcess</span> <span class="pre">process</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">time_steps=Null[Integer]()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">time_steps_per_year=Null[Integer]()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">brownian_bridge=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">antithetic_variate=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">required_samples=Null[Integer]()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">required_tolerance=Null[Real]()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">max_samples=Null[Integer]()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BigNatural</span> <span class="pre">seed=0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.pricingengines.forward.mc_variance_swap_engine.MCVarianceSwapEngine" title="Link to this definition">¶</a></dt>
@@ -43,39 +44,26 @@
 <p>Variance-swap pricing engine using Monte Carlo simulation</p>
 <p>as described in Demeterfi, Derman, Kamal &amp; Zou,
 “A Guide to Volatility and Variance Swaps”, 1999
-TODO define tolerance of numerical integral and incorporate it
+TODO define tolerance of numerical integral and incorporate it 
 in errorEstimate</p>
 <p>Test returned fair variances checked for consistency with
 implied volatility curve.</p>
 <p>Calculate variance via Monte Carlo</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>process</strong> (<a class="reference internal" href="quantlib.processes.black_scholes_process.GeneralizedBlackScholesProcess.html#quantlib.processes.black_scholes_process.GeneralizedBlackScholesProcess" title="quantlib.processes.black_scholes_process.GeneralizedBlackScholesProcess"><em>GeneralizedBlackScholesProcess</em></a>)</p></li>
-<li><p><strong>time_steps</strong> (<em>Size</em>)</p></li>
-<li><p><strong>time_steps_per_year</strong> (<em>Size</em>)</p></li>
-<li><p><strong>brownian_bridge</strong> (<em>bool</em>)</p></li>
-<li><p><strong>antithetic_variate</strong> (<em>bool</em>)</p></li>
-<li><p><strong>required_samples</strong> (<em>Size</em>)</p></li>
-<li><p><strong>required_tolerance</strong> (<em>Real</em>)</p></li>
-<li><p><strong>max_samples</strong> (<em>Size</em>)</p></li>
-<li><p><strong>seed</strong> (<em>BigNatural</em>)</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>process</strong><span class="classifier">GeneralizedBlackScholesProcess</span></dt><dd></dd>
+<dt><strong>time_steps</strong><span class="classifier">Size</span></dt><dd></dd>
+<dt><strong>time_steps_per_year</strong><span class="classifier">Size</span></dt><dd></dd>
+<dt><strong>brownian_bridge</strong><span class="classifier">bool</span></dt><dd></dd>
+<dt><strong>antithetic_variate</strong><span class="classifier">bool</span></dt><dd></dd>
+<dt><strong>required_samples</strong><span class="classifier">Size</span></dt><dd></dd>
+<dt><strong>required_tolerance</strong><span class="classifier">Real</span></dt><dd></dd>
+<dt><strong>max_samples</strong><span class="classifier">Size</span></dt><dd></dd>
+<dt><strong>seed</strong><span class="classifier">BigNatural</span></dt><dd></dd>
+</dl>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.pricingengines.forward.mc_variance_swap_engine.MCVarianceSwapEngine.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.pricingengines.forward.mc_variance_swap_engine.MCVarianceSwapEngine.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p class="rubric">Methods</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.pricingengines.forward.mc_variance_swap_engine.MCVarianceSwapEngine.__init__" title="quantlib.pricingengines.forward.mc_variance_swap_engine.MCVarianceSwapEngine.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 </section>

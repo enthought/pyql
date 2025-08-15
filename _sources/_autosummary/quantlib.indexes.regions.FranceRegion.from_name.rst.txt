@@ -1,0 +1,6 @@
+quantlib.indexes.regions.FranceRegion.from\_name
+================================================
+
+.. currentmodule:: quantlib.indexes.regions
+
+.. automethod:: FranceRegion.from_name

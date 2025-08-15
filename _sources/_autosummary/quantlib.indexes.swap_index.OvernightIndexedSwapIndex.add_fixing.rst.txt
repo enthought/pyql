@@ -1,0 +1,6 @@
+quantlib.indexes.swap\_index.OvernightIndexedSwapIndex.add\_fixing
+==================================================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. automethod:: OvernightIndexedSwapIndex.add_fixing

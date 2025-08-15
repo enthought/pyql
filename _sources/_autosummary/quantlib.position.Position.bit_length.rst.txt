@@ -1,0 +1,6 @@
+quantlib.position.Position.bit\_length
+======================================
+
+.. currentmodule:: quantlib.position
+
+.. automethod:: Position.bit_length

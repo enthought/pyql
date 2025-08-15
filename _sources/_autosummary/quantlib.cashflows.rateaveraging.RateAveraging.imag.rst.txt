@@ -1,0 +1,6 @@
+quantlib.cashflows.rateaveraging.RateAveraging.imag
+===================================================
+
+.. currentmodule:: quantlib.cashflows.rateaveraging
+
+.. autoattribute:: RateAveraging.imag

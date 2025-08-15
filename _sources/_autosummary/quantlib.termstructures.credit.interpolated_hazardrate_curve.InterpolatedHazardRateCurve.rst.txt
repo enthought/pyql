@@ -1,47 +1,46 @@
-quantlib.termstructures.credit.interpolated\_hazardrate\_curve.InterpolatedHazardRateCurve
-==========================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.credit.interpolated_hazardrate_curve.</div>
+   <div class="empty"></div>
+
+InterpolatedHazardRateCurve
+========================================================================================
 
 .. currentmodule:: quantlib.termstructures.credit.interpolated_hazardrate_curve
 
 .. autoclass:: InterpolatedHazardRateCurve
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         InterpolatedHazardRateCurve.hazard_rate
+         InterpolatedHazardRateCurve.survival_probability
+         InterpolatedHazardRateCurve.time_from_reference
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~InterpolatedHazardRateCurve.__init__
-      ~InterpolatedHazardRateCurve.hazard_rate
-      ~InterpolatedHazardRateCurve.survival_probability
-      ~InterpolatedHazardRateCurve.time_from_reference
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~InterpolatedHazardRateCurve.data
-      ~InterpolatedHazardRateCurve.dates
-      ~InterpolatedHazardRateCurve.day_counter
-      ~InterpolatedHazardRateCurve.hazard_rates
-      ~InterpolatedHazardRateCurve.jump_dates
-      ~InterpolatedHazardRateCurve.jump_times
-      ~InterpolatedHazardRateCurve.max_date
-      ~InterpolatedHazardRateCurve.max_time
-      ~InterpolatedHazardRateCurve.reference_date
-      ~InterpolatedHazardRateCurve.settlement_days
-      ~InterpolatedHazardRateCurve.times
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         InterpolatedHazardRateCurve.data
+         InterpolatedHazardRateCurve.dates
+         InterpolatedHazardRateCurve.day_counter
+         InterpolatedHazardRateCurve.hazard_rates
+         InterpolatedHazardRateCurve.jump_dates
+         InterpolatedHazardRateCurve.jump_times
+         InterpolatedHazardRateCurve.max_date
+         InterpolatedHazardRateCurve.max_time
+         InterpolatedHazardRateCurve.reference_date
+         InterpolatedHazardRateCurve.settlement_days
+         InterpolatedHazardRateCurve.times
+  
+  

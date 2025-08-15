@@ -1,0 +1,6 @@
+quantlib.cashflows.coupon\_pricer.TimingAdjustment.\_\_mul\_\_
+==============================================================
+
+.. currentmodule:: quantlib.cashflows.coupon_pricer
+
+.. automethod:: TimingAdjustment.__mul__

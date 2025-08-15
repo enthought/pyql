@@ -1,26 +1,27 @@
-quantlib.math.interpolation.LogLinear
+.. raw:: html
+
+   <div class="prename">quantlib.math.interpolation.</div>
+   <div class="empty"></div>
+
+LogLinear
 =====================================
 
 .. currentmodule:: quantlib.math.interpolation
 
 .. autoclass:: LogLinear
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~LogLinear.__init__
-   
-   
-
-   
-   
-   
+  
+  
+  

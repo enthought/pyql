@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bond\_helpers.BondHelper.quote
+=============================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bond_helpers
+
+.. autoattribute:: BondHelper.quote

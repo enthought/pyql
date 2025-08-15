@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.implied\_term\_structure.ImpliedTermStructure.max\_date
+======================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.implied_term_structure
+
+.. autoattribute:: ImpliedTermStructure.max_date

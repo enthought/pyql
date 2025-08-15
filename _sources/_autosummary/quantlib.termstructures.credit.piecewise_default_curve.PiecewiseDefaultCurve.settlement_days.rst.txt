@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.piecewise\_default\_curve.PiecewiseDefaultCurve.settlement\_days
+===============================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.piecewise_default_curve
+
+.. autoattribute:: PiecewiseDefaultCurve.settlement_days

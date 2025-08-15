@@ -1,0 +1,6 @@
+quantlib.market.conventions.swap.row.floating\_leg\_reference
+=============================================================
+
+.. currentmodule:: quantlib.market.conventions.swap
+
+.. autoattribute:: row.floating_leg_reference

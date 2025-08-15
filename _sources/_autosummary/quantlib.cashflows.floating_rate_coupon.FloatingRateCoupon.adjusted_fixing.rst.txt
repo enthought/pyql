@@ -1,0 +1,6 @@
+quantlib.cashflows.floating\_rate\_coupon.FloatingRateCoupon.adjusted\_fixing
+=============================================================================
+
+.. currentmodule:: quantlib.cashflows.floating_rate_coupon
+
+.. autoattribute:: FloatingRateCoupon.adjusted_fixing

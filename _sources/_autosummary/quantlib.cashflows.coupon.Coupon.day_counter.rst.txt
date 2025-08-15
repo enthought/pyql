@@ -1,0 +1,6 @@
+quantlib.cashflows.coupon.Coupon.day\_counter
+=============================================
+
+.. currentmodule:: quantlib.cashflows.coupon
+
+.. autoattribute:: Coupon.day_counter

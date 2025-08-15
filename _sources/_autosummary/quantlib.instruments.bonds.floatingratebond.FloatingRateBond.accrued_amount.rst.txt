@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.floatingratebond.FloatingRateBond.accrued\_amount
+============================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.floatingratebond
+
+.. automethod:: FloatingRateBond.accrued_amount

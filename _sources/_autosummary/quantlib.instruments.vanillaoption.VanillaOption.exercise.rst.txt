@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.exercise
+=========================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.exercise

@@ -1,0 +1,6 @@
+quantlib.models.equity.heston\_model.HestonModelHelper.impliedVolatility
+========================================================================
+
+.. currentmodule:: quantlib.models.equity.heston_model
+
+.. automethod:: HestonModelHelper.impliedVolatility

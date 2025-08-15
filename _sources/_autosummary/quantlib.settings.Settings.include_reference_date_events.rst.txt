@@ -1,0 +1,6 @@
+quantlib.settings.Settings.include\_reference\_date\_events
+===========================================================
+
+.. currentmodule:: quantlib.settings
+
+.. autoattribute:: Settings.include_reference_date_events

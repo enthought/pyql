@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bootstraptraits.BootstrapTrait.numerator
+=======================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bootstraptraits
+
+.. autoattribute:: BootstrapTrait.numerator

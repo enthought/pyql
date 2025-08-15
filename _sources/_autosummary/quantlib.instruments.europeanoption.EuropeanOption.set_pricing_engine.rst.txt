@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.set\_pricing\_engine
+=======================================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. automethod:: EuropeanOption.set_pricing_engine

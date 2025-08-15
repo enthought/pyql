@@ -1,0 +1,6 @@
+quantlib.math.randomnumbers.sobol\_rsg.SobolRsg.skip\_to
+========================================================
+
+.. currentmodule:: quantlib.math.randomnumbers.sobol_rsg
+
+.. automethod:: SobolRsg.skip_to

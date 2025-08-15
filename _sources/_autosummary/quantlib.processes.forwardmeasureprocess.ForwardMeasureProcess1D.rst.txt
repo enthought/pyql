@@ -1,42 +1,41 @@
-quantlib.processes.forwardmeasureprocess.ForwardMeasureProcess1D
+.. raw:: html
+
+   <div class="prename">quantlib.processes.forwardmeasureprocess.</div>
+   <div class="empty"></div>
+
+ForwardMeasureProcess1D
 ================================================================
 
 .. currentmodule:: quantlib.processes.forwardmeasureprocess
 
 .. autoclass:: ForwardMeasureProcess1D
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ForwardMeasureProcess1D.diffusion
+         ForwardMeasureProcess1D.drift
+         ForwardMeasureProcess1D.expectation
+         ForwardMeasureProcess1D.factors
+         ForwardMeasureProcess1D.size
+         ForwardMeasureProcess1D.std_deviation
+         ForwardMeasureProcess1D.variance
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ForwardMeasureProcess1D.__init__
-      ~ForwardMeasureProcess1D.diffusion
-      ~ForwardMeasureProcess1D.drift
-      ~ForwardMeasureProcess1D.expectation
-      ~ForwardMeasureProcess1D.factors
-      ~ForwardMeasureProcess1D.size
-      ~ForwardMeasureProcess1D.std_deviation
-      ~ForwardMeasureProcess1D.variance
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ForwardMeasureProcess1D.forward_measure_time
-      ~ForwardMeasureProcess1D.x0
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ForwardMeasureProcess1D.forward_measure_time
+         ForwardMeasureProcess1D.x0
+  
+  

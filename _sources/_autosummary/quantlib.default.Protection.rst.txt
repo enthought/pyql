@@ -1,45 +1,52 @@
-quantlib.default.Protection
+.. raw:: html
+
+   <div class="prename">quantlib.default.</div>
+   <div class="empty"></div>
+
+Protection
 ===========================
 
 .. currentmodule:: quantlib.default
 
 .. autoclass:: Protection
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Protection.__mul__
+         Protection.__pow__
+         Protection.conjugate
+         Protection.bit_length
+         Protection.bit_count
+         Protection.to_bytes
+         Protection.from_bytes
+         Protection.as_integer_ratio
+         Protection.__getitem__
+         Protection.__len__
+      
+         Protection.__len__
+         Protection.__getitem__
+         Protection.__mul__
+         Protection.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Protection.conjugate
-      ~Protection.bit_length
-      ~Protection.bit_count
-      ~Protection.to_bytes
-      ~Protection.from_bytes
-      ~Protection.as_integer_ratio
-      ~Protection.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Protection.real
-      ~Protection.imag
-      ~Protection.numerator
-      ~Protection.denominator
-      ~Protection.Buyer
-      ~Protection.Seller
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Protection.real
+         Protection.imag
+         Protection.numerator
+         Protection.denominator
+         Protection.Buyer
+         Protection.Seller
+  
+  

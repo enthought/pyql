@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.seasonality.MultiplicativePriceSeasonality.seasonality\_factor
+================================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.seasonality
+
+.. automethod:: MultiplicativePriceSeasonality.seasonality_factor

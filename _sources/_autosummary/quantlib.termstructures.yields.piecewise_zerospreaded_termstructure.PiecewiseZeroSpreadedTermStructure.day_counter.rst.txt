@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.piecewise\_zerospreaded\_termstructure.PiecewiseZeroSpreadedTermStructure.day\_counter
+=====================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_zerospreaded_termstructure
+
+.. autoattribute:: PiecewiseZeroSpreadedTermStructure.day_counter

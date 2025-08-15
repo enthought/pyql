@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.swap\_spread\_index.SwapSpreadIndex.maturity\_date
+================================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.swap_spread_index
+
+.. automethod:: SwapSpreadIndex.maturity_date

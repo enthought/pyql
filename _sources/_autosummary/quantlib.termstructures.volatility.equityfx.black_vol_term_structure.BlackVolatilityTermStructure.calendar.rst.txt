@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.black\_vol\_term\_structure.BlackVolatilityTermStructure.calendar
+=============================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_vol_term_structure
+
+.. autoattribute:: BlackVolatilityTermStructure.calendar

@@ -1,45 +1,52 @@
-quantlib.time.calendars.jointcalendar.JointCalendarRule
+.. raw:: html
+
+   <div class="prename">quantlib.time.calendars.jointcalendar.</div>
+   <div class="empty"></div>
+
+JointCalendarRule
 =======================================================
 
 .. currentmodule:: quantlib.time.calendars.jointcalendar
 
 .. autoclass:: JointCalendarRule
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         JointCalendarRule.__mul__
+         JointCalendarRule.__pow__
+         JointCalendarRule.conjugate
+         JointCalendarRule.bit_length
+         JointCalendarRule.bit_count
+         JointCalendarRule.to_bytes
+         JointCalendarRule.from_bytes
+         JointCalendarRule.as_integer_ratio
+         JointCalendarRule.__len__
+         JointCalendarRule.__getitem__
+      
+         JointCalendarRule.__len__
+         JointCalendarRule.__getitem__
+         JointCalendarRule.__mul__
+         JointCalendarRule.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~JointCalendarRule.conjugate
-      ~JointCalendarRule.bit_length
-      ~JointCalendarRule.bit_count
-      ~JointCalendarRule.to_bytes
-      ~JointCalendarRule.from_bytes
-      ~JointCalendarRule.as_integer_ratio
-      ~JointCalendarRule.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~JointCalendarRule.real
-      ~JointCalendarRule.imag
-      ~JointCalendarRule.numerator
-      ~JointCalendarRule.denominator
-      ~JointCalendarRule.JoinHolidays
-      ~JointCalendarRule.JoinBusinessDays
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         JointCalendarRule.real
+         JointCalendarRule.imag
+         JointCalendarRule.numerator
+         JointCalendarRule.denominator
+         JointCalendarRule.JoinHolidays
+         JointCalendarRule.JoinBusinessDays
+  
+  

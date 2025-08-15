@@ -1,41 +1,40 @@
-quantlib.termstructures.inflation.seasonality.MultiplicativePriceSeasonality
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.inflation.seasonality.</div>
+   <div class="empty"></div>
+
+MultiplicativePriceSeasonality
 ============================================================================
 
 .. currentmodule:: quantlib.termstructures.inflation.seasonality
 
 .. autoclass:: MultiplicativePriceSeasonality
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         MultiplicativePriceSeasonality.correctYoYRate
+         MultiplicativePriceSeasonality.correctZeroRate
+         MultiplicativePriceSeasonality.isConsistent
+         MultiplicativePriceSeasonality.seasonality_factor
+         MultiplicativePriceSeasonality.set
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~MultiplicativePriceSeasonality.__init__
-      ~MultiplicativePriceSeasonality.correctYoYRate
-      ~MultiplicativePriceSeasonality.correctZeroRate
-      ~MultiplicativePriceSeasonality.isConsistent
-      ~MultiplicativePriceSeasonality.seasonality_factor
-      ~MultiplicativePriceSeasonality.set
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~MultiplicativePriceSeasonality.frequency
-      ~MultiplicativePriceSeasonality.seasonality_base_date
-      ~MultiplicativePriceSeasonality.seasonality_factors
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         MultiplicativePriceSeasonality.frequency
+         MultiplicativePriceSeasonality.seasonality_base_date
+         MultiplicativePriceSeasonality.seasonality_factors
+  
+  

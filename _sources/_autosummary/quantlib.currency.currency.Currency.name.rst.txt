@@ -1,0 +1,6 @@
+quantlib.currency.currency.Currency.name
+========================================
+
+.. currentmodule:: quantlib.currency.currency
+
+.. autoattribute:: Currency.name

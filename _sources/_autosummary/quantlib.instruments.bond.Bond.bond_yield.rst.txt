@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Bond.bond\_yield
+==========================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. automethod:: Bond.bond_yield

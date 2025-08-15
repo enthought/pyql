@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.LogLinearInterpolatedForwardCurve.forward\_rate
+=============================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. automethod:: LogLinearInterpolatedForwardCurve.forward_rate

@@ -1,27 +1,28 @@
-quantlib.indexes.index\_manager.IndexManager
-============================================
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.index_manager.</div>
+   <div class="empty"></div>
+
+IndexManager
+===========================================
 
 .. currentmodule:: quantlib.indexes.index_manager
 
 .. autoclass:: IndexManager
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         IndexManager.histories
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~IndexManager.__init__
-      ~IndexManager.histories
-   
-   
-
-   
-   
-   
+  
+  
+  

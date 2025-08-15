@@ -1,0 +1,6 @@
+quantlib.time.daycounters.actual\_actual.Convention.to\_bytes
+=============================================================
+
+.. currentmodule:: quantlib.time.daycounters.actual_actual
+
+.. automethod:: Convention.to_bytes

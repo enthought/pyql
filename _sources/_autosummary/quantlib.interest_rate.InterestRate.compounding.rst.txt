@@ -1,0 +1,6 @@
+quantlib.interest\_rate.InterestRate.compounding
+================================================
+
+.. currentmodule:: quantlib.interest_rate
+
+.. autoattribute:: InterestRate.compounding

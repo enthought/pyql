@@ -1,0 +1,6 @@
+quantlib.currency.currencies.SEKCurrency.from\_name
+===================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. automethod:: SEKCurrency.from_name

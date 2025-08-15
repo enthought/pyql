@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.elasticity
+=============================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.elasticity

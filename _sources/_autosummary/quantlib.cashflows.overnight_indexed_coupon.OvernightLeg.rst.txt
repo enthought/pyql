@@ -1,27 +1,30 @@
-quantlib.cashflows.overnight\_indexed\_coupon.OvernightLeg
-==========================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.overnight_indexed_coupon.</div>
+   <div class="empty"></div>
+
+OvernightLeg
+========================================================
 
 .. currentmodule:: quantlib.cashflows.overnight_indexed_coupon
 
 .. autoclass:: OvernightLeg
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OvernightLeg.__len__
+         OvernightLeg.items
+      
+         OvernightLeg.__len__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~OvernightLeg.__init__
-      ~OvernightLeg.items
-   
-   
-
-   
-   
-   
+  
+  
+  

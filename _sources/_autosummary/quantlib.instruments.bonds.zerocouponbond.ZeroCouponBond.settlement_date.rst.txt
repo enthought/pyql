@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.zerocouponbond.ZeroCouponBond.settlement\_date
+=========================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.zerocouponbond
+
+.. automethod:: ZeroCouponBond.settlement_date

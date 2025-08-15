@@ -1,0 +1,6 @@
+quantlib.currency.currencies.DKKCurrency.code
+=============================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: DKKCurrency.code

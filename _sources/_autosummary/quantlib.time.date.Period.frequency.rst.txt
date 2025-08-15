@@ -1,0 +1,6 @@
+quantlib.time.date.Period.frequency
+===================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: Period.frequency

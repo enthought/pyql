@@ -1,0 +1,6 @@
+quantlib.models.equity.bates\_model.BatesDetJumpModel.calibrate
+===============================================================
+
+.. currentmodule:: quantlib.models.equity.bates_model
+
+.. automethod:: BatesDetJumpModel.calibrate

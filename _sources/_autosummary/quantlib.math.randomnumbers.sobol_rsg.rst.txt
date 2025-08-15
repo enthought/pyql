@@ -4,29 +4,11 @@ quantlib.math.randomnumbers.sobol\_rsg
 .. automodule:: quantlib.math.randomnumbers.sobol_rsg
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       DirectionIntegers
       SobolRsg
    
-   
-
-   
-   
-   
-
-
-

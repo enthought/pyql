@@ -1,0 +1,6 @@
+quantlib.time.imm.Month.denominator
+===================================
+
+.. currentmodule:: quantlib.time.imm
+
+.. autoattribute:: Month.denominator

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.flat\_forward.FlatForward.extrapolation
+======================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.flat_forward
+
+.. autoattribute:: FlatForward.extrapolation

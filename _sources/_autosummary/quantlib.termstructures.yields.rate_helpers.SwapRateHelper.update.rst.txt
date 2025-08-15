@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.rate\_helpers.SwapRateHelper.update
+==================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. automethod:: SwapRateHelper.update

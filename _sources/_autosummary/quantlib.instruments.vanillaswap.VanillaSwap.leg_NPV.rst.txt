@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaswap.VanillaSwap.leg\_NPV
+=====================================================
+
+.. currentmodule:: quantlib.instruments.vanillaswap
+
+.. automethod:: VanillaSwap.leg_NPV

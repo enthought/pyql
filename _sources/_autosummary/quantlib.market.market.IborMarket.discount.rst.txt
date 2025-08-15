@@ -1,0 +1,6 @@
+quantlib.market.market.IborMarket.discount
+==========================================
+
+.. currentmodule:: quantlib.market.market
+
+.. automethod:: IborMarket.discount

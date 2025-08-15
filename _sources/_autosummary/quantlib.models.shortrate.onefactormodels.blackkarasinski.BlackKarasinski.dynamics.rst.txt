@@ -1,0 +1,6 @@
+quantlib.models.shortrate.onefactormodels.blackkarasinski.BlackKarasinski.dynamics
+==================================================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactormodels.blackkarasinski
+
+.. autoattribute:: BlackKarasinski.dynamics

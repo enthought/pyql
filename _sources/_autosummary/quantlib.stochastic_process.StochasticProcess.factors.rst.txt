@@ -1,0 +1,6 @@
+quantlib.stochastic\_process.StochasticProcess.factors
+======================================================
+
+.. currentmodule:: quantlib.stochastic_process
+
+.. automethod:: StochasticProcess.factors

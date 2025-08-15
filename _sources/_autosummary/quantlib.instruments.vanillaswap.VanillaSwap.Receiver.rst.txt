@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaswap.VanillaSwap.Receiver
+=====================================================
+
+.. currentmodule:: quantlib.instruments.vanillaswap
+
+.. autoattribute:: VanillaSwap.Receiver

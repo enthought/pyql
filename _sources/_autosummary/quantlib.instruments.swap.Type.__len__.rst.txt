@@ -1,0 +1,6 @@
+quantlib.instruments.swap.Type.\_\_len\_\_
+==========================================
+
+.. currentmodule:: quantlib.instruments.swap
+
+.. automethod:: Type.__len__

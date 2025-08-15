@@ -1,0 +1,6 @@
+quantlib.cashflows.ibor\_coupon.IborCoupon.index\_fixing
+========================================================
+
+.. currentmodule:: quantlib.cashflows.ibor_coupon
+
+.. autoattribute:: IborCoupon.index_fixing

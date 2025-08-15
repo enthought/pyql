@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.termstructures.yields.zero_curve.InterpolatedZeroCurve &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>InterpolatedZeroCurve &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,8 +15,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.termstructures.yields.zero_curve.LinearInterpolatedZeroCurve" href="quantlib.termstructures.yields.zero_curve.LinearInterpolatedZeroCurve.html" />
-    <link rel="prev" title="quantlib.termstructures.yields.zero_curve.CubicInterpolatedZeroCurve" href="quantlib.termstructures.yields.zero_curve.CubicInterpolatedZeroCurve.html" />
+    <link rel="next" title="LinearInterpolatedZeroCurve" href="quantlib.termstructures.yields.zero_curve.LinearInterpolatedZeroCurve.html" />
+    <link rel="prev" title="quantlib.termstructures.yields.zero_curve.CubicInterpolatedZeroCurve.zero_rate" href="quantlib.termstructures.yields.zero_curve.CubicInterpolatedZeroCurve.zero_rate.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,8 +34,9 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-termstructures-yields-zero-curve-interpolatedzerocurve">
-<h1>quantlib.termstructures.yields.zero_curve.InterpolatedZeroCurve<a class="headerlink" href="#quantlib-termstructures-yields-zero-curve-interpolatedzerocurve" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.termstructures.yields.zero_curve.</div>
+<div class="empty"></div><section id="interpolatedzerocurve">
+<h1>InterpolatedZeroCurve<a class="headerlink" href="#interpolatedzerocurve" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.termstructures.yields.zero_curve.InterpolatedZeroCurve">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InterpolatedZeroCurve</span></span><a class="headerlink" href="#quantlib.termstructures.yields.zero_curve.InterpolatedZeroCurve" title="Link to this definition">¶</a></dt>
@@ -44,27 +45,13 @@
 <p><code class="docutils literal notranslate"><span class="pre">Generics</span></code> class parametered by an Interpolator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>interpolator</strong> (<a class="reference internal" href="quantlib.termstructures.credit.interpolated_hazardrate_curve.Interpolator.html#quantlib.termstructures.credit.interpolated_hazardrate_curve.Interpolator" title="quantlib.termstructures.credit.interpolated_hazardrate_curve.Interpolator"><em>Interpolator</em></a>)</p></li>
-<li><p><strong>'Linear'</strong> (<em>the kind</em><em> of </em><em>interpolator. Must be either</em>) – ‘Cubic’</p></li>
-<li><p><strong>'LogLinear'</strong> – ‘Cubic’</p></li>
-<li><p><strong>or</strong> (<em>'BackwardFlat'</em>) – ‘Cubic’</p></li>
-</ul>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>interpolator: Interpolator</strong></dt><dd></dd>
+<dt><strong>the kind of interpolator. Must be either ‘Linear’, ‘LogLinear’, ‘BackwardFlat’ or</strong></dt><dd><p>‘Cubic’</p>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.termstructures.yields.zero_curve.InterpolatedZeroCurve.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yields.zero_curve.InterpolatedZeroCurve.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p class="rubric">Methods</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.termstructures.yields.zero_curve.InterpolatedZeroCurve.__init__" title="quantlib.termstructures.yields.zero_curve.InterpolatedZeroCurve.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -108,8 +95,8 @@
   <li><a href="quantlib.termstructures.html">quantlib.termstructures</a><ul>
   <li><a href="quantlib.termstructures.yields.html">quantlib.termstructures.yields</a><ul>
   <li><a href="quantlib.termstructures.yields.zero_curve.html">quantlib.termstructures.yields.zero_curve</a><ul>
-      <li>Previous: <a href="quantlib.termstructures.yields.zero_curve.CubicInterpolatedZeroCurve.html" title="previous chapter">quantlib.termstructures.yields.zero_curve.CubicInterpolatedZeroCurve</a></li>
-      <li>Next: <a href="quantlib.termstructures.yields.zero_curve.LinearInterpolatedZeroCurve.html" title="next chapter">quantlib.termstructures.yields.zero_curve.LinearInterpolatedZeroCurve</a></li>
+      <li>Previous: <a href="quantlib.termstructures.yields.zero_curve.CubicInterpolatedZeroCurve.zero_rate.html" title="previous chapter">quantlib.termstructures.yields.zero_curve.CubicInterpolatedZeroCurve.zero_rate</a></li>
+      <li>Next: <a href="quantlib.termstructures.yields.zero_curve.LinearInterpolatedZeroCurve.html" title="next chapter">LinearInterpolatedZeroCurve</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

@@ -1,0 +1,6 @@
+quantlib.instruments.overnightindexedswap.OvernightIndexedSwap.set\_pricing\_engine
+===================================================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexedswap
+
+.. automethod:: OvernightIndexedSwap.set_pricing_engine

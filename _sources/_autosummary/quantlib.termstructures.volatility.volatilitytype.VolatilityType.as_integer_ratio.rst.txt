@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.volatilitytype.VolatilityType.as\_integer\_ratio
+===================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.volatilitytype
+
+.. automethod:: VolatilityType.as_integer_ratio

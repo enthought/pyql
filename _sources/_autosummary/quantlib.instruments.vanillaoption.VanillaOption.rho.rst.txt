@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.rho
+====================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.rho

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.rate\_helpers.FuturesRateHelper.maturity\_date
+=============================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoattribute:: FuturesRateHelper.maturity_date

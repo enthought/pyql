@@ -1,0 +1,6 @@
+quantlib.processes.heston\_process.Discretization.bit\_count
+============================================================
+
+.. currentmodule:: quantlib.processes.heston_process
+
+.. automethod:: Discretization.bit_count

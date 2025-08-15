@@ -1,45 +1,52 @@
-quantlib.termstructures.volatility.volatilitytype.VolatilityType
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.volatility.volatilitytype.</div>
+   <div class="empty"></div>
+
+VolatilityType
 ================================================================
 
 .. currentmodule:: quantlib.termstructures.volatility.volatilitytype
 
 .. autoclass:: VolatilityType
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         VolatilityType.__mul__
+         VolatilityType.__pow__
+         VolatilityType.conjugate
+         VolatilityType.bit_length
+         VolatilityType.bit_count
+         VolatilityType.to_bytes
+         VolatilityType.from_bytes
+         VolatilityType.as_integer_ratio
+         VolatilityType.__len__
+         VolatilityType.__getitem__
+      
+         VolatilityType.__len__
+         VolatilityType.__getitem__
+         VolatilityType.__mul__
+         VolatilityType.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~VolatilityType.conjugate
-      ~VolatilityType.bit_length
-      ~VolatilityType.bit_count
-      ~VolatilityType.to_bytes
-      ~VolatilityType.from_bytes
-      ~VolatilityType.as_integer_ratio
-      ~VolatilityType.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~VolatilityType.real
-      ~VolatilityType.imag
-      ~VolatilityType.numerator
-      ~VolatilityType.denominator
-      ~VolatilityType.ShiftedLognormal
-      ~VolatilityType.Normal
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         VolatilityType.real
+         VolatilityType.imag
+         VolatilityType.numerator
+         VolatilityType.denominator
+         VolatilityType.ShiftedLognormal
+         VolatilityType.Normal
+  
+  

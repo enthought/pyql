@@ -1,0 +1,6 @@
+quantlib.exercise.Type.to\_bytes
+================================
+
+.. currentmodule:: quantlib.exercise
+
+.. automethod:: Type.to_bytes

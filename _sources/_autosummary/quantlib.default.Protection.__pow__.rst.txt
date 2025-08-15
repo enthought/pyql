@@ -1,0 +1,6 @@
+quantlib.default.Protection.\_\_pow\_\_
+=======================================
+
+.. currentmodule:: quantlib.default
+
+.. automethod:: Protection.__pow__

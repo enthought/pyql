@@ -1,50 +1,49 @@
-quantlib.processes.heston\_process.HestonProcess
-================================================
+.. raw:: html
+
+   <div class="prename">quantlib.processes.heston_process.</div>
+   <div class="empty"></div>
+
+HestonProcess
+===============================================
 
 .. currentmodule:: quantlib.processes.heston_process
 
 .. autoclass:: HestonProcess
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HestonProcess.factors
+         HestonProcess.size
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~HestonProcess.__init__
-      ~HestonProcess.factors
-      ~HestonProcess.size
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~HestonProcess.BroadieKayaExactSchemeLaguerre
-      ~HestonProcess.BroadieKayaExactSchemeLobatto
-      ~HestonProcess.BroadieKayaExactSchemeTrapezoidal
-      ~HestonProcess.FullTruncation
-      ~HestonProcess.NonCentralChiSquareVariance
-      ~HestonProcess.PartialTruncation
-      ~HestonProcess.QuadraticExponential
-      ~HestonProcess.QuadraticExponentialMartingale
-      ~HestonProcess.Reflection
-      ~HestonProcess.kappa
-      ~HestonProcess.rho
-      ~HestonProcess.s0
-      ~HestonProcess.sigma
-      ~HestonProcess.theta
-      ~HestonProcess.v0
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HestonProcess.BroadieKayaExactSchemeLaguerre
+         HestonProcess.BroadieKayaExactSchemeLobatto
+         HestonProcess.BroadieKayaExactSchemeTrapezoidal
+         HestonProcess.FullTruncation
+         HestonProcess.NonCentralChiSquareVariance
+         HestonProcess.PartialTruncation
+         HestonProcess.QuadraticExponential
+         HestonProcess.QuadraticExponentialMartingale
+         HestonProcess.Reflection
+         HestonProcess.kappa
+         HestonProcess.rho
+         HestonProcess.s0
+         HestonProcess.sigma
+         HestonProcess.theta
+         HestonProcess.v0
+  
+  

@@ -4,28 +4,10 @@ quantlib.instruments.vanillaswap
 .. automodule:: quantlib.instruments.vanillaswap
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       VanillaSwap
    
-   
-
-   
-   
-   
-
-
-

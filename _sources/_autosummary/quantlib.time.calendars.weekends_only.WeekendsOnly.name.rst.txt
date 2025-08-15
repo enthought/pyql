@@ -1,0 +1,6 @@
+quantlib.time.calendars.weekends\_only.WeekendsOnly.name
+========================================================
+
+.. currentmodule:: quantlib.time.calendars.weekends_only
+
+.. autoattribute:: WeekendsOnly.name

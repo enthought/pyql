@@ -4,29 +4,11 @@ quantlib.option
 .. automodule:: quantlib.option
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       Option
       OptionType
    
-   
-
-   
-   
-   
-
-
-

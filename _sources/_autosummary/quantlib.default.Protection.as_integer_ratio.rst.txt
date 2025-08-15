@@ -1,0 +1,6 @@
+quantlib.default.Protection.as\_integer\_ratio
+==============================================
+
+.. currentmodule:: quantlib.default
+
+.. automethod:: Protection.as_integer_ratio

@@ -1,46 +1,45 @@
-quantlib.time.calendars.poland.Poland
+.. raw:: html
+
+   <div class="prename">quantlib.time.calendars.poland.</div>
+   <div class="empty"></div>
+
+Poland
 =====================================
 
 .. currentmodule:: quantlib.time.calendars.poland
 
 .. autoclass:: Poland
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Poland.add_holiday
+         Poland.adjust
+         Poland.advance
+         Poland.business_day_list
+         Poland.business_days_between
+         Poland.end_of_month
+         Poland.holiday_list
+         Poland.is_business_day
+         Poland.is_end_of_month
+         Poland.is_holiday
+         Poland.is_weekend
+         Poland.remove_holiday
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Poland.__init__
-      ~Poland.add_holiday
-      ~Poland.adjust
-      ~Poland.advance
-      ~Poland.business_day_list
-      ~Poland.business_days_between
-      ~Poland.end_of_month
-      ~Poland.holiday_list
-      ~Poland.is_business_day
-      ~Poland.is_end_of_month
-      ~Poland.is_holiday
-      ~Poland.is_weekend
-      ~Poland.remove_holiday
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Poland.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Poland.name
+  
+  

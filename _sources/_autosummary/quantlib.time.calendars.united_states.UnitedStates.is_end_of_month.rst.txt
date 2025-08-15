@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_states.UnitedStates.is\_end\_of\_month
+======================================================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. automethod:: UnitedStates.is_end_of_month

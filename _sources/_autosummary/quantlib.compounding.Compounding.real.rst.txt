@@ -1,0 +1,6 @@
+quantlib.compounding.Compounding.real
+=====================================
+
+.. currentmodule:: quantlib.compounding
+
+.. autoattribute:: Compounding.real

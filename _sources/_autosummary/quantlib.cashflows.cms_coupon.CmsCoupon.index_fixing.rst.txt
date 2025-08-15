@@ -1,0 +1,6 @@
+quantlib.cashflows.cms\_coupon.CmsCoupon.index\_fixing
+======================================================
+
+.. currentmodule:: quantlib.cashflows.cms_coupon
+
+.. autoattribute:: CmsCoupon.index_fixing

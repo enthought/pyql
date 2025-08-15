@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.volatilitytype.VolatilityType.bit\_length
+============================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.volatilitytype
+
+.. automethod:: VolatilityType.bit_length

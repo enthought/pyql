@@ -1,49 +1,48 @@
-quantlib.indexes.inflation.euhicp.EUHICP
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.inflation.euhicp.</div>
+   <div class="empty"></div>
+
+EUHICP
 ========================================
 
 .. currentmodule:: quantlib.indexes.inflation.euhicp
 
 .. autoclass:: EUHICP
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         EUHICP.add_fixing
+         EUHICP.add_fixings
+         EUHICP.clear_fixings
+         EUHICP.fixing
+         EUHICP.has_historical_fixing
+         EUHICP.is_valid_fixing_date
+         EUHICP.zero_inflation_term_structure
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~EUHICP.__init__
-      ~EUHICP.add_fixing
-      ~EUHICP.add_fixings
-      ~EUHICP.clear_fixings
-      ~EUHICP.fixing
-      ~EUHICP.has_historical_fixing
-      ~EUHICP.is_valid_fixing_date
-      ~EUHICP.zero_inflation_term_structure
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~EUHICP.availability_lag
-      ~EUHICP.currency
-      ~EUHICP.family_name
-      ~EUHICP.fixing_calendar
-      ~EUHICP.frequency
-      ~EUHICP.last_fixing_date
-      ~EUHICP.name
-      ~EUHICP.region
-      ~EUHICP.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         EUHICP.availability_lag
+         EUHICP.currency
+         EUHICP.family_name
+         EUHICP.fixing_calendar
+         EUHICP.frequency
+         EUHICP.last_fixing_date
+         EUHICP.name
+         EUHICP.region
+         EUHICP.time_series
+  
+  

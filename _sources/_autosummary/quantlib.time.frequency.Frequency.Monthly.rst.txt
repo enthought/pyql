@@ -1,0 +1,6 @@
+quantlib.time.frequency.Frequency.Monthly
+=========================================
+
+.. currentmodule:: quantlib.time.frequency
+
+.. autoattribute:: Frequency.Monthly

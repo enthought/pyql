@@ -1,39 +1,38 @@
-quantlib.termstructures.yields.rate\_helpers.RateHelper
-=======================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.rate_helpers.</div>
+   <div class="empty"></div>
+
+RateHelper
+======================================================
 
 .. currentmodule:: quantlib.termstructures.yields.rate_helpers
 
 .. autoclass:: RateHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         RateHelper.update
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~RateHelper.__init__
-      ~RateHelper.update
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~RateHelper.earliest_date
-      ~RateHelper.implied_quote
-      ~RateHelper.latest_date
-      ~RateHelper.maturity_date
-      ~RateHelper.quote
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         RateHelper.earliest_date
+         RateHelper.implied_quote
+         RateHelper.latest_date
+         RateHelper.maturity_date
+         RateHelper.quote
+  
+  

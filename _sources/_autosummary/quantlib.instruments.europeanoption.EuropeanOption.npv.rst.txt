@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.npv
+======================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. autoattribute:: EuropeanOption.npv

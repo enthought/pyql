@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.rate\_helpers.SwapRateHelper.latest\_date
+========================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoattribute:: SwapRateHelper.latest_date

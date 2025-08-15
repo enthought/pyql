@@ -1,47 +1,46 @@
-quantlib.indexes.inflation\_index.InflationIndex
-================================================
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.inflation_index.</div>
+   <div class="empty"></div>
+
+InflationIndex
+===============================================
 
 .. currentmodule:: quantlib.indexes.inflation_index
 
 .. autoclass:: InflationIndex
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         InflationIndex.add_fixing
+         InflationIndex.add_fixings
+         InflationIndex.clear_fixings
+         InflationIndex.fixing
+         InflationIndex.has_historical_fixing
+         InflationIndex.is_valid_fixing_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~InflationIndex.__init__
-      ~InflationIndex.add_fixing
-      ~InflationIndex.add_fixings
-      ~InflationIndex.clear_fixings
-      ~InflationIndex.fixing
-      ~InflationIndex.has_historical_fixing
-      ~InflationIndex.is_valid_fixing_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~InflationIndex.availability_lag
-      ~InflationIndex.currency
-      ~InflationIndex.family_name
-      ~InflationIndex.fixing_calendar
-      ~InflationIndex.frequency
-      ~InflationIndex.name
-      ~InflationIndex.region
-      ~InflationIndex.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         InflationIndex.availability_lag
+         InflationIndex.currency
+         InflationIndex.family_name
+         InflationIndex.fixing_calendar
+         InflationIndex.frequency
+         InflationIndex.name
+         InflationIndex.region
+         InflationIndex.time_series
+  
+  

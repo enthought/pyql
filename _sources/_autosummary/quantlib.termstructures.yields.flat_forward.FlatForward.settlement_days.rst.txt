@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.flat\_forward.FlatForward.settlement\_days
+=========================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.flat_forward
+
+.. autoattribute:: FlatForward.settlement_days

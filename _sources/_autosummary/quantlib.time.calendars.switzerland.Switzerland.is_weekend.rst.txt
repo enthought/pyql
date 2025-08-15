@@ -1,0 +1,6 @@
+quantlib.time.calendars.switzerland.Switzerland.is\_weekend
+===========================================================
+
+.. currentmodule:: quantlib.time.calendars.switzerland
+
+.. automethod:: Switzerland.is_weekend

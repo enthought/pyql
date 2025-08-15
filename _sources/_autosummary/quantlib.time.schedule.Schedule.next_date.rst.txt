@@ -1,0 +1,6 @@
+quantlib.time.schedule.Schedule.next\_date
+==========================================
+
+.. currentmodule:: quantlib.time.schedule
+
+.. automethod:: Schedule.next_date

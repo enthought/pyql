@@ -4,30 +4,12 @@ quantlib.cashflows.cap\_floored\_coupon
 .. automodule:: quantlib.cashflows.cap_floored_coupon
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       CappedFlooredCmsCoupon
       CappedFlooredCoupon
       CappedFlooredIborCoupon
    
-   
-
-   
-   
-   
-
-
-

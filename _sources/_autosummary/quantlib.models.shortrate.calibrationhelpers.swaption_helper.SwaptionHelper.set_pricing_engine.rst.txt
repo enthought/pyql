@@ -1,0 +1,6 @@
+quantlib.models.shortrate.calibrationhelpers.swaption\_helper.SwaptionHelper.set\_pricing\_engine
+=================================================================================================
+
+.. currentmodule:: quantlib.models.shortrate.calibrationhelpers.swaption_helper
+
+.. automethod:: SwaptionHelper.set_pricing_engine

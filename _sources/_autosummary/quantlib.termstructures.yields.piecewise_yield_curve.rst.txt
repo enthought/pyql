@@ -4,20 +4,10 @@ quantlib.termstructures.yields.piecewise\_yield\_curve
 .. automodule:: quantlib.termstructures.yields.piecewise_yield_curve
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       DiscountBackwardFlatPiecewiseYieldCurve
       DiscountCubicPiecewiseYieldCurve
@@ -33,11 +23,3 @@ quantlib.termstructures.yields.piecewise\_yield\_curve
       ZeroYieldLinearPiecewiseYieldCurve
       ZeroYieldLogLinearPiecewiseYieldCurve
    
-   
-
-   
-   
-   
-
-
-

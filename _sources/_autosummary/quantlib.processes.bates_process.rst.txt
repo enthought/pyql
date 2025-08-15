@@ -4,28 +4,10 @@ quantlib.processes.bates\_process
 .. automodule:: quantlib.processes.bates_process
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       BatesProcess
    
-   
-
-   
-   
-   
-
-
-

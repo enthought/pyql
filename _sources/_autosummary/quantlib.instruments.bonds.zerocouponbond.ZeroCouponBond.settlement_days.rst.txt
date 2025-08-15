@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.zerocouponbond.ZeroCouponBond.settlement\_days
+=========================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.zerocouponbond
+
+.. autoattribute:: ZeroCouponBond.settlement_days

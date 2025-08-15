@@ -1,0 +1,6 @@
+quantlib.exercise.BermudanExercise.dates
+========================================
+
+.. currentmodule:: quantlib.exercise
+
+.. automethod:: BermudanExercise.dates

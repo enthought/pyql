@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.InterpolationType.real
+========================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. autoattribute:: InterpolationType.real

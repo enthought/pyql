@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.piecewise\_yield\_curve.DiscountBackwardFlatPiecewiseYieldCurve.max\_date
+========================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_yield_curve
+
+.. autoattribute:: DiscountBackwardFlatPiecewiseYieldCurve.max_date

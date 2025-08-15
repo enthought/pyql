@@ -1,0 +1,6 @@
+quantlib.currency.currencies.JPYCurrency.code
+=============================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: JPYCurrency.code

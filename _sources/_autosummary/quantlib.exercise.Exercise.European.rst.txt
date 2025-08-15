@@ -1,0 +1,6 @@
+quantlib.exercise.Exercise.European
+===================================
+
+.. currentmodule:: quantlib.exercise
+
+.. autoattribute:: Exercise.European

@@ -1,29 +1,30 @@
-quantlib.util.object\_registry.ObjectRegistry
-=============================================
+.. raw:: html
+
+   <div class="prename">quantlib.util.object_registry.</div>
+   <div class="empty"></div>
+
+ObjectRegistry
+============================================
 
 .. currentmodule:: quantlib.util.object_registry
 
 .. autoclass:: ObjectRegistry
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ObjectRegistry.from_name
+         ObjectRegistry.help
+         ObjectRegistry.register
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ObjectRegistry.__init__
-      ~ObjectRegistry.from_name
-      ~ObjectRegistry.help
-      ~ObjectRegistry.register
-   
-   
-
-   
-   
-   
+  
+  
+  

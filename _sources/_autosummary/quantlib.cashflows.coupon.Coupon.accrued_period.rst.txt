@@ -1,0 +1,6 @@
+quantlib.cashflows.coupon.Coupon.accrued\_period
+================================================
+
+.. currentmodule:: quantlib.cashflows.coupon
+
+.. automethod:: Coupon.accrued_period

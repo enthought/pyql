@@ -1,0 +1,6 @@
+quantlib.time.date.TimeUnit.bit\_count
+======================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: TimeUnit.bit_count

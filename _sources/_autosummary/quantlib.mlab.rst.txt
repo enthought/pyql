@@ -4,32 +4,13 @@ quantlib.mlab
 .. automodule:: quantlib.mlab
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    fixed_income
    option_pricing
    term_structure
    util
-

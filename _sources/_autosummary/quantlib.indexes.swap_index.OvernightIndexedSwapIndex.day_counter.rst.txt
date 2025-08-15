@@ -1,0 +1,6 @@
+quantlib.indexes.swap\_index.OvernightIndexedSwapIndex.day\_counter
+===================================================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. autoattribute:: OvernightIndexedSwapIndex.day_counter

@@ -1,45 +1,52 @@
-quantlib.cashflows.coupon\_pricer.TimingAdjustment
-==================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.coupon_pricer.</div>
+   <div class="empty"></div>
+
+TimingAdjustment
+=================================================
 
 .. currentmodule:: quantlib.cashflows.coupon_pricer
 
 .. autoclass:: TimingAdjustment
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         TimingAdjustment.__mul__
+         TimingAdjustment.__pow__
+         TimingAdjustment.conjugate
+         TimingAdjustment.bit_length
+         TimingAdjustment.bit_count
+         TimingAdjustment.to_bytes
+         TimingAdjustment.from_bytes
+         TimingAdjustment.as_integer_ratio
+         TimingAdjustment.__len__
+         TimingAdjustment.__getitem__
+      
+         TimingAdjustment.__len__
+         TimingAdjustment.__getitem__
+         TimingAdjustment.__mul__
+         TimingAdjustment.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~TimingAdjustment.conjugate
-      ~TimingAdjustment.bit_length
-      ~TimingAdjustment.bit_count
-      ~TimingAdjustment.to_bytes
-      ~TimingAdjustment.from_bytes
-      ~TimingAdjustment.as_integer_ratio
-      ~TimingAdjustment.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~TimingAdjustment.real
-      ~TimingAdjustment.imag
-      ~TimingAdjustment.numerator
-      ~TimingAdjustment.denominator
-      ~TimingAdjustment.Black76
-      ~TimingAdjustment.BivariateLognormal
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         TimingAdjustment.real
+         TimingAdjustment.imag
+         TimingAdjustment.numerator
+         TimingAdjustment.denominator
+         TimingAdjustment.Black76
+         TimingAdjustment.BivariateLognormal
+  
+  

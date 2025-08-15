@@ -1,0 +1,6 @@
+quantlib.time.dategeneration.DateGeneration.\_\_mul\_\_
+=======================================================
+
+.. currentmodule:: quantlib.time.dategeneration
+
+.. automethod:: DateGeneration.__mul__

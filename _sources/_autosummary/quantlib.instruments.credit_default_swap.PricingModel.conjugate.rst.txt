@@ -1,0 +1,6 @@
+quantlib.instruments.credit\_default\_swap.PricingModel.conjugate
+=================================================================
+
+.. currentmodule:: quantlib.instruments.credit_default_swap
+
+.. automethod:: PricingModel.conjugate

@@ -1,0 +1,6 @@
+quantlib.time.daycounters.actual\_actual.ActualActual.day\_count
+================================================================
+
+.. currentmodule:: quantlib.time.daycounters.actual_actual
+
+.. automethod:: ActualActual.day_count

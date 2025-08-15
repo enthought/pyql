@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>SpreadedSwaptionVolatility &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.termstructures.volatility.swaption.swaption_constant_vol" href="quantlib.termstructures.volatility.swaption.swaption_constant_vol.html" />
+    <link rel="next" title="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.black_variance" href="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.black_variance.html" />
     <link rel="prev" title="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol" href="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,59 +34,43 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-termstructures-volatility-swaption-spreaded-swaption-vol-spreadedswaptionvolatility">
-<h1>quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility<a class="headerlink" href="#quantlib-termstructures-volatility-swaption-spreaded-swaption-vol-spreadedswaptionvolatility" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.</div>
+<div class="empty"></div><section id="spreadedswaptionvolatility">
+<h1>SpreadedSwaptionVolatility<a class="headerlink" href="#spreadedswaptionvolatility" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SpreadedSwaptionVolatility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Quote</span> <span class="pre">spread</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.termstructures.volatility.swaption.swaption_vol_structure.SwaptionVolatilityStructure.html#quantlib.termstructures.volatility.swaption.swaption_vol_structure.SwaptionVolatilityStructure" title="quantlib.termstructures.volatility.swaption.swaption_vol_structure.SwaptionVolatilityStructure"><code class="xref py py-class docutils literal notranslate"><span class="pre">SwaptionVolatilityStructure</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>calendar</strong></dt><dd></dd>
+<dt><strong>extrapolation</strong></dt><dd></dd>
+<dt><strong>reference_date</strong></dt><dd></dd>
+<dt><strong>settlement_days</strong></dt><dd></dd>
+<dt><strong>volatility_type</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.__init__" title="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.black_variance.html#quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.black_variance" title="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.black_variance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">black_variance</span></code></a>(self, option_date, swap_date, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">black_variance</span></code>(self, option_date, swap_date, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.option_date_from_tenor.html#quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.option_date_from_tenor" title="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.option_date_from_tenor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">option_date_from_tenor</span></code></a>(self, Period period)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">option_date_from_tenor</span></code>(self, Period period)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.shift.html#quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.shift" title="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.shift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shift</span></code></a>(self, option_date, swap_date, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">shift</span></code>(self, option_date, swap_date, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.smile_section.html#quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.smile_section" title="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.smile_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smile_section</span></code></a>(self, Period option_tenor, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">smile_section</span></code>(self, Period option_tenor, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.time_from_reference.html#quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.time_from_reference" title="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.time_from_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code></a>(self, Date date)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code>(self, Date date)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">volatility</span></code>(self, option_date, swap_date, ...)</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">calendar</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">extrapolation</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_days</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">volatility_type</span></code></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.volatility.html#quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.volatility" title="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.volatility"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volatility</span></code></a>(self, option_date, swap_date, ...)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -136,7 +120,7 @@
   <li><a href="quantlib.termstructures.volatility.swaption.html">quantlib.termstructures.volatility.swaption</a><ul>
   <li><a href="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.html">quantlib.termstructures.volatility.swaption.spreaded_swaption_vol</a><ul>
       <li>Previous: <a href="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.html" title="previous chapter">quantlib.termstructures.volatility.swaption.spreaded_swaption_vol</a></li>
-      <li>Next: <a href="quantlib.termstructures.volatility.swaption.swaption_constant_vol.html" title="next chapter">quantlib.termstructures.volatility.swaption.swaption_constant_vol</a></li>
+      <li>Next: <a href="quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.black_variance.html" title="next chapter">quantlib.termstructures.volatility.swaption.spreaded_swaption_vol.SpreadedSwaptionVolatility.black_variance</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

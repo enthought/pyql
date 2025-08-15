@@ -1,0 +1,6 @@
+quantlib.indexes.interest\_rate\_index.InterestRateIndex.currency
+=================================================================
+
+.. currentmodule:: quantlib.indexes.interest_rate_index
+
+.. autoattribute:: InterestRateIndex.currency

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.implied\_term\_structure.ImpliedTermStructure.settlement\_days
+=============================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.implied_term_structure
+
+.. autoattribute:: ImpliedTermStructure.settlement_days

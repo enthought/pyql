@@ -1,0 +1,6 @@
+quantlib.time.dategeneration.DateGeneration.bit\_length
+=======================================================
+
+.. currentmodule:: quantlib.time.dategeneration
+
+.. automethod:: DateGeneration.bit_length

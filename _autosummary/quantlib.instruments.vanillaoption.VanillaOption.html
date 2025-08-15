@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.instruments.vanillaoption.VanillaOption &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>VanillaOption &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.instruments.vanillaswap" href="quantlib.instruments.vanillaswap.html" />
+    <link rel="next" title="quantlib.instruments.vanillaoption.VanillaOption.implied_volatility" href="quantlib.instruments.vanillaoption.VanillaOption.implied_volatility.html" />
     <link rel="prev" title="quantlib.instruments.vanillaoption" href="quantlib.instruments.vanillaoption.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,21 +34,60 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-instruments-vanillaoption-vanillaoption">
-<h1>quantlib.instruments.vanillaoption.VanillaOption<a class="headerlink" href="#quantlib-instruments-vanillaoption-vanillaoption" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.instruments.vanillaoption.</div>
+<div class="empty"></div><section id="vanillaoption">
+<h1>VanillaOption<a class="headerlink" href="#vanillaoption" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.instruments.vanillaoption.VanillaOption">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VanillaOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">StrikedTypePayoff</span> <span class="pre">payoff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Exercise</span> <span class="pre">exercise</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.vanillaoption.VanillaOption" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.instruments.oneassetoption.OneAssetOption.html#quantlib.instruments.oneassetoption.OneAssetOption" title="quantlib.instruments.oneassetoption.OneAssetOption"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneAssetOption</span></code></a></p>
 <p>Vanilla option (no discrete dividends, no barriers) on a single asset</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>payoff</strong> (<a class="reference internal" href="quantlib.payoffs.StrikedTypePayoff.html#quantlib.payoffs.StrikedTypePayoff" title="quantlib.payoffs.StrikedTypePayoff"><code class="xref py py-class docutils literal notranslate"><span class="pre">StrikedTypePayoff</span></code></a>)</p></li>
-<li><p><strong>exercise</strong> (<a class="reference internal" href="quantlib.exercise.Exercise.html#quantlib.exercise.Exercise" title="quantlib.exercise.Exercise"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exercise</span></code></a>)</p></li>
-</ul>
+<dd class="field-odd"><dl>
+<dt><strong>payoff</strong><span class="classifier"><a class="reference internal" href="quantlib.payoffs.StrikedTypePayoff.html#quantlib.payoffs.StrikedTypePayoff" title="quantlib.payoffs.StrikedTypePayoff"><code class="xref py py-class docutils literal notranslate"><span class="pre">StrikedTypePayoff</span></code></a></span></dt><dd></dd>
+<dt><strong>exercise</strong><span class="classifier"><a class="reference internal" href="quantlib.exercise.Exercise.html#quantlib.exercise.Exercise" title="quantlib.exercise.Exercise"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exercise</span></code></a></span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>delta</strong></dt><dd></dd>
+<dt><strong>delta_forward</strong></dt><dd></dd>
+<dt><strong>dividend_rho</strong></dt><dd></dd>
+<dt><strong>elasticity</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.vanillaoption.VanillaOption.exercise.html#quantlib.instruments.vanillaoption.VanillaOption.exercise" title="quantlib.instruments.vanillaoption.VanillaOption.exercise"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exercise</span></code></a></dt><dd><p>Option.exercise: Exercise</p>
+</dd>
+<dt><strong>gamma</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.vanillaoption.VanillaOption.is_expired.html#quantlib.instruments.vanillaoption.VanillaOption.is_expired" title="quantlib.instruments.vanillaoption.VanillaOption.is_expired"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_expired</span></code></a></dt><dd><p>Instrument.is_expired: bool</p>
+</dd>
+<dt><strong>itm_cash_probability</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.vanillaoption.VanillaOption.net_present_value.html#quantlib.instruments.vanillaoption.VanillaOption.net_present_value" title="quantlib.instruments.vanillaoption.VanillaOption.net_present_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">net_present_value</span></code></a></dt><dd><p>Instrument net present value.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.vanillaoption.VanillaOption.npv.html#quantlib.instruments.vanillaoption.VanillaOption.npv" title="quantlib.instruments.vanillaoption.VanillaOption.npv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv</span></code></a></dt><dd><p>Shortcut to the net_present_value property.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.vanillaoption.VanillaOption.payoff.html#quantlib.instruments.vanillaoption.VanillaOption.payoff" title="quantlib.instruments.vanillaoption.VanillaOption.payoff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">payoff</span></code></a></dt><dd><p>Option.payoff: Payoff</p>
+</dd>
+<dt><strong>rho</strong></dt><dd></dd>
+<dt><strong>strike_sensitivity</strong></dt><dd></dd>
+<dt><strong>theta</strong></dt><dd></dd>
+<dt><strong>theta_per_day</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.vanillaoption.VanillaOption.valuation_date.html#quantlib.instruments.vanillaoption.VanillaOption.valuation_date" title="quantlib.instruments.vanillaoption.VanillaOption.valuation_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">valuation_date</span></code></a></dt><dd><p>the date the net present value refers to.</p>
+</dd>
+<dt><strong>vega</strong></dt><dd></dd>
+</dl>
 </dd>
 </dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.vanillaoption.VanillaOption.implied_volatility.html#quantlib.instruments.vanillaoption.VanillaOption.implied_volatility" title="quantlib.instruments.vanillaoption.VanillaOption.implied_volatility"><code class="xref py py-obj docutils literal notranslate"><span class="pre">implied_volatility</span></code></a>(self, Real price, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.vanillaoption.VanillaOption.set_pricing_engine.html#quantlib.instruments.vanillaoption.VanillaOption.set_pricing_engine" title="quantlib.instruments.vanillaoption.VanillaOption.set_pricing_engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code></a>(self, PricingEngine engine)</p></td>
+<td><p>Sets the pricing engine.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Currently, this method returns the Black-Scholes
@@ -63,92 +102,6 @@ the result (if any) is almost meaningless.  Another possible source of
 failure is to have a target value that is not attainable with any volatility, e.g., a target
 value lower than the intrinsic value in the case of American options.</p>
 </div>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.vanillaoption.VanillaOption.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.vanillaoption.VanillaOption.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p class="rubric">Methods</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.vanillaoption.VanillaOption.__init__" title="quantlib.instruments.vanillaoption.VanillaOption.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.vanillaoption.VanillaOption.implied_volatility" title="quantlib.instruments.vanillaoption.VanillaOption.implied_volatility"><code class="xref py py-obj docutils literal notranslate"><span class="pre">implied_volatility</span></code></a>(self, Real price, ...)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code>(self, PricingEngine engine)</p></td>
-<td><p>Sets the pricing engine.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Call</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Put</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delta</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delta_forward</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dividend_rho</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">elasticity</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exercise</span></code></p></td>
-<td><p>Exercise</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_expired</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">itm_cash_probability</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">net_present_value</span></code></p></td>
-<td><p>Instrument net present value.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv</span></code></p></td>
-<td><p>Shortcut to the net_present_value property.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">payoff</span></code></p></td>
-<td><p>Payoff</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rho</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">strike_sensitivity</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">theta</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">theta_per_day</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valuation_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">vega</span></code></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.vanillaoption.VanillaOption.implied_volatility">
-<span class="sig-name descname"><span class="pre">implied_volatility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GeneralizedBlackScholesProcess</span> <span class="pre">process</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DividendSchedule</span> <span class="pre">dividends=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">accuracy=1e-4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">max_evaluations=100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Volatility</span> <span class="pre">min_vol=1e-7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Volatility</span> <span class="pre">max_vol=4.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.vanillaoption.VanillaOption.implied_volatility" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </section>
@@ -192,7 +145,7 @@ value lower than the intrinsic value in the case of American options.</p>
   <li><a href="quantlib.instruments.html">quantlib.instruments</a><ul>
   <li><a href="quantlib.instruments.vanillaoption.html">quantlib.instruments.vanillaoption</a><ul>
       <li>Previous: <a href="quantlib.instruments.vanillaoption.html" title="previous chapter">quantlib.instruments.vanillaoption</a></li>
-      <li>Next: <a href="quantlib.instruments.vanillaswap.html" title="next chapter">quantlib.instruments.vanillaswap</a></li>
+      <li>Next: <a href="quantlib.instruments.vanillaoption.VanillaOption.implied_volatility.html" title="next chapter">quantlib.instruments.vanillaoption.VanillaOption.implied_volatility</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

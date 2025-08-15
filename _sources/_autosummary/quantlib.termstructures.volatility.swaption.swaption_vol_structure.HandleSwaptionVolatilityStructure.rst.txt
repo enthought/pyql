@@ -1,35 +1,34 @@
-quantlib.termstructures.volatility.swaption.swaption\_vol\_structure.HandleSwaptionVolatilityStructure
-======================================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.volatility.swaption.swaption_vol_structure.</div>
+   <div class="empty"></div>
+
+HandleSwaptionVolatilityStructure
+====================================================================================================
 
 .. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_structure
 
 .. autoclass:: HandleSwaptionVolatilityStructure
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HandleSwaptionVolatilityStructure.link_to
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~HandleSwaptionVolatilityStructure.__init__
-      ~HandleSwaptionVolatilityStructure.link_to
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~HandleSwaptionVolatilityStructure.current_link
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HandleSwaptionVolatilityStructure.current_link
+  
+  

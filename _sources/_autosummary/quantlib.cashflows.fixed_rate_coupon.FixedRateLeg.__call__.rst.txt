@@ -1,0 +1,6 @@
+quantlib.cashflows.fixed\_rate\_coupon.FixedRateLeg.\_\_call\_\_
+================================================================
+
+.. currentmodule:: quantlib.cashflows.fixed_rate_coupon
+
+.. automethod:: FixedRateLeg.__call__

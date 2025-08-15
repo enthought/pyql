@@ -4,31 +4,13 @@ quantlib.methods.finitedifferences.solvers.fdmbackwardsolver
 .. automodule:: quantlib.methods.finitedifferences.solvers.fdmbackwardsolver
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       FdmLinearOpComposite
       FdmSchemeDesc
       FdmSchemeType
       FdmStepConditionComposite
    
-   
-
-   
-   
-   
-
-
-

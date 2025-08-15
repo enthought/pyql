@@ -1,0 +1,6 @@
+quantlib.cashflows.coupon\_pricer.IborCouponPricer.initialize
+=============================================================
+
+.. currentmodule:: quantlib.cashflows.coupon_pricer
+
+.. automethod:: IborCouponPricer.initialize

@@ -1,0 +1,6 @@
+quantlib.market.conventions.swap.row.\_\_mul\_\_
+================================================
+
+.. currentmodule:: quantlib.market.conventions.swap
+
+.. automethod:: row.__mul__

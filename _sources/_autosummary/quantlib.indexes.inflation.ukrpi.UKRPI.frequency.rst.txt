@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.ukrpi.UKRPI.frequency
+================================================
+
+.. currentmodule:: quantlib.indexes.inflation.ukrpi
+
+.. autoattribute:: UKRPI.frequency

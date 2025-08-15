@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Price.type
+====================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoattribute:: Price.type

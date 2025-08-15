@@ -1,0 +1,6 @@
+quantlib.time.calendars.germany.Market.\_\_mul\_\_
+==================================================
+
+.. currentmodule:: quantlib.time.calendars.germany
+
+.. automethod:: Market.__mul__

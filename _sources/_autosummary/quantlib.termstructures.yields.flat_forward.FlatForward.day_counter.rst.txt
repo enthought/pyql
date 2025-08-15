@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.flat\_forward.FlatForward.day\_counter
+=====================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.flat_forward
+
+.. autoattribute:: FlatForward.day_counter

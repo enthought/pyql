@@ -1,0 +1,6 @@
+quantlib.currency.currencies.NOKCurrency.fractionsPerUnit
+=========================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: NOKCurrency.fractionsPerUnit

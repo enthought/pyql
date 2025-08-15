@@ -1,0 +1,6 @@
+quantlib.time.calendars.canada.Market.TSX
+=========================================
+
+.. currentmodule:: quantlib.time.calendars.canada
+
+.. autoattribute:: Market.TSX

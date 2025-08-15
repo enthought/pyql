@@ -4,28 +4,10 @@ quantlib.instruments.europeanoption
 .. automodule:: quantlib.instruments.europeanoption
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       EuropeanOption
    
-   
-
-   
-   
-   
-
-
-

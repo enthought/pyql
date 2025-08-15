@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.aucpi.YYAUCPI.is\_valid\_fixing\_date
+================================================================
+
+.. currentmodule:: quantlib.indexes.inflation.aucpi
+
+.. automethod:: YYAUCPI.is_valid_fixing_date

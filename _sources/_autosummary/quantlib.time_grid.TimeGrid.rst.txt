@@ -1,27 +1,30 @@
-quantlib.time\_grid.TimeGrid
-============================
+.. raw:: html
+
+   <div class="prename">quantlib.time_grid.</div>
+   <div class="empty"></div>
+
+TimeGrid
+===========================
 
 .. currentmodule:: quantlib.time_grid
 
 .. autoclass:: TimeGrid
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         TimeGrid.__getitem__
+         TimeGrid.__len__
+         TimeGrid.from_vector
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~TimeGrid.__init__
-      ~TimeGrid.from_vector
-   
-   
-
-   
-   
-   
+  
+  
+  

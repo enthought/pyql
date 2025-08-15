@@ -1,35 +1,34 @@
-quantlib.pricingengines.credit.isda\_cds\_engine.IsdaCdsEngine
-==============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.pricingengines.credit.isda_cds_engine.</div>
+   <div class="empty"></div>
+
+IsdaCdsEngine
+============================================================
 
 .. currentmodule:: quantlib.pricingengines.credit.isda_cds_engine
 
 .. autoclass:: IsdaCdsEngine
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~IsdaCdsEngine.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~IsdaCdsEngine.isda_credit_curve
-      ~IsdaCdsEngine.isda_rate_curve
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         IsdaCdsEngine.isda_credit_curve
+         IsdaCdsEngine.isda_rate_curve
+  
+  

@@ -1,0 +1,6 @@
+quantlib.indexes.swap\_index.SwapIndex.tenor
+============================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. autoattribute:: SwapIndex.tenor

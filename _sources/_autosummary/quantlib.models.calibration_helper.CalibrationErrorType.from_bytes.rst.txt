@@ -1,0 +1,6 @@
+quantlib.models.calibration\_helper.CalibrationErrorType.from\_bytes
+====================================================================
+
+.. currentmodule:: quantlib.models.calibration_helper
+
+.. automethod:: CalibrationErrorType.from_bytes

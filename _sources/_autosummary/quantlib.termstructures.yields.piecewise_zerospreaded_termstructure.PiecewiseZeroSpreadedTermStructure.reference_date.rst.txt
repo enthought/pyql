@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.piecewise\_zerospreaded\_termstructure.PiecewiseZeroSpreadedTermStructure.reference\_date
+========================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_zerospreaded_termstructure
+
+.. autoattribute:: PiecewiseZeroSpreadedTermStructure.reference_date

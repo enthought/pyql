@@ -1,27 +1,28 @@
-quantlib.math.hestonhwcorrelationconstraint.HestonHullWhiteCorrelationConstraint
+.. raw:: html
+
+   <div class="prename">quantlib.math.hestonhwcorrelationconstraint.</div>
+   <div class="empty"></div>
+
+HestonHullWhiteCorrelationConstraint
 ================================================================================
 
 .. currentmodule:: quantlib.math.hestonhwcorrelationconstraint
 
 .. autoclass:: HestonHullWhiteCorrelationConstraint
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HestonHullWhiteCorrelationConstraint.test
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~HestonHullWhiteCorrelationConstraint.__init__
-      ~HestonHullWhiteCorrelationConstraint.test
-   
-   
-
-   
-   
-   
+  
+  
+  

@@ -1,0 +1,6 @@
+quantlib.time.calendar.Calendar.adjust
+======================================
+
+.. currentmodule:: quantlib.time.calendar
+
+.. automethod:: Calendar.adjust

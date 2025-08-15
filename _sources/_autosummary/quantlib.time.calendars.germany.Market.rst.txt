@@ -1,48 +1,55 @@
-quantlib.time.calendars.germany.Market
+.. raw:: html
+
+   <div class="prename">quantlib.time.calendars.germany.</div>
+   <div class="empty"></div>
+
+Market
 ======================================
 
 .. currentmodule:: quantlib.time.calendars.germany
 
 .. autoclass:: Market
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Market.__mul__
+         Market.__pow__
+         Market.conjugate
+         Market.bit_length
+         Market.bit_count
+         Market.to_bytes
+         Market.from_bytes
+         Market.as_integer_ratio
+         Market.__getitem__
+         Market.__len__
+      
+         Market.__len__
+         Market.__getitem__
+         Market.__mul__
+         Market.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Market.conjugate
-      ~Market.bit_length
-      ~Market.bit_count
-      ~Market.to_bytes
-      ~Market.from_bytes
-      ~Market.as_integer_ratio
-      ~Market.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Market.real
-      ~Market.imag
-      ~Market.numerator
-      ~Market.denominator
-      ~Market.Settlement
-      ~Market.FrankfurtStockExchange
-      ~Market.Xetra
-      ~Market.Eurex
-      ~Market.Euwax
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Market.real
+         Market.imag
+         Market.numerator
+         Market.denominator
+         Market.Settlement
+         Market.FrankfurtStockExchange
+         Market.Xetra
+         Market.Eurex
+         Market.Euwax
+  
+  

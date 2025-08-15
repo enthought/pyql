@@ -1,45 +1,44 @@
-quantlib.models.equity.bates\_model.BatesDetJumpModel
-=====================================================
+.. raw:: html
+
+   <div class="prename">quantlib.models.equity.bates_model.</div>
+   <div class="empty"></div>
+
+BatesDetJumpModel
+====================================================
 
 .. currentmodule:: quantlib.models.equity.bates_model
 
 .. autoclass:: BatesDetJumpModel
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BatesDetJumpModel.calibrate
+         BatesDetJumpModel.process
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BatesDetJumpModel.__init__
-      ~BatesDetJumpModel.calibrate
-      ~BatesDetJumpModel.process
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~BatesDetJumpModel.Lambda
-      ~BatesDetJumpModel.delta
-      ~BatesDetJumpModel.kappa
-      ~BatesDetJumpModel.kappaLambda
-      ~BatesDetJumpModel.nu
-      ~BatesDetJumpModel.rho
-      ~BatesDetJumpModel.sigma
-      ~BatesDetJumpModel.theta
-      ~BatesDetJumpModel.thetaLambda
-      ~BatesDetJumpModel.v0
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BatesDetJumpModel.Lambda
+         BatesDetJumpModel.delta
+         BatesDetJumpModel.kappa
+         BatesDetJumpModel.kappaLambda
+         BatesDetJumpModel.nu
+         BatesDetJumpModel.rho
+         BatesDetJumpModel.sigma
+         BatesDetJumpModel.theta
+         BatesDetJumpModel.thetaLambda
+         BatesDetJumpModel.v0
+  
+  

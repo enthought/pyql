@@ -1,43 +1,42 @@
-quantlib.processes.hullwhite\_process.HullWhiteProcess
-======================================================
+.. raw:: html
+
+   <div class="prename">quantlib.processes.hullwhite_process.</div>
+   <div class="empty"></div>
+
+HullWhiteProcess
+=====================================================
 
 .. currentmodule:: quantlib.processes.hullwhite_process
 
 .. autoclass:: HullWhiteProcess
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HullWhiteProcess.diffusion
+         HullWhiteProcess.drift
+         HullWhiteProcess.expectation
+         HullWhiteProcess.factors
+         HullWhiteProcess.size
+         HullWhiteProcess.std_deviation
+         HullWhiteProcess.variance
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~HullWhiteProcess.__init__
-      ~HullWhiteProcess.diffusion
-      ~HullWhiteProcess.drift
-      ~HullWhiteProcess.expectation
-      ~HullWhiteProcess.factors
-      ~HullWhiteProcess.size
-      ~HullWhiteProcess.std_deviation
-      ~HullWhiteProcess.variance
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~HullWhiteProcess.a
-      ~HullWhiteProcess.sigma
-      ~HullWhiteProcess.x0
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HullWhiteProcess.a
+         HullWhiteProcess.sigma
+         HullWhiteProcess.x0
+  
+  

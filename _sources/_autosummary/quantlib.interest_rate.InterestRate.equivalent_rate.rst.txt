@@ -1,0 +1,6 @@
+quantlib.interest\_rate.InterestRate.equivalent\_rate
+=====================================================
+
+.. currentmodule:: quantlib.interest_rate
+
+.. automethod:: InterestRate.equivalent_rate

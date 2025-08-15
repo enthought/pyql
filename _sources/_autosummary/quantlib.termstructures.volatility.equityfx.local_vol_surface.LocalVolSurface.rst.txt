@@ -1,40 +1,39 @@
-quantlib.termstructures.volatility.equityfx.local\_vol\_surface.LocalVolSurface
-===============================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.volatility.equityfx.local_vol_surface.</div>
+   <div class="empty"></div>
+
+LocalVolSurface
+=============================================================================
 
 .. currentmodule:: quantlib.termstructures.volatility.equityfx.local_vol_surface
 
 .. autoclass:: LocalVolSurface
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LocalVolSurface.localVol
+         LocalVolSurface.option_date_from_tenor
+         LocalVolSurface.time_from_reference
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~LocalVolSurface.__init__
-      ~LocalVolSurface.localVol
-      ~LocalVolSurface.option_date_from_tenor
-      ~LocalVolSurface.time_from_reference
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~LocalVolSurface.calendar
-      ~LocalVolSurface.extrapolation
-      ~LocalVolSurface.reference_date
-      ~LocalVolSurface.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LocalVolSurface.calendar
+         LocalVolSurface.extrapolation
+         LocalVolSurface.reference_date
+         LocalVolSurface.settlement_days
+  
+  

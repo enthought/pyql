@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.discount\_curve.BackwardFlatInterpolatedDiscountCurve.discounts
+==============================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.discount_curve
+
+.. autoattribute:: BackwardFlatInterpolatedDiscountCurve.discounts

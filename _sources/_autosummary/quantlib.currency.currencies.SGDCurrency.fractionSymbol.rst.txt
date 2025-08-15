@@ -1,0 +1,6 @@
+quantlib.currency.currencies.SGDCurrency.fractionSymbol
+=======================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: SGDCurrency.fractionSymbol

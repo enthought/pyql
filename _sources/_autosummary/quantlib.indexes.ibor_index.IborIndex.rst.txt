@@ -1,55 +1,54 @@
-quantlib.indexes.ibor\_index.IborIndex
-======================================
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.ibor_index.</div>
+   <div class="empty"></div>
+
+IborIndex
+=====================================
 
 .. currentmodule:: quantlib.indexes.ibor_index
 
 .. autoclass:: IborIndex
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         IborIndex.add_fixing
+         IborIndex.add_fixings
+         IborIndex.clear_fixings
+         IborIndex.fixing
+         IborIndex.fixing_date
+         IborIndex.forecast_fixing
+         IborIndex.from_name
+         IborIndex.has_historical_fixing
+         IborIndex.is_valid_fixing_date
+         IborIndex.maturity_date
+         IborIndex.value_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~IborIndex.__init__
-      ~IborIndex.add_fixing
-      ~IborIndex.add_fixings
-      ~IborIndex.clear_fixings
-      ~IborIndex.fixing
-      ~IborIndex.fixing_date
-      ~IborIndex.forecast_fixing
-      ~IborIndex.from_name
-      ~IborIndex.has_historical_fixing
-      ~IborIndex.is_valid_fixing_date
-      ~IborIndex.maturity_date
-      ~IborIndex.value_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~IborIndex.business_day_convention
-      ~IborIndex.currency
-      ~IborIndex.day_counter
-      ~IborIndex.end_of_month
-      ~IborIndex.family_name
-      ~IborIndex.fixing_calendar
-      ~IborIndex.fixing_days
-      ~IborIndex.forwarding_term_structure
-      ~IborIndex.name
-      ~IborIndex.tenor
-      ~IborIndex.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         IborIndex.business_day_convention
+         IborIndex.currency
+         IborIndex.day_counter
+         IborIndex.end_of_month
+         IborIndex.family_name
+         IborIndex.fixing_calendar
+         IborIndex.fixing_days
+         IborIndex.forwarding_term_structure
+         IborIndex.name
+         IborIndex.tenor
+         IborIndex.time_series
+  
+  

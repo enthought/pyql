@@ -1,35 +1,36 @@
-quantlib.time\_series.TimeSeries
-================================
+.. raw:: html
+
+   <div class="prename">quantlib.time_series.</div>
+   <div class="empty"></div>
+
+TimeSeries
+===============================
 
 .. currentmodule:: quantlib.time_series
 
 .. autoclass:: TimeSeries
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         TimeSeries.__getitem__
+         TimeSeries.__len__
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~TimeSeries.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~TimeSeries.first_date
-      ~TimeSeries.last_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         TimeSeries.first_date
+         TimeSeries.last_date
+  
+  

@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.implied\_volatility
+======================================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. automethod:: EuropeanOption.implied_volatility

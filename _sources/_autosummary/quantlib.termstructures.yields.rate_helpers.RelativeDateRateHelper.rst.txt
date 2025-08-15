@@ -1,39 +1,38 @@
-quantlib.termstructures.yields.rate\_helpers.RelativeDateRateHelper
-===================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.rate_helpers.</div>
+   <div class="empty"></div>
+
+RelativeDateRateHelper
+==================================================================
 
 .. currentmodule:: quantlib.termstructures.yields.rate_helpers
 
 .. autoclass:: RelativeDateRateHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         RelativeDateRateHelper.update
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~RelativeDateRateHelper.__init__
-      ~RelativeDateRateHelper.update
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~RelativeDateRateHelper.earliest_date
-      ~RelativeDateRateHelper.implied_quote
-      ~RelativeDateRateHelper.latest_date
-      ~RelativeDateRateHelper.maturity_date
-      ~RelativeDateRateHelper.quote
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         RelativeDateRateHelper.earliest_date
+         RelativeDateRateHelper.implied_quote
+         RelativeDateRateHelper.latest_date
+         RelativeDateRateHelper.maturity_date
+         RelativeDateRateHelper.quote
+  
+  

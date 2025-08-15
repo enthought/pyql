@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.AUCPI.has\_historical\_fixing
+===============================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. automethod:: AUCPI.has_historical_fixing

@@ -1,0 +1,6 @@
+quantlib.math.array.Array.size
+==============================
+
+.. currentmodule:: quantlib.math.array
+
+.. autoattribute:: Array.size

@@ -1,44 +1,43 @@
-quantlib.instruments.variance\_swap.VarianceSwap
-================================================
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.variance_swap.</div>
+   <div class="empty"></div>
+
+VarianceSwap
+===============================================
 
 .. currentmodule:: quantlib.instruments.variance_swap
 
 .. autoclass:: VarianceSwap
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         VarianceSwap.set_pricing_engine
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~VarianceSwap.__init__
-      ~VarianceSwap.set_pricing_engine
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~VarianceSwap.is_expired
-      ~VarianceSwap.maturity_date
-      ~VarianceSwap.net_present_value
-      ~VarianceSwap.notional
-      ~VarianceSwap.npv
-      ~VarianceSwap.position
-      ~VarianceSwap.start_date
-      ~VarianceSwap.strike
-      ~VarianceSwap.valuation_date
-      ~VarianceSwap.variance
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         VarianceSwap.is_expired
+         VarianceSwap.maturity_date
+         VarianceSwap.net_present_value
+         VarianceSwap.notional
+         VarianceSwap.npv
+         VarianceSwap.position
+         VarianceSwap.start_date
+         VarianceSwap.strike
+         VarianceSwap.valuation_date
+         VarianceSwap.variance
+  
+  

@@ -4,29 +4,11 @@ quantlib.indexes.swap.usd\_libor\_swap
 .. automodule:: quantlib.indexes.swap.usd_libor_swap
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       UsdLiborSwapIsdaFixAm
       UsdLiborSwapIsdaFixPm
    
-   
-
-   
-   
-   
-
-
-

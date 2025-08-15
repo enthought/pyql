@@ -1,0 +1,6 @@
+quantlib.time.date.Period.units
+===============================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: Period.units

@@ -1,37 +1,36 @@
-quantlib.time.daycounters.simple.Actual365Fixed
+.. raw:: html
+
+   <div class="prename">quantlib.time.daycounters.simple.</div>
+   <div class="empty"></div>
+
+Actual365Fixed
 ===============================================
 
 .. currentmodule:: quantlib.time.daycounters.simple
 
 .. autoclass:: Actual365Fixed
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Actual365Fixed.day_count
+         Actual365Fixed.from_name
+         Actual365Fixed.year_fraction
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Actual365Fixed.__init__
-      ~Actual365Fixed.day_count
-      ~Actual365Fixed.from_name
-      ~Actual365Fixed.year_fraction
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Actual365Fixed.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Actual365Fixed.name
+  
+  

@@ -1,0 +1,6 @@
+quantlib.indexes.swap\_index.SwapIndex.maturity\_date
+=====================================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. automethod:: SwapIndex.maturity_date

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.time.daycounters.thirty360.Thirty360 &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>Thirty360 &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,8 +15,8 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.time.frequency" href="quantlib.time.frequency.html" />
-    <link rel="prev" title="quantlib.time.daycounters.thirty360.Convention" href="quantlib.time.daycounters.thirty360.Convention.html" />
+    <link rel="next" title="quantlib.time.daycounters.thirty360.Thirty360.day_count" href="quantlib.time.daycounters.thirty360.Thirty360.day_count.html" />
+    <link rel="prev" title="quantlib.time.daycounters.thirty360.Convention.to_bytes" href="quantlib.time.daycounters.thirty360.Convention.to_bytes.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,8 +34,9 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-time-daycounters-thirty360-thirty360">
-<h1>quantlib.time.daycounters.thirty360.Thirty360<a class="headerlink" href="#quantlib-time-daycounters-thirty360-thirty360" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.time.daycounters.thirty360.</div>
+<div class="empty"></div><section id="thirty360">
+<h1>Thirty360<a class="headerlink" href="#thirty360" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.time.daycounters.thirty360.Thirty360">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Thirty360</span></span><a class="headerlink" href="#quantlib.time.daycounters.thirty360.Thirty360" title="Link to this definition">¶</a></dt>
@@ -87,60 +88,24 @@ ending date becomes equal to the 30th of the same month.</p>
 <li><p>ISDA</p></li>
 <li><p>NASD</p></li>
 </ul>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.time.daycounters.thirty360.Thirty360.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.daycounters.thirty360.Thirty360.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.time.daycounters.thirty360.Thirty360.__init__" title="quantlib.time.daycounters.thirty360.Thirty360.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">day_count</span></code>(self, Date date1, Date date2)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.daycounters.thirty360.Thirty360.day_count.html#quantlib.time.daycounters.thirty360.Thirty360.day_count" title="quantlib.time.daycounters.thirty360.Thirty360.day_count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">day_count</span></code></a>(self, Date date1, Date date2)</p></td>
 <td><p>Returns the number of days between two dates.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_name</span></code>(cls, name)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.daycounters.thirty360.Thirty360.from_name.html#quantlib.time.daycounters.thirty360.Thirty360.from_name" title="quantlib.time.daycounters.thirty360.Thirty360.from_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_name</span></code></a>(cls, name)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">year_fraction</span></code>(self, Date date1, Date date2, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.daycounters.thirty360.Thirty360.year_fraction.html#quantlib.time.daycounters.thirty360.Thirty360.year_fraction" title="quantlib.time.daycounters.thirty360.Thirty360.year_fraction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">year_fraction</span></code></a>(self, Date date1, Date date2, ...)</p></td>
 <td><p>Returns the period between two dates as a fraction of year.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BondBasis</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EurobondBasis</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">European</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">German</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ISDA</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ISMA</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Italian</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">NASD</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">USA</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></p></td>
-<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -187,8 +152,8 @@ ending date becomes equal to the 30th of the same month.</p>
   <li><a href="quantlib.time.html">quantlib.time</a><ul>
   <li><a href="quantlib.time.daycounters.html">quantlib.time.daycounters</a><ul>
   <li><a href="quantlib.time.daycounters.thirty360.html">quantlib.time.daycounters.thirty360</a><ul>
-      <li>Previous: <a href="quantlib.time.daycounters.thirty360.Convention.html" title="previous chapter">quantlib.time.daycounters.thirty360.Convention</a></li>
-      <li>Next: <a href="quantlib.time.frequency.html" title="next chapter">quantlib.time.frequency</a></li>
+      <li>Previous: <a href="quantlib.time.daycounters.thirty360.Convention.to_bytes.html" title="previous chapter">quantlib.time.daycounters.thirty360.Convention.to_bytes</a></li>
+      <li>Next: <a href="quantlib.time.daycounters.thirty360.Thirty360.day_count.html" title="next chapter">quantlib.time.daycounters.thirty360.Thirty360.day_count</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

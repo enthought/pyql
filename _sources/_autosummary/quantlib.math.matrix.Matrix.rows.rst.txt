@@ -1,0 +1,6 @@
+quantlib.math.matrix.Matrix.rows
+================================
+
+.. currentmodule:: quantlib.math.matrix
+
+.. autoattribute:: Matrix.rows

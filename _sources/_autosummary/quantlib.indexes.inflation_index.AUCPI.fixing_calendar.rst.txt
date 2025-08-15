@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.AUCPI.fixing\_calendar
+========================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. autoattribute:: AUCPI.fixing_calendar

@@ -1,55 +1,62 @@
-quantlib.time.imm.Month
+.. raw:: html
+
+   <div class="prename">quantlib.time.imm.</div>
+   <div class="empty"></div>
+
+Month
 =======================
 
 .. currentmodule:: quantlib.time.imm
 
 .. autoclass:: Month
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Month.__mul__
+         Month.__pow__
+         Month.conjugate
+         Month.bit_length
+         Month.bit_count
+         Month.to_bytes
+         Month.from_bytes
+         Month.as_integer_ratio
+         Month.__len__
+         Month.__getitem__
+      
+         Month.__len__
+         Month.__getitem__
+         Month.__mul__
+         Month.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Month.conjugate
-      ~Month.bit_length
-      ~Month.bit_count
-      ~Month.to_bytes
-      ~Month.from_bytes
-      ~Month.as_integer_ratio
-      ~Month.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Month.real
-      ~Month.imag
-      ~Month.numerator
-      ~Month.denominator
-      ~Month.F
-      ~Month.G
-      ~Month.H
-      ~Month.J
-      ~Month.K
-      ~Month.M
-      ~Month.N
-      ~Month.Q
-      ~Month.U
-      ~Month.V
-      ~Month.X
-      ~Month.Z
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Month.real
+         Month.imag
+         Month.numerator
+         Month.denominator
+         Month.F
+         Month.G
+         Month.H
+         Month.J
+         Month.K
+         Month.M
+         Month.N
+         Month.Q
+         Month.U
+         Month.V
+         Month.X
+         Month.Z
+  
+  

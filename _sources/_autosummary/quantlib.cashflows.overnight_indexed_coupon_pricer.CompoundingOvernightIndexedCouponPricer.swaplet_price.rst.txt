@@ -1,0 +1,6 @@
+quantlib.cashflows.overnight\_indexed\_coupon\_pricer.CompoundingOvernightIndexedCouponPricer.swaplet\_price
+============================================================================================================
+
+.. currentmodule:: quantlib.cashflows.overnight_indexed_coupon_pricer
+
+.. automethod:: CompoundingOvernightIndexedCouponPricer.swaplet_price

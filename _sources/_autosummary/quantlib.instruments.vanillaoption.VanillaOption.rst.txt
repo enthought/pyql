@@ -1,54 +1,53 @@
-quantlib.instruments.vanillaoption.VanillaOption
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.vanillaoption.</div>
+   <div class="empty"></div>
+
+VanillaOption
 ================================================
 
 .. currentmodule:: quantlib.instruments.vanillaoption
 
 .. autoclass:: VanillaOption
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         VanillaOption.implied_volatility
+         VanillaOption.set_pricing_engine
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~VanillaOption.__init__
-      ~VanillaOption.implied_volatility
-      ~VanillaOption.set_pricing_engine
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~VanillaOption.Call
-      ~VanillaOption.Put
-      ~VanillaOption.delta
-      ~VanillaOption.delta_forward
-      ~VanillaOption.dividend_rho
-      ~VanillaOption.elasticity
-      ~VanillaOption.exercise
-      ~VanillaOption.gamma
-      ~VanillaOption.is_expired
-      ~VanillaOption.itm_cash_probability
-      ~VanillaOption.net_present_value
-      ~VanillaOption.npv
-      ~VanillaOption.payoff
-      ~VanillaOption.rho
-      ~VanillaOption.strike_sensitivity
-      ~VanillaOption.theta
-      ~VanillaOption.theta_per_day
-      ~VanillaOption.valuation_date
-      ~VanillaOption.vega
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         VanillaOption.Call
+         VanillaOption.Put
+         VanillaOption.delta
+         VanillaOption.delta_forward
+         VanillaOption.dividend_rho
+         VanillaOption.elasticity
+         VanillaOption.exercise
+         VanillaOption.gamma
+         VanillaOption.is_expired
+         VanillaOption.itm_cash_probability
+         VanillaOption.net_present_value
+         VanillaOption.npv
+         VanillaOption.payoff
+         VanillaOption.rho
+         VanillaOption.strike_sensitivity
+         VanillaOption.theta
+         VanillaOption.theta_per_day
+         VanillaOption.valuation_date
+         VanillaOption.vega
+  
+  

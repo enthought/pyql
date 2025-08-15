@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.euribor.Euribor6M.has\_historical\_fixing
+===============================================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. automethod:: Euribor6M.has_historical_fixing

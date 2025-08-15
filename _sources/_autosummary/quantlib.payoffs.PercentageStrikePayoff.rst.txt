@@ -1,26 +1,29 @@
-quantlib.payoffs.PercentageStrikePayoff
+.. raw:: html
+
+   <div class="prename">quantlib.payoffs.</div>
+   <div class="empty"></div>
+
+PercentageStrikePayoff
 =======================================
 
 .. currentmodule:: quantlib.payoffs
 
 .. autoclass:: PercentageStrikePayoff
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         PercentageStrikePayoff.__call__
+      
+         PercentageStrikePayoff.__call__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~PercentageStrikePayoff.__init__
-   
-   
-
-   
-   
-   
+  
+  
+  

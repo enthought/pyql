@@ -1,33 +1,34 @@
-quantlib.experimental.coupons.cms\_spread\_coupon.CmsSpreadCouponPricer
-=======================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.experimental.coupons.cms_spread_coupon.</div>
+   <div class="empty"></div>
+
+CmsSpreadCouponPricer
+=====================================================================
 
 .. currentmodule:: quantlib.experimental.coupons.cms_spread_coupon
 
 .. autoclass:: CmsSpreadCouponPricer
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CmsSpreadCouponPricer.caplet_price
+         CmsSpreadCouponPricer.caplet_rate
+         CmsSpreadCouponPricer.floorlet_price
+         CmsSpreadCouponPricer.floorlet_rate
+         CmsSpreadCouponPricer.initialize
+         CmsSpreadCouponPricer.swaplet_price
+         CmsSpreadCouponPricer.swaplet_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~CmsSpreadCouponPricer.__init__
-      ~CmsSpreadCouponPricer.caplet_price
-      ~CmsSpreadCouponPricer.caplet_rate
-      ~CmsSpreadCouponPricer.floorlet_price
-      ~CmsSpreadCouponPricer.floorlet_rate
-      ~CmsSpreadCouponPricer.initialize
-      ~CmsSpreadCouponPricer.swaplet_price
-      ~CmsSpreadCouponPricer.swaplet_rate
-   
-   
-
-   
-   
-   
+  
+  
+  

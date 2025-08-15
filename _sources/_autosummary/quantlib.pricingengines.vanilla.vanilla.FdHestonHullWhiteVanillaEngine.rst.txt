@@ -1,27 +1,28 @@
-quantlib.pricingengines.vanilla.vanilla.FdHestonHullWhiteVanillaEngine
+.. raw:: html
+
+   <div class="prename">quantlib.pricingengines.vanilla.vanilla.</div>
+   <div class="empty"></div>
+
+FdHestonHullWhiteVanillaEngine
 ======================================================================
 
 .. currentmodule:: quantlib.pricingengines.vanilla.vanilla
 
 .. autoclass:: FdHestonHullWhiteVanillaEngine
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FdHestonHullWhiteVanillaEngine.enable_multiple_strikes_caching
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FdHestonHullWhiteVanillaEngine.__init__
-      ~FdHestonHullWhiteVanillaEngine.enable_multiple_strikes_caching
-   
-   
-
-   
-   
-   
+  
+  
+  

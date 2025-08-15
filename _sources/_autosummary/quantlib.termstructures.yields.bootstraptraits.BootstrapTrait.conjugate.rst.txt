@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bootstraptraits.BootstrapTrait.conjugate
+=======================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bootstraptraits
+
+.. automethod:: BootstrapTrait.conjugate

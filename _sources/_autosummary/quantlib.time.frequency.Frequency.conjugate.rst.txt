@@ -1,0 +1,6 @@
+quantlib.time.frequency.Frequency.conjugate
+===========================================
+
+.. currentmodule:: quantlib.time.frequency
+
+.. automethod:: Frequency.conjugate

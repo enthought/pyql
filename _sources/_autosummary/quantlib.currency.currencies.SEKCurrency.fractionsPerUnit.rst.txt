@@ -1,0 +1,6 @@
+quantlib.currency.currencies.SEKCurrency.fractionsPerUnit
+=========================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: SEKCurrency.fractionsPerUnit

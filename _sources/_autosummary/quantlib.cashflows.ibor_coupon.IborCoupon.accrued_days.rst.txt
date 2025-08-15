@@ -1,0 +1,6 @@
+quantlib.cashflows.ibor\_coupon.IborCoupon.accrued\_days
+========================================================
+
+.. currentmodule:: quantlib.cashflows.ibor_coupon
+
+.. automethod:: IborCoupon.accrued_days

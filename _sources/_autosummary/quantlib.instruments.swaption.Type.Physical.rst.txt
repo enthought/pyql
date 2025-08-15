@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Type.Physical
+===========================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Type.Physical

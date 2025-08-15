@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.InterpolationType.from\_bytes
+===============================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. automethod:: InterpolationType.from_bytes

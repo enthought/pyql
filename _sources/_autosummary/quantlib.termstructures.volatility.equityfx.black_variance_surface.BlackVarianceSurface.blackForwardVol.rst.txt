@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.black\_variance\_surface.BlackVarianceSurface.blackForwardVol
+=========================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_variance_surface
+
+.. automethod:: BlackVarianceSurface.blackForwardVol

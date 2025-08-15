@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.swap\_spread\_index.SwapSpreadIndex.family\_name
+==============================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.swap_spread_index
+
+.. autoattribute:: SwapSpreadIndex.family_name

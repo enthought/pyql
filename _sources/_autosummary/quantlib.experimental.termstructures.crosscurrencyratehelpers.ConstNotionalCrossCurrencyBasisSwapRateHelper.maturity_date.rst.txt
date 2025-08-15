@@ -1,0 +1,6 @@
+quantlib.experimental.termstructures.crosscurrencyratehelpers.ConstNotionalCrossCurrencyBasisSwapRateHelper.maturity\_date
+==========================================================================================================================
+
+.. currentmodule:: quantlib.experimental.termstructures.crosscurrencyratehelpers
+
+.. autoattribute:: ConstNotionalCrossCurrencyBasisSwapRateHelper.maturity_date

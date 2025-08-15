@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaswap.VanillaSwap.endDiscounts
+=========================================================
+
+.. currentmodule:: quantlib.instruments.vanillaswap
+
+.. automethod:: VanillaSwap.endDiscounts

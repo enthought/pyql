@@ -1,0 +1,6 @@
+quantlib.instruments.futures.FuturesType.as\_integer\_ratio
+===========================================================
+
+.. currentmodule:: quantlib.instruments.futures
+
+.. automethod:: FuturesType.as_integer_ratio

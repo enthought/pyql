@@ -1,26 +1,27 @@
-quantlib.pricingengines.forward.mc\_variance\_swap\_engine.MCVarianceSwapEngine
-===============================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.pricingengines.forward.mc_variance_swap_engine.</div>
+   <div class="empty"></div>
+
+MCVarianceSwapEngine
+============================================================================
 
 .. currentmodule:: quantlib.pricingengines.forward.mc_variance_swap_engine
 
 .. autoclass:: MCVarianceSwapEngine
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~MCVarianceSwapEngine.__init__
-   
-   
-
-   
-   
-   
+  
+  
+  

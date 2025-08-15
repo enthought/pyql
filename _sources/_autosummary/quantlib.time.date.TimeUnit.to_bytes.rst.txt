@@ -1,0 +1,6 @@
+quantlib.time.date.TimeUnit.to\_bytes
+=====================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: TimeUnit.to_bytes

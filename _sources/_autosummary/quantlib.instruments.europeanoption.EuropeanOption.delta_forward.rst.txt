@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.delta\_forward
+=================================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. autoattribute:: EuropeanOption.delta_forward

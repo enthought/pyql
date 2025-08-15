@@ -1,39 +1,38 @@
-quantlib.termstructures.yields.overnightindexfutureratehelper.OvernightIndexFutureRateHelper
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.overnightindexfutureratehelper.</div>
+   <div class="empty"></div>
+
+OvernightIndexFutureRateHelper
 ============================================================================================
 
 .. currentmodule:: quantlib.termstructures.yields.overnightindexfutureratehelper
 
 .. autoclass:: OvernightIndexFutureRateHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OvernightIndexFutureRateHelper.update
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~OvernightIndexFutureRateHelper.__init__
-      ~OvernightIndexFutureRateHelper.update
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~OvernightIndexFutureRateHelper.earliest_date
-      ~OvernightIndexFutureRateHelper.implied_quote
-      ~OvernightIndexFutureRateHelper.latest_date
-      ~OvernightIndexFutureRateHelper.maturity_date
-      ~OvernightIndexFutureRateHelper.quote
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OvernightIndexFutureRateHelper.earliest_date
+         OvernightIndexFutureRateHelper.implied_quote
+         OvernightIndexFutureRateHelper.latest_date
+         OvernightIndexFutureRateHelper.maturity_date
+         OvernightIndexFutureRateHelper.quote
+  
+  

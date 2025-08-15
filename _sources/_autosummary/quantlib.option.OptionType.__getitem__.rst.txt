@@ -1,0 +1,6 @@
+quantlib.option.OptionType.\_\_getitem\_\_
+==========================================
+
+.. currentmodule:: quantlib.option
+
+.. automethod:: OptionType.__getitem__

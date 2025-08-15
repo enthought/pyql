@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.euribor.Euribor6M.is\_valid\_fixing\_date
+===============================================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. automethod:: Euribor6M.is_valid_fixing_date

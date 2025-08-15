@@ -1,0 +1,6 @@
+quantlib.instruments.asian\_options.AverageType.Arithmetic
+==========================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. autoattribute:: AverageType.Arithmetic

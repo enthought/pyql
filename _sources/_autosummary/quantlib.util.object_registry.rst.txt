@@ -4,28 +4,10 @@ quantlib.util.object\_registry
 .. automodule:: quantlib.util.object_registry
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       ObjectRegistry
    
-   
-
-   
-   
-   
-
-
-

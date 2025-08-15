@@ -1,39 +1,38 @@
-quantlib.termstructures.inflation\_term\_structure.YoYInflationTermStructure
-============================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.inflation_term_structure.</div>
+   <div class="empty"></div>
+
+YoYInflationTermStructure
+==========================================================================
 
 .. currentmodule:: quantlib.termstructures.inflation_term_structure
 
 .. autoclass:: YoYInflationTermStructure
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YoYInflationTermStructure.link_to
+         YoYInflationTermStructure.yoy_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~YoYInflationTermStructure.__init__
-      ~YoYInflationTermStructure.link_to
-      ~YoYInflationTermStructure.yoy_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~YoYInflationTermStructure.base_date
-      ~YoYInflationTermStructure.base_rate
-      ~YoYInflationTermStructure.max_date
-      ~YoYInflationTermStructure.reference_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YoYInflationTermStructure.base_date
+         YoYInflationTermStructure.base_rate
+         YoYInflationTermStructure.max_date
+         YoYInflationTermStructure.reference_date
+  
+  

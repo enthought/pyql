@@ -1,0 +1,6 @@
+quantlib.models.shortrate.onefactor\_model.OneFactorModel.params
+================================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactor_model
+
+.. automethod:: OneFactorModel.params

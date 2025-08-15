@@ -4,28 +4,10 @@ quantlib.termstructures.volatility.swaption
 .. automodule:: quantlib.termstructures.volatility.swaption
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    sabr_swaption_volatility_cube
@@ -35,4 +17,3 @@ quantlib.termstructures.volatility.swaption
    swaption_vol_discrete
    swaption_vol_matrix
    swaption_vol_structure
-

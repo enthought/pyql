@@ -1,40 +1,39 @@
-quantlib.termstructures.yields.ois\_rate\_helper.OISRateHelper
-==============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.ois_rate_helper.</div>
+   <div class="empty"></div>
+
+OISRateHelper
+============================================================
 
 .. currentmodule:: quantlib.termstructures.yields.ois_rate_helper
 
 .. autoclass:: OISRateHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OISRateHelper.from_dates
+         OISRateHelper.update
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~OISRateHelper.__init__
-      ~OISRateHelper.from_dates
-      ~OISRateHelper.update
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~OISRateHelper.earliest_date
-      ~OISRateHelper.implied_quote
-      ~OISRateHelper.latest_date
-      ~OISRateHelper.maturity_date
-      ~OISRateHelper.quote
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OISRateHelper.earliest_date
+         OISRateHelper.implied_quote
+         OISRateHelper.latest_date
+         OISRateHelper.maturity_date
+         OISRateHelper.quote
+  
+  

@@ -1,0 +1,6 @@
+quantlib.exercise.Type.numerator
+================================
+
+.. currentmodule:: quantlib.exercise
+
+.. autoattribute:: Type.numerator

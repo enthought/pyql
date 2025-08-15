@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.black\_variance\_surface.BlackVarianceSurface.min\_strike
+=====================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_variance_surface
+
+.. autoattribute:: BlackVarianceSurface.min_strike

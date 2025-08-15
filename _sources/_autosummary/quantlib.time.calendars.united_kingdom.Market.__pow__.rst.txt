@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_kingdom.Market.\_\_pow\_\_
+==========================================================
+
+.. currentmodule:: quantlib.time.calendars.united_kingdom
+
+.. automethod:: Market.__pow__

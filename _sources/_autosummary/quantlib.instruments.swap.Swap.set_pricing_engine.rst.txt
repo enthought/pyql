@@ -1,0 +1,6 @@
+quantlib.instruments.swap.Swap.set\_pricing\_engine
+===================================================
+
+.. currentmodule:: quantlib.instruments.swap
+
+.. automethod:: Swap.set_pricing_engine

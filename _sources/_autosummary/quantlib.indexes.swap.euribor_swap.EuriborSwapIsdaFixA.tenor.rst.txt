@@ -1,0 +1,6 @@
+quantlib.indexes.swap.euribor\_swap.EuriborSwapIsdaFixA.tenor
+=============================================================
+
+.. currentmodule:: quantlib.indexes.swap.euribor_swap
+
+.. autoattribute:: EuriborSwapIsdaFixA.tenor

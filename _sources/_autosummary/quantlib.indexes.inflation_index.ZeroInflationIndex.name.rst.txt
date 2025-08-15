@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.ZeroInflationIndex.name
+=========================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. autoattribute:: ZeroInflationIndex.name

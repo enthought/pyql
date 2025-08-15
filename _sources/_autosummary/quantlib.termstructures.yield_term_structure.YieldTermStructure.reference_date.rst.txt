@@ -1,0 +1,6 @@
+quantlib.termstructures.yield\_term\_structure.YieldTermStructure.reference\_date
+=================================================================================
+
+.. currentmodule:: quantlib.termstructures.yield_term_structure
+
+.. autoattribute:: YieldTermStructure.reference_date

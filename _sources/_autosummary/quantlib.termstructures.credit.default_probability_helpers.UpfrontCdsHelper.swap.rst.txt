@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.default\_probability\_helpers.UpfrontCdsHelper.swap
+==================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.default_probability_helpers
+
+.. automethod:: UpfrontCdsHelper.swap

@@ -1,45 +1,52 @@
-quantlib.pricingengines.credit.isda\_cds\_engine.ForwardsInCouponPeriod
-=======================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.pricingengines.credit.isda_cds_engine.</div>
+   <div class="empty"></div>
+
+ForwardsInCouponPeriod
+=====================================================================
 
 .. currentmodule:: quantlib.pricingengines.credit.isda_cds_engine
 
 .. autoclass:: ForwardsInCouponPeriod
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ForwardsInCouponPeriod.__mul__
+         ForwardsInCouponPeriod.__pow__
+         ForwardsInCouponPeriod.conjugate
+         ForwardsInCouponPeriod.bit_length
+         ForwardsInCouponPeriod.bit_count
+         ForwardsInCouponPeriod.to_bytes
+         ForwardsInCouponPeriod.from_bytes
+         ForwardsInCouponPeriod.as_integer_ratio
+         ForwardsInCouponPeriod.__len__
+         ForwardsInCouponPeriod.__getitem__
+      
+         ForwardsInCouponPeriod.__len__
+         ForwardsInCouponPeriod.__getitem__
+         ForwardsInCouponPeriod.__mul__
+         ForwardsInCouponPeriod.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ForwardsInCouponPeriod.conjugate
-      ~ForwardsInCouponPeriod.bit_length
-      ~ForwardsInCouponPeriod.bit_count
-      ~ForwardsInCouponPeriod.to_bytes
-      ~ForwardsInCouponPeriod.from_bytes
-      ~ForwardsInCouponPeriod.as_integer_ratio
-      ~ForwardsInCouponPeriod.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ForwardsInCouponPeriod.real
-      ~ForwardsInCouponPeriod.imag
-      ~ForwardsInCouponPeriod.numerator
-      ~ForwardsInCouponPeriod.denominator
-      ~ForwardsInCouponPeriod.Flat
-      ~ForwardsInCouponPeriod.Piecewise
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ForwardsInCouponPeriod.real
+         ForwardsInCouponPeriod.imag
+         ForwardsInCouponPeriod.numerator
+         ForwardsInCouponPeriod.denominator
+         ForwardsInCouponPeriod.Flat
+         ForwardsInCouponPeriod.Piecewise
+  
+  

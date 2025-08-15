@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bond\_helpers.FixedRateBondHelper.implied\_quote
+===============================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bond_helpers
+
+.. autoattribute:: FixedRateBondHelper.implied_quote

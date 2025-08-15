@@ -1,0 +1,6 @@
+quantlib.time.date.Month.imag
+=============================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: Month.imag

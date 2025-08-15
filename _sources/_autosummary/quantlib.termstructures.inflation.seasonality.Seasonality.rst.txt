@@ -1,29 +1,30 @@
-quantlib.termstructures.inflation.seasonality.Seasonality
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.inflation.seasonality.</div>
+   <div class="empty"></div>
+
+Seasonality
 =========================================================
 
 .. currentmodule:: quantlib.termstructures.inflation.seasonality
 
 .. autoclass:: Seasonality
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Seasonality.correctYoYRate
+         Seasonality.correctZeroRate
+         Seasonality.isConsistent
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Seasonality.__init__
-      ~Seasonality.correctYoYRate
-      ~Seasonality.correctZeroRate
-      ~Seasonality.isConsistent
-   
-   
-
-   
-   
-   
+  
+  
+  

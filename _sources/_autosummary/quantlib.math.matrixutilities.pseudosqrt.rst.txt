@@ -4,35 +4,16 @@ quantlib.math.matrixutilities.pseudosqrt
 .. automodule:: quantlib.math.matrixutilities.pseudosqrt
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
    
       pseudo_sqrt
-   
-   
-
-   
    
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       SalvagingAlgorithm
    
-   
-
-   
-   
-   
-
-
-

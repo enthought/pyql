@@ -1,48 +1,47 @@
-quantlib.termstructures.yields.forward\_curve.LogLinearInterpolatedForwardCurve
-===============================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.forward_curve.</div>
+   <div class="empty"></div>
+
+LogLinearInterpolatedForwardCurve
+==============================================================================
 
 .. currentmodule:: quantlib.termstructures.yields.forward_curve
 
 .. autoclass:: LogLinearInterpolatedForwardCurve
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LogLinearInterpolatedForwardCurve.discount
+         LogLinearInterpolatedForwardCurve.forward_rate
+         LogLinearInterpolatedForwardCurve.time_from_reference
+         LogLinearInterpolatedForwardCurve.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~LogLinearInterpolatedForwardCurve.__init__
-      ~LogLinearInterpolatedForwardCurve.discount
-      ~LogLinearInterpolatedForwardCurve.forward_rate
-      ~LogLinearInterpolatedForwardCurve.time_from_reference
-      ~LogLinearInterpolatedForwardCurve.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~LogLinearInterpolatedForwardCurve.data
-      ~LogLinearInterpolatedForwardCurve.dates
-      ~LogLinearInterpolatedForwardCurve.day_counter
-      ~LogLinearInterpolatedForwardCurve.extrapolation
-      ~LogLinearInterpolatedForwardCurve.forwards
-      ~LogLinearInterpolatedForwardCurve.max_date
-      ~LogLinearInterpolatedForwardCurve.max_time
-      ~LogLinearInterpolatedForwardCurve.nodes
-      ~LogLinearInterpolatedForwardCurve.reference_date
-      ~LogLinearInterpolatedForwardCurve.settlement_days
-      ~LogLinearInterpolatedForwardCurve.times
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LogLinearInterpolatedForwardCurve.data
+         LogLinearInterpolatedForwardCurve.dates
+         LogLinearInterpolatedForwardCurve.day_counter
+         LogLinearInterpolatedForwardCurve.extrapolation
+         LogLinearInterpolatedForwardCurve.forwards
+         LogLinearInterpolatedForwardCurve.max_date
+         LogLinearInterpolatedForwardCurve.max_time
+         LogLinearInterpolatedForwardCurve.nodes
+         LogLinearInterpolatedForwardCurve.reference_date
+         LogLinearInterpolatedForwardCurve.settlement_days
+         LogLinearInterpolatedForwardCurve.times
+  
+  

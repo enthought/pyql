@@ -1,0 +1,6 @@
+quantlib.market.conventions.swap.row.floating\_leg\_period
+==========================================================
+
+.. currentmodule:: quantlib.market.conventions.swap
+
+.. autoattribute:: row.floating_leg_period

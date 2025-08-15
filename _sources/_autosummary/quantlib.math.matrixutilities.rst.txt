@@ -4,29 +4,10 @@ quantlib.math.matrixutilities
 .. automodule:: quantlib.math.matrixutilities
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    pseudosqrt
-

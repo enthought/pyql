@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.is\_expired
+============================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.is_expired

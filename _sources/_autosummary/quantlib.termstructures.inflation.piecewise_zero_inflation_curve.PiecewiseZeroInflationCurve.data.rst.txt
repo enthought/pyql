@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.piecewise\_zero\_inflation\_curve.PiecewiseZeroInflationCurve.data
+====================================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.piecewise_zero_inflation_curve
+
+.. automethod:: PiecewiseZeroInflationCurve.data

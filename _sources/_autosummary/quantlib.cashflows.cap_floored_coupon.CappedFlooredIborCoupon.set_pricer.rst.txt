@@ -1,0 +1,6 @@
+quantlib.cashflows.cap\_floored\_coupon.CappedFlooredIborCoupon.set\_pricer
+===========================================================================
+
+.. currentmodule:: quantlib.cashflows.cap_floored_coupon
+
+.. automethod:: CappedFlooredIborCoupon.set_pricer

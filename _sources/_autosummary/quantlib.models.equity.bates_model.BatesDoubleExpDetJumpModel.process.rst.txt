@@ -1,0 +1,6 @@
+quantlib.models.equity.bates\_model.BatesDoubleExpDetJumpModel.process
+======================================================================
+
+.. currentmodule:: quantlib.models.equity.bates_model
+
+.. automethod:: BatesDoubleExpDetJumpModel.process

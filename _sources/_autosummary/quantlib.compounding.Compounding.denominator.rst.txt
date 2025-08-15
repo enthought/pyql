@@ -1,0 +1,6 @@
+quantlib.compounding.Compounding.denominator
+============================================
+
+.. currentmodule:: quantlib.compounding
+
+.. autoattribute:: Compounding.denominator

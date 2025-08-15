@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.black\_constant\_vol.BlackConstantVol.time\_from\_reference
+=======================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_constant_vol
+
+.. automethod:: BlackConstantVol.time_from_reference

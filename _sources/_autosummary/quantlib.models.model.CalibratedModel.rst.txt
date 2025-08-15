@@ -1,28 +1,29 @@
-quantlib.models.model.CalibratedModel
+.. raw:: html
+
+   <div class="prename">quantlib.models.model.</div>
+   <div class="empty"></div>
+
+CalibratedModel
 =====================================
 
 .. currentmodule:: quantlib.models.model
 
 .. autoclass:: CalibratedModel
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         CalibratedModel.params
+         CalibratedModel.set_params
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~CalibratedModel.__init__
-      ~CalibratedModel.params
-      ~CalibratedModel.set_params
-   
-   
-
-   
-   
-   
+  
+  
+  

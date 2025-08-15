@@ -1,53 +1,52 @@
-quantlib.processes.bates\_process.BatesProcess
-==============================================
+.. raw:: html
+
+   <div class="prename">quantlib.processes.bates_process.</div>
+   <div class="empty"></div>
+
+BatesProcess
+=============================================
 
 .. currentmodule:: quantlib.processes.bates_process
 
 .. autoclass:: BatesProcess
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BatesProcess.factors
+         BatesProcess.size
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BatesProcess.__init__
-      ~BatesProcess.factors
-      ~BatesProcess.size
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~BatesProcess.BroadieKayaExactSchemeLaguerre
-      ~BatesProcess.BroadieKayaExactSchemeLobatto
-      ~BatesProcess.BroadieKayaExactSchemeTrapezoidal
-      ~BatesProcess.FullTruncation
-      ~BatesProcess.Lambda
-      ~BatesProcess.NonCentralChiSquareVariance
-      ~BatesProcess.PartialTruncation
-      ~BatesProcess.QuadraticExponential
-      ~BatesProcess.QuadraticExponentialMartingale
-      ~BatesProcess.Reflection
-      ~BatesProcess.delta
-      ~BatesProcess.kappa
-      ~BatesProcess.nu
-      ~BatesProcess.rho
-      ~BatesProcess.s0
-      ~BatesProcess.sigma
-      ~BatesProcess.theta
-      ~BatesProcess.v0
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BatesProcess.BroadieKayaExactSchemeLaguerre
+         BatesProcess.BroadieKayaExactSchemeLobatto
+         BatesProcess.BroadieKayaExactSchemeTrapezoidal
+         BatesProcess.FullTruncation
+         BatesProcess.Lambda
+         BatesProcess.NonCentralChiSquareVariance
+         BatesProcess.PartialTruncation
+         BatesProcess.QuadraticExponential
+         BatesProcess.QuadraticExponentialMartingale
+         BatesProcess.Reflection
+         BatesProcess.delta
+         BatesProcess.kappa
+         BatesProcess.nu
+         BatesProcess.rho
+         BatesProcess.s0
+         BatesProcess.sigma
+         BatesProcess.theta
+         BatesProcess.v0
+  
+  

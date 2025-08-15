@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.CPIBond.is\_expired
+======================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. autoattribute:: CPIBond.is_expired

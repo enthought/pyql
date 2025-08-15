@@ -1,40 +1,39 @@
-quantlib.termstructures.yields.rate\_helpers.FraRateHelper
-==========================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.rate_helpers.</div>
+   <div class="empty"></div>
+
+FraRateHelper
+=========================================================
 
 .. currentmodule:: quantlib.termstructures.yields.rate_helpers
 
 .. autoclass:: FraRateHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FraRateHelper.from_index
+         FraRateHelper.update
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FraRateHelper.__init__
-      ~FraRateHelper.from_index
-      ~FraRateHelper.update
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~FraRateHelper.earliest_date
-      ~FraRateHelper.implied_quote
-      ~FraRateHelper.latest_date
-      ~FraRateHelper.maturity_date
-      ~FraRateHelper.quote
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FraRateHelper.earliest_date
+         FraRateHelper.implied_quote
+         FraRateHelper.latest_date
+         FraRateHelper.maturity_date
+         FraRateHelper.quote
+  
+  

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.rate\_helpers.RateHelper.maturity\_date
+======================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoattribute:: RateHelper.maturity_date

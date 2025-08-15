@@ -1,0 +1,6 @@
+quantlib.pricingengines.vanilla.analytic\_heston\_engine.ComplexLogFormula.bit\_length
+======================================================================================
+
+.. currentmodule:: quantlib.pricingengines.vanilla.analytic_heston_engine
+
+.. automethod:: ComplexLogFormula.bit_length

@@ -1,0 +1,6 @@
+quantlib.settings.Settings.version
+==================================
+
+.. currentmodule:: quantlib.settings
+
+.. autoattribute:: Settings.version

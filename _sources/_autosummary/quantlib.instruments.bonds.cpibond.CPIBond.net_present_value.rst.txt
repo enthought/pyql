@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.CPIBond.net\_present\_value
+==============================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. autoattribute:: CPIBond.net_present_value

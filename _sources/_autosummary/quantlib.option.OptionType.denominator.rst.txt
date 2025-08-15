@@ -1,0 +1,6 @@
+quantlib.option.OptionType.denominator
+======================================
+
+.. currentmodule:: quantlib.option
+
+.. autoattribute:: OptionType.denominator

@@ -1,0 +1,6 @@
+quantlib.time.calendars.germany.Germany.adjust
+==============================================
+
+.. currentmodule:: quantlib.time.calendars.germany
+
+.. automethod:: Germany.adjust

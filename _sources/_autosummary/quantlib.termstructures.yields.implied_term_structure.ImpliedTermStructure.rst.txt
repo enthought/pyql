@@ -1,43 +1,42 @@
-quantlib.termstructures.yields.implied\_term\_structure.ImpliedTermStructure
-============================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.implied_term_structure.</div>
+   <div class="empty"></div>
+
+ImpliedTermStructure
+==========================================================================
 
 .. currentmodule:: quantlib.termstructures.yields.implied_term_structure
 
 .. autoclass:: ImpliedTermStructure
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ImpliedTermStructure.discount
+         ImpliedTermStructure.forward_rate
+         ImpliedTermStructure.time_from_reference
+         ImpliedTermStructure.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ImpliedTermStructure.__init__
-      ~ImpliedTermStructure.discount
-      ~ImpliedTermStructure.forward_rate
-      ~ImpliedTermStructure.time_from_reference
-      ~ImpliedTermStructure.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ImpliedTermStructure.day_counter
-      ~ImpliedTermStructure.extrapolation
-      ~ImpliedTermStructure.max_date
-      ~ImpliedTermStructure.max_time
-      ~ImpliedTermStructure.reference_date
-      ~ImpliedTermStructure.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ImpliedTermStructure.day_counter
+         ImpliedTermStructure.extrapolation
+         ImpliedTermStructure.max_date
+         ImpliedTermStructure.max_time
+         ImpliedTermStructure.reference_date
+         ImpliedTermStructure.settlement_days
+  
+  

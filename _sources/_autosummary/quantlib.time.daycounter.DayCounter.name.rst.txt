@@ -1,0 +1,6 @@
+quantlib.time.daycounter.DayCounter.name
+========================================
+
+.. currentmodule:: quantlib.time.daycounter
+
+.. autoattribute:: DayCounter.name

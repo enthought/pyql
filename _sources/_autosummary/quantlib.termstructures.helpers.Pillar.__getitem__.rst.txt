@@ -1,0 +1,6 @@
+quantlib.termstructures.helpers.Pillar.\_\_getitem\_\_
+======================================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. automethod:: Pillar.__getitem__

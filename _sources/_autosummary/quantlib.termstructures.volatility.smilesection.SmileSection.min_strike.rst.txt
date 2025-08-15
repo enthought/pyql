@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.smilesection.SmileSection.min\_strike
+========================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.smilesection
+
+.. autoattribute:: SmileSection.min_strike

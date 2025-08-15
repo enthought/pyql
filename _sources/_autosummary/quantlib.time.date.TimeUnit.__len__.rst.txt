@@ -1,0 +1,6 @@
+quantlib.time.date.TimeUnit.\_\_len\_\_
+=======================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: TimeUnit.__len__

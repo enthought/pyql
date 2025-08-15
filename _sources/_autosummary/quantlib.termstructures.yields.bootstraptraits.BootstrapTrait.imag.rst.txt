@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bootstraptraits.BootstrapTrait.imag
+==================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bootstraptraits
+
+.. autoattribute:: BootstrapTrait.imag

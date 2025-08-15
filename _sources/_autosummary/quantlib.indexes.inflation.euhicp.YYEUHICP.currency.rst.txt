@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.euhicp.YYEUHICP.currency
+===================================================
+
+.. currentmodule:: quantlib.indexes.inflation.euhicp
+
+.. autoattribute:: YYEUHICP.currency

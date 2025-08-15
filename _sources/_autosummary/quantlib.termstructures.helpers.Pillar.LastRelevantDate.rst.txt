@@ -1,0 +1,6 @@
+quantlib.termstructures.helpers.Pillar.LastRelevantDate
+=======================================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. autoattribute:: Pillar.LastRelevantDate

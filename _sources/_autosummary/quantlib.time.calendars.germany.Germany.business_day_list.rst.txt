@@ -1,0 +1,6 @@
+quantlib.time.calendars.germany.Germany.business\_day\_list
+===========================================================
+
+.. currentmodule:: quantlib.time.calendars.germany
+
+.. automethod:: Germany.business_day_list

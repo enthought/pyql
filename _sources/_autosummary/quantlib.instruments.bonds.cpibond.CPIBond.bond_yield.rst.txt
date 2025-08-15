@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.CPIBond.bond\_yield
+======================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. automethod:: CPIBond.bond_yield

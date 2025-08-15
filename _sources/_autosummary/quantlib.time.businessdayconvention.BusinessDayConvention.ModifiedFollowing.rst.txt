@@ -1,0 +1,6 @@
+quantlib.time.businessdayconvention.BusinessDayConvention.ModifiedFollowing
+===========================================================================
+
+.. currentmodule:: quantlib.time.businessdayconvention
+
+.. autoattribute:: BusinessDayConvention.ModifiedFollowing

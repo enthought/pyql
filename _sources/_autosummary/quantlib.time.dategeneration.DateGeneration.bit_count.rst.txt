@@ -1,0 +1,6 @@
+quantlib.time.dategeneration.DateGeneration.bit\_count
+======================================================
+
+.. currentmodule:: quantlib.time.dategeneration
+
+.. automethod:: DateGeneration.bit_count

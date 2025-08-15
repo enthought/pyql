@@ -1,0 +1,6 @@
+quantlib.exercise.Type.denominator
+==================================
+
+.. currentmodule:: quantlib.exercise
+
+.. autoattribute:: Type.denominator

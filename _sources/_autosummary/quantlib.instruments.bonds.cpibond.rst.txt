@@ -4,29 +4,11 @@ quantlib.instruments.bonds.cpibond
 .. automodule:: quantlib.instruments.bonds.cpibond
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       CPIBond
       InterpolationType
    
-   
-
-   
-   
-   
-
-
-

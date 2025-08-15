@@ -1,0 +1,6 @@
+quantlib.time.calendars.canada.Canada.end\_of\_month
+====================================================
+
+.. currentmodule:: quantlib.time.calendars.canada
+
+.. automethod:: Canada.end_of_month

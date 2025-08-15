@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.rate\_helpers.FuturesRateHelper.earliest\_date
+=============================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoattribute:: FuturesRateHelper.earliest_date

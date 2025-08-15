@@ -1,0 +1,6 @@
+quantlib.exercise.Type.conjugate
+================================
+
+.. currentmodule:: quantlib.exercise
+
+.. automethod:: Type.conjugate

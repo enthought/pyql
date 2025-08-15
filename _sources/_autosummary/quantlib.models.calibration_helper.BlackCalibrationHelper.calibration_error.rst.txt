@@ -1,0 +1,6 @@
+quantlib.models.calibration\_helper.BlackCalibrationHelper.calibration\_error
+=============================================================================
+
+.. currentmodule:: quantlib.models.calibration_helper
+
+.. automethod:: BlackCalibrationHelper.calibration_error

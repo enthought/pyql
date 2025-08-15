@@ -1,0 +1,6 @@
+quantlib.time.date.TimeUnit.denominator
+=======================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: TimeUnit.denominator

@@ -1,55 +1,54 @@
-quantlib.indexes.swap.usd\_libor\_swap.UsdLiborSwapIsdaFixAm
-============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.swap.usd_libor_swap.</div>
+   <div class="empty"></div>
+
+UsdLiborSwapIsdaFixAm
+==========================================================
 
 .. currentmodule:: quantlib.indexes.swap.usd_libor_swap
 
 .. autoclass:: UsdLiborSwapIsdaFixAm
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         UsdLiborSwapIsdaFixAm.add_fixing
+         UsdLiborSwapIsdaFixAm.add_fixings
+         UsdLiborSwapIsdaFixAm.clear_fixings
+         UsdLiborSwapIsdaFixAm.fixing
+         UsdLiborSwapIsdaFixAm.fixing_date
+         UsdLiborSwapIsdaFixAm.forecast_fixing
+         UsdLiborSwapIsdaFixAm.has_historical_fixing
+         UsdLiborSwapIsdaFixAm.is_valid_fixing_date
+         UsdLiborSwapIsdaFixAm.maturity_date
+         UsdLiborSwapIsdaFixAm.underlying_swap
+         UsdLiborSwapIsdaFixAm.value_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~UsdLiborSwapIsdaFixAm.__init__
-      ~UsdLiborSwapIsdaFixAm.add_fixing
-      ~UsdLiborSwapIsdaFixAm.add_fixings
-      ~UsdLiborSwapIsdaFixAm.clear_fixings
-      ~UsdLiborSwapIsdaFixAm.fixing
-      ~UsdLiborSwapIsdaFixAm.fixing_date
-      ~UsdLiborSwapIsdaFixAm.forecast_fixing
-      ~UsdLiborSwapIsdaFixAm.has_historical_fixing
-      ~UsdLiborSwapIsdaFixAm.is_valid_fixing_date
-      ~UsdLiborSwapIsdaFixAm.maturity_date
-      ~UsdLiborSwapIsdaFixAm.underlying_swap
-      ~UsdLiborSwapIsdaFixAm.value_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~UsdLiborSwapIsdaFixAm.currency
-      ~UsdLiborSwapIsdaFixAm.day_counter
-      ~UsdLiborSwapIsdaFixAm.discounting_term_structure
-      ~UsdLiborSwapIsdaFixAm.family_name
-      ~UsdLiborSwapIsdaFixAm.fixing_calendar
-      ~UsdLiborSwapIsdaFixAm.fixing_days
-      ~UsdLiborSwapIsdaFixAm.forwarding_term_structure
-      ~UsdLiborSwapIsdaFixAm.ibor_index
-      ~UsdLiborSwapIsdaFixAm.name
-      ~UsdLiborSwapIsdaFixAm.tenor
-      ~UsdLiborSwapIsdaFixAm.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         UsdLiborSwapIsdaFixAm.currency
+         UsdLiborSwapIsdaFixAm.day_counter
+         UsdLiborSwapIsdaFixAm.discounting_term_structure
+         UsdLiborSwapIsdaFixAm.family_name
+         UsdLiborSwapIsdaFixAm.fixing_calendar
+         UsdLiborSwapIsdaFixAm.fixing_days
+         UsdLiborSwapIsdaFixAm.forwarding_term_structure
+         UsdLiborSwapIsdaFixAm.ibor_index
+         UsdLiborSwapIsdaFixAm.name
+         UsdLiborSwapIsdaFixAm.tenor
+         UsdLiborSwapIsdaFixAm.time_series
+  
+  

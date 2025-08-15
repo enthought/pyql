@@ -1,50 +1,49 @@
-quantlib.instruments.bond.Bond
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.bond.</div>
+   <div class="empty"></div>
+
+Bond
 ==============================
 
 .. currentmodule:: quantlib.instruments.bond
 
 .. autoclass:: Bond
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Bond.accrued_amount
+         Bond.bond_yield
+         Bond.notional
+         Bond.set_pricing_engine
+         Bond.settlement_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Bond.__init__
-      ~Bond.accrued_amount
-      ~Bond.bond_yield
-      ~Bond.notional
-      ~Bond.set_pricing_engine
-      ~Bond.settlement_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Bond.calendar
-      ~Bond.cashflows
-      ~Bond.clean_price
-      ~Bond.dirty_price
-      ~Bond.is_expired
-      ~Bond.issue_date
-      ~Bond.maturity_date
-      ~Bond.net_present_value
-      ~Bond.npv
-      ~Bond.settlement_days
-      ~Bond.start_date
-      ~Bond.valuation_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Bond.calendar
+         Bond.cashflows
+         Bond.clean_price
+         Bond.dirty_price
+         Bond.is_expired
+         Bond.issue_date
+         Bond.maturity_date
+         Bond.net_present_value
+         Bond.npv
+         Bond.settlement_days
+         Bond.start_date
+         Bond.valuation_date
+  
+  

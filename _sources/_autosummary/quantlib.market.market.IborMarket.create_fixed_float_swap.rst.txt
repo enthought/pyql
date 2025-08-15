@@ -1,0 +1,6 @@
+quantlib.market.market.IborMarket.create\_fixed\_float\_swap
+============================================================
+
+.. currentmodule:: quantlib.market.market
+
+.. automethod:: IborMarket.create_fixed_float_swap

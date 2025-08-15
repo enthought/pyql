@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.itm\_cash\_probability
+=======================================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.itm_cash_probability

@@ -1,35 +1,34 @@
-quantlib.math.randomnumbers.rngtraits.LowDiscrepancy
+.. raw:: html
+
+   <div class="prename">quantlib.math.randomnumbers.rngtraits.</div>
+   <div class="empty"></div>
+
+LowDiscrepancy
 ====================================================
 
 .. currentmodule:: quantlib.math.randomnumbers.rngtraits
 
 .. autoclass:: LowDiscrepancy
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LowDiscrepancy.last_sequence
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~LowDiscrepancy.__init__
-      ~LowDiscrepancy.last_sequence
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~LowDiscrepancy.dimension
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LowDiscrepancy.dimension
+  
+  

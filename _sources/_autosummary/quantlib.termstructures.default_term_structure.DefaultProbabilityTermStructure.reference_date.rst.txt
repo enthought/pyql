@@ -1,0 +1,6 @@
+quantlib.termstructures.default\_term\_structure.DefaultProbabilityTermStructure.reference\_date
+================================================================================================
+
+.. currentmodule:: quantlib.termstructures.default_term_structure
+
+.. autoattribute:: DefaultProbabilityTermStructure.reference_date

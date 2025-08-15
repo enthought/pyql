@@ -1,0 +1,6 @@
+quantlib.time.schedule.Schedule.\_\_len\_\_
+===========================================
+
+.. currentmodule:: quantlib.time.schedule
+
+.. automethod:: Schedule.__len__

@@ -1,57 +1,56 @@
-quantlib.cashflows.ibor\_coupon.IborCoupon
-==========================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.ibor_coupon.</div>
+   <div class="empty"></div>
+
+IborCoupon
+=========================================
 
 .. currentmodule:: quantlib.cashflows.ibor_coupon
 
 .. autoclass:: IborCoupon
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         IborCoupon.accrued_amount
+         IborCoupon.accrued_days
+         IborCoupon.accrued_period
+         IborCoupon.has_occured
+         IborCoupon.set_pricer
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~IborCoupon.__init__
-      ~IborCoupon.accrued_amount
-      ~IborCoupon.accrued_days
-      ~IborCoupon.accrued_period
-      ~IborCoupon.has_occured
-      ~IborCoupon.set_pricer
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~IborCoupon.Settings
-      ~IborCoupon.accrual_days
-      ~IborCoupon.accrual_end_date
-      ~IborCoupon.accrual_period
-      ~IborCoupon.accrual_start_date
-      ~IborCoupon.adjusted_fixing
-      ~IborCoupon.amount
-      ~IborCoupon.convexity_adjustment
-      ~IborCoupon.date
-      ~IborCoupon.day_counter
-      ~IborCoupon.fixing_date
-      ~IborCoupon.fixing_days
-      ~IborCoupon.index
-      ~IborCoupon.index_fixing
-      ~IborCoupon.is_in_arrears
-      ~IborCoupon.nominal
-      ~IborCoupon.rate
-      ~IborCoupon.reference_period_end
-      ~IborCoupon.reference_period_start
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         IborCoupon.Settings
+         IborCoupon.accrual_days
+         IborCoupon.accrual_end_date
+         IborCoupon.accrual_period
+         IborCoupon.accrual_start_date
+         IborCoupon.adjusted_fixing
+         IborCoupon.amount
+         IborCoupon.convexity_adjustment
+         IborCoupon.date
+         IborCoupon.day_counter
+         IborCoupon.fixing_date
+         IborCoupon.fixing_days
+         IborCoupon.index
+         IborCoupon.index_fixing
+         IborCoupon.is_in_arrears
+         IborCoupon.nominal
+         IborCoupon.rate
+         IborCoupon.reference_period_end
+         IborCoupon.reference_period_start
+  
+  

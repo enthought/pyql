@@ -1,0 +1,6 @@
+quantlib.instruments.make\_cms.MakeCms.with\_cms\_leg\_tenor
+============================================================
+
+.. currentmodule:: quantlib.instruments.make_cms
+
+.. automethod:: MakeCms.with_cms_leg_tenor

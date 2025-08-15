@@ -1,26 +1,29 @@
-quantlib.payoffs.StrikedTypePayoff
+.. raw:: html
+
+   <div class="prename">quantlib.payoffs.</div>
+   <div class="empty"></div>
+
+StrikedTypePayoff
 ==================================
 
 .. currentmodule:: quantlib.payoffs
 
 .. autoclass:: StrikedTypePayoff
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         StrikedTypePayoff.__call__
+      
+         StrikedTypePayoff.__call__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~StrikedTypePayoff.__init__
-   
-   
-
-   
-   
-   
+  
+  
+  

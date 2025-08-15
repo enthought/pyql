@@ -1,0 +1,6 @@
+quantlib.time.calendars.jointcalendar.JointCalendar.advance
+===========================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. automethod:: JointCalendar.advance

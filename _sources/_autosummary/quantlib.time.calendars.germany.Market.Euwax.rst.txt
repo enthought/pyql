@@ -1,0 +1,6 @@
+quantlib.time.calendars.germany.Market.Euwax
+============================================
+
+.. currentmodule:: quantlib.time.calendars.germany
+
+.. autoattribute:: Market.Euwax

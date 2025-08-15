@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.black\_variance\_surface.BlackVarianceSurface.reference\_date
+=========================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_variance_surface
+
+.. autoattribute:: BlackVarianceSurface.reference_date

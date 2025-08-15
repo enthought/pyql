@@ -1,0 +1,6 @@
+quantlib.indexes.swap.usd\_libor\_swap.UsdLiborSwapIsdaFixPm.maturity\_date
+===========================================================================
+
+.. currentmodule:: quantlib.indexes.swap.usd_libor_swap
+
+.. automethod:: UsdLiborSwapIsdaFixPm.maturity_date

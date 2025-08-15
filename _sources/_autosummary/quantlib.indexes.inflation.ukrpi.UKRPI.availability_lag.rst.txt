@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.ukrpi.UKRPI.availability\_lag
+========================================================
+
+.. currentmodule:: quantlib.indexes.inflation.ukrpi
+
+.. autoattribute:: UKRPI.availability_lag

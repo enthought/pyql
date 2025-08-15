@@ -4,28 +4,10 @@ quantlib.time.calendar\_registry
 .. automodule:: quantlib.time.calendar_registry
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
    
       initialize_code_registry
       initialize_name_registry
    
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-

@@ -1,0 +1,6 @@
+quantlib.time.calendars.jointcalendar.JointCalendar.is\_weekend
+===============================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. automethod:: JointCalendar.is_weekend

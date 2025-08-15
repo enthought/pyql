@@ -1,0 +1,6 @@
+quantlib.time.calendars.jointcalendar.JointCalendarRule.denominator
+===================================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. autoattribute:: JointCalendarRule.denominator

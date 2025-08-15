@@ -1,0 +1,6 @@
+quantlib.cashflows.conundrum\_pricer.HaganPricer.swaplet\_rate
+==============================================================
+
+.. currentmodule:: quantlib.cashflows.conundrum_pricer
+
+.. automethod:: HaganPricer.swaplet_rate

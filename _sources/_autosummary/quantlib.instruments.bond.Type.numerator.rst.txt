@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Type.numerator
+========================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoattribute:: Type.numerator

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.LinearInterpolatedForwardCurve.discount
+=====================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. automethod:: LinearInterpolatedForwardCurve.discount

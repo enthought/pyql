@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.cms\_spread\_coupon.CmsSpreadCoupon.is\_in\_arrears
+=================================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.cms_spread_coupon
+
+.. autoattribute:: CmsSpreadCoupon.is_in_arrears

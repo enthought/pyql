@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.InterpolationType.\_\_pow\_\_
+================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. automethod:: InterpolationType.__pow__

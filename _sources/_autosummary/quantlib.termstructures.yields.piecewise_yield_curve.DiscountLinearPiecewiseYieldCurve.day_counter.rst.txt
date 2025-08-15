@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.piecewise\_yield\_curve.DiscountLinearPiecewiseYieldCurve.day\_counter
+=====================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_yield_curve
+
+.. autoattribute:: DiscountLinearPiecewiseYieldCurve.day_counter

@@ -1,0 +1,6 @@
+quantlib.processes.hullwhite\_process.HullWhiteForwardProcess.sigma
+===================================================================
+
+.. currentmodule:: quantlib.processes.hullwhite_process
+
+.. autoattribute:: HullWhiteForwardProcess.sigma

@@ -1,0 +1,6 @@
+quantlib.models.calibration\_helper.CalibrationErrorType.imag
+=============================================================
+
+.. currentmodule:: quantlib.models.calibration_helper
+
+.. autoattribute:: CalibrationErrorType.imag

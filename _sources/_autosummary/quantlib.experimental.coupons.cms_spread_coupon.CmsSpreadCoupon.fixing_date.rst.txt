@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.cms\_spread\_coupon.CmsSpreadCoupon.fixing\_date
+==============================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.cms_spread_coupon
+
+.. autoattribute:: CmsSpreadCoupon.fixing_date

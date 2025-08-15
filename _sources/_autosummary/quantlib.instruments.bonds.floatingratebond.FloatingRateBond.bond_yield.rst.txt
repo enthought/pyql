@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.floatingratebond.FloatingRateBond.bond\_yield
+========================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.floatingratebond
+
+.. automethod:: FloatingRateBond.bond_yield

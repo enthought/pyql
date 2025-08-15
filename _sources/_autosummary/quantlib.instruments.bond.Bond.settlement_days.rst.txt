@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Bond.settlement\_days
+===============================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoattribute:: Bond.settlement_days

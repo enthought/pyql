@@ -4,30 +4,12 @@ quantlib.util.converter
 .. automodule:: quantlib.util.converter
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
    
       df_to_zero_curve
       pydate
       pydate_to_qldate
       qldate_to_pydate
    
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-

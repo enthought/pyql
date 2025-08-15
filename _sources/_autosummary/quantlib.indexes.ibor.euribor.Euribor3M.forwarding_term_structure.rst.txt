@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.euribor.Euribor3M.forwarding\_term\_structure
+===================================================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. autoattribute:: Euribor3M.forwarding_term_structure

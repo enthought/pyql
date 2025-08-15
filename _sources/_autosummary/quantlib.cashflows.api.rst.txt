@@ -4,20 +4,3 @@ quantlib.cashflows.api
 .. automodule:: quantlib.cashflows.api
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-

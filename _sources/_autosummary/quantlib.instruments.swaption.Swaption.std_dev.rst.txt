@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.std\_dev
+===============================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Swaption.std_dev

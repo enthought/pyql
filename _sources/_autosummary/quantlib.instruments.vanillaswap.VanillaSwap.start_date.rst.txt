@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaswap.VanillaSwap.start\_date
+========================================================
+
+.. currentmodule:: quantlib.instruments.vanillaswap
+
+.. autoattribute:: VanillaSwap.start_date

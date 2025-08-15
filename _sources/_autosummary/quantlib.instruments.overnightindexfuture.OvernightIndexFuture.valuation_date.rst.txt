@@ -1,0 +1,6 @@
+quantlib.instruments.overnightindexfuture.OvernightIndexFuture.valuation\_date
+==============================================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexfuture
+
+.. autoattribute:: OvernightIndexFuture.valuation_date

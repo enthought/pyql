@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.InterpolationType.as\_integer\_ratio
+=======================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. automethod:: InterpolationType.as_integer_ratio

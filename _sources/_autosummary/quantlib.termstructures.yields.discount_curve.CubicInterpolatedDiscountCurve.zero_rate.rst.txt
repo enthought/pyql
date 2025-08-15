@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.discount\_curve.CubicInterpolatedDiscountCurve.zero\_rate
+========================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.discount_curve
+
+.. automethod:: CubicInterpolatedDiscountCurve.zero_rate

@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.theta\_per\_day
+================================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.theta_per_day

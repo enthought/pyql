@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.processes.black_scholes_process.BlackScholesMertonProcess &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>BlackScholesMertonProcess &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.processes.black_scholes_process.BlackScholesProcess" href="quantlib.processes.black_scholes_process.BlackScholesProcess.html" />
+    <link rel="next" title="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.diffusion" href="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.diffusion.html" />
     <link rel="prev" title="quantlib.processes.black_scholes_process" href="quantlib.processes.black_scholes_process.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,50 +34,42 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-processes-black-scholes-process-blackscholesmertonprocess">
-<h1>quantlib.processes.black_scholes_process.BlackScholesMertonProcess<a class="headerlink" href="#quantlib-processes-black-scholes-process-blackscholesmertonprocess" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.processes.black_scholes_process.</div>
+<div class="empty"></div><section id="blackscholesmertonprocess">
+<h1>BlackScholesMertonProcess<a class="headerlink" href="#blackscholesmertonprocess" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.processes.black_scholes_process.BlackScholesMertonProcess">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BlackScholesMertonProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Quote</span> <span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">HandleYieldTermStructure</span> <span class="pre">dividend_ts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">HandleYieldTermStructure</span> <span class="pre">risk_free_ts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BlackVolTermStructure</span> <span class="pre">black_vol_ts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.processes.black_scholes_process.BlackScholesMertonProcess" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.processes.black_scholes_process.GeneralizedBlackScholesProcess.html#quantlib.processes.black_scholes_process.GeneralizedBlackScholesProcess" title="quantlib.processes.black_scholes_process.GeneralizedBlackScholesProcess"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeneralizedBlackScholesProcess</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.processes.black_scholes_process.BlackScholesMertonProcess.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x0</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.processes.black_scholes_process.BlackScholesMertonProcess.__init__" title="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.diffusion.html#quantlib.processes.black_scholes_process.BlackScholesMertonProcess.diffusion" title="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.diffusion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">diffusion</span></code></a>(self, Time t, Real x)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">diffusion</span></code>(self, Time t, Real x)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.drift.html#quantlib.processes.black_scholes_process.BlackScholesMertonProcess.drift" title="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.drift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drift</span></code></a>(self, Time t, Real x)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">drift</span></code>(self, Time t, Real x)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.expectation.html#quantlib.processes.black_scholes_process.BlackScholesMertonProcess.expectation" title="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.expectation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expectation</span></code></a>(self, Time t0, Real x0, Time dt)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">expectation</span></code>(self, Time t0, Real x0, Time dt)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.factors.html#quantlib.processes.black_scholes_process.BlackScholesMertonProcess.factors" title="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.factors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">factors</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">factors</span></code>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.size.html#quantlib.processes.black_scholes_process.BlackScholesMertonProcess.size" title="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code>(self)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.std_deviation.html#quantlib.processes.black_scholes_process.BlackScholesMertonProcess.std_deviation" title="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.std_deviation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">std_deviation</span></code></a>(self, Time t0, Real x0, Time dt)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">std_deviation</span></code>(self, Time t0, Real x0, Time dt)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">variance</span></code>(self, Time t0, Real x0, Time dt)</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">x0</span></code></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.variance.html#quantlib.processes.black_scholes_process.BlackScholesMertonProcess.variance" title="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.variance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">variance</span></code></a>(self, Time t0, Real x0, Time dt)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -125,7 +117,7 @@
   <li><a href="quantlib.processes.html">quantlib.processes</a><ul>
   <li><a href="quantlib.processes.black_scholes_process.html">quantlib.processes.black_scholes_process</a><ul>
       <li>Previous: <a href="quantlib.processes.black_scholes_process.html" title="previous chapter">quantlib.processes.black_scholes_process</a></li>
-      <li>Next: <a href="quantlib.processes.black_scholes_process.BlackScholesProcess.html" title="next chapter">quantlib.processes.black_scholes_process.BlackScholesProcess</a></li>
+      <li>Next: <a href="quantlib.processes.black_scholes_process.BlackScholesMertonProcess.diffusion.html" title="next chapter">quantlib.processes.black_scholes_process.BlackScholesMertonProcess.diffusion</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Method.\_\_pow\_\_
+================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. automethod:: Method.__pow__

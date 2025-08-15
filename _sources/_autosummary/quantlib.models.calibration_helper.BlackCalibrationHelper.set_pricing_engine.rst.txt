@@ -1,0 +1,6 @@
+quantlib.models.calibration\_helper.BlackCalibrationHelper.set\_pricing\_engine
+===============================================================================
+
+.. currentmodule:: quantlib.models.calibration_helper
+
+.. automethod:: BlackCalibrationHelper.set_pricing_engine

@@ -1,0 +1,6 @@
+quantlib.position.Position.as\_integer\_ratio
+=============================================
+
+.. currentmodule:: quantlib.position
+
+.. automethod:: Position.as_integer_ratio

@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_states.Market.NERC
+==================================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. autoattribute:: Market.NERC

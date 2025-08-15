@@ -1,50 +1,49 @@
-quantlib.instruments.bonds.floatingratebond.FloatingRateBond
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.bonds.floatingratebond.</div>
+   <div class="empty"></div>
+
+FloatingRateBond
 ============================================================
 
 .. currentmodule:: quantlib.instruments.bonds.floatingratebond
 
 .. autoclass:: FloatingRateBond
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FloatingRateBond.accrued_amount
+         FloatingRateBond.bond_yield
+         FloatingRateBond.notional
+         FloatingRateBond.set_pricing_engine
+         FloatingRateBond.settlement_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FloatingRateBond.__init__
-      ~FloatingRateBond.accrued_amount
-      ~FloatingRateBond.bond_yield
-      ~FloatingRateBond.notional
-      ~FloatingRateBond.set_pricing_engine
-      ~FloatingRateBond.settlement_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~FloatingRateBond.calendar
-      ~FloatingRateBond.cashflows
-      ~FloatingRateBond.clean_price
-      ~FloatingRateBond.dirty_price
-      ~FloatingRateBond.is_expired
-      ~FloatingRateBond.issue_date
-      ~FloatingRateBond.maturity_date
-      ~FloatingRateBond.net_present_value
-      ~FloatingRateBond.npv
-      ~FloatingRateBond.settlement_days
-      ~FloatingRateBond.start_date
-      ~FloatingRateBond.valuation_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FloatingRateBond.calendar
+         FloatingRateBond.cashflows
+         FloatingRateBond.clean_price
+         FloatingRateBond.dirty_price
+         FloatingRateBond.is_expired
+         FloatingRateBond.issue_date
+         FloatingRateBond.maturity_date
+         FloatingRateBond.net_present_value
+         FloatingRateBond.npv
+         FloatingRateBond.settlement_days
+         FloatingRateBond.start_date
+         FloatingRateBond.valuation_date
+  
+  

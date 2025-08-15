@@ -1,0 +1,6 @@
+quantlib.currency.currencies.NZDCurrency.fractionsPerUnit
+=========================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: NZDCurrency.fractionsPerUnit

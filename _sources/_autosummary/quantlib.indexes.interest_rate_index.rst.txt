@@ -4,28 +4,10 @@ quantlib.indexes.interest\_rate\_index
 .. automodule:: quantlib.indexes.interest_rate_index
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       InterestRateIndex
    
-   
-
-   
-   
-   
-
-
-

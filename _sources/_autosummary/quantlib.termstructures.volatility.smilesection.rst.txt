@@ -4,28 +4,10 @@ quantlib.termstructures.volatility.smilesection
 .. automodule:: quantlib.termstructures.volatility.smilesection
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       SmileSection
    
-   
-
-   
-   
-   
-
-
-

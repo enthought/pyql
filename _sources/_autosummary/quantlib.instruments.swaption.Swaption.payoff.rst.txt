@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.payoff
+=============================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Swaption.payoff

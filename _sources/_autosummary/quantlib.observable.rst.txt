@@ -4,29 +4,11 @@ quantlib.observable
 .. automodule:: quantlib.observable
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       Observable
       Observer
    
-   
-
-   
-   
-   
-
-
-

@@ -1,0 +1,6 @@
+quantlib.time.daycounters.actual\_actual.Convention.\_\_pow\_\_
+===============================================================
+
+.. currentmodule:: quantlib.time.daycounters.actual_actual
+
+.. automethod:: Convention.__pow__

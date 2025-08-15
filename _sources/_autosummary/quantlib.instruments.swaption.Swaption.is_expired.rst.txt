@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.is\_expired
+==================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Swaption.is_expired

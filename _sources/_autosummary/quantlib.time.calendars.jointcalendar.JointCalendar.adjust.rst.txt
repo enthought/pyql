@@ -1,0 +1,6 @@
+quantlib.time.calendars.jointcalendar.JointCalendar.adjust
+==========================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. automethod:: JointCalendar.adjust

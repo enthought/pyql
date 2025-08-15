@@ -1,0 +1,6 @@
+quantlib.instruments.variance\_swap.SwapType.denominator
+========================================================
+
+.. currentmodule:: quantlib.instruments.variance_swap
+
+.. autoattribute:: SwapType.denominator

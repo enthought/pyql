@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.piecewise\_zerospreaded\_termstructure.PiecewiseZeroSpreadedTermStructure.extrapolation
+======================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_zerospreaded_termstructure
+
+.. autoattribute:: PiecewiseZeroSpreadedTermStructure.extrapolation

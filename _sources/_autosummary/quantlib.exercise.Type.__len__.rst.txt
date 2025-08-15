@@ -1,0 +1,6 @@
+quantlib.exercise.Type.\_\_len\_\_
+==================================
+
+.. currentmodule:: quantlib.exercise
+
+.. automethod:: Type.__len__

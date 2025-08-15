@@ -1,53 +1,60 @@
-quantlib.math.randomnumbers.sobol\_rsg.DirectionIntegers
-========================================================
+.. raw:: html
+
+   <div class="prename">quantlib.math.randomnumbers.sobol_rsg.</div>
+   <div class="empty"></div>
+
+DirectionIntegers
+=======================================================
 
 .. currentmodule:: quantlib.math.randomnumbers.sobol_rsg
 
 .. autoclass:: DirectionIntegers
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         DirectionIntegers.__mul__
+         DirectionIntegers.__pow__
+         DirectionIntegers.conjugate
+         DirectionIntegers.bit_length
+         DirectionIntegers.bit_count
+         DirectionIntegers.to_bytes
+         DirectionIntegers.from_bytes
+         DirectionIntegers.as_integer_ratio
+         DirectionIntegers.__len__
+         DirectionIntegers.__getitem__
+      
+         DirectionIntegers.__len__
+         DirectionIntegers.__getitem__
+         DirectionIntegers.__mul__
+         DirectionIntegers.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~DirectionIntegers.conjugate
-      ~DirectionIntegers.bit_length
-      ~DirectionIntegers.bit_count
-      ~DirectionIntegers.to_bytes
-      ~DirectionIntegers.from_bytes
-      ~DirectionIntegers.as_integer_ratio
-      ~DirectionIntegers.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~DirectionIntegers.real
-      ~DirectionIntegers.imag
-      ~DirectionIntegers.numerator
-      ~DirectionIntegers.denominator
-      ~DirectionIntegers.Unit
-      ~DirectionIntegers.Jaeckel
-      ~DirectionIntegers.SobolLevitan
-      ~DirectionIntegers.SobolLevitanLemieux
-      ~DirectionIntegers.JoeKuoD5
-      ~DirectionIntegers.JoeKuoD6
-      ~DirectionIntegers.JoeKuoD7
-      ~DirectionIntegers.Kuo
-      ~DirectionIntegers.Kuo2
-      ~DirectionIntegers.Kuo3
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         DirectionIntegers.real
+         DirectionIntegers.imag
+         DirectionIntegers.numerator
+         DirectionIntegers.denominator
+         DirectionIntegers.Unit
+         DirectionIntegers.Jaeckel
+         DirectionIntegers.SobolLevitan
+         DirectionIntegers.SobolLevitanLemieux
+         DirectionIntegers.JoeKuoD5
+         DirectionIntegers.JoeKuoD6
+         DirectionIntegers.JoeKuoD7
+         DirectionIntegers.Kuo
+         DirectionIntegers.Kuo2
+         DirectionIntegers.Kuo3
+  
+  

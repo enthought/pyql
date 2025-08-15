@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.InterpolationType.\_\_len\_\_
+================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. automethod:: InterpolationType.__len__

@@ -1,0 +1,6 @@
+quantlib.instruments.make\_cds.MakeCreditDefaultSwap.with\_cash\_settlement\_days
+=================================================================================
+
+.. currentmodule:: quantlib.instruments.make_cds
+
+.. automethod:: MakeCreditDefaultSwap.with_cash_settlement_days

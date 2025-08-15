@@ -1,0 +1,6 @@
+quantlib.market.market.Market.name
+==================================
+
+.. currentmodule:: quantlib.market.market
+
+.. autoproperty:: Market.name

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.piecewise\_yield\_curve.DiscountLinearPiecewiseYieldCurve.forward\_rate
+======================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_yield_curve
+
+.. automethod:: DiscountLinearPiecewiseYieldCurve.forward_rate

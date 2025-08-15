@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.InterpolationType.denominator
+===============================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. autoattribute:: InterpolationType.denominator

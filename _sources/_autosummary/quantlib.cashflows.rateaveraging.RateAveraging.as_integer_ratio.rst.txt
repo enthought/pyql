@@ -1,0 +1,6 @@
+quantlib.cashflows.rateaveraging.RateAveraging.as\_integer\_ratio
+=================================================================
+
+.. currentmodule:: quantlib.cashflows.rateaveraging
+
+.. automethod:: RateAveraging.as_integer_ratio

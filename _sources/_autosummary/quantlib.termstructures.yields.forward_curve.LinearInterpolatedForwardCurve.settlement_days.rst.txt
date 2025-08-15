@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.LinearInterpolatedForwardCurve.settlement\_days
+=============================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. autoattribute:: LinearInterpolatedForwardCurve.settlement_days

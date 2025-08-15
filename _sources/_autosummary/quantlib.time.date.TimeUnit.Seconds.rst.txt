@@ -1,0 +1,6 @@
+quantlib.time.date.TimeUnit.Seconds
+===================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: TimeUnit.Seconds

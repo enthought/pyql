@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.euribor.Euribor3M.maturity\_date
+======================================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. automethod:: Euribor3M.maturity_date

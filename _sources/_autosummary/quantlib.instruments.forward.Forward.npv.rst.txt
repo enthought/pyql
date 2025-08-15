@@ -1,0 +1,6 @@
+quantlib.instruments.forward.Forward.npv
+========================================
+
+.. currentmodule:: quantlib.instruments.forward
+
+.. autoattribute:: Forward.npv

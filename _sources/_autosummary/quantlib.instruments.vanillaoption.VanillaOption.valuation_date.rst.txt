@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.valuation\_date
+================================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.valuation_date

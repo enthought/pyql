@@ -4,31 +4,13 @@ quantlib.pricingengines.credit.isda\_cds\_engine
 .. automodule:: quantlib.pricingengines.credit.isda_cds_engine
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       AccrualBias
       ForwardsInCouponPeriod
       IsdaCdsEngine
       NumericalFix
    
-   
-
-   
-   
-   
-
-
-

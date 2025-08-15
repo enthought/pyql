@@ -1,0 +1,6 @@
+quantlib.instruments.variance\_swap.SwapType.\_\_mul\_\_
+========================================================
+
+.. currentmodule:: quantlib.instruments.variance_swap
+
+.. automethod:: SwapType.__mul__

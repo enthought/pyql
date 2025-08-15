@@ -4,20 +4,10 @@ quantlib.exercise
 .. automodule:: quantlib.exercise
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       AmericanExercise
       BermudanExercise
@@ -25,11 +15,3 @@ quantlib.exercise
       Exercise
       Type
    
-   
-
-   
-   
-   
-
-
-

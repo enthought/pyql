@@ -1,0 +1,6 @@
+quantlib.index.Index.add\_fixing
+================================
+
+.. currentmodule:: quantlib.index
+
+.. automethod:: Index.add_fixing

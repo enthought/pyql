@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.zerocouponbond.ZeroCouponBond.notional
+=================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.zerocouponbond
+
+.. automethod:: ZeroCouponBond.notional

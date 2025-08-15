@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.libor.Libor.forwarding\_term\_structure
+=============================================================
+
+.. currentmodule:: quantlib.indexes.ibor.libor
+
+.. autoattribute:: Libor.forwarding_term_structure

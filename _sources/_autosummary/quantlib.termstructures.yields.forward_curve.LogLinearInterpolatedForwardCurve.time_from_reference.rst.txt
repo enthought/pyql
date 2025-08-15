@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.LogLinearInterpolatedForwardCurve.time\_from\_reference
+=====================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. automethod:: LogLinearInterpolatedForwardCurve.time_from_reference

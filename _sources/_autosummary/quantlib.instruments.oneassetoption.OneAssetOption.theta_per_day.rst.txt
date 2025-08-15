@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.theta\_per\_day
+==================================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.theta_per_day

@@ -1,0 +1,6 @@
+quantlib.time.calendar.Calendar.name
+====================================
+
+.. currentmodule:: quantlib.time.calendar
+
+.. autoattribute:: Calendar.name

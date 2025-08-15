@@ -1,0 +1,6 @@
+quantlib.currency.currencies.SEKCurrency.code
+=============================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: SEKCurrency.code

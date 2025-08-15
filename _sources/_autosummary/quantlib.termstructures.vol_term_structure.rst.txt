@@ -4,29 +4,11 @@ quantlib.termstructures.vol\_term\_structure
 .. automodule:: quantlib.termstructures.vol_term_structure
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       HandleVolatilityTermStructure
       VolatilityTermStructure
    
-   
-
-   
-   
-   
-
-
-

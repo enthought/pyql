@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.instruments.oneassetoption.OneAssetOption &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>OneAssetOption &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.instruments.overnightindexedswap" href="quantlib.instruments.overnightindexedswap.html" />
+    <link rel="next" title="quantlib.instruments.oneassetoption.OneAssetOption.set_pricing_engine" href="quantlib.instruments.oneassetoption.OneAssetOption.set_pricing_engine.html" />
     <link rel="prev" title="quantlib.instruments.oneassetoption" href="quantlib.instruments.oneassetoption.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,88 +34,48 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-instruments-oneassetoption-oneassetoption">
-<h1>quantlib.instruments.oneassetoption.OneAssetOption<a class="headerlink" href="#quantlib-instruments-oneassetoption-oneassetoption" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.instruments.oneassetoption.</div>
+<div class="empty"></div><section id="oneassetoption">
+<h1>OneAssetOption<a class="headerlink" href="#oneassetoption" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.instruments.oneassetoption.OneAssetOption">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OneAssetOption</span></span><a class="headerlink" href="#quantlib.instruments.oneassetoption.OneAssetOption" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.option.Option.html#quantlib.option.Option" title="quantlib.option.Option"><code class="xref py py-class docutils literal notranslate"><span class="pre">Option</span></code></a></p>
 <p>Base class for option on a single asset</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.oneassetoption.OneAssetOption.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.oneassetoption.OneAssetOption.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>delta</strong></dt><dd></dd>
+<dt><strong>delta_forward</strong></dt><dd></dd>
+<dt><strong>dividend_rho</strong></dt><dd></dd>
+<dt><strong>elasticity</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.oneassetoption.OneAssetOption.exercise.html#quantlib.instruments.oneassetoption.OneAssetOption.exercise" title="quantlib.instruments.oneassetoption.OneAssetOption.exercise"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exercise</span></code></a></dt><dd><p>Option.exercise: Exercise</p>
+</dd>
+<dt><strong>gamma</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.oneassetoption.OneAssetOption.is_expired.html#quantlib.instruments.oneassetoption.OneAssetOption.is_expired" title="quantlib.instruments.oneassetoption.OneAssetOption.is_expired"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_expired</span></code></a></dt><dd><p>Instrument.is_expired: bool</p>
+</dd>
+<dt><strong>itm_cash_probability</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.oneassetoption.OneAssetOption.net_present_value.html#quantlib.instruments.oneassetoption.OneAssetOption.net_present_value" title="quantlib.instruments.oneassetoption.OneAssetOption.net_present_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">net_present_value</span></code></a></dt><dd><p>Instrument net present value.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.oneassetoption.OneAssetOption.npv.html#quantlib.instruments.oneassetoption.OneAssetOption.npv" title="quantlib.instruments.oneassetoption.OneAssetOption.npv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv</span></code></a></dt><dd><p>Shortcut to the net_present_value property.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.oneassetoption.OneAssetOption.payoff.html#quantlib.instruments.oneassetoption.OneAssetOption.payoff" title="quantlib.instruments.oneassetoption.OneAssetOption.payoff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">payoff</span></code></a></dt><dd><p>Option.payoff: Payoff</p>
+</dd>
+<dt><strong>rho</strong></dt><dd></dd>
+<dt><strong>strike_sensitivity</strong></dt><dd></dd>
+<dt><strong>theta</strong></dt><dd></dd>
+<dt><strong>theta_per_day</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.oneassetoption.OneAssetOption.valuation_date.html#quantlib.instruments.oneassetoption.OneAssetOption.valuation_date" title="quantlib.instruments.oneassetoption.OneAssetOption.valuation_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">valuation_date</span></code></a></dt><dd><p>the date the net present value refers to.</p>
+</dd>
+<dt><strong>vega</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.oneassetoption.OneAssetOption.__init__" title="quantlib.instruments.oneassetoption.OneAssetOption.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code>(self, PricingEngine engine)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.oneassetoption.OneAssetOption.set_pricing_engine.html#quantlib.instruments.oneassetoption.OneAssetOption.set_pricing_engine" title="quantlib.instruments.oneassetoption.OneAssetOption.set_pricing_engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code></a>(self, PricingEngine engine)</p></td>
 <td><p>Sets the pricing engine.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Call</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Put</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delta</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delta_forward</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dividend_rho</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">elasticity</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exercise</span></code></p></td>
-<td><p>Exercise</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_expired</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">itm_cash_probability</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">net_present_value</span></code></p></td>
-<td><p>Instrument net present value.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv</span></code></p></td>
-<td><p>Shortcut to the net_present_value property.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">payoff</span></code></p></td>
-<td><p>Payoff</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rho</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">strike_sensitivity</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">theta</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">theta_per_day</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valuation_date</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">vega</span></code></p></td>
-<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -162,7 +122,7 @@
   <li><a href="quantlib.instruments.html">quantlib.instruments</a><ul>
   <li><a href="quantlib.instruments.oneassetoption.html">quantlib.instruments.oneassetoption</a><ul>
       <li>Previous: <a href="quantlib.instruments.oneassetoption.html" title="previous chapter">quantlib.instruments.oneassetoption</a></li>
-      <li>Next: <a href="quantlib.instruments.overnightindexedswap.html" title="next chapter">quantlib.instruments.overnightindexedswap</a></li>
+      <li>Next: <a href="quantlib.instruments.oneassetoption.OneAssetOption.set_pricing_engine.html" title="next chapter">quantlib.instruments.oneassetoption.OneAssetOption.set_pricing_engine</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

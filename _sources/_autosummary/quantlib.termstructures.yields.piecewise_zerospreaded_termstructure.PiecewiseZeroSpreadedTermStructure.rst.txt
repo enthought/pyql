@@ -1,43 +1,42 @@
-quantlib.termstructures.yields.piecewise\_zerospreaded\_termstructure.PiecewiseZeroSpreadedTermStructure
-========================================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.piecewise_zerospreaded_termstructure.</div>
+   <div class="empty"></div>
+
+PiecewiseZeroSpreadedTermStructure
+======================================================================================================
 
 .. currentmodule:: quantlib.termstructures.yields.piecewise_zerospreaded_termstructure
 
 .. autoclass:: PiecewiseZeroSpreadedTermStructure
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         PiecewiseZeroSpreadedTermStructure.discount
+         PiecewiseZeroSpreadedTermStructure.forward_rate
+         PiecewiseZeroSpreadedTermStructure.time_from_reference
+         PiecewiseZeroSpreadedTermStructure.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~PiecewiseZeroSpreadedTermStructure.__init__
-      ~PiecewiseZeroSpreadedTermStructure.discount
-      ~PiecewiseZeroSpreadedTermStructure.forward_rate
-      ~PiecewiseZeroSpreadedTermStructure.time_from_reference
-      ~PiecewiseZeroSpreadedTermStructure.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~PiecewiseZeroSpreadedTermStructure.day_counter
-      ~PiecewiseZeroSpreadedTermStructure.extrapolation
-      ~PiecewiseZeroSpreadedTermStructure.max_date
-      ~PiecewiseZeroSpreadedTermStructure.max_time
-      ~PiecewiseZeroSpreadedTermStructure.reference_date
-      ~PiecewiseZeroSpreadedTermStructure.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         PiecewiseZeroSpreadedTermStructure.day_counter
+         PiecewiseZeroSpreadedTermStructure.extrapolation
+         PiecewiseZeroSpreadedTermStructure.max_date
+         PiecewiseZeroSpreadedTermStructure.max_time
+         PiecewiseZeroSpreadedTermStructure.reference_date
+         PiecewiseZeroSpreadedTermStructure.settlement_days
+  
+  

@@ -1,0 +1,6 @@
+quantlib.exercise.Type.bit\_count
+=================================
+
+.. currentmodule:: quantlib.exercise
+
+.. automethod:: Type.bit_count

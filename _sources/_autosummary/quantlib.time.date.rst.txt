@@ -4,15 +4,9 @@ quantlib.time.date
 .. automodule:: quantlib.time.date
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
    
       days
       end_of_month
@@ -31,15 +25,10 @@ quantlib.time.date
       weeks
       years
    
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       Date
       Month
@@ -47,11 +36,3 @@ quantlib.time.date
       TimeUnit
       Weekday
    
-   
-
-   
-   
-   
-
-
-

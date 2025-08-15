@@ -1,0 +1,6 @@
+quantlib.models.shortrate.onefactormodels.blackkarasinski.BlackKarasinski.params
+================================================================================
+
+.. currentmodule:: quantlib.models.shortrate.onefactormodels.blackkarasinski
+
+.. automethod:: BlackKarasinski.params

@@ -1,46 +1,45 @@
-quantlib.time.calendars.canada.Canada
+.. raw:: html
+
+   <div class="prename">quantlib.time.calendars.canada.</div>
+   <div class="empty"></div>
+
+Canada
 =====================================
 
 .. currentmodule:: quantlib.time.calendars.canada
 
 .. autoclass:: Canada
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Canada.add_holiday
+         Canada.adjust
+         Canada.advance
+         Canada.business_day_list
+         Canada.business_days_between
+         Canada.end_of_month
+         Canada.holiday_list
+         Canada.is_business_day
+         Canada.is_end_of_month
+         Canada.is_holiday
+         Canada.is_weekend
+         Canada.remove_holiday
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Canada.__init__
-      ~Canada.add_holiday
-      ~Canada.adjust
-      ~Canada.advance
-      ~Canada.business_day_list
-      ~Canada.business_days_between
-      ~Canada.end_of_month
-      ~Canada.holiday_list
-      ~Canada.is_business_day
-      ~Canada.is_end_of_month
-      ~Canada.is_holiday
-      ~Canada.is_weekend
-      ~Canada.remove_holiday
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Canada.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Canada.name
+  
+  

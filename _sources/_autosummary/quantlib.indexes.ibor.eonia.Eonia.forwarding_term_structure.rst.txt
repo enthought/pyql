@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.eonia.Eonia.forwarding\_term\_structure
+=============================================================
+
+.. currentmodule:: quantlib.indexes.ibor.eonia
+
+.. autoattribute:: Eonia.forwarding_term_structure

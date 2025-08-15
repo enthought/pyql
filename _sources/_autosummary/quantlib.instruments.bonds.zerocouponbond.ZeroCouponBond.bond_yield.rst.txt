@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.zerocouponbond.ZeroCouponBond.bond\_yield
+====================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.zerocouponbond
+
+.. automethod:: ZeroCouponBond.bond_yield

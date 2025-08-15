@@ -1,0 +1,6 @@
+quantlib.time.calendar.Calendar.business\_day\_list
+===================================================
+
+.. currentmodule:: quantlib.time.calendar
+
+.. automethod:: Calendar.business_day_list

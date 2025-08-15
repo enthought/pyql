@@ -4,28 +4,10 @@ quantlib.instruments.overnightindexedswap
 .. automodule:: quantlib.instruments.overnightindexedswap
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       OvernightIndexedSwap
    
-   
-
-   
-   
-   
-
-
-

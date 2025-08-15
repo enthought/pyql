@@ -4,20 +4,10 @@ quantlib.time.daycounters.simple
 .. automodule:: quantlib.time.daycounters.simple
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       Actual360
       Actual365Fixed
@@ -25,11 +15,3 @@ quantlib.time.daycounters.simple
       OneDayCounter
       SimpleDayCounter
    
-   
-
-   
-   
-   
-
-
-

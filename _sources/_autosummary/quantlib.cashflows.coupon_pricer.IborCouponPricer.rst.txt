@@ -1,33 +1,34 @@
-quantlib.cashflows.coupon\_pricer.IborCouponPricer
-==================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.coupon_pricer.</div>
+   <div class="empty"></div>
+
+IborCouponPricer
+=================================================
 
 .. currentmodule:: quantlib.cashflows.coupon_pricer
 
 .. autoclass:: IborCouponPricer
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         IborCouponPricer.caplet_price
+         IborCouponPricer.caplet_rate
+         IborCouponPricer.floorlet_price
+         IborCouponPricer.floorlet_rate
+         IborCouponPricer.initialize
+         IborCouponPricer.swaplet_price
+         IborCouponPricer.swaplet_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~IborCouponPricer.__init__
-      ~IborCouponPricer.caplet_price
-      ~IborCouponPricer.caplet_rate
-      ~IborCouponPricer.floorlet_price
-      ~IborCouponPricer.floorlet_rate
-      ~IborCouponPricer.initialize
-      ~IborCouponPricer.swaplet_price
-      ~IborCouponPricer.swaplet_rate
-   
-   
-
-   
-   
-   
+  
+  
+  

@@ -1,0 +1,6 @@
+quantlib.payoffs.PlainVanillaPayoff.strike
+==========================================
+
+.. currentmodule:: quantlib.payoffs
+
+.. autoattribute:: PlainVanillaPayoff.strike

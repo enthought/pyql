@@ -1,0 +1,6 @@
+quantlib.time.calendars.canada.Canada.is\_holiday
+=================================================
+
+.. currentmodule:: quantlib.time.calendars.canada
+
+.. automethod:: Canada.is_holiday

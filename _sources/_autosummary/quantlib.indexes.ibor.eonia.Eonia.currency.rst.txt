@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.eonia.Eonia.currency
+==========================================
+
+.. currentmodule:: quantlib.indexes.ibor.eonia
+
+.. autoattribute:: Eonia.currency

@@ -1,0 +1,6 @@
+quantlib.processes.hullwhite\_process.ForwardHullWhiteProcess.diffusion
+=======================================================================
+
+.. currentmodule:: quantlib.processes.hullwhite_process
+
+.. automethod:: ForwardHullWhiteProcess.diffusion

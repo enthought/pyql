@@ -1,0 +1,6 @@
+quantlib.cashflows.cap\_floored\_coupon.CappedFlooredCoupon.accrued\_amount
+===========================================================================
+
+.. currentmodule:: quantlib.cashflows.cap_floored_coupon
+
+.. automethod:: CappedFlooredCoupon.accrued_amount

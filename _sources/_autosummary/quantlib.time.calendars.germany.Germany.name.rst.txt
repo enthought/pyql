@@ -1,0 +1,6 @@
+quantlib.time.calendars.germany.Germany.name
+============================================
+
+.. currentmodule:: quantlib.time.calendars.germany
+
+.. autoattribute:: Germany.name

@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.is\_expired
+==============================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.is_expired

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_spreaded\_term\_structure.ForwardSpreadedTermStructure.max\_time
+========================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_spreaded_term_structure
+
+.. autoattribute:: ForwardSpreadedTermStructure.max_time

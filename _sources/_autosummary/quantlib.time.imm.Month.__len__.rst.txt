@@ -1,0 +1,6 @@
+quantlib.time.imm.Month.\_\_len\_\_
+===================================
+
+.. currentmodule:: quantlib.time.imm
+
+.. automethod:: Month.__len__

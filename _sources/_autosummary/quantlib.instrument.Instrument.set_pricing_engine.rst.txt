@@ -1,0 +1,6 @@
+quantlib.instrument.Instrument.set\_pricing\_engine
+===================================================
+
+.. currentmodule:: quantlib.instrument
+
+.. automethod:: Instrument.set_pricing_engine

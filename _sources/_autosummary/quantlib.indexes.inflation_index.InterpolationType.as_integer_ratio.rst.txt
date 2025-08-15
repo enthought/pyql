@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.InterpolationType.as\_integer\_ratio
+======================================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. automethod:: InterpolationType.as_integer_ratio

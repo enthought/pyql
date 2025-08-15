@@ -1,0 +1,6 @@
+quantlib.stochastic\_process.StochasticProcess1D.x0
+===================================================
+
+.. currentmodule:: quantlib.stochastic_process
+
+.. autoattribute:: StochasticProcess1D.x0

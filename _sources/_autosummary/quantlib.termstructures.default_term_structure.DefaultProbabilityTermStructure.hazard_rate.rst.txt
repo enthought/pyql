@@ -1,0 +1,6 @@
+quantlib.termstructures.default\_term\_structure.DefaultProbabilityTermStructure.hazard\_rate
+=============================================================================================
+
+.. currentmodule:: quantlib.termstructures.default_term_structure
+
+.. automethod:: DefaultProbabilityTermStructure.hazard_rate

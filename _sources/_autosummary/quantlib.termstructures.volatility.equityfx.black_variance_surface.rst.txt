@@ -4,30 +4,12 @@ quantlib.termstructures.volatility.equityfx.black\_variance\_surface
 .. automodule:: quantlib.termstructures.volatility.equityfx.black_variance_surface
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       BlackVarianceSurface
       Extrapolation
       Interpolator
    
-   
-
-   
-   
-   
-
-
-

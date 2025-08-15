@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.black\_constant\_vol.BlackConstantVol.settlement\_days
+==================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_constant_vol
+
+.. autoattribute:: BlackConstantVol.settlement_days

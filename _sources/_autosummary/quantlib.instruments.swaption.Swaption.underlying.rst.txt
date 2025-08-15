@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.underlying
+=================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. automethod:: Swaption.underlying

@@ -1,0 +1,6 @@
+quantlib.time.date.TimeUnit.imag
+================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: TimeUnit.imag

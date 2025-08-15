@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Bond.is\_expired
+==========================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoattribute:: Bond.is_expired

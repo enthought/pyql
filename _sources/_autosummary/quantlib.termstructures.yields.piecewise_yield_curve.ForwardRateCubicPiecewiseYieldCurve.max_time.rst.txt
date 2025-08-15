@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.piecewise\_yield\_curve.ForwardRateCubicPiecewiseYieldCurve.max\_time
+====================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_yield_curve
+
+.. autoattribute:: ForwardRateCubicPiecewiseYieldCurve.max_time

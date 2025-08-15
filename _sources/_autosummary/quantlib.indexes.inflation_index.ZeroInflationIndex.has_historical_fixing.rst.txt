@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.ZeroInflationIndex.has\_historical\_fixing
+============================================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. automethod:: ZeroInflationIndex.has_historical_fixing

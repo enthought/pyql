@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.Put
+======================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.Put

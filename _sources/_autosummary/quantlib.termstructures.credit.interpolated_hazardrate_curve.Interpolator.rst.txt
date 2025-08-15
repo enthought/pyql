@@ -1,46 +1,53 @@
-quantlib.termstructures.credit.interpolated\_hazardrate\_curve.Interpolator
-===========================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.credit.interpolated_hazardrate_curve.</div>
+   <div class="empty"></div>
+
+Interpolator
+=========================================================================
 
 .. currentmodule:: quantlib.termstructures.credit.interpolated_hazardrate_curve
 
 .. autoclass:: Interpolator
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Interpolator.__mul__
+         Interpolator.__pow__
+         Interpolator.conjugate
+         Interpolator.bit_length
+         Interpolator.bit_count
+         Interpolator.to_bytes
+         Interpolator.from_bytes
+         Interpolator.as_integer_ratio
+         Interpolator.__len__
+         Interpolator.__getitem__
+      
+         Interpolator.__len__
+         Interpolator.__getitem__
+         Interpolator.__mul__
+         Interpolator.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Interpolator.conjugate
-      ~Interpolator.bit_length
-      ~Interpolator.bit_count
-      ~Interpolator.to_bytes
-      ~Interpolator.from_bytes
-      ~Interpolator.as_integer_ratio
-      ~Interpolator.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Interpolator.real
-      ~Interpolator.imag
-      ~Interpolator.numerator
-      ~Interpolator.denominator
-      ~Interpolator.Linear
-      ~Interpolator.LogLinear
-      ~Interpolator.BackwardFlat
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Interpolator.real
+         Interpolator.imag
+         Interpolator.numerator
+         Interpolator.denominator
+         Interpolator.Linear
+         Interpolator.LogLinear
+         Interpolator.BackwardFlat
+  
+  

@@ -4,37 +4,18 @@ quantlib.market.conventions.swap
 .. automodule:: quantlib.market.conventions.swap
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
    
       help
       load
       params
    
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       row
    
-   
-
-   
-   
-   
-
-
-

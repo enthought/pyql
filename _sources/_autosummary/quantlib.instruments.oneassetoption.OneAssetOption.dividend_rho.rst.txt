@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.dividend\_rho
+================================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.dividend_rho

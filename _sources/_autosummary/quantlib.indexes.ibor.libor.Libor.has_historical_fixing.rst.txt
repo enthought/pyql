@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.libor.Libor.has\_historical\_fixing
+=========================================================
+
+.. currentmodule:: quantlib.indexes.ibor.libor
+
+.. automethod:: Libor.has_historical_fixing

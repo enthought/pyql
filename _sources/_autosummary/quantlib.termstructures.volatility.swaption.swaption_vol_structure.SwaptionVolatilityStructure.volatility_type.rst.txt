@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_structure.SwaptionVolatilityStructure.volatility\_type
+=================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_structure
+
+.. autoattribute:: SwaptionVolatilityStructure.volatility_type

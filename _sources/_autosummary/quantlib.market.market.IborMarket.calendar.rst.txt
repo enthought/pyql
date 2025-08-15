@@ -1,0 +1,6 @@
+quantlib.market.market.IborMarket.calendar
+==========================================
+
+.. currentmodule:: quantlib.market.market
+
+.. autoproperty:: IborMarket.calendar

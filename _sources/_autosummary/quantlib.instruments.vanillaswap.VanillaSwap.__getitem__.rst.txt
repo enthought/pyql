@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaswap.VanillaSwap.\_\_getitem\_\_
+============================================================
+
+.. currentmodule:: quantlib.instruments.vanillaswap
+
+.. automethod:: VanillaSwap.__getitem__

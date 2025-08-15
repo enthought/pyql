@@ -1,0 +1,6 @@
+quantlib.indexes.regions.FranceRegion.code
+==========================================
+
+.. currentmodule:: quantlib.indexes.regions
+
+.. autoattribute:: FranceRegion.code

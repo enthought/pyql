@@ -4,15 +4,9 @@ quantlib.time.imm
 .. automodule:: quantlib.time.imm
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
    
       code
       date
@@ -21,23 +15,10 @@ quantlib.time.imm
       next_code
       next_date
    
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       Month
    
-   
-
-   
-   
-   
-
-
-

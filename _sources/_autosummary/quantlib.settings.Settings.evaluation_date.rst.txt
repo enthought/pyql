@@ -1,0 +1,6 @@
+quantlib.settings.Settings.evaluation\_date
+===========================================
+
+.. currentmodule:: quantlib.settings
+
+.. autoattribute:: Settings.evaluation_date

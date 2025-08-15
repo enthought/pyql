@@ -1,0 +1,6 @@
+quantlib.time.calendars.jointcalendar.JointCalendarRule.numerator
+=================================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. autoattribute:: JointCalendarRule.numerator

@@ -1,0 +1,6 @@
+quantlib.instruments.make\_ois.MakeOIS.with\_settlement\_days
+=============================================================
+
+.. currentmodule:: quantlib.instruments.make_ois
+
+.. automethod:: MakeOIS.with_settlement_days

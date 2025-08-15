@@ -1,0 +1,6 @@
+quantlib.cashflows.cms\_coupon.CmsCoupon.nominal
+================================================
+
+.. currentmodule:: quantlib.cashflows.cms_coupon
+
+.. autoattribute:: CmsCoupon.nominal

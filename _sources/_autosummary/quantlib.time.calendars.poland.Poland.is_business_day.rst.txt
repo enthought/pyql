@@ -1,0 +1,6 @@
+quantlib.time.calendars.poland.Poland.is\_business\_day
+=======================================================
+
+.. currentmodule:: quantlib.time.calendars.poland
+
+.. automethod:: Poland.is_business_day

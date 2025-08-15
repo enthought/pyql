@@ -1,0 +1,6 @@
+quantlib.compounding.Compounding.SimpleThenCompounded
+=====================================================
+
+.. currentmodule:: quantlib.compounding
+
+.. autoattribute:: Compounding.SimpleThenCompounded

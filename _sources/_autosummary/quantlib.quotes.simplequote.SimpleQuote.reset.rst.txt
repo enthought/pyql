@@ -1,0 +1,6 @@
+quantlib.quotes.simplequote.SimpleQuote.reset
+=============================================
+
+.. currentmodule:: quantlib.quotes.simplequote
+
+.. automethod:: SimpleQuote.reset

@@ -1,44 +1,43 @@
-quantlib.termstructures.credit.flat\_hazard\_rate.FlatHazardRate
-================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.credit.flat_hazard_rate.</div>
+   <div class="empty"></div>
+
+FlatHazardRate
+==============================================================
 
 .. currentmodule:: quantlib.termstructures.credit.flat_hazard_rate
 
 .. autoclass:: FlatHazardRate
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FlatHazardRate.from_reference_date
+         FlatHazardRate.hazard_rate
+         FlatHazardRate.survival_probability
+         FlatHazardRate.time_from_reference
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FlatHazardRate.__init__
-      ~FlatHazardRate.from_reference_date
-      ~FlatHazardRate.hazard_rate
-      ~FlatHazardRate.survival_probability
-      ~FlatHazardRate.time_from_reference
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~FlatHazardRate.day_counter
-      ~FlatHazardRate.jump_dates
-      ~FlatHazardRate.jump_times
-      ~FlatHazardRate.max_date
-      ~FlatHazardRate.max_time
-      ~FlatHazardRate.reference_date
-      ~FlatHazardRate.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FlatHazardRate.day_counter
+         FlatHazardRate.jump_dates
+         FlatHazardRate.jump_times
+         FlatHazardRate.max_date
+         FlatHazardRate.max_time
+         FlatHazardRate.reference_date
+         FlatHazardRate.settlement_days
+  
+  

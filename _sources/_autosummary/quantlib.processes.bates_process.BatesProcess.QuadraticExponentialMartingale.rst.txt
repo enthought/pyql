@@ -1,0 +1,6 @@
+quantlib.processes.bates\_process.BatesProcess.QuadraticExponentialMartingale
+=============================================================================
+
+.. currentmodule:: quantlib.processes.bates_process
+
+.. autoattribute:: BatesProcess.QuadraticExponentialMartingale

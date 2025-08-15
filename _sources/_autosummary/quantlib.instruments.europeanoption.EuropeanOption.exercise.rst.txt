@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.exercise
+===========================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. autoattribute:: EuropeanOption.exercise

@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.sofr.Sofr.end\_of\_month
+==============================================
+
+.. currentmodule:: quantlib.indexes.ibor.sofr
+
+.. autoattribute:: Sofr.end_of_month

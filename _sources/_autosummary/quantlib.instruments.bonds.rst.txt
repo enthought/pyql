@@ -4,28 +4,10 @@ quantlib.instruments.bonds
 .. automodule:: quantlib.instruments.bonds
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    amortizingfloatingratebond
@@ -33,4 +15,3 @@ quantlib.instruments.bonds
    fixedratebond
    floatingratebond
    zerocouponbond
-

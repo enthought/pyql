@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>LognormalCmsSpreadPricer &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.experimental.coupons.swap_spread_index" href="quantlib.experimental.coupons.swap_spread_index.html" />
+    <link rel="next" title="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.caplet_price" href="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.caplet_price.html" />
     <link rel="prev" title="quantlib.experimental.coupons.lognormal_cmsspread_pricer" href="quantlib.experimental.coupons.lognormal_cmsspread_pricer.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,42 +34,35 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-experimental-coupons-lognormal-cmsspread-pricer-lognormalcmsspreadpricer">
-<h1>quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer<a class="headerlink" href="#quantlib-experimental-coupons-lognormal-cmsspread-pricer-lognormalcmsspreadpricer" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.experimental.coupons.lognormal_cmsspread_pricer.</div>
+<div class="empty"></div><section id="lognormalcmsspreadpricer">
+<h1>LognormalCmsSpreadPricer<a class="headerlink" href="#lognormalcmsspreadpricer" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LognormalCmsSpreadPricer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">CmsCouponPricer</span> <span class="pre">cms_pricer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Quote</span> <span class="pre">correlation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">HandleYieldTermStructure</span> <span class="pre">coupon_discount_curve=HandleYieldTermStructure()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">integration_points=16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vol_type=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">shift1=Null[Real]()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">shift2=Null[Real]()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.experimental.coupons.cms_spread_coupon.CmsSpreadCouponPricer.html#quantlib.experimental.coupons.cms_spread_coupon.CmsSpreadCouponPricer" title="quantlib.experimental.coupons.cms_spread_coupon.CmsSpreadCouponPricer"><code class="xref py py-class docutils literal notranslate"><span class="pre">CmsSpreadCouponPricer</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.__init__" title="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.caplet_price.html#quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.caplet_price" title="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.caplet_price"><code class="xref py py-obj docutils literal notranslate"><span class="pre">caplet_price</span></code></a>(self, Rate effective_cap)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">caplet_price</span></code>(self, Rate effective_cap)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.caplet_rate.html#quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.caplet_rate" title="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.caplet_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">caplet_rate</span></code></a>(self, Rate effective_cap)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">caplet_rate</span></code>(self, Rate effective_cap)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.floorlet_price.html#quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.floorlet_price" title="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.floorlet_price"><code class="xref py py-obj docutils literal notranslate"><span class="pre">floorlet_price</span></code></a>(self, Rate effective_floor)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">floorlet_price</span></code>(self, Rate effective_floor)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.floorlet_rate.html#quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.floorlet_rate" title="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.floorlet_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">floorlet_rate</span></code></a>(self, Rate effective_floor)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">floorlet_rate</span></code>(self, Rate effective_floor)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.initialize.html#quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.initialize" title="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.initialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialize</span></code></a>(self, FloatingRateCoupon coupon)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialize</span></code>(self, FloatingRateCoupon coupon)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.swaplet_price.html#quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.swaplet_price" title="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.swaplet_price"><code class="xref py py-obj docutils literal notranslate"><span class="pre">swaplet_price</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">swaplet_price</span></code>(self)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">swaplet_rate</span></code>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.swaplet_rate.html#quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.swaplet_rate" title="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.swaplet_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">swaplet_rate</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -118,7 +111,7 @@
   <li><a href="quantlib.experimental.coupons.html">quantlib.experimental.coupons</a><ul>
   <li><a href="quantlib.experimental.coupons.lognormal_cmsspread_pricer.html">quantlib.experimental.coupons.lognormal_cmsspread_pricer</a><ul>
       <li>Previous: <a href="quantlib.experimental.coupons.lognormal_cmsspread_pricer.html" title="previous chapter">quantlib.experimental.coupons.lognormal_cmsspread_pricer</a></li>
-      <li>Next: <a href="quantlib.experimental.coupons.swap_spread_index.html" title="next chapter">quantlib.experimental.coupons.swap_spread_index</a></li>
+      <li>Next: <a href="quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.caplet_price.html" title="next chapter">quantlib.experimental.coupons.lognormal_cmsspread_pricer.LognormalCmsSpreadPricer.caplet_price</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

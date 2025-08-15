@@ -1,0 +1,6 @@
+quantlib.option.Option.net\_present\_value
+==========================================
+
+.. currentmodule:: quantlib.option
+
+.. autoattribute:: Option.net_present_value

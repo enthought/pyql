@@ -1,39 +1,38 @@
-quantlib.currency.currencies.ZARCurrency
+.. raw:: html
+
+   <div class="prename">quantlib.currency.currencies.</div>
+   <div class="empty"></div>
+
+ZARCurrency
 ========================================
 
 .. currentmodule:: quantlib.currency.currencies
 
 .. autoclass:: ZARCurrency
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZARCurrency.from_name
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ZARCurrency.__init__
-      ~ZARCurrency.from_name
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ZARCurrency.code
-      ~ZARCurrency.fractionSymbol
-      ~ZARCurrency.fractionsPerUnit
-      ~ZARCurrency.name
-      ~ZARCurrency.symbol
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZARCurrency.code
+         ZARCurrency.fractionSymbol
+         ZARCurrency.fractionsPerUnit
+         ZARCurrency.name
+         ZARCurrency.symbol
+  
+  

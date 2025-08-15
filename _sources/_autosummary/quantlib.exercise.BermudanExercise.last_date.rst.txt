@@ -1,0 +1,6 @@
+quantlib.exercise.BermudanExercise.last\_date
+=============================================
+
+.. currentmodule:: quantlib.exercise
+
+.. autoattribute:: BermudanExercise.last_date

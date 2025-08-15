@@ -1,37 +1,36 @@
-quantlib.time.daycounters.simple.Business252
+.. raw:: html
+
+   <div class="prename">quantlib.time.daycounters.simple.</div>
+   <div class="empty"></div>
+
+Business252
 ============================================
 
 .. currentmodule:: quantlib.time.daycounters.simple
 
 .. autoclass:: Business252
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Business252.day_count
+         Business252.from_name
+         Business252.year_fraction
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Business252.__init__
-      ~Business252.day_count
-      ~Business252.from_name
-      ~Business252.year_fraction
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Business252.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Business252.name
+  
+  

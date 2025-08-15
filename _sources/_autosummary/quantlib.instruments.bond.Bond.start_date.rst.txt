@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Bond.start\_date
+==========================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoattribute:: Bond.start_date

@@ -1,0 +1,6 @@
+quantlib.instruments.credit\_default\_swap.PricingModel.\_\_pow\_\_
+===================================================================
+
+.. currentmodule:: quantlib.instruments.credit_default_swap
+
+.. automethod:: PricingModel.__pow__

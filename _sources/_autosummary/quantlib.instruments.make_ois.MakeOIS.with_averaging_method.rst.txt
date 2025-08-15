@@ -1,0 +1,6 @@
+quantlib.instruments.make\_ois.MakeOIS.with\_averaging\_method
+==============================================================
+
+.. currentmodule:: quantlib.instruments.make_ois
+
+.. automethod:: MakeOIS.with_averaging_method

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.flat\_forward.FlatForward.reference\_date
+========================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.flat_forward
+
+.. autoattribute:: FlatForward.reference_date

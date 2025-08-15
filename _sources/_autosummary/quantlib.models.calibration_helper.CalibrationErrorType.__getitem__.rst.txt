@@ -1,0 +1,6 @@
+quantlib.models.calibration\_helper.CalibrationErrorType.\_\_getitem\_\_
+========================================================================
+
+.. currentmodule:: quantlib.models.calibration_helper
+
+.. automethod:: CalibrationErrorType.__getitem__

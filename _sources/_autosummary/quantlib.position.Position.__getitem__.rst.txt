@@ -1,0 +1,6 @@
+quantlib.position.Position.\_\_getitem\_\_
+==========================================
+
+.. currentmodule:: quantlib.position
+
+.. automethod:: Position.__getitem__

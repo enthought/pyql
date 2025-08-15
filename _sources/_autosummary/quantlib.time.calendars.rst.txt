@@ -4,28 +4,10 @@ quantlib.time.calendars
 .. automodule:: quantlib.time.calendars
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    canada
@@ -39,4 +21,3 @@ quantlib.time.calendars
    united_kingdom
    united_states
    weekends_only
-

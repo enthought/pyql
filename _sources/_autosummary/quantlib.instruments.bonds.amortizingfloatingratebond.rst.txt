@@ -4,28 +4,10 @@ quantlib.instruments.bonds.amortizingfloatingratebond
 .. automodule:: quantlib.instruments.bonds.amortizingfloatingratebond
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       AmortizingFloatingRateBond
    
-   
-
-   
-   
-   
-
-
-

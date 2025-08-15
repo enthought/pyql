@@ -1,0 +1,6 @@
+quantlib.cashflows.rateaveraging.RateAveraging.Compound
+=======================================================
+
+.. currentmodule:: quantlib.cashflows.rateaveraging
+
+.. autoattribute:: RateAveraging.Compound

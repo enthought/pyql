@@ -1,45 +1,52 @@
-quantlib.position.Position
+.. raw:: html
+
+   <div class="prename">quantlib.position.</div>
+   <div class="empty"></div>
+
+Position
 ==========================
 
 .. currentmodule:: quantlib.position
 
 .. autoclass:: Position
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Position.__mul__
+         Position.__pow__
+         Position.conjugate
+         Position.bit_length
+         Position.bit_count
+         Position.to_bytes
+         Position.from_bytes
+         Position.as_integer_ratio
+         Position.__getitem__
+         Position.__len__
+      
+         Position.__len__
+         Position.__getitem__
+         Position.__mul__
+         Position.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Position.conjugate
-      ~Position.bit_length
-      ~Position.bit_count
-      ~Position.to_bytes
-      ~Position.from_bytes
-      ~Position.as_integer_ratio
-      ~Position.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Position.real
-      ~Position.imag
-      ~Position.numerator
-      ~Position.denominator
-      ~Position.Long
-      ~Position.Short
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Position.real
+         Position.imag
+         Position.numerator
+         Position.denominator
+         Position.Long
+         Position.Short
+  
+  

@@ -1,50 +1,49 @@
-quantlib.termstructures.volatility.swaption.swaption\_vol\_matrix.SwaptionVolatilityMatrix
-==========================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.volatility.swaption.swaption_vol_matrix.</div>
+   <div class="empty"></div>
+
+SwaptionVolatilityMatrix
+========================================================================================
 
 .. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_matrix
 
 .. autoclass:: SwaptionVolatilityMatrix
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SwaptionVolatilityMatrix.black_variance
+         SwaptionVolatilityMatrix.from_reference_date
+         SwaptionVolatilityMatrix.option_date_from_tenor
+         SwaptionVolatilityMatrix.shift
+         SwaptionVolatilityMatrix.smile_section
+         SwaptionVolatilityMatrix.time_from_reference
+         SwaptionVolatilityMatrix.volatility
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~SwaptionVolatilityMatrix.__init__
-      ~SwaptionVolatilityMatrix.black_variance
-      ~SwaptionVolatilityMatrix.from_reference_date
-      ~SwaptionVolatilityMatrix.option_date_from_tenor
-      ~SwaptionVolatilityMatrix.shift
-      ~SwaptionVolatilityMatrix.smile_section
-      ~SwaptionVolatilityMatrix.time_from_reference
-      ~SwaptionVolatilityMatrix.volatility
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~SwaptionVolatilityMatrix.calendar
-      ~SwaptionVolatilityMatrix.extrapolation
-      ~SwaptionVolatilityMatrix.option_dates
-      ~SwaptionVolatilityMatrix.option_tenors
-      ~SwaptionVolatilityMatrix.option_times
-      ~SwaptionVolatilityMatrix.reference_date
-      ~SwaptionVolatilityMatrix.settlement_days
-      ~SwaptionVolatilityMatrix.swap_lengths
-      ~SwaptionVolatilityMatrix.swap_tenors
-      ~SwaptionVolatilityMatrix.volatility_type
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SwaptionVolatilityMatrix.calendar
+         SwaptionVolatilityMatrix.extrapolation
+         SwaptionVolatilityMatrix.option_dates
+         SwaptionVolatilityMatrix.option_tenors
+         SwaptionVolatilityMatrix.option_times
+         SwaptionVolatilityMatrix.reference_date
+         SwaptionVolatilityMatrix.settlement_days
+         SwaptionVolatilityMatrix.swap_lengths
+         SwaptionVolatilityMatrix.swap_tenors
+         SwaptionVolatilityMatrix.volatility_type
+  
+  

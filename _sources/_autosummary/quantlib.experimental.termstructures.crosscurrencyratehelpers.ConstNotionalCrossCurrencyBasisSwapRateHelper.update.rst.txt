@@ -1,0 +1,6 @@
+quantlib.experimental.termstructures.crosscurrencyratehelpers.ConstNotionalCrossCurrencyBasisSwapRateHelper.update
+==================================================================================================================
+
+.. currentmodule:: quantlib.experimental.termstructures.crosscurrencyratehelpers
+
+.. automethod:: ConstNotionalCrossCurrencyBasisSwapRateHelper.update

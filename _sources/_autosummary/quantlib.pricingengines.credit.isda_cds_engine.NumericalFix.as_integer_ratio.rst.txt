@@ -1,0 +1,6 @@
+quantlib.pricingengines.credit.isda\_cds\_engine.NumericalFix.as\_integer\_ratio
+================================================================================
+
+.. currentmodule:: quantlib.pricingengines.credit.isda_cds_engine
+
+.. automethod:: NumericalFix.as_integer_ratio

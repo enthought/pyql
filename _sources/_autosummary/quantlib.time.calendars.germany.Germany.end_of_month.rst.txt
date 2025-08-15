@@ -1,0 +1,6 @@
+quantlib.time.calendars.germany.Germany.end\_of\_month
+======================================================
+
+.. currentmodule:: quantlib.time.calendars.germany
+
+.. automethod:: Germany.end_of_month

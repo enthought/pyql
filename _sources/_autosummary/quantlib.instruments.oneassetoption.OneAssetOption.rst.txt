@@ -1,53 +1,52 @@
-quantlib.instruments.oneassetoption.OneAssetOption
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.oneassetoption.</div>
+   <div class="empty"></div>
+
+OneAssetOption
 ==================================================
 
 .. currentmodule:: quantlib.instruments.oneassetoption
 
 .. autoclass:: OneAssetOption
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OneAssetOption.set_pricing_engine
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~OneAssetOption.__init__
-      ~OneAssetOption.set_pricing_engine
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~OneAssetOption.Call
-      ~OneAssetOption.Put
-      ~OneAssetOption.delta
-      ~OneAssetOption.delta_forward
-      ~OneAssetOption.dividend_rho
-      ~OneAssetOption.elasticity
-      ~OneAssetOption.exercise
-      ~OneAssetOption.gamma
-      ~OneAssetOption.is_expired
-      ~OneAssetOption.itm_cash_probability
-      ~OneAssetOption.net_present_value
-      ~OneAssetOption.npv
-      ~OneAssetOption.payoff
-      ~OneAssetOption.rho
-      ~OneAssetOption.strike_sensitivity
-      ~OneAssetOption.theta
-      ~OneAssetOption.theta_per_day
-      ~OneAssetOption.valuation_date
-      ~OneAssetOption.vega
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OneAssetOption.Call
+         OneAssetOption.Put
+         OneAssetOption.delta
+         OneAssetOption.delta_forward
+         OneAssetOption.dividend_rho
+         OneAssetOption.elasticity
+         OneAssetOption.exercise
+         OneAssetOption.gamma
+         OneAssetOption.is_expired
+         OneAssetOption.itm_cash_probability
+         OneAssetOption.net_present_value
+         OneAssetOption.npv
+         OneAssetOption.payoff
+         OneAssetOption.rho
+         OneAssetOption.strike_sensitivity
+         OneAssetOption.theta
+         OneAssetOption.theta_per_day
+         OneAssetOption.valuation_date
+         OneAssetOption.vega
+  
+  

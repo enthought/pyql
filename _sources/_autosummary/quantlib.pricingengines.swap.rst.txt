@@ -4,28 +4,10 @@ quantlib.pricingengines.swap
 .. automodule:: quantlib.pricingengines.swap
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       DiscountingSwapEngine
    
-   
-
-   
-   
-   
-
-
-

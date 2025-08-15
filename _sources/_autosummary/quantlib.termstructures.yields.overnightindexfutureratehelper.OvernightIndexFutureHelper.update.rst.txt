@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.overnightindexfutureratehelper.OvernightIndexFutureHelper.update
+===============================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.overnightindexfutureratehelper
+
+.. automethod:: OvernightIndexFutureHelper.update

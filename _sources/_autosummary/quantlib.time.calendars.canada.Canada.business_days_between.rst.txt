@@ -1,0 +1,6 @@
+quantlib.time.calendars.canada.Canada.business\_days\_between
+=============================================================
+
+.. currentmodule:: quantlib.time.calendars.canada
+
+.. automethod:: Canada.business_days_between

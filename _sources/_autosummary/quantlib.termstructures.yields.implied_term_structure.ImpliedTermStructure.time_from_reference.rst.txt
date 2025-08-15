@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.implied\_term\_structure.ImpliedTermStructure.time\_from\_reference
+==================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.implied_term_structure
+
+.. automethod:: ImpliedTermStructure.time_from_reference

@@ -4,28 +4,10 @@ quantlib.termstructures.helpers
 .. automodule:: quantlib.termstructures.helpers
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       Pillar
    
-   
-
-   
-   
-   
-
-
-

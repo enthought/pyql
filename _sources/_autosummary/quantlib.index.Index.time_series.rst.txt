@@ -1,0 +1,6 @@
+quantlib.index.Index.time\_series
+=================================
+
+.. currentmodule:: quantlib.index
+
+.. autoattribute:: Index.time_series

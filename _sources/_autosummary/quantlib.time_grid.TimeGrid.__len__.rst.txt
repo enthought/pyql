@@ -1,0 +1,6 @@
+quantlib.time\_grid.TimeGrid.\_\_len\_\_
+========================================
+
+.. currentmodule:: quantlib.time_grid
+
+.. automethod:: TimeGrid.__len__

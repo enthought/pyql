@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.LinearInterpolatedForwardCurve.data
+=================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. autoattribute:: LinearInterpolatedForwardCurve.data

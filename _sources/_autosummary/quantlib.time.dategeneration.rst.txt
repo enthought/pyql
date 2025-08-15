@@ -4,28 +4,10 @@ quantlib.time.dategeneration
 .. automodule:: quantlib.time.dategeneration
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       DateGeneration
    
-   
-
-   
-   
-   
-
-
-

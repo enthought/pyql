@@ -4,28 +4,10 @@ quantlib.processes
 .. automodule:: quantlib.processes
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    api
@@ -34,4 +16,3 @@ quantlib.processes
    forwardmeasureprocess
    heston_process
    hullwhite_process
-

@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.flat\_forward.FlatForward.forward\_rate
+======================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.flat_forward
+
+.. automethod:: FlatForward.forward_rate

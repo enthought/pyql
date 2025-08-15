@@ -1,0 +1,6 @@
+quantlib.indexes.ibor\_index.OvernightIndex.is\_valid\_fixing\_date
+===================================================================
+
+.. currentmodule:: quantlib.indexes.ibor_index
+
+.. automethod:: OvernightIndex.is_valid_fixing_date

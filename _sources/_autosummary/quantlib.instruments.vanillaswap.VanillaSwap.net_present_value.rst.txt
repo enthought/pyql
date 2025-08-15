@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaswap.VanillaSwap.net\_present\_value
+================================================================
+
+.. currentmodule:: quantlib.instruments.vanillaswap
+
+.. autoattribute:: VanillaSwap.net_present_value

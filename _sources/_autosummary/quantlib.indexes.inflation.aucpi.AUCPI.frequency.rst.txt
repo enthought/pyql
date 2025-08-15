@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.aucpi.AUCPI.frequency
+================================================
+
+.. currentmodule:: quantlib.indexes.inflation.aucpi
+
+.. autoattribute:: AUCPI.frequency

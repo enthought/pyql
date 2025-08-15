@@ -1,48 +1,48 @@
-quantlib.instruments.swap.Swap
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.swap.</div>
+   <div class="empty"></div>
+
+Swap
 ==============================
 
 .. currentmodule:: quantlib.instruments.swap
 
 .. autoclass:: Swap
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Swap.__getitem__
+         Swap.endDiscounts
+         Swap.leg
+         Swap.leg_BPS
+         Swap.leg_NPV
+         Swap.npv_date_discount
+         Swap.set_pricing_engine
+         Swap.startDiscounts
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Swap.__init__
-      ~Swap.endDiscounts
-      ~Swap.leg
-      ~Swap.leg_BPS
-      ~Swap.leg_NPV
-      ~Swap.npv_date_discount
-      ~Swap.set_pricing_engine
-      ~Swap.startDiscounts
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Swap.Payer
-      ~Swap.Receiver
-      ~Swap.is_expired
-      ~Swap.maturity_date
-      ~Swap.net_present_value
-      ~Swap.npv
-      ~Swap.start_date
-      ~Swap.valuation_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Swap.Payer
+         Swap.Receiver
+         Swap.is_expired
+         Swap.maturity_date
+         Swap.net_present_value
+         Swap.npv
+         Swap.start_date
+         Swap.valuation_date
+  
+  

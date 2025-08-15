@@ -1,0 +1,6 @@
+quantlib.time.daycounters.actual\_actual.Convention.AFB
+=======================================================
+
+.. currentmodule:: quantlib.time.daycounters.actual_actual
+
+.. autoattribute:: Convention.AFB

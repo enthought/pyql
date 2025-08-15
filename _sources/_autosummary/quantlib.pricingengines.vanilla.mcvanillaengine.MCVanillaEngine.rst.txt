@@ -1,26 +1,27 @@
-quantlib.pricingengines.vanilla.mcvanillaengine.MCVanillaEngine
+.. raw:: html
+
+   <div class="prename">quantlib.pricingengines.vanilla.mcvanillaengine.</div>
+   <div class="empty"></div>
+
+MCVanillaEngine
 ===============================================================
 
 .. currentmodule:: quantlib.pricingengines.vanilla.mcvanillaengine
 
 .. autoclass:: MCVanillaEngine
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~MCVanillaEngine.__init__
-   
-   
-
-   
-   
-   
+  
+  
+  

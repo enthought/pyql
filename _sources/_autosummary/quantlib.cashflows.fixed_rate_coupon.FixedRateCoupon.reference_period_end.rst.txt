@@ -1,0 +1,6 @@
+quantlib.cashflows.fixed\_rate\_coupon.FixedRateCoupon.reference\_period\_end
+=============================================================================
+
+.. currentmodule:: quantlib.cashflows.fixed_rate_coupon
+
+.. autoattribute:: FixedRateCoupon.reference_period_end

@@ -4,31 +4,12 @@ quantlib.experimental.coupons
 .. automodule:: quantlib.experimental.coupons
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    cms_spread_coupon
    lognormal_cmsspread_pricer
    swap_spread_index
-

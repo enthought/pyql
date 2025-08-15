@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.exercise
+===============================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Swaption.exercise

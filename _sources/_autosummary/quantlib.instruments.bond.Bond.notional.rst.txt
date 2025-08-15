@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Bond.notional
+=======================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. automethod:: Bond.notional

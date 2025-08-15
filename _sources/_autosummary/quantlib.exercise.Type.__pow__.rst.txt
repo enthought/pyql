@@ -1,0 +1,6 @@
+quantlib.exercise.Type.\_\_pow\_\_
+==================================
+
+.. currentmodule:: quantlib.exercise
+
+.. automethod:: Type.__pow__

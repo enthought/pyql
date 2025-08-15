@@ -1,0 +1,6 @@
+quantlib.cashflow.SimpleCashFlow.date
+=====================================
+
+.. currentmodule:: quantlib.cashflow
+
+.. autoattribute:: SimpleCashFlow.date

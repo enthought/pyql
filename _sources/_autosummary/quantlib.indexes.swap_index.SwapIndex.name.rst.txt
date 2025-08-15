@@ -1,0 +1,6 @@
+quantlib.indexes.swap\_index.SwapIndex.name
+===========================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. autoattribute:: SwapIndex.name

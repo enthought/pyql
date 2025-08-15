@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation\_term\_structure.ZeroInflationTermStructure.reference\_date
+=============================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation_term_structure
+
+.. autoattribute:: ZeroInflationTermStructure.reference_date

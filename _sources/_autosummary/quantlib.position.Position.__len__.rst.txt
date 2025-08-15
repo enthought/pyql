@@ -1,0 +1,6 @@
+quantlib.position.Position.\_\_len\_\_
+======================================
+
+.. currentmodule:: quantlib.position
+
+.. automethod:: Position.__len__

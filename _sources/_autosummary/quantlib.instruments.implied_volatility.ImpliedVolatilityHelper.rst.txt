@@ -1,28 +1,29 @@
-quantlib.instruments.implied\_volatility.ImpliedVolatilityHelper
-================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.implied_volatility.</div>
+   <div class="empty"></div>
+
+ImpliedVolatilityHelper
+===============================================================
 
 .. currentmodule:: quantlib.instruments.implied_volatility
 
 .. autoclass:: ImpliedVolatilityHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ImpliedVolatilityHelper.calculate
+         ImpliedVolatilityHelper.clone
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ImpliedVolatilityHelper.__init__
-      ~ImpliedVolatilityHelper.calculate
-      ~ImpliedVolatilityHelper.clone
-   
-   
-
-   
-   
-   
+  
+  
+  

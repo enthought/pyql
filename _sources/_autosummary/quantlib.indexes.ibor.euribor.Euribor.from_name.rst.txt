@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.euribor.Euribor.from\_name
+================================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. automethod:: Euribor.from_name

@@ -1,0 +1,6 @@
+quantlib.market.conventions.swap.row.currency
+=============================================
+
+.. currentmodule:: quantlib.market.conventions.swap
+
+.. autoattribute:: row.currency

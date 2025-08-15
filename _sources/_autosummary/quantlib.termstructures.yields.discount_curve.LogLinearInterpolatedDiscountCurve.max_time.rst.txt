@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.discount\_curve.LogLinearInterpolatedDiscountCurve.max\_time
+===========================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.discount_curve
+
+.. autoattribute:: LogLinearInterpolatedDiscountCurve.max_time

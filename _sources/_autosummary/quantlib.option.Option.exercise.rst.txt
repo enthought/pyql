@@ -1,0 +1,6 @@
+quantlib.option.Option.exercise
+===============================
+
+.. currentmodule:: quantlib.option
+
+.. autoattribute:: Option.exercise

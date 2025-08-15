@@ -1,26 +1,27 @@
-quantlib.pricingengines.swaption.black\_swaption\_engine.BlackSwaptionEngine
-============================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.pricingengines.swaption.black_swaption_engine.</div>
+   <div class="empty"></div>
+
+BlackSwaptionEngine
+==========================================================================
 
 .. currentmodule:: quantlib.pricingengines.swaption.black_swaption_engine
 
 .. autoclass:: BlackSwaptionEngine
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BlackSwaptionEngine.__init__
-   
-   
-
-   
-   
-   
+  
+  
+  

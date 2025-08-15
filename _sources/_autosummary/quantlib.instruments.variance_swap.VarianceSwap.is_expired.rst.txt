@@ -1,0 +1,6 @@
+quantlib.instruments.variance\_swap.VarianceSwap.is\_expired
+============================================================
+
+.. currentmodule:: quantlib.instruments.variance_swap
+
+.. autoattribute:: VarianceSwap.is_expired

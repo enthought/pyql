@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.cashflow.CashFlow &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>CashFlow &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.cashflow.Leg" href="quantlib.cashflow.Leg.html" />
+    <link rel="next" title="quantlib.cashflow.CashFlow.has_occured" href="quantlib.cashflow.CashFlow.has_occured.html" />
     <link rel="prev" title="quantlib.cashflow" href="quantlib.cashflow.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,46 +34,31 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-cashflow-cashflow">
-<h1>quantlib.cashflow.CashFlow<a class="headerlink" href="#quantlib-cashflow-cashflow" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.cashflow.</div>
+<div class="empty"></div><section id="cashflow">
+<h1>CashFlow<a class="headerlink" href="#cashflow" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.cashflow.CashFlow">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CashFlow</span></span><a class="headerlink" href="#quantlib.cashflow.CashFlow" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Abstract Base Class.</p>
 <p>Use SimpleCashFlow instead</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.cashflow.CashFlow.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.cashflow.CashFlow.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>amount</strong></dt><dd></dd>
+<dt><strong>date</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.cashflow.CashFlow.__init__" title="quantlib.cashflow.CashFlow.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.cashflow.CashFlow.has_occured" title="quantlib.cashflow.CashFlow.has_occured"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_occured</span></code></a>(self, Date ref_date[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.cashflow.CashFlow.has_occured.html#quantlib.cashflow.CashFlow.has_occured" title="quantlib.cashflow.CashFlow.has_occured"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_occured</span></code></a>(self, Date ref_date[, ...])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">amount</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">date</span></code></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.cashflow.CashFlow.has_occured">
-<span class="sig-name descname"><span class="pre">has_occured</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">ref_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_ref_date=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.cashflow.CashFlow.has_occured" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </section>
@@ -116,7 +101,7 @@
   <li><a href="quantlib.html">quantlib</a><ul>
   <li><a href="quantlib.cashflow.html">quantlib.cashflow</a><ul>
       <li>Previous: <a href="quantlib.cashflow.html" title="previous chapter">quantlib.cashflow</a></li>
-      <li>Next: <a href="quantlib.cashflow.Leg.html" title="next chapter">quantlib.cashflow.Leg</a></li>
+      <li>Next: <a href="quantlib.cashflow.CashFlow.has_occured.html" title="next chapter">quantlib.cashflow.CashFlow.has_occured</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

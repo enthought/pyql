@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.rate\_helpers.FuturesRateHelper.from\_index
+==========================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. automethod:: FuturesRateHelper.from_index

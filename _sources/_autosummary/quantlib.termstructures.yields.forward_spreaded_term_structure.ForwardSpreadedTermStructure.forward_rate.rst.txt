@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_spreaded\_term\_structure.ForwardSpreadedTermStructure.forward\_rate
+============================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_spreaded_term_structure
+
+.. automethod:: ForwardSpreadedTermStructure.forward_rate

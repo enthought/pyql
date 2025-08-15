@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Bond.set\_pricing\_engine
+===================================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. automethod:: Bond.set_pricing_engine

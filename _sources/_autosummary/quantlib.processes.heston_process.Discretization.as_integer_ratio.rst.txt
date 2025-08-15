@@ -1,0 +1,6 @@
+quantlib.processes.heston\_process.Discretization.as\_integer\_ratio
+====================================================================
+
+.. currentmodule:: quantlib.processes.heston_process
+
+.. automethod:: Discretization.as_integer_ratio

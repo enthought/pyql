@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.inflation\_helpers.YearOnYearInflationSwapHelper.latest\_date
+===============================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.inflation_helpers
+
+.. autoattribute:: YearOnYearInflationSwapHelper.latest_date

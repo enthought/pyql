@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.sabr\_swaption\_volatility\_cube.SabrSwaptionVolatilityCube.time\_from\_reference
+=============================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.sabr_swaption_volatility_cube
+
+.. automethod:: SabrSwaptionVolatilityCube.time_from_reference

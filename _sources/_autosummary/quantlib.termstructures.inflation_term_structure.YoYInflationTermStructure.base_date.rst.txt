@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation\_term\_structure.YoYInflationTermStructure.base\_date
+=======================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation_term_structure
+
+.. autoattribute:: YoYInflationTermStructure.base_date

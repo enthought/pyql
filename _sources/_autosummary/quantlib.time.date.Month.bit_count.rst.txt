@@ -1,0 +1,6 @@
+quantlib.time.date.Month.bit\_count
+===================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: Month.bit_count

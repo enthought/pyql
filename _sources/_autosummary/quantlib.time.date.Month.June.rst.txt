@@ -1,0 +1,6 @@
+quantlib.time.date.Month.June
+=============================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: Month.June

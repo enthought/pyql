@@ -1,0 +1,6 @@
+quantlib.exercise.AmericanExercise.last\_date
+=============================================
+
+.. currentmodule:: quantlib.exercise
+
+.. autoattribute:: AmericanExercise.last_date

@@ -1,0 +1,6 @@
+quantlib.indexes.regions.AustraliaRegion.name
+=============================================
+
+.. currentmodule:: quantlib.indexes.regions
+
+.. autoattribute:: AustraliaRegion.name

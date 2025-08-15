@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.payoff
+=======================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.payoff

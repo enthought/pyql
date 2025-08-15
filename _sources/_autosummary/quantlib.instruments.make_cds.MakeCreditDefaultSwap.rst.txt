@@ -1,33 +1,35 @@
-quantlib.instruments.make\_cds.MakeCreditDefaultSwap
-====================================================
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.make_cds.</div>
+   <div class="empty"></div>
+
+MakeCreditDefaultSwap
+===================================================
 
 .. currentmodule:: quantlib.instruments.make_cds
 
 .. autoclass:: MakeCreditDefaultSwap
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         MakeCreditDefaultSwap.__call__
+         MakeCreditDefaultSwap.with_cash_settlement_days
+         MakeCreditDefaultSwap.with_date_generation_rule
+         MakeCreditDefaultSwap.with_last_period_daycounter
+         MakeCreditDefaultSwap.with_nominal
+         MakeCreditDefaultSwap.with_pricing_engine
+         MakeCreditDefaultSwap.with_side
+         MakeCreditDefaultSwap.with_upfront_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~MakeCreditDefaultSwap.__init__
-      ~MakeCreditDefaultSwap.with_cash_settlement_days
-      ~MakeCreditDefaultSwap.with_date_generation_rule
-      ~MakeCreditDefaultSwap.with_last_period_daycounter
-      ~MakeCreditDefaultSwap.with_nominal
-      ~MakeCreditDefaultSwap.with_pricing_engine
-      ~MakeCreditDefaultSwap.with_side
-      ~MakeCreditDefaultSwap.with_upfront_rate
-   
-   
-
-   
-   
-   
+  
+  
+  

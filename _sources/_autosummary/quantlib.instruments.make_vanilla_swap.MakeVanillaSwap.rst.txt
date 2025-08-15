@@ -1,40 +1,42 @@
-quantlib.instruments.make\_vanilla\_swap.MakeVanillaSwap
-========================================================
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.make_vanilla_swap.</div>
+   <div class="empty"></div>
+
+MakeVanillaSwap
+======================================================
 
 .. currentmodule:: quantlib.instruments.make_vanilla_swap
 
 .. autoclass:: MakeVanillaSwap
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         MakeVanillaSwap.__call__
+         MakeVanillaSwap.receive_fixed
+         MakeVanillaSwap.with_discounting_term_structure
+         MakeVanillaSwap.with_effective_date
+         MakeVanillaSwap.with_fixed_leg_day_count
+         MakeVanillaSwap.with_fixed_leg_tenor
+         MakeVanillaSwap.with_floating_leg_day_count
+         MakeVanillaSwap.with_floating_leg_spread
+         MakeVanillaSwap.with_floating_leg_tenor
+         MakeVanillaSwap.with_nominal
+         MakeVanillaSwap.with_pricing_engine
+         MakeVanillaSwap.with_rule
+         MakeVanillaSwap.with_settlement_days
+         MakeVanillaSwap.with_termination_date
+         MakeVanillaSwap.with_type
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~MakeVanillaSwap.__init__
-      ~MakeVanillaSwap.receive_fixed
-      ~MakeVanillaSwap.with_discounting_term_structure
-      ~MakeVanillaSwap.with_effective_date
-      ~MakeVanillaSwap.with_fixed_leg_day_count
-      ~MakeVanillaSwap.with_fixed_leg_tenor
-      ~MakeVanillaSwap.with_floating_leg_day_count
-      ~MakeVanillaSwap.with_floating_leg_spread
-      ~MakeVanillaSwap.with_floating_leg_tenor
-      ~MakeVanillaSwap.with_nominal
-      ~MakeVanillaSwap.with_pricing_engine
-      ~MakeVanillaSwap.with_rule
-      ~MakeVanillaSwap.with_settlement_days
-      ~MakeVanillaSwap.with_termination_date
-      ~MakeVanillaSwap.with_type
-   
-   
-
-   
-   
-   
+  
+  
+  

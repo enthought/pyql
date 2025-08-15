@@ -1,0 +1,6 @@
+quantlib.indexes.ibor\_index.IborIndex.from\_name
+=================================================
+
+.. currentmodule:: quantlib.indexes.ibor_index
+
+.. automethod:: IborIndex.from_name

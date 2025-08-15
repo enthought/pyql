@@ -1,0 +1,6 @@
+quantlib.time.date.Date.from\_serial
+====================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: Date.from_serial

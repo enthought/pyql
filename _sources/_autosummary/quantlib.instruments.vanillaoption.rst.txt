@@ -4,28 +4,10 @@ quantlib.instruments.vanillaoption
 .. automodule:: quantlib.instruments.vanillaoption
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       VanillaOption
    
-   
-
-   
-   
-   
-
-
-

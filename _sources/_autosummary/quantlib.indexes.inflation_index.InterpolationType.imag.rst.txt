@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.InterpolationType.imag
+========================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. autoattribute:: InterpolationType.imag

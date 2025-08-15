@@ -1,0 +1,6 @@
+quantlib.models.calibration\_helper.CalibrationErrorType.as\_integer\_ratio
+===========================================================================
+
+.. currentmodule:: quantlib.models.calibration_helper
+
+.. automethod:: CalibrationErrorType.as_integer_ratio

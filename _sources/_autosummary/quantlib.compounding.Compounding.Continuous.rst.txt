@@ -1,0 +1,6 @@
+quantlib.compounding.Compounding.Continuous
+===========================================
+
+.. currentmodule:: quantlib.compounding
+
+.. autoattribute:: Compounding.Continuous

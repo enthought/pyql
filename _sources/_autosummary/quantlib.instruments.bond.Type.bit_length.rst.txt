@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Type.bit\_length
+==========================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. automethod:: Type.bit_length

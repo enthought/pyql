@@ -1,0 +1,6 @@
+quantlib.instruments.futures.FuturesType.\_\_len\_\_
+====================================================
+
+.. currentmodule:: quantlib.instruments.futures
+
+.. automethod:: FuturesType.__len__

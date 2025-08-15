@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.Call
+=======================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.Call

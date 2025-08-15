@@ -1,0 +1,6 @@
+quantlib.time\_grid.TimeGrid.from\_vector
+=========================================
+
+.. currentmodule:: quantlib.time_grid
+
+.. automethod:: TimeGrid.from_vector

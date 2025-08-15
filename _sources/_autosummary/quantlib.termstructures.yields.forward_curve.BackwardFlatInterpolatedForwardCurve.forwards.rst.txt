@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.BackwardFlatInterpolatedForwardCurve.forwards
+===========================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. autoattribute:: BackwardFlatInterpolatedForwardCurve.forwards

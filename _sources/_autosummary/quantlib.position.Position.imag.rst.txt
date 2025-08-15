@@ -1,0 +1,6 @@
+quantlib.position.Position.imag
+===============================
+
+.. currentmodule:: quantlib.position
+
+.. autoattribute:: Position.imag

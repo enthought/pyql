@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.usdlibor.USDLibor.maturity\_date
+======================================================
+
+.. currentmodule:: quantlib.indexes.ibor.usdlibor
+
+.. automethod:: USDLibor.maturity_date

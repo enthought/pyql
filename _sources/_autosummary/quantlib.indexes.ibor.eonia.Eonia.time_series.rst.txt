@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.eonia.Eonia.time\_series
+==============================================
+
+.. currentmodule:: quantlib.indexes.ibor.eonia
+
+.. autoattribute:: Eonia.time_series

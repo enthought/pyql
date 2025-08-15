@@ -4,30 +4,11 @@ quantlib.market
 .. automodule:: quantlib.market
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    conventions
    market
-

@@ -1,0 +1,6 @@
+quantlib.payoffs.PlainVanillaPayoff.\_\_call\_\_
+================================================
+
+.. currentmodule:: quantlib.payoffs
+
+.. automethod:: PlainVanillaPayoff.__call__

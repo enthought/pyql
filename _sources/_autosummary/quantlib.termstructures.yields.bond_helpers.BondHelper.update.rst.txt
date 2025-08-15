@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bond\_helpers.BondHelper.update
+==============================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bond_helpers
+
+.. automethod:: BondHelper.update

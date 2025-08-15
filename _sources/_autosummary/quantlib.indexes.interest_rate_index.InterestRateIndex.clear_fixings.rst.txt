@@ -1,0 +1,6 @@
+quantlib.indexes.interest\_rate\_index.InterestRateIndex.clear\_fixings
+=======================================================================
+
+.. currentmodule:: quantlib.indexes.interest_rate_index
+
+.. automethod:: InterestRateIndex.clear_fixings

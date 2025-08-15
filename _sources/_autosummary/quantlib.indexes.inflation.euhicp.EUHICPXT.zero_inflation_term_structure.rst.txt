@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.euhicp.EUHICPXT.zero\_inflation\_term\_structure
+===========================================================================
+
+.. currentmodule:: quantlib.indexes.inflation.euhicp
+
+.. automethod:: EUHICPXT.zero_inflation_term_structure

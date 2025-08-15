@@ -1,40 +1,39 @@
-quantlib.interest\_rate.InterestRate
-====================================
+.. raw:: html
+
+   <div class="prename">quantlib.interest_rate.</div>
+   <div class="empty"></div>
+
+InterestRate
+===================================
 
 .. currentmodule:: quantlib.interest_rate
 
 .. autoclass:: InterestRate
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         InterestRate.compound_factor
+         InterestRate.equivalent_rate
+         InterestRate.implied_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~InterestRate.__init__
-      ~InterestRate.compound_factor
-      ~InterestRate.equivalent_rate
-      ~InterestRate.implied_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~InterestRate.compounding
-      ~InterestRate.day_counter
-      ~InterestRate.frequency
-      ~InterestRate.rate
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         InterestRate.compounding
+         InterestRate.day_counter
+         InterestRate.frequency
+         InterestRate.rate
+  
+  

@@ -1,0 +1,6 @@
+quantlib.termstructures.yield\_term\_structure.YieldTermStructure.zero\_rate
+============================================================================
+
+.. currentmodule:: quantlib.termstructures.yield_term_structure
+
+.. automethod:: YieldTermStructure.zero_rate

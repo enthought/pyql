@@ -1,63 +1,62 @@
-quantlib.cashflows.overnight\_indexed\_coupon.OvernightIndexedCoupon
-====================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.overnight_indexed_coupon.</div>
+   <div class="empty"></div>
+
+OvernightIndexedCoupon
+==================================================================
 
 .. currentmodule:: quantlib.cashflows.overnight_indexed_coupon
 
 .. autoclass:: OvernightIndexedCoupon
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OvernightIndexedCoupon.accrued_amount
+         OvernightIndexedCoupon.accrued_days
+         OvernightIndexedCoupon.accrued_period
+         OvernightIndexedCoupon.dt
+         OvernightIndexedCoupon.fixing_dates
+         OvernightIndexedCoupon.has_occured
+         OvernightIndexedCoupon.index_fixings
+         OvernightIndexedCoupon.set_pricer
+         OvernightIndexedCoupon.value_dates
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~OvernightIndexedCoupon.__init__
-      ~OvernightIndexedCoupon.accrued_amount
-      ~OvernightIndexedCoupon.accrued_days
-      ~OvernightIndexedCoupon.accrued_period
-      ~OvernightIndexedCoupon.dt
-      ~OvernightIndexedCoupon.fixing_dates
-      ~OvernightIndexedCoupon.has_occured
-      ~OvernightIndexedCoupon.index_fixings
-      ~OvernightIndexedCoupon.set_pricer
-      ~OvernightIndexedCoupon.value_dates
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~OvernightIndexedCoupon.accrual_days
-      ~OvernightIndexedCoupon.accrual_end_date
-      ~OvernightIndexedCoupon.accrual_period
-      ~OvernightIndexedCoupon.accrual_start_date
-      ~OvernightIndexedCoupon.adjusted_fixing
-      ~OvernightIndexedCoupon.amount
-      ~OvernightIndexedCoupon.apply_observation_shift
-      ~OvernightIndexedCoupon.averaging_method
-      ~OvernightIndexedCoupon.convexity_adjustment
-      ~OvernightIndexedCoupon.date
-      ~OvernightIndexedCoupon.day_counter
-      ~OvernightIndexedCoupon.fixing_date
-      ~OvernightIndexedCoupon.fixing_days
-      ~OvernightIndexedCoupon.index
-      ~OvernightIndexedCoupon.index_fixing
-      ~OvernightIndexedCoupon.is_in_arrears
-      ~OvernightIndexedCoupon.lockout_days
-      ~OvernightIndexedCoupon.nominal
-      ~OvernightIndexedCoupon.rate
-      ~OvernightIndexedCoupon.reference_period_end
-      ~OvernightIndexedCoupon.reference_period_start
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OvernightIndexedCoupon.accrual_days
+         OvernightIndexedCoupon.accrual_end_date
+         OvernightIndexedCoupon.accrual_period
+         OvernightIndexedCoupon.accrual_start_date
+         OvernightIndexedCoupon.adjusted_fixing
+         OvernightIndexedCoupon.amount
+         OvernightIndexedCoupon.apply_observation_shift
+         OvernightIndexedCoupon.averaging_method
+         OvernightIndexedCoupon.convexity_adjustment
+         OvernightIndexedCoupon.date
+         OvernightIndexedCoupon.day_counter
+         OvernightIndexedCoupon.fixing_date
+         OvernightIndexedCoupon.fixing_days
+         OvernightIndexedCoupon.index
+         OvernightIndexedCoupon.index_fixing
+         OvernightIndexedCoupon.is_in_arrears
+         OvernightIndexedCoupon.lockout_days
+         OvernightIndexedCoupon.nominal
+         OvernightIndexedCoupon.rate
+         OvernightIndexedCoupon.reference_period_end
+         OvernightIndexedCoupon.reference_period_start
+  
+  

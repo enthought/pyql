@@ -1,0 +1,6 @@
+quantlib.time.date.TimeUnit.conjugate
+=====================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: TimeUnit.conjugate

@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_states.UnitedStates.NERC
+========================================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. autoattribute:: UnitedStates.NERC

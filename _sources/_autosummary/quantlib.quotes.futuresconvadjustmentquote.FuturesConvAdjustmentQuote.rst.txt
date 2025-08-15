@@ -1,39 +1,38 @@
-quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote
+.. raw:: html
+
+   <div class="prename">quantlib.quotes.futuresconvadjustmentquote.</div>
+   <div class="empty"></div>
+
+FuturesConvAdjustmentQuote
 =====================================================================
 
 .. currentmodule:: quantlib.quotes.futuresconvadjustmentquote
 
 .. autoclass:: FuturesConvAdjustmentQuote
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FuturesConvAdjustmentQuote.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~FuturesConvAdjustmentQuote.futures_value
-      ~FuturesConvAdjustmentQuote.imm_date
-      ~FuturesConvAdjustmentQuote.is_valid
-      ~FuturesConvAdjustmentQuote.mean_reversion
-      ~FuturesConvAdjustmentQuote.value
-      ~FuturesConvAdjustmentQuote.volatility
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FuturesConvAdjustmentQuote.futures_value
+         FuturesConvAdjustmentQuote.imm_date
+         FuturesConvAdjustmentQuote.is_valid
+         FuturesConvAdjustmentQuote.mean_reversion
+         FuturesConvAdjustmentQuote.value
+         FuturesConvAdjustmentQuote.volatility
+  
+  

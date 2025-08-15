@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.atm\_forward
+===================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Swaption.atm_forward

@@ -1,0 +1,6 @@
+quantlib.models.shortrate.twofactormodels.g2.G2.set\_params
+===========================================================
+
+.. currentmodule:: quantlib.models.shortrate.twofactormodels.g2
+
+.. automethod:: G2.set_params

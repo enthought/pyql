@@ -4,31 +4,12 @@ quantlib.indexes.inflation
 .. automodule:: quantlib.indexes.inflation
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    aucpi
    euhicp
    ukrpi
-

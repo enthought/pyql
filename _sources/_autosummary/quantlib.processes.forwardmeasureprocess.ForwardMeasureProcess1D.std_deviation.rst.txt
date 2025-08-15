@@ -1,0 +1,6 @@
+quantlib.processes.forwardmeasureprocess.ForwardMeasureProcess1D.std\_deviation
+===============================================================================
+
+.. currentmodule:: quantlib.processes.forwardmeasureprocess
+
+.. automethod:: ForwardMeasureProcess1D.std_deviation

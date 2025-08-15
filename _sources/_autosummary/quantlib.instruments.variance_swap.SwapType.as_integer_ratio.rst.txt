@@ -1,0 +1,6 @@
+quantlib.instruments.variance\_swap.SwapType.as\_integer\_ratio
+===============================================================
+
+.. currentmodule:: quantlib.instruments.variance_swap
+
+.. automethod:: SwapType.as_integer_ratio

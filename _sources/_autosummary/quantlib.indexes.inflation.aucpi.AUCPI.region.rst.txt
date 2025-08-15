@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.aucpi.AUCPI.region
+=============================================
+
+.. currentmodule:: quantlib.indexes.inflation.aucpi
+
+.. autoattribute:: AUCPI.region

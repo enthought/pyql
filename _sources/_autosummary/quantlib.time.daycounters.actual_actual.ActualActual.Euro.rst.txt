@@ -1,0 +1,6 @@
+quantlib.time.daycounters.actual\_actual.ActualActual.Euro
+==========================================================
+
+.. currentmodule:: quantlib.time.daycounters.actual_actual
+
+.. autoattribute:: ActualActual.Euro

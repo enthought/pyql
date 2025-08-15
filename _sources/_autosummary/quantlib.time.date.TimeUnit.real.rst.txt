@@ -1,0 +1,6 @@
+quantlib.time.date.TimeUnit.real
+================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: TimeUnit.real

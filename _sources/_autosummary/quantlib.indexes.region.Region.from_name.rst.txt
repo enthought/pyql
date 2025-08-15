@@ -1,0 +1,6 @@
+quantlib.indexes.region.Region.from\_name
+=========================================
+
+.. currentmodule:: quantlib.indexes.region
+
+.. automethod:: Region.from_name

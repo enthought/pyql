@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.rate\_helpers.DepositRateHelper.latest\_date
+===========================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.rate_helpers
+
+.. autoattribute:: DepositRateHelper.latest_date

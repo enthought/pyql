@@ -1,0 +1,6 @@
+quantlib.cashflows.duration.Duration.\_\_pow\_\_
+================================================
+
+.. currentmodule:: quantlib.cashflows.duration
+
+.. automethod:: Duration.__pow__

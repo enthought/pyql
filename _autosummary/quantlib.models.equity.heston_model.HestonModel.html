@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.models.equity.heston_model.HestonModel &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>HestonModel &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.models.equity.heston_model.HestonModelHelper" href="quantlib.models.equity.heston_model.HestonModelHelper.html" />
+    <link rel="next" title="quantlib.models.equity.heston_model.HestonModel.calibrate" href="quantlib.models.equity.heston_model.HestonModel.calibrate.html" />
     <link rel="prev" title="quantlib.models.equity.heston_model" href="quantlib.models.equity.heston_model.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,61 +34,35 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-models-equity-heston-model-hestonmodel">
-<h1>quantlib.models.equity.heston_model.HestonModel<a class="headerlink" href="#quantlib-models-equity-heston-model-hestonmodel" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.models.equity.heston_model.</div>
+<div class="empty"></div><section id="hestonmodel">
+<h1>HestonModel<a class="headerlink" href="#hestonmodel" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.models.equity.heston_model.HestonModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">HestonModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">HestonProcess</span> <span class="pre">process</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.equity.heston_model.HestonModel" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.equity.heston_model.HestonModel.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.equity.heston_model.HestonModel.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>kappa</strong></dt><dd></dd>
+<dt><strong>rho</strong></dt><dd></dd>
+<dt><strong>sigma</strong></dt><dd></dd>
+<dt><strong>theta</strong></dt><dd></dd>
+<dt><strong>v0</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.models.equity.heston_model.HestonModel.__init__" title="quantlib.models.equity.heston_model.HestonModel.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.equity.heston_model.HestonModel.calibrate.html#quantlib.models.equity.heston_model.HestonModel.calibrate" title="quantlib.models.equity.heston_model.HestonModel.calibrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibrate</span></code></a>(self, list helpers, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.models.equity.heston_model.HestonModel.calibrate" title="quantlib.models.equity.heston_model.HestonModel.calibrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibrate</span></code></a>(self, list helpers, ...)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.models.equity.heston_model.HestonModel.process" title="quantlib.models.equity.heston_model.HestonModel.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>(self)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.equity.heston_model.HestonModel.process.html#quantlib.models.equity.heston_model.HestonModel.process" title="quantlib.models.equity.heston_model.HestonModel.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rho</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sigma</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">theta</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">v0</span></code></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.equity.heston_model.HestonModel.calibrate">
-<span class="sig-name descname"><span class="pre">calibrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">helpers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">OptimizationMethod</span> <span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">EndCriteria</span> <span class="pre">end_criteria</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Constraint</span> <span class="pre">constraint=Constraint()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector[Real]</span> <span class="pre">weights=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector[bool]</span> <span class="pre">fix_parameters=[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.equity.heston_model.HestonModel.calibrate" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.equity.heston_model.HestonModel.process">
-<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.equity.heston_model.HestonModel.process" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </section>
@@ -133,7 +107,7 @@
   <li><a href="quantlib.models.equity.html">quantlib.models.equity</a><ul>
   <li><a href="quantlib.models.equity.heston_model.html">quantlib.models.equity.heston_model</a><ul>
       <li>Previous: <a href="quantlib.models.equity.heston_model.html" title="previous chapter">quantlib.models.equity.heston_model</a></li>
-      <li>Next: <a href="quantlib.models.equity.heston_model.HestonModelHelper.html" title="next chapter">quantlib.models.equity.heston_model.HestonModelHelper</a></li>
+      <li>Next: <a href="quantlib.models.equity.heston_model.HestonModel.calibrate.html" title="next chapter">quantlib.models.equity.heston_model.HestonModel.calibrate</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

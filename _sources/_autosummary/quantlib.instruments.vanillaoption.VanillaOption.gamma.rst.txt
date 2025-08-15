@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.gamma
+======================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.gamma

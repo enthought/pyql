@@ -1,47 +1,54 @@
-quantlib.instruments.swaption.Method
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.swaption.</div>
+   <div class="empty"></div>
+
+Method
 ====================================
 
 .. currentmodule:: quantlib.instruments.swaption
 
 .. autoclass:: Method
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Method.__mul__
+         Method.__pow__
+         Method.conjugate
+         Method.bit_length
+         Method.bit_count
+         Method.to_bytes
+         Method.from_bytes
+         Method.as_integer_ratio
+         Method.__getitem__
+         Method.__len__
+      
+         Method.__len__
+         Method.__getitem__
+         Method.__mul__
+         Method.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Method.conjugate
-      ~Method.bit_length
-      ~Method.bit_count
-      ~Method.to_bytes
-      ~Method.from_bytes
-      ~Method.as_integer_ratio
-      ~Method.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Method.real
-      ~Method.imag
-      ~Method.numerator
-      ~Method.denominator
-      ~Method.PhysicalOTC
-      ~Method.PhysicalCleared
-      ~Method.CollateralizedCashPrice
-      ~Method.ParYieldCurve
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Method.real
+         Method.imag
+         Method.numerator
+         Method.denominator
+         Method.PhysicalOTC
+         Method.PhysicalCleared
+         Method.CollateralizedCashPrice
+         Method.ParYieldCurve
+  
+  

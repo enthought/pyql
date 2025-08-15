@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_curve.LinearInterpolatedZeroCurve.zero\_rates
+==================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_curve
+
+.. autoattribute:: LinearInterpolatedZeroCurve.zero_rates

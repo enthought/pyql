@@ -1,0 +1,6 @@
+quantlib.time.date.Weekday.from\_bytes
+======================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: Weekday.from_bytes

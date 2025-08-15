@@ -1,0 +1,6 @@
+quantlib.time.daycounters.thirty360.Convention.German
+=====================================================
+
+.. currentmodule:: quantlib.time.daycounters.thirty360
+
+.. autoattribute:: Convention.German

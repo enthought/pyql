@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.overnightindexfutureratehelper.OvernightIndexFutureHelper.implied\_quote
+=======================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.overnightindexfutureratehelper
+
+.. autoattribute:: OvernightIndexFutureHelper.implied_quote

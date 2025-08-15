@@ -4,28 +4,10 @@ quantlib.pricingengines.swaption.fdhullwhite\_swaption\_engine
 .. automodule:: quantlib.pricingengines.swaption.fdhullwhite_swaption_engine
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       FdHullWhiteSwaptionEngine
    
-   
-
-   
-   
-   
-
-
-

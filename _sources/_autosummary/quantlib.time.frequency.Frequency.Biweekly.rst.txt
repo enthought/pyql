@@ -1,0 +1,6 @@
+quantlib.time.frequency.Frequency.Biweekly
+==========================================
+
+.. currentmodule:: quantlib.time.frequency
+
+.. autoattribute:: Frequency.Biweekly

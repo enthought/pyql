@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.euribor.Euribor.family\_name
+==================================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. autoattribute:: Euribor.family_name

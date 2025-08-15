@@ -1,0 +1,6 @@
+quantlib.time.date.Period.length
+================================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: Period.length

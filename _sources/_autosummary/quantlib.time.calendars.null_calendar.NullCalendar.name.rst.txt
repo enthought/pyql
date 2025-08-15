@@ -1,0 +1,6 @@
+quantlib.time.calendars.null\_calendar.NullCalendar.name
+========================================================
+
+.. currentmodule:: quantlib.time.calendars.null_calendar
+
+.. autoattribute:: NullCalendar.name

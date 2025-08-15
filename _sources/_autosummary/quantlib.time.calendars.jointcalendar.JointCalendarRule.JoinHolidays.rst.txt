@@ -1,0 +1,6 @@
+quantlib.time.calendars.jointcalendar.JointCalendarRule.JoinHolidays
+====================================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. autoattribute:: JointCalendarRule.JoinHolidays

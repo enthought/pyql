@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.flat\_forward.FlatForward.discount
+=================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.flat_forward
+
+.. automethod:: FlatForward.discount

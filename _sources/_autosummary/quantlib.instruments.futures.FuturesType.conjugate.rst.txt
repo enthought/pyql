@@ -1,0 +1,6 @@
+quantlib.instruments.futures.FuturesType.conjugate
+==================================================
+
+.. currentmodule:: quantlib.instruments.futures
+
+.. automethod:: FuturesType.conjugate

@@ -1,43 +1,42 @@
-quantlib.termstructures.default\_term\_structure.DefaultProbabilityTermStructure
-================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.default_term_structure.</div>
+   <div class="empty"></div>
+
+DefaultProbabilityTermStructure
+==============================================================================
 
 .. currentmodule:: quantlib.termstructures.default_term_structure
 
 .. autoclass:: DefaultProbabilityTermStructure
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         DefaultProbabilityTermStructure.hazard_rate
+         DefaultProbabilityTermStructure.survival_probability
+         DefaultProbabilityTermStructure.time_from_reference
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~DefaultProbabilityTermStructure.__init__
-      ~DefaultProbabilityTermStructure.hazard_rate
-      ~DefaultProbabilityTermStructure.survival_probability
-      ~DefaultProbabilityTermStructure.time_from_reference
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~DefaultProbabilityTermStructure.day_counter
-      ~DefaultProbabilityTermStructure.jump_dates
-      ~DefaultProbabilityTermStructure.jump_times
-      ~DefaultProbabilityTermStructure.max_date
-      ~DefaultProbabilityTermStructure.max_time
-      ~DefaultProbabilityTermStructure.reference_date
-      ~DefaultProbabilityTermStructure.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         DefaultProbabilityTermStructure.day_counter
+         DefaultProbabilityTermStructure.jump_dates
+         DefaultProbabilityTermStructure.jump_times
+         DefaultProbabilityTermStructure.max_date
+         DefaultProbabilityTermStructure.max_time
+         DefaultProbabilityTermStructure.reference_date
+         DefaultProbabilityTermStructure.settlement_days
+  
+  

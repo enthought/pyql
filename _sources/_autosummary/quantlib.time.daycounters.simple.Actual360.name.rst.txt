@@ -1,0 +1,6 @@
+quantlib.time.daycounters.simple.Actual360.name
+===============================================
+
+.. currentmodule:: quantlib.time.daycounters.simple
+
+.. autoattribute:: Actual360.name

@@ -1,0 +1,6 @@
+quantlib.time.daycounters.actual\_actual.ActualActual.year\_fraction
+====================================================================
+
+.. currentmodule:: quantlib.time.daycounters.actual_actual
+
+.. automethod:: ActualActual.year_fraction

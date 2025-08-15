@@ -1,0 +1,6 @@
+quantlib.time.date.Weekday.bit\_count
+=====================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: Weekday.bit_count

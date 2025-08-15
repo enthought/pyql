@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.zerocouponbond.ZeroCouponBond.set\_pricing\_engine
+=============================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.zerocouponbond
+
+.. automethod:: ZeroCouponBond.set_pricing_engine

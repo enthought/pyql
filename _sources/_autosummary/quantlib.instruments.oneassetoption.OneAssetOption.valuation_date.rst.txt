@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.valuation\_date
+==================================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.valuation_date

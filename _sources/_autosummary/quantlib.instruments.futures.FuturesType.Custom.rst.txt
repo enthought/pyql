@@ -1,0 +1,6 @@
+quantlib.instruments.futures.FuturesType.Custom
+===============================================
+
+.. currentmodule:: quantlib.instruments.futures
+
+.. autoattribute:: FuturesType.Custom

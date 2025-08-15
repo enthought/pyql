@@ -1,0 +1,6 @@
+quantlib.compounding.Compounding.\_\_mul\_\_
+============================================
+
+.. currentmodule:: quantlib.compounding
+
+.. automethod:: Compounding.__mul__

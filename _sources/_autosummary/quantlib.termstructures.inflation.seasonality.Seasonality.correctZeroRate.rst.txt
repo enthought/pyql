@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.seasonality.Seasonality.correctZeroRate
+=========================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.seasonality
+
+.. automethod:: Seasonality.correctZeroRate

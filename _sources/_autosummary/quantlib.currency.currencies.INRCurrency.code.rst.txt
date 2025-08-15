@@ -1,0 +1,6 @@
+quantlib.currency.currencies.INRCurrency.code
+=============================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: INRCurrency.code

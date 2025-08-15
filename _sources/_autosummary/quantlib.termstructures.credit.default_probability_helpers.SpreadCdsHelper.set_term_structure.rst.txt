@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.default\_probability\_helpers.SpreadCdsHelper.set\_term\_structure
+=================================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.default_probability_helpers
+
+.. automethod:: SpreadCdsHelper.set_term_structure

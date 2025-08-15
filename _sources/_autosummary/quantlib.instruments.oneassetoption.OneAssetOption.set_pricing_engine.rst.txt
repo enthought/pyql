@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.set\_pricing\_engine
+=======================================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. automethod:: OneAssetOption.set_pricing_engine

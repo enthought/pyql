@@ -1,0 +1,6 @@
+quantlib.time.daycounters.simple.OneDayCounter.from\_name
+=========================================================
+
+.. currentmodule:: quantlib.time.daycounters.simple
+
+.. automethod:: OneDayCounter.from_name

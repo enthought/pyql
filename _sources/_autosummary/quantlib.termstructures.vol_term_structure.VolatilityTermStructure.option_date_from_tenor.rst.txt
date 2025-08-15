@@ -1,0 +1,6 @@
+quantlib.termstructures.vol\_term\_structure.VolatilityTermStructure.option\_date\_from\_tenor
+==============================================================================================
+
+.. currentmodule:: quantlib.termstructures.vol_term_structure
+
+.. automethod:: VolatilityTermStructure.option_date_from_tenor

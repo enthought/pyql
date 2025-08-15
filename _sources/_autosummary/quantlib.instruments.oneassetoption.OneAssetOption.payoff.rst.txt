@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.payoff
+=========================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.payoff

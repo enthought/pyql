@@ -1,32 +1,36 @@
-quantlib.cashflows.fixed\_rate\_coupon.FixedRateLeg
-===================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.fixed_rate_coupon.</div>
+   <div class="empty"></div>
+
+FixedRateLeg
+=================================================
 
 .. currentmodule:: quantlib.cashflows.fixed_rate_coupon
 
 .. autoclass:: FixedRateLeg
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FixedRateLeg.__call__
+         FixedRateLeg.__len__
+         FixedRateLeg.items
+         FixedRateLeg.with_coupon_rates
+         FixedRateLeg.with_last_period_day_counter
+         FixedRateLeg.with_notional
+         FixedRateLeg.with_payment_adjustment
+         FixedRateLeg.with_payment_calendar
+      
+         FixedRateLeg.__len__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FixedRateLeg.__init__
-      ~FixedRateLeg.items
-      ~FixedRateLeg.with_coupon_rates
-      ~FixedRateLeg.with_last_period_day_counter
-      ~FixedRateLeg.with_notional
-      ~FixedRateLeg.with_payment_adjustment
-      ~FixedRateLeg.with_payment_calendar
-   
-   
-
-   
-   
-   
+  
+  
+  

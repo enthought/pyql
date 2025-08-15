@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.piecewise\_default\_curve.PiecewiseDefaultCurve.hazard\_rate
+===========================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.piecewise_default_curve
+
+.. automethod:: PiecewiseDefaultCurve.hazard_rate

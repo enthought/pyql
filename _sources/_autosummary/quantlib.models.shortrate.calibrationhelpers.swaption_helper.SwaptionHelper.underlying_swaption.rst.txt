@@ -1,0 +1,6 @@
+quantlib.models.shortrate.calibrationhelpers.swaption\_helper.SwaptionHelper.underlying\_swaption
+=================================================================================================
+
+.. currentmodule:: quantlib.models.shortrate.calibrationhelpers.swaption_helper
+
+.. automethod:: SwaptionHelper.underlying_swaption

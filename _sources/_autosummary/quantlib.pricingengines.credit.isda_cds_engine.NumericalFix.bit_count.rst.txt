@@ -1,0 +1,6 @@
+quantlib.pricingengines.credit.isda\_cds\_engine.NumericalFix.bit\_count
+========================================================================
+
+.. currentmodule:: quantlib.pricingengines.credit.isda_cds_engine
+
+.. automethod:: NumericalFix.bit_count

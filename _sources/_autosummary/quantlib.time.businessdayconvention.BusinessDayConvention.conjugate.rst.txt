@@ -1,0 +1,6 @@
+quantlib.time.businessdayconvention.BusinessDayConvention.conjugate
+===================================================================
+
+.. currentmodule:: quantlib.time.businessdayconvention
+
+.. automethod:: BusinessDayConvention.conjugate

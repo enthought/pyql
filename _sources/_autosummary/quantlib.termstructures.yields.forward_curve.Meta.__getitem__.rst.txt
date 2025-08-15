@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.Meta.\_\_getitem\_\_
+==================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. automethod:: Meta.__getitem__

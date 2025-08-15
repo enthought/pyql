@@ -1,0 +1,6 @@
+quantlib.default.Protection.denominator
+=======================================
+
+.. currentmodule:: quantlib.default
+
+.. autoattribute:: Protection.denominator

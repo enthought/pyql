@@ -1,39 +1,38 @@
-quantlib.exercise.EuropeanExercise
+.. raw:: html
+
+   <div class="prename">quantlib.exercise.</div>
+   <div class="empty"></div>
+
+EuropeanExercise
 ==================================
 
 .. currentmodule:: quantlib.exercise
 
 .. autoclass:: EuropeanExercise
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         EuropeanExercise.dates
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~EuropeanExercise.__init__
-      ~EuropeanExercise.dates
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~EuropeanExercise.American
-      ~EuropeanExercise.Bermudan
-      ~EuropeanExercise.European
-      ~EuropeanExercise.last_date
-      ~EuropeanExercise.type
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         EuropeanExercise.American
+         EuropeanExercise.Bermudan
+         EuropeanExercise.European
+         EuropeanExercise.last_date
+         EuropeanExercise.type
+  
+  

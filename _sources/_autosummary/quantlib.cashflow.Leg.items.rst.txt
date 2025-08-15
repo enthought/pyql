@@ -1,0 +1,6 @@
+quantlib.cashflow.Leg.items
+===========================
+
+.. currentmodule:: quantlib.cashflow
+
+.. automethod:: Leg.items

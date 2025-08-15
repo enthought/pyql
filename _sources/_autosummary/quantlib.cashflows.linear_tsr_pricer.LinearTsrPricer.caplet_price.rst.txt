@@ -1,0 +1,6 @@
+quantlib.cashflows.linear\_tsr\_pricer.LinearTsrPricer.caplet\_price
+====================================================================
+
+.. currentmodule:: quantlib.cashflows.linear_tsr_pricer
+
+.. automethod:: LinearTsrPricer.caplet_price

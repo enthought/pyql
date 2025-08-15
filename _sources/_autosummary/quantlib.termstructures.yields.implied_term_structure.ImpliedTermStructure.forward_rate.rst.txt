@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.implied\_term\_structure.ImpliedTermStructure.forward\_rate
+==========================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.implied_term_structure
+
+.. automethod:: ImpliedTermStructure.forward_rate

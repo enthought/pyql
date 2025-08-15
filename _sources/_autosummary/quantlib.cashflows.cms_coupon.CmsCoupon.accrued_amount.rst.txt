@@ -1,0 +1,6 @@
+quantlib.cashflows.cms\_coupon.CmsCoupon.accrued\_amount
+========================================================
+
+.. currentmodule:: quantlib.cashflows.cms_coupon
+
+.. automethod:: CmsCoupon.accrued_amount

@@ -1,0 +1,6 @@
+quantlib.payoffs.Payoff.\_\_call\_\_
+====================================
+
+.. currentmodule:: quantlib.payoffs
+
+.. automethod:: Payoff.__call__

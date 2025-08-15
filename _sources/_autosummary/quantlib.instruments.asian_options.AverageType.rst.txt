@@ -1,45 +1,52 @@
-quantlib.instruments.asian\_options.AverageType
-===============================================
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.asian_options.</div>
+   <div class="empty"></div>
+
+AverageType
+==============================================
 
 .. currentmodule:: quantlib.instruments.asian_options
 
 .. autoclass:: AverageType
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         AverageType.__mul__
+         AverageType.__pow__
+         AverageType.conjugate
+         AverageType.bit_length
+         AverageType.bit_count
+         AverageType.to_bytes
+         AverageType.from_bytes
+         AverageType.as_integer_ratio
+         AverageType.__getitem__
+         AverageType.__len__
+      
+         AverageType.__len__
+         AverageType.__getitem__
+         AverageType.__mul__
+         AverageType.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~AverageType.conjugate
-      ~AverageType.bit_length
-      ~AverageType.bit_count
-      ~AverageType.to_bytes
-      ~AverageType.from_bytes
-      ~AverageType.as_integer_ratio
-      ~AverageType.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~AverageType.real
-      ~AverageType.imag
-      ~AverageType.numerator
-      ~AverageType.denominator
-      ~AverageType.Arithmetic
-      ~AverageType.Geometric
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         AverageType.real
+         AverageType.imag
+         AverageType.numerator
+         AverageType.denominator
+         AverageType.Arithmetic
+         AverageType.Geometric
+  
+  

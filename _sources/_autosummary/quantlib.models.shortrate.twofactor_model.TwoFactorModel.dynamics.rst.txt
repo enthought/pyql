@@ -1,0 +1,6 @@
+quantlib.models.shortrate.twofactor\_model.TwoFactorModel.dynamics
+==================================================================
+
+.. currentmodule:: quantlib.models.shortrate.twofactor_model
+
+.. autoattribute:: TwoFactorModel.dynamics

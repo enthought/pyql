@@ -1,43 +1,42 @@
-quantlib.termstructures.volatility.equityfx.black\_constant\_vol.BlackConstantVol
-=================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.volatility.equityfx.black_constant_vol.</div>
+   <div class="empty"></div>
+
+BlackConstantVol
+===============================================================================
 
 .. currentmodule:: quantlib.termstructures.volatility.equityfx.black_constant_vol
 
 .. autoclass:: BlackConstantVol
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BlackConstantVol.blackForwardVariance
+         BlackConstantVol.blackForwardVol
+         BlackConstantVol.blackVariance
+         BlackConstantVol.blackVol
+         BlackConstantVol.option_date_from_tenor
+         BlackConstantVol.time_from_reference
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BlackConstantVol.__init__
-      ~BlackConstantVol.blackForwardVariance
-      ~BlackConstantVol.blackForwardVol
-      ~BlackConstantVol.blackVariance
-      ~BlackConstantVol.blackVol
-      ~BlackConstantVol.option_date_from_tenor
-      ~BlackConstantVol.time_from_reference
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~BlackConstantVol.calendar
-      ~BlackConstantVol.extrapolation
-      ~BlackConstantVol.reference_date
-      ~BlackConstantVol.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BlackConstantVol.calendar
+         BlackConstantVol.extrapolation
+         BlackConstantVol.reference_date
+         BlackConstantVol.settlement_days
+  
+  

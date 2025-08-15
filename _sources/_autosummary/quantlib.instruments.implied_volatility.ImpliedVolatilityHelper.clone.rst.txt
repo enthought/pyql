@@ -1,0 +1,6 @@
+quantlib.instruments.implied\_volatility.ImpliedVolatilityHelper.clone
+======================================================================
+
+.. currentmodule:: quantlib.instruments.implied_volatility
+
+.. automethod:: ImpliedVolatilityHelper.clone

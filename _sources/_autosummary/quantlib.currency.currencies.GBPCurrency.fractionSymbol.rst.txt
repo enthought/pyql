@@ -1,0 +1,6 @@
+quantlib.currency.currencies.GBPCurrency.fractionSymbol
+=======================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: GBPCurrency.fractionSymbol

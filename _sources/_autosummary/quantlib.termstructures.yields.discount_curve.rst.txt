@@ -4,20 +4,10 @@ quantlib.termstructures.yields.discount\_curve
 .. automodule:: quantlib.termstructures.yields.discount_curve
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       BackwardFlatInterpolatedDiscountCurve
       CubicInterpolatedDiscountCurve
@@ -27,11 +17,3 @@ quantlib.termstructures.yields.discount\_curve
       LogLinearInterpolatedDiscountCurve
       Meta
    
-   
-
-   
-   
-   
-
-
-

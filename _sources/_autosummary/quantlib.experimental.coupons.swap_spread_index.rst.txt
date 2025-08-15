@@ -4,28 +4,10 @@ quantlib.experimental.coupons.swap\_spread\_index
 .. automodule:: quantlib.experimental.coupons.swap_spread_index
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       SwapSpreadIndex
    
-   
-
-   
-   
-   
-
-
-

@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.InterpolationType.imag
+=========================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. autoattribute:: InterpolationType.imag

@@ -4,28 +4,10 @@ quantlib.instruments.make\_ois
 .. automodule:: quantlib.instruments.make_ois
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       MakeOIS
    
-   
-
-   
-   
-   
-
-
-

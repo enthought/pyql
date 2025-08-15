@@ -1,37 +1,37 @@
-quantlib.math.matrix.Matrix
+.. raw:: html
+
+   <div class="prename">quantlib.math.matrix.</div>
+   <div class="empty"></div>
+
+Matrix
 ===========================
 
 .. currentmodule:: quantlib.math.matrix
 
 .. autoclass:: Matrix
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Matrix.__getitem__
+         Matrix.from_ndarray
+         Matrix.to_ndarray
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Matrix.__init__
-      ~Matrix.from_ndarray
-      ~Matrix.to_ndarray
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Matrix.columns
-      ~Matrix.rows
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Matrix.columns
+         Matrix.rows
+  
+  

@@ -1,0 +1,6 @@
+quantlib.time.frequency.Frequency.Once
+======================================
+
+.. currentmodule:: quantlib.time.frequency
+
+.. autoattribute:: Frequency.Once

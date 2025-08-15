@@ -1,0 +1,6 @@
+quantlib.time.calendars.germany.Market.conjugate
+================================================
+
+.. currentmodule:: quantlib.time.calendars.germany
+
+.. automethod:: Market.conjugate

@@ -1,0 +1,6 @@
+quantlib.currency.currencies.INRCurrency.fractionsPerUnit
+=========================================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: INRCurrency.fractionsPerUnit

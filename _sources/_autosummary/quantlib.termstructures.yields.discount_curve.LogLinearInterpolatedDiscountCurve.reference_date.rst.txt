@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.discount\_curve.LogLinearInterpolatedDiscountCurve.reference\_date
+=================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.discount_curve
+
+.. autoattribute:: LogLinearInterpolatedDiscountCurve.reference_date

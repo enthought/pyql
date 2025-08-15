@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.heston\_black\_vol\_surface.HestonBlackVolSurface.blackForwardVol
+=============================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.heston_black_vol_surface
+
+.. automethod:: HestonBlackVolSurface.blackForwardVol

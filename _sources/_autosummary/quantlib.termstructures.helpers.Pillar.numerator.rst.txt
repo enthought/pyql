@@ -1,0 +1,6 @@
+quantlib.termstructures.helpers.Pillar.numerator
+================================================
+
+.. currentmodule:: quantlib.termstructures.helpers
+
+.. autoattribute:: Pillar.numerator

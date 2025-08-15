@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.sofr.Sofr.business\_day\_convention
+=========================================================
+
+.. currentmodule:: quantlib.indexes.ibor.sofr
+
+.. autoattribute:: Sofr.business_day_convention

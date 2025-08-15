@@ -1,0 +1,6 @@
+quantlib.indexes.swap\_index.SwapIndex.forwarding\_term\_structure
+==================================================================
+
+.. currentmodule:: quantlib.indexes.swap_index
+
+.. autoattribute:: SwapIndex.forwarding_term_structure

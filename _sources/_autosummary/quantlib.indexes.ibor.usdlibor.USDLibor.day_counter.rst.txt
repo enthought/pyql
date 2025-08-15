@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.usdlibor.USDLibor.day\_counter
+====================================================
+
+.. currentmodule:: quantlib.indexes.ibor.usdlibor
+
+.. autoattribute:: USDLibor.day_counter

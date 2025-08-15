@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.euribor.Euribor.time\_series
+==================================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. autoattribute:: Euribor.time_series

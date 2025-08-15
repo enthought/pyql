@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.aucpi.YYAUCPI.availability\_lag
+==========================================================
+
+.. currentmodule:: quantlib.indexes.inflation.aucpi
+
+.. autoattribute:: YYAUCPI.availability_lag

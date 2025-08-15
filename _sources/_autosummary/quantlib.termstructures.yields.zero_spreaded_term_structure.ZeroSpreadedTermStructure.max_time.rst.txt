@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.zero\_spreaded\_term\_structure.ZeroSpreadedTermStructure.max\_time
+==================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.zero_spreaded_term_structure
+
+.. autoattribute:: ZeroSpreadedTermStructure.max_time

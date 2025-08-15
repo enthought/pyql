@@ -1,0 +1,6 @@
+quantlib.time.date.Date.day
+===========================
+
+.. currentmodule:: quantlib.time.date
+
+.. autoattribute:: Date.day

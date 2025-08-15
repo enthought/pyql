@@ -1,0 +1,6 @@
+quantlib.time.calendars.united\_states.Market.conjugate
+=======================================================
+
+.. currentmodule:: quantlib.time.calendars.united_states
+
+.. automethod:: Market.conjugate

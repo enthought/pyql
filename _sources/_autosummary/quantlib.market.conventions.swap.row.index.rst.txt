@@ -1,0 +1,6 @@
+quantlib.market.conventions.swap.row.index
+==========================================
+
+.. currentmodule:: quantlib.market.conventions.swap
+
+.. automethod:: row.index

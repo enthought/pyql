@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Type.Cash
+=======================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Type.Cash

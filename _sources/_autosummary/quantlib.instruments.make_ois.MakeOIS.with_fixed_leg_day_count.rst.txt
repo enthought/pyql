@@ -1,0 +1,6 @@
+quantlib.instruments.make\_ois.MakeOIS.with\_fixed\_leg\_day\_count
+===================================================================
+
+.. currentmodule:: quantlib.instruments.make_ois
+
+.. automethod:: MakeOIS.with_fixed_leg_day_count

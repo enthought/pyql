@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.ukrpi.UKRPI.name
+===========================================
+
+.. currentmodule:: quantlib.indexes.inflation.ukrpi
+
+.. autoattribute:: UKRPI.name

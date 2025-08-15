@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.swap\_spread\_index.SwapSpreadIndex.time\_series
+==============================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.swap_spread_index
+
+.. autoattribute:: SwapSpreadIndex.time_series

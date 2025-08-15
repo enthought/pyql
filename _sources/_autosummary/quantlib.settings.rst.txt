@@ -4,29 +4,11 @@ quantlib.settings
 .. automodule:: quantlib.settings
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       DateProxy
       Settings
    
-   
-
-   
-   
-   
-
-
-

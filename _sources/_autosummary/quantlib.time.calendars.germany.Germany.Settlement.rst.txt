@@ -1,0 +1,6 @@
+quantlib.time.calendars.germany.Germany.Settlement
+==================================================
+
+.. currentmodule:: quantlib.time.calendars.germany
+
+.. autoattribute:: Germany.Settlement

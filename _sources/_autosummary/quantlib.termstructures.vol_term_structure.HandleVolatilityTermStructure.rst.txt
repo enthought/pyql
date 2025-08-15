@@ -1,27 +1,28 @@
-quantlib.termstructures.vol\_term\_structure.HandleVolatilityTermStructure
-==========================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.vol_term_structure.</div>
+   <div class="empty"></div>
+
+HandleVolatilityTermStructure
+========================================================================
 
 .. currentmodule:: quantlib.termstructures.vol_term_structure
 
 .. autoclass:: HandleVolatilityTermStructure
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HandleVolatilityTermStructure.link_to
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~HandleVolatilityTermStructure.__init__
-      ~HandleVolatilityTermStructure.link_to
-   
-   
-
-   
-   
-   
+  
+  
+  

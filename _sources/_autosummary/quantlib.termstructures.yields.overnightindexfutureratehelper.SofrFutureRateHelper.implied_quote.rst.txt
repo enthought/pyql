@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.overnightindexfutureratehelper.SofrFutureRateHelper.implied\_quote
+=================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.overnightindexfutureratehelper
+
+.. autoattribute:: SofrFutureRateHelper.implied_quote

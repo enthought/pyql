@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaswap.VanillaSwap.type
+=================================================
+
+.. currentmodule:: quantlib.instruments.vanillaswap
+
+.. autoattribute:: VanillaSwap.type

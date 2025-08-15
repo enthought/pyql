@@ -1,0 +1,6 @@
+quantlib.time.calendars.jointcalendar.JointCalendar.end\_of\_month
+==================================================================
+
+.. currentmodule:: quantlib.time.calendars.jointcalendar
+
+.. automethod:: JointCalendar.end_of_month

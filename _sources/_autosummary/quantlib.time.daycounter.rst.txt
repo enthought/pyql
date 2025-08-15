@@ -4,28 +4,10 @@ quantlib.time.daycounter
 .. automodule:: quantlib.time.daycounter
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       DayCounter
    
-   
-
-   
-   
-   
-
-
-

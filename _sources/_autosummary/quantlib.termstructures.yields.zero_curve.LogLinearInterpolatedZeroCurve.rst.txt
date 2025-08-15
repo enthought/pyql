@@ -1,48 +1,47 @@
-quantlib.termstructures.yields.zero\_curve.LogLinearInterpolatedZeroCurve
-=========================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.zero_curve.</div>
+   <div class="empty"></div>
+
+LogLinearInterpolatedZeroCurve
+========================================================================
 
 .. currentmodule:: quantlib.termstructures.yields.zero_curve
 
 .. autoclass:: LogLinearInterpolatedZeroCurve
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LogLinearInterpolatedZeroCurve.discount
+         LogLinearInterpolatedZeroCurve.forward_rate
+         LogLinearInterpolatedZeroCurve.time_from_reference
+         LogLinearInterpolatedZeroCurve.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~LogLinearInterpolatedZeroCurve.__init__
-      ~LogLinearInterpolatedZeroCurve.discount
-      ~LogLinearInterpolatedZeroCurve.forward_rate
-      ~LogLinearInterpolatedZeroCurve.time_from_reference
-      ~LogLinearInterpolatedZeroCurve.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~LogLinearInterpolatedZeroCurve.data
-      ~LogLinearInterpolatedZeroCurve.dates
-      ~LogLinearInterpolatedZeroCurve.day_counter
-      ~LogLinearInterpolatedZeroCurve.extrapolation
-      ~LogLinearInterpolatedZeroCurve.max_date
-      ~LogLinearInterpolatedZeroCurve.max_time
-      ~LogLinearInterpolatedZeroCurve.nodes
-      ~LogLinearInterpolatedZeroCurve.reference_date
-      ~LogLinearInterpolatedZeroCurve.settlement_days
-      ~LogLinearInterpolatedZeroCurve.times
-      ~LogLinearInterpolatedZeroCurve.zero_rates
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         LogLinearInterpolatedZeroCurve.data
+         LogLinearInterpolatedZeroCurve.dates
+         LogLinearInterpolatedZeroCurve.day_counter
+         LogLinearInterpolatedZeroCurve.extrapolation
+         LogLinearInterpolatedZeroCurve.max_date
+         LogLinearInterpolatedZeroCurve.max_time
+         LogLinearInterpolatedZeroCurve.nodes
+         LogLinearInterpolatedZeroCurve.reference_date
+         LogLinearInterpolatedZeroCurve.settlement_days
+         LogLinearInterpolatedZeroCurve.times
+         LogLinearInterpolatedZeroCurve.zero_rates
+  
+  

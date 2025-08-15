@@ -1,0 +1,6 @@
+quantlib.time.daycounters.simple.Business252.day\_count
+=======================================================
+
+.. currentmodule:: quantlib.time.daycounters.simple
+
+.. automethod:: Business252.day_count

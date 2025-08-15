@@ -1,26 +1,27 @@
-quantlib.cashflows.inflation\_coupon\_pricer.InflationCouponPricer
-==================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.inflation_coupon_pricer.</div>
+   <div class="empty"></div>
+
+InflationCouponPricer
+================================================================
 
 .. currentmodule:: quantlib.cashflows.inflation_coupon_pricer
 
 .. autoclass:: InflationCouponPricer
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~InflationCouponPricer.__init__
-   
-   
-
-   
-   
-   
+  
+  
+  

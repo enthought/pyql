@@ -1,0 +1,6 @@
+quantlib.cashflows.linear\_tsr\_pricer.LinearTsrPricer.swaption\_volatility
+===========================================================================
+
+.. currentmodule:: quantlib.cashflows.linear_tsr_pricer
+
+.. autoattribute:: LinearTsrPricer.swaption_volatility

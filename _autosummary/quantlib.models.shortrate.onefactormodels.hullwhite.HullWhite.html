@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>HullWhite &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.models.shortrate.onefactormodels.vasicek" href="quantlib.models.shortrate.onefactormodels.vasicek.html" />
+    <link rel="next" title="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.calibrate" href="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.calibrate.html" />
     <link rel="prev" title="quantlib.models.shortrate.onefactormodels.hullwhite" href="quantlib.models.shortrate.onefactormodels.hullwhite.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,8 +34,9 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-models-shortrate-onefactormodels-hullwhite-hullwhite">
-<h1>quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite<a class="headerlink" href="#quantlib-models-shortrate-onefactormodels-hullwhite-hullwhite" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.models.shortrate.onefactormodels.hullwhite.</div>
+<div class="empty"></div><section id="hullwhite">
+<h1>HullWhite<a class="headerlink" href="#hullwhite" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">HullWhite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">HandleYieldTermStructure</span> <span class="pre">term_structure</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">a=0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">sigma=0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite" title="Link to this definition">¶</a></dt>
@@ -50,94 +51,41 @@
 <p>When the term structure is relinked the <img class="math" src="../_images/math/02c849aad7960bc828467cc5933f8fe020201c4b.png" alt="r_0"/> parameter
 of the underlying Vasicek model is not updated:</p>
 </div>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>Lambda</strong></dt><dd></dd>
+<dt><strong>a</strong></dt><dd></dd>
+<dt><strong>b</strong></dt><dd></dd>
+<dt><strong>dynamics</strong></dt><dd></dd>
+<dt><strong>r0</strong></dt><dd></dd>
+<dt><strong>sigma</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.__init__" title="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.calibrate.html#quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.calibrate" title="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.calibrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibrate</span></code></a>(self, list helpers, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.calibrate" title="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.calibrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibrate</span></code></a>(self, list helpers, ...)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.convexity_bias" title="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.convexity_bias"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convexity_bias</span></code></a>(Real future_price, Time t, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.convexity_bias.html#quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.convexity_bias" title="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.convexity_bias"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convexity_bias</span></code></a>(Real future_price, Time t, ...)</p></td>
 <td><p>Futures convexity bias</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount_bond</span></code>(self, Time now, Time maturity, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.discount_bond.html#quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.discount_bond" title="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.discount_bond"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount_bond</span></code></a>(self, Time now, Time maturity, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount_bond_option</span></code>(self, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.discount_bond_option.html#quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.discount_bond_option" title="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.discount_bond_option"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount_bond_option</span></code></a>(self, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">params</span></code>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.params.html#quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.params" title="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">params</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(self, Array params)</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Lambda</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">a</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">b</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dynamics</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">r0</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sigma</span></code></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.set_params.html#quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.set_params" title="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.set_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code></a>(self, Array params)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.calibrate">
-<span class="sig-name descname"><span class="pre">calibrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">helpers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">OptimizationMethod</span> <span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">EndCriteria</span> <span class="pre">end_criteria</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Constraint</span> <span class="pre">constraint=Constraint()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector[Real]</span> <span class="pre">weights=[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector[bool]</span> <span class="pre">fix_parameters=[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.calibrate" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.convexity_bias">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">convexity_bias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">future_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Time</span> <span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Time</span> <span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.convexity_bias" title="Link to this definition">¶</a></dt>
-<dd><p>Futures convexity bias</p>
-<p>i.e., the difference between futures implied rate and forward rate
-calculated as in <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>t</strong> (<em>float</em>) – maturity date of the futures contract</p></li>
-<li><p><strong>T</strong> (<em>float</em>) – maturity of the underlying Libor deposit</p></li>
-<li><p><strong>sigma</strong> (<em>float</em>) – annual volatility of the short rate</p></li>
-<li><p><strong>a</strong> – mean-reversion parameter</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p><cite>t</cite> and <cite>T</cite> should be expressed in yearfraction using deposit day counter,
-<cite>future_price</cite> is futures’ market price.</p>
-<aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id2" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<ol class="upperalpha simple" start="7">
-<li><p>Kirikos, D. Novak, “Convexity Conundrums”, Risk Magazine, March 1997.</p></li>
-</ol>
-</aside>
-</aside>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -183,7 +131,7 @@ calculated as in <a class="footnote-reference brackets" href="#id2" id="id1" rol
   <li><a href="quantlib.models.shortrate.onefactormodels.html">quantlib.models.shortrate.onefactormodels</a><ul>
   <li><a href="quantlib.models.shortrate.onefactormodels.hullwhite.html">quantlib.models.shortrate.onefactormodels.hullwhite</a><ul>
       <li>Previous: <a href="quantlib.models.shortrate.onefactormodels.hullwhite.html" title="previous chapter">quantlib.models.shortrate.onefactormodels.hullwhite</a></li>
-      <li>Next: <a href="quantlib.models.shortrate.onefactormodels.vasicek.html" title="next chapter">quantlib.models.shortrate.onefactormodels.vasicek</a></li>
+      <li>Next: <a href="quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.calibrate.html" title="next chapter">quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite.calibrate</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

@@ -4,30 +4,12 @@ quantlib.util.rates
 .. automodule:: quantlib.util.rates
 
    
-   
-   
-
-   
-   
    .. rubric:: Functions
 
    .. autosummary::
-      :toctree:
    
       flat_rate
       make_rate_helper
       make_term_structure
       zero_rate
    
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-

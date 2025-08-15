@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.bootstraptraits.BootstrapTrait.denominator
+=========================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.bootstraptraits
+
+.. autoattribute:: BootstrapTrait.denominator

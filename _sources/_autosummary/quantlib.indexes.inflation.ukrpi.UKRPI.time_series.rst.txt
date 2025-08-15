@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.ukrpi.UKRPI.time\_series
+===================================================
+
+.. currentmodule:: quantlib.indexes.inflation.ukrpi
+
+.. autoattribute:: UKRPI.time_series

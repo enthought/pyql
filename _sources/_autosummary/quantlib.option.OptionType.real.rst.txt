@@ -1,0 +1,6 @@
+quantlib.option.OptionType.real
+===============================
+
+.. currentmodule:: quantlib.option
+
+.. autoattribute:: OptionType.real

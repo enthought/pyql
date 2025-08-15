@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.rho
+======================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.rho

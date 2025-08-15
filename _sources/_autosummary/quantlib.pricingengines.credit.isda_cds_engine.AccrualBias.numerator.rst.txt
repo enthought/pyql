@@ -1,0 +1,6 @@
+quantlib.pricingengines.credit.isda\_cds\_engine.AccrualBias.numerator
+======================================================================
+
+.. currentmodule:: quantlib.pricingengines.credit.isda_cds_engine
+
+.. autoattribute:: AccrualBias.numerator

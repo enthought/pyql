@@ -1,0 +1,6 @@
+quantlib.instruments.make\_cds.MakeCreditDefaultSwap.with\_date\_generation\_rule
+=================================================================================
+
+.. currentmodule:: quantlib.instruments.make_cds
+
+.. automethod:: MakeCreditDefaultSwap.with_date_generation_rule

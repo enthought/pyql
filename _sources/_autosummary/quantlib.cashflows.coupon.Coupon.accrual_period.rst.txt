@@ -1,0 +1,6 @@
+quantlib.cashflows.coupon.Coupon.accrual\_period
+================================================
+
+.. currentmodule:: quantlib.cashflows.coupon
+
+.. autoattribute:: Coupon.accrual_period

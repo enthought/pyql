@@ -4,28 +4,10 @@ quantlib.indexes
 .. automodule:: quantlib.indexes
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    api
@@ -40,4 +22,3 @@ quantlib.indexes
    regions
    swap
    swap_index
-

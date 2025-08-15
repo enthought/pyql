@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.set\_pricing\_engine
+=====================================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. automethod:: VanillaOption.set_pricing_engine

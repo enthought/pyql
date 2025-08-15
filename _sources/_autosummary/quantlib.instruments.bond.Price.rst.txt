@@ -1,37 +1,36 @@
-quantlib.instruments.bond.Price
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.bond.</div>
+   <div class="empty"></div>
+
+Price
 ===============================
 
 .. currentmodule:: quantlib.instruments.bond
 
 .. autoclass:: Price
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Price.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Price.Clean
-      ~Price.Dirty
-      ~Price.amount
-      ~Price.type
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Price.Clean
+         Price.Dirty
+         Price.amount
+         Price.type
+  
+  

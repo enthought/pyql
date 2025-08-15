@@ -1,0 +1,6 @@
+quantlib.cashflows.duration.Duration.to\_bytes
+==============================================
+
+.. currentmodule:: quantlib.cashflows.duration
+
+.. automethod:: Duration.to_bytes

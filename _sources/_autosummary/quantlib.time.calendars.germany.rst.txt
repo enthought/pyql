@@ -4,29 +4,11 @@ quantlib.time.calendars.germany
 .. automodule:: quantlib.time.calendars.germany
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       Germany
       Market
    
-   
-
-   
-   
-   
-
-
-

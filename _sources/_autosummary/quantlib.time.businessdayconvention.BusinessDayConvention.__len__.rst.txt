@@ -1,0 +1,6 @@
+quantlib.time.businessdayconvention.BusinessDayConvention.\_\_len\_\_
+=====================================================================
+
+.. currentmodule:: quantlib.time.businessdayconvention
+
+.. automethod:: BusinessDayConvention.__len__

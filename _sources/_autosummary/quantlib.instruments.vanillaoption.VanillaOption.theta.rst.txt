@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.theta
+======================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.theta

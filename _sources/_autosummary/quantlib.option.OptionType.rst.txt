@@ -1,45 +1,52 @@
-quantlib.option.OptionType
+.. raw:: html
+
+   <div class="prename">quantlib.option.</div>
+   <div class="empty"></div>
+
+OptionType
 ==========================
 
 .. currentmodule:: quantlib.option
 
 .. autoclass:: OptionType
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OptionType.__mul__
+         OptionType.__pow__
+         OptionType.conjugate
+         OptionType.bit_length
+         OptionType.bit_count
+         OptionType.to_bytes
+         OptionType.from_bytes
+         OptionType.as_integer_ratio
+         OptionType.__getitem__
+         OptionType.__len__
+      
+         OptionType.__len__
+         OptionType.__getitem__
+         OptionType.__mul__
+         OptionType.__pow__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~OptionType.conjugate
-      ~OptionType.bit_length
-      ~OptionType.bit_count
-      ~OptionType.to_bytes
-      ~OptionType.from_bytes
-      ~OptionType.as_integer_ratio
-      ~OptionType.__init__
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~OptionType.real
-      ~OptionType.imag
-      ~OptionType.numerator
-      ~OptionType.denominator
-      ~OptionType.Put
-      ~OptionType.Call
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OptionType.real
+         OptionType.imag
+         OptionType.numerator
+         OptionType.denominator
+         OptionType.Put
+         OptionType.Call
+  
+  

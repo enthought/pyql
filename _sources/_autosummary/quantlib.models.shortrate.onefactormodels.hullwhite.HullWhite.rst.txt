@@ -1,45 +1,44 @@
-quantlib.models.shortrate.onefactormodels.hullwhite.HullWhite
+.. raw:: html
+
+   <div class="prename">quantlib.models.shortrate.onefactormodels.hullwhite.</div>
+   <div class="empty"></div>
+
+HullWhite
 =============================================================
 
 .. currentmodule:: quantlib.models.shortrate.onefactormodels.hullwhite
 
 .. autoclass:: HullWhite
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HullWhite.calibrate
+         HullWhite.convexity_bias
+         HullWhite.discount_bond
+         HullWhite.discount_bond_option
+         HullWhite.params
+         HullWhite.set_params
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~HullWhite.__init__
-      ~HullWhite.calibrate
-      ~HullWhite.convexity_bias
-      ~HullWhite.discount_bond
-      ~HullWhite.discount_bond_option
-      ~HullWhite.params
-      ~HullWhite.set_params
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~HullWhite.Lambda
-      ~HullWhite.a
-      ~HullWhite.b
-      ~HullWhite.dynamics
-      ~HullWhite.r0
-      ~HullWhite.sigma
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         HullWhite.Lambda
+         HullWhite.a
+         HullWhite.b
+         HullWhite.dynamics
+         HullWhite.r0
+         HullWhite.sigma
+  
+  

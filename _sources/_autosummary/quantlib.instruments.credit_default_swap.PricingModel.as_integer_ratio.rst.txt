@@ -1,0 +1,6 @@
+quantlib.instruments.credit\_default\_swap.PricingModel.as\_integer\_ratio
+==========================================================================
+
+.. currentmodule:: quantlib.instruments.credit_default_swap
+
+.. automethod:: PricingModel.as_integer_ratio

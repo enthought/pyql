@@ -4,32 +4,13 @@ quantlib.currency
 .. automodule:: quantlib.currency
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    api
    currencies
    currency
    currency_registry
-

@@ -1,0 +1,6 @@
+quantlib.time.daycounters.actual\_actual.Convention.as\_integer\_ratio
+======================================================================
+
+.. currentmodule:: quantlib.time.daycounters.actual_actual
+
+.. automethod:: Convention.as_integer_ratio

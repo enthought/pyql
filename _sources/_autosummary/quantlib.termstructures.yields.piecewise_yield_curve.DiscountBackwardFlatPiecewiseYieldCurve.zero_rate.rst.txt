@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.piecewise\_yield\_curve.DiscountBackwardFlatPiecewiseYieldCurve.zero\_rate
+=========================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.piecewise_yield_curve
+
+.. automethod:: DiscountBackwardFlatPiecewiseYieldCurve.zero_rate

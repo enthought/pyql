@@ -1,43 +1,42 @@
-quantlib.termstructures.volatility.equityfx.black\_vol\_term\_structure.BlackVolTermStructure
-=============================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.volatility.equityfx.black_vol_term_structure.</div>
+   <div class="empty"></div>
+
+BlackVolTermStructure
+==========================================================================================
 
 .. currentmodule:: quantlib.termstructures.volatility.equityfx.black_vol_term_structure
 
 .. autoclass:: BlackVolTermStructure
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BlackVolTermStructure.blackForwardVariance
+         BlackVolTermStructure.blackForwardVol
+         BlackVolTermStructure.blackVariance
+         BlackVolTermStructure.blackVol
+         BlackVolTermStructure.option_date_from_tenor
+         BlackVolTermStructure.time_from_reference
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BlackVolTermStructure.__init__
-      ~BlackVolTermStructure.blackForwardVariance
-      ~BlackVolTermStructure.blackForwardVol
-      ~BlackVolTermStructure.blackVariance
-      ~BlackVolTermStructure.blackVol
-      ~BlackVolTermStructure.option_date_from_tenor
-      ~BlackVolTermStructure.time_from_reference
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~BlackVolTermStructure.calendar
-      ~BlackVolTermStructure.extrapolation
-      ~BlackVolTermStructure.reference_date
-      ~BlackVolTermStructure.settlement_days
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BlackVolTermStructure.calendar
+         BlackVolTermStructure.extrapolation
+         BlackVolTermStructure.reference_date
+         BlackVolTermStructure.settlement_days
+  
+  

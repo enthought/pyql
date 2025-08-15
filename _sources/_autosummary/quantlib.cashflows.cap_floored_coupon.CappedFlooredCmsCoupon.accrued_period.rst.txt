@@ -1,0 +1,6 @@
+quantlib.cashflows.cap\_floored\_coupon.CappedFlooredCmsCoupon.accrued\_period
+==============================================================================
+
+.. currentmodule:: quantlib.cashflows.cap_floored_coupon
+
+.. automethod:: CappedFlooredCmsCoupon.accrued_period

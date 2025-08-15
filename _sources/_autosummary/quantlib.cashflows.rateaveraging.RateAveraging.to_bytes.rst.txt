@@ -1,0 +1,6 @@
+quantlib.cashflows.rateaveraging.RateAveraging.to\_bytes
+========================================================
+
+.. currentmodule:: quantlib.cashflows.rateaveraging
+
+.. automethod:: RateAveraging.to_bytes

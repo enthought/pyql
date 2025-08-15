@@ -4,28 +4,10 @@ quantlib.cashflows.duration
 .. automodule:: quantlib.cashflows.duration
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       Duration
    
-   
-
-   
-   
-   
-
-
-

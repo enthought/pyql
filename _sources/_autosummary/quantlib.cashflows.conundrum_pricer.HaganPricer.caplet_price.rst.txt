@@ -1,0 +1,6 @@
+quantlib.cashflows.conundrum\_pricer.HaganPricer.caplet\_price
+==============================================================
+
+.. currentmodule:: quantlib.cashflows.conundrum_pricer
+
+.. automethod:: HaganPricer.caplet_price

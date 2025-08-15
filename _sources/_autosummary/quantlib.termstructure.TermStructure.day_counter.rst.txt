@@ -1,0 +1,6 @@
+quantlib.termstructure.TermStructure.day\_counter
+=================================================
+
+.. currentmodule:: quantlib.termstructure
+
+.. autoattribute:: TermStructure.day_counter

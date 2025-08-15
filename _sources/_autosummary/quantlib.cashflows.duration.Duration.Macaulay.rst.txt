@@ -1,0 +1,6 @@
+quantlib.cashflows.duration.Duration.Macaulay
+=============================================
+
+.. currentmodule:: quantlib.cashflows.duration
+
+.. autoattribute:: Duration.Macaulay

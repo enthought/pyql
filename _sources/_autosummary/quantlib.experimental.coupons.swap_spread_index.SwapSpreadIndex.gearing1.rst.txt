@@ -1,0 +1,6 @@
+quantlib.experimental.coupons.swap\_spread\_index.SwapSpreadIndex.gearing1
+==========================================================================
+
+.. currentmodule:: quantlib.experimental.coupons.swap_spread_index
+
+.. autoattribute:: SwapSpreadIndex.gearing1

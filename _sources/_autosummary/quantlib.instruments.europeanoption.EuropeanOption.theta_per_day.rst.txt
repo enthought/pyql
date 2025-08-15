@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.theta\_per\_day
+==================================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. autoattribute:: EuropeanOption.theta_per_day

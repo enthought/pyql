@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.Meta.mro
+======================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. automethod:: Meta.mro

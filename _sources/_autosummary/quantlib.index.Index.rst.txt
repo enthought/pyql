@@ -1,42 +1,41 @@
-quantlib.index.Index
+.. raw:: html
+
+   <div class="prename">quantlib.index.</div>
+   <div class="empty"></div>
+
+Index
 ====================
 
 .. currentmodule:: quantlib.index
 
 .. autoclass:: Index
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Index.add_fixing
+         Index.add_fixings
+         Index.clear_fixings
+         Index.fixing
+         Index.has_historical_fixing
+         Index.is_valid_fixing_date
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Index.__init__
-      ~Index.add_fixing
-      ~Index.add_fixings
-      ~Index.clear_fixings
-      ~Index.fixing
-      ~Index.has_historical_fixing
-      ~Index.is_valid_fixing_date
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Index.fixing_calendar
-      ~Index.name
-      ~Index.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Index.fixing_calendar
+         Index.name
+         Index.time_series
+  
+  

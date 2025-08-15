@@ -1,0 +1,6 @@
+quantlib.default.Protection.to\_bytes
+=====================================
+
+.. currentmodule:: quantlib.default
+
+.. automethod:: Protection.to_bytes

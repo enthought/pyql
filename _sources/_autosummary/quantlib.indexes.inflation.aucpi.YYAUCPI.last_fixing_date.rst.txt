@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.aucpi.YYAUCPI.last\_fixing\_date
+===========================================================
+
+.. currentmodule:: quantlib.indexes.inflation.aucpi
+
+.. autoattribute:: YYAUCPI.last_fixing_date

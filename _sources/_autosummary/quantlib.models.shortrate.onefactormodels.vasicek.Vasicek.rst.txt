@@ -1,43 +1,42 @@
-quantlib.models.shortrate.onefactormodels.vasicek.Vasicek
+.. raw:: html
+
+   <div class="prename">quantlib.models.shortrate.onefactormodels.vasicek.</div>
+   <div class="empty"></div>
+
+Vasicek
 =========================================================
 
 .. currentmodule:: quantlib.models.shortrate.onefactormodels.vasicek
 
 .. autoclass:: Vasicek
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Vasicek.discount_bond
+         Vasicek.discount_bond_option
+         Vasicek.params
+         Vasicek.set_params
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~Vasicek.__init__
-      ~Vasicek.discount_bond
-      ~Vasicek.discount_bond_option
-      ~Vasicek.params
-      ~Vasicek.set_params
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~Vasicek.Lambda
-      ~Vasicek.a
-      ~Vasicek.b
-      ~Vasicek.dynamics
-      ~Vasicek.r0
-      ~Vasicek.sigma
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Vasicek.Lambda
+         Vasicek.a
+         Vasicek.b
+         Vasicek.dynamics
+         Vasicek.r0
+         Vasicek.sigma
+  
+  

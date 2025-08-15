@@ -4,28 +4,10 @@ quantlib.models
 .. automodule:: quantlib.models
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    api
@@ -33,4 +15,3 @@ quantlib.models
    equity
    model
    shortrate
-

@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Type.imag
+=======================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Type.imag

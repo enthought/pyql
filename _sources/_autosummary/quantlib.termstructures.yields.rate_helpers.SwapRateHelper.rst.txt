@@ -1,44 +1,43 @@
-quantlib.termstructures.yields.rate\_helpers.SwapRateHelper
-===========================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.rate_helpers.</div>
+   <div class="empty"></div>
+
+SwapRateHelper
+==========================================================
 
 .. currentmodule:: quantlib.termstructures.yields.rate_helpers
 
 .. autoclass:: SwapRateHelper
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SwapRateHelper.from_index
+         SwapRateHelper.from_tenor
+         SwapRateHelper.swap
+         SwapRateHelper.update
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~SwapRateHelper.__init__
-      ~SwapRateHelper.from_index
-      ~SwapRateHelper.from_tenor
-      ~SwapRateHelper.swap
-      ~SwapRateHelper.update
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~SwapRateHelper.earliest_date
-      ~SwapRateHelper.forward_start
-      ~SwapRateHelper.implied_quote
-      ~SwapRateHelper.latest_date
-      ~SwapRateHelper.maturity_date
-      ~SwapRateHelper.quote
-      ~SwapRateHelper.spread
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SwapRateHelper.earliest_date
+         SwapRateHelper.forward_start
+         SwapRateHelper.implied_quote
+         SwapRateHelper.latest_date
+         SwapRateHelper.maturity_date
+         SwapRateHelper.quote
+         SwapRateHelper.spread
+  
+  

@@ -1,0 +1,6 @@
+quantlib.time.businessdayconvention.BusinessDayConvention.imag
+==============================================================
+
+.. currentmodule:: quantlib.time.businessdayconvention
+
+.. autoattribute:: BusinessDayConvention.imag

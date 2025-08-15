@@ -1,0 +1,6 @@
+quantlib.time.calendars.switzerland.Switzerland.business\_day\_list
+===================================================================
+
+.. currentmodule:: quantlib.time.calendars.switzerland
+
+.. automethod:: Switzerland.business_day_list

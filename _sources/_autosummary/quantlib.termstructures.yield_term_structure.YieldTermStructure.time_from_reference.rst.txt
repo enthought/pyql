@@ -1,0 +1,6 @@
+quantlib.termstructures.yield\_term\_structure.YieldTermStructure.time\_from\_reference
+=======================================================================================
+
+.. currentmodule:: quantlib.termstructures.yield_term_structure
+
+.. automethod:: YieldTermStructure.time_from_reference

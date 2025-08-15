@@ -1,36 +1,35 @@
-quantlib.indexes.regions.EURegion
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.regions.</div>
+   <div class="empty"></div>
+
+EURegion
 =================================
 
 .. currentmodule:: quantlib.indexes.regions
 
 .. autoclass:: EURegion
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         EURegion.from_name
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~EURegion.__init__
-      ~EURegion.from_name
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~EURegion.code
-      ~EURegion.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         EURegion.code
+         EURegion.name
+  
+  

@@ -4,28 +4,10 @@ quantlib.pricingengines
 .. automodule:: quantlib.pricingengines
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    api
@@ -38,4 +20,3 @@ quantlib.pricingengines
    swap
    swaption
    vanilla
-

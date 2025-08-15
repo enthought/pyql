@@ -1,0 +1,6 @@
+quantlib.currency.currencies.EURCurrency.symbol
+===============================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: EURCurrency.symbol

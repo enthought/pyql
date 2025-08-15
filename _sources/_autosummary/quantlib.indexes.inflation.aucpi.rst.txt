@@ -4,29 +4,11 @@ quantlib.indexes.inflation.aucpi
 .. automodule:: quantlib.indexes.inflation.aucpi
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       AUCPI
       YYAUCPI
    
-   
-
-   
-   
-   
-
-
-

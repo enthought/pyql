@@ -1,0 +1,6 @@
+quantlib.time.date.Weekday.conjugate
+====================================
+
+.. currentmodule:: quantlib.time.date
+
+.. automethod:: Weekday.conjugate

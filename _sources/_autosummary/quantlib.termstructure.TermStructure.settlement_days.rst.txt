@@ -1,0 +1,6 @@
+quantlib.termstructure.TermStructure.settlement\_days
+=====================================================
+
+.. currentmodule:: quantlib.termstructure
+
+.. autoattribute:: TermStructure.settlement_days

@@ -1,0 +1,6 @@
+quantlib.cashflows.rateaveraging.RateAveraging.conjugate
+========================================================
+
+.. currentmodule:: quantlib.cashflows.rateaveraging
+
+.. automethod:: RateAveraging.conjugate

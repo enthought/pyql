@@ -1,0 +1,6 @@
+quantlib.time.calendars.switzerland.Switzerland.holiday\_list
+=============================================================
+
+.. currentmodule:: quantlib.time.calendars.switzerland
+
+.. automethod:: Switzerland.holiday_list

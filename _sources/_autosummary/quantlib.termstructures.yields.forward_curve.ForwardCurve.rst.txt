@@ -1,48 +1,47 @@
-quantlib.termstructures.yields.forward\_curve.ForwardCurve
-==========================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.forward_curve.</div>
+   <div class="empty"></div>
+
+ForwardCurve
+=========================================================
 
 .. currentmodule:: quantlib.termstructures.yields.forward_curve
 
 .. autoclass:: ForwardCurve
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ForwardCurve.discount
+         ForwardCurve.forward_rate
+         ForwardCurve.time_from_reference
+         ForwardCurve.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~ForwardCurve.__init__
-      ~ForwardCurve.discount
-      ~ForwardCurve.forward_rate
-      ~ForwardCurve.time_from_reference
-      ~ForwardCurve.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~ForwardCurve.data
-      ~ForwardCurve.dates
-      ~ForwardCurve.day_counter
-      ~ForwardCurve.extrapolation
-      ~ForwardCurve.forwards
-      ~ForwardCurve.max_date
-      ~ForwardCurve.max_time
-      ~ForwardCurve.nodes
-      ~ForwardCurve.reference_date
-      ~ForwardCurve.settlement_days
-      ~ForwardCurve.times
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ForwardCurve.data
+         ForwardCurve.dates
+         ForwardCurve.day_counter
+         ForwardCurve.extrapolation
+         ForwardCurve.forwards
+         ForwardCurve.max_date
+         ForwardCurve.max_time
+         ForwardCurve.nodes
+         ForwardCurve.reference_date
+         ForwardCurve.settlement_days
+         ForwardCurve.times
+  
+  

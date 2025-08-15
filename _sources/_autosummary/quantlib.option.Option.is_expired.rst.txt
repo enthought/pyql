@@ -1,0 +1,6 @@
+quantlib.option.Option.is\_expired
+==================================
+
+.. currentmodule:: quantlib.option
+
+.. autoattribute:: Option.is_expired

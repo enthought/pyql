@@ -1,0 +1,6 @@
+quantlib.stochastic\_process.StochasticProcess1D.expectation
+============================================================
+
+.. currentmodule:: quantlib.stochastic_process
+
+.. automethod:: StochasticProcess1D.expectation

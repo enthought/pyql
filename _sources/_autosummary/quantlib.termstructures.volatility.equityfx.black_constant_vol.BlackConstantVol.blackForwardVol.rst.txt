@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.equityfx.black\_constant\_vol.BlackConstantVol.blackForwardVol
+=================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.equityfx.black_constant_vol
+
+.. automethod:: BlackConstantVol.blackForwardVol

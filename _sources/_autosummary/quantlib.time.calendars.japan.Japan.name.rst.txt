@@ -1,0 +1,6 @@
+quantlib.time.calendars.japan.Japan.name
+========================================
+
+.. currentmodule:: quantlib.time.calendars.japan
+
+.. autoattribute:: Japan.name

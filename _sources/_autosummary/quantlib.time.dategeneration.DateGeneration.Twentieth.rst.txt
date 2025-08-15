@@ -1,0 +1,6 @@
+quantlib.time.dategeneration.DateGeneration.Twentieth
+=====================================================
+
+.. currentmodule:: quantlib.time.dategeneration
+
+.. autoattribute:: DateGeneration.Twentieth

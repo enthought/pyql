@@ -1,0 +1,6 @@
+quantlib.time.calendars.japan.Japan.is\_weekend
+===============================================
+
+.. currentmodule:: quantlib.time.calendars.japan
+
+.. automethod:: Japan.is_weekend

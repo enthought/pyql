@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.inflation\_helpers.YearOnYearInflationSwapHelper.implied\_quote
+=================================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.inflation_helpers
+
+.. autoattribute:: YearOnYearInflationSwapHelper.implied_quote

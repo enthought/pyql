@@ -1,71 +1,72 @@
-quantlib.instruments.overnightindexedswap.OvernightIndexedSwap
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.overnightindexedswap.</div>
+   <div class="empty"></div>
+
+OvernightIndexedSwap
 ==============================================================
 
 .. currentmodule:: quantlib.instruments.overnightindexedswap
 
 .. autoclass:: OvernightIndexedSwap
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OvernightIndexedSwap.__getitem__
+         OvernightIndexedSwap.endDiscounts
+         OvernightIndexedSwap.leg
+         OvernightIndexedSwap.leg_BPS
+         OvernightIndexedSwap.leg_NPV
+         OvernightIndexedSwap.npv_date_discount
+         OvernightIndexedSwap.set_pricing_engine
+         OvernightIndexedSwap.startDiscounts
+      
+         OvernightIndexedSwap.__getitem__
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~OvernightIndexedSwap.__init__
-      ~OvernightIndexedSwap.endDiscounts
-      ~OvernightIndexedSwap.leg
-      ~OvernightIndexedSwap.leg_BPS
-      ~OvernightIndexedSwap.leg_NPV
-      ~OvernightIndexedSwap.npv_date_discount
-      ~OvernightIndexedSwap.set_pricing_engine
-      ~OvernightIndexedSwap.startDiscounts
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~OvernightIndexedSwap.Payer
-      ~OvernightIndexedSwap.Receiver
-      ~OvernightIndexedSwap.averaging_method
-      ~OvernightIndexedSwap.fair_rate
-      ~OvernightIndexedSwap.fair_spread
-      ~OvernightIndexedSwap.fixed_day_count
-      ~OvernightIndexedSwap.fixed_leg
-      ~OvernightIndexedSwap.fixed_leg_BPS
-      ~OvernightIndexedSwap.fixed_leg_NPV
-      ~OvernightIndexedSwap.fixed_rate
-      ~OvernightIndexedSwap.fixed_schedule
-      ~OvernightIndexedSwap.floating_day_count
-      ~OvernightIndexedSwap.floating_leg
-      ~OvernightIndexedSwap.floating_leg_BPS
-      ~OvernightIndexedSwap.floating_leg_NPV
-      ~OvernightIndexedSwap.floating_schedule
-      ~OvernightIndexedSwap.is_expired
-      ~OvernightIndexedSwap.maturity_date
-      ~OvernightIndexedSwap.net_present_value
-      ~OvernightIndexedSwap.nominal
-      ~OvernightIndexedSwap.nominals
-      ~OvernightIndexedSwap.npv
-      ~OvernightIndexedSwap.overnight_index
-      ~OvernightIndexedSwap.overnight_leg
-      ~OvernightIndexedSwap.overnight_leg_BPS
-      ~OvernightIndexedSwap.overnight_leg_NPV
-      ~OvernightIndexedSwap.payment_frequency
-      ~OvernightIndexedSwap.spread
-      ~OvernightIndexedSwap.start_date
-      ~OvernightIndexedSwap.type
-      ~OvernightIndexedSwap.valuation_date
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OvernightIndexedSwap.Payer
+         OvernightIndexedSwap.Receiver
+         OvernightIndexedSwap.averaging_method
+         OvernightIndexedSwap.fair_rate
+         OvernightIndexedSwap.fair_spread
+         OvernightIndexedSwap.fixed_day_count
+         OvernightIndexedSwap.fixed_leg
+         OvernightIndexedSwap.fixed_leg_BPS
+         OvernightIndexedSwap.fixed_leg_NPV
+         OvernightIndexedSwap.fixed_rate
+         OvernightIndexedSwap.fixed_schedule
+         OvernightIndexedSwap.floating_day_count
+         OvernightIndexedSwap.floating_leg
+         OvernightIndexedSwap.floating_leg_BPS
+         OvernightIndexedSwap.floating_leg_NPV
+         OvernightIndexedSwap.floating_schedule
+         OvernightIndexedSwap.is_expired
+         OvernightIndexedSwap.maturity_date
+         OvernightIndexedSwap.net_present_value
+         OvernightIndexedSwap.nominal
+         OvernightIndexedSwap.nominals
+         OvernightIndexedSwap.npv
+         OvernightIndexedSwap.overnight_index
+         OvernightIndexedSwap.overnight_leg
+         OvernightIndexedSwap.overnight_leg_BPS
+         OvernightIndexedSwap.overnight_leg_NPV
+         OvernightIndexedSwap.payment_frequency
+         OvernightIndexedSwap.spread
+         OvernightIndexedSwap.start_date
+         OvernightIndexedSwap.type
+         OvernightIndexedSwap.valuation_date
+  
+  

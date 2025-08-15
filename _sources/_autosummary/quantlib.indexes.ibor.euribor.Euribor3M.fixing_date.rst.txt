@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.euribor.Euribor3M.fixing\_date
+====================================================
+
+.. currentmodule:: quantlib.indexes.ibor.euribor
+
+.. automethod:: Euribor3M.fixing_date

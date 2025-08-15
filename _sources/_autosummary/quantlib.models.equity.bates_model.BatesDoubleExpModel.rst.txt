@@ -1,44 +1,43 @@
-quantlib.models.equity.bates\_model.BatesDoubleExpModel
-=======================================================
+.. raw:: html
+
+   <div class="prename">quantlib.models.equity.bates_model.</div>
+   <div class="empty"></div>
+
+BatesDoubleExpModel
+======================================================
 
 .. currentmodule:: quantlib.models.equity.bates_model
 
 .. autoclass:: BatesDoubleExpModel
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BatesDoubleExpModel.calibrate
+         BatesDoubleExpModel.process
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~BatesDoubleExpModel.__init__
-      ~BatesDoubleExpModel.calibrate
-      ~BatesDoubleExpModel.process
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~BatesDoubleExpModel.Lambda
-      ~BatesDoubleExpModel.kappa
-      ~BatesDoubleExpModel.nuDown
-      ~BatesDoubleExpModel.nuUp
-      ~BatesDoubleExpModel.p
-      ~BatesDoubleExpModel.rho
-      ~BatesDoubleExpModel.sigma
-      ~BatesDoubleExpModel.theta
-      ~BatesDoubleExpModel.v0
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BatesDoubleExpModel.Lambda
+         BatesDoubleExpModel.kappa
+         BatesDoubleExpModel.nuDown
+         BatesDoubleExpModel.nuUp
+         BatesDoubleExpModel.p
+         BatesDoubleExpModel.rho
+         BatesDoubleExpModel.sigma
+         BatesDoubleExpModel.theta
+         BatesDoubleExpModel.v0
+  
+  

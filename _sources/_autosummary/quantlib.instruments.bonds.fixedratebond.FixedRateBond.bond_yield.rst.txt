@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.fixedratebond.FixedRateBond.bond\_yield
+==================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.fixedratebond
+
+.. automethod:: FixedRateBond.bond_yield

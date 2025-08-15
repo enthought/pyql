@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.overnightindexfutureratehelper.OvernightIndexFutureHelper.maturity\_date
+=======================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.overnightindexfutureratehelper
+
+.. autoattribute:: OvernightIndexFutureHelper.maturity_date

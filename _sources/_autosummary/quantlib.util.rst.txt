@@ -4,28 +4,10 @@ quantlib.util
 .. automodule:: quantlib.util
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
 .. rubric:: Modules
 
 .. autosummary::
    :toctree:
-   :template: custom-module-template.rst
    :recursive:
 
    converter
@@ -33,4 +15,3 @@ quantlib.util
    options
    rates
    version
-

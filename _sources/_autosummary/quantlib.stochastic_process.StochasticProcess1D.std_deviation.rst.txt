@@ -1,0 +1,6 @@
+quantlib.stochastic\_process.StochasticProcess1D.std\_deviation
+===============================================================
+
+.. currentmodule:: quantlib.stochastic_process
+
+.. automethod:: StochasticProcess1D.std_deviation

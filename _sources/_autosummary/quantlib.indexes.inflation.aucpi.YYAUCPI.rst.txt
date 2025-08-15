@@ -1,49 +1,48 @@
-quantlib.indexes.inflation.aucpi.YYAUCPI
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.inflation.aucpi.</div>
+   <div class="empty"></div>
+
+YYAUCPI
 ========================================
 
 .. currentmodule:: quantlib.indexes.inflation.aucpi
 
 .. autoclass:: YYAUCPI
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YYAUCPI.add_fixing
+         YYAUCPI.add_fixings
+         YYAUCPI.clear_fixings
+         YYAUCPI.fixing
+         YYAUCPI.has_historical_fixing
+         YYAUCPI.is_valid_fixing_date
+         YYAUCPI.zero_inflation_term_structure
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~YYAUCPI.__init__
-      ~YYAUCPI.add_fixing
-      ~YYAUCPI.add_fixings
-      ~YYAUCPI.clear_fixings
-      ~YYAUCPI.fixing
-      ~YYAUCPI.has_historical_fixing
-      ~YYAUCPI.is_valid_fixing_date
-      ~YYAUCPI.zero_inflation_term_structure
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~YYAUCPI.availability_lag
-      ~YYAUCPI.currency
-      ~YYAUCPI.family_name
-      ~YYAUCPI.fixing_calendar
-      ~YYAUCPI.frequency
-      ~YYAUCPI.last_fixing_date
-      ~YYAUCPI.name
-      ~YYAUCPI.region
-      ~YYAUCPI.time_series
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         YYAUCPI.availability_lag
+         YYAUCPI.currency
+         YYAUCPI.family_name
+         YYAUCPI.fixing_calendar
+         YYAUCPI.frequency
+         YYAUCPI.last_fixing_date
+         YYAUCPI.name
+         YYAUCPI.region
+         YYAUCPI.time_series
+  
+  

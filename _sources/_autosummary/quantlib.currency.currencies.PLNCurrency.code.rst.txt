@@ -1,0 +1,6 @@
+quantlib.currency.currencies.PLNCurrency.code
+=============================================
+
+.. currentmodule:: quantlib.currency.currencies
+
+.. autoattribute:: PLNCurrency.code

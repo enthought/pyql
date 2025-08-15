@@ -1,0 +1,6 @@
+quantlib.instruments.bondforward.BondForward.is\_expired
+========================================================
+
+.. currentmodule:: quantlib.instruments.bondforward
+
+.. autoattribute:: BondForward.is_expired

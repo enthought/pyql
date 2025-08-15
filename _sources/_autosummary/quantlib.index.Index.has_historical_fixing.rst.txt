@@ -1,0 +1,6 @@
+quantlib.index.Index.has\_historical\_fixing
+============================================
+
+.. currentmodule:: quantlib.index
+
+.. automethod:: Index.has_historical_fixing

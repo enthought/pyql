@@ -1,49 +1,48 @@
-quantlib.cashflows.fixed\_rate\_coupon.FixedRateCoupon
-======================================================
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.fixed_rate_coupon.</div>
+   <div class="empty"></div>
+
+FixedRateCoupon
+====================================================
 
 .. currentmodule:: quantlib.cashflows.fixed_rate_coupon
 
 .. autoclass:: FixedRateCoupon
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FixedRateCoupon.accrued_amount
+         FixedRateCoupon.accrued_days
+         FixedRateCoupon.accrued_period
+         FixedRateCoupon.has_occured
+         FixedRateCoupon.interest_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~FixedRateCoupon.__init__
-      ~FixedRateCoupon.accrued_amount
-      ~FixedRateCoupon.accrued_days
-      ~FixedRateCoupon.accrued_period
-      ~FixedRateCoupon.has_occured
-      ~FixedRateCoupon.interest_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~FixedRateCoupon.accrual_days
-      ~FixedRateCoupon.accrual_end_date
-      ~FixedRateCoupon.accrual_period
-      ~FixedRateCoupon.accrual_start_date
-      ~FixedRateCoupon.amount
-      ~FixedRateCoupon.date
-      ~FixedRateCoupon.day_counter
-      ~FixedRateCoupon.nominal
-      ~FixedRateCoupon.rate
-      ~FixedRateCoupon.reference_period_end
-      ~FixedRateCoupon.reference_period_start
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FixedRateCoupon.accrual_days
+         FixedRateCoupon.accrual_end_date
+         FixedRateCoupon.accrual_period
+         FixedRateCoupon.accrual_start_date
+         FixedRateCoupon.amount
+         FixedRateCoupon.date
+         FixedRateCoupon.day_counter
+         FixedRateCoupon.nominal
+         FixedRateCoupon.rate
+         FixedRateCoupon.reference_period_end
+         FixedRateCoupon.reference_period_start
+  
+  

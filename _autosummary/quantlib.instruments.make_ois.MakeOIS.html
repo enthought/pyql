@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>quantlib.instruments.make_ois.MakeOIS &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
+    <title>MakeOIS &#8212; Quantlib cython wrapper 0.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=fc5e2428" />
@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.instruments.make_swaption" href="quantlib.instruments.make_swaption.html" />
+    <link rel="next" title="quantlib.instruments.make_ois.MakeOIS.__call__" href="quantlib.instruments.make_ois.MakeOIS.__call__.html" />
     <link rel="prev" title="quantlib.instruments.make_ois" href="quantlib.instruments.make_ois.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,193 +34,84 @@
 
           <div class="body" role="main">
             
-  <section id="quantlib-instruments-make-ois-makeois">
-<h1>quantlib.instruments.make_ois.MakeOIS<a class="headerlink" href="#quantlib-instruments-make-ois-makeois" title="Link to this heading">¶</a></h1>
+  <div class="prename">quantlib.instruments.make_ois.</div>
+<div class="empty"></div><section id="makeois">
+<h1>MakeOIS<a class="headerlink" href="#makeois" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MakeOIS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Period</span> <span class="pre">swap_tenor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">OvernightIndex</span> <span class="pre">overnight_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">fixed_rate=Null[Real]()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Period</span> <span class="pre">forward_start=Period(0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Days)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.__init__" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.__init__" title="quantlib.instruments.make_ois.MakeOIS.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.__call__.html#quantlib.instruments.make_ois.MakeOIS.__call__" title="quantlib.instruments.make_ois.MakeOIS.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.receive_fixed.html#quantlib.instruments.make_ois.MakeOIS.receive_fixed" title="quantlib.instruments.make_ois.MakeOIS.receive_fixed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">receive_fixed</span></code></a>(self, bool flag=True)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.receive_fixed" title="quantlib.instruments.make_ois.MakeOIS.receive_fixed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">receive_fixed</span></code></a>(self, bool flag=True)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_apply_observation_shift.html#quantlib.instruments.make_ois.MakeOIS.with_apply_observation_shift" title="quantlib.instruments.make_ois.MakeOIS.with_apply_observation_shift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_apply_observation_shift</span></code></a>(self, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_apply_observation_shift" title="quantlib.instruments.make_ois.MakeOIS.with_apply_observation_shift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_apply_observation_shift</span></code></a>(self, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_averaging_method.html#quantlib.instruments.make_ois.MakeOIS.with_averaging_method" title="quantlib.instruments.make_ois.MakeOIS.with_averaging_method"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_averaging_method</span></code></a>(self, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_averaging_method" title="quantlib.instruments.make_ois.MakeOIS.with_averaging_method"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_averaging_method</span></code></a>(self, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_discounting_term_structure.html#quantlib.instruments.make_ois.MakeOIS.with_discounting_term_structure" title="quantlib.instruments.make_ois.MakeOIS.with_discounting_term_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_discounting_term_structure</span></code></a>(self, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_discounting_term_structure" title="quantlib.instruments.make_ois.MakeOIS.with_discounting_term_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_discounting_term_structure</span></code></a>(self, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_effective_date.html#quantlib.instruments.make_ois.MakeOIS.with_effective_date" title="quantlib.instruments.make_ois.MakeOIS.with_effective_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_effective_date</span></code></a>(self, Date d)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_effective_date" title="quantlib.instruments.make_ois.MakeOIS.with_effective_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_effective_date</span></code></a>(self, Date d)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_end_of_month.html#quantlib.instruments.make_ois.MakeOIS.with_end_of_month" title="quantlib.instruments.make_ois.MakeOIS.with_end_of_month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_end_of_month</span></code></a>(self, bool flag=True)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_end_of_month" title="quantlib.instruments.make_ois.MakeOIS.with_end_of_month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_end_of_month</span></code></a>(self, bool flag=True)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_fixed_leg_day_count.html#quantlib.instruments.make_ois.MakeOIS.with_fixed_leg_day_count" title="quantlib.instruments.make_ois.MakeOIS.with_fixed_leg_day_count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_fixed_leg_day_count</span></code></a>(self, DayCounter dc)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_fixed_leg_day_count" title="quantlib.instruments.make_ois.MakeOIS.with_fixed_leg_day_count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_fixed_leg_day_count</span></code></a>(self, DayCounter dc)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_lockout_days.html#quantlib.instruments.make_ois.MakeOIS.with_lockout_days" title="quantlib.instruments.make_ois.MakeOIS.with_lockout_days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_lockout_days</span></code></a>(self, Natural lockout_days)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_lockout_days" title="quantlib.instruments.make_ois.MakeOIS.with_lockout_days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_lockout_days</span></code></a>(self, Natural lockout_days)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_lookback_days.html#quantlib.instruments.make_ois.MakeOIS.with_lookback_days" title="quantlib.instruments.make_ois.MakeOIS.with_lookback_days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_lookback_days</span></code></a>(self, Natural lookback_days)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_lookback_days" title="quantlib.instruments.make_ois.MakeOIS.with_lookback_days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_lookback_days</span></code></a>(self, Natural lookback_days)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_nominal.html#quantlib.instruments.make_ois.MakeOIS.with_nominal" title="quantlib.instruments.make_ois.MakeOIS.with_nominal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_nominal</span></code></a>(self, Real n)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_nominal" title="quantlib.instruments.make_ois.MakeOIS.with_nominal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_nominal</span></code></a>(self, Real n)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_overnight_leg_spread.html#quantlib.instruments.make_ois.MakeOIS.with_overnight_leg_spread" title="quantlib.instruments.make_ois.MakeOIS.with_overnight_leg_spread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_overnight_leg_spread</span></code></a>(self, Spread sp)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_overnight_leg_spread" title="quantlib.instruments.make_ois.MakeOIS.with_overnight_leg_spread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_overnight_leg_spread</span></code></a>(self, Spread sp)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_payment_adjustment.html#quantlib.instruments.make_ois.MakeOIS.with_payment_adjustment" title="quantlib.instruments.make_ois.MakeOIS.with_payment_adjustment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_payment_adjustment</span></code></a>(self, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_payment_adjustment" title="quantlib.instruments.make_ois.MakeOIS.with_payment_adjustment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_payment_adjustment</span></code></a>(self, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_payment_calendar.html#quantlib.instruments.make_ois.MakeOIS.with_payment_calendar" title="quantlib.instruments.make_ois.MakeOIS.with_payment_calendar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_payment_calendar</span></code></a>(self, Calendar cal)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_payment_calendar" title="quantlib.instruments.make_ois.MakeOIS.with_payment_calendar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_payment_calendar</span></code></a>(self, Calendar cal)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_payment_frequency.html#quantlib.instruments.make_ois.MakeOIS.with_payment_frequency" title="quantlib.instruments.make_ois.MakeOIS.with_payment_frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_payment_frequency</span></code></a>(self, Frequency f)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_payment_frequency" title="quantlib.instruments.make_ois.MakeOIS.with_payment_frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_payment_frequency</span></code></a>(self, Frequency f)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_payment_lag.html#quantlib.instruments.make_ois.MakeOIS.with_payment_lag" title="quantlib.instruments.make_ois.MakeOIS.with_payment_lag"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_payment_lag</span></code></a>(self, Natural lag)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_payment_lag" title="quantlib.instruments.make_ois.MakeOIS.with_payment_lag"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_payment_lag</span></code></a>(self, Natural lag)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_pricing_engine.html#quantlib.instruments.make_ois.MakeOIS.with_pricing_engine" title="quantlib.instruments.make_ois.MakeOIS.with_pricing_engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_pricing_engine</span></code></a>(self, PricingEngine engine)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_pricing_engine" title="quantlib.instruments.make_ois.MakeOIS.with_pricing_engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_pricing_engine</span></code></a>(self, PricingEngine engine)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_rule.html#quantlib.instruments.make_ois.MakeOIS.with_rule" title="quantlib.instruments.make_ois.MakeOIS.with_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_rule</span></code></a>(self, DateGeneration r)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_rule" title="quantlib.instruments.make_ois.MakeOIS.with_rule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_rule</span></code></a>(self, DateGeneration r)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_settlement_days.html#quantlib.instruments.make_ois.MakeOIS.with_settlement_days" title="quantlib.instruments.make_ois.MakeOIS.with_settlement_days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_settlement_days</span></code></a>(self, Natural days)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_settlement_days" title="quantlib.instruments.make_ois.MakeOIS.with_settlement_days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_settlement_days</span></code></a>(self, Natural days)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_telescopic_value_dates.html#quantlib.instruments.make_ois.MakeOIS.with_telescopic_value_dates" title="quantlib.instruments.make_ois.MakeOIS.with_telescopic_value_dates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_telescopic_value_dates</span></code></a>(self, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_telescopic_value_dates" title="quantlib.instruments.make_ois.MakeOIS.with_telescopic_value_dates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_telescopic_value_dates</span></code></a>(self, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_termination_date.html#quantlib.instruments.make_ois.MakeOIS.with_termination_date" title="quantlib.instruments.make_ois.MakeOIS.with_termination_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_termination_date</span></code></a>(self, Date d)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_termination_date" title="quantlib.instruments.make_ois.MakeOIS.with_termination_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_termination_date</span></code></a>(self, Date d)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#quantlib.instruments.make_ois.MakeOIS.with_type" title="quantlib.instruments.make_ois.MakeOIS.with_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_type</span></code></a>(self, Type type)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.make_ois.MakeOIS.with_type.html#quantlib.instruments.make_ois.MakeOIS.with_type" title="quantlib.instruments.make_ois.MakeOIS.with_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_type</span></code></a>(self, Type type)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.receive_fixed">
-<span class="sig-name descname"><span class="pre">receive_fixed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">flag=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.receive_fixed" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_apply_observation_shift">
-<span class="sig-name descname"><span class="pre">with_apply_observation_shift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">observation_shift</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_apply_observation_shift" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_averaging_method">
-<span class="sig-name descname"><span class="pre">with_averaging_method</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RateAveraging</span> <span class="pre">averagingMethod</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_averaging_method" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_discounting_term_structure">
-<span class="sig-name descname"><span class="pre">with_discounting_term_structure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">HandleYieldTermStructure</span> <span class="pre">ts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_discounting_term_structure" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_effective_date">
-<span class="sig-name descname"><span class="pre">with_effective_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_effective_date" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_end_of_month">
-<span class="sig-name descname"><span class="pre">with_end_of_month</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">flag=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_end_of_month" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_fixed_leg_day_count">
-<span class="sig-name descname"><span class="pre">with_fixed_leg_day_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">dc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_fixed_leg_day_count" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_lockout_days">
-<span class="sig-name descname"><span class="pre">with_lockout_days</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">lockout_days</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_lockout_days" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_lookback_days">
-<span class="sig-name descname"><span class="pre">with_lookback_days</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">lookback_days</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_lookback_days" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_nominal">
-<span class="sig-name descname"><span class="pre">with_nominal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_nominal" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_overnight_leg_spread">
-<span class="sig-name descname"><span class="pre">with_overnight_leg_spread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Spread</span> <span class="pre">sp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_overnight_leg_spread" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_payment_adjustment">
-<span class="sig-name descname"><span class="pre">with_payment_adjustment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BusinessDayConvention</span> <span class="pre">convention</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_payment_adjustment" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_payment_calendar">
-<span class="sig-name descname"><span class="pre">with_payment_calendar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">cal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_payment_calendar" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_payment_frequency">
-<span class="sig-name descname"><span class="pre">with_payment_frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequency</span> <span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_payment_frequency" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_payment_lag">
-<span class="sig-name descname"><span class="pre">with_payment_lag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">lag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_payment_lag" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_pricing_engine">
-<span class="sig-name descname"><span class="pre">with_pricing_engine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PricingEngine</span> <span class="pre">engine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_pricing_engine" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_rule">
-<span class="sig-name descname"><span class="pre">with_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DateGeneration</span> <span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_rule" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_settlement_days">
-<span class="sig-name descname"><span class="pre">with_settlement_days</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">days</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_settlement_days" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_telescopic_value_dates">
-<span class="sig-name descname"><span class="pre">with_telescopic_value_dates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">telescopic_value_dates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_telescopic_value_dates" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_termination_date">
-<span class="sig-name descname"><span class="pre">with_termination_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_termination_date" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="quantlib.instruments.make_ois.MakeOIS.with_type">
-<span class="sig-name descname"><span class="pre">with_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Type</span> <span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.make_ois.MakeOIS.with_type" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </section>
@@ -264,7 +155,7 @@
   <li><a href="quantlib.instruments.html">quantlib.instruments</a><ul>
   <li><a href="quantlib.instruments.make_ois.html">quantlib.instruments.make_ois</a><ul>
       <li>Previous: <a href="quantlib.instruments.make_ois.html" title="previous chapter">quantlib.instruments.make_ois</a></li>
-      <li>Next: <a href="quantlib.instruments.make_swaption.html" title="next chapter">quantlib.instruments.make_swaption</a></li>
+      <li>Next: <a href="quantlib.instruments.make_ois.MakeOIS.__call__.html" title="next chapter">quantlib.instruments.make_ois.MakeOIS.__call__</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

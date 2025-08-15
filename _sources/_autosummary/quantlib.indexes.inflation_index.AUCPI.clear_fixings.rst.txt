@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.AUCPI.clear\_fixings
+======================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. automethod:: AUCPI.clear_fixings

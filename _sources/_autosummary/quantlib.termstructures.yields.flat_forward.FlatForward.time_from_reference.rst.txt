@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.flat\_forward.FlatForward.time\_from\_reference
+==============================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.flat_forward
+
+.. automethod:: FlatForward.time_from_reference

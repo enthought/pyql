@@ -1,0 +1,6 @@
+quantlib.processes.hullwhite\_process.HullWhiteForwardProcess.forward\_measure\_time
+====================================================================================
+
+.. currentmodule:: quantlib.processes.hullwhite_process
+
+.. autoattribute:: HullWhiteForwardProcess.forward_measure_time

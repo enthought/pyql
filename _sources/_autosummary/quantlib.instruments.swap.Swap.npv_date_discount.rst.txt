@@ -1,0 +1,6 @@
+quantlib.instruments.swap.Swap.npv\_date\_discount
+==================================================
+
+.. currentmodule:: quantlib.instruments.swap
+
+.. automethod:: Swap.npv_date_discount

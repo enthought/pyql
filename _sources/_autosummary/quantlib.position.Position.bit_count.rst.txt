@@ -1,0 +1,6 @@
+quantlib.position.Position.bit\_count
+=====================================
+
+.. currentmodule:: quantlib.position
+
+.. automethod:: Position.bit_count

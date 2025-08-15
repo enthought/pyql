@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Method.as\_integer\_ratio
+=======================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. automethod:: Method.as_integer_ratio

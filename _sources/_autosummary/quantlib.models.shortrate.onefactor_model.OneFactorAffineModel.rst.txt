@@ -1,38 +1,37 @@
-quantlib.models.shortrate.onefactor\_model.OneFactorAffineModel
-===============================================================
+.. raw:: html
+
+   <div class="prename">quantlib.models.shortrate.onefactor_model.</div>
+   <div class="empty"></div>
+
+OneFactorAffineModel
+==============================================================
 
 .. currentmodule:: quantlib.models.shortrate.onefactor_model
 
 .. autoclass:: OneFactorAffineModel
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OneFactorAffineModel.discount_bond
+         OneFactorAffineModel.discount_bond_option
+         OneFactorAffineModel.params
+         OneFactorAffineModel.set_params
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~OneFactorAffineModel.__init__
-      ~OneFactorAffineModel.discount_bond
-      ~OneFactorAffineModel.discount_bond_option
-      ~OneFactorAffineModel.params
-      ~OneFactorAffineModel.set_params
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~OneFactorAffineModel.dynamics
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OneFactorAffineModel.dynamics
+  
+  

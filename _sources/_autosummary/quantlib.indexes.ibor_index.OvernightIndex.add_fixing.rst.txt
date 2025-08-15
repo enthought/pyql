@@ -1,0 +1,6 @@
+quantlib.indexes.ibor\_index.OvernightIndex.add\_fixing
+=======================================================
+
+.. currentmodule:: quantlib.indexes.ibor_index
+
+.. automethod:: OvernightIndex.add_fixing

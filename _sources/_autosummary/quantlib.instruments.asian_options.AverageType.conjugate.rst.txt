@@ -1,0 +1,6 @@
+quantlib.instruments.asian\_options.AverageType.conjugate
+=========================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. automethod:: AverageType.conjugate

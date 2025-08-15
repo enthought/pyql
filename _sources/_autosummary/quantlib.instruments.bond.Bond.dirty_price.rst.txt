@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Bond.dirty\_price
+===========================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoattribute:: Bond.dirty_price

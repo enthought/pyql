@@ -1,49 +1,48 @@
-quantlib.termstructures.yields.piecewise\_yield\_curve.DiscountCubicPiecewiseYieldCurve
-=======================================================================================
+.. raw:: html
+
+   <div class="prename">quantlib.termstructures.yields.piecewise_yield_curve.</div>
+   <div class="empty"></div>
+
+DiscountCubicPiecewiseYieldCurve
+=====================================================================================
 
 .. currentmodule:: quantlib.termstructures.yields.piecewise_yield_curve
 
 .. autoclass:: DiscountCubicPiecewiseYieldCurve
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         DiscountCubicPiecewiseYieldCurve.discount
+         DiscountCubicPiecewiseYieldCurve.forward_rate
+         DiscountCubicPiecewiseYieldCurve.from_reference_date
+         DiscountCubicPiecewiseYieldCurve.time_from_reference
+         DiscountCubicPiecewiseYieldCurve.zero_rate
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~DiscountCubicPiecewiseYieldCurve.__init__
-      ~DiscountCubicPiecewiseYieldCurve.discount
-      ~DiscountCubicPiecewiseYieldCurve.forward_rate
-      ~DiscountCubicPiecewiseYieldCurve.from_reference_date
-      ~DiscountCubicPiecewiseYieldCurve.time_from_reference
-      ~DiscountCubicPiecewiseYieldCurve.zero_rate
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~DiscountCubicPiecewiseYieldCurve.data
-      ~DiscountCubicPiecewiseYieldCurve.dates
-      ~DiscountCubicPiecewiseYieldCurve.day_counter
-      ~DiscountCubicPiecewiseYieldCurve.extrapolation
-      ~DiscountCubicPiecewiseYieldCurve.max_date
-      ~DiscountCubicPiecewiseYieldCurve.max_time
-      ~DiscountCubicPiecewiseYieldCurve.nodes
-      ~DiscountCubicPiecewiseYieldCurve.reference_date
-      ~DiscountCubicPiecewiseYieldCurve.settlement_days
-      ~DiscountCubicPiecewiseYieldCurve.times
-      ~DiscountCubicPiecewiseYieldCurve.trait
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         DiscountCubicPiecewiseYieldCurve.data
+         DiscountCubicPiecewiseYieldCurve.dates
+         DiscountCubicPiecewiseYieldCurve.day_counter
+         DiscountCubicPiecewiseYieldCurve.extrapolation
+         DiscountCubicPiecewiseYieldCurve.max_date
+         DiscountCubicPiecewiseYieldCurve.max_time
+         DiscountCubicPiecewiseYieldCurve.nodes
+         DiscountCubicPiecewiseYieldCurve.reference_date
+         DiscountCubicPiecewiseYieldCurve.settlement_days
+         DiscountCubicPiecewiseYieldCurve.times
+         DiscountCubicPiecewiseYieldCurve.trait
+  
+  

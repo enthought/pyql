@@ -1,0 +1,6 @@
+quantlib.cashflow.CashFlow.has\_occured
+=======================================
+
+.. currentmodule:: quantlib.cashflow
+
+.. automethod:: CashFlow.has_occured

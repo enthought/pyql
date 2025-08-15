@@ -4,28 +4,10 @@ quantlib.termstructures.yields.piecewise\_zerospreaded\_termstructure
 .. automodule:: quantlib.termstructures.yields.piecewise_zerospreaded_termstructure
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       PiecewiseZeroSpreadedTermStructure
    
-   
-
-   
-   
-   
-
-
-

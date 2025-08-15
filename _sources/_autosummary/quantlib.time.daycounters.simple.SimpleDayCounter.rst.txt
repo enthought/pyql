@@ -1,37 +1,36 @@
-quantlib.time.daycounters.simple.SimpleDayCounter
+.. raw:: html
+
+   <div class="prename">quantlib.time.daycounters.simple.</div>
+   <div class="empty"></div>
+
+SimpleDayCounter
 =================================================
 
 .. currentmodule:: quantlib.time.daycounters.simple
 
 .. autoclass:: SimpleDayCounter
-   :members:
    :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
 
-   
-   .. automethod:: __init__
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SimpleDayCounter.day_count
+         SimpleDayCounter.from_name
+         SimpleDayCounter.year_fraction
+      
+  
 
-   
-   .. rubric:: Methods
-
-   .. autosummary::
-
-
-   
-      ~SimpleDayCounter.__init__
-      ~SimpleDayCounter.day_count
-      ~SimpleDayCounter.from_name
-      ~SimpleDayCounter.year_fraction
-   
-   
-
-   
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-
-   
-      ~SimpleDayCounter.name
-
-   
-   
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         SimpleDayCounter.name
+  
+  

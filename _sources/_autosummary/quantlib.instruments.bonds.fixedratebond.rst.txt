@@ -4,28 +4,10 @@ quantlib.instruments.bonds.fixedratebond
 .. automodule:: quantlib.instruments.bonds.fixedratebond
 
    
-   
-   
-
-   
-   
-   
-
-   
-   
    .. rubric:: Classes
 
    .. autosummary::
       :toctree:
-      :template: custom-class-template.rst
    
       FixedRateBond
    
-   
-
-   
-   
-   
-
-
-

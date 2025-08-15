@@ -1,0 +1,6 @@
+quantlib.cashflows.conundrum\_pricer.NumericHaganPricer.floorlet\_rate
+======================================================================
+
+.. currentmodule:: quantlib.cashflows.conundrum_pricer
+
+.. automethod:: NumericHaganPricer.floorlet_rate

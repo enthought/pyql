@@ -1,0 +1,6 @@
+quantlib.exercise.AmericanExercise.Bermudan
+===========================================
+
+.. currentmodule:: quantlib.exercise
+
+.. autoattribute:: AmericanExercise.Bermudan
