@@ -58,7 +58,7 @@ jobs:
       - name: Build docs
         if: matrix.python-version == '3.11'
         run: |
-          pip install sphinx nbsphinx scikit-learn ipython
+          pip install sphinx nbsphinx scikit-learn ipython numpydoc
           sudo apt-get install pandoc texlive texlive-latex-extra dvipng
           make docs
 
