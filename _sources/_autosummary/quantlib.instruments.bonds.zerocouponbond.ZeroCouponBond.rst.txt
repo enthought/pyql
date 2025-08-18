@@ -37,6 +37,7 @@ ZeroCouponBond
          ZeroCouponBond.cashflows
          ZeroCouponBond.clean_price
          ZeroCouponBond.dirty_price
+         ZeroCouponBond.error_estimate
          ZeroCouponBond.is_expired
          ZeroCouponBond.issue_date
          ZeroCouponBond.maturity_date

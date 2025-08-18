@@ -40,6 +40,7 @@ OvernightIndexedSwap
          OvernightIndexedSwap.Payer
          OvernightIndexedSwap.Receiver
          OvernightIndexedSwap.averaging_method
+         OvernightIndexedSwap.error_estimate
          OvernightIndexedSwap.fair_rate
          OvernightIndexedSwap.fair_spread
          OvernightIndexedSwap.fixed_day_count

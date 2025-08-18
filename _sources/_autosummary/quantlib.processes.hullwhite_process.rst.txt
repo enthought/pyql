@@ -9,7 +9,6 @@ quantlib.processes.hullwhite\_process
    .. autosummary::
       :toctree:
    
-      ForwardHullWhiteProcess
       HullWhiteForwardProcess
       HullWhiteProcess
    

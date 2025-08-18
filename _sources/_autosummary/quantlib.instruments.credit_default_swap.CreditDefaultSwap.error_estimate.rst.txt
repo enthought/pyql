@@ -1,0 +1,6 @@
+quantlib.instruments.credit\_default\_swap.CreditDefaultSwap.error\_estimate
+============================================================================
+
+.. currentmodule:: quantlib.instruments.credit_default_swap
+
+.. autoattribute:: CreditDefaultSwap.error_estimate

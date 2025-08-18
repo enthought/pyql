@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.fixedratebond.FixedRateBond.error\_estimate
+======================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.fixedratebond
+
+.. autoattribute:: FixedRateBond.error_estimate

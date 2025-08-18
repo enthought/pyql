@@ -39,6 +39,7 @@ FixedVsFloatingSwap
       
          FixedVsFloatingSwap.Payer
          FixedVsFloatingSwap.Receiver
+         FixedVsFloatingSwap.error_estimate
          FixedVsFloatingSwap.fair_rate
          FixedVsFloatingSwap.fair_spread
          FixedVsFloatingSwap.fixed_day_count

@@ -31,6 +31,7 @@ Option
       
          Option.Call
          Option.Put
+         Option.error_estimate
          Option.exercise
          Option.is_expired
          Option.net_present_value

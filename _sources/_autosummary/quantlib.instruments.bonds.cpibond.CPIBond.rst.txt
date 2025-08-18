@@ -37,6 +37,7 @@ CPIBond
          CPIBond.cashflows
          CPIBond.clean_price
          CPIBond.dirty_price
+         CPIBond.error_estimate
          CPIBond.is_expired
          CPIBond.issue_date
          CPIBond.maturity_date

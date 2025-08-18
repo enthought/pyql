@@ -39,6 +39,7 @@ CreditDefaultSwap
          CreditDefaultSwap.coupon_leg_npv
          CreditDefaultSwap.coupons
          CreditDefaultSwap.default_leg_npv
+         CreditDefaultSwap.error_estimate
          CreditDefaultSwap.fair_spread
          CreditDefaultSwap.fair_upfront
          CreditDefaultSwap.is_expired

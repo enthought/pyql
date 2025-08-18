@@ -1,0 +1,6 @@
+quantlib.instrument.Instrument.error\_estimate
+==============================================
+
+.. currentmodule:: quantlib.instrument
+
+.. autoattribute:: Instrument.error_estimate

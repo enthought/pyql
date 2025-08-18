@@ -1,0 +1,6 @@
+quantlib.processes.hybrid\_heston\_hullwhite\_process.Discretization.as\_integer\_ratio
+=======================================================================================
+
+.. currentmodule:: quantlib.processes.hybrid_heston_hullwhite_process
+
+.. automethod:: Discretization.as_integer_ratio

@@ -38,6 +38,7 @@ Swap
       
          Swap.Payer
          Swap.Receiver
+         Swap.error_estimate
          Swap.is_expired
          Swap.maturity_date
          Swap.net_present_value

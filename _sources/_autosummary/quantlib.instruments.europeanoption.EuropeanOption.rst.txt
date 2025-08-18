@@ -36,6 +36,7 @@ EuropeanOption
          EuropeanOption.delta_forward
          EuropeanOption.dividend_rho
          EuropeanOption.elasticity
+         EuropeanOption.error_estimate
          EuropeanOption.exercise
          EuropeanOption.gamma
          EuropeanOption.is_expired

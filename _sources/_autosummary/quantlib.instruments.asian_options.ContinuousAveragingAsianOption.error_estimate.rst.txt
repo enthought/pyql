@@ -1,0 +1,6 @@
+quantlib.instruments.asian\_options.ContinuousAveragingAsianOption.error\_estimate
+==================================================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. autoattribute:: ContinuousAveragingAsianOption.error_estimate

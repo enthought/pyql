@@ -1,0 +1,6 @@
+quantlib.instruments.oneassetoption.OneAssetOption.error\_estimate
+==================================================================
+
+.. currentmodule:: quantlib.instruments.oneassetoption
+
+.. autoattribute:: OneAssetOption.error_estimate

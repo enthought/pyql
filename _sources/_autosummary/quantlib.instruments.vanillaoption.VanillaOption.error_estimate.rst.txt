@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaoption.VanillaOption.error\_estimate
+================================================================
+
+.. currentmodule:: quantlib.instruments.vanillaoption
+
+.. autoattribute:: VanillaOption.error_estimate

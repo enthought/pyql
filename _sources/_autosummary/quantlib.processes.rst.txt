@@ -16,3 +16,4 @@ quantlib.processes
    forwardmeasureprocess
    heston_process
    hullwhite_process
+   hybrid_heston_hullwhite_process

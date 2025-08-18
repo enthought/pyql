@@ -35,6 +35,7 @@ ContinuousAveragingAsianOption
          ContinuousAveragingAsianOption.delta_forward
          ContinuousAveragingAsianOption.dividend_rho
          ContinuousAveragingAsianOption.elasticity
+         ContinuousAveragingAsianOption.error_estimate
          ContinuousAveragingAsianOption.exercise
          ContinuousAveragingAsianOption.gamma
          ContinuousAveragingAsianOption.is_expired

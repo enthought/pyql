@@ -1,0 +1,6 @@
+quantlib.processes.hybrid\_heston\_hullwhite\_process.Discretization.denominator
+================================================================================
+
+.. currentmodule:: quantlib.processes.hybrid_heston_hullwhite_process
+
+.. autoattribute:: Discretization.denominator

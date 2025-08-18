@@ -1,0 +1,6 @@
+quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.error\_estimate
+============================================================================
+
+.. currentmodule:: quantlib.instruments.fixedvsfloatingswap
+
+.. autoattribute:: FixedVsFloatingSwap.error_estimate

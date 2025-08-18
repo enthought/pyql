@@ -29,6 +29,7 @@ Instrument
       .. autosummary::
          :toctree:
       
+         Instrument.error_estimate
          Instrument.is_expired
          Instrument.net_present_value
          Instrument.npv

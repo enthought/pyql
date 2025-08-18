@@ -1,0 +1,6 @@
+quantlib.instruments.forward.Forward.error\_estimate
+====================================================
+
+.. currentmodule:: quantlib.instruments.forward
+
+.. autoattribute:: Forward.error_estimate

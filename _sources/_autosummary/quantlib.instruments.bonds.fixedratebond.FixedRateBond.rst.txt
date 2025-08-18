@@ -37,6 +37,7 @@ FixedRateBond
          FixedRateBond.cashflows
          FixedRateBond.clean_price
          FixedRateBond.dirty_price
+         FixedRateBond.error_estimate
          FixedRateBond.is_expired
          FixedRateBond.issue_date
          FixedRateBond.maturity_date

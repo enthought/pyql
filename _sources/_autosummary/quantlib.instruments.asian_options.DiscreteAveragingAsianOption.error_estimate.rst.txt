@@ -1,0 +1,6 @@
+quantlib.instruments.asian\_options.DiscreteAveragingAsianOption.error\_estimate
+================================================================================
+
+.. currentmodule:: quantlib.instruments.asian_options
+
+.. autoattribute:: DiscreteAveragingAsianOption.error_estimate

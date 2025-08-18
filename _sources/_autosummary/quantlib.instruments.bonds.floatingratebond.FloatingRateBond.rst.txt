@@ -37,6 +37,7 @@ FloatingRateBond
          FloatingRateBond.cashflows
          FloatingRateBond.clean_price
          FloatingRateBond.dirty_price
+         FloatingRateBond.error_estimate
          FloatingRateBond.is_expired
          FloatingRateBond.issue_date
          FloatingRateBond.maturity_date

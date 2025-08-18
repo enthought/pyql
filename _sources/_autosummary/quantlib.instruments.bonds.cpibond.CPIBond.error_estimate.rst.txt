@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.cpibond.CPIBond.error\_estimate
+==========================================================
+
+.. currentmodule:: quantlib.instruments.bonds.cpibond
+
+.. autoattribute:: CPIBond.error_estimate

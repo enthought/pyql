@@ -30,10 +30,10 @@ CashDividendModel
          CashDividendModel.__len__
          CashDividendModel.__getitem__
       
+         CashDividendModel.__pow__
+         CashDividendModel.__mul__
          CashDividendModel.__len__
          CashDividendModel.__getitem__
-         CashDividendModel.__mul__
-         CashDividendModel.__pow__
   
 
   

@@ -37,6 +37,7 @@ Bond
          Bond.cashflows
          Bond.clean_price
          Bond.dirty_price
+         Bond.error_estimate
          Bond.is_expired
          Bond.issue_date
          Bond.maturity_date

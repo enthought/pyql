@@ -1,0 +1,6 @@
+quantlib.instruments.europeanoption.EuropeanOption.error\_estimate
+==================================================================
+
+.. currentmodule:: quantlib.instruments.europeanoption
+
+.. autoattribute:: EuropeanOption.error_estimate

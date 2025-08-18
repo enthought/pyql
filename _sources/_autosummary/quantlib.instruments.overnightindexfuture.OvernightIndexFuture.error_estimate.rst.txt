@@ -1,0 +1,6 @@
+quantlib.instruments.overnightindexfuture.OvernightIndexFuture.error\_estimate
+==============================================================================
+
+.. currentmodule:: quantlib.instruments.overnightindexfuture
+
+.. autoattribute:: OvernightIndexFuture.error_estimate

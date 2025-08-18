@@ -36,6 +36,7 @@ Swaption
          Swaption.annuity
          Swaption.atm_forward
          Swaption.delta
+         Swaption.error_estimate
          Swaption.exercise
          Swaption.implied_vol
          Swaption.is_expired

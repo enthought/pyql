@@ -1,0 +1,6 @@
+quantlib.instruments.swaption.Swaption.error\_estimate
+======================================================
+
+.. currentmodule:: quantlib.instruments.swaption
+
+.. autoattribute:: Swaption.error_estimate

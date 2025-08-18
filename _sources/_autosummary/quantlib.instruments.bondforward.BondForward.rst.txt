@@ -32,6 +32,7 @@ BondForward
          :toctree:
       
          BondForward.clean_forward_price
+         BondForward.error_estimate
          BondForward.forward_price
          BondForward.forward_value
          BondForward.is_expired

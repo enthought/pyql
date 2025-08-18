@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.amortizingfloatingratebond.AmortizingFloatingRateBond.error\_estimate
+================================================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.amortizingfloatingratebond
+
+.. autoattribute:: AmortizingFloatingRateBond.error_estimate

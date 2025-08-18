@@ -1,0 +1,6 @@
+quantlib.instruments.vanillaswap.VanillaSwap.error\_estimate
+============================================================
+
+.. currentmodule:: quantlib.instruments.vanillaswap
+
+.. autoattribute:: VanillaSwap.error_estimate

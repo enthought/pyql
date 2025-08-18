@@ -1,0 +1,6 @@
+quantlib.instruments.bonds.zerocouponbond.ZeroCouponBond.error\_estimate
+========================================================================
+
+.. currentmodule:: quantlib.instruments.bonds.zerocouponbond
+
+.. autoattribute:: ZeroCouponBond.error_estimate

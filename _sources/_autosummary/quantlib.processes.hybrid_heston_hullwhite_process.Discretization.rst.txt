@@ -1,0 +1,52 @@
+.. raw:: html
+
+   <div class="prename">quantlib.processes.hybrid_heston_hullwhite_process.</div>
+   <div class="empty"></div>
+
+Discretization
+=================================================================
+
+.. currentmodule:: quantlib.processes.hybrid_heston_hullwhite_process
+
+.. autoclass:: Discretization
+   :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
+
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Discretization.__mul__
+         Discretization.__pow__
+         Discretization.conjugate
+         Discretization.bit_length
+         Discretization.bit_count
+         Discretization.to_bytes
+         Discretization.from_bytes
+         Discretization.as_integer_ratio
+         Discretization.__getitem__
+         Discretization.__len__
+      
+         Discretization.__pow__
+         Discretization.__getitem__
+         Discretization.__mul__
+         Discretization.__len__
+  
+
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         Discretization.real
+         Discretization.imag
+         Discretization.numerator
+         Discretization.denominator
+         Discretization.Euler
+         Discretization.BSMHullWhite
+  
+  

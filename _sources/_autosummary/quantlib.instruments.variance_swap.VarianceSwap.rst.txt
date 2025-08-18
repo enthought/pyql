@@ -29,6 +29,7 @@ VarianceSwap
       .. autosummary::
          :toctree:
       
+         VarianceSwap.error_estimate
          VarianceSwap.is_expired
          VarianceSwap.maturity_date
          VarianceSwap.net_present_value

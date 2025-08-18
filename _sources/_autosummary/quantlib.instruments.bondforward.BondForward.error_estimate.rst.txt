@@ -1,0 +1,6 @@
+quantlib.instruments.bondforward.BondForward.error\_estimate
+============================================================
+
+.. currentmodule:: quantlib.instruments.bondforward
+
+.. autoattribute:: BondForward.error_estimate

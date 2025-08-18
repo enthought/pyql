@@ -37,6 +37,7 @@ AmortizingFloatingRateBond
          AmortizingFloatingRateBond.cashflows
          AmortizingFloatingRateBond.clean_price
          AmortizingFloatingRateBond.dirty_price
+         AmortizingFloatingRateBond.error_estimate
          AmortizingFloatingRateBond.is_expired
          AmortizingFloatingRateBond.issue_date
          AmortizingFloatingRateBond.maturity_date

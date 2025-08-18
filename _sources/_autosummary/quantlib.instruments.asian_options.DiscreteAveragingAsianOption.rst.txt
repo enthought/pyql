@@ -35,6 +35,7 @@ DiscreteAveragingAsianOption
          DiscreteAveragingAsianOption.delta_forward
          DiscreteAveragingAsianOption.dividend_rho
          DiscreteAveragingAsianOption.elasticity
+         DiscreteAveragingAsianOption.error_estimate
          DiscreteAveragingAsianOption.exercise
          DiscreteAveragingAsianOption.gamma
          DiscreteAveragingAsianOption.is_expired

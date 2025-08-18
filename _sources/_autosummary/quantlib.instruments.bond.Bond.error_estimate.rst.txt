@@ -1,0 +1,6 @@
+quantlib.instruments.bond.Bond.error\_estimate
+==============================================
+
+.. currentmodule:: quantlib.instruments.bond
+
+.. autoattribute:: Bond.error_estimate
