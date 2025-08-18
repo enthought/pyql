@@ -19,7 +19,7 @@ jobs:
           sudo apt-get install libquantlib0-dev
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
@@ -49,7 +49,7 @@ jobs:
       # Publish built docs to gh-pages branch.
       - name: Checkout documentation branch
         if: matrix.python-version == '3.11'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: gh-pages
           path: gh-pages
