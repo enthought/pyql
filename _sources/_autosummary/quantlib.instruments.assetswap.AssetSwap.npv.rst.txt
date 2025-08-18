@@ -1,0 +1,6 @@
+quantlib.instruments.assetswap.AssetSwap.npv
+============================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. autoattribute:: AssetSwap.npv

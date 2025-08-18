@@ -1,0 +1,6 @@
+quantlib.instruments.zerocouponswap.ZeroCouponSwap.Receiver
+===========================================================
+
+.. currentmodule:: quantlib.instruments.zerocouponswap
+
+.. autoattribute:: ZeroCouponSwap.Receiver

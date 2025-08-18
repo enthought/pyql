@@ -1,0 +1,6 @@
+quantlib.instruments.assetswap.AssetSwap.fair\_clean\_price
+===========================================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. autoattribute:: AssetSwap.fair_clean_price

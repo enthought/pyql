@@ -1,0 +1,6 @@
+quantlib.instruments.assetswap.AssetSwap.endDiscounts
+=====================================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. automethod:: AssetSwap.endDiscounts

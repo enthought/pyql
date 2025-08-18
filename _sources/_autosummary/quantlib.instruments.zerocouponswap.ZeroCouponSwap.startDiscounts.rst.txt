@@ -1,0 +1,6 @@
+quantlib.instruments.zerocouponswap.ZeroCouponSwap.startDiscounts
+=================================================================
+
+.. currentmodule:: quantlib.instruments.zerocouponswap
+
+.. automethod:: ZeroCouponSwap.startDiscounts

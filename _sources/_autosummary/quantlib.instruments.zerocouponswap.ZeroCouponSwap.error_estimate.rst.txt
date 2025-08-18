@@ -1,0 +1,6 @@
+quantlib.instruments.zerocouponswap.ZeroCouponSwap.error\_estimate
+==================================================================
+
+.. currentmodule:: quantlib.instruments.zerocouponswap
+
+.. autoattribute:: ZeroCouponSwap.error_estimate

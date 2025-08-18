@@ -1,0 +1,6 @@
+quantlib.instruments.zerocouponswap.ZeroCouponSwap.start\_date
+==============================================================
+
+.. currentmodule:: quantlib.instruments.zerocouponswap
+
+.. autoattribute:: ZeroCouponSwap.start_date

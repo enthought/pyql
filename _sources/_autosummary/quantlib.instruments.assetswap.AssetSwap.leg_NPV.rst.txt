@@ -1,0 +1,6 @@
+quantlib.instruments.assetswap.AssetSwap.leg\_NPV
+=================================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. automethod:: AssetSwap.leg_NPV

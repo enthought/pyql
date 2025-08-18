@@ -1,0 +1,6 @@
+quantlib.instruments.zerocouponswap.ZeroCouponSwap.leg\_BPS
+===========================================================
+
+.. currentmodule:: quantlib.instruments.zerocouponswap
+
+.. automethod:: ZeroCouponSwap.leg_BPS

@@ -1,0 +1,6 @@
+quantlib.instruments.zerocouponswap.ZeroCouponSwap.set\_pricing\_engine
+=======================================================================
+
+.. currentmodule:: quantlib.instruments.zerocouponswap
+
+.. automethod:: ZeroCouponSwap.set_pricing_engine

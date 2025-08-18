@@ -1,0 +1,6 @@
+quantlib.instruments.zerocouponswap.ZeroCouponSwap.Payer
+========================================================
+
+.. currentmodule:: quantlib.instruments.zerocouponswap
+
+.. autoattribute:: ZeroCouponSwap.Payer

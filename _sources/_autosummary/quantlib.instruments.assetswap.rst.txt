@@ -1,0 +1,13 @@
+quantlib.instruments.assetswap
+==============================
+
+.. automodule:: quantlib.instruments.assetswap
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      AssetSwap
+   

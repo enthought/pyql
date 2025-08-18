@@ -30,10 +30,10 @@ Interpolator
          Interpolator.__len__
          Interpolator.__getitem__
       
+         Interpolator.__getitem__
+         Interpolator.__len__
          Interpolator.__pow__
          Interpolator.__mul__
-         Interpolator.__len__
-         Interpolator.__getitem__
   
 
   

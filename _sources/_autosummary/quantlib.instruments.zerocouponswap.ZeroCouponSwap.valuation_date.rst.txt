@@ -1,0 +1,6 @@
+quantlib.instruments.zerocouponswap.ZeroCouponSwap.valuation\_date
+==================================================================
+
+.. currentmodule:: quantlib.instruments.zerocouponswap
+
+.. autoattribute:: ZeroCouponSwap.valuation_date

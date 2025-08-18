@@ -1,0 +1,6 @@
+quantlib.instruments.zerocouponswap.ZeroCouponSwap.leg\_NPV
+===========================================================
+
+.. currentmodule:: quantlib.instruments.zerocouponswap
+
+.. automethod:: ZeroCouponSwap.leg_NPV

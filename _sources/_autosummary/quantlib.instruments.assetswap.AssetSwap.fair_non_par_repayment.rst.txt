@@ -1,0 +1,6 @@
+quantlib.instruments.assetswap.AssetSwap.fair\_non\_par\_repayment
+==================================================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. autoattribute:: AssetSwap.fair_non_par_repayment

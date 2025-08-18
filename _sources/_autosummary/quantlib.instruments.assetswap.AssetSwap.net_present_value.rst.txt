@@ -1,0 +1,6 @@
+quantlib.instruments.assetswap.AssetSwap.net\_present\_value
+============================================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. autoattribute:: AssetSwap.net_present_value

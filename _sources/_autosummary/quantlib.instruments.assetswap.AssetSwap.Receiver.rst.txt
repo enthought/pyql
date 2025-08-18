@@ -1,0 +1,6 @@
+quantlib.instruments.assetswap.AssetSwap.Receiver
+=================================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. autoattribute:: AssetSwap.Receiver

@@ -1,0 +1,6 @@
+quantlib.instruments.assetswap.AssetSwap.fair\_spread
+=====================================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. autoattribute:: AssetSwap.fair_spread

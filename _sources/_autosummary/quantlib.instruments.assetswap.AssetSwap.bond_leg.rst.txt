@@ -1,0 +1,6 @@
+quantlib.instruments.assetswap.AssetSwap.bond\_leg
+==================================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. autoattribute:: AssetSwap.bond_leg

@@ -1,0 +1,6 @@
+quantlib.instruments.zerocouponswap.ZeroCouponSwap.\_\_getitem\_\_
+==================================================================
+
+.. currentmodule:: quantlib.instruments.zerocouponswap
+
+.. automethod:: ZeroCouponSwap.__getitem__

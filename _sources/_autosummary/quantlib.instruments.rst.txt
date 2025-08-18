@@ -12,6 +12,7 @@ quantlib.instruments
 
    api
    asian_options
+   assetswap
    bond
    bondforward
    bonds
@@ -35,3 +36,4 @@ quantlib.instruments
    vanillaoption
    vanillaswap
    variance_swap
+   zerocouponswap

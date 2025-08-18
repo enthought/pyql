@@ -1,0 +1,6 @@
+quantlib.instruments.assetswap.AssetSwap.floating\_leg\_NPV
+===========================================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. autoattribute:: AssetSwap.floating_leg_NPV

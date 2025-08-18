@@ -1,0 +1,50 @@
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.zerocouponswap.</div>
+   <div class="empty"></div>
+
+ZeroCouponSwap
+==================================================
+
+.. currentmodule:: quantlib.instruments.zerocouponswap
+
+.. autoclass:: ZeroCouponSwap
+   :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
+
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZeroCouponSwap.__getitem__
+         ZeroCouponSwap.endDiscounts
+         ZeroCouponSwap.leg
+         ZeroCouponSwap.leg_BPS
+         ZeroCouponSwap.leg_NPV
+         ZeroCouponSwap.npv_date_discount
+         ZeroCouponSwap.set_pricing_engine
+         ZeroCouponSwap.startDiscounts
+      
+         ZeroCouponSwap.__getitem__
+  
+
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         ZeroCouponSwap.Payer
+         ZeroCouponSwap.Receiver
+         ZeroCouponSwap.error_estimate
+         ZeroCouponSwap.is_expired
+         ZeroCouponSwap.maturity_date
+         ZeroCouponSwap.net_present_value
+         ZeroCouponSwap.npv
+         ZeroCouponSwap.start_date
+         ZeroCouponSwap.valuation_date
+  
+  

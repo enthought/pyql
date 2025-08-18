@@ -1,0 +1,6 @@
+quantlib.instruments.assetswap.AssetSwap.Payer
+==============================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. autoattribute:: AssetSwap.Payer

@@ -1,0 +1,57 @@
+.. raw:: html
+
+   <div class="prename">quantlib.instruments.assetswap.</div>
+   <div class="empty"></div>
+
+AssetSwap
+========================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. autoclass:: AssetSwap
+   :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
+
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         AssetSwap.__getitem__
+         AssetSwap.endDiscounts
+         AssetSwap.leg
+         AssetSwap.leg_BPS
+         AssetSwap.leg_NPV
+         AssetSwap.npv_date_discount
+         AssetSwap.set_pricing_engine
+         AssetSwap.startDiscounts
+      
+         AssetSwap.__getitem__
+  
+
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         AssetSwap.Payer
+         AssetSwap.Receiver
+         AssetSwap.bond_leg
+         AssetSwap.error_estimate
+         AssetSwap.fair_clean_price
+         AssetSwap.fair_non_par_repayment
+         AssetSwap.fair_spread
+         AssetSwap.floating_leg
+         AssetSwap.floating_leg_BPS
+         AssetSwap.floating_leg_NPV
+         AssetSwap.is_expired
+         AssetSwap.maturity_date
+         AssetSwap.net_present_value
+         AssetSwap.npv
+         AssetSwap.start_date
+         AssetSwap.valuation_date
+  
+  

@@ -1,0 +1,6 @@
+quantlib.instruments.assetswap.AssetSwap.floating\_leg\_BPS
+===========================================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. autoattribute:: AssetSwap.floating_leg_BPS

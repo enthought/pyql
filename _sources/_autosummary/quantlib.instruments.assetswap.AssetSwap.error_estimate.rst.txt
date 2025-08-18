@@ -1,0 +1,6 @@
+quantlib.instruments.assetswap.AssetSwap.error\_estimate
+========================================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. autoattribute:: AssetSwap.error_estimate

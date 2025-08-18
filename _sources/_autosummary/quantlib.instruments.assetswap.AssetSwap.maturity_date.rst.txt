@@ -1,0 +1,6 @@
+quantlib.instruments.assetswap.AssetSwap.maturity\_date
+=======================================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. autoattribute:: AssetSwap.maturity_date

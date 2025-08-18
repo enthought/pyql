@@ -1,0 +1,6 @@
+quantlib.instruments.assetswap.AssetSwap.leg\_BPS
+=================================================
+
+.. currentmodule:: quantlib.instruments.assetswap
+
+.. automethod:: AssetSwap.leg_BPS
