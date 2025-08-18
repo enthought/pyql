@@ -1,0 +1,6 @@
+quantlib.models.marketmodels.browniangenerators.mt\_brownian\_generator.MTBrownianGenerator.number\_of\_factors
+===============================================================================================================
+
+.. currentmodule:: quantlib.models.marketmodels.browniangenerators.mt_brownian_generator
+
+.. autoattribute:: MTBrownianGenerator.number_of_factors

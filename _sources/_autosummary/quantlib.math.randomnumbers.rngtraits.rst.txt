@@ -9,5 +9,7 @@ quantlib.math.randomnumbers.rngtraits
    .. autosummary::
       :toctree:
    
+      FastPseudoRandom
       LowDiscrepancy
+      PseudoRandom
    

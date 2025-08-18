@@ -1,0 +1,6 @@
+quantlib.models.marketmodels.brownian\_generator.BrownianGenerator.next\_path
+=============================================================================
+
+.. currentmodule:: quantlib.models.marketmodels.brownian_generator
+
+.. automethod:: BrownianGenerator.next_path

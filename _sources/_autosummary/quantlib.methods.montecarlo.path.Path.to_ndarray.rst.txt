@@ -1,0 +1,6 @@
+quantlib.methods.montecarlo.path.Path.to\_ndarray
+=================================================
+
+.. currentmodule:: quantlib.methods.montecarlo.path
+
+.. automethod:: Path.to_ndarray

@@ -1,0 +1,6 @@
+quantlib.math.randomnumbers.rngtraits.PseudoRandom.last\_sequence
+=================================================================
+
+.. currentmodule:: quantlib.math.randomnumbers.rngtraits
+
+.. automethod:: PseudoRandom.last_sequence

@@ -31,9 +31,9 @@ VolatilityType
          VolatilityType.__getitem__
       
          VolatilityType.__getitem__
+         VolatilityType.__mul__
          VolatilityType.__len__
          VolatilityType.__pow__
-         VolatilityType.__mul__
   
 
   

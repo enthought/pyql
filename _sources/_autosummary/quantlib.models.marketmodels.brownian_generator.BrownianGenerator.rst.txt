@@ -1,0 +1,36 @@
+.. raw:: html
+
+   <div class="prename">quantlib.models.marketmodels.brownian_generator.</div>
+   <div class="empty"></div>
+
+BrownianGenerator
+=================================================================
+
+.. currentmodule:: quantlib.models.marketmodels.brownian_generator
+
+.. autoclass:: BrownianGenerator
+   :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
+
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BrownianGenerator.next_path
+         BrownianGenerator.next_step
+      
+  
+
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         BrownianGenerator.number_of_factors
+         BrownianGenerator.number_of_steps
+  
+  

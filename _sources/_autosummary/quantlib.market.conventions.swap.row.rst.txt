@@ -26,8 +26,8 @@ row
          row.index
       
          row.__getitem__
-         row.__len__
          row.__mul__
+         row.__len__
   
 
   

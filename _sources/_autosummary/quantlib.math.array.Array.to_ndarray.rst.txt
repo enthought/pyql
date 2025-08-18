@@ -1,0 +1,6 @@
+quantlib.math.array.Array.to\_ndarray
+=====================================
+
+.. currentmodule:: quantlib.math.array
+
+.. automethod:: Array.to_ndarray

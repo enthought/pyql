@@ -1,0 +1,15 @@
+quantlib.methods.montecarlo.multipathgenerator
+==============================================
+
+.. automodule:: quantlib.methods.montecarlo.multipathgenerator
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      LowDiscrepancyMultiPathGenerator
+      PseudoRandomMultiPathGenerator
+      ZigguratMultiPathGenerator
+   

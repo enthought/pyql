@@ -1,0 +1,6 @@
+quantlib.models.marketmodels.brownian\_generator.BrownianGeneratorFactory.create
+================================================================================
+
+.. currentmodule:: quantlib.models.marketmodels.brownian_generator
+
+.. automethod:: BrownianGeneratorFactory.create

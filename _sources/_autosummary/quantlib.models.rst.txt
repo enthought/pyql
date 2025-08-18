@@ -13,5 +13,6 @@ quantlib.models
    api
    calibration_helper
    equity
+   marketmodels
    model
    shortrate

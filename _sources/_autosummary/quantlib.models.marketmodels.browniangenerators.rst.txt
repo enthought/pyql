@@ -1,0 +1,13 @@
+quantlib.models.marketmodels.browniangenerators
+===============================================
+
+.. automodule:: quantlib.models.marketmodels.browniangenerators
+
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   mt_brownian_generator

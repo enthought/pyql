@@ -20,15 +20,11 @@ Array
          :toctree:
       
          Array.__getitem__
+         Array.__len__
+         Array.to_ndarray
       
   
 
   
-  
-   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
-      .. autosummary::
-         :toctree:
-      
-         Array.size
   
   

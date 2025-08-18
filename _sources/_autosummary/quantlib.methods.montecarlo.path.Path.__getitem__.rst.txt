@@ -1,0 +1,6 @@
+quantlib.methods.montecarlo.path.Path.\_\_getitem\_\_
+=====================================================
+
+.. currentmodule:: quantlib.methods.montecarlo.path
+
+.. automethod:: Path.__getitem__

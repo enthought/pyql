@@ -31,9 +31,9 @@ BusinessDayConvention
          BusinessDayConvention.__getitem__
       
          BusinessDayConvention.__getitem__
+         BusinessDayConvention.__mul__
          BusinessDayConvention.__len__
          BusinessDayConvention.__pow__
-         BusinessDayConvention.__mul__
   
 
   

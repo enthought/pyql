@@ -1,0 +1,6 @@
+quantlib.methods.montecarlo.path.Path.\_\_len\_\_
+=================================================
+
+.. currentmodule:: quantlib.methods.montecarlo.path
+
+.. automethod:: Path.__len__

@@ -1,0 +1,6 @@
+quantlib.methods.montecarlo.multipath.MultiPath.\_\_getitem\_\_
+===============================================================
+
+.. currentmodule:: quantlib.methods.montecarlo.multipath
+
+.. automethod:: MultiPath.__getitem__

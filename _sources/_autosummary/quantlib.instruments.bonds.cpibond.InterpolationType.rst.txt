@@ -31,9 +31,9 @@ InterpolationType
          InterpolationType.__getitem__
       
          InterpolationType.__getitem__
+         InterpolationType.__mul__
          InterpolationType.__len__
          InterpolationType.__pow__
-         InterpolationType.__mul__
   
 
   

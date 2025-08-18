@@ -1,0 +1,6 @@
+quantlib.math.array.Array.\_\_len\_\_
+=====================================
+
+.. currentmodule:: quantlib.math.array
+
+.. automethod:: Array.__len__

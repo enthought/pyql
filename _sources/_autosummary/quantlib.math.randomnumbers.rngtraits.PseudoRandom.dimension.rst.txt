@@ -1,0 +1,6 @@
+quantlib.math.randomnumbers.rngtraits.PseudoRandom.dimension
+============================================================
+
+.. currentmodule:: quantlib.math.randomnumbers.rngtraits
+
+.. autoattribute:: PseudoRandom.dimension

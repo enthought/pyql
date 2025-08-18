@@ -1,0 +1,6 @@
+quantlib.models.marketmodels.browniangenerators.mt\_brownian\_generator.MTBrownianGeneratorFactory.create
+=========================================================================================================
+
+.. currentmodule:: quantlib.models.marketmodels.browniangenerators.mt_brownian_generator
+
+.. automethod:: MTBrownianGeneratorFactory.create

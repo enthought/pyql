@@ -31,9 +31,9 @@ Compounding
          Compounding.__getitem__
       
          Compounding.__getitem__
+         Compounding.__mul__
          Compounding.__len__
          Compounding.__pow__
-         Compounding.__mul__
   
 
   

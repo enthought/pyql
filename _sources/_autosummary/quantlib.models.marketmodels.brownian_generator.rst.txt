@@ -1,0 +1,14 @@
+quantlib.models.marketmodels.brownian\_generator
+================================================
+
+.. automodule:: quantlib.models.marketmodels.brownian_generator
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      BrownianGenerator
+      BrownianGeneratorFactory
+   

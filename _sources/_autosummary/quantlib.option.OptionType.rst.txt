@@ -31,9 +31,9 @@ OptionType
          OptionType.__len__
       
          OptionType.__getitem__
+         OptionType.__mul__
          OptionType.__len__
          OptionType.__pow__
-         OptionType.__mul__
   
 
   

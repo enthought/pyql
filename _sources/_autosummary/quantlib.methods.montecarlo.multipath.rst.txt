@@ -1,0 +1,13 @@
+quantlib.methods.montecarlo.multipath
+=====================================
+
+.. automodule:: quantlib.methods.montecarlo.multipath
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      MultiPath
+   

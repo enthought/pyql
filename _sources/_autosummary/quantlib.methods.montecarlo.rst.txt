@@ -11,4 +11,5 @@ quantlib.methods.montecarlo
    :recursive:
 
    multipath
+   multipathgenerator
    path

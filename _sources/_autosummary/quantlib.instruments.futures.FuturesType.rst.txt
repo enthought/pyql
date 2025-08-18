@@ -31,9 +31,9 @@ FuturesType
          FuturesType.__getitem__
       
          FuturesType.__getitem__
+         FuturesType.__mul__
          FuturesType.__len__
          FuturesType.__pow__
-         FuturesType.__mul__
   
 
   

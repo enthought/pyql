@@ -1,0 +1,6 @@
+quantlib.models.marketmodels.brownian\_generator.BrownianGenerator.number\_of\_steps
+====================================================================================
+
+.. currentmodule:: quantlib.models.marketmodels.brownian_generator
+
+.. autoattribute:: BrownianGenerator.number_of_steps

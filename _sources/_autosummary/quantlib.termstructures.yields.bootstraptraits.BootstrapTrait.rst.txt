@@ -31,9 +31,9 @@ BootstrapTrait
          BootstrapTrait.__getitem__
       
          BootstrapTrait.__getitem__
+         BootstrapTrait.__mul__
          BootstrapTrait.__len__
          BootstrapTrait.__pow__
-         BootstrapTrait.__mul__
   
 
   

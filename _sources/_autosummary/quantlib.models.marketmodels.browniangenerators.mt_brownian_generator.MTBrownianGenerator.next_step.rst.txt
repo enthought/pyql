@@ -1,0 +1,6 @@
+quantlib.models.marketmodels.browniangenerators.mt\_brownian\_generator.MTBrownianGenerator.next\_step
+======================================================================================================
+
+.. currentmodule:: quantlib.models.marketmodels.browniangenerators.mt_brownian_generator
+
+.. automethod:: MTBrownianGenerator.next_step
