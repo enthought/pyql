@@ -22,6 +22,11 @@ cdef class ShortRateDynamics:
     def short_rate(self, Time t, Real x, Real y):
         return self._thisptr.get().shortRate(t, x, y)
 
+    @property
+    def correlation(self):
+        """Correlation :math:`rho` between the two brownian motions"""
+        return self._thisptr.get().correlation()
+
 cdef class TwoFactorModel(ShortRateModel):
 
     @property
