@@ -21,26 +21,25 @@ from quantlib.quote cimport Quote
 
 
 cdef class FlatForward(YieldTermStructure):
-    """ Flat intereste-rate curve
+    """ Flat interest-rate curve
 
     Parameters
     ----------
-
-    refererence_date: quantlib.time.date.Date or None
+    refererence_date : :class:`~quantlib.time.date.Date` or None
         Reference date used by the curve. If None, the user must provide the
         settlement days.
-    forward: quantlib.quote.Quote or float
+    forward : :class:`~quantlib.quote.Quote` | float
         The forward value used by the curve.
-    daycounter: quantlib.time.daycounter.DayCounter
+    daycounter : :class:`~quantlib.time.daycounter.DayCounter`
         The day counter used by the curve.
-    settlement_days: int
+    settlement_days : int
         The settlement days used by this curve. If a reference date is given,
         this parameter is not used.
-    calendar: quantlib.time.calendar.Calendar
+    calendar : :class:`~quantlib.time.calendar.Calendar`
         The calendar used by the curve if created with the settlement days.
-    compounding: int (default: Continuous)
+    compounding : :class:`~quantlib.compounding.Compounding`, default Compounding.Continuous
         The type of compounding used by this curve.
-    frequency: int (default: Annual)
+    frequency : :class:`~quantlib.time.frequency.Frequency`, default `Annual`
         The frequency used by this curve.
     """
 
