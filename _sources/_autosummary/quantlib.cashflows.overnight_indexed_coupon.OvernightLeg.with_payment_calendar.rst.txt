@@ -1,0 +1,6 @@
+quantlib.cashflows.overnight\_indexed\_coupon.OvernightLeg.with\_payment\_calendar
+==================================================================================
+
+.. currentmodule:: quantlib.cashflows.overnight_indexed_coupon
+
+.. automethod:: OvernightLeg.with_payment_calendar

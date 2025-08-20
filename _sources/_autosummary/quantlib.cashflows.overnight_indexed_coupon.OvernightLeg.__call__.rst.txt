@@ -1,0 +1,6 @@
+quantlib.cashflows.overnight\_indexed\_coupon.OvernightLeg.\_\_call\_\_
+=======================================================================
+
+.. currentmodule:: quantlib.cashflows.overnight_indexed_coupon
+
+.. automethod:: OvernightLeg.__call__

@@ -30,9 +30,9 @@ TimeUnit
          TimeUnit.__getitem__
          TimeUnit.__len__
       
-         TimeUnit.__getitem__
          TimeUnit.__len__
          TimeUnit.__pow__
+         TimeUnit.__getitem__
   
 
   

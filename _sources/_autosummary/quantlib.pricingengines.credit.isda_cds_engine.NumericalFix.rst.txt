@@ -30,10 +30,10 @@ NumericalFix
          NumericalFix.__len__
          NumericalFix.__getitem__
       
-         NumericalFix.__getitem__
-         NumericalFix.__mul__
          NumericalFix.__len__
          NumericalFix.__pow__
+         NumericalFix.__getitem__
+         NumericalFix.__mul__
   
 
   

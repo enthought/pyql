@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.items" href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.items.html" />
+    <link rel="next" title="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.__call__" href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.__call__.html" />
     <link rel="prev" title="quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.value_dates" href="quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.value_dates.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -39,13 +39,43 @@
 <h1>OvernightLeg<a class="headerlink" href="#overnightleg" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OvernightLeg</span></span><a class="headerlink" href="#quantlib.cashflows.overnight_indexed_coupon.OvernightLeg" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OvernightLeg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Schedule</span> <span class="pre">schedule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">OvernightIndex</span> <span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.cashflows.overnight_indexed_coupon.OvernightLeg" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.cashflow.Leg.html#quantlib.cashflow.Leg" title="quantlib.cashflow.Leg"><code class="xref py py-class docutils literal notranslate"><span class="pre">Leg</span></code></a></p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.items.html#quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.items" title="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a>(self)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.__call__.html#quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.__call__" title="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.items.html#quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.items" title="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a>(self)</p></td>
 <td><p>Return Leg as (amount, date) list.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_lockout_days.html#quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_lockout_days" title="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_lockout_days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_lockout_days</span></code></a>(self, Natural lockout_days)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_lookback_days.html#quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_lookback_days" title="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_lookback_days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_lookback_days</span></code></a>(self, Natural lookback_days)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_notionals.html#quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_notionals" title="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_notionals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_notionals</span></code></a>(self, Real notional)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_observation_shift.html#quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_observation_shift" title="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_observation_shift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_observation_shift</span></code></a>(self, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_payment_adjustment.html#quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_payment_adjustment" title="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_payment_adjustment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_payment_adjustment</span></code></a>(self, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_payment_calendar.html#quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_payment_calendar" title="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_payment_calendar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_payment_calendar</span></code></a>(self, Calendar cal)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_payment_day_counter.html#quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_payment_day_counter" title="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_payment_day_counter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_payment_day_counter</span></code></a>(self, DayCounter dc)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_payment_lag.html#quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_payment_lag" title="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_payment_lag"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_payment_lag</span></code></a>(self, Integer lag)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_spreads.html#quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_spreads" title="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.with_spreads"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_spreads</span></code></a>(self, Spread spread)</p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -92,7 +122,7 @@
   <li><a href="quantlib.cashflows.html">quantlib.cashflows</a><ul>
   <li><a href="quantlib.cashflows.overnight_indexed_coupon.html">quantlib.cashflows.overnight_indexed_coupon</a><ul>
       <li>Previous: <a href="quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.value_dates.html" title="previous chapter">quantlib.cashflows.overnight_indexed_coupon.OvernightIndexedCoupon.value_dates</a></li>
-      <li>Next: <a href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.items.html" title="next chapter">quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.items</a></li>
+      <li>Next: <a href="quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.__call__.html" title="next chapter">quantlib.cashflows.overnight_indexed_coupon.OvernightLeg.__call__</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

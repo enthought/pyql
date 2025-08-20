@@ -27,9 +27,11 @@ MakeOIS
          MakeOIS.with_effective_date
          MakeOIS.with_end_of_month
          MakeOIS.with_fixed_leg_day_count
+         MakeOIS.with_fixed_leg_payment_frequency
          MakeOIS.with_lockout_days
          MakeOIS.with_lookback_days
          MakeOIS.with_nominal
+         MakeOIS.with_overnight_leg_payment_frequency
          MakeOIS.with_overnight_leg_spread
          MakeOIS.with_payment_adjustment
          MakeOIS.with_payment_calendar

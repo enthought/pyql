@@ -30,9 +30,9 @@ DateGeneration
          DateGeneration.__getitem__
          DateGeneration.__len__
       
-         DateGeneration.__mul__
-         DateGeneration.__len__
          DateGeneration.__pow__
+         DateGeneration.__len__
+         DateGeneration.__mul__
          DateGeneration.__getitem__
   
 

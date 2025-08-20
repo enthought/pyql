@@ -19,8 +19,18 @@ OvernightLeg
       .. autosummary::
          :toctree:
       
+         OvernightLeg.__call__
          OvernightLeg.__len__
          OvernightLeg.items
+         OvernightLeg.with_lockout_days
+         OvernightLeg.with_lookback_days
+         OvernightLeg.with_notionals
+         OvernightLeg.with_observation_shift
+         OvernightLeg.with_payment_adjustment
+         OvernightLeg.with_payment_calendar
+         OvernightLeg.with_payment_day_counter
+         OvernightLeg.with_payment_lag
+         OvernightLeg.with_spreads
       
          OvernightLeg.__len__
   

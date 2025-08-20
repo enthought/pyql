@@ -30,10 +30,10 @@ ComplexLogFormula
          ComplexLogFormula.__len__
          ComplexLogFormula.__getitem__
       
-         ComplexLogFormula.__getitem__
-         ComplexLogFormula.__mul__
          ComplexLogFormula.__len__
          ComplexLogFormula.__pow__
+         ComplexLogFormula.__getitem__
+         ComplexLogFormula.__mul__
   
 
   
