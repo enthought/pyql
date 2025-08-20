@@ -41,10 +41,12 @@
 <dt class="sig sig-object py" id="quantlib.models.shortrate.onefactor_model.ShortRateDynamics">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ShortRateDynamics</span></span><a class="headerlink" href="#quantlib.models.shortrate.onefactor_model.ShortRateDynamics" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class describing the short-rate dynamics</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>process</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.models.shortrate.onefactor_model.ShortRateDynamics.process.html#quantlib.models.shortrate.onefactor_model.ShortRateDynamics.process" title="quantlib.models.shortrate.onefactor_model.ShortRateDynamics.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a></dt><dd><p>Returns the risk_neutral dynamics of the state variable</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -52,10 +54,10 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.models.shortrate.onefactor_model.ShortRateDynamics.short_rate.html#quantlib.models.shortrate.onefactor_model.ShortRateDynamics.short_rate" title="quantlib.models.shortrate.onefactor_model.ShortRateDynamics.short_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">short_rate</span></code></a>(self, Time t, Real variable)</p></td>
-<td><p></p></td>
+<td><p>Compute short rate from state variable</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.shortrate.onefactor_model.ShortRateDynamics.variable.html#quantlib.models.shortrate.onefactor_model.ShortRateDynamics.variable" title="quantlib.models.shortrate.onefactor_model.ShortRateDynamics.variable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">variable</span></code></a>(self, Time t, Rate r)</p></td>
-<td><p></p></td>
+<td><p>Compute state variable from short rate</p></td>
 </tr>
 </tbody>
 </table>

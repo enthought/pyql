@@ -30,10 +30,10 @@ AverageType
          AverageType.__getitem__
          AverageType.__len__
       
-         AverageType.__len__
-         AverageType.__pow__
-         AverageType.__mul__
          AverageType.__getitem__
+         AverageType.__len__
+         AverageType.__mul__
+         AverageType.__pow__
   
 
   

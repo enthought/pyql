@@ -30,10 +30,10 @@ DirectionIntegers
          DirectionIntegers.__len__
          DirectionIntegers.__getitem__
       
-         DirectionIntegers.__len__
-         DirectionIntegers.__pow__
          DirectionIntegers.__getitem__
+         DirectionIntegers.__len__
          DirectionIntegers.__mul__
+         DirectionIntegers.__pow__
   
 
   

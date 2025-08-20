@@ -41,25 +41,25 @@
 <dt class="sig sig-object py" id="quantlib.termstructures.yields.flat_forward.FlatForward">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FlatForward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">reference_date=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">daycounter=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">settlement_days=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">calendar=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">compounding=Compounding.Continuous</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequency</span> <span class="pre">frequency=Annual</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yields.flat_forward.FlatForward" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.termstructures.yield_term_structure.YieldTermStructure.html#quantlib.termstructures.yield_term_structure.YieldTermStructure" title="quantlib.termstructures.yield_term_structure.YieldTermStructure"><code class="xref py py-class docutils literal notranslate"><span class="pre">YieldTermStructure</span></code></a></p>
-<p>Flat intereste-rate curve</p>
-<dl class="field-list simple">
+<p>Flat interest-rate curve</p>
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>refererence_date: quantlib.time.date.Date or None</strong></dt><dd><p>Reference date used by the curve. If None, the user must provide the
+<dd class="field-odd"><dl>
+<dt><strong>refererence_date</strong><span class="classifier"><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a> or None</span></dt><dd><p>Reference date used by the curve. If None, the user must provide the
 settlement days.</p>
 </dd>
-<dt><strong>forward: quantlib.quote.Quote or float</strong></dt><dd><p>The forward value used by the curve.</p>
+<dt><strong>forward</strong><span class="classifier"><a class="reference internal" href="quantlib.quote.Quote.html#quantlib.quote.Quote" title="quantlib.quote.Quote"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quote</span></code></a> | float</span></dt><dd><p>The forward value used by the curve.</p>
 </dd>
-<dt><strong>daycounter: quantlib.time.daycounter.DayCounter</strong></dt><dd><p>The day counter used by the curve.</p>
+<dt><strong>daycounter</strong><span class="classifier"><a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a></span></dt><dd><p>The day counter used by the curve.</p>
 </dd>
-<dt><strong>settlement_days: int</strong></dt><dd><p>The settlement days used by this curve. If a reference date is given,
+<dt><strong>settlement_days</strong><span class="classifier">int</span></dt><dd><p>The settlement days used by this curve. If a reference date is given,
 this parameter is not used.</p>
 </dd>
-<dt><strong>calendar: quantlib.time.calendar.Calendar</strong></dt><dd><p>The calendar used by the curve if created with the settlement days.</p>
+<dt><strong>calendar</strong><span class="classifier"><a class="reference internal" href="quantlib.time.calendar.Calendar.html#quantlib.time.calendar.Calendar" title="quantlib.time.calendar.Calendar"><code class="xref py py-class docutils literal notranslate"><span class="pre">Calendar</span></code></a></span></dt><dd><p>The calendar used by the curve if created with the settlement days.</p>
 </dd>
-<dt><strong>compounding: int (default: Continuous)</strong></dt><dd><p>The type of compounding used by this curve.</p>
+<dt><strong>compounding</strong><span class="classifier"><a class="reference internal" href="quantlib.compounding.Compounding.html#quantlib.compounding.Compounding" title="quantlib.compounding.Compounding"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compounding</span></code></a>, default Compounding.Continuous</span></dt><dd><p>The type of compounding used by this curve.</p>
 </dd>
-<dt><strong>frequency: int (default: Annual)</strong></dt><dd><p>The frequency used by this curve.</p>
+<dt><strong>frequency</strong><span class="classifier"><a class="reference internal" href="quantlib.time.frequency.Frequency.html#quantlib.time.frequency.Frequency" title="quantlib.time.frequency.Frequency"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frequency</span></code></a>, default <cite>Annual</cite></span></dt><dd><p>The frequency used by this curve.</p>
 </dd>
 </dl>
 </dd>

@@ -41,10 +41,17 @@
 <dt class="sig sig-object py" id="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OneFactorAffineModel</span></span><a class="headerlink" href="#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.models.shortrate.onefactor_model.OneFactorModel.html#quantlib.models.shortrate.onefactor_model.OneFactorModel" title="quantlib.models.shortrate.onefactor_model.OneFactorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneFactorModel</span></code></a></p>
-<dl class="field-list simple">
+<p>Single-factor affine base class</p>
+<p>Single-factor models with an analytical formula for discount bonds
+should inherit from this class. They must then implement the functions
+<img class="math" src="../_images/math/110037cdd3fa217bd1cf3f2270769539df6aa45e.png" alt="A(T,t)"/> and <img class="math" src="../_images/math/03ff38f9315dbdb12fd4aa67568beb09530f9e01.png" alt="B(T,t)"/> such that</p>
+<div class="math">
+<p><img src="../_images/math/3565cf65d73b50e8eaa45b7834f680ce92460a21.png" alt="P(t, T, r_t) = A(t, T)\exp\{-B(t, T) r_t\}."/></p>
+</div><dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dynamics</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.dynamics.html#quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.dynamics" title="quantlib.models.shortrate.onefactor_model.OneFactorAffineModel.dynamics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dynamics</span></code></a></dt><dd><p>short-rate dynamics</p>
+</dd>
 </dl>
 </dd>
 </dl>

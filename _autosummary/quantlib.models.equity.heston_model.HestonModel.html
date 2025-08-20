@@ -41,14 +41,20 @@
 <dt class="sig sig-object py" id="quantlib.models.equity.heston_model.HestonModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">HestonModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">HestonProcess</span> <span class="pre">process</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.models.equity.heston_model.HestonModel" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Heston model for the stochastic volatility of an asset</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>kappa</strong></dt><dd></dd>
-<dt><strong>rho</strong></dt><dd></dd>
-<dt><strong>sigma</strong></dt><dd></dd>
-<dt><strong>theta</strong></dt><dd></dd>
-<dt><strong>v0</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.models.equity.heston_model.HestonModel.kappa.html#quantlib.models.equity.heston_model.HestonModel.kappa" title="quantlib.models.equity.heston_model.HestonModel.kappa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kappa</span></code></a></dt><dd><p>variance mean reversion speed</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.models.equity.heston_model.HestonModel.rho.html#quantlib.models.equity.heston_model.HestonModel.rho" title="quantlib.models.equity.heston_model.HestonModel.rho"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rho</span></code></a></dt><dd><p>correlation</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.models.equity.heston_model.HestonModel.sigma.html#quantlib.models.equity.heston_model.HestonModel.sigma" title="quantlib.models.equity.heston_model.HestonModel.sigma"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sigma</span></code></a></dt><dd><p>volatility of the volatility</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.models.equity.heston_model.HestonModel.theta.html#quantlib.models.equity.heston_model.HestonModel.theta" title="quantlib.models.equity.heston_model.HestonModel.theta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">theta</span></code></a></dt><dd><p>variance mean reversion level</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.models.equity.heston_model.HestonModel.v0.html#quantlib.models.equity.heston_model.HestonModel.v0" title="quantlib.models.equity.heston_model.HestonModel.v0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">v0</span></code></a></dt><dd><p>spot variance</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -59,10 +65,12 @@
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.models.equity.heston_model.HestonModel.process.html#quantlib.models.equity.heston_model.HestonModel.process" title="quantlib.models.equity.heston_model.HestonModel.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>(self)</p></td>
-<td><p></p></td>
+<td><p>underlying process</p></td>
 </tr>
 </tbody>
 </table>
+<p class="rubric">References</p>
+<p>Heston, Steven L., 1993. “A Closed-Form Solution for Options with Stochastic Volatility with Applications to Bond and Currency Options.”  <em>The review of Financial Studies, Volume 6, Issue 2, 327-343.</em></p>
 </dd></dl>
 
 </section>

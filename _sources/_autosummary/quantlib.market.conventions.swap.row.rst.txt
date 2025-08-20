@@ -25,8 +25,8 @@ row
          row.count
          row.index
       
-         row.__len__
          row.__getitem__
+         row.__len__
          row.__mul__
   
 

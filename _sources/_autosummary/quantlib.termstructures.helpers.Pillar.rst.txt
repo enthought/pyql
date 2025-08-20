@@ -30,10 +30,10 @@ Pillar
          Pillar.__len__
          Pillar.__getitem__
       
-         Pillar.__len__
-         Pillar.__pow__
          Pillar.__getitem__
+         Pillar.__len__
          Pillar.__mul__
+         Pillar.__pow__
   
 
   
