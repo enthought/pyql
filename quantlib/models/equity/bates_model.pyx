@@ -4,7 +4,17 @@
 # This program is distributed in the hope that it will be useful, but WITHOUT
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the license for more details.
+"""Bates stochastic-volatility model
 
+extended versions of the Heston Model for the stochastic volatility
+of an asset including jumps.
+
+References
+----------
+.. [1] A. Sepp, "Pricing European-Style Options under Jump Diffusion
+   Processes with Stochastic Volatility: Applications of Fourier Transform"
+   (https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1412333)
+"""
 include '../../types.pxi'
 
 from cython.operator cimport dereference as deref
@@ -30,12 +40,6 @@ cdef class BatesModel(HestonModel):
         return 'Bates model\nv0: %f kappa: %f theta: %f sigma: %f\nrho: %f lambda: %f nu: %f delta: %f' % \
           (self.v0, self.kappa, self.theta, self.sigma,
            self.rho, self.Lambda, self.nu, self.delta)
-
-    def process(self):
-        cdef BatesProcess process = BatesProcess.__new__(BatesProcess)
-        process._thisptr = static_pointer_cast[_sp.StochasticProcess](
-            self._thisptr.get().process())
-        return process
 
     property Lambda:
         def __get__(self):

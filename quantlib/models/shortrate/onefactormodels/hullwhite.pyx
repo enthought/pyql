@@ -39,7 +39,7 @@ cdef class HullWhite(Vasicek):
 
      .. warning::
         When the term structure is relinked the :math:`r_0` parameter
-        of the underlying Vasicek model is not updated:
+        of the underlying Vasicek model is not updated.
 
      """
 

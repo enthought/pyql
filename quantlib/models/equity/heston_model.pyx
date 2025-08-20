@@ -62,39 +62,50 @@ cdef class HestonModelHelper(BlackCalibrationHelper):
         )
 
 cdef class HestonModel:
+    """Heston model for the stochastic volatility of an asset
+
+    References
+    ----------
+    Heston, Steven L., 1993. "A Closed-Form Solution for Options with Stochastic Volatility with Applications to Bond and Currency Options."  *The review of Financial Studies, Volume 6, Issue 2, 327-343.*
+   """
 
     def __init__(self, HestonProcess process):
-
         self._thisptr = shared_ptr[_hm.HestonModel](
             new _hm.HestonModel(static_pointer_cast[_hp.HestonProcess](
                 process._thisptr))
         )
 
     def process(self):
+        """underlying process"""
         cdef HestonProcess process = HestonProcess.__new__(HestonProcess)
         process._thisptr = static_pointer_cast[_sp.StochasticProcess](
             self._thisptr.get().process())
         return process
 
-    property theta:
-        def __get__(self):
-            return self._thisptr.get().theta()
+    @property
+    def theta(self):
+        """variance mean reversion level"""
+        return self._thisptr.get().theta()
 
-    property kappa:
-        def __get__(self):
-            return self._thisptr.get().kappa()
+    @property
+    def kappa(self):
+        """variance mean reversion speed"""
+        return self._thisptr.get().kappa()
 
-    property sigma:
-        def __get__(self):
-            return self._thisptr.get().sigma()
+    @property
+    def sigma(self):
+        """volatility of the volatility"""
+        return self._thisptr.get().sigma()
 
-    property rho:
-        def __get__(self):
-            return self._thisptr.get().rho()
+    @property
+    def rho(self):
+        """correlation"""
+        return self._thisptr.get().rho()
 
-    property v0:
-        def __get__(self):
-            return self._thisptr.get().v0()
+    @property
+    def v0(self):
+        """spot variance"""
+        return self._thisptr.get().v0()
 
     def calibrate(self, list helpers, OptimizationMethod method, EndCriteria
                   end_criteria, Constraint constraint=Constraint(),
