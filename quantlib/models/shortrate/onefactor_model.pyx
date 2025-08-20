@@ -32,7 +32,7 @@ cdef class ShortRateDynamics:
         return self._thisptr.get().shortRate(t, variable)
 
 cdef class OneFactorModel(ShortRateModel):
-
+    """Single-factor short-rate model abstract class"""
     @property
     def dynamics(self):
         """short-rate dynamics
