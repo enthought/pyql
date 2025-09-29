@@ -28,12 +28,14 @@ cdef class ShortRateDynamics:
 
     @property
     def x_process(self):
+        """Risk-neutral dynamics of the first state variable x"""
         cdef StochasticProcess1D sp = StochasticProcess1D.__new__(StochasticProcess1D)
         sp._thisptr = static_pointer_cast[_sp.StochasticProcess](self._thisptr.get().xProcess())
         return sp
 
     @property
     def y_process(self):
+        """Risk-neutral dynamics of the second state variable y"""
         cdef StochasticProcess1D sp = StochasticProcess1D.__new__(StochasticProcess1D)
         sp._thisptr = static_pointer_cast[_sp.StochasticProcess](self._thisptr.get().yProcess())
         return sp
@@ -50,6 +52,12 @@ cdef class TwoFactorModel(ShortRateModel):
 
     @property
     def dynamics(self):
+        """short-rate dynamics
+
+        Returns
+        -------
+        dynamics : :class:`~quantlib.models.shortrate.twofactor_model.ShortRateDynamics`
+        """
         cdef ShortRateDynamics dyn = ShortRateDynamics.__new__(ShortRateDynamics)
         dyn._thisptr =  (<_tfm.TwoFactorModel*>self._thisptr.get()).dynamics()
         return dyn

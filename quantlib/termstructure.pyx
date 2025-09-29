@@ -6,6 +6,7 @@ from quantlib.time.calendar cimport Calendar
 cimport quantlib.time._daycounter as _dc
 
 cdef class TermStructure(Observable):
+    """Basic term-structure functionality"""
 
     def __init__(self):
         raise NotImplementedError("Abstract Class")
@@ -19,39 +20,48 @@ cdef class TermStructure(Observable):
         return static_pointer_cast[QlObservable](self._thisptr)
 
     def time_from_reference(self, Date dt):
-        """date/time conversion"""
+        """date/time conversion
+
+        Returns
+        -------
+        :obj:`Time`
+
+        """
         return self.as_ptr().timeFromReference(dt._thisptr)
 
     @property
     def reference_date(self):
-        """ the date at which discount = 1.0 and/or variance = 0.0"""
+        """:class:`~quantlib.time.date.Date`: the date at which discount = 1.0 and/or variance = 0.0
+        """
         cdef QlDate ref_date = self.as_ptr().referenceDate()
         return date_from_qldate(ref_date)
 
     @property
     def max_date(self):
-        """the latest date for which the curve can return values"""
+        """:class:`~quantlib.time.date.Date`: the latest date for which the curve can return values"""
         cdef QlDate max_date = self.as_ptr().maxDate()
         return date_from_qldate(max_date)
 
     @property
     def max_time(self):
-        """the latest time for which the curve can return values"""
+        """:obj:`Time`: the latest time for which the curve can return values"""
         return self.as_ptr().maxTime()
 
     @property
     def day_counter(self):
+        """:class:`~quantlib.time.daycounter.DayCounter`: day counter"""
         cdef DayCounter dc = DayCounter.__new__(DayCounter)
         dc._thisptr = new _dc.DayCounter(self.as_ptr().dayCounter())
         return dc
 
     @property
     def settlement_days(self):
-        """ number of settlement days used for reference date calculation"""
+        """:obj:`int`: number of settlement days used for reference date calculation"""
         return self.as_ptr().settlementDays()
 
     @property
     def calendar(self):
+        """:class:`~quantlib.time.calendar.Calendar`: calendar"""
         cdef Calendar instance = Calendar.__new__(Calendar)
         instance._thisptr = self.as_ptr().calendar()
         return instance

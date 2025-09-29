@@ -26,8 +26,8 @@ cdef class Instrument(Observable):
             return self._thisptr.get().NPV()
 
     @property
-    def error_estimate(self) -> Real:
-        """error estimate on the NPV when available"""
+    def error_estimate(self):
+        """:obj:`Real`: error estimate on the NPV when available"""
         return self._thisptr.get().errorEstimate()
 
     property npv:
@@ -36,16 +36,11 @@ cdef class Instrument(Observable):
             return self._thisptr.get().NPV()
 
     @property
-    def is_expired(self) -> bool:
-        """whether the instrument might ave value greater than zero."""
+    def is_expired(self):
+        """:obj:`bool`: whether the instrument might have value greater than zero."""
         return self._thisptr.get().isExpired()
 
     @property
     def valuation_date(self):
-        """the date the net present value refers to.
-
-        Returns
-        -------
-        valuation_date: :class:`~quantlib.time.date.Date`
-        """
+        """:class:`~quantlib.time.date.Date`: the date the net present value refers to."""
         return date_from_qldate(self._thisptr.get().valuationDate())

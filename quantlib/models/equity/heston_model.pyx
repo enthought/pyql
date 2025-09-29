@@ -73,8 +73,9 @@ cdef class HestonModel:
                 process._thisptr))
         )
 
+    @property
     def process(self):
-        """underlying process"""
+        """:class:`~quantlib.processes.heston_process.HestonProcess: unnderlying process"""
         cdef HestonProcess process = HestonProcess.__new__(HestonProcess)
         process._thisptr = static_pointer_cast[_sp.StochasticProcess](
             self._thisptr.get().process())
