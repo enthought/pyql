@@ -47,32 +47,43 @@ cdef class Bond(Instrument):
 
     @property
     def settlement_days(self):
+        """:obj:`int`"""
         return self.as_ptr().settlementDays()
 
     @property
     def calendar(self):
+        """:class:`quantlib.time.date.calendar.Calendar`"""
         cdef Calendar c = Calendar.__new__(Calendar)
         c._thisptr = self.as_ptr().calendar()
         return c
 
     @property
     def start_date(self):
-        """ Bond start date"""
+        """:class:`~quantlib.time.date.Date`: Bond start date"""
         return date_from_qldate(self.as_ptr().startDate())
 
 
     @property
     def maturity_date(self):
-        """ Bond maturity date"""
+        """:class:`~quantlib.time.date.Date`: Bond maturity date"""
         return date_from_qldate(self.as_ptr().maturityDate())
 
     @property
     def issue_date(self):
-        """ Bond issue date"""
+        """:class:`~quantlib.time.date.Date`: Bond issue date"""
         return date_from_qldate(self.as_ptr().issueDate())
 
     def settlement_date(self, Date from_date=Date()):
-        """ Returns the bond settlement date after the given date."""
+        """Returns the bond settlement date after the given date.
+
+        Parameters
+        ----------
+        from_date : :class:`quantlib.time.date.Date`
+
+        Returns
+        -------
+        :class:`quantlib.time.date.Date`
+        """
         return date_from_qldate(self.as_ptr().settlementDate(from_date._thisptr))
 
     def clean_price(self, *args):
@@ -122,7 +133,7 @@ cdef class Bond(Instrument):
 
     @property
     def cashflows(self):
-        """ cash flow stream as a :class:`~quantlib.cashflow.Leg`."""
+        """:class:`~quantlib.cashflow.Leg`: cash flow stream"""
         cdef Leg leg = Leg.__new__(Leg)
         leg._thisptr = self.as_ptr().cashflows()
         return leg

@@ -29,10 +29,9 @@ cdef class PlainVanillaPayoff(StrikedTypePayoff):
 
     Parameters
     ----------
-
-    option_type: :class:`~quantlib.option.OptionType`
+    option_type : :class:`~quantlib.option.OptionType`
         The type of option, can be either `Call` or `Put`
-    strike: double
+    strike : double
         The strike value
 
     """
@@ -45,14 +44,10 @@ cdef class PlainVanillaPayoff(StrikedTypePayoff):
             )
         )
 
-    property option_type:
-        """ Exposes the internal option type.
-
-        The type can be converted to str using the OptionType enum.
-
-        """
-        def __get__(self):
-            return _get_payoff(self).optionType()
+    @property
+    def option_type(self):
+        """:class:`~quantlib.option.OptionType`"""
+        return _get_payoff(self).optionType()
 
     property strike:
         def __get__(self):

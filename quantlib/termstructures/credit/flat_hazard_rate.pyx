@@ -14,16 +14,15 @@ from quantlib.quote cimport Quote
 cdef class FlatHazardRate(DefaultProbabilityTermStructure):
     """Flat hazard rate curve
 
-        Parameters
-        ----------
-
-        settlement_days : int
-            number of days from evaluation date
-        calendar: :class:`~quantlib.time.calendar.Calendar`
-            calendar used to compute the reference date
-        hazard_rate: float or :class:`~quantlib.quote.Quote`
-            the flat hazard rate
-        day_counter: :class:`~quantlib.time.daycounter.DayCounter`
+       Parameters
+       ----------
+       settlement_days : int
+           number of days from evaluation date
+       calendar : :class:`~quantlib.time.calendar.Calendar`
+           calendar used to compute the reference date
+       hazard_rate : float or :class:`~quantlib.quote.Quote`
+           the flat hazard rate
+       day_counter : :class:`~quantlib.time.daycounter.DayCounter`
             DayCounter for the curve
 
         """

@@ -17,16 +17,16 @@ cimport quantlib.time._calendar as _calendar
 cdef class InterpolatedHazardRateCurve(DefaultProbabilityTermStructure):
     """DefaultProbabilityTermStructure based on interpolation of hazard rates
 
-        Parameters
-        ----------
-        interpolator : int {Linear, LogLinear, BackwardFlat}
-            can be one of Linear, LogLinear, BackwardFlat
-        dates : :obj:`list` of :class:`~quantlib.time.date.Date`
-            list of dates
-        hazard_rates: :obj:`list` of float
-            corresponding list of hazard rates
-        day_counter: :class:`~quantlib.time.daycounter.DayCounter`
-        cal: :class:`~quantlib.time.calendar.Calendar`
+       Parameters
+       ----------
+       interpolator : int {Linear, LogLinear, BackwardFlat}
+           can be one of Linear, LogLinear, BackwardFlat
+       dates : :obj:`list` of :class:`~quantlib.time.date.Date`
+           list of dates
+       hazard_rates : :obj:`list` of float
+           corresponding list of hazard rates
+       day_counter : :class:`~quantlib.time.daycounter.DayCounter`
+       cal : :class:`~quantlib.time.calendar.Calendar`
 
     """
     def __init__(self, Interpolator interpolator, list dates, vector[Rate] hazard_rates,
