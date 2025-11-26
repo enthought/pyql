@@ -5,23 +5,32 @@ from quantlib.ext cimport static_pointer_cast
 from quantlib._observable cimport Observable as QlObservable
 
 cdef class Instrument(Observable):
-    """Abstract instrument class
+    """Abstract instrument class.
 
     This class is purely abstract and defines the interface of concrete
     instruments which will be derived from this one.
     """
 
     def set_pricing_engine(self, PricingEngine engine not None):
-        '''Sets the pricing engine.
+        """Sets the pricing engine to be used.
 
-        '''
+        .. warning::
+
+            Calling this method will have no effects in case the
+            `performCalculation` method was overridden in a derived class.
+
+        Parameters
+        ----------
+        engine : :class:`~quantlib.pricingengines.engine.PricingEngine`
+            The pricing engine to be used.
+        """
         self._thisptr.get().setPricingEngine(engine._thisptr)
 
     cdef shared_ptr[QlObservable] as_observable(self) noexcept nogil:
         return static_pointer_cast[QlObservable](self._thisptr)
 
     property net_present_value:
-        """ Instrument net present value. """
+        """The net present value of the instrument."""
         def __get__(self):
             return self._thisptr.get().NPV()
 
@@ -31,7 +40,7 @@ cdef class Instrument(Observable):
         return self._thisptr.get().errorEstimate()
 
     property npv:
-        """ Shortcut to the net_present_value property. """
+        """A shortcut to the net_present_value property."""
         def __get__(self):
             return self._thisptr.get().NPV()
 

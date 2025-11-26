@@ -73,7 +73,7 @@ cdef class Calendar:
         test_date : :class:`~quantlib.time.date.Date`
             The date to check.
         """
-        return self._thisptr.isBusinessDay(test_date._thisptr)
+        return self._thisptr.isEndOfMonth(test_date._thisptr)
 
     def business_days_between(self, date.Date date1 not None,
                               date.Date date2 not None,
