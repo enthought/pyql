@@ -6,7 +6,15 @@ from .. cimport _payoffs
 from quantlib.ext cimport shared_ptr, static_pointer_cast
 
 cdef class EuropeanOption(VanillaOption):
-    """European option on a single asset"""
+    """European option on a single asset.
+
+    Parameters
+    ----------
+    payoff : :class:`~quantlib.payoffs.StrikedTypePayoff`
+        The option payoff.
+    exercise : :class:`~quantlib.exercise.Exercise`
+        The option exercise.
+    """
     def __init__(self, StrikedTypePayoff payoff not None, Exercise exercise not None):
 
         cdef shared_ptr[_payoffs.StrikedTypePayoff] payoff_ptr = \

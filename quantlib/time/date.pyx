@@ -47,17 +47,16 @@ globals().update(TimeUnit.__members__)
 cdef class Period:
     """Class providing a Period (length + time unit) class and implements a
     limited algebra.
+
+    Parameters
+    ----------
+    *args :
+        - `Period(period_string)`: Create a period from a string, e.g., "2m" or "3y".
+        - `Period(frequency)`: Create a period from a :class:`~quantlib.time.frequency.Frequency` enum.
+        - `Period(length, time_unit)`: Create a period from a length and a :class:`~quantlib.time.date.TimeUnit`.
+        - `Period()`: Create an empty period.
     """
     def __init__(self, *args):
-        """
-        Parameters
-        ----------
-        *args :
-            - `Period(period_string)`: Create a period from a string, e.g., "2m" or "3y".
-            - `Period(frequency)`: Create a period from a :class:`~quantlib.time.frequency.Frequency` enum.
-            - `Period(length, time_unit)`: Create a period from a length and a :class:`~quantlib.time.date.TimeUnit`.
-            - `Period()`: Create an empty period.
-        """
         cdef string tenor
         if len(args) == 1:
             if isinstance(args[0], str):
@@ -233,29 +232,28 @@ cdef class Date:
     This class provides methods to inspect dates as well as methods and
     operators which implement a limited date algebra (increasing and
     decreasing dates, and calculating their difference).
+
+    Parameters
+    ----------
+    day : int, optional
+        The day of the month.
+    month : int, optional
+        The month of the year.
+    year : int, optional
+        The year.
+    hours : int, optional
+        The hour of the day.
+    minutes : int, optional
+        The minute of the hour.
+    seconds : int, optional
+        The second of the minute.
+    millisec : int, optional
+        The millisecond of the second.
+    microsec : int, optional
+        The microsecond of the second.
     """
 
     def __init__(self, day=None, month=None, year=None, hours=None, minutes=None, seconds=None, Millisecond millisec=0, Microsecond microsec=0):
-        """
-        Parameters
-        ----------
-        day : int, optional
-            The day of the month.
-        month : int, optional
-            The month of the year.
-        year : int, optional
-            The year.
-        hours : int, optional
-            The hour of the day.
-        minutes : int, optional
-            The minute of the hour.
-        seconds : int, optional
-            The second of the minute.
-        millisec : int, optional
-            The millisecond of the second.
-        microsec : int, optional
-            The microsecond of the second.
-        """
         if hours is None and minutes is None and seconds is None:
             if day is None and month is None and year is None:
                 self._thisptr = QlDate()

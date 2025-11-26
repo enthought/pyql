@@ -17,8 +17,30 @@ cdef inline _vanillaswap.VanillaSwap* get_vanillaswap(VanillaSwap swap):
     return <_vanillaswap.VanillaSwap*>swap._thisptr.get()
 
 cdef class VanillaSwap(FixedVsFloatingSwap):
-    """
-    Vanilla swap class
+    """Plain-vanilla swap: fix vs ibor leg.
+
+    Parameters
+    ----------
+    type : :class:`~quantlib.instruments.swap.Type`
+        The swap type, either `Payer` or `Receiver`.
+    nominal : float
+        The swap nominal.
+    fixed_schedule : :class:`~quantlib.time.schedule.Schedule`
+        The schedule for the fixed leg.
+    fixed_rate : float
+        The fixed rate.
+    fixed_daycount : :class:`~quantlib.time.daycounter.DayCounter`
+        The day counter for the fixed leg.
+    float_schedule : :class:`~quantlib.time.schedule.Schedule`
+        The schedule for the floating leg.
+    ibor_index : :class:`~quantlib.indexes.ibor_index.IborIndex`
+        The IBOR index for the floating leg.
+    spread : float
+        The spread over the IBOR index.
+    floating_daycount : :class:`~quantlib.time.daycounter.DayCounter`
+        The day counter for the floating leg.
+    payment_convention : int, optional
+        The business day convention for payment dates.
     """
 
     def __init__(self, Type type,

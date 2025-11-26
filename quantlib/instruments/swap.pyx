@@ -23,44 +23,92 @@ cdef inline _swap.Swap* get_swap(Swap swap) noexcept:
 
 
 cdef class Swap(Instrument):
-    """
-    Base swap class
+    """Interest rate swap.
+
+    The cash flows belonging to the first leg are paid; the ones belonging to
+    the second leg are received.
+
+    Parameters
+    ----------
+    first_leg : :class:`~quantlib.cashflow.Leg`
+        The first leg of the swap.
+    second_leg : :class:`~quantlib.cashflow.Leg`
+        The second leg of the swap.
     """
     Payer = Type.Payer
     Receiver = Type.Receiver
 
     def __init__(self, Leg first_leg, Leg second_leg):
-        """ The cash flows belonging to the first leg are paid;
-        the ones belonging to the second leg are received"""
-
+        """
+        The cash flows belonging to the first leg are paid; the ones belonging
+        to the second leg are received.
+        """
         self._thisptr.reset(new _swap.Swap(first_leg._thisptr, second_leg._thisptr))
 
     property start_date:
+        """The start date of the swap."""
         def __get__(self):
             cdef _date.Date dt = get_swap(self).startDate()
             return date_from_qldate(dt)
 
     property maturity_date:
+        """The maturity date of the swap."""
         def __get__(self):
             cdef _date.Date dt = get_swap(self).maturityDate()
             return date_from_qldate(dt)
 
     def leg_BPS(self, Size j):
+        """The basis-point sensitivity of the j-th leg of the swap.
+
+        Parameters
+        ----------
+        j : int
+            The index of the leg.
+        """
         return get_swap(self).legBPS(j)
 
     def leg_NPV(self, Size j):
+        """The net present value of the j-th leg of the swap.
+
+        Parameters
+        ----------
+        j : int
+            The index of the leg.
+        """
         return get_swap(self).legNPV(j)
 
     def startDiscounts(self, Size j):
+        """The discount factor at the start of the j-th leg of the swap.
+
+        Parameters
+        ----------
+        j : int
+            The index of the leg.
+        """
         return get_swap(self).startDiscounts(j)
 
     def endDiscounts(self, Size j):
+        """The discount factor at the end of the j-th leg of the swap.
+
+        Parameters
+        ----------
+        j : int
+            The index of the leg.
+        """
         return get_swap(self).endDiscounts(j)
 
     def npv_date_discount(self):
+        """The discount factor at the NPV date."""
         return get_swap(self).npvDateDiscount()
 
     def leg(self, int i):
+        """The i-th leg of the swap.
+
+        Parameters
+        ----------
+        i : int
+            The index of the leg.
+        """
         cdef Leg leg = Leg.__new__(Leg)
         cdef _swap.Swap* swap = <_swap.Swap*>self._thisptr.get()
         if 0 <= i < swap.numberOfLegs():
@@ -70,6 +118,7 @@ cdef class Swap(Instrument):
         return leg
 
     def __getitem__(self, int i):
+        """The i-th leg of the swap."""
         cdef Leg leg = Leg.__new__(Leg)
         cdef _swap.Swap* swap = <_swap.Swap*>self._thisptr.get()
         if 0 <= i < swap.numberOfLegs():
