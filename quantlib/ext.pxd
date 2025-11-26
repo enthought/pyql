@@ -27,9 +27,10 @@ cdef extern from 'ql/optional.hpp' namespace 'QuantLib::ext' nogil:
         optional()
         optional(nullopt_t)
         optional(const T&) except +
-        T& value()
+        T& value() except +
         T& value_or[U](U& default_value)
         bool operator!()
         optional& operator=(optional&)
+        optional& operator=[U](U&)
 
     optional[T] make_optional[T](...) except +
