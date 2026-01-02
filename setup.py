@@ -125,10 +125,11 @@ def render_templates():
             for ext in (".pxd", ".pyx"):
                 output = (p / basename).with_suffix(ext)
                 fname = output.with_suffix(f"{ext}.in")
-                if not output.exists() or (output.stat().st_mtime < fname.stat().st_mtime):
-                    template = Template.from_filename(fname, encoding="utf-8")
-                    with output.open("wt") as f:
-                        f.write(template.substitute())
+                if fname.exists():
+                    if not output.exists() or (output.stat().st_mtime < fname.stat().st_mtime):
+                        template = Template.from_filename(fname, encoding="utf-8")
+                        with output.open("wt") as f:
+                            f.write(template.substitute())
 
 def collect_extensions():
     """ Collect all the directories with Cython extensions and return the list
@@ -238,6 +239,7 @@ class pyql_build_ext(build_ext):
                     fh.write("\n".join(map(os.path.basename, dlls)))
 
 if __name__ == '__main__':
+    render_templates()
     setup(
         name = 'quantlib',
         version = '0.1',
