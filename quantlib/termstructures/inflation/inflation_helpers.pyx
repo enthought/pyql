@@ -24,8 +24,7 @@ cdef class ZeroCouponInflationSwapHelper:
                  BusinessDayConvention payment_convention,
                  DayCounter day_counter not None,
                  ZeroInflationIndex zii not None,
-                 InterpolationType observation_interpolation,
-                 HandleYieldTermStructure nominal_term_structure not None):
+                 InterpolationType observation_interpolation):
         self._thisptr = shared_ptr[ZeroInflationTraits.helper](
             new _ih.ZeroCouponInflationSwapHelper(
                 quote.handle(),
@@ -34,8 +33,7 @@ cdef class ZeroCouponInflationSwapHelper:
                 calendar._thisptr, payment_convention,
                 deref(day_counter._thisptr),
                 static_pointer_cast[_ii.ZeroInflationIndex](zii._thisptr),
-                <CPI.InterpolationType>observation_interpolation,
-                nominal_term_structure.handle())
+                <CPI.InterpolationType>observation_interpolation)
             )
 
     def set_term_structure(self, ZeroInflationTermStructure ts):

@@ -1,7 +1,6 @@
 from libcpp.vector cimport vector
 from quantlib._handle cimport Handle
 from quantlib.time._date cimport Date
-from quantlib.time._daycounter cimport DayCounter
 from quantlib.time.frequency cimport Frequency
 
 from quantlib.termstructures._yield_term_structure cimport YieldTermStructure
@@ -15,5 +14,4 @@ cdef extern from 'ql/termstructures/yield/zerospreadedtermstructure.hpp' namespa
             const Handle[YieldTermStructure]&,
             Handle[Quote]& spread,
             Compounding comp, # = Continuous,
-            Frequency freq, # = NoFrequency,
-            const DayCounter& dc), # = DayCounter(),
+            Frequency freq) # = NoFrequency,

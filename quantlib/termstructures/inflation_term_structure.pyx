@@ -34,8 +34,7 @@ cdef class InflationTermStructure(TermStructure):
 
 cdef class ZeroInflationTermStructure(InflationTermStructure):
 
-    def zero_rate(self, d, Period inst_obs_lag=Period(-1, Days),
-                  bool force_linear_interpolation=False, bool extrapolate=False):
+    def zero_rate(self, d, bool extrapolate=False):
 
 
         cdef _if.ZeroInflationTermStructure* term_structure = \
@@ -44,17 +43,13 @@ cdef class ZeroInflationTermStructure(InflationTermStructure):
         if isinstance(d, Date):
             return term_structure.zeroRate(
                 (<Date>d)._thisptr,
-                deref(inst_obs_lag._thisptr),
-                force_linear_interpolation,
                 extrapolate)
         else:
             return term_structure.zeroRate(<Time?>d, extrapolate)
 
 cdef class YoYInflationTermStructure(InflationTermStructure):
 
-    def yoy_rate(self, d, Period inst_obs_lag=Period(-1, Days),
-                 bool force_linear_interpolation=False,
-                 bool extrapolate=False):
+    def yoy_rate(self, Date d, bool extrapolate=False):
 
         cdef _if.YoYInflationTermStructure* term_structure = \
           <_if.YoYInflationTermStructure*>self._thisptr.get()
@@ -62,8 +57,6 @@ cdef class YoYInflationTermStructure(InflationTermStructure):
         if isinstance(d, Date):
             return term_structure.yoyRate(
                 (<Date>d)._thisptr,
-                deref(inst_obs_lag._thisptr),
-                force_linear_interpolation,
                 extrapolate)
         else:
             return term_structure.yoyRate(<Time?>d, extrapolate)
