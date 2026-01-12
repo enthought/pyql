@@ -45,11 +45,8 @@ cdef extern from 'ql/termstructures/inflationtermstructure.hpp' namespace 'Quant
                                    const shared_ptr[Seasonality] &seasonality # = boost::shared_ptr<Seasonality>()
         ) except +
 
-        Rate zeroRate(Date& d,
-                      Period& inst_obs_lag,
-                      bool force_linear_interpolation,
+        Rate zeroRate(Date d,
                       bool extrapolate)
-
         Rate zeroRate(Time t,
                       bool extrapolate)
 
@@ -73,12 +70,8 @@ cdef extern from 'ql/termstructures/inflationtermstructure.hpp' namespace 'Quant
                                   Frequency frequency,
                                   const DayCounter& dayCounter,
                                   const shared_ptr[Seasonality]& seasonality) except +
-
-        Rate yoyRate(Date& d,
-                      Period& inst_obs_lag,
-                      bool force_linear_interpolation,
-                      bool extrapolate) except +
-
+        Rate yoyRate(Date d,
+                     bool extrapolate) except +
         Rate yoyRate(Time t,
                       bool extrapolate) except +
 

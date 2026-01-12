@@ -25,8 +25,7 @@ cdef extern from 'ql/termstructures/inflation/inflationhelpers.hpp' namespace 'Q
             BusinessDayConvention payment_convention,
             const DayCounter& day_counter,
             const shared_ptr[ZeroInflationIndex]& zii,
-            CPI.InterpolationType observationInterpolation,
-            const Handle[_yts.YieldTermStructure]& nominal_term_structure) except +
+            CPI.InterpolationType observationInterpolation) except +
 
     # Year-on-year inflation-swap bootstrap helper
     cdef cppclass YearOnYearInflationSwapHelper(YoYInflationTraits.helper):

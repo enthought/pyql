@@ -2,7 +2,6 @@ from cython.operator cimport dereference as deref
 from libcpp.vector cimport vector
 from quantlib.compounding cimport Compounding
 from quantlib.handle cimport Handle
-from quantlib.time.daycounter cimport DayCounter
 from quantlib.time.frequency cimport Frequency, NoFrequency
 from quantlib.time._date cimport Date as QlDate
 from quantlib.time.date cimport Date
@@ -13,8 +12,8 @@ from . cimport _piecewise_zerospreaded_termstructure as _pzt
 
 cdef class PiecewiseZeroSpreadedTermStructure(YieldTermStructure):
     def __init__(self, HandleYieldTermStructure h not None, list spreads, list dates,
-                 Compounding comp=Compounding.Continuous, Frequency freq=NoFrequency,
-                 DayCounter dc not None=DayCounter()):
+                 Compounding comp=Compounding.Continuous,
+                 Frequency freq=NoFrequency):
         cdef vector[Handle[_qt.Quote]] spreads_vec
         cdef vector[QlDate] dates_vec
         cdef Quote s
@@ -32,6 +31,5 @@ cdef class PiecewiseZeroSpreadedTermStructure(YieldTermStructure):
                 dates_vec,
                 comp,
                 freq,
-                deref(dc._thisptr)
             )
         )

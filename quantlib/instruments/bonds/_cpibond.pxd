@@ -1,5 +1,4 @@
 from quantlib.types cimport Natural, Rate, Real
-from libcpp cimport bool
 from libcpp.vector cimport vector
 from .._bond cimport Bond
 
@@ -18,7 +17,6 @@ cdef extern from 'ql/instruments/bonds/cpibond.hpp' namespace 'QuantLib' nogil:
     cdef cppclass CPIBond(Bond):
         CPIBond(Natural settlementDays,
                 Real faceAmount,
-                bool growthOnly,
                 Real baseCPI,
                 const Period& observationLag,
                 shared_ptr[ZeroInflationIndex]& cpiIndex,

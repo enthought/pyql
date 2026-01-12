@@ -1,6 +1,5 @@
 from cython.operator cimport dereference as deref
 from quantlib.types cimport Natural, Rate, Real
-from libcpp cimport bool
 from libcpp.vector cimport vector
 from . cimport _cpibond
 
@@ -15,7 +14,7 @@ from quantlib.time.daycounter cimport DayCounter
 
 cdef class CPIBond(Bond):
     """ CPI bond """
-    def __init__(self, Natural settlement_days, Real face_amount, bool growth_only,
+    def __init__(self, Natural settlement_days, Real face_amount,
                  Real baseCPI, Period observation_lag not None,
                  ZeroInflationIndex cpi_index not None,
                  InterpolationType observation_interpolation,
@@ -29,7 +28,7 @@ cdef class CPIBond(Bond):
 
         self._thisptr.reset(
             new _cpibond.CPIBond(
-                settlement_days, face_amount, growth_only, baseCPI,
+                settlement_days, face_amount, baseCPI,
                 deref(observation_lag._thisptr),
                 static_pointer_cast[_inf.ZeroInflationIndex](
                     cpi_index._thisptr),
