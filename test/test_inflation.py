@@ -100,7 +100,7 @@ class TestCPIBond(unittest.TestCase):
         self.helpers = [ZeroCouponInflationSwapHelper(
             SimpleQuote(r / 100),
             observation_lag,
-            maturity, self.calendar, ModifiedFollowing, day_counter, self.ii, InterpolationType.AsIndex, self.yts) \
+            maturity, self.calendar, ModifiedFollowing, day_counter, self.ii, InterpolationType.AsIndex) \
                         for maturity, r in zip(dates, rates)]
         base_date = self.ii.last_fixing_date
 
@@ -119,7 +119,6 @@ class TestCPIBond(unittest.TestCase):
         contractObservationLag = Period(3, Months)
         observationInterpolation = InterpolationType.Flat
         settlement_days = 3
-        growth_only = True
 
         baseCPI = 206.1
 
@@ -130,7 +129,7 @@ class TestCPIBond(unittest.TestCase):
                                             Unadjusted,
                                             DateGeneration.Backward)
 
-        cpi_bond = CPIBond(settlement_days, notional, growth_only,
+        cpi_bond = CPIBond(settlement_days, notional,
                            baseCPI, contractObservationLag, fixed_index,
                            observationInterpolation, fixed_schedule,
                            fixed_rates, fixed_day_count, ModifiedFollowing)
