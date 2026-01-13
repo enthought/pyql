@@ -1,8 +1,11 @@
 from .coupon_pricer cimport FloatingRateCouponPricer
 
-cdef class CompoundingOvernightIndexedCouponPricer(FloatingRateCouponPricer):
+cdef class OvernightIndexedCouponPricer(FloatingRateCouponPricer):
+    pass
+
+cdef class CompoundingOvernightIndexedCouponPricer(OvernightIndexedCouponPricer):
      pass
 
 
-cdef class ArithmeticAveragedOvernightIndexedCouponPricer(FloatingRateCouponPricer):
+cdef class ArithmeticAveragedOvernightIndexedCouponPricer(OvernightIndexedCouponPricer):
     pass

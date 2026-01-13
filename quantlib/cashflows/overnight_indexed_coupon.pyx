@@ -1,4 +1,4 @@
-from quantlib.types cimport Integer, Natural, Real, Spread
+from quantlib.types cimport Integer, Natural, Rate, Real, Spread
 
 from libcpp cimport bool
 from libcpp.vector cimport vector
@@ -16,6 +16,7 @@ from quantlib.utilities.null cimport Null
 cimport quantlib.indexes._ibor_index as _ii
 cimport quantlib._cashflow as _cf
 from .rateaveraging cimport RateAveraging
+from .overnight_indexed_coupon_pricer cimport OvernightIndexedCouponPricer
 from . cimport _overnight_indexed_coupon as _oic
 from .._cashflow cimport Leg as QlLeg
 from ..cashflow cimport CashFlow
@@ -85,6 +86,10 @@ cdef class OvernightIndexedCoupon(FloatingRateCoupon):
     def apply_observation_shift(self):
         return (<_oic.OvernightIndexedCoupon*>self._thisptr.get()).applyObservationShift()
 
+    @property
+    def compound_spread_daily(self):
+        return (<_oic.OvernightIndexedCoupon*>self._thisptr.get()).compoundSpreadDaily()
+
 def as_overnight_indexed_coupon(CashFlow cf):
     cdef OvernightIndexedCoupon coupon = OvernightIndexedCoupon.__new__(OvernightIndexedCoupon)
     coupon._thisptr = dynamic_pointer_cast[_oic.OvernightIndexedCoupon](cf._thisptr)
@@ -134,6 +139,10 @@ cdef class OvernightLeg(Leg):
         self.leg.withSpreads(spread)
         return self
 
+    def with_averaging_method(self, RateAveraging averaging_method):
+        self.leg.withAveragingMethod(averaging_method)
+        return self
+
     def with_observation_shift(self, bool apply_observation_shift=True):
         self.leg.withObservationShift(apply_observation_shift)
         return self
@@ -148,6 +157,34 @@ cdef class OvernightLeg(Leg):
 
     def with_payment_lag(self, Integer lag):
         self.leg.withPaymentLag(lag)
+        return self
+
+    def compounding_spread_daily(self, bool compound_spread_daily=True):
+        self.leg.compoundingSpreadDaily(compound_spread_daily)
+        return self
+
+    def with_caps(self, caps):
+        cdef vector[Rate] c_caps
+        if isinstance(caps, list):
+            c_caps = <list>caps
+            self.leg.withCaps(c_caps)
+        else:
+            self.leg.withCaps(<Rate>caps)
+        return self
+
+    def with_floors(self, floors):
+        cdef vector[Rate] c_floors
+        if isinstance(floors, list):
+            c_floors = <list>floors
+            self.leg.withFloors(c_floors)
+        else:
+            self.leg.withFloors(<Rate>floors)
+        return self
+
+    def with_coupon_pricer(self, OvernightIndexedCouponPricer coupon_pricer):
+        self.leg.withCouponPricer(
+            static_pointer_cast[_oic.OvernightIndexedCouponPricer](coupon_pricer._thisptr)
+        )
         return self
 
     def __call__(self):
