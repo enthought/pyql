@@ -30,7 +30,7 @@ cdef class Matrix:
         dims[1] = self._thisptr.columns()
         cdef arr = np.PyArray_SimpleNew(2, &dims[0], np.NPY_DOUBLE)
         cdef double[:,::1] r = arr
-        cdef size_t i, j
+        cdef np.npy_intp i, j
         for i in range(dims[0]):
             for j in range(dims[1]):
                 r[i,j] = self._thisptr[i][j]
