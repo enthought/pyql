@@ -69,7 +69,6 @@ cdef extern from 'ql/pricingengines/bond/bondfunctions.hpp' namespace 'QuantLib:
     cdef Spread zSpread(Bond bond,
                         Bond.Price Price,
                 shared_ptr[YieldTermStructure],
-                DayCounter dayCounter,
                 Compounding compounding,
                 Frequency frequency,
                 Date settlementDate,
