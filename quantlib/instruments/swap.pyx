@@ -101,7 +101,7 @@ cdef class Swap(Instrument):
         """The discount factor at the NPV date."""
         return get_swap(self).npvDateDiscount()
 
-    def leg(self, int i):
+    def leg(self, Size i):
         """The i-th leg of the swap.
 
         Parameters
@@ -117,7 +117,7 @@ cdef class Swap(Instrument):
             raise IndexError(f"leg #{i} doesn't exist")
         return leg
 
-    def __getitem__(self, int i):
+    def __getitem__(self, Size i):
         """The i-th leg of the swap."""
         cdef Leg leg = Leg.__new__(Leg)
         cdef _swap.Swap* swap = <_swap.Swap*>self._thisptr.get()
