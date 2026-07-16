@@ -9,9 +9,7 @@ from quantlib.time._daycounter cimport DayCounter
 from quantlib.time._period cimport Period
 from quantlib.time._schedule cimport Schedule
 from quantlib.ext cimport shared_ptr
-from quantlib.indexes._inflation_index cimport ZeroInflationIndex
-
-from .cpibond cimport InterpolationType
+from quantlib.indexes._inflation_index cimport ZeroInflationIndex, CPI 
 
 cdef extern from 'ql/instruments/bonds/cpibond.hpp' namespace 'QuantLib' nogil:
     cdef cppclass CPIBond(Bond):
@@ -20,7 +18,7 @@ cdef extern from 'ql/instruments/bonds/cpibond.hpp' namespace 'QuantLib' nogil:
                 Real baseCPI,
                 const Period& observationLag,
                 shared_ptr[ZeroInflationIndex]& cpiIndex,
-                InterpolationType observationInterpolation,
+                CPI.InterpolationType observationInterpolation,
                 const Schedule& schedule,
                 vector[Rate]& coupons,
                 const DayCounter& accrualDayCounter,

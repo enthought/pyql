@@ -5,7 +5,7 @@ from . cimport _cpibond
 
 from quantlib.ext cimport static_pointer_cast
 cimport quantlib.indexes._inflation_index as _inf
-from quantlib.indexes.inflation_index cimport ZeroInflationIndex
+from quantlib.indexes.inflation_index cimport InterpolationType, ZeroInflationIndex
 from quantlib.time.businessdayconvention cimport BusinessDayConvention, Following, Unadjusted
 from quantlib.time.calendar cimport Calendar
 from quantlib.time.schedule cimport Schedule
