@@ -1,6 +1,7 @@
 import unittest
 
 from datetime import date
+import pandas as pd
 from quantlib.mlab.option_pricing import heston_pricer, blsprice, blsimpv
 from quantlib.mlab.fixed_income import bndprice, cfamounts
 from quantlib.mlab.term_structure import zbt_libor_yield
@@ -8,7 +9,6 @@ from quantlib.option import OptionType
 
 from quantlib.util.rates import make_rate_helper, zero_rate
 import quantlib.reference.names as nm
-import quantlib.reference.data_structures as ds
 
 from quantlib.termstructures.yields.api import (
     PiecewiseYieldCurve, BootstrapTrait )
@@ -25,17 +25,20 @@ class MLabTestCase(unittest.TestCase):
         spot = 1290.58
 
         # option definition
-        options = ds.option_quotes_template().reindex(index=range(2))
-        options[nm.OPTION_TYPE] = ['C', 'P']
-        options[nm.STRIKE] = [1290, 1290]
-        options[nm.EXPIRY_DATE] = [date(2015, 1, 1), date(2015, 1, 1)]
-        options[nm.SPOT] = [spot] * 2
-
+        data = {
+                nm.OPTION_TYPE: ["C", "P"],
+                nm.STRIKE: [1290, 1290],
+                nm.EXPIRY_DATE: [date(2015, 1, 1), date(2015, 1, 1)],
+                nm.SPOT: [spot] * 2,
+        }
+        options = pd.DataFrame(data)
         # interest rate and dividend yield
-        rates = ds.riskfree_dividend_template().reindex(
-            index=[date(2011, 3, 16), date(2013, 3, 16), date(2015, 3, 16)])
-        rates[nm.DIVIDEND_YIELD] = [.021, .023, .024]
-        rates[nm.INTEREST_RATE] = [.010, .015, .019]
+        rates = pd.DataFrame(data={
+            nm.DIVIDEND_YIELD: [.021, .023, .024],
+            nm.INTEREST_RATE: [.010, .015, .019],
+                             },
+            index=[date(2011, 3, 16), date(2013, 3, 16), date(2015, 3, 16)],
+                             )
 
         # heston model
         heston_params = dict(v0=0.051965,

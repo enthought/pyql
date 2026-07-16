@@ -9,7 +9,6 @@
 
 import numpy as np
 import quantlib.reference.names as nm
-import quantlib.reference.data_structures as ds
 from pandas import DataFrame
 
 from quantlib.instruments.vanillaoption import VanillaOption
@@ -107,9 +106,11 @@ def options_to_rates(options, t_min=1. / 12., n_min=6):
         implied_dividend_yields.append(dividend_yield)
         expiry_dates.append(expiry_date)
 
-    rates = ds.riskfree_dividend_template().reindex(index=expiry_dates)
-    rates[nm.INTEREST_RATE] = implied_interest_rates
-    rates[nm.DIVIDEND_YIELD] = implied_dividend_yields
+    return DataFrame({
+        nm.INTEREST_RATE: implied_interest_rates,
+        nm.DIVIDEND_YIELD: implied_dividend_yields,
+        },
+                         index=expiry_dates
 
     return rates
 
