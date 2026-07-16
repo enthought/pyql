@@ -2,7 +2,6 @@ from quantlib.index cimport Index
 
 cdef extern from "ql/indexes/inflationindex.hpp" namespace "QuantLib::CPI" nogil:
     cpdef enum InterpolationType "QuantLib::CPI::InterpolationType":
-        AsIndex
         Flat
         Linear
 

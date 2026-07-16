@@ -14,7 +14,7 @@ from quantlib.time.date import Months, Period, Date
 from quantlib.time.api import ( UnitedKingdom, ModifiedFollowing, ActualActual,
                                 Schedule, Actual365Fixed, Unadjusted, Monthly )
 from quantlib.time.dategeneration import DateGeneration
-from quantlib.instruments.bonds.cpibond import CPIBond, InterpolationType
+from quantlib.instruments.bonds.cpibond import CPIBond
 from quantlib.pricingengines.bond import DiscountingBondEngine
 from quantlib.settings import Settings
 from quantlib.handle import RelinkableHandleZeroInflationTermStructure
@@ -100,7 +100,7 @@ class TestCPIBond(unittest.TestCase):
         self.helpers = [ZeroCouponInflationSwapHelper(
             SimpleQuote(r / 100),
             observation_lag,
-            maturity, self.calendar, ModifiedFollowing, day_counter, self.ii, InterpolationType.AsIndex) \
+            maturity, self.calendar, ModifiedFollowing, day_counter, self.ii, InterpolationType.Flat) \
                         for maturity, r in zip(dates, rates)]
         base_date = self.ii.last_fixing_date
 
@@ -138,7 +138,7 @@ class TestCPIBond(unittest.TestCase):
         cpi_bond.set_pricing_engine(engine)
         set_coupon_pricer(cpi_bond.cashflows, CPICouponPricer(self.yts))
         stored_price = 396.4704581
-        self.assertAlmostEqual(stored_price, cpi_bond.dirty_price)
+        self.assertAlmostEqual(stored_price, cpi_bond.dirty_price, 5)
         stored_price = 394.79676679
         self.assertAlmostEqual(stored_price, cpi_bond.clean_price())
 

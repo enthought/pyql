@@ -23,7 +23,6 @@ cdef extern from 'ql/indexes/inflationindex.hpp' namespace 'QuantLib' nogil:
 
     cdef cppclass CPI:
         enum InterpolationType:
-            AsIndex
             Flat
             Linear
 
