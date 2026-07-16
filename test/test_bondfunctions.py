@@ -98,7 +98,7 @@ class BondFunctionTestCase(unittest.TestCase):
 
         d = bf.start_date(self.bond)
 
-        zspd = bf.zSpread(self.bond, Price(100.0), self.flat_term_structure, Actual365Fixed(),
+        zspd = bf.zSpread(self.bond, Price(100.0), self.flat_term_structure,
         Compounded, Semiannual, self.settlement_date, 1e-6, 100, 0.5)
 
 
@@ -149,10 +149,10 @@ class BondFunctionTestCase(unittest.TestCase):
             self.settlement_date, rate_helpers,
             ts_day_counter, accuracy=tolerance)
 
-        pyc_zspd=bf.zSpread(self.bond, Price(102.0), ts, ActualActual(ActualActual.ISDA),
+        pyc_zspd=bf.zSpread(self.bond, Price(102.0), ts,
         Compounded, Semiannual, Date(1, April, 2015), 1e-6, 100, 0.05)
 
-        pyc_zspd_disco=bf.zSpread(self.bond, Price(95.0), ts, ActualActual(ActualActual.ISDA),
+        pyc_zspd_disco=bf.zSpread(self.bond, Price(95.0), ts,
         Compounded, Semiannual, self.settlement_date, 1e-6, 100, 0.05)
 
 
