@@ -30,8 +30,8 @@ Discretization
          Discretization.__getitem__
          Discretization.__len__
       
-         Discretization.__mul__
          Discretization.__getitem__
+         Discretization.__mul__
          Discretization.__len__
          Discretization.__pow__
   

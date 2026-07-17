@@ -10,5 +10,4 @@ quantlib.reference
    :toctree:
    :recursive:
 
-   data_structures
    names

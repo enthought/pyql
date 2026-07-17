@@ -30,8 +30,8 @@ Market
          Market.__getitem__
          Market.__len__
       
-         Market.__mul__
          Market.__getitem__
+         Market.__mul__
          Market.__len__
          Market.__pow__
   

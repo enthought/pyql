@@ -10,5 +10,4 @@ quantlib.instruments.bonds.cpibond
       :toctree:
    
       CPIBond
-      InterpolationType
    
