@@ -20,6 +20,7 @@ InterestRate
          :toctree:
       
          InterestRate.compound_factor
+         InterestRate.discount_factor
          InterestRate.equivalent_rate
          InterestRate.implied_rate
       

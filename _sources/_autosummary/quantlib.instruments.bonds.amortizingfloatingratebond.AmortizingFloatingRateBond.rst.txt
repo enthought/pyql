@@ -21,6 +21,7 @@ AmortizingFloatingRateBond
       
          AmortizingFloatingRateBond.accrued_amount
          AmortizingFloatingRateBond.bond_yield
+         AmortizingFloatingRateBond.clean_price
          AmortizingFloatingRateBond.notional
          AmortizingFloatingRateBond.set_pricing_engine
          AmortizingFloatingRateBond.settlement_date
@@ -35,7 +36,6 @@ AmortizingFloatingRateBond
       
          AmortizingFloatingRateBond.calendar
          AmortizingFloatingRateBond.cashflows
-         AmortizingFloatingRateBond.clean_price
          AmortizingFloatingRateBond.dirty_price
          AmortizingFloatingRateBond.error_estimate
          AmortizingFloatingRateBond.is_expired

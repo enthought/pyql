@@ -3,4 +3,4 @@ quantlib.instruments.bonds.amortizingfloatingratebond.AmortizingFloatingRateBond
 
 .. currentmodule:: quantlib.instruments.bonds.amortizingfloatingratebond
 
-.. autoattribute:: AmortizingFloatingRateBond.clean_price
+.. automethod:: AmortizingFloatingRateBond.clean_price

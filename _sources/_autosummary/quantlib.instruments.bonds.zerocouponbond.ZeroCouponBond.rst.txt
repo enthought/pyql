@@ -21,6 +21,7 @@ ZeroCouponBond
       
          ZeroCouponBond.accrued_amount
          ZeroCouponBond.bond_yield
+         ZeroCouponBond.clean_price
          ZeroCouponBond.notional
          ZeroCouponBond.set_pricing_engine
          ZeroCouponBond.settlement_date
@@ -35,7 +36,6 @@ ZeroCouponBond
       
          ZeroCouponBond.calendar
          ZeroCouponBond.cashflows
-         ZeroCouponBond.clean_price
          ZeroCouponBond.dirty_price
          ZeroCouponBond.error_estimate
          ZeroCouponBond.is_expired

@@ -39,7 +39,7 @@
 <h1>InterestRate<a class="headerlink" href="#interestrate" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.interest_rate.InterestRate">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">InterestRate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">compounding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">frequency</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.interest_rate.InterestRate" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">InterestRate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">dc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">compounding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequency</span> <span class="pre">frequency</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.interest_rate.InterestRate" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This class encapsulate the interest rate compounding algebra.</p>
 <p>It manages day-counting conventions, compounding conventions,
@@ -59,13 +59,16 @@ calculations, and implied/equivalent rate calculations.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.interest_rate.InterestRate.compound_factor.html#quantlib.interest_rate.InterestRate.compound_factor" title="quantlib.interest_rate.InterestRate.compound_factor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compound_factor</span></code></a>(self, Time t)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.interest_rate.InterestRate.compound_factor.html#quantlib.interest_rate.InterestRate.compound_factor" title="quantlib.interest_rate.InterestRate.compound_factor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compound_factor</span></code></a>(self, Date d1, Date d2, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="quantlib.interest_rate.InterestRate.equivalent_rate.html#quantlib.interest_rate.InterestRate.equivalent_rate" title="quantlib.interest_rate.InterestRate.equivalent_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equivalent_rate</span></code></a>(self, Compounding comp, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.interest_rate.InterestRate.discount_factor.html#quantlib.interest_rate.InterestRate.discount_factor" title="quantlib.interest_rate.InterestRate.discount_factor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discount_factor</span></code></a>(self, Date d1, Date d2, ...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.interest_rate.InterestRate.implied_rate.html#quantlib.interest_rate.InterestRate.implied_rate" title="quantlib.interest_rate.InterestRate.implied_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">implied_rate</span></code></a>(self, Real compound, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.interest_rate.InterestRate.equivalent_rate.html#quantlib.interest_rate.InterestRate.equivalent_rate" title="quantlib.interest_rate.InterestRate.equivalent_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equivalent_rate</span></code></a>(self, Compounding comp, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.interest_rate.InterestRate.implied_rate.html#quantlib.interest_rate.InterestRate.implied_rate" title="quantlib.interest_rate.InterestRate.implied_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">implied_rate</span></code></a>(self, Real compound, ...)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>

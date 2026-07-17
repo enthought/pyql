@@ -13,7 +13,12 @@ quantlib.pricingengines.bond.bondfunctions
       clean_price
       convexity
       duration
+      next_cash_flow
+      next_cash_flow_amount
+      next_cash_flow_date
       previous_cash_flow
+      previous_cash_flow_amount
+      previous_cash_flow_date
       start_date
       zSpread
    

@@ -3,4 +3,4 @@ quantlib.instruments.bonds.fixedratebond.FixedRateBond.clean\_price
 
 .. currentmodule:: quantlib.instruments.bonds.fixedratebond
 
-.. autoattribute:: FixedRateBond.clean_price
+.. automethod:: FixedRateBond.clean_price

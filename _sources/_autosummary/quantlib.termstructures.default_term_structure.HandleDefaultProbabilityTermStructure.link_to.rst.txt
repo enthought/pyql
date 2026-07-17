@@ -1,0 +1,6 @@
+quantlib.termstructures.default\_term\_structure.HandleDefaultProbabilityTermStructure.link\_to
+===============================================================================================
+
+.. currentmodule:: quantlib.termstructures.default_term_structure
+
+.. automethod:: HandleDefaultProbabilityTermStructure.link_to

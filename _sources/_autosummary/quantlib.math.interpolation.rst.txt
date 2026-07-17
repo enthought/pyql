@@ -10,7 +10,10 @@ quantlib.math.interpolation
       :toctree:
    
       BackwardFlat
+      Bicubic
+      Bilinear
       Cubic
+      Interpolation
       Linear
       LogLinear
    

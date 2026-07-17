@@ -21,6 +21,7 @@ FloatingRateBond
       
          FloatingRateBond.accrued_amount
          FloatingRateBond.bond_yield
+         FloatingRateBond.clean_price
          FloatingRateBond.notional
          FloatingRateBond.set_pricing_engine
          FloatingRateBond.settlement_date
@@ -35,7 +36,6 @@ FloatingRateBond
       
          FloatingRateBond.calendar
          FloatingRateBond.cashflows
-         FloatingRateBond.clean_price
          FloatingRateBond.dirty_price
          FloatingRateBond.error_estimate
          FloatingRateBond.is_expired

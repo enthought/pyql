@@ -3,4 +3,4 @@ quantlib.instruments.bonds.cpibond.CPIBond.clean\_price
 
 .. currentmodule:: quantlib.instruments.bonds.cpibond
 
-.. autoattribute:: CPIBond.clean_price
+.. automethod:: CPIBond.clean_price

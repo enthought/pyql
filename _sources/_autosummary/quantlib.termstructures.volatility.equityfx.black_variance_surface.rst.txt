@@ -11,5 +11,4 @@ quantlib.termstructures.volatility.equityfx.black\_variance\_surface
    
       BlackVarianceSurface
       Extrapolation
-      Interpolator
    

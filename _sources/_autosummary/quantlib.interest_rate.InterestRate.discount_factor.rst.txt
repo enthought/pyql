@@ -1,0 +1,6 @@
+quantlib.interest\_rate.InterestRate.discount\_factor
+=====================================================
+
+.. currentmodule:: quantlib.interest_rate
+
+.. automethod:: InterestRate.discount_factor

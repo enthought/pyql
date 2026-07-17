@@ -21,6 +21,7 @@ FixedRateBond
       
          FixedRateBond.accrued_amount
          FixedRateBond.bond_yield
+         FixedRateBond.clean_price
          FixedRateBond.notional
          FixedRateBond.set_pricing_engine
          FixedRateBond.settlement_date
@@ -35,7 +36,6 @@ FixedRateBond
       
          FixedRateBond.calendar
          FixedRateBond.cashflows
-         FixedRateBond.clean_price
          FixedRateBond.dirty_price
          FixedRateBond.error_estimate
          FixedRateBond.is_expired
