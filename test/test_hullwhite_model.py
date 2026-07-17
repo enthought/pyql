@@ -1,6 +1,3 @@
-from __future__ import division
-from __future__ import print_function
-
 import unittest
 
 from quantlib.models.shortrate.onefactormodels.hullwhite import HullWhite
@@ -59,7 +56,7 @@ class HullWhiteModelTestCase(unittest.TestCase):
                         )
         )
 
-        model = HullWhite(yield_ts, a=0.05, sigma=.005)
+        model = HullWhite(yield_ts, a=0.1, sigma=.01)
 
         data = [[1, 5, 0.1148 ],
                 [2, 4, 0.1108 ],
