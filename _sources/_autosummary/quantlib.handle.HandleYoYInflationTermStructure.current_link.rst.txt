@@ -1,0 +1,6 @@
+quantlib.handle.HandleYoYInflationTermStructure.current\_link
+=============================================================
+
+.. currentmodule:: quantlib.handle
+
+.. autoattribute:: HandleYoYInflationTermStructure.current_link

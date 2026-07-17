@@ -30,9 +30,9 @@ RateAveraging
          RateAveraging.__len__
          RateAveraging.__getitem__
       
-         RateAveraging.__pow__
          RateAveraging.__mul__
          RateAveraging.__len__
+         RateAveraging.__pow__
          RateAveraging.__getitem__
   
 

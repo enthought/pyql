@@ -25,7 +25,6 @@ EUHICPXT
          EUHICPXT.fixing
          EUHICPXT.has_historical_fixing
          EUHICPXT.is_valid_fixing_date
-         EUHICPXT.zero_inflation_term_structure
       
   
 
@@ -44,5 +43,6 @@ EUHICPXT
          EUHICPXT.name
          EUHICPXT.region
          EUHICPXT.time_series
+         EUHICPXT.zero_inflation_term_structure
   
   

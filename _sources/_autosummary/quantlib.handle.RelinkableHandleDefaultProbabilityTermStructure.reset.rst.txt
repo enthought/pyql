@@ -1,0 +1,6 @@
+quantlib.handle.RelinkableHandleDefaultProbabilityTermStructure.reset
+=====================================================================
+
+.. currentmodule:: quantlib.handle
+
+.. automethod:: RelinkableHandleDefaultProbabilityTermStructure.reset

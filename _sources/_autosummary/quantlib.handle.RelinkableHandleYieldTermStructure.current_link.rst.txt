@@ -1,0 +1,6 @@
+quantlib.handle.RelinkableHandleYieldTermStructure.current\_link
+================================================================
+
+.. currentmodule:: quantlib.handle
+
+.. autoattribute:: RelinkableHandleYieldTermStructure.current_link

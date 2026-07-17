@@ -9,6 +9,5 @@ quantlib.termstructures.yield\_term\_structure
    .. autosummary::
       :toctree:
    
-      HandleYieldTermStructure
       YieldTermStructure
    

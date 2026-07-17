@@ -25,7 +25,6 @@ YYAUCPI
          YYAUCPI.fixing
          YYAUCPI.has_historical_fixing
          YYAUCPI.is_valid_fixing_date
-         YYAUCPI.zero_inflation_term_structure
       
   
 
@@ -44,5 +43,7 @@ YYAUCPI
          YYAUCPI.name
          YYAUCPI.region
          YYAUCPI.time_series
+         YYAUCPI.yoy_inflation_term_structure
+         YYAUCPI.zero_inflation_term_structure
   
   

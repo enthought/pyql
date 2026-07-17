@@ -20,7 +20,6 @@ PiecewiseZeroInflationCurve
          :toctree:
       
          PiecewiseZeroInflationCurve.data
-         PiecewiseZeroInflationCurve.link_to
          PiecewiseZeroInflationCurve.zero_rate
       
   

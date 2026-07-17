@@ -10,5 +10,4 @@ quantlib.termstructures.default\_term\_structure
       :toctree:
    
       DefaultProbabilityTermStructure
-      HandleDefaultProbabilityTermStructure
    

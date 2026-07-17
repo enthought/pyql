@@ -1,0 +1,6 @@
+quantlib.handle.RelinkableHandleZeroInflationTermStructure.link\_to
+===================================================================
+
+.. currentmodule:: quantlib.handle
+
+.. automethod:: RelinkableHandleZeroInflationTermStructure.link_to

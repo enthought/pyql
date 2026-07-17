@@ -19,7 +19,6 @@ ZeroInflationTermStructure
       .. autosummary::
          :toctree:
       
-         ZeroInflationTermStructure.link_to
          ZeroInflationTermStructure.zero_rate
       
   

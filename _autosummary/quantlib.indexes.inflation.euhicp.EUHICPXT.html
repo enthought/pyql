@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="quantlib.indexes.inflation.euhicp.EUHICPXT.add_fixing" href="quantlib.indexes.inflation.euhicp.EUHICPXT.add_fixing.html" />
-    <link rel="prev" title="quantlib.indexes.inflation.euhicp.EUHICP.zero_inflation_term_structure" href="quantlib.indexes.inflation.euhicp.EUHICP.zero_inflation_term_structure.html" />
+    <link rel="prev" title="quantlib.indexes.inflation.euhicp.EUHICP.is_valid_fixing_date" href="quantlib.indexes.inflation.euhicp.EUHICP.is_valid_fixing_date.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -39,7 +39,7 @@
 <h1>EUHICPXT<a class="headerlink" href="#euhicpxt" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.indexes.inflation.euhicp.EUHICPXT">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">EUHICPXT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ZeroInflationTermStructure</span> <span class="pre">ts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ZeroInflationTermStructure()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.indexes.inflation.euhicp.EUHICPXT" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">EUHICPXT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">HandleZeroInflationTermStructure</span> <span class="pre">ts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">HandleZeroInflationTermStructure()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.indexes.inflation.euhicp.EUHICPXT" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.indexes.inflation_index.ZeroInflationIndex.html#quantlib.indexes.inflation_index.ZeroInflationIndex" title="quantlib.indexes.inflation_index.ZeroInflationIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">ZeroInflationIndex</span></code></a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
@@ -56,6 +56,7 @@
 <dt><strong>region</strong></dt><dd></dd>
 <dt><a class="reference internal" href="quantlib.indexes.inflation.euhicp.EUHICPXT.time_series.html#quantlib.indexes.inflation.euhicp.EUHICPXT.time_series" title="quantlib.indexes.inflation.euhicp.EUHICPXT.time_series"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_series</span></code></a></dt><dd><p>the fixing TimeSeries</p>
 </dd>
+<dt><strong>zero_inflation_term_structure</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -78,9 +79,6 @@
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.indexes.inflation.euhicp.EUHICPXT.is_valid_fixing_date.html#quantlib.indexes.inflation.euhicp.EUHICPXT.is_valid_fixing_date" title="quantlib.indexes.inflation.euhicp.EUHICPXT.is_valid_fixing_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_fixing_date</span></code></a>(self, Date fixing_date)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.indexes.inflation.euhicp.EUHICPXT.zero_inflation_term_structure.html#quantlib.indexes.inflation.euhicp.EUHICPXT.zero_inflation_term_structure" title="quantlib.indexes.inflation.euhicp.EUHICPXT.zero_inflation_term_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_inflation_term_structure</span></code></a>(self)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -128,7 +126,7 @@
   <li><a href="quantlib.indexes.html">quantlib.indexes</a><ul>
   <li><a href="quantlib.indexes.inflation.html">quantlib.indexes.inflation</a><ul>
   <li><a href="quantlib.indexes.inflation.euhicp.html">quantlib.indexes.inflation.euhicp</a><ul>
-      <li>Previous: <a href="quantlib.indexes.inflation.euhicp.EUHICP.zero_inflation_term_structure.html" title="previous chapter">quantlib.indexes.inflation.euhicp.EUHICP.zero_inflation_term_structure</a></li>
+      <li>Previous: <a href="quantlib.indexes.inflation.euhicp.EUHICP.is_valid_fixing_date.html" title="previous chapter">quantlib.indexes.inflation.euhicp.EUHICP.is_valid_fixing_date</a></li>
       <li>Next: <a href="quantlib.indexes.inflation.euhicp.EUHICPXT.add_fixing.html" title="next chapter">quantlib.indexes.inflation.euhicp.EUHICPXT.add_fixing</a></li>
   </ul></li>
   </ul></li>

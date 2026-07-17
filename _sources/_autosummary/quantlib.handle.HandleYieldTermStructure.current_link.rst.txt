@@ -1,0 +1,6 @@
+quantlib.handle.HandleYieldTermStructure.current\_link
+======================================================
+
+.. currentmodule:: quantlib.handle
+
+.. autoattribute:: HandleYieldTermStructure.current_link

@@ -19,7 +19,6 @@ YoYInflationTermStructure
       .. autosummary::
          :toctree:
       
-         YoYInflationTermStructure.link_to
          YoYInflationTermStructure.yoy_rate
       
   

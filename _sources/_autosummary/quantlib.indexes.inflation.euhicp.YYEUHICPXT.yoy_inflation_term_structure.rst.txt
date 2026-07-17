@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.euhicp.YYEUHICPXT.yoy\_inflation\_term\_structure
+============================================================================
+
+.. currentmodule:: quantlib.indexes.inflation.euhicp
+
+.. autoattribute:: YYEUHICPXT.yoy_inflation_term_structure

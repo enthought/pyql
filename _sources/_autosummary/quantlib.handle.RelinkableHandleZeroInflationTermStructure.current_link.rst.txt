@@ -1,0 +1,6 @@
+quantlib.handle.RelinkableHandleZeroInflationTermStructure.current\_link
+========================================================================
+
+.. currentmodule:: quantlib.handle
+
+.. autoattribute:: RelinkableHandleZeroInflationTermStructure.current_link

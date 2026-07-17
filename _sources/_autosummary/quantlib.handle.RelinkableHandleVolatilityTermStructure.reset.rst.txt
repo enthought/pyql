@@ -1,0 +1,6 @@
+quantlib.handle.RelinkableHandleVolatilityTermStructure.reset
+=============================================================
+
+.. currentmodule:: quantlib.handle
+
+.. automethod:: RelinkableHandleVolatilityTermStructure.reset

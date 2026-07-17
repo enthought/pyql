@@ -1,0 +1,6 @@
+quantlib.handle.RelinkableHandleYieldTermStructure.reset
+========================================================
+
+.. currentmodule:: quantlib.handle
+
+.. automethod:: RelinkableHandleYieldTermStructure.reset

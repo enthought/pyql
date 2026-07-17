@@ -1,0 +1,6 @@
+quantlib.handle.RelinkableHandleYoYInflationTermStructure.link\_to
+==================================================================
+
+.. currentmodule:: quantlib.handle
+
+.. automethod:: RelinkableHandleYoYInflationTermStructure.link_to

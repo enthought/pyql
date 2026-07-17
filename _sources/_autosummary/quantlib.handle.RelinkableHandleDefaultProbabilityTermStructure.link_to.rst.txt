@@ -1,0 +1,6 @@
+quantlib.handle.RelinkableHandleDefaultProbabilityTermStructure.link\_to
+========================================================================
+
+.. currentmodule:: quantlib.handle
+
+.. automethod:: RelinkableHandleDefaultProbabilityTermStructure.link_to

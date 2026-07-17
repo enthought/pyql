@@ -30,9 +30,9 @@ Position
          Position.__getitem__
          Position.__len__
       
-         Position.__pow__
          Position.__mul__
          Position.__len__
+         Position.__pow__
          Position.__getitem__
   
 

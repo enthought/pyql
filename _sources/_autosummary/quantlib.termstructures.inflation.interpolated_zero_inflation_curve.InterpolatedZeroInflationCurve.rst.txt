@@ -20,7 +20,6 @@ InterpolatedZeroInflationCurve
          :toctree:
       
          InterpolatedZeroInflationCurve.data
-         InterpolatedZeroInflationCurve.link_to
          InterpolatedZeroInflationCurve.zero_rate
       
   

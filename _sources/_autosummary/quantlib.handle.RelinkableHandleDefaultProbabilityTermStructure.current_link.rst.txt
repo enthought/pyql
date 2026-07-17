@@ -1,0 +1,6 @@
+quantlib.handle.RelinkableHandleDefaultProbabilityTermStructure.current\_link
+=============================================================================
+
+.. currentmodule:: quantlib.handle
+
+.. autoattribute:: RelinkableHandleDefaultProbabilityTermStructure.current_link

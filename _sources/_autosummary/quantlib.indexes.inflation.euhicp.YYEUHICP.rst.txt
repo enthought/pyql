@@ -25,7 +25,6 @@ YYEUHICP
          YYEUHICP.fixing
          YYEUHICP.has_historical_fixing
          YYEUHICP.is_valid_fixing_date
-         YYEUHICP.zero_inflation_term_structure
       
   
 
@@ -44,5 +43,7 @@ YYEUHICP
          YYEUHICP.name
          YYEUHICP.region
          YYEUHICP.time_series
+         YYEUHICP.yoy_inflation_term_structure
+         YYEUHICP.zero_inflation_term_structure
   
   

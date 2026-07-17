@@ -1,0 +1,6 @@
+quantlib.indexes.inflation\_index.YoYInflationIndex.yoy\_inflation\_term\_structure
+===================================================================================
+
+.. currentmodule:: quantlib.indexes.inflation_index
+
+.. autoattribute:: YoYInflationIndex.yoy_inflation_term_structure

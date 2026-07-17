@@ -25,7 +25,6 @@ UKRPI
          UKRPI.fixing
          UKRPI.has_historical_fixing
          UKRPI.is_valid_fixing_date
-         UKRPI.zero_inflation_term_structure
       
   
 
@@ -44,5 +43,6 @@ UKRPI
          UKRPI.name
          UKRPI.region
          UKRPI.time_series
+         UKRPI.zero_inflation_term_structure
   
   

@@ -25,7 +25,6 @@ ZeroInflationIndex
          ZeroInflationIndex.fixing
          ZeroInflationIndex.has_historical_fixing
          ZeroInflationIndex.is_valid_fixing_date
-         ZeroInflationIndex.zero_inflation_term_structure
       
   
 
@@ -44,5 +43,6 @@ ZeroInflationIndex
          ZeroInflationIndex.name
          ZeroInflationIndex.region
          ZeroInflationIndex.time_series
+         ZeroInflationIndex.zero_inflation_term_structure
   
   

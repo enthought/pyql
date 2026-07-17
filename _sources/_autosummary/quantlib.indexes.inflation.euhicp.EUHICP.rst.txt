@@ -25,7 +25,6 @@ EUHICP
          EUHICP.fixing
          EUHICP.has_historical_fixing
          EUHICP.is_valid_fixing_date
-         EUHICP.zero_inflation_term_structure
       
   
 
@@ -44,5 +43,6 @@ EUHICP
          EUHICP.name
          EUHICP.region
          EUHICP.time_series
+         EUHICP.zero_inflation_term_structure
   
   

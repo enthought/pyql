@@ -1,0 +1,6 @@
+quantlib.handle.HandleOptionletVolatilityStructure.current\_link
+================================================================
+
+.. currentmodule:: quantlib.handle
+
+.. autoattribute:: HandleOptionletVolatilityStructure.current_link

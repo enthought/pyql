@@ -1,0 +1,35 @@
+.. raw:: html
+
+   <div class="prename">quantlib.handle.</div>
+   <div class="empty"></div>
+
+RelinkableHandleYoYInflationTermStructure
+=========================================================
+
+.. currentmodule:: quantlib.handle
+
+.. autoclass:: RelinkableHandleYoYInflationTermStructure
+   :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
+
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         RelinkableHandleYoYInflationTermStructure.link_to
+         RelinkableHandleYoYInflationTermStructure.reset
+      
+  
+
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         RelinkableHandleYoYInflationTermStructure.current_link
+  
+  

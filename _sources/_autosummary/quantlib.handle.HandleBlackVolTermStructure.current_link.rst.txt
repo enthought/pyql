@@ -1,0 +1,6 @@
+quantlib.handle.HandleBlackVolTermStructure.current\_link
+=========================================================
+
+.. currentmodule:: quantlib.handle
+
+.. autoattribute:: HandleBlackVolTermStructure.current_link

@@ -18,6 +18,7 @@
    defines
    exercise
    experimental
+   handle
    index
    indexes
    instrument

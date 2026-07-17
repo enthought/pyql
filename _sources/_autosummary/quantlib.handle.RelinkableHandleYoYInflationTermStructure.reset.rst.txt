@@ -1,0 +1,6 @@
+quantlib.handle.RelinkableHandleYoYInflationTermStructure.reset
+===============================================================
+
+.. currentmodule:: quantlib.handle
+
+.. automethod:: RelinkableHandleYoYInflationTermStructure.reset

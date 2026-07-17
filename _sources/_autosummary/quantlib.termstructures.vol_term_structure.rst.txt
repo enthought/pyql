@@ -9,6 +9,5 @@ quantlib.termstructures.vol\_term\_structure
    .. autosummary::
       :toctree:
    
-      HandleVolatilityTermStructure
       VolatilityTermStructure
    

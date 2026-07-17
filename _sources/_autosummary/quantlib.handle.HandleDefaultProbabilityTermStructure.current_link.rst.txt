@@ -1,0 +1,6 @@
+quantlib.handle.HandleDefaultProbabilityTermStructure.current\_link
+===================================================================
+
+.. currentmodule:: quantlib.handle
+
+.. autoattribute:: HandleDefaultProbabilityTermStructure.current_link

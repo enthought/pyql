@@ -9,6 +9,5 @@ quantlib.termstructures.volatility.swaption.swaption\_vol\_structure
    .. autosummary::
       :toctree:
    
-      HandleSwaptionVolatilityStructure
       SwaptionVolatilityStructure
    

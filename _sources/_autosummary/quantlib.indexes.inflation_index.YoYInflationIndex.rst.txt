@@ -25,7 +25,6 @@ YoYInflationIndex
          YoYInflationIndex.fixing
          YoYInflationIndex.has_historical_fixing
          YoYInflationIndex.is_valid_fixing_date
-         YoYInflationIndex.zero_inflation_term_structure
       
   
 
@@ -44,5 +43,7 @@ YoYInflationIndex
          YoYInflationIndex.name
          YoYInflationIndex.region
          YoYInflationIndex.time_series
+         YoYInflationIndex.yoy_inflation_term_structure
+         YoYInflationIndex.zero_inflation_term_structure
   
   

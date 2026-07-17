@@ -30,9 +30,9 @@ Extrapolation
          Extrapolation.__len__
          Extrapolation.__getitem__
       
-         Extrapolation.__pow__
          Extrapolation.__mul__
          Extrapolation.__len__
+         Extrapolation.__pow__
          Extrapolation.__getitem__
   
 

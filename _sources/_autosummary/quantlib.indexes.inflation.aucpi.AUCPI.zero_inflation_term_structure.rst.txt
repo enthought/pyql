@@ -3,4 +3,4 @@ quantlib.indexes.inflation.aucpi.AUCPI.zero\_inflation\_term\_structure
 
 .. currentmodule:: quantlib.indexes.inflation.aucpi
 
-.. automethod:: AUCPI.zero_inflation_term_structure
+.. autoattribute:: AUCPI.zero_inflation_term_structure

@@ -1,0 +1,6 @@
+quantlib.handle.RelinkableHandleOptionletVolatilityStructure.current\_link
+==========================================================================
+
+.. currentmodule:: quantlib.handle
+
+.. autoattribute:: RelinkableHandleOptionletVolatilityStructure.current_link

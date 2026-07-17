@@ -3,4 +3,4 @@ quantlib.indexes.inflation\_index.ZeroInflationIndex.zero\_inflation\_term\_stru
 
 .. currentmodule:: quantlib.indexes.inflation_index
 
-.. automethod:: ZeroInflationIndex.zero_inflation_term_structure
+.. autoattribute:: ZeroInflationIndex.zero_inflation_term_structure

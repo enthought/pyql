@@ -30,9 +30,9 @@ Convention
          Convention.__len__
          Convention.__getitem__
       
-         Convention.__pow__
          Convention.__mul__
          Convention.__len__
+         Convention.__pow__
          Convention.__getitem__
   
 

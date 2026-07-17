@@ -3,4 +3,4 @@ quantlib.indexes.inflation.euhicp.YYEUHICPXT.zero\_inflation\_term\_structure
 
 .. currentmodule:: quantlib.indexes.inflation.euhicp
 
-.. automethod:: YYEUHICPXT.zero_inflation_term_structure
+.. autoattribute:: YYEUHICPXT.zero_inflation_term_structure

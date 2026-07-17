@@ -1,0 +1,6 @@
+quantlib.indexes.inflation.aucpi.YYAUCPI.yoy\_inflation\_term\_structure
+========================================================================
+
+.. currentmodule:: quantlib.indexes.inflation.aucpi
+
+.. autoattribute:: YYAUCPI.yoy_inflation_term_structure

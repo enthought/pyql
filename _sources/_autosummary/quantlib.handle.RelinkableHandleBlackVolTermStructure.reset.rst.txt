@@ -1,0 +1,6 @@
+quantlib.handle.RelinkableHandleBlackVolTermStructure.reset
+===========================================================
+
+.. currentmodule:: quantlib.handle
+
+.. automethod:: RelinkableHandleBlackVolTermStructure.reset

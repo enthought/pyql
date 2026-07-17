@@ -3,4 +3,4 @@ quantlib.indexes.inflation\_index.YoYInflationIndex.zero\_inflation\_term\_struc
 
 .. currentmodule:: quantlib.indexes.inflation_index
 
-.. automethod:: YoYInflationIndex.zero_inflation_term_structure
+.. autoattribute:: YoYInflationIndex.zero_inflation_term_structure

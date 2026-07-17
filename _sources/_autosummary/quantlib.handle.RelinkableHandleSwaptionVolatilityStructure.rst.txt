@@ -1,0 +1,35 @@
+.. raw:: html
+
+   <div class="prename">quantlib.handle.</div>
+   <div class="empty"></div>
+
+RelinkableHandleSwaptionVolatilityStructure
+===========================================================
+
+.. currentmodule:: quantlib.handle
+
+.. autoclass:: RelinkableHandleSwaptionVolatilityStructure
+   :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
+
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         RelinkableHandleSwaptionVolatilityStructure.link_to
+         RelinkableHandleSwaptionVolatilityStructure.reset
+      
+  
+
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         RelinkableHandleSwaptionVolatilityStructure.current_link
+  
+  

@@ -30,9 +30,9 @@ Protection
          Protection.__getitem__
          Protection.__len__
       
-         Protection.__pow__
          Protection.__mul__
          Protection.__len__
+         Protection.__pow__
          Protection.__getitem__
   
 

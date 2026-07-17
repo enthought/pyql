@@ -25,7 +25,6 @@ AUCPI
          AUCPI.fixing
          AUCPI.has_historical_fixing
          AUCPI.is_valid_fixing_date
-         AUCPI.zero_inflation_term_structure
       
   
 
@@ -44,5 +43,6 @@ AUCPI
          AUCPI.name
          AUCPI.region
          AUCPI.time_series
+         AUCPI.zero_inflation_term_structure
   
   

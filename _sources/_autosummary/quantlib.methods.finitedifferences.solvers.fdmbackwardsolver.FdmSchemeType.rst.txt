@@ -30,9 +30,9 @@ FdmSchemeType
          FdmSchemeType.__len__
          FdmSchemeType.__getitem__
       
-         FdmSchemeType.__pow__
          FdmSchemeType.__mul__
          FdmSchemeType.__len__
+         FdmSchemeType.__pow__
          FdmSchemeType.__getitem__
   
 
