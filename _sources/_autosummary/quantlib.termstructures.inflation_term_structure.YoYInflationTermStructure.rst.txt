@@ -19,6 +19,7 @@ YoYInflationTermStructure
       .. autosummary::
          :toctree:
       
+         YoYInflationTermStructure.time_from_reference
          YoYInflationTermStructure.yoy_rate
       
   
@@ -31,7 +32,11 @@ YoYInflationTermStructure
       
          YoYInflationTermStructure.base_date
          YoYInflationTermStructure.base_rate
+         YoYInflationTermStructure.calendar
+         YoYInflationTermStructure.day_counter
          YoYInflationTermStructure.max_date
+         YoYInflationTermStructure.max_time
          YoYInflationTermStructure.reference_date
+         YoYInflationTermStructure.settlement_days
   
   

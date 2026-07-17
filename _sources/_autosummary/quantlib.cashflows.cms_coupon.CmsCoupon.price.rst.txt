@@ -1,0 +1,6 @@
+quantlib.cashflows.cms\_coupon.CmsCoupon.price
+==============================================
+
+.. currentmodule:: quantlib.cashflows.cms_coupon
+
+.. automethod:: CmsCoupon.price

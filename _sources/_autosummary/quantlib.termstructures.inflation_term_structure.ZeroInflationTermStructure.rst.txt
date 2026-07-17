@@ -19,6 +19,7 @@ ZeroInflationTermStructure
       .. autosummary::
          :toctree:
       
+         ZeroInflationTermStructure.time_from_reference
          ZeroInflationTermStructure.zero_rate
       
   
@@ -31,7 +32,11 @@ ZeroInflationTermStructure
       
          ZeroInflationTermStructure.base_date
          ZeroInflationTermStructure.base_rate
+         ZeroInflationTermStructure.calendar
+         ZeroInflationTermStructure.day_counter
          ZeroInflationTermStructure.max_date
+         ZeroInflationTermStructure.max_time
          ZeroInflationTermStructure.reference_date
+         ZeroInflationTermStructure.settlement_days
   
   

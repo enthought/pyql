@@ -1,0 +1,13 @@
+quantlib.indexes.ibor.fedfunds
+==============================
+
+.. automodule:: quantlib.indexes.ibor.fedfunds
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      FedFunds
+   

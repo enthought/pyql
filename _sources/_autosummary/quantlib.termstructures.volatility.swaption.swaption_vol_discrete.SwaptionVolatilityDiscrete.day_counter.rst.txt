@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_discrete.SwaptionVolatilityDiscrete.day\_counter
+===========================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_discrete
+
+.. autoattribute:: SwaptionVolatilityDiscrete.day_counter

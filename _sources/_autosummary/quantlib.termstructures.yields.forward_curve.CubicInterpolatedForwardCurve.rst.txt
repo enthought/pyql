@@ -32,6 +32,7 @@ CubicInterpolatedForwardCurve
       .. autosummary::
          :toctree:
       
+         CubicInterpolatedForwardCurve.calendar
          CubicInterpolatedForwardCurve.data
          CubicInterpolatedForwardCurve.dates
          CubicInterpolatedForwardCurve.day_counter

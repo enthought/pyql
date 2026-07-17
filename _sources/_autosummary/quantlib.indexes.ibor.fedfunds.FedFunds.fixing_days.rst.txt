@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.fedfunds.FedFunds.fixing\_days
+====================================================
+
+.. currentmodule:: quantlib.indexes.ibor.fedfunds
+
+.. autoattribute:: FedFunds.fixing_days

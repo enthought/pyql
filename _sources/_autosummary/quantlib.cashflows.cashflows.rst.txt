@@ -8,6 +8,11 @@ quantlib.cashflows.cashflows
 
    .. autosummary::
    
+      accrual_days
+      accrual_end_date
+      accrual_start_date
+      accrued_amount
+      accrued_days
       bps
       next_cash_flow_amount
       npv

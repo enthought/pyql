@@ -4,6 +4,12 @@ quantlib.cashflows.coupon
 .. automodule:: quantlib.cashflows.coupon
 
    
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      as_coupon
+   
    .. rubric:: Classes
 
    .. autosummary::

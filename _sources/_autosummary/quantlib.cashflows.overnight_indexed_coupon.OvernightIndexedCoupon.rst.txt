@@ -26,6 +26,7 @@ OvernightIndexedCoupon
          OvernightIndexedCoupon.fixing_dates
          OvernightIndexedCoupon.has_occured
          OvernightIndexedCoupon.index_fixings
+         OvernightIndexedCoupon.price
          OvernightIndexedCoupon.set_pricer
          OvernightIndexedCoupon.value_dates
       
@@ -45,11 +46,13 @@ OvernightIndexedCoupon
          OvernightIndexedCoupon.amount
          OvernightIndexedCoupon.apply_observation_shift
          OvernightIndexedCoupon.averaging_method
+         OvernightIndexedCoupon.compound_spread_daily
          OvernightIndexedCoupon.convexity_adjustment
          OvernightIndexedCoupon.date
          OvernightIndexedCoupon.day_counter
          OvernightIndexedCoupon.fixing_date
          OvernightIndexedCoupon.fixing_days
+         OvernightIndexedCoupon.gearing
          OvernightIndexedCoupon.index
          OvernightIndexedCoupon.index_fixing
          OvernightIndexedCoupon.is_in_arrears
@@ -58,5 +61,6 @@ OvernightIndexedCoupon
          OvernightIndexedCoupon.rate
          OvernightIndexedCoupon.reference_period_end
          OvernightIndexedCoupon.reference_period_start
+         OvernightIndexedCoupon.spread
   
   

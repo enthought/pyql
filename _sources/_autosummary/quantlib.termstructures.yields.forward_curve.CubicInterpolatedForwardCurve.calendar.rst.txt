@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_curve.CubicInterpolatedForwardCurve.calendar
+====================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_curve
+
+.. autoattribute:: CubicInterpolatedForwardCurve.calendar

@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.sabr\_swaption\_volatility\_cube.SabrSwaptionVolatilityCube.max\_date
+=================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.sabr_swaption_volatility_cube
+
+.. autoattribute:: SabrSwaptionVolatilityCube.max_date

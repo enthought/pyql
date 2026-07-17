@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation\_term\_structure.InflationTermStructure.settlement\_days
+==========================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation_term_structure
+
+.. autoattribute:: InflationTermStructure.settlement_days

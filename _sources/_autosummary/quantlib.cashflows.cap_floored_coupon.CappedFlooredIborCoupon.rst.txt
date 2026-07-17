@@ -23,6 +23,7 @@ CappedFlooredIborCoupon
          CappedFlooredIborCoupon.accrued_days
          CappedFlooredIborCoupon.accrued_period
          CappedFlooredIborCoupon.has_occured
+         CappedFlooredIborCoupon.price
          CappedFlooredIborCoupon.set_pricer
       
   
@@ -48,6 +49,7 @@ CappedFlooredIborCoupon
          CappedFlooredIborCoupon.fixing_date
          CappedFlooredIborCoupon.fixing_days
          CappedFlooredIborCoupon.floor
+         CappedFlooredIborCoupon.gearing
          CappedFlooredIborCoupon.index
          CappedFlooredIborCoupon.index_fixing
          CappedFlooredIborCoupon.is_capped
@@ -57,6 +59,7 @@ CappedFlooredIborCoupon
          CappedFlooredIborCoupon.rate
          CappedFlooredIborCoupon.reference_period_end
          CappedFlooredIborCoupon.reference_period_start
+         CappedFlooredIborCoupon.spread
          CappedFlooredIborCoupon.underlying
   
   

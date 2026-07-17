@@ -35,8 +35,11 @@ BlackVarianceCurve
          :toctree:
       
          BlackVarianceCurve.calendar
+         BlackVarianceCurve.day_counter
          BlackVarianceCurve.extrapolation
+         BlackVarianceCurve.max_date
          BlackVarianceCurve.max_strike
+         BlackVarianceCurve.max_time
          BlackVarianceCurve.min_strike
          BlackVarianceCurve.reference_date
          BlackVarianceCurve.settlement_days

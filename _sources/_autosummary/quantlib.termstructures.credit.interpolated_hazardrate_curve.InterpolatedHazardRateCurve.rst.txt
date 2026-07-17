@@ -31,6 +31,7 @@ InterpolatedHazardRateCurve
       .. autosummary::
          :toctree:
       
+         InterpolatedHazardRateCurve.calendar
          InterpolatedHazardRateCurve.data
          InterpolatedHazardRateCurve.dates
          InterpolatedHazardRateCurve.day_counter

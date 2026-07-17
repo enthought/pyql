@@ -20,6 +20,7 @@ InterpolatedZeroInflationCurve
          :toctree:
       
          InterpolatedZeroInflationCurve.data
+         InterpolatedZeroInflationCurve.time_from_reference
          InterpolatedZeroInflationCurve.zero_rate
       
   
@@ -32,7 +33,11 @@ InterpolatedZeroInflationCurve
       
          InterpolatedZeroInflationCurve.base_date
          InterpolatedZeroInflationCurve.base_rate
+         InterpolatedZeroInflationCurve.calendar
+         InterpolatedZeroInflationCurve.day_counter
          InterpolatedZeroInflationCurve.max_date
+         InterpolatedZeroInflationCurve.max_time
          InterpolatedZeroInflationCurve.reference_date
+         InterpolatedZeroInflationCurve.settlement_days
   
   

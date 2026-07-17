@@ -23,6 +23,7 @@ CappedFlooredCmsCoupon
          CappedFlooredCmsCoupon.accrued_days
          CappedFlooredCmsCoupon.accrued_period
          CappedFlooredCmsCoupon.has_occured
+         CappedFlooredCmsCoupon.price
          CappedFlooredCmsCoupon.set_pricer
       
   
@@ -48,6 +49,7 @@ CappedFlooredCmsCoupon
          CappedFlooredCmsCoupon.fixing_date
          CappedFlooredCmsCoupon.fixing_days
          CappedFlooredCmsCoupon.floor
+         CappedFlooredCmsCoupon.gearing
          CappedFlooredCmsCoupon.index
          CappedFlooredCmsCoupon.index_fixing
          CappedFlooredCmsCoupon.is_capped
@@ -57,6 +59,7 @@ CappedFlooredCmsCoupon
          CappedFlooredCmsCoupon.rate
          CappedFlooredCmsCoupon.reference_period_end
          CappedFlooredCmsCoupon.reference_period_start
+         CappedFlooredCmsCoupon.spread
          CappedFlooredCmsCoupon.underlying
   
   

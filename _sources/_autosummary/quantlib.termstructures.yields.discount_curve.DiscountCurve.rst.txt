@@ -32,6 +32,7 @@ DiscountCurve
       .. autosummary::
          :toctree:
       
+         DiscountCurve.calendar
          DiscountCurve.data
          DiscountCurve.dates
          DiscountCurve.day_counter

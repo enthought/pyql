@@ -31,7 +31,10 @@ VolatilityTermStructure
          :toctree:
       
          VolatilityTermStructure.calendar
+         VolatilityTermStructure.day_counter
          VolatilityTermStructure.extrapolation
+         VolatilityTermStructure.max_date
+         VolatilityTermStructure.max_time
          VolatilityTermStructure.reference_date
          VolatilityTermStructure.settlement_days
   

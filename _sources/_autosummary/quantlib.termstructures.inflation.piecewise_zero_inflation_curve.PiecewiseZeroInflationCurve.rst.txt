@@ -20,6 +20,7 @@ PiecewiseZeroInflationCurve
          :toctree:
       
          PiecewiseZeroInflationCurve.data
+         PiecewiseZeroInflationCurve.time_from_reference
          PiecewiseZeroInflationCurve.zero_rate
       
   
@@ -32,7 +33,11 @@ PiecewiseZeroInflationCurve
       
          PiecewiseZeroInflationCurve.base_date
          PiecewiseZeroInflationCurve.base_rate
+         PiecewiseZeroInflationCurve.calendar
+         PiecewiseZeroInflationCurve.day_counter
          PiecewiseZeroInflationCurve.max_date
+         PiecewiseZeroInflationCurve.max_time
          PiecewiseZeroInflationCurve.reference_date
+         PiecewiseZeroInflationCurve.settlement_days
   
   

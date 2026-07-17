@@ -23,6 +23,7 @@ CmsCoupon
          CmsCoupon.accrued_days
          CmsCoupon.accrued_period
          CmsCoupon.has_occured
+         CmsCoupon.price
          CmsCoupon.set_pricer
       
   
@@ -44,6 +45,7 @@ CmsCoupon
          CmsCoupon.day_counter
          CmsCoupon.fixing_date
          CmsCoupon.fixing_days
+         CmsCoupon.gearing
          CmsCoupon.index
          CmsCoupon.index_fixing
          CmsCoupon.is_in_arrears
@@ -51,6 +53,7 @@ CmsCoupon
          CmsCoupon.rate
          CmsCoupon.reference_period_end
          CmsCoupon.reference_period_start
+         CmsCoupon.spread
          CmsCoupon.swap_index
   
   

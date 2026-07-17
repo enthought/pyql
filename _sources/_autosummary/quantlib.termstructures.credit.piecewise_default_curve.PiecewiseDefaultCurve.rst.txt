@@ -32,6 +32,7 @@ PiecewiseDefaultCurve
       .. autosummary::
          :toctree:
       
+         PiecewiseDefaultCurve.calendar
          PiecewiseDefaultCurve.data
          PiecewiseDefaultCurve.dates
          PiecewiseDefaultCurve.day_counter

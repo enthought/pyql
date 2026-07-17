@@ -36,7 +36,10 @@ ConstantSwaptionVolatility
          :toctree:
       
          ConstantSwaptionVolatility.calendar
+         ConstantSwaptionVolatility.day_counter
          ConstantSwaptionVolatility.extrapolation
+         ConstantSwaptionVolatility.max_date
+         ConstantSwaptionVolatility.max_time
          ConstantSwaptionVolatility.reference_date
          ConstantSwaptionVolatility.settlement_days
          ConstantSwaptionVolatility.volatility_type

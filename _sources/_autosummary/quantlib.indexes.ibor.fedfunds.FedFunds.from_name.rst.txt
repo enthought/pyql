@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.fedfunds.FedFunds.from\_name
+==================================================
+
+.. currentmodule:: quantlib.indexes.ibor.fedfunds
+
+.. automethod:: FedFunds.from_name

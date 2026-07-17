@@ -19,6 +19,7 @@ InflationTermStructure
       .. autosummary::
          :toctree:
       
+         InflationTermStructure.time_from_reference
       
   
 
@@ -30,7 +31,11 @@ InflationTermStructure
       
          InflationTermStructure.base_date
          InflationTermStructure.base_rate
+         InflationTermStructure.calendar
+         InflationTermStructure.day_counter
          InflationTermStructure.max_date
+         InflationTermStructure.max_time
          InflationTermStructure.reference_date
+         InflationTermStructure.settlement_days
   
   

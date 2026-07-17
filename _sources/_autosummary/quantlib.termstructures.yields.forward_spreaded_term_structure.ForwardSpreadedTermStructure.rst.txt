@@ -32,6 +32,7 @@ ForwardSpreadedTermStructure
       .. autosummary::
          :toctree:
       
+         ForwardSpreadedTermStructure.calendar
          ForwardSpreadedTermStructure.day_counter
          ForwardSpreadedTermStructure.extrapolation
          ForwardSpreadedTermStructure.max_date

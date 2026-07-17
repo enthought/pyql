@@ -31,7 +31,10 @@ LocalVolTermStructure
          :toctree:
       
          LocalVolTermStructure.calendar
+         LocalVolTermStructure.day_counter
          LocalVolTermStructure.extrapolation
+         LocalVolTermStructure.max_date
+         LocalVolTermStructure.max_time
          LocalVolTermStructure.reference_date
          LocalVolTermStructure.settlement_days
   

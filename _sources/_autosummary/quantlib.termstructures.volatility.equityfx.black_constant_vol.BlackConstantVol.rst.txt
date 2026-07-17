@@ -35,7 +35,10 @@ BlackConstantVol
          :toctree:
       
          BlackConstantVol.calendar
+         BlackConstantVol.day_counter
          BlackConstantVol.extrapolation
+         BlackConstantVol.max_date
+         BlackConstantVol.max_time
          BlackConstantVol.reference_date
          BlackConstantVol.settlement_days
   

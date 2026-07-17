@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.interpolated\_zero\_inflation\_curve.InterpolatedZeroInflationCurve.time\_from\_reference
+===========================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.interpolated_zero_inflation_curve
+
+.. automethod:: InterpolatedZeroInflationCurve.time_from_reference

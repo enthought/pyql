@@ -33,6 +33,7 @@ ForwardRateLinearPiecewiseYieldCurve
       .. autosummary::
          :toctree:
       
+         ForwardRateLinearPiecewiseYieldCurve.calendar
          ForwardRateLinearPiecewiseYieldCurve.data
          ForwardRateLinearPiecewiseYieldCurve.dates
          ForwardRateLinearPiecewiseYieldCurve.day_counter

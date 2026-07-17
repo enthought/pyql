@@ -1,0 +1,54 @@
+.. raw:: html
+
+   <div class="prename">quantlib.indexes.ibor.fedfunds.</div>
+   <div class="empty"></div>
+
+FedFunds
+=======================================
+
+.. currentmodule:: quantlib.indexes.ibor.fedfunds
+
+.. autoclass:: FedFunds
+   :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
+
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FedFunds.add_fixing
+         FedFunds.add_fixings
+         FedFunds.clear_fixings
+         FedFunds.fixing
+         FedFunds.fixing_date
+         FedFunds.forecast_fixing
+         FedFunds.from_name
+         FedFunds.has_historical_fixing
+         FedFunds.is_valid_fixing_date
+         FedFunds.maturity_date
+         FedFunds.value_date
+      
+  
+
+  
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         FedFunds.business_day_convention
+         FedFunds.currency
+         FedFunds.day_counter
+         FedFunds.end_of_month
+         FedFunds.family_name
+         FedFunds.fixing_calendar
+         FedFunds.fixing_days
+         FedFunds.forwarding_term_structure
+         FedFunds.name
+         FedFunds.tenor
+         FedFunds.time_series
+  
+  

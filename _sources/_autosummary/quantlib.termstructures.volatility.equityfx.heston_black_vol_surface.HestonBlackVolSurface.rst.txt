@@ -35,7 +35,10 @@ HestonBlackVolSurface
          :toctree:
       
          HestonBlackVolSurface.calendar
+         HestonBlackVolSurface.day_counter
          HestonBlackVolSurface.extrapolation
+         HestonBlackVolSurface.max_date
+         HestonBlackVolSurface.max_time
          HestonBlackVolSurface.reference_date
          HestonBlackVolSurface.settlement_days
   

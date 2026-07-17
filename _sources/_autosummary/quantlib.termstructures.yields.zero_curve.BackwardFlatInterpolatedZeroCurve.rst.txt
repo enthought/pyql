@@ -32,6 +32,7 @@ BackwardFlatInterpolatedZeroCurve
       .. autosummary::
          :toctree:
       
+         BackwardFlatInterpolatedZeroCurve.calendar
          BackwardFlatInterpolatedZeroCurve.data
          BackwardFlatInterpolatedZeroCurve.dates
          BackwardFlatInterpolatedZeroCurve.day_counter

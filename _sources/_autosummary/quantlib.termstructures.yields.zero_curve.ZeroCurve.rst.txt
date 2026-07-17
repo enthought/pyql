@@ -32,6 +32,7 @@ ZeroCurve
       .. autosummary::
          :toctree:
       
+         ZeroCurve.calendar
          ZeroCurve.data
          ZeroCurve.dates
          ZeroCurve.day_counter

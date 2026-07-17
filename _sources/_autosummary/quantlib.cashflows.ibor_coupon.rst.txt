@@ -4,6 +4,12 @@ quantlib.cashflows.ibor\_coupon
 .. automodule:: quantlib.cashflows.ibor_coupon
 
    
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      as_ibor_coupon
+   
    .. rubric:: Classes
 
    .. autosummary::

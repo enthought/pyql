@@ -29,6 +29,7 @@ ShortRateDynamics
       .. autosummary::
          :toctree:
       
+         ShortRateDynamics.correlation
          ShortRateDynamics.process_x
   
   

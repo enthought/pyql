@@ -1,0 +1,6 @@
+quantlib.termstructures.credit.interpolated\_hazardrate\_curve.InterpolatedHazardRateCurve.calendar
+===================================================================================================
+
+.. currentmodule:: quantlib.termstructures.credit.interpolated_hazardrate_curve
+
+.. autoattribute:: InterpolatedHazardRateCurve.calendar

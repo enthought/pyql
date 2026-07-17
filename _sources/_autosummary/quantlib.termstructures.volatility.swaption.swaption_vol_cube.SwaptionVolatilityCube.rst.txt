@@ -39,7 +39,10 @@ SwaptionVolatilityCube
          :toctree:
       
          SwaptionVolatilityCube.calendar
+         SwaptionVolatilityCube.day_counter
          SwaptionVolatilityCube.extrapolation
+         SwaptionVolatilityCube.max_date
+         SwaptionVolatilityCube.max_time
          SwaptionVolatilityCube.option_dates
          SwaptionVolatilityCube.option_tenors
          SwaptionVolatilityCube.option_times

@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.fedfunds.FedFunds.maturity\_date
+======================================================
+
+.. currentmodule:: quantlib.indexes.ibor.fedfunds
+
+.. automethod:: FedFunds.maturity_date

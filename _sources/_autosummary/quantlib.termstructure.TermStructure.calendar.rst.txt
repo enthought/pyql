@@ -1,0 +1,6 @@
+quantlib.termstructure.TermStructure.calendar
+=============================================
+
+.. currentmodule:: quantlib.termstructure
+
+.. autoattribute:: TermStructure.calendar

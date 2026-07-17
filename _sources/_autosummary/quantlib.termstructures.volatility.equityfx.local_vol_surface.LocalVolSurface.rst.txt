@@ -32,7 +32,10 @@ LocalVolSurface
          :toctree:
       
          LocalVolSurface.calendar
+         LocalVolSurface.day_counter
          LocalVolSurface.extrapolation
+         LocalVolSurface.max_date
+         LocalVolSurface.max_time
          LocalVolSurface.reference_date
          LocalVolSurface.settlement_days
   

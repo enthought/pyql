@@ -35,7 +35,10 @@ BlackVolTermStructure
          :toctree:
       
          BlackVolTermStructure.calendar
+         BlackVolTermStructure.day_counter
          BlackVolTermStructure.extrapolation
+         BlackVolTermStructure.max_date
+         BlackVolTermStructure.max_time
          BlackVolTermStructure.reference_date
          BlackVolTermStructure.settlement_days
   

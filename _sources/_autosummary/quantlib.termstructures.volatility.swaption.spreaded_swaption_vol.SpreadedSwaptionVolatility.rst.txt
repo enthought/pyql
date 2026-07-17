@@ -35,7 +35,10 @@ SpreadedSwaptionVolatility
          :toctree:
       
          SpreadedSwaptionVolatility.calendar
+         SpreadedSwaptionVolatility.day_counter
          SpreadedSwaptionVolatility.extrapolation
+         SpreadedSwaptionVolatility.max_date
+         SpreadedSwaptionVolatility.max_time
          SpreadedSwaptionVolatility.reference_date
          SpreadedSwaptionVolatility.settlement_days
          SpreadedSwaptionVolatility.volatility_type

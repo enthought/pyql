@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.interpolated\_zero\_inflation\_curve.InterpolatedZeroInflationCurve.settlement\_days
+======================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.interpolated_zero_inflation_curve
+
+.. autoattribute:: InterpolatedZeroInflationCurve.settlement_days

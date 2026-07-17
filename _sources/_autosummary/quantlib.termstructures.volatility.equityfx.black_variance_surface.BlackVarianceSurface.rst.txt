@@ -36,8 +36,11 @@ BlackVarianceSurface
          :toctree:
       
          BlackVarianceSurface.calendar
+         BlackVarianceSurface.day_counter
          BlackVarianceSurface.extrapolation
+         BlackVarianceSurface.max_date
          BlackVarianceSurface.max_strike
+         BlackVarianceSurface.max_time
          BlackVarianceSurface.min_strike
          BlackVarianceSurface.reference_date
          BlackVarianceSurface.settlement_days

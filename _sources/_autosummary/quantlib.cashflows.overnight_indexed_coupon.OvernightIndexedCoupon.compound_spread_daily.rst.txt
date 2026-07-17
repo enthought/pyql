@@ -1,0 +1,6 @@
+quantlib.cashflows.overnight\_indexed\_coupon.OvernightIndexedCoupon.compound\_spread\_daily
+============================================================================================
+
+.. currentmodule:: quantlib.cashflows.overnight_indexed_coupon
+
+.. autoattribute:: OvernightIndexedCoupon.compound_spread_daily

@@ -1,0 +1,6 @@
+quantlib.termstructures.volatility.swaption.swaption\_vol\_discrete.SwaptionVolatilityDiscrete.max\_date
+========================================================================================================
+
+.. currentmodule:: quantlib.termstructures.volatility.swaption.swaption_vol_discrete
+
+.. autoattribute:: SwaptionVolatilityDiscrete.max_date

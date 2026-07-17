@@ -1,0 +1,6 @@
+quantlib.termstructures.yields.forward\_spreaded\_term\_structure.ForwardSpreadedTermStructure.calendar
+=======================================================================================================
+
+.. currentmodule:: quantlib.termstructures.yields.forward_spreaded_term_structure
+
+.. autoattribute:: ForwardSpreadedTermStructure.calendar

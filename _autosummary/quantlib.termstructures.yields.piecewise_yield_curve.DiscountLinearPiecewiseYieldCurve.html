@@ -44,17 +44,22 @@
 <dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>calendar</strong></dt><dd></dd>
 <dt><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.data.html#quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.data" title="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data</span></code></a></dt><dd><p>list of curve data</p>
 </dd>
 <dt><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.dates.html#quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.dates" title="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.dates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dates</span></code></a></dt><dd><p>list of curve dates</p>
 </dd>
 <dt><strong>day_counter</strong></dt><dd></dd>
 <dt><strong>extrapolation</strong></dt><dd></dd>
-<dt><strong>max_date</strong></dt><dd></dd>
-<dt><strong>max_time</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.max_date.html#quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.max_date" title="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.max_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_date</span></code></a></dt><dd><p>the latest date for which the curve can return values</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.max_time.html#quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.max_time" title="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.max_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_time</span></code></a></dt><dd><p>the latest time for which the curve can return values</p>
+</dd>
 <dt><strong>nodes</strong></dt><dd></dd>
-<dt><strong>reference_date</strong></dt><dd></dd>
-<dt><strong>settlement_days</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.reference_date.html#quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.reference_date" title="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.reference_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></a></dt><dd><p>the date at which discount = 1.0 and/or variance = 0.0</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.settlement_days.html#quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.settlement_days" title="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.settlement_days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_days</span></code></a></dt><dd><p>number of settlement days used for reference date calculation</p>
+</dd>
 <dt><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.times.html#quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.times" title="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.times"><code class="xref py py-obj docutils literal notranslate"><span class="pre">times</span></code></a></dt><dd><p>list of curve times</p>
 </dd>
 <dt><strong>trait</strong></dt><dd></dd>
@@ -74,7 +79,7 @@
 <td><p>Fixed <cite>reference_date</cite> yield curve</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.time_from_reference.html#quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.time_from_reference" title="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.time_from_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code></a>(self, Date dt)</p></td>
-<td><p></p></td>
+<td><p>date/time conversion</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.zero_rate.html#quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.zero_rate" title="quantlib.termstructures.yields.piecewise_yield_curve.DiscountLinearPiecewiseYieldCurve.zero_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_rate</span></code></a>(self, d, ...)</p></td>
 <td><p>Returns the implied zero-yield rate for the given date.</p></td>

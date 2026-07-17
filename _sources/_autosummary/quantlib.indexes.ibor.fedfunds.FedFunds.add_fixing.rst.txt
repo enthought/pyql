@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.fedfunds.FedFunds.add\_fixing
+===================================================
+
+.. currentmodule:: quantlib.indexes.ibor.fedfunds
+
+.. automethod:: FedFunds.add_fixing

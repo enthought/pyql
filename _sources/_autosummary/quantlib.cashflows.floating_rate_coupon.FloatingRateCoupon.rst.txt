@@ -23,6 +23,7 @@ FloatingRateCoupon
          FloatingRateCoupon.accrued_days
          FloatingRateCoupon.accrued_period
          FloatingRateCoupon.has_occured
+         FloatingRateCoupon.price
          FloatingRateCoupon.set_pricer
       
   
@@ -44,6 +45,7 @@ FloatingRateCoupon
          FloatingRateCoupon.day_counter
          FloatingRateCoupon.fixing_date
          FloatingRateCoupon.fixing_days
+         FloatingRateCoupon.gearing
          FloatingRateCoupon.index
          FloatingRateCoupon.index_fixing
          FloatingRateCoupon.is_in_arrears
@@ -51,5 +53,6 @@ FloatingRateCoupon
          FloatingRateCoupon.rate
          FloatingRateCoupon.reference_period_end
          FloatingRateCoupon.reference_period_start
+         FloatingRateCoupon.spread
   
   

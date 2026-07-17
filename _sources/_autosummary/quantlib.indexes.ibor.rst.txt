@@ -12,6 +12,7 @@ quantlib.indexes.ibor
 
    eonia
    euribor
+   fedfunds
    libor
    sofr
    usdlibor

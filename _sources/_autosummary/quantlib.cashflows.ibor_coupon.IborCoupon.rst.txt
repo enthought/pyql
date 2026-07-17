@@ -23,6 +23,7 @@ IborCoupon
          IborCoupon.accrued_days
          IborCoupon.accrued_period
          IborCoupon.has_occured
+         IborCoupon.price
          IborCoupon.set_pricer
       
   
@@ -45,6 +46,7 @@ IborCoupon
          IborCoupon.day_counter
          IborCoupon.fixing_date
          IborCoupon.fixing_days
+         IborCoupon.gearing
          IborCoupon.index
          IborCoupon.index_fixing
          IborCoupon.is_in_arrears
@@ -52,5 +54,6 @@ IborCoupon
          IborCoupon.rate
          IborCoupon.reference_period_end
          IborCoupon.reference_period_start
+         IborCoupon.spread
   
   

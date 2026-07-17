@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation.interpolated\_zero\_inflation\_curve.InterpolatedZeroInflationCurve.day\_counter
+==================================================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation.interpolated_zero_inflation_curve
+
+.. autoattribute:: InterpolatedZeroInflationCurve.day_counter

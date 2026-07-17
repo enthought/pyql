@@ -35,7 +35,10 @@ SwaptionVolatilityStructure
          :toctree:
       
          SwaptionVolatilityStructure.calendar
+         SwaptionVolatilityStructure.day_counter
          SwaptionVolatilityStructure.extrapolation
+         SwaptionVolatilityStructure.max_date
+         SwaptionVolatilityStructure.max_time
          SwaptionVolatilityStructure.reference_date
          SwaptionVolatilityStructure.settlement_days
          SwaptionVolatilityStructure.volatility_type

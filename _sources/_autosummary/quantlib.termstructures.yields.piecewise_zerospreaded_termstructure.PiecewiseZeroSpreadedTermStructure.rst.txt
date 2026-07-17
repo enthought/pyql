@@ -32,6 +32,7 @@ PiecewiseZeroSpreadedTermStructure
       .. autosummary::
          :toctree:
       
+         PiecewiseZeroSpreadedTermStructure.calendar
          PiecewiseZeroSpreadedTermStructure.day_counter
          PiecewiseZeroSpreadedTermStructure.extrapolation
          PiecewiseZeroSpreadedTermStructure.max_date

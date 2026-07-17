@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation\_term\_structure.InflationTermStructure.time\_from\_reference
+===============================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation_term_structure
+
+.. automethod:: InflationTermStructure.time_from_reference

@@ -32,6 +32,7 @@ ZeroSpreadedTermStructure
       .. autosummary::
          :toctree:
       
+         ZeroSpreadedTermStructure.calendar
          ZeroSpreadedTermStructure.day_counter
          ZeroSpreadedTermStructure.extrapolation
          ZeroSpreadedTermStructure.max_date

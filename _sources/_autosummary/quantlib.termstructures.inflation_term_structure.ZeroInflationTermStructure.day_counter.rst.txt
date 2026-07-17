@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation\_term\_structure.ZeroInflationTermStructure.day\_counter
+==========================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation_term_structure
+
+.. autoattribute:: ZeroInflationTermStructure.day_counter

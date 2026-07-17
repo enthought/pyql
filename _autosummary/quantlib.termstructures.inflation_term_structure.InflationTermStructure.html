@@ -15,7 +15,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="YoYInflationTermStructure" href="quantlib.termstructures.inflation_term_structure.YoYInflationTermStructure.html" />
+    <link rel="next" title="quantlib.termstructures.inflation_term_structure.InflationTermStructure.time_from_reference" href="quantlib.termstructures.inflation_term_structure.InflationTermStructure.time_from_reference.html" />
     <link rel="prev" title="quantlib.termstructures.inflation_term_structure" href="quantlib.termstructures.inflation_term_structure.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -40,18 +40,34 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.termstructures.inflation_term_structure.InflationTermStructure">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">InflationTermStructure</span></span><a class="headerlink" href="#quantlib.termstructures.inflation_term_structure.InflationTermStructure" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="quantlib.termstructure.TermStructure.html#quantlib.termstructure.TermStructure" title="quantlib.termstructure.TermStructure"><code class="xref py py-class docutils literal notranslate"><span class="pre">TermStructure</span></code></a></p>
 <p>Abstract Base Class.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>base_date</strong></dt><dd></dd>
 <dt><strong>base_rate</strong></dt><dd></dd>
-<dt><strong>max_date</strong></dt><dd></dd>
-<dt><strong>reference_date</strong></dt><dd></dd>
+<dt><strong>calendar</strong></dt><dd></dd>
+<dt><strong>day_counter</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.termstructures.inflation_term_structure.InflationTermStructure.max_date.html#quantlib.termstructures.inflation_term_structure.InflationTermStructure.max_date" title="quantlib.termstructures.inflation_term_structure.InflationTermStructure.max_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_date</span></code></a></dt><dd><p>the latest date for which the curve can return values</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.termstructures.inflation_term_structure.InflationTermStructure.max_time.html#quantlib.termstructures.inflation_term_structure.InflationTermStructure.max_time" title="quantlib.termstructures.inflation_term_structure.InflationTermStructure.max_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_time</span></code></a></dt><dd><p>the latest time for which the curve can return values</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.termstructures.inflation_term_structure.InflationTermStructure.reference_date.html#quantlib.termstructures.inflation_term_structure.InflationTermStructure.reference_date" title="quantlib.termstructures.inflation_term_structure.InflationTermStructure.reference_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></a></dt><dd><p>the date at which discount = 1.0 and/or variance = 0.0</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.termstructures.inflation_term_structure.InflationTermStructure.settlement_days.html#quantlib.termstructures.inflation_term_structure.InflationTermStructure.settlement_days" title="quantlib.termstructures.inflation_term_structure.InflationTermStructure.settlement_days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_days</span></code></a></dt><dd><p>number of settlement days used for reference date calculation</p>
+</dd>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.inflation_term_structure.InflationTermStructure.time_from_reference.html#quantlib.termstructures.inflation_term_structure.InflationTermStructure.time_from_reference" title="quantlib.termstructures.inflation_term_structure.InflationTermStructure.time_from_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code></a>(self, Date dt)</p></td>
+<td><p>date/time conversion</p></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </section>
@@ -95,7 +111,7 @@
   <li><a href="quantlib.termstructures.html">quantlib.termstructures</a><ul>
   <li><a href="quantlib.termstructures.inflation_term_structure.html">quantlib.termstructures.inflation_term_structure</a><ul>
       <li>Previous: <a href="quantlib.termstructures.inflation_term_structure.html" title="previous chapter">quantlib.termstructures.inflation_term_structure</a></li>
-      <li>Next: <a href="quantlib.termstructures.inflation_term_structure.YoYInflationTermStructure.html" title="next chapter">YoYInflationTermStructure</a></li>
+      <li>Next: <a href="quantlib.termstructures.inflation_term_structure.InflationTermStructure.time_from_reference.html" title="next chapter">quantlib.termstructures.inflation_term_structure.InflationTermStructure.time_from_reference</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

@@ -39,7 +39,10 @@ SabrSwaptionVolatilityCube
          :toctree:
       
          SabrSwaptionVolatilityCube.calendar
+         SabrSwaptionVolatilityCube.day_counter
          SabrSwaptionVolatilityCube.extrapolation
+         SabrSwaptionVolatilityCube.max_date
+         SabrSwaptionVolatilityCube.max_time
          SabrSwaptionVolatilityCube.option_dates
          SabrSwaptionVolatilityCube.option_tenors
          SabrSwaptionVolatilityCube.option_times

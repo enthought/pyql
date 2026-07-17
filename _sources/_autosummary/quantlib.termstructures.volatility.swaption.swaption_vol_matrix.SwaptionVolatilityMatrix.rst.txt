@@ -36,7 +36,10 @@ SwaptionVolatilityMatrix
          :toctree:
       
          SwaptionVolatilityMatrix.calendar
+         SwaptionVolatilityMatrix.day_counter
          SwaptionVolatilityMatrix.extrapolation
+         SwaptionVolatilityMatrix.max_date
+         SwaptionVolatilityMatrix.max_time
          SwaptionVolatilityMatrix.option_dates
          SwaptionVolatilityMatrix.option_tenors
          SwaptionVolatilityMatrix.option_times

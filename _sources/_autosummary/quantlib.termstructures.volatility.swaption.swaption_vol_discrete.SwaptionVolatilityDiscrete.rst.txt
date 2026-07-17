@@ -35,7 +35,10 @@ SwaptionVolatilityDiscrete
          :toctree:
       
          SwaptionVolatilityDiscrete.calendar
+         SwaptionVolatilityDiscrete.day_counter
          SwaptionVolatilityDiscrete.extrapolation
+         SwaptionVolatilityDiscrete.max_date
+         SwaptionVolatilityDiscrete.max_time
          SwaptionVolatilityDiscrete.option_dates
          SwaptionVolatilityDiscrete.option_tenors
          SwaptionVolatilityDiscrete.option_times

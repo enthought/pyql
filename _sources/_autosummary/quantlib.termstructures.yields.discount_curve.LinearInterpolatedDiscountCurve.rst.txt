@@ -32,6 +32,7 @@ LinearInterpolatedDiscountCurve
       .. autosummary::
          :toctree:
       
+         LinearInterpolatedDiscountCurve.calendar
          LinearInterpolatedDiscountCurve.data
          LinearInterpolatedDiscountCurve.dates
          LinearInterpolatedDiscountCurve.day_counter

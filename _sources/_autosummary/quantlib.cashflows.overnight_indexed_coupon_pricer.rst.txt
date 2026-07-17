@@ -11,4 +11,5 @@ quantlib.cashflows.overnight\_indexed\_coupon\_pricer
    
       ArithmeticAveragedOvernightIndexedCouponPricer
       CompoundingOvernightIndexedCouponPricer
+      OvernightIndexedCouponPricer
    

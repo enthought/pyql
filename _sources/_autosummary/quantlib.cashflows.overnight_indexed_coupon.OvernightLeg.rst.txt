@@ -21,7 +21,12 @@ OvernightLeg
       
          OvernightLeg.__call__
          OvernightLeg.__len__
+         OvernightLeg.compounding_spread_daily
          OvernightLeg.items
+         OvernightLeg.with_averaging_method
+         OvernightLeg.with_caps
+         OvernightLeg.with_coupon_pricer
+         OvernightLeg.with_floors
          OvernightLeg.with_lockout_days
          OvernightLeg.with_lookback_days
          OvernightLeg.with_notionals

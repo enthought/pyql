@@ -29,6 +29,7 @@ TermStructure
       .. autosummary::
          :toctree:
       
+         TermStructure.calendar
          TermStructure.day_counter
          TermStructure.max_date
          TermStructure.max_time

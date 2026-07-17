@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.fedfunds.FedFunds.forwarding\_term\_structure
+===================================================================
+
+.. currentmodule:: quantlib.indexes.ibor.fedfunds
+
+.. autoattribute:: FedFunds.forwarding_term_structure

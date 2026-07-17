@@ -33,6 +33,7 @@ DiscountLinearPiecewiseYieldCurve
       .. autosummary::
          :toctree:
       
+         DiscountLinearPiecewiseYieldCurve.calendar
          DiscountLinearPiecewiseYieldCurve.data
          DiscountLinearPiecewiseYieldCurve.dates
          DiscountLinearPiecewiseYieldCurve.day_counter

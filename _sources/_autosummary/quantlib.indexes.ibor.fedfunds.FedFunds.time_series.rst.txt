@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.fedfunds.FedFunds.time\_series
+====================================================
+
+.. currentmodule:: quantlib.indexes.ibor.fedfunds
+
+.. autoattribute:: FedFunds.time_series

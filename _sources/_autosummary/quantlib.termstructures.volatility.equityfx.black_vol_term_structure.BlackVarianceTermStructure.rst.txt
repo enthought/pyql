@@ -35,7 +35,10 @@ BlackVarianceTermStructure
          :toctree:
       
          BlackVarianceTermStructure.calendar
+         BlackVarianceTermStructure.day_counter
          BlackVarianceTermStructure.extrapolation
+         BlackVarianceTermStructure.max_date
+         BlackVarianceTermStructure.max_time
          BlackVarianceTermStructure.reference_date
          BlackVarianceTermStructure.settlement_days
   

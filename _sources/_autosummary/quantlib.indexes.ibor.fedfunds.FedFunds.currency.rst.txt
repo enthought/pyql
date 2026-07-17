@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.fedfunds.FedFunds.currency
+================================================
+
+.. currentmodule:: quantlib.indexes.ibor.fedfunds
+
+.. autoattribute:: FedFunds.currency

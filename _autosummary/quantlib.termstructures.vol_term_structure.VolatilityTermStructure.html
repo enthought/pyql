@@ -40,14 +40,21 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="quantlib.termstructures.vol_term_structure.VolatilityTermStructure">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">VolatilityTermStructure</span></span><a class="headerlink" href="#quantlib.termstructures.vol_term_structure.VolatilityTermStructure" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="quantlib.termstructure.TermStructure.html#quantlib.termstructure.TermStructure" title="quantlib.termstructure.TermStructure"><code class="xref py py-class docutils literal notranslate"><span class="pre">TermStructure</span></code></a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>calendar</strong></dt><dd></dd>
+<dt><strong>day_counter</strong></dt><dd></dd>
 <dt><strong>extrapolation</strong></dt><dd></dd>
-<dt><strong>reference_date</strong></dt><dd></dd>
-<dt><strong>settlement_days</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.termstructures.vol_term_structure.VolatilityTermStructure.max_date.html#quantlib.termstructures.vol_term_structure.VolatilityTermStructure.max_date" title="quantlib.termstructures.vol_term_structure.VolatilityTermStructure.max_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_date</span></code></a></dt><dd><p>the latest date for which the curve can return values</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.termstructures.vol_term_structure.VolatilityTermStructure.max_time.html#quantlib.termstructures.vol_term_structure.VolatilityTermStructure.max_time" title="quantlib.termstructures.vol_term_structure.VolatilityTermStructure.max_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_time</span></code></a></dt><dd><p>the latest time for which the curve can return values</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.termstructures.vol_term_structure.VolatilityTermStructure.reference_date.html#quantlib.termstructures.vol_term_structure.VolatilityTermStructure.reference_date" title="quantlib.termstructures.vol_term_structure.VolatilityTermStructure.reference_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></a></dt><dd><p>the date at which discount = 1.0 and/or variance = 0.0</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.termstructures.vol_term_structure.VolatilityTermStructure.settlement_days.html#quantlib.termstructures.vol_term_structure.VolatilityTermStructure.settlement_days" title="quantlib.termstructures.vol_term_structure.VolatilityTermStructure.settlement_days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_days</span></code></a></dt><dd><p>number of settlement days used for reference date calculation</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -57,8 +64,8 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.termstructures.vol_term_structure.VolatilityTermStructure.option_date_from_tenor.html#quantlib.termstructures.vol_term_structure.VolatilityTermStructure.option_date_from_tenor" title="quantlib.termstructures.vol_term_structure.VolatilityTermStructure.option_date_from_tenor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">option_date_from_tenor</span></code></a>(self, Period period)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.vol_term_structure.VolatilityTermStructure.time_from_reference.html#quantlib.termstructures.vol_term_structure.VolatilityTermStructure.time_from_reference" title="quantlib.termstructures.vol_term_structure.VolatilityTermStructure.time_from_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code></a>(self, Date date)</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="quantlib.termstructures.vol_term_structure.VolatilityTermStructure.time_from_reference.html#quantlib.termstructures.vol_term_structure.VolatilityTermStructure.time_from_reference" title="quantlib.termstructures.vol_term_structure.VolatilityTermStructure.time_from_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_from_reference</span></code></a>(self, Date dt)</p></td>
+<td><p>date/time conversion</p></td>
 </tr>
 </tbody>
 </table>

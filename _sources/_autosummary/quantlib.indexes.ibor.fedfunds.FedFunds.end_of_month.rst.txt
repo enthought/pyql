@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.fedfunds.FedFunds.end\_of\_month
+======================================================
+
+.. currentmodule:: quantlib.indexes.ibor.fedfunds
+
+.. autoattribute:: FedFunds.end_of_month

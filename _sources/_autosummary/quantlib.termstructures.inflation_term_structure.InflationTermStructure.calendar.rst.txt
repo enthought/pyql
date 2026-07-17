@@ -1,0 +1,6 @@
+quantlib.termstructures.inflation\_term\_structure.InflationTermStructure.calendar
+==================================================================================
+
+.. currentmodule:: quantlib.termstructures.inflation_term_structure
+
+.. autoattribute:: InflationTermStructure.calendar

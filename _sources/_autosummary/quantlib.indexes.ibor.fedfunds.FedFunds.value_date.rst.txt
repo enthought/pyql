@@ -1,0 +1,6 @@
+quantlib.indexes.ibor.fedfunds.FedFunds.value\_date
+===================================================
+
+.. currentmodule:: quantlib.indexes.ibor.fedfunds
+
+.. automethod:: FedFunds.value_date

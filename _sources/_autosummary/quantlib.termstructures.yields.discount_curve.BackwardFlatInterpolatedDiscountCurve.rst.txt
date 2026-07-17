@@ -32,6 +32,7 @@ BackwardFlatInterpolatedDiscountCurve
       .. autosummary::
          :toctree:
       
+         BackwardFlatInterpolatedDiscountCurve.calendar
          BackwardFlatInterpolatedDiscountCurve.data
          BackwardFlatInterpolatedDiscountCurve.dates
          BackwardFlatInterpolatedDiscountCurve.day_counter

@@ -35,7 +35,10 @@ BlackVolatilityTermStructure
          :toctree:
       
          BlackVolatilityTermStructure.calendar
+         BlackVolatilityTermStructure.day_counter
          BlackVolatilityTermStructure.extrapolation
+         BlackVolatilityTermStructure.max_date
+         BlackVolatilityTermStructure.max_time
          BlackVolatilityTermStructure.reference_date
          BlackVolatilityTermStructure.settlement_days
   

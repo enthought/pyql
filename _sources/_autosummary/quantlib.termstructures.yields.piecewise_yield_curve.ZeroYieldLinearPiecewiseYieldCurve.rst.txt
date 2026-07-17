@@ -33,6 +33,7 @@ ZeroYieldLinearPiecewiseYieldCurve
       .. autosummary::
          :toctree:
       
+         ZeroYieldLinearPiecewiseYieldCurve.calendar
          ZeroYieldLinearPiecewiseYieldCurve.data
          ZeroYieldLinearPiecewiseYieldCurve.dates
          ZeroYieldLinearPiecewiseYieldCurve.day_counter

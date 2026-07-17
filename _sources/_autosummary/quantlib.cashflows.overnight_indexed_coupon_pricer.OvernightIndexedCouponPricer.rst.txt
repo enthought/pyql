@@ -1,0 +1,34 @@
+.. raw:: html
+
+   <div class="prename">quantlib.cashflows.overnight_indexed_coupon_pricer.</div>
+   <div class="empty"></div>
+
+OvernightIndexedCouponPricer
+===============================================================================
+
+.. currentmodule:: quantlib.cashflows.overnight_indexed_coupon_pricer
+
+.. autoclass:: OvernightIndexedCouponPricer
+   :show-inheritance:
+   :no-members:
+   :no-inherited-members:
+   :no-special-members:
+
+  
+   .. HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+      .. autosummary::
+         :toctree:
+      
+         OvernightIndexedCouponPricer.caplet_price
+         OvernightIndexedCouponPricer.caplet_rate
+         OvernightIndexedCouponPricer.floorlet_price
+         OvernightIndexedCouponPricer.floorlet_rate
+         OvernightIndexedCouponPricer.initialize
+         OvernightIndexedCouponPricer.swaplet_price
+         OvernightIndexedCouponPricer.swaplet_rate
+      
+  
+
+  
+  
+  

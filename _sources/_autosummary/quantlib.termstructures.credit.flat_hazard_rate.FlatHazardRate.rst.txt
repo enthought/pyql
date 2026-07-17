@@ -32,6 +32,7 @@ FlatHazardRate
       .. autosummary::
          :toctree:
       
+         FlatHazardRate.calendar
          FlatHazardRate.day_counter
          FlatHazardRate.jump_dates
          FlatHazardRate.jump_times

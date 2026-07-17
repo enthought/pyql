@@ -32,6 +32,7 @@ YieldTermStructure
       .. autosummary::
          :toctree:
       
+         YieldTermStructure.calendar
          YieldTermStructure.day_counter
          YieldTermStructure.extrapolation
          YieldTermStructure.max_date

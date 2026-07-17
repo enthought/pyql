@@ -4,6 +4,12 @@ quantlib.cashflows.cap\_floored\_coupon
 .. automodule:: quantlib.cashflows.cap_floored_coupon
 
    
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      as_capped_floored_coupon
+   
    .. rubric:: Classes
 
    .. autosummary::

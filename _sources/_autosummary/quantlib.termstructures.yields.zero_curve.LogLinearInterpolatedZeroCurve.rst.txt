@@ -32,6 +32,7 @@ LogLinearInterpolatedZeroCurve
       .. autosummary::
          :toctree:
       
+         LogLinearInterpolatedZeroCurve.calendar
          LogLinearInterpolatedZeroCurve.data
          LogLinearInterpolatedZeroCurve.dates
          LogLinearInterpolatedZeroCurve.day_counter

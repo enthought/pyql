@@ -32,6 +32,7 @@ LinearInterpolatedForwardCurve
       .. autosummary::
          :toctree:
       
+         LinearInterpolatedForwardCurve.calendar
          LinearInterpolatedForwardCurve.data
          LinearInterpolatedForwardCurve.dates
          LinearInterpolatedForwardCurve.day_counter
