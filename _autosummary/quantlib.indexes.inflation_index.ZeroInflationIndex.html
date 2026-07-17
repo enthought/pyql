@@ -41,22 +41,48 @@
 <dt class="sig sig-object py" id="quantlib.indexes.inflation_index.ZeroInflationIndex">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ZeroInflationIndex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str</span> <span class="pre">family_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Region</span> <span class="pre">region</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">revised</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Frequency</span> <span class="pre">frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Period</span> <span class="pre">availabilityLag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Currency</span> <span class="pre">currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">HandleZeroInflationTermStructure</span> <span class="pre">ts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">HandleZeroInflationTermStructure()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.indexes.inflation_index.ZeroInflationIndex" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.indexes.inflation_index.InflationIndex.html#quantlib.indexes.inflation_index.InflationIndex" title="quantlib.indexes.inflation_index.InflationIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">InflationIndex</span></code></a></p>
-<dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>availability_lag</strong></dt><dd></dd>
-<dt><strong>currency</strong></dt><dd></dd>
-<dt><strong>family_name</strong></dt><dd></dd>
+<p>Base class for zero-inflation indexes.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>family_name</strong><span class="classifier">str</span></dt><dd><p>The family name of the index.</p>
+</dd>
+<dt><strong>region</strong><span class="classifier"><a class="reference internal" href="quantlib.indexes.region.Region.html#quantlib.indexes.region.Region" title="quantlib.indexes.region.Region"><code class="xref py py-class docutils literal notranslate"><span class="pre">Region</span></code></a></span></dt><dd><p>The region of the index.</p>
+</dd>
+<dt><strong>revised</strong><span class="classifier">bool</span></dt><dd><p>Whether the index is revised.</p>
+</dd>
+<dt><strong>frequency</strong><span class="classifier"><a class="reference internal" href="quantlib.time.frequency.Frequency.html#quantlib.time.frequency.Frequency" title="quantlib.time.frequency.Frequency"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frequency</span></code></a></span></dt><dd><p>The frequency of the index.</p>
+</dd>
+<dt><strong>availabilityLag</strong><span class="classifier"><a class="reference internal" href="quantlib.time.date.Period.html#quantlib.time.date.Period" title="quantlib.time.date.Period"><code class="xref py py-class docutils literal notranslate"><span class="pre">Period</span></code></a></span></dt><dd><p>The availability lag of the index.</p>
+</dd>
+<dt><strong>currency</strong><span class="classifier"><a class="reference internal" href="quantlib.currency.currency.Currency.html#quantlib.currency.currency.Currency" title="quantlib.currency.currency.Currency"><code class="xref py py-class docutils literal notranslate"><span class="pre">Currency</span></code></a></span></dt><dd><p>The currency of the index.</p>
+</dd>
+<dt><strong>ts</strong><span class="classifier"><a class="reference internal" href="quantlib.termstructures.inflation_term_structure.ZeroInflationTermStructure.html#quantlib.termstructures.inflation_term_structure.ZeroInflationTermStructure" title="quantlib.termstructures.inflation_term_structure.ZeroInflationTermStructure"><code class="xref py py-class docutils literal notranslate"><span class="pre">ZeroInflationTermStructure</span></code></a>, optional</span></dt><dd><p>The zero-inflation term structure.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference internal" href="quantlib.indexes.inflation_index.ZeroInflationIndex.availability_lag.html#quantlib.indexes.inflation_index.ZeroInflationIndex.availability_lag" title="quantlib.indexes.inflation_index.ZeroInflationIndex.availability_lag"><code class="xref py py-obj docutils literal notranslate"><span class="pre">availability_lag</span></code></a></dt><dd><p>The availability lag of the index.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.indexes.inflation_index.ZeroInflationIndex.currency.html#quantlib.indexes.inflation_index.ZeroInflationIndex.currency" title="quantlib.indexes.inflation_index.ZeroInflationIndex.currency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">currency</span></code></a></dt><dd><p>The currency of the inflation index.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.indexes.inflation_index.ZeroInflationIndex.family_name.html#quantlib.indexes.inflation_index.ZeroInflationIndex.family_name" title="quantlib.indexes.inflation_index.ZeroInflationIndex.family_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">family_name</span></code></a></dt><dd><p>The family name of the inflation index.</p>
+</dd>
 <dt><a class="reference internal" href="quantlib.indexes.inflation_index.ZeroInflationIndex.fixing_calendar.html#quantlib.indexes.inflation_index.ZeroInflationIndex.fixing_calendar" title="quantlib.indexes.inflation_index.ZeroInflationIndex.fixing_calendar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixing_calendar</span></code></a></dt><dd><p>the calendar defining valid fixing dates</p>
 </dd>
-<dt><strong>frequency</strong></dt><dd></dd>
-<dt><strong>last_fixing_date</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.indexes.inflation_index.ZeroInflationIndex.frequency.html#quantlib.indexes.inflation_index.ZeroInflationIndex.frequency" title="quantlib.indexes.inflation_index.ZeroInflationIndex.frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency</span></code></a></dt><dd><p>The publication frequency of the inflation index.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.indexes.inflation_index.ZeroInflationIndex.last_fixing_date.html#quantlib.indexes.inflation_index.ZeroInflationIndex.last_fixing_date" title="quantlib.indexes.inflation_index.ZeroInflationIndex.last_fixing_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">last_fixing_date</span></code></a></dt><dd><p>Returns the last date for which a fixing was provided.</p>
+</dd>
 <dt><a class="reference internal" href="quantlib.indexes.inflation_index.ZeroInflationIndex.name.html#quantlib.indexes.inflation_index.ZeroInflationIndex.name" title="quantlib.indexes.inflation_index.ZeroInflationIndex.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></dt><dd><p>the name of the index</p>
 </dd>
-<dt><strong>region</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.indexes.inflation_index.ZeroInflationIndex.region.html#quantlib.indexes.inflation_index.ZeroInflationIndex.region" title="quantlib.indexes.inflation_index.ZeroInflationIndex.region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">region</span></code></a></dt><dd><p>The region of the index.</p>
+</dd>
 <dt><a class="reference internal" href="quantlib.indexes.inflation_index.ZeroInflationIndex.time_series.html#quantlib.indexes.inflation_index.ZeroInflationIndex.time_series" title="quantlib.indexes.inflation_index.ZeroInflationIndex.time_series"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_series</span></code></a></dt><dd><p>the fixing TimeSeries</p>
 </dd>
-<dt><strong>zero_inflation_term_structure</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.indexes.inflation_index.ZeroInflationIndex.zero_inflation_term_structure.html#quantlib.indexes.inflation_index.ZeroInflationIndex.zero_inflation_term_structure" title="quantlib.indexes.inflation_index.ZeroInflationIndex.zero_inflation_term_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_inflation_term_structure</span></code></a></dt><dd><p>Returns the zero-inflation term structure associated with the index.</p>
+</dd>
 </dl>
 </dd>
 </dl>

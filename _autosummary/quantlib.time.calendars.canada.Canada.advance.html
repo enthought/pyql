@@ -39,9 +39,25 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.time.calendars.canada.Canada.advance">
 <span class="sig-prename descclassname"><span class="pre">Canada.</span></span><span class="sig-name descname"><span class="pre">advance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">given_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Period</span> <span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">convention</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Following</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_of_month</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.calendars.canada.Canada.advance" title="Link to this definition">¶</a></dt>
-<dd><p>Advances the given date of the given number of business days,
-or period and returns the result.</p>
-<p>You must provide either a step and unit or a Period.</p>
+<dd><p>Advances the given date by the given number of business days or period.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>given_date</strong><span class="classifier"><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a></span></dt><dd><p>The date to advance.</p>
+</dd>
+<dt><strong>step</strong><span class="classifier">int, optional</span></dt><dd><p>The number of steps to advance.</p>
+</dd>
+<dt><strong>units</strong><span class="classifier">int, optional</span></dt><dd><p>The time unit for the step.</p>
+</dd>
+<dt><strong>period</strong><span class="classifier"><a class="reference internal" href="quantlib.time.date.Period.html#quantlib.time.date.Period" title="quantlib.time.date.Period"><code class="xref py py-class docutils literal notranslate"><span class="pre">Period</span></code></a>, optional</span></dt><dd><p>The period to advance the date by.</p>
+</dd>
+<dt><strong>convention</strong><span class="classifier">int, optional</span></dt><dd><p>The business day convention to use.</p>
+</dd>
+<dt><strong>end_of_month</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to preserve the end-of-month status.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

@@ -41,18 +41,44 @@
 <dt class="sig sig-object py" id="quantlib.indexes.ibor_index.IborIndex">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">IborIndex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str</span> <span class="pre">family_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Period</span> <span class="pre">tenor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Natural</span> <span class="pre">settlement_days</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Currency</span> <span class="pre">currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Calendar</span> <span class="pre">fixing_calendar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">convention</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">end_of_month</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">day_counter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">HandleYieldTermStructure</span> <span class="pre">yts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">HandleYieldTermStructure()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.indexes.ibor_index.IborIndex" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.indexes.interest_rate_index.InterestRateIndex.html#quantlib.indexes.interest_rate_index.InterestRateIndex" title="quantlib.indexes.interest_rate_index.InterestRateIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">InterestRateIndex</span></code></a></p>
-<dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>business_day_convention</strong></dt><dd></dd>
+<p>Base class for Inter-Bank-Offered-Rate indexes (e.g. Libor, etc.).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>family_name</strong><span class="classifier">str</span></dt><dd><p>The family name of the index.</p>
+</dd>
+<dt><strong>tenor</strong><span class="classifier"><a class="reference internal" href="quantlib.time.date.Period.html#quantlib.time.date.Period" title="quantlib.time.date.Period"><code class="xref py py-class docutils literal notranslate"><span class="pre">Period</span></code></a></span></dt><dd><p>The tenor of the index.</p>
+</dd>
+<dt><strong>settlement_days</strong><span class="classifier">int</span></dt><dd><p>The number of settlement days.</p>
+</dd>
+<dt><strong>currency</strong><span class="classifier"><a class="reference internal" href="quantlib.currency.currency.Currency.html#quantlib.currency.currency.Currency" title="quantlib.currency.currency.Currency"><code class="xref py py-class docutils literal notranslate"><span class="pre">Currency</span></code></a></span></dt><dd><p>The currency of the index.</p>
+</dd>
+<dt><strong>fixing_calendar</strong><span class="classifier"><a class="reference internal" href="quantlib.time.calendar.Calendar.html#quantlib.time.calendar.Calendar" title="quantlib.time.calendar.Calendar"><code class="xref py py-class docutils literal notranslate"><span class="pre">Calendar</span></code></a></span></dt><dd><p>The calendar used for fixing dates.</p>
+</dd>
+<dt><strong>convention</strong><span class="classifier">int</span></dt><dd><p>The business day convention.</p>
+</dd>
+<dt><strong>end_of_month</strong><span class="classifier">bool</span></dt><dd><p>Whether the end-of-month rule applies.</p>
+</dd>
+<dt><strong>day_counter</strong><span class="classifier"><a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a></span></dt><dd><p>The day counter for the index.</p>
+</dd>
+<dt><strong>yts</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">HandleYieldTermStructure</span></code>, optional</span></dt><dd><p>The yield term structure handle.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference internal" href="quantlib.indexes.ibor_index.IborIndex.business_day_convention.html#quantlib.indexes.ibor_index.IborIndex.business_day_convention" title="quantlib.indexes.ibor_index.IborIndex.business_day_convention"><code class="xref py py-obj docutils literal notranslate"><span class="pre">business_day_convention</span></code></a></dt><dd><p>The business day convention.</p>
+</dd>
 <dt><strong>currency</strong></dt><dd></dd>
 <dt><strong>day_counter</strong></dt><dd></dd>
-<dt><strong>end_of_month</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.indexes.ibor_index.IborIndex.end_of_month.html#quantlib.indexes.ibor_index.IborIndex.end_of_month" title="quantlib.indexes.ibor_index.IborIndex.end_of_month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">end_of_month</span></code></a></dt><dd><p>Whether the end-of-month rule applies.</p>
+</dd>
 <dt><strong>family_name</strong></dt><dd></dd>
 <dt><a class="reference internal" href="quantlib.indexes.ibor_index.IborIndex.fixing_calendar.html#quantlib.indexes.ibor_index.IborIndex.fixing_calendar" title="quantlib.indexes.ibor_index.IborIndex.fixing_calendar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixing_calendar</span></code></a></dt><dd><p>the calendar defining valid fixing dates</p>
 </dd>
 <dt><strong>fixing_days</strong></dt><dd></dd>
-<dt><strong>forwarding_term_structure</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.indexes.ibor_index.IborIndex.forwarding_term_structure.html#quantlib.indexes.ibor_index.IborIndex.forwarding_term_structure" title="quantlib.indexes.ibor_index.IborIndex.forwarding_term_structure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forwarding_term_structure</span></code></a></dt><dd><p>The curve used to forecast fixings.</p>
+</dd>
 <dt><a class="reference internal" href="quantlib.indexes.ibor_index.IborIndex.name.html#quantlib.indexes.ibor_index.IborIndex.name" title="quantlib.indexes.ibor_index.IborIndex.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></dt><dd><p>the name of the index</p>
 </dd>
 <dt><strong>tenor</strong></dt><dd></dd>
@@ -83,7 +109,7 @@
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.indexes.ibor_index.IborIndex.from_name.html#quantlib.indexes.ibor_index.IborIndex.from_name" title="quantlib.indexes.ibor_index.IborIndex.from_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_name</span></code></a>(market[, term_structure])</p></td>
-<td><p>Create default IBOR for the market, modify attributes if provided</p></td>
+<td><p>Create a default IBOR index for the given market.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.indexes.ibor_index.IborIndex.has_historical_fixing.html#quantlib.indexes.ibor_index.IborIndex.has_historical_fixing" title="quantlib.indexes.ibor_index.IborIndex.has_historical_fixing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_historical_fixing</span></code></a>(self, Date d)</p></td>
 <td><p></p></td>

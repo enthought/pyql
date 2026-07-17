@@ -41,11 +41,35 @@
 <dt class="sig sig-object py" id="quantlib.instruments.vanillaswap.VanillaSwap">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">VanillaSwap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Type</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">nominal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Schedule</span> <span class="pre">fixed_schedule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rate</span> <span class="pre">fixed_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">fixed_daycount</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Schedule</span> <span class="pre">float_schedule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">IborIndex</span> <span class="pre">ibor_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Spread</span> <span class="pre">spread</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">floating_daycount</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">payment_convention</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.vanillaswap.VanillaSwap" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap.html#quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap" title="quantlib.instruments.fixedvsfloatingswap.FixedVsFloatingSwap"><code class="xref py py-class docutils literal notranslate"><span class="pre">FixedVsFloatingSwap</span></code></a></p>
-<p>Vanilla swap class</p>
-<dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.error_estimate.html#quantlib.instruments.vanillaswap.VanillaSwap.error_estimate" title="quantlib.instruments.vanillaswap.VanillaSwap.error_estimate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">error_estimate</span></code></a></dt><dd><p>Instrument.error_estimate: Real</p>
+<p>Plain-vanilla swap: fix vs ibor leg.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>type</strong><span class="classifier"><a class="reference internal" href="quantlib.instruments.swap.Type.html#quantlib.instruments.swap.Type" title="quantlib.instruments.swap.Type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></a></span></dt><dd><p>The swap type, either <cite>Payer</cite> or <cite>Receiver</cite>.</p>
+</dd>
+<dt><strong>nominal</strong><span class="classifier">float</span></dt><dd><p>The swap nominal.</p>
+</dd>
+<dt><strong>fixed_schedule</strong><span class="classifier"><a class="reference internal" href="quantlib.time.schedule.Schedule.html#quantlib.time.schedule.Schedule" title="quantlib.time.schedule.Schedule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Schedule</span></code></a></span></dt><dd><p>The schedule for the fixed leg.</p>
+</dd>
+<dt><strong>fixed_rate</strong><span class="classifier">float</span></dt><dd><p>The fixed rate.</p>
+</dd>
+<dt><strong>fixed_daycount</strong><span class="classifier"><a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a></span></dt><dd><p>The day counter for the fixed leg.</p>
+</dd>
+<dt><strong>float_schedule</strong><span class="classifier"><a class="reference internal" href="quantlib.time.schedule.Schedule.html#quantlib.time.schedule.Schedule" title="quantlib.time.schedule.Schedule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Schedule</span></code></a></span></dt><dd><p>The schedule for the floating leg.</p>
+</dd>
+<dt><strong>ibor_index</strong><span class="classifier"><a class="reference internal" href="quantlib.indexes.ibor_index.IborIndex.html#quantlib.indexes.ibor_index.IborIndex" title="quantlib.indexes.ibor_index.IborIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">IborIndex</span></code></a></span></dt><dd><p>The IBOR index for the floating leg.</p>
+</dd>
+<dt><strong>spread</strong><span class="classifier">float</span></dt><dd><p>The spread over the IBOR index.</p>
+</dd>
+<dt><strong>floating_daycount</strong><span class="classifier"><a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a></span></dt><dd><p>The day counter for the floating leg.</p>
+</dd>
+<dt><strong>payment_convention</strong><span class="classifier">int, optional</span></dt><dd><p>The business day convention for payment dates.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.error_estimate.html#quantlib.instruments.vanillaswap.VanillaSwap.error_estimate" title="quantlib.instruments.vanillaswap.VanillaSwap.error_estimate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">error_estimate</span></code></a></dt><dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Real</span></code>: error estimate on the NPV when available</p>
 </dd>
 <dt><strong>fair_rate</strong></dt><dd></dd>
 <dt><strong>fair_spread</strong></dt><dd></dd>
@@ -60,19 +84,21 @@
 <dt><strong>floating_leg_BPS</strong></dt><dd></dd>
 <dt><strong>floating_leg_NPV</strong></dt><dd></dd>
 <dt><strong>floating_schedule</strong></dt><dd></dd>
-<dt><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.is_expired.html#quantlib.instruments.vanillaswap.VanillaSwap.is_expired" title="quantlib.instruments.vanillaswap.VanillaSwap.is_expired"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_expired</span></code></a></dt><dd><p>Instrument.is_expired: bool</p>
+<dt><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.is_expired.html#quantlib.instruments.vanillaswap.VanillaSwap.is_expired" title="quantlib.instruments.vanillaswap.VanillaSwap.is_expired"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_expired</span></code></a></dt><dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>: whether the instrument might have value greater than zero.</p>
 </dd>
-<dt><strong>maturity_date</strong></dt><dd></dd>
-<dt><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.net_present_value.html#quantlib.instruments.vanillaswap.VanillaSwap.net_present_value" title="quantlib.instruments.vanillaswap.VanillaSwap.net_present_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">net_present_value</span></code></a></dt><dd><p>Instrument net present value.</p>
+<dt><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.maturity_date.html#quantlib.instruments.vanillaswap.VanillaSwap.maturity_date" title="quantlib.instruments.vanillaswap.VanillaSwap.maturity_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">maturity_date</span></code></a></dt><dd><p>The maturity date of the swap.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.net_present_value.html#quantlib.instruments.vanillaswap.VanillaSwap.net_present_value" title="quantlib.instruments.vanillaswap.VanillaSwap.net_present_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">net_present_value</span></code></a></dt><dd><p>The net present value of the instrument.</p>
 </dd>
 <dt><strong>nominal</strong></dt><dd></dd>
 <dt><strong>nominals</strong></dt><dd></dd>
-<dt><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.npv.html#quantlib.instruments.vanillaswap.VanillaSwap.npv" title="quantlib.instruments.vanillaswap.VanillaSwap.npv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv</span></code></a></dt><dd><p>Shortcut to the net_present_value property.</p>
+<dt><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.npv.html#quantlib.instruments.vanillaswap.VanillaSwap.npv" title="quantlib.instruments.vanillaswap.VanillaSwap.npv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv</span></code></a></dt><dd><p>A shortcut to the net_present_value property.</p>
 </dd>
 <dt><strong>spread</strong></dt><dd></dd>
-<dt><strong>start_date</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.start_date.html#quantlib.instruments.vanillaswap.VanillaSwap.start_date" title="quantlib.instruments.vanillaswap.VanillaSwap.start_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_date</span></code></a></dt><dd><p>The start date of the swap.</p>
+</dd>
 <dt><strong>type</strong></dt><dd></dd>
-<dt><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.valuation_date.html#quantlib.instruments.vanillaswap.VanillaSwap.valuation_date" title="quantlib.instruments.vanillaswap.VanillaSwap.valuation_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">valuation_date</span></code></a></dt><dd><p>the date the net present value refers to.</p>
+<dt><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.valuation_date.html#quantlib.instruments.vanillaswap.VanillaSwap.valuation_date" title="quantlib.instruments.vanillaswap.VanillaSwap.valuation_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">valuation_date</span></code></a></dt><dd><p><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a>: the date the net present value refers to.</p>
 </dd>
 </dl>
 </dd>
@@ -81,25 +107,25 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.endDiscounts.html#quantlib.instruments.vanillaswap.VanillaSwap.endDiscounts" title="quantlib.instruments.vanillaswap.VanillaSwap.endDiscounts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">endDiscounts</span></code></a>(self, Size j)</p></td>
-<td><p></p></td>
+<td><p>The discount factor at the end of the j-th leg of the swap.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.leg.html#quantlib.instruments.vanillaswap.VanillaSwap.leg" title="quantlib.instruments.vanillaswap.VanillaSwap.leg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">leg</span></code></a>(self, int i)</p></td>
-<td><p></p></td>
+<td><p>The i-th leg of the swap.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.leg_BPS.html#quantlib.instruments.vanillaswap.VanillaSwap.leg_BPS" title="quantlib.instruments.vanillaswap.VanillaSwap.leg_BPS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">leg_BPS</span></code></a>(self, Size j)</p></td>
-<td><p></p></td>
+<td><p>The basis-point sensitivity of the j-th leg of the swap.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.leg_NPV.html#quantlib.instruments.vanillaswap.VanillaSwap.leg_NPV" title="quantlib.instruments.vanillaswap.VanillaSwap.leg_NPV"><code class="xref py py-obj docutils literal notranslate"><span class="pre">leg_NPV</span></code></a>(self, Size j)</p></td>
-<td><p></p></td>
+<td><p>The net present value of the j-th leg of the swap.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.npv_date_discount.html#quantlib.instruments.vanillaswap.VanillaSwap.npv_date_discount" title="quantlib.instruments.vanillaswap.VanillaSwap.npv_date_discount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">npv_date_discount</span></code></a>(self)</p></td>
-<td><p></p></td>
+<td><p>The discount factor at the NPV date.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.set_pricing_engine.html#quantlib.instruments.vanillaswap.VanillaSwap.set_pricing_engine" title="quantlib.instruments.vanillaswap.VanillaSwap.set_pricing_engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pricing_engine</span></code></a>(self, PricingEngine engine)</p></td>
-<td><p>Sets the pricing engine.</p></td>
+<td><p>Sets the pricing engine to be used.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.instruments.vanillaswap.VanillaSwap.startDiscounts.html#quantlib.instruments.vanillaswap.VanillaSwap.startDiscounts" title="quantlib.instruments.vanillaswap.VanillaSwap.startDiscounts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">startDiscounts</span></code></a>(self, Size j)</p></td>
-<td><p></p></td>
+<td><p>The discount factor at the start of the j-th leg of the swap.</p></td>
 </tr>
 </tbody>
 </table>

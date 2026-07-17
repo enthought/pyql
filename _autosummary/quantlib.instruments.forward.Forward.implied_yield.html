@@ -39,8 +39,25 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.instruments.forward.Forward.implied_yield">
 <span class="sig-prename descclassname"><span class="pre">Forward.</span></span><span class="sig-name descname"><span class="pre">implied_yield</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">underlying_spot_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Real</span> <span class="pre">forward_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Date</span> <span class="pre">settlement_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Compounding</span> <span class="pre">convention</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DayCounter</span> <span class="pre">day_counter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.forward.Forward.implied_yield" title="Link to this definition">¶</a></dt>
-<dd><p>implied yield</p>
-<p>Simple yield calculation based on underlying spot and forward values, taking into account underlying income.</p>
+<dd><p>Calculates the implied yield of the forward contract.</p>
+<p>This is a simple yield calculation based on underlying spot and forward
+values, taking into account underlying income.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>underlying_spot_value</strong><span class="classifier">float</span></dt><dd><p>The spot value of the underlying.</p>
+</dd>
+<dt><strong>forward_value</strong><span class="classifier">float</span></dt><dd><p>The forward value.</p>
+</dd>
+<dt><strong>settlement_date</strong><span class="classifier"><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a></span></dt><dd><p>The settlement date.</p>
+</dd>
+<dt><strong>convention</strong><span class="classifier"><a class="reference internal" href="quantlib.compounding.Compounding.html#quantlib.compounding.Compounding" title="quantlib.compounding.Compounding"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compounding</span></code></a></span></dt><dd><p>The compounding convention.</p>
+</dd>
+<dt><strong>day_counter</strong><span class="classifier"><a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a></span></dt><dd><p>The day counter.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

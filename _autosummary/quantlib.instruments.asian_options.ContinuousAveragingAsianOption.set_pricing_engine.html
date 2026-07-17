@@ -39,7 +39,20 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="quantlib.instruments.asian_options.ContinuousAveragingAsianOption.set_pricing_engine">
 <span class="sig-prename descclassname"><span class="pre">ContinuousAveragingAsianOption.</span></span><span class="sig-name descname"><span class="pre">set_pricing_engine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PricingEngine</span> <span class="pre">engine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.instruments.asian_options.ContinuousAveragingAsianOption.set_pricing_engine" title="Link to this definition">¶</a></dt>
-<dd><p>Sets the pricing engine.</p>
+<dd><p>Sets the pricing engine to be used.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Calling this method will have no effects in case the
+<cite>performCalculation</cite> method was overridden in a derived class.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>engine</strong><span class="classifier"><a class="reference internal" href="quantlib.pricingengines.engine.PricingEngine.html#quantlib.pricingengines.engine.PricingEngine" title="quantlib.pricingengines.engine.PricingEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">PricingEngine</span></code></a></span></dt><dd><p>The pricing engine to be used.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

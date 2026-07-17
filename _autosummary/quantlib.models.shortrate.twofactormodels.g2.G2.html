@@ -41,10 +41,20 @@
 <dt class="sig sig-object py" id="quantlib.models.shortrate.twofactormodels.g2.G2">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">G2</span></span><a class="headerlink" href="#quantlib.models.shortrate.twofactormodels.g2.G2" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.models.shortrate.twofactor_model.TwoFactorModel.html#quantlib.models.shortrate.twofactor_model.TwoFactorModel" title="quantlib.models.shortrate.twofactor_model.TwoFactorModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">TwoFactorModel</span></code></a></p>
+<p>Two-factor additive gaussian model class.</p>
+<p>This class implements a two-additive-factor model defined by</p>
+<div class="math">
+<p><img src="../_images/math/6d29a7e399eb346bc5ea07cd9578f9524cf574a0.png" alt="dr_t = \varphi(t) + x_t + y_t"/></p>
+</div><p>where <img class="math" src="../_images/math/8f3c6b529aaa515fdbc6c51b4fc4f73293dbfc09.png" alt="x_t"/> and <img class="math" src="../_images/math/0cbc9604deaea10e6e8f5702f2215711e97bea42.png" alt="y_t"/> are defined by</p>
+<div class="math">
+<p><img src="../_images/math/9f4a20df72fd645de7bb2ef1a30988bc96bbc78d.png" alt="dx_t = -a x_t dt + \sigma dW^1_t, x_0 = 0\\
+dy_t = -b y_t dt + \sigma dW^2_t, y_0 = 0"/></p>
+</div><p>and <img class="math" src="../_images/math/aceca48e304e0863b4d75c06310b9a59bf78be11.png" alt="dW^1_t dW^2_t = \rho dt"/>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>dynamics</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.models.shortrate.twofactormodels.g2.G2.dynamics.html#quantlib.models.shortrate.twofactormodels.g2.G2.dynamics" title="quantlib.models.shortrate.twofactormodels.g2.G2.dynamics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dynamics</span></code></a></dt><dd><p>short-rate dynamics</p>
+</dd>
 </dl>
 </dd>
 </dl>

@@ -30,6 +30,7 @@ ShortRateDynamics
          :toctree:
       
          ShortRateDynamics.correlation
-         ShortRateDynamics.process_x
+         ShortRateDynamics.x_process
+         ShortRateDynamics.y_process
   
   

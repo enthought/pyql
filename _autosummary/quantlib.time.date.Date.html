@@ -41,26 +41,59 @@
 <dt class="sig sig-object py" id="quantlib.time.date.Date">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">day</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">month</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hours</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minutes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Millisecond</span> <span class="pre">millisec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Microsecond</span> <span class="pre">microsec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.time.date.Date" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Date class</p>
-<p>It provides methods to inspect dates as well as methods and
-operators which implement a limited date algebra (increasing and decreasing
-dates, and calculating their difference).</p>
+<p>Concrete date class.</p>
+<p>This class provides methods to inspect dates as well as methods and
+operators which implement a limited date algebra (increasing and
+decreasing dates, and calculating their difference).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>day</strong></dt><dd></dd>
-<dt><strong>day_of_year</strong></dt><dd></dd>
-<dt><strong>fraction_of_day</strong></dt><dd></dd>
-<dt><strong>fraction_of_second</strong></dt><dd></dd>
-<dt><strong>hours</strong></dt><dd></dd>
-<dt><strong>microseconds</strong></dt><dd></dd>
-<dt><strong>milliseconds</strong></dt><dd></dd>
-<dt><strong>minutes</strong></dt><dd></dd>
-<dt><strong>month</strong></dt><dd></dd>
-<dt><strong>seconds</strong></dt><dd></dd>
-<dt><strong>serial</strong></dt><dd></dd>
-<dt><strong>weekday</strong></dt><dd></dd>
-<dt><strong>year</strong></dt><dd></dd>
+<dt><strong>day</strong><span class="classifier">int, optional</span></dt><dd><p>The day of the month.</p>
+</dd>
+<dt><strong>month</strong><span class="classifier">int, optional</span></dt><dd><p>The month of the year.</p>
+</dd>
+<dt><strong>year</strong><span class="classifier">int, optional</span></dt><dd><p>The year.</p>
+</dd>
+<dt><strong>hours</strong><span class="classifier">int, optional</span></dt><dd><p>The hour of the day.</p>
+</dd>
+<dt><strong>minutes</strong><span class="classifier">int, optional</span></dt><dd><p>The minute of the hour.</p>
+</dd>
+<dt><strong>seconds</strong><span class="classifier">int, optional</span></dt><dd><p>The second of the minute.</p>
+</dd>
+<dt><strong>millisec</strong><span class="classifier">int, optional</span></dt><dd><p>The millisecond of the second.</p>
+</dd>
+<dt><strong>microsec</strong><span class="classifier">int, optional</span></dt><dd><p>The microsecond of the second.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference internal" href="quantlib.time.date.Date.day.html#quantlib.time.date.Date.day" title="quantlib.time.date.Date.day"><code class="xref py py-obj docutils literal notranslate"><span class="pre">day</span></code></a></dt><dd><p>The day of the month of the date.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.time.date.Date.day_of_year.html#quantlib.time.date.Date.day_of_year" title="quantlib.time.date.Date.day_of_year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">day_of_year</span></code></a></dt><dd><p>The day of the year (one based - Jan 1st = 1).</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.time.date.Date.fraction_of_day.html#quantlib.time.date.Date.fraction_of_day" title="quantlib.time.date.Date.fraction_of_day"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fraction_of_day</span></code></a></dt><dd><p>The fraction of the day, as a float.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.time.date.Date.fraction_of_second.html#quantlib.time.date.Date.fraction_of_second" title="quantlib.time.date.Date.fraction_of_second"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fraction_of_second</span></code></a></dt><dd><p>The fraction of the second, as a float.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.time.date.Date.hours.html#quantlib.time.date.Date.hours" title="quantlib.time.date.Date.hours"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hours</span></code></a></dt><dd><p>The hour of the day.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.time.date.Date.microseconds.html#quantlib.time.date.Date.microseconds" title="quantlib.time.date.Date.microseconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">microseconds</span></code></a></dt><dd><p>The microsecond of the second.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.time.date.Date.milliseconds.html#quantlib.time.date.Date.milliseconds" title="quantlib.time.date.Date.milliseconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">milliseconds</span></code></a></dt><dd><p>The millisecond of the second.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.time.date.Date.minutes.html#quantlib.time.date.Date.minutes" title="quantlib.time.date.Date.minutes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">minutes</span></code></a></dt><dd><p>The minute of the hour.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.time.date.Date.month.html#quantlib.time.date.Date.month" title="quantlib.time.date.Date.month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">month</span></code></a></dt><dd><p>The month of the date.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.time.date.Date.seconds.html#quantlib.time.date.Date.seconds" title="quantlib.time.date.Date.seconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">seconds</span></code></a></dt><dd><p>The second of the minute.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.time.date.Date.serial.html#quantlib.time.date.Date.serial" title="quantlib.time.date.Date.serial"><code class="xref py py-obj docutils literal notranslate"><span class="pre">serial</span></code></a></dt><dd><p>The serial number of the date.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.time.date.Date.weekday.html#quantlib.time.date.Date.weekday" title="quantlib.time.date.Date.weekday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weekday</span></code></a></dt><dd><p>The weekday of the date.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.time.date.Date.year.html#quantlib.time.date.Date.year" title="quantlib.time.date.Date.year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">year</span></code></a></dt><dd><p>The year of the date.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -68,13 +101,13 @@ dates, and calculating their difference).</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.date.Date.from_datetime.html#quantlib.time.date.Date.from_datetime" title="quantlib.time.date.Date.from_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_datetime</span></code></a>(cls, dt)</p></td>
-<td><p>Returns a QuantLib Date object from a Python datetime.date</p></td>
+<td><p>Creates a Date object from a Python <code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.date</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code> object.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.date.Date.from_serial.html#quantlib.time.date.Date.from_serial" title="quantlib.time.date.Date.from_serial"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_serial</span></code></a>(cls, serial_type serial)</p></td>
-<td><p></p></td>
+<td><p>Creates a Date object from a serial number (e.g., from Excel).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.date.Date.from_string.html#quantlib.time.date.Date.from_string" title="quantlib.time.date.Date.from_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_string</span></code></a>(cls, str s, str fmt=None)</p></td>
-<td><p></p></td>
+<td><p>Creates a Date object from a string representation.</p></td>
 </tr>
 </tbody>
 </table>

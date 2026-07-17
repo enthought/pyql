@@ -44,11 +44,25 @@
 <p>Class providing a Period (length + time unit) class and implements a
 limited algebra.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>frequency</strong></dt><dd></dd>
-<dt><strong>length</strong></dt><dd></dd>
-<dt><strong>units</strong></dt><dd></dd>
+<dt><strong>*args</strong></dt><dd><ul class="simple">
+<li><p><cite>Period(period_string)</cite>: Create a period from a string, e.g., “2m” or “3y”.</p></li>
+<li><p><cite>Period(frequency)</cite>: Create a period from a <a class="reference internal" href="quantlib.time.frequency.Frequency.html#quantlib.time.frequency.Frequency" title="quantlib.time.frequency.Frequency"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frequency</span></code></a> enum.</p></li>
+<li><p><cite>Period(length, time_unit)</cite>: Create a period from a length and a <a class="reference internal" href="quantlib.time.date.TimeUnit.html#quantlib.time.date.TimeUnit" title="quantlib.time.date.TimeUnit"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeUnit</span></code></a>.</p></li>
+<li><p><cite>Period()</cite>: Create an empty period.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference internal" href="quantlib.time.date.Period.frequency.html#quantlib.time.date.Period.frequency" title="quantlib.time.date.Period.frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency</span></code></a></dt><dd><p>The frequency of the period.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.time.date.Period.length.html#quantlib.time.date.Period.length" title="quantlib.time.date.Period.length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">length</span></code></a></dt><dd><p>The length of the period.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.time.date.Period.units.html#quantlib.time.date.Period.units" title="quantlib.time.date.Period.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code></a></dt><dd><p>The time unit of the period.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -56,7 +70,7 @@ limited algebra.</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.date.Period.normalize.html#quantlib.time.date.Period.normalize" title="quantlib.time.date.Period.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize</span></code></a>(self)</p></td>
-<td><p>Normalises the units.</p></td>
+<td><p>Normalizes the units of the period.</p></td>
 </tr>
 </tbody>
 </table>

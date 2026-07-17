@@ -20,7 +20,6 @@ BatesDetJumpModel
          :toctree:
       
          BatesDetJumpModel.calibrate
-         BatesDetJumpModel.process
       
   
 
@@ -35,6 +34,7 @@ BatesDetJumpModel
          BatesDetJumpModel.kappa
          BatesDetJumpModel.kappaLambda
          BatesDetJumpModel.nu
+         BatesDetJumpModel.process
          BatesDetJumpModel.rho
          BatesDetJumpModel.sigma
          BatesDetJumpModel.theta

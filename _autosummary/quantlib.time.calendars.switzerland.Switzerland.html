@@ -60,31 +60,31 @@
 <td><p>Adjusts a non-business day to the appropriate near business day with respect to the given convention.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.advance.html#quantlib.time.calendars.switzerland.Switzerland.advance" title="quantlib.time.calendars.switzerland.Switzerland.advance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">advance</span></code></a>(self, Date given_date, int step=0, ...)</p></td>
-<td><p>Advances the given date of the given number of business days, or period and returns the result.</p></td>
+<td><p>Advances the given date by the given number of business days or period.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.business_day_list.html#quantlib.time.calendars.switzerland.Switzerland.business_day_list" title="quantlib.time.calendars.switzerland.Switzerland.business_day_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">business_day_list</span></code></a>(self, Date from_date, ...)</p></td>
-<td><p>Returns the business days between two dates.</p></td>
+<td><p>Returns a list of business days between two dates.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.business_days_between.html#quantlib.time.calendars.switzerland.Switzerland.business_days_between" title="quantlib.time.calendars.switzerland.Switzerland.business_days_between"><code class="xref py py-obj docutils literal notranslate"><span class="pre">business_days_between</span></code></a>(self, Date date1, ...)</p></td>
-<td><p>Returns the number of business days between date1 and date2.</p></td>
+<td><p>Returns the number of business days between two dates.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.end_of_month.html#quantlib.time.calendars.switzerland.Switzerland.end_of_month" title="quantlib.time.calendars.switzerland.Switzerland.end_of_month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">end_of_month</span></code></a>(self, Date current_date)</p></td>
-<td><p>Returns the ending date for the month that contains the given date.</p></td>
+<td><p>Returns the last business day of the month to which the given date belongs.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.holiday_list.html#quantlib.time.calendars.switzerland.Switzerland.holiday_list" title="quantlib.time.calendars.switzerland.Switzerland.holiday_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">holiday_list</span></code></a>(self, Date from_date, ...)</p></td>
-<td><p>Returns the holidays between two dates.</p></td>
+<td><p>Returns a list of holidays between two dates.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.is_business_day.html#quantlib.time.calendars.switzerland.Switzerland.is_business_day" title="quantlib.time.calendars.switzerland.Switzerland.is_business_day"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_business_day</span></code></a>(self, Date test_date)</p></td>
-<td><p>Returns true iff the date is a business day for the given market.</p></td>
+<td><p>Returns <cite>True</cite> if the date is a business day for the given market.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.is_end_of_month.html#quantlib.time.calendars.switzerland.Switzerland.is_end_of_month" title="quantlib.time.calendars.switzerland.Switzerland.is_end_of_month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_end_of_month</span></code></a>(self, Date test_date)</p></td>
-<td><p>Is this date the last business day of the month to which the given date belongs</p></td>
+<td><p>Returns <cite>True</cite> if the date is the last business day of the month in the given market.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.is_holiday.html#quantlib.time.calendars.switzerland.Switzerland.is_holiday" title="quantlib.time.calendars.switzerland.Switzerland.is_holiday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_holiday</span></code></a>(self, Date test_date)</p></td>
-<td><p>Returns true iff the weekday is part of the weekend for the given market.</p></td>
+<td><p>Returns <cite>True</cite> if the date is a holiday for the given market.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.is_weekend.html#quantlib.time.calendars.switzerland.Switzerland.is_weekend" title="quantlib.time.calendars.switzerland.Switzerland.is_weekend"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_weekend</span></code></a>(self, int week_day)</p></td>
-<td><p>Returns true iff the date is last business day for the month in given market.</p></td>
+<td><p>Returns <cite>True</cite> if the weekday is part of the weekend for the given market.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="quantlib.time.calendars.switzerland.Switzerland.remove_holiday.html#quantlib.time.calendars.switzerland.Switzerland.remove_holiday" title="quantlib.time.calendars.switzerland.Switzerland.remove_holiday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_holiday</span></code></a>(self, Date holiday)</p></td>
 <td><p>Removes a date from the set of holidays for the given calendar.</p></td>

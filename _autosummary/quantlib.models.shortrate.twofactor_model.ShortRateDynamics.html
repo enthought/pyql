@@ -41,12 +41,28 @@
 <dt class="sig sig-object py" id="quantlib.models.shortrate.twofactor_model.ShortRateDynamics">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ShortRateDynamics</span></span><a class="headerlink" href="#quantlib.models.shortrate.twofactor_model.ShortRateDynamics" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="field-list simple">
+<p>Class describing the dynamics of the two state variables</p>
+<p>We assume here that the short-rate is a function of two state
+variables <img class="math" src="../_images/math/888f7c323ac0341871e867220ae2d76467d74d6e.png" alt="x"/> and <img class="math" src="../_images/math/1b5e577d6216dca3af7d87aa122a0b9b360d6cb3.png" alt="y"/>.</p>
+<div class="math">
+<p><img src="../_images/math/eb8f88dfad21f77328aa6373a82719221db073dd.png" alt="r_t = f(t, x_t, y_t)"/></p>
+</div><p>of two state variables <img class="math" src="../_images/math/8f3c6b529aaa515fdbc6c51b4fc4f73293dbfc09.png" alt="x_t"/> and <img class="math" src="../_images/math/0cbc9604deaea10e6e8f5702f2215711e97bea42.png" alt="y_t"/>. These stochastic
+processes satisfy</p>
+<div class="math">
+<p><img src="../_images/math/8f53f7cf1c71134f89765db79b083774832eb0f9.png" alt="x_t = \mu_x(t, x_t)dt + \sigma_x(t, x_t) dW_t^x\\
+y_t = \mu_y(t,y_t)dt + \sigma_y(t, y_t) dW_t^y"/></p>
+</div><p>where <img class="math" src="../_images/math/75f2ce263de3a8e2167daed28966eef9ab054832.png" alt="W^x"/> and <img class="math" src="../_images/math/684218f86676ed3704ffd5a062fd2c789b728682.png" alt="W^y"/> are two brownian motions satisfying</p>
+<div class="math">
+<p><img src="../_images/math/d2c8ea6d361f6e4575017375afccfafdc98e760c.png" alt="dW^x_t dW^y_t = \rho dt"/></p>
+</div><dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><a class="reference internal" href="quantlib.models.shortrate.twofactor_model.ShortRateDynamics.correlation.html#quantlib.models.shortrate.twofactor_model.ShortRateDynamics.correlation" title="quantlib.models.shortrate.twofactor_model.ShortRateDynamics.correlation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">correlation</span></code></a></dt><dd><p>Correlation <img class="math" src="../_images/math/21dbb4cef70e602db8c85016ba89020982c224a0.png" alt="rho"/> between the two brownian motions</p>
+<dt><a class="reference internal" href="quantlib.models.shortrate.twofactor_model.ShortRateDynamics.correlation.html#quantlib.models.shortrate.twofactor_model.ShortRateDynamics.correlation" title="quantlib.models.shortrate.twofactor_model.ShortRateDynamics.correlation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">correlation</span></code></a></dt><dd><p>Correlation <img class="math" src="../_images/math/27dc86f9f1b1c3435b2403a869b5870c582facea.png" alt="\rho"/> between the two brownian motions</p>
 </dd>
-<dt><strong>process_x</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.models.shortrate.twofactor_model.ShortRateDynamics.x_process.html#quantlib.models.shortrate.twofactor_model.ShortRateDynamics.x_process" title="quantlib.models.shortrate.twofactor_model.ShortRateDynamics.x_process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">x_process</span></code></a></dt><dd><p>Risk-neutral dynamics of the first state variable x</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.models.shortrate.twofactor_model.ShortRateDynamics.y_process.html#quantlib.models.shortrate.twofactor_model.ShortRateDynamics.y_process" title="quantlib.models.shortrate.twofactor_model.ShortRateDynamics.y_process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">y_process</span></code></a></dt><dd><p>Risk-neutral dynamics of the second state variable y</p>
+</dd>
 </dl>
 </dd>
 </dl>

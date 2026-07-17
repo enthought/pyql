@@ -20,7 +20,6 @@ BatesModel
          :toctree:
       
          BatesModel.calibrate
-         BatesModel.process
       
   
 
@@ -34,6 +33,7 @@ BatesModel
          BatesModel.delta
          BatesModel.kappa
          BatesModel.nu
+         BatesModel.process
          BatesModel.rho
          BatesModel.sigma
          BatesModel.theta

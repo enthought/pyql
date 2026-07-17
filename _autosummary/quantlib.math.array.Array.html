@@ -41,12 +41,23 @@
 <dt class="sig sig-object py" id="quantlib.math.array.Array">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Size</span> <span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.math.array.Array" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>1D array for linear algebra</p>
+<p>1D array for linear algebra.</p>
+<p>This class implements the concept of a vector as used in linear algebra.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>The size of the array.</p>
+</dd>
+<dt><strong>value</strong><span class="classifier">float, optional</span></dt><dd><p>The value to fill the array with.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="quantlib.math.array.Array.to_ndarray.html#quantlib.math.array.Array.to_ndarray" title="quantlib.math.array.Array.to_ndarray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_ndarray</span></code></a>(self)</p></td>
-<td><p></p></td>
+<td><p>Returns a view of the array as a numpy array.</p></td>
 </tr>
 </tbody>
 </table>

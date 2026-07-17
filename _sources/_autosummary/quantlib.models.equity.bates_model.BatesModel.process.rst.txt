@@ -3,4 +3,4 @@ quantlib.models.equity.bates\_model.BatesModel.process
 
 .. currentmodule:: quantlib.models.equity.bates_model
 
-.. automethod:: BatesModel.process
+.. autoattribute:: BatesModel.process

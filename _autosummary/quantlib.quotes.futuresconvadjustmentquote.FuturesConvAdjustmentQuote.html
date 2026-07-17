@@ -41,15 +41,34 @@
 <dt class="sig sig-object py" id="quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">FuturesConvAdjustmentQuote</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">IborIndex</span> <span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">futures_date_or_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Quote</span> <span class="pre">futures_quote</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Quote</span> <span class="pre">volatility</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Quote</span> <span class="pre">mean_reversion</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.quote.Quote.html#quantlib.quote.Quote" title="quantlib.quote.Quote"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quote</span></code></a></p>
-<dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>futures_value</strong></dt><dd></dd>
-<dt><strong>imm_date</strong></dt><dd></dd>
+<p>Quote for the futures-convexity adjustment of an index.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>index</strong><span class="classifier"><a class="reference internal" href="quantlib.indexes.ibor_index.IborIndex.html#quantlib.indexes.ibor_index.IborIndex" title="quantlib.indexes.ibor_index.IborIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">IborIndex</span></code></a></span></dt><dd><p>The underlying IBOR index.</p>
+</dd>
+<dt><strong>futures_date_or_code</strong><span class="classifier"><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a> or str</span></dt><dd><p>The futures date or IMM code.</p>
+</dd>
+<dt><strong>futures_quote</strong><span class="classifier"><a class="reference internal" href="quantlib.quote.Quote.html#quantlib.quote.Quote" title="quantlib.quote.Quote"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quote</span></code></a></span></dt><dd><p>The quote for the futures contract.</p>
+</dd>
+<dt><strong>volatility</strong><span class="classifier"><a class="reference internal" href="quantlib.quote.Quote.html#quantlib.quote.Quote" title="quantlib.quote.Quote"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quote</span></code></a></span></dt><dd><p>The volatility quote.</p>
+</dd>
+<dt><strong>mean_reversion</strong><span class="classifier"><a class="reference internal" href="quantlib.quote.Quote.html#quantlib.quote.Quote" title="quantlib.quote.Quote"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quote</span></code></a></span></dt><dd><p>The mean-reversion quote.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference internal" href="quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote.futures_value.html#quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote.futures_value" title="quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote.futures_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">futures_value</span></code></a></dt><dd><p>The value of the futures quote.</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote.imm_date.html#quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote.imm_date" title="quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote.imm_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">imm_date</span></code></a></dt><dd><p>The IMM date of the futures contract.</p>
+</dd>
 <dt><strong>is_valid</strong></dt><dd></dd>
-<dt><strong>mean_reversion</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote.mean_reversion.html#quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote.mean_reversion" title="quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote.mean_reversion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_reversion</span></code></a></dt><dd><p>The mean reversion of the quote.</p>
+</dd>
 <dt><strong>value</strong></dt><dd></dd>
-<dt><strong>volatility</strong></dt><dd></dd>
+<dt><a class="reference internal" href="quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote.volatility.html#quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote.volatility" title="quantlib.quotes.futuresconvadjustmentquote.FuturesConvAdjustmentQuote.volatility"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volatility</span></code></a></dt><dd><p>The volatility of the quote.</p>
+</dd>
 </dl>
 </dd>
 </dl>

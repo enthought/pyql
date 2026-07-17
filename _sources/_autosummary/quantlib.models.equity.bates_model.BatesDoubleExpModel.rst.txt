@@ -20,7 +20,6 @@ BatesDoubleExpModel
          :toctree:
       
          BatesDoubleExpModel.calibrate
-         BatesDoubleExpModel.process
       
   
 
@@ -35,6 +34,7 @@ BatesDoubleExpModel
          BatesDoubleExpModel.nuDown
          BatesDoubleExpModel.nuUp
          BatesDoubleExpModel.p
+         BatesDoubleExpModel.process
          BatesDoubleExpModel.rho
          BatesDoubleExpModel.sigma
          BatesDoubleExpModel.theta

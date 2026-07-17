@@ -41,26 +41,32 @@
 <dt class="sig sig-object py" id="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ForwardSpreadedTermStructure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">HandleYieldTermStructure</span> <span class="pre">yts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Quote</span> <span class="pre">spread</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="quantlib.termstructures.yield_term_structure.YieldTermStructure.html#quantlib.termstructures.yield_term_structure.YieldTermStructure" title="quantlib.termstructures.yield_term_structure.YieldTermStructure"><code class="xref py py-class docutils literal notranslate"><span class="pre">YieldTermStructure</span></code></a></p>
-<dl class="simple">
-<dt>Constructor Inputs:</dt><dd><ol class="arabic simple">
-<li><p>YieldTermStructure</p></li>
-<li><p>Quote</p></li>
-</ol>
+<p>Term structure with an added spread on the instantaneous forward rate.</p>
+<p>This term structure remains linked to the original structure; any changes
+in the latter will be reflected in this structure.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>yts</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">HandleYieldTermStructure</span></code></span></dt><dd><p>The handle to the original yield term structure.</p>
+</dd>
+<dt><strong>spread</strong><span class="classifier"><a class="reference internal" href="quantlib.quote.Quote.html#quantlib.quote.Quote" title="quantlib.quote.Quote"><code class="xref py py-class docutils literal notranslate"><span class="pre">Quote</span></code></a></span></dt><dd><p>The spread to be added to the forward rate.</p>
 </dd>
 </dl>
-<dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>calendar</strong></dt><dd></dd>
-<dt><strong>day_counter</strong></dt><dd></dd>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference internal" href="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.calendar.html#quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.calendar" title="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.calendar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calendar</span></code></a></dt><dd><p><a class="reference internal" href="quantlib.time.calendar.Calendar.html#quantlib.time.calendar.Calendar" title="quantlib.time.calendar.Calendar"><code class="xref py py-class docutils literal notranslate"><span class="pre">Calendar</span></code></a>: calendar</p>
+</dd>
+<dt><a class="reference internal" href="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.day_counter.html#quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.day_counter" title="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.day_counter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">day_counter</span></code></a></dt><dd><p><a class="reference internal" href="quantlib.time.daycounter.DayCounter.html#quantlib.time.daycounter.DayCounter" title="quantlib.time.daycounter.DayCounter"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCounter</span></code></a>: day counter</p>
+</dd>
 <dt><strong>extrapolation</strong></dt><dd></dd>
-<dt><a class="reference internal" href="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.max_date.html#quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.max_date" title="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.max_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_date</span></code></a></dt><dd><p>the latest date for which the curve can return values</p>
+<dt><a class="reference internal" href="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.max_date.html#quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.max_date" title="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.max_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_date</span></code></a></dt><dd><p><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a>: the latest date for which the curve can return values</p>
 </dd>
-<dt><a class="reference internal" href="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.max_time.html#quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.max_time" title="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.max_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_time</span></code></a></dt><dd><p>the latest time for which the curve can return values</p>
+<dt><a class="reference internal" href="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.max_time.html#quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.max_time" title="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.max_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_time</span></code></a></dt><dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Time</span></code>: the latest time for which the curve can return values</p>
 </dd>
-<dt><a class="reference internal" href="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.reference_date.html#quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.reference_date" title="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.reference_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></a></dt><dd><p>the date at which discount = 1.0 and/or variance = 0.0</p>
+<dt><a class="reference internal" href="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.reference_date.html#quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.reference_date" title="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.reference_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_date</span></code></a></dt><dd><p><a class="reference internal" href="quantlib.time.date.Date.html#quantlib.time.date.Date" title="quantlib.time.date.Date"><code class="xref py py-class docutils literal notranslate"><span class="pre">Date</span></code></a>: the date at which discount = 1.0 and/or variance = 0.0</p>
 </dd>
-<dt><a class="reference internal" href="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.settlement_days.html#quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.settlement_days" title="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.settlement_days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_days</span></code></a></dt><dd><p>number of settlement days used for reference date calculation</p>
+<dt><a class="reference internal" href="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.settlement_days.html#quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.settlement_days" title="quantlib.termstructures.yields.forward_spreaded_term_structure.ForwardSpreadedTermStructure.settlement_days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">settlement_days</span></code></a></dt><dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>: number of settlement days used for reference date calculation</p>
 </dd>
 </dl>
 </dd>
