@@ -30,9 +30,9 @@ Method
          Method.__getitem__
          Method.__len__
       
-         Method.__getitem__
          Method.__len__
          Method.__mul__
+         Method.__getitem__
          Method.__pow__
   
 

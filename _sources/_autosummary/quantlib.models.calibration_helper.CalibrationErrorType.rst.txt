@@ -32,8 +32,8 @@ CalibrationErrorType
       
          CalibrationErrorType.__getitem__
          CalibrationErrorType.__len__
-         CalibrationErrorType.__mul__
          CalibrationErrorType.__pow__
+         CalibrationErrorType.__mul__
   
 
   

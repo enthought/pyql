@@ -32,8 +32,8 @@ CashAnnuityModel
       
          CashAnnuityModel.__getitem__
          CashAnnuityModel.__len__
-         CashAnnuityModel.__mul__
          CashAnnuityModel.__pow__
+         CashAnnuityModel.__mul__
   
 
   

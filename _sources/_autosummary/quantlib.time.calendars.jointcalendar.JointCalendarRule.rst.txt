@@ -32,8 +32,8 @@ JointCalendarRule
       
          JointCalendarRule.__getitem__
          JointCalendarRule.__len__
-         JointCalendarRule.__mul__
          JointCalendarRule.__pow__
+         JointCalendarRule.__mul__
   
 
   

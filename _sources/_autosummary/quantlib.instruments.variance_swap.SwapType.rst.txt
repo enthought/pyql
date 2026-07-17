@@ -32,8 +32,8 @@ SwapType
       
          SwapType.__getitem__
          SwapType.__len__
-         SwapType.__mul__
          SwapType.__pow__
+         SwapType.__mul__
   
 
   

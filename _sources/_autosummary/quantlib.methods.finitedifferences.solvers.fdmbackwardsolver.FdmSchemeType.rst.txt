@@ -32,8 +32,8 @@ FdmSchemeType
       
          FdmSchemeType.__getitem__
          FdmSchemeType.__len__
-         FdmSchemeType.__mul__
          FdmSchemeType.__pow__
+         FdmSchemeType.__mul__
   
 
   

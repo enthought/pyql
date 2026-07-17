@@ -32,8 +32,8 @@ AccrualBias
       
          AccrualBias.__getitem__
          AccrualBias.__len__
-         AccrualBias.__mul__
          AccrualBias.__pow__
+         AccrualBias.__mul__
   
 
   

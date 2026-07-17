@@ -32,8 +32,8 @@ Frequency
       
          Frequency.__getitem__
          Frequency.__len__
-         Frequency.__mul__
          Frequency.__pow__
+         Frequency.__mul__
   
 
   
